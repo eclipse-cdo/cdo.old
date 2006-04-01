@@ -820,8 +820,8 @@ public class CdoEditor extends MultiPageEditorPart implements IEditingDomainProv
       selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 
       selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-      selectionViewer.setInput(editingDomain.getResourceSet());
-      viewerPane.setTitle(editingDomain.getResourceSet());
+      selectionViewer.setInput(getResource());
+      viewerPane.setTitle(getResource());
 
       new AdapterFactoryTreeEditor(selectionViewer.getTree(), adapterFactory);
 
@@ -846,6 +846,14 @@ public class CdoEditor extends MultiPageEditorPart implements IEditingDomainProv
         }
       }
     });
+  }
+
+  /**
+   * @ADDED
+   */
+  public Object getResource()
+  {
+    return editingDomain.getResourceSet().getResources().get(0);
   }
 
   /**
@@ -915,7 +923,7 @@ public class CdoEditor extends MultiPageEditorPart implements IEditingDomainProv
    * This accesses a cached version of the content outliner.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   public IContentOutlinePage getContentOutlinePage()
   {
@@ -947,7 +955,7 @@ public class CdoEditor extends MultiPageEditorPart implements IEditingDomainProv
             // Select the root object in the view.
             //
             ArrayList selection = new ArrayList();
-            selection.add(editingDomain.getResourceSet().getResources().get(0));
+            selection.add(getResource());
             contentOutlineViewer.setSelection(new StructuredSelection(selection), true);
           }
         }
@@ -1171,7 +1179,7 @@ public class CdoEditor extends MultiPageEditorPart implements IEditingDomainProv
    */
   protected void doSaveAs(URI uri, IEditorInput editorInput)
   {
-    ((Resource)editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
+    ((Resource)getResource()).setURI(uri);
     setInputWithNotify(editorInput);
     setPartName(editorInput.getName());
     IProgressMonitor progressMonitor = getActionBars().getStatusLineManager() != null ? getActionBars()
