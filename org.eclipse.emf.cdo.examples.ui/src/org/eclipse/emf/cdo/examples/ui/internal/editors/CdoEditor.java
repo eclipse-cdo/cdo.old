@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.cdo.client.CdoResource;
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.example.client.CdoExampleClientPlugin;
 import org.eclipse.emf.cdo.example.ui.internal.CdoExampleUiActivator;
@@ -819,7 +820,7 @@ public class CdoEditor extends MultiPageEditorPart implements IEditingDomainProv
       selectionViewer = (TreeViewer)viewerPane.getViewer();
       selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 
-      selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+      selectionViewer.setLabelProvider(new CdoLabelProvider(adapterFactory));
       selectionViewer.setInput(getResource());
       viewerPane.setTitle(getResource());
 
@@ -943,7 +944,7 @@ public class CdoEditor extends MultiPageEditorPart implements IEditingDomainProv
           //
           contentOutlineViewer
                   .setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-          contentOutlineViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+          contentOutlineViewer.setLabelProvider(new CdoLabelProvider(adapterFactory));
           contentOutlineViewer.setInput(editingDomain.getResourceSet());
 
           // Make sure our popups work.
@@ -1451,5 +1452,27 @@ public class CdoEditor extends MultiPageEditorPart implements IEditingDomainProv
     }
 
     super.dispose();
+  }
+
+  /**
+   * @ADDED
+   */
+  private static final class CdoLabelProvider extends AdapterFactoryLabelProvider
+  {
+    private CdoLabelProvider(AdapterFactory factory)
+    {
+      super(factory);
+    }
+
+    @Override
+    public String getText(Object object)
+    {
+      if (object instanceof CdoResource)
+      {
+        return ((CdoResource)object).getPath();
+      }
+
+      return super.getText(object);
+    }
   }
 }
