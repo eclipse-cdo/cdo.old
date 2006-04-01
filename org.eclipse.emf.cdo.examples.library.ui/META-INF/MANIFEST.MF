@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.emf.cdo.example.library.ui;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: org.eclipse.emf.cdo.example.library.ui.internal.CdoExampleLibraryUiActivator$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.eclipse.emf.edit.ui,
+ org.eclipse.emf.cdo.example.client,
+ org.eclipse.emf.cdo.example.library
+Eclipse-LazyStart: true

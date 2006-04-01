@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.emf.cdo.server"
+      label="CDO Server"
+      version="1.0.0"
+      provider-name="Eclipse.org">
+
+   <description url="http://www.yourdomain.com/description">
+      [Enter Feature Description here.]
+   </description>
+
+   <copyright url="http://www.yourdomain.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.yourdomain.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <includes
+         id="org.eclipse.emf.dbgen"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.emf.jdbc"
+         version="0.0.0"/>
+
+   <requires>
+      <import feature="org.eclipse.net4j" version="1.0.0"/>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.emf.edit"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.eclipse.emf.edit.ui"/>
+      <import plugin="org.eclipse.ui.ide"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.emf.cdo.core"
+         download-size="0"
+         install-size="0"
+         version="1.0.0"/>
+
+   <plugin
+         id="org.eclipse.emf.cdo.server"
+         download-size="0"
+         install-size="0"
+         version="1.0.0"/>
+
+   <plugin
+         id="org.eclipse.emf.dbgen"
+         download-size="0"
+         install-size="0"
+         version="1.0.0"/>
+
+   <plugin
+         id="org.eclipse.emf.dbgen.ansi92"
+         download-size="0"
+         install-size="0"
+         version="1.0.0"
+         fragment="true"/>
+
+   <plugin
+         id="org.eclipse.emf.dbgen.editor"
+         download-size="0"
+         install-size="0"
+         version="1.0.0"/>
+
+   <plugin
+         id="org.eclipse.emf.dbgen.hsqldb"
+         download-size="0"
+         install-size="0"
+         version="1.0.0"
+         fragment="true"/>
+
+   <plugin
+         id="org.eclipse.emf.dbgen.mysql"
+         download-size="0"
+         install-size="0"
+         version="1.0.0"
+         fragment="true"/>
+
+   <plugin
+         id="org.eclipse.emf.dbgen.oracle"
+         download-size="0"
+         install-size="0"
+         version="1.0.0"
+         fragment="true"/>
+
+   <plugin
+         id="org.eclipse.emf.jdbc"
+         download-size="0"
+         install-size="0"
+         version="1.0.0"/>
+
+   <plugin
+         id="org.eclipse.emf.jdbc.mysql"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"/>
+
+</feature>

@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.emf.cdo.core
+Bundle-Version: 1.0.0
+Bundle-ClassPath: net4j.cdo.core.jar
+Bundle-Activator: org.eclipse.emf.cdo.core.CdoCorePlugin
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.net4j.core;visibility:=reexport
+Eclipse-LazyStart: true
+Export-Package: org.eclipse.emf.cdo.core,
+ org.eclipse.emf.cdo.core.impl,
+ org.eclipse.emf.cdo.core.protocol

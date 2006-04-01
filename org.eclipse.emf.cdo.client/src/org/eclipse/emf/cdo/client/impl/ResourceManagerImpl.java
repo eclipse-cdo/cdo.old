@@ -1,0 +1,600 @@
+/*******************************************************************************
+ * Copyright (c) 2004, 2005, 2006 Eike Stepper, Sympedia Methods and Tools.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Eike Stepper - initial API and implementation
+ *******************************************************************************/
+package org.eclipse.emf.cdo.client.impl;
+
+
+import org.eclipse.net4j.core.Channel;
+import org.eclipse.net4j.core.Connector;
+import org.eclipse.net4j.spring.ValidationException;
+import org.eclipse.net4j.spring.impl.ServiceImpl;
+import org.eclipse.net4j.util.ImplementationError;
+import org.eclipse.net4j.util.thread.DeadlockDetector;
+import org.eclipse.net4j.util.thread.Worker;
+
+import org.eclipse.emf.cdo.client.CdoPersistable;
+import org.eclipse.emf.cdo.client.CdoResource;
+import org.eclipse.emf.cdo.client.PackageManager;
+import org.eclipse.emf.cdo.client.PausableChangeRecorder;
+import org.eclipse.emf.cdo.client.ResourceManager;
+import org.eclipse.emf.cdo.client.protocol.CdoClientProtocolImpl;
+import org.eclipse.emf.cdo.core.CdoProtocol;
+import org.eclipse.emf.cdo.core.OidEncoder;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.change.ChangeDescription;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
+
+
+public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
+{
+  private static final int CAPACITY_oidToObjectMap = 10007;
+
+  private ResourceSet resourceSet;
+
+  private Connector connector;
+
+  private transient Channel cachedChannel;
+
+  private transient boolean requestingObjects = true;
+
+  private transient Map ridToResourceMap = new HashMap();
+
+  private transient Map pathToResourceMap = new HashMap();
+
+  private transient Map oidToObjectMap = new HashMap(CAPACITY_oidToObjectMap);
+
+  private transient PausableChangeRecorder transaction;
+
+  private transient PackageManager packageManager;
+
+  private transient Invalidator invalidator;
+
+  private transient List<InvalidationListener> invalidationListeners = new ArrayList<InvalidationListener>();
+
+  private Adapter resourceSetAdapter = new AdapterImpl()
+  {
+    public void notifyChanged(Notification msg)
+    {
+      if (!(msg.getNotifier() instanceof ResourceSet) || msg.getNotifier() != resourceSet)
+      {
+        throw new ImplementationError("Not adapted to this ResourceSet " + resourceSet);
+      }
+
+      switch (msg.getEventType())
+      {
+        case Notification.REMOVE:
+          if (msg.getOldValue() instanceof CdoResource)
+          {
+            CdoResource resource = (CdoResource) msg.getOldValue();
+            notifyRemovedResource(resource);
+          }
+          break;
+
+        case Notification.REMOVE_MANY:
+          Collection newResources = (Collection) msg.getNewValue();
+          Collection oldResources = (Collection) msg.getOldValue();
+
+          for (Iterator iter = oldResources.iterator(); iter.hasNext();)
+          {
+            Object element = iter.next();
+
+            if (element instanceof CdoResource)
+            {
+              if (!newResources.contains(element))
+              {
+                notifyRemovedResource((CdoResource) element);
+              }
+            }
+          }
+          break;
+
+        default:
+      }
+    }
+  };
+
+  public PackageManager getPackageManager()
+  {
+    return packageManager;
+  }
+
+  public void setPackageManager(PackageManager packageManager)
+  {
+    doSet("packageManager", packageManager);
+  }
+
+  public Connector getConnector()
+  {
+    return connector;
+  }
+
+  public void setConnector(Connector connector)
+  {
+    doSet("connector", connector);
+  }
+
+  public ResourceSet getResourceSet()
+  {
+    return resourceSet;
+  }
+
+  public void setResourceSet(ResourceSet resourceSet)
+  {
+    doSet("resourceSet", resourceSet);
+
+    resourceSetAdapter.setTarget(resourceSet);
+    transaction = new PausableChangeRecorderImpl();
+    transaction.beginRecording(resourceSet);
+
+    Resource.Factory factory = new CdoResourceFactoryImpl(this);
+
+    Map protocols = resourceSet.getResourceFactoryRegistry().getProtocolToFactoryMap();
+    protocols.put(CdoProtocol.PROTOCOL_NAME, factory);
+
+    Map extensions = resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap();
+    extensions.put(CdoProtocol.PROTOCOL_NAME, factory);
+  }
+
+  public Resource createResource(URI uri)
+  {
+    return resourceSet.createResource(uri);
+  }
+
+  public Resource getResource(URI uri, boolean loadOnDemand)
+  {
+    return resourceSet.getResource(uri, loadOnDemand);
+  }
+
+  public void registerResource(CdoResource resource)
+  {
+    Integer rid = new Integer(resource.getRid());
+    ridToResourceMap.put(rid, resource);
+
+    String path = resource.getPath();
+    if (path != null)
+    {
+      pathToResourceMap.put(path, resource);
+    }
+  }
+
+  public void registerResourcePath(CdoResource cdoResource, String path)
+  {
+    cdoResource.setPath(path);
+    pathToResourceMap.put(path, cdoResource);
+  }
+
+  public CdoResource getResource(int rid)
+  {
+    CdoResource resource = (CdoResource) ridToResourceMap.get(new Integer(rid));
+
+    if (resource == null)
+    {
+      URI uri = CdoResourceFactoryImpl.formatURI(rid);
+      resource = (CdoResource) resourceSet.getResource(uri, true);
+    }
+
+    return resource;
+  }
+
+  public Channel getChannel()
+  {
+    if (cachedChannel == null)
+    {
+      cachedChannel = connector.addChannel(CdoProtocol.PROTOCOL_NAME);
+      CdoClientProtocolImpl.setResourceManager(cachedChannel, this);
+    }
+
+    return cachedChannel;
+  }
+
+  protected void notifyRemovedResource(CdoResource resource)
+  {
+    Integer rid = new Integer(resource.getRid());
+    if (isDebugEnabled()) debug("Removing resource with rid " + rid);
+
+    synchronized (ridToResourceMap)
+    {
+      ridToResourceMap.remove(rid);
+    }
+  }
+
+  public void commit()
+  {
+    if (transaction == null)
+    {
+      throw new ImplementationError("No transaction!");
+    }
+
+    ChangeDescription cd = transaction.endRecording();
+    CdoClientProtocolImpl.requestCommit(getChannel(), cd, getPackageManager());
+    transaction.beginRecording(resourceSet);
+  }
+
+  /**
+   * @param oid
+   * @return
+   */
+  public EObject getObject(long oid)
+  {
+    EObject object = (EObject) oidToObjectMap.get(new Long(oid));
+
+    if (object != null && ((InternalEObject) object).eProxyURI() == null)
+    {
+      return object;
+    }
+
+    return null;
+  }
+
+  /**
+   * @param oid
+   * @return
+   */
+  public EObject getProxyObject(long oid)
+  {
+    EObject object = (EObject) oidToObjectMap.get(new Long(oid));
+
+    if (object != null)
+    {
+      URI proxyUri = ((InternalEObject) object).eProxyURI();
+
+      if (proxyUri != null)
+      {
+        return object;
+      }
+    }
+
+    return null;
+  }
+
+  public boolean isRequestingObjects()
+  {
+    return requestingObjects;
+  }
+
+  public void registerObject(long oid, EObject object)
+  {
+    // Ensure that the resource will be loaded
+    int rid = packageManager.getOidEncoder().getRID(oid);
+    URI uri = CdoResourceFactoryImpl.formatURI(rid);
+    resourceSet.getResource(uri, true);
+
+    ((InternalEObject) object).eSetResource(null, null);
+    oidToObjectMap.put(new Long(oid), object);
+    // TODO Deregister sometime!!!
+
+    transaction.setLoading(true);
+    transaction.setTarget(object);
+    transaction.setLoading(false);
+  }
+
+  public void requestObject(CdoPersistable cdoObject)
+  {
+    long oid = cdoObject.cdoGetOID();
+    if (isDebugEnabled())
+      debug("Demand loading object: " + packageManager.getOidEncoder().toString(oid));
+    CdoClientProtocolImpl.requestLoad(getChannel(), oid);
+  }
+
+  public void reRegisterObject(EObject object, long newId)
+  {
+    Long oldId = new Long(getOID(object));
+    if (isDebugEnabled())
+      debug("Re-registering object " + packageManager.getOidEncoder().toString(oldId) + " -> "
+          + packageManager.getOidEncoder().toString(newId));
+
+    oidToObjectMap.remove(oldId);
+    oidToObjectMap.put(new Long(newId), object);
+  }
+
+  public void rollback()
+  {
+    if (transaction == null)
+    {
+      throw new ImplementationError("No transaction!");
+    }
+
+    ChangeDescription cd = transaction.endRecording();
+    cd.apply();
+
+    transaction.beginRecording(resourceSet);
+  }
+
+  public void startRequestingObjects()
+  {
+    requestingObjects = true;
+    if (transaction != null) transaction.setRecording(true);
+  }
+
+  public void stopRequestingObjects()
+  {
+    requestingObjects = false;
+    if (transaction != null) transaction.setRecording(false);
+  }
+
+  public void invalidateObjects(long[] oids)
+  {
+    if (isDebugEnabled())
+    {
+      StringBuffer buffer = new StringBuffer();
+      for (int i = 0; i < oids.length; i++)
+      {
+        long oid = oids[i];
+        buffer.append(buffer.length() == 0 ? "[" : ", ");
+        buffer.append(packageManager.getOidEncoder().toString(oid));
+      }
+      buffer.append("]");
+      debug("Invalidating objects " + buffer);
+    }
+
+    invalidator.enqueue(oids);
+  }
+
+  public URI createProxyURI(long oid)
+  {
+    OidEncoder oidEncoder = packageManager.getOidEncoder();
+    int rid = oidEncoder.getRID(oid);
+    long oidFragment = oidEncoder.getOIDFragment(oid);
+
+    StringBuffer buffer = new StringBuffer();
+    buffer.append(CdoProtocol.PROTOCOL_SCHEME);
+    buffer.append(rid);
+    buffer.append("#");
+    buffer.append(oidFragment);
+
+    if (isDebugEnabled())
+    {
+      debug("Creating proxy URI " + buffer.toString());
+    }
+
+    return URI.createURI(buffer.toString());
+  }
+
+  public void stop()
+  {
+    if (cachedChannel != null)
+    {
+      try
+      {
+        cachedChannel.stop();
+        cachedChannel = null;
+      }
+      catch (Exception ex)
+      {
+        error("Problem while stopping channel " + cachedChannel, ex);
+      }
+    }
+  }
+
+  @Override
+  protected void validate() throws ValidationException
+  {
+    super.validate();
+    assertNotNull("packageManager");
+    assertNotNull("connector");
+    assertNotNull("resourceSet");
+  }
+
+  @Override
+  protected void activate() throws Exception
+  {
+    super.activate();
+    invalidator = new Invalidator();
+    invalidator.setDaemon(true);
+    invalidator.startup();
+  }
+
+  @Override
+  protected void deactivate() throws Exception
+  {
+    invalidator.shutdown(200);
+    invalidator = null;
+    super.deactivate();
+  }
+
+  public static EObject createEObject(EClass eClass, long oid, int oca, CdoResource resource)
+  {
+    // Determine the appropriate EFactory
+    EPackage ePackage = eClass.getEPackage();
+    EFactory eFactory = ePackage.getEFactoryInstance();
+
+    // Reflectively create a new EObject 
+    EObject eObject = eFactory.create(eClass);
+    setOID(eObject, oid, resource);
+    setOCA(eObject, oca);
+    return eObject;
+  }
+
+  public static long getOID(EObject eObject)
+  {
+    return ((CdoPersistable) eObject).cdoGetOID();
+  }
+
+  public static int getOCA(EObject eObject)
+  {
+    return ((CdoPersistable) eObject).cdoGetOCA();
+  }
+
+  public static void setOID(EObject eObject, long oid, CdoResource resource)
+  {
+    ((CdoPersistable) eObject).cdoSetOID(oid, resource);
+  }
+
+  public static void setOCA(EObject eObject, int oca)
+  {
+    ((CdoPersistable) eObject).cdoSetOCA(oca);
+  }
+
+  public static void incOCA(EObject eObject)
+  {
+    int oca = ((CdoPersistable) eObject).cdoGetOCA();
+    ((CdoPersistable) eObject).cdoSetOCA(oca + 1);
+  }
+
+  public static String getLabel(EObject eObject)
+  {
+    EClass eclass = eObject.eClass();
+    String label = eclass.getName();
+
+    try
+    {
+      EStructuralFeature nameFeature = eclass.getEStructuralFeature("name");
+      if (nameFeature != null)
+      {
+        Object o = eObject.eGet(nameFeature);
+        label += " " + ((String) o);
+      }
+    }
+    catch (Throwable ignore)
+    {
+    }
+
+    try
+    {
+      label += " " + getOID(eObject) + "v" + getOCA(eObject);
+    }
+    catch (Throwable ignore)
+    {
+    }
+
+    return label;
+  }
+
+  public void addInvalidationListener(InvalidationListener listener)
+  {
+    invalidationListeners.add(listener);
+  }
+
+  public void removeInvalidationListener(InvalidationListener listener)
+  {
+    invalidationListeners.remove(listener);
+  }
+
+  protected void notifyInvalidationListeners(long[] oids)
+  {
+    for (InvalidationListener listener : invalidationListeners)
+    {
+      listener.notifyInvalidation(this, oids);
+    }
+  }
+
+
+  private final class Invalidator extends Worker
+  {
+    private BlockingQueue<Entry> queue = new LinkedBlockingQueue<Entry>();
+
+    public Invalidator()
+    {
+      super(getFullBeanName() + ".Invalidator");
+    }
+
+    public void enqueue(long[] oids)
+    {
+      Entry entry = new Entry();
+      entry.entered = System.currentTimeMillis();
+      entry.oids = oids;
+
+      try
+      {
+        queue.put(entry);
+      }
+      catch (InterruptedException ignore)
+      {
+      }
+    }
+
+    @Override
+    protected long doWorkStep(int progress)
+    {
+      try
+      {
+        Entry entry = queue.poll(50L, TimeUnit.MILLISECONDS);
+        if (entry != null)
+        {
+          while (System.currentTimeMillis() < entry.entered + 50)
+          {
+            DeadlockDetector.sleep(2);
+          }
+
+          processInvalidations(entry.oids);
+        }
+      }
+      catch (InterruptedException ex)
+      {
+        return TERMINATE;
+      }
+      catch (NoClassDefFoundError ex)
+      {
+        if (!isRunning())
+        {
+          return TERMINATE;
+        }
+
+        throw ex;
+      }
+      return NO_PAUSE;
+    }
+
+    private void processInvalidations(long[] oids)
+    {
+      for (int i = 0; i < oids.length; i++)
+      {
+        long oid = oids[i];
+        EObject object = getObject(oid);
+
+        if (object == null)
+        {
+          warn("Object " + packageManager.getOidEncoder().toString(oid)
+              + " is invalidated but not loaded!");
+          return;
+        }
+
+        if (isDebugEnabled())
+        {
+          debug("Processing invalidation " + packageManager.getOidEncoder().toString(oid));
+        }
+
+        URI uri = createProxyURI(oid);
+        ((InternalEObject) object).eSetProxyURI(uri);
+        ((CdoPersistable) object).cdoSetOCA(-1);
+      }
+
+      notifyInvalidationListeners(oids);
+    }
+
+
+    private class Entry
+    {
+      public long entered;
+
+      public long[] oids;
+    }
+  }
+}

@@ -1,0 +1,50 @@
+package org.eclipse.emf.cdo.example.ui.internal;
+
+
+import org.eclipse.emf.cdo.client.ClassInfo;
+import org.eclipse.emf.cdo.client.PackageInfo;
+import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.swt.graphics.Image;
+
+
+public final class PackageLabelProvider extends LabelProvider
+{
+  public PackageLabelProvider()
+  {
+  }
+
+  @Override
+  public Image getImage(Object element)
+  {
+    if (element instanceof PackageInfo)
+    {
+      return ExtendedImageRegistry.getInstance().getImage(
+              CdoExampleUiActivator.INSTANCE.getImage("full/obj16/EPackage"));
+    }
+
+    if (element instanceof ClassInfo)
+    {
+      return ExtendedImageRegistry.getInstance().getImage(
+              CdoExampleUiActivator.INSTANCE.getImage("full/obj16/EClass"));
+    }
+
+    return super.getImage(element);
+  }
+
+  @Override
+  public String getText(Object element)
+  {
+    if (element instanceof PackageInfo)
+    {
+      return ((PackageInfo)element).getEPackage().getNsURI();
+    }
+
+    if (element instanceof ClassInfo)
+    {
+      return ((ClassInfo)element).getName();
+    }
+
+    return super.getText(element);
+  }
+}

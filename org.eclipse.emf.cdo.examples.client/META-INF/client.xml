@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<!-- ######################################################## -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value> plugin:/META-INF/client.properties </value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ######################################################## -->
+	<bean id="connector" class="org.eclipse.net4j.socket.impl.ActiveSocketConnectorImpl">
+		<property name="bufferPool">
+			<ref bean="bufferPool"/>
+		</property>
+		<property name="protocolManager">
+			<ref bean="protocolManager"/>
+		</property>
+		<property name="selectorManager">
+			<ref bean="selectorManager"/>
+		</property>
+		<property name="host">
+			<value>${connector.host}</value>
+		</property>
+		<property name="port">
+			<value>${connector.port}</value>
+		</property>
+	</bean>
+
+	<!--
+		CDO Client Part 
+	-->
+
+	<!-- ######################################################## -->
+	<bean id="packageManager" class="org.eclipse.emf.cdo.client.impl.PackageManagerImpl">
+		<property name="oidEncoder">
+			<ref bean="oidEncoder"/>
+		</property>
+		<property name="attributeConverter">
+			<ref local="attributeConverter"/>
+		</property>
+	</bean>
+
+	<!-- ######################################################## -->
+	<bean id="attributeConverter" class="org.eclipse.emf.cdo.client.impl.AttributeConverterImpl"/>
+
+	<!-- ######################################################## -->
+	<bean id="cdoClientProtocol" class="org.eclipse.emf.cdo.client.protocol.CdoClientProtocolImpl">
+		<property name="protocolManager">
+			<ref bean="protocolManager"/>
+		</property>
+		<property name="packageManager">
+			<ref local="packageManager"/>
+		</property>
+	</bean>
+
+	<!-- ######################################################## -->
+	<bean id="cdoResClientProtocol"
+		class="org.eclipse.emf.cdo.client.protocol.CdoResClientProtocolImpl">
+		<property name="protocolManager">
+			<ref bean="protocolManager"/>
+		</property>
+	</bean>
+
+	<!-- ######################################################## -->
+	<bean id="resourceManager" class="org.eclipse.emf.cdo.client.impl.ResourceManagerImpl"
+		singleton="false">
+		<property name="connector">
+			<ref local="connector"/>
+		</property>
+		<property name="packageManager">
+			<ref local="packageManager"/>
+		</property>
+	</bean>
+
+</beans>

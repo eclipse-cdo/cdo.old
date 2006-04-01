@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="client"
+    nsURI="http://www.eclipse.org/net4j/cdo/client.ecore" nsPrefix="org.eclipse.emf.cdo.client">
+  <eClassifiers xsi:type="ecore:EClass" name="CdoPersistable" interface="true">
+    <eOperations name="cdoGetOID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eOperations name="cdoSetOID">
+      <eParameters name="oid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+      <eParameters name="resource" eType="#//CdoResource"/>
+    </eOperations>
+    <eOperations name="cdoGetOCA" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eOperations name="cdoSetOCA">
+      <eParameters name="oca" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eOperations>
+    <eOperations name="cdoLoad"/>
+    <eOperations name="cdoIsNew" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eOperations name="cdoIsLoaded" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CdoPersistent" abstract="true" eSuperTypes="#//CdoPersistable"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="ResourceManager" instanceClassName="org.eclipse.emf.cdo.client.ResourceManager"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="CdoResource" instanceClassName="org.eclipse.emf.cdo.client.CdoResource"
+      serializable="false"/>
+</ecore:EPackage>

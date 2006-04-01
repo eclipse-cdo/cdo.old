@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.emf.cdo.mapping/src"
+    editDirectory="/org.eclipse.emf.cdo.mapping/src" editorDirectory="/org.eclipse.emf.cdo.mapping.editor/src"
+    modelPluginID="org.eclipse.emf.cdo.mapping" runtimeJar="true" modelName="Mapping"
+    modelPluginClass="org.eclipse.emf.cdo.mapping.internal.MappingActivator" editPluginClass=""
+    editorPluginClass="org.eclipse.emf.cdo.mapping.presentation.CdoMappingEditorPlugin"
+    codeFormatting="true" testsDirectory="" testSuiteClass="">
+  <genPackages prefix="Mapping" basePackage="org.eclipse.emf.cdo" ecorePackage="mapping.ecore#/">
+    <genClasses ecoreClass="mapping.ecore#//PackageMapping">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mapping.ecore#//PackageMapping/classes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mapping.ecore#//PackageMapping/packageName"/>
+      <genOperations ecoreOperation="mapping.ecore#//PackageMapping/getClassMapping">
+        <genParameters ecoreParameter="mapping.ecore#//PackageMapping/getClassMapping/name"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="mapping.ecore#//ClassMapping">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mapping.ecore#//ClassMapping/attributes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mapping.ecore#//ClassMapping/className"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mapping.ecore#//ClassMapping/tableName"/>
+      <genOperations ecoreOperation="mapping.ecore#//ClassMapping/getAttributeMapping">
+        <genParameters ecoreParameter="mapping.ecore#//ClassMapping/getAttributeMapping/name"/>
+      </genOperations>
+      <genOperations ecoreOperation="mapping.ecore#//ClassMapping/getColumnNames"/>
+    </genClasses>
+    <genClasses ecoreClass="mapping.ecore#//AttributeMapping">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mapping.ecore#//AttributeMapping/attributeName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mapping.ecore#//AttributeMapping/columnName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mapping.ecore#//AttributeMapping/columnType"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

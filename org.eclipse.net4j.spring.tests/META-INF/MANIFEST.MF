@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.net4j.spring.test;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-ClassPath: net4j.spring.test.jar
+Bundle-Activator: org.eclipse.net4j.spring.test.Net4jSpringTestPlugin
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: org.eclipse.net4j.spring.test,
+ org.eclipse.net4j.spring.test.actions,
+ org.eclipse.net4j.spring.test.preferences
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.eclipse.net4j.spring.db
+Eclipse-LazyStart: true

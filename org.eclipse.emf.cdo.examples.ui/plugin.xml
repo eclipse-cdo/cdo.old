@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="CDO"
+            id="org.eclipse.emf.cdo.ui">
+      </category>
+      <view
+            name="CDO Explorer"
+            icon="icons/full/ctool16/Database.gif"
+            category="org.eclipse.emf.cdo.ui"
+            class="org.eclipse.emf.cdo.example.ui.internal.views.CdoExplorer"
+            id="org.eclipse.emf.cdo.example.ui.CdoExplorer">
+      </view>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.ui.resourcePerspective">
+         <view
+               ratio="0.5"
+               relative="org.eclipse.ui.views.TaskList"
+               relationship="right"
+               id="org.eclipse.emf.cdo.example.ui.CdoExplorer">
+         </view>
+      </perspectiveExtension>
+   </extension>
+
+  <extension point = "org.eclipse.ui.editors">
+    <editor
+        id = "org.eclipse.emf.cdo.example.ui.Editor"
+        name = "%_UI_CdoEditor_label"
+        icon = "icons/full/obj16/CdoResource.gif"
+        class = "org.eclipse.emf.cdo.example.ui.internal.editors.CdoEditor" 
+        contributorClass="org.eclipse.emf.cdo.example.ui.internal.editors.CdoActionBarContributor" >
+    </editor>
+  </extension>
+  
+  <extension
+        point="org.eclipse.ui.newWizards">
+     <category
+           id="org.eclipse.emf.cdo.example.ui"
+           name="CDO"/>
+     <wizard
+           category="org.eclipse.emf.cdo.example.ui"
+           class="org.eclipse.emf.cdo.example.ui.internal.wizards.CdoNewWizard"
+           icon="icons/full/obj16/CdoResource.gif"
+           id="org.eclipse.emf.cdo.example.ui.CdoNewWizard"
+           name="CDO Resource"/>
+  </extension>    
+
+</plugin>

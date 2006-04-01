@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.emf.cdo.example.client;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-ClassPath: net4j.cdo.example.client.jar
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Eclipse-LazyStart: true
+Require-Bundle: org.eclipse.net4j.socket;visibility:=reexport,
+ org.eclipse.emf.cdo.client;visibility:=reexport
+Export-Package: org.eclipse.emf.cdo.example.client
+Bundle-Activator: org.eclipse.emf.cdo.example.client.CdoExampleClientPlugin

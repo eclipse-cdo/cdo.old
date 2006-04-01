@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.emf.cdo.client"
+      label="CDO Client"
+      version="1.0.0"
+      provider-name="Eclipse.org">
+
+   <description url="http://www.yourdomain.com/description">
+      [Enter Feature Description here.]
+   </description>
+
+   <copyright url="http://www.yourdomain.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.yourdomain.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <requires>
+      <import plugin="org.eclipse.emf.ecore.change"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.eclipse.emf.edit"/>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.emf.edit.ui"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import feature="org.eclipse.net4j" version="1.0.0"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.core.resources"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.emf.cdo.client"
+         download-size="0"
+         install-size="0"
+         version="1.0.0"/>
+
+   <plugin
+         id="org.eclipse.emf.cdo.core"
+         download-size="0"
+         install-size="0"
+         version="1.0.0"/>
+
+   <plugin
+         id="org.eclipse.emf.cdo.mapping"
+         download-size="0"
+         install-size="0"
+         version="1.0.0"/>
+
+   <plugin
+         id="org.eclipse.emf.cdo.mapping.editor"
+         download-size="0"
+         install-size="0"
+         version="1.0.0"/>
+
+</feature>
