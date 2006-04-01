@@ -33,7 +33,7 @@ import java.util.Properties;
 import java.io.IOException;
 
 
-public class CdoResourceFactoryImpl implements Resource.Factory, CdoProtocol
+public class CdoResourceFactoryImpl implements Resource.Factory
 {
   /**
    * Logger for this class
@@ -62,7 +62,7 @@ public class CdoResourceFactoryImpl implements Resource.Factory, CdoProtocol
     }
 
     int rid = parseRID(uri.authority());
-    if (rid != UNKNOWN_RID)
+    if (rid != CdoProtocol.UNKNOWN_RID)
     {
       return createResourceFromRid(rid);
     }
@@ -180,7 +180,7 @@ public class CdoResourceFactoryImpl implements Resource.Factory, CdoProtocol
   {
     if (path == null || path.length() == 0)
     {
-      return UNKNOWN_RID;
+      return CdoProtocol.UNKNOWN_RID;
       //throw new IllegalArgumentException("path == null || path.length() == 0");
     }
 
@@ -191,7 +191,7 @@ public class CdoResourceFactoryImpl implements Resource.Factory, CdoProtocol
     }
     catch (NumberFormatException ex)
     {
-      return UNKNOWN_RID;
+      return CdoProtocol.UNKNOWN_RID;
     }
   }
 }

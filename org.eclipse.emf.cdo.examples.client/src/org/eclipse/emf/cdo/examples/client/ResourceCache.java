@@ -9,6 +9,7 @@ import org.eclipse.emf.cdo.client.impl.ResourceInfoImpl;
 import org.eclipse.emf.cdo.client.protocol.CdoResClientProtocolImpl;
 import org.eclipse.emf.cdo.client.protocol.CdoResListener;
 import org.eclipse.emf.cdo.core.CdoResProtocol;
+import org.eclipse.emf.cdo.core.protocol.ResourceChangeInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,12 +45,17 @@ public class ResourceCache implements CdoResListener
         channel = connector.addChannel(CdoResProtocol.PROTOCOL_NAME);
 
         List<ResourceInfo> resources = CdoResClientProtocolImpl.queryAllResources(channel);
-        if (resources != null)
+        if (resources != null && !resources.isEmpty())
         {
-          for (ResourceInfo resourceInfo : resources)
+          synchronized (allResources)
           {
-            addResource(resourceInfo);
+            for (ResourceInfo resourceInfo : resources)
+            {
+              allResources.add(resourceInfo);
+            }
           }
+
+          notifyListeners();
         }
       }
     });
@@ -99,69 +105,54 @@ public class ResourceCache implements CdoResListener
     }
   }
 
-  public void notifyResourceAdded(Channel channel, int rid, String path)
+  public void notifyResourcesChanged(Channel channel, List<ResourceChangeInfo> changes)
   {
     if (channel == this.channel)
     {
-      addResource(new ResourceInfoImpl(path, rid, true));
-    }
-  }
-
-  public void notifyResourceRemoved(Channel channel, int rid, String path)
-  {
-    if (channel == this.channel)
-    {
-      removeResource(new ResourceInfoImpl(path, rid, true));
-    }
-  }
-
-  private void addResource(ResourceInfo resourceInfo)
-  {
-    synchronized (allResources)
-    {
-      if (!allResources.contains(resourceInfo))
+      boolean modified = false;
+      synchronized (allResources)
       {
-        allResources.add(resourceInfo);
+        for (ResourceChangeInfo change : changes)
+        {
+          ResourceInfo resourceInfo = new ResourceInfoImpl(change.getPath(), change.getRid(), true);
+          switch (change.getChangeKind())
+          {
+            case ResourceChangeInfo.ADDED:
+              if (!allResources.contains(resourceInfo))
+              {
+                allResources.add(resourceInfo);
+                modified = true;
+              }
+              break;
+
+            case ResourceChangeInfo.REMOVED:
+              if (allResources.remove(resourceInfo))
+              {
+                modified = true;
+              }
+              break;
+          }
+        }
       }
-      else
-      {
-        resourceInfo = null;
-      }
-    }
 
-    if (resourceInfo != null)
-    {
-      for (Listener listener : listeners)
+      if (modified)
       {
-        listener.notifyResourceAdded(this, resourceInfo);
+        notifyListeners();
       }
     }
   }
 
-  private void removeResource(ResourceInfo resourceInfo)
+  private void notifyListeners()
   {
-    synchronized (allResources)
+    for (Listener listener : listeners)
     {
-      if (!allResources.remove(resourceInfo))
-      {
-        resourceInfo = null;
-      }
-    }
-
-    if (resourceInfo != null)
-    {
-      for (Listener listener : listeners)
-      {
-        listener.notifyResourceRemoved(this, resourceInfo);
-      }
+      listener.notifyResourcesChanged(this);
     }
   }
 
 
   public static interface Listener
   {
-    public void notifyResourceAdded(ResourceCache manager, ResourceInfo resourceInfo);
-
-    public void notifyResourceRemoved(ResourceCache manager, ResourceInfo resourceInfo);
+    public void notifyResourcesChanged(ResourceCache manager);
   }
 }

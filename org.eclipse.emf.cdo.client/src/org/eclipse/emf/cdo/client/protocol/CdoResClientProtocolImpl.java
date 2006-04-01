@@ -18,6 +18,7 @@ import org.eclipse.net4j.util.ImplementationError;
 
 import org.eclipse.emf.cdo.client.ResourceInfo;
 import org.eclipse.emf.cdo.core.protocol.AbstractCdoResProtocol;
+import org.eclipse.emf.cdo.core.protocol.ResourceChangeInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +41,8 @@ public class CdoResClientProtocolImpl extends AbstractCdoResProtocol
   {
     switch (signalId)
     {
-      case RESOURCE_CHANGED:
-        return new ResourceChangedIndication();
+      case RESOURCES_CHANGED:
+        return new ResourcesChangedIndication();
 
       default:
         throw new ImplementationError("Invalid " + PROTOCOL_NAME + " signalId: " + signalId);
@@ -58,19 +59,11 @@ public class CdoResClientProtocolImpl extends AbstractCdoResProtocol
     listeners.remove(listener);
   }
 
-  public void resourceChanged(Channel channel, int rid, String path, int changeKind)
+  public void resourcesChanged(Channel channel, List<ResourceChangeInfo> infos)
   {
-    switch (changeKind)
+    for (CdoResListener listener : listeners)
     {
-      case ADDED:
-        for (CdoResListener listener : listeners)
-          listener.notifyResourceAdded(channel, rid, path);
-        break;
-
-      case REMOVED:
-        for (CdoResListener listener : listeners)
-          listener.notifyResourceRemoved(channel, rid, path);
-        break;
+      listener.notifyResourcesChanged(channel, infos);
     }
   }
 

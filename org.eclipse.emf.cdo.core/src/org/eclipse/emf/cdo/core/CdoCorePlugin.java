@@ -17,7 +17,7 @@ import org.eclipse.net4j.util.eclipse.AbstractPlugin;
 /**
  * The main plugin class to be used in the desktop.
  */
-public class CdoCorePlugin extends AbstractPlugin implements CdoProtocol
+public class CdoCorePlugin extends AbstractPlugin
 {
   //The shared instance.
   private static CdoCorePlugin plugin;

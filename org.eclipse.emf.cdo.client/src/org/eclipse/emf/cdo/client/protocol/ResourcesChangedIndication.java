@@ -14,20 +14,36 @@ package org.eclipse.emf.cdo.client.protocol;
 import org.eclipse.net4j.core.impl.AbstractIndication;
 
 import org.eclipse.emf.cdo.core.CdoResSignals;
+import org.eclipse.emf.cdo.core.protocol.NoMoreResourceChangesException;
+import org.eclipse.emf.cdo.core.protocol.ResourceChangeInfo;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class ResourceChangedIndication extends AbstractIndication
+public class ResourcesChangedIndication extends AbstractIndication
 {
   public short getSignalId()
   {
-    return CdoResSignals.RESOURCE_CHANGED;
+    return CdoResSignals.RESOURCES_CHANGED;
   }
 
   public void indicate()
   {
-    int changeKind = receiveInt();
-    int rid = receiveInt();
-    String path = receiveString();
-    ((CdoResClientProtocolImpl) getProtocol()).resourceChanged(getChannel(), rid,path, changeKind);
+    List<ResourceChangeInfo> infos = new ArrayList();
+
+    try
+    {
+      for (;;)
+      {
+        infos.add(new ResourceChangeInfo(getChannel()));
+      }
+    }
+    catch (NoMoreResourceChangesException ignore)
+    {
+    }
+
+    CdoResClientProtocolImpl protocol = (CdoResClientProtocolImpl) getProtocol();
+    protocol.resourcesChanged(getChannel(), infos);
   }
 }

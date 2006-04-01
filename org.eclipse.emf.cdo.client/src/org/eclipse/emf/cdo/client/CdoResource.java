@@ -11,11 +11,10 @@
 package org.eclipse.emf.cdo.client;
 
 
-import org.eclipse.emf.cdo.core.CdoProtocol;
 import org.eclipse.emf.ecore.resource.Resource;
 
 
-public interface CdoResource extends Resource, CdoProtocol
+public interface CdoResource extends Resource
 {
   public ResourceManager getResourceManager();
 

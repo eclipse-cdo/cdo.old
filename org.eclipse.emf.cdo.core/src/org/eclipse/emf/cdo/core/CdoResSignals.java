@@ -23,9 +23,5 @@ public interface CdoResSignals
 
   public static final byte MOVE_RESOURCE = 5;
 
-  public static final byte RESOURCE_CHANGED = 6;
-
-  public static final byte ADDED = 1;
-
-  public static final byte REMOVED = 2;
+  public static final byte RESOURCES_CHANGED = 6;
 }

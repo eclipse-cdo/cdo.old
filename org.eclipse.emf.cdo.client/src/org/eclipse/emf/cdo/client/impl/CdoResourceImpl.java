@@ -16,6 +16,7 @@ import org.eclipse.emf.cdo.client.CdoResource;
 import org.eclipse.emf.cdo.client.ResourceInfo;
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.client.protocol.CdoClientProtocolImpl;
+import org.eclipse.emf.cdo.core.CdoProtocol;
 import org.eclipse.emf.cdo.core.OidEncoder;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -39,7 +40,7 @@ public class CdoResourceImpl extends ResourceImpl implements CdoResource
 
   public CdoResourceImpl(ResourceInfo resourceInfo, ResourceManager resourceManager)
   {
-    super(URI.createURI(PROTOCOL_NAME + "://" + resourceInfo.getRid()));
+    super(URI.createURI(CdoProtocol.PROTOCOL_NAME + "://" + resourceInfo.getRid()));
     this.resourceInfo = resourceInfo;
     this.resourceManager = resourceManager;
   }

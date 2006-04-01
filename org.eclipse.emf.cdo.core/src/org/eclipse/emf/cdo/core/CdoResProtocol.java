@@ -11,7 +11,10 @@
 package org.eclipse.emf.cdo.core;
 
 
-public interface CdoResProtocol extends CdoResSignals
+import org.eclipse.net4j.core.Protocol;
+
+
+public interface CdoResProtocol extends Protocol, CdoResSignals
 {
   public static final String PROTOCOL_NAME = "cdores";
 

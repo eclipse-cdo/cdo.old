@@ -11,7 +11,10 @@
 package org.eclipse.emf.cdo.core;
 
 
-public interface CdoProtocol extends CdoDataTypes, CdoSignals
+import org.eclipse.net4j.core.Protocol;
+
+
+public interface CdoProtocol extends Protocol, CdoDataTypes, CdoSignals
 {
   public static final String PROTOCOL_NAME = "cdo";
 

@@ -4,7 +4,6 @@
 package org.eclipse.emf.cdo.example.ui.internal;
 
 
-import org.eclipse.emf.cdo.client.ResourceInfo;
 import org.eclipse.emf.cdo.example.client.ResourceCache;
 import org.eclipse.emf.cdo.example.client.ResourceCache.Listener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
@@ -50,12 +49,7 @@ public class ResourceContentProvider implements IStructuredContentProvider, List
     return resourceCache.getAllResources().toArray();
   }
 
-  public void notifyResourceAdded(ResourceCache manager, ResourceInfo resourceInfo)
-  {
-    UiUtils.refreshViewer(viewer);
-  }
-
-  public void notifyResourceRemoved(ResourceCache manager, ResourceInfo resourceInfo)
+  public void notifyResourcesChanged(ResourceCache manager)
   {
     UiUtils.refreshViewer(viewer);
   }
