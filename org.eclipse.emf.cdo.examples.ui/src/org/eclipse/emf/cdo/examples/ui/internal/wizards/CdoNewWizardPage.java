@@ -110,6 +110,7 @@ public class CdoNewWizardPage extends WizardPage
   {
     resourcePathText.setText("/");
     resourcePathText.setSelection(1);
+    rootElementViewer.expandAll();
   }
 
   private void dialogChanged()
