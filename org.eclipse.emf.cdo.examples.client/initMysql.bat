@@ -1,3 +1,7 @@
 @echo off
 
-mysql -u test -ptest -e "drop database if exists cdoTest; create database cdoTest" mysql
+set USER=test
+set PASSWORD=test
+set DATABASE=cdoTest
+
+mysql -u %USER% -p%PASSWORD% -e "drop database if exists %DATABASE%; create database %DATABASE%" mysql
