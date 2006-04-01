@@ -21,12 +21,9 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IActionBars;
-import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.IWorkbenchActionConstants;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 
 
@@ -38,13 +35,13 @@ public class CdoExplorer extends ViewPart
 
   private TableViewer viewer;
 
-  private Action action1;
+  private Action newResourceAction;
 
-  private Action action2;
+  private Action deleteResourceAction;
 
-  private Action doubleClickAction;
+  private Action openResourceAction;
 
-//  private Channel cdoResChannel;
+  //  private Channel cdoResChannel;
 
   public CdoExplorer()
   {
@@ -98,15 +95,15 @@ public class CdoExplorer extends ViewPart
 
   private void fillLocalPullDown(IMenuManager manager)
   {
-    manager.add(action1);
+    manager.add(newResourceAction);
     manager.add(new Separator());
-    manager.add(action2);
+    manager.add(deleteResourceAction);
   }
 
   private void fillContextMenu(IMenuManager manager)
   {
-    manager.add(action1);
-    manager.add(action2);
+    manager.add(newResourceAction);
+    manager.add(deleteResourceAction);
     manager.add(new Separator());
     // Other plug-ins can contribute there actions here
     manager.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
@@ -114,36 +111,36 @@ public class CdoExplorer extends ViewPart
 
   private void fillLocalToolBar(IToolBarManager manager)
   {
-    manager.add(action1);
-    manager.add(action2);
+    manager.add(newResourceAction);
+    manager.add(deleteResourceAction);
   }
 
   private void makeActions()
   {
-    action1 = new Action()
+    newResourceAction = new Action()
     {
       public void run()
       {
         UiUtils.openCdoNewWizard();
       }
     };
-    action1.setText("New CDO Resource");
-    action1.setToolTipText("New CDO Resource");
-    action1.setImageDescriptor(UiUtils.getImageDescriptor("full/ctool16/NewCdoResource"));
+    newResourceAction.setText("New CDO Resource");
+    newResourceAction.setToolTipText("New CDO Resource");
+    newResourceAction.setImageDescriptor(UiUtils.getImageDescriptor("full/ctool16/NewCdoResource"));
 
-    action2 = new Action()
+    deleteResourceAction = new Action()
     {
       public void run()
       {
-        showMessage("Action 2 executed");
+        showMessage("Not implemented, yet: Delete CDO Resource");
       }
     };
-    action2.setText("Action 2");
-    action2.setToolTipText("Action 2 tooltip");
-    action2.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(
-            ISharedImages.IMG_OBJS_INFO_TSK));
+    deleteResourceAction.setText("Delete CDO Resource");
+    deleteResourceAction.setToolTipText("Delete CDO Resource");
+    deleteResourceAction.setImageDescriptor(UiUtils
+            .getImageDescriptor("full/ctool16/DeleteCdoResource"));
 
-    doubleClickAction = new Action()
+    openResourceAction = new Action()
     {
       public void run()
       {
@@ -163,7 +160,7 @@ public class CdoExplorer extends ViewPart
     {
       public void doubleClick(DoubleClickEvent event)
       {
-        doubleClickAction.run();
+        openResourceAction.run();
       }
     });
   }
