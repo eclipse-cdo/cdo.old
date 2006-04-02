@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<fragment>
+
+     <extension
+         name="Net4j Pluggable MYSQL Driver"
+         point="org.eclipse.emf.cdo.jdbc.drivers">
+      <driver
+            exampleURL="jdbc:hsqldb://&lt;host&gt;/&lt;database&gt;"
+            className="org.gjt.mm.hsqldb.Driver"
+            name="MySql">
+         <supportedDialect name="hsqldb"/>
+      </driver>
+   </extension>
+
+</fragment>

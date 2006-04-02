@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<fragment>
+
+   <extension
+         point="org.eclipse.emf.cdo.dbgen.dialects">
+      <dialect
+            createIndexTemplate="CREATE INDEX {2}_{1} ON {2} ({0})"
+            createPrimaryIndexTemplate="ALTER TABLE {2} ADD (CONSTRAINT {2}_{1} PRIMARY KEY ({0}))"
+            createTablePrimaryTemplate="CREATE TABLE {1} ({0}, PRIMARY KEY ({2})) TYPE=INNODB"
+            createTableTemplate="CREATE TABLE {1} ({0}) TYPE=INNODB"
+            createUniqueIndexTemplate="CREATE UNIQUE INDEX {2}_{1} ON {2} ({0})"
+            dropTableTemplate="DROP TABLE IF EXISTS {0}"
+            name="MYSQL">
+         <typeMapping
+               sqlType="BIT"
+               vendorString="BIT"/>
+         <typeMapping
+               sqlType="BOOLEAN"
+               vendorString="BIT"/>
+         <typeMapping
+               sqlType="DOUBLE"
+               vendorString="DOUBLE"/>
+         <typeMapping
+               sqlType="INTEGER"
+               vendorString="INT"/>
+         <typeMapping
+               sqlType="LONGVARBINARY"
+               vendorString="LONG VARBINARY"/>
+         <typeMapping
+               sqlType="LONGVARCHAR"
+               vendorString="LONG VARCHAR"/>
+         <typeMapping
+               sqlType="TIMESTAMP"
+               vendorString="TIMESTAMP"/>
+         <typeMapping
+               sqlType="VARCHAR"
+               vendorString="VARCHAR"/>
+      </dialect>
+   </extension>
+
+</fragment>

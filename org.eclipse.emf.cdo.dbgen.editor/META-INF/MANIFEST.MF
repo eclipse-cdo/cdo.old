@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.emf.cdo.dbgen.editor;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-ClassPath: org.eclipse.emf.cdo.dbgen.editor.jar
+Bundle-Activator: org.eclipse.emf.cdo.dbgen.presentation.Net4jDbgenEditorPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: org.eclipse.emf.cdo.dbgen.presentation
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.resources;visibility:=reexport,
+ org.eclipse.emf.ecore.xmi;visibility:=reexport,
+ org.eclipse.emf.edit.ui;visibility:=reexport,
+ org.eclipse.ui.ide;visibility:=reexport,
+ org.eclipse.emf.cdo.dbgen.edit;visibility:=reexport
+Eclipse-LazyStart: true

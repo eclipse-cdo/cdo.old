@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.emf.cdo.dbgen">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.emf.cdo.dbgen" id="dialects" name="Net4j Pluggable SQL Dialects"/>
+      </appInfo>
+      <documentation>
+         [Enter description of this extension point.]
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="dialect"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="dialect">
+      <complexType>
+         <sequence>
+            <element ref="typeMapping" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="dropTableTemplate" type="string" use="default" value="DROP TABLE {0} IF EXISTS">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="createTableTemplate" type="string" use="default" value="CREATE TABLE {1} ({0})">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="createTablePrimaryTemplate" type="string" use="default" value="CREATE TABLE {1} ({0}, PRIMARY KEY ({2}))">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="createIndexTemplate" type="string" use="default" value="CREATE INDEX {2}_{1} ON {2} ({0})">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="createUniqueIndexTemplate" type="string" use="default" value="CREATE UNIQUE INDEX {2}_{1} ON {2} ({0})">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="createPrimaryIndexTemplate" type="string" use="default" value="ALTER TABLE {2} ADD (CONSTRAINT {2}_{1} PRIMARY KEY ({0}))">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="typeMapping">
+      <annotation>
+         <appInfo>
+            <meta.element labelAttribute="sqlType"/>
+         </appInfo>
+      </annotation>
+      <complexType>
+         <attribute name="sqlType" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="BIGINT">
+                  </enumeration>
+                  <enumeration value="BINARY">
+                  </enumeration>
+                  <enumeration value="BIT">
+                  </enumeration>
+                  <enumeration value="BLOB">
+                  </enumeration>
+                  <enumeration value="BOOLEAN">
+                  </enumeration>
+                  <enumeration value="CHAR">
+                  </enumeration>
+                  <enumeration value="CLOB">
+                  </enumeration>
+                  <enumeration value="DATE">
+                  </enumeration>
+                  <enumeration value="DECIMAL">
+                  </enumeration>
+                  <enumeration value="DOUBLE">
+                  </enumeration>
+                  <enumeration value="FLOAT">
+                  </enumeration>
+                  <enumeration value="INTEGER">
+                  </enumeration>
+                  <enumeration value="LONGVARBINARY">
+                  </enumeration>
+                  <enumeration value="LONGVARCHAR">
+                  </enumeration>
+                  <enumeration value="NUMERIC">
+                  </enumeration>
+                  <enumeration value="REAL">
+                  </enumeration>
+                  <enumeration value="SMALLINT">
+                  </enumeration>
+                  <enumeration value="TIME">
+                  </enumeration>
+                  <enumeration value="TIMESTAMP">
+                  </enumeration>
+                  <enumeration value="TINYINT">
+                  </enumeration>
+                  <enumeration value="VARBINARY">
+                  </enumeration>
+                  <enumeration value="VARCHAR">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="vendorString" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         
+      </documentation>
+   </annotation>
+
+</schema>
