@@ -12,8 +12,8 @@ package org.eclipse.emf.cdo.dbgen.util;
 
 
 import org.eclipse.emf.cdo.dbgen.Column;
-import org.eclipse.emf.cdo.dbgen.Database;
 import org.eclipse.emf.cdo.dbgen.DBGenPackage;
+import org.eclipse.emf.cdo.dbgen.Database;
 import org.eclipse.emf.cdo.dbgen.Index;
 import org.eclipse.emf.cdo.dbgen.Table;
 import org.eclipse.emf.ecore.EClass;
@@ -87,8 +87,8 @@ public class DBGenSwitch
     else
     {
       List eSuperTypes = theEClass.getESuperTypes();
-      return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch((EClass)eSuperTypes.get(0),
-              theEObject);
+      return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(
+          (EClass) eSuperTypes.get(0), theEObject);
     }
   }
 
@@ -103,36 +103,36 @@ public class DBGenSwitch
   {
     switch (classifierID)
     {
-    case DBGenPackage.DATABASE:
-    {
-      Database database = (Database)theEObject;
-      Object result = caseDatabase(database);
-      if (result == null) result = defaultCase(theEObject);
-      return result;
-    }
-    case DBGenPackage.TABLE:
-    {
-      Table table = (Table)theEObject;
-      Object result = caseTable(table);
-      if (result == null) result = defaultCase(theEObject);
-      return result;
-    }
-    case DBGenPackage.COLUMN:
-    {
-      Column column = (Column)theEObject;
-      Object result = caseColumn(column);
-      if (result == null) result = defaultCase(theEObject);
-      return result;
-    }
-    case DBGenPackage.INDEX:
-    {
-      Index index = (Index)theEObject;
-      Object result = caseIndex(index);
-      if (result == null) result = defaultCase(theEObject);
-      return result;
-    }
-    default:
-      return defaultCase(theEObject);
+      case DBGenPackage.DATABASE:
+      {
+        Database database = (Database) theEObject;
+        Object result = caseDatabase(database);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case DBGenPackage.TABLE:
+      {
+        Table table = (Table) theEObject;
+        Object result = caseTable(table);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case DBGenPackage.COLUMN:
+      {
+        Column column = (Column) theEObject;
+        Object result = caseColumn(column);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case DBGenPackage.INDEX:
+      {
+        Index index = (Index) theEObject;
+        Object result = caseIndex(index);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      default:
+        return defaultCase(theEObject);
     }
   }
 

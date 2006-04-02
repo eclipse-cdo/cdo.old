@@ -164,7 +164,7 @@ public class ColumnImpl extends EObjectImpl implements Column
     name = newName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, DBGenPackage.COLUMN__NAME, oldName,
-              name));
+          name));
   }
 
   /**
@@ -175,7 +175,7 @@ public class ColumnImpl extends EObjectImpl implements Column
   public Table getTable()
   {
     if (eContainerFeatureID != DBGenPackage.COLUMN__TABLE) return null;
-    return (Table)eContainer();
+    return (Table) eContainer();
   }
 
   /**
@@ -185,7 +185,7 @@ public class ColumnImpl extends EObjectImpl implements Column
    */
   public NotificationChain basicSetTable(Table newTable, NotificationChain msgs)
   {
-    msgs = eBasicSetContainer((InternalEObject)newTable, DBGenPackage.COLUMN__TABLE, msgs);
+    msgs = eBasicSetContainer((InternalEObject) newTable, DBGenPackage.COLUMN__TABLE, msgs);
     return msgs;
   }
 
@@ -197,21 +197,21 @@ public class ColumnImpl extends EObjectImpl implements Column
   public void setTable(Table newTable)
   {
     if (newTable != eInternalContainer()
-            || (eContainerFeatureID != DBGenPackage.COLUMN__TABLE && newTable != null))
+        || (eContainerFeatureID != DBGenPackage.COLUMN__TABLE && newTable != null))
     {
       if (EcoreUtil.isAncestor(this, newTable))
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
       NotificationChain msgs = null;
       if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
       if (newTable != null)
-        msgs = ((InternalEObject)newTable).eInverseAdd(this, DBGenPackage.TABLE__COLUMNS,
-                Table.class, msgs);
+        msgs = ((InternalEObject) newTable).eInverseAdd(this, DBGenPackage.TABLE__COLUMNS,
+            Table.class, msgs);
       msgs = basicSetTable(newTable, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, DBGenPackage.COLUMN__TABLE, newTable,
-              newTable));
+          newTable));
   }
 
   /**
@@ -235,7 +235,7 @@ public class ColumnImpl extends EObjectImpl implements Column
     type = newType == null ? TYPE_EDEFAULT : newType;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, DBGenPackage.COLUMN__TYPE, oldType,
-              type));
+          type));
   }
 
   /**
@@ -259,7 +259,7 @@ public class ColumnImpl extends EObjectImpl implements Column
     length = newLength;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, DBGenPackage.COLUMN__LENGTH, oldLength,
-              length));
+          length));
   }
 
   /**
@@ -283,7 +283,7 @@ public class ColumnImpl extends EObjectImpl implements Column
     constraint = newConstraint;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, DBGenPackage.COLUMN__CONSTRAINT,
-              oldConstraint, constraint));
+          oldConstraint, constraint));
   }
 
   /**
@@ -292,13 +292,13 @@ public class ColumnImpl extends EObjectImpl implements Column
    * @generated
    */
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID,
-          NotificationChain msgs)
+      NotificationChain msgs)
   {
     switch (featureID)
     {
-    case DBGenPackage.COLUMN__TABLE:
-      if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
-      return basicSetTable((Table)otherEnd, msgs);
+      case DBGenPackage.COLUMN__TABLE:
+        if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+        return basicSetTable((Table) otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -309,12 +309,12 @@ public class ColumnImpl extends EObjectImpl implements Column
    * @generated
    */
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID,
-          NotificationChain msgs)
+      NotificationChain msgs)
   {
     switch (featureID)
     {
-    case DBGenPackage.COLUMN__TABLE:
-      return basicSetTable(null, msgs);
+      case DBGenPackage.COLUMN__TABLE:
+        return basicSetTable(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -328,9 +328,9 @@ public class ColumnImpl extends EObjectImpl implements Column
   {
     switch (eContainerFeatureID)
     {
-    case DBGenPackage.COLUMN__TABLE:
-      return eInternalContainer().eInverseRemove(this, DBGenPackage.TABLE__COLUMNS, Table.class,
-              msgs);
+      case DBGenPackage.COLUMN__TABLE:
+        return eInternalContainer().eInverseRemove(this, DBGenPackage.TABLE__COLUMNS, Table.class,
+            msgs);
     }
     return super.eBasicRemoveFromContainerFeature(msgs);
   }
@@ -344,16 +344,16 @@ public class ColumnImpl extends EObjectImpl implements Column
   {
     switch (featureID)
     {
-    case DBGenPackage.COLUMN__NAME:
-      return getName();
-    case DBGenPackage.COLUMN__TABLE:
-      return getTable();
-    case DBGenPackage.COLUMN__TYPE:
-      return getType();
-    case DBGenPackage.COLUMN__LENGTH:
-      return new Integer(getLength());
-    case DBGenPackage.COLUMN__CONSTRAINT:
-      return getConstraint();
+      case DBGenPackage.COLUMN__NAME:
+        return getName();
+      case DBGenPackage.COLUMN__TABLE:
+        return getTable();
+      case DBGenPackage.COLUMN__TYPE:
+        return getType();
+      case DBGenPackage.COLUMN__LENGTH:
+        return new Integer(getLength());
+      case DBGenPackage.COLUMN__CONSTRAINT:
+        return getConstraint();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -367,21 +367,21 @@ public class ColumnImpl extends EObjectImpl implements Column
   {
     switch (featureID)
     {
-    case DBGenPackage.COLUMN__NAME:
-      setName((String)newValue);
-      return;
-    case DBGenPackage.COLUMN__TABLE:
-      setTable((Table)newValue);
-      return;
-    case DBGenPackage.COLUMN__TYPE:
-      setType((ColumnType)newValue);
-      return;
-    case DBGenPackage.COLUMN__LENGTH:
-      setLength(((Integer)newValue).intValue());
-      return;
-    case DBGenPackage.COLUMN__CONSTRAINT:
-      setConstraint((String)newValue);
-      return;
+      case DBGenPackage.COLUMN__NAME:
+        setName((String) newValue);
+        return;
+      case DBGenPackage.COLUMN__TABLE:
+        setTable((Table) newValue);
+        return;
+      case DBGenPackage.COLUMN__TYPE:
+        setType((ColumnType) newValue);
+        return;
+      case DBGenPackage.COLUMN__LENGTH:
+        setLength(((Integer) newValue).intValue());
+        return;
+      case DBGenPackage.COLUMN__CONSTRAINT:
+        setConstraint((String) newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -395,21 +395,21 @@ public class ColumnImpl extends EObjectImpl implements Column
   {
     switch (featureID)
     {
-    case DBGenPackage.COLUMN__NAME:
-      setName(NAME_EDEFAULT);
-      return;
-    case DBGenPackage.COLUMN__TABLE:
-      setTable((Table)null);
-      return;
-    case DBGenPackage.COLUMN__TYPE:
-      setType(TYPE_EDEFAULT);
-      return;
-    case DBGenPackage.COLUMN__LENGTH:
-      setLength(LENGTH_EDEFAULT);
-      return;
-    case DBGenPackage.COLUMN__CONSTRAINT:
-      setConstraint(CONSTRAINT_EDEFAULT);
-      return;
+      case DBGenPackage.COLUMN__NAME:
+        setName(NAME_EDEFAULT);
+        return;
+      case DBGenPackage.COLUMN__TABLE:
+        setTable((Table) null);
+        return;
+      case DBGenPackage.COLUMN__TYPE:
+        setType(TYPE_EDEFAULT);
+        return;
+      case DBGenPackage.COLUMN__LENGTH:
+        setLength(LENGTH_EDEFAULT);
+        return;
+      case DBGenPackage.COLUMN__CONSTRAINT:
+        setConstraint(CONSTRAINT_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -423,17 +423,17 @@ public class ColumnImpl extends EObjectImpl implements Column
   {
     switch (featureID)
     {
-    case DBGenPackage.COLUMN__NAME:
-      return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-    case DBGenPackage.COLUMN__TABLE:
-      return getTable() != null;
-    case DBGenPackage.COLUMN__TYPE:
-      return type != TYPE_EDEFAULT;
-    case DBGenPackage.COLUMN__LENGTH:
-      return length != LENGTH_EDEFAULT;
-    case DBGenPackage.COLUMN__CONSTRAINT:
-      return CONSTRAINT_EDEFAULT == null ? constraint != null : !CONSTRAINT_EDEFAULT
-              .equals(constraint);
+      case DBGenPackage.COLUMN__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case DBGenPackage.COLUMN__TABLE:
+        return getTable() != null;
+      case DBGenPackage.COLUMN__TYPE:
+        return type != TYPE_EDEFAULT;
+      case DBGenPackage.COLUMN__LENGTH:
+        return length != LENGTH_EDEFAULT;
+      case DBGenPackage.COLUMN__CONSTRAINT:
+        return CONSTRAINT_EDEFAULT == null ? constraint != null : !CONSTRAINT_EDEFAULT
+            .equals(constraint);
     }
     return super.eIsSet(featureID);
   }

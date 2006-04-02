@@ -150,7 +150,7 @@ public class IndexImpl extends EObjectImpl implements Index
   public Table getTable()
   {
     if (eContainerFeatureID != DBGenPackage.INDEX__TABLE) return null;
-    return (Table)eContainer();
+    return (Table) eContainer();
   }
 
   /**
@@ -160,7 +160,7 @@ public class IndexImpl extends EObjectImpl implements Index
    */
   public NotificationChain basicSetTable(Table newTable, NotificationChain msgs)
   {
-    msgs = eBasicSetContainer((InternalEObject)newTable, DBGenPackage.INDEX__TABLE, msgs);
+    msgs = eBasicSetContainer((InternalEObject) newTable, DBGenPackage.INDEX__TABLE, msgs);
     return msgs;
   }
 
@@ -172,21 +172,21 @@ public class IndexImpl extends EObjectImpl implements Index
   public void setTable(Table newTable)
   {
     if (newTable != eInternalContainer()
-            || (eContainerFeatureID != DBGenPackage.INDEX__TABLE && newTable != null))
+        || (eContainerFeatureID != DBGenPackage.INDEX__TABLE && newTable != null))
     {
       if (EcoreUtil.isAncestor(this, newTable))
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
       NotificationChain msgs = null;
       if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
       if (newTable != null)
-        msgs = ((InternalEObject)newTable).eInverseAdd(this, DBGenPackage.TABLE__INDICES,
-                Table.class, msgs);
+        msgs = ((InternalEObject) newTable).eInverseAdd(this, DBGenPackage.TABLE__INDICES,
+            Table.class, msgs);
       msgs = basicSetTable(newTable, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, DBGenPackage.INDEX__TABLE, newTable,
-              newTable));
+          newTable));
   }
 
   /**
@@ -235,7 +235,7 @@ public class IndexImpl extends EObjectImpl implements Index
   {
     for (Iterator iter = getColumns().iterator(); iter.hasNext();)
     {
-      Column column = (Column)iter.next();
+      Column column = (Column) iter.next();
       if (column.getName().equals(name))
       {
         return column;
@@ -264,7 +264,7 @@ public class IndexImpl extends EObjectImpl implements Index
    */
   public Column addColumn(int index)
   {
-    Column column = (Column)getTable().getColumns().get(index);
+    Column column = (Column) getTable().getColumns().get(index);
     getColumns().add(column);
     return column;
   }
@@ -275,13 +275,13 @@ public class IndexImpl extends EObjectImpl implements Index
    * @generated
    */
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID,
-          NotificationChain msgs)
+      NotificationChain msgs)
   {
     switch (featureID)
     {
-    case DBGenPackage.INDEX__TABLE:
-      if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
-      return basicSetTable((Table)otherEnd, msgs);
+      case DBGenPackage.INDEX__TABLE:
+        if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+        return basicSetTable((Table) otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -292,12 +292,12 @@ public class IndexImpl extends EObjectImpl implements Index
    * @generated
    */
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID,
-          NotificationChain msgs)
+      NotificationChain msgs)
   {
     switch (featureID)
     {
-    case DBGenPackage.INDEX__TABLE:
-      return basicSetTable(null, msgs);
+      case DBGenPackage.INDEX__TABLE:
+        return basicSetTable(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -311,9 +311,9 @@ public class IndexImpl extends EObjectImpl implements Index
   {
     switch (eContainerFeatureID)
     {
-    case DBGenPackage.INDEX__TABLE:
-      return eInternalContainer().eInverseRemove(this, DBGenPackage.TABLE__INDICES, Table.class,
-              msgs);
+      case DBGenPackage.INDEX__TABLE:
+        return eInternalContainer().eInverseRemove(this, DBGenPackage.TABLE__INDICES, Table.class,
+            msgs);
     }
     return super.eBasicRemoveFromContainerFeature(msgs);
   }
@@ -327,14 +327,14 @@ public class IndexImpl extends EObjectImpl implements Index
   {
     switch (featureID)
     {
-    case DBGenPackage.INDEX__NAME:
-      return getName();
-    case DBGenPackage.INDEX__TABLE:
-      return getTable();
-    case DBGenPackage.INDEX__COLUMNS:
-      return getColumns();
-    case DBGenPackage.INDEX__TYPE:
-      return getType();
+      case DBGenPackage.INDEX__NAME:
+        return getName();
+      case DBGenPackage.INDEX__TABLE:
+        return getTable();
+      case DBGenPackage.INDEX__COLUMNS:
+        return getColumns();
+      case DBGenPackage.INDEX__TYPE:
+        return getType();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -348,19 +348,19 @@ public class IndexImpl extends EObjectImpl implements Index
   {
     switch (featureID)
     {
-    case DBGenPackage.INDEX__NAME:
-      setName((String)newValue);
-      return;
-    case DBGenPackage.INDEX__TABLE:
-      setTable((Table)newValue);
-      return;
-    case DBGenPackage.INDEX__COLUMNS:
-      getColumns().clear();
-      getColumns().addAll((Collection)newValue);
-      return;
-    case DBGenPackage.INDEX__TYPE:
-      setType((IndexType)newValue);
-      return;
+      case DBGenPackage.INDEX__NAME:
+        setName((String) newValue);
+        return;
+      case DBGenPackage.INDEX__TABLE:
+        setTable((Table) newValue);
+        return;
+      case DBGenPackage.INDEX__COLUMNS:
+        getColumns().clear();
+        getColumns().addAll((Collection) newValue);
+        return;
+      case DBGenPackage.INDEX__TYPE:
+        setType((IndexType) newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -374,18 +374,18 @@ public class IndexImpl extends EObjectImpl implements Index
   {
     switch (featureID)
     {
-    case DBGenPackage.INDEX__NAME:
-      setName(NAME_EDEFAULT);
-      return;
-    case DBGenPackage.INDEX__TABLE:
-      setTable((Table)null);
-      return;
-    case DBGenPackage.INDEX__COLUMNS:
-      getColumns().clear();
-      return;
-    case DBGenPackage.INDEX__TYPE:
-      setType(TYPE_EDEFAULT);
-      return;
+      case DBGenPackage.INDEX__NAME:
+        setName(NAME_EDEFAULT);
+        return;
+      case DBGenPackage.INDEX__TABLE:
+        setTable((Table) null);
+        return;
+      case DBGenPackage.INDEX__COLUMNS:
+        getColumns().clear();
+        return;
+      case DBGenPackage.INDEX__TYPE:
+        setType(TYPE_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -399,14 +399,14 @@ public class IndexImpl extends EObjectImpl implements Index
   {
     switch (featureID)
     {
-    case DBGenPackage.INDEX__NAME:
-      return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-    case DBGenPackage.INDEX__TABLE:
-      return getTable() != null;
-    case DBGenPackage.INDEX__COLUMNS:
-      return columns != null && !columns.isEmpty();
-    case DBGenPackage.INDEX__TYPE:
-      return type != TYPE_EDEFAULT;
+      case DBGenPackage.INDEX__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case DBGenPackage.INDEX__TABLE:
+        return getTable() != null;
+      case DBGenPackage.INDEX__COLUMNS:
+        return columns != null && !columns.isEmpty();
+      case DBGenPackage.INDEX__TYPE:
+        return type != TYPE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }

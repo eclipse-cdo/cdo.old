@@ -14,7 +14,6 @@ package org.eclipse.emf.cdo.dbgen.provider;
 import org.eclipse.emf.cdo.dbgen.DBGenFactory;
 import org.eclipse.emf.cdo.dbgen.DBGenPackage;
 import org.eclipse.emf.cdo.dbgen.Table;
-import org.eclipse.emf.cdo.dbgen.internal.DBGenActivator;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -195,7 +194,7 @@ public class TableItemProvider extends ItemProviderAdapter implements IEditingDo
    */
   public ResourceLocator getResourceLocator()
   {
-    return DBGenActivator.INSTANCE;
+    return DBGenEditActivator.INSTANCE;
   }
 
 }

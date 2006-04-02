@@ -94,7 +94,7 @@ public final class DBGenActivator extends EMFPlugin
   {
     for (Iterator it = getDialectElements().iterator(); it.hasNext();)
     {
-      DialectElement element = (DialectElement)it.next();
+      DialectElement element = (DialectElement) it.next();
       if (element.getName().equals(dialectName))
       {
         return element;
@@ -123,6 +123,7 @@ public final class DBGenActivator extends EMFPlugin
   {
     return plugin;
   }
+
 
   /**
    * The actual implementation of the Eclipse <b>Plugin</b>.
@@ -167,6 +168,7 @@ public final class DBGenActivator extends EMFPlugin
       super.stop(context);
     }
   }
+
 
   public static class DialectElement extends Element
   {
@@ -278,10 +280,11 @@ public final class DBGenActivator extends EMFPlugin
 
     public TypeMappingElement[] getTypeMappings()
     {
-      return (TypeMappingElement[])typeMappings
-              .toArray(new TypeMappingElement[typeMappings.size()]);
+      return (TypeMappingElement[]) typeMappings
+          .toArray(new TypeMappingElement[typeMappings.size()]);
     }
   }
+
 
   public static class DialectParser extends ListExtensionParser
   {
@@ -306,6 +309,7 @@ public final class DBGenActivator extends EMFPlugin
       });
     }
   }
+
 
   public static class TypeMappingElement extends Element
   {

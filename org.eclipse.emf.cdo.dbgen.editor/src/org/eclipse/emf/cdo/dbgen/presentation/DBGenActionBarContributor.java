@@ -53,7 +53,7 @@ import java.util.Iterator;
  * @generated
  */
 public class DBGenActionBarContributor extends EditingDomainActionBarContributor implements
-        ISelectionChangedListener
+    ISelectionChangedListener
 {
   /**
    * This keeps track of the active editor.
@@ -78,7 +78,7 @@ public class DBGenActionBarContributor extends EditingDomainActionBarContributor
    * @generated
    */
   protected IAction showPropertiesViewAction = new Action(DBGenEditorActivator.INSTANCE
-          .getString("_UI_ShowPropertiesView_menu_item"))
+      .getString("_UI_ShowPropertiesView_menu_item"))
   {
     public void run()
     {
@@ -101,7 +101,7 @@ public class DBGenActionBarContributor extends EditingDomainActionBarContributor
    * @generated
    */
   protected IAction refreshViewerAction = new Action(DBGenEditorActivator.INSTANCE
-          .getString("_UI_RefreshViewer_menu_item"))
+      .getString("_UI_RefreshViewer_menu_item"))
   {
     public boolean isEnabled()
     {
@@ -112,7 +112,7 @@ public class DBGenActionBarContributor extends EditingDomainActionBarContributor
     {
       if (activeEditorPart instanceof IViewerProvider)
       {
-        Viewer viewer = ((IViewerProvider)activeEditorPart).getViewer();
+        Viewer viewer = ((IViewerProvider) activeEditorPart).getViewer();
         if (viewer != null)
         {
           viewer.refresh();
@@ -192,7 +192,7 @@ public class DBGenActionBarContributor extends EditingDomainActionBarContributor
     super.contributeToMenu(menuManager);
 
     IMenuManager submenuManager = new MenuManager(DBGenEditorActivator.INSTANCE
-            .getString("_UI_DBGenEditor_menu"), "org.eclipse.emf.cdo.dbgenMenuID");
+        .getString("_UI_DBGenEditor_menu"), "org.eclipse.emf.cdo.dbgenMenuID");
     menuManager.insertAfter("additions", submenuManager);
     submenuManager.add(new Separator("settings"));
     submenuManager.add(new Separator("actions"));
@@ -202,13 +202,13 @@ public class DBGenActionBarContributor extends EditingDomainActionBarContributor
     // Prepare for CreateChild item addition or removal.
     //
     createChildMenuManager = new MenuManager(DBGenEditorActivator.INSTANCE
-            .getString("_UI_CreateChild_menu_item"));
+        .getString("_UI_CreateChild_menu_item"));
     submenuManager.insertBefore("additions", createChildMenuManager);
 
     // Prepare for CreateSibling item addition or removal.
     //
     createSiblingMenuManager = new MenuManager(DBGenEditorActivator.INSTANCE
-            .getString("_UI_CreateSibling_menu_item"));
+        .getString("_UI_CreateSibling_menu_item"));
     submenuManager.insertBefore("additions", createSiblingMenuManager);
 
     // Force an update because Eclipse hides empty menus now.
@@ -255,7 +255,7 @@ public class DBGenActionBarContributor extends EditingDomainActionBarContributor
       if (selectionProvider.getSelection() != null)
       {
         selectionChanged(new SelectionChangedEvent(selectionProvider, selectionProvider
-                .getSelection()));
+            .getSelection()));
       }
     }
   }
@@ -287,11 +287,11 @@ public class DBGenActionBarContributor extends EditingDomainActionBarContributor
     Collection newSiblingDescriptors = null;
 
     ISelection selection = event.getSelection();
-    if (selection instanceof IStructuredSelection && ((IStructuredSelection)selection).size() == 1)
+    if (selection instanceof IStructuredSelection && ((IStructuredSelection) selection).size() == 1)
     {
-      Object object = ((IStructuredSelection)selection).getFirstElement();
+      Object object = ((IStructuredSelection) selection).getFirstElement();
 
-      EditingDomain domain = ((IEditingDomainProvider)activeEditorPart).getEditingDomain();
+      EditingDomain domain = ((IEditingDomainProvider) activeEditorPart).getEditingDomain();
 
       newChildDescriptors = domain.getNewChildDescriptors(object, null);
       newSiblingDescriptors = domain.getNewChildDescriptors(null, object);
@@ -364,13 +364,13 @@ public class DBGenActionBarContributor extends EditingDomainActionBarContributor
    * @generated
    */
   protected void populateManager(IContributionManager manager, Collection actions,
-          String contributionID)
+      String contributionID)
   {
     if (actions != null)
     {
       for (Iterator i = actions.iterator(); i.hasNext();)
       {
-        IAction action = (IAction)i.next();
+        IAction action = (IAction) i.next();
         if (contributionID != null)
         {
           manager.insertBefore(contributionID, action);
@@ -402,14 +402,14 @@ public class DBGenActionBarContributor extends EditingDomainActionBarContributor
         IContributionItem contributionItem = items[i];
         while (contributionItem instanceof SubContributionItem)
         {
-          contributionItem = ((SubContributionItem)contributionItem).getInnerItem();
+          contributionItem = ((SubContributionItem) contributionItem).getInnerItem();
         }
 
         // Delete the ActionContributionItems with matching action.
         //
         if (contributionItem instanceof ActionContributionItem)
         {
-          IAction action = ((ActionContributionItem)contributionItem).getAction();
+          IAction action = ((ActionContributionItem) contributionItem).getAction();
           if (actions.contains(action))
           {
             manager.remove(contributionItem);
@@ -431,12 +431,12 @@ public class DBGenActionBarContributor extends EditingDomainActionBarContributor
     MenuManager submenuManager = null;
 
     submenuManager = new MenuManager(DBGenEditorActivator.INSTANCE
-            .getString("_UI_CreateChild_menu_item"));
+        .getString("_UI_CreateChild_menu_item"));
     populateManager(submenuManager, createChildActions, null);
     menuManager.insertBefore("additions", submenuManager);
 
     submenuManager = new MenuManager(DBGenEditorActivator.INSTANCE
-            .getString("_UI_CreateSibling_menu_item"));
+        .getString("_UI_CreateSibling_menu_item"));
     populateManager(submenuManager, createSiblingActions, null);
     menuManager.insertBefore("additions", submenuManager);
   }

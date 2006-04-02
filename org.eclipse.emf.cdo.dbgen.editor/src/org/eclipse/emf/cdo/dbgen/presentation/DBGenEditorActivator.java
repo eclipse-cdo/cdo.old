@@ -71,6 +71,7 @@ public final class DBGenEditorActivator extends EMFPlugin
     return plugin;
   }
 
+
   /**
    * The actual implementation of the Eclipse <b>Plugin</b>.
    * <!-- begin-user-doc -->

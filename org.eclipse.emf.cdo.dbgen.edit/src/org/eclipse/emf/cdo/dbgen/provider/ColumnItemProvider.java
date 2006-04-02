@@ -13,7 +13,6 @@ package org.eclipse.emf.cdo.dbgen.provider;
 
 import org.eclipse.emf.cdo.dbgen.Column;
 import org.eclipse.emf.cdo.dbgen.DBGenPackage;
-import org.eclipse.emf.cdo.dbgen.internal.DBGenActivator;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -204,7 +203,7 @@ public class ColumnItemProvider extends ItemProviderAdapter implements IEditingD
    */
   public ResourceLocator getResourceLocator()
   {
-    return DBGenActivator.INSTANCE;
+    return DBGenEditActivator.INSTANCE;
   }
 
 }

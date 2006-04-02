@@ -498,7 +498,7 @@ public final class ColumnType extends AbstractEnumerator
    * @ordered
    */
   public static final ColumnType LONGVARCHAR_LITERAL = new ColumnType(LONGVARCHAR, "LONGVARCHAR",
-          "LONGVARCHAR");
+      "LONGVARCHAR");
 
   /**
    * The '<em><b>DATE</b></em>' literal object.
@@ -529,7 +529,7 @@ public final class ColumnType extends AbstractEnumerator
    * @ordered
    */
   public static final ColumnType TIMESTAMP_LITERAL = new ColumnType(TIMESTAMP, "TIMESTAMP",
-          "TIMESTAMP");
+      "TIMESTAMP");
 
   /**
    * The '<em><b>BINARY</b></em>' literal object.
@@ -550,7 +550,7 @@ public final class ColumnType extends AbstractEnumerator
    * @ordered
    */
   public static final ColumnType VARBINARY_LITERAL = new ColumnType(VARBINARY, "VARBINARY",
-          "VARBINARY");
+      "VARBINARY");
 
   /**
    * The '<em><b>LONGVARBINARY</b></em>' literal object.
@@ -561,7 +561,7 @@ public final class ColumnType extends AbstractEnumerator
    * @ordered
    */
   public static final ColumnType LONGVARBINARY_LITERAL = new ColumnType(LONGVARBINARY,
-          "LONGVARBINARY", "LONGVARBINARY");
+      "LONGVARBINARY", "LONGVARBINARY");
 
   /**
    * The '<em><b>BLOB</b></em>' literal object.
@@ -589,11 +589,11 @@ public final class ColumnType extends AbstractEnumerator
    * <!-- end-user-doc -->
    * @generated
    */
-  private static final ColumnType[] VALUES_ARRAY = new ColumnType[] {BOOLEAN_LITERAL, BIT_LITERAL,
-          TINYINT_LITERAL, SMALLINT_LITERAL, INTEGER_LITERAL, BIGINT_LITERAL, FLOAT_LITERAL,
-          REAL_LITERAL, DOUBLE_LITERAL, NUMERIC_LITERAL, DECIMAL_LITERAL, CHAR_LITERAL,
-          VARCHAR_LITERAL, LONGVARCHAR_LITERAL, DATE_LITERAL, TIME_LITERAL, TIMESTAMP_LITERAL,
-          BINARY_LITERAL, VARBINARY_LITERAL, LONGVARBINARY_LITERAL, BLOB_LITERAL, CLOB_LITERAL,};
+  private static final ColumnType[] VALUES_ARRAY = new ColumnType[] { BOOLEAN_LITERAL, BIT_LITERAL,
+      TINYINT_LITERAL, SMALLINT_LITERAL, INTEGER_LITERAL, BIGINT_LITERAL, FLOAT_LITERAL,
+      REAL_LITERAL, DOUBLE_LITERAL, NUMERIC_LITERAL, DECIMAL_LITERAL, CHAR_LITERAL,
+      VARCHAR_LITERAL, LONGVARCHAR_LITERAL, DATE_LITERAL, TIME_LITERAL, TIMESTAMP_LITERAL,
+      BINARY_LITERAL, VARBINARY_LITERAL, LONGVARBINARY_LITERAL, BLOB_LITERAL, CLOB_LITERAL,};
 
   /**
    * A public read-only list of all the '<em><b>Column Type</b></em>' enumerators.
@@ -651,50 +651,50 @@ public final class ColumnType extends AbstractEnumerator
   {
     switch (value)
     {
-    case BOOLEAN:
-      return BOOLEAN_LITERAL;
-    case BIT:
-      return BIT_LITERAL;
-    case TINYINT:
-      return TINYINT_LITERAL;
-    case SMALLINT:
-      return SMALLINT_LITERAL;
-    case INTEGER:
-      return INTEGER_LITERAL;
-    case BIGINT:
-      return BIGINT_LITERAL;
-    case FLOAT:
-      return FLOAT_LITERAL;
-    case REAL:
-      return REAL_LITERAL;
-    case DOUBLE:
-      return DOUBLE_LITERAL;
-    case NUMERIC:
-      return NUMERIC_LITERAL;
-    case DECIMAL:
-      return DECIMAL_LITERAL;
-    case CHAR:
-      return CHAR_LITERAL;
-    case VARCHAR:
-      return VARCHAR_LITERAL;
-    case LONGVARCHAR:
-      return LONGVARCHAR_LITERAL;
-    case DATE:
-      return DATE_LITERAL;
-    case TIME:
-      return TIME_LITERAL;
-    case TIMESTAMP:
-      return TIMESTAMP_LITERAL;
-    case BINARY:
-      return BINARY_LITERAL;
-    case VARBINARY:
-      return VARBINARY_LITERAL;
-    case LONGVARBINARY:
-      return LONGVARBINARY_LITERAL;
-    case BLOB:
-      return BLOB_LITERAL;
-    case CLOB:
-      return CLOB_LITERAL;
+      case BOOLEAN:
+        return BOOLEAN_LITERAL;
+      case BIT:
+        return BIT_LITERAL;
+      case TINYINT:
+        return TINYINT_LITERAL;
+      case SMALLINT:
+        return SMALLINT_LITERAL;
+      case INTEGER:
+        return INTEGER_LITERAL;
+      case BIGINT:
+        return BIGINT_LITERAL;
+      case FLOAT:
+        return FLOAT_LITERAL;
+      case REAL:
+        return REAL_LITERAL;
+      case DOUBLE:
+        return DOUBLE_LITERAL;
+      case NUMERIC:
+        return NUMERIC_LITERAL;
+      case DECIMAL:
+        return DECIMAL_LITERAL;
+      case CHAR:
+        return CHAR_LITERAL;
+      case VARCHAR:
+        return VARCHAR_LITERAL;
+      case LONGVARCHAR:
+        return LONGVARCHAR_LITERAL;
+      case DATE:
+        return DATE_LITERAL;
+      case TIME:
+        return TIME_LITERAL;
+      case TIMESTAMP:
+        return TIMESTAMP_LITERAL;
+      case BINARY:
+        return BINARY_LITERAL;
+      case VARBINARY:
+        return VARBINARY_LITERAL;
+      case LONGVARBINARY:
+        return LONGVARBINARY_LITERAL;
+      case BLOB:
+        return BLOB_LITERAL;
+      case CLOB:
+        return CLOB_LITERAL;
     }
     return null;
   }

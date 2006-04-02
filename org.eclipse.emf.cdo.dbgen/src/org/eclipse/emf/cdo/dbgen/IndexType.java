@@ -83,7 +83,7 @@ public final class IndexType extends AbstractEnumerator
    * @ordered
    */
   public static final IndexType NON_UNIQUE_LITERAL = new IndexType(NON_UNIQUE, "NON_UNIQUE",
-          "NON_UNIQUE");
+      "NON_UNIQUE");
 
   /**
    * The '<em><b>UNIQUE</b></em>' literal object.
@@ -111,8 +111,8 @@ public final class IndexType extends AbstractEnumerator
    * <!-- end-user-doc -->
    * @generated
    */
-  private static final IndexType[] VALUES_ARRAY = new IndexType[] {NON_UNIQUE_LITERAL,
-          UNIQUE_LITERAL, PRIMARY_LITERAL,};
+  private static final IndexType[] VALUES_ARRAY = new IndexType[] { NON_UNIQUE_LITERAL,
+      UNIQUE_LITERAL, PRIMARY_LITERAL,};
 
   /**
    * A public read-only list of all the '<em><b>Index Type</b></em>' enumerators.
@@ -170,12 +170,12 @@ public final class IndexType extends AbstractEnumerator
   {
     switch (value)
     {
-    case NON_UNIQUE:
-      return NON_UNIQUE_LITERAL;
-    case UNIQUE:
-      return UNIQUE_LITERAL;
-    case PRIMARY:
-      return PRIMARY_LITERAL;
+      case NON_UNIQUE:
+        return NON_UNIQUE_LITERAL;
+      case UNIQUE:
+        return UNIQUE_LITERAL;
+      case PRIMARY:
+        return PRIMARY_LITERAL;
     }
     return null;
   }

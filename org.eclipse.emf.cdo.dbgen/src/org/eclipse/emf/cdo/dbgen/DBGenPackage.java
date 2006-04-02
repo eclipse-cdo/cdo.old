@@ -532,6 +532,7 @@ public interface DBGenPackage extends EPackage
    */
   DBGenFactory getDBGenFactory();
 
+
   /**
    * <!-- begin-user-doc -->
    * Defines literals for the meta objects that represent

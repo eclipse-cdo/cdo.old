@@ -13,9 +13,9 @@ package org.eclipse.emf.cdo.dbgen.impl;
 
 import org.eclipse.emf.cdo.dbgen.Column;
 import org.eclipse.emf.cdo.dbgen.ColumnType;
-import org.eclipse.emf.cdo.dbgen.Database;
 import org.eclipse.emf.cdo.dbgen.DBGenFactory;
 import org.eclipse.emf.cdo.dbgen.DBGenPackage;
+import org.eclipse.emf.cdo.dbgen.Database;
 import org.eclipse.emf.cdo.dbgen.Index;
 import org.eclipse.emf.cdo.dbgen.IndexType;
 import org.eclipse.emf.cdo.dbgen.Table;
@@ -130,12 +130,12 @@ public class DBGenPackageImpl extends EPackageImpl implements DBGenPackage
   public static DBGenPackage init()
   {
     if (isInited)
-      return (DBGenPackage)EPackage.Registry.INSTANCE.getEPackage(DBGenPackage.eNS_URI);
+      return (DBGenPackage) EPackage.Registry.INSTANCE.getEPackage(DBGenPackage.eNS_URI);
 
     // Obtain or create and register package
-    DBGenPackageImpl theDBGenPackage = (DBGenPackageImpl)(EPackage.Registry.INSTANCE
-            .getEPackage(eNS_URI) instanceof DBGenPackageImpl ? EPackage.Registry.INSTANCE
-            .getEPackage(eNS_URI) : new DBGenPackageImpl());
+    DBGenPackageImpl theDBGenPackage = (DBGenPackageImpl) (EPackage.Registry.INSTANCE
+        .getEPackage(eNS_URI) instanceof DBGenPackageImpl ? EPackage.Registry.INSTANCE
+        .getEPackage(eNS_URI) : new DBGenPackageImpl());
 
     isInited = true;
 
@@ -168,7 +168,7 @@ public class DBGenPackageImpl extends EPackageImpl implements DBGenPackage
    */
   public EAttribute getDatabase_Name()
   {
-    return (EAttribute)databaseEClass.getEStructuralFeatures().get(0);
+    return (EAttribute) databaseEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -178,7 +178,7 @@ public class DBGenPackageImpl extends EPackageImpl implements DBGenPackage
    */
   public EReference getDatabase_Tables()
   {
-    return (EReference)databaseEClass.getEStructuralFeatures().get(1);
+    return (EReference) databaseEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -198,7 +198,7 @@ public class DBGenPackageImpl extends EPackageImpl implements DBGenPackage
    */
   public EAttribute getTable_Name()
   {
-    return (EAttribute)tableEClass.getEStructuralFeatures().get(0);
+    return (EAttribute) tableEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -208,7 +208,7 @@ public class DBGenPackageImpl extends EPackageImpl implements DBGenPackage
    */
   public EReference getTable_Database()
   {
-    return (EReference)tableEClass.getEStructuralFeatures().get(1);
+    return (EReference) tableEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -218,7 +218,7 @@ public class DBGenPackageImpl extends EPackageImpl implements DBGenPackage
    */
   public EReference getTable_Columns()
   {
-    return (EReference)tableEClass.getEStructuralFeatures().get(2);
+    return (EReference) tableEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -228,7 +228,7 @@ public class DBGenPackageImpl extends EPackageImpl implements DBGenPackage
    */
   public EReference getTable_Indices()
   {
-    return (EReference)tableEClass.getEStructuralFeatures().get(3);
+    return (EReference) tableEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -248,7 +248,7 @@ public class DBGenPackageImpl extends EPackageImpl implements DBGenPackage
    */
   public EAttribute getColumn_Name()
   {
-    return (EAttribute)columnEClass.getEStructuralFeatures().get(0);
+    return (EAttribute) columnEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -258,7 +258,7 @@ public class DBGenPackageImpl extends EPackageImpl implements DBGenPackage
    */
   public EReference getColumn_Table()
   {
-    return (EReference)columnEClass.getEStructuralFeatures().get(1);
+    return (EReference) columnEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -268,7 +268,7 @@ public class DBGenPackageImpl extends EPackageImpl implements DBGenPackage
    */
   public EAttribute getColumn_Type()
   {
-    return (EAttribute)columnEClass.getEStructuralFeatures().get(2);
+    return (EAttribute) columnEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -278,7 +278,7 @@ public class DBGenPackageImpl extends EPackageImpl implements DBGenPackage
    */
   public EAttribute getColumn_Length()
   {
-    return (EAttribute)columnEClass.getEStructuralFeatures().get(3);
+    return (EAttribute) columnEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -288,7 +288,7 @@ public class DBGenPackageImpl extends EPackageImpl implements DBGenPackage
    */
   public EAttribute getColumn_Constraint()
   {
-    return (EAttribute)columnEClass.getEStructuralFeatures().get(4);
+    return (EAttribute) columnEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -308,7 +308,7 @@ public class DBGenPackageImpl extends EPackageImpl implements DBGenPackage
    */
   public EAttribute getIndex_Name()
   {
-    return (EAttribute)indexEClass.getEStructuralFeatures().get(0);
+    return (EAttribute) indexEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -318,7 +318,7 @@ public class DBGenPackageImpl extends EPackageImpl implements DBGenPackage
    */
   public EReference getIndex_Table()
   {
-    return (EReference)indexEClass.getEStructuralFeatures().get(1);
+    return (EReference) indexEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -328,7 +328,7 @@ public class DBGenPackageImpl extends EPackageImpl implements DBGenPackage
    */
   public EReference getIndex_Columns()
   {
-    return (EReference)indexEClass.getEStructuralFeatures().get(2);
+    return (EReference) indexEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -338,7 +338,7 @@ public class DBGenPackageImpl extends EPackageImpl implements DBGenPackage
    */
   public EAttribute getIndex_Type()
   {
-    return (EAttribute)indexEClass.getEStructuralFeatures().get(3);
+    return (EAttribute) indexEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -368,7 +368,7 @@ public class DBGenPackageImpl extends EPackageImpl implements DBGenPackage
    */
   public DBGenFactory getDBGenFactory()
   {
-    return (DBGenFactory)getEFactoryInstance();
+    return (DBGenFactory) getEFactoryInstance();
   }
 
   /**
@@ -447,13 +447,13 @@ public class DBGenPackageImpl extends EPackageImpl implements DBGenPackage
 
     // Initialize classes and features; add operations and parameters
     initEClass(databaseEClass, Database.class, "Database", !IS_ABSTRACT, !IS_INTERFACE,
-            IS_GENERATED_INSTANCE_CLASS);
+        IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDatabase_Name(), ecorePackage.getEString(), "name", null, 0, 1,
-            Database.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-            IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        Database.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+        IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDatabase_Tables(), this.getTable(), this.getTable_Database(), "tables", null,
-            0, -1, Database.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-            !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        0, -1, Database.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+        !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     EOperation op = addEOperation(databaseEClass, this.getTable(), "getTable", 0, 1);
     addEParameter(op, ecorePackage.getEString(), "name", 0, 1);
@@ -462,19 +462,19 @@ public class DBGenPackageImpl extends EPackageImpl implements DBGenPackage
     addEParameter(op, ecorePackage.getEString(), "name", 0, 1);
 
     initEClass(tableEClass, Table.class, "Table", !IS_ABSTRACT, !IS_INTERFACE,
-            IS_GENERATED_INSTANCE_CLASS);
+        IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTable_Name(), ecorePackage.getEString(), "name", null, 0, 1, Table.class,
-            !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-            !IS_DERIVED, IS_ORDERED);
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+        IS_ORDERED);
     initEReference(getTable_Database(), this.getDatabase(), this.getDatabase_Tables(), "database",
-            null, 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-            !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        null, 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTable_Columns(), this.getColumn(), this.getColumn_Table(), "columns", null,
-            0, -1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-            !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        0, -1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+        !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTable_Indices(), this.getIndex(), this.getIndex_Table(), "indices", null, 0,
-            -1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-            !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        -1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+        !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     addEOperation(tableEClass, this.getIndex(), "getPrimaryIndex", 0, 1);
 
@@ -517,37 +517,37 @@ public class DBGenPackageImpl extends EPackageImpl implements DBGenPackage
     addEParameter(op, this.getIndexType(), "indexType", 0, 1);
 
     initEClass(columnEClass, Column.class, "Column", !IS_ABSTRACT, !IS_INTERFACE,
-            IS_GENERATED_INSTANCE_CLASS);
+        IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getColumn_Name(), ecorePackage.getEString(), "name", null, 0, 1, Column.class,
-            !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-            !IS_DERIVED, IS_ORDERED);
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+        IS_ORDERED);
     initEReference(getColumn_Table(), this.getTable(), this.getTable_Columns(), "table", null, 1,
-            1, Column.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-            !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        1, Column.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getColumn_Type(), this.getColumnType(), "type", null, 0, 1, Column.class,
-            !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-            !IS_DERIVED, IS_ORDERED);
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+        IS_ORDERED);
     initEAttribute(getColumn_Length(), ecorePackage.getEInt(), "length", null, 0, 1, Column.class,
-            !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-            !IS_DERIVED, IS_ORDERED);
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+        IS_ORDERED);
     initEAttribute(getColumn_Constraint(), ecorePackage.getEString(), "constraint", null, 0, 1,
-            Column.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-            IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        Column.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+        IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(indexEClass, Index.class, "Index", !IS_ABSTRACT, !IS_INTERFACE,
-            IS_GENERATED_INSTANCE_CLASS);
+        IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getIndex_Name(), ecorePackage.getEString(), "name", null, 0, 1, Index.class,
-            !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-            !IS_DERIVED, IS_ORDERED);
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+        IS_ORDERED);
     initEReference(getIndex_Table(), this.getTable(), this.getTable_Indices(), "table", null, 1, 1,
-            Index.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-            !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        Index.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIndex_Columns(), this.getColumn(), null, "columns", null, 0, -1, Index.class,
-            !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-            !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+        !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getIndex_Type(), this.getIndexType(), "type", null, 0, 1, Index.class,
-            !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-            !IS_DERIVED, IS_ORDERED);
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+        IS_ORDERED);
 
     op = addEOperation(indexEClass, this.getColumn(), "getColumn", 0, 1);
     addEParameter(op, ecorePackage.getEString(), "name", 0, 1);

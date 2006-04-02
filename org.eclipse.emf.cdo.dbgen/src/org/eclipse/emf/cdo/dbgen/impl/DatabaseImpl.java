@@ -11,9 +11,9 @@
 package org.eclipse.emf.cdo.dbgen.impl;
 
 
-import org.eclipse.emf.cdo.dbgen.Database;
 import org.eclipse.emf.cdo.dbgen.DBGenFactory;
 import org.eclipse.emf.cdo.dbgen.DBGenPackage;
+import org.eclipse.emf.cdo.dbgen.Database;
 import org.eclipse.emf.cdo.dbgen.Table;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -116,7 +116,7 @@ public class DatabaseImpl extends EObjectImpl implements Database
     name = newName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, DBGenPackage.DATABASE__NAME, oldName,
-              name));
+          name));
   }
 
   /**
@@ -129,7 +129,7 @@ public class DatabaseImpl extends EObjectImpl implements Database
     if (tables == null)
     {
       tables = new EObjectContainmentWithInverseEList(Table.class, this,
-              DBGenPackage.DATABASE__TABLES, DBGenPackage.TABLE__DATABASE);
+          DBGenPackage.DATABASE__TABLES, DBGenPackage.TABLE__DATABASE);
     }
     return tables;
   }
@@ -153,12 +153,12 @@ public class DatabaseImpl extends EObjectImpl implements Database
    * @generated
    */
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID,
-          NotificationChain msgs)
+      NotificationChain msgs)
   {
     switch (featureID)
     {
-    case DBGenPackage.DATABASE__TABLES:
-      return ((InternalEList)getTables()).basicAdd(otherEnd, msgs);
+      case DBGenPackage.DATABASE__TABLES:
+        return ((InternalEList) getTables()).basicAdd(otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -169,12 +169,12 @@ public class DatabaseImpl extends EObjectImpl implements Database
    * @generated
    */
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID,
-          NotificationChain msgs)
+      NotificationChain msgs)
   {
     switch (featureID)
     {
-    case DBGenPackage.DATABASE__TABLES:
-      return ((InternalEList)getTables()).basicRemove(otherEnd, msgs);
+      case DBGenPackage.DATABASE__TABLES:
+        return ((InternalEList) getTables()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -188,10 +188,10 @@ public class DatabaseImpl extends EObjectImpl implements Database
   {
     switch (featureID)
     {
-    case DBGenPackage.DATABASE__NAME:
-      return getName();
-    case DBGenPackage.DATABASE__TABLES:
-      return getTables();
+      case DBGenPackage.DATABASE__NAME:
+        return getName();
+      case DBGenPackage.DATABASE__TABLES:
+        return getTables();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -205,13 +205,13 @@ public class DatabaseImpl extends EObjectImpl implements Database
   {
     switch (featureID)
     {
-    case DBGenPackage.DATABASE__NAME:
-      setName((String)newValue);
-      return;
-    case DBGenPackage.DATABASE__TABLES:
-      getTables().clear();
-      getTables().addAll((Collection)newValue);
-      return;
+      case DBGenPackage.DATABASE__NAME:
+        setName((String) newValue);
+        return;
+      case DBGenPackage.DATABASE__TABLES:
+        getTables().clear();
+        getTables().addAll((Collection) newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -225,12 +225,12 @@ public class DatabaseImpl extends EObjectImpl implements Database
   {
     switch (featureID)
     {
-    case DBGenPackage.DATABASE__NAME:
-      setName(NAME_EDEFAULT);
-      return;
-    case DBGenPackage.DATABASE__TABLES:
-      getTables().clear();
-      return;
+      case DBGenPackage.DATABASE__NAME:
+        setName(NAME_EDEFAULT);
+        return;
+      case DBGenPackage.DATABASE__TABLES:
+        getTables().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -244,10 +244,10 @@ public class DatabaseImpl extends EObjectImpl implements Database
   {
     switch (featureID)
     {
-    case DBGenPackage.DATABASE__NAME:
-      return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-    case DBGenPackage.DATABASE__TABLES:
-      return tables != null && !tables.isEmpty();
+      case DBGenPackage.DATABASE__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case DBGenPackage.DATABASE__TABLES:
+        return tables != null && !tables.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -261,7 +261,7 @@ public class DatabaseImpl extends EObjectImpl implements Database
   {
     for (Iterator iter = getTables().iterator(); iter.hasNext();)
     {
-      Table table = (Table)iter.next();
+      Table table = (Table) iter.next();
       if (table.getName().equals(name))
       {
         return table;

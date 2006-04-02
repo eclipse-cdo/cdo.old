@@ -12,8 +12,8 @@ package org.eclipse.emf.cdo.dbgen.util;
 
 
 import org.eclipse.emf.cdo.dbgen.Column;
-import org.eclipse.emf.cdo.dbgen.Database;
 import org.eclipse.emf.cdo.dbgen.DBGenPackage;
+import org.eclipse.emf.cdo.dbgen.Database;
 import org.eclipse.emf.cdo.dbgen.Index;
 import org.eclipse.emf.cdo.dbgen.Table;
 import org.eclipse.emf.common.notify.Adapter;
@@ -70,7 +70,7 @@ public class DBGenAdapterFactory extends AdapterFactoryImpl
     }
     if (object instanceof EObject)
     {
-      return ((EObject)object).eClass().getEPackage() == modelPackage;
+      return ((EObject) object).eClass().getEPackage() == modelPackage;
     }
     return false;
   }
@@ -119,7 +119,7 @@ public class DBGenAdapterFactory extends AdapterFactoryImpl
    */
   public Adapter createAdapter(Notifier target)
   {
-    return (Adapter)modelSwitch.doSwitch((EObject)target);
+    return (Adapter) modelSwitch.doSwitch((EObject) target);
   }
 
   /**

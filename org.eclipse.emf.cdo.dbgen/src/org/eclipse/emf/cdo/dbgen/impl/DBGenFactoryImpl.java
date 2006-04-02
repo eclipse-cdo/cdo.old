@@ -13,9 +13,9 @@ package org.eclipse.emf.cdo.dbgen.impl;
 
 import org.eclipse.emf.cdo.dbgen.Column;
 import org.eclipse.emf.cdo.dbgen.ColumnType;
-import org.eclipse.emf.cdo.dbgen.Database;
 import org.eclipse.emf.cdo.dbgen.DBGenFactory;
 import org.eclipse.emf.cdo.dbgen.DBGenPackage;
+import org.eclipse.emf.cdo.dbgen.Database;
 import org.eclipse.emf.cdo.dbgen.Index;
 import org.eclipse.emf.cdo.dbgen.IndexType;
 import org.eclipse.emf.cdo.dbgen.Table;
@@ -45,8 +45,8 @@ public class DBGenFactoryImpl extends EFactoryImpl implements DBGenFactory
   {
     try
     {
-      DBGenFactory theDBGenFactory = (DBGenFactory)EPackage.Registry.INSTANCE
-              .getEFactory("http://www.eclipse.org/net4j/dbgen.ecore");
+      DBGenFactory theDBGenFactory = (DBGenFactory) EPackage.Registry.INSTANCE
+          .getEFactory("http://www.eclipse.org/net4j/dbgen.ecore");
       if (theDBGenFactory != null)
       {
         return theDBGenFactory;
@@ -79,17 +79,17 @@ public class DBGenFactoryImpl extends EFactoryImpl implements DBGenFactory
   {
     switch (eClass.getClassifierID())
     {
-    case DBGenPackage.DATABASE:
-      return createDatabase();
-    case DBGenPackage.TABLE:
-      return createTable();
-    case DBGenPackage.COLUMN:
-      return createColumn();
-    case DBGenPackage.INDEX:
-      return createIndex();
-    default:
-      throw new IllegalArgumentException("The class '" + eClass.getName()
-              + "' is not a valid classifier");
+      case DBGenPackage.DATABASE:
+        return createDatabase();
+      case DBGenPackage.TABLE:
+        return createTable();
+      case DBGenPackage.COLUMN:
+        return createColumn();
+      case DBGenPackage.INDEX:
+        return createIndex();
+      default:
+        throw new IllegalArgumentException("The class '" + eClass.getName()
+            + "' is not a valid classifier");
     }
   }
 
@@ -102,13 +102,13 @@ public class DBGenFactoryImpl extends EFactoryImpl implements DBGenFactory
   {
     switch (eDataType.getClassifierID())
     {
-    case DBGenPackage.COLUMN_TYPE:
-      return createColumnTypeFromString(eDataType, initialValue);
-    case DBGenPackage.INDEX_TYPE:
-      return createIndexTypeFromString(eDataType, initialValue);
-    default:
-      throw new IllegalArgumentException("The datatype '" + eDataType.getName()
-              + "' is not a valid classifier");
+      case DBGenPackage.COLUMN_TYPE:
+        return createColumnTypeFromString(eDataType, initialValue);
+      case DBGenPackage.INDEX_TYPE:
+        return createIndexTypeFromString(eDataType, initialValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName()
+            + "' is not a valid classifier");
     }
   }
 
@@ -121,13 +121,13 @@ public class DBGenFactoryImpl extends EFactoryImpl implements DBGenFactory
   {
     switch (eDataType.getClassifierID())
     {
-    case DBGenPackage.COLUMN_TYPE:
-      return convertColumnTypeToString(eDataType, instanceValue);
-    case DBGenPackage.INDEX_TYPE:
-      return convertIndexTypeToString(eDataType, instanceValue);
-    default:
-      throw new IllegalArgumentException("The datatype '" + eDataType.getName()
-              + "' is not a valid classifier");
+      case DBGenPackage.COLUMN_TYPE:
+        return convertColumnTypeToString(eDataType, instanceValue);
+      case DBGenPackage.INDEX_TYPE:
+        return convertIndexTypeToString(eDataType, instanceValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName()
+            + "' is not a valid classifier");
     }
   }
 
@@ -185,7 +185,7 @@ public class DBGenFactoryImpl extends EFactoryImpl implements DBGenFactory
     ColumnType result = ColumnType.get(initialValue);
     if (result == null)
       throw new IllegalArgumentException("The value '" + initialValue
-              + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+          + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
 
@@ -209,7 +209,7 @@ public class DBGenFactoryImpl extends EFactoryImpl implements DBGenFactory
     IndexType result = IndexType.get(initialValue);
     if (result == null)
       throw new IllegalArgumentException("The value '" + initialValue
-              + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+          + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
 
@@ -230,7 +230,7 @@ public class DBGenFactoryImpl extends EFactoryImpl implements DBGenFactory
    */
   public DBGenPackage getDBGenPackage()
   {
-    return (DBGenPackage)getEPackage();
+    return (DBGenPackage) getEPackage();
   }
 
   /**
