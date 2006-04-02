@@ -10,7 +10,7 @@
             exampleURL="jdbc:mysql://&lt;host&gt;/&lt;database&gt;"
             className="org.gjt.mm.mysql.Driver"
             name="MySql">
-         <supportedDialect name="mysql"/>
+         <supportedDialect name="MYSQL"/>
       </driver>
    </extension>
 

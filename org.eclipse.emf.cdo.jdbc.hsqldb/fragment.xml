@@ -7,10 +7,10 @@
          name="CDO Pluggable HSQLDB Driver"
          point="org.eclipse.emf.cdo.jdbc.drivers">
       <driver
-            exampleURL="jdbc:hsqldb://&lt;host&gt;/&lt;database&gt;"
-            className="org.gjt.mm.hsqldb.Driver"
+            exampleURL="jdbc:hsqldb:file:&lt;database&gt;"
+            className="org.hsqldb.jdbcDriver"
             name="HSqlDB">
-         <supportedDialect name="hsqldb"/>
+         <supportedDialect name="HSQLDB"/>
       </driver>
    </extension>
 
