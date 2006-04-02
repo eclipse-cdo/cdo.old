@@ -25,8 +25,10 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceManager;
+import org.eclipse.emf.cdo.client.ResourceManager.InvalidationListener;
 import org.eclipse.emf.cdo.example.client.internal.ExampleClientPlugin;
 import org.eclipse.emf.cdo.example.ui.internal.ExampleUIActivator;
+import org.eclipse.emf.cdo.example.ui.internal.UIUtils;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
@@ -118,7 +120,7 @@ import java.util.Map;
  * @generated
  */
 public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProvider,
-        ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker
+        ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker, InvalidationListener
 {
   /**
    * @ADDED 
@@ -738,6 +740,7 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
     {
       // @ADDED
       resourceManager = ExampleClientPlugin.createResourceManager(editingDomain.getResourceSet());
+      resourceManager.addInvalidationListener(this);
 
       // Load the resource through the editing domain.
       editingDomain.loadResource(uri);
@@ -1384,6 +1387,8 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
   {
     if (resourceManager != null)
     {
+      resourceManager.removeInvalidationListener(this);
+
       try
       {
         resourceManager.stop();
@@ -1415,6 +1420,14 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
     }
 
     super.dispose();
+  }
+
+  /**
+   * @ADDED
+   */
+  public void notifyInvalidation(ResourceManager resourceManager, long[] oids)
+  {
+    UIUtils.refreshViewer(getViewer());
   }
 
   /**
