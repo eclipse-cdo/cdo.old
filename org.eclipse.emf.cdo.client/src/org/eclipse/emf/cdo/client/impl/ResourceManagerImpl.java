@@ -19,14 +19,14 @@ import org.eclipse.net4j.util.ImplementationError;
 import org.eclipse.net4j.util.thread.DeadlockDetector;
 import org.eclipse.net4j.util.thread.Worker;
 
-import org.eclipse.emf.cdo.client.CdoPersistable;
-import org.eclipse.emf.cdo.client.CdoResource;
+import org.eclipse.emf.cdo.client.CDOPersistable;
+import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.PackageManager;
 import org.eclipse.emf.cdo.client.PausableChangeRecorder;
 import org.eclipse.emf.cdo.client.ResourceManager;
-import org.eclipse.emf.cdo.client.protocol.CdoClientProtocolImpl;
-import org.eclipse.emf.cdo.core.CdoProtocol;
-import org.eclipse.emf.cdo.core.OidEncoder;
+import org.eclipse.emf.cdo.client.protocol.ClientCDOProtocolImpl;
+import org.eclipse.emf.cdo.core.CDOProtocol;
+import org.eclipse.emf.cdo.core.OIDEncoder;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -90,9 +90,9 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
       switch (msg.getEventType())
       {
         case Notification.REMOVE:
-          if (msg.getOldValue() instanceof CdoResource)
+          if (msg.getOldValue() instanceof CDOResource)
           {
-            CdoResource resource = (CdoResource) msg.getOldValue();
+            CDOResource resource = (CDOResource) msg.getOldValue();
             notifyRemovedResource(resource);
           }
           break;
@@ -105,11 +105,11 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
           {
             Object element = iter.next();
 
-            if (element instanceof CdoResource)
+            if (element instanceof CDOResource)
             {
               if (!newResources.contains(element))
               {
-                notifyRemovedResource((CdoResource) element);
+                notifyRemovedResource((CDOResource) element);
               }
             }
           }
@@ -153,13 +153,13 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     transaction = new PausableChangeRecorderImpl();
     transaction.beginRecording(resourceSet);
 
-    Resource.Factory factory = new CdoResourceFactoryImpl(this);
+    Resource.Factory factory = new CDOResourceFactoryImpl(this);
 
     Map protocols = resourceSet.getResourceFactoryRegistry().getProtocolToFactoryMap();
-    protocols.put(CdoProtocol.PROTOCOL_NAME, factory);
+    protocols.put(CDOProtocol.PROTOCOL_NAME, factory);
 
     Map extensions = resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap();
-    extensions.put(CdoProtocol.PROTOCOL_NAME, factory);
+    extensions.put(CDOProtocol.PROTOCOL_NAME, factory);
   }
 
   public Resource createResource(URI uri)
@@ -172,7 +172,7 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     return resourceSet.getResource(uri, loadOnDemand);
   }
 
-  public void registerResource(CdoResource resource)
+  public void registerResource(CDOResource resource)
   {
     Integer rid = new Integer(resource.getRid());
     ridToResourceMap.put(rid, resource);
@@ -184,20 +184,20 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     }
   }
 
-  public void registerResourcePath(CdoResource cdoResource, String path)
+  public void registerResourcePath(CDOResource cDOResource, String path)
   {
-    cdoResource.setPath(path);
-    pathToResourceMap.put(path, cdoResource);
+    cDOResource.setPath(path);
+    pathToResourceMap.put(path, cDOResource);
   }
 
-  public CdoResource getResource(int rid)
+  public CDOResource getResource(int rid)
   {
-    CdoResource resource = (CdoResource) ridToResourceMap.get(new Integer(rid));
+    CDOResource resource = (CDOResource) ridToResourceMap.get(new Integer(rid));
 
     if (resource == null)
     {
-      URI uri = CdoResourceFactoryImpl.formatURI(rid);
-      resource = (CdoResource) resourceSet.getResource(uri, true);
+      URI uri = CDOResourceFactoryImpl.formatURI(rid);
+      resource = (CDOResource) resourceSet.getResource(uri, true);
     }
 
     return resource;
@@ -207,14 +207,14 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
   {
     if (cachedChannel == null)
     {
-      cachedChannel = connector.addChannel(CdoProtocol.PROTOCOL_NAME);
-      CdoClientProtocolImpl.setResourceManager(cachedChannel, this);
+      cachedChannel = connector.addChannel(CDOProtocol.PROTOCOL_NAME);
+      ClientCDOProtocolImpl.setResourceManager(cachedChannel, this);
     }
 
     return cachedChannel;
   }
 
-  protected void notifyRemovedResource(CdoResource resource)
+  protected void notifyRemovedResource(CDOResource resource)
   {
     Integer rid = new Integer(resource.getRid());
     if (isDebugEnabled()) debug("Removing resource with rid " + rid);
@@ -233,7 +233,7 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     }
 
     ChangeDescription cd = transaction.endRecording();
-    CdoClientProtocolImpl.requestCommit(getChannel(), cd, getPackageManager());
+    ClientCDOProtocolImpl.requestCommit(getChannel(), cd, getPackageManager());
     transaction.beginRecording(resourceSet);
   }
 
@@ -283,7 +283,7 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
   {
     // Ensure that the resource will be loaded
     int rid = packageManager.getOidEncoder().getRID(oid);
-    URI uri = CdoResourceFactoryImpl.formatURI(rid);
+    URI uri = CDOResourceFactoryImpl.formatURI(rid);
     resourceSet.getResource(uri, true);
 
     ((InternalEObject) object).eSetResource(null, null);
@@ -295,12 +295,12 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     transaction.setLoading(false);
   }
 
-  public void requestObject(CdoPersistable cdoObject)
+  public void requestObject(CDOPersistable cdoObject)
   {
     long oid = cdoObject.cdoGetOID();
     if (isDebugEnabled())
       debug("Demand loading object: " + packageManager.getOidEncoder().toString(oid));
-    CdoClientProtocolImpl.requestLoad(getChannel(), oid);
+    ClientCDOProtocolImpl.requestLoad(getChannel(), oid);
   }
 
   public void reRegisterObject(EObject object, long newId)
@@ -359,12 +359,12 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
 
   public URI createProxyURI(long oid)
   {
-    OidEncoder oidEncoder = packageManager.getOidEncoder();
-    int rid = oidEncoder.getRID(oid);
-    long oidFragment = oidEncoder.getOIDFragment(oid);
+    OIDEncoder oIDEncoder = packageManager.getOidEncoder();
+    int rid = oIDEncoder.getRID(oid);
+    long oidFragment = oIDEncoder.getOIDFragment(oid);
 
     StringBuffer buffer = new StringBuffer();
-    buffer.append(CdoProtocol.PROTOCOL_SCHEME);
+    buffer.append(CDOProtocol.PROTOCOL_SCHEME);
     buffer.append(rid);
     buffer.append("#");
     buffer.append(oidFragment);
@@ -419,7 +419,7 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     super.deactivate();
   }
 
-  public static EObject createEObject(EClass eClass, long oid, int oca, CdoResource resource)
+  public static EObject createEObject(EClass eClass, long oid, int oca, CDOResource resource)
   {
     // Determine the appropriate EFactory
     EPackage ePackage = eClass.getEPackage();
@@ -434,28 +434,28 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
 
   public static long getOID(EObject eObject)
   {
-    return ((CdoPersistable) eObject).cdoGetOID();
+    return ((CDOPersistable) eObject).cdoGetOID();
   }
 
   public static int getOCA(EObject eObject)
   {
-    return ((CdoPersistable) eObject).cdoGetOCA();
+    return ((CDOPersistable) eObject).cdoGetOCA();
   }
 
-  public static void setOID(EObject eObject, long oid, CdoResource resource)
+  public static void setOID(EObject eObject, long oid, CDOResource resource)
   {
-    ((CdoPersistable) eObject).cdoSetOID(oid, resource);
+    ((CDOPersistable) eObject).cdoSetOID(oid, resource);
   }
 
   public static void setOCA(EObject eObject, int oca)
   {
-    ((CdoPersistable) eObject).cdoSetOCA(oca);
+    ((CDOPersistable) eObject).cdoSetOCA(oca);
   }
 
   public static void incOCA(EObject eObject)
   {
-    int oca = ((CdoPersistable) eObject).cdoGetOCA();
-    ((CdoPersistable) eObject).cdoSetOCA(oca + 1);
+    int oca = ((CDOPersistable) eObject).cdoGetOCA();
+    ((CDOPersistable) eObject).cdoSetOCA(oca + 1);
   }
 
   public static String getLabel(EObject eObject)
@@ -583,7 +583,7 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
 
         URI uri = createProxyURI(oid);
         ((InternalEObject) object).eSetProxyURI(uri);
-        ((CdoPersistable) object).cdoSetOCA(-1);
+        ((CDOPersistable) object).cdoSetOCA(-1);
       }
 
       notifyInvalidationListeners(oids);

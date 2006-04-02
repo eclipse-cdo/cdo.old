@@ -8,7 +8,7 @@ import org.eclipse.emf.cdo.client.ResourceInfo;
 import org.eclipse.emf.cdo.client.impl.ResourceInfoImpl;
 import org.eclipse.emf.cdo.client.protocol.CdoResClientProtocolImpl;
 import org.eclipse.emf.cdo.client.protocol.CdoResListener;
-import org.eclipse.emf.cdo.core.CdoResProtocol;
+import org.eclipse.emf.cdo.core.CDOResProtocol;
 import org.eclipse.emf.cdo.core.protocol.ResourceChangeInfo;
 
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ public class ResourceCache implements CdoResListener
     {
       public void run()
       {
-        channel = connector.addChannel(CdoResProtocol.PROTOCOL_NAME);
+        channel = connector.addChannel(CDOResProtocol.PROTOCOL_NAME);
 
         List<ResourceInfo> resources = CdoResClientProtocolImpl.queryAllResources(channel);
         if (resources != null && !resources.isEmpty())

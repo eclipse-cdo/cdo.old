@@ -20,13 +20,13 @@ public final class PackageLabelProvider extends LabelProvider
     if (element instanceof PackageInfo)
     {
       return ExtendedImageRegistry.getInstance().getImage(
-              CdoExampleUiActivator.INSTANCE.getImage("full/obj16/EPackage"));
+              ExampleUIActivator.INSTANCE.getImage("full/obj16/EPackage"));
     }
 
     if (element instanceof ClassInfo)
     {
       return ExtendedImageRegistry.getInstance().getImage(
-              CdoExampleUiActivator.INSTANCE.getImage("full/obj16/EClass"));
+              ExampleUIActivator.INSTANCE.getImage("full/obj16/EClass"));
     }
 
     return super.getImage(element);

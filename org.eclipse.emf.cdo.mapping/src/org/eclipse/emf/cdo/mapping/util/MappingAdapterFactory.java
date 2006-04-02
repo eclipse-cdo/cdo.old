@@ -69,7 +69,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl
     }
     if (object instanceof EObject)
     {
-      return ((EObject)object).eClass().getEPackage() == modelPackage;
+      return ((EObject) object).eClass().getEPackage() == modelPackage;
     }
     return false;
   }
@@ -113,7 +113,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl
    */
   public Adapter createAdapter(Notifier target)
   {
-    return (Adapter)modelSwitch.doSwitch((EObject)target);
+    return (Adapter) modelSwitch.doSwitch((EObject) target);
   }
 
   /**

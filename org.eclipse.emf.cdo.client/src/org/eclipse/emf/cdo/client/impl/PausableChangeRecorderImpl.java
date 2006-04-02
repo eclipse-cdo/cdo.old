@@ -11,7 +11,7 @@
 package org.eclipse.emf.cdo.client.impl;
 
 
-import org.eclipse.emf.cdo.client.CdoResource;
+import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.PausableChangeRecorder;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.change.util.ChangeRecorder;
@@ -48,7 +48,7 @@ public class PausableChangeRecorderImpl extends ChangeRecorder implements Pausab
   //        if (notification.getEventType() == Notification.ADD)
   //        {
   //          Notifier newValue = (Notifier) notification.getNewValue();
-  //          if (!(newValue instanceof CdoResource))
+  //          if (!(newValue instanceof CDOResource))
   //          {
   //            return;
   //          }
@@ -64,7 +64,7 @@ public class PausableChangeRecorderImpl extends ChangeRecorder implements Pausab
   {
     if (notifier instanceof Resource)
     {
-      if (notifier instanceof CdoResource)
+      if (notifier instanceof CDOResource)
       {
         super.addAdapter(notifier);
       }

@@ -11,7 +11,7 @@
 package org.eclipse.emf.cdo.example.library;
 
 
-import org.eclipse.emf.cdo.client.CdoPackage;
+import org.eclipse.emf.cdo.client.CDOPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -84,7 +84,7 @@ public interface LibraryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LIBRARY__BOOKS = CdoPackage.CDO_PERSISTENT_FEATURE_COUNT + 0;
+  int LIBRARY__BOOKS = CDOPackage.CDO_PERSISTENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Authors</b></em>' containment reference list.
@@ -93,7 +93,7 @@ public interface LibraryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LIBRARY__AUTHORS = CdoPackage.CDO_PERSISTENT_FEATURE_COUNT + 1;
+  int LIBRARY__AUTHORS = CDOPackage.CDO_PERSISTENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Topics</b></em>' containment reference list.
@@ -102,7 +102,7 @@ public interface LibraryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LIBRARY__TOPICS = CdoPackage.CDO_PERSISTENT_FEATURE_COUNT + 2;
+  int LIBRARY__TOPICS = CDOPackage.CDO_PERSISTENT_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Library</em>' class.
@@ -111,7 +111,7 @@ public interface LibraryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LIBRARY_FEATURE_COUNT = CdoPackage.CDO_PERSISTENT_FEATURE_COUNT + 3;
+  int LIBRARY_FEATURE_COUNT = CDOPackage.CDO_PERSISTENT_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.eclipse.emf.cdo.example.library.impl.BookImpl <em>Book</em>}' class.
@@ -130,7 +130,7 @@ public interface LibraryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BOOK__TITLE = CdoPackage.CDO_PERSISTENT_FEATURE_COUNT + 0;
+  int BOOK__TITLE = CDOPackage.CDO_PERSISTENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Authors</b></em>' reference list.
@@ -139,7 +139,7 @@ public interface LibraryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BOOK__AUTHORS = CdoPackage.CDO_PERSISTENT_FEATURE_COUNT + 1;
+  int BOOK__AUTHORS = CDOPackage.CDO_PERSISTENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Library</b></em>' container reference.
@@ -148,7 +148,7 @@ public interface LibraryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BOOK__LIBRARY = CdoPackage.CDO_PERSISTENT_FEATURE_COUNT + 2;
+  int BOOK__LIBRARY = CDOPackage.CDO_PERSISTENT_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Topic</b></em>' container reference.
@@ -157,7 +157,7 @@ public interface LibraryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BOOK__TOPIC = CdoPackage.CDO_PERSISTENT_FEATURE_COUNT + 3;
+  int BOOK__TOPIC = CDOPackage.CDO_PERSISTENT_FEATURE_COUNT + 3;
 
   /**
    * The feature id for the '<em><b>Number Of Pages</b></em>' attribute.
@@ -166,7 +166,7 @@ public interface LibraryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BOOK__NUMBER_OF_PAGES = CdoPackage.CDO_PERSISTENT_FEATURE_COUNT + 4;
+  int BOOK__NUMBER_OF_PAGES = CDOPackage.CDO_PERSISTENT_FEATURE_COUNT + 4;
 
   /**
    * The number of structural features of the '<em>Book</em>' class.
@@ -175,7 +175,7 @@ public interface LibraryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BOOK_FEATURE_COUNT = CdoPackage.CDO_PERSISTENT_FEATURE_COUNT + 5;
+  int BOOK_FEATURE_COUNT = CDOPackage.CDO_PERSISTENT_FEATURE_COUNT + 5;
 
   /**
    * The meta object id for the '{@link org.eclipse.emf.cdo.example.library.impl.AuthorImpl <em>Author</em>}' class.
@@ -194,7 +194,7 @@ public interface LibraryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int AUTHOR__NAME = CdoPackage.CDO_PERSISTENT_FEATURE_COUNT + 0;
+  int AUTHOR__NAME = CDOPackage.CDO_PERSISTENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Books</b></em>' reference list.
@@ -203,7 +203,7 @@ public interface LibraryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int AUTHOR__BOOKS = CdoPackage.CDO_PERSISTENT_FEATURE_COUNT + 1;
+  int AUTHOR__BOOKS = CDOPackage.CDO_PERSISTENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Library</b></em>' container reference.
@@ -212,7 +212,7 @@ public interface LibraryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int AUTHOR__LIBRARY = CdoPackage.CDO_PERSISTENT_FEATURE_COUNT + 2;
+  int AUTHOR__LIBRARY = CDOPackage.CDO_PERSISTENT_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Author</em>' class.
@@ -221,7 +221,7 @@ public interface LibraryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int AUTHOR_FEATURE_COUNT = CdoPackage.CDO_PERSISTENT_FEATURE_COUNT + 3;
+  int AUTHOR_FEATURE_COUNT = CDOPackage.CDO_PERSISTENT_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.eclipse.emf.cdo.example.library.impl.TopicImpl <em>Topic</em>}' class.
@@ -240,7 +240,7 @@ public interface LibraryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TOPIC__BOOKS = CdoPackage.CDO_PERSISTENT_FEATURE_COUNT + 0;
+  int TOPIC__BOOKS = CDOPackage.CDO_PERSISTENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Library</b></em>' container reference.
@@ -249,7 +249,7 @@ public interface LibraryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TOPIC__LIBRARY = CdoPackage.CDO_PERSISTENT_FEATURE_COUNT + 1;
+  int TOPIC__LIBRARY = CDOPackage.CDO_PERSISTENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Topics</b></em>' containment reference list.
@@ -258,7 +258,7 @@ public interface LibraryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TOPIC__TOPICS = CdoPackage.CDO_PERSISTENT_FEATURE_COUNT + 2;
+  int TOPIC__TOPICS = CDOPackage.CDO_PERSISTENT_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Topic</b></em>' container reference.
@@ -267,7 +267,7 @@ public interface LibraryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TOPIC__TOPIC = CdoPackage.CDO_PERSISTENT_FEATURE_COUNT + 3;
+  int TOPIC__TOPIC = CDOPackage.CDO_PERSISTENT_FEATURE_COUNT + 3;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -276,7 +276,7 @@ public interface LibraryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TOPIC__NAME = CdoPackage.CDO_PERSISTENT_FEATURE_COUNT + 4;
+  int TOPIC__NAME = CDOPackage.CDO_PERSISTENT_FEATURE_COUNT + 4;
 
   /**
    * The number of structural features of the '<em>Topic</em>' class.
@@ -285,7 +285,7 @@ public interface LibraryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TOPIC_FEATURE_COUNT = CdoPackage.CDO_PERSISTENT_FEATURE_COUNT + 5;
+  int TOPIC_FEATURE_COUNT = CDOPackage.CDO_PERSISTENT_FEATURE_COUNT + 5;
 
   /**
    * The meta object id for the '{@link org.eclipse.emf.cdo.example.library.impl.EBookImpl <em>EBook</em>}' class.
@@ -605,6 +605,7 @@ public interface LibraryPackage extends EPackage
    * @generated
    */
   LibraryFactory getLibraryFactory();
+
 
   /**
    * <!-- begin-user-doc -->

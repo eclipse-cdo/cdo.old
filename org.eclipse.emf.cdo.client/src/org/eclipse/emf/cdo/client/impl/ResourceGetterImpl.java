@@ -13,7 +13,7 @@ package org.eclipse.emf.cdo.client.impl;
 
 import org.eclipse.net4j.util.ImplementationError;
 
-import org.eclipse.emf.cdo.client.CdoResource;
+import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceGetter;
 import org.eclipse.emf.cdo.client.ResourceManager;
 
@@ -24,7 +24,7 @@ public class ResourceGetterImpl implements ResourceGetter
 
   private int lastRid = 0;
 
-  private CdoResource lastResource = null;
+  private CDOResource lastResource = null;
 
   public ResourceGetterImpl(ResourceManager resourceManager)
   {
@@ -34,11 +34,11 @@ public class ResourceGetterImpl implements ResourceGetter
   /* (non-Javadoc)
    * @see org.eclipse.emf.cdo.client.impl.ResourceGetter#getResource(int)
    */
-  public CdoResource getResource(int rid)
+  public CDOResource getResource(int rid)
   {
     if (rid != lastRid)
     {
-      CdoResource resource = resourceManager.getResource(rid);
+      CDOResource resource = resourceManager.getResource(rid);
 
       if (resource == null)
       {
@@ -60,7 +60,7 @@ public class ResourceGetterImpl implements ResourceGetter
   /* (non-Javadoc)
    * @see org.eclipse.emf.cdo.client.impl.ResourceGetter#getResource(long)
    */
-  public CdoResource getResource(long oid)
+  public CDOResource getResource(long oid)
   {
     int rid = resourceManager.getPackageManager().getOidEncoder().getRID(oid);
     return getResource(rid);

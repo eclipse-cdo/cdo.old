@@ -14,7 +14,7 @@ package org.eclipse.emf.cdo.client.protocol;
 import org.eclipse.emf.cdo.client.AttributeInfo;
 import org.eclipse.emf.cdo.client.ClassInfo;
 import org.eclipse.emf.cdo.client.PackageInfo;
-import org.eclipse.emf.cdo.core.CdoProtocol;
+import org.eclipse.emf.cdo.core.CDOProtocol;
 
 
 public class DescribePackageRequest extends AbstractPackageRequest
@@ -28,7 +28,7 @@ public class DescribePackageRequest extends AbstractPackageRequest
 
   public short getSignalId()
   {
-    return CdoProtocol.DESCRIBE_PACKAGE;
+    return CDOProtocol.DESCRIBE_PACKAGE;
   }
 
   public void request()

@@ -13,7 +13,7 @@ package org.eclipse.emf.cdo.client.protocol;
 
 import org.eclipse.net4j.core.impl.AbstractIndication;
 
-import org.eclipse.emf.cdo.core.CdoResSignals;
+import org.eclipse.emf.cdo.core.CDOResSignals;
 import org.eclipse.emf.cdo.core.protocol.NoMoreResourceChangesException;
 import org.eclipse.emf.cdo.core.protocol.ResourceChangeInfo;
 
@@ -25,7 +25,7 @@ public class ResourcesChangedIndication extends AbstractIndication
 {
   public short getSignalId()
   {
-    return CdoResSignals.RESOURCES_CHANGED;
+    return CDOResSignals.RESOURCES_CHANGED;
   }
 
   public void indicate()

@@ -39,8 +39,8 @@ import java.util.List;
  * @generated
  */
 public class PackageMappingItemProvider extends ItemProviderAdapter implements
-        IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
-        IItemLabelProvider, IItemPropertySource
+    IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
+    IItemLabelProvider, IItemPropertySource
 {
   /**
    * This constructs an instance from a factory and a notifier.
@@ -79,12 +79,11 @@ public class PackageMappingItemProvider extends ItemProviderAdapter implements
   protected void addPackageNamePropertyDescriptor(Object object)
   {
     itemPropertyDescriptors.add(createItemPropertyDescriptor(
-            ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-            getResourceLocator(), getString("_UI_PackageMapping_packageName_feature"), getString(
-                    "_UI_PropertyDescriptor_description", "_UI_PackageMapping_packageName_feature",
-                    "_UI_PackageMapping_type"),
-            MappingPackage.Literals.PACKAGE_MAPPING__PACKAGE_NAME, true,
-            ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+        getString("_UI_PackageMapping_packageName_feature"), getString(
+            "_UI_PropertyDescriptor_description", "_UI_PackageMapping_packageName_feature",
+            "_UI_PackageMapping_type"), MappingPackage.Literals.PACKAGE_MAPPING__PACKAGE_NAME,
+        true, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -124,9 +123,9 @@ public class PackageMappingItemProvider extends ItemProviderAdapter implements
    */
   public String getText(Object object)
   {
-    String label = ((PackageMapping)object).getPackageName();
+    String label = ((PackageMapping) object).getPackageName();
     return label == null || label.length() == 0 ? getString("_UI_PackageMapping_type")
-            : getString("_UI_PackageMapping_type") + " " + label;
+        : getString("_UI_PackageMapping_type") + " " + label;
   }
 
   /**
@@ -142,14 +141,14 @@ public class PackageMappingItemProvider extends ItemProviderAdapter implements
 
     switch (notification.getFeatureID(PackageMapping.class))
     {
-    case MappingPackage.PACKAGE_MAPPING__PACKAGE_NAME:
-      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
-              true));
-      return;
-    case MappingPackage.PACKAGE_MAPPING__CLASSES:
-      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true,
-              false));
-      return;
+      case MappingPackage.PACKAGE_MAPPING__PACKAGE_NAME:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
+            true));
+        return;
+      case MappingPackage.PACKAGE_MAPPING__CLASSES:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true,
+            false));
+        return;
     }
     super.notifyChanged(notification);
   }
@@ -166,7 +165,7 @@ public class PackageMappingItemProvider extends ItemProviderAdapter implements
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
     newChildDescriptors.add(createChildParameter(MappingPackage.Literals.PACKAGE_MAPPING__CLASSES,
-            MappingFactory.eINSTANCE.createClassMapping()));
+        MappingFactory.eINSTANCE.createClassMapping()));
   }
 
   /**

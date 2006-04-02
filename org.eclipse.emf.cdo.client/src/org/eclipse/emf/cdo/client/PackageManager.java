@@ -14,7 +14,7 @@ package org.eclipse.emf.cdo.client;
 import org.eclipse.net4j.core.Channel;
 import org.eclipse.net4j.spring.Service;
 
-import org.eclipse.emf.cdo.core.OidEncoder;
+import org.eclipse.emf.cdo.core.OIDEncoder;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -45,7 +45,7 @@ public interface PackageManager extends Service
 
   public void announceNewPackages(Channel channel);
 
-  public OidEncoder getOidEncoder();
+  public OIDEncoder getOidEncoder();
 
   public AttributeConverter getAttributeConverter();
 }

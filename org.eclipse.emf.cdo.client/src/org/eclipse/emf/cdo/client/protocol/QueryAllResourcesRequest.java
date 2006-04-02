@@ -15,8 +15,8 @@ import org.eclipse.net4j.core.impl.AbstractRequestWithConfirmation;
 
 import org.eclipse.emf.cdo.client.ResourceInfo;
 import org.eclipse.emf.cdo.client.impl.ResourceInfoImpl;
-import org.eclipse.emf.cdo.core.CdoResProtocol;
-import org.eclipse.emf.cdo.core.CdoResSignals;
+import org.eclipse.emf.cdo.core.CDOResProtocol;
+import org.eclipse.emf.cdo.core.CDOResSignals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,7 @@ public class QueryAllResourcesRequest extends AbstractRequestWithConfirmation
 
   public short getSignalId()
   {
-    return CdoResSignals.QUERY_ALL_RESOURCES;
+    return CDOResSignals.QUERY_ALL_RESOURCES;
   }
 
   public void request()
@@ -44,7 +44,7 @@ public class QueryAllResourcesRequest extends AbstractRequestWithConfirmation
     for (;;)
     {
       int rid = receiveInt();
-      if (rid == CdoResProtocol.NO_MORE_RESOURCES) break;
+      if (rid == CDOResProtocol.NO_MORE_RESOURCES) break;
 
       String path = receiveString();
       result.add(new ResourceInfoImpl(path, rid, true));

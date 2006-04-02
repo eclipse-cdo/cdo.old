@@ -16,7 +16,7 @@ import org.eclipse.net4j.util.StringHelper;
 
 import org.eclipse.emf.cdo.client.AttributeConverter;
 import org.eclipse.emf.cdo.client.MappingProvider;
-import org.eclipse.emf.cdo.core.CdoDataTypes;
+import org.eclipse.emf.cdo.core.CDODataTypes;
 import org.eclipse.emf.cdo.core.UnknownDataTypeException;
 import org.eclipse.emf.cdo.mapping.AttributeMapping;
 import org.eclipse.emf.cdo.mapping.ClassMapping;
@@ -39,7 +39,7 @@ import java.util.NoSuchElementException;
 import java.sql.Types;
 
 
-public class AnnotationMappingProviderImpl implements MappingProvider, CdoDataTypes
+public class AnnotationMappingProviderImpl implements MappingProvider, CDODataTypes
 {
   public static final String ANNOTATION_SOURCE = "cdo";
 

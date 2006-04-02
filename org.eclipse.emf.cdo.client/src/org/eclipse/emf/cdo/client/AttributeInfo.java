@@ -11,12 +11,12 @@
 package org.eclipse.emf.cdo.client;
 
 
-import org.eclipse.emf.cdo.core.CdoDataTypes;
+import org.eclipse.emf.cdo.core.CDODataTypes;
 import org.eclipse.emf.cdo.mapping.AttributeMapping;
 import org.eclipse.emf.ecore.EAttribute;
 
 
-public interface AttributeInfo extends CdoDataTypes
+public interface AttributeInfo extends CDODataTypes
 {
   public String getName();
 

@@ -125,7 +125,7 @@ public class ClassMappingImpl extends EObjectImpl implements ClassMapping
     if (attributes == null)
     {
       attributes = new EObjectContainmentEList(AttributeMapping.class, this,
-              MappingPackage.CLASS_MAPPING__ATTRIBUTES);
+          MappingPackage.CLASS_MAPPING__ATTRIBUTES);
     }
     return attributes;
   }
@@ -151,7 +151,7 @@ public class ClassMappingImpl extends EObjectImpl implements ClassMapping
     className = newClassName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET,
-              MappingPackage.CLASS_MAPPING__CLASS_NAME, oldClassName, className));
+          MappingPackage.CLASS_MAPPING__CLASS_NAME, oldClassName, className));
   }
 
   /**
@@ -175,7 +175,7 @@ public class ClassMappingImpl extends EObjectImpl implements ClassMapping
     tableName = newTableName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET,
-              MappingPackage.CLASS_MAPPING__TABLE_NAME, oldTableName, tableName));
+          MappingPackage.CLASS_MAPPING__TABLE_NAME, oldTableName, tableName));
   }
 
   /**
@@ -187,7 +187,7 @@ public class ClassMappingImpl extends EObjectImpl implements ClassMapping
   {
     for (Iterator iter = getAttributes().iterator(); iter.hasNext();)
     {
-      AttributeMapping attributeMapping = (AttributeMapping)iter.next();
+      AttributeMapping attributeMapping = (AttributeMapping) iter.next();
       if (attributeMapping.getAttributeName().equals(name))
       {
         return attributeMapping;
@@ -219,7 +219,7 @@ public class ClassMappingImpl extends EObjectImpl implements ClassMapping
           buffer.append(", ");
         }
 
-        AttributeMapping attributeMapping = (AttributeMapping)iter.next();
+        AttributeMapping attributeMapping = (AttributeMapping) iter.next();
         buffer.append(attributeMapping.getColumnName());
       }
       cachedColumnNames = buffer.toString();
@@ -233,12 +233,12 @@ public class ClassMappingImpl extends EObjectImpl implements ClassMapping
    * @generated
    */
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID,
-          NotificationChain msgs)
+      NotificationChain msgs)
   {
     switch (featureID)
     {
-    case MappingPackage.CLASS_MAPPING__ATTRIBUTES:
-      return ((InternalEList)getAttributes()).basicRemove(otherEnd, msgs);
+      case MappingPackage.CLASS_MAPPING__ATTRIBUTES:
+        return ((InternalEList) getAttributes()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -252,12 +252,12 @@ public class ClassMappingImpl extends EObjectImpl implements ClassMapping
   {
     switch (featureID)
     {
-    case MappingPackage.CLASS_MAPPING__ATTRIBUTES:
-      return getAttributes();
-    case MappingPackage.CLASS_MAPPING__CLASS_NAME:
-      return getClassName();
-    case MappingPackage.CLASS_MAPPING__TABLE_NAME:
-      return getTableName();
+      case MappingPackage.CLASS_MAPPING__ATTRIBUTES:
+        return getAttributes();
+      case MappingPackage.CLASS_MAPPING__CLASS_NAME:
+        return getClassName();
+      case MappingPackage.CLASS_MAPPING__TABLE_NAME:
+        return getTableName();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -271,16 +271,16 @@ public class ClassMappingImpl extends EObjectImpl implements ClassMapping
   {
     switch (featureID)
     {
-    case MappingPackage.CLASS_MAPPING__ATTRIBUTES:
-      getAttributes().clear();
-      getAttributes().addAll((Collection)newValue);
-      return;
-    case MappingPackage.CLASS_MAPPING__CLASS_NAME:
-      setClassName((String)newValue);
-      return;
-    case MappingPackage.CLASS_MAPPING__TABLE_NAME:
-      setTableName((String)newValue);
-      return;
+      case MappingPackage.CLASS_MAPPING__ATTRIBUTES:
+        getAttributes().clear();
+        getAttributes().addAll((Collection) newValue);
+        return;
+      case MappingPackage.CLASS_MAPPING__CLASS_NAME:
+        setClassName((String) newValue);
+        return;
+      case MappingPackage.CLASS_MAPPING__TABLE_NAME:
+        setTableName((String) newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -294,15 +294,15 @@ public class ClassMappingImpl extends EObjectImpl implements ClassMapping
   {
     switch (featureID)
     {
-    case MappingPackage.CLASS_MAPPING__ATTRIBUTES:
-      getAttributes().clear();
-      return;
-    case MappingPackage.CLASS_MAPPING__CLASS_NAME:
-      setClassName(CLASS_NAME_EDEFAULT);
-      return;
-    case MappingPackage.CLASS_MAPPING__TABLE_NAME:
-      setTableName(TABLE_NAME_EDEFAULT);
-      return;
+      case MappingPackage.CLASS_MAPPING__ATTRIBUTES:
+        getAttributes().clear();
+        return;
+      case MappingPackage.CLASS_MAPPING__CLASS_NAME:
+        setClassName(CLASS_NAME_EDEFAULT);
+        return;
+      case MappingPackage.CLASS_MAPPING__TABLE_NAME:
+        setTableName(TABLE_NAME_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -316,14 +316,14 @@ public class ClassMappingImpl extends EObjectImpl implements ClassMapping
   {
     switch (featureID)
     {
-    case MappingPackage.CLASS_MAPPING__ATTRIBUTES:
-      return attributes != null && !attributes.isEmpty();
-    case MappingPackage.CLASS_MAPPING__CLASS_NAME:
-      return CLASS_NAME_EDEFAULT == null ? className != null : !CLASS_NAME_EDEFAULT
-              .equals(className);
-    case MappingPackage.CLASS_MAPPING__TABLE_NAME:
-      return TABLE_NAME_EDEFAULT == null ? tableName != null : !TABLE_NAME_EDEFAULT
-              .equals(tableName);
+      case MappingPackage.CLASS_MAPPING__ATTRIBUTES:
+        return attributes != null && !attributes.isEmpty();
+      case MappingPackage.CLASS_MAPPING__CLASS_NAME:
+        return CLASS_NAME_EDEFAULT == null ? className != null : !CLASS_NAME_EDEFAULT
+            .equals(className);
+      case MappingPackage.CLASS_MAPPING__TABLE_NAME:
+        return TABLE_NAME_EDEFAULT == null ? tableName != null : !TABLE_NAME_EDEFAULT
+            .equals(tableName);
     }
     return super.eIsSet(featureID);
   }

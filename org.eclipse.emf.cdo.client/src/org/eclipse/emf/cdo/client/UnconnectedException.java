@@ -11,7 +11,10 @@
 package org.eclipse.emf.cdo.client;
 
 
-public class UnconnectedException extends CdoClientException
+import org.eclipse.emf.cdo.core.CDOException;
+
+
+public class UnconnectedException extends CDOException
 {
   /**
    * 

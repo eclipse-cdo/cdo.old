@@ -11,7 +11,7 @@
 package org.eclipse.emf.cdo.core;
 
 
-public class UnknownDataTypeException extends CdoException
+public class UnknownDataTypeException extends CDOException
 {
   /**
    * 

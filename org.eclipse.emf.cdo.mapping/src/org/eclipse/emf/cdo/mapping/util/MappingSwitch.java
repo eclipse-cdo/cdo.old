@@ -86,8 +86,8 @@ public class MappingSwitch
     else
     {
       List eSuperTypes = theEClass.getESuperTypes();
-      return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch((EClass)eSuperTypes.get(0),
-              theEObject);
+      return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(
+          (EClass) eSuperTypes.get(0), theEObject);
     }
   }
 
@@ -102,29 +102,29 @@ public class MappingSwitch
   {
     switch (classifierID)
     {
-    case MappingPackage.PACKAGE_MAPPING:
-    {
-      PackageMapping packageMapping = (PackageMapping)theEObject;
-      Object result = casePackageMapping(packageMapping);
-      if (result == null) result = defaultCase(theEObject);
-      return result;
-    }
-    case MappingPackage.CLASS_MAPPING:
-    {
-      ClassMapping classMapping = (ClassMapping)theEObject;
-      Object result = caseClassMapping(classMapping);
-      if (result == null) result = defaultCase(theEObject);
-      return result;
-    }
-    case MappingPackage.ATTRIBUTE_MAPPING:
-    {
-      AttributeMapping attributeMapping = (AttributeMapping)theEObject;
-      Object result = caseAttributeMapping(attributeMapping);
-      if (result == null) result = defaultCase(theEObject);
-      return result;
-    }
-    default:
-      return defaultCase(theEObject);
+      case MappingPackage.PACKAGE_MAPPING:
+      {
+        PackageMapping packageMapping = (PackageMapping) theEObject;
+        Object result = casePackageMapping(packageMapping);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MappingPackage.CLASS_MAPPING:
+      {
+        ClassMapping classMapping = (ClassMapping) theEObject;
+        Object result = caseClassMapping(classMapping);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MappingPackage.ATTRIBUTE_MAPPING:
+      {
+        AttributeMapping attributeMapping = (AttributeMapping) theEObject;
+        Object result = caseAttributeMapping(attributeMapping);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      default:
+        return defaultCase(theEObject);
     }
   }
 

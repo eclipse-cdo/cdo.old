@@ -14,11 +14,11 @@ package org.eclipse.emf.cdo.core.impl;
 import org.eclipse.net4j.core.Channel;
 import org.eclipse.net4j.spring.impl.ServiceImpl;
 
-import org.eclipse.emf.cdo.core.CdoDataTypes;
+import org.eclipse.emf.cdo.core.CDODataTypes;
 import org.eclipse.emf.cdo.core.UnknownDataTypeException;
 
 
-public abstract class AbstractConverter extends ServiceImpl implements CdoDataTypes
+public abstract class AbstractConverter extends ServiceImpl implements CDODataTypes
 {
   protected Object dispatchFromChannel(Channel channel, int dataType)
   {

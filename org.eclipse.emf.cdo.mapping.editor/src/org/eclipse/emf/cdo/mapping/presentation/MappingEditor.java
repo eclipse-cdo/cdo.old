@@ -124,7 +124,7 @@ import java.io.IOException;
  * @generated
  */
 public class MappingEditor extends MultiPageEditorPart implements IEditingDomainProvider,
-        ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker
+    ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker
 {
   /**
    * This keeps track of the editing domain that is used to track all changes to the model.
@@ -277,7 +277,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
     {
       if (p instanceof ContentOutline)
       {
-        if (((ContentOutline)p).getCurrentPage() == contentOutlinePage)
+        if (((ContentOutline) p).getCurrentPage() == contentOutlinePage)
         {
           getActionBarContributor().setActiveEditor(MappingEditor.this);
 
@@ -286,7 +286,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
       }
       else if (p instanceof PropertySheet)
       {
-        if (((PropertySheet)p).getCurrentPage() == propertySheetPage)
+        if (((PropertySheet) p).getCurrentPage() == propertySheetPage)
         {
           getActionBarContributor().setActiveEditor(MappingEditor.this);
           handleActivate();
@@ -360,12 +360,12 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
             public boolean visit(IResourceDelta delta)
             {
               if (delta.getFlags() != IResourceDelta.MARKERS
-                      && delta.getResource().getType() == IResource.FILE)
+                  && delta.getResource().getType() == IResource.FILE)
               {
                 if ((delta.getKind() & (IResourceDelta.CHANGED | IResourceDelta.REMOVED)) != 0)
                 {
                   Resource resource = resourceSet.getResource(URI.createURI(delta.getFullPath()
-                          .toString()), false);
+                      .toString()), false);
                   if (resource != null)
                   {
                     if ((delta.getKind() & IResourceDelta.REMOVED) != 0)
@@ -478,7 +478,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
 
       for (Iterator i = changedResources.iterator(); i.hasNext();)
       {
-        Resource resource = (Resource)i.next();
+        Resource resource = (Resource) i.next();
         if (resource.isLoaded())
         {
           resource.unload();
@@ -502,7 +502,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
   protected boolean handleDirtyConflict()
   {
     return MessageDialog.openQuestion(getSite().getShell(), getString("_UI_FileConflict_label"),
-            getString("_WARN_FileConflict"));
+        getString("_WARN_FileConflict"));
   }
 
   /**
@@ -542,7 +542,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
 
             // Try to select the affected objects.
             //
-            Command mostRecentCommand = ((CommandStack)event.getSource()).getMostRecentCommand();
+            Command mostRecentCommand = ((CommandStack) event.getSource()).getMostRecentCommand();
             if (mostRecentCommand != null)
             {
               setSelectionToViewer(mostRecentCommand.getAffectedObjects());
@@ -618,6 +618,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
   {
     return editingDomain;
   }
+
 
   /**
    * <!-- begin-user-doc -->
@@ -753,10 +754,10 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
     getSite().registerContextMenu(contextMenu, viewer);
 
     int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
-    Transfer[] transfers = new Transfer[] {LocalTransfer.getInstance()};
+    Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance()};
     viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(viewer));
     viewer.addDropSupport(dndOperations, transfers, new EditingDomainViewerDropAdapter(
-            editingDomain, viewer));
+        editingDomain, viewer));
   }
 
   /**
@@ -769,14 +770,14 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
   {
     // I assume that the input is a file object.
     //
-    IFileEditorInput modelFile = (IFileEditorInput)getEditorInput();
+    IFileEditorInput modelFile = (IFileEditorInput) getEditorInput();
 
     try
     {
       // Load the resource through the editing domain.
       //
       editingDomain.loadResource(URI.createPlatformResourceURI(
-              modelFile.getFile().getFullPath().toString()).toString());
+          modelFile.getFile().getFullPath().toString()).toString());
     }
     catch (Exception exception)
     {
@@ -816,7 +817,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
       };
       viewerPane.createControl(getContainer());
 
-      selectionViewer = (TreeViewer)viewerPane.getViewer();
+      selectionViewer = (TreeViewer) viewerPane.getViewer();
       selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 
       selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
@@ -850,7 +851,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
       };
       viewerPane.createControl(getContainer());
 
-      parentViewer = (TreeViewer)viewerPane.getViewer();
+      parentViewer = (TreeViewer) viewerPane.getViewer();
       parentViewer.setAutoExpandLevel(30);
       parentViewer.setContentProvider(new ReverseAdapterFactoryContentProvider(adapterFactory));
       parentViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
@@ -877,7 +878,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
         }
       };
       viewerPane.createControl(getContainer());
-      listViewer = (ListViewer)viewerPane.getViewer();
+      listViewer = (ListViewer) viewerPane.getViewer();
       listViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
       listViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -903,7 +904,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
         }
       };
       viewerPane.createControl(getContainer());
-      treeViewer = (TreeViewer)viewerPane.getViewer();
+      treeViewer = (TreeViewer) viewerPane.getViewer();
       treeViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
       treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -931,7 +932,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
         }
       };
       viewerPane.createControl(getContainer());
-      tableViewer = (TableViewer)viewerPane.getViewer();
+      tableViewer = (TableViewer) viewerPane.getViewer();
 
       Table table = tableViewer.getTable();
       TableLayout layout = new TableLayout();
@@ -949,7 +950,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
       selfColumn.setText(getString("_UI_SelfColumn_label"));
       selfColumn.setResizable(true);
 
-      tableViewer.setColumnProperties(new String[] {"a", "b"});
+      tableViewer.setColumnProperties(new String[] { "a", "b"});
       tableViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
       tableViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -976,7 +977,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
       };
       viewerPane.createControl(getContainer());
 
-      treeViewerWithColumns = (TreeViewer)viewerPane.getViewer();
+      treeViewerWithColumns = (TreeViewer) viewerPane.getViewer();
 
       Tree tree = treeViewerWithColumns.getTree();
       tree.setLayoutData(new FillLayout());
@@ -993,7 +994,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
       selfColumn.setResizable(true);
       selfColumn.setWidth(200);
 
-      treeViewerWithColumns.setColumnProperties(new String[] {"a", "b"});
+      treeViewerWithColumns.setColumnProperties(new String[] { "a", "b"});
       treeViewerWithColumns.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
       treeViewerWithColumns.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -1034,7 +1035,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
       setPageText(0, "");
       if (getContainer() instanceof CTabFolder)
       {
-        ((CTabFolder)getContainer()).setTabHeight(1);
+        ((CTabFolder) getContainer()).setTabHeight(1);
         Point point = getContainer().getSize();
         getContainer().setSize(point.x, point.y + 6);
       }
@@ -1106,7 +1107,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
           // Set up the tree viewer.
           //
           contentOutlineViewer
-                  .setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+              .setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
           contentOutlineViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
           contentOutlineViewer.setInput(editingDomain.getResourceSet());
 
@@ -1125,7 +1126,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
         }
 
         public void makeContributions(IMenuManager menuManager, IToolBarManager toolBarManager,
-                IStatusLineManager statusLineManager)
+            IStatusLineManager statusLineManager)
         {
           super.makeContributions(menuManager, toolBarManager, statusLineManager);
           contentOutlineStatusLineManager = statusLineManager;
@@ -1181,7 +1182,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
         }
       };
       propertySheetPage
-              .setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
+          .setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
     }
 
     return propertySheetPage;
@@ -1196,9 +1197,9 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
   public void handleContentOutlineSelection(ISelection selection)
   {
     if (currentViewerPane != null && !selection.isEmpty()
-            && selection instanceof IStructuredSelection)
+        && selection instanceof IStructuredSelection)
     {
-      Iterator selectedElements = ((IStructuredSelection)selection).iterator();
+      Iterator selectedElements = ((IStructuredSelection) selection).iterator();
       if (selectedElements.hasNext())
       {
         // Get the first selected element.
@@ -1242,7 +1243,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
    */
   public boolean isDirty()
   {
-    return ((BasicCommandStack)editingDomain.getCommandStack()).isSaveNeeded();
+    return ((BasicCommandStack) editingDomain.getCommandStack()).isSaveNeeded();
   }
 
   /**
@@ -1268,7 +1269,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
           boolean first = true;
           for (Iterator i = editingDomain.getResourceSet().getResources().iterator(); i.hasNext();)
           {
-            Resource resource = (Resource)i.next();
+            Resource resource = (Resource) i.next();
             if ((first || !resource.getContents().isEmpty()) && !editingDomain.isReadOnly(resource))
             {
               savedResources.add(resource);
@@ -1292,7 +1293,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
 
       // Refresh the necessary state.
       //
-      ((BasicCommandStack)editingDomain.getCommandStack()).saveIsDone();
+      ((BasicCommandStack) editingDomain.getCommandStack()).saveIsDone();
       firePropertyChange(IEditorPart.PROP_DIRTY);
     }
     catch (Exception exception)
@@ -1331,7 +1332,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
       if (file != null)
       {
         doSaveAs(URI.createPlatformResourceURI(file.getFullPath().toString()), new FileEditorInput(
-                file));
+            file));
       }
     }
   }
@@ -1343,12 +1344,12 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
    */
   protected void doSaveAs(URI uri, IEditorInput editorInput)
   {
-    ((Resource)editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
+    ((Resource) editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
     setInputWithNotify(editorInput);
     setPartName(editorInput.getName());
     IProgressMonitor progressMonitor = getActionBars().getStatusLineManager() != null ? getActionBars()
-            .getStatusLineManager().getProgressMonitor()
-            : new NullProgressMonitor();
+        .getStatusLineManager().getProgressMonitor()
+        : new NullProgressMonitor();
     doSave(progressMonitor);
   }
 
@@ -1395,7 +1396,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
     site.setSelectionProvider(this);
     site.getPage().addPartListener(partListener);
     ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceChangeListener,
-            IResourceChangeEvent.POST_CHANGE);
+        IResourceChangeEvent.POST_CHANGE);
   }
 
   /**
@@ -1461,7 +1462,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
 
     for (Iterator listeners = selectionChangedListeners.iterator(); listeners.hasNext();)
     {
-      ISelectionChangedListener listener = (ISelectionChangedListener)listeners.next();
+      ISelectionChangedListener listener = (ISelectionChangedListener) listeners.next();
       listener.selectionChanged(new SelectionChangedEvent(this, selection));
     }
     setStatusLineManager(selection);
@@ -1475,34 +1476,34 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
   public void setStatusLineManager(ISelection selection)
   {
     IStatusLineManager statusLineManager = currentViewer != null
-            && currentViewer == contentOutlineViewer ? contentOutlineStatusLineManager
-            : getActionBars().getStatusLineManager();
+        && currentViewer == contentOutlineViewer ? contentOutlineStatusLineManager
+        : getActionBars().getStatusLineManager();
 
     if (statusLineManager != null)
     {
       if (selection instanceof IStructuredSelection)
       {
-        Collection collection = ((IStructuredSelection)selection).toList();
+        Collection collection = ((IStructuredSelection) selection).toList();
         switch (collection.size())
         {
-        case 0:
-        {
-          statusLineManager.setMessage(getString("_UI_NoObjectSelected"));
-          break;
-        }
-        case 1:
-        {
-          String text = new AdapterFactoryItemDelegator(adapterFactory).getText(collection
-                  .iterator().next());
-          statusLineManager.setMessage(getString("_UI_SingleObjectSelected", text));
-          break;
-        }
-        default:
-        {
-          statusLineManager.setMessage(getString("_UI_MultiObjectSelected", Integer
-                  .toString(collection.size())));
-          break;
-        }
+          case 0:
+          {
+            statusLineManager.setMessage(getString("_UI_NoObjectSelected"));
+            break;
+          }
+          case 1:
+          {
+            String text = new AdapterFactoryItemDelegator(adapterFactory).getText(collection
+                .iterator().next());
+            statusLineManager.setMessage(getString("_UI_SingleObjectSelected", text));
+            break;
+          }
+          default:
+          {
+            statusLineManager.setMessage(getString("_UI_MultiObjectSelected", Integer
+                .toString(collection.size())));
+            break;
+          }
         }
       }
       else
@@ -1531,7 +1532,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
    */
   private static String getString(String key, Object s1)
   {
-    return CdoMappingEditorPlugin.INSTANCE.getString(key, new Object[] {s1});
+    return CdoMappingEditorPlugin.INSTANCE.getString(key, new Object[] { s1});
   }
 
   /**
@@ -1542,7 +1543,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
    */
   public void menuAboutToShow(IMenuManager menuManager)
   {
-    ((IMenuListener)getEditorSite().getActionBarContributor()).menuAboutToShow(menuManager);
+    ((IMenuListener) getEditorSite().getActionBarContributor()).menuAboutToShow(menuManager);
   }
 
   /**
@@ -1552,7 +1553,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
    */
   public EditingDomainActionBarContributor getActionBarContributor()
   {
-    return (EditingDomainActionBarContributor)getEditorSite().getActionBarContributor();
+    return (EditingDomainActionBarContributor) getEditorSite().getActionBarContributor();
   }
 
   /**

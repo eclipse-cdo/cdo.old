@@ -11,10 +11,10 @@
 package org.eclipse.emf.cdo.client.protocol;
 
 
-import org.eclipse.emf.cdo.client.CdoResource;
+import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.client.impl.ResourceManagerImpl;
-import org.eclipse.emf.cdo.core.CdoProtocol;
+import org.eclipse.emf.cdo.core.CDOProtocol;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
@@ -30,7 +30,7 @@ public class LoadResourceRequest extends AbstractDataRequest
 
   public short getSignalId()
   {
-    return CdoProtocol.LOAD_RESOURCE;
+    return CDOProtocol.LOAD_RESOURCE;
   }
 
   public void request()
@@ -55,7 +55,7 @@ public class LoadResourceRequest extends AbstractDataRequest
 
       EObject object = receiveObject(oid, oca, cid);
 
-      CdoResource resource = getResource(rid);
+      CDOResource resource = getResource(rid);
       resource.getContents().add(object);
 
       resourceManager.startRequestingObjects();
@@ -77,8 +77,8 @@ public class LoadResourceRequest extends AbstractDataRequest
           + getPackageManager().getOidEncoder().toString(oid) + "v" + oca);
 
     int rid = getPackageManager().getOidEncoder().getRID(oid);
-    CdoResource cdoResource = getResourceManager().getResource(rid);
-    EObject eObject = ResourceManagerImpl.createEObject(eClass, oid, oca, cdoResource);
+    CDOResource cDOResource = getResourceManager().getResource(rid);
+    EObject eObject = ResourceManagerImpl.createEObject(eClass, oid, oca, cDOResource);
     getResourceManager().registerObject(oid, eObject);
     return eObject;
   }

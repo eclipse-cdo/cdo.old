@@ -13,10 +13,10 @@ package org.eclipse.emf.cdo.client.protocol;
 
 import org.eclipse.net4j.util.ImplementationError;
 
-import org.eclipse.emf.cdo.client.CdoResource;
+import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.client.impl.ResourceManagerImpl;
-import org.eclipse.emf.cdo.core.CdoProtocol;
+import org.eclipse.emf.cdo.core.CDOProtocol;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -33,7 +33,7 @@ public class LoadObjectRequest extends AbstractDataRequest
 
   public short getSignalId()
   {
-    return CdoProtocol.LOAD_OBJECT;
+    return CDOProtocol.LOAD_OBJECT;
   }
 
   public void request()
@@ -79,8 +79,8 @@ public class LoadObjectRequest extends AbstractDataRequest
     }
 
     int rid = getPackageManager().getOidEncoder().getRID(oid);
-    CdoResource cdoResource = getResourceManager().getResource(rid);
-    ResourceManagerImpl.setOID(object, oid, cdoResource);
+    CDOResource cDOResource = getResourceManager().getResource(rid);
+    ResourceManagerImpl.setOID(object, oid, cDOResource);
     ResourceManagerImpl.setOCA(object, oca);
 
     ((InternalEObject) object).eSetProxyURI(null);

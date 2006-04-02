@@ -11,11 +11,11 @@
 package org.eclipse.net4j.core.impl;
 
 
-import org.eclipse.net4j.core.ControlProtocol;
 import org.eclipse.net4j.core.BufferPool;
 import org.eclipse.net4j.core.Channel;
 import org.eclipse.net4j.core.ConnectionManager;
 import org.eclipse.net4j.core.Connector;
+import org.eclipse.net4j.core.ControlProtocol;
 import org.eclipse.net4j.core.Negotiator;
 import org.eclipse.net4j.core.NoControlProtocolException;
 import org.eclipse.net4j.core.Protocol;

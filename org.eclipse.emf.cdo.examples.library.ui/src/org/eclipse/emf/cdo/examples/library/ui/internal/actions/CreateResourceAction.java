@@ -11,16 +11,16 @@
 package org.eclipse.emf.cdo.example.library.ui.internal.actions;
 
 
-import org.eclipse.emf.cdo.client.CdoResource;
+import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceManager;
-import org.eclipse.emf.cdo.example.client.CdoExampleClientPlugin;
+import org.eclipse.emf.cdo.example.client.internal.ExampleClientPlugin;
 import org.eclipse.emf.cdo.example.library.Author;
 import org.eclipse.emf.cdo.example.library.Book;
 import org.eclipse.emf.cdo.example.library.EBook;
 import org.eclipse.emf.cdo.example.library.Library;
 import org.eclipse.emf.cdo.example.library.LibraryFactory;
 import org.eclipse.emf.cdo.example.library.Topic;
-import org.eclipse.emf.cdo.example.library.ui.internal.CdoExampleLibraryUiActivator;
+import org.eclipse.emf.cdo.example.library.ui.internal.ExampleLibraryUIActivator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -75,12 +75,12 @@ public class CreateResourceAction implements IWorkbenchWindowActionDelegate
     System.out
             .println("--> TEST: Create an EMF ResourceSet and associate it with a CDO ResourceManager");
     ResourceSet resourceSet = new ResourceSetImpl();
-    ResourceManager resourceManager = CdoExampleClientPlugin.createResourceManager(resourceSet);
+    ResourceManager resourceManager = ExampleClientPlugin.createResourceManager(resourceSet);
 
     // Create a new CDO Resource.
     System.out.println("--> TEST: Create a new CDO Resource");
-    CdoResource resource = (CdoResource)resourceSet.createResource(URI
-            .createURI(CdoExampleLibraryUiActivator.RESOURCE_URI1));
+    CDOResource resource = (CDOResource)resourceSet.createResource(URI
+            .createURI(ExampleLibraryUIActivator.RESOURCE_URI1));
 
     // Populate the resource with an example model.
     System.out.println("--> TEST: Populate the resource with an example model");
@@ -125,8 +125,8 @@ public class CreateResourceAction implements IWorkbenchWindowActionDelegate
 
     // Create a second CDO Resource.
     System.out.println("--> TEST: Create a second CDO Resource");
-    CdoResource resource2 = (CdoResource)resourceSet.createResource(URI
-            .createURI(CdoExampleLibraryUiActivator.RESOURCE_URI2));
+    CDOResource resource2 = (CDOResource)resourceSet.createResource(URI
+            .createURI(ExampleLibraryUIActivator.RESOURCE_URI2));
 
     // Populate the second resource with an example model.
     System.out.println("--> TEST: Populate the second resource with an example model");

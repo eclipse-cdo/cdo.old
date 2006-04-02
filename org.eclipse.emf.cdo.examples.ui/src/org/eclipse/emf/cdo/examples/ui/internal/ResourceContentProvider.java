@@ -29,7 +29,7 @@ public class ResourceContentProvider implements IStructuredContentProvider, List
     {
       resourceCache = (ResourceCache)newInput;
       resourceCache.addListener(this);
-      UiUtils.refreshViewer(viewer);
+      UIUtils.refreshViewer(viewer);
     }
   }
 
@@ -51,6 +51,6 @@ public class ResourceContentProvider implements IStructuredContentProvider, List
 
   public void notifyResourcesChanged(ResourceCache manager)
   {
-    UiUtils.refreshViewer(viewer);
+    UIUtils.refreshViewer(viewer);
   }
 }

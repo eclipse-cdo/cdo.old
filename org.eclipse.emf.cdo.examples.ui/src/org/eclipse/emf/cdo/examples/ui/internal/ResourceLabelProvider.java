@@ -28,7 +28,7 @@ public class ResourceLabelProvider extends LabelProvider
   {
     if (obj instanceof ResourceInfo)
     {
-      return UiUtils.getImage("full/obj16/CdoResource");
+      return UIUtils.getImage("full/obj16/CDOResource");
     }
 
     ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();

@@ -75,6 +75,7 @@ public final class CdoMappingEditorPlugin extends EMFPlugin
     return plugin;
   }
 
+
   /**
    * The actual implementation of the Eclipse <b>Plugin</b>.
    * <!-- begin-user-doc -->

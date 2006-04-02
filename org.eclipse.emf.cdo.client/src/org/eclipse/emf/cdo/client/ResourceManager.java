@@ -32,7 +32,7 @@ public interface ResourceManager extends Service
 
   public Channel getChannel();
 
-  public CdoResource getResource(int rid);
+  public CDOResource getResource(int rid);
 
   public Resource createResource(URI uri);
 
@@ -44,7 +44,7 @@ public interface ResourceManager extends Service
 
   public void stopRequestingObjects();
 
-  public void requestObject(CdoPersistable cdoObject);
+  public void requestObject(CDOPersistable cdoObject);
 
   public URI createProxyURI(long oid);
 
@@ -58,9 +58,9 @@ public interface ResourceManager extends Service
 
   public EObject getObject(long oid);
 
-  public void registerResource(CdoResource resource);
+  public void registerResource(CDOResource resource);
 
-  public void registerResourcePath(CdoResource cdoResource, String path);
+  public void registerResourcePath(CDOResource cDOResource, String path);
 
   public PackageManager getPackageManager();
 

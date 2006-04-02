@@ -16,7 +16,7 @@ import org.eclipse.net4j.core.Channel;
 import org.eclipse.emf.cdo.client.ClassInfo;
 import org.eclipse.emf.cdo.client.PackageInfo;
 import org.eclipse.emf.cdo.client.PackageManager;
-import org.eclipse.emf.cdo.client.protocol.CdoClientProtocolImpl;
+import org.eclipse.emf.cdo.client.protocol.ClientCDOProtocolImpl;
 import org.eclipse.emf.cdo.mapping.PackageMapping;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -85,9 +85,9 @@ public class PackageInfoImpl implements PackageInfo
 
   public void announce(Channel channel)
   {
-    if (!CdoClientProtocolImpl.requestAnnouncePackage(channel, this))
+    if (!ClientCDOProtocolImpl.requestAnnouncePackage(channel, this))
     {
-      CdoClientProtocolImpl.requestDescribePackage(channel, this);
+      ClientCDOProtocolImpl.requestDescribePackage(channel, this);
     }
 
     announced = true;

@@ -11,13 +11,13 @@
 package org.eclipse.emf.cdo.example.library.ui.internal.actions;
 
 
-import org.eclipse.emf.cdo.client.CdoResource;
+import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceManager;
-import org.eclipse.emf.cdo.example.client.CdoExampleClientPlugin;
+import org.eclipse.emf.cdo.example.client.internal.ExampleClientPlugin;
 import org.eclipse.emf.cdo.example.library.Author;
 import org.eclipse.emf.cdo.example.library.Book;
 import org.eclipse.emf.cdo.example.library.Library;
-import org.eclipse.emf.cdo.example.library.ui.internal.CdoExampleLibraryUiActivator;
+import org.eclipse.emf.cdo.example.library.ui.internal.ExampleLibraryUIActivator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -74,12 +74,12 @@ public class LoadResourceAction implements IWorkbenchWindowActionDelegate
     System.out
             .println("--> TEST: Create an EMF ResourceSet and associate it with a CDO ResourceManager");
     ResourceSet resourceSet = new ResourceSetImpl();
-    ResourceManager resourceManager = CdoExampleClientPlugin.createResourceManager(resourceSet);
+    ResourceManager resourceManager = ExampleClientPlugin.createResourceManager(resourceSet);
 
     // Load a CDO Resource.
     System.out.println("--> TEST: Load a CDO Resource");
-    CdoResource resource = (CdoResource)resourceSet.getResource(URI
-            .createURI(CdoExampleLibraryUiActivator.RESOURCE_URI1), true);
+    CDOResource resource = (CDOResource)resourceSet.getResource(URI
+            .createURI(ExampleLibraryUIActivator.RESOURCE_URI1), true);
 
     // Populate the model from the resource.
     System.out.println("--> TEST: Populate the model from the resource");
@@ -94,8 +94,8 @@ public class LoadResourceAction implements IWorkbenchWindowActionDelegate
 
     // Load a second CDO Resource.
     System.out.println("--> TEST: Load a second CDO Resource");
-    CdoResource resource2 = (CdoResource)resourceSet.getResource(URI
-            .createURI(CdoExampleLibraryUiActivator.RESOURCE_URI2), true);
+    CDOResource resource2 = (CDOResource)resourceSet.getResource(URI
+            .createURI(ExampleLibraryUIActivator.RESOURCE_URI2), true);
 
     // Populate the model from the second resource.
     System.out.println("--> TEST: Populate the model from the second resource");

@@ -11,7 +11,7 @@
 package org.eclipse.emf.cdo.example.library;
 
 
-import org.eclipse.emf.cdo.client.CdoPersistent;
+import org.eclipse.emf.cdo.client.CDOPersistent;
 import org.eclipse.emf.common.util.EList;
 
 
@@ -33,7 +33,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Author extends CdoPersistent
+public interface Author extends CDOPersistent
 {
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.

@@ -11,9 +11,9 @@
 package org.eclipse.net4j.core.protocol;
 
 
-import org.eclipse.net4j.core.ControlProtocol;
 import org.eclipse.net4j.core.Channel;
 import org.eclipse.net4j.core.Connector;
+import org.eclipse.net4j.core.ControlProtocol;
 import org.eclipse.net4j.core.impl.AbstractIndicationWithResponse;
 import org.eclipse.net4j.util.ThreadInterruptedException;
 

@@ -13,7 +13,7 @@ package org.eclipse.emf.cdo.client;
 
 public interface ResourceGetter
 {
-  public CdoResource getResource(int rid);
+  public CDOResource getResource(int rid);
 
-  public CdoResource getResource(long oid);
+  public CDOResource getResource(long oid);
 }

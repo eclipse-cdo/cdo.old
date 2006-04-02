@@ -9,7 +9,8 @@ Bundle-Localization: plugin
 Require-Bundle: org.eclipse.emf.cdo.client;visibility:=reexport
 Export-Package: org.eclipse.emf.cdo.example.library,
  org.eclipse.emf.cdo.example.library.impl,
+ org.eclipse.emf.cdo.example.library.internal,
  org.eclipse.emf.cdo.example.library.provider,
  org.eclipse.emf.cdo.example.library.util
-Bundle-Activator: org.eclipse.emf.cdo.example.library.impl.LibraryActivator$Implementation
+Bundle-Activator: org.eclipse.emf.cdo.example.library.internal.ExampleLibraryActivator$Implementation
 Eclipse-LazyStart: true

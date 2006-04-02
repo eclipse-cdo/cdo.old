@@ -17,14 +17,14 @@ import org.eclipse.net4j.core.Request;
 import org.eclipse.net4j.util.ImplementationError;
 
 import org.eclipse.emf.cdo.client.ResourceInfo;
-import org.eclipse.emf.cdo.core.protocol.AbstractCdoResProtocol;
+import org.eclipse.emf.cdo.core.protocol.AbstractCDOResProtocol;
 import org.eclipse.emf.cdo.core.protocol.ResourceChangeInfo;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class CdoResClientProtocolImpl extends AbstractCdoResProtocol
+public class CdoResClientProtocolImpl extends AbstractCDOResProtocol
 {
   private List<CdoResListener> listeners = new ArrayList();
 

@@ -15,13 +15,13 @@ package org.eclipse.emf.cdo.client;
 import org.eclipse.net4j.core.Channel;
 import org.eclipse.net4j.spring.Service;
 
-import org.eclipse.emf.cdo.core.CdoDataTypes;
+import org.eclipse.emf.cdo.core.CDODataTypes;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 
 
-public interface AttributeConverter extends Service, CdoDataTypes
+public interface AttributeConverter extends Service, CDODataTypes
 {
   public void fromChannel(EObject object, EAttribute attribute, Channel channel);
 

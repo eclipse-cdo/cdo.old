@@ -104,7 +104,7 @@ public class PackageMappingImpl extends EObjectImpl implements PackageMapping
     if (classes == null)
     {
       classes = new EObjectContainmentEList(ClassMapping.class, this,
-              MappingPackage.PACKAGE_MAPPING__CLASSES);
+          MappingPackage.PACKAGE_MAPPING__CLASSES);
     }
     return classes;
   }
@@ -130,7 +130,7 @@ public class PackageMappingImpl extends EObjectImpl implements PackageMapping
     packageName = newPackageName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET,
-              MappingPackage.PACKAGE_MAPPING__PACKAGE_NAME, oldPackageName, packageName));
+          MappingPackage.PACKAGE_MAPPING__PACKAGE_NAME, oldPackageName, packageName));
   }
 
   /**
@@ -142,7 +142,7 @@ public class PackageMappingImpl extends EObjectImpl implements PackageMapping
   {
     for (Iterator iter = getClasses().iterator(); iter.hasNext();)
     {
-      ClassMapping classMapping = (ClassMapping)iter.next();
+      ClassMapping classMapping = (ClassMapping) iter.next();
       if (classMapping.getClassName().equals(name))
       {
         return classMapping;
@@ -157,12 +157,12 @@ public class PackageMappingImpl extends EObjectImpl implements PackageMapping
    * @generated
    */
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID,
-          NotificationChain msgs)
+      NotificationChain msgs)
   {
     switch (featureID)
     {
-    case MappingPackage.PACKAGE_MAPPING__CLASSES:
-      return ((InternalEList)getClasses()).basicRemove(otherEnd, msgs);
+      case MappingPackage.PACKAGE_MAPPING__CLASSES:
+        return ((InternalEList) getClasses()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -176,10 +176,10 @@ public class PackageMappingImpl extends EObjectImpl implements PackageMapping
   {
     switch (featureID)
     {
-    case MappingPackage.PACKAGE_MAPPING__CLASSES:
-      return getClasses();
-    case MappingPackage.PACKAGE_MAPPING__PACKAGE_NAME:
-      return getPackageName();
+      case MappingPackage.PACKAGE_MAPPING__CLASSES:
+        return getClasses();
+      case MappingPackage.PACKAGE_MAPPING__PACKAGE_NAME:
+        return getPackageName();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -193,13 +193,13 @@ public class PackageMappingImpl extends EObjectImpl implements PackageMapping
   {
     switch (featureID)
     {
-    case MappingPackage.PACKAGE_MAPPING__CLASSES:
-      getClasses().clear();
-      getClasses().addAll((Collection)newValue);
-      return;
-    case MappingPackage.PACKAGE_MAPPING__PACKAGE_NAME:
-      setPackageName((String)newValue);
-      return;
+      case MappingPackage.PACKAGE_MAPPING__CLASSES:
+        getClasses().clear();
+        getClasses().addAll((Collection) newValue);
+        return;
+      case MappingPackage.PACKAGE_MAPPING__PACKAGE_NAME:
+        setPackageName((String) newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -213,12 +213,12 @@ public class PackageMappingImpl extends EObjectImpl implements PackageMapping
   {
     switch (featureID)
     {
-    case MappingPackage.PACKAGE_MAPPING__CLASSES:
-      getClasses().clear();
-      return;
-    case MappingPackage.PACKAGE_MAPPING__PACKAGE_NAME:
-      setPackageName(PACKAGE_NAME_EDEFAULT);
-      return;
+      case MappingPackage.PACKAGE_MAPPING__CLASSES:
+        getClasses().clear();
+        return;
+      case MappingPackage.PACKAGE_MAPPING__PACKAGE_NAME:
+        setPackageName(PACKAGE_NAME_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -232,11 +232,11 @@ public class PackageMappingImpl extends EObjectImpl implements PackageMapping
   {
     switch (featureID)
     {
-    case MappingPackage.PACKAGE_MAPPING__CLASSES:
-      return classes != null && !classes.isEmpty();
-    case MappingPackage.PACKAGE_MAPPING__PACKAGE_NAME:
-      return PACKAGE_NAME_EDEFAULT == null ? packageName != null : !PACKAGE_NAME_EDEFAULT
-              .equals(packageName);
+      case MappingPackage.PACKAGE_MAPPING__CLASSES:
+        return classes != null && !classes.isEmpty();
+      case MappingPackage.PACKAGE_MAPPING__PACKAGE_NAME:
+        return PACKAGE_NAME_EDEFAULT == null ? packageName != null : !PACKAGE_NAME_EDEFAULT
+            .equals(packageName);
     }
     return super.eIsSet(featureID);
   }

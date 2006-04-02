@@ -19,7 +19,7 @@ import org.eclipse.emf.cdo.client.PackageManager;
 import java.util.Iterator;
 
 
-public abstract class AbstractPackageRequest extends AbstractCdoClientRequest
+public abstract class AbstractPackageRequest extends AbstractCDOClientRequest
 {
   protected void handlePackageResponse(int count)
   {

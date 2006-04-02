@@ -40,7 +40,7 @@ import java.util.Collection;
  * @generated
  */
 public class MappingItemProviderAdapterFactory extends MappingAdapterFactory implements
-        ComposeableAdapterFactory, IChangeNotifier
+    ComposeableAdapterFactory, IChangeNotifier
 {
   /**
    * This keeps track of the root adapter factory that delegates to this adapter factory.
@@ -206,7 +206,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
     if (isFactoryForType(type))
     {
       Object adapter = super.adapt(object, type);
-      if (!(type instanceof Class) || (((Class)type).isInstance(adapter)))
+      if (!(type instanceof Class) || (((Class) type).isInstance(adapter)))
       {
         return adapter;
       }

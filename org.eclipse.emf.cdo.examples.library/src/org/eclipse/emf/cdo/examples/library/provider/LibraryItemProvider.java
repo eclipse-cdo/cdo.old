@@ -11,11 +11,11 @@
 package org.eclipse.emf.cdo.example.library.provider;
 
 
-import org.eclipse.emf.cdo.client.provider.CdoPersistentItemProvider;
+import org.eclipse.emf.cdo.client.provider.CDOPersistentItemProvider;
 import org.eclipse.emf.cdo.example.library.Library;
 import org.eclipse.emf.cdo.example.library.LibraryFactory;
 import org.eclipse.emf.cdo.example.library.LibraryPackage;
-import org.eclipse.emf.cdo.example.library.impl.LibraryActivator;
+import org.eclipse.emf.cdo.example.library.internal.ExampleLibraryActivator;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -37,9 +37,9 @@ import java.util.List;
  * <!-- end-user-doc -->
  * @generated
  */
-public class LibraryItemProvider extends CdoPersistentItemProvider implements
-        IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
-        IItemLabelProvider, IItemPropertySource
+public class LibraryItemProvider extends CDOPersistentItemProvider implements
+    IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
+    IItemLabelProvider, IItemPropertySource
 {
   /**
    * This constructs an instance from a factory and a notifier.
@@ -136,12 +136,12 @@ public class LibraryItemProvider extends CdoPersistentItemProvider implements
 
     switch (notification.getFeatureID(Library.class))
     {
-    case LibraryPackage.LIBRARY__BOOKS:
-    case LibraryPackage.LIBRARY__AUTHORS:
-    case LibraryPackage.LIBRARY__TOPICS:
-      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true,
-              false));
-      return;
+      case LibraryPackage.LIBRARY__BOOKS:
+      case LibraryPackage.LIBRARY__AUTHORS:
+      case LibraryPackage.LIBRARY__TOPICS:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true,
+            false));
+        return;
     }
     super.notifyChanged(notification);
   }
@@ -158,16 +158,16 @@ public class LibraryItemProvider extends CdoPersistentItemProvider implements
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
     newChildDescriptors.add(createChildParameter(LibraryPackage.Literals.LIBRARY__BOOKS,
-            LibraryFactory.eINSTANCE.createBook()));
+        LibraryFactory.eINSTANCE.createBook()));
 
     newChildDescriptors.add(createChildParameter(LibraryPackage.Literals.LIBRARY__BOOKS,
-            LibraryFactory.eINSTANCE.createEBook()));
+        LibraryFactory.eINSTANCE.createEBook()));
 
     newChildDescriptors.add(createChildParameter(LibraryPackage.Literals.LIBRARY__AUTHORS,
-            LibraryFactory.eINSTANCE.createAuthor()));
+        LibraryFactory.eINSTANCE.createAuthor()));
 
     newChildDescriptors.add(createChildParameter(LibraryPackage.Literals.LIBRARY__TOPICS,
-            LibraryFactory.eINSTANCE.createTopic()));
+        LibraryFactory.eINSTANCE.createTopic()));
   }
 
   /**
@@ -178,7 +178,7 @@ public class LibraryItemProvider extends CdoPersistentItemProvider implements
    */
   public ResourceLocator getResourceLocator()
   {
-    return LibraryActivator.INSTANCE;
+    return ExampleLibraryActivator.INSTANCE;
   }
 
 }

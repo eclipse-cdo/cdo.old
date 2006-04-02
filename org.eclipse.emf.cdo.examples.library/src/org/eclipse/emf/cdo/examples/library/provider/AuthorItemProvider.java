@@ -11,10 +11,10 @@
 package org.eclipse.emf.cdo.example.library.provider;
 
 
-import org.eclipse.emf.cdo.client.provider.CdoPersistentItemProvider;
+import org.eclipse.emf.cdo.client.provider.CDOPersistentItemProvider;
 import org.eclipse.emf.cdo.example.library.Author;
 import org.eclipse.emf.cdo.example.library.LibraryPackage;
-import org.eclipse.emf.cdo.example.library.impl.LibraryActivator;
+import org.eclipse.emf.cdo.example.library.internal.ExampleLibraryActivator;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -37,9 +37,9 @@ import java.util.List;
  * <!-- end-user-doc -->
  * @generated
  */
-public class AuthorItemProvider extends CdoPersistentItemProvider implements
-        IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
-        IItemLabelProvider, IItemPropertySource
+public class AuthorItemProvider extends CDOPersistentItemProvider implements
+    IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
+    IItemLabelProvider, IItemPropertySource
 {
   /**
    * This constructs an instance from a factory and a notifier.
@@ -79,11 +79,10 @@ public class AuthorItemProvider extends CdoPersistentItemProvider implements
   protected void addNamePropertyDescriptor(Object object)
   {
     itemPropertyDescriptors.add(createItemPropertyDescriptor(
-            ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-            getResourceLocator(), getString("_UI_Author_name_feature"), getString(
-                    "_UI_PropertyDescriptor_description", "_UI_Author_name_feature",
-                    "_UI_Author_type"), LibraryPackage.Literals.AUTHOR__NAME, true,
-            ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+        getString("_UI_Author_name_feature"), getString("_UI_PropertyDescriptor_description",
+            "_UI_Author_name_feature", "_UI_Author_type"), LibraryPackage.Literals.AUTHOR__NAME,
+        true, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -95,11 +94,10 @@ public class AuthorItemProvider extends CdoPersistentItemProvider implements
   protected void addBooksPropertyDescriptor(Object object)
   {
     itemPropertyDescriptors.add(createItemPropertyDescriptor(
-            ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-            getResourceLocator(), getString("_UI_Author_books_feature"), getString(
-                    "_UI_PropertyDescriptor_description", "_UI_Author_books_feature",
-                    "_UI_Author_type"), LibraryPackage.Literals.AUTHOR__BOOKS, true, null, null,
-            null));
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+        getString("_UI_Author_books_feature"), getString("_UI_PropertyDescriptor_description",
+            "_UI_Author_books_feature", "_UI_Author_type"), LibraryPackage.Literals.AUTHOR__BOOKS,
+        true, null, null, null));
   }
 
   /**
@@ -121,9 +119,9 @@ public class AuthorItemProvider extends CdoPersistentItemProvider implements
    */
   public String getText(Object object)
   {
-    String label = ((Author)object).getName();
+    String label = ((Author) object).getName();
     return label == null || label.length() == 0 ? getString("_UI_Author_type")
-            : getString("_UI_Author_type") + " " + label;
+        : getString("_UI_Author_type") + " " + label;
   }
 
   /**
@@ -139,10 +137,10 @@ public class AuthorItemProvider extends CdoPersistentItemProvider implements
 
     switch (notification.getFeatureID(Author.class))
     {
-    case LibraryPackage.AUTHOR__NAME:
-      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
-              true));
-      return;
+      case LibraryPackage.AUTHOR__NAME:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
+            true));
+        return;
     }
     super.notifyChanged(notification);
   }
@@ -167,7 +165,7 @@ public class AuthorItemProvider extends CdoPersistentItemProvider implements
    */
   public ResourceLocator getResourceLocator()
   {
-    return LibraryActivator.INSTANCE;
+    return ExampleLibraryActivator.INSTANCE;
   }
 
 }

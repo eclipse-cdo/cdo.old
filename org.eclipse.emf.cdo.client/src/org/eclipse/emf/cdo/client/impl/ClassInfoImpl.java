@@ -12,7 +12,7 @@ package org.eclipse.emf.cdo.client.impl;
 
 
 import org.eclipse.emf.cdo.client.AttributeInfo;
-import org.eclipse.emf.cdo.client.CdoPackage;
+import org.eclipse.emf.cdo.client.CDOPackage;
 import org.eclipse.emf.cdo.client.ClassInfo;
 import org.eclipse.emf.cdo.client.PackageInfo;
 import org.eclipse.emf.cdo.mapping.AttributeMapping;
@@ -92,7 +92,7 @@ public class ClassInfoImpl implements ClassInfo
       {
         EClass candidate = (EClass) it.next();
         if (candidate != null && !candidate.isInterface()
-            && !candidate.equals(CdoPackage.eINSTANCE.getCdoPersistent()))
+            && !candidate.equals(CDOPackage.eINSTANCE.getCdoPersistent()))
         {
           parent = packageInfo.getPackageManager().getClassInfo(candidate);
           break;

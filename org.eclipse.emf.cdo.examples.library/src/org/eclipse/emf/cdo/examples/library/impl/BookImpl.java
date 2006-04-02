@@ -11,7 +11,7 @@
 package org.eclipse.emf.cdo.example.library.impl;
 
 
-import org.eclipse.emf.cdo.client.impl.CdoPersistentImpl;
+import org.eclipse.emf.cdo.client.impl.CDOPersistentImpl;
 import org.eclipse.emf.cdo.example.library.Author;
 import org.eclipse.emf.cdo.example.library.Book;
 import org.eclipse.emf.cdo.example.library.Library;
@@ -48,7 +48,7 @@ import java.util.Collection;
  *
  * @generated
  */
-public class BookImpl extends CdoPersistentImpl implements Book
+public class BookImpl extends CDOPersistentImpl implements Book
 {
   /**
    * The default value of the '{@link #getTitle() <em>Title</em>}' attribute.

@@ -21,8 +21,9 @@ import org.eclipse.emf.cdo.client.MappingProvider;
 import org.eclipse.emf.cdo.client.PackageInfo;
 import org.eclipse.emf.cdo.client.PackageListener;
 import org.eclipse.emf.cdo.client.PackageManager;
-import org.eclipse.emf.cdo.client.impl.CdoClientActivator.MappingElement;
-import org.eclipse.emf.cdo.core.OidEncoder;
+import org.eclipse.emf.cdo.client.internal.ClientActivator;
+import org.eclipse.emf.cdo.client.internal.ClientActivator.MappingElement;
+import org.eclipse.emf.cdo.core.OIDEncoder;
 import org.eclipse.emf.cdo.mapping.ClassMapping;
 import org.eclipse.emf.cdo.mapping.PackageMapping;
 import org.eclipse.emf.common.util.EList;
@@ -60,7 +61,7 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
 
   private boolean autoPersistent = DEFAULT_AUTO_PERSISTENT;
 
-  private OidEncoder oidEncoder;
+  private OIDEncoder oIDEncoder;
 
   private AttributeConverter attributeConverter;
 
@@ -74,14 +75,14 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
 
   private transient List listeners = new ArrayList();
 
-  public OidEncoder getOidEncoder()
+  public OIDEncoder getOidEncoder()
   {
-    return oidEncoder;
+    return oIDEncoder;
   }
 
-  public void setOidEncoder(OidEncoder oidEncoder)
+  public void setOidEncoder(OIDEncoder oIDEncoder)
   {
-    doSet("oidEncoder", oidEncoder);
+    doSet("oIDEncoder", oIDEncoder);
   }
 
   public AttributeConverter getAttributeConverter()
@@ -278,7 +279,7 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
 
   public void processMappings()
   {
-    List elements = CdoClientActivator.getPlugin().getMappingElements();
+    List elements = ClientActivator.getPlugin().getMappingElements();
 
     if (elements == null)
     {
@@ -318,7 +319,7 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
   protected void validate() throws ValidationException
   {
     super.validate();
-    assertNotNull("oidEncoder");
+    assertNotNull("oIDEncoder");
     assertNotNull("attributeConverter");
     processMappings();
   }

@@ -15,7 +15,7 @@
   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
     <factory 
        uri = "http://www.eclipse.org/net4j/cdo/client.ecore" 
-       class = "org.eclipse.emf.cdo.client.provider.CdoItemProviderAdapterFactory" 
+       class = "org.eclipse.emf.cdo.client.provider.CDOItemProviderAdapterFactory" 
        supportedTypes = 
          "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
           org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -27,7 +27,7 @@
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package
        uri = "http://www.eclipse.org/net4j/cdo/client.ecore"
-       class = "org.eclipse.emf.cdo.client.CdoPackage"
+       class = "org.eclipse.emf.cdo.client.CDOPackage"
        genModel = "model/client.genmodel" /> 
   </extension>
 

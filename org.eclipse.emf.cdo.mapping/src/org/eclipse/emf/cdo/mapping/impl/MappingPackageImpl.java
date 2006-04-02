@@ -105,12 +105,12 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
   public static MappingPackage init()
   {
     if (isInited)
-      return (MappingPackage)EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI);
+      return (MappingPackage) EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI);
 
     // Obtain or create and register package
-    MappingPackageImpl theMappingPackage = (MappingPackageImpl)(EPackage.Registry.INSTANCE
-            .getEPackage(eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE
-            .getEPackage(eNS_URI) : new MappingPackageImpl());
+    MappingPackageImpl theMappingPackage = (MappingPackageImpl) (EPackage.Registry.INSTANCE
+        .getEPackage(eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE
+        .getEPackage(eNS_URI) : new MappingPackageImpl());
 
     isInited = true;
 
@@ -143,7 +143,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
    */
   public EReference getPackageMapping_Classes()
   {
-    return (EReference)packageMappingEClass.getEStructuralFeatures().get(0);
+    return (EReference) packageMappingEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -153,7 +153,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
    */
   public EAttribute getPackageMapping_PackageName()
   {
-    return (EAttribute)packageMappingEClass.getEStructuralFeatures().get(1);
+    return (EAttribute) packageMappingEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -173,7 +173,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
    */
   public EReference getClassMapping_Attributes()
   {
-    return (EReference)classMappingEClass.getEStructuralFeatures().get(0);
+    return (EReference) classMappingEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -183,7 +183,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
    */
   public EAttribute getClassMapping_ClassName()
   {
-    return (EAttribute)classMappingEClass.getEStructuralFeatures().get(1);
+    return (EAttribute) classMappingEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -193,7 +193,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
    */
   public EAttribute getClassMapping_TableName()
   {
-    return (EAttribute)classMappingEClass.getEStructuralFeatures().get(2);
+    return (EAttribute) classMappingEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -213,7 +213,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
    */
   public EAttribute getAttributeMapping_AttributeName()
   {
-    return (EAttribute)attributeMappingEClass.getEStructuralFeatures().get(0);
+    return (EAttribute) attributeMappingEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -223,7 +223,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
    */
   public EAttribute getAttributeMapping_ColumnName()
   {
-    return (EAttribute)attributeMappingEClass.getEStructuralFeatures().get(1);
+    return (EAttribute) attributeMappingEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -233,7 +233,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
    */
   public EAttribute getAttributeMapping_ColumnType()
   {
-    return (EAttribute)attributeMappingEClass.getEStructuralFeatures().get(2);
+    return (EAttribute) attributeMappingEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -243,7 +243,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
    */
   public MappingFactory getMappingFactory()
   {
-    return (MappingFactory)getEFactoryInstance();
+    return (MappingFactory) getEFactoryInstance();
   }
 
   /**
@@ -309,29 +309,29 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
 
     // Initialize classes and features; add operations and parameters
     initEClass(packageMappingEClass, PackageMapping.class, "PackageMapping", !IS_ABSTRACT,
-            !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPackageMapping_Classes(), this.getClassMapping(), null, "classes", null, 1,
-            -1, PackageMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-            !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        -1, PackageMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+        !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPackageMapping_PackageName(), ecorePackage.getEString(), "packageName", null,
-            0, 1, PackageMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-            !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        0, 1, PackageMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+        !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     EOperation op = addEOperation(packageMappingEClass, this.getClassMapping(), "getClassMapping",
-            0, 1);
+        0, 1);
     addEParameter(op, ecorePackage.getEString(), "name", 0, 1);
 
     initEClass(classMappingEClass, ClassMapping.class, "ClassMapping", !IS_ABSTRACT, !IS_INTERFACE,
-            IS_GENERATED_INSTANCE_CLASS);
+        IS_GENERATED_INSTANCE_CLASS);
     initEReference(getClassMapping_Attributes(), this.getAttributeMapping(), null, "attributes",
-            null, 0, -1, ClassMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-            IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        null, 0, -1, ClassMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+        !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getClassMapping_ClassName(), ecorePackage.getEString(), "className", null, 0, 1,
-            ClassMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-            IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        ClassMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+        IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getClassMapping_TableName(), ecorePackage.getEString(), "tableName", null, 0, 1,
-            ClassMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-            IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        ClassMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+        IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     op = addEOperation(classMappingEClass, this.getAttributeMapping(), "getAttributeMapping", 0, 1);
     addEParameter(op, ecorePackage.getEString(), "name", 0, 1);
@@ -339,16 +339,16 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
     addEOperation(classMappingEClass, ecorePackage.getEString(), "getColumnNames", 0, 1);
 
     initEClass(attributeMappingEClass, AttributeMapping.class, "AttributeMapping", !IS_ABSTRACT,
-            !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAttributeMapping_AttributeName(), ecorePackage.getEString(), "attributeName",
-            null, 0, 1, AttributeMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-            !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        null, 0, 1, AttributeMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+        !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAttributeMapping_ColumnName(), ecorePackage.getEString(), "columnName", null,
-            0, 1, AttributeMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-            !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        0, 1, AttributeMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+        !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAttributeMapping_ColumnType(), ecorePackage.getEInt(), "columnType", null, 0,
-            1, AttributeMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-            !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        1, AttributeMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+        !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);
@@ -367,8 +367,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
   protected void createCdoAnnotations()
   {
     String source = "cdo";
-    addAnnotation(packageMappingEClass, source, new String[] {"defaultPersistent", "ANNOTATED"});
-    addAnnotation(classMappingEClass, source, new String[] {"persistent", "true"});
+    addAnnotation(packageMappingEClass, source, new String[] { "defaultPersistent", "ANNOTATED"});
+    addAnnotation(classMappingEClass, source, new String[] { "persistent", "true"});
   }
 
 } //MappingPackageImpl

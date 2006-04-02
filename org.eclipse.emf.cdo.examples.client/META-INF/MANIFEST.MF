@@ -9,5 +9,6 @@ Bundle-Localization: plugin
 Eclipse-LazyStart: true
 Require-Bundle: org.eclipse.net4j.socket;visibility:=reexport,
  org.eclipse.emf.cdo.client;visibility:=reexport
-Export-Package: org.eclipse.emf.cdo.example.client
-Bundle-Activator: org.eclipse.emf.cdo.example.client.CdoExampleClientPlugin
+Export-Package: org.eclipse.emf.cdo.example.client,
+ org.eclipse.emf.cdo.example.client.internal
+Bundle-Activator: org.eclipse.emf.cdo.example.client.internal.ExampleClientPlugin

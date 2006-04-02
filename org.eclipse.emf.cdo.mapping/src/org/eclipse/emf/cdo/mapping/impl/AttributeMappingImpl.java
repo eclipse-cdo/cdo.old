@@ -137,7 +137,7 @@ public class AttributeMappingImpl extends EObjectImpl implements AttributeMappin
     attributeName = newAttributeName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET,
-              MappingPackage.ATTRIBUTE_MAPPING__ATTRIBUTE_NAME, oldAttributeName, attributeName));
+          MappingPackage.ATTRIBUTE_MAPPING__ATTRIBUTE_NAME, oldAttributeName, attributeName));
   }
 
   /**
@@ -161,7 +161,7 @@ public class AttributeMappingImpl extends EObjectImpl implements AttributeMappin
     columnName = newColumnName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET,
-              MappingPackage.ATTRIBUTE_MAPPING__COLUMN_NAME, oldColumnName, columnName));
+          MappingPackage.ATTRIBUTE_MAPPING__COLUMN_NAME, oldColumnName, columnName));
   }
 
   /**
@@ -185,7 +185,7 @@ public class AttributeMappingImpl extends EObjectImpl implements AttributeMappin
     columnType = newColumnType;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET,
-              MappingPackage.ATTRIBUTE_MAPPING__COLUMN_TYPE, oldColumnType, columnType));
+          MappingPackage.ATTRIBUTE_MAPPING__COLUMN_TYPE, oldColumnType, columnType));
   }
 
   /**
@@ -197,12 +197,12 @@ public class AttributeMappingImpl extends EObjectImpl implements AttributeMappin
   {
     switch (featureID)
     {
-    case MappingPackage.ATTRIBUTE_MAPPING__ATTRIBUTE_NAME:
-      return getAttributeName();
-    case MappingPackage.ATTRIBUTE_MAPPING__COLUMN_NAME:
-      return getColumnName();
-    case MappingPackage.ATTRIBUTE_MAPPING__COLUMN_TYPE:
-      return new Integer(getColumnType());
+      case MappingPackage.ATTRIBUTE_MAPPING__ATTRIBUTE_NAME:
+        return getAttributeName();
+      case MappingPackage.ATTRIBUTE_MAPPING__COLUMN_NAME:
+        return getColumnName();
+      case MappingPackage.ATTRIBUTE_MAPPING__COLUMN_TYPE:
+        return new Integer(getColumnType());
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -216,15 +216,15 @@ public class AttributeMappingImpl extends EObjectImpl implements AttributeMappin
   {
     switch (featureID)
     {
-    case MappingPackage.ATTRIBUTE_MAPPING__ATTRIBUTE_NAME:
-      setAttributeName((String)newValue);
-      return;
-    case MappingPackage.ATTRIBUTE_MAPPING__COLUMN_NAME:
-      setColumnName((String)newValue);
-      return;
-    case MappingPackage.ATTRIBUTE_MAPPING__COLUMN_TYPE:
-      setColumnType(((Integer)newValue).intValue());
-      return;
+      case MappingPackage.ATTRIBUTE_MAPPING__ATTRIBUTE_NAME:
+        setAttributeName((String) newValue);
+        return;
+      case MappingPackage.ATTRIBUTE_MAPPING__COLUMN_NAME:
+        setColumnName((String) newValue);
+        return;
+      case MappingPackage.ATTRIBUTE_MAPPING__COLUMN_TYPE:
+        setColumnType(((Integer) newValue).intValue());
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -238,15 +238,15 @@ public class AttributeMappingImpl extends EObjectImpl implements AttributeMappin
   {
     switch (featureID)
     {
-    case MappingPackage.ATTRIBUTE_MAPPING__ATTRIBUTE_NAME:
-      setAttributeName(ATTRIBUTE_NAME_EDEFAULT);
-      return;
-    case MappingPackage.ATTRIBUTE_MAPPING__COLUMN_NAME:
-      setColumnName(COLUMN_NAME_EDEFAULT);
-      return;
-    case MappingPackage.ATTRIBUTE_MAPPING__COLUMN_TYPE:
-      setColumnType(COLUMN_TYPE_EDEFAULT);
-      return;
+      case MappingPackage.ATTRIBUTE_MAPPING__ATTRIBUTE_NAME:
+        setAttributeName(ATTRIBUTE_NAME_EDEFAULT);
+        return;
+      case MappingPackage.ATTRIBUTE_MAPPING__COLUMN_NAME:
+        setColumnName(COLUMN_NAME_EDEFAULT);
+        return;
+      case MappingPackage.ATTRIBUTE_MAPPING__COLUMN_TYPE:
+        setColumnType(COLUMN_TYPE_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -260,14 +260,14 @@ public class AttributeMappingImpl extends EObjectImpl implements AttributeMappin
   {
     switch (featureID)
     {
-    case MappingPackage.ATTRIBUTE_MAPPING__ATTRIBUTE_NAME:
-      return ATTRIBUTE_NAME_EDEFAULT == null ? attributeName != null : !ATTRIBUTE_NAME_EDEFAULT
-              .equals(attributeName);
-    case MappingPackage.ATTRIBUTE_MAPPING__COLUMN_NAME:
-      return COLUMN_NAME_EDEFAULT == null ? columnName != null : !COLUMN_NAME_EDEFAULT
-              .equals(columnName);
-    case MappingPackage.ATTRIBUTE_MAPPING__COLUMN_TYPE:
-      return columnType != COLUMN_TYPE_EDEFAULT;
+      case MappingPackage.ATTRIBUTE_MAPPING__ATTRIBUTE_NAME:
+        return ATTRIBUTE_NAME_EDEFAULT == null ? attributeName != null : !ATTRIBUTE_NAME_EDEFAULT
+            .equals(attributeName);
+      case MappingPackage.ATTRIBUTE_MAPPING__COLUMN_NAME:
+        return COLUMN_NAME_EDEFAULT == null ? columnName != null : !COLUMN_NAME_EDEFAULT
+            .equals(columnName);
+      case MappingPackage.ATTRIBUTE_MAPPING__COLUMN_TYPE:
+        return columnType != COLUMN_TYPE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }

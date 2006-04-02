@@ -15,14 +15,14 @@ import org.eclipse.net4j.util.ImplementationError;
 
 import org.eclipse.emf.cdo.client.AttributeConverter;
 import org.eclipse.emf.cdo.client.AttributeInfo;
-import org.eclipse.emf.cdo.client.CdoPersistable;
-import org.eclipse.emf.cdo.client.CdoResource;
+import org.eclipse.emf.cdo.client.CDOPersistable;
+import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ClassInfo;
 import org.eclipse.emf.cdo.client.OptimisticControlException;
 import org.eclipse.emf.cdo.client.PackageManager;
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.client.impl.ResourceManagerImpl;
-import org.eclipse.emf.cdo.core.CdoProtocol;
+import org.eclipse.emf.cdo.core.CDOProtocol;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
@@ -50,7 +50,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class CommitTransactionRequest extends AbstractCdoClientRequest
+public class CommitTransactionRequest extends AbstractCDOClientRequest
 {
   private static final int CAPACITY_eClassToAttributeChangesMap = 53;
 
@@ -95,12 +95,12 @@ public class CommitTransactionRequest extends AbstractCdoClientRequest
 
   public short getSignalId()
   {
-    return CdoProtocol.COMMIT_TRANSACTION;
+    return CDOProtocol.COMMIT_TRANSACTION;
   }
 
   public void request()
   {
-    packageManager = ((CdoClientProtocolImpl) getProtocol()).getPackageManager();
+    packageManager = ((ClientCDOProtocolImpl) getProtocol()).getPackageManager();
 
     commitObjectsToDetach();
     commitObjectsToAttach();
@@ -138,8 +138,8 @@ public class CommitTransactionRequest extends AbstractCdoClientRequest
 
       getResourceManager().reRegisterObject(object, oid);
       int rid = packageManager.getOidEncoder().getRID(oid);
-      CdoResource cdoResource = getResourceManager().getResource(rid);
-      ResourceManagerImpl.setOID(object, oid, cdoResource);
+      CDOResource cDOResource = getResourceManager().getResource(rid);
+      ResourceManagerImpl.setOID(object, oid, cDOResource);
       ResourceManagerImpl.setOCA(object, 1);
     }
 
@@ -173,7 +173,7 @@ public class CommitTransactionRequest extends AbstractCdoClientRequest
 
   private void announceNewResources()
   {
-    ResourceManager resourceManager = CdoClientProtocolImpl.getResourceManager(getChannel());
+    ResourceManager resourceManager = ClientCDOProtocolImpl.getResourceManager(getChannel());
     ResourceSet resourceSet = resourceManager.getResourceSet();
     EList resources = resourceSet.getResources();
 
@@ -181,14 +181,14 @@ public class CommitTransactionRequest extends AbstractCdoClientRequest
     {
       Resource resource = (Resource) iter.next();
 
-      if (resource instanceof CdoResource)
+      if (resource instanceof CDOResource)
       {
-        CdoResource cdoResource = (CdoResource) resource;
+        CDOResource cDOResource = (CDOResource) resource;
 
-        if (!cdoResource.isExisting())
+        if (!cDOResource.isExisting())
         {
-          transmitInt(cdoResource.getRid());
-          transmitString(cdoResource.getPath());
+          transmitInt(cDOResource.getRid());
+          transmitString(cDOResource.getPath());
         }
       }
     }
@@ -210,7 +210,7 @@ public class CommitTransactionRequest extends AbstractCdoClientRequest
       changeDescription.getObjectChanges().removeKey(object);
 
       long oid = ResourceManagerImpl.getOID(object);
-      int oca = ((CdoPersistable) object).cdoGetOCA();
+      int oca = ((CDOPersistable) object).cdoGetOCA();
       if ((oid != 0) && (oca != -1))
       {
         if (isDebugEnabled()) debug(ResourceManagerImpl.getLabel(object));
@@ -385,7 +385,7 @@ public class CommitTransactionRequest extends AbstractCdoClientRequest
       transmitObjectChange(eObject, featureChanges);
     }
 
-    transmitLong(CdoProtocol.NO_MORE_OBJECT_CHANGES);
+    transmitLong(CDOProtocol.NO_MORE_OBJECT_CHANGES);
   }
 
   private void transmitObjectChange(EObject eObject, EList featureChanges)
@@ -434,7 +434,7 @@ public class CommitTransactionRequest extends AbstractCdoClientRequest
       return;
     }
 
-    transmitByte(CdoProtocol.NO_MORE_REFERENCE_CHANGES);
+    transmitByte(CDOProtocol.NO_MORE_REFERENCE_CHANGES);
     transmitAttributeChanges(eObject, eClassToAttributeChangesMap);
     changedObjects.add(eObject);
   }
@@ -470,7 +470,7 @@ public class CommitTransactionRequest extends AbstractCdoClientRequest
       }
     }
 
-    transmitInt(CdoProtocol.NO_MORE_SEGMENTS);
+    transmitInt(CDOProtocol.NO_MORE_SEGMENTS);
   }
 
   /**
@@ -601,7 +601,7 @@ public class CommitTransactionRequest extends AbstractCdoClientRequest
           {
             int index = listChange.getIndex();
             int moveToIndex = listChange.getMoveToIndex();
-            transmitReferenceChange(CdoProtocol.LIST_MOVE, oid, reference, index, 0, moveToIndex);
+            transmitReferenceChange(CDOProtocol.LIST_MOVE, oid, reference, index, 0, moveToIndex);
             break;
           }
           case ChangeKind.ADD:
@@ -612,14 +612,14 @@ public class CommitTransactionRequest extends AbstractCdoClientRequest
             {
               EObject value = (EObject) itValues.next();
               long target = ResourceManagerImpl.getOID(value);
-              transmitReferenceChange(CdoProtocol.LIST_ADD, oid, reference, index, target, 0);
+              transmitReferenceChange(CDOProtocol.LIST_ADD, oid, reference, index, target, 0);
             }
             break;
           }
           case ChangeKind.REMOVE:
           {
             int index = listChange.getIndex();
-            transmitReferenceChange(CdoProtocol.LIST_REMOVE, oid, reference, index, 0, 0);
+            transmitReferenceChange(CDOProtocol.LIST_REMOVE, oid, reference, index, 0, 0);
             break;
           }
           default:
@@ -641,7 +641,7 @@ public class CommitTransactionRequest extends AbstractCdoClientRequest
         EObject value = (EObject) valuesIt.next();
         long target = ResourceManagerImpl.getOID(value);
 
-        transmitReferenceChange(CdoProtocol.LIST_ADD, oid, reference, ordinal++, target, 0);
+        transmitReferenceChange(CDOProtocol.LIST_ADD, oid, reference, ordinal++, target, 0);
       }
     }
   }
@@ -655,7 +655,7 @@ public class CommitTransactionRequest extends AbstractCdoClientRequest
     long target = refObject == null ? 0 : ResourceManagerImpl.getOID(refObject);
 
     // Add the reference
-    byte changeKind = refObject == null ? CdoProtocol.FEATURE_UNSET : CdoProtocol.FEATURE_SET;
+    byte changeKind = refObject == null ? CDOProtocol.FEATURE_UNSET : CDOProtocol.FEATURE_SET;
     transmitReferenceChange(changeKind, oid, reference, 0, target, 0);
     if (isDebugEnabled() && (refObject != null))
       debug("--> " + reference.getName() + ": " + ResourceManagerImpl.getLabel(refObject));
@@ -670,7 +670,7 @@ public class CommitTransactionRequest extends AbstractCdoClientRequest
 
     switch (changeKind)
     {
-      case CdoProtocol.FEATURE_SET:
+      case CDOProtocol.FEATURE_SET:
       {
         if (isDebugEnabled())
           debug("transmitReferenceChange(SET, oid="
@@ -682,12 +682,12 @@ public class CommitTransactionRequest extends AbstractCdoClientRequest
         transmitBoolean(feature.isContainment());
         break;
       }
-      case CdoProtocol.FEATURE_UNSET:
+      case CDOProtocol.FEATURE_UNSET:
       {
         // Do nothing
         break;
       }
-      case CdoProtocol.LIST_ADD:
+      case CDOProtocol.LIST_ADD:
       {
         if (isDebugEnabled())
           debug("transmitReferenceChange(ADD, oid="
@@ -699,7 +699,7 @@ public class CommitTransactionRequest extends AbstractCdoClientRequest
         transmitBoolean(feature.isContainment());
         break;
       }
-      case CdoProtocol.LIST_REMOVE:
+      case CDOProtocol.LIST_REMOVE:
       {
         if (isDebugEnabled())
           debug("transmitReferenceChange(REMOVE, oid="
@@ -708,7 +708,7 @@ public class CommitTransactionRequest extends AbstractCdoClientRequest
         transmitInt(sourceOrdinal);
         break;
       }
-      case CdoProtocol.LIST_MOVE:
+      case CDOProtocol.LIST_MOVE:
       {
         if (isDebugEnabled())
           debug("transmitReferenceChange(MOVE, oid="

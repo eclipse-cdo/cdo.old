@@ -12,7 +12,7 @@
             name="CDO Explorer"
             icon="icons/full/ctool16/Database.gif"
             category="org.eclipse.emf.cdo.ui"
-            class="org.eclipse.emf.cdo.example.ui.internal.views.CdoExplorer"
+            class="org.eclipse.emf.cdo.example.ui.internal.views.CDOExplorer"
             id="org.eclipse.emf.cdo.example.ui.CdoExplorer">
       </view>
    </extension>
@@ -35,8 +35,8 @@
         id = "org.eclipse.emf.cdo.example.ui.Editor"
         name = "%_UI_CdoEditor_label"
         icon = "icons/full/obj16/CdoResource.gif"
-        class = "org.eclipse.emf.cdo.example.ui.internal.editors.CdoEditor" 
-        contributorClass="org.eclipse.emf.cdo.example.ui.internal.editors.CdoActionBarContributor" >
+        class = "org.eclipse.emf.cdo.example.ui.internal.editors.CDOEditor" 
+        contributorClass="org.eclipse.emf.cdo.example.ui.internal.editors.CDOActionBarContributor" >
     </editor>
   </extension>
   
@@ -47,7 +47,7 @@
            name="CDO"/>
      <wizard
            category="org.eclipse.emf.cdo.example.ui"
-           class="org.eclipse.emf.cdo.example.ui.internal.wizards.CdoNewWizard"
+           class="org.eclipse.emf.cdo.example.ui.internal.wizards.CDONewWizard"
            icon="icons/full/obj16/CdoResource.gif"
            id="org.eclipse.emf.cdo.example.ui.CdoNewWizard"
            name="CDO Resource"/>

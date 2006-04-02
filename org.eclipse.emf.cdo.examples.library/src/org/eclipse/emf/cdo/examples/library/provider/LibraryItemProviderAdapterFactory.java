@@ -41,7 +41,7 @@ import java.util.Collection;
  * @generated
  */
 public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory implements
-        ComposeableAdapterFactory, IChangeNotifier, IDisposable
+    ComposeableAdapterFactory, IChangeNotifier, IDisposable
 {
   /**
    * This keeps track of the root adapter factory that delegates to this adapter factory.
@@ -255,7 +255,7 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
     if (isFactoryForType(type))
     {
       Object adapter = super.adapt(object, type);
-      if (!(type instanceof Class) || (((Class)type).isInstance(adapter)))
+      if (!(type instanceof Class) || (((Class) type).isInstance(adapter)))
       {
         return adapter;
       }

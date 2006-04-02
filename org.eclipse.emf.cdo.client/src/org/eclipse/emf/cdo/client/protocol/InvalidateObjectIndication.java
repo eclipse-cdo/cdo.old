@@ -14,19 +14,19 @@ package org.eclipse.emf.cdo.client.protocol;
 import org.eclipse.net4j.core.impl.AbstractIndication;
 
 import org.eclipse.emf.cdo.client.ResourceManager;
-import org.eclipse.emf.cdo.core.CdoProtocol;
+import org.eclipse.emf.cdo.core.CDOProtocol;
 
 
 public class InvalidateObjectIndication extends AbstractIndication
 {
   public short getSignalId()
   {
-    return CdoProtocol.INVALIDATE_OBJECT;
+    return CDOProtocol.INVALIDATE_OBJECT;
   }
 
   public void indicate()
   {
-    ResourceManager resourceManager = CdoClientProtocolImpl.getResourceManager(getChannel());
+    ResourceManager resourceManager = ClientCDOProtocolImpl.getResourceManager(getChannel());
     int count = receiveInt();
     long[] oids = new long[count];
 

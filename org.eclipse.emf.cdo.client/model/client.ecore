@@ -19,6 +19,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CdoPersistent" abstract="true" eSuperTypes="#//CdoPersistable"/>
   <eClassifiers xsi:type="ecore:EDataType" name="ResourceManager" instanceClassName="org.eclipse.emf.cdo.client.ResourceManager"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="CdoResource" instanceClassName="org.eclipse.emf.cdo.client.CdoResource"
+  <eClassifiers xsi:type="ecore:EDataType" name="CdoResource" instanceClassName="org.eclipse.emf.cdo.client.CDOResource"
       serializable="false"/>
 </ecore:EPackage>

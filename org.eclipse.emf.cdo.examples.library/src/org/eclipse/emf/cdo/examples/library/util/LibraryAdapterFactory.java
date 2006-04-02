@@ -11,8 +11,8 @@
 package org.eclipse.emf.cdo.example.library.util;
 
 
-import org.eclipse.emf.cdo.client.CdoPersistable;
-import org.eclipse.emf.cdo.client.CdoPersistent;
+import org.eclipse.emf.cdo.client.CDOPersistable;
+import org.eclipse.emf.cdo.client.CDOPersistent;
 import org.eclipse.emf.cdo.example.library.Author;
 import org.eclipse.emf.cdo.example.library.Book;
 import org.eclipse.emf.cdo.example.library.EBook;
@@ -73,7 +73,7 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl
     }
     if (object instanceof EObject)
     {
-      return ((EObject)object).eClass().getEPackage() == modelPackage;
+      return ((EObject) object).eClass().getEPackage() == modelPackage;
     }
     return false;
   }
@@ -111,12 +111,12 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl
       return createEBookAdapter();
     }
 
-    public Object caseCdoPersistable(CdoPersistable object)
+    public Object caseCdoPersistable(CDOPersistable object)
     {
       return createCdoPersistableAdapter();
     }
 
-    public Object caseCdoPersistent(CdoPersistent object)
+    public Object caseCdoPersistent(CDOPersistent object)
     {
       return createCdoPersistentAdapter();
     }
@@ -137,7 +137,7 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl
    */
   public Adapter createAdapter(Notifier target)
   {
-    return (Adapter)modelSwitch.doSwitch((EObject)target);
+    return (Adapter) modelSwitch.doSwitch((EObject) target);
   }
 
   /**
@@ -216,13 +216,13 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.cdo.client.CdoPersistable <em>Persistable</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.cdo.client.CDOPersistable <em>Persistable</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.emf.cdo.client.CdoPersistable
+   * @see org.eclipse.emf.cdo.client.CDOPersistable
    * @generated
    */
   public Adapter createCdoPersistableAdapter()
@@ -231,13 +231,13 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.cdo.client.CdoPersistent <em>Persistent</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.cdo.client.CDOPersistent <em>Persistent</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.emf.cdo.client.CdoPersistent
+   * @see org.eclipse.emf.cdo.client.CDOPersistent
    * @generated
    */
   public Adapter createCdoPersistentAdapter()

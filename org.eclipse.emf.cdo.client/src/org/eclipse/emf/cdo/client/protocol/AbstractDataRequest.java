@@ -15,10 +15,10 @@ import org.eclipse.net4j.util.ImplementationError;
 
 import org.eclipse.emf.cdo.client.AttributeConverter;
 import org.eclipse.emf.cdo.client.AttributeInfo;
-import org.eclipse.emf.cdo.client.CdoResource;
+import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ClassInfo;
 import org.eclipse.emf.cdo.client.impl.ResourceManagerImpl;
-import org.eclipse.emf.cdo.core.OidEncoder;
+import org.eclipse.emf.cdo.core.OIDEncoder;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 
 
-public abstract class AbstractDataRequest extends AbstractCdoClientRequest
+public abstract class AbstractDataRequest extends AbstractCDOClientRequest
 {
   protected EObject receiveObject(long oid, int oca, int cid)
   {
@@ -81,16 +81,16 @@ public abstract class AbstractDataRequest extends AbstractCdoClientRequest
 
   protected EObject createProxyObject(EClass eClass, long oid)
   {
-    OidEncoder oidEncoder = getPackageManager().getOidEncoder();
+    OIDEncoder oIDEncoder = getPackageManager().getOidEncoder();
 
     if (isDebugEnabled())
-      debug("Creating proxy " + eClass.getName() + " " + oidEncoder.toString(oid));
+      debug("Creating proxy " + eClass.getName() + " " + oIDEncoder.toString(oid));
 
-    int rid = oidEncoder.getRID(oid);
-    CdoResource cdoResource = getResourceManager().getResource(rid);
+    int rid = oIDEncoder.getRID(oid);
+    CDOResource cDOResource = getResourceManager().getResource(rid);
     URI uri = getResourceManager().createProxyURI(oid);
 
-    EObject object = ResourceManagerImpl.createEObject(eClass, oid, -1, cdoResource);
+    EObject object = ResourceManagerImpl.createEObject(eClass, oid, -1, cDOResource);
 
     ((InternalEObject) object).eSetProxyURI(uri);
 
@@ -102,8 +102,8 @@ public abstract class AbstractDataRequest extends AbstractCdoClientRequest
   {
     if (isDebugEnabled())
     {
-      OidEncoder oidEncoder = getPackageManager().getOidEncoder();
-      debug("Searching proxy " + oidEncoder.toString(oid));
+      OIDEncoder oIDEncoder = getPackageManager().getOidEncoder();
+      debug("Searching proxy " + oIDEncoder.toString(oid));
     }
 
     EObject object = getResourceManager().getProxyObject(oid);

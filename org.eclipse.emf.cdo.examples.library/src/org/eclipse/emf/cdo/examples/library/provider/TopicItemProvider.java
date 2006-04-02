@@ -11,11 +11,11 @@
 package org.eclipse.emf.cdo.example.library.provider;
 
 
-import org.eclipse.emf.cdo.client.provider.CdoPersistentItemProvider;
+import org.eclipse.emf.cdo.client.provider.CDOPersistentItemProvider;
 import org.eclipse.emf.cdo.example.library.LibraryFactory;
 import org.eclipse.emf.cdo.example.library.LibraryPackage;
 import org.eclipse.emf.cdo.example.library.Topic;
-import org.eclipse.emf.cdo.example.library.impl.LibraryActivator;
+import org.eclipse.emf.cdo.example.library.internal.ExampleLibraryActivator;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -39,9 +39,9 @@ import java.util.List;
  * <!-- end-user-doc -->
  * @generated
  */
-public class TopicItemProvider extends CdoPersistentItemProvider implements
-        IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
-        IItemLabelProvider, IItemPropertySource
+public class TopicItemProvider extends CDOPersistentItemProvider implements
+    IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
+    IItemLabelProvider, IItemPropertySource
 {
   /**
    * This constructs an instance from a factory and a notifier.
@@ -80,11 +80,10 @@ public class TopicItemProvider extends CdoPersistentItemProvider implements
   protected void addNamePropertyDescriptor(Object object)
   {
     itemPropertyDescriptors.add(createItemPropertyDescriptor(
-            ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-            getResourceLocator(), getString("_UI_Topic_name_feature"), getString(
-                    "_UI_PropertyDescriptor_description", "_UI_Topic_name_feature",
-                    "_UI_Topic_type"), LibraryPackage.Literals.TOPIC__NAME, true,
-            ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+        getString("_UI_Topic_name_feature"), getString("_UI_PropertyDescriptor_description",
+            "_UI_Topic_name_feature", "_UI_Topic_type"), LibraryPackage.Literals.TOPIC__NAME, true,
+        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -138,9 +137,9 @@ public class TopicItemProvider extends CdoPersistentItemProvider implements
    */
   public String getText(Object object)
   {
-    String label = ((Topic)object).getName();
+    String label = ((Topic) object).getName();
     return label == null || label.length() == 0 ? getString("_UI_Topic_type")
-            : getString("_UI_Topic_type") + " " + label;
+        : getString("_UI_Topic_type") + " " + label;
   }
 
   /**
@@ -156,15 +155,15 @@ public class TopicItemProvider extends CdoPersistentItemProvider implements
 
     switch (notification.getFeatureID(Topic.class))
     {
-    case LibraryPackage.TOPIC__NAME:
-      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
-              true));
-      return;
-    case LibraryPackage.TOPIC__BOOKS:
-    case LibraryPackage.TOPIC__TOPICS:
-      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true,
-              false));
-      return;
+      case LibraryPackage.TOPIC__NAME:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
+            true));
+        return;
+      case LibraryPackage.TOPIC__BOOKS:
+      case LibraryPackage.TOPIC__TOPICS:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true,
+            false));
+        return;
     }
     super.notifyChanged(notification);
   }
@@ -181,13 +180,13 @@ public class TopicItemProvider extends CdoPersistentItemProvider implements
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
     newChildDescriptors.add(createChildParameter(LibraryPackage.Literals.TOPIC__BOOKS,
-            LibraryFactory.eINSTANCE.createBook()));
+        LibraryFactory.eINSTANCE.createBook()));
 
     newChildDescriptors.add(createChildParameter(LibraryPackage.Literals.TOPIC__BOOKS,
-            LibraryFactory.eINSTANCE.createEBook()));
+        LibraryFactory.eINSTANCE.createEBook()));
 
     newChildDescriptors.add(createChildParameter(LibraryPackage.Literals.TOPIC__TOPICS,
-            LibraryFactory.eINSTANCE.createTopic()));
+        LibraryFactory.eINSTANCE.createTopic()));
   }
 
   /**
@@ -198,7 +197,7 @@ public class TopicItemProvider extends CdoPersistentItemProvider implements
    */
   public ResourceLocator getResourceLocator()
   {
-    return LibraryActivator.INSTANCE;
+    return ExampleLibraryActivator.INSTANCE;
   }
 
 }

@@ -11,10 +11,10 @@
 package org.eclipse.emf.cdo.client.protocol;
 
 
-import org.eclipse.emf.cdo.core.CdoProtocol;
+import org.eclipse.emf.cdo.core.CDOProtocol;
 
 
-public class ResourcePathRequest extends AbstractCdoClientRequest
+public class ResourcePathRequest extends AbstractCDOClientRequest
 {
   protected String path;
 
@@ -25,7 +25,7 @@ public class ResourcePathRequest extends AbstractCdoClientRequest
 
   public short getSignalId()
   {
-    return CdoProtocol.RESOURCE_PATH;
+    return CDOProtocol.RESOURCE_PATH;
   }
 
   public void request()

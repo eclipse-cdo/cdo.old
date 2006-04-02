@@ -11,10 +11,10 @@
 package org.eclipse.emf.cdo.example.library.provider;
 
 
-import org.eclipse.emf.cdo.client.provider.CdoPersistentItemProvider;
+import org.eclipse.emf.cdo.client.provider.CDOPersistentItemProvider;
 import org.eclipse.emf.cdo.example.library.Book;
 import org.eclipse.emf.cdo.example.library.LibraryPackage;
-import org.eclipse.emf.cdo.example.library.impl.LibraryActivator;
+import org.eclipse.emf.cdo.example.library.internal.ExampleLibraryActivator;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -37,9 +37,9 @@ import java.util.List;
  * <!-- end-user-doc -->
  * @generated
  */
-public class BookItemProvider extends CdoPersistentItemProvider implements
-        IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
-        IItemLabelProvider, IItemPropertySource
+public class BookItemProvider extends CDOPersistentItemProvider implements
+    IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
+    IItemLabelProvider, IItemPropertySource
 {
   /**
    * This constructs an instance from a factory and a notifier.
@@ -80,11 +80,10 @@ public class BookItemProvider extends CdoPersistentItemProvider implements
   protected void addTitlePropertyDescriptor(Object object)
   {
     itemPropertyDescriptors.add(createItemPropertyDescriptor(
-            ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-            getResourceLocator(), getString("_UI_Book_title_feature"),
-            getString("_UI_PropertyDescriptor_description", "_UI_Book_title_feature",
-                    "_UI_Book_type"), LibraryPackage.Literals.BOOK__TITLE, true,
-            ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+        getString("_UI_Book_title_feature"), getString("_UI_PropertyDescriptor_description",
+            "_UI_Book_title_feature", "_UI_Book_type"), LibraryPackage.Literals.BOOK__TITLE, true,
+        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -95,13 +94,11 @@ public class BookItemProvider extends CdoPersistentItemProvider implements
    */
   protected void addAuthorsPropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors
-            .add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
-                    .getRootAdapterFactory(), getResourceLocator(),
-                    getString("_UI_Book_authors_feature"), getString(
-                            "_UI_PropertyDescriptor_description", "_UI_Book_authors_feature",
-                            "_UI_Book_type"), LibraryPackage.Literals.BOOK__AUTHORS, true, null,
-                    null, null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+        getString("_UI_Book_authors_feature"), getString("_UI_PropertyDescriptor_description",
+            "_UI_Book_authors_feature", "_UI_Book_type"), LibraryPackage.Literals.BOOK__AUTHORS,
+        true, null, null, null));
   }
 
   /**
@@ -113,11 +110,11 @@ public class BookItemProvider extends CdoPersistentItemProvider implements
   protected void addNumberOfPagesPropertyDescriptor(Object object)
   {
     itemPropertyDescriptors.add(createItemPropertyDescriptor(
-            ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-            getResourceLocator(), getString("_UI_Book_numberOfPages_feature"), getString(
-                    "_UI_PropertyDescriptor_description", "_UI_Book_numberOfPages_feature",
-                    "_UI_Book_type"), LibraryPackage.Literals.BOOK__NUMBER_OF_PAGES, true,
-            ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+        getString("_UI_Book_numberOfPages_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Book_numberOfPages_feature",
+            "_UI_Book_type"), LibraryPackage.Literals.BOOK__NUMBER_OF_PAGES, true,
+        ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -139,9 +136,9 @@ public class BookItemProvider extends CdoPersistentItemProvider implements
    */
   public String getText(Object object)
   {
-    String label = ((Book)object).getTitle();
+    String label = ((Book) object).getTitle();
     return label == null || label.length() == 0 ? getString("_UI_Book_type")
-            : getString("_UI_Book_type") + " " + label;
+        : getString("_UI_Book_type") + " " + label;
   }
 
   /**
@@ -157,11 +154,11 @@ public class BookItemProvider extends CdoPersistentItemProvider implements
 
     switch (notification.getFeatureID(Book.class))
     {
-    case LibraryPackage.BOOK__TITLE:
-    case LibraryPackage.BOOK__NUMBER_OF_PAGES:
-      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
-              true));
-      return;
+      case LibraryPackage.BOOK__TITLE:
+      case LibraryPackage.BOOK__NUMBER_OF_PAGES:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
+            true));
+        return;
     }
     super.notifyChanged(notification);
   }
@@ -186,7 +183,7 @@ public class BookItemProvider extends CdoPersistentItemProvider implements
    */
   public ResourceLocator getResourceLocator()
   {
-    return LibraryActivator.INSTANCE;
+    return ExampleLibraryActivator.INSTANCE;
   }
 
 }

@@ -13,7 +13,7 @@ package org.eclipse.emf.cdo.example.library.provider;
 
 import org.eclipse.emf.cdo.example.library.EBook;
 import org.eclipse.emf.cdo.example.library.LibraryPackage;
-import org.eclipse.emf.cdo.example.library.impl.LibraryActivator;
+import org.eclipse.emf.cdo.example.library.internal.ExampleLibraryActivator;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -37,8 +37,8 @@ import java.util.List;
  * @generated
  */
 public class EBookItemProvider extends BookItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
-        IItemPropertySource
+    IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
+    IItemPropertySource
 {
   /**
    * This constructs an instance from a factory and a notifier.
@@ -77,11 +77,10 @@ public class EBookItemProvider extends BookItemProvider implements IEditingDomai
   protected void addUrlPropertyDescriptor(Object object)
   {
     itemPropertyDescriptors.add(createItemPropertyDescriptor(
-            ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-            getResourceLocator(), getString("_UI_EBook_url_feature"),
-            getString("_UI_PropertyDescriptor_description", "_UI_EBook_url_feature",
-                    "_UI_EBook_type"), LibraryPackage.Literals.EBOOK__URL, true,
-            ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+        getString("_UI_EBook_url_feature"), getString("_UI_PropertyDescriptor_description",
+            "_UI_EBook_url_feature", "_UI_EBook_type"), LibraryPackage.Literals.EBOOK__URL, true,
+        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -103,9 +102,9 @@ public class EBookItemProvider extends BookItemProvider implements IEditingDomai
    */
   public String getText(Object object)
   {
-    String label = ((EBook)object).getTitle();
+    String label = ((EBook) object).getTitle();
     return label == null || label.length() == 0 ? getString("_UI_EBook_type")
-            : getString("_UI_EBook_type") + " " + label;
+        : getString("_UI_EBook_type") + " " + label;
   }
 
   /**
@@ -121,10 +120,10 @@ public class EBookItemProvider extends BookItemProvider implements IEditingDomai
 
     switch (notification.getFeatureID(EBook.class))
     {
-    case LibraryPackage.EBOOK__URL:
-      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
-              true));
-      return;
+      case LibraryPackage.EBOOK__URL:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
+            true));
+        return;
     }
     super.notifyChanged(notification);
   }
@@ -149,7 +148,7 @@ public class EBookItemProvider extends BookItemProvider implements IEditingDomai
    */
   public ResourceLocator getResourceLocator()
   {
-    return LibraryActivator.INSTANCE;
+    return ExampleLibraryActivator.INSTANCE;
   }
 
 }

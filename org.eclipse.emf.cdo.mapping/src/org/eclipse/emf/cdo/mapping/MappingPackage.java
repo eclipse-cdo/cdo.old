@@ -322,6 +322,7 @@ public interface MappingPackage extends EPackage
    */
   MappingFactory getMappingFactory();
 
+
   /**
    * <!-- begin-user-doc -->
    * Defines literals for the meta objects that represent

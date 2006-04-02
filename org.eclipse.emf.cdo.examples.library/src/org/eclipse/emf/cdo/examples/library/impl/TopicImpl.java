@@ -11,7 +11,7 @@
 package org.eclipse.emf.cdo.example.library.impl;
 
 
-import org.eclipse.emf.cdo.client.impl.CdoPersistentImpl;
+import org.eclipse.emf.cdo.client.impl.CDOPersistentImpl;
 import org.eclipse.emf.cdo.example.library.Book;
 import org.eclipse.emf.cdo.example.library.Library;
 import org.eclipse.emf.cdo.example.library.LibraryPackage;
@@ -47,7 +47,7 @@ import java.util.Collection;
  *
  * @generated
  */
-public class TopicImpl extends CdoPersistentImpl implements Topic
+public class TopicImpl extends CDOPersistentImpl implements Topic
 {
   /**
    * The cached value of the '{@link #getBooks() <em>Books</em>}' containment reference list.

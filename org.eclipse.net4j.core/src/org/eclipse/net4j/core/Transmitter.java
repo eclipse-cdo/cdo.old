@@ -11,8 +11,6 @@
 package org.eclipse.net4j.core;
 
 
-
-
 public interface Transmitter
 {
   public void flush();

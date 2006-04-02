@@ -11,7 +11,7 @@
 package org.eclipse.emf.cdo.example.library.impl;
 
 
-import org.eclipse.emf.cdo.client.CdoPackage;
+import org.eclipse.emf.cdo.client.CDOPackage;
 import org.eclipse.emf.cdo.example.library.Author;
 import org.eclipse.emf.cdo.example.library.Book;
 import org.eclipse.emf.cdo.example.library.EBook;
@@ -121,17 +121,17 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage
   public static LibraryPackage init()
   {
     if (isInited)
-      return (LibraryPackage)EPackage.Registry.INSTANCE.getEPackage(LibraryPackage.eNS_URI);
+      return (LibraryPackage) EPackage.Registry.INSTANCE.getEPackage(LibraryPackage.eNS_URI);
 
     // Obtain or create and register package
-    LibraryPackageImpl theLibraryPackage = (LibraryPackageImpl)(EPackage.Registry.INSTANCE
-            .getEPackage(eNS_URI) instanceof LibraryPackageImpl ? EPackage.Registry.INSTANCE
-            .getEPackage(eNS_URI) : new LibraryPackageImpl());
+    LibraryPackageImpl theLibraryPackage = (LibraryPackageImpl) (EPackage.Registry.INSTANCE
+        .getEPackage(eNS_URI) instanceof LibraryPackageImpl ? EPackage.Registry.INSTANCE
+        .getEPackage(eNS_URI) : new LibraryPackageImpl());
 
     isInited = true;
 
     // Initialize simple dependencies
-    CdoPackage.eINSTANCE.eClass();
+    CDOPackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
     theLibraryPackage.createPackageContents();
@@ -162,7 +162,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage
    */
   public EReference getLibrary_Books()
   {
-    return (EReference)libraryEClass.getEStructuralFeatures().get(0);
+    return (EReference) libraryEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -172,7 +172,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage
    */
   public EReference getLibrary_Authors()
   {
-    return (EReference)libraryEClass.getEStructuralFeatures().get(1);
+    return (EReference) libraryEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -182,7 +182,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage
    */
   public EReference getLibrary_Topics()
   {
-    return (EReference)libraryEClass.getEStructuralFeatures().get(2);
+    return (EReference) libraryEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -202,7 +202,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage
    */
   public EAttribute getBook_Title()
   {
-    return (EAttribute)bookEClass.getEStructuralFeatures().get(0);
+    return (EAttribute) bookEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -212,7 +212,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage
    */
   public EReference getBook_Authors()
   {
-    return (EReference)bookEClass.getEStructuralFeatures().get(1);
+    return (EReference) bookEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -222,7 +222,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage
    */
   public EReference getBook_Library()
   {
-    return (EReference)bookEClass.getEStructuralFeatures().get(2);
+    return (EReference) bookEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -232,7 +232,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage
    */
   public EReference getBook_Topic()
   {
-    return (EReference)bookEClass.getEStructuralFeatures().get(3);
+    return (EReference) bookEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -242,7 +242,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage
    */
   public EAttribute getBook_NumberOfPages()
   {
-    return (EAttribute)bookEClass.getEStructuralFeatures().get(4);
+    return (EAttribute) bookEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -262,7 +262,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage
    */
   public EAttribute getAuthor_Name()
   {
-    return (EAttribute)authorEClass.getEStructuralFeatures().get(0);
+    return (EAttribute) authorEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -272,7 +272,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage
    */
   public EReference getAuthor_Books()
   {
-    return (EReference)authorEClass.getEStructuralFeatures().get(1);
+    return (EReference) authorEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -282,7 +282,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage
    */
   public EReference getAuthor_Library()
   {
-    return (EReference)authorEClass.getEStructuralFeatures().get(2);
+    return (EReference) authorEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -302,7 +302,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage
    */
   public EReference getTopic_Books()
   {
-    return (EReference)topicEClass.getEStructuralFeatures().get(0);
+    return (EReference) topicEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -312,7 +312,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage
    */
   public EReference getTopic_Library()
   {
-    return (EReference)topicEClass.getEStructuralFeatures().get(1);
+    return (EReference) topicEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -322,7 +322,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage
    */
   public EReference getTopic_Topics()
   {
-    return (EReference)topicEClass.getEStructuralFeatures().get(2);
+    return (EReference) topicEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -332,7 +332,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage
    */
   public EReference getTopic_Topic()
   {
-    return (EReference)topicEClass.getEStructuralFeatures().get(3);
+    return (EReference) topicEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -342,7 +342,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage
    */
   public EAttribute getTopic_Name()
   {
-    return (EAttribute)topicEClass.getEStructuralFeatures().get(4);
+    return (EAttribute) topicEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -362,7 +362,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage
    */
   public EAttribute getEBook_Url()
   {
-    return (EAttribute)eBookEClass.getEStructuralFeatures().get(0);
+    return (EAttribute) eBookEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -372,7 +372,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage
    */
   public LibraryFactory getLibraryFactory()
   {
-    return (LibraryFactory)getEFactoryInstance();
+    return (LibraryFactory) getEFactoryInstance();
   }
 
   /**
@@ -448,8 +448,8 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage
     setNsURI(eNS_URI);
 
     // Obtain other dependent packages
-    CdoPackage theCdoPackage = (CdoPackage)EPackage.Registry.INSTANCE
-            .getEPackage(CdoPackage.eNS_URI);
+    CDOPackage theCdoPackage = (CDOPackage) EPackage.Registry.INSTANCE
+        .getEPackage(CDOPackage.eNS_URI);
 
     // Add supertypes to classes
     libraryEClass.getESuperTypes().add(theCdoPackage.getCdoPersistent());
@@ -460,70 +460,70 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage
 
     // Initialize classes and features; add operations and parameters
     initEClass(libraryEClass, Library.class, "Library", !IS_ABSTRACT, !IS_INTERFACE,
-            IS_GENERATED_INSTANCE_CLASS);
+        IS_GENERATED_INSTANCE_CLASS);
     initEReference(getLibrary_Books(), this.getBook(), this.getBook_Library(), "books", null, 0,
-            -1, Library.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-            !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        -1, Library.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+        !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getLibrary_Authors(), this.getAuthor(), this.getAuthor_Library(), "authors",
-            null, 0, -1, Library.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-            !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        null, 0, -1, Library.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+        !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getLibrary_Topics(), this.getTopic(), this.getTopic_Library(), "topics", null,
-            0, -1, Library.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-            !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        0, -1, Library.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+        !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(bookEClass, Book.class, "Book", !IS_ABSTRACT, !IS_INTERFACE,
-            IS_GENERATED_INSTANCE_CLASS);
+        IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getBook_Title(), ecorePackage.getEString(), "title", null, 0, 1, Book.class,
-            !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-            !IS_DERIVED, IS_ORDERED);
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+        IS_ORDERED);
     initEReference(getBook_Authors(), this.getAuthor(), this.getAuthor_Books(), "authors", null, 0,
-            -1, Book.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-            IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        -1, Book.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getBook_Library(), this.getLibrary(), this.getLibrary_Books(), "library", null,
-            0, 1, Book.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-            !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        0, 1, Book.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getBook_Topic(), this.getTopic(), this.getTopic_Books(), "topic", null, 0, 1,
-            Book.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-            !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        Book.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+        !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getBook_NumberOfPages(), ecorePackage.getEInt(), "numberOfPages", null, 0, 1,
-            Book.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-            IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        Book.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+        !IS_DERIVED, IS_ORDERED);
 
     initEClass(authorEClass, Author.class, "Author", !IS_ABSTRACT, !IS_INTERFACE,
-            IS_GENERATED_INSTANCE_CLASS);
+        IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAuthor_Name(), ecorePackage.getEString(), "name", null, 0, 1, Author.class,
-            !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-            !IS_DERIVED, IS_ORDERED);
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+        IS_ORDERED);
     initEReference(getAuthor_Books(), this.getBook(), this.getBook_Authors(), "books", null, 0, -1,
-            Author.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-            IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        Author.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAuthor_Library(), this.getLibrary(), this.getLibrary_Authors(), "library",
-            null, 1, 1, Author.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-            !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        null, 1, 1, Author.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(topicEClass, Topic.class, "Topic", !IS_ABSTRACT, !IS_INTERFACE,
-            IS_GENERATED_INSTANCE_CLASS);
+        IS_GENERATED_INSTANCE_CLASS);
     initEReference(getTopic_Books(), this.getBook(), this.getBook_Topic(), "books", null, 0, -1,
-            Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-            !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+        !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTopic_Library(), this.getLibrary(), this.getLibrary_Topics(), "library",
-            null, 0, 1, Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-            !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        null, 0, 1, Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTopic_Topics(), this.getTopic(), this.getTopic_Topic(), "topics", null, 0,
-            -1, Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-            !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        -1, Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+        !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTopic_Topic(), this.getTopic(), this.getTopic_Topics(), "topic", null, 0, 1,
-            Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-            !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getTopic_Name(), ecorePackage.getEString(), "name", null, 0, 1, Topic.class,
-            !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-            !IS_DERIVED, IS_ORDERED);
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+        IS_ORDERED);
 
     initEClass(eBookEClass, EBook.class, "EBook", !IS_ABSTRACT, !IS_INTERFACE,
-            IS_GENERATED_INSTANCE_CLASS);
+        IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getEBook_Url(), ecorePackage.getEString(), "url", null, 0, 1, EBook.class,
-            !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-            !IS_DERIVED, IS_ORDERED);
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+        IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

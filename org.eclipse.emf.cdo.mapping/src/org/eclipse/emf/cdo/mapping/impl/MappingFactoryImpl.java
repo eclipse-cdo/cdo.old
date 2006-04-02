@@ -41,8 +41,8 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory
   {
     try
     {
-      MappingFactory theMappingFactory = (MappingFactory)EPackage.Registry.INSTANCE
-              .getEFactory("http://www.eclipse.org/net4j/cdo/mapping.ecore");
+      MappingFactory theMappingFactory = (MappingFactory) EPackage.Registry.INSTANCE
+          .getEFactory("http://www.eclipse.org/net4j/cdo/mapping.ecore");
       if (theMappingFactory != null)
       {
         return theMappingFactory;
@@ -75,15 +75,15 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory
   {
     switch (eClass.getClassifierID())
     {
-    case MappingPackage.PACKAGE_MAPPING:
-      return createPackageMapping();
-    case MappingPackage.CLASS_MAPPING:
-      return createClassMapping();
-    case MappingPackage.ATTRIBUTE_MAPPING:
-      return createAttributeMapping();
-    default:
-      throw new IllegalArgumentException("The class '" + eClass.getName()
-              + "' is not a valid classifier");
+      case MappingPackage.PACKAGE_MAPPING:
+        return createPackageMapping();
+      case MappingPackage.CLASS_MAPPING:
+        return createClassMapping();
+      case MappingPackage.ATTRIBUTE_MAPPING:
+        return createAttributeMapping();
+      default:
+        throw new IllegalArgumentException("The class '" + eClass.getName()
+            + "' is not a valid classifier");
     }
   }
 
@@ -127,7 +127,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory
    */
   public MappingPackage getMappingPackage()
   {
-    return (MappingPackage)getEPackage();
+    return (MappingPackage) getEPackage();
   }
 
   /**
