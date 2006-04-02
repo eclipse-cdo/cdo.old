@@ -71,7 +71,7 @@ public class CDOPersistentItemProvider extends ItemProviderAdapter implements
    */
   public String getText(Object object)
   {
-    return getString("_UI_CdoPersistent_type");
+    return getString("_UI_CDOPersistent_type");
   }
 
   /**

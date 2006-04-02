@@ -50,7 +50,7 @@
 	<bean id="attributeConverter" class="org.eclipse.emf.cdo.client.impl.AttributeConverterImpl"/>
 
 	<!-- ######################################################## -->
-	<bean id="cdoClientProtocol" class="org.eclipse.emf.cdo.client.protocol.ClientCDOProtocolImpl">
+	<bean id="clientCDOProtocol" class="org.eclipse.emf.cdo.client.protocol.ClientCDOProtocolImpl">
 		<property name="protocolManager">
 			<ref bean="protocolManager"/>
 		</property>
@@ -60,8 +60,8 @@
 	</bean>
 
 	<!-- ######################################################## -->
-	<bean id="cdoResClientProtocol"
-		class="org.eclipse.emf.cdo.client.protocol.CdoResClientProtocolImpl">
+	<bean id="clientCDOResProtocol"
+		class="org.eclipse.emf.cdo.client.protocol.ClientCDOResProtocolImpl">
 		<property name="protocolManager">
 			<ref bean="protocolManager"/>
 		</property>

@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons-pool.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/spring-beans.jar"/>
+	<classpathentry exported="true" sourcepath="C:/develop/lib/spring-framework-1.2.6/src" kind="lib" path="lib/spring-beans.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/spring-context.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/spring-core.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>

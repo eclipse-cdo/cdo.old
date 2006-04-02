@@ -17,7 +17,7 @@ package org.eclipse.emf.cdo.client;
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.emf.cdo.client.CDOPackage#getCdoPersistent()
+ * @see org.eclipse.emf.cdo.client.CDOPackage#getCDOPersistent()
  * @model abstract="true"
  * @generated
  */

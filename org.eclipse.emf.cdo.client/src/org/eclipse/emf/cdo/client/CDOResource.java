@@ -22,7 +22,7 @@ public interface CDOResource extends Resource
 
   public String getPath();
 
-  public int getRid();
+  public int getRID();
 
   public void setPath(String path);
 }

@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="library"
     nsURI="http://library" nsPrefix="library">
-  <eClassifiers xsi:type="ecore:EClass" name="Library" eSuperTypes="../../org.eclipse.emf.cdo.client/model/client.ecore#//CdoPersistent">
+  <eClassifiers xsi:type="ecore:EClass" name="Library" eSuperTypes="../../org.eclipse.emf.cdo.client/model/client.ecore#//CDOPersistent">
     <eStructuralFeatures xsi:type="ecore:EReference" name="books" upperBound="-1"
         eType="#//Book" containment="true" eOpposite="#//Book/library"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="authors" upperBound="-1"
@@ -11,7 +11,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="topics" upperBound="-1"
         eType="#//Topic" containment="true" eOpposite="#//Topic/library"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Book" eSuperTypes="../../org.eclipse.emf.cdo.client/model/client.ecore#//CdoPersistent">
+  <eClassifiers xsi:type="ecore:EClass" name="Book" eSuperTypes="../../org.eclipse.emf.cdo.client/model/client.ecore#//CDOPersistent">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="authors" upperBound="-1"
         eType="#//Author" eOpposite="#//Author/books"/>
@@ -21,14 +21,14 @@
         eOpposite="#//Topic/books"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberOfPages" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Author" eSuperTypes="../../org.eclipse.emf.cdo.client/model/client.ecore#//CdoPersistent">
+  <eClassifiers xsi:type="ecore:EClass" name="Author" eSuperTypes="../../org.eclipse.emf.cdo.client/model/client.ecore#//CDOPersistent">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="books" upperBound="-1"
         eType="#//Book" eOpposite="#//Book/authors"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="library" lowerBound="1"
         eType="#//Library" eOpposite="#//Library/authors"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Topic" eSuperTypes="../../org.eclipse.emf.cdo.client/model/client.ecore#//CdoPersistent">
+  <eClassifiers xsi:type="ecore:EClass" name="Topic" eSuperTypes="../../org.eclipse.emf.cdo.client/model/client.ecore#//CDOPersistent">
     <eStructuralFeatures xsi:type="ecore:EReference" name="books" upperBound="-1"
         eType="#//Book" containment="true" eOpposite="#//Book/topic"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="library" eType="#//Library"

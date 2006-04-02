@@ -24,11 +24,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CdoResClientProtocolImpl extends AbstractCDOResProtocol
+public class ClientCDOResProtocolImpl extends AbstractCDOResProtocol
 {
-  private List<CdoResListener> listeners = new ArrayList();
+  private List<CDOResListener> listeners = new ArrayList();
 
-  public CdoResClientProtocolImpl()
+  public ClientCDOResProtocolImpl()
   {
   }
 
@@ -49,19 +49,19 @@ public class CdoResClientProtocolImpl extends AbstractCDOResProtocol
     }
   }
 
-  public void addListener(CdoResListener listener)
+  public void addListener(CDOResListener listener)
   {
     listeners.add(listener);
   }
 
-  public void removeListener(CdoResListener listener)
+  public void removeListener(CDOResListener listener)
   {
     listeners.remove(listener);
   }
 
   public void resourcesChanged(Channel channel, List<ResourceChangeInfo> infos)
   {
-    for (CdoResListener listener : listeners)
+    for (CDOResListener listener : listeners)
     {
       listener.notifyResourcesChanged(channel, infos);
     }

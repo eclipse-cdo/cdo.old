@@ -4,7 +4,7 @@
 <fragment>
 
      <extension
-         name="Net4j Pluggable MYSQL Driver"
+         name="CDO Pluggable MYSQL Driver"
          point="org.eclipse.emf.cdo.jdbc.drivers">
       <driver
             exampleURL="jdbc:mysql://&lt;host&gt;/&lt;database&gt;"

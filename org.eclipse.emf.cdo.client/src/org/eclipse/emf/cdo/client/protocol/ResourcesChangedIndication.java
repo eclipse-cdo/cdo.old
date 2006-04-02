@@ -43,7 +43,7 @@ public class ResourcesChangedIndication extends AbstractIndication
     {
     }
 
-    CdoResClientProtocolImpl protocol = (CdoResClientProtocolImpl) getProtocol();
+    ClientCDOResProtocolImpl protocol = (ClientCDOResProtocolImpl) getProtocol();
     protocol.resourcesChanged(getChannel(), infos);
   }
 }

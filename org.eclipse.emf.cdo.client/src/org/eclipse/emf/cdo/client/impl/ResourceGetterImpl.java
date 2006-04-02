@@ -22,7 +22,7 @@ public class ResourceGetterImpl implements ResourceGetter
 {
   private ResourceManager resourceManager;
 
-  private int lastRid = 0;
+  private int lastRID = 0;
 
   private CDOResource lastResource = null;
 
@@ -36,7 +36,7 @@ public class ResourceGetterImpl implements ResourceGetter
    */
   public CDOResource getResource(int rid)
   {
-    if (rid != lastRid)
+    if (rid != lastRID)
     {
       CDOResource resource = resourceManager.getResource(rid);
 
@@ -45,13 +45,13 @@ public class ResourceGetterImpl implements ResourceGetter
         throw new ImplementationError("No resource for rid " + rid);
       }
 
-      if (resource.getRid() != rid)
+      if (resource.getRID() != rid)
       {
-        throw new ImplementationError("resource.getRID()= " + resource.getRid() + ", rid=" + rid);
+        throw new ImplementationError("resource.getRID()= " + resource.getRID() + ", rid=" + rid);
       }
 
       lastResource = resource;
-      lastRid = rid;
+      lastRID = rid;
     }
 
     return lastResource;

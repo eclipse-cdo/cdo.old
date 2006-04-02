@@ -77,7 +77,7 @@ public class MappingActionBarContributor extends EditingDomainActionBarContribut
    * <!-- end-user-doc -->
    * @generated
    */
-  protected IAction showPropertiesViewAction = new Action(CdoMappingEditorPlugin.INSTANCE
+  protected IAction showPropertiesViewAction = new Action(MappingEditorActivator.INSTANCE
       .getString("_UI_ShowPropertiesView_menu_item"))
   {
     public void run()
@@ -88,7 +88,7 @@ public class MappingActionBarContributor extends EditingDomainActionBarContribut
       }
       catch (PartInitException exception)
       {
-        CdoMappingEditorPlugin.INSTANCE.log(exception);
+        MappingEditorActivator.INSTANCE.log(exception);
       }
     }
   };
@@ -100,7 +100,7 @@ public class MappingActionBarContributor extends EditingDomainActionBarContribut
    * <!-- end-user-doc -->
    * @generated
    */
-  protected IAction refreshViewerAction = new Action(CdoMappingEditorPlugin.INSTANCE
+  protected IAction refreshViewerAction = new Action(MappingEditorActivator.INSTANCE
       .getString("_UI_RefreshViewer_menu_item"))
   {
     public boolean isEnabled()
@@ -191,7 +191,7 @@ public class MappingActionBarContributor extends EditingDomainActionBarContribut
   {
     super.contributeToMenu(menuManager);
 
-    IMenuManager submenuManager = new MenuManager(CdoMappingEditorPlugin.INSTANCE
+    IMenuManager submenuManager = new MenuManager(MappingEditorActivator.INSTANCE
         .getString("_UI_MappingEditor_menu"), "org.eclipse.emf.cdo.mappingMenuID");
     menuManager.insertAfter("additions", submenuManager);
     submenuManager.add(new Separator("settings"));
@@ -201,13 +201,13 @@ public class MappingActionBarContributor extends EditingDomainActionBarContribut
 
     // Prepare for CreateChild item addition or removal.
     //
-    createChildMenuManager = new MenuManager(CdoMappingEditorPlugin.INSTANCE
+    createChildMenuManager = new MenuManager(MappingEditorActivator.INSTANCE
         .getString("_UI_CreateChild_menu_item"));
     submenuManager.insertBefore("additions", createChildMenuManager);
 
     // Prepare for CreateSibling item addition or removal.
     //
-    createSiblingMenuManager = new MenuManager(CdoMappingEditorPlugin.INSTANCE
+    createSiblingMenuManager = new MenuManager(MappingEditorActivator.INSTANCE
         .getString("_UI_CreateSibling_menu_item"));
     submenuManager.insertBefore("additions", createSiblingMenuManager);
 
@@ -430,12 +430,12 @@ public class MappingActionBarContributor extends EditingDomainActionBarContribut
     super.menuAboutToShow(menuManager);
     MenuManager submenuManager = null;
 
-    submenuManager = new MenuManager(CdoMappingEditorPlugin.INSTANCE
+    submenuManager = new MenuManager(MappingEditorActivator.INSTANCE
         .getString("_UI_CreateChild_menu_item"));
     populateManager(submenuManager, createChildActions, null);
     menuManager.insertBefore("additions", submenuManager);
 
-    submenuManager = new MenuManager(CdoMappingEditorPlugin.INSTANCE
+    submenuManager = new MenuManager(MappingEditorActivator.INSTANCE
         .getString("_UI_CreateSibling_menu_item"));
     populateManager(submenuManager, createSiblingActions, null);
     menuManager.insertBefore("additions", submenuManager);

@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.emf.cdo.client.CDOPackage#getCdoPersistable()
+ * @see org.eclipse.emf.cdo.client.CDOPackage#getCDOPersistable()
  * @model interface="true" abstract="true"
  * @generated
  */

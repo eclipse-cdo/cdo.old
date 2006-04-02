@@ -27,7 +27,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public class CDONewWizard extends Wizard implements INewWizard
 {
-  public static final String WIZARD_ID = "org.eclipse.emf.cdo.example.ui.CdoNewWizard";
+  public static final String WIZARD_ID = "org.eclipse.emf.cdo.example.ui.CDONewWizard";
 
   private CDONewWizardPage page;
 
@@ -83,7 +83,7 @@ public class CDONewWizard extends Wizard implements INewWizard
       return false;
     }
 
-    UIUtils.openCdoEditor(new ResourceInfoImpl(resourcePath, 0, false));
+    UIUtils.openCDOEditor(new ResourceInfoImpl(resourcePath, 0, false));
     return true;
   }
 

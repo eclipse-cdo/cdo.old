@@ -1,13 +1,9 @@
-/*******************************************************************************
- * Copyright (c) 2004, 2005, 2006 Eike Stepper, Sympedia Methods and Tools.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *    Eike Stepper - initial API and implementation
- *******************************************************************************/
+ * $Id$
+ */
 package org.eclipse.emf.cdo.mapping.presentation;
 
 
@@ -22,7 +18,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
  * <!-- end-user-doc -->
  * @generated
  */
-public final class CdoMappingEditorPlugin extends EMFPlugin
+public final class MappingEditorActivator extends EMFPlugin
 {
   /**
    * Keep track of the singleton.
@@ -30,7 +26,7 @@ public final class CdoMappingEditorPlugin extends EMFPlugin
    * <!-- end-user-doc -->
    * @generated
    */
-  public static final CdoMappingEditorPlugin INSTANCE = new CdoMappingEditorPlugin();
+  public static final MappingEditorActivator INSTANCE = new MappingEditorActivator();
 
   /**
    * Keep track of the singleton.
@@ -46,7 +42,7 @@ public final class CdoMappingEditorPlugin extends EMFPlugin
    * <!-- end-user-doc -->
    * @generated
    */
-  public CdoMappingEditorPlugin()
+  public MappingEditorActivator()
   {
     super(new ResourceLocator[] {});
   }

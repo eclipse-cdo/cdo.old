@@ -27,5 +27,5 @@ public interface AttributeConverter extends Service, CDODataTypes
 
   public void toChannel(EObject object, EAttribute attribute, Channel channel);
 
-  public int getCdoDataType(EDataType eDataType);
+  public int getCDODataType(EDataType eDataType);
 }

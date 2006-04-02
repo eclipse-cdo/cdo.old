@@ -420,7 +420,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
         }
         catch (CoreException exception)
         {
-          CdoMappingEditorPlugin.INSTANCE.log(exception);
+          MappingEditorActivator.INSTANCE.log(exception);
         }
       }
     }
@@ -488,7 +488,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
           }
           catch (IOException exception)
           {
-            CdoMappingEditorPlugin.INSTANCE.log(exception);
+            MappingEditorActivator.INSTANCE.log(exception);
           }
         }
       }
@@ -781,7 +781,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
     }
     catch (Exception exception)
     {
-      CdoMappingEditorPlugin.INSTANCE.log(exception);
+      MappingEditorActivator.INSTANCE.log(exception);
     }
   }
 
@@ -1280,7 +1280,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
         }
         catch (Exception exception)
         {
-          CdoMappingEditorPlugin.INSTANCE.log(exception);
+          MappingEditorActivator.INSTANCE.log(exception);
         }
       }
     };
@@ -1300,7 +1300,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
     {
       // Something went wrong that shouldn't.
       //
-      CdoMappingEditorPlugin.INSTANCE.log(exception);
+      MappingEditorActivator.INSTANCE.log(exception);
     }
   }
 
@@ -1378,7 +1378,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
     }
     catch (CoreException exception)
     {
-      CdoMappingEditorPlugin.INSTANCE.log(exception);
+      MappingEditorActivator.INSTANCE.log(exception);
     }
   }
 
@@ -1521,7 +1521,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
    */
   private static String getString(String key)
   {
-    return CdoMappingEditorPlugin.INSTANCE.getString(key);
+    return MappingEditorActivator.INSTANCE.getString(key);
   }
 
   /**
@@ -1532,7 +1532,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
    */
   private static String getString(String key, Object s1)
   {
-    return CdoMappingEditorPlugin.INSTANCE.getString(key, new Object[] { s1});
+    return MappingEditorActivator.INSTANCE.getString(key, new Object[] { s1});
   }
 
   /**

@@ -41,7 +41,7 @@ public final class ResourceInfoImpl implements ResourceInfo
     this.path = path;
   }
 
-  public int getRid()
+  public int getRID()
   {
     return rid;
   }
@@ -57,7 +57,7 @@ public final class ResourceInfoImpl implements ResourceInfo
     if (obj instanceof ResourceInfo)
     {
       ResourceInfo that = (ResourceInfo) obj;
-      return rid == that.getRid() && StringHelper.equals(path, that.getPath())
+      return rid == that.getRID() && StringHelper.equals(path, that.getPath())
           && existing == that.isExisting();
     }
 

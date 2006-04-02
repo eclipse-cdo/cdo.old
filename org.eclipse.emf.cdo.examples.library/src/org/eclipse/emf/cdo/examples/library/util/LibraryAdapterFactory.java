@@ -111,14 +111,14 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl
       return createEBookAdapter();
     }
 
-    public Object caseCdoPersistable(CDOPersistable object)
+    public Object caseCDOPersistable(CDOPersistable object)
     {
-      return createCdoPersistableAdapter();
+      return createCDOPersistableAdapter();
     }
 
-    public Object caseCdoPersistent(CDOPersistent object)
+    public Object caseCDOPersistent(CDOPersistent object)
     {
-      return createCdoPersistentAdapter();
+      return createCDOPersistentAdapter();
     }
 
     public Object defaultCase(EObject object)
@@ -225,7 +225,7 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl
    * @see org.eclipse.emf.cdo.client.CDOPersistable
    * @generated
    */
-  public Adapter createCdoPersistableAdapter()
+  public Adapter createCDOPersistableAdapter()
   {
     return null;
   }
@@ -240,7 +240,7 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl
    * @see org.eclipse.emf.cdo.client.CDOPersistent
    * @generated
    */
-  public Adapter createCdoPersistentAdapter()
+  public Adapter createCDOPersistentAdapter()
   {
     return null;
   }

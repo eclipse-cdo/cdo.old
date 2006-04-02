@@ -19,5 +19,5 @@ public interface ResourceInfo
 
   public void setPath(String path);
 
-  public int getRid();
+  public int getRID();
 }

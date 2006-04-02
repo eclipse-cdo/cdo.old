@@ -28,7 +28,7 @@ public class AttributeConverterImpl extends AbstractConverter implements Attribu
 
   public void fromChannel(EObject object, EAttribute attribute, Channel channel)
   {
-    int dataType = getCdoDataType(attribute.getEAttributeType());
+    int dataType = getCDODataType(attribute.getEAttributeType());
 
     if (dataType > MIN_PRIMITIVE)
     {
@@ -58,7 +58,7 @@ public class AttributeConverterImpl extends AbstractConverter implements Attribu
 
   public void toChannel(EObject object, EAttribute attribute, Channel channel)
   {
-    int dataType = getCdoDataType(attribute.getEAttributeType());
+    int dataType = getCDODataType(attribute.getEAttributeType());
     Object value = object.eGet(attribute);
 
     if (dataType > MIN_PRIMITIVE)
@@ -128,7 +128,7 @@ public class AttributeConverterImpl extends AbstractConverter implements Attribu
     channel.transmitString(serialized);
   }
 
-  public int getCdoDataType(EDataType eDataType)
+  public int getCDODataType(EDataType eDataType)
   {
     if (eDataType == ECORE.getEChar())
     {

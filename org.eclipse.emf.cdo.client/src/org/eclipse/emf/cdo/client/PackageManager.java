@@ -45,7 +45,7 @@ public interface PackageManager extends Service
 
   public void announceNewPackages(Channel channel);
 
-  public OIDEncoder getOidEncoder();
+  public OIDEncoder getOidEncoder(); // Don't change case! Spring will be irritated
 
   public AttributeConverter getAttributeConverter();
 }

@@ -16,7 +16,6 @@ import org.eclipse.emf.cdo.client.CDOPackage;
 import org.eclipse.emf.cdo.client.CDOPersistable;
 import org.eclipse.emf.cdo.client.CDOPersistent;
 import org.eclipse.emf.cdo.client.CDOResource;
-import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EOperation;
@@ -45,13 +44,6 @@ public class CDOPackageImpl extends EPackageImpl implements CDOPackage
    * @generated
    */
   private EClass cdoPersistentEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EDataType resourceManagerEDataType = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -114,22 +106,22 @@ public class CDOPackageImpl extends EPackageImpl implements CDOPackage
     if (isInited) return (CDOPackage) EPackage.Registry.INSTANCE.getEPackage(CDOPackage.eNS_URI);
 
     // Obtain or create and register package
-    CDOPackageImpl theCdoPackage = (CDOPackageImpl) (EPackage.Registry.INSTANCE
+    CDOPackageImpl theCDOPackage = (CDOPackageImpl) (EPackage.Registry.INSTANCE
         .getEPackage(eNS_URI) instanceof CDOPackageImpl ? EPackage.Registry.INSTANCE
         .getEPackage(eNS_URI) : new CDOPackageImpl());
 
     isInited = true;
 
     // Create package meta-data objects
-    theCdoPackage.createPackageContents();
+    theCDOPackage.createPackageContents();
 
     // Initialize created meta-data
-    theCdoPackage.initializePackageContents();
+    theCDOPackage.initializePackageContents();
 
     // Mark meta-data to indicate it can't be changed
-    theCdoPackage.freeze();
+    theCDOPackage.freeze();
 
-    return theCdoPackage;
+    return theCDOPackage;
   }
 
   /**
@@ -137,7 +129,7 @@ public class CDOPackageImpl extends EPackageImpl implements CDOPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getCdoPersistable()
+  public EClass getCDOPersistable()
   {
     return cdoPersistableEClass;
   }
@@ -147,7 +139,7 @@ public class CDOPackageImpl extends EPackageImpl implements CDOPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getCdoPersistent()
+  public EClass getCDOPersistent()
   {
     return cdoPersistentEClass;
   }
@@ -157,17 +149,7 @@ public class CDOPackageImpl extends EPackageImpl implements CDOPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EDataType getResourceManager()
-  {
-    return resourceManagerEDataType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EDataType getCdoResource()
+  public EDataType getCDOResource()
   {
     return cdoResourceEDataType;
   }
@@ -177,7 +159,7 @@ public class CDOPackageImpl extends EPackageImpl implements CDOPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public CDOFactory getCdoFactory()
+  public CDOFactory getCDOFactory()
   {
     return (CDOFactory) getEFactoryInstance();
   }
@@ -207,7 +189,6 @@ public class CDOPackageImpl extends EPackageImpl implements CDOPackage
     cdoPersistentEClass = createEClass(CDO_PERSISTENT);
 
     // Create data types
-    resourceManagerEDataType = createEDataType(RESOURCE_MANAGER);
     cdoResourceEDataType = createEDataType(CDO_RESOURCE);
   }
 
@@ -236,7 +217,7 @@ public class CDOPackageImpl extends EPackageImpl implements CDOPackage
     setNsURI(eNS_URI);
 
     // Add supertypes to classes
-    cdoPersistentEClass.getESuperTypes().add(this.getCdoPersistable());
+    cdoPersistentEClass.getESuperTypes().add(this.getCDOPersistable());
 
     // Initialize classes and features; add operations and parameters
     initEClass(cdoPersistableEClass, CDOPersistable.class, "CDOPersistable", IS_ABSTRACT,
@@ -246,7 +227,7 @@ public class CDOPackageImpl extends EPackageImpl implements CDOPackage
 
     EOperation op = addEOperation(cdoPersistableEClass, null, "cdoSetOID");
     addEParameter(op, ecorePackage.getELong(), "oid", 0, 1);
-    addEParameter(op, this.getCdoResource(), "resource", 0, 1);
+    addEParameter(op, this.getCDOResource(), "resource", 0, 1);
 
     addEOperation(cdoPersistableEClass, ecorePackage.getEInt(), "cdoGetOCA", 0, 1);
 
@@ -263,9 +244,7 @@ public class CDOPackageImpl extends EPackageImpl implements CDOPackage
         !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     // Initialize data types
-    initEDataType(resourceManagerEDataType, ResourceManager.class, "ResourceManager",
-        IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-    initEDataType(cdoResourceEDataType, CDOResource.class, "CDOResource", !IS_SERIALIZABLE,
+    initEDataType(cdoResourceEDataType, CDOResource.class, "CDOResource", IS_SERIALIZABLE,
         !IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource

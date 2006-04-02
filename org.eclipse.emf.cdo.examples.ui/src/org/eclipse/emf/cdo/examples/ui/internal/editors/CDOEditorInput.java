@@ -31,7 +31,7 @@ public final class CDOEditorInput implements IEditorInput
 
   public String getResourceURI()
   {
-    //int rid = resourceInfo.getRid();
+    //int rid = resourceInfo.getRID();
     //return "cdo://" + (rid != 0 ? Integer.toString(rid) : resourceInfo.getPath());
     return "cdo://" + resourceInfo.getPath();
   }
@@ -49,7 +49,7 @@ public final class CDOEditorInput implements IEditorInput
       return path;
     }
 
-    int rid = resourceInfo.getRid();
+    int rid = resourceInfo.getRID();
     return Integer.toString(rid);
   }
 

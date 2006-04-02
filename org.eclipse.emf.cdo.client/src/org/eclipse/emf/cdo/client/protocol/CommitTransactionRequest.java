@@ -187,7 +187,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
 
         if (!cDOResource.isExisting())
         {
-          transmitInt(cDOResource.getRid());
+          transmitInt(cDOResource.getRID());
           transmitString(cDOResource.getPath());
         }
       }
@@ -350,7 +350,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
     for (Iterator it = referenceRecords.values().iterator(); it.hasNext();)
     {
       ReferenceRecord record = (ReferenceRecord) it.next();
-      long oid = record.getOid();
+      long oid = record.getOID();
       EReference feature = record.getFeature();
       int ordinal = record.getOrdinal();
       long target = record.getTarget();
@@ -739,7 +739,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
       this.target = target;
     }
 
-    public long getOid()
+    public long getOID()
     {
       return oid;
     }

@@ -4,7 +4,7 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.emf.cdo.example.library/src"
     editDirectory="/org.eclipse.emf.cdo.example.library/src" editorDirectory="" modelPluginID="org.eclipse.emf.cdo.example.library"
     templateDirectory="platform:resource/org.eclipse.emf.cdo.client/templates" dynamicTemplates="true"
-    redirection="" modelName="Library" modelPluginClass="org.eclipse.emf.cdo.example.library.internal.ExampleLibraryActivator"
+    modelName="Library" modelPluginClass="org.eclipse.emf.cdo.example.library.internal.ExampleLibraryActivator"
     editPluginClass="" editorPluginClass="" updateClasspath="false" codeFormatting="true"
     testsDirectory="" testSuiteClass="" importerID="org.eclipse.emf.importer.ecore"
     usedGenPackages="../../org.eclipse.emf.cdo.client/model/client.genmodel#//client">

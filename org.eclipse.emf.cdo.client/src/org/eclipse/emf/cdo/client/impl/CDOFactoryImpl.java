@@ -13,7 +13,7 @@ package org.eclipse.emf.cdo.client.impl;
 
 import org.eclipse.emf.cdo.client.CDOFactory;
 import org.eclipse.emf.cdo.client.CDOPackage;
-import org.eclipse.emf.cdo.client.ResourceManager;
+import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -40,11 +40,11 @@ public class CDOFactoryImpl extends EFactoryImpl implements CDOFactory
   {
     try
     {
-      CDOFactory theCdoFactory = (CDOFactory) EPackage.Registry.INSTANCE
+      CDOFactory theCDOFactory = (CDOFactory) EPackage.Registry.INSTANCE
           .getEFactory("http://www.eclipse.org/net4j/cdo/client.ecore");
-      if (theCdoFactory != null)
+      if (theCDOFactory != null)
       {
-        return theCdoFactory;
+        return theCDOFactory;
       }
     }
     catch (Exception exception)
@@ -89,8 +89,8 @@ public class CDOFactoryImpl extends EFactoryImpl implements CDOFactory
   {
     switch (eDataType.getClassifierID())
     {
-      case CDOPackage.RESOURCE_MANAGER:
-        return createResourceManagerFromString(eDataType, initialValue);
+      case CDOPackage.CDO_RESOURCE:
+        return createCDOResourceFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName()
             + "' is not a valid classifier");
@@ -106,8 +106,8 @@ public class CDOFactoryImpl extends EFactoryImpl implements CDOFactory
   {
     switch (eDataType.getClassifierID())
     {
-      case CDOPackage.RESOURCE_MANAGER:
-        return convertResourceManagerToString(eDataType, instanceValue);
+      case CDOPackage.CDO_RESOURCE:
+        return convertCDOResourceToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName()
             + "' is not a valid classifier");
@@ -119,9 +119,9 @@ public class CDOFactoryImpl extends EFactoryImpl implements CDOFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ResourceManager createResourceManagerFromString(EDataType eDataType, String initialValue)
+  public CDOResource createCDOResourceFromString(EDataType eDataType, String initialValue)
   {
-    return (ResourceManager) super.createFromString(eDataType, initialValue);
+    return (CDOResource) super.createFromString(eDataType, initialValue);
   }
 
   /**
@@ -129,7 +129,7 @@ public class CDOFactoryImpl extends EFactoryImpl implements CDOFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public String convertResourceManagerToString(EDataType eDataType, Object instanceValue)
+  public String convertCDOResourceToString(EDataType eDataType, Object instanceValue)
   {
     return super.convertToString(eDataType, instanceValue);
   }
@@ -139,7 +139,7 @@ public class CDOFactoryImpl extends EFactoryImpl implements CDOFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public CDOPackage getCdoPackage()
+  public CDOPackage getCDOPackage()
   {
     return (CDOPackage) getEPackage();
   }

@@ -64,7 +64,7 @@ public class CDOResourceFactoryImpl implements Resource.Factory
     int rid = parseRID(uri.authority());
     if (rid != CDOProtocol.UNKNOWN_RID)
     {
-      return createResourceFromRid(rid);
+      return createResourceFromRID(rid);
     }
     else
     {
@@ -136,7 +136,7 @@ public class CDOResourceFactoryImpl implements Resource.Factory
     return createResource(rid, path, existing);
   }
 
-  private CDOResource createResourceFromRid(int rid)
+  private CDOResource createResourceFromRID(int rid)
   {
     if (logger.isDebugEnabled()) logger.debug("Creating resource with RID " + rid);
 
@@ -146,7 +146,7 @@ public class CDOResourceFactoryImpl implements Resource.Factory
     // Only ask for resource info, when not in the context of a ReceivingLoadResponse!!!
     if (resourceManager.isRequestingObjects())
     {
-      path = ClientCDOProtocolImpl.requestResourceRid(resourceManager.getChannel(), rid);
+      path = ClientCDOProtocolImpl.requestResourceRID(resourceManager.getChannel(), rid);
       existing = path == null;
 
       if (!existing)

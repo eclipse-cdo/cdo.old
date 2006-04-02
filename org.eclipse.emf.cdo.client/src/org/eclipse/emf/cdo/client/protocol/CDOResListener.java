@@ -8,7 +8,7 @@ import org.eclipse.emf.cdo.core.protocol.ResourceChangeInfo;
 import java.util.List;
 
 
-public interface CdoResListener
+public interface CDOResListener
 {
-  public void notifyResourcesChanged(Channel channel, List<ResourceChangeInfo> infos);
+  public void notifyResourcesChanged(Channel channel, List<ResourceChangeInfo> changes);
 }

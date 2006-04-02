@@ -819,7 +819,7 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
       selectionViewer = (TreeViewer)viewerPane.getViewer();
       selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 
-      selectionViewer.setLabelProvider(new CdoLabelProvider(adapterFactory));
+      selectionViewer.setLabelProvider(new CDOLabelProvider(adapterFactory));
       selectionViewer.setInput(getResource());
       viewerPane.setTitle(getResource());
 
@@ -943,7 +943,7 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
           //
           contentOutlineViewer
                   .setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-          contentOutlineViewer.setLabelProvider(new CdoLabelProvider(adapterFactory));
+          contentOutlineViewer.setLabelProvider(new CDOLabelProvider(adapterFactory));
           contentOutlineViewer.setInput(editingDomain.getResourceSet());
 
           // Make sure our popups work.
@@ -1456,9 +1456,9 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
   /**
    * @ADDED
    */
-  private static final class CdoLabelProvider extends AdapterFactoryLabelProvider
+  private static final class CDOLabelProvider extends AdapterFactoryLabelProvider
   {
-    private CdoLabelProvider(AdapterFactory factory)
+    private CDOLabelProvider(AdapterFactory factory)
     {
       super(factory);
     }

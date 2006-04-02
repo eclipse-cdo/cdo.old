@@ -33,11 +33,11 @@ public abstract class AbstractPackageRequest extends AbstractCDOClientRequest
         debug("Responded class " + className + " = " + cid);
       }
 
-      setCidOnClassInfo(className, cid);
+      setCIDOnClassInfo(className, cid);
     }
   }
 
-  private void setCidOnClassInfo(String className, int cid)
+  private void setCIDOnClassInfo(String className, int cid)
   {
     PackageManager packageManager = getPackageManager();
     for (Iterator classInfoIt = packageManager.getClassInfos(); classInfoIt.hasNext();)

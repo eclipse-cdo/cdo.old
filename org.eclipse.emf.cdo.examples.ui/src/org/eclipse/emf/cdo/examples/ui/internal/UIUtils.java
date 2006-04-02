@@ -23,7 +23,7 @@ import org.eclipse.ui.PlatformUI;
 
 public class UIUtils
 {
-  public static void openCdoNewWizard()
+  public static void openCDONewWizard()
   {
     CDONewWizard wizard = new CDONewWizard();
     wizard.init(PlatformUI.getWorkbench(), null);
@@ -34,7 +34,7 @@ public class UIUtils
     dialog.open();
   }
 
-  public static IEditorPart openCdoEditor(ResourceInfo resourceInfo)
+  public static IEditorPart openCDOEditor(ResourceInfo resourceInfo)
   {
     IWorkbench workbench = PlatformUI.getWorkbench();
     IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();

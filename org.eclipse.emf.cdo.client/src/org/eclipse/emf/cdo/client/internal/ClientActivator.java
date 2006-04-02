@@ -26,7 +26,7 @@ import java.util.List;
 
 
 /**
- * This is the central singleton for the Cdo edit plugin.
+ * This is the central singleton for the CDO edit plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

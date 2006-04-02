@@ -34,13 +34,13 @@ public class CDOResourceImpl extends ResourceImpl implements CDOResource
 
   protected ResourceManager resourceManager;
 
-  private static long nextTempOidFragment;
+  private static long nextTempOIDFragment;
 
   private static final Logger logger = Logger.getLogger(CDOResourceImpl.class);
 
   public CDOResourceImpl(ResourceInfo resourceInfo, ResourceManager resourceManager)
   {
-    super(URI.createURI(CDOProtocol.PROTOCOL_NAME + "://" + resourceInfo.getRid()));
+    super(URI.createURI(CDOProtocol.PROTOCOL_NAME + "://" + resourceInfo.getRID()));
     this.resourceInfo = resourceInfo;
     this.resourceManager = resourceManager;
   }
@@ -55,9 +55,9 @@ public class CDOResourceImpl extends ResourceImpl implements CDOResource
     return resourceInfo.getPath();
   }
 
-  public int getRid()
+  public int getRID()
   {
-    return resourceInfo.getRid();
+    return resourceInfo.getRID();
   }
 
   public boolean isExisting()
@@ -69,7 +69,7 @@ public class CDOResourceImpl extends ResourceImpl implements CDOResource
   {
     if (resourceManager.isRequestingObjects())
     {
-      ClientCDOProtocolImpl.requestLoadResource(resourceManager.getChannel(), getRid(),
+      ClientCDOProtocolImpl.requestLoadResource(resourceManager.getChannel(), getRID(),
           resourceManager.getPackageManager());
     }
   }
@@ -91,9 +91,9 @@ public class CDOResourceImpl extends ResourceImpl implements CDOResource
 
   public synchronized EObject getEObjectByID(String id)
   {
-    OIDEncoder oIDEncoder = resourceManager.getPackageManager().getOidEncoder();
+    OIDEncoder oidEncoder = resourceManager.getPackageManager().getOidEncoder();
     long oidFragment = Long.parseLong(id);
-    long oid = oIDEncoder.getOID(getRid(), oidFragment);
+    long oid = oidEncoder.getOID(getRID(), oidFragment);
     EObject object = resourceManager.getObject(oid);
 
     if (object != null)
@@ -150,7 +150,7 @@ public class CDOResourceImpl extends ResourceImpl implements CDOResource
 
       if (cDOPersistable.cdoGetOID() == 0)
       {
-        long oid = getNextTempOid();
+        long oid = getNextTempOID();
 
         if (logger.isDebugEnabled())
         {
@@ -167,10 +167,10 @@ public class CDOResourceImpl extends ResourceImpl implements CDOResource
     }
   }
 
-  private long getNextTempOid()
+  private long getNextTempOID()
   {
-    OIDEncoder oIDEncoder = resourceManager.getPackageManager().getOidEncoder();
-    return -oIDEncoder.getOID(getRid(), ++nextTempOidFragment);
+    OIDEncoder oidEncoder = resourceManager.getPackageManager().getOidEncoder();
+    return -oidEncoder.getOID(getRID(), ++nextTempOIDFragment);
   }
 
   public ResourceManager getResourceManager()

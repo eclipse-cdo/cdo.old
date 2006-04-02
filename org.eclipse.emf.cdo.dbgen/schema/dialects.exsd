@@ -3,7 +3,7 @@
 <schema targetNamespace="org.eclipse.emf.cdo.dbgen">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.emf.cdo.dbgen" id="dialects" name="Net4j Pluggable SQL Dialects"/>
+         <meta.schema plugin="org.eclipse.emf.cdo.dbgen" id="dialects" name="CDO Pluggable SQL Dialects"/>
       </appInfo>
       <documentation>
          [Enter description of this extension point.]

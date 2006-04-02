@@ -43,7 +43,7 @@ public final class ResourceChangeInfo
     return path;
   }
 
-  public int getRid()
+  public int getRID()
   {
     return rid;
   }

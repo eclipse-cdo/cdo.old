@@ -2,6 +2,6 @@
 <?eclipse version="3.0"?>
 <plugin>
    
-     <extension-point id="drivers" name="Net4j Pluggable JDBC Drivers" schema="schema/drivers.exsd"/>
+     <extension-point id="drivers" name="CDO Pluggable JDBC Drivers" schema="schema/drivers.exsd"/>
 
 </plugin>

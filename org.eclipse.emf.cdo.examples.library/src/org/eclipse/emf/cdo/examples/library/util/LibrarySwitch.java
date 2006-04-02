@@ -110,8 +110,8 @@ public class LibrarySwitch
       {
         Library library = (Library) theEObject;
         Object result = caseLibrary(library);
-        if (result == null) result = caseCdoPersistent(library);
-        if (result == null) result = caseCdoPersistable(library);
+        if (result == null) result = caseCDOPersistent(library);
+        if (result == null) result = caseCDOPersistable(library);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -119,8 +119,8 @@ public class LibrarySwitch
       {
         Book book = (Book) theEObject;
         Object result = caseBook(book);
-        if (result == null) result = caseCdoPersistent(book);
-        if (result == null) result = caseCdoPersistable(book);
+        if (result == null) result = caseCDOPersistent(book);
+        if (result == null) result = caseCDOPersistable(book);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -128,8 +128,8 @@ public class LibrarySwitch
       {
         Author author = (Author) theEObject;
         Object result = caseAuthor(author);
-        if (result == null) result = caseCdoPersistent(author);
-        if (result == null) result = caseCdoPersistable(author);
+        if (result == null) result = caseCDOPersistent(author);
+        if (result == null) result = caseCDOPersistable(author);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -137,8 +137,8 @@ public class LibrarySwitch
       {
         Topic topic = (Topic) theEObject;
         Object result = caseTopic(topic);
-        if (result == null) result = caseCdoPersistent(topic);
-        if (result == null) result = caseCdoPersistable(topic);
+        if (result == null) result = caseCDOPersistent(topic);
+        if (result == null) result = caseCDOPersistable(topic);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -147,8 +147,8 @@ public class LibrarySwitch
         EBook eBook = (EBook) theEObject;
         Object result = caseEBook(eBook);
         if (result == null) result = caseBook(eBook);
-        if (result == null) result = caseCdoPersistent(eBook);
-        if (result == null) result = caseCdoPersistable(eBook);
+        if (result == null) result = caseCDOPersistent(eBook);
+        if (result == null) result = caseCDOPersistable(eBook);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -248,7 +248,7 @@ public class LibrarySwitch
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public Object caseCdoPersistable(CDOPersistable object)
+  public Object caseCDOPersistable(CDOPersistable object)
   {
     return null;
   }
@@ -264,7 +264,7 @@ public class LibrarySwitch
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public Object caseCdoPersistent(CDOPersistent object)
+  public Object caseCDOPersistent(CDOPersistent object)
   {
     return null;
   }

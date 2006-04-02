@@ -142,9 +142,9 @@ public class MappingModelWizard extends Wizard implements INewWizard
   {
     this.workbench = workbench;
     this.selection = selection;
-    setWindowTitle(CdoMappingEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
+    setWindowTitle(MappingEditorActivator.INSTANCE.getString("_UI_Wizard_label"));
     setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE
-        .getImageDescriptor(CdoMappingEditorPlugin.INSTANCE.getImage("full/wizban/NewMapping")));
+        .getImageDescriptor(MappingEditorActivator.INSTANCE.getImage("full/wizban/NewMapping")));
   }
 
   /**
@@ -240,7 +240,7 @@ public class MappingModelWizard extends Wizard implements INewWizard
           }
           catch (Exception exception)
           {
-            CdoMappingEditorPlugin.INSTANCE.log(exception);
+            MappingEditorActivator.INSTANCE.log(exception);
           }
           finally
           {
@@ -277,7 +277,7 @@ public class MappingModelWizard extends Wizard implements INewWizard
       }
       catch (PartInitException exception)
       {
-        MessageDialog.openError(workbenchWindow.getShell(), CdoMappingEditorPlugin.INSTANCE
+        MessageDialog.openError(workbenchWindow.getShell(), MappingEditorActivator.INSTANCE
             .getString("_UI_OpenEditorError_label"), exception.getMessage());
         return false;
       }
@@ -286,7 +286,7 @@ public class MappingModelWizard extends Wizard implements INewWizard
     }
     catch (Exception exception)
     {
-      CdoMappingEditorPlugin.INSTANCE.log(exception);
+      MappingEditorActivator.INSTANCE.log(exception);
       return false;
     }
   }
@@ -323,12 +323,12 @@ public class MappingModelWizard extends Wizard implements INewWizard
       {
         // Make sure the file ends in ".mapping".
         //
-        String requiredExt = CdoMappingEditorPlugin.INSTANCE
+        String requiredExt = MappingEditorActivator.INSTANCE
             .getString("_UI_MappingEditorFilenameExtension");
         String enteredExt = new Path(getFileName()).getFileExtension();
         if (enteredExt == null || !enteredExt.equals(requiredExt))
         {
-          setErrorMessage(CdoMappingEditorPlugin.INSTANCE.getString("_WARN_FilenameExtension",
+          setErrorMessage(MappingEditorActivator.INSTANCE.getString("_WARN_FilenameExtension",
               new Object[] { requiredExt}));
           return false;
         }
@@ -419,7 +419,7 @@ public class MappingModelWizard extends Wizard implements INewWizard
 
       Label containerLabel = new Label(composite, SWT.LEFT);
       {
-        containerLabel.setText(CdoMappingEditorPlugin.INSTANCE.getString("_UI_ModelObject"));
+        containerLabel.setText(MappingEditorActivator.INSTANCE.getString("_UI_ModelObject"));
 
         GridData data = new GridData();
         data.horizontalAlignment = GridData.FILL;
@@ -447,7 +447,7 @@ public class MappingModelWizard extends Wizard implements INewWizard
 
       Label encodingLabel = new Label(composite, SWT.LEFT);
       {
-        encodingLabel.setText(CdoMappingEditorPlugin.INSTANCE.getString("_UI_XMLEncoding"));
+        encodingLabel.setText(MappingEditorActivator.INSTANCE.getString("_UI_XMLEncoding"));
 
         GridData data = new GridData();
         data.horizontalAlignment = GridData.FILL;
@@ -563,7 +563,7 @@ public class MappingModelWizard extends Wizard implements INewWizard
       }
       catch (MissingResourceException mre)
       {
-        CdoMappingEditorPlugin.INSTANCE.log(mre);
+        MappingEditorActivator.INSTANCE.log(mre);
       }
       return typeName;
     }
@@ -578,7 +578,7 @@ public class MappingModelWizard extends Wizard implements INewWizard
       if (encodings == null)
       {
         encodings = new ArrayList();
-        for (StringTokenizer stringTokenizer = new StringTokenizer(CdoMappingEditorPlugin.INSTANCE
+        for (StringTokenizer stringTokenizer = new StringTokenizer(MappingEditorActivator.INSTANCE
             .getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens();)
         {
           encodings.add(stringTokenizer.nextToken());
@@ -599,13 +599,13 @@ public class MappingModelWizard extends Wizard implements INewWizard
     // Create a page, set the title, and the initial model file name.
     //
     newFileCreationPage = new MappingModelWizardNewFileCreationPage("Whatever", selection);
-    newFileCreationPage.setTitle(CdoMappingEditorPlugin.INSTANCE
+    newFileCreationPage.setTitle(MappingEditorActivator.INSTANCE
         .getString("_UI_MappingModelWizard_label"));
-    newFileCreationPage.setDescription(CdoMappingEditorPlugin.INSTANCE
+    newFileCreationPage.setDescription(MappingEditorActivator.INSTANCE
         .getString("_UI_MappingModelWizard_description"));
-    newFileCreationPage.setFileName(CdoMappingEditorPlugin.INSTANCE
+    newFileCreationPage.setFileName(MappingEditorActivator.INSTANCE
         .getString("_UI_MappingEditorFilenameDefaultBase")
-        + "." + CdoMappingEditorPlugin.INSTANCE.getString("_UI_MappingEditorFilenameExtension"));
+        + "." + MappingEditorActivator.INSTANCE.getString("_UI_MappingEditorFilenameExtension"));
     addPage(newFileCreationPage);
 
     // Try and get the resource selection to determine a current directory for the file dialog.
@@ -635,9 +635,9 @@ public class MappingModelWizard extends Wizard implements INewWizard
 
           // Make up a unique new name here.
           //
-          String defaultModelBaseFilename = CdoMappingEditorPlugin.INSTANCE
+          String defaultModelBaseFilename = MappingEditorActivator.INSTANCE
               .getString("_UI_MappingEditorFilenameDefaultBase");
-          String defaultModelFilenameExtension = CdoMappingEditorPlugin.INSTANCE
+          String defaultModelFilenameExtension = MappingEditorActivator.INSTANCE
               .getString("_UI_MappingEditorFilenameExtension");
           String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
           for (int i = 1; ((IContainer) selectedResource).findMember(modelFilename) != null; ++i)
@@ -649,9 +649,9 @@ public class MappingModelWizard extends Wizard implements INewWizard
       }
     }
     initialObjectCreationPage = new MappingModelWizardInitialObjectCreationPage("Whatever2");
-    initialObjectCreationPage.setTitle(CdoMappingEditorPlugin.INSTANCE
+    initialObjectCreationPage.setTitle(MappingEditorActivator.INSTANCE
         .getString("_UI_MappingModelWizard_label"));
-    initialObjectCreationPage.setDescription(CdoMappingEditorPlugin.INSTANCE
+    initialObjectCreationPage.setDescription(MappingEditorActivator.INSTANCE
         .getString("_UI_Wizard_initial_object_description"));
     addPage(initialObjectCreationPage);
   }

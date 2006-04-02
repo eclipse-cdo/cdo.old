@@ -19,7 +19,7 @@ import org.eclipse.net4j.util.eclipse.AbstractPlugin;
 
 import org.eclipse.emf.cdo.client.PackageManager;
 import org.eclipse.emf.cdo.client.ResourceManager;
-import org.eclipse.emf.cdo.client.protocol.CdoResClientProtocolImpl;
+import org.eclipse.emf.cdo.client.protocol.ClientCDOResProtocolImpl;
 import org.eclipse.emf.cdo.example.client.ResourceCache;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
@@ -187,8 +187,8 @@ public class ExampleClientPlugin extends AbstractPlugin
   {
     if (resourceCache == null)
     {
-      CdoResClientProtocolImpl protocol = (CdoResClientProtocolImpl) getClientContainer().getBean(
-          "cdoResClientProtocol");
+      ClientCDOResProtocolImpl protocol = (ClientCDOResProtocolImpl) getClientContainer().getBean(
+          "clientCDOResProtocol");
       resourceCache = new ResourceCache(protocol, getConnector());
     }
 

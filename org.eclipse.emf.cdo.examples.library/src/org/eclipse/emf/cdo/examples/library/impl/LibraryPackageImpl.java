@@ -448,14 +448,14 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage
     setNsURI(eNS_URI);
 
     // Obtain other dependent packages
-    CDOPackage theCdoPackage = (CDOPackage) EPackage.Registry.INSTANCE
+    CDOPackage theCDOPackage = (CDOPackage) EPackage.Registry.INSTANCE
         .getEPackage(CDOPackage.eNS_URI);
 
     // Add supertypes to classes
-    libraryEClass.getESuperTypes().add(theCdoPackage.getCdoPersistent());
-    bookEClass.getESuperTypes().add(theCdoPackage.getCdoPersistent());
-    authorEClass.getESuperTypes().add(theCdoPackage.getCdoPersistent());
-    topicEClass.getESuperTypes().add(theCdoPackage.getCdoPersistent());
+    libraryEClass.getESuperTypes().add(theCDOPackage.getCDOPersistent());
+    bookEClass.getESuperTypes().add(theCDOPackage.getCDOPersistent());
+    authorEClass.getESuperTypes().add(theCDOPackage.getCDOPersistent());
+    topicEClass.getESuperTypes().add(theCDOPackage.getCDOPersistent());
     eBookEClass.getESuperTypes().add(this.getBook());
 
     // Initialize classes and features; add operations and parameters

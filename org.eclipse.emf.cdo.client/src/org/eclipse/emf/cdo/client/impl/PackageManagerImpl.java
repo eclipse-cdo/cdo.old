@@ -61,7 +61,7 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
 
   private boolean autoPersistent = DEFAULT_AUTO_PERSISTENT;
 
-  private OIDEncoder oIDEncoder;
+  private OIDEncoder oidEncoder;
 
   private AttributeConverter attributeConverter;
 
@@ -75,14 +75,14 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
 
   private transient List listeners = new ArrayList();
 
-  public OIDEncoder getOidEncoder()
+  public OIDEncoder getOidEncoder() // Don't change case! Spring will be irritated
   {
-    return oIDEncoder;
+    return oidEncoder;
   }
 
-  public void setOidEncoder(OIDEncoder oIDEncoder)
+  public void setOidEncoder(OIDEncoder oidEncoder) // Don't change case! Spring will be irritated
   {
-    doSet("oIDEncoder", oIDEncoder);
+    doSet("oidEncoder", oidEncoder);
   }
 
   public AttributeConverter getAttributeConverter()
@@ -319,7 +319,7 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
   protected void validate() throws ValidationException
   {
     super.validate();
-    assertNotNull("oIDEncoder");
+    assertNotNull("oidEncoder");
     assertNotNull("attributeConverter");
     processMappings();
   }

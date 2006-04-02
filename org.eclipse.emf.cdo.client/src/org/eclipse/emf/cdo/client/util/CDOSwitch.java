@@ -103,16 +103,16 @@ public class CDOSwitch
     {
       case CDOPackage.CDO_PERSISTABLE:
       {
-        CDOPersistable cDOPersistable = (CDOPersistable) theEObject;
-        Object result = caseCdoPersistable(cDOPersistable);
+        CDOPersistable cdoPersistable = (CDOPersistable) theEObject;
+        Object result = caseCDOPersistable(cdoPersistable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
       case CDOPackage.CDO_PERSISTENT:
       {
-        CDOPersistent cDOPersistent = (CDOPersistent) theEObject;
-        Object result = caseCdoPersistent(cDOPersistent);
-        if (result == null) result = caseCdoPersistable(cDOPersistent);
+        CDOPersistent cdoPersistent = (CDOPersistent) theEObject;
+        Object result = caseCDOPersistent(cdoPersistent);
+        if (result == null) result = caseCDOPersistable(cdoPersistent);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -132,7 +132,7 @@ public class CDOSwitch
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public Object caseCdoPersistable(CDOPersistable object)
+  public Object caseCDOPersistable(CDOPersistable object)
   {
     return null;
   }
@@ -148,7 +148,7 @@ public class CDOSwitch
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public Object caseCdoPersistent(CDOPersistent object)
+  public Object caseCDOPersistent(CDOPersistent object)
   {
     return null;
   }

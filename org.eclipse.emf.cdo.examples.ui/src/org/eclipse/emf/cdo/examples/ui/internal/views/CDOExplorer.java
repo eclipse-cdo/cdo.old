@@ -29,7 +29,7 @@ import org.eclipse.ui.part.ViewPart;
 
 public class CDOExplorer extends ViewPart
 {
-  public static final String VIEW_ID = "org.eclipse.emf.cdo.example.ui.CdoExplorer";
+  public static final String VIEW_ID = "org.eclipse.emf.cdo.example.ui.CDOExplorer";
 
   public static CDOExplorer INSTANCE;
 
@@ -121,12 +121,12 @@ public class CDOExplorer extends ViewPart
     {
       public void run()
       {
-        UIUtils.openCdoNewWizard();
+        UIUtils.openCDONewWizard();
       }
     };
     newResourceAction.setText("New CDO Resource");
     newResourceAction.setToolTipText("New CDO Resource");
-    newResourceAction.setImageDescriptor(UIUtils.getImageDescriptor("full/ctool16/NewCdoResource"));
+    newResourceAction.setImageDescriptor(UIUtils.getImageDescriptor("full/ctool16/NewCDOResource"));
 
     deleteResourceAction = new Action()
     {
@@ -138,7 +138,7 @@ public class CDOExplorer extends ViewPart
     deleteResourceAction.setText("Delete CDO Resource");
     deleteResourceAction.setToolTipText("Delete CDO Resource");
     deleteResourceAction.setImageDescriptor(UIUtils
-            .getImageDescriptor("full/ctool16/DeleteCdoResource"));
+            .getImageDescriptor("full/ctool16/DeleteCDOResource"));
 
     openResourceAction = new Action()
     {
@@ -148,7 +148,7 @@ public class CDOExplorer extends ViewPart
         Object obj = ((IStructuredSelection)selection).getFirstElement();
         if (obj instanceof ResourceInfo)
         {
-          UIUtils.openCdoEditor((ResourceInfo)obj);
+          UIUtils.openCDOEditor((ResourceInfo)obj);
         }
       }
     };

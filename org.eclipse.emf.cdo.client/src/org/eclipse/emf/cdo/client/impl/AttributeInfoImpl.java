@@ -73,7 +73,7 @@ public class AttributeInfoImpl implements AttributeInfo
     EDataType attributeType = attribute.getEAttributeType();
     PackageManager packageManager = getClassInfo().getPackageInfo().getPackageManager();
     AttributeConverter converter = packageManager.getAttributeConverter();
-    dataType = converter.getCdoDataType(attributeType);
+    dataType = converter.getCDODataType(attributeType);
   }
 
   public ClassInfo getClassInfo()

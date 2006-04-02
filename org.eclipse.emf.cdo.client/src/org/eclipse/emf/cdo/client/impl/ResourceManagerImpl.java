@@ -174,7 +174,7 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
 
   public void registerResource(CDOResource resource)
   {
-    Integer rid = new Integer(resource.getRid());
+    Integer rid = new Integer(resource.getRID());
     ridToResourceMap.put(rid, resource);
 
     String path = resource.getPath();
@@ -216,7 +216,7 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
 
   protected void notifyRemovedResource(CDOResource resource)
   {
-    Integer rid = new Integer(resource.getRid());
+    Integer rid = new Integer(resource.getRID());
     if (isDebugEnabled()) debug("Removing resource with rid " + rid);
 
     synchronized (ridToResourceMap)
@@ -359,9 +359,9 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
 
   public URI createProxyURI(long oid)
   {
-    OIDEncoder oIDEncoder = packageManager.getOidEncoder();
-    int rid = oIDEncoder.getRID(oid);
-    long oidFragment = oIDEncoder.getOIDFragment(oid);
+    OIDEncoder oidEncoder = packageManager.getOidEncoder();
+    int rid = oidEncoder.getRID(oid);
+    long oidFragment = oidEncoder.getOIDFragment(oid);
 
     StringBuffer buffer = new StringBuffer();
     buffer.append(CDOProtocol.PROTOCOL_SCHEME);

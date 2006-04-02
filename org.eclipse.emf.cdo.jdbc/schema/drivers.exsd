@@ -3,7 +3,7 @@
 <schema targetNamespace="org.eclipse.emf.cdo.jdbc">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.emf.cdo.jdbc" id="drivers" name="Net4j Pluggable JDBC Drivers"/>
+         <meta.schema plugin="org.eclipse.emf.cdo.jdbc" id="drivers" name="CDO Pluggable JDBC Drivers"/>
       </appInfo>
       <documentation>
          [Enter description of this extension point.]

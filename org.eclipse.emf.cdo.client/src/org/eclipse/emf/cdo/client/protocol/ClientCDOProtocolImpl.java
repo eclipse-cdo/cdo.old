@@ -110,7 +110,7 @@ public class ClientCDOProtocolImpl extends AbstractCDOProtocol
     return ((Integer) channel.transmit(signal)).intValue();
   }
 
-  public static String requestResourceRid(Channel channel, int rid)
+  public static String requestResourceRID(Channel channel, int rid)
   {
     assertValidChannel(channel);
     Request signal = new ResourceRIDRequest(rid);
@@ -143,7 +143,7 @@ public class ClientCDOProtocolImpl extends AbstractCDOProtocol
 
         if (cDOResource.getPath() == null)
         {
-          String path = ClientCDOProtocolImpl.requestResourceRid(channel, cDOResource.getRid());
+          String path = ClientCDOProtocolImpl.requestResourceRID(channel, cDOResource.getRID());
 
           if (path == null)
           {
@@ -151,7 +151,7 @@ public class ClientCDOProtocolImpl extends AbstractCDOProtocol
           }
 
           resourceManager.registerResourcePath(cDOResource, path);
-          ClientCDOProtocolImpl.requestLoadResource(channel, cDOResource.getRid(), resourceManager
+          ClientCDOProtocolImpl.requestLoadResource(channel, cDOResource.getRID(), resourceManager
               .getPackageManager());
         }
       }

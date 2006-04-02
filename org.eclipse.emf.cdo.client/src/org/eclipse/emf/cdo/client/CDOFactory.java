@@ -39,6 +39,6 @@ public interface CDOFactory extends EFactory
    * @return the package supported by this factory.
    * @generated
    */
-  CDOPackage getCdoPackage();
+  CDOPackage getCDOPackage();
 
 } //CDOFactory

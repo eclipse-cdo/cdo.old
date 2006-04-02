@@ -6,8 +6,8 @@ import org.eclipse.net4j.core.Connector;
 
 import org.eclipse.emf.cdo.client.ResourceInfo;
 import org.eclipse.emf.cdo.client.impl.ResourceInfoImpl;
-import org.eclipse.emf.cdo.client.protocol.CdoResClientProtocolImpl;
-import org.eclipse.emf.cdo.client.protocol.CdoResListener;
+import org.eclipse.emf.cdo.client.protocol.CDOResListener;
+import org.eclipse.emf.cdo.client.protocol.ClientCDOResProtocolImpl;
 import org.eclipse.emf.cdo.core.CDOResProtocol;
 import org.eclipse.emf.cdo.core.protocol.ResourceChangeInfo;
 
@@ -16,9 +16,9 @@ import java.util.List;
 import java.util.concurrent.Executors;
 
 
-public class ResourceCache implements CdoResListener
+public class ResourceCache implements CDOResListener
 {
-  private CdoResClientProtocolImpl protocol;
+  private ClientCDOResProtocolImpl protocol;
 
   private Connector connector;
 
@@ -28,7 +28,7 @@ public class ResourceCache implements CdoResListener
 
   private List<Listener> listeners = new ArrayList();
 
-  public ResourceCache(CdoResClientProtocolImpl protocol, Connector connector)
+  public ResourceCache(ClientCDOResProtocolImpl protocol, Connector connector)
   {
     this.protocol = protocol;
     this.connector = connector;
@@ -44,7 +44,7 @@ public class ResourceCache implements CdoResListener
       {
         channel = connector.addChannel(CDOResProtocol.PROTOCOL_NAME);
 
-        List<ResourceInfo> resources = CdoResClientProtocolImpl.queryAllResources(channel);
+        List<ResourceInfo> resources = ClientCDOResProtocolImpl.queryAllResources(channel);
         if (resources != null && !resources.isEmpty())
         {
           synchronized (allResources)
@@ -114,7 +114,7 @@ public class ResourceCache implements CdoResListener
       {
         for (ResourceChangeInfo change : changes)
         {
-          ResourceInfo resourceInfo = new ResourceInfoImpl(change.getPath(), change.getRid(), true);
+          ResourceInfo resourceInfo = new ResourceInfoImpl(change.getPath(), change.getRID(), true);
           switch (change.getChangeKind())
           {
             case ResourceChangeInfo.ADDED:

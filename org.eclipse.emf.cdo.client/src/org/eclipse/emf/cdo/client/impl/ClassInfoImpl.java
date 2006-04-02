@@ -92,7 +92,7 @@ public class ClassInfoImpl implements ClassInfo
       {
         EClass candidate = (EClass) it.next();
         if (candidate != null && !candidate.isInterface()
-            && !candidate.equals(CDOPackage.eINSTANCE.getCdoPersistent()))
+            && !candidate.equals(CDOPackage.eINSTANCE.getCDOPersistent()))
         {
           parent = packageInfo.getPackageManager().getClassInfo(candidate);
           break;

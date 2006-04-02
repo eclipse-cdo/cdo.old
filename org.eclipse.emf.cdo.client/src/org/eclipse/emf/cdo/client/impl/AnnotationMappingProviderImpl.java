@@ -291,7 +291,7 @@ public class AnnotationMappingProviderImpl implements MappingProvider, CDODataTy
    */
   public static int getDefaultColumnType(EAttribute attribute, AttributeConverter attributeConverter)
   {
-    int dataType = attributeConverter.getCdoDataType(attribute.getEAttributeType());
+    int dataType = attributeConverter.getCDODataType(attribute.getEAttributeType());
 
     switch (dataType)
     {

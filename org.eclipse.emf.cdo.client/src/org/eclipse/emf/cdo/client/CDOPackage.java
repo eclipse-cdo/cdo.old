@@ -70,7 +70,7 @@ public interface CDOPackage extends EPackage
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see org.eclipse.emf.cdo.client.CDOPersistable
-   * @see org.eclipse.emf.cdo.client.impl.CDOPackageImpl#getCdoPersistable()
+   * @see org.eclipse.emf.cdo.client.impl.CDOPackageImpl#getCDOPersistable()
    * @generated
    */
   int CDO_PERSISTABLE = 0;
@@ -89,7 +89,7 @@ public interface CDOPackage extends EPackage
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see org.eclipse.emf.cdo.client.impl.CDOPersistentImpl
-   * @see org.eclipse.emf.cdo.client.impl.CDOPackageImpl#getCdoPersistent()
+   * @see org.eclipse.emf.cdo.client.impl.CDOPackageImpl#getCDOPersistent()
    * @generated
    */
   int CDO_PERSISTENT = 1;
@@ -104,24 +104,14 @@ public interface CDOPackage extends EPackage
   int CDO_PERSISTENT_FEATURE_COUNT = CDO_PERSISTABLE_FEATURE_COUNT + 0;
 
   /**
-   * The meta object id for the '<em>Resource Manager</em>' data type.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.emf.cdo.client.ResourceManager
-   * @see org.eclipse.emf.cdo.client.impl.CDOPackageImpl#getResourceManager()
-   * @generated
-   */
-  int RESOURCE_MANAGER = 2;
-
-  /**
    * The meta object id for the '<em>Resource</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see org.eclipse.emf.cdo.client.CDOResource
-   * @see org.eclipse.emf.cdo.client.impl.CDOPackageImpl#getCdoResource()
+   * @see org.eclipse.emf.cdo.client.impl.CDOPackageImpl#getCDOResource()
    * @generated
    */
-  int CDO_RESOURCE = 3;
+  int CDO_RESOURCE = 2;
 
   /**
    * Returns the meta object for class '{@link org.eclipse.emf.cdo.client.CDOPersistable <em>Persistable</em>}'.
@@ -131,7 +121,7 @@ public interface CDOPackage extends EPackage
    * @see org.eclipse.emf.cdo.client.CDOPersistable
    * @generated
    */
-  EClass getCdoPersistable();
+  EClass getCDOPersistable();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.emf.cdo.client.CDOPersistent <em>Persistent</em>}'.
@@ -141,18 +131,7 @@ public interface CDOPackage extends EPackage
    * @see org.eclipse.emf.cdo.client.CDOPersistent
    * @generated
    */
-  EClass getCdoPersistent();
-
-  /**
-   * Returns the meta object for data type '{@link org.eclipse.emf.cdo.client.ResourceManager <em>Resource Manager</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for data type '<em>Resource Manager</em>'.
-   * @see org.eclipse.emf.cdo.client.ResourceManager
-   * @model instanceClass="org.eclipse.emf.cdo.client.ResourceManager"
-   * @generated
-   */
-  EDataType getResourceManager();
+  EClass getCDOPersistent();
 
   /**
    * Returns the meta object for data type '{@link org.eclipse.emf.cdo.client.CDOResource <em>Resource</em>}'.
@@ -160,10 +139,10 @@ public interface CDOPackage extends EPackage
    * <!-- end-user-doc -->
    * @return the meta object for data type '<em>Resource</em>'.
    * @see org.eclipse.emf.cdo.client.CDOResource
-   * @model instanceClass="org.eclipse.emf.cdo.client.CDOResource" serializable="false"
+   * @model instanceClass="org.eclipse.emf.cdo.client.CDOResource"
    * @generated
    */
-  EDataType getCdoResource();
+  EDataType getCDOResource();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -172,7 +151,7 @@ public interface CDOPackage extends EPackage
    * @return the factory that creates the instances of the model.
    * @generated
    */
-  CDOFactory getCdoFactory();
+  CDOFactory getCDOFactory();
 
 
   /**
@@ -194,40 +173,30 @@ public interface CDOPackage extends EPackage
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.eclipse.emf.cdo.client.CDOPersistable
-     * @see org.eclipse.emf.cdo.client.impl.CDOPackageImpl#getCdoPersistable()
+     * @see org.eclipse.emf.cdo.client.impl.CDOPackageImpl#getCDOPersistable()
      * @generated
      */
-    EClass CDO_PERSISTABLE = eINSTANCE.getCdoPersistable();
+    EClass CDO_PERSISTABLE = eINSTANCE.getCDOPersistable();
 
     /**
      * The meta object literal for the '{@link org.eclipse.emf.cdo.client.impl.CDOPersistentImpl <em>Persistent</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.eclipse.emf.cdo.client.impl.CDOPersistentImpl
-     * @see org.eclipse.emf.cdo.client.impl.CDOPackageImpl#getCdoPersistent()
+     * @see org.eclipse.emf.cdo.client.impl.CDOPackageImpl#getCDOPersistent()
      * @generated
      */
-    EClass CDO_PERSISTENT = eINSTANCE.getCdoPersistent();
-
-    /**
-     * The meta object literal for the '<em>Resource Manager</em>' data type.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.emf.cdo.client.ResourceManager
-     * @see org.eclipse.emf.cdo.client.impl.CDOPackageImpl#getResourceManager()
-     * @generated
-     */
-    EDataType RESOURCE_MANAGER = eINSTANCE.getResourceManager();
+    EClass CDO_PERSISTENT = eINSTANCE.getCDOPersistent();
 
     /**
      * The meta object literal for the '<em>Resource</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.eclipse.emf.cdo.client.CDOResource
-     * @see org.eclipse.emf.cdo.client.impl.CDOPackageImpl#getCdoResource()
+     * @see org.eclipse.emf.cdo.client.impl.CDOPackageImpl#getCDOResource()
      * @generated
      */
-    EDataType CDO_RESOURCE = eINSTANCE.getCdoResource();
+    EDataType CDO_RESOURCE = eINSTANCE.getCDOResource();
 
   }
 
