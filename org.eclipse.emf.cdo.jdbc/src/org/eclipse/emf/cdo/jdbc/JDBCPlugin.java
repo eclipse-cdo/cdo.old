@@ -29,14 +29,14 @@ import java.util.List;
 /**
  * The main plugin class to be used in the desktop.
  */
-public class Net4jJdbcPlugin extends AbstractPlugin
+public class JDBCPlugin extends AbstractPlugin
 {
   public static final String PLUGIN_ID = "org.eclipse.emf.cdo.jdbc";
 
   public static final String DRIVERS_EXT_POINT_ID = "drivers";
 
   //The shared instance.
-  private static Net4jJdbcPlugin plugin;
+  private static JDBCPlugin plugin;
 
   private List driverElements = new ArrayList();
 
@@ -45,7 +45,7 @@ public class Net4jJdbcPlugin extends AbstractPlugin
   /**
    * The constructor.
    */
-  public Net4jJdbcPlugin()
+  public JDBCPlugin()
   {
     if (plugin == null) plugin = this;
   }
@@ -123,7 +123,7 @@ public class Net4jJdbcPlugin extends AbstractPlugin
   /**
    * Returns the shared instance.
    */
-  public static Net4jJdbcPlugin getDefault()
+  public static JDBCPlugin getDefault()
   {
     return plugin;
   }
