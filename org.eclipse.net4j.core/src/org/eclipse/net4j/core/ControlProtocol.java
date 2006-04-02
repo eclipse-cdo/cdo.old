@@ -11,9 +11,9 @@
 package org.eclipse.net4j.core;
 
 
-public interface BasicProtocol extends Protocol
+public interface ControlProtocol extends Protocol
 {
-  public static final String PROTOCOL_NAME = "basic";
+  public static final String PROTOCOL_NAME = "control";
 
   public static final short CHANNEL_REGISTRATION = 1;
 

@@ -11,7 +11,7 @@
 package org.eclipse.net4j.core.protocol;
 
 
-import org.eclipse.net4j.core.BasicProtocol;
+import org.eclipse.net4j.core.ControlProtocol;
 import org.eclipse.net4j.core.Protocol;
 import org.eclipse.net4j.core.ProtocolManager;
 import org.eclipse.net4j.core.impl.AbstractIndicationWithResponse;
@@ -30,7 +30,7 @@ public class GetProtocolsIndication extends AbstractIndicationWithResponse
 
   public short getSignalId()
   {
-    return BasicProtocol.GET_PROTOCOLS;
+    return ControlProtocol.GET_PROTOCOLS;
   }
 
   public void indicate()

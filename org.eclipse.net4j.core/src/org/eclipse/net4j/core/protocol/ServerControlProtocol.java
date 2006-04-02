@@ -11,16 +11,15 @@
 package org.eclipse.net4j.core.protocol;
 
 
-import org.eclipse.net4j.core.Channel;
 import org.eclipse.net4j.core.Indication;
 import org.eclipse.net4j.util.ImplementationError;
 
 
-public class BasicClientProtocol extends AbstractBasicProtocol
+public class ServerControlProtocol extends AbstractControlProtocol
 {
   public int getType()
   {
-    return CLIENT;
+    return SERVER;
   }
 
   public Indication createIndication(short signalId)
@@ -42,10 +41,5 @@ public class BasicClientProtocol extends AbstractBasicProtocol
     default:
       throw new ImplementationError("Invalid signalId: " + signalId);
     }
-  }
-
-  public static String[] requestProtocols(Channel channel)
-  {
-    return (String[])channel.transmit(new GetProtocolsRequest());
   }
 }

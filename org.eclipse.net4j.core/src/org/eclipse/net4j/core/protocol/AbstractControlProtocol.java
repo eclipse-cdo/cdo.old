@@ -11,11 +11,11 @@
 package org.eclipse.net4j.core.protocol;
 
 
-import org.eclipse.net4j.core.BasicProtocol;
+import org.eclipse.net4j.core.ControlProtocol;
 import org.eclipse.net4j.core.impl.AbstractProtocol;
 
 
-public abstract class AbstractBasicProtocol extends AbstractProtocol implements BasicProtocol
+public abstract class AbstractControlProtocol extends AbstractProtocol implements ControlProtocol
 {
   public String getName()
   {

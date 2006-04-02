@@ -11,17 +11,17 @@
 package org.eclipse.net4j.core.impl;
 
 
-import org.eclipse.net4j.core.BasicProtocol;
+import org.eclipse.net4j.core.ControlProtocol;
 import org.eclipse.net4j.core.BufferPool;
 import org.eclipse.net4j.core.Channel;
 import org.eclipse.net4j.core.ConnectionManager;
 import org.eclipse.net4j.core.Connector;
 import org.eclipse.net4j.core.Negotiator;
-import org.eclipse.net4j.core.NoBasicProtocolException;
+import org.eclipse.net4j.core.NoControlProtocolException;
 import org.eclipse.net4j.core.Protocol;
 import org.eclipse.net4j.core.ProtocolManager;
 import org.eclipse.net4j.core.UnknownProtocolException;
-import org.eclipse.net4j.core.protocol.AbstractBasicProtocol;
+import org.eclipse.net4j.core.protocol.AbstractControlProtocol;
 import org.eclipse.net4j.core.protocol.ChannelDeregistrationRequest;
 import org.eclipse.net4j.core.protocol.ChannelRegistrationRequest;
 import org.eclipse.net4j.spring.ValidationException;
@@ -124,13 +124,13 @@ public abstract class AbstractConnector extends ServiceImpl implements Connector
 
     if (channels.isEmpty())
     {
-      if (protocolName.equals(AbstractBasicProtocol.PROTOCOL_NAME))
+      if (protocolName.equals(AbstractControlProtocol.PROTOCOL_NAME))
       {
         withSignal = false;
       }
       else
       {
-        throw new NoBasicProtocolException();
+        throw new NoControlProtocolException();
       }
     }
 
@@ -358,7 +358,7 @@ public abstract class AbstractConnector extends ServiceImpl implements Connector
       negotiator.negotiate(this);
     }
 
-    addChannel(BasicProtocol.PROTOCOL_NAME);
+    addChannel(ControlProtocol.PROTOCOL_NAME);
 
     if (isServer())
     {

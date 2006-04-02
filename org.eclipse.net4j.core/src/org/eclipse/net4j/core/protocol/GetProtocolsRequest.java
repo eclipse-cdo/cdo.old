@@ -11,7 +11,7 @@
 package org.eclipse.net4j.core.protocol;
 
 
-import org.eclipse.net4j.core.BasicProtocol;
+import org.eclipse.net4j.core.ControlProtocol;
 import org.eclipse.net4j.core.impl.AbstractRequestWithConfirmation;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class GetProtocolsRequest extends AbstractRequestWithConfirmation
 
   public short getSignalId()
   {
-    return BasicProtocol.GET_PROTOCOLS;
+    return ControlProtocol.GET_PROTOCOLS;
   }
 
   public void request()

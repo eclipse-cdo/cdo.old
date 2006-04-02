@@ -11,7 +11,7 @@
 package org.eclipse.net4j.core.protocol;
 
 
-import org.eclipse.net4j.core.BasicProtocol;
+import org.eclipse.net4j.core.ControlProtocol;
 import org.eclipse.net4j.core.impl.AbstractRequest;
 
 
@@ -26,7 +26,7 @@ public class ChannelDeregistrationRequest extends AbstractRequest
 
   public short getSignalId()
   {
-    return BasicProtocol.CHANNEL_DEREGISTRATION;
+    return ControlProtocol.CHANNEL_DEREGISTRATION;
   }
 
   public void request()

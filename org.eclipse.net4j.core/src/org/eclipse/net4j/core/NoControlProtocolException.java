@@ -14,7 +14,7 @@ package org.eclipse.net4j.core;
 import org.eclipse.net4j.util.Net4jException;
 
 
-public class NoBasicProtocolException extends Net4jException
+public class NoControlProtocolException extends Net4jException
 {
   /**
    * 
@@ -24,7 +24,7 @@ public class NoBasicProtocolException extends Net4jException
   /**
    * 
    */
-  public NoBasicProtocolException()
+  public NoControlProtocolException()
   {
     super();
   }
@@ -32,7 +32,7 @@ public class NoBasicProtocolException extends Net4jException
   /**
    * @param message
    */
-  public NoBasicProtocolException(String message)
+  public NoControlProtocolException(String message)
   {
     super(message);
   }
@@ -40,7 +40,7 @@ public class NoBasicProtocolException extends Net4jException
   /**
    * @param cause
    */
-  public NoBasicProtocolException(Throwable cause)
+  public NoControlProtocolException(Throwable cause)
   {
     super(cause);
   }
@@ -49,7 +49,7 @@ public class NoBasicProtocolException extends Net4jException
    * @param message
    * @param cause
    */
-  public NoBasicProtocolException(String message, Throwable cause)
+  public NoControlProtocolException(String message, Throwable cause)
   {
     super(message, cause);
   }

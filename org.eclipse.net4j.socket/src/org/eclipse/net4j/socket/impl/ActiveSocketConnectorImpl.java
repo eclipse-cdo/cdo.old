@@ -11,6 +11,7 @@
 package org.eclipse.net4j.socket.impl;
 
 
+import org.eclipse.net4j.core.ControlProtocol;
 import org.eclipse.net4j.socket.ActiveSocketConnector;
 import org.eclipse.net4j.spring.ValidationException;
 
@@ -56,7 +57,7 @@ public class ActiveSocketConnectorImpl extends AbstractSocketConnector implement
 
   protected void prepareBasicChannel() throws InterruptedException
   {
-    addChannel("basic");
+    addChannel(ControlProtocol.PROTOCOL_NAME);
 
     long start = System.currentTimeMillis();
     while (!isAuthenticated())

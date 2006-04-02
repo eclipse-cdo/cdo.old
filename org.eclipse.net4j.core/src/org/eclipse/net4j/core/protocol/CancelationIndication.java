@@ -11,7 +11,7 @@
 package org.eclipse.net4j.core.protocol;
 
 
-import org.eclipse.net4j.core.BasicProtocol;
+import org.eclipse.net4j.core.ControlProtocol;
 import org.eclipse.net4j.core.Channel;
 import org.eclipse.net4j.core.Connector;
 import org.eclipse.net4j.core.impl.AbstractIndicationWithResponse;
@@ -26,7 +26,7 @@ public class CancelationIndication extends AbstractIndicationWithResponse
 
   public short getSignalId()
   {
-    return BasicProtocol.CANCELATION;
+    return ControlProtocol.CANCELATION;
   }
 
   public void indicate()
