@@ -106,9 +106,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.EventObject;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -558,7 +558,7 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
 
     // Create the editing domain with a special command stack.
     //
-    editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new HashMap());
+    editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, (Map)null);
   }
 
   /**
@@ -617,42 +617,6 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
   public EditingDomain getEditingDomain()
   {
     return editingDomain;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public class ReverseAdapterFactoryContentProvider extends AdapterFactoryContentProvider
-  {
-    public ReverseAdapterFactoryContentProvider(AdapterFactory adapterFactory)
-    {
-      super(adapterFactory);
-    }
-
-    public Object[] getElements(Object object)
-    {
-      Object parent = super.getParent(object);
-      return (parent == null ? Collections.EMPTY_SET : Collections.singleton(parent)).toArray();
-    }
-
-    public Object[] getChildren(Object object)
-    {
-      Object parent = super.getParent(object);
-      return (parent == null ? Collections.EMPTY_SET : Collections.singleton(parent)).toArray();
-    }
-
-    public boolean hasChildren(Object object)
-    {
-      Object parent = super.getParent(object);
-      return parent != null;
-    }
-
-    public Object getParent(Object object)
-    {
-      return null;
-    }
   }
 
   /**
