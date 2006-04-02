@@ -4,12 +4,12 @@
 <fragment>
 
      <extension
-         name="Net4j Pluggable MYSQL Driver"
+         name="CDO Pluggable HSQLDB Driver"
          point="org.eclipse.emf.cdo.jdbc.drivers">
       <driver
             exampleURL="jdbc:hsqldb://&lt;host&gt;/&lt;database&gt;"
             className="org.gjt.mm.hsqldb.Driver"
-            name="MySql">
+            name="HSqlDB">
          <supportedDialect name="hsqldb"/>
       </driver>
    </extension>

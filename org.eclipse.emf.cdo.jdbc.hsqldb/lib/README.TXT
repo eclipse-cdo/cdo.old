@@ -1,5 +1,5 @@
-Please download the Mysql JDBC Driver from:
+Please download the Hsqldb JDBC Engine and Driver from:
 
-	http://dev.hsqldb.com/downloads/connector/j/3.1.html
+	http://hsqldb.org
 	
-and copy hsqldb-connector-java-3.1.12-bin.jar to this folder.
+and copy hsqldb.jar to this folder.
