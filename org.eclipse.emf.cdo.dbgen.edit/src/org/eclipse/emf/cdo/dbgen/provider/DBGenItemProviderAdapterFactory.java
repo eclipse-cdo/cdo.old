@@ -11,7 +11,7 @@
 package org.eclipse.emf.cdo.dbgen.provider;
 
 
-import org.eclipse.emf.cdo.dbgen.util.DbgenAdapterFactory;
+import org.eclipse.emf.cdo.dbgen.util.DBGenAdapterFactory;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
@@ -40,7 +40,7 @@ import java.util.Collection;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DbgenItemProviderAdapterFactory extends DbgenAdapterFactory implements
+public class DBGenItemProviderAdapterFactory extends DBGenAdapterFactory implements
         ComposeableAdapterFactory, IChangeNotifier, IDisposable
 {
   /**
@@ -73,7 +73,7 @@ public class DbgenItemProviderAdapterFactory extends DbgenAdapterFactory impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public DbgenItemProviderAdapterFactory()
+  public DBGenItemProviderAdapterFactory()
   {
     supportedTypes.add(IEditingDomainItemProvider.class);
     supportedTypes.add(IStructuredItemContentProvider.class);

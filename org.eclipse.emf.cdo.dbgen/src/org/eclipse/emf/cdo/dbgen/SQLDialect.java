@@ -14,7 +14,7 @@ package org.eclipse.emf.cdo.dbgen;
 import javax.sql.DataSource;
 
 
-public interface SqlDialect
+public interface SQLDialect
 {
   public String toDBType(int sqlType);
 

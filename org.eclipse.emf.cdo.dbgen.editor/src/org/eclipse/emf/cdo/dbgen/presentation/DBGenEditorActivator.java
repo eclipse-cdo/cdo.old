@@ -4,20 +4,21 @@
  *
  * $Id$
  */
-package org.eclipse.emf.cdo.dbgen.provider;
+package org.eclipse.emf.cdo.dbgen.presentation;
 
 
 import org.eclipse.emf.common.EMFPlugin;
+import org.eclipse.emf.common.ui.EclipseUIPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 
 /**
- * This is the central singleton for the Dbgen edit plugin.
+ * This is the central singleton for the DBGen editor plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public final class DbgenActivator extends EMFPlugin
+public final class DBGenEditorActivator extends EMFPlugin
 {
   /**
    * Keep track of the singleton.
@@ -25,7 +26,7 @@ public final class DbgenActivator extends EMFPlugin
    * <!-- end-user-doc -->
    * @generated
    */
-  public static final DbgenActivator INSTANCE = new DbgenActivator();
+  public static final DBGenEditorActivator INSTANCE = new DBGenEditorActivator();
 
   /**
    * Keep track of the singleton.
@@ -41,7 +42,7 @@ public final class DbgenActivator extends EMFPlugin
    * <!-- end-user-doc -->
    * @generated
    */
-  public DbgenActivator()
+  public DBGenEditorActivator()
   {
     super(new ResourceLocator[] {});
   }
@@ -76,7 +77,7 @@ public final class DbgenActivator extends EMFPlugin
    * <!-- end-user-doc -->
    * @generated
    */
-  public static class Implementation extends EclipsePlugin
+  public static class Implementation extends EclipseUIPlugin
   {
     /**
      * Creates an instance.

@@ -13,7 +13,7 @@ package org.eclipse.emf.cdo.dbgen.util;
 
 import org.eclipse.emf.cdo.dbgen.Column;
 import org.eclipse.emf.cdo.dbgen.Database;
-import org.eclipse.emf.cdo.dbgen.DbgenPackage;
+import org.eclipse.emf.cdo.dbgen.DBGenPackage;
 import org.eclipse.emf.cdo.dbgen.Index;
 import org.eclipse.emf.cdo.dbgen.Table;
 import org.eclipse.emf.ecore.EClass;
@@ -32,10 +32,10 @@ import java.util.List;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.cdo.dbgen.DbgenPackage
+ * @see org.eclipse.emf.cdo.dbgen.DBGenPackage
  * @generated
  */
-public class DbgenSwitch
+public class DBGenSwitch
 {
   /**
    * The cached model package
@@ -43,7 +43,7 @@ public class DbgenSwitch
    * <!-- end-user-doc -->
    * @generated
    */
-  protected static DbgenPackage modelPackage;
+  protected static DBGenPackage modelPackage;
 
   /**
    * Creates an instance of the switch.
@@ -51,11 +51,11 @@ public class DbgenSwitch
    * <!-- end-user-doc -->
    * @generated
    */
-  public DbgenSwitch()
+  public DBGenSwitch()
   {
     if (modelPackage == null)
     {
-      modelPackage = DbgenPackage.eINSTANCE;
+      modelPackage = DBGenPackage.eINSTANCE;
     }
   }
 
@@ -103,28 +103,28 @@ public class DbgenSwitch
   {
     switch (classifierID)
     {
-    case DbgenPackage.DATABASE:
+    case DBGenPackage.DATABASE:
     {
       Database database = (Database)theEObject;
       Object result = caseDatabase(database);
       if (result == null) result = defaultCase(theEObject);
       return result;
     }
-    case DbgenPackage.TABLE:
+    case DBGenPackage.TABLE:
     {
       Table table = (Table)theEObject;
       Object result = caseTable(table);
       if (result == null) result = defaultCase(theEObject);
       return result;
     }
-    case DbgenPackage.COLUMN:
+    case DBGenPackage.COLUMN:
     {
       Column column = (Column)theEObject;
       Object result = caseColumn(column);
       if (result == null) result = defaultCase(theEObject);
       return result;
     }
-    case DbgenPackage.INDEX:
+    case DBGenPackage.INDEX:
     {
       Index index = (Index)theEObject;
       Object result = caseIndex(index);
@@ -216,4 +216,4 @@ public class DbgenSwitch
     return null;
   }
 
-} //DbgenSwitch
+} //DBGenSwitch

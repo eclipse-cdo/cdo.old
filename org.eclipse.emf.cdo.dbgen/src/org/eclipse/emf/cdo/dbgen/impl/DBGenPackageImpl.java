@@ -14,8 +14,8 @@ package org.eclipse.emf.cdo.dbgen.impl;
 import org.eclipse.emf.cdo.dbgen.Column;
 import org.eclipse.emf.cdo.dbgen.ColumnType;
 import org.eclipse.emf.cdo.dbgen.Database;
-import org.eclipse.emf.cdo.dbgen.DbgenFactory;
-import org.eclipse.emf.cdo.dbgen.DbgenPackage;
+import org.eclipse.emf.cdo.dbgen.DBGenFactory;
+import org.eclipse.emf.cdo.dbgen.DBGenPackage;
 import org.eclipse.emf.cdo.dbgen.Index;
 import org.eclipse.emf.cdo.dbgen.IndexType;
 import org.eclipse.emf.cdo.dbgen.Table;
@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DbgenPackageImpl extends EPackageImpl implements DbgenPackage
+public class DBGenPackageImpl extends EPackageImpl implements DBGenPackage
 {
   /**
    * <!-- begin-user-doc -->
@@ -89,13 +89,13 @@ public class DbgenPackageImpl extends EPackageImpl implements DbgenPackage
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see org.eclipse.emf.ecore.EPackage.Registry
-   * @see org.eclipse.emf.cdo.dbgen.DbgenPackage#eNS_URI
+   * @see org.eclipse.emf.cdo.dbgen.DBGenPackage#eNS_URI
    * @see #init()
    * @generated
    */
-  private DbgenPackageImpl()
+  private DBGenPackageImpl()
   {
-    super(eNS_URI, DbgenFactory.eINSTANCE);
+    super(eNS_URI, DBGenFactory.eINSTANCE);
   }
 
   /**
@@ -127,28 +127,28 @@ public class DbgenPackageImpl extends EPackageImpl implements DbgenPackage
    * @see #initializePackageContents()
    * @generated
    */
-  public static DbgenPackage init()
+  public static DBGenPackage init()
   {
     if (isInited)
-      return (DbgenPackage)EPackage.Registry.INSTANCE.getEPackage(DbgenPackage.eNS_URI);
+      return (DBGenPackage)EPackage.Registry.INSTANCE.getEPackage(DBGenPackage.eNS_URI);
 
     // Obtain or create and register package
-    DbgenPackageImpl theDbgenPackage = (DbgenPackageImpl)(EPackage.Registry.INSTANCE
-            .getEPackage(eNS_URI) instanceof DbgenPackageImpl ? EPackage.Registry.INSTANCE
-            .getEPackage(eNS_URI) : new DbgenPackageImpl());
+    DBGenPackageImpl theDBGenPackage = (DBGenPackageImpl)(EPackage.Registry.INSTANCE
+            .getEPackage(eNS_URI) instanceof DBGenPackageImpl ? EPackage.Registry.INSTANCE
+            .getEPackage(eNS_URI) : new DBGenPackageImpl());
 
     isInited = true;
 
     // Create package meta-data objects
-    theDbgenPackage.createPackageContents();
+    theDBGenPackage.createPackageContents();
 
     // Initialize created meta-data
-    theDbgenPackage.initializePackageContents();
+    theDBGenPackage.initializePackageContents();
 
     // Mark meta-data to indicate it can't be changed
-    theDbgenPackage.freeze();
+    theDBGenPackage.freeze();
 
-    return theDbgenPackage;
+    return theDBGenPackage;
   }
 
   /**
@@ -366,9 +366,9 @@ public class DbgenPackageImpl extends EPackageImpl implements DbgenPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public DbgenFactory getDbgenFactory()
+  public DBGenFactory getDBGenFactory()
   {
-    return (DbgenFactory)getEFactoryInstance();
+    return (DBGenFactory)getEFactoryInstance();
   }
 
   /**
@@ -592,4 +592,4 @@ public class DbgenPackageImpl extends EPackageImpl implements DbgenPackage
     createResource(eNS_URI);
   }
 
-} //DbgenPackageImpl
+} //DBGenPackageImpl

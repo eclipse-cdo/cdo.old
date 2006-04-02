@@ -12,8 +12,8 @@ package org.eclipse.emf.cdo.dbgen.impl;
 
 
 import org.eclipse.emf.cdo.dbgen.Database;
-import org.eclipse.emf.cdo.dbgen.DbgenFactory;
-import org.eclipse.emf.cdo.dbgen.DbgenPackage;
+import org.eclipse.emf.cdo.dbgen.DBGenFactory;
+import org.eclipse.emf.cdo.dbgen.DBGenPackage;
 import org.eclipse.emf.cdo.dbgen.Table;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -92,7 +92,7 @@ public class DatabaseImpl extends EObjectImpl implements Database
    */
   protected EClass eStaticClass()
   {
-    return DbgenPackage.Literals.DATABASE;
+    return DBGenPackage.Literals.DATABASE;
   }
 
   /**
@@ -115,7 +115,7 @@ public class DatabaseImpl extends EObjectImpl implements Database
     String oldName = name;
     name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DbgenPackage.DATABASE__NAME, oldName,
+      eNotify(new ENotificationImpl(this, Notification.SET, DBGenPackage.DATABASE__NAME, oldName,
               name));
   }
 
@@ -129,7 +129,7 @@ public class DatabaseImpl extends EObjectImpl implements Database
     if (tables == null)
     {
       tables = new EObjectContainmentWithInverseEList(Table.class, this,
-              DbgenPackage.DATABASE__TABLES, DbgenPackage.TABLE__DATABASE);
+              DBGenPackage.DATABASE__TABLES, DBGenPackage.TABLE__DATABASE);
     }
     return tables;
   }
@@ -141,7 +141,7 @@ public class DatabaseImpl extends EObjectImpl implements Database
    */
   public Table addTable(String name)
   {
-    Table table = DbgenFactory.eINSTANCE.createTable();
+    Table table = DBGenFactory.eINSTANCE.createTable();
     table.setName(name);
     table.setDatabase(this);
     return table;
@@ -157,7 +157,7 @@ public class DatabaseImpl extends EObjectImpl implements Database
   {
     switch (featureID)
     {
-    case DbgenPackage.DATABASE__TABLES:
+    case DBGenPackage.DATABASE__TABLES:
       return ((InternalEList)getTables()).basicAdd(otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -173,7 +173,7 @@ public class DatabaseImpl extends EObjectImpl implements Database
   {
     switch (featureID)
     {
-    case DbgenPackage.DATABASE__TABLES:
+    case DBGenPackage.DATABASE__TABLES:
       return ((InternalEList)getTables()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -188,9 +188,9 @@ public class DatabaseImpl extends EObjectImpl implements Database
   {
     switch (featureID)
     {
-    case DbgenPackage.DATABASE__NAME:
+    case DBGenPackage.DATABASE__NAME:
       return getName();
-    case DbgenPackage.DATABASE__TABLES:
+    case DBGenPackage.DATABASE__TABLES:
       return getTables();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -205,10 +205,10 @@ public class DatabaseImpl extends EObjectImpl implements Database
   {
     switch (featureID)
     {
-    case DbgenPackage.DATABASE__NAME:
+    case DBGenPackage.DATABASE__NAME:
       setName((String)newValue);
       return;
-    case DbgenPackage.DATABASE__TABLES:
+    case DBGenPackage.DATABASE__TABLES:
       getTables().clear();
       getTables().addAll((Collection)newValue);
       return;
@@ -225,10 +225,10 @@ public class DatabaseImpl extends EObjectImpl implements Database
   {
     switch (featureID)
     {
-    case DbgenPackage.DATABASE__NAME:
+    case DBGenPackage.DATABASE__NAME:
       setName(NAME_EDEFAULT);
       return;
-    case DbgenPackage.DATABASE__TABLES:
+    case DBGenPackage.DATABASE__TABLES:
       getTables().clear();
       return;
     }
@@ -244,9 +244,9 @@ public class DatabaseImpl extends EObjectImpl implements Database
   {
     switch (featureID)
     {
-    case DbgenPackage.DATABASE__NAME:
+    case DBGenPackage.DATABASE__NAME:
       return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-    case DbgenPackage.DATABASE__TABLES:
+    case DBGenPackage.DATABASE__TABLES:
       return tables != null && !tables.isEmpty();
     }
     return super.eIsSet(featureID);

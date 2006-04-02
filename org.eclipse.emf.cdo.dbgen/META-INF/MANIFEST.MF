@@ -14,4 +14,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.net4j.spring.db;visibility:=reexport
 Eclipse-LazyStart: true
-Bundle-Activator: org.eclipse.emf.cdo.dbgen.internal.DbgenActivator$Implementation
+Bundle-Activator: org.eclipse.emf.cdo.dbgen.internal.DBGenActivator$Implementation

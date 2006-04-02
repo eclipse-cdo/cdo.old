@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.cdo.dbgen.DbgenPackage#getTable()
+ * @see org.eclipse.emf.cdo.dbgen.DBGenPackage#getTable()
  * @model
  * @generated
  */
@@ -46,7 +46,7 @@ public interface Table extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
-   * @see org.eclipse.emf.cdo.dbgen.DbgenPackage#getTable_Name()
+   * @see org.eclipse.emf.cdo.dbgen.DBGenPackage#getTable_Name()
    * @model
    * @generated
    */
@@ -73,7 +73,7 @@ public interface Table extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Database</em>' container reference.
    * @see #setDatabase(Database)
-   * @see org.eclipse.emf.cdo.dbgen.DbgenPackage#getTable_Database()
+   * @see org.eclipse.emf.cdo.dbgen.DBGenPackage#getTable_Database()
    * @see org.eclipse.emf.cdo.dbgen.Database#getTables
    * @model opposite="tables" required="true"
    * @generated
@@ -101,7 +101,7 @@ public interface Table extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Columns</em>' containment reference list.
-   * @see org.eclipse.emf.cdo.dbgen.DbgenPackage#getTable_Columns()
+   * @see org.eclipse.emf.cdo.dbgen.DBGenPackage#getTable_Columns()
    * @see org.eclipse.emf.cdo.dbgen.Column#getTable
    * @model type="org.eclipse.emf.cdo.dbgen.Column" opposite="table" containment="true"
    * @generated
@@ -119,7 +119,7 @@ public interface Table extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Indices</em>' containment reference list.
-   * @see org.eclipse.emf.cdo.dbgen.DbgenPackage#getTable_Indices()
+   * @see org.eclipse.emf.cdo.dbgen.DBGenPackage#getTable_Indices()
    * @see org.eclipse.emf.cdo.dbgen.Index#getTable
    * @model type="org.eclipse.emf.cdo.dbgen.Index" opposite="table" containment="true"
    * @generated

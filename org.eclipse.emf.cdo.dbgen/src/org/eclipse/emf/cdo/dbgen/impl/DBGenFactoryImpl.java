@@ -14,8 +14,8 @@ package org.eclipse.emf.cdo.dbgen.impl;
 import org.eclipse.emf.cdo.dbgen.Column;
 import org.eclipse.emf.cdo.dbgen.ColumnType;
 import org.eclipse.emf.cdo.dbgen.Database;
-import org.eclipse.emf.cdo.dbgen.DbgenFactory;
-import org.eclipse.emf.cdo.dbgen.DbgenPackage;
+import org.eclipse.emf.cdo.dbgen.DBGenFactory;
+import org.eclipse.emf.cdo.dbgen.DBGenPackage;
 import org.eclipse.emf.cdo.dbgen.Index;
 import org.eclipse.emf.cdo.dbgen.IndexType;
 import org.eclipse.emf.cdo.dbgen.Table;
@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DbgenFactoryImpl extends EFactoryImpl implements DbgenFactory
+public class DBGenFactoryImpl extends EFactoryImpl implements DBGenFactory
 {
   /**
    * Creates the default factory implementation.
@@ -41,22 +41,22 @@ public class DbgenFactoryImpl extends EFactoryImpl implements DbgenFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public static DbgenFactory init()
+  public static DBGenFactory init()
   {
     try
     {
-      DbgenFactory theDbgenFactory = (DbgenFactory)EPackage.Registry.INSTANCE
+      DBGenFactory theDBGenFactory = (DBGenFactory)EPackage.Registry.INSTANCE
               .getEFactory("http://www.eclipse.org/net4j/dbgen.ecore");
-      if (theDbgenFactory != null)
+      if (theDBGenFactory != null)
       {
-        return theDbgenFactory;
+        return theDBGenFactory;
       }
     }
     catch (Exception exception)
     {
       EcorePlugin.INSTANCE.log(exception);
     }
-    return new DbgenFactoryImpl();
+    return new DBGenFactoryImpl();
   }
 
   /**
@@ -65,7 +65,7 @@ public class DbgenFactoryImpl extends EFactoryImpl implements DbgenFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public DbgenFactoryImpl()
+  public DBGenFactoryImpl()
   {
     super();
   }
@@ -79,13 +79,13 @@ public class DbgenFactoryImpl extends EFactoryImpl implements DbgenFactory
   {
     switch (eClass.getClassifierID())
     {
-    case DbgenPackage.DATABASE:
+    case DBGenPackage.DATABASE:
       return createDatabase();
-    case DbgenPackage.TABLE:
+    case DBGenPackage.TABLE:
       return createTable();
-    case DbgenPackage.COLUMN:
+    case DBGenPackage.COLUMN:
       return createColumn();
-    case DbgenPackage.INDEX:
+    case DBGenPackage.INDEX:
       return createIndex();
     default:
       throw new IllegalArgumentException("The class '" + eClass.getName()
@@ -102,9 +102,9 @@ public class DbgenFactoryImpl extends EFactoryImpl implements DbgenFactory
   {
     switch (eDataType.getClassifierID())
     {
-    case DbgenPackage.COLUMN_TYPE:
+    case DBGenPackage.COLUMN_TYPE:
       return createColumnTypeFromString(eDataType, initialValue);
-    case DbgenPackage.INDEX_TYPE:
+    case DBGenPackage.INDEX_TYPE:
       return createIndexTypeFromString(eDataType, initialValue);
     default:
       throw new IllegalArgumentException("The datatype '" + eDataType.getName()
@@ -121,9 +121,9 @@ public class DbgenFactoryImpl extends EFactoryImpl implements DbgenFactory
   {
     switch (eDataType.getClassifierID())
     {
-    case DbgenPackage.COLUMN_TYPE:
+    case DBGenPackage.COLUMN_TYPE:
       return convertColumnTypeToString(eDataType, instanceValue);
-    case DbgenPackage.INDEX_TYPE:
+    case DBGenPackage.INDEX_TYPE:
       return convertIndexTypeToString(eDataType, instanceValue);
     default:
       throw new IllegalArgumentException("The datatype '" + eDataType.getName()
@@ -228,9 +228,9 @@ public class DbgenFactoryImpl extends EFactoryImpl implements DbgenFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public DbgenPackage getDbgenPackage()
+  public DBGenPackage getDBGenPackage()
   {
-    return (DbgenPackage)getEPackage();
+    return (DBGenPackage)getEPackage();
   }
 
   /**
@@ -239,9 +239,9 @@ public class DbgenFactoryImpl extends EFactoryImpl implements DbgenFactory
    * @deprecated
    * @generated
    */
-  public static DbgenPackage getPackage()
+  public static DBGenPackage getPackage()
   {
-    return DbgenPackage.eINSTANCE;
+    return DBGenPackage.eINSTANCE;
   }
 
-} //DbgenFactoryImpl
+} //DBGenFactoryImpl

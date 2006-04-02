@@ -47,12 +47,12 @@ import java.util.Iterator;
 
 
 /**
- * This is the action bar contributor for the Dbgen model editor.
+ * This is the action bar contributor for the DBGen model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DbgenActionBarContributor extends EditingDomainActionBarContributor implements
+public class DBGenActionBarContributor extends EditingDomainActionBarContributor implements
         ISelectionChangedListener
 {
   /**
@@ -77,7 +77,7 @@ public class DbgenActionBarContributor extends EditingDomainActionBarContributor
    * <!-- end-user-doc -->
    * @generated
    */
-  protected IAction showPropertiesViewAction = new Action(DbgenEditorPlugin.INSTANCE
+  protected IAction showPropertiesViewAction = new Action(DBGenEditorActivator.INSTANCE
           .getString("_UI_ShowPropertiesView_menu_item"))
   {
     public void run()
@@ -88,7 +88,7 @@ public class DbgenActionBarContributor extends EditingDomainActionBarContributor
       }
       catch (PartInitException exception)
       {
-        DbgenEditorPlugin.INSTANCE.log(exception);
+        DBGenEditorActivator.INSTANCE.log(exception);
       }
     }
   };
@@ -100,7 +100,7 @@ public class DbgenActionBarContributor extends EditingDomainActionBarContributor
    * <!-- end-user-doc -->
    * @generated
    */
-  protected IAction refreshViewerAction = new Action(DbgenEditorPlugin.INSTANCE
+  protected IAction refreshViewerAction = new Action(DBGenEditorActivator.INSTANCE
           .getString("_UI_RefreshViewer_menu_item"))
   {
     public boolean isEnabled()
@@ -161,7 +161,7 @@ public class DbgenActionBarContributor extends EditingDomainActionBarContributor
    * <!-- end-user-doc -->
    * @generated
    */
-  public DbgenActionBarContributor()
+  public DBGenActionBarContributor()
   {
     loadResourceAction = new LoadResourceAction();
     validateAction = new ValidateAction();
@@ -191,8 +191,8 @@ public class DbgenActionBarContributor extends EditingDomainActionBarContributor
   {
     super.contributeToMenu(menuManager);
 
-    IMenuManager submenuManager = new MenuManager(DbgenEditorPlugin.INSTANCE
-            .getString("_UI_DbgenEditor_menu"), "org.eclipse.emf.cdo.dbgenMenuID");
+    IMenuManager submenuManager = new MenuManager(DBGenEditorActivator.INSTANCE
+            .getString("_UI_DBGenEditor_menu"), "org.eclipse.emf.cdo.dbgenMenuID");
     menuManager.insertAfter("additions", submenuManager);
     submenuManager.add(new Separator("settings"));
     submenuManager.add(new Separator("actions"));
@@ -201,13 +201,13 @@ public class DbgenActionBarContributor extends EditingDomainActionBarContributor
 
     // Prepare for CreateChild item addition or removal.
     //
-    createChildMenuManager = new MenuManager(DbgenEditorPlugin.INSTANCE
+    createChildMenuManager = new MenuManager(DBGenEditorActivator.INSTANCE
             .getString("_UI_CreateChild_menu_item"));
     submenuManager.insertBefore("additions", createChildMenuManager);
 
     // Prepare for CreateSibling item addition or removal.
     //
-    createSiblingMenuManager = new MenuManager(DbgenEditorPlugin.INSTANCE
+    createSiblingMenuManager = new MenuManager(DBGenEditorActivator.INSTANCE
             .getString("_UI_CreateSibling_menu_item"));
     submenuManager.insertBefore("additions", createSiblingMenuManager);
 
@@ -430,12 +430,12 @@ public class DbgenActionBarContributor extends EditingDomainActionBarContributor
     super.menuAboutToShow(menuManager);
     MenuManager submenuManager = null;
 
-    submenuManager = new MenuManager(DbgenEditorPlugin.INSTANCE
+    submenuManager = new MenuManager(DBGenEditorActivator.INSTANCE
             .getString("_UI_CreateChild_menu_item"));
     populateManager(submenuManager, createChildActions, null);
     menuManager.insertBefore("additions", submenuManager);
 
-    submenuManager = new MenuManager(DbgenEditorPlugin.INSTANCE
+    submenuManager = new MenuManager(DBGenEditorActivator.INSTANCE
             .getString("_UI_CreateSibling_menu_item"));
     populateManager(submenuManager, createSiblingActions, null);
     menuManager.insertBefore("additions", submenuManager);

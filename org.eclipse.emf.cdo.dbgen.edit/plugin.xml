@@ -13,7 +13,7 @@
   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
     <factory 
        uri = "http://www.eclipse.org/net4j/dbgen.ecore" 
-       class = "org.eclipse.emf.cdo.dbgen.provider.DbgenItemProviderAdapterFactory" 
+       class = "org.eclipse.emf.cdo.dbgen.provider.DBGenItemProviderAdapterFactory" 
        supportedTypes = 
          "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
           org.eclipse.emf.edit.provider.IStructuredItemContentProvider

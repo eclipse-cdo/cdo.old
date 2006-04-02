@@ -13,7 +13,7 @@ package org.eclipse.emf.cdo.dbgen.util;
 
 import org.eclipse.emf.cdo.dbgen.Column;
 import org.eclipse.emf.cdo.dbgen.Database;
-import org.eclipse.emf.cdo.dbgen.DbgenPackage;
+import org.eclipse.emf.cdo.dbgen.DBGenPackage;
 import org.eclipse.emf.cdo.dbgen.Index;
 import org.eclipse.emf.cdo.dbgen.Table;
 import org.eclipse.emf.common.notify.Adapter;
@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.EObject;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.cdo.dbgen.DbgenPackage
+ * @see org.eclipse.emf.cdo.dbgen.DBGenPackage
  * @generated
  */
-public class DbgenAdapterFactory extends AdapterFactoryImpl
+public class DBGenAdapterFactory extends AdapterFactoryImpl
 {
   /**
    * The cached model package.
@@ -38,7 +38,7 @@ public class DbgenAdapterFactory extends AdapterFactoryImpl
    * <!-- end-user-doc -->
    * @generated
    */
-  protected static DbgenPackage modelPackage;
+  protected static DBGenPackage modelPackage;
 
   /**
    * Creates an instance of the adapter factory.
@@ -46,11 +46,11 @@ public class DbgenAdapterFactory extends AdapterFactoryImpl
    * <!-- end-user-doc -->
    * @generated
    */
-  public DbgenAdapterFactory()
+  public DBGenAdapterFactory()
   {
     if (modelPackage == null)
     {
-      modelPackage = DbgenPackage.eINSTANCE;
+      modelPackage = DBGenPackage.eINSTANCE;
     }
   }
 
@@ -81,7 +81,7 @@ public class DbgenAdapterFactory extends AdapterFactoryImpl
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DbgenSwitch modelSwitch = new DbgenSwitch()
+  protected DBGenSwitch modelSwitch = new DBGenSwitch()
   {
     public Object caseDatabase(Database object)
     {
@@ -195,4 +195,4 @@ public class DbgenAdapterFactory extends AdapterFactoryImpl
     return null;
   }
 
-} //DbgenAdapterFactory
+} //DBGenAdapterFactory

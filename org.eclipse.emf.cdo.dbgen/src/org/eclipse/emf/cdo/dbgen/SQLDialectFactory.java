@@ -11,30 +11,7 @@
 package org.eclipse.emf.cdo.dbgen;
 
 
-public class UnknownSqlTypeException extends RuntimeException
+public interface SQLDialectFactory
 {
-  /**
-   * 
-   */
-  private static final long serialVersionUID = 3978147655534719285L;
-
-  public UnknownSqlTypeException()
-  {
-    super();
-  }
-
-  public UnknownSqlTypeException(String arg0)
-  {
-    super(arg0);
-  }
-
-  public UnknownSqlTypeException(String arg0, Throwable arg1)
-  {
-    super(arg0, arg1);
-  }
-
-  public UnknownSqlTypeException(Throwable arg0)
-  {
-    super(arg0);
-  }
+  public SQLDialect createDialect(String dialectName);
 }

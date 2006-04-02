@@ -12,9 +12,9 @@ package org.eclipse.emf.cdo.dbgen.provider;
 
 
 import org.eclipse.emf.cdo.dbgen.Database;
-import org.eclipse.emf.cdo.dbgen.DbgenFactory;
-import org.eclipse.emf.cdo.dbgen.DbgenPackage;
-import org.eclipse.emf.cdo.dbgen.internal.DbgenActivator;
+import org.eclipse.emf.cdo.dbgen.DBGenFactory;
+import org.eclipse.emf.cdo.dbgen.DBGenPackage;
+import org.eclipse.emf.cdo.dbgen.internal.DBGenActivator;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -82,7 +82,7 @@ public class DatabaseItemProvider extends ItemProviderAdapter implements
             ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
             getResourceLocator(), getString("_UI_Database_name_feature"), getString(
                     "_UI_PropertyDescriptor_description", "_UI_Database_name_feature",
-                    "_UI_Database_type"), DbgenPackage.Literals.DATABASE__NAME, true,
+                    "_UI_Database_type"), DBGenPackage.Literals.DATABASE__NAME, true,
             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
@@ -99,7 +99,7 @@ public class DatabaseItemProvider extends ItemProviderAdapter implements
     if (childrenFeatures == null)
     {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(DbgenPackage.Literals.DATABASE__TABLES);
+      childrenFeatures.add(DBGenPackage.Literals.DATABASE__TABLES);
     }
     return childrenFeatures;
   }
@@ -141,11 +141,11 @@ public class DatabaseItemProvider extends ItemProviderAdapter implements
 
     switch (notification.getFeatureID(Database.class))
     {
-    case DbgenPackage.DATABASE__NAME:
+    case DBGenPackage.DATABASE__NAME:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
               true));
       return;
-    case DbgenPackage.DATABASE__TABLES:
+    case DBGenPackage.DATABASE__TABLES:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true,
               false));
       return;
@@ -164,8 +164,8 @@ public class DatabaseItemProvider extends ItemProviderAdapter implements
   {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add(createChildParameter(DbgenPackage.Literals.DATABASE__TABLES,
-            DbgenFactory.eINSTANCE.createTable()));
+    newChildDescriptors.add(createChildParameter(DBGenPackage.Literals.DATABASE__TABLES,
+            DBGenFactory.eINSTANCE.createTable()));
   }
 
   /**
@@ -176,7 +176,7 @@ public class DatabaseItemProvider extends ItemProviderAdapter implements
    */
   public ResourceLocator getResourceLocator()
   {
-    return DbgenActivator.INSTANCE;
+    return DBGenActivator.INSTANCE;
   }
 
 }

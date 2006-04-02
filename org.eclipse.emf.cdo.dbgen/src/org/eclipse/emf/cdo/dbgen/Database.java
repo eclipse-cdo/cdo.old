@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.cdo.dbgen.DbgenPackage#getDatabase()
+ * @see org.eclipse.emf.cdo.dbgen.DBGenPackage#getDatabase()
  * @model
  * @generated
  */
@@ -44,7 +44,7 @@ public interface Database extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
-   * @see org.eclipse.emf.cdo.dbgen.DbgenPackage#getDatabase_Name()
+   * @see org.eclipse.emf.cdo.dbgen.DBGenPackage#getDatabase_Name()
    * @model
    * @generated
    */
@@ -71,7 +71,7 @@ public interface Database extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Tables</em>' containment reference list.
-   * @see org.eclipse.emf.cdo.dbgen.DbgenPackage#getDatabase_Tables()
+   * @see org.eclipse.emf.cdo.dbgen.DBGenPackage#getDatabase_Tables()
    * @see org.eclipse.emf.cdo.dbgen.Table#getDatabase
    * @model type="org.eclipse.emf.cdo.dbgen.Table" opposite="database" containment="true"
    * @generated

@@ -11,7 +11,7 @@
 package org.eclipse.emf.cdo.dbgen.presentation;
 
 
-import org.eclipse.emf.cdo.dbgen.provider.DbgenItemProviderAdapterFactory;
+import org.eclipse.emf.cdo.dbgen.provider.DBGenItemProviderAdapterFactory;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
@@ -118,12 +118,12 @@ import java.io.IOException;
 
 
 /**
- * This is an example of a Dbgen model editor.
+ * This is an example of a DBGen model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DbgenEditor extends MultiPageEditorPart implements IEditingDomainProvider,
+public class DBGenEditor extends MultiPageEditorPart implements IEditingDomainProvider,
         ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker
 {
   /**
@@ -279,7 +279,7 @@ public class DbgenEditor extends MultiPageEditorPart implements IEditingDomainPr
       {
         if (((ContentOutline)p).getCurrentPage() == contentOutlinePage)
         {
-          getActionBarContributor().setActiveEditor(DbgenEditor.this);
+          getActionBarContributor().setActiveEditor(DBGenEditor.this);
 
           setCurrentViewer(contentOutlineViewer);
         }
@@ -288,11 +288,11 @@ public class DbgenEditor extends MultiPageEditorPart implements IEditingDomainPr
       {
         if (((PropertySheet)p).getCurrentPage() == propertySheetPage)
         {
-          getActionBarContributor().setActiveEditor(DbgenEditor.this);
+          getActionBarContributor().setActiveEditor(DBGenEditor.this);
           handleActivate();
         }
       }
-      else if (p == DbgenEditor.this)
+      else if (p == DBGenEditor.this)
       {
         handleActivate();
       }
@@ -406,8 +406,8 @@ public class DbgenEditor extends MultiPageEditorPart implements IEditingDomainPr
               {
                 public void run()
                 {
-                  getSite().getPage().closeEditor(DbgenEditor.this, false);
-                  DbgenEditor.this.dispose();
+                  getSite().getPage().closeEditor(DBGenEditor.this, false);
+                  DBGenEditor.this.dispose();
                 }
               });
             }
@@ -420,7 +420,7 @@ public class DbgenEditor extends MultiPageEditorPart implements IEditingDomainPr
         }
         catch (CoreException exception)
         {
-          DbgenEditorPlugin.INSTANCE.log(exception);
+          DBGenEditorActivator.INSTANCE.log(exception);
         }
       }
     }
@@ -447,8 +447,8 @@ public class DbgenEditor extends MultiPageEditorPart implements IEditingDomainPr
     {
       if (handleDirtyConflict())
       {
-        getSite().getPage().closeEditor(DbgenEditor.this, false);
-        DbgenEditor.this.dispose();
+        getSite().getPage().closeEditor(DBGenEditor.this, false);
+        DBGenEditor.this.dispose();
       }
       else
       {
@@ -488,7 +488,7 @@ public class DbgenEditor extends MultiPageEditorPart implements IEditingDomainPr
           }
           catch (IOException exception)
           {
-            DbgenEditorPlugin.INSTANCE.log(exception);
+            DBGenEditorActivator.INSTANCE.log(exception);
           }
         }
       }
@@ -511,7 +511,7 @@ public class DbgenEditor extends MultiPageEditorPart implements IEditingDomainPr
    * <!-- end-user-doc -->
    * @generated
    */
-  public DbgenEditor()
+  public DBGenEditor()
   {
     super();
 
@@ -519,7 +519,7 @@ public class DbgenEditor extends MultiPageEditorPart implements IEditingDomainPr
     //
     List factories = new ArrayList();
     factories.add(new ResourceItemProviderAdapterFactory());
-    factories.add(new DbgenItemProviderAdapterFactory());
+    factories.add(new DBGenItemProviderAdapterFactory());
     factories.add(new ReflectiveItemProviderAdapterFactory());
 
     adapterFactory = new ComposedAdapterFactory(factories);
@@ -780,7 +780,7 @@ public class DbgenEditor extends MultiPageEditorPart implements IEditingDomainPr
     }
     catch (Exception exception)
     {
-      DbgenEditorPlugin.INSTANCE.log(exception);
+      DBGenEditorActivator.INSTANCE.log(exception);
     }
   }
 
@@ -799,7 +799,7 @@ public class DbgenEditor extends MultiPageEditorPart implements IEditingDomainPr
     // Create a page for the selection tree view.
     //
     {
-      ViewerPane viewerPane = new ViewerPane(getSite().getPage(), DbgenEditor.this)
+      ViewerPane viewerPane = new ViewerPane(getSite().getPage(), DBGenEditor.this)
       {
         public Viewer createViewer(Composite composite)
         {
@@ -833,7 +833,7 @@ public class DbgenEditor extends MultiPageEditorPart implements IEditingDomainPr
     // Create a page for the parent tree view.
     //
     {
-      ViewerPane viewerPane = new ViewerPane(getSite().getPage(), DbgenEditor.this)
+      ViewerPane viewerPane = new ViewerPane(getSite().getPage(), DBGenEditor.this)
       {
         public Viewer createViewer(Composite composite)
         {
@@ -863,7 +863,7 @@ public class DbgenEditor extends MultiPageEditorPart implements IEditingDomainPr
     // This is the page for the list viewer
     //
     {
-      ViewerPane viewerPane = new ViewerPane(getSite().getPage(), DbgenEditor.this)
+      ViewerPane viewerPane = new ViewerPane(getSite().getPage(), DBGenEditor.this)
       {
         public Viewer createViewer(Composite composite)
         {
@@ -889,7 +889,7 @@ public class DbgenEditor extends MultiPageEditorPart implements IEditingDomainPr
     // This is the page for the tree viewer
     //
     {
-      ViewerPane viewerPane = new ViewerPane(getSite().getPage(), DbgenEditor.this)
+      ViewerPane viewerPane = new ViewerPane(getSite().getPage(), DBGenEditor.this)
       {
         public Viewer createViewer(Composite composite)
         {
@@ -917,7 +917,7 @@ public class DbgenEditor extends MultiPageEditorPart implements IEditingDomainPr
     // This is the page for the table viewer.
     //
     {
-      ViewerPane viewerPane = new ViewerPane(getSite().getPage(), DbgenEditor.this)
+      ViewerPane viewerPane = new ViewerPane(getSite().getPage(), DBGenEditor.this)
       {
         public Viewer createViewer(Composite composite)
         {
@@ -961,7 +961,7 @@ public class DbgenEditor extends MultiPageEditorPart implements IEditingDomainPr
     // This is the page for the table tree viewer.
     //
     {
-      ViewerPane viewerPane = new ViewerPane(getSite().getPage(), DbgenEditor.this)
+      ViewerPane viewerPane = new ViewerPane(getSite().getPage(), DBGenEditor.this)
       {
         public Viewer createViewer(Composite composite)
         {
@@ -1170,8 +1170,8 @@ public class DbgenEditor extends MultiPageEditorPart implements IEditingDomainPr
       {
         public void setSelectionToViewer(List selection)
         {
-          DbgenEditor.this.setSelectionToViewer(selection);
-          DbgenEditor.this.setFocus();
+          DBGenEditor.this.setSelectionToViewer(selection);
+          DBGenEditor.this.setFocus();
         }
 
         public void setActionBars(IActionBars actionBars)
@@ -1279,7 +1279,7 @@ public class DbgenEditor extends MultiPageEditorPart implements IEditingDomainPr
         }
         catch (Exception exception)
         {
-          DbgenEditorPlugin.INSTANCE.log(exception);
+          DBGenEditorActivator.INSTANCE.log(exception);
         }
       }
     };
@@ -1299,7 +1299,7 @@ public class DbgenEditor extends MultiPageEditorPart implements IEditingDomainPr
     {
       // Something went wrong that shouldn't.
       //
-      DbgenEditorPlugin.INSTANCE.log(exception);
+      DBGenEditorActivator.INSTANCE.log(exception);
     }
   }
 
@@ -1377,7 +1377,7 @@ public class DbgenEditor extends MultiPageEditorPart implements IEditingDomainPr
     }
     catch (CoreException exception)
     {
-      DbgenEditorPlugin.INSTANCE.log(exception);
+      DBGenEditorActivator.INSTANCE.log(exception);
     }
   }
 
@@ -1520,7 +1520,7 @@ public class DbgenEditor extends MultiPageEditorPart implements IEditingDomainPr
    */
   private static String getString(String key)
   {
-    return DbgenEditorPlugin.INSTANCE.getString(key);
+    return DBGenEditorActivator.INSTANCE.getString(key);
   }
 
   /**
@@ -1531,7 +1531,7 @@ public class DbgenEditor extends MultiPageEditorPart implements IEditingDomainPr
    */
   private static String getString(String key, Object s1)
   {
-    return DbgenEditorPlugin.INSTANCE.getString(key, new Object[] {s1});
+    return DBGenEditorActivator.INSTANCE.getString(key, new Object[] {s1});
   }
 
   /**

@@ -20,12 +20,12 @@ import org.eclipse.emf.cdo.dbgen.ColumnType;
 import org.eclipse.emf.cdo.dbgen.Database;
 import org.eclipse.emf.cdo.dbgen.Index;
 import org.eclipse.emf.cdo.dbgen.IndexType;
-import org.eclipse.emf.cdo.dbgen.SqlDialect;
+import org.eclipse.emf.cdo.dbgen.SQLDialect;
 import org.eclipse.emf.cdo.dbgen.Table;
 import org.eclipse.emf.cdo.dbgen.TableCreationException;
-import org.eclipse.emf.cdo.dbgen.UnknownSqlTypeException;
-import org.eclipse.emf.cdo.dbgen.internal.DbgenActivator;
-import org.eclipse.emf.cdo.dbgen.internal.DbgenActivator.DialectElement;
+import org.eclipse.emf.cdo.dbgen.UnknownSQLTypeException;
+import org.eclipse.emf.cdo.dbgen.internal.DBGenActivator;
+import org.eclipse.emf.cdo.dbgen.internal.DBGenActivator.DialectElement;
 
 import org.apache.log4j.Logger;
 
@@ -46,14 +46,14 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 
 
-public class SqlDialectImpl implements SqlDialect
+public class SQLDialectImpl implements SQLDialect
 {
   /**
    * Logger for this class
    */
-  private static final Logger logger = Logger.getLogger(SqlDialectImpl.class);
+  private static final Logger logger = Logger.getLogger(SQLDialectImpl.class);
 
-  private DbgenActivator.DialectElement dialectElement;
+  private DBGenActivator.DialectElement dialectElement;
 
   private String stringBIGINT = "BIGINT";
 
@@ -99,14 +99,14 @@ public class SqlDialectImpl implements SqlDialect
 
   private String stringVARCHAR = "VARCHAR";
 
-  public SqlDialectImpl(DialectElement dialectElement)
+  public SQLDialectImpl(DialectElement dialectElement)
   {
     Argument.isNotNull(dialectElement);
     this.dialectElement = dialectElement;
     initTypeMappings();
   }
 
-  public DbgenActivator.DialectElement getDialectElement()
+  public DBGenActivator.DialectElement getDialectElement()
   {
     return dialectElement;
   }
@@ -182,7 +182,7 @@ public class SqlDialectImpl implements SqlDialect
         return stringVARCHAR;
 
       default:
-        throw new UnknownSqlTypeException("Unkown SQL type " + sqlType);
+        throw new UnknownSQLTypeException("Unkown SQL type " + sqlType);
     }
   }
 
@@ -407,10 +407,10 @@ public class SqlDialectImpl implements SqlDialect
 
   private void initTypeMappings()
   {
-    DbgenActivator.TypeMappingElement[] elements = dialectElement.getTypeMappings();
+    DBGenActivator.TypeMappingElement[] elements = dialectElement.getTypeMappings();
     for (int i = 0; i < elements.length; i++)
     {
-      DbgenActivator.TypeMappingElement element = elements[i];
+      DBGenActivator.TypeMappingElement element = elements[i];
       if ("BIGINT".equals(element.getSqlType()))
       {
         stringBIGINT = element.getVendorString();

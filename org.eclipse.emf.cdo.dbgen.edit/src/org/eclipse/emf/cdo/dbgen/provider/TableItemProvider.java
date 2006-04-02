@@ -11,10 +11,10 @@
 package org.eclipse.emf.cdo.dbgen.provider;
 
 
-import org.eclipse.emf.cdo.dbgen.DbgenFactory;
-import org.eclipse.emf.cdo.dbgen.DbgenPackage;
+import org.eclipse.emf.cdo.dbgen.DBGenFactory;
+import org.eclipse.emf.cdo.dbgen.DBGenPackage;
 import org.eclipse.emf.cdo.dbgen.Table;
-import org.eclipse.emf.cdo.dbgen.internal.DbgenActivator;
+import org.eclipse.emf.cdo.dbgen.internal.DBGenActivator;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -83,7 +83,7 @@ public class TableItemProvider extends ItemProviderAdapter implements IEditingDo
             ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
             getResourceLocator(), getString("_UI_Table_name_feature"), getString(
                     "_UI_PropertyDescriptor_description", "_UI_Table_name_feature",
-                    "_UI_Table_type"), DbgenPackage.Literals.TABLE__NAME, true,
+                    "_UI_Table_type"), DBGenPackage.Literals.TABLE__NAME, true,
             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
@@ -100,8 +100,8 @@ public class TableItemProvider extends ItemProviderAdapter implements IEditingDo
     if (childrenFeatures == null)
     {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(DbgenPackage.Literals.TABLE__COLUMNS);
-      childrenFeatures.add(DbgenPackage.Literals.TABLE__INDICES);
+      childrenFeatures.add(DBGenPackage.Literals.TABLE__COLUMNS);
+      childrenFeatures.add(DBGenPackage.Literals.TABLE__INDICES);
     }
     return childrenFeatures;
   }
@@ -156,12 +156,12 @@ public class TableItemProvider extends ItemProviderAdapter implements IEditingDo
 
     switch (notification.getFeatureID(Table.class))
     {
-    case DbgenPackage.TABLE__NAME:
+    case DBGenPackage.TABLE__NAME:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
               true));
       return;
-    case DbgenPackage.TABLE__COLUMNS:
-    case DbgenPackage.TABLE__INDICES:
+    case DBGenPackage.TABLE__COLUMNS:
+    case DBGenPackage.TABLE__INDICES:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true,
               false));
       return;
@@ -180,11 +180,11 @@ public class TableItemProvider extends ItemProviderAdapter implements IEditingDo
   {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add(createChildParameter(DbgenPackage.Literals.TABLE__COLUMNS,
-            DbgenFactory.eINSTANCE.createColumn()));
+    newChildDescriptors.add(createChildParameter(DBGenPackage.Literals.TABLE__COLUMNS,
+            DBGenFactory.eINSTANCE.createColumn()));
 
-    newChildDescriptors.add(createChildParameter(DbgenPackage.Literals.TABLE__INDICES,
-            DbgenFactory.eINSTANCE.createIndex()));
+    newChildDescriptors.add(createChildParameter(DBGenPackage.Literals.TABLE__INDICES,
+            DBGenFactory.eINSTANCE.createIndex()));
   }
 
   /**
@@ -195,7 +195,7 @@ public class TableItemProvider extends ItemProviderAdapter implements IEditingDo
    */
   public ResourceLocator getResourceLocator()
   {
-    return DbgenActivator.INSTANCE;
+    return DBGenActivator.INSTANCE;
   }
 
 }

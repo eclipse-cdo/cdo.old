@@ -11,9 +11,9 @@
 package org.eclipse.emf.cdo.dbgen.presentation;
 
 
-import org.eclipse.emf.cdo.dbgen.DbgenFactory;
-import org.eclipse.emf.cdo.dbgen.DbgenPackage;
-import org.eclipse.emf.cdo.dbgen.provider.DbgenActivator;
+import org.eclipse.emf.cdo.dbgen.DBGenFactory;
+import org.eclipse.emf.cdo.dbgen.DBGenPackage;
+import org.eclipse.emf.cdo.dbgen.provider.DBGenEditActivator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -74,7 +74,7 @@ import java.util.StringTokenizer;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DbgenModelWizard extends Wizard implements INewWizard
+public class DBGenModelWizard extends Wizard implements INewWizard
 {
   /**
    * This caches an instance of the model package.
@@ -82,7 +82,7 @@ public class DbgenModelWizard extends Wizard implements INewWizard
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DbgenPackage dbgenPackage = DbgenPackage.eINSTANCE;
+  protected DBGenPackage dBGenPackage = DBGenPackage.eINSTANCE;
 
   /**
    * This caches an instance of the model factory.
@@ -90,7 +90,7 @@ public class DbgenModelWizard extends Wizard implements INewWizard
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DbgenFactory dbgenFactory = dbgenPackage.getDbgenFactory();
+  protected DBGenFactory dBGenFactory = dBGenPackage.getDBGenFactory();
 
   /**
    * This is the file creation page.
@@ -98,7 +98,7 @@ public class DbgenModelWizard extends Wizard implements INewWizard
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DbgenModelWizardNewFileCreationPage newFileCreationPage;
+  protected DBGenModelWizardNewFileCreationPage newFileCreationPage;
 
   /**
    * This is the initial object creation page.
@@ -106,7 +106,7 @@ public class DbgenModelWizard extends Wizard implements INewWizard
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DbgenModelWizardInitialObjectCreationPage initialObjectCreationPage;
+  protected DBGenModelWizardInitialObjectCreationPage initialObjectCreationPage;
 
   /**
    * Remember the selection during initialization for populating the default container.
@@ -142,9 +142,9 @@ public class DbgenModelWizard extends Wizard implements INewWizard
   {
     this.workbench = workbench;
     this.selection = selection;
-    setWindowTitle(DbgenEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
+    setWindowTitle(DBGenEditorActivator.INSTANCE.getString("_UI_Wizard_label"));
     setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE
-            .getImageDescriptor(DbgenEditorPlugin.INSTANCE.getImage("full/wizban/NewDbgen")));
+            .getImageDescriptor(DBGenEditorActivator.INSTANCE.getImage("full/wizban/NewDBGen")));
   }
 
   /**
@@ -158,7 +158,7 @@ public class DbgenModelWizard extends Wizard implements INewWizard
     if (initialObjectNames == null)
     {
       initialObjectNames = new ArrayList();
-      for (Iterator classifiers = dbgenPackage.getEClassifiers().iterator(); classifiers.hasNext();)
+      for (Iterator classifiers = dBGenPackage.getEClassifiers().iterator(); classifiers.hasNext();)
       {
         EClassifier eClassifier = (EClassifier)classifiers.next();
         if (eClassifier instanceof EClass)
@@ -183,9 +183,9 @@ public class DbgenModelWizard extends Wizard implements INewWizard
    */
   protected EObject createInitialModel()
   {
-    EClass eClass = (EClass)dbgenPackage.getEClassifier(initialObjectCreationPage
+    EClass eClass = (EClass)dBGenPackage.getEClassifier(initialObjectCreationPage
             .getInitialObjectName());
-    EObject rootObject = dbgenFactory.create(eClass);
+    EObject rootObject = dBGenFactory.create(eClass);
     return rootObject;
   }
 
@@ -239,7 +239,7 @@ public class DbgenModelWizard extends Wizard implements INewWizard
           }
           catch (Exception exception)
           {
-            DbgenEditorPlugin.INSTANCE.log(exception);
+            DBGenEditorActivator.INSTANCE.log(exception);
           }
           finally
           {
@@ -276,7 +276,7 @@ public class DbgenModelWizard extends Wizard implements INewWizard
       }
       catch (PartInitException exception)
       {
-        MessageDialog.openError(workbenchWindow.getShell(), DbgenEditorPlugin.INSTANCE
+        MessageDialog.openError(workbenchWindow.getShell(), DBGenEditorActivator.INSTANCE
                 .getString("_UI_OpenEditorError_label"), exception.getMessage());
         return false;
       }
@@ -285,7 +285,7 @@ public class DbgenModelWizard extends Wizard implements INewWizard
     }
     catch (Exception exception)
     {
-      DbgenEditorPlugin.INSTANCE.log(exception);
+      DBGenEditorActivator.INSTANCE.log(exception);
       return false;
     }
   }
@@ -296,7 +296,7 @@ public class DbgenModelWizard extends Wizard implements INewWizard
    * <!-- end-user-doc -->
    * @generated
    */
-  public class DbgenModelWizardNewFileCreationPage extends WizardNewFileCreationPage
+  public class DBGenModelWizardNewFileCreationPage extends WizardNewFileCreationPage
   {
     /**
      * Pass in the selection.
@@ -304,7 +304,7 @@ public class DbgenModelWizard extends Wizard implements INewWizard
      * <!-- end-user-doc -->
      * @generated
      */
-    public DbgenModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection)
+    public DBGenModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection)
     {
       super(pageId, selection);
     }
@@ -321,12 +321,12 @@ public class DbgenModelWizard extends Wizard implements INewWizard
       {
         // Make sure the file ends in ".dbgen".
         //
-        String requiredExt = DbgenEditorPlugin.INSTANCE
-                .getString("_UI_DbgenEditorFilenameExtension");
+        String requiredExt = DBGenEditorActivator.INSTANCE
+                .getString("_UI_DBGenEditorFilenameExtension");
         String enteredExt = new Path(getFileName()).getFileExtension();
         if (enteredExt == null || !enteredExt.equals(requiredExt))
         {
-          setErrorMessage(DbgenEditorPlugin.INSTANCE.getString("_WARN_FilenameExtension",
+          setErrorMessage(DBGenEditorActivator.INSTANCE.getString("_WARN_FilenameExtension",
                   new Object[] {requiredExt}));
           return false;
         }
@@ -359,7 +359,7 @@ public class DbgenModelWizard extends Wizard implements INewWizard
    * <!-- end-user-doc -->
    * @generated
    */
-  public class DbgenModelWizardInitialObjectCreationPage extends WizardPage
+  public class DBGenModelWizardInitialObjectCreationPage extends WizardPage
   {
     /**
      * <!-- begin-user-doc -->
@@ -388,7 +388,7 @@ public class DbgenModelWizard extends Wizard implements INewWizard
      * <!-- end-user-doc -->
      * @generated
      */
-    public DbgenModelWizardInitialObjectCreationPage(String pageId)
+    public DBGenModelWizardInitialObjectCreationPage(String pageId)
     {
       super(pageId);
     }
@@ -416,7 +416,7 @@ public class DbgenModelWizard extends Wizard implements INewWizard
 
       Label containerLabel = new Label(composite, SWT.LEFT);
       {
-        containerLabel.setText(DbgenEditorPlugin.INSTANCE.getString("_UI_ModelObject"));
+        containerLabel.setText(DBGenEditorActivator.INSTANCE.getString("_UI_ModelObject"));
 
         GridData data = new GridData();
         data.horizontalAlignment = GridData.FILL;
@@ -444,7 +444,7 @@ public class DbgenModelWizard extends Wizard implements INewWizard
 
       Label encodingLabel = new Label(composite, SWT.LEFT);
       {
-        encodingLabel.setText(DbgenEditorPlugin.INSTANCE.getString("_UI_XMLEncoding"));
+        encodingLabel.setText(DBGenEditorActivator.INSTANCE.getString("_UI_XMLEncoding"));
 
         GridData data = new GridData();
         data.horizontalAlignment = GridData.FILL;
@@ -556,11 +556,11 @@ public class DbgenModelWizard extends Wizard implements INewWizard
     {
       try
       {
-        return DbgenActivator.INSTANCE.getString("_UI_" + typeName + "_type");
+        return DBGenEditActivator.INSTANCE.getString("_UI_" + typeName + "_type");
       }
       catch (MissingResourceException mre)
       {
-        DbgenEditorPlugin.INSTANCE.log(mre);
+        DBGenEditorActivator.INSTANCE.log(mre);
       }
       return typeName;
     }
@@ -575,7 +575,7 @@ public class DbgenModelWizard extends Wizard implements INewWizard
       if (encodings == null)
       {
         encodings = new ArrayList();
-        for (StringTokenizer stringTokenizer = new StringTokenizer(DbgenEditorPlugin.INSTANCE
+        for (StringTokenizer stringTokenizer = new StringTokenizer(DBGenEditorActivator.INSTANCE
                 .getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens();)
         {
           encodings.add(stringTokenizer.nextToken());
@@ -595,14 +595,14 @@ public class DbgenModelWizard extends Wizard implements INewWizard
   {
     // Create a page, set the title, and the initial model file name.
     //
-    newFileCreationPage = new DbgenModelWizardNewFileCreationPage("Whatever", selection);
+    newFileCreationPage = new DBGenModelWizardNewFileCreationPage("Whatever", selection);
     newFileCreationPage
-            .setTitle(DbgenEditorPlugin.INSTANCE.getString("_UI_DbgenModelWizard_label"));
-    newFileCreationPage.setDescription(DbgenEditorPlugin.INSTANCE
-            .getString("_UI_DbgenModelWizard_description"));
-    newFileCreationPage.setFileName(DbgenEditorPlugin.INSTANCE
-            .getString("_UI_DbgenEditorFilenameDefaultBase")
-            + "." + DbgenEditorPlugin.INSTANCE.getString("_UI_DbgenEditorFilenameExtension"));
+            .setTitle(DBGenEditorActivator.INSTANCE.getString("_UI_DBGenModelWizard_label"));
+    newFileCreationPage.setDescription(DBGenEditorActivator.INSTANCE
+            .getString("_UI_DBGenModelWizard_description"));
+    newFileCreationPage.setFileName(DBGenEditorActivator.INSTANCE
+            .getString("_UI_DBGenEditorFilenameDefaultBase")
+            + "." + DBGenEditorActivator.INSTANCE.getString("_UI_DBGenEditorFilenameExtension"));
     addPage(newFileCreationPage);
 
     // Try and get the resource selection to determine a current directory for the file dialog.
@@ -632,10 +632,10 @@ public class DbgenModelWizard extends Wizard implements INewWizard
 
           // Make up a unique new name here.
           //
-          String defaultModelBaseFilename = DbgenEditorPlugin.INSTANCE
-                  .getString("_UI_DbgenEditorFilenameDefaultBase");
-          String defaultModelFilenameExtension = DbgenEditorPlugin.INSTANCE
-                  .getString("_UI_DbgenEditorFilenameExtension");
+          String defaultModelBaseFilename = DBGenEditorActivator.INSTANCE
+                  .getString("_UI_DBGenEditorFilenameDefaultBase");
+          String defaultModelFilenameExtension = DBGenEditorActivator.INSTANCE
+                  .getString("_UI_DBGenEditorFilenameExtension");
           String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
           for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i)
           {
@@ -645,10 +645,10 @@ public class DbgenModelWizard extends Wizard implements INewWizard
         }
       }
     }
-    initialObjectCreationPage = new DbgenModelWizardInitialObjectCreationPage("Whatever2");
-    initialObjectCreationPage.setTitle(DbgenEditorPlugin.INSTANCE
-            .getString("_UI_DbgenModelWizard_label"));
-    initialObjectCreationPage.setDescription(DbgenEditorPlugin.INSTANCE
+    initialObjectCreationPage = new DBGenModelWizardInitialObjectCreationPage("Whatever2");
+    initialObjectCreationPage.setTitle(DBGenEditorActivator.INSTANCE
+            .getString("_UI_DBGenModelWizard_label"));
+    initialObjectCreationPage.setDescription(DBGenEditorActivator.INSTANCE
             .getString("_UI_Wizard_initial_object_description"));
     addPage(initialObjectCreationPage);
   }

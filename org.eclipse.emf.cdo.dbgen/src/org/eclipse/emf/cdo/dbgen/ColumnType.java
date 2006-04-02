@@ -23,7 +23,7 @@ import java.util.List;
  * A representation of the literals of the enumeration '<em><b>Column Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.cdo.dbgen.DbgenPackage#getColumnType()
+ * @see org.eclipse.emf.cdo.dbgen.DBGenPackage#getColumnType()
  * @model
  * @generated
  */

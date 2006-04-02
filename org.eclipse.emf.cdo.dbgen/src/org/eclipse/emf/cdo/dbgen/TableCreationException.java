@@ -11,7 +11,7 @@
 package org.eclipse.emf.cdo.dbgen;
 
 
-public class TableCreationException extends DbgenException
+public class TableCreationException extends DBGenException
 {
   /**
    * 

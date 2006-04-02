@@ -11,7 +11,7 @@
 package org.eclipse.emf.cdo.dbgen;
 
 
-public class DbgenException extends RuntimeException
+public class DBGenException extends RuntimeException
 {
   /**
    * 
@@ -21,7 +21,7 @@ public class DbgenException extends RuntimeException
   /**
    * 
    */
-  public DbgenException()
+  public DBGenException()
   {
     super();
   }
@@ -29,7 +29,7 @@ public class DbgenException extends RuntimeException
   /**
    * @param message
    */
-  public DbgenException(String message)
+  public DBGenException(String message)
   {
     super(message);
   }
@@ -37,7 +37,7 @@ public class DbgenException extends RuntimeException
   /**
    * @param cause
    */
-  public DbgenException(Throwable cause)
+  public DBGenException(Throwable cause)
   {
     super(cause);
   }
@@ -46,7 +46,7 @@ public class DbgenException extends RuntimeException
    * @param message
    * @param cause
    */
-  public DbgenException(String message, Throwable cause)
+  public DBGenException(String message, Throwable cause)
   {
     super(message, cause);
   }

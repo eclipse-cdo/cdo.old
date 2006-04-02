@@ -11,8 +11,8 @@ import org.eclipse.net4j.util.eclipse.Element;
 import org.eclipse.net4j.util.eclipse.ExtensionParser;
 import org.eclipse.net4j.util.eclipse.ListExtensionParser;
 
-import org.eclipse.emf.cdo.dbgen.SqlDialect;
-import org.eclipse.emf.cdo.dbgen.impl.SqlDialectImpl;
+import org.eclipse.emf.cdo.dbgen.SQLDialect;
+import org.eclipse.emf.cdo.dbgen.impl.SQLDialectImpl;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 
@@ -28,12 +28,12 @@ import java.util.List;
 
 
 /**
- * This is the central singleton for the Dbgen model plugin.
+ * This is the central singleton for the DBGen model plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public final class DbgenActivator extends EMFPlugin
+public final class DBGenActivator extends EMFPlugin
 {
   /**
    * Keep track of the singleton.
@@ -41,7 +41,7 @@ public final class DbgenActivator extends EMFPlugin
    * <!-- end-user-doc -->
    * @generated
    */
-  public static final DbgenActivator INSTANCE = new DbgenActivator();
+  public static final DBGenActivator INSTANCE = new DBGenActivator();
 
   public static final String DIALECTS_EXT_POINT_ID = "dialects";
 
@@ -63,7 +63,7 @@ public final class DbgenActivator extends EMFPlugin
    * <!-- end-user-doc -->
    * @generated
    */
-  public DbgenActivator()
+  public DBGenActivator()
   {
     super(new ResourceLocator[] {});
   }
@@ -80,10 +80,10 @@ public final class DbgenActivator extends EMFPlugin
     return plugin;
   }
 
-  public SqlDialect createDialect(String dialectName)
+  public SQLDialect createDialect(String dialectName)
   {
     DialectElement element = getDialectElement(dialectName);
-    return new SqlDialectImpl(element);
+    return new SQLDialectImpl(element);
   }
 
   /**

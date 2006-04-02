@@ -12,8 +12,8 @@ package org.eclipse.emf.cdo.dbgen.provider;
 
 
 import org.eclipse.emf.cdo.dbgen.Column;
-import org.eclipse.emf.cdo.dbgen.DbgenPackage;
-import org.eclipse.emf.cdo.dbgen.internal.DbgenActivator;
+import org.eclipse.emf.cdo.dbgen.DBGenPackage;
+import org.eclipse.emf.cdo.dbgen.internal.DBGenActivator;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -84,7 +84,7 @@ public class ColumnItemProvider extends ItemProviderAdapter implements IEditingD
             ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
             getResourceLocator(), getString("_UI_Column_name_feature"), getString(
                     "_UI_PropertyDescriptor_description", "_UI_Column_name_feature",
-                    "_UI_Column_type"), DbgenPackage.Literals.COLUMN__NAME, true,
+                    "_UI_Column_type"), DBGenPackage.Literals.COLUMN__NAME, true,
             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
@@ -100,7 +100,7 @@ public class ColumnItemProvider extends ItemProviderAdapter implements IEditingD
             ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
             getResourceLocator(), getString("_UI_Column_type_feature"), getString(
                     "_UI_PropertyDescriptor_description", "_UI_Column_type_feature",
-                    "_UI_Column_type"), DbgenPackage.Literals.COLUMN__TYPE, true,
+                    "_UI_Column_type"), DBGenPackage.Literals.COLUMN__TYPE, true,
             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
@@ -116,7 +116,7 @@ public class ColumnItemProvider extends ItemProviderAdapter implements IEditingD
             ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
             getResourceLocator(), getString("_UI_Column_length_feature"), getString(
                     "_UI_PropertyDescriptor_description", "_UI_Column_length_feature",
-                    "_UI_Column_type"), DbgenPackage.Literals.COLUMN__LENGTH, true,
+                    "_UI_Column_type"), DBGenPackage.Literals.COLUMN__LENGTH, true,
             ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
   }
 
@@ -132,7 +132,7 @@ public class ColumnItemProvider extends ItemProviderAdapter implements IEditingD
             ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
             getResourceLocator(), getString("_UI_Column_constraint_feature"), getString(
                     "_UI_PropertyDescriptor_description", "_UI_Column_constraint_feature",
-                    "_UI_Column_type"), DbgenPackage.Literals.COLUMN__CONSTRAINT, true,
+                    "_UI_Column_type"), DBGenPackage.Literals.COLUMN__CONSTRAINT, true,
             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
@@ -173,10 +173,10 @@ public class ColumnItemProvider extends ItemProviderAdapter implements IEditingD
 
     switch (notification.getFeatureID(Column.class))
     {
-    case DbgenPackage.COLUMN__NAME:
-    case DbgenPackage.COLUMN__TYPE:
-    case DbgenPackage.COLUMN__LENGTH:
-    case DbgenPackage.COLUMN__CONSTRAINT:
+    case DBGenPackage.COLUMN__NAME:
+    case DBGenPackage.COLUMN__TYPE:
+    case DBGenPackage.COLUMN__LENGTH:
+    case DBGenPackage.COLUMN__CONSTRAINT:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
               true));
       return;
@@ -204,7 +204,7 @@ public class ColumnItemProvider extends ItemProviderAdapter implements IEditingD
    */
   public ResourceLocator getResourceLocator()
   {
-    return DbgenActivator.INSTANCE;
+    return DBGenActivator.INSTANCE;
   }
 
 }

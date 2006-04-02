@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.cdo.dbgen.DbgenPackage#getIndex()
+ * @see org.eclipse.emf.cdo.dbgen.DBGenPackage#getIndex()
  * @model
  * @generated
  */
@@ -46,7 +46,7 @@ public interface Index extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
-   * @see org.eclipse.emf.cdo.dbgen.DbgenPackage#getIndex_Name()
+   * @see org.eclipse.emf.cdo.dbgen.DBGenPackage#getIndex_Name()
    * @model
    * @generated
    */
@@ -73,7 +73,7 @@ public interface Index extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Table</em>' container reference.
    * @see #setTable(Table)
-   * @see org.eclipse.emf.cdo.dbgen.DbgenPackage#getIndex_Table()
+   * @see org.eclipse.emf.cdo.dbgen.DBGenPackage#getIndex_Table()
    * @see org.eclipse.emf.cdo.dbgen.Table#getIndices
    * @model opposite="indices" required="true"
    * @generated
@@ -100,7 +100,7 @@ public interface Index extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Columns</em>' reference list.
-   * @see org.eclipse.emf.cdo.dbgen.DbgenPackage#getIndex_Columns()
+   * @see org.eclipse.emf.cdo.dbgen.DBGenPackage#getIndex_Columns()
    * @model type="org.eclipse.emf.cdo.dbgen.Column"
    * @generated
    */
@@ -118,7 +118,7 @@ public interface Index extends EObject
    * @return the value of the '<em>Type</em>' attribute.
    * @see org.eclipse.emf.cdo.dbgen.IndexType
    * @see #setType(IndexType)
-   * @see org.eclipse.emf.cdo.dbgen.DbgenPackage#getIndex_Type()
+   * @see org.eclipse.emf.cdo.dbgen.DBGenPackage#getIndex_Type()
    * @model
    * @generated
    */

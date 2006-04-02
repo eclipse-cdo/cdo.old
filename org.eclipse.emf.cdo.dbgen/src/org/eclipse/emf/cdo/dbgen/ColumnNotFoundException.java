@@ -11,7 +11,7 @@
 package org.eclipse.emf.cdo.dbgen;
 
 
-public class ColumnNotFoundException extends DbgenException
+public class ColumnNotFoundException extends DBGenException
 {
   /**
    * 

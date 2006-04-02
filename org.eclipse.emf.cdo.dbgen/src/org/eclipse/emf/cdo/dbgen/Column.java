@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.cdo.dbgen.DbgenPackage#getColumn()
+ * @see org.eclipse.emf.cdo.dbgen.DBGenPackage#getColumn()
  * @model
  * @generated
  */
@@ -46,7 +46,7 @@ public interface Column extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
-   * @see org.eclipse.emf.cdo.dbgen.DbgenPackage#getColumn_Name()
+   * @see org.eclipse.emf.cdo.dbgen.DBGenPackage#getColumn_Name()
    * @model
    * @generated
    */
@@ -73,7 +73,7 @@ public interface Column extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Table</em>' container reference.
    * @see #setTable(Table)
-   * @see org.eclipse.emf.cdo.dbgen.DbgenPackage#getColumn_Table()
+   * @see org.eclipse.emf.cdo.dbgen.DBGenPackage#getColumn_Table()
    * @see org.eclipse.emf.cdo.dbgen.Table#getColumns
    * @model opposite="columns" required="true"
    * @generated
@@ -102,7 +102,7 @@ public interface Column extends EObject
    * @return the value of the '<em>Type</em>' attribute.
    * @see org.eclipse.emf.cdo.dbgen.ColumnType
    * @see #setType(ColumnType)
-   * @see org.eclipse.emf.cdo.dbgen.DbgenPackage#getColumn_Type()
+   * @see org.eclipse.emf.cdo.dbgen.DBGenPackage#getColumn_Type()
    * @model
    * @generated
    */
@@ -129,7 +129,7 @@ public interface Column extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Length</em>' attribute.
    * @see #setLength(int)
-   * @see org.eclipse.emf.cdo.dbgen.DbgenPackage#getColumn_Length()
+   * @see org.eclipse.emf.cdo.dbgen.DBGenPackage#getColumn_Length()
    * @model
    * @generated
    */
@@ -155,7 +155,7 @@ public interface Column extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Constraint</em>' attribute.
    * @see #setConstraint(String)
-   * @see org.eclipse.emf.cdo.dbgen.DbgenPackage#getColumn_Constraint()
+   * @see org.eclipse.emf.cdo.dbgen.DBGenPackage#getColumn_Constraint()
    * @model
    * @generated
    */

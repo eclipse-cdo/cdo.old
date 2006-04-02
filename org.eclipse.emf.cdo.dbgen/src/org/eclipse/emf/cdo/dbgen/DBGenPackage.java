@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.cdo.dbgen.DbgenFactory
+ * @see org.eclipse.emf.cdo.dbgen.DBGenFactory
  * @model kind="package"
  * @generated
  */
-public interface DbgenPackage extends EPackage
+public interface DBGenPackage extends EPackage
 {
   /**
    * The package name.
@@ -65,14 +65,14 @@ public interface DbgenPackage extends EPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  DbgenPackage eINSTANCE = org.eclipse.emf.cdo.dbgen.impl.DbgenPackageImpl.init();
+  DBGenPackage eINSTANCE = org.eclipse.emf.cdo.dbgen.impl.DBGenPackageImpl.init();
 
   /**
    * The meta object id for the '{@link org.eclipse.emf.cdo.dbgen.impl.DatabaseImpl <em>Database</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see org.eclipse.emf.cdo.dbgen.impl.DatabaseImpl
-   * @see org.eclipse.emf.cdo.dbgen.impl.DbgenPackageImpl#getDatabase()
+   * @see org.eclipse.emf.cdo.dbgen.impl.DBGenPackageImpl#getDatabase()
    * @generated
    */
   int DATABASE = 0;
@@ -109,7 +109,7 @@ public interface DbgenPackage extends EPackage
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see org.eclipse.emf.cdo.dbgen.impl.TableImpl
-   * @see org.eclipse.emf.cdo.dbgen.impl.DbgenPackageImpl#getTable()
+   * @see org.eclipse.emf.cdo.dbgen.impl.DBGenPackageImpl#getTable()
    * @generated
    */
   int TABLE = 1;
@@ -164,7 +164,7 @@ public interface DbgenPackage extends EPackage
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see org.eclipse.emf.cdo.dbgen.impl.ColumnImpl
-   * @see org.eclipse.emf.cdo.dbgen.impl.DbgenPackageImpl#getColumn()
+   * @see org.eclipse.emf.cdo.dbgen.impl.DBGenPackageImpl#getColumn()
    * @generated
    */
   int COLUMN = 2;
@@ -228,7 +228,7 @@ public interface DbgenPackage extends EPackage
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see org.eclipse.emf.cdo.dbgen.impl.IndexImpl
-   * @see org.eclipse.emf.cdo.dbgen.impl.DbgenPackageImpl#getIndex()
+   * @see org.eclipse.emf.cdo.dbgen.impl.DBGenPackageImpl#getIndex()
    * @generated
    */
   int INDEX = 3;
@@ -283,7 +283,7 @@ public interface DbgenPackage extends EPackage
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see org.eclipse.emf.cdo.dbgen.ColumnType
-   * @see org.eclipse.emf.cdo.dbgen.impl.DbgenPackageImpl#getColumnType()
+   * @see org.eclipse.emf.cdo.dbgen.impl.DBGenPackageImpl#getColumnType()
    * @generated
    */
   int COLUMN_TYPE = 4;
@@ -293,7 +293,7 @@ public interface DbgenPackage extends EPackage
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see org.eclipse.emf.cdo.dbgen.IndexType
-   * @see org.eclipse.emf.cdo.dbgen.impl.DbgenPackageImpl#getIndexType()
+   * @see org.eclipse.emf.cdo.dbgen.impl.DBGenPackageImpl#getIndexType()
    * @generated
    */
   int INDEX_TYPE = 5;
@@ -530,7 +530,7 @@ public interface DbgenPackage extends EPackage
    * @return the factory that creates the instances of the model.
    * @generated
    */
-  DbgenFactory getDbgenFactory();
+  DBGenFactory getDBGenFactory();
 
   /**
    * <!-- begin-user-doc -->
@@ -551,7 +551,7 @@ public interface DbgenPackage extends EPackage
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.eclipse.emf.cdo.dbgen.impl.DatabaseImpl
-     * @see org.eclipse.emf.cdo.dbgen.impl.DbgenPackageImpl#getDatabase()
+     * @see org.eclipse.emf.cdo.dbgen.impl.DBGenPackageImpl#getDatabase()
      * @generated
      */
     EClass DATABASE = eINSTANCE.getDatabase();
@@ -577,7 +577,7 @@ public interface DbgenPackage extends EPackage
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.eclipse.emf.cdo.dbgen.impl.TableImpl
-     * @see org.eclipse.emf.cdo.dbgen.impl.DbgenPackageImpl#getTable()
+     * @see org.eclipse.emf.cdo.dbgen.impl.DBGenPackageImpl#getTable()
      * @generated
      */
     EClass TABLE = eINSTANCE.getTable();
@@ -619,7 +619,7 @@ public interface DbgenPackage extends EPackage
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.eclipse.emf.cdo.dbgen.impl.ColumnImpl
-     * @see org.eclipse.emf.cdo.dbgen.impl.DbgenPackageImpl#getColumn()
+     * @see org.eclipse.emf.cdo.dbgen.impl.DBGenPackageImpl#getColumn()
      * @generated
      */
     EClass COLUMN = eINSTANCE.getColumn();
@@ -669,7 +669,7 @@ public interface DbgenPackage extends EPackage
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.eclipse.emf.cdo.dbgen.impl.IndexImpl
-     * @see org.eclipse.emf.cdo.dbgen.impl.DbgenPackageImpl#getIndex()
+     * @see org.eclipse.emf.cdo.dbgen.impl.DBGenPackageImpl#getIndex()
      * @generated
      */
     EClass INDEX = eINSTANCE.getIndex();
@@ -711,7 +711,7 @@ public interface DbgenPackage extends EPackage
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.eclipse.emf.cdo.dbgen.ColumnType
-     * @see org.eclipse.emf.cdo.dbgen.impl.DbgenPackageImpl#getColumnType()
+     * @see org.eclipse.emf.cdo.dbgen.impl.DBGenPackageImpl#getColumnType()
      * @generated
      */
     EEnum COLUMN_TYPE = eINSTANCE.getColumnType();
@@ -721,11 +721,11 @@ public interface DbgenPackage extends EPackage
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.eclipse.emf.cdo.dbgen.IndexType
-     * @see org.eclipse.emf.cdo.dbgen.impl.DbgenPackageImpl#getIndexType()
+     * @see org.eclipse.emf.cdo.dbgen.impl.DBGenPackageImpl#getIndexType()
      * @generated
      */
     EEnum INDEX_TYPE = eINSTANCE.getIndexType();
 
   }
 
-} //DbgenPackage
+} //DBGenPackage

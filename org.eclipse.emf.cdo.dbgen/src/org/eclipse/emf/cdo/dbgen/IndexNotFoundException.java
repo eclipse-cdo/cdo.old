@@ -11,7 +11,7 @@
 package org.eclipse.emf.cdo.dbgen;
 
 
-public class IndexNotFoundException extends DbgenException
+public class IndexNotFoundException extends DBGenException
 {
   /**
    * 

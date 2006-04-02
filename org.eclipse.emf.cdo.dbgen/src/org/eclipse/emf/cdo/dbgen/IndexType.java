@@ -23,7 +23,7 @@ import java.util.List;
  * A representation of the literals of the enumeration '<em><b>Index Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.cdo.dbgen.DbgenPackage#getIndexType()
+ * @see org.eclipse.emf.cdo.dbgen.DBGenPackage#getIndexType()
  * @model
  * @generated
  */

@@ -19,10 +19,10 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.cdo.dbgen.DbgenPackage
+ * @see org.eclipse.emf.cdo.dbgen.DBGenPackage
  * @generated
  */
-public interface DbgenFactory extends EFactory
+public interface DBGenFactory extends EFactory
 {
   /**
    * The singleton instance of the factory.
@@ -30,7 +30,7 @@ public interface DbgenFactory extends EFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  DbgenFactory eINSTANCE = org.eclipse.emf.cdo.dbgen.impl.DbgenFactoryImpl.init();
+  DBGenFactory eINSTANCE = org.eclipse.emf.cdo.dbgen.impl.DBGenFactoryImpl.init();
 
   /**
    * Returns a new object of class '<em>Database</em>'.
@@ -75,6 +75,6 @@ public interface DbgenFactory extends EFactory
    * @return the package supported by this factory.
    * @generated
    */
-  DbgenPackage getDbgenPackage();
+  DBGenPackage getDBGenPackage();
 
-} //DbgenFactory
+} //DBGenFactory

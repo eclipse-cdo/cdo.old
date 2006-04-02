@@ -11,9 +11,9 @@
 package org.eclipse.emf.cdo.dbgen.provider;
 
 
-import org.eclipse.emf.cdo.dbgen.DbgenPackage;
+import org.eclipse.emf.cdo.dbgen.DBGenPackage;
 import org.eclipse.emf.cdo.dbgen.Index;
-import org.eclipse.emf.cdo.dbgen.internal.DbgenActivator;
+import org.eclipse.emf.cdo.dbgen.internal.DBGenActivator;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -83,7 +83,7 @@ public class IndexItemProvider extends ItemProviderAdapter implements IEditingDo
             ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
             getResourceLocator(), getString("_UI_Index_name_feature"), getString(
                     "_UI_PropertyDescriptor_description", "_UI_Index_name_feature",
-                    "_UI_Index_type"), DbgenPackage.Literals.INDEX__NAME, true,
+                    "_UI_Index_type"), DBGenPackage.Literals.INDEX__NAME, true,
             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
@@ -100,7 +100,7 @@ public class IndexItemProvider extends ItemProviderAdapter implements IEditingDo
                     .getRootAdapterFactory(), getResourceLocator(),
                     getString("_UI_Index_columns_feature"), getString(
                             "_UI_PropertyDescriptor_description", "_UI_Index_columns_feature",
-                            "_UI_Index_type"), DbgenPackage.Literals.INDEX__COLUMNS, true, null,
+                            "_UI_Index_type"), DBGenPackage.Literals.INDEX__COLUMNS, true, null,
                     null, null));
   }
 
@@ -116,7 +116,7 @@ public class IndexItemProvider extends ItemProviderAdapter implements IEditingDo
             ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
             getResourceLocator(), getString("_UI_Index_type_feature"), getString(
                     "_UI_PropertyDescriptor_description", "_UI_Index_type_feature",
-                    "_UI_Index_type"), DbgenPackage.Literals.INDEX__TYPE, true,
+                    "_UI_Index_type"), DBGenPackage.Literals.INDEX__TYPE, true,
             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
@@ -157,8 +157,8 @@ public class IndexItemProvider extends ItemProviderAdapter implements IEditingDo
 
     switch (notification.getFeatureID(Index.class))
     {
-    case DbgenPackage.INDEX__NAME:
-    case DbgenPackage.INDEX__TYPE:
+    case DBGenPackage.INDEX__NAME:
+    case DBGenPackage.INDEX__TYPE:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
               true));
       return;
@@ -186,7 +186,7 @@ public class IndexItemProvider extends ItemProviderAdapter implements IEditingDo
    */
   public ResourceLocator getResourceLocator()
   {
-    return DbgenActivator.INSTANCE;
+    return DBGenActivator.INSTANCE;
   }
 
 }
