@@ -8,13 +8,13 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.net4j.spring.test.actions;
+package org.eclipse.net4j.spring.tests.actions;
 
 
 import org.eclipse.net4j.spring.Container;
 import org.eclipse.net4j.spring.db.ContextClassLoaderDataSource;
 import org.eclipse.net4j.spring.impl.ContainerImpl;
-import org.eclipse.net4j.spring.test.Net4jSpringTestPlugin;
+import org.eclipse.net4j.spring.tests.Net4jSpringTestPlugin;
 import org.eclipse.net4j.util.eclipse.AbstractPlugin;
 
 import org.eclipse.jface.action.IAction;

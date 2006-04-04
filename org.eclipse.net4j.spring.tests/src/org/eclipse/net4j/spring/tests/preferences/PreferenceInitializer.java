@@ -8,10 +8,10 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.net4j.spring.test.preferences;
+package org.eclipse.net4j.spring.tests.preferences;
 
 
-import org.eclipse.net4j.spring.test.Net4jSpringTestPlugin;
+import org.eclipse.net4j.spring.tests.Net4jSpringTestPlugin;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;

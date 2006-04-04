@@ -8,7 +8,7 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.net4j.spring.test.preferences;
+package org.eclipse.net4j.spring.tests.preferences;
 
 
 /**

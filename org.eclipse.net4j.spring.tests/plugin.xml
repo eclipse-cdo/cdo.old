@@ -6,7 +6,7 @@
      <extension
          point="org.eclipse.ui.actionSets">
       <actionSet
-            id="org.eclipse.net4j.spring.test.actionSet"
+            id="org.eclipse.net4j.spring.tests.actionSet"
             label="Sample Action Set"
             visible="true">
          <menu
@@ -15,9 +15,9 @@
             <separator name="sampleGroup"/>
          </menu>
          <action
-               class="org.eclipse.net4j.spring.test.actions.SpringTestAction"
+               class="org.eclipse.net4j.spring.tests.actions.SpringTestAction"
                icon="icons/sample.gif"
-               id="org.eclipse.net4j.spring.test.actions.SpringTestAction"
+               id="org.eclipse.net4j.spring.tests.actions.SpringTestAction"
                label="&amp;Spring Test"
                menubarPath="sampleMenu/sampleGroup"
                toolbarPath="sampleGroup"
@@ -28,14 +28,14 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            class="org.eclipse.net4j.spring.test.preferences.SamplePreferencePage"
-            id="org.eclipse.net4j.spring.test.preferences.SamplePreferencePage"
+            class="org.eclipse.net4j.spring.tests.preferences.SamplePreferencePage"
+            id="org.eclipse.net4j.spring.tests.preferences.SamplePreferencePage"
             name="Sample Preferences"/>
    </extension>
    
    <extension
          point="org.eclipse.core.runtime.preferences">
-      <initializer class="org.eclipse.net4j.spring.test.preferences.PreferenceInitializer"/>
+      <initializer class="org.eclipse.net4j.spring.tests.preferences.PreferenceInitializer"/>
    </extension>
 
 </plugin>

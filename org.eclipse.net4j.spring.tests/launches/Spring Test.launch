@@ -315,7 +315,7 @@
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
 <stringAttribute key="progargs" value=""/>
 <booleanAttribute key="useDefaultConfig" value="true"/>
-<stringAttribute key="wsproject" value="org.eclipse.net4j.spring;org.eclipse.net4j.spring.db;org.eclipse.net4j.jdbc;org.eclipse.net4j.util;org.eclipse.net4j.spring.test;org.eclipse.net4j.jdbc.driver.mysql;org.eclipse.net4j.jdbc.oracle;org.eclipse.net4j.jdbc.hsqldb;org.eclipse.net4j.jdbc.mysql;"/>
+<stringAttribute key="wsproject" value="org.eclipse.net4j.spring;org.eclipse.net4j.spring.db;org.eclipse.net4j.jdbc;org.eclipse.net4j.util;org.eclipse.net4j.spring.tests;org.eclipse.net4j.jdbc.driver.mysql;org.eclipse.net4j.jdbc.oracle;org.eclipse.net4j.jdbc.hsqldb;org.eclipse.net4j.jdbc.mysql;"/>
 <booleanAttribute key="askclear" value="true"/>
 <booleanAttribute key="includeOptional" value="true"/>
 <stringAttribute key="location0" value="_spring"/>

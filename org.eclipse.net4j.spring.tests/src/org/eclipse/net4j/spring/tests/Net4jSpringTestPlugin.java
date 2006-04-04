@@ -8,7 +8,7 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.net4j.spring.test;
+package org.eclipse.net4j.spring.tests;
 
 
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -92,7 +92,7 @@ public class Net4jSpringTestPlugin extends AbstractUIPlugin
     {
       if (resourceBundle == null)
         resourceBundle = ResourceBundle
-            .getBundle("org.eclipse.net4j.spring.test.Net4jSpringTestPluginResources");
+            .getBundle("org.eclipse.net4j.spring.tests.Net4jSpringTestPluginResources");
     }
     catch (MissingResourceException x)
     {
@@ -110,6 +110,6 @@ public class Net4jSpringTestPlugin extends AbstractUIPlugin
    */
   public static ImageDescriptor getImageDescriptor(String path)
   {
-    return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.net4j.spring.test", path);
+    return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.net4j.spring.tests", path);
   }
 }
