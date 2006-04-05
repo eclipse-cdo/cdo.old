@@ -39,7 +39,7 @@ groupPackage $pluginName
 # Original: pluginDirs=`find $eclipseDir/plugins -name @dot -printf '%T@ %p\n' | sort -n | grep org.eclipse.emf.transaction | cut -f2 -d' ' | sed -e 's/\(\/.*\)\/.*/\1/'`
 # New (eclipseDir): pluginDirs=`find $eclipseDir/plugins -name 'org.eclipse.emf.transaction*' -maxdepth 1 -type d -printf '%T@ %p\n' | sort -n | cut -f2 -d' '`
 # Finds plugins in the Workspace:
-pluginDirs=`find $currentPath/../.. -name "${pluginName}*" -maxdepth 1 -type d -printf '%T@ %p\n' | sort -n | cut -f2 -d' '`
+pluginDirs=`find $currentPath/../.. -maxdepth 1 -name "${pluginName}*" -type d -printf '%T@ %p\n' | sort -n | cut -f2 -d' '`
 
 ### TODO: missing emf/sdo/xsd plugins (?) in $eclipseDir - need to copy them over or reference source (?)
 ### so that all classes/packages (and thus @links) can be resolved
