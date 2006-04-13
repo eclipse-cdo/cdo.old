@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.net4j"
       label="Net4j"
-      version="1.0.0"
+      version="1.0.0.qualifier"
       provider-name="Eclipse.org">
 
    <description url="http://www.yourdomain.com/description">
@@ -26,31 +26,31 @@
          id="org.eclipse.net4j.core"
          download-size="0"
          install-size="0"
-         version="1.0.0"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.net4j.spring"
          download-size="0"
          install-size="0"
-         version="1.0.0"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.net4j.util"
          download-size="0"
          install-size="0"
-         version="1.0.0"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.net4j.socket"
          download-size="0"
          install-size="0"
-         version="1.0.0"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.net4j.embedded"
          download-size="0"
          install-size="0"
-         version="1.0.0"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.net4j.spring.db"
