@@ -9,21 +9,12 @@
 
 	<property name="filesToInclude" value="META-INF/,about.*,eclipse*.gif,eclipse*.png,eclipse_lg.gif,plugin.*,doc.zip,toc.xml,index/**"/>
 
-	<property name="bundleJavacSource" value="${javacSource}"/>
-	<property name="bundleJavacTarget" value="${javacTarget}"/>
-	<property name="bundleBootClasspath" value="${bootclasspath}"/>
-
-	<property name="basews" value="${ws}"/>
-	<property name="baseos" value="${os}"/>
-	<property name="basearch" value="${arch}"/>
-	<property name="basenl" value="${nl}"/>
-
 	<!-- Compiler settings. -->
 	<property name="javacFailOnError" value="false"/>
 	<property name="javacDebugInfo" value="on"/>
 	<property name="javacVerbose" value="true"/>
-	<property name="javacSource" value="1.3"/>
-	<property name="javacTarget" value="1.2"/>
+	<property name="javacSource" value="1.5"/>
+	<property name="javacTarget" value="1.5"/>
 	<property name="compilerArg" value=""/>
 	<path id="path_bootclasspath">
 		<fileset dir="${java.home}/lib">
@@ -31,6 +22,14 @@
 		</fileset>
 	</path>
 	<property name="bootclasspath" refid="path_bootclasspath"/>
+
+	<property name="bundleJavacSource" value="${javacSource}"/>
+	<property name="bundleJavacTarget" value="${javacTarget}"/>
+	<property name="bundleBootClasspath" value="${bootclasspath}"/>
+	<property name="basews" value="${ws}"/>
+	<property name="baseos" value="${os}"/>
+	<property name="basearch" value="${arch}"/>
+	<property name="basenl" value="${nl}"/>
 
 	<target name="init" depends="properties">
 		<condition property="pluginTemp" value="${buildTempFolder}/plugins">
