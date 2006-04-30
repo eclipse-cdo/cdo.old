@@ -615,15 +615,6 @@ public class ChannelImpl extends ServiceImpl implements Channel
 
     receiverQueue.add(data);
 
-    try
-    {
-      Thread.sleep(50);
-    }
-    catch (InterruptedException ex)
-    {
-      throw new ThreadInterruptedException(ex);
-    }
-
     if (receiverTask == null)
     {
       startSignalTask();
@@ -646,10 +637,6 @@ public class ChannelImpl extends ServiceImpl implements Channel
         error("Error while dispatching task " + receiverTask, ex);
       }
     }
-    // else
-    // {
-    // System.out.println("---> EMPTY <---");
-    // }
   }
 
   protected void ensureTransmitterBufferData(int dataSize)
@@ -813,6 +800,12 @@ public class ChannelImpl extends ServiceImpl implements Channel
       {
         // Signal is a Confirmation, use the original Request
         RequestWithConfirmation confirmation = (RequestWithConfirmation)getCurrentRequest();
+
+        while (confirmation == null)
+        {
+          confirmation = (RequestWithConfirmation)getCurrentRequest();
+          DeadlockDetector.sleep(5);
+        }
 
         if (confirmation.getSignalId() != -signalId)
         {

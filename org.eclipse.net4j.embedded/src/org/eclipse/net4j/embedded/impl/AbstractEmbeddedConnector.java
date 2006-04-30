@@ -73,4 +73,9 @@ public abstract class AbstractEmbeddedConnector extends AbstractConnector implem
   {
     peer.receive(channelIndex, buffer);
   }
+
+  public boolean isPeerOnSameHost()
+  {
+    return true;
+  }
 }

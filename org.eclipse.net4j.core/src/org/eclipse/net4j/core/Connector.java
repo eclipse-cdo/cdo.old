@@ -45,6 +45,8 @@ public interface Connector extends Service
 
   public boolean isServer();
 
+  public boolean isPeerOnSameHost();
+
   public void removeChannel(Channel channel);
 
   public void transmit(int channelIndex, BufferImpl buffer);

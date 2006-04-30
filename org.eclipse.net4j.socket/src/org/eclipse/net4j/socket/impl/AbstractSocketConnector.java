@@ -32,6 +32,9 @@ import java.nio.channels.SelectableChannel;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 
+import java.net.InetAddress;
+import java.net.Socket;
+
 
 public abstract class AbstractSocketConnector extends AbstractConnector implements SocketConnector,
     SelectionListener
@@ -45,6 +48,8 @@ public abstract class AbstractSocketConnector extends AbstractConnector implemen
   private SelectorManager selectorManager;
 
   private SocketChannel socketChannel;
+
+  private boolean peerOnSameHost;
 
   private transient boolean inHeader = true;
 
@@ -88,6 +93,11 @@ public abstract class AbstractSocketConnector extends AbstractConnector implemen
   public void setSocketChannel(SocketChannel socketChannel)
   {
     doSet("socketChannel", socketChannel);
+  }
+
+  public boolean isPeerOnSameHost()
+  {
+    return peerOnSameHost;
   }
 
   /**
@@ -245,13 +255,13 @@ public abstract class AbstractSocketConnector extends AbstractConnector implemen
     try
     {
       ByteBuffer lengthBuffer = ByteBuffer.allocateDirect(4);
-      receiveBuffer(lengthBuffer);
+      receiveBufferDuringNegotiation(lengthBuffer);
       lengthBuffer.flip();
       int length = lengthBuffer.getInt();
 
       byte[] data = new byte[length];
       ByteBuffer buffer = ByteBuffer.wrap(data);
-      receiveBuffer(buffer);
+      receiveBufferDuringNegotiation(buffer);
       buffer.flip();
       return buffer.array();
     }
@@ -268,10 +278,10 @@ public abstract class AbstractSocketConnector extends AbstractConnector implemen
       ByteBuffer lengthBuffer = ByteBuffer.allocateDirect(4);
       lengthBuffer.putInt(data.length);
       lengthBuffer.flip();
-      transmitBuffer(lengthBuffer);
+      transmitBufferDuringNegotiation(lengthBuffer);
 
       ByteBuffer buffer = ByteBuffer.wrap(data);
-      transmitBuffer(buffer);
+      transmitBufferDuringNegotiation(buffer);
     }
     catch (Exception ex)
     {
@@ -279,34 +289,33 @@ public abstract class AbstractSocketConnector extends AbstractConnector implemen
     }
   }
 
-  private void transmitBuffer(ByteBuffer buffer) throws IOException
+  private void transmitBufferDuringNegotiation(ByteBuffer buffer) throws IOException
   {
     int written = socketChannel.write(buffer);
 
     while (written < buffer.capacity())
     {
-      DeadlockDetector.sleep(50);
+      DeadlockDetector.sleep(5);
       written += socketChannel.write(buffer);
     }
   }
 
-  private void receiveBuffer(ByteBuffer buffer) throws IOException
+  private void receiveBufferDuringNegotiation(ByteBuffer buffer) throws IOException
   {
     int read = socketChannel.read(buffer);
 
     while (read < buffer.capacity())
     {
-      DeadlockDetector.sleep(50);
+      DeadlockDetector.sleep(5);
       read += socketChannel.read(buffer);
     }
   }
 
-  public static void waitForConnection(SocketChannel socketChannel) throws InterruptedException,
-      IOException
+  public static void waitForConnection(SocketChannel socketChannel) throws IOException
   {
     while (socketChannel.isConnectionPending())
     {
-      Thread.sleep(200);
+      DeadlockDetector.sleep(5);
       socketChannel.finishConnect();
     }
   }
@@ -347,6 +356,12 @@ public abstract class AbstractSocketConnector extends AbstractConnector implemen
 
     if (isDebugEnabled()) debug("Waiting for connection...");
     waitForConnection(socketChannel);
+
+    Socket socket = socketChannel.socket();
+    InetAddress localAddr = socket.getLocalAddress();
+    InetAddress remoteAddr = socket.getInetAddress();
+    peerOnSameHost = localAddr.equals(remoteAddr);
+
     info("Connected socketChannel: " + socketChannel);
 
     super.activate();
