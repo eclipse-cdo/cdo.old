@@ -41,19 +41,23 @@ eclipseDir=`cd $1; echo $PWD`; if [ $debug -gt 0 ]; then echo "[antJd] eclipseDi
 destDir=$currentPath/../references/javadoc; mkdir -p $destDir; destDir=`cd $destDir; echo $PWD`; # resolve relative path
 if [ $debug -gt 0 ]; then echo "[antJd] destDir: "$destDir; fi
 
-hasToken=`grep "@plugin@" $antScript".template"`;
-if [ "x$hasToken" != "x"  ]; then
+hasToken=`grep -c "@plugin@" $antScript".template"`;
+if [ $hasToken -gt 0  ]; then
 	srcDir=$pluginPath/$pluginName/src; if [ $debug -gt 0 ]; then echo "[antJd] srcDir: "$srcDir; fi
 	if [ -d "$srcDir" ]; then
 		if [ $debug -gt 0 ]; then echo "[antJd] *.java in \$srcDir: "; echo "-----------------"; echo `find $srcDir -type f -name '*.java'`; echo "-----------------"; fi
-		packages=`find $srcDir -type f -name '*.java' -exec grep -e '^package .*;' {} \; | sed -e 's/^package *\(.*\);/\1/' | sed -e 's/[ ]*//g' | sort | uniq | xargs | sed -e 's/ /:/g'`;
+		packages=`find $srcDir -type f -name '*.java' -exec grep -e '^package .*;' {} \; | sed -e 's/^package *\(.*\);/\1/' | sed -e 's/[ ]*//g' | fromdos | sort | uniq | xargs | sed -e 's/ /:/g'`;
 		if [ $debug -gt 1 ]; then echo "[antJd] packages1: "$packages; fi
 		packages=`echo $packages | sed -e 's/\//\\\\\\//g' | sed -e 's/\./\\\\\./g'`; # slash escape
 		if [ $debug -gt 1 ]; then echo "[antJd] packages2: "$packages; fi
 		cat $antScript.template | sed -e "s/\@plugin\@/$packages/g" > $antScript.template.tmp;
-	fi
+	else 
+		echo "[antJd] ERROR! "$srcDir" does not exist!";
+		exit 1;
+  	fi
 else 
 	echo "[antJd] ERROR! "$currentPath"/javadoc.xml.template does not contain token @plugin@!";
+	exit 1;
 fi
 
 # Finds plugins in the Workspace:
