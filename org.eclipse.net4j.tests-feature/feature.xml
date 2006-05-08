@@ -18,17 +18,18 @@
    </license>
 
    <requires>
+      <import plugin="org.junit"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.ui"/>
+
+      <import feature="org.eclipse.emf"/>
+
       <import plugin="org.eclipse.net4j.core"/>
       <import plugin="org.eclipse.net4j.spring"/>
       <import plugin="org.eclipse.net4j.util"/>
       <import plugin="org.eclipse.net4j.socket"/>
       <import plugin="org.eclipse.net4j.embedded"/>
       <import plugin="org.eclipse.net4j.spring.db"/>
-
-      <import feature="org.eclipse.emf"/>
-      <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.ui"/>
-      <import plugin="org.junit"/>
    </requires>
 
    <plugin
