@@ -21,8 +21,7 @@
 	
 	<path id="bc">
 		<fileset dir="${java.home}/lib">
-			<include name="rt.jar" />
-			<include name="core.jar" />
+			<include name="*.jar" />
 		</fileset>
 	</path>
 	<property name="bootclasspath" refid="bc" />
