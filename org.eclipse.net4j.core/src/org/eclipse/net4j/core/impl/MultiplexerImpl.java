@@ -13,6 +13,7 @@ package org.eclipse.net4j.core.impl;
 
 import org.eclipse.net4j.core.Channel;
 import org.eclipse.net4j.core.Multiplexer;
+import org.eclipse.net4j.spring.InactiveException;
 import org.eclipse.net4j.spring.impl.ServiceImpl;
 import org.eclipse.net4j.util.thread.Worker;
 
@@ -71,6 +72,10 @@ public class MultiplexerImpl extends ServiceImpl implements Multiplexer
         channel.handleTransmission();
       }
       catch (InterruptedException ex)
+      {
+        return TERMINATE;
+      }
+      catch (InactiveException ex)
       {
         return TERMINATE;
       }
