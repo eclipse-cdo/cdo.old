@@ -26,6 +26,11 @@
 	<property name="bundleJavacSource" value="${javacSource}"/>
 	<property name="bundleJavacTarget" value="${javacTarget}"/>
 	<property name="bundleBootClasspath" value="${bootclasspath}"/>
+	
+	<!-- new 060508 to make build work when using JDK1.5 source/target -->
+	<echo message="Set J2SE-1.5 = ${bootclasspath}"/>
+	<property name="J2SE-1.5" value="${bootclasspath}"/>
+
 	<property name="basews" value="${ws}"/>
 	<property name="baseos" value="${os}"/>
 	<property name="basearch" value="${arch}"/>
@@ -46,7 +51,6 @@
 
 	<target name="properties" if="eclipse.running">
 		<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
-
 	</target>
 
 	<target name="build.update.jar" depends="init" description="Build the plug-in: ${plugin} for an update site.">
