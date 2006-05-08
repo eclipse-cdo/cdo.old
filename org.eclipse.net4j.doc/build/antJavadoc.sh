@@ -19,7 +19,7 @@ export JAVA_HOME=/opt/sun-java2-5.0
 
 ##########################################################################
 
-debug=1; if [ $debug -gt 0 ]; then echo "[antJd] debug: "$debug; fi
+debug=2; if [ $debug -gt 0 ]; then echo "[antJd] debug: "$debug; fi
 
 if [ "x"$ANT_HOME = "x" ]; then export ANT_HOME=/opt/apache-ant-1.6; fi
 if [ "x"$JAVA_HOME = "x" ]; then export JAVA_HOME=/opt/ibm-java2-1.4; fi
@@ -41,7 +41,7 @@ eclipseDir=`cd $1; echo $PWD`; if [ $debug -gt 0 ]; then echo "[antJd] eclipseDi
 destDir=$currentPath/../references/javadoc; mkdir -p $destDir; destDir=`cd $destDir; echo $PWD`; # resolve relative path
 if [ $debug -gt 0 ]; then echo "[antJd] destDir: "$destDir; fi
 
-hasToken=`grep "@plugin@" $antScript.template`;
+hasToken=`grep "@plugin@" $antScript".template"`;
 if [ "x$hasToken" != "x"  ]; then
 	srcDir=$pluginPath/$pluginName/src; if [ $debug -gt 0 ]; then echo "[antJd] srcDir: "$srcDir; fi
 	if [ -d "$srcDir" ]; then
@@ -50,7 +50,7 @@ if [ "x$hasToken" != "x"  ]; then
 		if [ $debug -gt 1 ]; then echo "[antJd] packages1: "$packages; fi
 		packages=`echo $packages | sed -e 's/\//\\\\\\//g' | sed -e 's/\./\\\\\./g'`; # slash escape
 		if [ $debug -gt 1 ]; then echo "[antJd] packages2: "$packages; fi
-		sed -e "s/\@plugin\@/${packages}/g" $antScript.template > $antScript.template.tmp;
+		cat $antScript.template | sed -e "s/\@plugin\@/$packages/g" > $antScript.template.tmp;
 	fi
 else 
 	echo "[antJd] ERROR! "$currentPath"/javadoc.xml.template does not contain token @plugin@!";
@@ -66,7 +66,7 @@ fi
 ### TODO?: missing emf/sdo/xsd plugins in $eclipseDir - need to copy them over or reference source so that all classes/packages (and thus @links) can be resolved
 
 # All the jars in the plugins directory
-classpath=`find $eclipseDir/plugins -name "*.jar" -printf "%p:"`; if [ $debug -gt 0 ]; then echo "[antJd] classpath: "$classpath; fi
+classpath="."`find $eclipseDir/plugins -name "*.jar" -printf ":%p"`; if [ $debug -gt 0 ]; then echo "[antJd] classpath: "$classpath; fi
 
 # Calculates the packagesets and the calls to copyDocFiles
 packagesets="";
