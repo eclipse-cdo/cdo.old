@@ -19,7 +19,7 @@ export JAVA_HOME=/opt/sun-java2-5.0
 
 ##########################################################################
 
-debug=0; if [ $debug -gt 0 ]; then echo "[antJd] debug: "$debug; fi
+debug=2; if [ $debug -gt 0 ]; then echo "[antJd] debug: "$debug; fi
 
 if [ "x"$ANT_HOME = "x" ]; then export ANT_HOME=/opt/apache-ant-1.6; fi
 if [ "x"$JAVA_HOME = "x" ]; then export JAVA_HOME=/opt/ibm-java2-1.4; fi
@@ -43,7 +43,7 @@ if [ $debug -gt 0 ]; then echo "[antJd] destDir: "$destDir; fi
 
 hasToken=`grep -c "@plugin@" $antScript".template"`;
 if [ $hasToken -gt 0  ]; then
-	srcDir=$pluginPath/$pluginName/src; if [ $debug -gt 0 ]; then echo "[antJd] srcDir: "$srcDir; fi
+	srcDir=$pluginPath/$pluginName.source/src; if [ $debug -gt 0 ]; then echo "[antJd] srcDir: "$srcDir; fi
 	if [ -d "$srcDir" ]; then
 		if [ $debug -gt 0 ]; then echo "[antJd] *.java in \$srcDir: "; echo "-----------------"; echo `find $srcDir -type f -name '*.java'`; echo "-----------------"; fi
 		packages=`find $srcDir -type f -name '*.java' -exec grep -e '^package .*;' {} \; | sed -e 's/^package *\(.*\);/\1/' | sed -e 's/[ ]*//g' | fromdos | sort | uniq | xargs | sed -e 's/ /:/g'`;
