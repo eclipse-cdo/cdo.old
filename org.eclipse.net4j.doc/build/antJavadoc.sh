@@ -46,7 +46,11 @@ if [ $hasToken -gt 0  ]; then
 	srcDir=$pluginPath/$pluginName.source/src; if [ $debug -gt 0 ]; then echo "[antJd] srcDir: "$srcDir; fi
 	if [ -d "$srcDir" ]; then
 		if [ `find $srcDir -name "*.java" | grep -c .` -eq 0 ]; then # must unpack zips first
-			for f in `find $srcDir -name "*src.zip"`; do unzip -q -d $srcDir $f; done
+			if [ $debug -gt 0 ]; then echo "[antJd] Unpacking *src.zip"; fi
+			for f in `find $srcDir -name "*src.zip"`; do 
+				if [ $debug -gt 1 ]; then echo "[antJd] Unpack $f"; fi
+				unzip -q -d $srcDir $f; 
+			done
 		fi
 		if [ $debug -gt 0 ]; then echo "[antJd] *.java in srcDir: "; echo "-----------------"; echo `find $srcDir -type f -name '*.java'`; echo "-----------------"; fi
 		packages=`find $srcDir -type f -name '*.java' -exec grep -e '^package .*;' {} \; | sed -e 's/^package *\(.*\);/\1/' | sed -e 's/[ ]*//g' | dos2unix | sort | uniq | xargs | sed -e 's/ /:/g'`;
