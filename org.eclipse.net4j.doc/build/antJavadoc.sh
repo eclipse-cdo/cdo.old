@@ -46,7 +46,7 @@ if [ $hasToken -gt 0  ]; then
 	srcDir=$pluginPath/$pluginName.source/src; if [ $debug -gt 0 ]; then echo "[antJd] srcDir: "$srcDir; fi
 	if [ -d "$srcDir" ]; then
 		if [ $debug -gt 0 ]; then echo "[antJd] *.java in \$srcDir: "; echo "-----------------"; echo `find $srcDir -type f -name '*.java'`; echo "-----------------"; fi
-		packages=`find $srcDir -type f -name '*.java' -exec grep -e '^package .*;' {} \; | sed -e 's/^package *\(.*\);/\1/' | sed -e 's/[ ]*//g' | fromdos | sort | uniq | xargs | sed -e 's/ /:/g'`;
+		packages=`find $srcDir -type f -name '*.java' -exec grep -e '^package .*;' {} \; | sed -e 's/^package *\(.*\);/\1/' | sed -e 's/[ ]*//g' | dos2unix | sort | uniq | xargs | sed -e 's/ /:/g'`;
 		if [ $debug -gt 1 ]; then echo "[antJd] packages1: "$packages; fi
 		packages=`echo $packages | sed -e 's/\//\\\\\\//g' | sed -e 's/\./\\\\\./g'`; # slash escape
 		if [ $debug -gt 1 ]; then echo "[antJd] packages2: "$packages; fi
