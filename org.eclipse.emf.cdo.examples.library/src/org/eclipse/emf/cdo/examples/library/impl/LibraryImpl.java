@@ -92,7 +92,7 @@ public class LibraryImpl extends CDOPersistentImpl implements Library
    */
   protected EClass eStaticClass()
   {
-    return LibraryPackage.eINSTANCE.getLibrary();
+    return LibraryPackage.Literals.LIBRARY;
   }
 
   /**
@@ -148,25 +148,19 @@ public class LibraryImpl extends CDOPersistentImpl implements Library
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass,
+  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID,
       NotificationChain msgs)
   {
-    if (featureID >= 0)
+    switch (featureID)
     {
-      switch (eDerivedStructuralFeatureID(featureID, baseClass))
-      {
-        case LibraryPackage.LIBRARY__BOOKS:
-          return ((InternalEList) getBooks()).basicAdd(otherEnd, msgs);
-        case LibraryPackage.LIBRARY__AUTHORS:
-          return ((InternalEList) getAuthors()).basicAdd(otherEnd, msgs);
-        case LibraryPackage.LIBRARY__TOPICS:
-          return ((InternalEList) getTopics()).basicAdd(otherEnd, msgs);
-        default:
-          return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-      }
+      case LibraryPackage.LIBRARY__BOOKS:
+        return ((InternalEList) getBooks()).basicAdd(otherEnd, msgs);
+      case LibraryPackage.LIBRARY__AUTHORS:
+        return ((InternalEList) getAuthors()).basicAdd(otherEnd, msgs);
+      case LibraryPackage.LIBRARY__TOPICS:
+        return ((InternalEList) getTopics()).basicAdd(otherEnd, msgs);
     }
-    if (eContainer != null) msgs = eBasicRemoveFromContainer(msgs);
-    return eBasicSetContainer(otherEnd, featureID, msgs);
+    return super.eInverseAdd(otherEnd, featureID, msgs);
   }
 
   /**
@@ -174,24 +168,19 @@ public class LibraryImpl extends CDOPersistentImpl implements Library
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass,
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID,
       NotificationChain msgs)
   {
-    if (featureID >= 0)
+    switch (featureID)
     {
-      switch (eDerivedStructuralFeatureID(featureID, baseClass))
-      {
-        case LibraryPackage.LIBRARY__BOOKS:
-          return ((InternalEList) getBooks()).basicRemove(otherEnd, msgs);
-        case LibraryPackage.LIBRARY__AUTHORS:
-          return ((InternalEList) getAuthors()).basicRemove(otherEnd, msgs);
-        case LibraryPackage.LIBRARY__TOPICS:
-          return ((InternalEList) getTopics()).basicRemove(otherEnd, msgs);
-        default:
-          return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-      }
+      case LibraryPackage.LIBRARY__BOOKS:
+        return ((InternalEList) getBooks()).basicRemove(otherEnd, msgs);
+      case LibraryPackage.LIBRARY__AUTHORS:
+        return ((InternalEList) getAuthors()).basicRemove(otherEnd, msgs);
+      case LibraryPackage.LIBRARY__TOPICS:
+        return ((InternalEList) getTopics()).basicRemove(otherEnd, msgs);
     }
-    return eBasicSetContainer(null, featureID, msgs);
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -199,9 +188,9 @@ public class LibraryImpl extends CDOPersistentImpl implements Library
    * <!-- end-user-doc -->
    * @generated
    */
-  public Object eGet(EStructuralFeature eFeature, boolean resolve)
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-    switch (eDerivedStructuralFeatureID(eFeature))
+    switch (featureID)
     {
       case LibraryPackage.LIBRARY__BOOKS:
         return getBooks();
@@ -210,7 +199,7 @@ public class LibraryImpl extends CDOPersistentImpl implements Library
       case LibraryPackage.LIBRARY__TOPICS:
         return getTopics();
     }
-    return eDynamicGet(eFeature, resolve);
+    return super.eGet(featureID, resolve, coreType);
   }
 
   /**
@@ -218,9 +207,9 @@ public class LibraryImpl extends CDOPersistentImpl implements Library
    * <!-- end-user-doc -->
    * @generated
    */
-  public void eSet(EStructuralFeature eFeature, Object newValue)
+  public void eSet(int featureID, Object newValue)
   {
-    switch (eDerivedStructuralFeatureID(eFeature))
+    switch (featureID)
     {
       case LibraryPackage.LIBRARY__BOOKS:
         getBooks().clear();
@@ -235,7 +224,7 @@ public class LibraryImpl extends CDOPersistentImpl implements Library
         getTopics().addAll((Collection) newValue);
         return;
     }
-    eDynamicSet(eFeature, newValue);
+    super.eSet(featureID, newValue);
   }
 
   /**
@@ -243,9 +232,9 @@ public class LibraryImpl extends CDOPersistentImpl implements Library
    * <!-- end-user-doc -->
    * @generated
    */
-  public void eUnset(EStructuralFeature eFeature)
+  public void eUnset(int featureID)
   {
-    switch (eDerivedStructuralFeatureID(eFeature))
+    switch (featureID)
     {
       case LibraryPackage.LIBRARY__BOOKS:
         getBooks().clear();
@@ -257,7 +246,7 @@ public class LibraryImpl extends CDOPersistentImpl implements Library
         getTopics().clear();
         return;
     }
-    eDynamicUnset(eFeature);
+    super.eUnset(featureID);
   }
 
   /**
@@ -265,9 +254,9 @@ public class LibraryImpl extends CDOPersistentImpl implements Library
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean eIsSet(EStructuralFeature eFeature)
+  public boolean eIsSet(int featureID)
   {
-    switch (eDerivedStructuralFeatureID(eFeature))
+    switch (featureID)
     {
       case LibraryPackage.LIBRARY__BOOKS:
         return books != null && !books.isEmpty();
@@ -276,7 +265,7 @@ public class LibraryImpl extends CDOPersistentImpl implements Library
       case LibraryPackage.LIBRARY__TOPICS:
         return topics != null && !topics.isEmpty();
     }
-    return eDynamicIsSet(eFeature);
+    return super.eIsSet(featureID);
   }
 
 } //LibraryImpl

@@ -78,7 +78,7 @@ public class EBookImpl extends BookImpl implements EBook
    */
   protected EClass eStaticClass()
   {
-    return LibraryPackage.eINSTANCE.getEBook();
+    return LibraryPackage.Literals.EBOOK;
   }
 
   /**
@@ -111,102 +111,14 @@ public class EBookImpl extends BookImpl implements EBook
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass,
-      NotificationChain msgs)
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-    if (featureID >= 0)
+    switch (featureID)
     {
-      switch (eDerivedStructuralFeatureID(featureID, baseClass))
-      {
-        case LibraryPackage.EBOOK__AUTHORS:
-          return ((InternalEList) getAuthors()).basicAdd(otherEnd, msgs);
-        case LibraryPackage.EBOOK__LIBRARY:
-          if (eContainer != null) msgs = eBasicRemoveFromContainer(msgs);
-          return eBasicSetContainer(otherEnd, LibraryPackage.EBOOK__LIBRARY, msgs);
-        case LibraryPackage.EBOOK__TOPIC:
-          if (eContainer != null) msgs = eBasicRemoveFromContainer(msgs);
-          return eBasicSetContainer(otherEnd, LibraryPackage.EBOOK__TOPIC, msgs);
-        default:
-          return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-      }
-    }
-    if (eContainer != null) msgs = eBasicRemoveFromContainer(msgs);
-    return eBasicSetContainer(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass,
-      NotificationChain msgs)
-  {
-    if (featureID >= 0)
-    {
-      switch (eDerivedStructuralFeatureID(featureID, baseClass))
-      {
-        case LibraryPackage.EBOOK__AUTHORS:
-          return ((InternalEList) getAuthors()).basicRemove(otherEnd, msgs);
-        case LibraryPackage.EBOOK__LIBRARY:
-          return eBasicSetContainer(null, LibraryPackage.EBOOK__LIBRARY, msgs);
-        case LibraryPackage.EBOOK__TOPIC:
-          return eBasicSetContainer(null, LibraryPackage.EBOOK__TOPIC, msgs);
-        default:
-          return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-      }
-    }
-    return eBasicSetContainer(null, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-  {
-    if (eContainerFeatureID >= 0)
-    {
-      switch (eContainerFeatureID)
-      {
-        case LibraryPackage.EBOOK__LIBRARY:
-          return ((InternalEObject) eContainer).eInverseRemove(this, LibraryPackage.LIBRARY__BOOKS,
-              Library.class, msgs);
-        case LibraryPackage.EBOOK__TOPIC:
-          return ((InternalEObject) eContainer).eInverseRemove(this, LibraryPackage.TOPIC__BOOKS,
-              Topic.class, msgs);
-        default:
-          return eDynamicBasicRemoveFromContainer(msgs);
-      }
-    }
-    return ((InternalEObject) eContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-        - eContainerFeatureID, null, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Object eGet(EStructuralFeature eFeature, boolean resolve)
-  {
-    switch (eDerivedStructuralFeatureID(eFeature))
-    {
-      case LibraryPackage.EBOOK__TITLE:
-        return getTitle();
-      case LibraryPackage.EBOOK__AUTHORS:
-        return getAuthors();
-      case LibraryPackage.EBOOK__LIBRARY:
-        return getLibrary();
-      case LibraryPackage.EBOOK__TOPIC:
-        return getTopic();
-      case LibraryPackage.EBOOK__NUMBER_OF_PAGES:
-        return new Integer(getNumberOfPages());
       case LibraryPackage.EBOOK__URL:
         return getUrl();
     }
-    return eDynamicGet(eFeature, resolve);
+    return super.eGet(featureID, resolve, coreType);
   }
 
   /**
@@ -214,31 +126,15 @@ public class EBookImpl extends BookImpl implements EBook
    * <!-- end-user-doc -->
    * @generated
    */
-  public void eSet(EStructuralFeature eFeature, Object newValue)
+  public void eSet(int featureID, Object newValue)
   {
-    switch (eDerivedStructuralFeatureID(eFeature))
+    switch (featureID)
     {
-      case LibraryPackage.EBOOK__TITLE:
-        setTitle((String) newValue);
-        return;
-      case LibraryPackage.EBOOK__AUTHORS:
-        getAuthors().clear();
-        getAuthors().addAll((Collection) newValue);
-        return;
-      case LibraryPackage.EBOOK__LIBRARY:
-        setLibrary((Library) newValue);
-        return;
-      case LibraryPackage.EBOOK__TOPIC:
-        setTopic((Topic) newValue);
-        return;
-      case LibraryPackage.EBOOK__NUMBER_OF_PAGES:
-        setNumberOfPages(((Integer) newValue).intValue());
-        return;
       case LibraryPackage.EBOOK__URL:
         setUrl((String) newValue);
         return;
     }
-    eDynamicSet(eFeature, newValue);
+    super.eSet(featureID, newValue);
   }
 
   /**
@@ -246,30 +142,15 @@ public class EBookImpl extends BookImpl implements EBook
    * <!-- end-user-doc -->
    * @generated
    */
-  public void eUnset(EStructuralFeature eFeature)
+  public void eUnset(int featureID)
   {
-    switch (eDerivedStructuralFeatureID(eFeature))
+    switch (featureID)
     {
-      case LibraryPackage.EBOOK__TITLE:
-        setTitle(TITLE_EDEFAULT);
-        return;
-      case LibraryPackage.EBOOK__AUTHORS:
-        getAuthors().clear();
-        return;
-      case LibraryPackage.EBOOK__LIBRARY:
-        setLibrary((Library) null);
-        return;
-      case LibraryPackage.EBOOK__TOPIC:
-        setTopic((Topic) null);
-        return;
-      case LibraryPackage.EBOOK__NUMBER_OF_PAGES:
-        setNumberOfPages(NUMBER_OF_PAGES_EDEFAULT);
-        return;
       case LibraryPackage.EBOOK__URL:
         setUrl(URL_EDEFAULT);
         return;
     }
-    eDynamicUnset(eFeature);
+    super.eUnset(featureID);
   }
 
   /**
@@ -277,24 +158,14 @@ public class EBookImpl extends BookImpl implements EBook
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean eIsSet(EStructuralFeature eFeature)
+  public boolean eIsSet(int featureID)
   {
-    switch (eDerivedStructuralFeatureID(eFeature))
+    switch (featureID)
     {
-      case LibraryPackage.EBOOK__TITLE:
-        return TITLE_EDEFAULT == null ? title != null : !TITLE_EDEFAULT.equals(title);
-      case LibraryPackage.EBOOK__AUTHORS:
-        return authors != null && !authors.isEmpty();
-      case LibraryPackage.EBOOK__LIBRARY:
-        return getLibrary() != null;
-      case LibraryPackage.EBOOK__TOPIC:
-        return getTopic() != null;
-      case LibraryPackage.EBOOK__NUMBER_OF_PAGES:
-        return numberOfPages != NUMBER_OF_PAGES_EDEFAULT;
       case LibraryPackage.EBOOK__URL:
         return URL_EDEFAULT == null ? url != null : !URL_EDEFAULT.equals(url);
     }
-    return eDynamicIsSet(eFeature);
+    return super.eIsSet(featureID);
   }
 
   /**

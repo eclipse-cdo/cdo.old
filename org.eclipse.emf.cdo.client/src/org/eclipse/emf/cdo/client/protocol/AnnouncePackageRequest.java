@@ -42,12 +42,12 @@ public class AnnouncePackageRequest extends AbstractPackageRequest
     if (count >= 0)
     {
       handlePackageResponse(count);
-      return new Boolean(true);
+      return Boolean.TRUE;
     }
     else
     {
       if (isDebugEnabled()) debug("Unknown package " + packageInfo.getFullName());
-      return new Boolean(false);
+      return Boolean.FALSE;
     }
   }
 }

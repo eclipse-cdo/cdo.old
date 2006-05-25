@@ -82,7 +82,7 @@ public class AuthorItemProvider extends CDOPersistentItemProvider implements
         ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
         getString("_UI_Author_name_feature"), getString("_UI_PropertyDescriptor_description",
             "_UI_Author_name_feature", "_UI_Author_type"), LibraryPackage.Literals.AUTHOR__NAME,
-        true, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+        true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -97,7 +97,7 @@ public class AuthorItemProvider extends CDOPersistentItemProvider implements
         ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
         getString("_UI_Author_books_feature"), getString("_UI_PropertyDescriptor_description",
             "_UI_Author_books_feature", "_UI_Author_type"), LibraryPackage.Literals.AUTHOR__BOOKS,
-        true, null, null, null));
+        true, false, false, null, null, null));
   }
 
   /**

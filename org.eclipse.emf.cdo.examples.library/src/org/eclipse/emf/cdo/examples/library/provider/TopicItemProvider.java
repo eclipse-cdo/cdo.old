@@ -83,7 +83,7 @@ public class TopicItemProvider extends CDOPersistentItemProvider implements
         ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
         getString("_UI_Topic_name_feature"), getString("_UI_PropertyDescriptor_description",
             "_UI_Topic_name_feature", "_UI_Topic_type"), LibraryPackage.Literals.TOPIC__NAME, true,
-        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+        false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**

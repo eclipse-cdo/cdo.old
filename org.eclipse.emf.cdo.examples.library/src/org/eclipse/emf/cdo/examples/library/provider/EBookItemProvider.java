@@ -80,7 +80,7 @@ public class EBookItemProvider extends BookItemProvider implements IEditingDomai
         ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
         getString("_UI_EBook_url_feature"), getString("_UI_PropertyDescriptor_description",
             "_UI_EBook_url_feature", "_UI_EBook_type"), LibraryPackage.Literals.EBOOK__URL, true,
-        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+        false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**

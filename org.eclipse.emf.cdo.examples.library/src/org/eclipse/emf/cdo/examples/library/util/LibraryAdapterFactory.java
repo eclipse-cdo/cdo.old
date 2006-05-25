@@ -13,6 +13,8 @@ package org.eclipse.emf.cdo.example.library.util;
 
 import org.eclipse.emf.cdo.client.CDOPersistable;
 import org.eclipse.emf.cdo.client.CDOPersistent;
+import org.eclipse.emf.cdo.example.library.*;
+
 import org.eclipse.emf.cdo.example.library.Author;
 import org.eclipse.emf.cdo.example.library.Book;
 import org.eclipse.emf.cdo.example.library.EBook;

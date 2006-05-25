@@ -94,7 +94,7 @@ public class AuthorImpl extends CDOPersistentImpl implements Author
    */
   protected EClass eStaticClass()
   {
-    return LibraryPackage.eINSTANCE.getAuthor();
+    return LibraryPackage.Literals.AUTHOR;
   }
 
   /**
@@ -146,9 +146,20 @@ public class AuthorImpl extends CDOPersistentImpl implements Author
    */
   public Library getLibrary()
   {
-    cdoLoad();
     if (eContainerFeatureID != LibraryPackage.AUTHOR__LIBRARY) return null;
-    return (Library) eContainer;
+    return (Library) eContainer();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetLibrary(Library newLibrary, NotificationChain msgs)
+  {
+    cdoLoad();
+    msgs = eBasicSetContainer((InternalEObject) newLibrary, LibraryPackage.AUTHOR__LIBRARY, msgs);
+    return msgs;
   }
 
   /**
@@ -158,18 +169,17 @@ public class AuthorImpl extends CDOPersistentImpl implements Author
    */
   public void setLibrary(Library newLibrary)
   {
-    cdoLoad();
-    if (newLibrary != eContainer
+    if (newLibrary != eInternalContainer()
         || (eContainerFeatureID != LibraryPackage.AUTHOR__LIBRARY && newLibrary != null))
     {
       if (EcoreUtil.isAncestor(this, newLibrary))
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
       NotificationChain msgs = null;
-      if (eContainer != null) msgs = eBasicRemoveFromContainer(msgs);
+      if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
       if (newLibrary != null)
         msgs = ((InternalEObject) newLibrary).eInverseAdd(this, LibraryPackage.LIBRARY__AUTHORS,
             Library.class, msgs);
-      msgs = eBasicSetContainer((InternalEObject) newLibrary, LibraryPackage.AUTHOR__LIBRARY, msgs);
+      msgs = basicSetLibrary(newLibrary, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
@@ -182,24 +192,18 @@ public class AuthorImpl extends CDOPersistentImpl implements Author
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass,
+  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID,
       NotificationChain msgs)
   {
-    if (featureID >= 0)
+    switch (featureID)
     {
-      switch (eDerivedStructuralFeatureID(featureID, baseClass))
-      {
-        case LibraryPackage.AUTHOR__BOOKS:
-          return ((InternalEList) getBooks()).basicAdd(otherEnd, msgs);
-        case LibraryPackage.AUTHOR__LIBRARY:
-          if (eContainer != null) msgs = eBasicRemoveFromContainer(msgs);
-          return eBasicSetContainer(otherEnd, LibraryPackage.AUTHOR__LIBRARY, msgs);
-        default:
-          return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-      }
+      case LibraryPackage.AUTHOR__BOOKS:
+        return ((InternalEList) getBooks()).basicAdd(otherEnd, msgs);
+      case LibraryPackage.AUTHOR__LIBRARY:
+        if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+        return basicSetLibrary((Library) otherEnd, msgs);
     }
-    if (eContainer != null) msgs = eBasicRemoveFromContainer(msgs);
-    return eBasicSetContainer(otherEnd, featureID, msgs);
+    return super.eInverseAdd(otherEnd, featureID, msgs);
   }
 
   /**
@@ -207,22 +211,17 @@ public class AuthorImpl extends CDOPersistentImpl implements Author
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass,
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID,
       NotificationChain msgs)
   {
-    if (featureID >= 0)
+    switch (featureID)
     {
-      switch (eDerivedStructuralFeatureID(featureID, baseClass))
-      {
-        case LibraryPackage.AUTHOR__BOOKS:
-          return ((InternalEList) getBooks()).basicRemove(otherEnd, msgs);
-        case LibraryPackage.AUTHOR__LIBRARY:
-          return eBasicSetContainer(null, LibraryPackage.AUTHOR__LIBRARY, msgs);
-        default:
-          return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-      }
+      case LibraryPackage.AUTHOR__BOOKS:
+        return ((InternalEList) getBooks()).basicRemove(otherEnd, msgs);
+      case LibraryPackage.AUTHOR__LIBRARY:
+        return basicSetLibrary(null, msgs);
     }
-    return eBasicSetContainer(null, featureID, msgs);
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -230,21 +229,15 @@ public class AuthorImpl extends CDOPersistentImpl implements Author
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+  public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
   {
-    if (eContainerFeatureID >= 0)
+    switch (eContainerFeatureID)
     {
-      switch (eContainerFeatureID)
-      {
-        case LibraryPackage.AUTHOR__LIBRARY:
-          return ((InternalEObject) eContainer).eInverseRemove(this,
-              LibraryPackage.LIBRARY__AUTHORS, Library.class, msgs);
-        default:
-          return eDynamicBasicRemoveFromContainer(msgs);
-      }
+      case LibraryPackage.AUTHOR__LIBRARY:
+        return eInternalContainer().eInverseRemove(this, LibraryPackage.LIBRARY__AUTHORS,
+            Library.class, msgs);
     }
-    return ((InternalEObject) eContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-        - eContainerFeatureID, null, msgs);
+    return super.eBasicRemoveFromContainerFeature(msgs);
   }
 
   /**
@@ -252,9 +245,9 @@ public class AuthorImpl extends CDOPersistentImpl implements Author
    * <!-- end-user-doc -->
    * @generated
    */
-  public Object eGet(EStructuralFeature eFeature, boolean resolve)
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-    switch (eDerivedStructuralFeatureID(eFeature))
+    switch (featureID)
     {
       case LibraryPackage.AUTHOR__NAME:
         return getName();
@@ -263,7 +256,7 @@ public class AuthorImpl extends CDOPersistentImpl implements Author
       case LibraryPackage.AUTHOR__LIBRARY:
         return getLibrary();
     }
-    return eDynamicGet(eFeature, resolve);
+    return super.eGet(featureID, resolve, coreType);
   }
 
   /**
@@ -271,9 +264,9 @@ public class AuthorImpl extends CDOPersistentImpl implements Author
    * <!-- end-user-doc -->
    * @generated
    */
-  public void eSet(EStructuralFeature eFeature, Object newValue)
+  public void eSet(int featureID, Object newValue)
   {
-    switch (eDerivedStructuralFeatureID(eFeature))
+    switch (featureID)
     {
       case LibraryPackage.AUTHOR__NAME:
         setName((String) newValue);
@@ -286,7 +279,7 @@ public class AuthorImpl extends CDOPersistentImpl implements Author
         setLibrary((Library) newValue);
         return;
     }
-    eDynamicSet(eFeature, newValue);
+    super.eSet(featureID, newValue);
   }
 
   /**
@@ -294,9 +287,9 @@ public class AuthorImpl extends CDOPersistentImpl implements Author
    * <!-- end-user-doc -->
    * @generated
    */
-  public void eUnset(EStructuralFeature eFeature)
+  public void eUnset(int featureID)
   {
-    switch (eDerivedStructuralFeatureID(eFeature))
+    switch (featureID)
     {
       case LibraryPackage.AUTHOR__NAME:
         setName(NAME_EDEFAULT);
@@ -308,7 +301,7 @@ public class AuthorImpl extends CDOPersistentImpl implements Author
         setLibrary((Library) null);
         return;
     }
-    eDynamicUnset(eFeature);
+    super.eUnset(featureID);
   }
 
   /**
@@ -316,9 +309,9 @@ public class AuthorImpl extends CDOPersistentImpl implements Author
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean eIsSet(EStructuralFeature eFeature)
+  public boolean eIsSet(int featureID)
   {
-    switch (eDerivedStructuralFeatureID(eFeature))
+    switch (featureID)
     {
       case LibraryPackage.AUTHOR__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
@@ -327,7 +320,7 @@ public class AuthorImpl extends CDOPersistentImpl implements Author
       case LibraryPackage.AUTHOR__LIBRARY:
         return getLibrary() != null;
     }
-    return eDynamicIsSet(eFeature);
+    return super.eIsSet(featureID);
   }
 
   /**

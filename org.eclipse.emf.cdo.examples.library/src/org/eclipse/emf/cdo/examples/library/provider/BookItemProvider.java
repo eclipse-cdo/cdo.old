@@ -83,7 +83,7 @@ public class BookItemProvider extends CDOPersistentItemProvider implements
         ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
         getString("_UI_Book_title_feature"), getString("_UI_PropertyDescriptor_description",
             "_UI_Book_title_feature", "_UI_Book_type"), LibraryPackage.Literals.BOOK__TITLE, true,
-        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+        false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -98,7 +98,7 @@ public class BookItemProvider extends CDOPersistentItemProvider implements
         ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
         getString("_UI_Book_authors_feature"), getString("_UI_PropertyDescriptor_description",
             "_UI_Book_authors_feature", "_UI_Book_type"), LibraryPackage.Literals.BOOK__AUTHORS,
-        true, null, null, null));
+        true, false, false, null, null, null));
   }
 
   /**
@@ -113,7 +113,7 @@ public class BookItemProvider extends CDOPersistentItemProvider implements
         ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
         getString("_UI_Book_numberOfPages_feature"),
         getString("_UI_PropertyDescriptor_description", "_UI_Book_numberOfPages_feature",
-            "_UI_Book_type"), LibraryPackage.Literals.BOOK__NUMBER_OF_PAGES, true,
+            "_UI_Book_type"), LibraryPackage.Literals.BOOK__NUMBER_OF_PAGES, true, false, false,
         ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
   }
 

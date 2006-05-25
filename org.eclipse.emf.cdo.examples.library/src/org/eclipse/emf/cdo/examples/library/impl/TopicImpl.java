@@ -106,7 +106,7 @@ public class TopicImpl extends CDOPersistentImpl implements Topic
    */
   protected EClass eStaticClass()
   {
-    return LibraryPackage.eINSTANCE.getTopic();
+    return LibraryPackage.Literals.TOPIC;
   }
 
   /**
@@ -132,9 +132,20 @@ public class TopicImpl extends CDOPersistentImpl implements Topic
    */
   public Library getLibrary()
   {
-    cdoLoad();
     if (eContainerFeatureID != LibraryPackage.TOPIC__LIBRARY) return null;
-    return (Library) eContainer;
+    return (Library) eContainer();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetLibrary(Library newLibrary, NotificationChain msgs)
+  {
+    cdoLoad();
+    msgs = eBasicSetContainer((InternalEObject) newLibrary, LibraryPackage.TOPIC__LIBRARY, msgs);
+    return msgs;
   }
 
   /**
@@ -144,18 +155,17 @@ public class TopicImpl extends CDOPersistentImpl implements Topic
    */
   public void setLibrary(Library newLibrary)
   {
-    cdoLoad();
-    if (newLibrary != eContainer
+    if (newLibrary != eInternalContainer()
         || (eContainerFeatureID != LibraryPackage.TOPIC__LIBRARY && newLibrary != null))
     {
       if (EcoreUtil.isAncestor(this, newLibrary))
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
       NotificationChain msgs = null;
-      if (eContainer != null) msgs = eBasicRemoveFromContainer(msgs);
+      if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
       if (newLibrary != null)
         msgs = ((InternalEObject) newLibrary).eInverseAdd(this, LibraryPackage.LIBRARY__TOPICS,
             Library.class, msgs);
-      msgs = eBasicSetContainer((InternalEObject) newLibrary, LibraryPackage.TOPIC__LIBRARY, msgs);
+      msgs = basicSetLibrary(newLibrary, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
@@ -186,9 +196,20 @@ public class TopicImpl extends CDOPersistentImpl implements Topic
    */
   public Topic getTopic()
   {
-    cdoLoad();
     if (eContainerFeatureID != LibraryPackage.TOPIC__TOPIC) return null;
-    return (Topic) eContainer;
+    return (Topic) eContainer();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetTopic(Topic newTopic, NotificationChain msgs)
+  {
+    cdoLoad();
+    msgs = eBasicSetContainer((InternalEObject) newTopic, LibraryPackage.TOPIC__TOPIC, msgs);
+    return msgs;
   }
 
   /**
@@ -198,18 +219,17 @@ public class TopicImpl extends CDOPersistentImpl implements Topic
    */
   public void setTopic(Topic newTopic)
   {
-    cdoLoad();
-    if (newTopic != eContainer
+    if (newTopic != eInternalContainer()
         || (eContainerFeatureID != LibraryPackage.TOPIC__TOPIC && newTopic != null))
     {
       if (EcoreUtil.isAncestor(this, newTopic))
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
       NotificationChain msgs = null;
-      if (eContainer != null) msgs = eBasicRemoveFromContainer(msgs);
+      if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
       if (newTopic != null)
         msgs = ((InternalEObject) newTopic).eInverseAdd(this, LibraryPackage.TOPIC__TOPICS,
             Topic.class, msgs);
-      msgs = eBasicSetContainer((InternalEObject) newTopic, LibraryPackage.TOPIC__TOPIC, msgs);
+      msgs = basicSetTopic(newTopic, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
@@ -248,29 +268,23 @@ public class TopicImpl extends CDOPersistentImpl implements Topic
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass,
+  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID,
       NotificationChain msgs)
   {
-    if (featureID >= 0)
+    switch (featureID)
     {
-      switch (eDerivedStructuralFeatureID(featureID, baseClass))
-      {
-        case LibraryPackage.TOPIC__BOOKS:
-          return ((InternalEList) getBooks()).basicAdd(otherEnd, msgs);
-        case LibraryPackage.TOPIC__LIBRARY:
-          if (eContainer != null) msgs = eBasicRemoveFromContainer(msgs);
-          return eBasicSetContainer(otherEnd, LibraryPackage.TOPIC__LIBRARY, msgs);
-        case LibraryPackage.TOPIC__TOPICS:
-          return ((InternalEList) getTopics()).basicAdd(otherEnd, msgs);
-        case LibraryPackage.TOPIC__TOPIC:
-          if (eContainer != null) msgs = eBasicRemoveFromContainer(msgs);
-          return eBasicSetContainer(otherEnd, LibraryPackage.TOPIC__TOPIC, msgs);
-        default:
-          return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-      }
+      case LibraryPackage.TOPIC__BOOKS:
+        return ((InternalEList) getBooks()).basicAdd(otherEnd, msgs);
+      case LibraryPackage.TOPIC__LIBRARY:
+        if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+        return basicSetLibrary((Library) otherEnd, msgs);
+      case LibraryPackage.TOPIC__TOPICS:
+        return ((InternalEList) getTopics()).basicAdd(otherEnd, msgs);
+      case LibraryPackage.TOPIC__TOPIC:
+        if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+        return basicSetTopic((Topic) otherEnd, msgs);
     }
-    if (eContainer != null) msgs = eBasicRemoveFromContainer(msgs);
-    return eBasicSetContainer(otherEnd, featureID, msgs);
+    return super.eInverseAdd(otherEnd, featureID, msgs);
   }
 
   /**
@@ -278,26 +292,21 @@ public class TopicImpl extends CDOPersistentImpl implements Topic
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass,
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID,
       NotificationChain msgs)
   {
-    if (featureID >= 0)
+    switch (featureID)
     {
-      switch (eDerivedStructuralFeatureID(featureID, baseClass))
-      {
-        case LibraryPackage.TOPIC__BOOKS:
-          return ((InternalEList) getBooks()).basicRemove(otherEnd, msgs);
-        case LibraryPackage.TOPIC__LIBRARY:
-          return eBasicSetContainer(null, LibraryPackage.TOPIC__LIBRARY, msgs);
-        case LibraryPackage.TOPIC__TOPICS:
-          return ((InternalEList) getTopics()).basicRemove(otherEnd, msgs);
-        case LibraryPackage.TOPIC__TOPIC:
-          return eBasicSetContainer(null, LibraryPackage.TOPIC__TOPIC, msgs);
-        default:
-          return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-      }
+      case LibraryPackage.TOPIC__BOOKS:
+        return ((InternalEList) getBooks()).basicRemove(otherEnd, msgs);
+      case LibraryPackage.TOPIC__LIBRARY:
+        return basicSetLibrary(null, msgs);
+      case LibraryPackage.TOPIC__TOPICS:
+        return ((InternalEList) getTopics()).basicRemove(otherEnd, msgs);
+      case LibraryPackage.TOPIC__TOPIC:
+        return basicSetTopic(null, msgs);
     }
-    return eBasicSetContainer(null, featureID, msgs);
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -305,24 +314,18 @@ public class TopicImpl extends CDOPersistentImpl implements Topic
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
+  public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
   {
-    if (eContainerFeatureID >= 0)
+    switch (eContainerFeatureID)
     {
-      switch (eContainerFeatureID)
-      {
-        case LibraryPackage.TOPIC__LIBRARY:
-          return ((InternalEObject) eContainer).eInverseRemove(this,
-              LibraryPackage.LIBRARY__TOPICS, Library.class, msgs);
-        case LibraryPackage.TOPIC__TOPIC:
-          return ((InternalEObject) eContainer).eInverseRemove(this, LibraryPackage.TOPIC__TOPICS,
-              Topic.class, msgs);
-        default:
-          return eDynamicBasicRemoveFromContainer(msgs);
-      }
+      case LibraryPackage.TOPIC__LIBRARY:
+        return eInternalContainer().eInverseRemove(this, LibraryPackage.LIBRARY__TOPICS,
+            Library.class, msgs);
+      case LibraryPackage.TOPIC__TOPIC:
+        return eInternalContainer().eInverseRemove(this, LibraryPackage.TOPIC__TOPICS, Topic.class,
+            msgs);
     }
-    return ((InternalEObject) eContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-        - eContainerFeatureID, null, msgs);
+    return super.eBasicRemoveFromContainerFeature(msgs);
   }
 
   /**
@@ -330,9 +333,9 @@ public class TopicImpl extends CDOPersistentImpl implements Topic
    * <!-- end-user-doc -->
    * @generated
    */
-  public Object eGet(EStructuralFeature eFeature, boolean resolve)
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-    switch (eDerivedStructuralFeatureID(eFeature))
+    switch (featureID)
     {
       case LibraryPackage.TOPIC__BOOKS:
         return getBooks();
@@ -345,7 +348,7 @@ public class TopicImpl extends CDOPersistentImpl implements Topic
       case LibraryPackage.TOPIC__NAME:
         return getName();
     }
-    return eDynamicGet(eFeature, resolve);
+    return super.eGet(featureID, resolve, coreType);
   }
 
   /**
@@ -353,9 +356,9 @@ public class TopicImpl extends CDOPersistentImpl implements Topic
    * <!-- end-user-doc -->
    * @generated
    */
-  public void eSet(EStructuralFeature eFeature, Object newValue)
+  public void eSet(int featureID, Object newValue)
   {
-    switch (eDerivedStructuralFeatureID(eFeature))
+    switch (featureID)
     {
       case LibraryPackage.TOPIC__BOOKS:
         getBooks().clear();
@@ -375,7 +378,7 @@ public class TopicImpl extends CDOPersistentImpl implements Topic
         setName((String) newValue);
         return;
     }
-    eDynamicSet(eFeature, newValue);
+    super.eSet(featureID, newValue);
   }
 
   /**
@@ -383,9 +386,9 @@ public class TopicImpl extends CDOPersistentImpl implements Topic
    * <!-- end-user-doc -->
    * @generated
    */
-  public void eUnset(EStructuralFeature eFeature)
+  public void eUnset(int featureID)
   {
-    switch (eDerivedStructuralFeatureID(eFeature))
+    switch (featureID)
     {
       case LibraryPackage.TOPIC__BOOKS:
         getBooks().clear();
@@ -403,7 +406,7 @@ public class TopicImpl extends CDOPersistentImpl implements Topic
         setName(NAME_EDEFAULT);
         return;
     }
-    eDynamicUnset(eFeature);
+    super.eUnset(featureID);
   }
 
   /**
@@ -411,9 +414,9 @@ public class TopicImpl extends CDOPersistentImpl implements Topic
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean eIsSet(EStructuralFeature eFeature)
+  public boolean eIsSet(int featureID)
   {
-    switch (eDerivedStructuralFeatureID(eFeature))
+    switch (featureID)
     {
       case LibraryPackage.TOPIC__BOOKS:
         return books != null && !books.isEmpty();
@@ -426,7 +429,7 @@ public class TopicImpl extends CDOPersistentImpl implements Topic
       case LibraryPackage.TOPIC__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }
-    return eDynamicIsSet(eFeature);
+    return super.eIsSet(featureID);
   }
 
   /**
