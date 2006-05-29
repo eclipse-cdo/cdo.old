@@ -139,19 +139,19 @@ public class ClientCDOProtocolImpl extends AbstractCDOProtocol
 
       if (resource instanceof CDOResource)
       {
-        CDOResource cDOResource = (CDOResource) resource;
+        CDOResource cdoResource = (CDOResource) resource;
 
-        if (cDOResource.getPath() == null)
+        if (cdoResource.getPath() == null)
         {
-          String path = ClientCDOProtocolImpl.requestResourceRID(channel, cDOResource.getRID());
+          String path = ClientCDOProtocolImpl.requestResourceRID(channel, cdoResource.getRID());
 
           if (path == null)
           {
             throw new ImplementationError("path == null");
           }
 
-          resourceManager.registerResourcePath(cDOResource, path);
-          ClientCDOProtocolImpl.requestLoadResource(channel, cDOResource.getRID(), resourceManager
+          resourceManager.registerResourcePath(cdoResource, path);
+          ClientCDOProtocolImpl.requestLoadResource(channel, cdoResource.getRID(), resourceManager
               .getPackageManager());
         }
       }

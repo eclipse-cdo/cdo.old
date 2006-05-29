@@ -122,8 +122,8 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
         }
         else
         {
-          CDOResource cDOResource = (CDOResource) eResource();
-          ResourceManager resourceManager = cDOResource.getResourceManager();
+          CDOResource cdoResource = (CDOResource) eResource();
+          ResourceManager resourceManager = cdoResource.getResourceManager();
 
           if (resourceManager.isRequestingObjects())
           {

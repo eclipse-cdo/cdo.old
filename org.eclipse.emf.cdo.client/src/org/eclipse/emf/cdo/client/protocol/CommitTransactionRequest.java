@@ -138,8 +138,8 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
 
       getResourceManager().reRegisterObject(object, oid);
       int rid = packageManager.getOidEncoder().getRID(oid);
-      CDOResource cDOResource = getResourceManager().getResource(rid);
-      ResourceManagerImpl.setOID(object, oid, cDOResource);
+      CDOResource cdoResource = getResourceManager().getResource(rid);
+      ResourceManagerImpl.setOID(object, oid, cdoResource);
       ResourceManagerImpl.setOCA(object, 1);
     }
 
@@ -183,12 +183,12 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
 
       if (resource instanceof CDOResource)
       {
-        CDOResource cDOResource = (CDOResource) resource;
+        CDOResource cdoResource = (CDOResource) resource;
 
-        if (!cDOResource.isExisting())
+        if (!cdoResource.isExisting())
         {
-          transmitInt(cDOResource.getRID());
-          transmitString(cDOResource.getPath());
+          transmitInt(cdoResource.getRID());
+          transmitString(cdoResource.getPath());
         }
       }
     }

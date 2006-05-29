@@ -60,7 +60,7 @@ public interface ResourceManager extends Service
 
   public void registerResource(CDOResource resource);
 
-  public void registerResourcePath(CDOResource cDOResource, String path);
+  public void registerResourcePath(CDOResource cdoResource, String path);
 
   public PackageManager getPackageManager();
 

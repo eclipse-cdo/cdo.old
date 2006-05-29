@@ -184,10 +184,10 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     }
   }
 
-  public void registerResourcePath(CDOResource cDOResource, String path)
+  public void registerResourcePath(CDOResource cdoResource, String path)
   {
-    cDOResource.setPath(path);
-    pathToResourceMap.put(path, cDOResource);
+    cdoResource.setPath(path);
+    pathToResourceMap.put(path, cdoResource);
   }
 
   public CDOResource getResource(int rid)

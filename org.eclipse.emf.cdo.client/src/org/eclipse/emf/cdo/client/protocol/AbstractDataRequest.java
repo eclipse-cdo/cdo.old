@@ -87,10 +87,10 @@ public abstract class AbstractDataRequest extends AbstractCDOClientRequest
       debug("Creating proxy " + eClass.getName() + " " + oidEncoder.toString(oid));
 
     int rid = oidEncoder.getRID(oid);
-    CDOResource cDOResource = getResourceManager().getResource(rid);
+    CDOResource cdoResource = getResourceManager().getResource(rid);
     URI uri = getResourceManager().createProxyURI(oid);
 
-    EObject object = ResourceManagerImpl.createEObject(eClass, oid, -1, cDOResource);
+    EObject object = ResourceManagerImpl.createEObject(eClass, oid, -1, cdoResource);
 
     ((InternalEObject) object).eSetProxyURI(uri);
 
