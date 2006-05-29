@@ -450,7 +450,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
       Map.Entry entry = (Map.Entry) mapIt.next();
       List attributeChangesOfClassifierList = (List) entry.getValue();
 
-      ClassInfo classInfo = packageManager.getClassInfo((EClass) entry.getKey());
+      ClassInfo classInfo = packageManager.getClassInfo(eObject.eClass());
       if (classInfo == null)
         throw new ImplementationError("Class not registered as CDO persistent: " + entry.getKey());
 
