@@ -11,6 +11,8 @@
 package org.eclipse.emf.cdo.client.impl;
 
 
+import org.eclipse.net4j.util.thread.DeadlockDetector;
+
 import org.eclipse.emf.cdo.client.CDOPackage;
 import org.eclipse.emf.cdo.client.CDOPersistent;
 import org.eclipse.emf.cdo.client.CDOResource;
@@ -128,6 +130,11 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
           if (resourceManager.isRequestingObjects())
           {
             resourceManager.requestObject(this);
+          }
+          else
+          {
+            System.err.println("ResourceManager IN USE: " + Thread.currentThread());
+            System.err.println(DeadlockDetector.identifySource());
           }
         }
       }

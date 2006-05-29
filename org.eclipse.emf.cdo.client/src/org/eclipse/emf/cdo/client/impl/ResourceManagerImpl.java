@@ -329,12 +329,22 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
 
   public void startRequestingObjects()
   {
+    if (isDebugEnabled())
+    {
+      debug("START requesting objects: " + Thread.currentThread());
+    }
+
     requestingObjects = true;
     if (transaction != null) transaction.setRecording(true);
   }
 
   public void stopRequestingObjects()
   {
+    if (isDebugEnabled())
+    {
+      debug("STOP requesting objects: " + Thread.currentThread());
+    }
+
     requestingObjects = false;
     if (transaction != null) transaction.setRecording(false);
   }
