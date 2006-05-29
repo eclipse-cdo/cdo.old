@@ -162,15 +162,19 @@ public abstract class AbstractConnector extends ServiceImpl implements Connector
     if (channelIndex != 0 && isClient())
     {
       Channel basicChannel = getChannel(0);
-      ChannelDeregistrationRequest signal = new ChannelDeregistrationRequest(channelIndex);
+      if (basicChannel != null)
+      {
+        ChannelDeregistrationRequest signal = new ChannelDeregistrationRequest(channelIndex);
 
-      try
-      {
-        basicChannel.transmit(signal);
-      }
-      catch (Exception ex)
-      {
-        error("Problem while requesting signal " + signal + " through channel " + basicChannel, ex);
+        try
+        {
+          basicChannel.transmit(signal);
+        }
+        catch (Exception ex)
+        {
+          error("Problem while requesting signal " + signal + " through channel " + basicChannel,
+                  ex);
+        }
       }
     }
 
