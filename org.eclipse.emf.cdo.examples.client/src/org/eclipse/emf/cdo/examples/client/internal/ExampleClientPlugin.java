@@ -8,7 +8,7 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.example.client.internal;
+package org.eclipse.emf.cdo.examples.client.internal;
 
 
 import org.eclipse.net4j.core.Connector;
@@ -20,7 +20,7 @@ import org.eclipse.net4j.util.eclipse.AbstractPlugin;
 import org.eclipse.emf.cdo.client.PackageManager;
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.client.protocol.ClientCDOResProtocolImpl;
-import org.eclipse.emf.cdo.example.client.ResourceCache;
+import org.eclipse.emf.cdo.examples.client.ResourceCache;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import java.io.IOException;

@@ -12,8 +12,8 @@
             name="CDO Explorer"
             icon="icons/full/ctool16/Database.gif"
             category="org.eclipse.emf.cdo.ui"
-            class="org.eclipse.emf.cdo.example.ui.internal.views.CDOExplorer"
-            id="org.eclipse.emf.cdo.example.ui.CDOExplorer">
+            class="org.eclipse.emf.cdo.examples.ui.internal.views.CDOExplorer"
+            id="org.eclipse.emf.cdo.examples.ui.CDOExplorer">
       </view>
    </extension>
    
@@ -25,31 +25,31 @@
                ratio="0.5"
                relative="org.eclipse.ui.views.TaskList"
                relationship="right"
-               id="org.eclipse.emf.cdo.example.ui.CDOExplorer">
+               id="org.eclipse.emf.cdo.examples.ui.CDOExplorer">
          </view>
       </perspectiveExtension>
    </extension>
 
   <extension point = "org.eclipse.ui.editors">
     <editor
-        id = "org.eclipse.emf.cdo.example.ui.Editor"
+        id = "org.eclipse.emf.cdo.examples.ui.Editor"
         name = "%_UI_CDOEditor_label"
         icon = "icons/full/obj16/CDOResource.gif"
-        class = "org.eclipse.emf.cdo.example.ui.internal.editors.CDOEditor" 
-        contributorClass="org.eclipse.emf.cdo.example.ui.internal.editors.CDOActionBarContributor" >
+        class = "org.eclipse.emf.cdo.examples.ui.internal.editors.CDOEditor" 
+        contributorClass="org.eclipse.emf.cdo.examples.ui.internal.editors.CDOActionBarContributor" >
     </editor>
   </extension>
   
   <extension
         point="org.eclipse.ui.newWizards">
      <category
-           id="org.eclipse.emf.cdo.example.ui"
+           id="org.eclipse.emf.cdo.examples.ui"
            name="CDO"/>
      <wizard
-           category="org.eclipse.emf.cdo.example.ui"
-           class="org.eclipse.emf.cdo.example.ui.internal.wizards.CDONewWizard"
+           category="org.eclipse.emf.cdo.examples.ui"
+           class="org.eclipse.emf.cdo.examples.ui.internal.wizards.CDONewWizard"
            icon="icons/full/obj16/CDOResource.gif"
-           id="org.eclipse.emf.cdo.example.ui.CDONewWizard"
+           id="org.eclipse.emf.cdo.examples.ui.CDONewWizard"
            name="CDO Resource"/>
   </extension>    
 

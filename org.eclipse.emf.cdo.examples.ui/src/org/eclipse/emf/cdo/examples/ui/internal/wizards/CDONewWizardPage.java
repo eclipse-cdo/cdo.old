@@ -8,13 +8,13 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.example.ui.internal.wizards;
+package org.eclipse.emf.cdo.examples.ui.internal.wizards;
 
 
 import org.eclipse.emf.cdo.client.ClassInfo;
-import org.eclipse.emf.cdo.example.client.internal.ExampleClientPlugin;
-import org.eclipse.emf.cdo.example.ui.internal.PackageContentProvider;
-import org.eclipse.emf.cdo.example.ui.internal.PackageLabelProvider;
+import org.eclipse.emf.cdo.examples.client.internal.ExampleClientPlugin;
+import org.eclipse.emf.cdo.examples.ui.internal.PackageContentProvider;
+import org.eclipse.emf.cdo.examples.ui.internal.PackageLabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;

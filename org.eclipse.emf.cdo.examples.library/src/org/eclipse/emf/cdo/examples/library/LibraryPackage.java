@@ -8,7 +8,7 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.example.library;
+package org.eclipse.emf.cdo.examples.library;
 
 
 import org.eclipse.emf.cdo.client.CDOPackage;
@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.cdo.example.library.LibraryFactory
+ * @see org.eclipse.emf.cdo.examples.library.LibraryFactory
  * @model kind="package"
  * @generated
  */
@@ -65,14 +65,14 @@ public interface LibraryPackage extends EPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  LibraryPackage eINSTANCE = org.eclipse.emf.cdo.example.library.impl.LibraryPackageImpl.init();
+  LibraryPackage eINSTANCE = org.eclipse.emf.cdo.examples.library.impl.LibraryPackageImpl.init();
 
   /**
-   * The meta object id for the '{@link org.eclipse.emf.cdo.example.library.impl.LibraryImpl <em>Library</em>}' class.
+   * The meta object id for the '{@link org.eclipse.emf.cdo.examples.library.impl.LibraryImpl <em>Library</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.eclipse.emf.cdo.example.library.impl.LibraryImpl
-   * @see org.eclipse.emf.cdo.example.library.impl.LibraryPackageImpl#getLibrary()
+   * @see org.eclipse.emf.cdo.examples.library.impl.LibraryImpl
+   * @see org.eclipse.emf.cdo.examples.library.impl.LibraryPackageImpl#getLibrary()
    * @generated
    */
   int LIBRARY = 0;
@@ -114,11 +114,11 @@ public interface LibraryPackage extends EPackage
   int LIBRARY_FEATURE_COUNT = CDOPackage.CDO_PERSISTENT_FEATURE_COUNT + 3;
 
   /**
-   * The meta object id for the '{@link org.eclipse.emf.cdo.example.library.impl.BookImpl <em>Book</em>}' class.
+   * The meta object id for the '{@link org.eclipse.emf.cdo.examples.library.impl.BookImpl <em>Book</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.eclipse.emf.cdo.example.library.impl.BookImpl
-   * @see org.eclipse.emf.cdo.example.library.impl.LibraryPackageImpl#getBook()
+   * @see org.eclipse.emf.cdo.examples.library.impl.BookImpl
+   * @see org.eclipse.emf.cdo.examples.library.impl.LibraryPackageImpl#getBook()
    * @generated
    */
   int BOOK = 1;
@@ -178,11 +178,11 @@ public interface LibraryPackage extends EPackage
   int BOOK_FEATURE_COUNT = CDOPackage.CDO_PERSISTENT_FEATURE_COUNT + 5;
 
   /**
-   * The meta object id for the '{@link org.eclipse.emf.cdo.example.library.impl.AuthorImpl <em>Author</em>}' class.
+   * The meta object id for the '{@link org.eclipse.emf.cdo.examples.library.impl.AuthorImpl <em>Author</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.eclipse.emf.cdo.example.library.impl.AuthorImpl
-   * @see org.eclipse.emf.cdo.example.library.impl.LibraryPackageImpl#getAuthor()
+   * @see org.eclipse.emf.cdo.examples.library.impl.AuthorImpl
+   * @see org.eclipse.emf.cdo.examples.library.impl.LibraryPackageImpl#getAuthor()
    * @generated
    */
   int AUTHOR = 2;
@@ -224,11 +224,11 @@ public interface LibraryPackage extends EPackage
   int AUTHOR_FEATURE_COUNT = CDOPackage.CDO_PERSISTENT_FEATURE_COUNT + 3;
 
   /**
-   * The meta object id for the '{@link org.eclipse.emf.cdo.example.library.impl.TopicImpl <em>Topic</em>}' class.
+   * The meta object id for the '{@link org.eclipse.emf.cdo.examples.library.impl.TopicImpl <em>Topic</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.eclipse.emf.cdo.example.library.impl.TopicImpl
-   * @see org.eclipse.emf.cdo.example.library.impl.LibraryPackageImpl#getTopic()
+   * @see org.eclipse.emf.cdo.examples.library.impl.TopicImpl
+   * @see org.eclipse.emf.cdo.examples.library.impl.LibraryPackageImpl#getTopic()
    * @generated
    */
   int TOPIC = 3;
@@ -288,11 +288,11 @@ public interface LibraryPackage extends EPackage
   int TOPIC_FEATURE_COUNT = CDOPackage.CDO_PERSISTENT_FEATURE_COUNT + 5;
 
   /**
-   * The meta object id for the '{@link org.eclipse.emf.cdo.example.library.impl.EBookImpl <em>EBook</em>}' class.
+   * The meta object id for the '{@link org.eclipse.emf.cdo.examples.library.impl.EBookImpl <em>EBook</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.eclipse.emf.cdo.example.library.impl.EBookImpl
-   * @see org.eclipse.emf.cdo.example.library.impl.LibraryPackageImpl#getEBook()
+   * @see org.eclipse.emf.cdo.examples.library.impl.EBookImpl
+   * @see org.eclipse.emf.cdo.examples.library.impl.LibraryPackageImpl#getEBook()
    * @generated
    */
   int EBOOK = 4;
@@ -361,237 +361,237 @@ public interface LibraryPackage extends EPackage
   int EBOOK_FEATURE_COUNT = BOOK_FEATURE_COUNT + 1;
 
   /**
-   * Returns the meta object for class '{@link org.eclipse.emf.cdo.example.library.Library <em>Library</em>}'.
+   * Returns the meta object for class '{@link org.eclipse.emf.cdo.examples.library.Library <em>Library</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for class '<em>Library</em>'.
-   * @see org.eclipse.emf.cdo.example.library.Library
+   * @see org.eclipse.emf.cdo.examples.library.Library
    * @generated
    */
   EClass getLibrary();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.eclipse.emf.cdo.example.library.Library#getBooks <em>Books</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.eclipse.emf.cdo.examples.library.Library#getBooks <em>Books</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Books</em>'.
-   * @see org.eclipse.emf.cdo.example.library.Library#getBooks()
+   * @see org.eclipse.emf.cdo.examples.library.Library#getBooks()
    * @see #getLibrary()
    * @generated
    */
   EReference getLibrary_Books();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.eclipse.emf.cdo.example.library.Library#getAuthors <em>Authors</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.eclipse.emf.cdo.examples.library.Library#getAuthors <em>Authors</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Authors</em>'.
-   * @see org.eclipse.emf.cdo.example.library.Library#getAuthors()
+   * @see org.eclipse.emf.cdo.examples.library.Library#getAuthors()
    * @see #getLibrary()
    * @generated
    */
   EReference getLibrary_Authors();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.eclipse.emf.cdo.example.library.Library#getTopics <em>Topics</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.eclipse.emf.cdo.examples.library.Library#getTopics <em>Topics</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Topics</em>'.
-   * @see org.eclipse.emf.cdo.example.library.Library#getTopics()
+   * @see org.eclipse.emf.cdo.examples.library.Library#getTopics()
    * @see #getLibrary()
    * @generated
    */
   EReference getLibrary_Topics();
 
   /**
-   * Returns the meta object for class '{@link org.eclipse.emf.cdo.example.library.Book <em>Book</em>}'.
+   * Returns the meta object for class '{@link org.eclipse.emf.cdo.examples.library.Book <em>Book</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for class '<em>Book</em>'.
-   * @see org.eclipse.emf.cdo.example.library.Book
+   * @see org.eclipse.emf.cdo.examples.library.Book
    * @generated
    */
   EClass getBook();
 
   /**
-   * Returns the meta object for the attribute '{@link org.eclipse.emf.cdo.example.library.Book#getTitle <em>Title</em>}'.
+   * Returns the meta object for the attribute '{@link org.eclipse.emf.cdo.examples.library.Book#getTitle <em>Title</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Title</em>'.
-   * @see org.eclipse.emf.cdo.example.library.Book#getTitle()
+   * @see org.eclipse.emf.cdo.examples.library.Book#getTitle()
    * @see #getBook()
    * @generated
    */
   EAttribute getBook_Title();
 
   /**
-   * Returns the meta object for the reference list '{@link org.eclipse.emf.cdo.example.library.Book#getAuthors <em>Authors</em>}'.
+   * Returns the meta object for the reference list '{@link org.eclipse.emf.cdo.examples.library.Book#getAuthors <em>Authors</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the reference list '<em>Authors</em>'.
-   * @see org.eclipse.emf.cdo.example.library.Book#getAuthors()
+   * @see org.eclipse.emf.cdo.examples.library.Book#getAuthors()
    * @see #getBook()
    * @generated
    */
   EReference getBook_Authors();
 
   /**
-   * Returns the meta object for the container reference '{@link org.eclipse.emf.cdo.example.library.Book#getLibrary <em>Library</em>}'.
+   * Returns the meta object for the container reference '{@link org.eclipse.emf.cdo.examples.library.Book#getLibrary <em>Library</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the container reference '<em>Library</em>'.
-   * @see org.eclipse.emf.cdo.example.library.Book#getLibrary()
+   * @see org.eclipse.emf.cdo.examples.library.Book#getLibrary()
    * @see #getBook()
    * @generated
    */
   EReference getBook_Library();
 
   /**
-   * Returns the meta object for the container reference '{@link org.eclipse.emf.cdo.example.library.Book#getTopic <em>Topic</em>}'.
+   * Returns the meta object for the container reference '{@link org.eclipse.emf.cdo.examples.library.Book#getTopic <em>Topic</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the container reference '<em>Topic</em>'.
-   * @see org.eclipse.emf.cdo.example.library.Book#getTopic()
+   * @see org.eclipse.emf.cdo.examples.library.Book#getTopic()
    * @see #getBook()
    * @generated
    */
   EReference getBook_Topic();
 
   /**
-   * Returns the meta object for the attribute '{@link org.eclipse.emf.cdo.example.library.Book#getNumberOfPages <em>Number Of Pages</em>}'.
+   * Returns the meta object for the attribute '{@link org.eclipse.emf.cdo.examples.library.Book#getNumberOfPages <em>Number Of Pages</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Number Of Pages</em>'.
-   * @see org.eclipse.emf.cdo.example.library.Book#getNumberOfPages()
+   * @see org.eclipse.emf.cdo.examples.library.Book#getNumberOfPages()
    * @see #getBook()
    * @generated
    */
   EAttribute getBook_NumberOfPages();
 
   /**
-   * Returns the meta object for class '{@link org.eclipse.emf.cdo.example.library.Author <em>Author</em>}'.
+   * Returns the meta object for class '{@link org.eclipse.emf.cdo.examples.library.Author <em>Author</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for class '<em>Author</em>'.
-   * @see org.eclipse.emf.cdo.example.library.Author
+   * @see org.eclipse.emf.cdo.examples.library.Author
    * @generated
    */
   EClass getAuthor();
 
   /**
-   * Returns the meta object for the attribute '{@link org.eclipse.emf.cdo.example.library.Author#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.eclipse.emf.cdo.examples.library.Author#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.eclipse.emf.cdo.example.library.Author#getName()
+   * @see org.eclipse.emf.cdo.examples.library.Author#getName()
    * @see #getAuthor()
    * @generated
    */
   EAttribute getAuthor_Name();
 
   /**
-   * Returns the meta object for the reference list '{@link org.eclipse.emf.cdo.example.library.Author#getBooks <em>Books</em>}'.
+   * Returns the meta object for the reference list '{@link org.eclipse.emf.cdo.examples.library.Author#getBooks <em>Books</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the reference list '<em>Books</em>'.
-   * @see org.eclipse.emf.cdo.example.library.Author#getBooks()
+   * @see org.eclipse.emf.cdo.examples.library.Author#getBooks()
    * @see #getAuthor()
    * @generated
    */
   EReference getAuthor_Books();
 
   /**
-   * Returns the meta object for the container reference '{@link org.eclipse.emf.cdo.example.library.Author#getLibrary <em>Library</em>}'.
+   * Returns the meta object for the container reference '{@link org.eclipse.emf.cdo.examples.library.Author#getLibrary <em>Library</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the container reference '<em>Library</em>'.
-   * @see org.eclipse.emf.cdo.example.library.Author#getLibrary()
+   * @see org.eclipse.emf.cdo.examples.library.Author#getLibrary()
    * @see #getAuthor()
    * @generated
    */
   EReference getAuthor_Library();
 
   /**
-   * Returns the meta object for class '{@link org.eclipse.emf.cdo.example.library.Topic <em>Topic</em>}'.
+   * Returns the meta object for class '{@link org.eclipse.emf.cdo.examples.library.Topic <em>Topic</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for class '<em>Topic</em>'.
-   * @see org.eclipse.emf.cdo.example.library.Topic
+   * @see org.eclipse.emf.cdo.examples.library.Topic
    * @generated
    */
   EClass getTopic();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.eclipse.emf.cdo.example.library.Topic#getBooks <em>Books</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.eclipse.emf.cdo.examples.library.Topic#getBooks <em>Books</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Books</em>'.
-   * @see org.eclipse.emf.cdo.example.library.Topic#getBooks()
+   * @see org.eclipse.emf.cdo.examples.library.Topic#getBooks()
    * @see #getTopic()
    * @generated
    */
   EReference getTopic_Books();
 
   /**
-   * Returns the meta object for the container reference '{@link org.eclipse.emf.cdo.example.library.Topic#getLibrary <em>Library</em>}'.
+   * Returns the meta object for the container reference '{@link org.eclipse.emf.cdo.examples.library.Topic#getLibrary <em>Library</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the container reference '<em>Library</em>'.
-   * @see org.eclipse.emf.cdo.example.library.Topic#getLibrary()
+   * @see org.eclipse.emf.cdo.examples.library.Topic#getLibrary()
    * @see #getTopic()
    * @generated
    */
   EReference getTopic_Library();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.eclipse.emf.cdo.example.library.Topic#getTopics <em>Topics</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.eclipse.emf.cdo.examples.library.Topic#getTopics <em>Topics</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Topics</em>'.
-   * @see org.eclipse.emf.cdo.example.library.Topic#getTopics()
+   * @see org.eclipse.emf.cdo.examples.library.Topic#getTopics()
    * @see #getTopic()
    * @generated
    */
   EReference getTopic_Topics();
 
   /**
-   * Returns the meta object for the container reference '{@link org.eclipse.emf.cdo.example.library.Topic#getTopic <em>Topic</em>}'.
+   * Returns the meta object for the container reference '{@link org.eclipse.emf.cdo.examples.library.Topic#getTopic <em>Topic</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the container reference '<em>Topic</em>'.
-   * @see org.eclipse.emf.cdo.example.library.Topic#getTopic()
+   * @see org.eclipse.emf.cdo.examples.library.Topic#getTopic()
    * @see #getTopic()
    * @generated
    */
   EReference getTopic_Topic();
 
   /**
-   * Returns the meta object for the attribute '{@link org.eclipse.emf.cdo.example.library.Topic#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.eclipse.emf.cdo.examples.library.Topic#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.eclipse.emf.cdo.example.library.Topic#getName()
+   * @see org.eclipse.emf.cdo.examples.library.Topic#getName()
    * @see #getTopic()
    * @generated
    */
   EAttribute getTopic_Name();
 
   /**
-   * Returns the meta object for class '{@link org.eclipse.emf.cdo.example.library.EBook <em>EBook</em>}'.
+   * Returns the meta object for class '{@link org.eclipse.emf.cdo.examples.library.EBook <em>EBook</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for class '<em>EBook</em>'.
-   * @see org.eclipse.emf.cdo.example.library.EBook
+   * @see org.eclipse.emf.cdo.examples.library.EBook
    * @generated
    */
   EClass getEBook();
 
   /**
-   * Returns the meta object for the attribute '{@link org.eclipse.emf.cdo.example.library.EBook#getUrl <em>Url</em>}'.
+   * Returns the meta object for the attribute '{@link org.eclipse.emf.cdo.examples.library.EBook#getUrl <em>Url</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Url</em>'.
-   * @see org.eclipse.emf.cdo.example.library.EBook#getUrl()
+   * @see org.eclipse.emf.cdo.examples.library.EBook#getUrl()
    * @see #getEBook()
    * @generated
    */
@@ -622,11 +622,11 @@ public interface LibraryPackage extends EPackage
   interface Literals
   {
     /**
-     * The meta object literal for the '{@link org.eclipse.emf.cdo.example.library.impl.LibraryImpl <em>Library</em>}' class.
+     * The meta object literal for the '{@link org.eclipse.emf.cdo.examples.library.impl.LibraryImpl <em>Library</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.emf.cdo.example.library.impl.LibraryImpl
-     * @see org.eclipse.emf.cdo.example.library.impl.LibraryPackageImpl#getLibrary()
+     * @see org.eclipse.emf.cdo.examples.library.impl.LibraryImpl
+     * @see org.eclipse.emf.cdo.examples.library.impl.LibraryPackageImpl#getLibrary()
      * @generated
      */
     EClass LIBRARY = eINSTANCE.getLibrary();
@@ -656,11 +656,11 @@ public interface LibraryPackage extends EPackage
     EReference LIBRARY__TOPICS = eINSTANCE.getLibrary_Topics();
 
     /**
-     * The meta object literal for the '{@link org.eclipse.emf.cdo.example.library.impl.BookImpl <em>Book</em>}' class.
+     * The meta object literal for the '{@link org.eclipse.emf.cdo.examples.library.impl.BookImpl <em>Book</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.emf.cdo.example.library.impl.BookImpl
-     * @see org.eclipse.emf.cdo.example.library.impl.LibraryPackageImpl#getBook()
+     * @see org.eclipse.emf.cdo.examples.library.impl.BookImpl
+     * @see org.eclipse.emf.cdo.examples.library.impl.LibraryPackageImpl#getBook()
      * @generated
      */
     EClass BOOK = eINSTANCE.getBook();
@@ -706,11 +706,11 @@ public interface LibraryPackage extends EPackage
     EAttribute BOOK__NUMBER_OF_PAGES = eINSTANCE.getBook_NumberOfPages();
 
     /**
-     * The meta object literal for the '{@link org.eclipse.emf.cdo.example.library.impl.AuthorImpl <em>Author</em>}' class.
+     * The meta object literal for the '{@link org.eclipse.emf.cdo.examples.library.impl.AuthorImpl <em>Author</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.emf.cdo.example.library.impl.AuthorImpl
-     * @see org.eclipse.emf.cdo.example.library.impl.LibraryPackageImpl#getAuthor()
+     * @see org.eclipse.emf.cdo.examples.library.impl.AuthorImpl
+     * @see org.eclipse.emf.cdo.examples.library.impl.LibraryPackageImpl#getAuthor()
      * @generated
      */
     EClass AUTHOR = eINSTANCE.getAuthor();
@@ -740,11 +740,11 @@ public interface LibraryPackage extends EPackage
     EReference AUTHOR__LIBRARY = eINSTANCE.getAuthor_Library();
 
     /**
-     * The meta object literal for the '{@link org.eclipse.emf.cdo.example.library.impl.TopicImpl <em>Topic</em>}' class.
+     * The meta object literal for the '{@link org.eclipse.emf.cdo.examples.library.impl.TopicImpl <em>Topic</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.emf.cdo.example.library.impl.TopicImpl
-     * @see org.eclipse.emf.cdo.example.library.impl.LibraryPackageImpl#getTopic()
+     * @see org.eclipse.emf.cdo.examples.library.impl.TopicImpl
+     * @see org.eclipse.emf.cdo.examples.library.impl.LibraryPackageImpl#getTopic()
      * @generated
      */
     EClass TOPIC = eINSTANCE.getTopic();
@@ -790,11 +790,11 @@ public interface LibraryPackage extends EPackage
     EAttribute TOPIC__NAME = eINSTANCE.getTopic_Name();
 
     /**
-     * The meta object literal for the '{@link org.eclipse.emf.cdo.example.library.impl.EBookImpl <em>EBook</em>}' class.
+     * The meta object literal for the '{@link org.eclipse.emf.cdo.examples.library.impl.EBookImpl <em>EBook</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.emf.cdo.example.library.impl.EBookImpl
-     * @see org.eclipse.emf.cdo.example.library.impl.LibraryPackageImpl#getEBook()
+     * @see org.eclipse.emf.cdo.examples.library.impl.EBookImpl
+     * @see org.eclipse.emf.cdo.examples.library.impl.LibraryPackageImpl#getEBook()
      * @generated
      */
     EClass EBOOK = eINSTANCE.getEBook();

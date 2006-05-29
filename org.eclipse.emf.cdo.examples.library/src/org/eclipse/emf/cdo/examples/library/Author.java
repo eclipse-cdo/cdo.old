@@ -8,7 +8,7 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.example.library;
+package org.eclipse.emf.cdo.examples.library;
 
 
 import org.eclipse.emf.cdo.client.CDOPersistent;
@@ -23,13 +23,13 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.cdo.example.library.Author#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.emf.cdo.example.library.Author#getBooks <em>Books</em>}</li>
- *   <li>{@link org.eclipse.emf.cdo.example.library.Author#getLibrary <em>Library</em>}</li>
+ *   <li>{@link org.eclipse.emf.cdo.examples.library.Author#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.emf.cdo.examples.library.Author#getBooks <em>Books</em>}</li>
+ *   <li>{@link org.eclipse.emf.cdo.examples.library.Author#getLibrary <em>Library</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.cdo.example.library.LibraryPackage#getAuthor()
+ * @see org.eclipse.emf.cdo.examples.library.LibraryPackage#getAuthor()
  * @model
  * @generated
  */
@@ -45,14 +45,14 @@ public interface Author extends CDOPersistent
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
-   * @see org.eclipse.emf.cdo.example.library.LibraryPackage#getAuthor_Name()
+   * @see org.eclipse.emf.cdo.examples.library.LibraryPackage#getAuthor_Name()
    * @model
    * @generated
    */
   String getName();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.cdo.example.library.Author#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link org.eclipse.emf.cdo.examples.library.Author#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Name</em>' attribute.
@@ -63,8 +63,8 @@ public interface Author extends CDOPersistent
 
   /**
    * Returns the value of the '<em><b>Books</b></em>' reference list.
-   * The list contents are of type {@link org.eclipse.emf.cdo.example.library.Book}.
-   * It is bidirectional and its opposite is '{@link org.eclipse.emf.cdo.example.library.Book#getAuthors <em>Authors</em>}'.
+   * The list contents are of type {@link org.eclipse.emf.cdo.examples.library.Book}.
+   * It is bidirectional and its opposite is '{@link org.eclipse.emf.cdo.examples.library.Book#getAuthors <em>Authors</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Books</em>' reference list isn't clear,
@@ -72,16 +72,16 @@ public interface Author extends CDOPersistent
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Books</em>' reference list.
-   * @see org.eclipse.emf.cdo.example.library.LibraryPackage#getAuthor_Books()
-   * @see org.eclipse.emf.cdo.example.library.Book#getAuthors
-   * @model type="org.eclipse.emf.cdo.example.library.Book" opposite="authors"
+   * @see org.eclipse.emf.cdo.examples.library.LibraryPackage#getAuthor_Books()
+   * @see org.eclipse.emf.cdo.examples.library.Book#getAuthors
+   * @model type="org.eclipse.emf.cdo.examples.library.Book" opposite="authors"
    * @generated
    */
   EList getBooks();
 
   /**
    * Returns the value of the '<em><b>Library</b></em>' container reference.
-   * It is bidirectional and its opposite is '{@link org.eclipse.emf.cdo.example.library.Library#getAuthors <em>Authors</em>}'.
+   * It is bidirectional and its opposite is '{@link org.eclipse.emf.cdo.examples.library.Library#getAuthors <em>Authors</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Library</em>' container reference isn't clear,
@@ -90,15 +90,15 @@ public interface Author extends CDOPersistent
    * <!-- end-user-doc -->
    * @return the value of the '<em>Library</em>' container reference.
    * @see #setLibrary(Library)
-   * @see org.eclipse.emf.cdo.example.library.LibraryPackage#getAuthor_Library()
-   * @see org.eclipse.emf.cdo.example.library.Library#getAuthors
+   * @see org.eclipse.emf.cdo.examples.library.LibraryPackage#getAuthor_Library()
+   * @see org.eclipse.emf.cdo.examples.library.Library#getAuthors
    * @model opposite="authors" required="true"
    * @generated
    */
   Library getLibrary();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.cdo.example.library.Author#getLibrary <em>Library</em>}' container reference.
+   * Sets the value of the '{@link org.eclipse.emf.cdo.examples.library.Author#getLibrary <em>Library</em>}' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Library</em>' container reference.

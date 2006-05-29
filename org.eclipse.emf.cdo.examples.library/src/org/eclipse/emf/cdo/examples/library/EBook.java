@@ -8,7 +8,7 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.example.library;
+package org.eclipse.emf.cdo.examples.library;
 
 
 /**
@@ -19,11 +19,11 @@ package org.eclipse.emf.cdo.example.library;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.cdo.example.library.EBook#getUrl <em>Url</em>}</li>
+ *   <li>{@link org.eclipse.emf.cdo.examples.library.EBook#getUrl <em>Url</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.cdo.example.library.LibraryPackage#getEBook()
+ * @see org.eclipse.emf.cdo.examples.library.LibraryPackage#getEBook()
  * @model
  * @generated
  */
@@ -39,14 +39,14 @@ public interface EBook extends Book
    * <!-- end-user-doc -->
    * @return the value of the '<em>Url</em>' attribute.
    * @see #setUrl(String)
-   * @see org.eclipse.emf.cdo.example.library.LibraryPackage#getEBook_Url()
+   * @see org.eclipse.emf.cdo.examples.library.LibraryPackage#getEBook_Url()
    * @model
    * @generated
    */
   String getUrl();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.cdo.example.library.EBook#getUrl <em>Url</em>}' attribute.
+   * Sets the value of the '{@link org.eclipse.emf.cdo.examples.library.EBook#getUrl <em>Url</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Url</em>' attribute.

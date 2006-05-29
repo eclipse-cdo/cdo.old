@@ -8,7 +8,7 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.example.ui.internal.editors;
+package org.eclipse.emf.cdo.examples.ui.internal.editors;
 
 
 import org.eclipse.core.resources.IFile;
@@ -26,9 +26,9 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.client.ResourceManager.InvalidationListener;
-import org.eclipse.emf.cdo.example.client.internal.ExampleClientPlugin;
-import org.eclipse.emf.cdo.example.ui.internal.ExampleUIActivator;
-import org.eclipse.emf.cdo.example.ui.internal.UIUtils;
+import org.eclipse.emf.cdo.examples.client.internal.ExampleClientPlugin;
+import org.eclipse.emf.cdo.examples.ui.internal.ExampleUIActivator;
+import org.eclipse.emf.cdo.examples.ui.internal.UIUtils;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
@@ -126,7 +126,7 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
   /**
    * @ADDED
    */
-  public static final String EDITOR_ID = "org.eclipse.emf.cdo.example.ui.Editor";
+  public static final String EDITOR_ID = "org.eclipse.emf.cdo.examples.ui.Editor";
 
   /**
    * @ADDED

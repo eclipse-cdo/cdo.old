@@ -8,19 +8,19 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.example.library.util;
+package org.eclipse.emf.cdo.examples.library.util;
 
 
 import org.eclipse.emf.cdo.client.CDOPersistable;
 import org.eclipse.emf.cdo.client.CDOPersistent;
-import org.eclipse.emf.cdo.example.library.*;
+import org.eclipse.emf.cdo.examples.library.*;
 
-import org.eclipse.emf.cdo.example.library.Author;
-import org.eclipse.emf.cdo.example.library.Book;
-import org.eclipse.emf.cdo.example.library.EBook;
-import org.eclipse.emf.cdo.example.library.Library;
-import org.eclipse.emf.cdo.example.library.LibraryPackage;
-import org.eclipse.emf.cdo.example.library.Topic;
+import org.eclipse.emf.cdo.examples.library.Author;
+import org.eclipse.emf.cdo.examples.library.Book;
+import org.eclipse.emf.cdo.examples.library.EBook;
+import org.eclipse.emf.cdo.examples.library.Library;
+import org.eclipse.emf.cdo.examples.library.LibraryPackage;
+import org.eclipse.emf.cdo.examples.library.Topic;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.EObject;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.cdo.example.library.LibraryPackage
+ * @see org.eclipse.emf.cdo.examples.library.LibraryPackage
  * @generated
  */
 public class LibraryAdapterFactory extends AdapterFactoryImpl
@@ -143,13 +143,13 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.cdo.example.library.Library <em>Library</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.cdo.examples.library.Library <em>Library</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.emf.cdo.example.library.Library
+   * @see org.eclipse.emf.cdo.examples.library.Library
    * @generated
    */
   public Adapter createLibraryAdapter()
@@ -158,13 +158,13 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.cdo.example.library.Book <em>Book</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.cdo.examples.library.Book <em>Book</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.emf.cdo.example.library.Book
+   * @see org.eclipse.emf.cdo.examples.library.Book
    * @generated
    */
   public Adapter createBookAdapter()
@@ -173,13 +173,13 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.cdo.example.library.Author <em>Author</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.cdo.examples.library.Author <em>Author</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.emf.cdo.example.library.Author
+   * @see org.eclipse.emf.cdo.examples.library.Author
    * @generated
    */
   public Adapter createAuthorAdapter()
@@ -188,13 +188,13 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.cdo.example.library.Topic <em>Topic</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.cdo.examples.library.Topic <em>Topic</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.emf.cdo.example.library.Topic
+   * @see org.eclipse.emf.cdo.examples.library.Topic
    * @generated
    */
   public Adapter createTopicAdapter()
@@ -203,13 +203,13 @@ public class LibraryAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.cdo.example.library.EBook <em>EBook</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.cdo.examples.library.EBook <em>EBook</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.emf.cdo.example.library.EBook
+   * @see org.eclipse.emf.cdo.examples.library.EBook
    * @generated
    */
   public Adapter createEBookAdapter()

@@ -8,7 +8,7 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.example.ui.internal.wizards;
+package org.eclipse.emf.cdo.examples.ui.internal.wizards;
 
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -16,8 +16,8 @@ import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ClassInfo;
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.client.impl.ResourceInfoImpl;
-import org.eclipse.emf.cdo.example.client.internal.ExampleClientPlugin;
-import org.eclipse.emf.cdo.example.ui.internal.UIUtils;
+import org.eclipse.emf.cdo.examples.client.internal.ExampleClientPlugin;
+import org.eclipse.emf.cdo.examples.ui.internal.UIUtils;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
@@ -37,7 +37,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public class CDONewWizard extends Wizard implements INewWizard
 {
-  public static final String WIZARD_ID = "org.eclipse.emf.cdo.example.ui.CDONewWizard";
+  public static final String WIZARD_ID = "org.eclipse.emf.cdo.examples.ui.CDONewWizard";
 
   private CDONewWizardPage page;
 

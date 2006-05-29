@@ -8,15 +8,15 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.example.library.impl;
+package org.eclipse.emf.cdo.examples.library.impl;
 
 
 import org.eclipse.emf.cdo.client.impl.CDOPersistentImpl;
-import org.eclipse.emf.cdo.example.library.Author;
-import org.eclipse.emf.cdo.example.library.Book;
-import org.eclipse.emf.cdo.example.library.Library;
-import org.eclipse.emf.cdo.example.library.LibraryPackage;
-import org.eclipse.emf.cdo.example.library.Topic;
+import org.eclipse.emf.cdo.examples.library.Author;
+import org.eclipse.emf.cdo.examples.library.Book;
+import org.eclipse.emf.cdo.examples.library.Library;
+import org.eclipse.emf.cdo.examples.library.LibraryPackage;
+import org.eclipse.emf.cdo.examples.library.Topic;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -35,9 +35,9 @@ import java.util.Collection;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.cdo.example.library.impl.LibraryImpl#getBooks <em>Books</em>}</li>
- *   <li>{@link org.eclipse.emf.cdo.example.library.impl.LibraryImpl#getAuthors <em>Authors</em>}</li>
- *   <li>{@link org.eclipse.emf.cdo.example.library.impl.LibraryImpl#getTopics <em>Topics</em>}</li>
+ *   <li>{@link org.eclipse.emf.cdo.examples.library.impl.LibraryImpl#getBooks <em>Books</em>}</li>
+ *   <li>{@link org.eclipse.emf.cdo.examples.library.impl.LibraryImpl#getAuthors <em>Authors</em>}</li>
+ *   <li>{@link org.eclipse.emf.cdo.examples.library.impl.LibraryImpl#getTopics <em>Topics</em>}</li>
  * </ul>
  * </p>
  *

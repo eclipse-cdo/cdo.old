@@ -8,12 +8,12 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.example.ui.internal.editors;
+package org.eclipse.emf.cdo.examples.ui.internal.editors;
 
 
 import org.eclipse.emf.cdo.client.ResourceInfo;
-import org.eclipse.emf.cdo.example.ui.internal.ExampleUIActivator;
-import org.eclipse.emf.cdo.example.ui.internal.dialogs.CDOLoadResourceDialog;
+import org.eclipse.emf.cdo.examples.ui.internal.ExampleUIActivator;
+import org.eclipse.emf.cdo.examples.ui.internal.dialogs.CDOLoadResourceDialog;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;

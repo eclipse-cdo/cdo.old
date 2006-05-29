@@ -15,7 +15,7 @@
             <separator name="sampleGroup"/>
          </menu>
          <action
-               class="org.eclipse.emf.cdo.example.library.ui.internal.actions.LoadResourceAction"
+               class="org.eclipse.emf.cdo.examples.library.ui.internal.actions.LoadResourceAction"
                icon="icons/sample.gif"
                id="org.eclipse.emf.cdo.test.client.LoadResourceAction"
                label="Load Library CDO Resources"
@@ -23,7 +23,7 @@
                toolbarPath="sampleGroup"
                tooltip="Load Library CDO Resources"/>
          <action
-               class="org.eclipse.emf.cdo.example.library.ui.internal.actions.CreateResourceAction"
+               class="org.eclipse.emf.cdo.examples.library.ui.internal.actions.CreateResourceAction"
                icon="icons/sample.gif"
                id="org.eclipse.emf.cdo.test.client.CreateResourceAction"
                label="Create Library CDO Resources"

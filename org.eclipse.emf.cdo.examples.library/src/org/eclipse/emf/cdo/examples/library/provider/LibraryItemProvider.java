@@ -8,14 +8,14 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.example.library.provider;
+package org.eclipse.emf.cdo.examples.library.provider;
 
 
 import org.eclipse.emf.cdo.client.provider.CDOPersistentItemProvider;
-import org.eclipse.emf.cdo.example.library.Library;
-import org.eclipse.emf.cdo.example.library.LibraryFactory;
-import org.eclipse.emf.cdo.example.library.LibraryPackage;
-import org.eclipse.emf.cdo.example.library.internal.ExampleLibraryActivator;
+import org.eclipse.emf.cdo.examples.library.Library;
+import org.eclipse.emf.cdo.examples.library.LibraryFactory;
+import org.eclipse.emf.cdo.examples.library.LibraryPackage;
+import org.eclipse.emf.cdo.examples.library.internal.ExampleLibraryActivator;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -32,7 +32,7 @@ import java.util.List;
 
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.cdo.example.library.Library} object.
+ * This is the item provider adapter for a {@link org.eclipse.emf.cdo.examples.library.Library} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

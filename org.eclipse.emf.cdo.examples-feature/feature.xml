@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.emf.cdo.example"
+      id="org.eclipse.emf.cdo.examples"
       label="CDO Example"
       version="1.0.0"
       provider-name="Eclipse.org">
@@ -28,32 +28,32 @@
    </requires>
 
    <plugin
-         id="org.eclipse.emf.cdo.example.client"
+         id="org.eclipse.emf.cdo.examples.client"
          download-size="0"
          install-size="0"
          version="0.0.0"/>
 
    <plugin
-         id="org.eclipse.emf.cdo.example.library"
+         id="org.eclipse.emf.cdo.examples.library"
          download-size="0"
          install-size="0"
          version="0.0.0"/>
 
    <plugin
-         id="org.eclipse.emf.cdo.example.server"
+         id="org.eclipse.emf.cdo.examples.server"
          download-size="0"
          install-size="0"
          version="0.0.0"/>
 
    <plugin
-         id="org.eclipse.emf.cdo.example.ui"
+         id="org.eclipse.emf.cdo.examples.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.emf.cdo.example.library.ui"
+         id="org.eclipse.emf.cdo.examples.library.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"

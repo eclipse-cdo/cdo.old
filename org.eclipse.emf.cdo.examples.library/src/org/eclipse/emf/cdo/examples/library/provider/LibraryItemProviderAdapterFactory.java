@@ -8,10 +8,10 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.example.library.provider;
+package org.eclipse.emf.cdo.examples.library.provider;
 
 
-import org.eclipse.emf.cdo.example.library.util.LibraryAdapterFactory;
+import org.eclipse.emf.cdo.examples.library.util.LibraryAdapterFactory;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
@@ -83,7 +83,7 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.example.library.Library} instances.
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.examples.library.Library} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -91,7 +91,7 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
   protected LibraryItemProvider libraryItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.cdo.example.library.Library}.
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.examples.library.Library}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -107,7 +107,7 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.example.library.Book} instances.
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.examples.library.Book} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -115,7 +115,7 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
   protected BookItemProvider bookItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.cdo.example.library.Book}.
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.examples.library.Book}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -131,7 +131,7 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.example.library.Author} instances.
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.examples.library.Author} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -139,7 +139,7 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
   protected AuthorItemProvider authorItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.cdo.example.library.Author}.
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.examples.library.Author}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -155,7 +155,7 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.example.library.Topic} instances.
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.examples.library.Topic} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -163,7 +163,7 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
   protected TopicItemProvider topicItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.cdo.example.library.Topic}.
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.examples.library.Topic}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -179,7 +179,7 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.example.library.EBook} instances.
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.examples.library.EBook} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -187,7 +187,7 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
   protected EBookItemProvider eBookItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.cdo.example.library.EBook}.
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.examples.library.EBook}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated

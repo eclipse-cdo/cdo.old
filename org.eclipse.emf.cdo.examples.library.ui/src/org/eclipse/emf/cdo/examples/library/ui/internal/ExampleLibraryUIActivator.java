@@ -8,7 +8,7 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.example.library.ui.internal;
+package org.eclipse.emf.cdo.examples.library.ui.internal;
 
 
 import org.eclipse.emf.cdo.client.internal.ClientActivator;

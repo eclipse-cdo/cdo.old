@@ -8,7 +8,7 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.example.library;
+package org.eclipse.emf.cdo.examples.library;
 
 
 import org.eclipse.emf.ecore.EFactory;
@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.cdo.example.library.LibraryPackage
+ * @see org.eclipse.emf.cdo.examples.library.LibraryPackage
  * @generated
  */
 public interface LibraryFactory extends EFactory
@@ -30,7 +30,7 @@ public interface LibraryFactory extends EFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  LibraryFactory eINSTANCE = org.eclipse.emf.cdo.example.library.impl.LibraryFactoryImpl.init();
+  LibraryFactory eINSTANCE = org.eclipse.emf.cdo.examples.library.impl.LibraryFactoryImpl.init();
 
   /**
    * Returns a new object of class '<em>Library</em>'.

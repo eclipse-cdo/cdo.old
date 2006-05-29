@@ -8,7 +8,7 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.example.client;
+package org.eclipse.emf.cdo.examples.client;
 
 
 import org.eclipse.net4j.core.Channel;

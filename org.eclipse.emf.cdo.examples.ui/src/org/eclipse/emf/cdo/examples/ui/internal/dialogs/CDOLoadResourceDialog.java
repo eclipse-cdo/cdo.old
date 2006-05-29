@@ -8,13 +8,13 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.example.ui.internal.dialogs;
+package org.eclipse.emf.cdo.examples.ui.internal.dialogs;
 
 
 import org.eclipse.emf.cdo.client.ResourceInfo;
-import org.eclipse.emf.cdo.example.client.internal.ExampleClientPlugin;
-import org.eclipse.emf.cdo.example.ui.internal.ResourceContentProvider;
-import org.eclipse.emf.cdo.example.ui.internal.ResourceLabelProvider;
+import org.eclipse.emf.cdo.examples.client.internal.ExampleClientPlugin;
+import org.eclipse.emf.cdo.examples.ui.internal.ResourceContentProvider;
+import org.eclipse.emf.cdo.examples.ui.internal.ResourceLabelProvider;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.ISelectionChangedListener;

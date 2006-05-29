@@ -8,17 +8,17 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.example.library.impl;
+package org.eclipse.emf.cdo.examples.library.impl;
 
 
 import org.eclipse.emf.cdo.client.CDOPackage;
-import org.eclipse.emf.cdo.example.library.Author;
-import org.eclipse.emf.cdo.example.library.Book;
-import org.eclipse.emf.cdo.example.library.EBook;
-import org.eclipse.emf.cdo.example.library.Library;
-import org.eclipse.emf.cdo.example.library.LibraryFactory;
-import org.eclipse.emf.cdo.example.library.LibraryPackage;
-import org.eclipse.emf.cdo.example.library.Topic;
+import org.eclipse.emf.cdo.examples.library.Author;
+import org.eclipse.emf.cdo.examples.library.Book;
+import org.eclipse.emf.cdo.examples.library.EBook;
+import org.eclipse.emf.cdo.examples.library.Library;
+import org.eclipse.emf.cdo.examples.library.LibraryFactory;
+import org.eclipse.emf.cdo.examples.library.LibraryPackage;
+import org.eclipse.emf.cdo.examples.library.Topic;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -80,7 +80,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see org.eclipse.emf.ecore.EPackage.Registry
-   * @see org.eclipse.emf.cdo.example.library.LibraryPackage#eNS_URI
+   * @see org.eclipse.emf.cdo.examples.library.LibraryPackage#eNS_URI
    * @see #init()
    * @generated
    */

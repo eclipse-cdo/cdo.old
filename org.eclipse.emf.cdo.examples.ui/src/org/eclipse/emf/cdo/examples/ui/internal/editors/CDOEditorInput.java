@@ -8,12 +8,12 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.example.ui.internal.editors;
+package org.eclipse.emf.cdo.examples.ui.internal.editors;
 
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.cdo.client.ResourceInfo;
-import org.eclipse.emf.cdo.example.ui.internal.ExampleUIActivator;
+import org.eclipse.emf.cdo.examples.ui.internal.ExampleUIActivator;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;

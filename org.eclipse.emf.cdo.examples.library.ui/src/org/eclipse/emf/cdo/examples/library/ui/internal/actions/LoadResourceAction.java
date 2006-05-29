@@ -8,16 +8,16 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.example.library.ui.internal.actions;
+package org.eclipse.emf.cdo.examples.library.ui.internal.actions;
 
 
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceManager;
-import org.eclipse.emf.cdo.example.client.internal.ExampleClientPlugin;
-import org.eclipse.emf.cdo.example.library.Author;
-import org.eclipse.emf.cdo.example.library.Book;
-import org.eclipse.emf.cdo.example.library.Library;
-import org.eclipse.emf.cdo.example.library.ui.internal.ExampleLibraryUIActivator;
+import org.eclipse.emf.cdo.examples.client.internal.ExampleClientPlugin;
+import org.eclipse.emf.cdo.examples.library.Author;
+import org.eclipse.emf.cdo.examples.library.Book;
+import org.eclipse.emf.cdo.examples.library.Library;
+import org.eclipse.emf.cdo.examples.library.ui.internal.ExampleLibraryUIActivator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;

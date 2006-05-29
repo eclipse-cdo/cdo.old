@@ -13,7 +13,7 @@
   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
     <factory 
        uri = "http://library" 
-       class = "org.eclipse.emf.cdo.example.library.provider.LibraryItemProviderAdapterFactory" 
+       class = "org.eclipse.emf.cdo.examples.library.provider.LibraryItemProviderAdapterFactory" 
        supportedTypes = 
          "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
           org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -25,7 +25,7 @@
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package
        uri = "http://library"
-       class = "org.eclipse.emf.cdo.example.library.LibraryPackage"
+       class = "org.eclipse.emf.cdo.examples.library.LibraryPackage"
        genModel = "model/library.genmodel" /> 
   </extension>
 

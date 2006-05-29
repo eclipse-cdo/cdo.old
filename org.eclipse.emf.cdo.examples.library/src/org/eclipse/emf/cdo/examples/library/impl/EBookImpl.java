@@ -8,13 +8,13 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.example.library.impl;
+package org.eclipse.emf.cdo.examples.library.impl;
 
 
-import org.eclipse.emf.cdo.example.library.EBook;
-import org.eclipse.emf.cdo.example.library.Library;
-import org.eclipse.emf.cdo.example.library.LibraryPackage;
-import org.eclipse.emf.cdo.example.library.Topic;
+import org.eclipse.emf.cdo.examples.library.EBook;
+import org.eclipse.emf.cdo.examples.library.Library;
+import org.eclipse.emf.cdo.examples.library.LibraryPackage;
+import org.eclipse.emf.cdo.examples.library.Topic;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -33,7 +33,7 @@ import java.util.Collection;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.cdo.example.library.impl.EBookImpl#getUrl <em>Url</em>}</li>
+ *   <li>{@link org.eclipse.emf.cdo.examples.library.impl.EBookImpl#getUrl <em>Url</em>}</li>
  * </ul>
  * </p>
  *

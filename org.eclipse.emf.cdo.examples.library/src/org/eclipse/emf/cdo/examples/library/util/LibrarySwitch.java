@@ -8,19 +8,19 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.example.library.util;
+package org.eclipse.emf.cdo.examples.library.util;
 
 
 import org.eclipse.emf.cdo.client.CDOPersistable;
 import org.eclipse.emf.cdo.client.CDOPersistent;
-import org.eclipse.emf.cdo.example.library.*;
+import org.eclipse.emf.cdo.examples.library.*;
 
-import org.eclipse.emf.cdo.example.library.Author;
-import org.eclipse.emf.cdo.example.library.Book;
-import org.eclipse.emf.cdo.example.library.EBook;
-import org.eclipse.emf.cdo.example.library.Library;
-import org.eclipse.emf.cdo.example.library.LibraryPackage;
-import org.eclipse.emf.cdo.example.library.Topic;
+import org.eclipse.emf.cdo.examples.library.Author;
+import org.eclipse.emf.cdo.examples.library.Book;
+import org.eclipse.emf.cdo.examples.library.EBook;
+import org.eclipse.emf.cdo.examples.library.Library;
+import org.eclipse.emf.cdo.examples.library.LibraryPackage;
+import org.eclipse.emf.cdo.examples.library.Topic;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
@@ -37,7 +37,7 @@ import java.util.List;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.cdo.example.library.LibraryPackage
+ * @see org.eclipse.emf.cdo.examples.library.LibraryPackage
  * @generated
  */
 public class LibrarySwitch

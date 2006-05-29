@@ -8,14 +8,14 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.example.ui.internal.views;
+package org.eclipse.emf.cdo.examples.ui.internal.views;
 
 
 import org.eclipse.emf.cdo.client.ResourceInfo;
-import org.eclipse.emf.cdo.example.client.internal.ExampleClientPlugin;
-import org.eclipse.emf.cdo.example.ui.internal.ResourceContentProvider;
-import org.eclipse.emf.cdo.example.ui.internal.ResourceLabelProvider;
-import org.eclipse.emf.cdo.example.ui.internal.UIUtils;
+import org.eclipse.emf.cdo.examples.client.internal.ExampleClientPlugin;
+import org.eclipse.emf.cdo.examples.ui.internal.ResourceContentProvider;
+import org.eclipse.emf.cdo.examples.ui.internal.ResourceLabelProvider;
+import org.eclipse.emf.cdo.examples.ui.internal.UIUtils;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -39,7 +39,7 @@ import org.eclipse.ui.part.ViewPart;
 
 public class CDOExplorer extends ViewPart
 {
-  public static final String VIEW_ID = "org.eclipse.emf.cdo.example.ui.CDOExplorer";
+  public static final String VIEW_ID = "org.eclipse.emf.cdo.examples.ui.CDOExplorer";
 
   public static CDOExplorer INSTANCE;
 

@@ -8,7 +8,7 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.example.library;
+package org.eclipse.emf.cdo.examples.library;
 
 
 import org.eclipse.emf.cdo.client.CDOPersistent;
@@ -23,13 +23,13 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.cdo.example.library.Library#getBooks <em>Books</em>}</li>
- *   <li>{@link org.eclipse.emf.cdo.example.library.Library#getAuthors <em>Authors</em>}</li>
- *   <li>{@link org.eclipse.emf.cdo.example.library.Library#getTopics <em>Topics</em>}</li>
+ *   <li>{@link org.eclipse.emf.cdo.examples.library.Library#getBooks <em>Books</em>}</li>
+ *   <li>{@link org.eclipse.emf.cdo.examples.library.Library#getAuthors <em>Authors</em>}</li>
+ *   <li>{@link org.eclipse.emf.cdo.examples.library.Library#getTopics <em>Topics</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.cdo.example.library.LibraryPackage#getLibrary()
+ * @see org.eclipse.emf.cdo.examples.library.LibraryPackage#getLibrary()
  * @model
  * @generated
  */
@@ -37,8 +37,8 @@ public interface Library extends CDOPersistent
 {
   /**
    * Returns the value of the '<em><b>Books</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.emf.cdo.example.library.Book}.
-   * It is bidirectional and its opposite is '{@link org.eclipse.emf.cdo.example.library.Book#getLibrary <em>Library</em>}'.
+   * The list contents are of type {@link org.eclipse.emf.cdo.examples.library.Book}.
+   * It is bidirectional and its opposite is '{@link org.eclipse.emf.cdo.examples.library.Book#getLibrary <em>Library</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Books</em>' containment reference list isn't clear,
@@ -46,17 +46,17 @@ public interface Library extends CDOPersistent
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Books</em>' containment reference list.
-   * @see org.eclipse.emf.cdo.example.library.LibraryPackage#getLibrary_Books()
-   * @see org.eclipse.emf.cdo.example.library.Book#getLibrary
-   * @model type="org.eclipse.emf.cdo.example.library.Book" opposite="library" containment="true"
+   * @see org.eclipse.emf.cdo.examples.library.LibraryPackage#getLibrary_Books()
+   * @see org.eclipse.emf.cdo.examples.library.Book#getLibrary
+   * @model type="org.eclipse.emf.cdo.examples.library.Book" opposite="library" containment="true"
    * @generated
    */
   EList getBooks();
 
   /**
    * Returns the value of the '<em><b>Authors</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.emf.cdo.example.library.Author}.
-   * It is bidirectional and its opposite is '{@link org.eclipse.emf.cdo.example.library.Author#getLibrary <em>Library</em>}'.
+   * The list contents are of type {@link org.eclipse.emf.cdo.examples.library.Author}.
+   * It is bidirectional and its opposite is '{@link org.eclipse.emf.cdo.examples.library.Author#getLibrary <em>Library</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Authors</em>' containment reference list isn't clear,
@@ -64,17 +64,17 @@ public interface Library extends CDOPersistent
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Authors</em>' containment reference list.
-   * @see org.eclipse.emf.cdo.example.library.LibraryPackage#getLibrary_Authors()
-   * @see org.eclipse.emf.cdo.example.library.Author#getLibrary
-   * @model type="org.eclipse.emf.cdo.example.library.Author" opposite="library" containment="true"
+   * @see org.eclipse.emf.cdo.examples.library.LibraryPackage#getLibrary_Authors()
+   * @see org.eclipse.emf.cdo.examples.library.Author#getLibrary
+   * @model type="org.eclipse.emf.cdo.examples.library.Author" opposite="library" containment="true"
    * @generated
    */
   EList getAuthors();
 
   /**
    * Returns the value of the '<em><b>Topics</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.emf.cdo.example.library.Topic}.
-   * It is bidirectional and its opposite is '{@link org.eclipse.emf.cdo.example.library.Topic#getLibrary <em>Library</em>}'.
+   * The list contents are of type {@link org.eclipse.emf.cdo.examples.library.Topic}.
+   * It is bidirectional and its opposite is '{@link org.eclipse.emf.cdo.examples.library.Topic#getLibrary <em>Library</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Topics</em>' containment reference list isn't clear,
@@ -82,9 +82,9 @@ public interface Library extends CDOPersistent
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Topics</em>' containment reference list.
-   * @see org.eclipse.emf.cdo.example.library.LibraryPackage#getLibrary_Topics()
-   * @see org.eclipse.emf.cdo.example.library.Topic#getLibrary
-   * @model type="org.eclipse.emf.cdo.example.library.Topic" opposite="library" containment="true"
+   * @see org.eclipse.emf.cdo.examples.library.LibraryPackage#getLibrary_Topics()
+   * @see org.eclipse.emf.cdo.examples.library.Topic#getLibrary
+   * @model type="org.eclipse.emf.cdo.examples.library.Topic" opposite="library" containment="true"
    * @generated
    */
   EList getTopics();
