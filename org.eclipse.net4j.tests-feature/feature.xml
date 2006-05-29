@@ -21,9 +21,7 @@
       <import plugin="org.junit"/>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.ui"/>
-
       <import feature="org.eclipse.emf"/>
-
       <import plugin="org.eclipse.net4j.core"/>
       <import plugin="org.eclipse.net4j.spring"/>
       <import plugin="org.eclipse.net4j.util"/>
@@ -31,19 +29,6 @@
       <import plugin="org.eclipse.net4j.embedded"/>
       <import plugin="org.eclipse.net4j.spring.db"/>
    </requires>
-
-   <plugin
-         id="org.eclipse.test"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
-
-   <plugin
-         id="org.eclipse.ant.optional.junit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"/>
 
    <plugin
          id="org.eclipse.net4j.tests"
