@@ -20,7 +20,7 @@ public interface Pool extends Service
 
   public void put(Object key, Object object);
 
-  public Class getPooledClass(Object key);
+  public Class<?> getPooledClass(Object key);
 
   public Object getDefaultKey();
 
@@ -28,5 +28,5 @@ public interface Pool extends Service
 
   public void put(Object object);
 
-  public Class getPooledClass();
+  public Class<?> getPooledClass();
 }

@@ -26,7 +26,7 @@ import java.util.List;
 
 public class ClientCDOResProtocolImpl extends AbstractCDOResProtocol
 {
-  private List<CDOResListener> listeners = new ArrayList();
+  private List<CDOResListener> listeners = new ArrayList<CDOResListener>();
 
   public ClientCDOResProtocolImpl()
   {
@@ -67,6 +67,7 @@ public class ClientCDOResProtocolImpl extends AbstractCDOResProtocol
     }
   }
 
+  @SuppressWarnings("unchecked")
   public static List<ResourceInfo> queryAllResources(Channel channel)
   {
     assertValidChannel(channel);

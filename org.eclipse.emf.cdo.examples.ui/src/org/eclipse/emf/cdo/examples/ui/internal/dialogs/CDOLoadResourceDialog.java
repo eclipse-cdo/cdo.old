@@ -40,7 +40,7 @@ public class CDOLoadResourceDialog extends Dialog
 {
   private TableViewer resourcesViewer;
 
-  private List<ResourceInfo> resourceInfos = new ArrayList();
+  private List<ResourceInfo> resourceInfos = new ArrayList<ResourceInfo>();
 
   public CDOLoadResourceDialog(Shell parentShell)
   {

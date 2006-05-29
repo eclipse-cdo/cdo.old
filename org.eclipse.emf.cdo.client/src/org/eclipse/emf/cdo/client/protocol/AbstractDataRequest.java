@@ -128,6 +128,7 @@ public abstract class AbstractDataRequest extends AbstractCDOClientRequest
     }
   }
 
+  @SuppressWarnings("unchecked")
   protected void receiveReferences(EObject object)
   {
     //    boolean deliver = ((InternalEObject) object).eDeliver();

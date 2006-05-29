@@ -30,7 +30,7 @@ public class ResourcesChangedIndication extends AbstractIndication
 
   public void indicate()
   {
-    List<ResourceChangeInfo> infos = new ArrayList();
+    List<ResourceChangeInfo> infos = new ArrayList<ResourceChangeInfo>();
 
     try
     {

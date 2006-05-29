@@ -73,6 +73,7 @@ public final class CDOEditorInput implements IEditorInput
     return "CDO Resource " + getName();
   }
 
+  @SuppressWarnings("unchecked")
   public Object getAdapter(Class adapterType)
   {
     return Platform.getAdapterManager().getAdapter(this, adapterType);

@@ -27,6 +27,7 @@ import java.util.Map;
 import java.util.Random;
 
 
+@SuppressWarnings("unchecked")
 public abstract class AbstractPool extends ServiceImpl implements Pool
 {
   public static final int DEFAULT_MAXIMUM_CAPACITY = 100;
@@ -61,7 +62,7 @@ public abstract class AbstractPool extends ServiceImpl implements Pool
    * @param key
    * @return
    */
-  protected abstract Class doGetPooledClass(Object key);
+  protected abstract Class<?> doGetPooledClass(Object key);
 
   public Object get()
   {
@@ -124,13 +125,13 @@ public abstract class AbstractPool extends ServiceImpl implements Pool
     }
   }
 
-  public Class getPooledClass()
+  public Class<?> getPooledClass()
   {
     Object key = getDefaultKey();
     return getPooledClass(key);
   }
 
-  public Class getPooledClass(Object key)
+  public Class<?> getPooledClass(Object key)
   {
     if (key == null)
     {
@@ -167,7 +168,7 @@ public abstract class AbstractPool extends ServiceImpl implements Pool
 
     if (validating)
     {
-      Class base = getPooledClass(key);
+      Class<?> base = getPooledClass(key);
       if (!base.isInstance(objectToUse))
       {
         String msg = "object " + getPooledLabel(objectToUse) + " does not inherit class "

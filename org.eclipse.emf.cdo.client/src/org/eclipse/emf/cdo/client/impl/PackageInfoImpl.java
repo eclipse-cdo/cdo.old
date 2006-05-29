@@ -34,7 +34,7 @@ public class PackageInfoImpl implements PackageInfo
 
   private transient PackageMapping mapping;
 
-  private transient List classes = new ArrayList();
+  private transient List<ClassInfo> classes = new ArrayList<ClassInfo>();
 
   public PackageInfoImpl(EPackage ePackage, PackageMapping mapping, PackageManager packageManager)
   {
@@ -75,7 +75,7 @@ public class PackageInfoImpl implements PackageInfo
 
   public ClassInfo[] getClasses()
   {
-    return (ClassInfo[]) classes.toArray(new ClassInfo[classes.size()]);
+    return classes.toArray(new ClassInfo[classes.size()]);
   }
 
   public boolean isAnnounced()

@@ -67,13 +67,15 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
 
   private transient boolean newPackagesToAnnounce = false;
 
-  private transient Map eClassToClassInfoMap = new HashMap(2111);
+  private transient Map<EClass, ClassInfo> eClassToClassInfoMap = new HashMap<EClass, ClassInfo>(
+      2111);
 
-  private transient Map cidToClassInfoMap = new HashMap(2111);
+  private transient Map<Integer, ClassInfo> cidToClassInfoMap = new HashMap<Integer, ClassInfo>(
+      2111);
 
-  private transient List<PackageInfo> packages = new ArrayList();
+  private transient List<PackageInfo> packages = new ArrayList<PackageInfo>();
 
-  private transient List listeners = new ArrayList();
+  private transient List<PackageListener> listeners = new ArrayList<PackageListener>();
 
   public OIDEncoder getOidEncoder() // Don't change case! Spring will be irritated
   {
@@ -95,6 +97,7 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
     doSet("attributeConverter", attributeConverter);
   }
 
+  @SuppressWarnings("unchecked")
   public void addPackage(EPackage ePackage, String mappingFile)
   {
     if (isDebugEnabled()) debug("Analyzing package " + ePackage.getNsURI());
@@ -102,9 +105,9 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
     PackageInfo packageInfo = new PackageInfoImpl(ePackage, provider.getPackageMapping(), this);
 
     EList classifiers = ePackage.getEClassifiers();
-    for (Iterator classifierIt = classifiers.iterator(); classifierIt.hasNext();)
+    for (Iterator<EClassifier> classifierIt = classifiers.iterator(); classifierIt.hasNext();)
     {
-      EClassifier classifier = (EClassifier) classifierIt.next();
+      EClassifier classifier = classifierIt.next();
       if (classifier instanceof EClass)
       {
         addClass((EClass) classifier, packageInfo, provider);
@@ -174,9 +177,9 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
 
   public void notifyPackageListeners()
   {
-    for (Iterator iter = listeners.iterator(); iter.hasNext();)
+    for (Iterator<PackageListener> iter = listeners.iterator(); iter.hasNext();)
     {
-      PackageListener listener = (PackageListener) iter.next();
+      PackageListener listener = iter.next();
       listener.notifyAddedPackage();
     }
   }
@@ -198,7 +201,7 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
 
   public ClassInfo getClassInfo(EClass eClass)
   {
-    return (ClassInfo) eClassToClassInfoMap.get(eClass);
+    return eClassToClassInfoMap.get(eClass);
   }
 
   public ClassInfo getClassInfo(EObject eObject)
@@ -209,10 +212,10 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
 
   public ClassInfo getClassInfo(int cid)
   {
-    return (ClassInfo) cidToClassInfoMap.get(new Integer(cid));
+    return cidToClassInfoMap.get(new Integer(cid));
   }
 
-  public Iterator getClassInfos()
+  public Iterator<ClassInfo> getClassInfos()
   {
     return eClassToClassInfoMap.values().iterator();
   }
@@ -233,10 +236,12 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
     doSet("autoPersistent", autoPersistent);
   }
 
+  @SuppressWarnings("unchecked")
   protected void saveMappingModel(String fileName, PackageMapping model) throws IOException
   {
     ResourceSet resourceSet = new ResourceSetImpl();
-    Map map = resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap();
+    Map<String, Resource.Factory> map = resourceSet.getResourceFactoryRegistry()
+        .getExtensionToFactoryMap();
     map.put("xml", new XMLResourceFactoryImpl());
 
     URI uri = URI.createFileURI(fileName);
@@ -279,14 +284,14 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
 
   public void processMappings()
   {
-    List elements = ClientActivator.getPlugin().getMappingElements();
+    List<?> elements = ClientActivator.getPlugin().getMappingElements();
 
     if (elements == null)
     {
       throw new IllegalStateException("Mapping elements are not parsed yet");
     }
 
-    for (Iterator it = elements.iterator(); it.hasNext();)
+    for (Iterator<?> it = elements.iterator(); it.hasNext();)
     {
       MappingElement element = (MappingElement) it.next();
       String uri = element.getUri();

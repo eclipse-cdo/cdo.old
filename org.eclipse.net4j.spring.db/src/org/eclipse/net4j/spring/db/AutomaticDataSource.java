@@ -155,7 +155,7 @@ public class AutomaticDataSource extends BasicDataSource
     try
     {
       ClassLoader loader = Thread.currentThread().getContextClassLoader();
-      Class clazz = loader.loadClass(driverClassName);
+      Class<?> clazz = loader.loadClass(driverClassName);
       log("class for " + driverClassName + ": " + clazz);
       return (Driver) clazz.newInstance();
     }

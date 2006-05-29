@@ -34,9 +34,9 @@ public class ResourceCache implements CDOResListener
 
   private Channel channel;
 
-  private List<ResourceInfo> allResources = new ArrayList();
+  private List<ResourceInfo> allResources = new ArrayList<ResourceInfo>();
 
-  private List<Listener> listeners = new ArrayList();
+  private List<Listener> listeners = new ArrayList<Listener>();
 
   public ResourceCache(ClientCDOResProtocolImpl protocol, Connector connector)
   {

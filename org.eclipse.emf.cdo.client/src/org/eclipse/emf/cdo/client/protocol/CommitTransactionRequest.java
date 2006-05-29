@@ -44,10 +44,11 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Hashtable;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 
 public class CommitTransactionRequest extends AbstractCDOClientRequest
@@ -66,7 +67,8 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
 
   private static final int COLLECTION_FEATURE = 3;
 
-  private Map referenceRecords = new Hashtable(CAPACITY_referenceRecords);
+  private Set<ReferenceRecord> referenceRecords = new HashSet<ReferenceRecord>(
+      CAPACITY_referenceRecords);
 
   private ChangeDescription changeDescription;
 
@@ -84,7 +86,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
 
   private AttributeInfo attributeInfo;
 
-  private List objectsToAttach = new ArrayList();
+  private List<EObject> objectsToAttach = new ArrayList<EObject>();
 
   private PackageManager packageManager;
 
@@ -131,9 +133,9 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
       throw new ImplementationError("attachedCount != attached.size()");
     }
 
-    for (Iterator iter = objectsToAttach.iterator(); iter.hasNext();)
+    for (Iterator<EObject> iter = objectsToAttach.iterator(); iter.hasNext();)
     {
-      EObject object = (EObject) iter.next();
+      EObject object = iter.next();
       long oid = receiveLong();
 
       getResourceManager().reRegisterObject(object, oid);
@@ -177,7 +179,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
     ResourceSet resourceSet = resourceManager.getResourceSet();
     EList resources = resourceSet.getResources();
 
-    for (Iterator iter = resources.iterator(); iter.hasNext();)
+    for (Iterator<?> iter = resources.iterator(); iter.hasNext();)
     {
       Resource resource = (Resource) iter.next();
 
@@ -201,7 +203,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
     if (isDebugEnabled()) debug("commitObjectsToDetach()");
 
     // Use getObjectsToAttach() because changeDescription is reversed
-    for (Iterator iter = EcoreUtil.getAllContents(changeDescription.getObjectsToAttach()); iter
+    for (Iterator<?> iter = EcoreUtil.getAllContents(changeDescription.getObjectsToAttach()); iter
         .hasNext();)
     {
       EObject object = (EObject) iter.next();
@@ -226,12 +228,12 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
   {
     // TODO Move this to getObjectsToAttach()
     // Use getObjectsToDetach() because changeDescription is reversed
-    for (Iterator iter = changeDescription.getObjectsToDetach().iterator(); iter.hasNext();)
+    for (Iterator<?> iter = changeDescription.getObjectsToDetach().iterator(); iter.hasNext();)
     {
       EObject eObject = (EObject) iter.next();
       objectsToAttach.add(eObject);
 
-      for (Iterator tree = eObject.eAllContents(); tree.hasNext();)
+      for (Iterator<?> tree = eObject.eAllContents(); tree.hasNext();)
       {
         EObject child = (EObject) tree.next();
         objectsToAttach.add(child);
@@ -246,9 +248,9 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
     }
 
     // First transmit all the temporary oids, so that the server knows in advance how to handle references
-    for (Iterator iter = objectsToAttach.iterator(); iter.hasNext();)
+    for (Iterator<EObject> iter = objectsToAttach.iterator(); iter.hasNext();)
     {
-      EObject eObject = (EObject) iter.next();
+      EObject eObject = iter.next();
       ClassInfo classInfo = packageManager.getClassInfo(eObject);
       if (classInfo == null)
         throw new ImplementationError("Class not registered as CDO persistent: " + eObject.eClass());
@@ -322,7 +324,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
         int ordinal = 0;
         EList values = (EList) object.eGet(reference);
 
-        for (Iterator valuesIt = values.iterator(); valuesIt.hasNext();)
+        for (Iterator<?> valuesIt = values.iterator(); valuesIt.hasNext();)
         {
           EObject value = (EObject) valuesIt.next();
           long oid = ResourceManagerImpl.getOID(value);
@@ -347,9 +349,9 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
   {
     transmitInt(referenceRecords.size());
 
-    for (Iterator it = referenceRecords.values().iterator(); it.hasNext();)
+    for (Iterator<ReferenceRecord> it = referenceRecords.iterator(); it.hasNext();)
     {
-      ReferenceRecord record = (ReferenceRecord) it.next();
+      ReferenceRecord record = it.next();
       long oid = record.getOID();
       EReference feature = record.getFeature();
       int ordinal = record.getOrdinal();
@@ -376,7 +378,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
       debug("commitObjectChanges(" + objectChanges.size() + " objects)");
     }
 
-    for (Iterator iter = objectChanges.iterator(); iter.hasNext();)
+    for (Iterator<?> iter = objectChanges.iterator(); iter.hasNext();)
     {
       EObjectToChangesMapEntryImpl entry = (EObjectToChangesMapEntryImpl) iter.next();
       EObject eObject = (EObject) entry.getKey();
@@ -388,16 +390,18 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
     transmitLong(CDOProtocol.NO_MORE_OBJECT_CHANGES);
   }
 
+  @SuppressWarnings("unchecked")
   private void transmitObjectChange(EObject eObject, EList featureChanges)
   {
     ClassInfo classInfo = packageManager.getClassInfo(eObject);
     if (classInfo == null)
       throw new ImplementationError("Class not registered as CDO persistent: " + eObject.eClass());
 
-    Map eClassToAttributeChangesMap = new HashMap(CAPACITY_eClassToAttributeChangesMap);
+    Map<EClass, List> eClassToAttributeChangesMap = new HashMap<EClass, List>(
+        CAPACITY_eClassToAttributeChangesMap);
     firstChange = true;
 
-    for (Iterator iterator = featureChanges.iterator(); iterator.hasNext();)
+    for (Iterator<?> iterator = featureChanges.iterator(); iterator.hasNext();)
     {
       FeatureChange featureChange = (FeatureChange) iterator.next();
       EStructuralFeature feature = featureChange.getFeature();
@@ -443,9 +447,11 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
    * @param object
    * @param classToAttributeChangesMap
    */
-  private void transmitAttributeChanges(EObject eObject, Map eClassToAttributeChangesMap)
+  @SuppressWarnings("unchecked")
+  private void transmitAttributeChanges(EObject eObject,
+      Map<EClass, List> eClassToAttributeChangesMap)
   {
-    for (Iterator mapIt = eClassToAttributeChangesMap.entrySet().iterator(); mapIt.hasNext();)
+    for (Iterator<?> mapIt = eClassToAttributeChangesMap.entrySet().iterator(); mapIt.hasNext();)
     {
       Map.Entry entry = (Map.Entry) mapIt.next();
       List attributeChangesOfClassifierList = (List) entry.getValue();
@@ -463,7 +469,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
       transmitInt(cid);
       transmitInt(count);
 
-      for (Iterator listIt = attributeChangesOfClassifierList.iterator(); listIt.hasNext();)
+      for (Iterator<?> listIt = attributeChangesOfClassifierList.iterator(); listIt.hasNext();)
       {
         AttributeInfo attributeInfo = (AttributeInfo) listIt.next();
         transmitAttributeChange(eObject, attributeInfo);
@@ -477,14 +483,16 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
    * @param feature
    * @param classToAttributeChangesMap
    */
-  private void rememberAttributeChange(EStructuralFeature feature, Map eClassToAttributeChangesMap)
+  @SuppressWarnings("unchecked")
+  private void rememberAttributeChange(EStructuralFeature feature,
+      Map<EClass, List> eClassToAttributeChangesMap)
   {
     EClass eClass = feature.getEContainingClass();
-    List attributeChangesOfEClass = (List) eClassToAttributeChangesMap.get(eClass);
+    List<AttributeInfo> attributeChangesOfEClass = eClassToAttributeChangesMap.get(eClass);
 
     if (attributeChangesOfEClass == null)
     {
-      attributeChangesOfEClass = new ArrayList();
+      attributeChangesOfEClass = new ArrayList<AttributeInfo>();
       eClassToAttributeChangesMap.put(eClass, attributeChangesOfEClass);
     }
 
@@ -562,6 +570,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
     converter.toChannel(eObject, attribute, getChannel());
   }
 
+  @SuppressWarnings("unchecked")
   private void commitObjectChangeReferenceMany(EObject object, FeatureChange featureChange,
       EReference reference)
   {
@@ -574,7 +583,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
       EList currentObjects = (EList) object.eGet(reference);
       EList originalObjects = new BasicEList(currentObjects);
       EList listChanges = new BasicEList(featureChange.getListChanges().size());
-      for (Iterator it = featureChange.getListChanges().iterator(); it.hasNext();)
+      for (Iterator<?> it = featureChange.getListChanges().iterator(); it.hasNext();)
       {
         ListChange listChange = (ListChange) it.next();
         ListChange changeCopy = ChangeFactory.eINSTANCE.createListChange();
@@ -590,9 +599,9 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
       ECollections.reverse(listChanges);
 
       // Second iteration to apply changes 
-      for (Iterator it = listChanges.iterator(); it.hasNext();)
+      for (Iterator<ListChange> it = listChanges.iterator(); it.hasNext();)
       {
-        ListChange listChange = (ListChange) it.next();
+        ListChange listChange = it.next();
         ChangeKind changeKind = listChange.getKind();
 
         switch (changeKind.getValue())
@@ -608,7 +617,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
           {
             int index = listChange.getIndex();
             EList values = listChange.getValues();
-            for (Iterator itValues = values.iterator(); itValues.hasNext();)
+            for (Iterator<?> itValues = values.iterator(); itValues.hasNext();)
             {
               EObject value = (EObject) itValues.next();
               long target = ResourceManagerImpl.getOID(value);
@@ -636,7 +645,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
       int ordinal = 0;
 
       EList values = (EList) object.eGet(reference);
-      for (Iterator valuesIt = values.iterator(); valuesIt.hasNext();)
+      for (Iterator<?> valuesIt = values.iterator(); valuesIt.hasNext();)
       {
         EObject value = (EObject) valuesIt.next();
         long target = ResourceManagerImpl.getOID(value);
@@ -725,7 +734,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
   private void rememberReferenceToAdd(long oid, EReference feature, int ordinal, long target)
   {
     ReferenceRecord record = new ReferenceRecord(oid, feature, ordinal, target);
-    referenceRecords.put(record, record);
+    referenceRecords.add(record);
   }
 
 

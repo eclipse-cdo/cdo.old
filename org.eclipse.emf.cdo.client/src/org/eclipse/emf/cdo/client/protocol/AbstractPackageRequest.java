@@ -40,7 +40,7 @@ public abstract class AbstractPackageRequest extends AbstractCDOClientRequest
   private void setCIDOnClassInfo(String className, int cid)
   {
     PackageManager packageManager = getPackageManager();
-    for (Iterator classInfoIt = packageManager.getClassInfos(); classInfoIt.hasNext();)
+    for (Iterator<?> classInfoIt = packageManager.getClassInfos(); classInfoIt.hasNext();)
     {
       ClassInfo classInfo = (ClassInfo) classInfoIt.next();
       if (classInfo.getFullName().equals(className))

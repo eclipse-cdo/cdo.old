@@ -35,7 +35,7 @@ public class GetProtocolsRequest extends AbstractRequestWithConfirmation
 
   public Object confirm()
   {
-    List result = new ArrayList();
+    List<String> result = new ArrayList<String>();
     String name;
 
     while ((name = receiveString()) != null)

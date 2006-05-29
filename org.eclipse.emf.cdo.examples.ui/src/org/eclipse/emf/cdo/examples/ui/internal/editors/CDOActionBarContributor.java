@@ -58,6 +58,7 @@ import java.util.List;
  * <!-- end-user-doc -->
  * @generated
  */
+@SuppressWarnings("unchecked")
 public class CDOActionBarContributor extends EditingDomainActionBarContributor implements
         ISelectionChangedListener
 {

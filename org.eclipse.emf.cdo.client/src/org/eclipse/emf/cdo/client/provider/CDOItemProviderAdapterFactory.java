@@ -40,6 +40,7 @@ import java.util.Collection;
  * <!-- end-user-doc -->
  * @generated
  */
+@SuppressWarnings("unchecked")
 public class CDOItemProviderAdapterFactory extends CDOAdapterFactory implements
     ComposeableAdapterFactory, IChangeNotifier, IDisposable
 {

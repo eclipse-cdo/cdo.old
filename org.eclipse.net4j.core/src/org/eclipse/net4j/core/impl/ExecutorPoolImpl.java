@@ -25,7 +25,7 @@ public class ExecutorPoolImpl extends AbstractPool
   {
   }
 
-  public Class doGetPooledClass(Object key)
+  public Class<Executor> doGetPooledClass(Object key)
   {
     return Executor.class;
   }

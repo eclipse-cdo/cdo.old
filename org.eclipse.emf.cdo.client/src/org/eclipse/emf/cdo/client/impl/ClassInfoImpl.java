@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 
 public class ClassInfoImpl implements ClassInfo
@@ -88,7 +89,7 @@ public class ClassInfoImpl implements ClassInfo
     {
       parentCached = true;
 
-      for (Iterator it = eClass.getEAllSuperTypes().iterator(); it.hasNext();)
+      for (Iterator<?> it = eClass.getEAllSuperTypes().iterator(); it.hasNext();)
       {
         EClass candidate = (EClass) it.next();
         if (candidate != null && !candidate.isInterface()
@@ -141,13 +142,14 @@ public class ClassInfoImpl implements ClassInfo
   //    }
   //  }
 
+  @SuppressWarnings("unchecked")
   protected void initAttributeInfos()
   {
-    ArrayList tmp = new ArrayList();
+    List<AttributeInfo> tmp = new ArrayList<AttributeInfo>();
 
-    for (Iterator it = eClass.getEAllAttributes().iterator(); it.hasNext();)
+    for (Iterator<EAttribute> it = eClass.getEAllAttributes().iterator(); it.hasNext();)
     {
-      EAttribute eAttribute = (EAttribute) it.next();
+      EAttribute eAttribute = it.next();
       AttributeMapping attributeMapping = mapping.getAttributeMapping(eAttribute.getName());
 
       if (attributeMapping != null)
@@ -157,14 +159,14 @@ public class ClassInfoImpl implements ClassInfo
       }
     }
 
-    attributeInfos = (AttributeInfo[]) tmp.toArray(new AttributeInfo[tmp.size()]);
+    attributeInfos = tmp.toArray(new AttributeInfo[tmp.size()]);
   }
 
   protected void initReferences()
   {
-    ArrayList tmp = new ArrayList();
+    ArrayList<EReference> tmp = new ArrayList<EReference>();
 
-    for (Iterator it = eClass.getEAllReferences().iterator(); it.hasNext();)
+    for (Iterator<?> it = eClass.getEAllReferences().iterator(); it.hasNext();)
     {
       EReference reference = (EReference) it.next();
 
@@ -175,7 +177,7 @@ public class ClassInfoImpl implements ClassInfo
       }
     }
 
-    allReferences = (EReference[]) tmp.toArray(new EReference[tmp.size()]);
+    allReferences = tmp.toArray(new EReference[tmp.size()]);
   }
 
   public int getCID()

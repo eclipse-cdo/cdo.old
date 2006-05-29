@@ -176,7 +176,7 @@ public class ContextClassLoaderDataSource extends ServiceImpl implements SmartDa
     try
     {
       ClassLoader loader = Thread.currentThread().getContextClassLoader();
-      Class clazz = loader.loadClass(driverClassName);
+      Class<?> clazz = loader.loadClass(driverClassName);
       driver = (Driver) clazz.newInstance();
     }
     catch (Throwable t)

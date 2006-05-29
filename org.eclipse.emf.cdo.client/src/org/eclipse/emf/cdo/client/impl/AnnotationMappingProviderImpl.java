@@ -181,7 +181,7 @@ public class AnnotationMappingProviderImpl implements MappingProvider, CDODataTy
 
     //EList attributes = eClass.getEAttributes();
     EList attributes = eClass.getEAllAttributes(); // TODO is this how to get superClass attributes also..?
-    for (Iterator iter = attributes.iterator(); iter.hasNext();)
+    for (Iterator<?> iter = attributes.iterator(); iter.hasNext();)
     {
       EAttribute attribute = (EAttribute) iter.next();
       AttributeMapping attributeMapping = createAttributeMapping(attribute, persistent);
@@ -191,13 +191,14 @@ public class AnnotationMappingProviderImpl implements MappingProvider, CDODataTy
     return classMapping;
   }
 
+  @SuppressWarnings("unchecked")
   protected PackageMapping createPackageMapping()
   {
     PackageMapping packageMapping = MappingFactory.eINSTANCE.createPackageMapping();
     packageMapping.setPackageName(ePackage.getName());
 
     EList classifiers = ePackage.getEClassifiers();
-    for (Iterator classifierIt = classifiers.iterator(); classifierIt.hasNext();)
+    for (Iterator<?> classifierIt = classifiers.iterator(); classifierIt.hasNext();)
     {
       EClassifier classifier = (EClassifier) classifierIt.next();
       if (classifier instanceof EClass)
@@ -263,11 +264,11 @@ public class AnnotationMappingProviderImpl implements MappingProvider, CDODataTy
   public static String sqlIdentifier(String name)
   {
     StringBuffer result = new StringBuffer();
-    List parsedName = StringHelper.parseName(name, '_');
+    List<String> parsedName = StringHelper.parseName(name, '_');
 
-    for (Iterator nameIter = parsedName.iterator(); nameIter.hasNext();)
+    for (Iterator<String> nameIter = parsedName.iterator(); nameIter.hasNext();)
     {
-      String nameComponent = (String) nameIter.next();
+      String nameComponent = nameIter.next();
       result.append(nameComponent);
 
       if (nameIter.hasNext() && nameComponent.length() > 1)

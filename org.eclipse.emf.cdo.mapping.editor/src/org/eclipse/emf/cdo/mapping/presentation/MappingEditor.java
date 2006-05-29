@@ -1064,6 +1064,7 @@ public class MappingEditor extends MultiPageEditorPart implements IEditingDomain
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   public Object getAdapter(Class key)
   {
     if (key.equals(IContentOutlinePage.class))

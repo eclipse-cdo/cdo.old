@@ -224,7 +224,7 @@ public abstract class AbstractConnector extends ServiceImpl implements Connector
       }
     }
 
-    return (Channel)channels.get(id);
+    return channels.get(id);
   }
 
   public boolean isClient()
@@ -334,7 +334,7 @@ public abstract class AbstractConnector extends ServiceImpl implements Connector
   @Override
   protected void dump(boolean withInternals)
   {
-    List attributes = new ArrayList();
+    List<String> attributes = new ArrayList<String>();
     attributes.add("type = " + (isServer() ? "SERVER" : "CLIENT"));
     super.dump(withInternals, attributes);
   }

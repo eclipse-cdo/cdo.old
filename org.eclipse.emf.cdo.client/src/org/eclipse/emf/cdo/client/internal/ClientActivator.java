@@ -110,7 +110,7 @@ public final class ClientActivator extends EMFPlugin
     /**
      * @ADDED
      */
-    private List mappingElements = new ArrayList();
+    private List<MappingElement> mappingElements = new ArrayList<MappingElement>();
 
     /**
      * Creates an instance.
@@ -149,7 +149,7 @@ public final class ClientActivator extends EMFPlugin
     /**
      * @ADDED
      */
-    public List getMappingElements()
+    public List<MappingElement> getMappingElements()
     {
       return mappingElements;
     }
@@ -197,7 +197,7 @@ public final class ClientActivator extends EMFPlugin
    */
   public static class MappingExtensionParser extends ListExtensionParser
   {
-    public MappingExtensionParser(List list)
+    public MappingExtensionParser(List<MappingElement> list)
     {
       super(list);
 

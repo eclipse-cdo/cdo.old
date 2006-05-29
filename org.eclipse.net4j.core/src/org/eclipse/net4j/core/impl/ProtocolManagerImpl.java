@@ -25,22 +25,22 @@ public class ProtocolManagerImpl extends ServiceImpl implements ProtocolManager
 {
   protected static final int INITIAL_CAPACITY = 23;
 
-  protected List protocols = new ArrayList();
+  protected List<Protocol> protocols = new ArrayList<Protocol>();
 
-  protected HashMap serverProtocols = new HashMap(INITIAL_CAPACITY);
+  protected HashMap<String, Protocol> serverProtocols = new HashMap<String, Protocol>(INITIAL_CAPACITY);
 
-  protected HashMap clientProtocols = new HashMap(INITIAL_CAPACITY);
+  protected HashMap<String, Protocol> clientProtocols = new HashMap<String, Protocol>(INITIAL_CAPACITY);
 
   protected int protocolCount;
 
   public Protocol lookupClient(String name)
   {
-    return (Protocol)clientProtocols.get(name);
+    return clientProtocols.get(name);
   }
 
   public Protocol lookupServer(String name)
   {
-    return (Protocol)serverProtocols.get(name);
+    return serverProtocols.get(name);
   }
 
   public void deregister(Protocol protocol)
@@ -74,12 +74,12 @@ public class ProtocolManagerImpl extends ServiceImpl implements ProtocolManager
     }
   }
 
-  public Iterator getClientProtocols()
+  public Iterator<Protocol> getClientProtocols()
   {
     return clientProtocols.values().iterator();
   }
 
-  public Iterator getServerProtocols()
+  public Iterator<Protocol> getServerProtocols()
   {
     return serverProtocols.values().iterator();
   }

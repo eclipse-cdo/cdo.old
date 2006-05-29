@@ -39,7 +39,7 @@ public class QueryAllResourcesRequest extends AbstractRequestWithConfirmation
 
   public Object confirm()
   {
-    List<ResourceInfo> result = new ArrayList();
+    List<ResourceInfo> result = new ArrayList<ResourceInfo>();
 
     for (;;)
     {
