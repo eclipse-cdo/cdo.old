@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: test.xml,v 1.1 2006-05-08 19:27:07 nickb Exp $
+ * $Id: test.xml,v 1.2 2006-05-29 14:17:56 nickb Exp $
  */
 -->
 
@@ -24,7 +24,7 @@
   <property name="eclipse-home" value="${basedir}\..\.."/>
 
   <!-- sets the properties plugin-name, and library-file -->
-  <property name="plugin-name" value="org.eclipse.jet.tests"/>
+  <property name="plugin-name" value="org.eclipse.net4j.spring.tests"/>
   <property name="library-file" value="${eclipse-home}/plugins/org.eclipse.test/library.xml"/>
 
   <!-- This target holds all initialization code that needs to be done for -->
