@@ -17,6 +17,10 @@
       [Enter License Description here.]
    </license>
 
+   <url>
+      <update label="%updateSiteName" url="http://download.eclipse.org/technology/emft/updates/"/>
+   </url>
+
    <requires>
       <import feature="org.eclipse.net4j" version="1.0.0"/>
       <import plugin="org.eclipse.emf.ecore"/>
