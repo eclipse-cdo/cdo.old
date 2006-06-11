@@ -18,4 +18,3 @@ Export-Package: org.eclipse.emf.cdo.examples.ui.internal,
  org.eclipse.emf.cdo.examples.ui.internal.editors;x-internal:=true,
  org.eclipse.emf.cdo.examples.ui.internal.views;x-internal:=true,
  org.eclipse.emf.cdo.examples.ui.internal.wizards
-Bundle-ClassPath: .

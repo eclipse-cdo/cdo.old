@@ -34,47 +34,39 @@
          id="org.eclipse.emf.cdo.dbgen"
          download-size="0"
          install-size="0"
-         version="0.0.0"/>
+         version="0.0.0"
+         unpack="false"/>
 
    <plugin
          id="org.eclipse.emf.cdo.dbgen.ansi92"
          download-size="0"
          install-size="0"
          version="0.0.0"
-         fragment="true"/>
-
-   <plugin
-         id="org.eclipse.emf.cdo.dbgen.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
+         fragment="true"
+         unpack="false"/>
 
    <plugin
          id="org.eclipse.emf.cdo.dbgen.hsqldb"
          download-size="0"
          install-size="0"
          version="0.0.0"
-         fragment="true"/>
+         fragment="true"
+         unpack="false"/>
 
    <plugin
          id="org.eclipse.emf.cdo.dbgen.mysql"
          download-size="0"
          install-size="0"
          version="0.0.0"
-         fragment="true"/>
+         fragment="true"
+         unpack="false"/>
 
    <plugin
          id="org.eclipse.emf.cdo.dbgen.oracle"
          download-size="0"
          install-size="0"
          version="0.0.0"
-         fragment="true"/>
-
-   <plugin
-         id="org.eclipse.emf.cdo.dbgen.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
+         fragment="true"
          unpack="false"/>
 
 </feature>

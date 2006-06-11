@@ -3,7 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.emf.cdo.examples.library;singleton:=true
 Bundle-Version: 1.0.0
-Bundle-ClassPath: net4j.cdo.example.library.jar
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.emf.cdo.client;visibility:=reexport
