@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.net4j.spring.tests;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.eclipse.net4j.spring.tests.Net4jSpringTestPlugin
-Bundle-ClassPath: net4j.spring.tests.jar
+Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Eclipse-LazyStart: true

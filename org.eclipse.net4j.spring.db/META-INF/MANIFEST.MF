@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.net4j.spring.db
 Bundle-Version: 1.0.0.qualifier
-Bundle-ClassPath: net4j.spring.db.jar,
+Bundle-ClassPath: .,
  lib/commons-dbcp.jar,
  lib/spring-dao.jar,
  lib/spring-jdbc.jar
