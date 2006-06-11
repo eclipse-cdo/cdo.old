@@ -3,7 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %plginName
 Bundle-SymbolicName: org.eclipse.emf.cdo.jdbc;singleton:=true
 Bundle-Version: 1.0.0
-Bundle-ClassPath: net4j.jdbc.jar
 Bundle-Activator: org.eclipse.emf.cdo.jdbc.JDBCPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
