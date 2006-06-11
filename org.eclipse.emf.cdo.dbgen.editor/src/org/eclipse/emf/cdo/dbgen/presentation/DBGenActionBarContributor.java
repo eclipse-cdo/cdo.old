@@ -163,6 +163,7 @@ public class DBGenActionBarContributor extends EditingDomainActionBarContributor
    */
   public DBGenActionBarContributor()
   {
+    super(ADDITIONS_LAST_STYLE);
     loadResourceAction = new LoadResourceAction();
     validateAction = new ValidateAction();
     controlAction = new ControlAction();
@@ -433,12 +434,12 @@ public class DBGenActionBarContributor extends EditingDomainActionBarContributor
     submenuManager = new MenuManager(DBGenEditorActivator.INSTANCE
         .getString("_UI_CreateChild_menu_item"));
     populateManager(submenuManager, createChildActions, null);
-    menuManager.insertBefore("additions", submenuManager);
+    menuManager.insertBefore("edit", submenuManager);
 
     submenuManager = new MenuManager(DBGenEditorActivator.INSTANCE
         .getString("_UI_CreateSibling_menu_item"));
     populateManager(submenuManager, createSiblingActions, null);
-    menuManager.insertBefore("additions", submenuManager);
+    menuManager.insertBefore("edit", submenuManager);
   }
 
   /**

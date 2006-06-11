@@ -82,7 +82,7 @@ public class IndexItemProvider extends ItemProviderAdapter implements IEditingDo
             ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
             getResourceLocator(), getString("_UI_Index_name_feature"), getString(
                     "_UI_PropertyDescriptor_description", "_UI_Index_name_feature",
-                    "_UI_Index_type"), DBGenPackage.Literals.INDEX__NAME, true,
+                    "_UI_Index_type"), DBGenPackage.Literals.INDEX__NAME, true, false, false,
             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
@@ -94,13 +94,12 @@ public class IndexItemProvider extends ItemProviderAdapter implements IEditingDo
    */
   protected void addColumnsPropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors
-            .add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
-                    .getRootAdapterFactory(), getResourceLocator(),
-                    getString("_UI_Index_columns_feature"), getString(
-                            "_UI_PropertyDescriptor_description", "_UI_Index_columns_feature",
-                            "_UI_Index_type"), DBGenPackage.Literals.INDEX__COLUMNS, true, null,
-                    null, null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+            ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+            getResourceLocator(), getString("_UI_Index_columns_feature"), getString(
+                    "_UI_PropertyDescriptor_description", "_UI_Index_columns_feature",
+                    "_UI_Index_type"), DBGenPackage.Literals.INDEX__COLUMNS, true, false, false,
+            null, null, null));
   }
 
   /**
@@ -115,7 +114,7 @@ public class IndexItemProvider extends ItemProviderAdapter implements IEditingDo
             ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
             getResourceLocator(), getString("_UI_Index_type_feature"), getString(
                     "_UI_PropertyDescriptor_description", "_UI_Index_type_feature",
-                    "_UI_Index_type"), DBGenPackage.Literals.INDEX__TYPE, true,
+                    "_UI_Index_type"), DBGenPackage.Literals.INDEX__TYPE, true, false, false,
             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 

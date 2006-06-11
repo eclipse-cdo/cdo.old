@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.EObject;
 
 import java.util.List;
 
+import org.eclipse.emf.cdo.dbgen.*;
+
 
 /**
  * <!-- begin-user-doc -->

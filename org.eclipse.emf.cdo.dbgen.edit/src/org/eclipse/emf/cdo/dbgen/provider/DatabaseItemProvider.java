@@ -81,7 +81,7 @@ public class DatabaseItemProvider extends ItemProviderAdapter implements
             ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
             getResourceLocator(), getString("_UI_Database_name_feature"), getString(
                     "_UI_PropertyDescriptor_description", "_UI_Database_name_feature",
-                    "_UI_Database_type"), DBGenPackage.Literals.DATABASE__NAME, true,
+                    "_UI_Database_type"), DBGenPackage.Literals.DATABASE__NAME, true, false, false,
             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 

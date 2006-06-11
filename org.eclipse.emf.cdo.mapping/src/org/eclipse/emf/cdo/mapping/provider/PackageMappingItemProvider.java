@@ -83,7 +83,7 @@ public class PackageMappingItemProvider extends ItemProviderAdapter implements
         getString("_UI_PackageMapping_packageName_feature"), getString(
             "_UI_PropertyDescriptor_description", "_UI_PackageMapping_packageName_feature",
             "_UI_PackageMapping_type"), MappingPackage.Literals.PACKAGE_MAPPING__PACKAGE_NAME,
-        true, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+        true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**

@@ -83,7 +83,7 @@ public class ColumnItemProvider extends ItemProviderAdapter implements IEditingD
             ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
             getResourceLocator(), getString("_UI_Column_name_feature"), getString(
                     "_UI_PropertyDescriptor_description", "_UI_Column_name_feature",
-                    "_UI_Column_type"), DBGenPackage.Literals.COLUMN__NAME, true,
+                    "_UI_Column_type"), DBGenPackage.Literals.COLUMN__NAME, true, false, false,
             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
@@ -99,7 +99,7 @@ public class ColumnItemProvider extends ItemProviderAdapter implements IEditingD
             ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
             getResourceLocator(), getString("_UI_Column_type_feature"), getString(
                     "_UI_PropertyDescriptor_description", "_UI_Column_type_feature",
-                    "_UI_Column_type"), DBGenPackage.Literals.COLUMN__TYPE, true,
+                    "_UI_Column_type"), DBGenPackage.Literals.COLUMN__TYPE, true, false, false,
             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
@@ -115,7 +115,7 @@ public class ColumnItemProvider extends ItemProviderAdapter implements IEditingD
             ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
             getResourceLocator(), getString("_UI_Column_length_feature"), getString(
                     "_UI_PropertyDescriptor_description", "_UI_Column_length_feature",
-                    "_UI_Column_type"), DBGenPackage.Literals.COLUMN__LENGTH, true,
+                    "_UI_Column_type"), DBGenPackage.Literals.COLUMN__LENGTH, true, false, false,
             ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
   }
 
@@ -131,8 +131,8 @@ public class ColumnItemProvider extends ItemProviderAdapter implements IEditingD
             ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
             getResourceLocator(), getString("_UI_Column_constraint_feature"), getString(
                     "_UI_PropertyDescriptor_description", "_UI_Column_constraint_feature",
-                    "_UI_Column_type"), DBGenPackage.Literals.COLUMN__CONSTRAINT, true,
-            ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+                    "_UI_Column_type"), DBGenPackage.Literals.COLUMN__CONSTRAINT, true, false,
+            false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**

@@ -84,7 +84,7 @@ public class AttributeMappingItemProvider extends ItemProviderAdapter implements
         getString("_UI_AttributeMapping_attributeName_feature"), getString(
             "_UI_PropertyDescriptor_description", "_UI_AttributeMapping_attributeName_feature",
             "_UI_AttributeMapping_type"),
-        MappingPackage.Literals.ATTRIBUTE_MAPPING__ATTRIBUTE_NAME, true,
+        MappingPackage.Literals.ATTRIBUTE_MAPPING__ATTRIBUTE_NAME, true, false, false,
         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
@@ -101,7 +101,7 @@ public class AttributeMappingItemProvider extends ItemProviderAdapter implements
         getString("_UI_AttributeMapping_columnName_feature"), getString(
             "_UI_PropertyDescriptor_description", "_UI_AttributeMapping_columnName_feature",
             "_UI_AttributeMapping_type"), MappingPackage.Literals.ATTRIBUTE_MAPPING__COLUMN_NAME,
-        true, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+        true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -117,7 +117,7 @@ public class AttributeMappingItemProvider extends ItemProviderAdapter implements
         getString("_UI_AttributeMapping_columnType_feature"), getString(
             "_UI_PropertyDescriptor_description", "_UI_AttributeMapping_columnType_feature",
             "_UI_AttributeMapping_type"), MappingPackage.Literals.ATTRIBUTE_MAPPING__COLUMN_TYPE,
-        true, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+        true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
   }
 
   /**

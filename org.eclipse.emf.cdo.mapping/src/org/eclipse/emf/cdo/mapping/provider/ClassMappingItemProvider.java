@@ -84,7 +84,7 @@ public class ClassMappingItemProvider extends ItemProviderAdapter implements
         getString("_UI_ClassMapping_className_feature"), getString(
             "_UI_PropertyDescriptor_description", "_UI_ClassMapping_className_feature",
             "_UI_ClassMapping_type"), MappingPackage.Literals.CLASS_MAPPING__CLASS_NAME, true,
-        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+        false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -100,7 +100,7 @@ public class ClassMappingItemProvider extends ItemProviderAdapter implements
         getString("_UI_ClassMapping_tableName_feature"), getString(
             "_UI_PropertyDescriptor_description", "_UI_ClassMapping_tableName_feature",
             "_UI_ClassMapping_type"), MappingPackage.Literals.CLASS_MAPPING__TABLE_NAME, true,
-        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+        false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**

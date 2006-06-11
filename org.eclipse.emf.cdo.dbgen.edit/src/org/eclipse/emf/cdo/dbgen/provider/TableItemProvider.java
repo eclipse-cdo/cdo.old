@@ -82,7 +82,7 @@ public class TableItemProvider extends ItemProviderAdapter implements IEditingDo
             ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
             getResourceLocator(), getString("_UI_Table_name_feature"), getString(
                     "_UI_PropertyDescriptor_description", "_UI_Table_name_feature",
-                    "_UI_Table_type"), DBGenPackage.Literals.TABLE__NAME, true,
+                    "_UI_Table_type"), DBGenPackage.Literals.TABLE__NAME, true, false, false,
             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 

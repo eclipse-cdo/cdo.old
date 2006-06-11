@@ -104,6 +104,7 @@ public class AuthorImpl extends CDOPersistentImpl implements Author
    */
   public String getName()
   {
+
     cdoLoad();
     return name;
   }
@@ -115,6 +116,7 @@ public class AuthorImpl extends CDOPersistentImpl implements Author
    */
   public void setName(String newName)
   {
+
     cdoLoad();
     String oldName = name;
     name = newName;
@@ -130,6 +132,7 @@ public class AuthorImpl extends CDOPersistentImpl implements Author
    */
   public EList getBooks()
   {
+
     cdoLoad();
     if (books == null)
     {
@@ -146,6 +149,7 @@ public class AuthorImpl extends CDOPersistentImpl implements Author
    */
   public Library getLibrary()
   {
+
     if (eContainerFeatureID != LibraryPackage.AUTHOR__LIBRARY) return null;
     return (Library) eContainer();
   }
@@ -169,6 +173,7 @@ public class AuthorImpl extends CDOPersistentImpl implements Author
    */
   public void setLibrary(Library newLibrary)
   {
+
     if (newLibrary != eInternalContainer()
         || (eContainerFeatureID != LibraryPackage.AUTHOR__LIBRARY && newLibrary != null))
     {
