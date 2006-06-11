@@ -11,8 +11,6 @@
 package org.eclipse.emf.cdo.mapping.util;
 
 
-import org.eclipse.emf.cdo.mapping.*;
-
 import org.eclipse.emf.cdo.mapping.AttributeMapping;
 import org.eclipse.emf.cdo.mapping.ClassMapping;
 import org.eclipse.emf.cdo.mapping.MappingPackage;

@@ -11,8 +11,6 @@
 package org.eclipse.emf.cdo.dbgen.impl;
 
 
-import org.eclipse.emf.cdo.dbgen.*;
-
 import org.eclipse.emf.cdo.dbgen.Column;
 import org.eclipse.emf.cdo.dbgen.ColumnType;
 import org.eclipse.emf.cdo.dbgen.DBGenFactory;
