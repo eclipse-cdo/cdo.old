@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.net4j.tests"
-      label="Net4j Tests"
+      label="%featureName"
       version="1.0.0.qualifier"
-      provider-name="Eclipse.org">
+      provider-name="%providerName">
 
    <description url="http://www.eclipse.org/emft">
       %description
