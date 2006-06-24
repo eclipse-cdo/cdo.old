@@ -25,7 +25,7 @@
       %description
    </description>
 
-   <copyright>
+   <copyright url="%copyrightURL">
       %copyright
    </copyright>
 

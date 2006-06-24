@@ -5,16 +5,16 @@
       version="1.0.0.qualifier"
       provider-name="Eclipse.org">
 
-   <description url="http://www.yourdomain.com/description">
-      [Enter Feature Description here.]
+   <description>
+      %description
    </description>
 
-   <copyright url="http://www.yourdomain.com/copyright">
-      [Enter Copyright Description here.]
+   <copyright url="%copyrightURL">
+      %copyright
    </copyright>
 
-   <license url="http://www.yourdomain.com/license">
-      [Enter License Description here.]
+   <license url="%licenseURL">
+      %license
    </license>
 
    <url>
