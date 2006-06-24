@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.emf.cdo.dbgen"
-      label="Database Generator"
+      label="%featureName"
       version="1.0.0.qualifier"
-      provider-name="Eclipse.org">
+      provider-name="%providerName">
 
    <description>
       %description
