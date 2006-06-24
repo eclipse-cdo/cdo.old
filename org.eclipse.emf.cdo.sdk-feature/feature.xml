@@ -27,16 +27,6 @@
          match="compatible"/>
 
    <includes
-         id="org.eclipse.emf.cdo.dbgen"
-         version="0.0.0"
-         match="compatible"/>
-
-   <includes
-         id="org.eclipse.emf.cdo.jdbc"
-         version="0.0.0"
-         match="compatible"/>
-
-   <includes
          id="org.eclipse.emf.cdo.server"
          version="0.0.0"
          match="compatible"/>
