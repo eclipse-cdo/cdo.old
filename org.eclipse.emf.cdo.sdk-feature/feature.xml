@@ -51,6 +51,16 @@
          version="0.0.0"
          match="compatible"/>
 
+   <includes
+         id="org.eclipse.emf.cdo.dbgen.edit"
+         version="0.0.0"
+         match="compatible"/>
+
+   <includes
+         id="org.eclipse.emf.cdo.dbgen.editor"
+         version="0.0.0"
+         match="compatible"/>
+
    <requires>
       <import feature="org.eclipse.emf" version="0.0.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.net4j" version="0.0.0" match="greaterOrEqual"/>
