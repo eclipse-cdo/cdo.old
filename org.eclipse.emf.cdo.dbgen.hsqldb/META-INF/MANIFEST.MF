@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %fragmentName
+Bundle-Name: CDO DBGen HSQLDB Dialect
 Bundle-SymbolicName: org.eclipse.emf.cdo.dbgen.hsqldb;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Vendor: %providerName
+Bundle-Vendor: Eclipse.org
 Fragment-Host: org.eclipse.emf.cdo.dbgen;bundle-version="1.0.0"
 Bundle-Localization: plugin
