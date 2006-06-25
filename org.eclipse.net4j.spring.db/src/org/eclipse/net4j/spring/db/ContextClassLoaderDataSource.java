@@ -124,6 +124,7 @@ public class ContextClassLoaderDataSource extends ServiceImpl implements SmartDa
 
   public Connection getConnection(String username, String password) throws SQLException
   {
+    assertDriver();
     Properties connectionProperties = new Properties();
     if (username != null)
     {
@@ -185,5 +186,13 @@ public class ContextClassLoaderDataSource extends ServiceImpl implements SmartDa
     }
 
     assertNotNull("driver");
+  }
+
+  protected void assertDriver() throws SQLException
+  {
+    if (driver == null)
+    {
+      throw new SQLException("Driver class not found: " + driverClassName);
+    }
   }
 }
