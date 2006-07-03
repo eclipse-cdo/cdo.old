@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+   <extension-point id="backends" name="Net4j Example Server Backends" schema="schema/backends.exsd"/>
+
+   <extension
+         id="application"
+         name="Net4j Example Server Application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run class="org.eclipse.net4j.examples.server.internal.ExampleServerApplication"/>
+      </application>
+   </extension>   
+
+</plugin>

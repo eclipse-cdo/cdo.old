@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.actionSets">
+       <actionSet
+            id="org.sympedia.density.provisioning.client.ui.actionSet"
+            label="Density Provisioning Administration"
+            visible="true">
+         <menu
+               id="sampleMenu"
+               label="&amp;Density">
+            <separator name="sampleGroup"/>
+         </menu>
+         <action
+               class="org.eclipse.net4j.examples.prov.client.ui.actions.ProvisioningDialogAction"
+               icon="icons/sample.gif"
+               id="org.sympedia.density.provisioning.client.ui.actions.ProvisioningDialogAction"
+               label="&amp;Provisioning"
+               menubarPath="sampleMenu/sampleGroup"
+               toolbarPath="sampleGroup"
+               tooltip="Administer the remote Density Update Site"/>
+      </actionSet>
+   </extension>
+   
+</plugin>

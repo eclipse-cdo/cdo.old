@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.net4j.examples.mvc.swt;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.eclipse.net4j.examples.mvc.swt.DensityMvcSwtPlugin
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: org.eclipse.net4j.examples.mvc.swt
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.swt;visibility:=reexport,
+ org.eclipse.jface;visibility:=reexport,
+ org.eclipse.net4j.examples.mvc;visibility:=reexport
+Eclipse-LazyStart: true

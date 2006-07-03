@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<!-- ######################################################## -->
+	<bean id="provisioningClientProtocol"
+		class="org.eclipse.net4j.examples.prov.client.protocol.ProvisioningClientProtocol">
+		<property name="protocolManager">
+			<ref bean="protocolManager" />
+		</property>
+	</bean>
+
+</beans>

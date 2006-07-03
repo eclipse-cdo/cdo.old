@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.net4j.examples.prov/src"
+    modelPluginID="org.eclipse.net4j.examples.prov" modelName="Prov" codeFormatting="true"
+    testsDirectory="" testSuiteClass="" importerID="org.eclipse.emf.importer.ecore">
+  <foreignModel>prov.ecore</foreignModel>
+  <genPackages prefix="Prov" basePackage="org.eclipse.net4j.examples" disposableProviderFactory="true"
+      ecorePackage="prov.ecore#/">
+    <genDataTypes ecoreDataType="prov.ecore#//Categories"/>
+    <genClasses ecoreClass="prov.ecore#//Site">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference prov.ecore#//Site/categories"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute prov.ecore#//Site/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference prov.ecore#//Site/features"/>
+      <genOperations ecoreOperation="prov.ecore#//Site/getCategory">
+        <genParameters ecoreParameter="prov.ecore#//Site/getCategory/name"/>
+      </genOperations>
+      <genOperations ecoreOperation="prov.ecore#//Site/addFeature">
+        <genParameters ecoreParameter="prov.ecore#//Site/addFeature/id"/>
+        <genParameters ecoreParameter="prov.ecore#//Site/addFeature/version"/>
+      </genOperations>
+      <genOperations ecoreOperation="prov.ecore#//Site/addCategory">
+        <genParameters ecoreParameter="prov.ecore#//Site/addCategory/name"/>
+      </genOperations>
+      <genOperations ecoreOperation="prov.ecore#//Site/getFeature">
+        <genParameters ecoreParameter="prov.ecore#//Site/getFeature/id"/>
+        <genParameters ecoreParameter="prov.ecore#//Site/getFeature/version"/>
+      </genOperations>
+      <genOperations ecoreOperation="prov.ecore#//Site/getCategories">
+        <genParameters ecoreParameter="prov.ecore#//Site/getCategories/featureId"/>
+        <genParameters ecoreParameter="prov.ecore#//Site/getCategories/featureVersion"/>
+      </genOperations>
+      <genOperations ecoreOperation="prov.ecore#//Site/removeCategory">
+        <genParameters ecoreParameter="prov.ecore#//Site/removeCategory/index"/>
+      </genOperations>
+      <genOperations ecoreOperation="prov.ecore#//Site/removeFeature">
+        <genParameters ecoreParameter="prov.ecore#//Site/removeFeature/index"/>
+      </genOperations>
+      <genOperations ecoreOperation="prov.ecore#//Site/removeCategory.1">
+        <genParameters ecoreParameter="prov.ecore#//Site/removeCategory.1/name"/>
+      </genOperations>
+      <genOperations ecoreOperation="prov.ecore#//Site/removeFeature.1">
+        <genParameters ecoreParameter="prov.ecore#//Site/removeFeature.1/id"/>
+        <genParameters ecoreParameter="prov.ecore#//Site/removeFeature.1/version"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="prov.ecore#//Category">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference prov.ecore#//Category/site"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference prov.ecore#//Category/features"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute prov.ecore#//Category/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute prov.ecore#//Category/label"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute prov.ecore#//Category/description"/>
+      <genOperations ecoreOperation="prov.ecore#//Category/getFeature">
+        <genParameters ecoreParameter="prov.ecore#//Category/getFeature/id"/>
+        <genParameters ecoreParameter="prov.ecore#//Category/getFeature/version"/>
+      </genOperations>
+      <genOperations ecoreOperation="prov.ecore#//Category/addFeature">
+        <genParameters ecoreParameter="prov.ecore#//Category/addFeature/id"/>
+        <genParameters ecoreParameter="prov.ecore#//Category/addFeature/version"/>
+      </genOperations>
+      <genOperations ecoreOperation="prov.ecore#//Category/removeFeature">
+        <genParameters ecoreParameter="prov.ecore#//Category/removeFeature/index"/>
+      </genOperations>
+      <genOperations ecoreOperation="prov.ecore#//Category/removeFeature.1">
+        <genParameters ecoreParameter="prov.ecore#//Category/removeFeature.1/id"/>
+        <genParameters ecoreParameter="prov.ecore#//Category/removeFeature.1/version"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="prov.ecore#//Feature">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference prov.ecore#//Feature/category"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute prov.ecore#//Feature/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute prov.ecore#//Feature/version"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute prov.ecore#//Feature/url"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference prov.ecore#//Feature/categories"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference prov.ecore#//Feature/site"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

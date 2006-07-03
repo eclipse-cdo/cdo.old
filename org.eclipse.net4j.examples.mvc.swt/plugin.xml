@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+   <extension
+         point="org.eclipse.net4j.examples.mvc.adapterFactories">
+      <factory className="org.eclipse.net4j.examples.mvc.swt.ButtonViewAdapter$Factory"/>
+      <factory className="org.eclipse.net4j.examples.mvc.swt.TextViewAdapter$Factory"/>
+      <factory className="org.eclipse.net4j.examples.mvc.swt.ListViewAdapter$Factory"/>
+      <factory className="org.eclipse.net4j.examples.mvc.swt.ComboViewAdapter$Factory"/>
+   </extension>
+    
+</plugin>

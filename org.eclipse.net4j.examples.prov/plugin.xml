@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+    <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.eclipse.org/net4j/2006/prov" 
+       class = "org.eclipse.net4j.examples.prov.ProvPackage" />
+  </extension>
+
+</plugin>
+
