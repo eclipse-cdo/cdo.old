@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<!-- ######################################################## -->
+	<bean id="provisioningServerProtocol"
+		class="org.eclipse.net4j.examples.prov.server.protocol.ProvisioningServerProtocol">
+		<property name="protocolManager">
+			<ref bean="protocolManager" />
+		</property>
+		<property name="siteManager">
+			<ref local="siteManager" />
+		</property>
+	</bean>
+
+	<!-- ######################################################## -->
+	<bean id="incomingExecutor"
+		class="org.eclipse.net4j.core.impl.QueueingExecutorImpl"/>
+
+	<!-- ######################################################## -->
+	<bean id="siteManager"
+		class="org.eclipse.net4j.examples.prov.server.impl.SiteManagerImpl">
+		<property name="fileSystemMonitorInterval">
+			<value>1000</value>
+		</property>
+		<property name="incomingExecutor">
+			<ref local="incomingExecutor"/>
+		</property>
+	</bean>
+
+	<!-- ######################################################## -->
+	<bean id="dateLocale"
+		class="java.util.Locale">
+		<constructor-arg>
+			<value>EN</value>
+		</constructor-arg>
+	</bean>
+	
+	<!-- ######################################################## -->
+	<bean id="dateFormatter"
+		class="org.eclipse.net4j.examples.prov.server.impl.SimpleDateFormatter">
+		<property name="pattern">
+			<value>E, d MMM yyyy HH:mm:ss 'GMT'</value>
+		</property>
+		<property name="timeZone">
+			<value>GMT</value>
+		</property>
+		<property name="locale">
+			<ref local="dateLocale" />
+		</property>
+	</bean>
+	
+	<!-- ######################################################## -->
+	<bean id="urlCodec"
+		class="org.eclipse.net4j.examples.prov.server.impl.UrlCodecImpl">
+		<property name="charset">
+			<value>UTF-8</value>
+		</property>
+	</bean>
+	
+	<!-- ######################################################## -->
+	<bean id="httpd"
+		class="org.eclipse.net4j.examples.prov.server.impl.SiteHttpdImpl">
+		<property name="port">
+			<value>8080</value>
+		</property>
+		<property name="allowDirectoryListing">
+			<value>true</value>
+		</property>
+		<property name="autoSync">
+			<value>true</value>
+		</property>
+		<property name="siteManager">
+			<ref local="siteManager"/>
+		</property>
+		<property name="dateFormatter">
+			<ref local="dateFormatter"/>
+		</property>
+		<property name="urlCodec">
+			<ref local="urlCodec"/>
+		</property>
+		<property name="welcomePages">
+			<list>
+				<value>index.htm</value>
+				<value>index.html</value>
+			</list>
+		</property>
+		<property name="mimeTypes">
+			<map>
+				<entry key="htm">
+					<value>text/html</value>
+				</entry>
+				<entry key="html">
+					<value>text/html</value>
+				</entry>
+				<entry key="txt">
+					<value>text/plain</value>
+				</entry>
+				<entry key="asc">
+					<value>text/plain</value>
+				</entry>
+				<entry key="xml">
+					<value>text/plain</value>
+				</entry>
+				<entry key="xsl">
+					<value>text/plain</value>
+				</entry>
+				<entry key="css">
+					<value>text/css</value>
+				</entry>
+				<entry key="gif">
+					<value>image/gif</value>
+				</entry>
+				<entry key="jpg">
+					<value>image/jpeg</value>
+				</entry>
+				<entry key="jpeg">
+					<value>image/jpeg</value>
+				</entry>
+				<entry key="png">
+					<value>image/png</value>
+				</entry>
+				<entry key="mp3">
+					<value>audio/mpeg</value>
+				</entry>
+				<entry key="m3u">
+					<value>audio/mpeg-url</value>
+				</entry>
+				<entry key="pdf">
+					<value>application/pdf</value>
+				</entry>
+				<entry key="doc">
+					<value>application/msword</value>
+				</entry>
+				<entry key="ogg">
+					<value>application/x-ogg</value>
+				</entry>
+				<entry key="zip">
+					<value>application/octet-stream</value>
+				</entry>
+				<entry key="jar">
+					<value>application/octet-stream</value>
+				</entry>
+				<entry key="exe">
+					<value>application/octet-stream</value>
+				</entry>
+				<entry key="class">
+					<value>application/octet-stream</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+</beans>
