@@ -296,8 +296,7 @@ public class SiteManagerImpl extends ServiceImpl implements SiteManager
   {
     if (rootFolder == null)
     {
-      rootFolder = ensureFolder(ProvServerPlugin.getProject(),
-              ProvServerPlugin.DOCUMENT_ROOT_NAME);
+      rootFolder = ensureFolder(ProvServerPlugin.getProject(), ProvServerPlugin.DOCUMENT_ROOT_NAME);
     }
 
     return rootFolder;
@@ -753,8 +752,8 @@ public class SiteManagerImpl extends ServiceImpl implements SiteManager
     }
     catch (CoreException ex)
     {
-      throw new ProvException("Error while creating folder " + container.getLocation()
-              + "/" + path, ex);
+      throw new ProvException(
+              "Error while creating folder " + container.getLocation() + "/" + path, ex);
     }
   }
 
@@ -866,7 +865,10 @@ public class SiteManagerImpl extends ServiceImpl implements SiteManager
       {
         try
         {
-          container.refreshLocal(depth, monitor);
+          if (container != null)
+          {
+            container.refreshLocal(depth, monitor);
+          }
         }
         catch (CoreException ex)
         {
