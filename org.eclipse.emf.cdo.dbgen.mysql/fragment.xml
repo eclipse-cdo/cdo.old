@@ -6,12 +6,12 @@
    <extension
          point="org.eclipse.emf.cdo.dbgen.dialects">
       <dialect
-            createIndexTemplate="CREATE INDEX &quot;{2}_{1}&quot; ON &quot;{2}&quot; ({0})"
-            createPrimaryIndexTemplate="ALTER TABLE &quot;{2}&quot; ADD (CONSTRAINT &quot;{2}_{1}&quot; PRIMARY KEY (&quot;{0}&quot;))"
-            createTablePrimaryTemplate="CREATE TABLE &quot;{1}&quot; ({0}, PRIMARY KEY (&quot;{2}&quot;)) TYPE=INNODB"
-            createTableTemplate="CREATE TABLE &quot;{1}&quot; ({0}) TYPE=INNODB"
-            createUniqueIndexTemplate="CREATE UNIQUE INDEX &quot;{2}_{1}&quot; ON &quot;{2}&quot; ({0})"
-            dropTableTemplate="DROP TABLE IF EXISTS &quot;{0}&quot;"
+            createIndexTemplate="CREATE INDEX {2}_{1} ON {2} ({0})"
+            createPrimaryIndexTemplate="ALTER TABLE {2} ADD (CONSTRAINT {2}_{1} PRIMARY KEY ({0}))"
+            createTablePrimaryTemplate="CREATE TABLE {1} ({0}, PRIMARY KEY ({2})) TYPE=INNODB"
+            createTableTemplate="CREATE TABLE {1} ({0}) TYPE=INNODB"
+            createUniqueIndexTemplate="CREATE UNIQUE INDEX {2}_{1} ON {2} ({0})"
+            dropTableTemplate="DROP TABLE IF EXISTS {0}"
             name="MYSQL">
          <typeMapping
                sqlType="BIT"
