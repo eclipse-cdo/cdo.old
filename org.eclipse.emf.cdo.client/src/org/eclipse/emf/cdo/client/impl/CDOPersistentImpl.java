@@ -131,11 +131,11 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
           {
             resourceManager.requestObject(this);
           }
-          else
-          {
-            System.err.println("ResourceManager IN USE: " + Thread.currentThread());
-            System.err.println(DeadlockDetector.identifySource());
-          }
+          //          else
+          //          {
+          //            System.err.println("ResourceManager IN USE: " + Thread.currentThread());
+          //            System.err.println(DeadlockDetector.identifySource());
+          //          }
         }
       }
     }
