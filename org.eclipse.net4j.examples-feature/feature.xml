@@ -61,7 +61,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.net4j.examples.prov.backend"
+         id="org.eclipse.net4j.examples.prov.server"
          download-size="0"
          install-size="0"
          version="0.0.0"
