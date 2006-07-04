@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<fragment>
+
+   <extension
+         point="org.eclipse.emf.cdo.dbgen.dialects">
+      <dialect
+            createIndexTemplate="CREATE INDEX &quot;{2}_{1}&quot; ON &quot;{2}&quot; ({0})"
+            createPrimaryIndexTemplate="ALTER TABLE &quot;{2}&quot; ADD (CONSTRAINT &quot;{2}_{1}&quot; PRIMARY KEY ({0}))"
+            createTablePrimaryTemplate="CREATE TABLE &quot;{1}&quot; ({0}, CONSTRAINT &quot;{2}_{1}&quot; PRIMARY KEY ({2}))"
+            createTableTemplate="CREATE TABLE {1} ({0})"
+            createUniqueIndexTemplate="CREATE UNIQUE INDEX &quot;{2}_{1}&quot; ON &quot;{2}&quot; ({0})"
+            dropTableTemplate="DROP TABLE &quot;{0}&quot;"
+            name="DERBY">
+         <typeMapping
+               sqlType="BIT"
+               vendorString="SMALLINT"/>
+         <typeMapping
+               sqlType="BOOLEAN"
+               vendorString="SMALLINT"/>
+      </dialect>
+   </extension>
+
+</fragment>
