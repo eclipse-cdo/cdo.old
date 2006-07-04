@@ -43,6 +43,7 @@
       <complexType>
          <sequence>
             <element ref="supportedDialect" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="library" minOccurs="1" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="name" type="string" use="required">
             <annotation>
@@ -74,6 +75,35 @@
    <element name="supportedDialect">
       <complexType>
          <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="library">
+      <complexType>
+         <attribute name="fragmentId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="entryPath" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="resource"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="downloadURL" type="string">
             <annotation>
                <documentation>
                   

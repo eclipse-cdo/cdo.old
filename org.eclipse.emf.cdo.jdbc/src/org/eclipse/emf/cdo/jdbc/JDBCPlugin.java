@@ -21,9 +21,13 @@ import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 
+import org.osgi.framework.Bundle;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import java.net.URL;
 
 
 /**
@@ -38,7 +42,7 @@ public class JDBCPlugin extends AbstractPlugin
   //The shared instance.
   private static JDBCPlugin plugin;
 
-  private List driverElements = new ArrayList();
+  private List<DriverElement> driverElements = new ArrayList<DriverElement>();
 
   private ExtensionParser driverParser = new DriverParser(driverElements);
 
@@ -51,9 +55,17 @@ public class JDBCPlugin extends AbstractPlugin
   }
 
   /**
+   * Returns the shared instance.
+   */
+  public static JDBCPlugin getDefault()
+  {
+    return plugin;
+  }
+
+  /**
    * @return Returns the driverElements.
    */
-  public List getDriverElements()
+  public List<DriverElement> getDriverElements()
   {
     return driverElements;
   }
@@ -64,9 +76,9 @@ public class JDBCPlugin extends AbstractPlugin
    */
   public DriverElement getDriverElement(String driverName)
   {
-    for (Iterator it = getDriverElements().iterator(); it.hasNext();)
+    for (Iterator<DriverElement> it = getDriverElements().iterator(); it.hasNext();)
     {
-      DriverElement driver = (DriverElement) it.next();
+      DriverElement driver = it.next();
       if (driver.getName().equals(driverName))
       {
         return driver;
@@ -111,6 +123,7 @@ public class JDBCPlugin extends AbstractPlugin
     IExtensionRegistry registry = Platform.getExtensionRegistry();
     IExtensionPoint point = registry.getExtensionPoint(PLUGIN_ID + "." + DRIVERS_EXT_POINT_ID);
     driverParser.parse(point);
+    checkLibraries();
   }
 
   protected void doStop() throws Exception
@@ -120,12 +133,30 @@ public class JDBCPlugin extends AbstractPlugin
     plugin = null;
   }
 
-  /**
-   * Returns the shared instance.
-   */
-  public static JDBCPlugin getDefault()
+  @SuppressWarnings("deprecation")
+  protected void checkLibraries()
   {
-    return plugin;
+    for (DriverElement element : driverElements)
+    {
+      LibraryElement[] libraries = element.getLibraries();
+      for (LibraryElement library : libraries)
+      {
+        String fragmentId = library.getFragmentId();
+        Bundle bundle = Platform.getBundle(fragmentId);
+        if (bundle != null)
+        {
+          String entryPath = library.getEntryPath();
+          URL entry = bundle.getEntry(entryPath);
+          if (entry == null)
+          {
+            String downloadURL = library.getDownloadURL();
+            warn("MISSING JDBC LIBRARY: " + fragmentId + "/" + entryPath
+                + (downloadURL != null ? " (" + downloadURL + ")" : ""));
+
+          }
+        }
+      }
+    }
   }
 
 
@@ -135,7 +166,9 @@ public class JDBCPlugin extends AbstractPlugin
 
     private String exampleURL;
 
-    private List supportedDialects = new ArrayList();
+    private List<SupportedDialectElement> supportedDialects = new ArrayList<SupportedDialectElement>();
+
+    private List<LibraryElement> libraries = new ArrayList<LibraryElement>();
 
     public DriverElement()
     {
@@ -147,7 +180,7 @@ public class JDBCPlugin extends AbstractPlugin
     }
 
     /**
-     * @return Returns the name.
+     * @return Returns the entryPath.
      */
     public String getName()
     {
@@ -155,7 +188,7 @@ public class JDBCPlugin extends AbstractPlugin
     }
 
     /**
-     * @param name The name to set.
+     * @param entryPath The entryPath to set.
      */
     public void setName(String name)
     {
@@ -169,8 +202,17 @@ public class JDBCPlugin extends AbstractPlugin
 
     public SupportedDialectElement[] getSupportedDialects()
     {
-      return (SupportedDialectElement[]) supportedDialects
-          .toArray(new SupportedDialectElement[supportedDialects.size()]);
+      return supportedDialects.toArray(new SupportedDialectElement[supportedDialects.size()]);
+    }
+
+    public void addLibrary(LibraryElement library)
+    {
+      libraries.add(library);
+    }
+
+    public LibraryElement[] getLibraries()
+    {
+      return libraries.toArray(new LibraryElement[libraries.size()]);
     }
 
     /**
@@ -205,7 +247,7 @@ public class JDBCPlugin extends AbstractPlugin
     }
 
     /**
-     * @return Returns the name.
+     * @return Returns the entryPath.
      */
     public String getName()
     {
@@ -213,7 +255,7 @@ public class JDBCPlugin extends AbstractPlugin
     }
 
     /**
-     * @param name The name to set.
+     * @param entryPath The entryPath to set.
      */
     public void setName(String name)
     {
@@ -222,9 +264,58 @@ public class JDBCPlugin extends AbstractPlugin
   }
 
 
+  public class LibraryElement extends Element
+  {
+    private String fragmentId;
+
+    private String entryPath;
+
+    private String downloadURL;
+
+    public LibraryElement()
+    {
+    }
+
+    public String toString()
+    {
+      return "LibraryElement(" + fragmentId + ", " + entryPath + ", " + downloadURL + ")";
+    }
+
+    public String getFragmentId()
+    {
+      return fragmentId;
+    }
+
+    public void setFragmentId(String fragmentId)
+    {
+      this.fragmentId = fragmentId;
+    }
+
+    public String getEntryPath()
+    {
+      return entryPath;
+    }
+
+    public void setEntryPath(String name)
+    {
+      this.entryPath = name;
+    }
+
+    public String getDownloadURL()
+    {
+      return downloadURL;
+    }
+
+    public void setDownloadURL(String downloadURL)
+    {
+      this.downloadURL = downloadURL;
+    }
+  }
+
+
   public class DriverParser extends ListExtensionParser
   {
-    public DriverParser(List list)
+    public DriverParser(List<DriverElement> list)
     {
       super(list);
 
@@ -241,6 +332,14 @@ public class JDBCPlugin extends AbstractPlugin
         public Element createElementData()
         {
           return new SupportedDialectElement();
+        }
+      });
+
+      addFactory("driver/library", new Element.Factory()
+      {
+        public Element createElementData()
+        {
+          return new LibraryElement();
         }
       });
     }

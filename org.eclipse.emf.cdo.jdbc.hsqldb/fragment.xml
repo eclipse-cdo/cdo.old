@@ -11,6 +11,10 @@
             className="org.hsqldb.jdbcDriver"
             name="HSqlDB">
          <supportedDialect name="HSQLDB"/>
+         <library
+               downloadURL="http://hsqldb.org"
+               entryPath="lib/hsqldb.jar"
+               fragmentId="org.eclipse.emf.cdo.jdbc.hsqldb"/>
       </driver>
    </extension>
 
