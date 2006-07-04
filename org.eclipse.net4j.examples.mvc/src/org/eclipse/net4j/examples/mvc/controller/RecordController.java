@@ -465,8 +465,8 @@ public class RecordController<RECORD_TARGET, VIEW_TARGET> extends Controller<Obj
     }
   }
 
-  public class TextRecordBridge<RECORD_TARGET, TEXT_TARGET> extends
-          AbstractRecordBridge<RECORD_TARGET>
+  public class TextRecordBridge<RECORD_TARGET2, TEXT_TARGET> extends
+          AbstractRecordBridge<RECORD_TARGET2>
   {
     private TextViewBinding<TEXT_TARGET> textBinding;
 
@@ -519,8 +519,8 @@ public class RecordController<RECORD_TARGET, VIEW_TARGET> extends Controller<Obj
     }
   }
 
-  public class SelectionRecordBridge<RECORD_TARGET, SELECTION_TARGET> extends
-          AbstractRecordBridge<RECORD_TARGET>
+  public class SelectionRecordBridge<RECORD_TARGET2, SELECTION_TARGET> extends
+          AbstractRecordBridge<RECORD_TARGET2>
   {
     private SelectionViewBinding<SELECTION_TARGET> selectionViewBinding;
 
