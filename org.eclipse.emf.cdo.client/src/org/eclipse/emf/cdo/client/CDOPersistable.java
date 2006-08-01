@@ -83,6 +83,14 @@ public interface CDOPersistable extends EObject
   boolean cdoIsLoaded();
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  long cdoSetNew();
+
+  /**
    * @ADDED
    */
   public static final int NOT_LOADED_YET = -1;

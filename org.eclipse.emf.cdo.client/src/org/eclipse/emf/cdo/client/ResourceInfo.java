@@ -15,6 +15,8 @@ public interface ResourceInfo
 {
   public boolean isExisting();
 
+  public void setExisting(boolean existing);
+
   public String getPath();
 
   public void setPath(String path);

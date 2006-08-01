@@ -65,6 +65,11 @@ public class CDOResourceImpl extends ResourceImpl implements CDOResource
     return resourceInfo.isExisting();
   }
 
+  public void setExisting(boolean existing)
+  {
+    resourceInfo.setExisting(existing);
+  }
+
   public void load(Map options)
   {
     if (resourceManager.isRequestingObjects())
@@ -167,7 +172,7 @@ public class CDOResourceImpl extends ResourceImpl implements CDOResource
     }
   }
 
-  private long getNextTempOID()
+  protected long getNextTempOID()
   {
     OIDEncoder oidEncoder = resourceManager.getPackageManager().getOidEncoder();
     return -oidEncoder.getOID(getRID(), ++nextTempOIDFragment);

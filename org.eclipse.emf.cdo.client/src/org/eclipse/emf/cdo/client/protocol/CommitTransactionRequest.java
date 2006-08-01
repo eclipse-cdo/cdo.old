@@ -125,6 +125,20 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
       throw new OptimisticControlException();
     }
 
+    ResourceManager resourceManager = getResourceManager();
+    ResourceSet resourceSet = resourceManager.getResourceSet();
+    EList resources = resourceSet.getResources();
+
+    for (Iterator<?> iter = resources.iterator(); iter.hasNext();)
+    {
+      Resource resource = (Resource) iter.next();
+      if (resource instanceof CDOResource)
+      {
+        CDOResource cdoResource = (CDOResource) resource;
+        cdoResource.setExisting(true);
+      }
+    }
+
     // Re-register new objects (apply positive OIDs)
     int attachedCount = receiveInt();
 
@@ -175,18 +189,16 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
 
   private void announceNewResources()
   {
-    ResourceManager resourceManager = ClientCDOProtocolImpl.getResourceManager(getChannel());
+    ResourceManager resourceManager = getResourceManager();
     ResourceSet resourceSet = resourceManager.getResourceSet();
     EList resources = resourceSet.getResources();
 
     for (Iterator<?> iter = resources.iterator(); iter.hasNext();)
     {
       Resource resource = (Resource) iter.next();
-
       if (resource instanceof CDOResource)
       {
         CDOResource cdoResource = (CDOResource) resource;
-
         if (!cdoResource.isExisting())
         {
           transmitInt(cdoResource.getRID());

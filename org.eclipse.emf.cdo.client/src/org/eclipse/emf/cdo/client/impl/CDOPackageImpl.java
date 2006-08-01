@@ -240,6 +240,8 @@ public class CDOPackageImpl extends EPackageImpl implements CDOPackage
 
     addEOperation(cdoPersistableEClass, ecorePackage.getEBoolean(), "cdoIsLoaded", 0, 1);
 
+    addEOperation(cdoPersistableEClass, ecorePackage.getELong(), "cdoSetNew", 0, 1);
+
     initEClass(cdoPersistentEClass, CDOPersistent.class, "CDOPersistent", IS_ABSTRACT,
         !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

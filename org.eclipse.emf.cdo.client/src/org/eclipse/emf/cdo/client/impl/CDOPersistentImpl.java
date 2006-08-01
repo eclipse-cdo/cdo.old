@@ -14,6 +14,7 @@ package org.eclipse.emf.cdo.client.impl;
 import org.eclipse.net4j.util.thread.DeadlockDetector;
 
 import org.eclipse.emf.cdo.client.CDOPackage;
+import org.eclipse.emf.cdo.client.CDOPersistable;
 import org.eclipse.emf.cdo.client.CDOPersistent;
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceManager;
@@ -164,6 +165,27 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
   public boolean cdoIsLoaded()
   {
     return oca != NOT_LOADED_YET;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * Sets the OID to the next temporary OID and the OCA to NOT_LOADED_YET.
+   * Requires this object to be contained in a CDOResourceImpl.
+   * <!-- end-user-doc -->
+   * @generated NOT
+   */
+  public long cdoSetNew()
+  {
+    if (eResource() instanceof CDOResourceImpl)
+    {
+      CDOResourceImpl cdoResource = (CDOResourceImpl) eResource();
+      long oldOID = oid;
+      oid = cdoResource.getNextTempOID();
+      oca = NOT_LOADED_YET;
+      return oldOID;
+    }
+
+    throw new IllegalStateException("Not a CDOResourceImpl:" + eResource());
   }
 
   /**

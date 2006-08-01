@@ -20,6 +20,8 @@ public interface CDOResource extends Resource
 
   public boolean isExisting();
 
+  public void setExisting(boolean existing);
+
   public String getPath();
 
   public int getRID();

@@ -51,6 +51,11 @@ public final class ResourceInfoImpl implements ResourceInfo
     return existing;
   }
 
+  public void setExisting(boolean existing)
+  {
+    this.existing = existing;
+  }
+
   @Override
   public boolean equals(Object obj)
   {

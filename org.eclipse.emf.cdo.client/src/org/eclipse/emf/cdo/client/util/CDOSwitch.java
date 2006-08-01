@@ -19,6 +19,8 @@ import org.eclipse.emf.ecore.EObject;
 
 import java.util.List;
 
+import org.eclipse.emf.cdo.client.*;
+
 
 /**
  * <!-- begin-user-doc -->
