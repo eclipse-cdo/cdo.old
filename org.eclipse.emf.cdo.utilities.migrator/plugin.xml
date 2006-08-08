@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+     <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IFile"
+            nameFilter="*.ecore"
+            id="com.sympedia.cdo.migrator.contribution1">
+         <menu
+               label="CDO"
+               path="additions"
+               id="com.sympedia.cdo.migrator.menu1">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               label="Migrate Ecore to CDO"
+               class="org.eclipse.emf.cdo.utilities.migrator.popup.actions.MigrateEcoreAction"
+               menubarPath="com.sympedia.cdo.migrator.menu1/group1"
+               enablesFor="1"
+               id="com.sympedia.cdo.migrator.migrateEcoreAction">
+         </action>
+      </objectContribution>
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IFile"
+            nameFilter="*.genmodel"
+            id="com.sympedia.cdo.migrator.contribution2">
+         <menu
+               label="CDO"
+               path="additions"
+               id="com.sympedia.cdo.migrator.menu1">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               label="Migrate Genmodel to CDO"
+               class="org.eclipse.emf.cdo.utilities.migrator.popup.actions.MigrateGenmodelAction"
+               menubarPath="com.sympedia.cdo.migrator.menu1/group2"
+               enablesFor="1"
+               id="com.sympedia.cdo.migrator.migrateGenmodelAction">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>
