@@ -33,10 +33,6 @@ public class ExampleClientPlugin extends AbstractPlugin
 {
   public static final String CONTEXT_PATH = "META-INF/";
 
-  public static final String RESOURCE_URI = "cdo:///org/eclipse/emf/cdo/test/res1";
-
-  public static final String RESOURCE_URI2 = "cdo:///org/eclipse/emf/cdo/test/res2";
-
   //The shared instance.
   private static ExampleClientPlugin plugin;
 
