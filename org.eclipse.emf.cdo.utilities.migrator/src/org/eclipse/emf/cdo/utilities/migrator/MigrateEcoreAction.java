@@ -8,7 +8,7 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.utilities.migrator.popup.actions;
+package org.eclipse.emf.cdo.utilities.migrator;
 
 
 import org.eclipse.emf.common.util.EList;
@@ -46,7 +46,7 @@ public class MigrateEcoreAction extends AbstractResourceAction
       }
 
       ResourceSet resourceSet = new ResourceSetImpl();
-      Resource cdoResource = loadResource(resourceSet, "org.eclipse.emf.cdo.client/src/model/client.ecore");
+      Resource cdoResource = loadResource(resourceSet, "org.eclipse.emf.cdo.client/model/client.ecore");
       EPackage cdoPackage = (EPackage) cdoResource.getContents().get(0);
       cdoPersistent = (EClass) cdoPackage.getEClassifier("CDOPersistent");
 

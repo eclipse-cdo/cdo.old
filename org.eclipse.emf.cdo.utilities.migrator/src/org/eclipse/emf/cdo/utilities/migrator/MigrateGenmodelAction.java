@@ -8,7 +8,7 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.utilities.migrator.popup.actions;
+package org.eclipse.emf.cdo.utilities.migrator;
 
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
@@ -41,7 +41,7 @@ public class MigrateGenmodelAction extends AbstractResourceAction
 
       ResourceSet resourceSet = new ResourceSetImpl();
 
-      Resource usedResource = loadResource(resourceSet, "org.eclipse.emf.cdo.client/src/model/client.genmodel");
+      Resource usedResource = loadResource(resourceSet, "org.eclipse.emf.cdo.client/model/client.genmodel");
       GenModel usedModel = (GenModel) usedResource.getContents().get(0);
       GenPackage usedPackage = (GenPackage) usedModel.getGenPackages().get(0);
 

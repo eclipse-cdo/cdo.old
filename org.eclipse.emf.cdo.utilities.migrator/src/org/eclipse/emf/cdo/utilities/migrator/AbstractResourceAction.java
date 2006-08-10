@@ -8,7 +8,7 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.utilities.migrator.popup.actions;
+package org.eclipse.emf.cdo.utilities.migrator;
 
 
 import org.eclipse.emf.common.util.URI;

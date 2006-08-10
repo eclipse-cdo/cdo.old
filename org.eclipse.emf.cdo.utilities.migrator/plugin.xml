@@ -7,41 +7,41 @@
       <objectContribution
             objectClass="org.eclipse.core.resources.IFile"
             nameFilter="*.ecore"
-            id="com.sympedia.cdo.migrator.contribution1">
+            id="org.eclipse.emf.cdo.utilities.migrator.contribution1">
          <menu
                label="CDO"
                path="additions"
-               id="com.sympedia.cdo.migrator.menu1">
+               id="org.eclipse.emf.cdo.utilities.migrator.menu1">
             <separator
                   name="group1">
             </separator>
          </menu>
          <action
                label="Migrate Ecore to CDO"
-               class="org.eclipse.emf.cdo.utilities.migrator.popup.actions.MigrateEcoreAction"
-               menubarPath="com.sympedia.cdo.migrator.menu1/group1"
+               class="org.eclipse.emf.cdo.utilities.migrator.MigrateEcoreAction"
+               menubarPath="org.eclipse.emf.cdo.utilities.migrator.menu1/group1"
                enablesFor="1"
-               id="com.sympedia.cdo.migrator.migrateEcoreAction">
+               id="org.eclipse.emf.cdo.utilities.migrator.migrateEcoreAction">
          </action>
       </objectContribution>
       <objectContribution
             objectClass="org.eclipse.core.resources.IFile"
             nameFilter="*.genmodel"
-            id="com.sympedia.cdo.migrator.contribution2">
+            id="org.eclipse.emf.cdo.utilities.migrator.contribution2">
          <menu
                label="CDO"
                path="additions"
-               id="com.sympedia.cdo.migrator.menu1">
+               id="org.eclipse.emf.cdo.utilities.migrator.menu1">
             <separator
                   name="group1">
             </separator>
          </menu>
          <action
                label="Migrate Genmodel to CDO"
-               class="org.eclipse.emf.cdo.utilities.migrator.popup.actions.MigrateGenmodelAction"
-               menubarPath="com.sympedia.cdo.migrator.menu1/group2"
+               class="org.eclipse.emf.cdo.utilities.migrator.MigrateGenmodelAction"
+               menubarPath="org.eclipse.emf.cdo.utilities.migrator.menu1/group2"
                enablesFor="1"
-               id="com.sympedia.cdo.migrator.migrateGenmodelAction">
+               id="org.eclipse.emf.cdo.utilities.migrator.migrateGenmodelAction">
          </action>
       </objectContribution>
    </extension>
