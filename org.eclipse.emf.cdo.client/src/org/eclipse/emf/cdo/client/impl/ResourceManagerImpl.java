@@ -436,10 +436,9 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     EFactory eFactory = ePackage.getEFactoryInstance();
 
     // Reflectively create a new EObject 
-    EObject eObject = eFactory.create(eClass);
-    setOID(eObject, oid, resource);
-    setOCA(eObject, oca);
-    return eObject;
+    EObject persistable = eFactory.create(eClass);
+    initPersistable(persistable, resource, oid, oca);
+    return persistable;
   }
 
   public static long getOID(EObject eObject)
@@ -452,15 +451,22 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     return ((CDOPersistable) eObject).cdoGetOCA();
   }
 
-  public static void setOID(EObject eObject, long oid, CDOResource resource)
+  public static void initPersistable(EObject persistable, CDOResource resource, long oid, int oca)
   {
-    ((CDOPersistable) eObject).cdoSetOID(oid, resource);
+    ((CDOPersistable) persistable).cdoSetResource(resource);
+    ((CDOPersistable) persistable).cdoSetOID(oid);
+    ((CDOPersistable) persistable).cdoSetOCA(oca);
   }
 
-  public static void setOCA(EObject eObject, int oca)
-  {
-    ((CDOPersistable) eObject).cdoSetOCA(oca);
-  }
+  //  public static void setOID(EObject eObject, long oid, CDOResource resource)
+  //  {
+  //    ((CDOPersistable) eObject).cdoSetOID(oid, resource);
+  //  }
+  //
+  //  public static void setOCA(EObject eObject, int oca)
+  //  {
+  //    ((CDOPersistable) eObject).cdoSetOCA(oca);
+  //  }
 
   public static void incOCA(EObject eObject)
   {
@@ -593,7 +599,7 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
 
         URI uri = createProxyURI(oid);
         ((InternalEObject) object).eSetProxyURI(uri);
-        ((CDOPersistable) object).cdoSetOCA(-1);
+        ((CDOPersistable) object).cdoSetOCA(CDOPersistable.NOT_LOADED_YET);
       }
 
       notifyInvalidationListeners(oids);

@@ -36,7 +36,7 @@ public class MultiplexerImpl extends ServiceImpl implements Multiplexer
   {
     if (isDebugEnabled()) debug("Scheduling channel " + channel);
     queue.offer(channel);
-    if (isDebugEnabled()) debug("Scheduled channel " + channel);
+    // if (isDebugEnabled()) debug("Scheduled channel " + channel);
   }
 
   public int getQueueLength()

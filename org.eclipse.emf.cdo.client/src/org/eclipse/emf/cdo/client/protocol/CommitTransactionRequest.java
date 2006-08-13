@@ -152,11 +152,10 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
       EObject object = iter.next();
       long oid = receiveLong();
 
-      getResourceManager().reRegisterObject(object, oid);
+      resourceManager.reRegisterObject(object, oid);
       int rid = packageManager.getOidEncoder().getRID(oid);
-      CDOResource cdoResource = getResourceManager().getResource(rid);
-      ResourceManagerImpl.setOID(object, oid, cdoResource);
-      ResourceManagerImpl.setOCA(object, 1);
+      CDOResource cdoResource = resourceManager.getResource(rid);
+      ResourceManagerImpl.initPersistable(object, cdoResource, oid, 1);
     }
 
     // Increase OCA of modified objects

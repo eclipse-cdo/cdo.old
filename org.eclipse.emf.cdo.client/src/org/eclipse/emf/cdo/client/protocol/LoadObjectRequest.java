@@ -80,9 +80,7 @@ public class LoadObjectRequest extends AbstractDataRequest
 
     int rid = getPackageManager().getOidEncoder().getRID(oid);
     CDOResource cdoResource = getResourceManager().getResource(rid);
-    ResourceManagerImpl.setOID(object, oid, cdoResource);
-    ResourceManagerImpl.setOCA(object, oca);
-
+    ResourceManagerImpl.initPersistable(object, cdoResource, oid, oca);
     ((InternalEObject) object).eSetProxyURI(null);
 
     return object;

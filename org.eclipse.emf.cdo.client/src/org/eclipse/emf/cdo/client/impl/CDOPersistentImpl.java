@@ -64,7 +64,7 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
    */
   public long cdoGetOID()
   {
-    return oid;
+    return cdoOID;
   }
 
   /**
@@ -74,7 +74,7 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
    */
   public void cdoSetOID(long oid)
   {
-    this.oid = oid;
+    cdoOID = oid;
   }
 
   /**
@@ -84,7 +84,7 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
    */
   public int cdoGetOCA()
   {
-    return oca;
+    return cdoOCA;
   }
 
   /**
@@ -94,7 +94,7 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
    */
   public void cdoSetOCA(int oca)
   {
-    this.oca = oca;
+    cdoOCA = oca;
   }
 
   /**
@@ -137,7 +137,7 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
    */
   public boolean cdoIsNew()
   {
-    return oid <= 0;
+    return cdoOID <= 0;
   }
 
   /**
@@ -147,7 +147,7 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
    */
   public boolean cdoIsLoaded()
   {
-    return oca != NOT_LOADED_YET;
+    return cdoOCA != NOT_LOADED_YET;
   }
 
   /**
@@ -182,9 +182,9 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
     if (eResource() instanceof CDOResourceImpl)
     {
       CDOResourceImpl cdoResource = (CDOResourceImpl) eResource();
-      long oldOID = oid;
-      oid = cdoResource.getNextTempOID();
-      oca = NOT_LOADED_YET;
+      long oldOID = cdoOID;
+      cdoOID = cdoResource.getNextTempOID();
+      cdoOCA = NOT_LOADED_YET;
       return oldOID;
     }
 
@@ -199,10 +199,10 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
   /**
    * @ADDED
    */
-  private long oid;
+  private long cdoOID;
 
   /**
    * @ADDED
    */
-  private int oca = NOT_LOADED_YET;
+  private int cdoOCA = NOT_LOADED_YET;
 } //CDOPersistentImpl

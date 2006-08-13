@@ -151,9 +151,9 @@ public class CDOResourceImpl extends ResourceImpl implements CDOResource
     // TODO Check if this can be done later in commit
     if (eObject instanceof CDOPersistable)
     {
-      CDOPersistable cdoPersistable = (CDOPersistable) eObject;
+      CDOPersistable persistable = (CDOPersistable) eObject;
 
-      if (cdoPersistable.cdoGetOID() == 0)
+      if (persistable.cdoGetOID() == 0)
       {
         long oid = getNextTempOID();
 
@@ -162,8 +162,7 @@ public class CDOResourceImpl extends ResourceImpl implements CDOResource
           logger.debug("Attaching object " + eObject + " with oid " + oid);
         }
 
-        cdoPersistable.cdoSetOID(oid, null);
-        cdoPersistable.cdoSetOCA(CDOPersistable.NOT_LOADED_YET);
+        ResourceManagerImpl.initPersistable(persistable, this, oid, CDOPersistable.NOT_LOADED_YET);
       }
     }
     else

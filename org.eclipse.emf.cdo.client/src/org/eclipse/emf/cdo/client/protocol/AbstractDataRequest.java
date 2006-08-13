@@ -19,7 +19,6 @@ import org.eclipse.emf.cdo.client.CDOPersistable;
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ClassInfo;
 import org.eclipse.emf.cdo.client.impl.ResourceManagerImpl;
-import org.eclipse.emf.cdo.client.impl.TemporaryCDOResourceAdapter;
 import org.eclipse.emf.cdo.core.OIDEncoder;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -96,8 +95,6 @@ public abstract class AbstractDataRequest extends AbstractCDOClientRequest
 
     EObject object = ResourceManagerImpl.createEObject(eClass, oid, CDOPersistable.NOT_LOADED_YET,
         cdoResource);
-    // TODO Optimization: Move adapter creation/ownership to CDOResourceImpl
-    object.eAdapters().add(new TemporaryCDOResourceAdapter(cdoResource));
     ((InternalEObject) object).eSetProxyURI(uri);
 
     getResourceManager().registerObject(oid, object);
