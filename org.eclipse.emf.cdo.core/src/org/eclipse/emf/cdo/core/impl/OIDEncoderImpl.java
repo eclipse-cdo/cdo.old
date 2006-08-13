@@ -54,7 +54,7 @@ public class OIDEncoderImpl extends ServiceImpl implements OIDEncoder
 
   public String toString(int rid, long oidFragment)
   {
-    return "" + rid + ":" + oidFragment;
+    return "" + rid + "#" + oidFragment;
   }
 
   public String toString(long oid)

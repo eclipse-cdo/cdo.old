@@ -168,7 +168,7 @@ public class CDOResourceImpl extends ResourceImpl implements CDOResource
     }
     else
     {
-      logger.warn("Attached object is no CDOPersistable: " + eObject);
+      logger.warn("Attached object is not CDOPersistable: " + eObject);
     }
   }
 

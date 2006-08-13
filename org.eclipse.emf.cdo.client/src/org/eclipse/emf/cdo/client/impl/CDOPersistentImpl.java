@@ -11,18 +11,20 @@
 package org.eclipse.emf.cdo.client.impl;
 
 
-import org.eclipse.net4j.util.thread.DeadlockDetector;
+import org.eclipse.net4j.util.ImplementationError;
 
 import org.eclipse.emf.cdo.client.CDOPackage;
-import org.eclipse.emf.cdo.client.CDOPersistable;
 import org.eclipse.emf.cdo.client.CDOPersistent;
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceManager;
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import org.apache.log4j.Logger;
+
+import java.util.Iterator;
 
 
 /**
@@ -118,25 +120,43 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
     {
       if (!cdoIsNew() && !cdoIsLoaded())
       {
-        if (eResource() == null || !(eResource() instanceof CDOResource))
+        Resource resource = eResource();
+        if (resource == null)
         {
-          // XXX       throw new ImplementationError(
-          //            "eResource() == null || !(eResource() instanceof CDOResource)");
+          for (Iterator it = eAdapters().iterator(); it.hasNext();)
+          {
+            Adapter adapter = (Adapter) it.next();
+            if (adapter instanceof TemporaryCDOResourceAdapter)
+            {
+              resource = ((TemporaryCDOResourceAdapter) adapter).getResource();
+              break;
+            }
+          }
+        }
+
+        if (resource == null)
+        {
+          throw new ImplementationError("resource == null");
+        }
+
+        if (!(resource instanceof CDOResource))
+        {
+          throw new ImplementationError("!(resource instanceof CDOResource)");
+        }
+
+        CDOResource cdoResource = (CDOResource) resource;
+        ResourceManager resourceManager = cdoResource.getResourceManager();
+        if (resourceManager.isRequestingObjects())
+        {
+          resourceManager.requestObject(this);
         }
         else
         {
-          CDOResource cdoResource = (CDOResource) eResource();
-          ResourceManager resourceManager = cdoResource.getResourceManager();
-
-          if (resourceManager.isRequestingObjects())
+          if (logger.isDebugEnabled())
           {
-            resourceManager.requestObject(this);
+            logger.debug("ResourceManager IN USE: " + Thread.currentThread());
+            //            logger.debug(DeadlockDetector.identifySource());
           }
-          //          else
-          //          {
-          //            System.err.println("ResourceManager IN USE: " + Thread.currentThread());
-          //            System.err.println(DeadlockDetector.identifySource());
-          //          }
         }
       }
     }
