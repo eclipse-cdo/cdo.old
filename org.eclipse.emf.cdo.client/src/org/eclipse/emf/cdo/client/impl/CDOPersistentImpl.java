@@ -11,20 +11,14 @@
 package org.eclipse.emf.cdo.client.impl;
 
 
-import org.eclipse.net4j.util.ImplementationError;
-
 import org.eclipse.emf.cdo.client.CDOPackage;
 import org.eclipse.emf.cdo.client.CDOPersistent;
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceManager;
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.resource.Resource;
 
 import org.apache.log4j.Logger;
-
-import java.util.Iterator;
 
 
 /**
@@ -78,15 +72,9 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
    * <!-- end-user-doc -->
    * @generated NOT
    */
-  public void cdoSetOID(long oid, CDOResource resource)
+  public void cdoSetOID(long oid)
   {
     this.oid = oid;
-
-    if (resource != null && eDirectResource() == null && eContainer() == null)
-    {
-      eSetResource((Resource.Internal) resource, null);
-      //      eProperties().setEResource((Resource.Internal) resource);
-    }
   }
 
   /**
@@ -120,8 +108,7 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
     {
       if (!cdoIsNew() && !cdoIsLoaded())
       {
-        CDOResource resource = cdoGetResource();
-        ResourceManager resourceManager = resource.getResourceManager();
+        ResourceManager resourceManager = cdoResource.getResourceManager();
         if (resourceManager.isRequestingObjects())
         {
           resourceManager.requestObject(this);
@@ -165,6 +152,26 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
 
   /**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated NOT
+   */
+  public CDOResource cdoGetResource()
+  {
+    return cdoResource;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated NOT
+   */
+  public void cdoSetResource(CDOResource resource)
+  {
+    cdoResource = resource;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
    * Sets the OID to the next temporary OID and the OCA to NOT_LOADED_YET.
    * Requires this object to be contained in a CDOResourceImpl.
    * <!-- end-user-doc -->
@@ -187,33 +194,15 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
   /**
    * @ADDED
    */
-  protected CDOResource cdoGetResource()
-  {
-    Resource resource = eResource();
-    if (resource instanceof CDOResource)
-    {
-      return (CDOResource) resource;
-    }
-
-    for (Iterator it = eAdapters().iterator(); it.hasNext();)
-    {
-      Adapter adapter = (Adapter) it.next();
-      if (adapter instanceof TemporaryCDOResourceAdapter)
-      {
-        return ((TemporaryCDOResourceAdapter) adapter).getResource();
-      }
-    }
-
-    throw new ImplementationError("CDOResource not available");
-  }
+  private CDOResource cdoResource;
 
   /**
    * @ADDED
    */
-  protected long oid;
+  private long oid;
 
   /**
    * @ADDED
    */
-  protected int oca = NOT_LOADED_YET;
+  private int oca = NOT_LOADED_YET;
 } //CDOPersistentImpl

@@ -37,10 +37,10 @@ public interface CDOPersistable extends EObject
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model resourceDataType="org.eclipse.emf.cdo.client.CDOResource"
+   * @model
    * @generated
    */
-  void cdoSetOID(long oid, CDOResource resource);
+  void cdoSetOID(long oid);
 
   /**
    * <!-- begin-user-doc -->
@@ -81,6 +81,22 @@ public interface CDOPersistable extends EObject
    * @generated
    */
   boolean cdoIsLoaded();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model dataType="org.eclipse.emf.cdo.client.CDOResource"
+   * @generated
+   */
+  CDOResource cdoGetResource();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model resourceDataType="org.eclipse.emf.cdo.client.CDOResource"
+   * @generated
+   */
+  void cdoSetResource(CDOResource resource);
 
   /**
    * <!-- begin-user-doc -->

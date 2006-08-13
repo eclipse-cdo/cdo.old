@@ -227,7 +227,6 @@ public class CDOPackageImpl extends EPackageImpl implements CDOPackage
 
     EOperation op = addEOperation(cdoPersistableEClass, null, "cdoSetOID");
     addEParameter(op, ecorePackage.getELong(), "oid", 0, 1);
-    addEParameter(op, this.getCDOResource(), "resource", 0, 1);
 
     addEOperation(cdoPersistableEClass, ecorePackage.getEInt(), "cdoGetOCA", 0, 1);
 
@@ -239,6 +238,11 @@ public class CDOPackageImpl extends EPackageImpl implements CDOPackage
     addEOperation(cdoPersistableEClass, ecorePackage.getEBoolean(), "cdoIsNew", 0, 1);
 
     addEOperation(cdoPersistableEClass, ecorePackage.getEBoolean(), "cdoIsLoaded", 0, 1);
+
+    addEOperation(cdoPersistableEClass, this.getCDOResource(), "cdoGetResource", 0, 1);
+
+    op = addEOperation(cdoPersistableEClass, null, "cdoSetResource");
+    addEParameter(op, this.getCDOResource(), "resource", 0, 1);
 
     addEOperation(cdoPersistableEClass, ecorePackage.getELong(), "cdoSetNew", 0, 1);
 

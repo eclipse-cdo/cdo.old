@@ -4,19 +4,22 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="client"
     nsURI="http://www.eclipse.org/net4j/cdo/client.ecore" nsPrefix="org.eclipse.emf.cdo.client">
   <eClassifiers xsi:type="ecore:EClass" name="CDOPersistable" interface="true">
+    <eOperations name="cdoGetResource" eType="#//CDOResource"/>
+    <eOperations name="cdoSetResource">
+      <eParameters name="resource" eType="#//CDOResource"/>
+    </eOperations>
     <eOperations name="cdoGetOID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     <eOperations name="cdoSetOID">
       <eParameters name="oid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
-      <eParameters name="resource" eType="#//CDOResource"/>
     </eOperations>
     <eOperations name="cdoGetOCA" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eOperations name="cdoSetOCA">
       <eParameters name="oca" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eOperations>
-    <eOperations name="cdoSetNew" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
-    <eOperations name="cdoLoad"/>
     <eOperations name="cdoIsNew" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eOperations name="cdoSetNew" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     <eOperations name="cdoIsLoaded" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eOperations name="cdoLoad"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CDOPersistent" abstract="true" eSuperTypes="#//CDOPersistable"/>
   <eClassifiers xsi:type="ecore:EDataType" name="CDOResource" instanceClassName="org.eclipse.emf.cdo.client.CDOResource"/>
