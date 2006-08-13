@@ -120,32 +120,8 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
     {
       if (!cdoIsNew() && !cdoIsLoaded())
       {
-        Resource resource = eResource();
-        if (resource == null)
-        {
-          for (Iterator it = eAdapters().iterator(); it.hasNext();)
-          {
-            Adapter adapter = (Adapter) it.next();
-            if (adapter instanceof TemporaryCDOResourceAdapter)
-            {
-              resource = ((TemporaryCDOResourceAdapter) adapter).getResource();
-              break;
-            }
-          }
-        }
-
-        if (resource == null)
-        {
-          throw new ImplementationError("resource == null");
-        }
-
-        if (!(resource instanceof CDOResource))
-        {
-          throw new ImplementationError("!(resource instanceof CDOResource)");
-        }
-
-        CDOResource cdoResource = (CDOResource) resource;
-        ResourceManager resourceManager = cdoResource.getResourceManager();
+        CDOResource resource = cdoGetResource();
+        ResourceManager resourceManager = resource.getResourceManager();
         if (resourceManager.isRequestingObjects())
         {
           resourceManager.requestObject(this);
@@ -155,7 +131,7 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
           if (logger.isDebugEnabled())
           {
             logger.debug("ResourceManager IN USE: " + Thread.currentThread());
-            //            logger.debug(DeadlockDetector.identifySource());
+            // logger.debug(DeadlockDetector.identifySource());
           }
         }
       }
@@ -206,6 +182,29 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
     }
 
     throw new IllegalStateException("Not a CDOResourceImpl:" + eResource());
+  }
+
+  /**
+   * @ADDED
+   */
+  protected CDOResource cdoGetResource()
+  {
+    Resource resource = eResource();
+    if (resource instanceof CDOResource)
+    {
+      return (CDOResource) resource;
+    }
+
+    for (Iterator it = eAdapters().iterator(); it.hasNext();)
+    {
+      Adapter adapter = (Adapter) it.next();
+      if (adapter instanceof TemporaryCDOResourceAdapter)
+      {
+        return ((TemporaryCDOResourceAdapter) adapter).getResource();
+      }
+    }
+
+    throw new ImplementationError("CDOResource not available");
   }
 
   /**
