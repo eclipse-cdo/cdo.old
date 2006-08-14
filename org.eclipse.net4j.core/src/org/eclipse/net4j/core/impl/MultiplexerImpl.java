@@ -30,6 +30,7 @@ public class MultiplexerImpl extends ServiceImpl implements Multiplexer
   public void cancel(Channel channel)
   {
     // TODO Auto-generated method stub
+    throw new UnsupportedOperationException();
   }
 
   public void schedule(Channel channel)

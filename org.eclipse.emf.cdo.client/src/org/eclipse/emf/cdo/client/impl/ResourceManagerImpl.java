@@ -286,7 +286,6 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     URI uri = CDOResourceFactoryImpl.formatURI(rid);
     resourceSet.getResource(uri, true);
 
-    ((InternalEObject) object).eSetResource(null, null);
     oidToObjectMap.put(new Long(oid), object);
     // TODO Deregister sometime!!!
 

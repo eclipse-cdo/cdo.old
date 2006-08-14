@@ -125,6 +125,10 @@ public class SelectorManagerImpl extends ServiceImpl implements SelectorManager
           }
         }
       }
+      catch (ClosedChannelException ignore)
+      {
+        ; // Intentionally left empty
+      }
       catch (IOException ex)
       {
         throw new UnderlyingIOException(ex);
