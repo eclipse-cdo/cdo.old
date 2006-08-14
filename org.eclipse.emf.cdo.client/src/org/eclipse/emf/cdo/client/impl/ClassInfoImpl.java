@@ -147,7 +147,7 @@ public class ClassInfoImpl implements ClassInfo
   {
     List<AttributeInfo> tmp = new ArrayList<AttributeInfo>();
 
-    for (Iterator<EAttribute> it = eClass.getEAllAttributes().iterator(); it.hasNext();)
+    for (Iterator<EAttribute> it = eClass.getEAttributes().iterator(); it.hasNext();)
     {
       EAttribute eAttribute = it.next();
       AttributeMapping attributeMapping = mapping.getAttributeMapping(eAttribute.getName());

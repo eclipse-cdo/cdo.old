@@ -49,6 +49,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Map.Entry;
 
 
 public class CommitTransactionRequest extends AbstractCDOClientRequest
@@ -408,13 +409,13 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
     if (classInfo == null)
       throw new ImplementationError("Class not registered as CDO persistent: " + eObject.eClass());
 
-    Map<EClass, List> eClassToAttributeChangesMap = new HashMap<EClass, List>(
+    Map<EClass, List<AttributeInfo>> eClassToAttributeChangesMap = new HashMap<EClass, List<AttributeInfo>>(
         CAPACITY_eClassToAttributeChangesMap);
     firstChange = true;
 
-    for (Iterator<?> iterator = featureChanges.iterator(); iterator.hasNext();)
+    for (Iterator<FeatureChange> iterator = featureChanges.iterator(); iterator.hasNext();)
     {
-      FeatureChange featureChange = (FeatureChange) iterator.next();
+      FeatureChange featureChange = iterator.next();
       EStructuralFeature feature = featureChange.getFeature();
       int type = featureType(feature, classInfo);
 
@@ -460,14 +461,16 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
    */
   @SuppressWarnings("unchecked")
   private void transmitAttributeChanges(EObject eObject,
-      Map<EClass, List> eClassToAttributeChangesMap)
+      Map<EClass, List<AttributeInfo>> eClassToAttributeChangesMap)
   {
-    for (Iterator<?> mapIt = eClassToAttributeChangesMap.entrySet().iterator(); mapIt.hasNext();)
+    Set<Entry<EClass, List<AttributeInfo>>> entrySet = eClassToAttributeChangesMap.entrySet();
+    for (Iterator<Entry<EClass, List<AttributeInfo>>> mapIt = entrySet.iterator(); mapIt.hasNext();)
     {
-      Map.Entry entry = (Map.Entry) mapIt.next();
-      List attributeChangesOfClassifierList = (List) entry.getValue();
+      Entry<EClass, List<AttributeInfo>> entry = mapIt.next();
+      EClass eClass = entry.getKey();
+      List<AttributeInfo> attributeChangesOfClassifierList = entry.getValue();
 
-      ClassInfo classInfo = packageManager.getClassInfo(eObject.eClass());
+      ClassInfo classInfo = packageManager.getClassInfo(eClass);
       if (classInfo == null)
         throw new ImplementationError("Class not registered as CDO persistent: " + entry.getKey());
 
@@ -480,9 +483,10 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
       transmitInt(cid);
       transmitInt(count);
 
-      for (Iterator<?> listIt = attributeChangesOfClassifierList.iterator(); listIt.hasNext();)
+      for (Iterator<AttributeInfo> listIt = attributeChangesOfClassifierList.iterator(); listIt
+          .hasNext();)
       {
-        AttributeInfo attributeInfo = (AttributeInfo) listIt.next();
+        AttributeInfo attributeInfo = listIt.next();
         transmitAttributeChange(eObject, attributeInfo);
       }
     }
@@ -496,7 +500,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
    */
   @SuppressWarnings("unchecked")
   private void rememberAttributeChange(EStructuralFeature feature,
-      Map<EClass, List> eClassToAttributeChangesMap)
+      Map<EClass, List<AttributeInfo>> eClassToAttributeChangesMap)
   {
     EClass eClass = feature.getEContainingClass();
     List<AttributeInfo> attributeChangesOfEClass = eClassToAttributeChangesMap.get(eClass);

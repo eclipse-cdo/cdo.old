@@ -245,6 +245,11 @@ public class BufferImpl
     }
     catch (ClosedChannelException ex)
     {
+      ok = false;
+    }
+    catch (IOException ex)
+    {
+      ok = false;
     }
 
     return ok;
