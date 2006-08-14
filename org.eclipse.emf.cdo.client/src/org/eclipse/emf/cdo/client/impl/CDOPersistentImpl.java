@@ -17,6 +17,7 @@ import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 
 import org.apache.log4j.Logger;
 
@@ -55,6 +56,15 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
   protected EClass eStaticClass()
   {
     return CDOPackage.Literals.CDO_PERSISTENT;
+  }
+
+  /**
+   * @ADDED
+   */
+  @Override
+  public Resource eResource()
+  {
+    return cdoResource;
   }
 
   /**
