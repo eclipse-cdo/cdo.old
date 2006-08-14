@@ -1,1 +1,1 @@
-<%if (!genFeature.isBasicSet() || genFeature.isContainer()) {%>cdoLoad();<%}%>
+<%if (!genFeature.isBasicGet()) {%>cdoLoad();<%}%>
