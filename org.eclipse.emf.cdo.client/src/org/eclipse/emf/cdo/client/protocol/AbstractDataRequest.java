@@ -169,7 +169,7 @@ public abstract class AbstractDataRequest extends AbstractCDOClientRequest
         EReference reference = (EReference) object.eClass().getEStructuralFeature(featureId);
         if (reference == null)
         {
-          throw new ImplementationError("Reference " + featureId
+          throw new ImplementationError("Feature id " + featureId
               + " is not known. Maybe signalling is out of sequence.");
         }
 
