@@ -56,11 +56,4 @@
       <import feature="org.eclipse.net4j" version="0.0.0" match="greaterOrEqual"/>
    </requires>
 
-   <plugin
-         id="org.eclipse.emf.cdo.utilities.migrator"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
 </feature>
