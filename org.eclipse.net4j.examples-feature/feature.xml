@@ -22,7 +22,7 @@
    </url>
 
    <requires>
-      <import plugin="org.eclipse.net4j"/>
+      <import feature="org.eclipse.net4j"/>
    </requires>
 
    <plugin
