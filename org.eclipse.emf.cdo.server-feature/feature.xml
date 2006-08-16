@@ -31,11 +31,7 @@
 
    <requires>
       <import feature="org.eclipse.net4j" version="1.0.0"/>
-      <import plugin="org.eclipse.emf.ecore"/>
-      <import plugin="org.eclipse.emf.edit"/>
-      <import plugin="org.eclipse.emf.ecore.xmi"/>
-      <import plugin="org.eclipse.emf.edit.ui"/>
-      <import plugin="org.eclipse.ui.ide"/>
+      <import feature="org.eclipse.emf" version="2.2.0.v200606271057"/>
    </requires>
 
    <plugin

@@ -22,10 +22,6 @@
    </url>
 
    <requires>
-      <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.ui.ide"/>
-      <import plugin="org.eclipse.emf.common.ui"/>
-      <import plugin="org.eclipse.emf.edit.ui"/>
       <import feature="org.eclipse.emf.cdo.client" version="1.0.0.qualifier"/>
       <import feature="org.eclipse.emf.cdo.server" version="1.0.0.qualifier"/>
       <import feature="org.eclipse.net4j" version="1.0.0.qualifier"/>

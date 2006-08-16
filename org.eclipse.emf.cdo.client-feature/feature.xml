@@ -23,10 +23,7 @@
 
    <requires>
       <import feature="org.eclipse.emf"/>
-      <import plugin="org.eclipse.ui.ide"/>
       <import feature="org.eclipse.net4j" version="1.0.0"/>
-      <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.core.resources"/>
    </requires>
 
    <plugin
