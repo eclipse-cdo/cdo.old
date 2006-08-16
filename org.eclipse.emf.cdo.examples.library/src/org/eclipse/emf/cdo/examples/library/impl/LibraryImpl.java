@@ -101,7 +101,6 @@ public class LibraryImpl extends CDOPersistentImpl implements Library
    */
   public EList getBooks()
   {
-
     cdoLoad();
     if (books == null)
     {
@@ -118,7 +117,6 @@ public class LibraryImpl extends CDOPersistentImpl implements Library
    */
   public EList getAuthors()
   {
-
     cdoLoad();
     if (authors == null)
     {
@@ -135,7 +133,6 @@ public class LibraryImpl extends CDOPersistentImpl implements Library
    */
   public EList getTopics()
   {
-
     cdoLoad();
     if (topics == null)
     {

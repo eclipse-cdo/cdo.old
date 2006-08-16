@@ -80,7 +80,6 @@ public class EBookImpl extends BookImpl implements EBook
    */
   public String getUrl()
   {
-
     cdoLoad();
     return url;
   }
@@ -92,7 +91,6 @@ public class EBookImpl extends BookImpl implements EBook
    */
   public void setUrl(String newUrl)
   {
-
     cdoLoad();
     String oldUrl = url;
     url = newUrl;

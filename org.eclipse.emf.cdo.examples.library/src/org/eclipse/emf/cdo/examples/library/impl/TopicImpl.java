@@ -115,7 +115,6 @@ public class TopicImpl extends CDOPersistentImpl implements Topic
    */
   public EList getBooks()
   {
-
     cdoLoad();
     if (books == null)
     {
@@ -132,7 +131,7 @@ public class TopicImpl extends CDOPersistentImpl implements Topic
    */
   public Library getLibrary()
   {
-
+    cdoLoad();
     if (eContainerFeatureID != LibraryPackage.TOPIC__LIBRARY) return null;
     return (Library) eContainer();
   }
@@ -182,7 +181,6 @@ public class TopicImpl extends CDOPersistentImpl implements Topic
    */
   public EList getTopics()
   {
-
     cdoLoad();
     if (topics == null)
     {
@@ -199,7 +197,7 @@ public class TopicImpl extends CDOPersistentImpl implements Topic
    */
   public Topic getTopic()
   {
-
+    cdoLoad();
     if (eContainerFeatureID != LibraryPackage.TOPIC__TOPIC) return null;
     return (Topic) eContainer();
   }
@@ -249,7 +247,6 @@ public class TopicImpl extends CDOPersistentImpl implements Topic
    */
   public String getName()
   {
-
     cdoLoad();
     return name;
   }
@@ -261,7 +258,6 @@ public class TopicImpl extends CDOPersistentImpl implements Topic
    */
   public void setName(String newName)
   {
-
     cdoLoad();
     String oldName = name;
     name = newName;

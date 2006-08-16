@@ -126,7 +126,6 @@ public class BookImpl extends CDOPersistentImpl implements Book
    */
   public String getTitle()
   {
-
     cdoLoad();
     return title;
   }
@@ -138,7 +137,6 @@ public class BookImpl extends CDOPersistentImpl implements Book
    */
   public void setTitle(String newTitle)
   {
-
     cdoLoad();
     String oldTitle = title;
     title = newTitle;
@@ -154,7 +152,6 @@ public class BookImpl extends CDOPersistentImpl implements Book
    */
   public EList getAuthors()
   {
-
     cdoLoad();
     if (authors == null)
     {
@@ -171,7 +168,7 @@ public class BookImpl extends CDOPersistentImpl implements Book
    */
   public Library getLibrary()
   {
-
+    cdoLoad();
     if (eContainerFeatureID != LibraryPackage.BOOK__LIBRARY) return null;
     return (Library) eContainer();
   }
@@ -221,7 +218,7 @@ public class BookImpl extends CDOPersistentImpl implements Book
    */
   public Topic getTopic()
   {
-
+    cdoLoad();
     if (eContainerFeatureID != LibraryPackage.BOOK__TOPIC) return null;
     return (Topic) eContainer();
   }
@@ -271,7 +268,6 @@ public class BookImpl extends CDOPersistentImpl implements Book
    */
   public int getNumberOfPages()
   {
-
     cdoLoad();
     return numberOfPages;
   }
@@ -283,7 +279,6 @@ public class BookImpl extends CDOPersistentImpl implements Book
    */
   public void setNumberOfPages(int newNumberOfPages)
   {
-
     cdoLoad();
     int oldNumberOfPages = numberOfPages;
     numberOfPages = newNumberOfPages;
