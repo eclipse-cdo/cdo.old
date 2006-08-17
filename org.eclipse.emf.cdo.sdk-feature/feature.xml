@@ -51,6 +51,10 @@
          version="0.0.0"
          match="compatible"/>
 
+   <includes
+         id="org.eclipse.emf.cdo.utilities"
+         version="0.0.0"/>
+
    <requires>
       <import feature="org.eclipse.emf" version="2.2.0" match="compatible"/>
       <import feature="org.eclipse.net4j" version="1.0.0" match="compatible"/>
