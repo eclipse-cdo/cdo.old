@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.emf.cdo.examples"
+      id="org.eclipse.emf.cdo.utilities"
       label="%featureName"
       version="1.0.0.qualifier"
       provider-name="%providerName">
@@ -24,41 +24,18 @@
    <requires>
       <import feature="org.eclipse.emf" version="2.2.0" match="compatible"/>
       <import feature="org.eclipse.net4j" version="1.0.0" match="compatible"/>
-      <import feature="org.eclipse.net4j.examples" version="1.0.0" match="compatible"/>
       <import feature="org.eclipse.emf.cdo.client" version="1.0.0" match="compatible"/>
-      <import feature="org.eclipse.emf.cdo.server" version="1.0.0" match="compatible"/>
    </requires>
 
    <plugin
-         id="org.eclipse.emf.cdo.examples.client"
+         id="org.eclipse.emf.cdo.mapping.editor"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.emf.cdo.examples.library"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.emf.cdo.examples.server"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.emf.cdo.examples.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.emf.cdo.examples.library.ui"
+         id="org.eclipse.emf.cdo.utilities.migrator"
          download-size="0"
          install-size="0"
          version="0.0.0"

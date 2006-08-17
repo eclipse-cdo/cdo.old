@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.emf.cdo.client"
-      label="CDO Client"
+      label="%featureName"
       version="1.0.0.qualifier"
-      provider-name="Eclipse.org">
+      provider-name="%providerName">
 
    <description>
       %description
@@ -22,8 +22,8 @@
    </url>
 
    <requires>
-      <import feature="org.eclipse.emf"/>
-      <import feature="org.eclipse.net4j" version="1.0.0"/>
+      <import feature="org.eclipse.emf" version="2.2.0" match="compatible"/>
+      <import feature="org.eclipse.net4j" version="1.0.0" match="compatible"/>
    </requires>
 
    <plugin

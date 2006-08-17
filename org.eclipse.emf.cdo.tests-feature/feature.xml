@@ -22,10 +22,10 @@
    </url>
 
    <requires>
-      <import feature="org.eclipse.emf"/>
-      <import feature="org.eclipse.net4j"/>
-      <import feature="org.eclipse.emf.cdo.client"/>
-      <import feature="org.eclipse.emf.cdo.server"/>
+      <import feature="org.eclipse.emf" version="2.2.0" match="compatible"/>
+      <import feature="org.eclipse.net4j" version="1.0.0" match="compatible"/>
+      <import feature="org.eclipse.emf.cdo.client" version="1.0.0" match="compatible"/>
+      <import feature="org.eclipse.emf.cdo.server" version="1.0.0" match="compatible"/>
    </requires>
 
    <plugin
