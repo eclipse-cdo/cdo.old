@@ -3,7 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.emf.cdo.utilities.migrator;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.emf.cdo.utilities.migrator.MigratorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
@@ -12,3 +11,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.codegen.ecore,
  org.eclipse.ui
 Eclipse-LazyStart: true
+Export-Package: org.eclipse.emf.cdo.utilities.migrator
