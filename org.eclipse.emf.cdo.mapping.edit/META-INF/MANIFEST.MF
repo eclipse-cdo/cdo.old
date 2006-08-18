@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.emf.cdo.mapping.edit; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.eclipse.emf.cdo.mapping.provider.MappingEditActivator$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: org.eclipse.emf.cdo.mapping.provider
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.edit;visibility:=reexport,
+ org.eclipse.emf.cdo.mapping;visibility:=reexport
+Eclipse-LazyStart: true
