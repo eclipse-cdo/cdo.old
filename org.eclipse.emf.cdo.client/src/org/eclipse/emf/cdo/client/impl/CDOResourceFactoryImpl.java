@@ -35,9 +35,6 @@ import java.io.IOException;
 
 public class CDOResourceFactoryImpl implements Resource.Factory
 {
-  /**
-   * Logger for this class
-   */
   private static final Logger logger = Logger.getLogger(CDOResourceFactoryImpl.class);
 
   protected ResourceManager resourceManager;
@@ -127,7 +124,6 @@ public class CDOResourceFactoryImpl implements Resource.Factory
 
     int rid = ClientCDOProtocolImpl.requestResourcePath(resourceManager.getChannel(), path);
     boolean existing = rid > 0;
-
     if (!existing)
     {
       rid = -rid;
@@ -181,13 +177,11 @@ public class CDOResourceFactoryImpl implements Resource.Factory
     if (path == null || path.length() == 0)
     {
       return CDOProtocol.UNKNOWN_RID;
-      //throw new IllegalArgumentException("path == null || path.length() == 0");
     }
 
     try
     {
-      int rid = Integer.parseInt(path);
-      return rid;
+      return Integer.parseInt(path);
     }
     catch (NumberFormatException ex)
     {

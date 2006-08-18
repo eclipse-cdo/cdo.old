@@ -11,6 +11,12 @@
        class = "org.eclipse.emf.cdo.client.CDOPackage"
        genModel = "model/client.genmodel" /> 
   </extension>
+  
+  <extension point="org.eclipse.emf.ecore.protocol_parser">
+     <parser
+           class="org.eclipse.emf.cdo.client.impl.CDOResourceFactoryImpl"
+           protocolName="cdo"/>
+  </extension>
 
 </plugin>
 
