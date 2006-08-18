@@ -5,7 +5,8 @@ Bundle-SymbolicName: org.eclipse.emf.cdo.examples.library;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Require-Bundle: org.eclipse.emf.cdo.client;visibility:=reexport
+Require-Bundle: org.eclipse.emf.cdo.client;visibility:=reexport,
+ org.eclipse.emf.cdo.client.edit;visibility:=reexport
 Export-Package: org.eclipse.emf.cdo.examples.library,
  org.eclipse.emf.cdo.examples.library.impl,
  org.eclipse.emf.cdo.examples.library.internal,

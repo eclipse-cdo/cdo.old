@@ -30,7 +30,7 @@ import java.util.List;
 
 
 /**
- * This is the central singleton for the CDO edit plugin.
+ * This is the central singleton for the CDO model plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
