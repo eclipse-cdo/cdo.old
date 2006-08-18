@@ -16,7 +16,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 
 /**
- * This is the central singleton for the Mapping edit plugin.
+ * This is the central singleton for the Mapping model plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

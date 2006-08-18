@@ -13,6 +13,8 @@ package org.eclipse.emf.cdo.mapping.presentation;
 
 import org.eclipse.emf.cdo.mapping.MappingFactory;
 import org.eclipse.emf.cdo.mapping.MappingPackage;
+import org.eclipse.emf.cdo.mapping.provider.MappingEditActivator;
+
 import org.eclipse.emf.cdo.mapping.internal.MappingActivator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -559,7 +561,7 @@ public class MappingModelWizard extends Wizard implements INewWizard
     {
       try
       {
-        return MappingActivator.INSTANCE.getString("_UI_" + typeName + "_type");
+        return MappingEditActivator.INSTANCE.getString("_UI_" + typeName + "_type");
       }
       catch (MissingResourceException mre)
       {

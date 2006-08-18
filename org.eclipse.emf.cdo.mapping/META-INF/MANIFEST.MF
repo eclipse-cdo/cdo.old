@@ -8,7 +8,6 @@ Bundle-Localization: plugin
 Export-Package: org.eclipse.emf.cdo.mapping,
  org.eclipse.emf.cdo.mapping.impl,
  org.eclipse.emf.cdo.mapping.internal,
- org.eclipse.emf.cdo.mapping.provider,
  org.eclipse.emf.cdo.mapping.util
 Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,
