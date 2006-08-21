@@ -64,7 +64,13 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
   @Override
   public Resource eResource()
   {
-    return cdoResource;
+    Resource resource = super.eResource();
+    if (resource == null)
+    {
+      resource = cdoResource;
+    }
+
+    return resource;
   }
 
   /**
@@ -177,6 +183,7 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
    */
   public void cdoSetResource(CDOResource resource)
   {
+    System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX " + eProxyURI());
     cdoResource = resource;
   }
 
