@@ -16,6 +16,7 @@ import org.eclipse.emf.cdo.client.CDOPersistent;
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 
@@ -71,6 +72,16 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
     }
 
     return resource;
+  }
+
+  /**
+   * @ADDED
+   */
+  @Override
+  public EObject eContainer()
+  {
+    cdoLoad();
+    return super.eContainer();
   }
 
   /**
