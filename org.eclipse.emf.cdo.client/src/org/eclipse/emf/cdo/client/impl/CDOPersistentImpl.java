@@ -183,7 +183,6 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
    */
   public void cdoSetResource(CDOResource resource)
   {
-    System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX " + eProxyURI());
     cdoResource = resource;
   }
 
