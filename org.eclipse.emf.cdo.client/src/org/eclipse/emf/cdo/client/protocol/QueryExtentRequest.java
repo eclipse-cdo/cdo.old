@@ -12,10 +12,11 @@ package org.eclipse.emf.cdo.client.protocol;
 
 
 import org.eclipse.emf.cdo.core.CDOProtocol;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class QueryExtentRequest extends AbstractDataRequest
@@ -47,8 +48,8 @@ public class QueryExtentRequest extends AbstractDataRequest
 
   public Object confirm()
   {
-    EList result = new BasicEList();
-
+    Set result = new HashSet();
+    
     for (;;)
     {
       long oid = receiveLong();

@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import java.util.Iterator;
+import java.util.Set;
 
 
 public class ClientCDOProtocolImpl extends AbstractCDOProtocol
@@ -117,19 +118,19 @@ public class ClientCDOProtocolImpl extends AbstractCDOProtocol
     return (String) channel.transmit(signal);
   }
 
-  public static EList requestQueryExtent(Channel channel, int cid, boolean exactMatch, int rid)
+  public static Set requestQueryExtent(Channel channel, int cid, boolean exactMatch, int rid)
   {
     assertValidChannel(channel);
     Request signal = new QueryExtentRequest(cid, exactMatch, rid);
-    return (EList) channel.transmit(signal);
+    return (Set) channel.transmit(signal);
   }
 
-  public static EList requestQueryExtent(Channel channel, int cid, boolean exactMatch)
+  public static Set requestQueryExtent(Channel channel, int cid, boolean exactMatch)
   {
     return requestQueryExtent(channel, cid, exactMatch, GLOBAL_EXTENT);
   }
 
-  public static EList requestQueryExtent(Channel channel, int cid)
+  public static Set requestQueryExtent(Channel channel, int cid)
   {
     return requestQueryExtent(channel, cid, false);
   }
