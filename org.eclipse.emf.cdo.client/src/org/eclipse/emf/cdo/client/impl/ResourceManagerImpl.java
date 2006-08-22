@@ -21,6 +21,7 @@ import org.eclipse.net4j.util.thread.Worker;
 
 import org.eclipse.emf.cdo.client.CDOPersistable;
 import org.eclipse.emf.cdo.client.CDOResource;
+import org.eclipse.emf.cdo.client.ClassInfo;
 import org.eclipse.emf.cdo.client.PackageManager;
 import org.eclipse.emf.cdo.client.PausableChangeRecorder;
 import org.eclipse.emf.cdo.client.ResourceManager;
@@ -47,6 +48,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
@@ -201,6 +203,23 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     }
 
     return resource;
+  }
+
+  public Set queryExtent(EClass context, boolean exactMatch, CDOResource resource)
+  {
+    ClassInfo classInfo = packageManager.getClassInfo(context);
+    return ClientCDOProtocolImpl.requestQueryExtent(getChannel(), classInfo.getCID(), exactMatch,
+        resource != null ? resource.getRID() : CDOProtocol.GLOBAL_EXTENT);
+  }
+
+  public Set queryExtent(EClass context, CDOResource resource)
+  {
+    return queryExtent(context, false, resource);
+  }
+
+  public Set queryExtent(EClass context)
+  {
+    return queryExtent(context, false, null);
   }
 
   public Channel getChannel()

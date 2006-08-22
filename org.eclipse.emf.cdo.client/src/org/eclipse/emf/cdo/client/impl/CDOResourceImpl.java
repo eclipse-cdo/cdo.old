@@ -19,6 +19,7 @@ import org.eclipse.emf.cdo.client.protocol.ClientCDOProtocolImpl;
 import org.eclipse.emf.cdo.core.CDOProtocol;
 import org.eclipse.emf.cdo.core.OIDEncoder;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 
@@ -26,6 +27,7 @@ import org.apache.log4j.Logger;
 
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 
 public class CDOResourceImpl extends ResourceImpl implements CDOResource
@@ -68,6 +70,16 @@ public class CDOResourceImpl extends ResourceImpl implements CDOResource
   public void setExisting(boolean existing)
   {
     resourceInfo.setExisting(existing);
+  }
+
+  public Set queryExtent(EClass context, boolean exactMatch)
+  {
+    return resourceManager.queryExtent(context, exactMatch, this);
+  }
+
+  public Set queryExtent(EClass context)
+  {
+    return resourceManager.queryExtent(context, this);
   }
 
   public void load(Map options)

@@ -11,7 +11,10 @@
 package org.eclipse.emf.cdo.client;
 
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.Resource;
+
+import java.util.Set;
 
 
 public interface CDOResource extends Resource
@@ -27,4 +30,9 @@ public interface CDOResource extends Resource
   public int getRID();
 
   public void setPath(String path);
+
+  public Set queryExtent(EClass context);
+
+  public Set queryExtent(EClass context, boolean exactMatch);
+
 }

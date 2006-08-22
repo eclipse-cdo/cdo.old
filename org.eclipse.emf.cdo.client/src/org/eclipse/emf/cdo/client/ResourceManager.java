@@ -15,9 +15,12 @@ import org.eclipse.net4j.core.Channel;
 import org.eclipse.net4j.spring.Service;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+
+import java.util.Set;
 
 
 public interface ResourceManager extends Service
@@ -63,6 +66,12 @@ public interface ResourceManager extends Service
   public void registerResourcePath(CDOResource cdoResource, String path);
 
   public PackageManager getPackageManager();
+
+  public Set queryExtent(EClass context);
+
+  public Set queryExtent(EClass context, CDOResource resource);
+
+  public Set queryExtent(EClass context, boolean exactMatch, CDOResource resource);
 
   public void addInvalidationListener(InvalidationListener listener);
 
