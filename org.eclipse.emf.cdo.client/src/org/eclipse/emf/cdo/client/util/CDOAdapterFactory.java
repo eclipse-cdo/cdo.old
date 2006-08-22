@@ -11,8 +11,6 @@
 package org.eclipse.emf.cdo.client.util;
 
 
-import org.eclipse.emf.cdo.client.*;
-
 import org.eclipse.emf.cdo.client.CDOPackage;
 import org.eclipse.emf.cdo.client.CDOPersistable;
 import org.eclipse.emf.cdo.client.CDOPersistent;

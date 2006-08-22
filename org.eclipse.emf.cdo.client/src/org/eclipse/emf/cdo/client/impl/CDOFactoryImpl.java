@@ -11,8 +11,6 @@
 package org.eclipse.emf.cdo.client.impl;
 
 
-import org.eclipse.emf.cdo.client.*;
-
 import org.eclipse.emf.cdo.client.CDOFactory;
 import org.eclipse.emf.cdo.client.CDOPackage;
 import org.eclipse.emf.cdo.client.CDOResource;

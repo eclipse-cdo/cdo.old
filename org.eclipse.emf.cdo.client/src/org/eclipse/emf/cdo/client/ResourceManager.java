@@ -73,6 +73,8 @@ public interface ResourceManager extends Service
 
   public Set queryExtent(EClass context, boolean exactMatch, CDOResource resource);
 
+  public Set queryExtent(EClass context, boolean exactMatch);
+
   public void addInvalidationListener(InvalidationListener listener);
 
   public void removeInvalidationListener(InvalidationListener listener);

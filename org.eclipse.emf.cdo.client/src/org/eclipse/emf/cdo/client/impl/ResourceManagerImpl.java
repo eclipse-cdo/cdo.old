@@ -212,6 +212,11 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
         resource != null ? resource.getRID() : CDOProtocol.GLOBAL_EXTENT);
   }
 
+  public Set queryExtent(EClass context, boolean exactMatch)
+  {
+    return queryExtent(context, exactMatch, null);
+  }
+
   public Set queryExtent(EClass context, CDOResource resource)
   {
     return queryExtent(context, false, resource);
