@@ -117,6 +117,23 @@ public class ClientCDOProtocolImpl extends AbstractCDOProtocol
     return (String) channel.transmit(signal);
   }
 
+  public static EList requestQueryExtent(Channel channel, int cid, boolean exactMatch, int rid)
+  {
+    assertValidChannel(channel);
+    Request signal = new QueryExtentRequest(cid, exactMatch, rid);
+    return (EList) channel.transmit(signal);
+  }
+
+  public static EList requestQueryExtent(Channel channel, int cid, boolean exactMatch)
+  {
+    return requestQueryExtent(channel, cid, exactMatch, GLOBAL_EXTENT);
+  }
+
+  public static EList requestQueryExtent(Channel channel, int cid)
+  {
+    return requestQueryExtent(channel, cid, false);
+  }
+
   public static void requestLoadResource(Channel channel, int rid, PackageManager packageManager)
   {
     assertValidChannel(channel);

@@ -28,4 +28,6 @@ public interface CDOSignals
   public static final byte COMMIT_TRANSACTION = 7;
 
   public static final byte INVALIDATE_OBJECT = 8;
+
+  public static final byte QUERY_EXTENT = 9;
 }

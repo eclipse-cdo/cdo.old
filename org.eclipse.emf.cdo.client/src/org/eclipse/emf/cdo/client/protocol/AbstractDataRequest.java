@@ -134,84 +134,57 @@ public abstract class AbstractDataRequest extends AbstractCDOClientRequest
   @SuppressWarnings("unchecked")
   protected void receiveReferences(EObject object)
   {
-    //    boolean deliver = ((InternalEObject) object).eDeliver();
-    //    if (deliver)
-    //    {
-    //      ((InternalEObject) object).eSetDeliver(false);
-    //    }
-    //
-    //    EList features = object.eClass().getEAllStructuralFeatures();
-    //    for (Iterator iter = features.iterator(); iter.hasNext();)
-    //    {
-    //      try
-    //      {
-    //        EStructuralFeature feature = (EStructuralFeature) iter.next();
-    //        if (feature instanceof EReference)
-    //        {
-    //          object.eUnset(feature);
-    //        }
-    //      }
-    //      catch (Throwable ignore)
-    //      {
-    //      }
-    //    }
-
-    try
+    for (;;)
     {
-      for (;;)
+      int featureId = receiveInt();
+      if (featureId == -1)
       {
-        int featureId = receiveInt();
-        if (featureId == -1)
-        {
-          break;
-        }
+        break;
+      }
 
-        EReference reference = (EReference) object.eClass().getEStructuralFeature(featureId);
-        if (reference == null)
-        {
-          throw new ImplementationError("Feature id " + featureId
-              + " is not known. Maybe signalling is out of sequence.");
-        }
+      EReference reference = (EReference) object.eClass().getEStructuralFeature(featureId);
+      if (reference == null)
+      {
+        throw new ImplementationError("Feature id " + featureId
+            + " is not known. Maybe signalling is out of sequence.");
+      }
 
-        long targetId = receiveLong();
+      long targetId = receiveLong();
+      int cid = receiveInt();
+      if (isDebugEnabled())
+        debug("Receiving reference \"" + reference.getName() + "\": "
+            + getPackageManager().getOidEncoder().toString(targetId) + ", cid=" + cid
+            + ", feature=" + featureId);
 
-        int cid = receiveInt();
-        ClassInfo classInfo = getPackageManager().getClassInfo(cid);
-        if (classInfo == null) throw new ImplementationError("Unknown cid " + cid);
-
-        if (isDebugEnabled())
-          debug("Receiving reference \"" + reference.getName() + "\": "
-              + getPackageManager().getOidEncoder().toString(targetId) + ", cid=" + cid
-              + ", feature=" + featureId);
-
-        EObject targetObject = getResourceManager().getObject(targetId);
-        if (targetObject == null)
-        {
-          targetObject = getProxyObject(targetId);
-
-          if (targetObject == null)
-          {
-            targetObject = createProxyObject(classInfo.getEClass(), targetId);
-          }
-        }
-
-        if (reference.isMany())
-        {
-          EList list = (EList) object.eGet(reference);
-          list.add(targetObject);
-        }
-        else
-        {
-          object.eSet(reference, targetObject);
-        }
+      EObject targetObject = provideObject(targetId, cid);
+      if (reference.isMany())
+      {
+        EList list = (EList) object.eGet(reference);
+        list.add(targetObject);
+      }
+      else
+      {
+        object.eSet(reference, targetObject);
       }
     }
-    finally
+  }
+
+  protected EObject provideObject(long oid, int cid)
+  {
+    ClassInfo classInfo = getPackageManager().getClassInfo(cid);
+    if (classInfo == null) throw new ImplementationError("Unknown cid " + cid);
+
+    EObject object = getResourceManager().getObject(oid);
+    if (object == null)
     {
-      //      if (deliver)
-      //      {
-      //        ((InternalEObject) object).eSetDeliver(true);
-      //      }
+      object = getProxyObject(oid);
+
+      if (object == null)
+      {
+        object = createProxyObject(classInfo.getEClass(), oid);
+      }
     }
+
+    return object;
   }
 }

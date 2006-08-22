@@ -30,6 +30,8 @@ public interface CDOProtocol extends Protocol, CDODataTypes, CDOSignals
 
   public static final byte LIST_MOVE = 5;
 
+  public static final int NO_MORE_OBJECTS = 0;
+
   public static final int NO_MORE_SEGMENTS = 0;
 
   public static final byte NO_MORE_REFERENCE_CHANGES = 0;
@@ -37,6 +39,8 @@ public interface CDOProtocol extends Protocol, CDODataTypes, CDOSignals
   public static final long NO_MORE_OBJECT_CHANGES = 0;
 
   public static final int UNKNOWN_RID = -1;
+
+  public static final byte GLOBAL_EXTENT = 0;
 
   public static final String SLASH = "/";
 }
