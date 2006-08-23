@@ -11,6 +11,8 @@
 package org.eclipse.emf.cdo.client.impl;
 
 
+import org.eclipse.net4j.core.Channel;
+
 import org.eclipse.emf.cdo.client.CDOPersistable;
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceInfo;
@@ -18,6 +20,7 @@ import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.client.protocol.ClientCDOProtocolImpl;
 import org.eclipse.emf.cdo.core.CDOProtocol;
 import org.eclipse.emf.cdo.core.OIDEncoder;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -54,6 +57,16 @@ public class CDOResourceImpl extends ResourceImpl implements CDOResource
 
   public String getPath()
   {
+    if (resourceInfo.getPath() == null)
+    {
+      if (resourceManager.isRequestingObjects())
+      {
+        Channel channel = resourceManager.getChannel();
+        int rid = getRID();
+        resourceInfo.setPath(ClientCDOProtocolImpl.requestResourceRID(channel, rid));
+      }
+    }
+
     return resourceInfo.getPath();
   }
 
@@ -84,11 +97,27 @@ public class CDOResourceImpl extends ResourceImpl implements CDOResource
 
   public void load(Map options)
   {
-    if (resourceManager.isRequestingObjects())
+    //    if (resourceManager.isRequestingObjects())
+    //    {
+    //      ClientCDOProtocolImpl.requestLoadResource(resourceManager.getChannel(), getRID(),
+    //          resourceManager.getPackageManager());
+    //    }
+  }
+
+  @Override
+  public EList getContents()
+  {
+    if (contents == null)
     {
-      ClientCDOProtocolImpl.requestLoadResource(resourceManager.getChannel(), getRID(),
-          resourceManager.getPackageManager());
+      contents = (ContentsEList) super.getContents();
+      if (resourceManager.isRequestingObjects())
+      {
+        ClientCDOProtocolImpl.requestLoadResource(resourceManager.getChannel(), getRID(),
+            resourceManager.getPackageManager());
+      }
     }
+
+    return contents;
   }
 
   /* (non-Javadoc)

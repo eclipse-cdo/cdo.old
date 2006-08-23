@@ -136,22 +136,22 @@ public class CDOResourceFactoryImpl implements Resource.Factory
   {
     if (logger.isDebugEnabled()) logger.debug("Creating resource with RID " + rid);
 
-    String path = null;
-    boolean existing = true;
+    //    String path = null;
+    //    boolean existing = true;
+    //
+    //    // Only ask for resource info, when not in the context of a ReceivingLoadResponse!!!
+    //    if (resourceManager.isRequestingObjects())
+    //    {
+    //      path = ClientCDOProtocolImpl.requestResourceRID(resourceManager.getChannel(), rid);
+    //      existing = path == null;
+    //
+    //      if (!existing)
+    //      {
+    //        return null;
+    //      }
+    //    }
 
-    // Only ask for resource info, when not in the context of a ReceivingLoadResponse!!!
-    if (resourceManager.isRequestingObjects())
-    {
-      path = ClientCDOProtocolImpl.requestResourceRID(resourceManager.getChannel(), rid);
-      existing = path == null;
-
-      if (!existing)
-      {
-        return null;
-      }
-    }
-
-    return createResource(rid, path, existing);
+    return createResource(rid, null, true);
   }
 
   private CDOResource createResource(int rid, String path, boolean existing)
@@ -159,6 +159,7 @@ public class CDOResourceFactoryImpl implements Resource.Factory
     ResourceInfo resourceInfo = new ResourceInfoImpl(path, rid, existing);
     CDOResource resource = new CDOResourceImpl(resourceInfo, resourceManager);
     resourceManager.registerResource(resource);
+    resource.eAdapters().add(resourceManager.getTransaction());
     return resource;
   }
 

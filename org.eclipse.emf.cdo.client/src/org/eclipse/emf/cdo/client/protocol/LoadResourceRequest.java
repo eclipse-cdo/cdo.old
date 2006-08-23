@@ -77,9 +77,10 @@ public class LoadResourceRequest extends AbstractDataRequest
           + getPackageManager().getOidEncoder().toString(oid) + "v" + oca);
 
     int rid = getPackageManager().getOidEncoder().getRID(oid);
-    CDOResource cdoResource = getResourceManager().getResource(rid);
-    EObject eObject = ResourceManagerImpl.createEObject(eClass, oid, oca, cdoResource);
-    getResourceManager().registerObject(oid, eObject);
+    ResourceManager resourceManager = getResourceManager();
+    CDOResource cdoResource = resourceManager.getResource(rid);
+    EObject eObject = resourceManager.createEObject(eClass, oid, oca, cdoResource);
+    resourceManager.registerObject(oid, eObject);
     return eObject;
   }
 

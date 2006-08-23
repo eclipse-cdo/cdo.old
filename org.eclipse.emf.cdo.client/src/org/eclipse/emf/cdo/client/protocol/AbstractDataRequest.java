@@ -18,6 +18,7 @@ import org.eclipse.emf.cdo.client.AttributeInfo;
 import org.eclipse.emf.cdo.client.CDOPersistable;
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ClassInfo;
+import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.client.impl.ResourceManagerImpl;
 import org.eclipse.emf.cdo.core.OIDEncoder;
 import org.eclipse.emf.common.util.EList;
@@ -62,19 +63,7 @@ public abstract class AbstractDataRequest extends AbstractCDOClientRequest
         debug("Receiving container oid=" + getPackageManager().getOidEncoder().toString(oid)
             + ", cid=" + cid);
 
-      EObject container = getResourceManager().getObject(oid);
-      if (container == null)
-      {
-        container = getProxyObject(oid);
-
-        if (container == null)
-        {
-          ClassInfo classInfo = getPackageManager().getClassInfo(cid);
-          if (classInfo == null) throw new ImplementationError("Unknown cid " + cid);
-
-          createProxyObject(classInfo.getEClass(), oid);
-        }
-      }
+      provideObject(oid, cid);
     }
   }
 
@@ -90,14 +79,15 @@ public abstract class AbstractDataRequest extends AbstractCDOClientRequest
     }
 
     int rid = oidEncoder.getRID(oid);
-    CDOResource cdoResource = getResourceManager().getResource(rid);
-    URI uri = getResourceManager().createProxyURI(oid);
+    ResourceManager resourceManager = getResourceManager();
+    CDOResource cdoResource = resourceManager.getResource(rid);
+    URI uri = resourceManager.createProxyURI(oid);
 
-    EObject object = ResourceManagerImpl.createEObject(eClass, oid, CDOPersistable.NOT_LOADED_YET,
+    EObject object = resourceManager.createEObject(eClass, oid, CDOPersistable.NOT_LOADED_YET,
         cdoResource);
     ((InternalEObject) object).eSetProxyURI(uri);
 
-    getResourceManager().registerObject(oid, object);
+    resourceManager.registerObject(oid, object);
     return object;
   }
 
@@ -171,9 +161,6 @@ public abstract class AbstractDataRequest extends AbstractCDOClientRequest
 
   protected EObject provideObject(long oid, int cid)
   {
-    ClassInfo classInfo = getPackageManager().getClassInfo(cid);
-    if (classInfo == null) throw new ImplementationError("Unknown cid " + cid);
-
     EObject object = getResourceManager().getObject(oid);
     if (object == null)
     {
@@ -181,6 +168,9 @@ public abstract class AbstractDataRequest extends AbstractCDOClientRequest
 
       if (object == null)
       {
+        ClassInfo classInfo = getPackageManager().getClassInfo(cid);
+        if (classInfo == null) throw new ImplementationError("Unknown cid " + cid);
+
         object = createProxyObject(classInfo.getEClass(), oid);
       }
     }

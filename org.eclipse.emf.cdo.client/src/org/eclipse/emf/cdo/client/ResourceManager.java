@@ -16,7 +16,9 @@ import org.eclipse.net4j.spring.Service;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
@@ -28,6 +30,8 @@ public interface ResourceManager extends Service
   public void commit();
 
   public void rollback();
+
+  public PausableChangeRecorder getTransaction();
 
   public ResourceSet getResourceSet();
 
@@ -78,6 +82,8 @@ public interface ResourceManager extends Service
   public void addInvalidationListener(InvalidationListener listener);
 
   public void removeInvalidationListener(InvalidationListener listener);
+
+  public EObject createEObject(EClass eClass, long oid, int oca, CDOResource resource);
 
 
   public interface InvalidationListener

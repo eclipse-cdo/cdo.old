@@ -41,6 +41,7 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
   /**
    * @ADDED
    */
+  @SuppressWarnings("unused")
   private static final Logger logger = Logger.getLogger(CDOPersistentImpl.class);
 
   /**

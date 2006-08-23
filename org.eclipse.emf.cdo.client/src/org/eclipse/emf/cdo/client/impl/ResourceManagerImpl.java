@@ -31,16 +31,16 @@ import org.eclipse.emf.cdo.core.OIDEncoder;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -72,7 +72,7 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
 
   private transient Map oidToObjectMap = new HashMap(CAPACITY_oidToObjectMap);
 
-  private transient PausableChangeRecorder transaction;
+  public transient PausableChangeRecorder transaction;
 
   private transient PackageManager packageManager;
 
@@ -95,6 +95,7 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
           if (msg.getOldValue() instanceof CDOResource)
           {
             CDOResource resource = (CDOResource) msg.getOldValue();
+            resource.eAdapters().remove(transaction);
             notifyRemovedResource(resource);
           }
           break;
@@ -111,7 +112,9 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
             {
               if (!newResources.contains(element))
               {
-                notifyRemovedResource((CDOResource) element);
+                CDOResource resource = (CDOResource) element;
+                resource.eAdapters().remove(transaction);
+                notifyRemovedResource(resource);
               }
             }
           }
@@ -151,7 +154,7 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
   {
     doSet("resourceSet", resourceSet);
 
-    resourceSetAdapter.setTarget(resourceSet);
+    resourceSet.eAdapters().add(resourceSetAdapter);
     transaction = new PausableChangeRecorderImpl();
     transaction.beginRecording(resourceSet);
 
@@ -162,6 +165,11 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
 
     Map extensions = resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap();
     extensions.put(CDOProtocol.PROTOCOL_NAME, factory);
+  }
+
+  public PausableChangeRecorder getTransaction()
+  {
+    return transaction;
   }
 
   public Resource createResource(URI uri)
@@ -179,11 +187,11 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     Integer rid = new Integer(resource.getRID());
     ridToResourceMap.put(rid, resource);
 
-    String path = resource.getPath();
-    if (path != null)
-    {
-      pathToResourceMap.put(path, resource);
-    }
+    //XXX    String path = resource.getPath();
+    //    if (path != null)
+    //    {
+    //      pathToResourceMap.put(path, resource);
+    //    }
   }
 
   public void registerResourcePath(CDOResource cdoResource, String path)
@@ -314,7 +322,7 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     // TODO Deregister sometime!!!
 
     transaction.setLoading(true);
-    transaction.setTarget(object);
+    transaction.addAdapter(object);
     transaction.setLoading(false);
   }
 
@@ -452,14 +460,10 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     super.deactivate();
   }
 
-  public static EObject createEObject(EClass eClass, long oid, int oca, CDOResource resource)
+  public EObject createEObject(EClass eClass, long oid, int oca, CDOResource resource)
   {
-    // Determine the appropriate EFactory
-    EPackage ePackage = eClass.getEPackage();
-    EFactory eFactory = ePackage.getEFactoryInstance();
-
     // Reflectively create a new EObject 
-    EObject persistable = eFactory.create(eClass);
+    EObject persistable = EcoreUtil.create(eClass);
     initPersistable(persistable, resource, oid, oca);
     return persistable;
   }
@@ -476,9 +480,13 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
 
   public static void initPersistable(EObject persistable, CDOResource resource, long oid, int oca)
   {
-    ((CDOPersistable) persistable).cdoSetResource(resource);
-    ((CDOPersistable) persistable).cdoSetOID(oid);
-    ((CDOPersistable) persistable).cdoSetOCA(oca);
+    CDOPersistable p = (CDOPersistable) persistable;
+    p.cdoSetResource(resource);
+    p.cdoSetOID(oid);
+    p.cdoSetOCA(oca);
+
+    PausableChangeRecorder transaction = resource.getResourceManager().getTransaction();
+    transaction.addAdapter(p);
   }
 
   //  public static void setOID(EObject eObject, long oid, CDOResource resource)

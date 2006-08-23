@@ -11,18 +11,21 @@
 package org.eclipse.emf.cdo.client;
 
 
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 
-public interface PausableChangeRecorder
+public interface PausableChangeRecorder extends Adapter.Internal
 {
   public void setRecording(boolean on);
 
   public void setLoading(boolean on);
 
-  public void setTarget(Notifier target);
+  public void addAdapter(Notifier notifier);
+
+  //  public void setTarget(Notifier target);
 
   public void beginRecording(ResourceSet resourceSet);
 
