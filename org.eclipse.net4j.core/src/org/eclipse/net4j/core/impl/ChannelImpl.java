@@ -77,7 +77,7 @@ public class ChannelImpl extends ServiceImpl implements Channel
 
   public static final ChannelStateMachine serverStateMachine = new ServerStateMachine();
 
-  public static final long DEFAULT_RESPONSE_TIMEOUT_MILLIS = 2000;
+  public static final long DEFAULT_RESPONSE_TIMEOUT_MILLIS = 60000;
 
   public long responseTimeoutMillis = DEFAULT_RESPONSE_TIMEOUT_MILLIS;
 
