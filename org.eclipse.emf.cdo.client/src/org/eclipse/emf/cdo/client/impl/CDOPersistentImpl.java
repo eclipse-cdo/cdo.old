@@ -11,6 +11,8 @@
 package org.eclipse.emf.cdo.client.impl;
 
 
+import org.eclipse.net4j.core.AlreadyRequestingException;
+
 import org.eclipse.emf.cdo.client.CDOPackage;
 import org.eclipse.emf.cdo.client.CDOPersistent;
 import org.eclipse.emf.cdo.client.CDOResource;
@@ -20,6 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.BasicInternalEList;
 
 import org.apache.log4j.Logger;
 
@@ -91,8 +94,15 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
   @Override
   public EList eContents()
   {
-    cdoLoad();
-    return super.eContents();
+    try
+    {
+      cdoLoad();
+      return super.eContents();
+    }
+    catch (AlreadyRequestingException ex)
+    {
+      return new BasicInternalEList(EObject.class);
+    }
   }
 
   /**
@@ -151,30 +161,30 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
    */
   public void cdoLoad()
   {
-    try
+    //    try
+    //    {
+    if (!cdoIsNew() && !cdoIsLoaded())
     {
-      if (!cdoIsNew() && !cdoIsLoaded())
+      ResourceManager resourceManager = cdoResource.getResourceManager();
+      if (resourceManager.isRequestingObjects())
       {
-        ResourceManager resourceManager = cdoResource.getResourceManager();
-        if (resourceManager.isRequestingObjects())
-        {
-          resourceManager.requestObject(this);
-        }
-        else
-        {
-          if (logger.isDebugEnabled())
-          {
-            logger.debug("ResourceManager IN USE: " + Thread.currentThread());
-            // logger.debug(DeadlockDetector.identifySource());
-          }
-        }
+        resourceManager.requestObject(this);
       }
+      //        else
+      //        {
+      //          if (logger.isDebugEnabled())
+      //          {
+      //            logger.debug("ResourceManager IN USE: " + Thread.currentThread());
+      // logger.debug(DeadlockDetector.identifySource());
+      //          }
+      //        }
     }
-    catch (RuntimeException ex)
-    {
-      logger.error("Problem while loading object", ex);
-      throw ex;
-    }
+    //    }
+    //    catch (RuntimeException ex)
+    //    {
+    //      logger.error("Problem while loading object", ex);
+    //      throw ex;
+    //    }
   }
 
   /**

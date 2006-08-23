@@ -235,13 +235,7 @@ public class ChannelImpl extends ServiceImpl implements Channel
 
         synchronized (responseMutex)
         {
-          // System.out.println("Wait " + this);
-          // System.out.flush();
-
           DeadlockDetector.wait(responseMutex, responseTimeoutMillis);
-
-          // System.out.println("Response " + this);
-          // System.out.flush();
         }
       }
     }
