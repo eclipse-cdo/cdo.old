@@ -22,6 +22,7 @@ import org.eclipse.net4j.core.Multiplexer;
 import org.eclipse.net4j.core.Protocol;
 import org.eclipse.net4j.core.Request;
 import org.eclipse.net4j.core.RequestWithConfirmation;
+import org.eclipse.net4j.core.ResponseTimedOutException;
 import org.eclipse.net4j.spring.ValidationException;
 import org.eclipse.net4j.spring.impl.ServiceImpl;
 import org.eclipse.net4j.util.Assert;
@@ -76,7 +77,7 @@ public class ChannelImpl extends ServiceImpl implements Channel
 
   public static final ChannelStateMachine serverStateMachine = new ServerStateMachine();
 
-  public static final long DEFAULT_RESPONSE_TIMEOUT_MILLIS = 3600000;
+  public static final long DEFAULT_RESPONSE_TIMEOUT_MILLIS = 2000;
 
   public long responseTimeoutMillis = DEFAULT_RESPONSE_TIMEOUT_MILLIS;
 
@@ -224,14 +225,20 @@ public class ChannelImpl extends ServiceImpl implements Channel
                 "Passive connectors must not transmit requests with confirmation");
       }
 
+      long start = System.currentTimeMillis();
       while (!responseReady)
       {
+        if (System.currentTimeMillis() - start > responseTimeoutMillis)
+        {
+          throw new ResponseTimedOutException();
+        }
+
         synchronized (responseMutex)
         {
           // System.out.println("Wait " + this);
           // System.out.flush();
 
-          DeadlockDetector.wait(responseMutex);
+          DeadlockDetector.wait(responseMutex, responseTimeoutMillis);
 
           // System.out.println("Response " + this);
           // System.out.flush();
