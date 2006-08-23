@@ -15,6 +15,7 @@ import org.eclipse.emf.cdo.client.CDOPackage;
 import org.eclipse.emf.cdo.client.CDOPersistent;
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceManager;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -82,6 +83,25 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
   {
     cdoLoad();
     return super.eContainer();
+  }
+
+  /**
+   * @ADDED
+   */
+  @Override
+  public EList eContents()
+  {
+    cdoLoad();
+    return super.eContents();
+  }
+
+  /**
+   * @ADDED
+   */
+  @Override
+  public EList eCrossReferences()
+  {
+    throw new UnsupportedOperationException();
   }
 
   /**
