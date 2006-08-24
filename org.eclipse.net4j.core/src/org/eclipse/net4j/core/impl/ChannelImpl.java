@@ -48,6 +48,17 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class ChannelImpl extends ServiceImpl implements Channel
 {
+  public static boolean TRACING = true;
+
+  public static boolean TRACING_BUFFERS = true;
+
+  public static boolean TRACING_STATES = true;
+
+  public static int TRACE_MODE = BufferImpl.FLAT_MODE;
+
+  public static final boolean DEBUG_MODE = !System.getProperty("java.vm.info", "").contains(
+          "sharing");
+
   // TODO Beanify
   public static final ExecutorService EXECUTOR_SERVICE = Executors.newCachedThreadPool();
 
@@ -77,17 +88,9 @@ public class ChannelImpl extends ServiceImpl implements Channel
 
   public static final ChannelStateMachine serverStateMachine = new ServerStateMachine();
 
-  public static final long DEFAULT_RESPONSE_TIMEOUT_MILLIS = 60000;
+  public static final long DEFAULT_RESPONSE_TIMEOUT_MILLIS = DEBUG_MODE ? Long.MAX_VALUE : 5000;
 
   public long responseTimeoutMillis = DEFAULT_RESPONSE_TIMEOUT_MILLIS;
-
-  public static boolean TRACING = false;
-
-  public static boolean TRACING_BUFFERS = TRACING && false;
-
-  public static boolean TRACING_STATES = TRACING && true;
-
-  public static int TRACE_MODE = BufferImpl.FLAT_MODE;
 
   private Connector connector;
 
@@ -200,6 +203,7 @@ public class ChannelImpl extends ServiceImpl implements Channel
     request.setChannel(this);
 
     short signalId = request.getSignalId();
+    if (TRACING && isDebugEnabled()) debug("Transmitting signal id");
     transmitShort(signalId);
 
     if (request.isDebugEnabled())
@@ -248,7 +252,7 @@ public class ChannelImpl extends ServiceImpl implements Channel
 
   public void flush()
   {
-    if (TRACING && isDebugEnabled()) debug("flushing");
+    if (TRACING && isDebugEnabled()) debug("Flushing");
     scheduleBuffer();
   }
 
@@ -628,7 +632,7 @@ public class ChannelImpl extends ServiceImpl implements Channel
     {
       try
       {
-        if (ChannelImpl.TRACING && isDebugEnabled()) debug("Starting signal task");
+        if (TRACING && isDebugEnabled()) debug("Starting signal task");
         // System.out.println("Starting signal task");
         receiverTask = new SignalTask();
         EXECUTOR_SERVICE.execute(receiverTask);
@@ -762,7 +766,7 @@ public class ChannelImpl extends ServiceImpl implements Channel
 
   public void setResponseTimeoutMillis(long responseTimeoutMillis)
   {
-    this.responseTimeoutMillis = responseTimeoutMillis;
+    doSet("responseTimeoutMillis", DEBUG_MODE ? Long.MAX_VALUE : responseTimeoutMillis);
   }
 
   @Override
@@ -783,6 +787,13 @@ public class ChannelImpl extends ServiceImpl implements Channel
     setBeanName(connectorName + "-" + getBeanName() + "-" + channelIndex);
   }
 
+  @Override
+  protected String formatLogMessage(String message)
+  {
+    if (getCommState() == IDLE) return message;
+    return "|   " + message;
+  }
+
   private final class SignalTask implements Runnable
   {
     public void run()
@@ -793,7 +804,7 @@ public class ChannelImpl extends ServiceImpl implements Channel
 
     private void processSignal()
     {
-      if (ChannelImpl.TRACING && isDebugEnabled()) debug("Waiting for signal id");
+      if (TRACING && isDebugEnabled()) debug("Waiting for signal id");
       short signalId = receiveShort();
       Assert.isTrue(signalId != 0, "signalID == 0");
 
@@ -808,9 +819,11 @@ public class ChannelImpl extends ServiceImpl implements Channel
           DeadlockDetector.sleep(5);
         }
 
-        if (confirmation.getSignalId() != -signalId)
+        short requestId = confirmation.getSignalId();
+        if (requestId != -signalId)
         {
-          throw new ImplementationError("Mismatch between Request and Response");
+          throw new ImplementationError("Mismatch between Request(" + requestId + ") and Response("
+                  + (-signalId) + ")");
         }
 
         if (confirmation.isDebugEnabled())
@@ -858,7 +871,10 @@ public class ChannelImpl extends ServiceImpl implements Channel
         if (indication.hasResponse())
         {
           IndicationWithResponse response = (IndicationWithResponse)indication;
-          transmitShort((short)-signalId);
+          short responseId = (short)-signalId;
+          if (TRACING && isDebugEnabled()) debug("Transmitting signal id");
+
+          transmitShort(responseId);
 
           if (response.isDebugEnabled())
           {
@@ -880,7 +896,7 @@ public class ChannelImpl extends ServiceImpl implements Channel
 
     private void postProcessChannel()
     {
-      if (ChannelImpl.TRACING && isDebugEnabled()) debug("Finished signal task");
+      if (TRACING && isDebugEnabled()) debug("Finished signal task");
       // System.out.println("Finished signal task");
       receiverTask = null;
       startSignalTask();

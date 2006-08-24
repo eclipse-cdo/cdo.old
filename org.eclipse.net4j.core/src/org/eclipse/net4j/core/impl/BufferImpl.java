@@ -33,6 +33,10 @@ public class BufferImpl
 
   protected ByteBuffer byteBuffer;
 
+  private transient static int COUNTER;
+
+  private transient int id = ++COUNTER;
+
   public BufferImpl(int size)
   {
     byteBuffer = ByteBuffer.allocateDirect(size);
@@ -198,7 +202,16 @@ public class BufferImpl
 
   public String toString()
   {
-    return byteBuffer.toString();
+    StringBuffer buffer = new StringBuffer("Buffer[id=");
+    buffer.append(id);
+    buffer.append(" pos=");
+    buffer.append(byteBuffer.position());
+    buffer.append(" lim=");
+    buffer.append(byteBuffer.limit());
+    buffer.append(" cap=");
+    buffer.append(byteBuffer.capacity());
+    buffer.append("]");
+    return buffer.toString();
   }
 
   public String toString(int mode)

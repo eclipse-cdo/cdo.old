@@ -17,7 +17,6 @@ import org.eclipse.net4j.core.Negotiator;
 import org.eclipse.net4j.core.impl.AbstractConnector;
 import org.eclipse.net4j.core.impl.BufferImpl;
 import org.eclipse.net4j.embedded.EmbeddedConnector;
-import org.eclipse.net4j.util.ImplementationError;
 
 
 public abstract class AbstractEmbeddedConnector extends AbstractConnector implements
@@ -34,23 +33,23 @@ public abstract class AbstractEmbeddedConnector extends AbstractConnector implem
   @Override
   public Negotiator getNegotiator()
   {
-    throw new ImplementationError("Negotiation is not supported for embedded transport");
+    throw new UnsupportedOperationException();
   }
 
   @Override
   public void setNegotiator(Negotiator negotiator)
   {
-    throw new ImplementationError("Negotiation is not supported for embedded transport");
+    throw new UnsupportedOperationException();
   }
 
   public byte[] receiveNegotiation() throws NegotiationException
   {
-    throw new ImplementationError("Negotiation is not supported for embedded transport");
+    throw new UnsupportedOperationException();
   }
 
   public void transmitNegotiation(byte[] data) throws NegotiationException
   {
-    throw new ImplementationError("Negotiation is not supported for embedded transport");
+    throw new UnsupportedOperationException();
   }
 
   /**
@@ -69,9 +68,17 @@ public abstract class AbstractEmbeddedConnector extends AbstractConnector implem
     doSet("peer", peer);
   }
 
+  /**
+   * The buffer is expected to be flipped already.
+   */
   public void transmit(int channelIndex, BufferImpl buffer)
   {
-    peer.receive(channelIndex, buffer);
+    // TODO Change management of buffer ownership to avoid copy
+    BufferImpl copy = getBufferPool().getBuffer();
+    copy.put(buffer);
+    copy.flip();
+    
+    peer.receive(channelIndex, copy);
   }
 
   public boolean isPeerOnSameHost()
