@@ -75,62 +75,72 @@ public class LoggableImpl implements Loggable, ApplicationContextAware, BeanName
 
   public void debug(String message)
   {
-    if (GUARANTEED_LOGGING) IOHelper.log("DEBUG " + message);
-    getLogger().debug(message);
+    String formatted = formatLogMessage(message);
+    if (GUARANTEED_LOGGING) IOHelper.log("DEBUG " + formatted);
+    getLogger().debug(formatted);
   }
 
   public void debug(String message, Throwable t)
   {
-    if (GUARANTEED_LOGGING) IOHelper.log("DEBUG " + message, t);
-    getLogger().debug(message, t);
+    String formatted = formatLogMessage(message);
+    if (GUARANTEED_LOGGING) IOHelper.log("DEBUG " + formatted, t);
+    getLogger().debug(formatted, t);
   }
 
   public void info(String message)
   {
-    if (GUARANTEED_LOGGING) IOHelper.log("INFO " + message);
-    getLogger().info(message);
+    String formatted = formatLogMessage(message);
+    if (GUARANTEED_LOGGING) IOHelper.log("INFO " + formatted);
+    getLogger().info(formatted);
   }
 
   public void info(String message, Throwable t)
   {
-    if (GUARANTEED_LOGGING) IOHelper.log("INFO " + message, t);
-    getLogger().info(message, t);
+    String formatted = formatLogMessage(message);
+    if (GUARANTEED_LOGGING) IOHelper.log("INFO " + formatted, t);
+    getLogger().info(formatted, t);
   }
 
   public void warn(String message)
   {
-    if (GUARANTEED_LOGGING) IOHelper.log("WARN " + message);
-    getLogger().warn(message);
+    String formatted = formatLogMessage(message);
+    if (GUARANTEED_LOGGING) IOHelper.log("WARN " + formatted);
+    getLogger().warn(formatted);
   }
 
   public void warn(String message, Throwable t)
   {
-    if (GUARANTEED_LOGGING) IOHelper.log("WARN " + message, t);
-    getLogger().warn(message, t);
+    String formatted = formatLogMessage(message);
+    if (GUARANTEED_LOGGING) IOHelper.log("WARN " + formatted, t);
+    getLogger().warn(formatted, t);
   }
 
   public void error(String message)
   {
-    if (GUARANTEED_LOGGING) IOHelper.log("ERROR " + message);
-    getLogger().error(message);
+    String formatted = formatLogMessage(message);
+    if (GUARANTEED_LOGGING) IOHelper.log("ERROR " + formatted);
+    getLogger().error(formatted);
   }
 
   public void error(String message, Throwable t)
   {
-    if (GUARANTEED_LOGGING) IOHelper.log("ERROR " + message, t);
-    getLogger().error(message, t);
+    String formatted = formatLogMessage(message);
+    if (GUARANTEED_LOGGING) IOHelper.log("ERROR " + formatted, t);
+    getLogger().error(formatted, t);
   }
 
   public void fatal(String message)
   {
-    if (GUARANTEED_LOGGING) IOHelper.log("FATAL " + message);
-    getLogger().fatal(message);
+    String formatted = formatLogMessage(message);
+    if (GUARANTEED_LOGGING) IOHelper.log("FATAL " + formatted);
+    getLogger().fatal(formatted);
   }
 
   public void fatal(String message, Throwable t)
   {
-    if (GUARANTEED_LOGGING) IOHelper.log("FATAL " + message, t);
-    getLogger().fatal(message, t);
+    String formatted = formatLogMessage(message);
+    if (GUARANTEED_LOGGING) IOHelper.log("FATAL " + formatted, t);
+    getLogger().fatal(formatted, t);
   }
 
   public boolean isDebugEnabled()
@@ -185,5 +195,10 @@ public class LoggableImpl implements Loggable, ApplicationContextAware, BeanName
       logger = Logger.getLogger(getFullBeanName());
     }
     return logger;
+  }
+
+  protected String formatLogMessage(String message)
+  {
+    return message;
   }
 }

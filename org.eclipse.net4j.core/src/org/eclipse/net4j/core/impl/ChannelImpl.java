@@ -48,11 +48,11 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class ChannelImpl extends ServiceImpl implements Channel
 {
-  public static boolean TRACING = true;
+  public static boolean TRACING = false;
 
-  public static boolean TRACING_BUFFERS = true;
+  public static boolean TRACING_BUFFERS = false;
 
-  public static boolean TRACING_STATES = true;
+  public static boolean TRACING_STATES = false;
 
   public static int TRACE_MODE = BufferImpl.FLAT_MODE;
 

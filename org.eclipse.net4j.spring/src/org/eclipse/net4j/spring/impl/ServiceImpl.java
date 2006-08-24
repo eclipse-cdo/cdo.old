@@ -286,12 +286,12 @@ public class ServiceImpl extends LoggableImpl implements Service, StateListener,
 
   public void dump()
   {
-    dump(true);
+    dump(false);
   }
 
   protected void dump(boolean withInternals)
   {
-    dump(true, new ArrayList());
+    dump(withInternals, new ArrayList());
   }
 
   protected void dump(boolean withInternals, List attributes)
