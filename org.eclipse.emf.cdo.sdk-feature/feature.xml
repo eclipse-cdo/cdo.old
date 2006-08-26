@@ -22,11 +22,6 @@
    </url>
 
    <includes
-         id="org.eclipse.emf.cdo.source"
-         version="0.0.0"
-         match="compatible"/>
-
-   <includes
          id="org.eclipse.emf.cdo"
          version="0.0.0"
          match="compatible"/>
@@ -37,8 +32,14 @@
          match="compatible"/>
 
    <includes
+         id="org.eclipse.emf.cdo.source"
+         version="0.0.0"
+         match="compatible"/>
+
+   <includes
          id="org.eclipse.emf.cdo.utilities"
-         version="0.0.0"/>
+         version="0.0.0"
+         match="compatible"/>
 
    <requires>
       <import feature="org.eclipse.emf" version="2.2.0" match="compatible"/>
