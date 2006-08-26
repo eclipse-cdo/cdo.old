@@ -26,8 +26,7 @@ import org.eclipse.emf.ecore.EReference;
  * is always contained in a {@link PackageInfo} instance.<p>
  * 
  * A server assigned <i>class identifier</i> ({@link CID}) uniquely identifies
- * a {@link ClassInfo instance} within the scope of a {@link PackageManager}.
- * A {@link CID} is a flat integer value.<p>
+ * a {@link ClassInfo} instance within the scope of a {@link PackageManager}.<p>
  *  
  * This interface is not expected to be implemented by clients.<p>
  * 
@@ -105,7 +104,8 @@ public interface ClassInfo
    * {@link ClassInfo} instance returned by {@link #getParent()} are excluded
    * from the result.<p>
    * 
-   * @return The name of this {@link ClassInfo}.
+   * @return A handle to the internal array of the {@link AttributeInfo} 
+   * instances contained by this {@link ClassInfo}.<p>
    */
   public AttributeInfo[] getAttributeInfos();
 

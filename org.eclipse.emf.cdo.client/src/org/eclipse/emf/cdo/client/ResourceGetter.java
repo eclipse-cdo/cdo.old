@@ -11,9 +11,20 @@
 package org.eclipse.emf.cdo.client;
 
 
+/**
+ * For internal use only.<p>
+ * 
+ * @author Eike Stepper
+ */
 public interface ResourceGetter
 {
+  /**
+   * For internal use only.<p>
+   */
   public CDOResource getResource(int rid);
 
+  /**
+   * For internal use only.<p>
+   */
   public CDOResource getResource(long oid);
 }

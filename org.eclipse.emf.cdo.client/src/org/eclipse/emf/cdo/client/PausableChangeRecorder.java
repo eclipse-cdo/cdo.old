@@ -17,17 +17,35 @@ import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 
+/**
+ * For internal use only.<p>
+ * 
+ * @author Eike Stepper
+ */
 public interface PausableChangeRecorder extends Adapter.Internal
 {
+  /**
+   * For internal use only.<p>
+   */
   public void setRecording(boolean on);
 
+  /**
+   * For internal use only.<p>
+   */
   public void setLoading(boolean on);
 
+  /**
+   * For internal use only.<p>
+   */
   public void addAdapter(Notifier notifier);
 
-  //  public void setTarget(Notifier target);
-
+  /**
+   * For internal use only.<p>
+   */
   public void beginRecording(ResourceSet resourceSet);
 
+  /**
+   * For internal use only.<p>
+   */
   public ChangeDescription endRecording();
 }

@@ -11,7 +11,20 @@
 package org.eclipse.emf.cdo.client;
 
 
+/**
+ * Can be registered with a {@link PackageManager} to be subsequently notified about
+ * newly added packages.<p>
+ *
+ * @author Eike Stepper
+ */
 public interface PackageListener
 {
+  /**
+   * Called by the {@link PackageManager} this {@link PackageListener} is 
+   * registered with to notify about newly added packages.<p>
+   * 
+   * {@link PackageManager} API has to be used to determine the set of 
+   * packages currently managed by the calling {@link PackageManager}.<p> 
+   */
   public void notifyAddedPackage();
 }
