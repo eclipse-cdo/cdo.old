@@ -14,15 +14,20 @@ package org.eclipse.emf.cdo.client;
 import org.eclipse.emf.cdo.core.CDOException;
 
 
+/**
+ * The {@link UnconnectedException} class.<p>
+ *
+ * @author Eike Stepper
+ */
 public class UnconnectedException extends CDOException
 {
   /**
-   * 
+   * Needed for serialization.<p>
    */
-  private static final long serialVersionUID = 3258408422029669173L;
+  private static final long serialVersionUID = 1L;
 
   /**
-   * 
+   * Creates an instance of this class.<p>
    */
   public UnconnectedException()
   {
@@ -30,6 +35,8 @@ public class UnconnectedException extends CDOException
   }
 
   /**
+   * Creates an instance of this class.<p>
+   *
    * @param message
    */
   public UnconnectedException(String message)
@@ -38,6 +45,8 @@ public class UnconnectedException extends CDOException
   }
 
   /**
+   * Creates an instance of this class.<p>
+   *
    * @param cause
    */
   public UnconnectedException(Throwable cause)
@@ -46,6 +55,8 @@ public class UnconnectedException extends CDOException
   }
 
   /**
+   * Creates an instance of this class.<p>
+   *
    * @param message
    * @param cause
    */

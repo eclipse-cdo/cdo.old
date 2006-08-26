@@ -31,11 +31,6 @@ public class XMLMappingProviderImpl implements MappingProvider
 {
   protected PackageMapping packageMapping;
 
-  /**
-   * 
-   * @param fileName
-   * @throws IOException
-   */
   public XMLMappingProviderImpl(String fileName) throws IOException
   {
     loadMappingModel(fileName);
@@ -61,11 +56,6 @@ public class XMLMappingProviderImpl implements MappingProvider
     return classMapping.getAttributeMapping(attributeName);
   }
 
-  /**
-   * 
-   * @return
-   * @throws IOException
-   */
   protected void loadMappingModel(String fileName) throws IOException
   {
     ResourceSet resourceSet = new ResourceSetImpl();

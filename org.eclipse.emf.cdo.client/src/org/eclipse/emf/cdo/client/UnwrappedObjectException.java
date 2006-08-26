@@ -14,15 +14,20 @@ package org.eclipse.emf.cdo.client;
 import org.eclipse.emf.cdo.core.CDOException;
 
 
+/**
+ * The {@link UnwrappedObjectException} class.<p>
+ *
+ * @author Eike Stepper
+ */
 public class UnwrappedObjectException extends CDOException
 {
   /**
-   * 
+   * Needed for serialization.<p>
    */
-  private static final long serialVersionUID = 3690478004627255352L;
+  private static final long serialVersionUID = 1L;
 
   /**
-   * 
+   * Creates an instance of this class.<p>
    */
   public UnwrappedObjectException()
   {
@@ -30,6 +35,8 @@ public class UnwrappedObjectException extends CDOException
   }
 
   /**
+   * Creates an instance of this class.<p>
+   *
    * @param message
    */
   public UnwrappedObjectException(String message)
@@ -38,6 +45,8 @@ public class UnwrappedObjectException extends CDOException
   }
 
   /**
+   * Creates an instance of this class.<p>
+   *
    * @param cause
    */
   public UnwrappedObjectException(Throwable cause)
@@ -46,6 +55,8 @@ public class UnwrappedObjectException extends CDOException
   }
 
   /**
+   * Creates an instance of this class.<p>
+   *
    * @param message
    * @param cause
    */

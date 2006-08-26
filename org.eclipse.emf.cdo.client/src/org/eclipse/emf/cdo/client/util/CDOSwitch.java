@@ -58,10 +58,10 @@ public class CDOSwitch
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+   * Calls <code>caseXXX} for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the first non-null result returned by a <code>caseXXX</code> call.
+   * @return the first non-null result returned by a <code>caseXXX} call.
    * @generated
    */
   public Object doSwitch(EObject theEObject)
@@ -70,10 +70,10 @@ public class CDOSwitch
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+   * Calls <code>caseXXX} for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the first non-null result returned by a <code>caseXXX</code> call.
+   * @return the first non-null result returned by a <code>caseXXX} call.
    * @generated
    */
   protected Object doSwitch(EClass theEClass, EObject theEObject)
@@ -91,10 +91,10 @@ public class CDOSwitch
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+   * Calls <code>caseXXX} for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the first non-null result returned by a <code>caseXXX</code> call.
+   * @return the first non-null result returned by a <code>caseXXX} call.
    * @generated
    */
   protected Object doSwitch(int classifierID, EObject theEObject)

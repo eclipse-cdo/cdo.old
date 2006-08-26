@@ -11,28 +11,52 @@
 package org.eclipse.emf.cdo.core;
 
 
+/**
+ * The {@link UnknownDataTypeException} class.<p>
+ *
+ * @author Eike Stepper
+ */
 public class UnknownDataTypeException extends CDOException
 {
   /**
-   * 
+   * Needed for serialization.<p>
    */
-  private static final long serialVersionUID = 3257844363974424370L;
+  private static final long serialVersionUID = 1L;
 
+  /**
+   * Creates an instance of this class.<p>
+   */
   public UnknownDataTypeException()
   {
     super();
   }
 
+  /**
+   * Creates an instance of this class.<p>
+   *
+   * @param message
+   */
   public UnknownDataTypeException(String message)
   {
     super(message);
   }
 
+  /**
+   * Creates an instance of this class.<p>
+   *
+   * @param cause
+   */
   public UnknownDataTypeException(Throwable cause)
   {
     super(cause);
   }
 
+  /**
+   * Creates an instance of this class.<p>
+   *
+   * @param message
+   * @param cause
+   */
   public UnknownDataTypeException(String message, Throwable cause)
   {
     super(message, cause);

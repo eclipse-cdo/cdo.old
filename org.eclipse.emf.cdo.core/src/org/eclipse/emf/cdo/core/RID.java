@@ -11,24 +11,16 @@
 package org.eclipse.emf.cdo.core;
 
 
-import org.eclipse.net4j.core.Protocol;
-
-
 /**
- * Defines symbolic constants to be 
- * used in payload traffic of the CDORES protocol.<p>
- *
+ * A <i>resource identifier</i> of type <code>int</code>.<p>
+ * 
+ * A {@link RID} is assigned to a <code>CDOResource</code> instance by the 
+ * CDO server and uniquely identifies this instance within the scope of a whole 
+ * CDO repository.<p>
+ * 
+ * @see OIDEncoder
  * @author Eike Stepper
  */
-public interface CDOResProtocol extends Protocol, CDOResSignals
+public interface RID
 {
-  /**
-   * The identifying name of the CDORES protocol.<p>
-   */
-  public static final String PROTOCOL_NAME = "cdores";
-
-  /**
-   * For internal use only.<p>
-   */
-  public static final int NO_MORE_RESOURCES = -1;
 }

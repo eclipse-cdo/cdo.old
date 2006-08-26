@@ -14,15 +14,20 @@ package org.eclipse.emf.cdo.core;
 import org.eclipse.net4j.core.CustomProtocolException;
 
 
+/**
+ * The {@link CDOException} class.<p>
+ *
+ * @author Eike Stepper
+ */
 public class CDOException extends CustomProtocolException
 {
   /**
-   * 
+   * Needed for serialization.<p>
    */
-  private static final long serialVersionUID = 3257288036961236279L;
+  private static final long serialVersionUID = 1L;
 
   /**
-   * 
+   * Creates an instance of this class.<p>
    */
   public CDOException()
   {
@@ -30,6 +35,8 @@ public class CDOException extends CustomProtocolException
   }
 
   /**
+   * Creates an instance of this class.<p>
+   *
    * @param message
    */
   public CDOException(String message)
@@ -38,6 +45,8 @@ public class CDOException extends CustomProtocolException
   }
 
   /**
+   * Creates an instance of this class.<p>
+   *
    * @param cause
    */
   public CDOException(Throwable cause)
@@ -46,6 +55,8 @@ public class CDOException extends CustomProtocolException
   }
 
   /**
+   * Creates an instance of this class.<p>
+   *
    * @param message
    * @param cause
    */

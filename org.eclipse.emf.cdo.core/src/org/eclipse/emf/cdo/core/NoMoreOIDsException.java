@@ -11,15 +11,20 @@
 package org.eclipse.emf.cdo.core;
 
 
+/**
+ * The {@link NoMoreOIDsException} class.<p>
+ *
+ * @author Eike Stepper
+ */
 public class NoMoreOIDsException extends CDOException
 {
   /**
-   * 
+   * Needed for serialization.<p>
    */
-  private static final long serialVersionUID = 4120851070714067251L;
+  private static final long serialVersionUID = 1L;
 
   /**
-   * 
+   * Creates an instance of this class.<p>
    */
   public NoMoreOIDsException()
   {
@@ -27,6 +32,8 @@ public class NoMoreOIDsException extends CDOException
   }
 
   /**
+   * Creates an instance of this class.<p>
+   *
    * @param message
    */
   public NoMoreOIDsException(String message)
@@ -35,6 +42,8 @@ public class NoMoreOIDsException extends CDOException
   }
 
   /**
+   * Creates an instance of this class.<p>
+   *
    * @param cause
    */
   public NoMoreOIDsException(Throwable cause)
@@ -43,6 +52,8 @@ public class NoMoreOIDsException extends CDOException
   }
 
   /**
+   * Creates an instance of this class.<p>
+   *
    * @param message
    * @param cause
    */

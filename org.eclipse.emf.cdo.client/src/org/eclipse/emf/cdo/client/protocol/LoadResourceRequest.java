@@ -13,7 +13,6 @@ package org.eclipse.emf.cdo.client.protocol;
 
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceManager;
-import org.eclipse.emf.cdo.client.impl.ResourceManagerImpl;
 import org.eclipse.emf.cdo.core.CDOProtocol;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;

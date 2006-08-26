@@ -13,14 +13,12 @@ package org.eclipse.emf.cdo.client.impl;
 
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.PausableChangeRecorder;
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import java.util.Collections;
-import java.util.Iterator;
 
 
 public class PausableChangeRecorderImpl extends ChangeRecorder implements PausableChangeRecorder

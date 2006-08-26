@@ -19,7 +19,6 @@ import org.eclipse.emf.cdo.client.CDOPersistable;
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ClassInfo;
 import org.eclipse.emf.cdo.client.ResourceManager;
-import org.eclipse.emf.cdo.client.impl.ResourceManagerImpl;
 import org.eclipse.emf.cdo.core.OIDEncoder;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;

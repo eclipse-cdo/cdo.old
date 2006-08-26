@@ -286,10 +286,6 @@ public class AnnotationMappingProviderImpl implements MappingProvider, CDODataTy
     return sqlIdentifier(name);
   }
 
-  /**
-   * @param attribute
-   * @return
-   */
   public static int getDefaultColumnType(EAttribute attribute, AttributeConverter attributeConverter)
   {
     int dataType = attributeConverter.getCDODataType(attribute.getEAttributeType());

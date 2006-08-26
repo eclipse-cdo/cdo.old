@@ -132,10 +132,6 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
     }
   }
 
-  /**
-   * @param mappingFile
-   * @return
-   */
   protected MappingProvider getMappingProvider(EPackage ePackage, String mappingFile)
   {
     // TODO Move mapping file to configuration area
@@ -220,17 +216,11 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
     return eClassToClassInfoMap.values().iterator();
   }
 
-  /**
-   * @return Returns the autoPersistent.
-   */
   public boolean isAutoPersistent()
   {
     return autoPersistent;
   }
 
-  /**
-   * @param autoPersistent The autoPersistent to set.
-   */
   public void setAutoPersistent(boolean autoPersistent)
   {
     doSet("autoPersistent", autoPersistent);

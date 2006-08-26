@@ -31,7 +31,6 @@ import org.eclipse.emf.cdo.core.OIDEncoder;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -269,10 +268,6 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     transaction.beginRecording(resourceSet);
   }
 
-  /**
-   * @param oid
-   * @return
-   */
   public EObject getObject(long oid)
   {
     EObject object = (EObject) oidToObjectMap.get(new Long(oid));
@@ -285,10 +280,6 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     return null;
   }
 
-  /**
-   * @param oid
-   * @return
-   */
   public EObject getProxyObject(long oid)
   {
     EObject object = (EObject) oidToObjectMap.get(new Long(oid));
