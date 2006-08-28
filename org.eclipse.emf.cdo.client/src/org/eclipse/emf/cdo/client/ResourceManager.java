@@ -46,8 +46,10 @@ public interface ResourceManager extends Service
    * for the {@link CommitTransactionRequest} is received and processed.<p>
    * 
    * @see CommitTransactionRequest
+   * @throws OptimisticControlException if one or several of the objects to be committed
+   * has never versions at server side.<p> 
    */
-  public void commit();
+  public void commit() throws OptimisticControlException;
 
   /**
    * Rolls back the current transaction that is started with the creation 
@@ -277,7 +279,7 @@ public interface ResourceManager extends Service
   public Set queryExtent(EClass context, boolean exactMatch);
 
   /**
-   * Adds an {@link InvalidationListener} to the list of listeners to be notified about 
+   * Adds a {@link InvalidationListener} to the list of listeners to be notified about 
    * invalidated obejcts in the scope of this {@link PackageManager}.<p>
    *
    * @param listener The {@link InvalidationListener} to be added.<p>
@@ -285,7 +287,7 @@ public interface ResourceManager extends Service
   public void addInvalidationListener(InvalidationListener listener);
 
   /**
-   * Removes an {@link InvalidationListener} from the list of listeners to be notified about 
+   * Removes a {@link InvalidationListener} from the list of listeners to be notified about 
    * invalidated obejcts in the scope of this {@link PackageManager}.<p>
    *
    * @param listener The {@link InvalidationListener} to be removed.<p>
