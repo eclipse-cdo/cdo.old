@@ -16,6 +16,7 @@ import org.eclipse.net4j.spring.Service;
 
 import org.eclipse.emf.cdo.client.protocol.CommitTransactionRequest;
 import org.eclipse.emf.cdo.core.OID;
+import org.eclipse.emf.cdo.core.RID;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
