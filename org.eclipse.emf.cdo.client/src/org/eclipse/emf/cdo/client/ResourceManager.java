@@ -67,18 +67,19 @@ public interface ResourceManager extends Service
   public PausableChangeRecorder getTransaction();
 
   /**
-   * TODO Document method getResourceSet<p>
-   * The <code>getResourceSet</code> method.<p>
+   * Returns the {@link ResourceSet} that is associated with and managed by this 
+   * {@link ResourceManager}.<p>
    *
-   * @return
+   * @return The associated {@link ResourceSet}.<p> 
    */
   public ResourceSet getResourceSet();
 
   /**
-   * TODO Document method setResourceSet<p>
-   * The <code>setResourceSet</code> method.<p>
+   * Associates the given {@link ResourceSet} with this {@link ResourceManager}.<p>
+   * 
+   * This method can only be called once!<p> 
    *
-   * @param resourceSet
+   * @param resourceSet The {@link ResourceSet} to associate.<p> 
    */
   public void setResourceSet(ResourceSet resourceSet);
 
@@ -176,11 +177,15 @@ public interface ResourceManager extends Service
   public EObject createEObject(EClass eClass, long oid, int oca, CDOResource resource);
 
   /**
-   * TODO Document method getObject<p>
-   * The <code>getObject</code> method.<p>
+   * Returns the {@link EObject} that is internally identified by the given global 
+   * {@link OID}.<p>
    *
-   * @param oid
-   * @return
+   * If the {@link CDOResource} that contains the found {@link EObject} is not loaded 
+   * yet, it is automatically loaded into the associated {@link ResourceSet} before.<p>
+   *  
+   * @param oid The {@link OID} of the {@link EObject} to return.<p>
+   * @return The {@link EObject} that is internally identified by the given global 
+   * {@link OID}.<p>
    */
   public EObject getObject(long oid);
 
@@ -202,42 +207,71 @@ public interface ResourceManager extends Service
   public PackageManager getPackageManager();
 
   /**
-   * TODO Document method queryExtent<p>
-   * The <code>queryExtent</code> method.<p>
-   *
-   * @param context
-   * @return
+   * Convenience method to query polymorphic, gloabl extents, returns the same result as 
+   * <code>queryExtent(context, false, null)</code>.<p>
+   *   
+   * @see #queryExtent(EClass, boolean, CDOResource)
+   * 
+   * @param context The {@link EClass} that all the objects to be queried 
+   *    shall be castable to.
+   * @return A {@link Set} of all the objects that can safely be casted to the 
+   * context {@link EClass}.
    */
   public Set queryExtent(EClass context);
 
   /**
-   * TODO Document method queryExtent<p>
-   * The <code>queryExtent</code> method.<p>
-   *
-   * @param context
-   * @param resource
-   * @return
+   * Convenience method to query polymorphic extents, returns the same result as 
+   * <code>queryExtent(context, false, resource)</code>.<p>
+   *   
+   * @see #queryExtent(EClass, boolean, CDOResource)
+   * 
+   * @param context The {@link EClass} that all the objects to be queried 
+   *    shall be castable to.
+   * @param resource The {@link CDOResource} to be used as the scope for the extent
+   * or <code>null</code> for global extent scope.<p> 
+   * @return A {@link Set} of all the objects that can safely be casted to the 
+   * context {@link EClass}.
    */
   public Set queryExtent(EClass context, CDOResource resource);
 
   /**
-   * TODO Document method queryExtent<p>
-   * The <code>queryExtent</code> method.<p>
-   *
-   * @param context
-   * @param exactMatch
-   * @param resource
-   * @return
+   * Sends a request to the CDO server to query all
+   * {@link CDOPersistable} instances in the given {@link CDOResource} or in all
+   * resources of the CDO repository that are instances of the context {@link EClass} 
+   * or of any of its subclasses.<p>
+   * 
+   * The {@link CDOPersistable} instances do not have to be already 
+   * loaded in order to be found by this remote query. If they had not been loaded
+   * before, CDO will create proxies for them and lazily load them while iterating 
+   * over the returned {@link Set}. The remote query is performed on each call
+   * to this method, no caching will occur.<p>
+   *  
+   * @see CDOResource#queryExtent(EClass, boolean)
+   * @param context The {@link EClass} that all the objects to be queried 
+   *    shall be castable to.
+   * @param exactMatch Pass <code>true</code> to exclude objects from the result
+   *    that are instances of subclasses of the context {@link EClass}, 
+   *    <code>false</code> otherwise.
+   * @param resource The {@link CDOResource} to be used as the scope for the extent
+   * or <code>null</code> for global extent scope.<p> 
+   * @return A {@link Set} of all the objects that can safely be casted to the context 
+   *    {@link EClass}.
    */
   public Set queryExtent(EClass context, boolean exactMatch, CDOResource resource);
 
   /**
-   * TODO Document method queryExtent<p>
-   * The <code>queryExtent</code> method.<p>
-   *
-   * @param context
-   * @param exactMatch
-   * @return
+   * Convenience method to query gloabl extents, returns the same result as 
+   * <code>queryExtent(context, exactMatch, null)</code>.<p>
+   *   
+   * @see #queryExtent(EClass, boolean, CDOResource)
+   * 
+   * @param context The {@link EClass} that all the objects to be queried 
+   *    shall be castable to.
+   * @param exactMatch Pass <code>true</code> to exclude objects from the result
+   *    that are instances of subclasses of the context {@link EClass}, 
+   *    <code>false</code> otherwise.
+   * @return A {@link Set} of all the objects in all resources of the CDO respository 
+   *    that can safely be casted to the context {@link EClass}.
    */
   public Set queryExtent(EClass context, boolean exactMatch);
 
