@@ -14,11 +14,13 @@ package org.eclipse.emf.cdo.client.impl;
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.PausableChangeRecorder;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import java.util.Collections;
+import java.util.List;
 
 
 public class PausableChangeRecorderImpl extends ChangeRecorder implements PausableChangeRecorder
@@ -37,6 +39,12 @@ public class PausableChangeRecorderImpl extends ChangeRecorder implements Pausab
   public void setLoading(boolean on)
   {
     loadingTargets = on;
+  }
+
+  public boolean isChanged(EObject object)
+  {
+    List featureChanges = getFeatureChanges(object);
+    return !featureChanges.isEmpty();
   }
 
   public void beginRecording(ResourceSet resourceSet)
@@ -77,21 +85,21 @@ public class PausableChangeRecorderImpl extends ChangeRecorder implements Pausab
     //    }
   }
 
-//  public void notifyChanged(Notification notification)
-//  {
-//    Object notifier = notification.getNotifier();
-//    if (notifier instanceof Resource)
-//    {
-//      int featureID = notification.getFeatureID(Resource.class);
-//      switch (featureID)
-//      {
-//        case Resource.RESOURCE__IS_LOADED:
-//          return;
-//      }
-//    }
-//
-//    super.notifyChanged(notification);
-//  }
+  //  public void notifyChanged(Notification notification)
+  //  {
+  //    Object notifier = notification.getNotifier();
+  //    if (notifier instanceof Resource)
+  //    {
+  //      int featureID = notification.getFeatureID(Resource.class);
+  //      switch (featureID)
+  //      {
+  //        case Resource.RESOURCE__IS_LOADED:
+  //          return;
+  //      }
+  //    }
+  //
+  //    super.notifyChanged(notification);
+  //  }
 
   @Override
   public void addAdapter(Notifier notifier)

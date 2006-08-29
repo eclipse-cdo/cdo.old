@@ -13,6 +13,7 @@ package org.eclipse.emf.cdo.client;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
@@ -48,4 +49,9 @@ public interface PausableChangeRecorder extends Adapter.Internal
    * For internal use only.<p>
    */
   public ChangeDescription endRecording();
+
+  /**
+   * For internal use only.<p>
+   */
+  public boolean isChanged(EObject object);
 }

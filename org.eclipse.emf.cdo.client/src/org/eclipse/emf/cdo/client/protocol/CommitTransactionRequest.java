@@ -123,7 +123,8 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
     if (!ok)
     {
       changeDescription.apply();
-      throw new OptimisticControlException();
+      return Boolean.FALSE;
+//      throw new OptimisticControlException();
     }
 
     ResourceManager resourceManager = getResourceManager();
@@ -184,7 +185,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
       ResourceManagerImpl.incOCA(object);
     }
 
-    return null;
+    return Boolean.TRUE;
   }
 
   private void announceNewResources()

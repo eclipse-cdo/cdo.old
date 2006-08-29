@@ -22,6 +22,7 @@ import org.eclipse.net4j.util.thread.Worker;
 import org.eclipse.emf.cdo.client.CDOPersistable;
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ClassInfo;
+import org.eclipse.emf.cdo.client.OptimisticControlException;
 import org.eclipse.emf.cdo.client.PackageManager;
 import org.eclipse.emf.cdo.client.PausableChangeRecorder;
 import org.eclipse.emf.cdo.client.ResourceManager;
@@ -264,8 +265,13 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     }
 
     ChangeDescription cd = transaction.endRecording();
-    ClientCDOProtocolImpl.requestCommit(getChannel(), cd, getPackageManager());
+    boolean ok = ClientCDOProtocolImpl.requestCommit(getChannel(), cd, getPackageManager());
     transaction.beginRecording(resourceSet);
+
+    if (!ok)
+    {
+      throw new OptimisticControlException("Another CDO transaction has updated one of the objects to be saved. Your transaction has been rolled back.");
+    }
   }
 
   public EObject getObject(long oid)
@@ -611,6 +617,17 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
         {
           warn("Object " + packageManager.getOidEncoder().toString(oid)
               + " is invalidated but not loaded!");
+          return;
+        }
+
+        if (transaction.isChanged(object))
+        {
+          if (isDebugEnabled())
+          {
+            debug("Ignoring attempt to invalidate changed object: "
+                + packageManager.getOidEncoder().toString(oid));
+          }
+
           return;
         }
 

@@ -182,14 +182,15 @@ public class ClientCDOProtocolImpl extends AbstractCDOProtocol
     postProcessNewResources(channel);
   }
 
-  public static void requestCommit(Channel channel, ChangeDescription changeDescription,
+  public static boolean requestCommit(Channel channel, ChangeDescription changeDescription,
       PackageManager packageManager)
   {
     assertValidChannel(channel);
     packageManager.announceNewPackages(channel);
 
     Request signal = new CommitTransactionRequest(changeDescription);
-    channel.transmit(signal);
+    Object result = channel.transmit(signal);
+    return ((Boolean) result).booleanValue();
   }
 
   protected void validate() throws ValidationException

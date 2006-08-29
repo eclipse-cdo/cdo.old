@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.cdo.client.CDOResource;
+import org.eclipse.emf.cdo.client.OptimisticControlException;
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.client.ResourceManager.InvalidationListener;
 import org.eclipse.emf.cdo.examples.client.internal.ExampleClientPlugin;
@@ -104,6 +105,7 @@ import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -1065,7 +1067,7 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
    * This is for implementing {@link IEditorPart} and simply saves the model
    * file. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
   public void doSave(IProgressMonitor progressMonitor)
   {
@@ -1094,6 +1096,10 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
             first = false;
           }
         }
+        catch (OptimisticControlException ex)
+        {
+          throw ex;
+        }
         catch (Exception exception)
         {
           ExampleUIActivator.INSTANCE.log(exception);
@@ -1112,11 +1118,24 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
       ((BasicCommandStack)editingDomain.getCommandStack()).saveIsDone();
       firePropertyChange(IEditorPart.PROP_DIRTY);
     }
-    catch (Exception exception)
+    catch (InvocationTargetException ex)
+    {
+      Throwable targetException = ex.getTargetException();
+      if (targetException instanceof OptimisticControlException)
+      {
+        MessageDialog.openError(getSite().getShell(), "Optimistic Control Exception",
+                targetException.getLocalizedMessage());
+      }
+      else
+      {
+        ExampleUIActivator.INSTANCE.log(ex);
+      }
+    }
+    catch (Exception ex)
     {
       // Something went wrong that shouldn't.
       //
-      ExampleUIActivator.INSTANCE.log(exception);
+      ExampleUIActivator.INSTANCE.log(ex);
     }
   }
 

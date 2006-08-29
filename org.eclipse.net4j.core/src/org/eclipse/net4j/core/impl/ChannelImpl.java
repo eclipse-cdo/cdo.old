@@ -247,6 +247,12 @@ public class ChannelImpl extends ServiceImpl implements Channel
     currentRequest = null;
     Object tmp = returnValue;
     returnValue = null;
+
+    if (tmp instanceof ResponseExceptionWrapper)
+    {
+      throw ((ResponseExceptionWrapper)tmp).getException();
+    }
+
     return tmp;
   }
 
@@ -834,17 +840,32 @@ public class ChannelImpl extends ServiceImpl implements Channel
           confirmation.debug("Receiving confirmation " + confirmation.getName());
         }
 
-        synchronized (ChannelImpl.this)
+        try
         {
-          processCommEvent(Channel.CONFIRM_START);
-          returnValue = confirmation.confirm();
-          processCommEvent(Channel.CONFIRM_END);
+          synchronized (ChannelImpl.this)
+          {
+            try
+            {
+              processCommEvent(Channel.CONFIRM_START);
+              returnValue = confirmation.confirm();
+            }
+            finally
+            {
+              processCommEvent(Channel.CONFIRM_END);
+            }
+          }
         }
-
-        synchronized (responseMutex)
+        catch (RuntimeException ex)
         {
-          responseReady = true;
-          responseMutex.notifyAll();
+          returnValue = new ResponseExceptionWrapper(ex);
+        }
+        finally
+        {
+          synchronized (responseMutex)
+          {
+            responseReady = true;
+            responseMutex.notifyAll();
+          }
         }
       }
       else
