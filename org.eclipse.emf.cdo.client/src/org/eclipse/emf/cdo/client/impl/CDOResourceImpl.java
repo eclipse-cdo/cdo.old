@@ -15,6 +15,7 @@ import org.eclipse.net4j.core.Channel;
 
 import org.eclipse.emf.cdo.client.CDOPersistable;
 import org.eclipse.emf.cdo.client.CDOResource;
+import org.eclipse.emf.cdo.client.OptimisticControlException;
 import org.eclipse.emf.cdo.client.ResourceInfo;
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.client.protocol.ClientCDOProtocolImpl;
@@ -129,9 +130,19 @@ public class CDOResourceImpl extends ResourceImpl implements CDOResource
     {
       resourceManager.commit();
     }
+    catch (OptimisticControlException ex)
+    {
+      throw ex;
+    }
+    catch (RuntimeException ex)
+    {
+      logger.error("Error while committing", ex);
+      throw ex;
+    }
     catch (Throwable t)
     {
       logger.error("Error while committing", t);
+      throw new RuntimeException(t);
     }
   }
 
