@@ -29,7 +29,6 @@ import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.client.ResourceManager.InvalidationListener;
 import org.eclipse.emf.cdo.examples.client.internal.ExampleClientPlugin;
 import org.eclipse.emf.cdo.examples.ui.internal.ExampleUIActivator;
-import org.eclipse.emf.cdo.examples.ui.internal.UIUtils;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
@@ -77,6 +76,7 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
@@ -84,6 +84,7 @@ import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.IActionBars;
@@ -91,7 +92,9 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPartListener;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.ide.IGotoMarker;
@@ -769,48 +772,27 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
    * This is the method used by the framework to install your own controls. <!--
    * begin-user-doc --> <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
   public void createPages()
   {
-    // Creates the model from the editor input
-    //
     createModel();
 
-    // Create a page for the selection tree view.
-    //
-    {
-      ViewerPane viewerPane = new ViewerPane(getSite().getPage(), CDOEditor.this)
-      {
-        public Viewer createViewer(Composite composite)
-        {
-          Tree tree = new Tree(composite, SWT.MULTI);
-          TreeViewer newTreeViewer = new TreeViewer(tree);
-          return newTreeViewer;
-        }
+    ViewerPane viewerPane = new TreeViewerPane(getSite().getPage(), CDOEditor.this);
+    viewerPane.createControl(getContainer());
 
-        public void requestActivation()
-        {
-          super.requestActivation();
-          setCurrentViewerPane(this);
-        }
-      };
-      viewerPane.createControl(getContainer());
+    selectionViewer = (TreeViewer)viewerPane.getViewer();
+    selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 
-      selectionViewer = (TreeViewer)viewerPane.getViewer();
-      selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+    selectionViewer.setLabelProvider(new CDOLabelProvider(adapterFactory));
+    selectionViewer.setInput(getResource());
+    viewerPane.setTitle(getResource());
 
-      selectionViewer.setLabelProvider(new CDOLabelProvider(adapterFactory));
-      selectionViewer.setInput(getResource());
-      viewerPane.setTitle(getResource());
+    new AdapterFactoryTreeEditor(selectionViewer.getTree(), adapterFactory);
 
-      new AdapterFactoryTreeEditor(selectionViewer.getTree(), adapterFactory);
-
-      createContextMenuFor(selectionViewer);
-      int pageIndex = addPage(viewerPane.getControl());
-      setPageText(pageIndex, getString("_UI_SelectionPage_label"));
-    }
-
+    createContextMenuFor(selectionViewer);
+    int pageIndex = addPage(viewerPane.getControl());
+    setPageText(pageIndex, getString("_UI_SelectionPage_label"));
     setActivePage(0);
 
     getContainer().addControlListener(new ControlAdapter()
@@ -1468,20 +1450,127 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
   /**
    * @ADDED
    */
-  public void notifyInvalidation(ResourceManager resourceManager, long[] oids)
+  public ResourceManager getResourceManager()
   {
-    UIUtils.refreshViewer(getViewer());
-    UIUtils.refreshPropertySheetPage(getPropertySheetPage());
+    return resourceManager;
   }
 
   /**
    * @ADDED
    */
-  private static final class CDOLabelProvider extends AdapterFactoryLabelProvider
+  public void notifyInvalidation(ResourceManager resourceManager, final List<EObject> invalidated,
+          final List<EObject> deferred)
+  {
+    final Display display = PlatformUI.getWorkbench().getDisplay();
+
+    display.asyncExec(new Runnable()
+    {
+      public void run()
+      {
+        // Refresh viewer
+        Viewer viewer = getViewer();
+        if (viewer != null && !viewer.getControl().isDisposed())
+        {
+          try
+          {
+            if (viewer instanceof StructuredViewer)
+            {
+              for (EObject object : invalidated)
+              {
+                ((StructuredViewer)viewer).refresh(object);
+              }
+
+              for (EObject object : deferred)
+              {
+                ((StructuredViewer)viewer).refresh(object);
+              }
+            }
+            else
+            {
+              viewer.refresh();
+            }
+          }
+          catch (Exception ex)
+          {
+            ExampleUIActivator.INSTANCE.log(ex);
+          }
+        }
+
+        // Refresh property sheet page 
+        IPropertySheetPage page = getPropertySheetPage();
+        if (page instanceof PropertySheetPage && !page.getControl().isDisposed())
+        {
+          try
+          {
+            ((PropertySheetPage)page).refresh();
+          }
+          catch (Exception ex)
+          {
+            ExampleUIActivator.INSTANCE.log(ex);
+          }
+        }
+
+        // Refresh title
+        if (currentViewerPane instanceof TreeViewerPane)
+        {
+          CLabel titleLabel = ((TreeViewerPane)currentViewerPane).getTitleLabel();
+          titleLabel.setForeground(display
+                  .getSystemColor(getResourceManager().isRollbackOnly() ? SWT.COLOR_RED
+                          : SWT.COLOR_WIDGET_FOREGROUND));
+        }
+      }
+    });
+  }
+
+  /**
+   * @ADDED
+   */
+  public class TreeViewerPane extends ViewerPane
+  {
+    public TreeViewerPane(IWorkbenchPage page, IWorkbenchPart part)
+    {
+      super(page, part);
+    }
+
+    public Viewer createViewer(Composite composite)
+    {
+      Tree tree = new Tree(composite, SWT.MULTI);
+      TreeViewer newTreeViewer = new TreeViewer(tree);
+      return newTreeViewer;
+    }
+
+    public void requestActivation()
+    {
+      super.requestActivation();
+      setCurrentViewerPane(this);
+    }
+
+    public CLabel getTitleLabel()
+    {
+      return titleLabel;
+    }
+  }
+
+  /**
+   * @ADDED
+   */
+  public static final class CDOLabelProvider extends AdapterFactoryLabelProvider
   {
     private CDOLabelProvider(AdapterFactory factory)
     {
       super(factory);
+    }
+
+    protected boolean isRollbackOnly(Object object)
+    {
+      if (object instanceof CDOResource)
+      {
+        CDOResource resource = (CDOResource)object;
+        ResourceManager resourceManager = resource.getResourceManager();
+        return resourceManager.isRollbackOnly();
+      }
+
+      return false;
     }
 
     @Override
@@ -1489,10 +1578,44 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
     {
       if (object instanceof CDOResource)
       {
-        return ((CDOResource)object).getPath();
+        return object.toString(); //+ (isRollbackOnly(object) ? " [rollback only]" : "");
       }
 
       return super.getText(object);
     }
+
+    //    @Override
+    //    public Image getImage(Object object)
+    //    {
+    //      Image image = super.getImage(object);
+    //
+    //      if (object instanceof CDOResource)
+    //      {
+    //        if (isRollbackOnly(object))
+    //        {
+    //          List images = new ArrayList(2);
+    //          images.add(image);
+    //          images.add(ExampleUIActivator.INSTANCE.getImage("full/ovr16/Conflict"));
+    //          ComposedImage composedImage = new ComposedImage(images);
+    //          image = ExtendedImageRegistry.getInstance().getImage(composedImage);
+    //        }
+    //      }
+    //
+    //      if (object instanceof CDOPersistable)
+    //      {
+    //        CDOResource resource = ((CDOPersistable)object).cdoGetResource();
+    //        ResourceManager resourceManager = resource.getResourceManager();
+    //        if (resourceManager.hasDeferredInvalidation((EObject)object))
+    //        {
+    //          List images = new ArrayList(2);
+    //          images.add(image);
+    //          images.add(ExampleUIActivator.INSTANCE.getImage("full/ovr16/Conflict"));
+    //          ComposedImage composedImage = new ComposedImage(images);
+    //          image = ExtendedImageRegistry.getInstance().getImage(composedImage);
+    //        }
+    //      }
+    //
+    //      return image;
+    //    }
   }
 }

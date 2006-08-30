@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import java.util.List;
 import java.util.Set;
 
 
@@ -37,6 +38,25 @@ import java.util.Set;
  */
 public interface ResourceManager extends Service
 {
+  /**
+   * Returns <code>true</code> if the current transaction can only be rolled back
+   * due to changes by another transaction, <code>false</code> otherwise.<p>
+   *
+   * @return <code>true</code> if the current transaction can only be rolled back
+   * due to changes by another transaction, <code>false</code> otherwise.<p>
+   */
+  public boolean isRollbackOnly();
+
+  /**
+   * Returns <code>true</code> if an invalidation has been deferred for the given 
+   * {@link EObject} within the current transaction, <code>false</code> otherwise.<p>
+   *
+   * @param object The {@link EObject} to check.<p>
+   * @return <code>true</code> if an invalidation has been deferred for the given 
+   * {@link EObject} within the current transaction, <code>false</code> otherwise.<p>
+   */
+  public boolean hasDeferredInvalidation(EObject object);
+
   /**
    * Commits all changes to the CDO repository that have been applied to the contained 
    * {@link CDOPersistable} instances since the last call to {@link #commit} or the
@@ -309,8 +329,11 @@ public interface ResourceManager extends Service
      * 
      * @param resourceManager The {@link ResourceManager} this {@link InvalidationListener} is 
      * registered with.<p>
-     * @param oids An array of {@link OID} values which have been invalidated.<p>
+     * @param invalidated A list of {@link EObject} instances which have been invalidated.<p>
+     * @param deferred A list of {@link EObject} instances which have been deferred 
+     * because they are currently being changed.<p>
      */
-    public void notifyInvalidation(ResourceManager resourceManager, long[] oids);
+    public void notifyInvalidation(ResourceManager resourceManager, List<EObject> invalidated,
+        List<EObject> deferred);
   }
 }

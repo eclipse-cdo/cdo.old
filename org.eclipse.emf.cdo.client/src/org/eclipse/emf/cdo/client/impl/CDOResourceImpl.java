@@ -233,4 +233,11 @@ public class CDOResourceImpl extends ResourceImpl implements CDOResource
   {
     return resourceManager;
   }
+
+  @Override
+  public String toString()
+  {
+    URI formatURI = CDOResourceFactoryImpl.formatURI(getPath());
+    return formatURI.toString();
+  }
 }

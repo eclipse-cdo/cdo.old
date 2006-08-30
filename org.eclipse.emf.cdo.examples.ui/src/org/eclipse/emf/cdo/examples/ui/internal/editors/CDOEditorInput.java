@@ -13,6 +13,7 @@ package org.eclipse.emf.cdo.examples.ui.internal.editors;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.cdo.client.ResourceInfo;
+import org.eclipse.emf.cdo.core.CDOProtocol;
 import org.eclipse.emf.cdo.examples.ui.internal.ExampleUIActivator;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -43,7 +44,7 @@ public final class CDOEditorInput implements IEditorInput
   {
     //int rid = resourceInfo.getRID();
     //return "cdo://" + (rid != 0 ? Integer.toString(rid) : resourceInfo.getPath());
-    return "cdo://" + resourceInfo.getPath();
+    return CDOProtocol.PROTOCOL_SCHEME + resourceInfo.getPath();
   }
 
   public ImageDescriptor getImageDescriptor()
@@ -53,7 +54,7 @@ public final class CDOEditorInput implements IEditorInput
 
   public String getName()
   {
-    String path = resourceInfo.getPath();
+    String path = getResourceURI();
     if (path != null)
     {
       return path;

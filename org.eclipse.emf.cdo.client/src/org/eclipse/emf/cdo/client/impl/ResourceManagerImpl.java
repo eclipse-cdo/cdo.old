@@ -259,6 +259,16 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     }
   }
 
+  public boolean isRollbackOnly()
+  {
+    return !deferredInvalidations.isEmpty();
+  }
+
+  public boolean hasDeferredInvalidation(EObject object)
+  {
+    return deferredInvalidations.contains(object);
+  }
+
   public void commit()
   {
     if (transaction == null)
@@ -560,19 +570,21 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
 
   protected synchronized void processInvalidations(long[] oids)
   {
+    List<EObject> invalidated = new ArrayList<EObject>();
+    List<EObject> deferred = new ArrayList<EObject>();
     for (int i = 0; i < oids.length; i++)
     {
       long oid = oids[i];
       EObject object = getObject(oid);
-
       if (object == null)
       {
-        warn("Object " + packageManager.getOidEncoder().toString(oid)
-            + " is invalidated but not loaded!");
-        continue;
+        if (isDebugEnabled())
+        {
+          debug("Object " + packageManager.getOidEncoder().toString(oid)
+              + " is invalidated but not loaded");
+        }
       }
-
-      if (transaction.isChanged(object))
+      else if (transaction.isChanged(object))
       {
         if (isDebugEnabled())
         {
@@ -580,28 +592,31 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
               + packageManager.getOidEncoder().toString(oid));
         }
 
+        deferred.add(object);
         deferredInvalidations.add(oid);
-        continue;
       }
-
-      if (isDebugEnabled())
+      else
       {
-        debug("Processing invalidation " + packageManager.getOidEncoder().toString(oid));
-      }
+        if (isDebugEnabled())
+        {
+          debug("Processing invalidation " + packageManager.getOidEncoder().toString(oid));
+        }
 
-      URI uri = createProxyURI(oid);
-      ((InternalEObject) object).eSetProxyURI(uri);
-      ((CDOPersistable) object).cdoSetOCA(CDOPersistable.NOT_LOADED_YET);
+        invalidated.add(object);
+        URI uri = createProxyURI(oid);
+        ((InternalEObject) object).eSetProxyURI(uri);
+        ((CDOPersistable) object).cdoSetOCA(CDOPersistable.NOT_LOADED_YET);
+      }
     }
 
-    notifyInvalidationListeners(oids);
+    notifyInvalidationListeners(invalidated, deferred);
   }
 
-  protected void notifyInvalidationListeners(long[] oids)
+  protected void notifyInvalidationListeners(List<EObject> invalidated, List<EObject> deferred)
   {
     for (InvalidationListener listener : invalidationListeners)
     {
-      listener.notifyInvalidation(this, oids);
+      listener.notifyInvalidation(this, invalidated, deferred);
     }
   }
 
