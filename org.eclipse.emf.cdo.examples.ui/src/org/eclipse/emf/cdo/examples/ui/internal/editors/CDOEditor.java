@@ -1091,10 +1091,16 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
             if ((first || !resource.getContents().isEmpty()) && !editingDomain.isReadOnly(resource))
             {
               savedResources.add(resource);
-              resource.save(Collections.EMPTY_MAP);
+              if (!(resource instanceof CDOResource))
+              {
+                resource.save(Collections.EMPTY_MAP);
+              }
             }
+
             first = false;
           }
+
+          resourceManager.commit();
         }
         catch (OptimisticControlException ex)
         {
@@ -1123,6 +1129,8 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
       Throwable targetException = ex.getTargetException();
       if (targetException instanceof OptimisticControlException)
       {
+        ((BasicCommandStack)editingDomain.getCommandStack()).saveIsDone();
+        firePropertyChange(IEditorPart.PROP_DIRTY);
         MessageDialog.openError(getSite().getShell(), "Optimistic Control Exception",
                 targetException.getLocalizedMessage());
       }

@@ -62,6 +62,8 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
 
   private Connector connector;
 
+  private PackageManager packageManager;
+
   private transient Channel cachedChannel;
 
   private transient boolean requestingObjects = true;
@@ -72,9 +74,9 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
 
   private transient Map oidToObjectMap = new HashMap(CAPACITY_oidToObjectMap);
 
-  public transient PausableChangeRecorder transaction;
+  private transient List<Long> deferredInvalidations = new ArrayList<Long>();
 
-  private transient PackageManager packageManager;
+  private transient PausableChangeRecorder transaction;
 
   private transient Invalidator invalidator;
 
@@ -266,11 +268,13 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
 
     ChangeDescription cd = transaction.endRecording();
     boolean ok = ClientCDOProtocolImpl.requestCommit(getChannel(), cd, getPackageManager());
+    processDeferredInvalidations();
     transaction.beginRecording(resourceSet);
 
     if (!ok)
     {
-      throw new OptimisticControlException("Another CDO transaction has updated one of the objects to be saved. Your transaction has been rolled back.");
+      throw new OptimisticControlException(
+          "Another CDO transaction has updated one of the objects to be saved. Your transaction has been rolled back.");
     }
   }
 
@@ -541,6 +545,58 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     invalidationListeners.remove(listener);
   }
 
+  protected void processDeferredInvalidations()
+  {
+    long[] oids = new long[deferredInvalidations.size()];
+    int i = 0;
+    for (Long oid : deferredInvalidations)
+    {
+      oids[i++] = oid;
+    }
+
+    deferredInvalidations.clear();
+    processInvalidations(oids);
+  }
+
+  protected synchronized void processInvalidations(long[] oids)
+  {
+    for (int i = 0; i < oids.length; i++)
+    {
+      long oid = oids[i];
+      EObject object = getObject(oid);
+
+      if (object == null)
+      {
+        warn("Object " + packageManager.getOidEncoder().toString(oid)
+            + " is invalidated but not loaded!");
+        continue;
+      }
+
+      if (transaction.isChanged(object))
+      {
+        if (isDebugEnabled())
+        {
+          debug("Deferring attempt to invalidate changed object: "
+              + packageManager.getOidEncoder().toString(oid));
+        }
+
+        deferredInvalidations.add(oid);
+        continue;
+      }
+
+      if (isDebugEnabled())
+      {
+        debug("Processing invalidation " + packageManager.getOidEncoder().toString(oid));
+      }
+
+      URI uri = createProxyURI(oid);
+      ((InternalEObject) object).eSetProxyURI(uri);
+      ((CDOPersistable) object).cdoSetOCA(CDOPersistable.NOT_LOADED_YET);
+    }
+
+    notifyInvalidationListeners(oids);
+  }
+
   protected void notifyInvalidationListeners(long[] oids)
   {
     for (InvalidationListener listener : invalidationListeners)
@@ -604,44 +660,6 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
         throw ex;
       }
       return NO_PAUSE;
-    }
-
-    private void processInvalidations(long[] oids)
-    {
-      for (int i = 0; i < oids.length; i++)
-      {
-        long oid = oids[i];
-        EObject object = getObject(oid);
-
-        if (object == null)
-        {
-          warn("Object " + packageManager.getOidEncoder().toString(oid)
-              + " is invalidated but not loaded!");
-          return;
-        }
-
-        if (transaction.isChanged(object))
-        {
-          if (isDebugEnabled())
-          {
-            debug("Ignoring attempt to invalidate changed object: "
-                + packageManager.getOidEncoder().toString(oid));
-          }
-
-          return;
-        }
-
-        if (isDebugEnabled())
-        {
-          debug("Processing invalidation " + packageManager.getOidEncoder().toString(oid));
-        }
-
-        URI uri = createProxyURI(oid);
-        ((InternalEObject) object).eSetProxyURI(uri);
-        ((CDOPersistable) object).cdoSetOCA(CDOPersistable.NOT_LOADED_YET);
-      }
-
-      notifyInvalidationListeners(oids);
     }
 
 
