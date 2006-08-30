@@ -39,6 +39,12 @@ public interface CDOProtocol extends Protocol, CDODataTypes, CDOSignals
   public static final int GLOBAL_EXTENT = 0;
 
   /**
+   * A constant that can be passed instead of a resource identifier ({@link RID})
+   * to denote global scope for cross referencing (in contrast to resource-wide scope).<p>
+   */
+  public static final int GLOBAL_XREFS = 0;
+
+  /**
    * The slash string.<p>
    */
   public static final String SLASH = "/";
@@ -71,7 +77,7 @@ public interface CDOProtocol extends Protocol, CDODataTypes, CDOSignals
   /**
    * For internal use only.<p>
    */
-  public static final int NO_MORE_OBJECTS = 0;
+  public static final long NO_MORE_OBJECTS = 0;
 
   /**
    * For internal use only.<p>

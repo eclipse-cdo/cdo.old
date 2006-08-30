@@ -32,6 +32,8 @@ import org.eclipse.emf.cdo.core.OIDEncoder;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -235,6 +237,23 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
   public Set queryExtent(EClass context)
   {
     return queryExtent(context, false, null);
+  }
+
+  public EList queryCrossReferences(EObject object, CDOResource resource)
+  {
+    if (object instanceof CDOPersistable)
+    {
+      long oid = ((CDOPersistable) object).cdoGetOID();
+      return ClientCDOProtocolImpl.requestQueryXRefs(getChannel(), oid, 
+          resource != null ? resource.getRID() : CDOProtocol.GLOBAL_XREFS);
+    }
+    
+    return ECollections.EMPTY_ELIST;
+  }
+
+  public EList queryCrossReferences(EObject object)
+  {
+    return queryCrossReferences(object, null);
   }
 
   public Channel getChannel()

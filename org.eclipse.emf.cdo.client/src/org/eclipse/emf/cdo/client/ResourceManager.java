@@ -17,6 +17,7 @@ import org.eclipse.net4j.spring.Service;
 import org.eclipse.emf.cdo.client.protocol.CommitTransactionRequest;
 import org.eclipse.emf.cdo.core.OID;
 import org.eclipse.emf.cdo.core.RID;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -297,6 +298,25 @@ public interface ResourceManager extends Service
    *    that can safely be casted to the context {@link EClass}.
    */
   public Set queryExtent(EClass context, boolean exactMatch);
+
+  /**
+   * TODO Document method queryCrossReferences<p>
+   * The <code>queryCrossReferences</code> method.<p>
+   *
+   * @param object
+   * @return
+   */
+  public EList queryCrossReferences(EObject object);
+
+  /**
+   * TODO Document method queryCrossReferences<p>
+   * The <code>queryCrossReferences</code> method.<p>
+   *
+   * @param object
+   * @param resource
+   * @return
+   */
+  public EList queryCrossReferences(EObject object,CDOResource resource);
 
   /**
    * Adds a {@link InvalidationListener} to the list of listeners to be notified about 

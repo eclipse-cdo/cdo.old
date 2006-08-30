@@ -12,8 +12,10 @@ package org.eclipse.emf.cdo.client;
 
 
 import org.eclipse.emf.cdo.core.RID;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import java.util.Set;
@@ -128,4 +130,12 @@ public interface CDOResource extends Resource
    */
   public Set queryExtent(EClass context, boolean exactMatch);
 
+  /**
+   * TODO Document method queryCrossReferences<p>
+   * The <code>queryCrossReferences</code> method.<p>
+   *
+   * @param object
+   * @return
+   */
+  public EList queryCrossReferences(EObject object);
 }

@@ -63,4 +63,9 @@ public interface CDOSignals
    * The signal ID of the {@link #QUERY_EXTENT} request.<p>
    */
   public static final byte QUERY_EXTENT = 9;
+
+  /**
+   * The signal ID of the {@link #QUERY_XREFS} request.<p>
+   */
+  public static final byte QUERY_XREFS = 10;
 }

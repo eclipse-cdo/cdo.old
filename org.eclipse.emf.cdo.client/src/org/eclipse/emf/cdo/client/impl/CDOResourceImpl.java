@@ -96,6 +96,11 @@ public class CDOResourceImpl extends ResourceImpl implements CDOResource
     return resourceManager.queryExtent(context, this);
   }
 
+  public EList queryCrossReferences(EObject object)
+  {
+    return resourceManager.queryCrossReferences(object, this);
+  }
+
   public void load(Map options)
   {
     //    if (resourceManager.isRequestingObjects())

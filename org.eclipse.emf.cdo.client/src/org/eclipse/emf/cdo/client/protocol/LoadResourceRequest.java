@@ -44,7 +44,7 @@ public class LoadResourceRequest extends AbstractDataRequest
     for (;;)
     {
       long oid = receiveLong();
-      if (oid == 0) break;
+      if (oid == CDOProtocol.NO_MORE_OBJECTS) break;
 
       int oca = receiveInt();
       int cid = receiveInt();

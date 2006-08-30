@@ -11,44 +11,39 @@
 package org.eclipse.emf.cdo.client.protocol;
 
 
+import org.eclipse.emf.cdo.client.impl.CDOCrossReferenceList;
 import org.eclipse.emf.cdo.core.CDOProtocol;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import java.util.HashSet;
-import java.util.Set;
+import org.eclipse.emf.ecore.EReference;
 
 
-public class QueryExtentRequest extends AbstractDataRequest
+public class QueryXRefsRequest extends AbstractDataRequest
 {
-  private int cid;
-
-  private boolean exactMatch;
+  private long oid;
 
   private int rid;
 
-  public QueryExtentRequest(int cid, boolean exactMatch, int rid)
+  public QueryXRefsRequest(long oid, int rid)
   {
-    this.cid = cid;
-    this.exactMatch = exactMatch;
+    this.oid = oid;
     this.rid = rid;
   }
 
   public short getSignalId()
   {
-    return CDOProtocol.QUERY_EXTENT;
+    return CDOProtocol.QUERY_XREFS;
   }
 
   public void request()
   {
-    transmitInt(cid);
-    transmitBoolean(exactMatch);
+    transmitLong(oid);
     transmitInt(rid);
   }
 
   public Object confirm()
   {
-    Set result = new HashSet();
+    CDOCrossReferenceList result = new CDOCrossReferenceList();
 
     for (;;)
     {
@@ -58,9 +53,12 @@ public class QueryExtentRequest extends AbstractDataRequest
         break;
       }
 
-      int classifierId = (exactMatch ? cid : receiveInt());
-      EObject object = provideObject(oid, classifierId);
-      result.add(object);
+      int feature = receiveInt();
+      int cid = receiveInt();
+
+      EObject object = provideObject(oid, cid);
+      EReference reference = (EReference) object.eClass().getEStructuralFeature(feature);
+      result.addEntry(object, reference);
     }
 
     return result;

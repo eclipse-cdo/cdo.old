@@ -276,7 +276,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
       }
 
       long oid = ResourceManagerImpl.getOID(eObject);
-      if (oid == 0) throw new ImplementationError("oid == 0");
+      if (oid == CDOProtocol.NO_MORE_OBJECTS) throw new ImplementationError("oid == 0");
 
       int cid = classInfo.getCID();
       if (cid <= 0) throw new ImplementationError("cid <= 0");

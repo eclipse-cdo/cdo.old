@@ -112,7 +112,8 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
   @Override
   public EList eCrossReferences()
   {
-    throw new UnsupportedOperationException();
+    ResourceManager resourceManager = cdoResource.getResourceManager();
+    return resourceManager.queryCrossReferences(this);
   }
 
   /**
