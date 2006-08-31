@@ -1526,11 +1526,13 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
         // Refresh viewer
         if (selectionViewer != null && !selectionViewer.getControl().isDisposed())
         {
+          boolean autoReload = ExampleUIActivator.getPlugin().isAutoReload();
+          Color color = ExampleUIActivator.getPlugin().getInvalidationColor();
           for (EObject object : invalidated)
           {
             try
             {
-              if (AUTO_RELOAD)
+              if (autoReload)
               {
                 selectionViewer.refresh(object);
               }
@@ -1539,7 +1541,7 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
                 Widget widget = selectionViewer.getWidget(object);
                 if (widget instanceof TreeItem)
                 {
-                  ((TreeItem)widget).setForeground(getBlueColor());
+                  ((TreeItem)widget).setForeground(color);
                 }
               }
             }
@@ -1565,49 +1567,35 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
         }
 
         // Refresh title
-        if (currentViewerPane instanceof TreeViewerPane && getResourceManager().isRollbackOnly())
+        if (ExampleUIActivator.getPlugin().isShowConflicts())
         {
-          try
-          {
-            CLabel titleLabel = ((TreeViewerPane)currentViewerPane).getTitleLabel();
-            titleLabel.setForeground(getRedColor());
-          }
-          catch (Exception ex)
-          {
-            ExampleUIActivator.INSTANCE.log(ex);
-          }
-        }
-
-        // Highlight deferred invalidations
-        for (EObject object : deferred)
-        {
-          Widget widget = selectionViewer.getWidget(object);
-          if (widget instanceof TreeItem)
+          if (currentViewerPane instanceof TreeViewerPane && getResourceManager().isRollbackOnly())
           {
             try
             {
-              ((TreeItem)widget).setForeground(getRedColor());
+              CLabel titleLabel = ((TreeViewerPane)currentViewerPane).getTitleLabel();
+              titleLabel.setForeground(getRedColor());
             }
             catch (Exception ex)
             {
               ExampleUIActivator.INSTANCE.log(ex);
             }
           }
-        }
 
-        // Highlight deferred invalidations
-        for (EObject object : invalidated)
-        {
-          Widget widget = selectionViewer.getWidget(object);
-          if (widget instanceof TreeItem)
+          // Highlight deferred invalidations
+          for (EObject object : deferred)
           {
-            try
+            Widget widget = selectionViewer.getWidget(object);
+            if (widget instanceof TreeItem)
             {
-              ((TreeItem)widget).setForeground(getBlueColor());
-            }
-            catch (Exception ex)
-            {
-              ExampleUIActivator.INSTANCE.log(ex);
+              try
+              {
+                ((TreeItem)widget).setForeground(getRedColor());
+              }
+              catch (Exception ex)
+              {
+                ExampleUIActivator.INSTANCE.log(ex);
+              }
             }
           }
         }
@@ -1664,25 +1652,14 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
 
     public Font getFont(Object element)
     {
-      if (getResourceManager().getTransaction().isChanged(element))
+      if (ExampleUIActivator.getPlugin().isShowChanges()
+              && getResourceManager().getTransaction().isChanged(element))
       {
         return getBoldFont();
       }
 
       return null;
     }
-
-    //    protected boolean isRollbackOnly(Object object)
-    //    {
-    //      if (object instanceof CDOResource)
-    //      {
-    //        CDOResource resource = (CDOResource)object;
-    //        ResourceManager resourceManager = resource.getResourceManager();
-    //        return resourceManager.isRollbackOnly();
-    //      }
-    //
-    //      return false;
-    //    }
 
     public Color getBackground(Object element)
     {
@@ -1691,7 +1668,7 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
 
     public Color getForeground(Object element)
     {
-      if (element instanceof EObject
+      if (ExampleUIActivator.getPlugin().isShowConflicts() && element instanceof EObject
               && getResourceManager().hasDeferredInvalidation((EObject)element))
       {
         return getRedColor();
@@ -1699,52 +1676,6 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
 
       return null;
     }
-
-    @Override
-    public String getText(Object object)
-    {
-      if (object instanceof EObject
-              && getResourceManager().hasDeferredInvalidation((EObject)object))
-      {
-        return "*" + super.getText(object);
-      }
-
-      return super.getText(object);
-    }
-
-    //    @Override
-    //    public Image getImage(Object object)
-    //    {
-    //      Image image = super.getImage(object);
-    //
-    //      if (object instanceof CDOResource)
-    //      {
-    //        if (isRollbackOnly(object))
-    //        {
-    //          List images = new ArrayList(2);
-    //          images.add(image);
-    //          images.add(ExampleUIActivator.INSTANCE.getImage("full/ovr16/Conflict"));
-    //          ComposedImage composedImage = new ComposedImage(images);
-    //          image = ExtendedImageRegistry.getInstance().getImage(composedImage);
-    //        }
-    //      }
-    //
-    //      if (object instanceof CDOPersistable)
-    //      {
-    //        CDOResource resource = ((CDOPersistable)object).cdoGetResource();
-    //        ResourceManager resourceManager = resource.getResourceManager();
-    //        if (resourceManager.hasDeferredInvalidation((EObject)object))
-    //        {
-    //          List images = new ArrayList(2);
-    //          images.add(image);
-    //          images.add(ExampleUIActivator.INSTANCE.getImage("full/ovr16/Conflict"));
-    //          ComposedImage composedImage = new ComposedImage(images);
-    //          image = ExtendedImageRegistry.getInstance().getImage(composedImage);
-    //        }
-    //      }
-    //
-    //      return image;
-    //    }
   }
 
   /**

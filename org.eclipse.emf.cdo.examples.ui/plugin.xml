@@ -51,6 +51,29 @@
            icon="icons/full/obj16/CDOResource.gif"
            id="org.eclipse.emf.cdo.examples.ui.CDONewWizard"
            name="CDO Resource"/>
+  </extension>
+  
+  <extension
+        point="org.eclipse.ui.preferencePages">
+     <page
+           class="org.eclipse.emf.cdo.examples.ui.internal.preferences.CDOPreferencePage"
+           id="org.eclipse.emf.cdo.examples.ui.CDOPreferencePage"
+           name="CDO"/>
+     <page
+           category="org.eclipse.emf.cdo.examples.ui.CDOPreferencePage"
+           class="org.eclipse.emf.cdo.examples.ui.internal.preferences.CDOExplorerPreferencePage"
+           id="org.eclipse.emf.cdo.examples.ui.CDOExplorerPreferencePage"
+           name="Explorer"/>
+     <page
+           category="org.eclipse.emf.cdo.examples.ui.CDOPreferencePage"
+           class="org.eclipse.emf.cdo.examples.ui.internal.preferences.CDOEditorPreferencePage"
+           id="org.eclipse.emf.cdo.examples.ui.CDOEditorPreferencePage"
+           name="Editor"/>
+  </extension>
+  
+  <extension
+        point="org.eclipse.core.runtime.preferences">
+     <initializer class="org.eclipse.emf.cdo.examples.ui.internal.preferences.PreferenceInitializer"/>
   </extension>    
 
 </plugin>
