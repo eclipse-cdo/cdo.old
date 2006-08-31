@@ -64,10 +64,14 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.viewers.IColorProvider;
+import org.eclipse.jface.viewers.IFontProvider;
+import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProviderChangedEvent;
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -82,11 +86,16 @@ import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -94,7 +103,6 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.ide.IGotoMarker;
@@ -136,7 +144,27 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
   /**
    * @ADDED
    */
+  public static final boolean AUTO_RELOAD = true;
+
+  /**
+   * @ADDED
+   */
   protected ResourceManager resourceManager;
+
+  /**
+   * @ADDED
+   */
+  protected CDOLabelProvider labelProvider;
+
+  /**
+   * @ADDED
+   */
+  private Color redColor; // System color, don't dispose of
+
+  /**
+   * @ADDED
+   */
+  private Color blueColor; // System color, don't dispose of
 
   /**
    * This keeps track of the editing domain that is used to track all changes to
@@ -190,9 +218,9 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
    * parent relation must be correctly defined for this to work. <!--
    * begin-user-doc --> <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
-  protected TreeViewer selectionViewer;
+  protected CDOTreeViewer selectionViewer;
 
   /**
    * This inverts the roll of parent and child in the content provider and show
@@ -535,6 +563,7 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
     //
     Registry regsitry = EMFEditPlugin.getComposedAdapterFactoryDescriptorRegistry();
     adapterFactory = new ComposedAdapterFactory(regsitry);
+    labelProvider = new CDOLabelProvider(adapterFactory);
 
     // Create the command stack that will notify this editor as commands are
     // executed.
@@ -781,10 +810,10 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
     ViewerPane viewerPane = new TreeViewerPane(getSite().getPage(), CDOEditor.this);
     viewerPane.createControl(getContainer());
 
-    selectionViewer = (TreeViewer)viewerPane.getViewer();
+    selectionViewer = (CDOTreeViewer)viewerPane.getViewer();
     selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 
-    selectionViewer.setLabelProvider(new CDOLabelProvider(adapterFactory));
+    selectionViewer.setLabelProvider(labelProvider);
     selectionViewer.setInput(getResource());
     viewerPane.setTitle(getResource());
 
@@ -906,7 +935,7 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
           //
           contentOutlineViewer
                   .setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-          contentOutlineViewer.setLabelProvider(new CDOLabelProvider(adapterFactory));
+          contentOutlineViewer.setLabelProvider(labelProvider);
           contentOutlineViewer.setInput(editingDomain.getResourceSet());
 
           // Make sure our popups work.
@@ -1127,6 +1156,8 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
       //
       ExampleUIActivator.INSTANCE.log(ex);
     }
+
+    labelProvider.fireLabelProviderChanged();
   }
 
   /**
@@ -1458,41 +1489,64 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
   /**
    * @ADDED
    */
+  protected Color getRedColor()
+  {
+    if (redColor == null)
+    {
+      redColor = Display.getDefault().getSystemColor(SWT.COLOR_RED);
+    }
+
+    return redColor;
+  }
+
+  /**
+   * @ADDED
+   */
+  protected Color getBlueColor()
+  {
+    if (blueColor == null)
+    {
+      blueColor = Display.getDefault().getSystemColor(SWT.COLOR_BLUE);
+    }
+
+    return blueColor;
+  }
+
+  /**
+   * @ADDED
+   */
   public void notifyInvalidation(ResourceManager resourceManager, final List<EObject> invalidated,
           final List<EObject> deferred)
   {
-    final Display display = PlatformUI.getWorkbench().getDisplay();
-
+    final Display display = Display.getDefault();
     display.asyncExec(new Runnable()
     {
       public void run()
       {
         // Refresh viewer
-        Viewer viewer = getViewer();
-        if (viewer != null && !viewer.getControl().isDisposed())
+        if (selectionViewer != null && !selectionViewer.getControl().isDisposed())
         {
-          try
+          for (EObject object : invalidated)
           {
-            if (viewer instanceof StructuredViewer)
+            try
             {
-              for (EObject object : invalidated)
+              if (AUTO_RELOAD)
               {
-                ((StructuredViewer)viewer).refresh(object);
+                selectionViewer.refresh(object);
               }
-
-              for (EObject object : deferred)
+              else
               {
-                ((StructuredViewer)viewer).refresh(object);
+                Widget widget = selectionViewer.getWidget(object);
+                if (widget instanceof TreeItem)
+                {
+                  ((TreeItem)widget).setForeground(getBlueColor());
+                }
               }
             }
-            else
+            catch (Exception ex)
             {
-              viewer.refresh();
+              ExampleUIActivator.INSTANCE.log(ex);
             }
-          }
-          catch (Exception ex)
-          {
-            ExampleUIActivator.INSTANCE.log(ex);
           }
         }
 
@@ -1511,12 +1565,51 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
         }
 
         // Refresh title
-        if (currentViewerPane instanceof TreeViewerPane)
+        if (currentViewerPane instanceof TreeViewerPane && getResourceManager().isRollbackOnly())
         {
-          CLabel titleLabel = ((TreeViewerPane)currentViewerPane).getTitleLabel();
-          titleLabel.setForeground(display
-                  .getSystemColor(getResourceManager().isRollbackOnly() ? SWT.COLOR_RED
-                          : SWT.COLOR_WIDGET_FOREGROUND));
+          try
+          {
+            CLabel titleLabel = ((TreeViewerPane)currentViewerPane).getTitleLabel();
+            titleLabel.setForeground(getRedColor());
+          }
+          catch (Exception ex)
+          {
+            ExampleUIActivator.INSTANCE.log(ex);
+          }
+        }
+
+        // Highlight deferred invalidations
+        for (EObject object : deferred)
+        {
+          Widget widget = selectionViewer.getWidget(object);
+          if (widget instanceof TreeItem)
+          {
+            try
+            {
+              ((TreeItem)widget).setForeground(getRedColor());
+            }
+            catch (Exception ex)
+            {
+              ExampleUIActivator.INSTANCE.log(ex);
+            }
+          }
+        }
+
+        // Highlight deferred invalidations
+        for (EObject object : invalidated)
+        {
+          Widget widget = selectionViewer.getWidget(object);
+          if (widget instanceof TreeItem)
+          {
+            try
+            {
+              ((TreeItem)widget).setForeground(getBlueColor());
+            }
+            catch (Exception ex)
+            {
+              ExampleUIActivator.INSTANCE.log(ex);
+            }
+          }
         }
       }
     });
@@ -1525,60 +1618,95 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
   /**
    * @ADDED
    */
-  public class TreeViewerPane extends ViewerPane
+  public final class CDOLabelProvider extends AdapterFactoryLabelProvider implements IFontProvider,
+          IColorProvider
   {
-    public TreeViewerPane(IWorkbenchPage page, IWorkbenchPart part)
-    {
-      super(page, part);
-    }
+    private Font boldFont;
 
-    public Viewer createViewer(Composite composite)
-    {
-      Tree tree = new Tree(composite, SWT.MULTI);
-      TreeViewer newTreeViewer = new TreeViewer(tree);
-      return newTreeViewer;
-    }
-
-    public void requestActivation()
-    {
-      super.requestActivation();
-      setCurrentViewerPane(this);
-    }
-
-    public CLabel getTitleLabel()
-    {
-      return titleLabel;
-    }
-  }
-
-  /**
-   * @ADDED
-   */
-  public static final class CDOLabelProvider extends AdapterFactoryLabelProvider
-  {
     private CDOLabelProvider(AdapterFactory factory)
     {
       super(factory);
     }
 
-    protected boolean isRollbackOnly(Object object)
+    @Override
+    public void dispose()
     {
-      if (object instanceof CDOResource)
+      if (boldFont != null)
       {
-        CDOResource resource = (CDOResource)object;
-        ResourceManager resourceManager = resource.getResourceManager();
-        return resourceManager.isRollbackOnly();
+        boldFont.dispose();
+        boldFont = null;
       }
 
-      return false;
+      super.dispose();
+    }
+
+    private Font getBoldFont()
+    {
+      if (boldFont == null)
+      {
+        Display display = getSite().getShell().getDisplay();
+        FontData[] datas = currentViewer.getControl().getFont().getFontData().clone();
+        datas[0].setStyle(SWT.BOLD);
+        boldFont = new Font(display, datas);
+      }
+
+      return boldFont;
+    }
+
+    public void fireLabelProviderChanged(Object[] objects)
+    {
+      for (Iterator i = labelProviderListeners.iterator(); i.hasNext();)
+      {
+        ILabelProviderListener labelProviderListener = (ILabelProviderListener)i.next();
+        labelProviderListener.labelProviderChanged(new LabelProviderChangedEvent(this, objects));
+      }
+    }
+
+    public Font getFont(Object element)
+    {
+      if (getResourceManager().getTransaction().isChanged(element))
+      {
+        return getBoldFont();
+      }
+
+      return null;
+    }
+
+    //    protected boolean isRollbackOnly(Object object)
+    //    {
+    //      if (object instanceof CDOResource)
+    //      {
+    //        CDOResource resource = (CDOResource)object;
+    //        ResourceManager resourceManager = resource.getResourceManager();
+    //        return resourceManager.isRollbackOnly();
+    //      }
+    //
+    //      return false;
+    //    }
+
+    public Color getBackground(Object element)
+    {
+      return null;
+    }
+
+    public Color getForeground(Object element)
+    {
+      if (element instanceof EObject
+              && getResourceManager().hasDeferredInvalidation((EObject)element))
+      {
+        return getRedColor();
+      }
+
+      return null;
     }
 
     @Override
     public String getText(Object object)
     {
-      if (object instanceof CDOResource)
+      if (object instanceof EObject
+              && getResourceManager().hasDeferredInvalidation((EObject)object))
       {
-        return object.toString(); //+ (isRollbackOnly(object) ? " [rollback only]" : "");
+        return "*" + super.getText(object);
       }
 
       return super.getText(object);
@@ -1617,5 +1745,47 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
     //
     //      return image;
     //    }
+  }
+
+  /**
+   * @ADDED
+   */
+  public class TreeViewerPane extends ViewerPane
+  {
+    public TreeViewerPane(IWorkbenchPage page, IWorkbenchPart part)
+    {
+      super(page, part);
+    }
+
+    public Viewer createViewer(Composite composite)
+    {
+      Tree tree = new Tree(composite, SWT.MULTI);
+      TreeViewer newTreeViewer = new CDOTreeViewer(tree);
+      return newTreeViewer;
+    }
+
+    public void requestActivation()
+    {
+      super.requestActivation();
+      setCurrentViewerPane(this);
+    }
+
+    public CLabel getTitleLabel()
+    {
+      return titleLabel;
+    }
+  }
+
+  public class CDOTreeViewer extends TreeViewer
+  {
+    public CDOTreeViewer(Tree tree)
+    {
+      super(tree);
+    }
+
+    public Widget getWidget(Object element)
+    {
+      return findItem(element);
+    }
   }
 }

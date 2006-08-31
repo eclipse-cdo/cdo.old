@@ -11,6 +11,8 @@
 package org.eclipse.emf.cdo.examples.library.impl;
 
 
+import org.eclipse.emf.cdo.examples.library.*;
+
 import org.eclipse.emf.cdo.examples.library.Author;
 import org.eclipse.emf.cdo.examples.library.Book;
 import org.eclipse.emf.cdo.examples.library.EBook;

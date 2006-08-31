@@ -53,5 +53,5 @@ public interface PausableChangeRecorder extends Adapter.Internal
   /**
    * For internal use only.<p>
    */
-  public boolean isChanged(EObject object);
+  public boolean isChanged(Object object);
 }

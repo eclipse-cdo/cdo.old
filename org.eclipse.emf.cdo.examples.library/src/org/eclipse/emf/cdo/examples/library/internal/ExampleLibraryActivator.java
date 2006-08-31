@@ -11,6 +11,8 @@
 package org.eclipse.emf.cdo.examples.library.internal;
 
 
+import org.eclipse.emf.cdo.client.edit.internal.ClientEditActivator;
+
 import org.eclipse.emf.cdo.client.internal.ClientActivator;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -48,7 +50,7 @@ public final class ExampleLibraryActivator extends EMFPlugin
    */
   public ExampleLibraryActivator()
   {
-    super(new ResourceLocator[] { ClientActivator.INSTANCE,});
+    super(new ResourceLocator[] { ClientEditActivator.INSTANCE,});
   }
 
   /**
