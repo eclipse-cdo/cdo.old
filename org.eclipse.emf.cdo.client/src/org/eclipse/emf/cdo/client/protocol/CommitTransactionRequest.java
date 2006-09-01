@@ -372,7 +372,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
 
       if (isDebugEnabled())
         debug("Transmitting reference to add: oid=" + packageManager.getOidEncoder().toString(oid)
-            + ", feature=" + feature.getFeatureID() + ", ordinal=" + ordinal + ", target=" + target);
+            + ", feature=" + feature.getFeatureID() + ", ordinal=" + ordinal + ", target=" + packageManager.getOidEncoder().toString(target));
 
       transmitLong(oid);
       transmitInt(feature.getFeatureID());
@@ -717,7 +717,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
         if (isDebugEnabled())
           debug("transmitReferenceChange(ADD, oid="
               + packageManager.getOidEncoder().toString(sourceId) + ", featureId="
-              + feature.getFeatureID() + ", ordinal=" + sourceOrdinal + ", target=" + targetId
+              + feature.getFeatureID() + ", ordinal=" + sourceOrdinal + ", target=" + packageManager.getOidEncoder().toString(targetId)
               + ", content=" + feature.isContainment() + ")");
         transmitInt(sourceOrdinal);
         transmitLong(targetId);

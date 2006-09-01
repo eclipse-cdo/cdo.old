@@ -34,6 +34,11 @@ public class ChannelRegistrationIndication extends AbstractIndicationWithRespons
   public void indicate()
   {
     String protocolName = receiveString();
+    if (isDebugEnabled())
+    {
+      debug("Requested protocol " + protocolName);
+    }
+
     Connector connector = channel.getConnector();
     Protocol protocol = connector.findProtocol(protocolName);
     newChannel = connector.createChannel(protocol);
@@ -41,6 +46,12 @@ public class ChannelRegistrationIndication extends AbstractIndicationWithRespons
 
   public void respond()
   {
-    transmitShort(newChannel.getChannelIndex());
+    short channelIndex = newChannel.getChannelIndex();
+    if (isDebugEnabled())
+    {
+      debug("Responding channel " + channelIndex);
+    }
+
+    transmitShort(channelIndex);
   }
 }

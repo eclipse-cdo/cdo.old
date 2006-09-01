@@ -244,10 +244,10 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     if (object instanceof CDOPersistable)
     {
       long oid = ((CDOPersistable) object).cdoGetOID();
-      return ClientCDOProtocolImpl.requestQueryXRefs(getChannel(), oid, 
-          resource != null ? resource.getRID() : CDOProtocol.GLOBAL_XREFS);
+      return ClientCDOProtocolImpl.requestQueryXRefs(getChannel(), oid, resource != null ? resource
+          .getRID() : CDOProtocol.GLOBAL_XREFS);
     }
-    
+
     return ECollections.EMPTY_ELIST;
   }
 
@@ -336,11 +336,6 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     return null;
   }
 
-  public boolean isRequestingObjects()
-  {
-    return requestingObjects;
-  }
-
   public void registerObject(long oid, EObject object)
   {
     // Ensure that the resource will be loaded
@@ -386,6 +381,11 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     cd.apply();
 
     transaction.beginRecording(resourceSet);
+  }
+
+  public boolean isRequestingObjects()
+  {
+    return requestingObjects;
   }
 
   public void startRequestingObjects()
@@ -599,16 +599,16 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
       {
         if (isDebugEnabled())
         {
-          debug("Object " + packageManager.getOidEncoder().toString(oid)
-              + " is invalidated but not loaded");
+          debug("Processing invalidation " + packageManager.getOidEncoder().toString(oid)
+              + " (IGNORED)");
         }
       }
       else if (transaction.isChanged(object))
       {
         if (isDebugEnabled())
         {
-          debug("Deferring attempt to invalidate changed object: "
-              + packageManager.getOidEncoder().toString(oid));
+          debug("Processing invalidation " + packageManager.getOidEncoder().toString(oid)
+              + " (DEFERRED)");
         }
 
         deferred.add(object);

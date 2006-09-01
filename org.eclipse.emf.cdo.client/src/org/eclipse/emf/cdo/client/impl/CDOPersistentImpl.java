@@ -17,9 +17,11 @@ import org.eclipse.emf.cdo.client.CDOPackage;
 import org.eclipse.emf.cdo.client.CDOPersistent;
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceManager;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
@@ -77,6 +79,66 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
     }
 
     return resource;
+  }
+
+  /**
+   * @ADDED
+   */
+  @Override
+  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass,
+      NotificationChain msgs)
+  {
+    if (cdoNoSignalling())
+    {
+      return super.eInverseAdd(otherEnd, featureID, baseClass, msgs);
+    }
+
+    return msgs;
+  }
+
+  /**
+   * @ADDED
+   */
+  @Override
+  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID,
+      NotificationChain msgs)
+  {
+    if (cdoNoSignalling())
+    {
+      return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
+
+    return msgs;
+  }
+
+  /**
+   * @ADDED
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass,
+      NotificationChain msgs)
+  {
+    if (cdoNoSignalling())
+    {
+      return super.eInverseRemove(otherEnd, featureID, baseClass, msgs);
+    }
+
+    return msgs;
+  }
+
+  /**
+   * @ADDED
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID,
+      NotificationChain msgs)
+  {
+    if (cdoNoSignalling())
+    {
+      return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    return msgs;
   }
 
   /**
@@ -165,7 +227,7 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
   {
     //    try
     //    {
-    if (!cdoIsNew() && !cdoIsLoaded())
+    if (cdoResource != null && !cdoIsNew() && !cdoIsLoaded())
     {
       ResourceManager resourceManager = cdoResource.getResourceManager();
       if (resourceManager.isRequestingObjects())
@@ -248,6 +310,14 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
     }
 
     throw new IllegalStateException("Not a CDOResourceImpl:" + eResource());
+  }
+
+  /**
+   * @ADDED
+   */
+  private boolean cdoNoSignalling()
+  {
+    return cdoResource == null || cdoResource.getResourceManager().isRequestingObjects();
   }
 
   /**

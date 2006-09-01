@@ -11,6 +11,8 @@
 package org.eclipse.net4j.core.protocol;
 
 
+import org.eclipse.net4j.core.Channel;
+import org.eclipse.net4j.core.Connector;
 import org.eclipse.net4j.core.ControlProtocol;
 import org.eclipse.net4j.core.impl.AbstractRequest;
 
@@ -31,6 +33,14 @@ public class ChannelDeregistrationRequest extends AbstractRequest
 
   public void request()
   {
+    if (isDebugEnabled())
+    {
+      Connector connector = getChannel().getConnector();
+      Channel channelToDeregistrate = connector.getChannel(channelIndex);
+      String protocolName = channelToDeregistrate.getProtocol().getName();
+      debug("Deregistering channel " + channelIndex + " (" + protocolName + ")");
+    }
+
     transmitInt(channelIndex);
   }
 }

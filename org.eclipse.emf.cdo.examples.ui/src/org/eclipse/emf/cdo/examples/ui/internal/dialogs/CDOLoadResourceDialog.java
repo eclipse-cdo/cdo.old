@@ -15,8 +15,11 @@ import org.eclipse.emf.cdo.client.ResourceInfo;
 import org.eclipse.emf.cdo.examples.client.internal.ExampleClientPlugin;
 import org.eclipse.emf.cdo.examples.ui.internal.ResourceContentProvider;
 import org.eclipse.emf.cdo.examples.ui.internal.ResourceLabelProvider;
+import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -53,6 +56,13 @@ public class CDOLoadResourceDialog extends Dialog
   }
 
   @Override
+  protected void configureShell(Shell shell)
+  {
+    super.configureShell(shell);
+    shell.setText(EMFEditUIPlugin.INSTANCE.getString("_UI_LoadResourceDialog_title"));
+  }
+
+  @Override
   protected Control createDialogArea(Composite parent)
   {
     Composite container = (Composite)super.createDialogArea(parent);
@@ -78,6 +88,13 @@ public class CDOLoadResourceDialog extends Dialog
         }
 
         dialogChanged();
+      }
+    });
+    resourcesViewer.addDoubleClickListener(new IDoubleClickListener()
+    {
+      public void doubleClick(DoubleClickEvent event)
+      {
+        okPressed();
       }
     });
 

@@ -138,16 +138,17 @@ public abstract class AbstractConnector extends ServiceImpl implements Connector
 
     if (withSignal)
     {
-      Channel basicChannel = getChannel(0);
+      Channel controlChannel = getChannel(0);
       ChannelRegistrationRequest signal = new ChannelRegistrationRequest(protocolName);
 
       try
       {
-        basicChannel.transmit(signal);
+        controlChannel.transmit(signal);
       }
       catch (Exception ex)
       {
-        error("Problem while requesting signal " + signal + " through channel " + basicChannel, ex);
+        error("Problem while requesting signal " + signal + " through channel " + controlChannel,
+                ex);
         return null;
       }
     }
@@ -158,21 +159,20 @@ public abstract class AbstractConnector extends ServiceImpl implements Connector
   public void removeChannel(Channel channel)
   {
     int channelIndex = channel.getChannelIndex();
-
     if (channelIndex != 0 && isClient())
     {
-      Channel basicChannel = getChannel(0);
-      if (basicChannel != null)
+      Channel controlChannel = getChannel(0);
+      if (controlChannel != null)
       {
         ChannelDeregistrationRequest signal = new ChannelDeregistrationRequest(channelIndex);
 
         try
         {
-          basicChannel.transmit(signal);
+          controlChannel.transmit(signal);
         }
         catch (Exception ex)
         {
-          error("Problem while requesting signal " + signal + " through channel " + basicChannel,
+          error("Problem while requesting signal " + signal + " through channel " + controlChannel,
                   ex);
         }
       }
@@ -211,7 +211,7 @@ public abstract class AbstractConnector extends ServiceImpl implements Connector
 
   public Channel getChannel(int id)
   {
-    // Check if basic channel is already activated
+    // Check if control channel is already activated
     if (id == 0 && channels.size() == 0)
     {
       try

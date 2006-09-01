@@ -116,7 +116,7 @@ public class CDOResourceImpl extends ResourceImpl implements CDOResource
     if (contents == null)
     {
       contents = (ContentsEList) super.getContents();
-      if (resourceManager.isRequestingObjects())
+      if (isExisting() && resourceManager.isRequestingObjects())
       {
         ClientCDOProtocolImpl.requestLoadResource(resourceManager.getChannel(), getRID(),
             resourceManager.getPackageManager());

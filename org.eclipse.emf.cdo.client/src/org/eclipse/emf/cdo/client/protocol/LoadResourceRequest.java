@@ -11,11 +11,15 @@
 package org.eclipse.emf.cdo.client.protocol;
 
 
+import org.eclipse.net4j.util.ImplementationError;
+
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceManager;
+import org.eclipse.emf.cdo.client.impl.ResourceManagerImpl;
 import org.eclipse.emf.cdo.core.CDOProtocol;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 
 
 public class LoadResourceRequest extends AbstractDataRequest
@@ -34,6 +38,11 @@ public class LoadResourceRequest extends AbstractDataRequest
 
   public void request()
   {
+    if (isDebugEnabled())
+    {
+      debug("Loading rid " + rid);
+    }
+
     transmitInt(rid);
   }
 
@@ -78,9 +87,20 @@ public class LoadResourceRequest extends AbstractDataRequest
     int rid = getPackageManager().getOidEncoder().getRID(oid);
     ResourceManager resourceManager = getResourceManager();
     CDOResource cdoResource = resourceManager.getResource(rid);
-    EObject eObject = resourceManager.createEObject(eClass, oid, oca, cdoResource);
-    resourceManager.registerObject(oid, eObject);
-    return eObject;
+
+    EObject object = getProxyObject(oid);
+    if (object == null)
+    {
+      object = resourceManager.createEObject(eClass, oid, oca, cdoResource);
+      resourceManager.registerObject(oid, object);
+    }
+    else
+    {
+      ResourceManagerImpl.initPersistable(object, cdoResource, oid, oca);
+      ((InternalEObject) object).eSetProxyURI(null);
+    }
+
+    return object;
   }
 
   @Override

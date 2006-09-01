@@ -15,11 +15,14 @@ import org.eclipse.emf.cdo.client.ClassInfo;
 import org.eclipse.emf.cdo.examples.client.internal.ExampleClientPlugin;
 import org.eclipse.emf.cdo.examples.ui.internal.PackageContentProvider;
 import org.eclipse.emf.cdo.examples.ui.internal.PackageLabelProvider;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.ViewerSorter;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -108,6 +111,14 @@ public class CDONewWizardPage extends WizardPage
         dialogChanged();
       }
     });
+    rootElementViewer.addDoubleClickListener(new IDoubleClickListener()
+    {
+      public void doubleClick(DoubleClickEvent event)
+      {
+        getWizard().performFinish();
+        ((WizardDialog)getContainer()).close();
+      }
+    });
 
     new Label(container, SWT.NONE);
 
@@ -120,7 +131,7 @@ public class CDONewWizardPage extends WizardPage
   {
     resourcePathText.setText("/");
     resourcePathText.setSelection(1);
-    rootElementViewer.expandAll();
+    //    rootElementViewer.expandAll();
   }
 
   private void dialogChanged()

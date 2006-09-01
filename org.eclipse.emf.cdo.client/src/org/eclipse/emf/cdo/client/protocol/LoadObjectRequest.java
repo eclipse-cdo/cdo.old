@@ -38,6 +38,11 @@ public class LoadObjectRequest extends AbstractDataRequest
 
   public void request()
   {
+    if (isDebugEnabled())
+    {
+      debug("Loading object " + getPackageManager().getOidEncoder().toString(oid));
+    }
+
     transmitLong(oid);
   }
 

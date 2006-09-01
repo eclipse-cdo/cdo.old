@@ -31,12 +31,22 @@ public class ChannelRegistrationRequest extends AbstractRequestWithConfirmation
 
   public void request()
   {
+    if (isDebugEnabled())
+    {
+      debug("Requesting protocol " + protocolName);
+    }
+
     transmitString(protocolName);
   }
 
   public Object confirm()
   {
     short channelIndex = receiveShort();
+    if (isDebugEnabled())
+    {
+      debug("Responded channel " + channelIndex);
+    }
+
     return new Short(channelIndex);
   }
 }

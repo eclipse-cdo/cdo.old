@@ -33,6 +33,12 @@ public class ChannelDeregistrationIndication extends AbstractIndication
     {
       try
       {
+        if (isDebugEnabled())
+        {
+          debug("Deregistering channel " + channelIndex + " ("
+                  + channelToDeregistrate.getProtocol().getName() + ")");
+        }
+
         channelToDeregistrate.stop();
       }
       catch (Exception ex)
