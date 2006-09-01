@@ -16,6 +16,7 @@ import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ClassInfo;
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.client.impl.ResourceInfoImpl;
+import org.eclipse.emf.cdo.core.CDOProtocol;
 import org.eclipse.emf.cdo.examples.client.internal.ExampleClientPlugin;
 import org.eclipse.emf.cdo.examples.ui.internal.UIUtils;
 import org.eclipse.emf.common.util.URI;
@@ -23,7 +24,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -41,10 +41,26 @@ public class CDONewWizard extends Wizard implements INewWizard
 
   private CDONewWizardPage page;
 
+  private ResourceManager resourceManager;
+
+  private boolean commit;
+
   public CDONewWizard()
   {
+    this(null, true);
+  }
+
+  public CDONewWizard(ResourceManager resourceManager, boolean commit)
+  {
+    if (resourceManager == null && !commit)
+    {
+      throw new IllegalArgumentException("resourceManager == null && !commit");
+    }
+
     setWindowTitle("New CDO Resource");
     setNeedsProgressMonitor(true);
+    this.resourceManager = resourceManager;
+    this.commit = commit;
   }
 
   public void init(IWorkbench workbench, IStructuredSelection selection)
@@ -93,18 +109,22 @@ public class CDONewWizard extends Wizard implements INewWizard
       return false;
     }
 
-    UIUtils.openCDOEditor(new ResourceInfoImpl(resourcePath, 0, false));
+    if (this.resourceManager == null)
+    {
+      UIUtils.openCDOEditor(new ResourceInfoImpl(resourcePath, 0, false));
+    }
+
     return true;
   }
 
   private void doFinish(String resourcePath, ClassInfo rootElement, IProgressMonitor monitor)
           throws Exception
   {
-    ResourceSet resourceSet = new ResourceSetImpl();
-    ResourceManager resourceManager = ExampleClientPlugin.createResourceManager(resourceSet);
+    ResourceManager resourceManager = this.resourceManager == null ? ExampleClientPlugin
+            .createResourceManager(new ResourceSetImpl()) : this.resourceManager;
 
-    URI uri = URI.createURI("cdo://" + resourcePath);
-    CDOResource resource = (CDOResource)resourceSet.createResource(uri);
+    URI uri = URI.createURI(CDOProtocol.PROTOCOL_SCHEME + resourcePath);
+    CDOResource resource = (CDOResource)resourceManager.createResource(uri);
 
     EClass eClass = rootElement.getEClass();
     EPackage ePackage = eClass.getEPackage();
@@ -112,7 +132,14 @@ public class CDONewWizard extends Wizard implements INewWizard
     EObject eObject = eFactory.create(eClass);
 
     resource.getContents().add(eObject);
-    resourceManager.commit();
-    resourceManager.stop();
+    if (commit)
+    {
+      resourceManager.commit();
+    }
+
+    if (this.resourceManager == null)
+    {
+      resourceManager.stop();
+    }
   }
 }

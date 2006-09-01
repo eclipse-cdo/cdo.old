@@ -42,8 +42,6 @@ public final class CDOEditorInput implements IEditorInput
 
   public String getResourceURI()
   {
-    //int rid = resourceInfo.getRID();
-    //return "cdo://" + (rid != 0 ? Integer.toString(rid) : resourceInfo.getPath());
     return CDOProtocol.PROTOCOL_SCHEME + resourceInfo.getPath();
   }
 

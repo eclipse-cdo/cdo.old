@@ -16,6 +16,7 @@ import org.eclipse.emf.cdo.examples.client.internal.ExampleClientPlugin;
 import org.eclipse.emf.cdo.examples.ui.internal.ResourceContentProvider;
 import org.eclipse.emf.cdo.examples.ui.internal.ResourceLabelProvider;
 import org.eclipse.emf.cdo.examples.ui.internal.UIUtils;
+import org.eclipse.emf.cdo.examples.ui.internal.actions.CDOCreateResourceAction;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -127,16 +128,7 @@ public class CDOExplorer extends ViewPart
 
   private void makeActions()
   {
-    newResourceAction = new Action()
-    {
-      public void run()
-      {
-        UIUtils.openCDONewWizard();
-      }
-    };
-    newResourceAction.setText("New CDO Resource");
-    newResourceAction.setToolTipText("New CDO Resource");
-    newResourceAction.setImageDescriptor(UIUtils.getImageDescriptor("full/ctool16/NewCDOResource"));
+    newResourceAction = new CDOCreateResourceAction();
 
     deleteResourceAction = new Action()
     {

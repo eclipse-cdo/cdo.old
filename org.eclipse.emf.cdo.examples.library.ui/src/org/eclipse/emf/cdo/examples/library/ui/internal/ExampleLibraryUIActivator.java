@@ -12,6 +12,7 @@ package org.eclipse.emf.cdo.examples.library.ui.internal;
 
 
 import org.eclipse.emf.cdo.client.internal.ClientActivator;
+import org.eclipse.emf.cdo.core.CDOProtocol;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 
@@ -27,12 +28,12 @@ public final class ExampleLibraryUIActivator extends EMFPlugin
   /**
    * @ADDED
    */
-  public static final String RESOURCE_URI1 = "cdo:///cdo/test/res1";
+  public static final String RESOURCE_URI1 = CDOProtocol.PROTOCOL_SCHEME + "/cdo/test/res1";
 
   /**
    * @ADDED
    */
-  public static final String RESOURCE_URI2 = "cdo:///cdo/test/res2";
+  public static final String RESOURCE_URI2 = CDOProtocol.PROTOCOL_SCHEME + "/cdo/test/res2";
 
   /**
    * Keep track of the singleton.

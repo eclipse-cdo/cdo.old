@@ -12,7 +12,10 @@ package org.eclipse.emf.cdo.examples.ui.internal.editors;
 
 
 import org.eclipse.emf.cdo.client.ResourceInfo;
+import org.eclipse.emf.cdo.client.ResourceManager;
+import org.eclipse.emf.cdo.core.CDOProtocol;
 import org.eclipse.emf.cdo.examples.ui.internal.ExampleUIActivator;
+import org.eclipse.emf.cdo.examples.ui.internal.actions.CDOCreateResourceAction;
 import org.eclipse.emf.cdo.examples.ui.internal.dialogs.CDOLoadResourceDialog;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -62,6 +65,16 @@ import java.util.List;
 public class CDOActionBarContributor extends EditingDomainActionBarContributor implements
         ISelectionChangedListener
 {
+  /**
+   * @ADDED
+   */
+  private static final String LOAD_RESOURCE_ID = "LOAD_RESOURCE";
+
+  /**
+   * @ADDED
+   */
+  protected CDOCreateResourceAction createResourceAction;
+
   /**
    * This keeps track of the active editor.
    * <!-- begin-user-doc -->
@@ -172,23 +185,8 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
   {
     validateAction = new ValidateAction();
     controlAction = new ControlAction();
-    loadResourceAction = new LoadResourceAction()
-    {
-      @Override
-      public void run()
-      {
-        Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-        CDOLoadResourceDialog loadResourceDialog = new CDOLoadResourceDialog(shell);
-        if (loadResourceDialog.open() == IDialogConstants.OK_ID)
-        {
-          List<ResourceInfo> resourceInfos = loadResourceDialog.getResourceInfos();
-          for (ResourceInfo info : resourceInfos)
-          {
-            domain.loadResource("cdo://" + info.getPath());
-          }
-        }
-      }
-    };
+    createResourceAction = new CDOCreateResourceAction();
+    loadResourceAction = new CDOLoadResourceAction();
   }
 
   /**
@@ -251,12 +249,25 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
    * When the active editor changes, this remembers the change and registers with it as a selection provider.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   public void setActiveEditor(IEditorPart part)
   {
     super.setActiveEditor(part);
     activeEditorPart = part;
+
+    if (createResourceAction != null)
+    {
+      if (activeEditorPart instanceof CDOEditor)
+      {
+        ResourceManager resourceManager = ((CDOEditor)activeEditorPart).getResourceManager();
+        createResourceAction.setResourceManager(resourceManager);
+      }
+      else
+      {
+        createResourceAction.setResourceManager(null);
+      }
+    }
 
     // Switch to the new selection provider.
     //
@@ -468,7 +479,7 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
    * This inserts global actions before the "additions-end" separator.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   protected void addGlobalActions(IMenuManager menuManager)
   {
@@ -479,6 +490,13 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
     menuManager.insertAfter("ui-actions", refreshViewerAction);
 
     super.addGlobalActions(menuManager);
+
+    if (createResourceAction != null)
+    {
+      String id = loadResourceAction == null ? "additions-end" : loadResourceAction.getId();
+      menuManager.insertBefore(id == null ? "additions-end" : id, new ActionContributionItem(
+              createResourceAction));
+    }
   }
 
   /**
@@ -492,4 +510,30 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
     return true;
   }
 
+  /**
+   * @ADDED
+   */
+  public static final class CDOLoadResourceAction extends LoadResourceAction
+  {
+    @Override
+    public void run()
+    {
+      Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+      CDOLoadResourceDialog loadResourceDialog = new CDOLoadResourceDialog(shell);
+      if (loadResourceDialog.open() == IDialogConstants.OK_ID)
+      {
+        List<ResourceInfo> resourceInfos = loadResourceDialog.getResourceInfos();
+        for (ResourceInfo info : resourceInfos)
+        {
+          domain.loadResource(CDOProtocol.PROTOCOL_SCHEME + info.getPath());
+        }
+      }
+    }
+
+    @Override
+    public String getId()
+    {
+      return LOAD_RESOURCE_ID;
+    }
+  }
 }

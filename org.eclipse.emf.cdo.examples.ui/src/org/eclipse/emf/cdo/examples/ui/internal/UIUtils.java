@@ -10,7 +10,9 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.examples.ui.internal;
 
+
 import org.eclipse.emf.cdo.client.ResourceInfo;
+import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.examples.ui.internal.editors.CDOEditor;
 import org.eclipse.emf.cdo.examples.ui.internal.editors.CDOEditorInput;
 import org.eclipse.emf.cdo.examples.ui.internal.wizards.CDONewWizard;
@@ -31,88 +33,99 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 
+
 public class UIUtils
 {
-	public static void openCDONewWizard()
-	{
-		CDONewWizard wizard = new CDONewWizard();
-		wizard.init(PlatformUI.getWorkbench(), null);
-		wizard.setNeedsProgressMonitor(true);
+  public static void openCDONewWizard(ResourceManager resourceManager, boolean commit)
+  {
+    CDONewWizard wizard = new CDONewWizard(resourceManager, commit);
+    wizard.init(PlatformUI.getWorkbench(), null);
+    wizard.setNeedsProgressMonitor(true);
 
-		WizardDialog dialog = new WizardDialog(new Shell(), wizard);
-		dialog.create();
-		dialog.open();
-	}
+    WizardDialog dialog = new WizardDialog(new Shell(), wizard);
+    dialog.create();
+    dialog.open();
+  }
 
-	public static IEditorPart openCDOEditor(ResourceInfo resourceInfo)
-	{
-		IWorkbench workbench = PlatformUI.getWorkbench();
-		IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
-		IWorkbenchPage activePage = activeWorkbenchWindow.getActivePage();
+  public static void openCDONewWizard()
+  {
+    openCDONewWizard(null, true);
+  }
 
-		try
-		{
-			return activePage.openEditor(new CDOEditorInput(resourceInfo), CDOEditor.EDITOR_ID);
-		} catch (PartInitException ex)
-		{
-			MessageDialog.openError(new Shell(), "CDO Explorer", "Can't open CDO Editor for " + resourceInfo);
-			return null;
-		}
-	}
+  public static IEditorPart openCDOEditor(ResourceInfo resourceInfo)
+  {
+    IWorkbench workbench = PlatformUI.getWorkbench();
+    IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
+    IWorkbenchPage activePage = activeWorkbenchWindow.getActivePage();
 
-	public static ImageDescriptor getImageDescriptor(String key)
-	{
-		return ExtendedImageRegistry.getInstance().getImageDescriptor(ExampleUIActivator.INSTANCE.getImage(key));
-	}
+    try
+    {
+      return activePage.openEditor(new CDOEditorInput(resourceInfo), CDOEditor.EDITOR_ID);
+    }
+    catch (PartInitException ex)
+    {
+      MessageDialog.openError(new Shell(), "CDO Explorer", "Can't open CDO Editor for "
+              + resourceInfo);
+      return null;
+    }
+  }
 
-	public static Image getImage(String key)
-	{
-		return ExtendedImageRegistry.getInstance().getImage(ExampleUIActivator.INSTANCE.getImage(key));
-	}
+  public static ImageDescriptor getImageDescriptor(String key)
+  {
+    return ExtendedImageRegistry.getInstance().getImageDescriptor(
+            ExampleUIActivator.INSTANCE.getImage(key));
+  }
 
-	public static void refreshViewer(final Viewer viewer)
-	{
-		Display display = viewer.getControl().getDisplay();
-		display.asyncExec(new Runnable()
-		{
-			public void run()
-			{
-				if (viewer != null && !viewer.getControl().isDisposed())
-				{
-					try
-					{
-						viewer.refresh();
-					} catch (Exception ex)
-					{
-						ex.printStackTrace();
-					}
-				}
-			}
-		});
-	}
+  public static Image getImage(String key)
+  {
+    return ExtendedImageRegistry.getInstance().getImage(ExampleUIActivator.INSTANCE.getImage(key));
+  }
 
-	public static void refreshPropertySheetPage(final IPropertySheetPage propertySheetPage)
-	{
-		if (propertySheetPage instanceof PropertySheetPage)
-		{
-			final PropertySheetPage page = (PropertySheetPage) propertySheetPage;
-			Display display = page.getControl().getDisplay();
-			display.asyncExec(new Runnable()
-			{
-				public void run()
-				{
-					if (page != null && !page.getControl().isDisposed())
-					{
-						try
-						{
-							page.refresh();
-						} catch (Exception ex)
-						{
-							ex.printStackTrace();
-						}
-					}
-				}
-			});
-		}
-	}
+  public static void refreshViewer(final Viewer viewer)
+  {
+    Display display = viewer.getControl().getDisplay();
+    display.asyncExec(new Runnable()
+    {
+      public void run()
+      {
+        if (viewer != null && !viewer.getControl().isDisposed())
+        {
+          try
+          {
+            viewer.refresh();
+          }
+          catch (Exception ex)
+          {
+            ex.printStackTrace();
+          }
+        }
+      }
+    });
+  }
+
+  public static void refreshPropertySheetPage(final IPropertySheetPage propertySheetPage)
+  {
+    if (propertySheetPage instanceof PropertySheetPage)
+    {
+      final PropertySheetPage page = (PropertySheetPage)propertySheetPage;
+      Display display = page.getControl().getDisplay();
+      display.asyncExec(new Runnable()
+      {
+        public void run()
+        {
+          if (page != null && !page.getControl().isDisposed())
+          {
+            try
+            {
+              page.refresh();
+            }
+            catch (Exception ex)
+            {
+              ex.printStackTrace();
+            }
+          }
+        }
+      });
+    }
+  }
 }
