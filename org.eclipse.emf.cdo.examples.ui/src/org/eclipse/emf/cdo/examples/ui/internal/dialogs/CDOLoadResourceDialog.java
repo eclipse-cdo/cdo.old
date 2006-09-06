@@ -13,8 +13,8 @@ package org.eclipse.emf.cdo.examples.ui.internal.dialogs;
 
 import org.eclipse.emf.cdo.client.ResourceInfo;
 import org.eclipse.emf.cdo.examples.client.internal.ExampleClientPlugin;
-import org.eclipse.emf.cdo.examples.ui.internal.ResourceContentProvider;
-import org.eclipse.emf.cdo.examples.ui.internal.ResourceLabelProvider;
+import org.eclipse.emf.cdo.examples.ui.ResourceContentProvider;
+import org.eclipse.emf.cdo.examples.ui.ResourceLabelProvider;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;

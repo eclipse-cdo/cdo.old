@@ -87,6 +87,13 @@ public interface CDOResource extends Resource
   public int getRID();
 
   /**
+   * Returns the {@link ResourceInfo} of this {@link CDOResource}.<p>
+   *
+   * @return The {@link ResourceInfo} of this {@link CDOResource}.
+   */
+  public ResourceInfo getInfo();
+  
+  /**
    * For internal use only.
    */
   public void setPath(String path);
@@ -138,4 +145,10 @@ public interface CDOResource extends Resource
    * @return
    */
   public EList queryCrossReferences(EObject object);
+
+  /**
+   * Loads all the contained objects from the repository.<p>
+   */
+  public void preLoad();
+
 }

@@ -843,9 +843,9 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
   /**
    * @ADDED
    */
-  public Object getResource()
+  public CDOResource getResource()
   {
-    return editingDomain.getResourceSet().getResources().get(0);
+    return (CDOResource)editingDomain.getResourceSet().getResources().get(0);
   }
 
   /**

@@ -13,10 +13,12 @@ package org.eclipse.emf.cdo.examples.ui.internal.views;
 
 import org.eclipse.emf.cdo.client.ResourceInfo;
 import org.eclipse.emf.cdo.examples.client.internal.ExampleClientPlugin;
-import org.eclipse.emf.cdo.examples.ui.internal.ResourceContentProvider;
-import org.eclipse.emf.cdo.examples.ui.internal.ResourceLabelProvider;
-import org.eclipse.emf.cdo.examples.ui.internal.UIUtils;
+import org.eclipse.emf.cdo.examples.ui.ResourceContentProvider;
+import org.eclipse.emf.cdo.examples.ui.ResourceLabelProvider;
+import org.eclipse.emf.cdo.examples.ui.UIUtils;
 import org.eclipse.emf.cdo.examples.ui.internal.actions.CDOCreateResourceAction;
+import org.eclipse.emf.cdo.examples.ui.internal.actions.CDOExportResourceAction;
+import org.eclipse.emf.cdo.examples.ui.internal.actions.CDOImportResourceAction;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -27,6 +29,8 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.ViewerSorter;
@@ -38,7 +42,7 @@ import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.part.ViewPart;
 
 
-public class CDOExplorer extends ViewPart
+public class CDOExplorer extends ViewPart implements ISelectionProvider
 {
   public static final String VIEW_ID = "org.eclipse.emf.cdo.examples.ui.CDOExplorer";
 
@@ -46,13 +50,15 @@ public class CDOExplorer extends ViewPart
 
   private TableViewer viewer;
 
-  private Action newResourceAction;
-
   private Action deleteResourceAction;
 
-  private Action openResourceAction;
+  private CDOCreateResourceAction createResourceAction;
 
-  //  private Channel cdoResChannel;
+  private CDOImportResourceAction importResourceAction;
+
+  private CDOExportResourceAction exportResourceAction;
+
+  private Action openResourceAction;
 
   public CDOExplorer()
   {
@@ -66,12 +72,42 @@ public class CDOExplorer extends ViewPart
     viewer.setLabelProvider(new ResourceLabelProvider());
     viewer.setSorter(new ViewerSorter());
     viewer.setInput(ExampleClientPlugin.getResourceCache());
+    //    viewer.addSelectionChangedListener(new ISelectionChangedListener()
+    //    {
+    //      public void selectionChanged(SelectionChangedEvent event)
+    //      {
+    //        IStructuredSelection selection = (IStructuredSelection)event.getSelection();
+    //        exportResourceAction.setSelection(selection);
+    //      }
+    //    });
 
     makeActions();
     hookContextMenu();
     hookDoubleClickAction();
     contributeToActionBars();
+    
+    getSite().setSelectionProvider(this);
     INSTANCE = this;
+  }
+
+  public void addSelectionChangedListener(ISelectionChangedListener listener)
+  {
+    viewer.addSelectionChangedListener(listener);
+  }
+
+  public ISelection getSelection()
+  {
+    return viewer.getSelection();
+  }
+
+  public void removeSelectionChangedListener(ISelectionChangedListener listener)
+  {
+    viewer.removeSelectionChangedListener(listener);    
+  }
+
+  public void setSelection(ISelection selection)
+  {
+    viewer.setSelection(selection);    
   }
 
   @Override
@@ -106,15 +142,18 @@ public class CDOExplorer extends ViewPart
 
   private void fillLocalPullDown(IMenuManager manager)
   {
-    manager.add(newResourceAction);
+    manager.add(createResourceAction);
     manager.add(new Separator());
     manager.add(deleteResourceAction);
+    manager.add(new Separator());
+    manager.add(importResourceAction);
+    manager.add(exportResourceAction);
   }
 
   private void fillContextMenu(IMenuManager manager)
   {
-    manager.add(newResourceAction);
     manager.add(deleteResourceAction);
+    manager.add(exportResourceAction);
     manager.add(new Separator());
     // Other plug-ins can contribute there actions here
     manager.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
@@ -122,13 +161,18 @@ public class CDOExplorer extends ViewPart
 
   private void fillLocalToolBar(IToolBarManager manager)
   {
-    manager.add(newResourceAction);
+    manager.add(createResourceAction);
     manager.add(deleteResourceAction);
+    manager.add(new Separator());
+    manager.add(importResourceAction);
+    manager.add(exportResourceAction);
   }
 
   private void makeActions()
   {
-    newResourceAction = new CDOCreateResourceAction();
+    createResourceAction = new CDOCreateResourceAction();
+    importResourceAction = new CDOImportResourceAction();
+    exportResourceAction = new CDOExportResourceAction();
 
     deleteResourceAction = new Action()
     {

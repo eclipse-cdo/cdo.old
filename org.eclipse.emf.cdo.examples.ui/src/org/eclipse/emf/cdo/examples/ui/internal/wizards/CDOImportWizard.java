@@ -13,72 +13,90 @@ package org.eclipse.emf.cdo.examples.ui.internal.wizards;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.cdo.client.CDOResource;
-import org.eclipse.emf.cdo.client.ClassInfo;
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.client.impl.ResourceInfoImpl;
 import org.eclipse.emf.cdo.core.CDOProtocol;
 import org.eclipse.emf.cdo.examples.client.internal.ExampleClientPlugin;
+import org.eclipse.emf.cdo.examples.ui.ResourceFactoryHelper;
 import org.eclipse.emf.cdo.examples.ui.UIUtils;
+import org.eclipse.emf.cdo.examples.ui.internal.ExampleUIActivator;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.ui.INewWizard;
+import org.eclipse.ui.IImportWizard;
 import org.eclipse.ui.IWorkbench;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
 
 
-public class CDONewWizard extends Wizard implements INewWizard
+public class CDOImportWizard extends Wizard implements IImportWizard
 {
-  public static final String WIZARD_ID = "org.eclipse.emf.cdo.examples.ui.CDONewWizard";
+  public static final String WIZARD_ID = "org.eclipse.emf.cdo.examples.ui.CDOImportWizard";
 
-  public static final String TITLE = "New CDO Resource";
+  public static final String TITLE = "Import CDO Resource";
 
-  private CDONewWizardPage page;
+  private CDOImportWizardPage page;
 
   private ResourceManager resourceManager;
 
   private boolean commit;
 
-  public CDONewWizard()
-  {
-    this(null, true);
-  }
+  private IStructuredSelection selection;
 
-  public CDONewWizard(ResourceManager resourceManager, boolean commit)
+  public CDOImportWizard(ResourceManager resourceManager, boolean commit)
   {
     if (resourceManager == null && !commit)
     {
       throw new IllegalArgumentException("resourceManager == null && !commit");
     }
 
-    setWindowTitle(TITLE);
-    setNeedsProgressMonitor(true);
     this.resourceManager = resourceManager;
     this.commit = commit;
+    setDialogSettings(getCDOImportWizardDialogSettings());
+    setWindowTitle(TITLE);
+    setNeedsProgressMonitor(true);
+  }
+
+  public CDOImportWizard()
+  {
+    this(null, true);
   }
 
   public void init(IWorkbench workbench, IStructuredSelection selection)
   {
+    this.selection = selection;
   }
 
   public void addPages()
   {
-    page = new CDONewWizardPage();
-    addPage(page);
+    addPage(page = new CDOImportWizardPage(selection));
+  }
+
+  public static IDialogSettings getCDOImportWizardDialogSettings()
+  {
+    IDialogSettings workbenchSettings = ExampleUIActivator.getPlugin().getDialogSettings();
+    IDialogSettings section = workbenchSettings.getSection("CDOImportWizard");//$NON-NLS-1$
+    if (section == null)
+    {
+      section = workbenchSettings.addNewSection("CDOImportWizard");//$NON-NLS-1$
+    }
+
+    return section;
   }
 
   public boolean performFinish()
   {
-    final String resourcePath = page.getResourcePath();
-    final ClassInfo rootElement = page.getRootElement();
+    final String sourceURI = page.getSourceURI();
+    final String resourceFactoryExtension = page.getResourceFactoryExtension();
+    final String destinationPath = page.getDestinationPath();
 
     IRunnableWithProgress op = new IRunnableWithProgress()
     {
@@ -86,7 +104,7 @@ public class CDONewWizard extends Wizard implements INewWizard
       {
         try
         {
-          doFinish(resourcePath, rootElement, monitor);
+          doFinish(sourceURI, resourceFactoryExtension, destinationPath, monitor);
         }
         catch (Exception ex)
         {
@@ -111,29 +129,38 @@ public class CDONewWizard extends Wizard implements INewWizard
       return false;
     }
 
+    page.saveValues();
+
     if (this.resourceManager == null)
     {
-      UIUtils.openCDOEditor(new ResourceInfoImpl(resourcePath, 0, false));
+      UIUtils.openCDOEditor(new ResourceInfoImpl(destinationPath, 0, true));
     }
 
     return true;
   }
 
-  private void doFinish(String resourcePath, ClassInfo rootElement, IProgressMonitor monitor)
-          throws Exception
+  private void doFinish(String sourceURI, String resourceFactoryExtension, String destinationPath,
+          IProgressMonitor monitor) throws Exception
   {
+    // Prepare source
+    ResourceSet resourceSet = new ResourceSetImpl();
+    Map map = resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap();
+    map.put("*", ResourceFactoryHelper.getResourceFactory(resourceFactoryExtension));
+    Resource source = resourceSet.getResource(URI.createURI(sourceURI), true);
+
+    // Prepare destination
     ResourceManager resourceManager = this.resourceManager == null ? ExampleClientPlugin
             .createResourceManager(new ResourceSetImpl()) : this.resourceManager;
+    URI uri = URI.createURI(CDOProtocol.PROTOCOL_SCHEME + destinationPath);
+    CDOResource target = (CDOResource)resourceManager.createResource(uri);
 
-    URI uri = URI.createURI(CDOProtocol.PROTOCOL_SCHEME + resourcePath);
-    CDOResource resource = (CDOResource)resourceManager.createResource(uri);
+    // Move contents
+    EObject[] contents = (EObject[])source.getContents().toArray();
+    for (EObject object : contents)
+    {
+      target.getContents().add(object);
+    }
 
-    EClass eClass = rootElement.getEClass();
-    EPackage ePackage = eClass.getEPackage();
-    EFactory eFactory = ePackage.getEFactoryInstance();
-    EObject eObject = eFactory.create(eClass);
-
-    resource.getContents().add(eObject);
     if (commit)
     {
       resourceManager.commit();

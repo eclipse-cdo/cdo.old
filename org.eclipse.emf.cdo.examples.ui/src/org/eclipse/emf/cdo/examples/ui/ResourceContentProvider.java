@@ -8,16 +8,15 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.examples.ui.internal;
+package org.eclipse.emf.cdo.examples.ui;
 
 
 import org.eclipse.emf.cdo.examples.client.ResourceCache;
-import org.eclipse.emf.cdo.examples.client.ResourceCache.Listener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
 
-public class ResourceContentProvider implements IStructuredContentProvider, Listener
+public class ResourceContentProvider implements IStructuredContentProvider, ResourceCache.Listener
 {
   private ResourceCache resourceCache;
 

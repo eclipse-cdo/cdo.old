@@ -13,8 +13,8 @@ package org.eclipse.emf.cdo.examples.ui.internal.wizards;
 
 import org.eclipse.emf.cdo.client.ClassInfo;
 import org.eclipse.emf.cdo.examples.client.internal.ExampleClientPlugin;
-import org.eclipse.emf.cdo.examples.ui.internal.PackageContentProvider;
-import org.eclipse.emf.cdo.examples.ui.internal.PackageLabelProvider;
+import org.eclipse.emf.cdo.examples.ui.PackageContentProvider;
+import org.eclipse.emf.cdo.examples.ui.PackageLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -44,7 +44,7 @@ public class CDONewWizardPage extends WizardPage
   public CDONewWizardPage()
   {
     super("wizardPage");
-    setTitle("New CDO Resource");
+    setTitle(CDONewWizard.TITLE);
     setDescription("This wizard creates a new remote CDO resource that can be opened by the CDO editor.");
   }
 

@@ -16,6 +16,8 @@ import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.core.CDOProtocol;
 import org.eclipse.emf.cdo.examples.ui.internal.ExampleUIActivator;
 import org.eclipse.emf.cdo.examples.ui.internal.actions.CDOCreateResourceAction;
+import org.eclipse.emf.cdo.examples.ui.internal.actions.CDOExportResourceAction;
+import org.eclipse.emf.cdo.examples.ui.internal.actions.CDOImportResourceAction;
 import org.eclipse.emf.cdo.examples.ui.internal.dialogs.CDOLoadResourceDialog;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -74,6 +76,16 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
    * @ADDED
    */
   protected CDOCreateResourceAction createResourceAction;
+
+  /**
+   * @ADDED
+   */
+  protected CDOImportResourceAction importResourceAction;
+
+  /**
+   * @ADDED
+   */
+  protected CDOExportResourceAction exportResourceAction;
 
   /**
    * This keeps track of the active editor.
@@ -186,6 +198,8 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
     validateAction = new ValidateAction();
     controlAction = new ControlAction();
     createResourceAction = new CDOCreateResourceAction();
+    importResourceAction = new CDOImportResourceAction();
+    exportResourceAction = new CDOExportResourceAction();
     loadResourceAction = new CDOLoadResourceAction();
   }
 
@@ -262,10 +276,14 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
       {
         ResourceManager resourceManager = ((CDOEditor)activeEditorPart).getResourceManager();
         createResourceAction.setResourceManager(resourceManager);
+        importResourceAction.setResourceManager(resourceManager);
+        exportResourceAction.setResource(((CDOEditor)activeEditorPart).getResource());
       }
       else
       {
         createResourceAction.setResourceManager(null);
+        importResourceAction.setResourceManager(null);
+        exportResourceAction.setResource(null);
       }
     }
 
@@ -491,12 +509,15 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
 
     super.addGlobalActions(menuManager);
 
-    if (createResourceAction != null)
+    String id = loadResourceAction == null ? "additions-end" : loadResourceAction.getId();
+    if (id == null)
     {
-      String id = loadResourceAction == null ? "additions-end" : loadResourceAction.getId();
-      menuManager.insertBefore(id == null ? "additions-end" : id, new ActionContributionItem(
-              createResourceAction));
+      id = "additions-end";
     }
+
+    menuManager.insertBefore(id, new ActionContributionItem(createResourceAction));
+    menuManager.insertBefore(id, new ActionContributionItem(importResourceAction));
+    menuManager.insertBefore(id, new ActionContributionItem(exportResourceAction));
   }
 
   /**

@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import org.apache.log4j.Logger;
 
@@ -49,6 +50,11 @@ public class CDOResourceImpl extends ResourceImpl implements CDOResource
     super(URI.createURI(CDOProtocol.PROTOCOL_NAME + "://" + resourceInfo.getRID()));
     this.resourceInfo = resourceInfo;
     this.resourceManager = resourceManager;
+  }
+
+  public ResourceInfo getInfo()
+  {
+    return resourceInfo;
   }
 
   public void setPath(String path)
@@ -237,6 +243,15 @@ public class CDOResourceImpl extends ResourceImpl implements CDOResource
   public ResourceManager getResourceManager()
   {
     return resourceManager;
+  }
+
+  public void preLoad()
+  {
+    for (Iterator it = EcoreUtil.getAllContents(this, true); it.hasNext();)
+    {
+      CDOPersistable persistable = (CDOPersistable) it.next();
+      persistable.cdoLoad();
+    }
   }
 
   @Override

@@ -54,6 +54,40 @@
   </extension>
   
   <extension
+        point="org.eclipse.ui.importWizards">
+     <category
+           id="org.eclipse.emf.cdo.examples.ui"
+           name="CDO"/>
+     <wizard
+           category="org.eclipse.emf.cdo.examples.ui"
+           class="org.eclipse.emf.cdo.examples.ui.internal.wizards.CDOImportWizard"
+           icon="icons/full/obj16/CDOResource.gif"
+           id="org.eclipse.emf.cdo.examples.ui.ImportWizard"
+           name="Import CDO Resource">
+        <description>
+           Import a file from the workspace into a CDO repository.
+        </description>
+     </wizard>
+  </extension>
+  
+  <extension
+        point="org.eclipse.ui.exportWizards">
+     <category
+           id="org.eclipse.emf.cdo.examples.ui"
+           name="CDO"/>
+     <wizard
+           category="org.eclipse.emf.cdo.examples.u"
+           class="org.eclipse.emf.cdo.examples.ui.internal.wizards.CDOExportWizard"
+           icon="icons/full/obj16/CDOResource.gif"
+           id="org.eclipse.emf.cdo.examples.ui.ExportWizard"
+           name="Export CDO Resource">
+        <description>
+           Export a CDO resource to the workspace.
+        </description>
+     </wizard>
+  </extension>
+  
+  <extension
         point="org.eclipse.ui.preferencePages">
      <page
            class="org.eclipse.emf.cdo.examples.ui.internal.preferences.CDOPreferencePage"

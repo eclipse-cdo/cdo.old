@@ -17,11 +17,19 @@ import org.eclipse.net4j.spring.ContainerCreationException;
 import org.eclipse.net4j.spring.impl.ContainerImpl;
 import org.eclipse.net4j.util.eclipse.AbstractPlugin;
 
+import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.PackageManager;
+import org.eclipse.emf.cdo.client.ResourceInfo;
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.client.protocol.ClientCDOResProtocolImpl;
 import org.eclipse.emf.cdo.examples.client.ResourceCache;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import java.io.IOException;
 
@@ -185,39 +193,45 @@ public class ExampleClientPlugin extends AbstractPlugin
     {
       ClientCDOResProtocolImpl protocol = (ClientCDOResProtocolImpl) getClientContainer().getBean(
           "clientCDOResProtocol");
-      resourceCache = new ResourceCache(protocol, getConnector());
+      resourceCache = new ResourceCacheImpl(protocol, getConnector());
     }
 
     return resourceCache;
   }
 
-  //  protected void initTestProject() throws CoreException
-  //  {
-  //    IProject test = ResourcesPlugin.getWorkspace().getRoot().getProject("Test");
-  //    if (!test.exists())
-  //    {
-  //      test.create(new NullProgressMonitor());
-  //    }
-  //
-  //    if (!test.isOpen())
-  //    {
-  //      test.open(new NullProgressMonitor());
-  //    }
-  //
-  //    IFile res1 = test.getFile("res1.cdo");
-  //    if (!res1.exists())
-  //    {
-  //      byte[] data = "cdo.resource=/org/eclipse/net4j/cdo/test/res1".getBytes();
-  //      InputStream is = new ByteArrayInputStream(data);
-  //      res1.create(is, true, new NullProgressMonitor());
-  //    }
-  //
-  //    IFile res2 = test.getFile("res2.cdo");
-  //    if (!res2.exists())
-  //    {
-  //      byte[] data = "cdo.resource=/org/eclipse/net4j/cdo/test/res2".getBytes();
-  //      InputStream is = new ByteArrayInputStream(data);
-  //      res2.create(is, true, new NullProgressMonitor());
-  //    }
-  //  }
+  public static ResourceCache createResourceCache(final ResourceManager resourceManager)
+  {
+    return new ResourceCache()
+    {
+      public List<ResourceInfo> getAllResources()
+      {
+        List<ResourceInfo> result = new ArrayList<ResourceInfo>();
+        EList resources = resourceManager.getResourceSet().getResources();
+        for (Iterator it = resources.iterator(); it.hasNext();)
+        {
+          Resource resource = (Resource) it.next();
+          if (resource instanceof CDOResource)
+          {
+            CDOResource cdoResource = (CDOResource) resource;
+            cdoResource.getPath();
+            result.add(cdoResource.getInfo());
+          }
+        }
+
+        return result;
+      }
+
+      public void dispose()
+      {
+      }
+
+      public void addListener(ResourceCache.Listener listener)
+      {
+      }
+
+      public void removeListener(ResourceCache.Listener listener)
+      {
+      }
+    };
+  }
 }

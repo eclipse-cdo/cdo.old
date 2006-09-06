@@ -2,10 +2,7 @@ package org.eclipse.emf.cdo.examples.ui.internal.preferences;
 
 
 import org.eclipse.emf.cdo.examples.ui.internal.ExampleUIActivator;
-import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
-import org.eclipse.jface.preference.RadioGroupFieldEditor;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
