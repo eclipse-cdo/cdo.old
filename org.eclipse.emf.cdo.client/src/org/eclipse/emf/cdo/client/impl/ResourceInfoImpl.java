@@ -11,8 +11,6 @@
 package org.eclipse.emf.cdo.client.impl;
 
 
-import org.eclipse.net4j.util.StringHelper;
-
 import org.eclipse.emf.cdo.client.ResourceInfo;
 
 
@@ -62,8 +60,7 @@ public final class ResourceInfoImpl implements ResourceInfo
     if (obj instanceof ResourceInfo)
     {
       ResourceInfo that = (ResourceInfo) obj;
-      return rid == that.getRID() && StringHelper.equals(path, that.getPath())
-          && existing == that.isExisting();
+      return rid == that.getRID();
     }
 
     return false;
@@ -72,7 +69,7 @@ public final class ResourceInfoImpl implements ResourceInfo
   @Override
   public int hashCode()
   {
-    return rid ^ (path == null ? 0 : path.hashCode()) ^ (existing ? 1 : 2);
+    return rid;
   }
 
   @Override

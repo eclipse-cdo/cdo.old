@@ -35,9 +35,9 @@ public interface CDOResSignals
   public static final byte CREATE_RESOURCE = 3;
 
   /**
-   * Reserved for future use.<p>
+   * The signal ID of the {@link #DELETE_RESOURCES} request.<p>
    */
-  public static final byte REMOVE_RESOURCE = 4;
+  public static final byte DELETE_RESOURCES = 4;
 
   /**
    * Reserved for future use.<p>

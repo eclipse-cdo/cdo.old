@@ -17,11 +17,13 @@ import org.eclipse.net4j.core.Request;
 import org.eclipse.net4j.util.ImplementationError;
 
 import org.eclipse.emf.cdo.client.ResourceInfo;
+import org.eclipse.emf.cdo.core.RID;
 import org.eclipse.emf.cdo.core.protocol.AbstractCDOResProtocol;
 import org.eclipse.emf.cdo.core.protocol.ResourceChangeInfo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 
 public class ClientCDOResProtocolImpl extends AbstractCDOResProtocol
@@ -67,11 +69,17 @@ public class ClientCDOResProtocolImpl extends AbstractCDOResProtocol
     }
   }
 
-  @SuppressWarnings("unchecked")
   public static List<ResourceInfo> queryAllResources(Channel channel)
   {
     assertValidChannel(channel);
     Request signal = new QueryAllResourcesRequest();
     return (List<ResourceInfo>) channel.transmit(signal);
+  }
+
+  public static boolean deleteResources(Channel channel, Set<Integer> rids)
+  {
+    assertValidChannel(channel);
+    Request signal = new DeleteResourcesRequest(rids);
+    return (Boolean) channel.transmit(signal);
   }
 }

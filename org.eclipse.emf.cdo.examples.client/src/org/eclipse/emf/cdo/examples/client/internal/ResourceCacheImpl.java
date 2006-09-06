@@ -13,6 +13,7 @@ package org.eclipse.emf.cdo.examples.client.internal;
 
 import org.eclipse.net4j.core.Channel;
 import org.eclipse.net4j.core.Connector;
+import org.eclipse.net4j.util.thread.DeadlockDetector;
 
 import org.eclipse.emf.cdo.client.ResourceInfo;
 import org.eclipse.emf.cdo.client.impl.ResourceInfoImpl;
@@ -35,6 +36,8 @@ public class ResourceCacheImpl implements ResourceCache, CDOResListener
 
   private Channel channel;
 
+  private Object channelLock = new Object();
+
   private List<ResourceInfo> allResources = new ArrayList<ResourceInfo>();
 
   private List<ResourceCache.Listener> listeners = new ArrayList<ResourceCache.Listener>();
@@ -53,7 +56,11 @@ public class ResourceCacheImpl implements ResourceCache, CDOResListener
     {
       public void run()
       {
-        channel = connector.addChannel(CDOResProtocol.PROTOCOL_NAME);
+        synchronized (channelLock)
+        {
+          channel = connector.addChannel(CDOResProtocol.PROTOCOL_NAME);
+          channelLock.notifyAll();
+        }
 
         List<ResourceInfo> resources = ClientCDOResProtocolImpl.queryAllResources(channel);
         if (resources != null && !resources.isEmpty())
@@ -100,6 +107,14 @@ public class ResourceCacheImpl implements ResourceCache, CDOResListener
 
   public Channel getChannel()
   {
+    synchronized (channelLock)
+    {
+      while (channel == null)
+      {
+        DeadlockDetector.wait(channelLock);
+      }
+    }
+
     return channel;
   }
 

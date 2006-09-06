@@ -11,6 +11,8 @@
 package org.eclipse.emf.cdo.examples.client;
 
 
+import org.eclipse.net4j.core.Channel;
+
 import org.eclipse.emf.cdo.client.ResourceInfo;
 
 import java.util.List;
@@ -19,6 +21,8 @@ import java.util.List;
 public interface ResourceCache
 {
   public List<ResourceInfo> getAllResources();
+
+  public Channel getChannel();
 
   public void addListener(Listener listener);
 

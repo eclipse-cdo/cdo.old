@@ -11,7 +11,12 @@
 package org.eclipse.emf.cdo.examples.ui.internal.views;
 
 
+import org.eclipse.net4j.core.Channel;
+
+import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceInfo;
+import org.eclipse.emf.cdo.client.protocol.ClientCDOResProtocolImpl;
+import org.eclipse.emf.cdo.examples.client.ResourceCache;
 import org.eclipse.emf.cdo.examples.client.internal.ExampleClientPlugin;
 import org.eclipse.emf.cdo.examples.ui.ResourceContentProvider;
 import org.eclipse.emf.cdo.examples.ui.ResourceLabelProvider;
@@ -41,12 +46,18 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.part.ViewPart;
 
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
 
 public class CDOExplorer extends ViewPart implements ISelectionProvider
 {
   public static final String VIEW_ID = "org.eclipse.emf.cdo.examples.ui.CDOExplorer";
 
   public static CDOExplorer INSTANCE;
+
+  private ResourceCache resourceCache;
 
   private TableViewer viewer;
 
@@ -63,6 +74,7 @@ public class CDOExplorer extends ViewPart implements ISelectionProvider
   public CDOExplorer()
   {
     if (INSTANCE != null) throw new IllegalStateException();
+    resourceCache = ExampleClientPlugin.getResourceCache();
   }
 
   public synchronized void createPartControl(Composite parent)
@@ -71,21 +83,13 @@ public class CDOExplorer extends ViewPart implements ISelectionProvider
     viewer.setContentProvider(new ResourceContentProvider());
     viewer.setLabelProvider(new ResourceLabelProvider());
     viewer.setSorter(new ViewerSorter());
-    viewer.setInput(ExampleClientPlugin.getResourceCache());
-    //    viewer.addSelectionChangedListener(new ISelectionChangedListener()
-    //    {
-    //      public void selectionChanged(SelectionChangedEvent event)
-    //      {
-    //        IStructuredSelection selection = (IStructuredSelection)event.getSelection();
-    //        exportResourceAction.setSelection(selection);
-    //      }
-    //    });
+    viewer.setInput(resourceCache);
 
     makeActions();
     hookContextMenu();
     hookDoubleClickAction();
     contributeToActionBars();
-    
+
     getSite().setSelectionProvider(this);
     INSTANCE = this;
   }
@@ -102,12 +106,12 @@ public class CDOExplorer extends ViewPart implements ISelectionProvider
 
   public void removeSelectionChangedListener(ISelectionChangedListener listener)
   {
-    viewer.removeSelectionChangedListener(listener);    
+    viewer.removeSelectionChangedListener(listener);
   }
 
   public void setSelection(ISelection selection)
   {
-    viewer.setSelection(selection);    
+    viewer.setSelection(selection);
   }
 
   @Override
@@ -178,9 +182,52 @@ public class CDOExplorer extends ViewPart implements ISelectionProvider
     {
       public void run()
       {
-        showMessage("Not implemented, yet: Delete CDO Resource");
+        if (MessageDialog.openQuestion(viewer.getControl().getShell(), "CDO Explorer",
+                "Sure to delete the selected resources from the CDO repository?"))
+        {
+          Set<Integer> rids = new HashSet<Integer>();
+          ISelection selection = viewer.getSelection();
+          if (selection instanceof IStructuredSelection)
+          {
+            IStructuredSelection ssel = (IStructuredSelection)selection;
+            for (Iterator it = ssel.iterator(); it.hasNext();)
+            {
+              Object element = it.next();
+              if (element instanceof ResourceInfo)
+              {
+                ResourceInfo resourceInfo = (ResourceInfo)element;
+                int rid = resourceInfo.getRID();
+                rids.add(rid);
+              }
+              else if (element instanceof CDOResource)
+              {
+                CDOResource resource = (CDOResource)element;
+                int rid = resource.getRID();
+                rids.add(rid);
+              }
+            }
+          }
+
+          if (rids.isEmpty())
+          {
+            showMessage("No CDO resource is selected.");
+            return;
+          }
+
+          Channel channel = resourceCache.getChannel();
+          boolean ok = ClientCDOResProtocolImpl.deleteResources(channel, rids);
+          if (ok)
+          {
+            showMessage("Resources have been successfully deleted.");
+          }
+          else
+          {
+            showMessage("Resources have not been deleted.");
+          }
+        }
       }
     };
+
     deleteResourceAction.setText("Delete CDO Resource");
     deleteResourceAction.setToolTipText("Delete CDO Resource");
     deleteResourceAction.setImageDescriptor(UIUtils

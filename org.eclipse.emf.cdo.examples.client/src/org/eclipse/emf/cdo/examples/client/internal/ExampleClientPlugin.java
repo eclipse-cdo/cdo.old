@@ -11,6 +11,7 @@
 package org.eclipse.emf.cdo.examples.client.internal;
 
 
+import org.eclipse.net4j.core.Channel;
 import org.eclipse.net4j.core.Connector;
 import org.eclipse.net4j.spring.Container;
 import org.eclipse.net4j.spring.ContainerCreationException;
@@ -223,6 +224,11 @@ public class ExampleClientPlugin extends AbstractPlugin
 
       public void dispose()
       {
+      }
+
+      public Channel getChannel()
+      {
+        throw new UnsupportedOperationException();
       }
 
       public void addListener(ResourceCache.Listener listener)
