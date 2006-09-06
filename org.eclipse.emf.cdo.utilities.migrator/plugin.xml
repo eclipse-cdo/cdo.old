@@ -18,7 +18,7 @@
          </menu>
          <action
                label="Migrate Ecore to CDO"
-               class="org.eclipse.emf.cdo.utilities.migrator.MigrateEcoreAction"
+               class="org.eclipse.emf.cdo.utilities.migrator.internal.actions.MigrateEcoreAction"
                menubarPath="org.eclipse.emf.cdo.utilities.migrator.menu1/group1"
                enablesFor="1"
                id="org.eclipse.emf.cdo.utilities.migrator.migrateEcoreAction">
@@ -38,7 +38,7 @@
          </menu>
          <action
                label="Migrate Genmodel to CDO"
-               class="org.eclipse.emf.cdo.utilities.migrator.MigrateGenmodelAction"
+               class="org.eclipse.emf.cdo.utilities.migrator.internal.actions.MigrateGenmodelAction"
                menubarPath="org.eclipse.emf.cdo.utilities.migrator.menu1/group2"
                enablesFor="1"
                id="org.eclipse.emf.cdo.utilities.migrator.migrateGenmodelAction">

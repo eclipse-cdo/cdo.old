@@ -8,7 +8,7 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.utilities.migrator;
+package org.eclipse.emf.cdo.utilities.migrator.internal;
 
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
