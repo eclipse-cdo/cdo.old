@@ -10,8 +10,7 @@ Bundle-ClassPath: org.eclipse.net4j.spring.jar,
  lib/spring-core.jar
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: META-INF,
- org.apache.commons.pool,
+Export-Package: org.apache.commons.pool,
  org.apache.commons.pool.impl,
  org.eclipse.net4j.spring,
  org.eclipse.net4j.spring.impl,
