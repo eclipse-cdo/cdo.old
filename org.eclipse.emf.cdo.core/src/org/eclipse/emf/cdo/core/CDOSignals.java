@@ -55,17 +55,22 @@ public interface CDOSignals
   public static final byte COMMIT_TRANSACTION = 7;
 
   /**
-   * The signal ID of the {@link #INVALIDATE_OBJECT} notification.<p>
-   */
-  public static final byte INVALIDATE_OBJECT = 8;
-
-  /**
    * The signal ID of the {@link #QUERY_EXTENT} request.<p>
    */
-  public static final byte QUERY_EXTENT = 9;
+  public static final byte QUERY_EXTENT = 8;
 
   /**
    * The signal ID of the {@link #QUERY_XREFS} request.<p>
    */
-  public static final byte QUERY_XREFS = 10;
+  public static final byte QUERY_XREFS = 9;
+
+  /**
+   * The signal ID of the {@link #INVALIDATION_NOTIFICATION} notification.<p>
+   */
+  public static final byte INVALIDATION_NOTIFICATION = 10;
+
+  /**
+   * The signal ID of the {@link #REMOVAL_NOTIFICATION} notification.<p>
+   */
+  public static final byte REMOVAL_NOTIFICATION = 11;
 }

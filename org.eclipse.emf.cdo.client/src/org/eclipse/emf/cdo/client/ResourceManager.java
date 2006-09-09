@@ -183,7 +183,12 @@ public interface ResourceManager extends Service
   /**
    * For internal use only.<p>
    */
-  public void invalidateObjects(long[] oid);
+  public void invalidateObjects(long[] oids);
+
+  /**
+   * For internal use only.<p>
+   */
+  public void handleRemovedResources(int[] rids);
 
   /**
    * For internal use only.<p>
@@ -316,7 +321,7 @@ public interface ResourceManager extends Service
    * @param resource
    * @return
    */
-  public EList queryCrossReferences(EObject object,CDOResource resource);
+  public EList queryCrossReferences(EObject object, CDOResource resource);
 
   /**
    * Adds a {@link InvalidationListener} to the list of listeners to be notified about 

@@ -16,42 +16,24 @@ import org.eclipse.net4j.util.Net4jException;
 
 public class AlreadyRequestingException extends Net4jException
 {
-  /**
-   * 
-   */
-  private static final long serialVersionUID = 3257009864780691505L;
+  private static final long serialVersionUID = 1L;
 
-  /**
-   * 
-   */
-  public AlreadyRequestingException()
+  private Request ongoingRequest;
+
+  private Request newRequest;
+
+  public AlreadyRequestingException(Request ongoingRequest, Request newRequest)
   {
-    super();
+    super("Ongoing request: " + ongoingRequest + ", new request: " + newRequest);
   }
 
-  /**
-   * @param message
-   */
-  public AlreadyRequestingException(String message)
+  public Request getOngoingRequest()
   {
-    super(message);
+    return ongoingRequest;
   }
 
-  /**
-   * @param cause
-   */
-  public AlreadyRequestingException(Throwable cause)
+  public Request getNewRequest()
   {
-    super(cause);
+    return newRequest;
   }
-
-  /**
-   * @param message
-   * @param cause
-   */
-  public AlreadyRequestingException(String message, Throwable cause)
-  {
-    super(message, cause);
-  }
-
 }

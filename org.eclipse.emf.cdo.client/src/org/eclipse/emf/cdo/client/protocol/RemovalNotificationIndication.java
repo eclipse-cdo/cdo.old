@@ -17,24 +17,24 @@ import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.core.CDOProtocol;
 
 
-public class InvalidateObjectIndication extends AbstractIndication
+public class RemovalNotificationIndication extends AbstractIndication
 {
   public short getSignalId()
   {
-    return CDOProtocol.INVALIDATE_OBJECT;
+    return CDOProtocol.REMOVAL_NOTIFICATION;
   }
 
   public void indicate()
   {
-    ResourceManager resourceManager = ClientCDOProtocolImpl.getResourceManager(getChannel());
     int count = receiveInt();
-    long[] oids = new long[count];
+    int[] rids = new int[count];
 
     for (int i = 0; i < count; i++)
     {
-      oids[i] = receiveLong();
+      rids[i] = receiveInt();
     }
 
-    resourceManager.invalidateObjects(oids);
+    ResourceManager resourceManager = ClientCDOProtocolImpl.getResourceManager(getChannel());
+    resourceManager.handleRemovedResources(rids);
   }
 }

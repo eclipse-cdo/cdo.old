@@ -53,8 +53,11 @@ public class ClientCDOProtocolImpl extends AbstractCDOProtocol
   {
     switch (signalId)
     {
-      case INVALIDATE_OBJECT:
-        return new InvalidateObjectIndication();
+      case REMOVAL_NOTIFICATION:
+        return new RemovalNotificationIndication();
+        
+      case INVALIDATION_NOTIFICATION:
+        return new InvalidationNotificationIndication();
 
       default:
         throw new ImplementationError("Invalid " + PROTOCOL_NAME + " signalId: " + signalId);

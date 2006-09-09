@@ -410,6 +410,39 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     if (transaction != null) transaction.setRecording(false);
   }
 
+  public void handleRemovedResources(int[] rids)
+  {
+    EList resources = getResourceSet().getResources();
+    for (Iterator it = resources.iterator(); it.hasNext();)
+    {
+      Resource resource = (Resource) it.next();
+      if (resource instanceof CDOResource)
+      {
+        CDOResource cdoResource = (CDOResource) resource;
+        if (isRIDContained(cdoResource.getRID(), rids))
+        {
+          stopRequestingObjects();
+          cdoResource.unload();
+          it.remove();
+          startRequestingObjects();
+        }
+      }
+    }
+  }
+
+  private boolean isRIDContained(int rid, int[] rids)
+  {
+    for (int contained : rids)
+    {
+      if (contained == rid)
+      {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   public void invalidateObjects(long[] oids)
   {
     if (isDebugEnabled())
@@ -672,7 +705,7 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
         Entry entry = queue.poll(50L, TimeUnit.MILLISECONDS);
         if (entry != null)
         {
-          while (System.currentTimeMillis() < entry.entered + 50)
+          while (System.currentTimeMillis() < entry.entered + 50 || !isRequestingObjects())
           {
             DeadlockDetector.sleep(2);
           }

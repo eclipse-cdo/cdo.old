@@ -190,7 +190,7 @@ public class ChannelImpl extends ServiceImpl implements Channel
       // TODO Enqueue (server-initiated?) notifications
       if (getConnector().isClient())
       {
-        throw new AlreadyRequestingException();
+        throw new AlreadyRequestingException(currentRequest, request);
       }
 
       throw new UnsupportedOperationException();

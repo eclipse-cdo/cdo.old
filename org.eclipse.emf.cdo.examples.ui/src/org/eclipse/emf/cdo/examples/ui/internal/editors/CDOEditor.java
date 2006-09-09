@@ -91,6 +91,7 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Tree;
@@ -1554,15 +1555,19 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
 
         // Refresh property sheet page 
         IPropertySheetPage page = getPropertySheetPage();
-        if (page instanceof PropertySheetPage && !page.getControl().isDisposed())
+        if (page instanceof PropertySheetPage)
         {
-          try
+          Control control = page.getControl();
+          if (control != null && !control.isDisposed())
           {
-            ((PropertySheetPage)page).refresh();
-          }
-          catch (Exception ex)
-          {
-            ExampleUIActivator.INSTANCE.log(ex);
+            try
+            {
+              ((PropertySheetPage)page).refresh();
+            }
+            catch (Exception ex)
+            {
+              ExampleUIActivator.INSTANCE.log(ex);
+            }
           }
         }
 
