@@ -18,10 +18,15 @@ import org.eclipse.emf.cdo.utilities.migrator.MigratorUtil;
 
 public class MigrateGenmodelAction extends AbstractFileAction
 {
+  public MigrateGenmodelAction()
+  {
+    super(true);
+  }
+
   @Override
   protected String doRun(IFile file, IProgressMonitor monitor) throws Exception
   {
-    String fullPath = getCurrentFile().getFullPath().toString();
+    String fullPath = file.getFullPath().toString();
     boolean modified = MigratorUtil.migrateGenmodel(fullPath);
     if (!modified)
     {

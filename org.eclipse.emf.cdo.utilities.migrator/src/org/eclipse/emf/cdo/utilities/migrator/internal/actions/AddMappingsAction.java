@@ -16,23 +16,23 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.cdo.utilities.migrator.MigratorUtil;
 
 
-public class MigrateEcoreAction extends AbstractFileAction
+public class AddMappingsAction extends AbstractFileAction
 {
-  public MigrateEcoreAction()
+  public AddMappingsAction()
   {
-    super(true);
+    super(false);
   }
 
   @Override
   protected String doRun(IFile file, IProgressMonitor monitor) throws Exception
   {
     String fullPath = file.getFullPath().toString();
-    int modifications = MigratorUtil.migrateEcore(fullPath);
+    int modifications = MigratorUtil.addMappings(fullPath);
     if (modifications == 0)
     {
-      return "Ecore file was already properly migrated. No classes have been modified.";
+      return "All packages are already properly mapped. No mappings have been added to plugin.xml.";
     }
 
-    return "Ecore file migrated. " + modifications + " classes have been modified.";
+    return "" + modifications + " mapping(s) have been added to plugin.xml.";
   }
 }

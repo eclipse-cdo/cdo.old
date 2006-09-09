@@ -41,12 +41,14 @@ public abstract class AbstractFileAction implements IObjectActionDelegate
 
   private IFile currentFile;
 
-  public IFile getCurrentFile()
+  private boolean needClientProject;
+
+  protected AbstractFileAction(boolean needClientProject)
   {
-    return currentFile;
+    this.needClientProject = needClientProject;
   }
 
-  public IWorkbenchPart getTargetPart()
+  protected IWorkbenchPart getTargetPart()
   {
     return targetPart;
   }
@@ -82,7 +84,7 @@ public abstract class AbstractFileAction implements IObjectActionDelegate
     }
 
     final String[] msg = {null};
-    if (ensureClientProject())
+    if (!needClientProject || ensureClientProject())
     {
       IRunnableWithProgress op = new IRunnableWithProgress()
       {

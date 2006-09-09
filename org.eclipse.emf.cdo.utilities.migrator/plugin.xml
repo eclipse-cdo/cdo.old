@@ -17,6 +17,13 @@
             </separator>
          </menu>
          <action
+               label="Add Mappings to plugin.xml"
+               class="org.eclipse.emf.cdo.utilities.migrator.internal.actions.AddMappingsAction"
+               menubarPath="org.eclipse.emf.cdo.utilities.migrator.menu1/group1"
+               enablesFor="1"
+               id="org.eclipse.emf.cdo.utilities.migrator.addMappingsAction">
+         </action>
+         <action
                label="Migrate Ecore to CDO"
                class="org.eclipse.emf.cdo.utilities.migrator.internal.actions.MigrateEcoreAction"
                menubarPath="org.eclipse.emf.cdo.utilities.migrator.menu1/group1"

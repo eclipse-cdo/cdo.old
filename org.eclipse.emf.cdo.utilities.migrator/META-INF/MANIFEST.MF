@@ -10,6 +10,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.emf.codegen.ecore,
  org.eclipse.ui,
- org.eclipse.pde.ui;resolution:=optional
+ org.eclipse.pde.ui;resolution:=optional,
+ org.eclipse.net4j.util
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.emf.cdo.utilities.migrator

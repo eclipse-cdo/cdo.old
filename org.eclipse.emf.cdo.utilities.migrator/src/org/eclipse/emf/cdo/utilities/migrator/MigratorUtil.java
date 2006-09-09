@@ -11,6 +11,13 @@
 package org.eclipse.emf.cdo.utilities.migrator;
 
 
+import org.eclipse.net4j.util.eclipse.ResourcesHelper;
+
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.EList;
@@ -33,6 +40,8 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class MigratorUtil
@@ -46,6 +55,87 @@ public class MigratorUtil
   private static final String ROOT_GENMODEL_PATH = CLIENT_PATH + "/model/client.genmodel";
 
   private static final String TEMPLATES_URI = "platform:/resource" + CLIENT_PATH + "/templates";
+
+  /**
+   * @return The number of added extensions.<p>
+   * @throws CoreException 
+   */
+  public static int addMappings(String fullPath) throws IOException, CoreException
+  {
+    ResourceSet resourceSet = new ResourceSetImpl();
+    Resource resource = loadResource(resourceSet, fullPath);
+    EPackage ePackage = (EPackage)resource.getContents().get(0);
+
+    final String[] content = new String[1];
+    IProject project = ResourcesHelper.ROOT.getProject(new Path(fullPath).segment(0));
+    IFile file = project.getFile("plugin.xml");
+    if (file != null && file.exists())
+    {
+      content[0] = ResourcesHelper.readFileIntoString(file).trim();
+    }
+    else
+    {
+      content[0] = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + // 
+              "<?eclipse version=\"3.0\"?>\n" + //
+              "<plugin>\n" + //
+              "\n" + //
+              "</plugin>\n";
+    }
+
+    int additions = addPackageMapping(ePackage, content);
+    if (additions > 0)
+    {
+      ResourcesHelper.writeFile(file, content[0], new NullProgressMonitor());
+    }
+
+    return additions;
+  }
+
+  /**
+   * @param content Element 0 contains the whole content and can be modified.<p>
+   * @return The number of added extensions.<p>
+   */
+  private static int addPackageMapping(EPackage ePackage, String[] content)
+  {
+    int additions = 0;
+    String nsURI = ePackage.getNsURI();
+    if (nsURI != null && nsURI.length() != 0)
+    {
+      if (!containsMapping(content[0], nsURI))
+      {
+        addMapping(content, nsURI, "META-INF/" + ePackage.getName() + ".mapping");
+        ++additions;
+      }
+    }
+
+    EList subpackages = ePackage.getESubpackages();
+    for (Iterator it = subpackages.iterator(); it.hasNext();)
+    {
+      EPackage subpackage = (EPackage)it.next();
+      additions += addPackageMapping(subpackage, content);
+    }
+
+    return additions;
+  }
+
+  private static void addMapping(String[] content, String nsURI, String map)
+  {
+    content[0] = content[0].replaceFirst("</plugin>",
+            "  <extension point=\"org.eclipse.emf.cdo.client.mappings\">\n" + "    <mapping\n"
+                    + "       map=\"" + map + "\"\n" + "       uri=\"" + nsURI + "\"/>\n"
+                    + "  </extension>\n" + "\n" + "</plugin>");
+  }
+
+  private static boolean containsMapping(String content, String nsURI)
+  {
+    String regex = "<extension[\\s]+point[\\s]*=[\\s]*\"org\\.eclipse\\.emf\\.cdo\\.client\\.mappings\">"
+            + "[\\s\\S]*uri[\\s]*=[\\s]*\"" + Pattern.quote(nsURI) + "\"[\\s\\S]*" + //
+            "(/>|</mapping>)";
+
+    Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
+    Matcher matcher = pattern.matcher(content);
+    return matcher.find();
+  }
 
   /**
    * @return <code>true</code> if a modification occured, <code>false</code>
@@ -110,7 +200,7 @@ public class MigratorUtil
   /**
    * @return The number of modifications.<p>
    */
-  public static int migrateEcorePackage(EPackage ePackage, EClass cdoRootClass)
+  private static int migrateEcorePackage(EPackage ePackage, EClass cdoRootClass)
   {
     int modifications = 0;
     EList classifiers = ePackage.getEClassifiers();
@@ -121,7 +211,7 @@ public class MigratorUtil
       {
         if (migrateEcoreClass((EClass)classifier, cdoRootClass))
         {
-          modifications++;
+          ++modifications;
         }
       }
     }
@@ -140,7 +230,7 @@ public class MigratorUtil
    * @return <code>true</code> if a modification occured, <code>false</code>
    * otherwise.<p>
    */
-  public static boolean migrateEcoreClass(EClass eClass, EClass cdoRootClass)
+  private static boolean migrateEcoreClass(EClass eClass, EClass cdoRootClass)
   {
     boolean foundAClass = false;
 
