@@ -24,6 +24,7 @@ public class ExampleServerApplication implements IPlatformRunnable
 
   public Object run(Object args) throws Exception
   {
+    ExampleServerPlugin.getDefault().startServer();
     System.out.println("HIT ENTER FOR SHUTDOWN!!!");
 
     while (System.in.available() == 0)
@@ -31,6 +32,7 @@ public class ExampleServerApplication implements IPlatformRunnable
       DeadlockDetector.sleep(100);
     }
 
+    ExampleServerPlugin.getDefault().stopServer();
     return null;
   }
 }

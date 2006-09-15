@@ -42,7 +42,7 @@ public class ProvisioningServerProtocol extends AbstractProvisioningProtocol
       return new SaveSiteIndication();
 
     case UPLOAD_ARCHIVE:
-      return new UploadArchiveIndication();
+      return new UploadArchiveIndication(siteManager.getTempManager());
 
     case REMOVE_FEATURE:
       return new RemoveFeatureIndication();

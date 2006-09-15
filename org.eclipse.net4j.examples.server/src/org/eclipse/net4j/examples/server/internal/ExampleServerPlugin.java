@@ -12,7 +12,6 @@ package org.eclipse.net4j.examples.server.internal;
 
 
 import org.eclipse.net4j.core.Acceptor;
-import org.eclipse.net4j.core.ITempManager;
 import org.eclipse.net4j.core.Net4jCorePlugin;
 import org.eclipse.net4j.spring.Container;
 import org.eclipse.net4j.spring.ContainerCreationException;
@@ -80,6 +79,20 @@ public class ExampleServerPlugin extends AbstractPlugin
     IExtensionRegistry registry = Platform.getExtensionRegistry();
     IExtensionPoint point = registry.getExtensionPoint(PLUGIN_ID + "." + EXTENSION_POINT_ID);
     mappingParser.parse(point);
+  }
+
+  protected void doStop() throws Exception
+  {
+    stopServer();
+    plugin = null;
+  }
+
+  public synchronized boolean startServer() throws Exception
+  {
+    if (acceptor != null)
+    {
+      return false;
+    }
 
     Net4jCorePlugin.getDefault();
     if (logger.isDebugEnabled())
@@ -95,13 +108,20 @@ public class ExampleServerPlugin extends AbstractPlugin
 
     acceptor = (Acceptor) net4jContainer.getBean("acceptor", Acceptor.class);
     acceptor.start();
+    return true;
   }
 
-  protected void doStop() throws Exception
+  public synchronized boolean stopServer() throws Exception
   {
+    if (acceptor == null)
+    {
+      return false;
+    }
+
     try
     {
       acceptor.stop();
+      acceptor = null;
     }
     catch (Exception ignore)
     {
@@ -125,6 +145,7 @@ public class ExampleServerPlugin extends AbstractPlugin
       try
       {
         container.stop();
+        container = null;
       }
       catch (Exception ignore)
       {
@@ -133,11 +154,12 @@ public class ExampleServerPlugin extends AbstractPlugin
       container = null;
     }
 
-    plugin = null;
+    return true;
   }
 
-  public Acceptor getAcceptor()
+  public Acceptor getAcceptor() throws Exception
   {
+    startServer();
     return acceptor;
   }
 
@@ -170,11 +192,6 @@ public class ExampleServerPlugin extends AbstractPlugin
     }
 
     return container;
-  }
-
-  public static ITempManager getTempManager()
-  {
-    return (ITempManager) getNet4jContainer().getBean("tempManager");
   }
 
 

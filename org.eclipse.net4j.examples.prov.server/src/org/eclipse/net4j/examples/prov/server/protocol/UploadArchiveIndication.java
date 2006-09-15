@@ -11,12 +11,12 @@
 package org.eclipse.net4j.examples.prov.server.protocol;
 
 
+import org.eclipse.net4j.core.ITempManager;
 import org.eclipse.net4j.core.Indication;
 import org.eclipse.net4j.core.impl.AbstractIndicationWithResponse;
 import org.eclipse.net4j.examples.prov.Feature;
 import org.eclipse.net4j.examples.prov.ProvisioningProtocol;
 import org.eclipse.net4j.examples.prov.server.SiteManager;
-import org.eclipse.net4j.examples.server.internal.ExampleServerPlugin;
 import org.eclipse.net4j.util.IOHelper;
 
 import java.io.File;
@@ -29,8 +29,11 @@ public class UploadArchiveIndication extends AbstractIndicationWithResponse impl
 {
   private Feature[] features;
 
-  public UploadArchiveIndication()
+  private ITempManager tempManager;
+
+  public UploadArchiveIndication(ITempManager tempManager)
   {
+    this.tempManager = tempManager;
   }
 
   public short getSignalId()
@@ -52,7 +55,7 @@ public class UploadArchiveIndication extends AbstractIndicationWithResponse impl
 
     try
     {
-      temp = ExampleServerPlugin.getTempManager().createTempFolder("upload");
+      temp = tempManager.createTempFolder("upload");
       file = new File(temp, fileName);
       os = new FileOutputStream(file);
 
@@ -86,7 +89,7 @@ public class UploadArchiveIndication extends AbstractIndicationWithResponse impl
       features = getSiteManager().addResource(file, fileName);
     }
 
-    ExampleServerPlugin.getTempManager().release(temp);
+    tempManager.release(temp);
   }
 
   public void respond()

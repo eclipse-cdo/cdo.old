@@ -28,6 +28,9 @@
 		<property name="incomingExecutor">
 			<ref local="incomingExecutor"/>
 		</property>
+		<property name="tempManager">
+			<ref bean="tempManager"/>
+		</property>
 	</bean>
 
 	<!-- ######################################################## -->

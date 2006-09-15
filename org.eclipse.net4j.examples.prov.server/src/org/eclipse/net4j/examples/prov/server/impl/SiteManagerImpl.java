@@ -12,6 +12,7 @@ package org.eclipse.net4j.examples.prov.server.impl;
 
 
 import org.eclipse.net4j.core.Executor;
+import org.eclipse.net4j.core.ITempManager;
 import org.eclipse.net4j.core.Task;
 import org.eclipse.net4j.examples.prov.Category;
 import org.eclipse.net4j.examples.prov.Feature;
@@ -23,7 +24,6 @@ import org.eclipse.net4j.examples.prov.server.SiteManager;
 import org.eclipse.net4j.examples.prov.server.util.FileSystemSilencer;
 import org.eclipse.net4j.examples.prov.server.util.SaxHandler;
 import org.eclipse.net4j.examples.prov.server.util.SaxParser;
-import org.eclipse.net4j.examples.server.internal.ExampleServerPlugin;
 import org.eclipse.net4j.spring.ValidationException;
 import org.eclipse.net4j.spring.impl.ServiceImpl;
 import org.eclipse.net4j.util.IOHelper;
@@ -89,6 +89,8 @@ public class SiteManagerImpl extends ServiceImpl implements SiteManager
 
   private Executor incomingExecutor;
 
+  private ITempManager tempManager;
+
   private transient IFolder rootFolder;
 
   private transient IFolder incomingFolder;
@@ -120,6 +122,16 @@ public class SiteManagerImpl extends ServiceImpl implements SiteManager
   public void setIncomingExecutor(Executor incomingExecutor)
   {
     doSet("incomingExecutor", incomingExecutor);
+  }
+
+  public ITempManager getTempManager()
+  {
+    return tempManager;
+  }
+
+  public void setTempManager(ITempManager tempManager)
+  {
+    doSet("tempManager", tempManager);
   }
 
   public Site getSite()
@@ -385,7 +397,7 @@ public class SiteManagerImpl extends ServiceImpl implements SiteManager
 
     initSite();
 
-    ExampleServerPlugin.getTempManager().release(temp);
+    tempManager.release(temp);
     IOHelper.deleteFile(file);
 
     long time = System.currentTimeMillis() - start;
@@ -398,7 +410,7 @@ public class SiteManagerImpl extends ServiceImpl implements SiteManager
   private File addArchive(File file, IncomingState incomingState)
   {
     String zipName = StringHelper.removeSuffix(file.getName(), ".zip");
-    File temp = ExampleServerPlugin.getTempManager().createTempFolder("archive");
+    File temp = tempManager.createTempFolder("archive");
 
     File targetFolder = new File(temp, zipName);
     targetFolder.mkdirs();
@@ -668,7 +680,7 @@ public class SiteManagerImpl extends ServiceImpl implements SiteManager
 
     try
     {
-      temp = ExampleServerPlugin.getTempManager().createTempFolder("feature");
+      temp = tempManager.createTempFolder("feature");
       File folder = new File(temp, name);
       folder.mkdirs();
 
@@ -680,7 +692,7 @@ public class SiteManagerImpl extends ServiceImpl implements SiteManager
     }
     finally
     {
-      ExampleServerPlugin.getTempManager().release(temp);
+      tempManager.release(temp);
     }
 
     Feature result = ProvFactory.eINSTANCE.createFeature();
@@ -734,6 +746,7 @@ public class SiteManagerImpl extends ServiceImpl implements SiteManager
   {
     super.validate();
     assertNotNull("incomingExecutor");
+    assertNotNull("tempManager");
 
     getPluginsFolder();
     getFeaturesFolder();

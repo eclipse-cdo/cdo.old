@@ -28,6 +28,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.Map;
@@ -51,6 +52,8 @@ public abstract class AbstractHttpd extends ServiceImpl implements Httpd
   protected UrlCodec urlCodec;
 
   private transient Worker worker;
+
+  private transient ServerSocket serverSocket;
 
   public void addMimeType(String extension, String mimeType)
   {
@@ -449,19 +452,27 @@ public abstract class AbstractHttpd extends ServiceImpl implements Httpd
 
     try
     {
-      final ServerSocket ss = new ServerSocket(port);
+      serverSocket = new ServerSocket(port);
       worker = new Worker(getFullBeanName() + ".Listener")
       {
         protected long doWorkStep(int progress)
         {
           try
           {
-            // TODO use ExecutorPool for HTTP sessions
-            new Session(ss.accept());
+            if (serverSocket == null || serverSocket.isClosed())
+            {
+              return TERMINATE;
+            }
+
+            Socket socket = serverSocket.accept();
+            new Session(socket);
           }
           catch (IOException ex)
           {
-            AbstractHttpd.this.warn("Error while accepting HTTP session", ex);
+            if (serverSocket != null && !serverSocket.isClosed())
+            {
+              AbstractHttpd.this.warn("Error while accepting HTTP session", ex);
+            }
           }
 
           return NO_PAUSE;
@@ -479,9 +490,19 @@ public abstract class AbstractHttpd extends ServiceImpl implements Httpd
 
   protected void deactivate() throws Exception
   {
+    if (serverSocket != null)
+    {
+      serverSocket.close();
+      serverSocket = null;
+    }
+
     // TODO handle container shutdown for prototype beans
-    worker.shutdown(200);
-    worker = null;
+    if (worker != null)
+    {
+      worker.shutdown(200);
+      worker = null;
+    }
+
     super.deactivate();
   }
 
