@@ -113,6 +113,19 @@ public class ContainerImpl extends FileSystemXmlApplicationContext implements Co
 
   public void stop()
   {
+    //    Collection<Service> services = getBeansOfType(Service.class).values();
+    //    for (Service service : services)
+    //    {
+    //      try
+    //      {
+    //        service.stop();
+    //      }
+    //      catch (Exception ignore)
+    //      {
+    //        ; // Intentionally left empty
+    //      }
+    //    }
+
     close();
   }
 

@@ -11,6 +11,7 @@
 package org.eclipse.net4j.examples.prov.server;
 
 
+import org.eclipse.net4j.core.ITempManager;
 import org.eclipse.net4j.examples.prov.Category;
 import org.eclipse.net4j.examples.prov.Feature;
 import org.eclipse.net4j.examples.prov.Site;
@@ -55,4 +56,6 @@ public interface SiteManager extends Service
   public Feature[] addResource(File file, String name);
 
   public void setCategories(List<Category> categories);
+
+  public ITempManager getTempManager();
 }
