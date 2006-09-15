@@ -3,6 +3,7 @@
 
 <plugin>
    
+   <!--
      <extension
          point="org.eclipse.ui.actionSets">
       <actionSet
@@ -37,5 +38,6 @@
          point="org.eclipse.core.runtime.preferences">
       <initializer class="org.eclipse.net4j.spring.tests.preferences.PreferenceInitializer"/>
    </extension>
+-->
 
 </plugin>
