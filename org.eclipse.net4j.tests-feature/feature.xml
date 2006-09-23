@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.net4j.tests"
       label="Net4j Tests"
-      version="1.0.0.qualifier"
+      version="0.7.0.qualifier"
       provider-name="Eclipse.org">
 
    <description>
@@ -22,7 +22,7 @@
    </url>
 
    <requires>
-      <import feature="org.eclipse.net4j" version="1.0.0" match="compatible"/>
+      <import feature="org.eclipse.net4j" version="0.7.0" match="compatible"/>
    </requires>
 
    <plugin

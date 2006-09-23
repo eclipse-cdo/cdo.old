@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<feature primary="false"  provider-name="%providerName"    label="%featureName"  image="eclipse_update_120.jpg" id="org.eclipse.net4j.source"  version="1.0.0.qualifier">
+<feature primary="false"  provider-name="%providerName"    label="%featureName"  image="eclipse_update_120.jpg" id="org.eclipse.net4j.source"  version="0.7.0.qualifier">
 	<description >
 		%description
 	</description>
@@ -12,5 +12,5 @@
 	<url>
 		<update label="%updateSiteName" url="http://download.eclipse.org/technology/emft/updates/"/>
 	</url>
-	<plugin    fragment="false"  download-size="0" install-size="0" id="org.eclipse.net4j.source" version="1.0.0.qualifier"/>
+	<plugin    fragment="false"  download-size="0" install-size="0" id="org.eclipse.net4j.source" version="0.7.0.qualifier"/>
 </feature>

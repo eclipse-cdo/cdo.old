@@ -2,7 +2,7 @@
 <project name="org.eclipse.net4j.doc" default="build.jars" basedir=".">
 
 	<!-- Plug-in version.  This is a HACK.  Do not forget to update. -->
-	<property name="pluginVersion" value="1.0.0"/>
+	<property name="pluginVersion" value="0.7.0"/>
 
 	<property name="plugin" value="org.eclipse.net4j"/>
 	<property name="docPlugin" value="org.eclipse.net4j.doc"/>

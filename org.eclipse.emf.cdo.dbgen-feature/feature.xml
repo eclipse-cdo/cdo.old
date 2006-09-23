@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.cdo.dbgen"
       label="%featureName"
-      version="1.0.0.qualifier"
+      version="0.7.0.qualifier"
       provider-name="%providerName">
 
    <description>
@@ -23,7 +23,7 @@
 
    <requires>
       <import feature="org.eclipse.emf" version="2.2.0" match="compatible"/>
-      <import feature="org.eclipse.net4j" version="1.0.0" match="compatible"/>
+      <import feature="org.eclipse.net4j" version="0.7.0" match="compatible"/>
    </requires>
 
    <plugin

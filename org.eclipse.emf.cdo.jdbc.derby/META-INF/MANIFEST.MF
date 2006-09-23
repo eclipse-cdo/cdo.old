@@ -2,9 +2,9 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: CDO JDBC DERBY Driver
 Bundle-SymbolicName: org.eclipse.emf.cdo.jdbc.derby;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.7.0.qualifier
 Bundle-Vendor: Eclipse.org
-Fragment-Host: org.eclipse.emf.cdo.jdbc;bundle-version="[1.0.0,2.0.0)"
+Fragment-Host: org.eclipse.emf.cdo.jdbc;bundle-version="[0.7.0,2.0.0)"
 Bundle-Localization: plugin
 Bundle-ClassPath: lib/derby.jar
 Export-Package: org.apache.derby.jdbc
