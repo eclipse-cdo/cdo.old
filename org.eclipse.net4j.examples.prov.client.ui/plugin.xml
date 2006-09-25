@@ -6,7 +6,7 @@
    <extension
          point="org.eclipse.ui.actionSets">
        <actionSet
-            id="org.sympedia.density.provisioning.client.ui.actionSet"
+            id="org.eclipse.net4j.examples.prov.client.ui.actionSet"
             label="Density Provisioning Administration"
             visible="true">
          <menu
@@ -17,7 +17,7 @@
          <action
                class="org.eclipse.net4j.examples.prov.client.ui.actions.ProvisioningDialogAction"
                icon="icons/sample.gif"
-               id="org.sympedia.density.provisioning.client.ui.actions.ProvisioningDialogAction"
+               id="org.eclipse.net4j.examples.prov.client.ui.actions.ProvisioningDialogAction"
                label="&amp;Provisioning"
                menubarPath="sampleMenu/sampleGroup"
                toolbarPath="sampleGroup"
