@@ -23,23 +23,19 @@
 
    <includes
          id="org.eclipse.emf.cdo"
-         version="0.0.0"
-         match="compatible"/>
+         version="0.0.0"/>
 
    <includes
          id="org.eclipse.emf.cdo.doc"
-         version="0.0.0"
-         match="compatible"/>
+         version="0.0.0"/>
 
    <includes
          id="org.eclipse.emf.cdo.source"
-         version="0.0.0"
-         match="compatible"/>
+         version="0.0.0"/>
 
    <includes
          id="org.eclipse.emf.cdo.utilities"
-         version="0.0.0"
-         match="compatible"/>
+         version="0.0.0"/>
 
    <includes
          id="org.eclipse.emf.cdo.examples"

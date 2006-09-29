@@ -23,22 +23,18 @@
 
    <includes
          id="org.eclipse.net4j"
-         version="0.0.0"
-         match="compatible"/>
+         version="0.0.0"/>
 
    <includes
          id="org.eclipse.net4j.doc"
-         version="0.0.0"
-         match="compatible"/>
+         version="0.0.0"/>
 
    <includes
          id="org.eclipse.net4j.source"
-         version="0.0.0"
-         match="compatible"/>
+         version="0.0.0"/>
 
    <includes
          id="org.eclipse.net4j.examples"
-         version="0.0.0"
-         match="compatible"/>
+         version="0.0.0"/>
 
 </feature>
