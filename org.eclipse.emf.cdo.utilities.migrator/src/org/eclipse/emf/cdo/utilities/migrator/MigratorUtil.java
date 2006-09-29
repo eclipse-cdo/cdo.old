@@ -36,6 +36,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
@@ -46,6 +47,12 @@ import java.util.regex.Pattern;
 
 public class MigratorUtil
 {
+  /**
+   * TODO Document field REQUIRE_BUNDLE_HEADER<p>
+   * Stores the <code>{@link String}</code> value of the <code>REQUIRE_BUNDLE_HEADER<code> property.<p>
+   */
+  private static final String REQUIRE_BUNDLE_HEADER = "Require-Bundle:";
+
   public static final String CLIENT_PLUGIN_ID = "org.eclipse.emf.cdo.client";
 
   private static final String CLIENT_PATH = "/" + CLIENT_PLUGIN_ID;
@@ -57,7 +64,51 @@ public class MigratorUtil
   private static final String TEMPLATES_URI = "platform:/resource" + CLIENT_PATH + "/templates";
 
   /**
+   * @return <code>true</code> if manifest was modified, <code>false</code> otherwise.
+   * @throws IOException
+   * @throws CoreException
+   */
+  public static boolean updateClasspath(String fullPath) throws IOException, CoreException
+  {
+    IProject project = ResourcesHelper.ROOT.getProject(new Path(fullPath).segment(0));
+    IFile file = project.getFile(new Path("META-INF/MANIFEST.MF"));
+    if (file == null || !file.exists())
+    {
+      throw new FileNotFoundException(file.getFullPath() + " not found");
+    }
+
+    String oldContent = ResourcesHelper.readFileIntoString(file);
+    String newContent;
+
+    if (oldContent.indexOf(REQUIRE_BUNDLE_HEADER) == -1)
+    {
+      newContent = oldContent + REQUIRE_BUNDLE_HEADER + " " + CLIENT_PLUGIN_ID + "\n";
+    }
+    else
+    {
+      if (oldContent.indexOf(CLIENT_PLUGIN_ID) == -1)
+      {
+        newContent = oldContent.replaceFirst(REQUIRE_BUNDLE_HEADER, REQUIRE_BUNDLE_HEADER + " "
+                + CLIENT_PLUGIN_ID + ",");
+      }
+      else
+      {
+        return false;
+      }
+    }
+
+    if (newContent.equals(oldContent))
+    {
+      return false;
+    }
+
+    ResourcesHelper.writeFile(file, newContent, new NullProgressMonitor());
+    return true;
+  }
+
+  /**
    * @return The number of added extensions.<p>
+   * @throws IOException
    * @throws CoreException 
    */
   public static int addMappings(String fullPath) throws IOException, CoreException

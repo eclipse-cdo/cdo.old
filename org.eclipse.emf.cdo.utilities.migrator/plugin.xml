@@ -24,6 +24,13 @@
                id="org.eclipse.emf.cdo.utilities.migrator.addMappingsAction">
          </action>
          <action
+               label="Update Classpath in MANIFEST.MF"
+               class="org.eclipse.emf.cdo.utilities.migrator.internal.actions.UpdateClasspathAction"
+               menubarPath="org.eclipse.emf.cdo.utilities.migrator.menu1/group1"
+               enablesFor="1"
+               id="org.eclipse.emf.cdo.utilities.migrator.updateClasspathAction">
+         </action>
+         <action
                label="Migrate Ecore to CDO"
                class="org.eclipse.emf.cdo.utilities.migrator.internal.actions.MigrateEcoreAction"
                menubarPath="org.eclipse.emf.cdo.utilities.migrator.menu1/group1"
