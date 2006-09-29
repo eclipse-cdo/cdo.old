@@ -17,7 +17,6 @@ import org.eclipse.net4j.core.Request;
 import org.eclipse.net4j.util.ImplementationError;
 
 import org.eclipse.emf.cdo.client.ResourceInfo;
-import org.eclipse.emf.cdo.core.RID;
 import org.eclipse.emf.cdo.core.protocol.AbstractCDOResProtocol;
 import org.eclipse.emf.cdo.core.protocol.ResourceChangeInfo;
 

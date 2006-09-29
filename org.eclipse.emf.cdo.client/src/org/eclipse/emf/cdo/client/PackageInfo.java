@@ -13,10 +13,7 @@ package org.eclipse.emf.cdo.client;
 
 import org.eclipse.net4j.core.Channel;
 
-import org.eclipse.emf.cdo.core.CID;
-import org.eclipse.emf.cdo.mapping.ClassMapping;
 import org.eclipse.emf.cdo.mapping.PackageMapping;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
 

@@ -18,7 +18,6 @@ import org.eclipse.emf.cdo.client.AttributeInfo;
 import org.eclipse.emf.cdo.client.CDOPersistable;
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ClassInfo;
-import org.eclipse.emf.cdo.client.OptimisticControlException;
 import org.eclipse.emf.cdo.client.PackageManager;
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.client.impl.ResourceManagerImpl;

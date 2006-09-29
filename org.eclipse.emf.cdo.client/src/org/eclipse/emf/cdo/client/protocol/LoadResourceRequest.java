@@ -11,8 +11,6 @@
 package org.eclipse.emf.cdo.client.protocol;
 
 
-import org.eclipse.net4j.util.ImplementationError;
-
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.client.impl.ResourceManagerImpl;

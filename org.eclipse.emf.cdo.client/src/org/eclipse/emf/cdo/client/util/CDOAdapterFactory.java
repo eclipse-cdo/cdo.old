@@ -74,7 +74,7 @@ public class CDOAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * The switch the delegates to the <code>createXXX} methods.
+   * The switch the delegates to the <code>createXXX</code> methods.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -98,11 +98,11 @@ public class CDOAdapterFactory extends AdapterFactoryImpl
   };
 
   /**
-   * Creates an adapter for the <code>target}.
+   * Creates an adapter for the <code>target</code>.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param target the object to adapt.
-   * @return the adapter for the <code>target}.
+   * @return the adapter for the <code>target</code>.
    * @generated
    */
   public Adapter createAdapter(Notifier target)
