@@ -11,30 +11,35 @@
 package org.eclipse.emf.cdo.client.protocol;
 
 
-import org.eclipse.net4j.core.impl.AbstractIndication;
+import org.eclipse.net4j.signal.Indication;
+import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
 
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.core.CDOProtocol;
 
+import java.io.IOException;
 
-public class RemovalNotificationIndication extends AbstractIndication
+
+public class RemovalNotificationIndication extends Indication
 {
-  public short getSignalId()
+  @Override
+  protected short getSignalID()
   {
     return CDOProtocol.REMOVAL_NOTIFICATION;
   }
 
-  public void indicate()
+  @Override
+  protected void indicating(ExtendedDataInputStream in) throws IOException
   {
-    int count = receiveInt();
+    int count = in.readInt();
     int[] rids = new int[count];
 
     for (int i = 0; i < count; i++)
     {
-      rids[i] = receiveInt();
+      rids[i] = in.readInt();
     }
 
-    ResourceManager resourceManager = ClientCDOProtocolImpl.getResourceManager(getChannel());
+    ResourceManager resourceManager = ((ClientCDOProtocolImpl) getProtocol()).getResourceManager();
     resourceManager.handleRemovedResources(rids);
   }
 }

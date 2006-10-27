@@ -11,13 +11,15 @@
 package org.eclipse.emf.cdo.client.impl;
 
 
-import org.eclipse.net4j.util.StringHelper;
+import org.eclipse.net4j.util.om.ContextTracer;
 
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceInfo;
 import org.eclipse.emf.cdo.client.ResourceManager;
+import org.eclipse.emf.cdo.client.internal.CDOClient;
 import org.eclipse.emf.cdo.client.protocol.ClientCDOProtocolImpl;
 import org.eclipse.emf.cdo.core.CDOProtocol;
+import org.eclipse.emf.cdo.core.util.StringHelper;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 
@@ -26,8 +28,6 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
 
-import org.apache.log4j.Logger;
-
 import java.util.Properties;
 
 import java.io.IOException;
@@ -35,7 +35,8 @@ import java.io.IOException;
 
 public class CDOResourceFactoryImpl implements Resource.Factory
 {
-  private static final Logger logger = Logger.getLogger(CDOResourceFactoryImpl.class);
+  private static final ContextTracer TRACER = new ContextTracer(CDOClient.DEBUG_RESOURCE,
+      CDOResourceFactoryImpl.class);
 
   protected ResourceManager resourceManager;
 
@@ -51,25 +52,36 @@ public class CDOResourceFactoryImpl implements Resource.Factory
 
   public Resource createResource(URI uri)
   {
-    if (logger.isDebugEnabled()) logger.debug("Creating resource from URI " + uri);
-
-    if (!CDOProtocol.PROTOCOL_NAME.equals(uri.scheme()))
+    if (TRACER.isEnabled())
     {
-      return createResourceFromFile(uri.path().substring("/resource".length()));
+      TRACER.trace("Creating resource from URI " + uri);
     }
 
-    int rid = parseRID(uri.authority());
-    if (rid != CDOProtocol.UNKNOWN_RID)
+    try
     {
-      return createResourceFromRID(rid);
+      if (!CDOProtocol.PROTOCOL_NAME.equals(uri.scheme()))
+      {
+        return createResourceFromFile(uri.path().substring("/resource".length()));
+      }
+
+      int rid = parseRID(uri.authority());
+      if (rid != CDOProtocol.UNKNOWN_RID)
+      {
+        return createResourceFromRID(rid);
+      }
+      else
+      {
+        return createResourceFromPath(uri.path());
+      }
     }
-    else
+    catch (Exception ex)
     {
-      return createResourceFromPath(uri.path());
+      CDOClient.LOG.error(ex);
+      return null;
     }
   }
 
-  private Resource createResourceFromFile(String fileName)
+  private Resource createResourceFromFile(String fileName) throws Exception
   {
     String path;
 
@@ -108,18 +120,18 @@ public class CDOResourceFactoryImpl implements Resource.Factory
     }
     catch (IOException ex)
     {
-      logger.warn("Error while creating CDO resource", ex);
+      CDOClient.LOG.error("Error while creating CDO resource", ex);
       return null;
     }
 
     return createResourceFromPath(path);
   }
 
-  private CDOResource createResourceFromPath(String path)
+  private CDOResource createResourceFromPath(String path) throws Exception
   {
-    if (logger.isDebugEnabled())
+    if (TRACER.isEnabled())
     {
-      logger.debug("Creating resource with path " + path);
+      TRACER.trace("Creating resource with path " + path);
     }
 
     int rid = ClientCDOProtocolImpl.requestResourcePath(resourceManager.getChannel(), path);
@@ -134,22 +146,10 @@ public class CDOResourceFactoryImpl implements Resource.Factory
 
   private CDOResource createResourceFromRID(int rid)
   {
-    if (logger.isDebugEnabled()) logger.debug("Creating resource with RID " + rid);
-
-    //    String path = null;
-    //    boolean existing = true;
-    //
-    //    // Only ask for resource info, when not in the context of a ReceivingLoadResponse!!!
-    //    if (resourceManager.isRequestingObjects())
-    //    {
-    //      path = ClientCDOProtocolImpl.requestResourceRID(resourceManager.getChannel(), rid);
-    //      existing = path == null;
-    //
-    //      if (!existing)
-    //      {
-    //        return null;
-    //      }
-    //    }
+    if (TRACER.isEnabled())
+    {
+      TRACER.trace("Creating resource with RID " + rid);
+    }
 
     return createResource(rid, null, true);
   }

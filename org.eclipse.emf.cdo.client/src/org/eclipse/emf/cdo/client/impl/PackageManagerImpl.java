@@ -11,9 +11,9 @@
 package org.eclipse.emf.cdo.client.impl;
 
 
-import org.eclipse.net4j.core.Channel;
-import org.eclipse.net4j.spring.ValidationException;
-import org.eclipse.net4j.spring.impl.ServiceImpl;
+import org.eclipse.net4j.transport.Channel;
+import org.eclipse.net4j.util.lifecycle.AbstractLifecycle;
+import org.eclipse.net4j.util.om.ContextTracer;
 
 import org.eclipse.emf.cdo.client.AttributeConverter;
 import org.eclipse.emf.cdo.client.ClassInfo;
@@ -21,8 +21,9 @@ import org.eclipse.emf.cdo.client.MappingProvider;
 import org.eclipse.emf.cdo.client.PackageInfo;
 import org.eclipse.emf.cdo.client.PackageListener;
 import org.eclipse.emf.cdo.client.PackageManager;
-import org.eclipse.emf.cdo.client.internal.ClientActivator;
-import org.eclipse.emf.cdo.client.internal.ClientActivator.MappingElement;
+import org.eclipse.emf.cdo.client.internal.Activator;
+import org.eclipse.emf.cdo.client.internal.CDOClient;
+import org.eclipse.emf.cdo.client.internal.Activator.MappingElement;
 import org.eclipse.emf.cdo.core.OIDEncoder;
 import org.eclipse.emf.cdo.mapping.ClassMapping;
 import org.eclipse.emf.cdo.mapping.PackageMapping;
@@ -55,8 +56,11 @@ import java.io.IOException;
 import java.net.URL;
 
 
-public class PackageManagerImpl extends ServiceImpl implements PackageManager
+public class PackageManagerImpl extends AbstractLifecycle implements PackageManager
 {
+  private static final ContextTracer TRACER = new ContextTracer(CDOClient.DEBUG_MODEL,
+      PackageManagerImpl.class);
+
   public static final boolean DEFAULT_AUTO_PERSISTENT = true;
 
   private boolean autoPersistent = DEFAULT_AUTO_PERSISTENT;
@@ -84,7 +88,7 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
 
   public void setOidEncoder(OIDEncoder oidEncoder) // Don't change case! Spring will be irritated
   {
-    doSet("oidEncoder", oidEncoder);
+    this.oidEncoder = oidEncoder;
   }
 
   public AttributeConverter getAttributeConverter()
@@ -94,13 +98,17 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
 
   public void setAttributeConverter(AttributeConverter attributeConverter)
   {
-    doSet("attributeConverter", attributeConverter);
+    this.attributeConverter = attributeConverter;
   }
 
   @SuppressWarnings("unchecked")
   public void addPackage(EPackage ePackage, String mappingFile)
   {
-    if (isDebugEnabled()) debug("Analyzing package " + ePackage.getNsURI());
+    if (TRACER.isEnabled())
+    {
+      TRACER.trace("Analyzing package " + ePackage.getNsURI());
+    }
+
     MappingProvider provider = getMappingProvider(ePackage, mappingFile);
     PackageInfo packageInfo = new PackageInfoImpl(ePackage, provider.getPackageMapping(), this);
 
@@ -121,7 +129,11 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
 
   protected void addClass(EClass eClass, PackageInfo packageInfo, MappingProvider provider)
   {
-    if (isDebugEnabled()) debug("Analyzing class " + eClass.getName());
+    if (TRACER.isEnabled())
+    {
+      TRACER.trace("Analyzing class " + eClass.getName());
+    }
+
     ClassMapping classMapping = provider.getClassMapping(eClass.getName());
 
     if (classMapping != null)
@@ -150,13 +162,20 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
     {
       if (mappingExists)
       {
-        if (isDebugEnabled()) debug("Using mapping file " + mappingFile);
+        if (TRACER.isEnabled())
+        {
+          TRACER.trace("Using mapping file " + mappingFile);
+        }
+
         MappingProvider provider = new XMLMappingProviderImpl(mappingFile);
         return provider;
       }
       else
       {
-        if (isDebugEnabled()) debug("Creating mapping file " + mappingFile);
+        if (TRACER.isEnabled())
+        {
+          TRACER.trace("Creating mapping file " + mappingFile);
+        }
 
         MappingProvider provider = new AnnotationMappingProviderImpl(ePackage, autoPersistent,
             attributeConverter);
@@ -223,7 +242,7 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
 
   public void setAutoPersistent(boolean autoPersistent)
   {
-    doSet("autoPersistent", autoPersistent);
+    this.autoPersistent = autoPersistent;
   }
 
   @SuppressWarnings("unchecked")
@@ -248,9 +267,9 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
 
   public void announceNewPackages(Channel channel)
   {
-    if (isDebugEnabled())
+    if (TRACER.isEnabled())
     {
-      debug("Announcing new packages");
+      TRACER.trace("Announcing new packages");
     }
 
     if (newPackagesToAnnounce)
@@ -259,12 +278,19 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
       {
         if (!packageInfo.isAnnounced())
         {
-          if (isDebugEnabled())
+          if (TRACER.isEnabled())
           {
-            debug("Announcing package " + packageInfo.getFullName());
+            TRACER.trace("Announcing package " + packageInfo.getFullName());
           }
 
-          packageInfo.announce(channel);
+          try
+          {
+            packageInfo.announce(channel);
+          }
+          catch (Exception ex)
+          {
+            CDOClient.LOG.error(ex);
+          }
         }
       }
 
@@ -274,7 +300,7 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
 
   public void processMappings()
   {
-    List<?> elements = ClientActivator.getPlugin().getMappingElements();
+    List<?> elements = Activator.getPlugin().getMappingElements();
 
     if (elements == null)
     {
@@ -289,8 +315,8 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
 
       EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(uri);
       if (ePackage == null)
-        throw new ValidationException("There is no EPackage registered under the specified URI "
-            + uri); // TODO Better Exception
+        throw new IllegalStateException("There is no EPackage registered under the specified URI "
+            + uri);
 
       String mappingFileName;
       String id = element.configurationElement().getNamespaceIdentifier();
@@ -303,7 +329,7 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
       }
       catch (IOException ex)
       {
-        throw new ValidationException("Error while computing location of bundle " + id, ex);
+        throw new IllegalStateException("Error while computing location of bundle " + id, ex);
       }
 
       addPackage(ePackage, mappingFileName);
@@ -311,11 +337,36 @@ public class PackageManagerImpl extends ServiceImpl implements PackageManager
   }
 
   @Override
-  protected void validate() throws ValidationException
+  protected void onAboutToActivate() throws Exception
   {
-    super.validate();
-    assertNotNull("oidEncoder");
-    assertNotNull("attributeConverter");
+    super.onAboutToActivate();
+    if (oidEncoder == null)
+    {
+      throw new IllegalStateException("oidEncoder == null");
+    }
+
+    if (attributeConverter == null)
+    {
+      throw new IllegalStateException("attributeConverter == null");
+    }
+  }
+
+  @Override
+  protected void onActivate() throws Exception
+  {
+    super.onActivate();
     processMappings();
+  }
+
+  @Override
+  protected void onDeactivate() throws Exception
+  {
+    attributeConverter = null;
+    cidToClassInfoMap = null;
+    eClassToClassInfoMap = null;
+    listeners = null;
+    oidEncoder = null;
+    packages = null;
+    super.onDeactivate();
   }
 }

@@ -11,14 +11,13 @@
 package org.eclipse.emf.cdo.core.impl;
 
 
-import org.eclipse.net4j.spring.ValidationException;
-import org.eclipse.net4j.spring.impl.ServiceImpl;
+import org.eclipse.net4j.util.lifecycle.AbstractLifecycle;
 
 import org.eclipse.emf.cdo.core.NoMoreOIDsException;
 import org.eclipse.emf.cdo.core.OIDEncoder;
 
 
-public class OIDEncoderImpl extends ServiceImpl implements OIDEncoder
+public class OIDEncoderImpl extends AbstractLifecycle implements OIDEncoder
 {
   public static final int MIN_FRAGMENT_BITS = 32;
 
@@ -82,16 +81,18 @@ public class OIDEncoderImpl extends ServiceImpl implements OIDEncoder
    */
   public void setFragmentBits(int fragmentBits)
   {
-    doSet("fragmentBits", fragmentBits);
+    this.fragmentBits = fragmentBits;
   }
 
-  protected void validate() throws ValidationException
+  @Override
+  protected void onAboutToActivate() throws Exception
   {
-    super.validate();
-
+    super.onAboutToActivate();
     if (fragmentBits < MIN_FRAGMENT_BITS || fragmentBits > MAX_FRAGMENT_BITS)
-      throw new ValidationException("fragmentBits is not in range (" + MIN_FRAGMENT_BITS + "-"
+    {
+      throw new IllegalStateException("fragmentBits is not in range (" + MIN_FRAGMENT_BITS + "-"
           + MAX_FRAGMENT_BITS + "): " + fragmentBits);
+    }
 
     fragmentMask = 0;
     for (int i = 0; i < fragmentBits; i++)

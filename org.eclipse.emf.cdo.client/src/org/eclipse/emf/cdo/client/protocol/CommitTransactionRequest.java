@@ -11,7 +11,10 @@
 package org.eclipse.emf.cdo.client.protocol;
 
 
-import org.eclipse.net4j.util.ImplementationError;
+import org.eclipse.net4j.transport.Channel;
+import org.eclipse.net4j.util.om.ContextTracer;
+import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
+import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
 
 import org.eclipse.emf.cdo.client.AttributeConverter;
 import org.eclipse.emf.cdo.client.AttributeInfo;
@@ -21,7 +24,9 @@ import org.eclipse.emf.cdo.client.ClassInfo;
 import org.eclipse.emf.cdo.client.PackageManager;
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.client.impl.ResourceManagerImpl;
+import org.eclipse.emf.cdo.client.internal.CDOClient;
 import org.eclipse.emf.cdo.core.CDOProtocol;
+import org.eclipse.emf.cdo.core.ImplementationError;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
@@ -50,8 +55,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 
+import java.io.IOException;
 
-public class CommitTransactionRequest extends AbstractCDOClientRequest
+
+public class CommitTransactionRequest extends AbstractCDOClientRequest<Boolean>
 {
   private static final int CAPACITY_eClassToAttributeChangesMap = 53;
 
@@ -66,6 +73,9 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
   private static final int OBJECT_FEATURE = 2;
 
   private static final int COLLECTION_FEATURE = 3;
+
+  private static final ContextTracer TRACER = new ContextTracer(CDOClient.DEBUG_PROTOCOL,
+      CommitTransactionRequest.class);
 
   private Set<ReferenceRecord> referenceRecords = new HashSet<ReferenceRecord>(
       CAPACITY_referenceRecords);
@@ -90,40 +100,41 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
 
   private PackageManager packageManager;
 
-  public CommitTransactionRequest(ChangeDescription changeDescription)
+  public CommitTransactionRequest(Channel channel, ChangeDescription changeDescription)
   {
+    super(channel);
     this.changeDescription = changeDescription;
   }
 
-  public short getSignalId()
+  @Override
+  protected short getSignalID()
   {
     return CDOProtocol.COMMIT_TRANSACTION;
   }
 
-  public void request()
+  @Override
+  protected void requesting(ExtendedDataOutputStream out) throws IOException
   {
     packageManager = ((ClientCDOProtocolImpl) getProtocol()).getPackageManager();
-
-    commitObjectsToDetach();
-    commitObjectsToAttach();
-    commitObjectChanges();
-
-    announceNewResources();
+    commitObjectsToDetach(out);
+    commitObjectsToAttach(out);
+    commitObjectChanges(out);
+    announceNewResources(out);
   }
 
-  public Object confirm()
+  @Override
+  protected Boolean confirming(ExtendedDataInputStream in) throws IOException
   {
     if (changeDescription == null)
     {
       throw new ImplementationError("changeDescription == null");
     }
 
-    boolean ok = receiveBoolean();
+    boolean ok = in.readBoolean();
     if (!ok)
     {
       changeDescription.apply();
-      return Boolean.FALSE;
-//      throw new OptimisticControlException();
+      return false;
     }
 
     ResourceManager resourceManager = getResourceManager();
@@ -141,7 +152,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
     }
 
     // Re-register new objects (apply positive OIDs)
-    int attachedCount = receiveInt();
+    int attachedCount = in.readInt();
 
     if (attachedCount != objectsToAttach.size())
     {
@@ -151,7 +162,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
     for (Iterator<EObject> iter = objectsToAttach.iterator(); iter.hasNext();)
     {
       EObject object = iter.next();
-      long oid = receiveLong();
+      long oid = in.readLong();
 
       resourceManager.reRegisterObject(object, oid);
       int rid = packageManager.getOidEncoder().getRID(oid);
@@ -160,7 +171,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
     }
 
     // Increase OCA of modified objects
-    int changedCount = receiveInt();
+    int changedCount = in.readInt();
     if (changedCount != changedObjects.size())
     {
       throw new ImplementationError("changedCount != changedObjects.size()");
@@ -168,8 +179,8 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
 
     for (EObject object : changedObjects)
     {
-      long oid = receiveLong();
-      int oca = receiveInt();
+      long oid = in.readLong();
+      int oca = in.readInt();
 
       if (ResourceManagerImpl.getOID(object) != oid)
       {
@@ -184,10 +195,10 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
       ResourceManagerImpl.incOCA(object);
     }
 
-    return Boolean.TRUE;
+    return true;
   }
 
-  private void announceNewResources()
+  private void announceNewResources(ExtendedDataOutputStream out) throws IOException
   {
     ResourceManager resourceManager = getResourceManager();
     ResourceSet resourceSet = resourceManager.getResourceSet();
@@ -201,78 +212,82 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
         CDOResource cdoResource = (CDOResource) resource;
         if (!cdoResource.isExisting())
         {
-          transmitInt(cdoResource.getRID());
-          transmitString(cdoResource.getPath());
+          out.writeInt(cdoResource.getRID());
+          out.writeString(cdoResource.getPath());
         }
       }
     }
 
-    transmitInt(0);
+    out.writeInt(0);
   }
 
-  private void commitObjectsToDetach()
+  private void commitObjectsToDetach(ExtendedDataOutputStream out) throws IOException
   {
-    if (isDebugEnabled()) debug("commitObjectsToDetach()");
-
     // Use getObjectsToAttach() because changeDescription is reversed
-    for (Iterator<?> iter = EcoreUtil.getAllContents(changeDescription.getObjectsToAttach()); iter
-        .hasNext();)
+    EList attached = changeDescription.getObjectsToAttach();
+    if (TRACER.isEnabled())
     {
-      EObject object = (EObject) iter.next();
+      TRACER.trace("commitObjectsToDetach(" + attached.size() + " object"
+          + (attached.size() != 1 ? "s" : "") + ")");
+    }
 
-      // All changes to detached objects are handled through detachment
+    for (Iterator it = EcoreUtil.getAllContents(attached); it.hasNext();)
+    {
+      EObject object = (EObject) it.next();
+
+      // All changes to detached objects are ignored
       changeDescription.getObjectChanges().removeKey(object);
 
       long oid = ResourceManagerImpl.getOID(object);
       int oca = ((CDOPersistable) object).cdoGetOCA();
       if ((oid != 0) && (oca != -1))
       {
-        if (isDebugEnabled()) debug(ResourceManagerImpl.getLabel(object));
-        transmitLong(oid);
+        if (TRACER.isEnabled())
+        {
+          TRACER.trace(ResourceManagerImpl.getLabel(object));
+        }
+
+        out.writeLong(oid);
       }
     }
 
     // End of list
-    transmitLong(0);
+    out.writeLong(0);
   }
 
-  private void commitObjectsToAttach()
+  private void commitObjectsToAttach(ExtendedDataOutputStream out) throws IOException
   {
-    // TODO Move this to getObjectsToAttach()
     // Use getObjectsToDetach() because changeDescription is reversed
-    for (Iterator<?> iter = changeDescription.getObjectsToDetach().iterator(); iter.hasNext();)
+    for (Iterator it = changeDescription.getObjectsToDetach().iterator(); it.hasNext();)
     {
-      EObject eObject = (EObject) iter.next();
+      EObject eObject = (EObject) it.next();
       objectsToAttach.add(eObject);
 
-      for (Iterator<?> tree = eObject.eAllContents(); tree.hasNext();)
+      for (Iterator tree = eObject.eAllContents(); tree.hasNext();)
       {
         EObject child = (EObject) tree.next();
         objectsToAttach.add(child);
       }
     }
 
-    transmitInt(objectsToAttach.size());
+    out.writeInt(objectsToAttach.size());
 
-    if (isDebugEnabled())
+    if (TRACER.isEnabled())
     {
-      debug("commitObjectsToAttach(" + objectsToAttach.size() + " objects)");
+      TRACER.trace("commitObjectsToAttach(" + objectsToAttach.size() + " object"
+          + (objectsToAttach.size() != 1 ? "s" : "") + ")");
     }
 
     // First transmit all the temporary oids, so that the server knows in advance how to handle references
-    for (Iterator<EObject> iter = objectsToAttach.iterator(); iter.hasNext();)
+    for (Iterator<EObject> it = objectsToAttach.iterator(); it.hasNext();)
     {
-      EObject eObject = iter.next();
+      EObject eObject = it.next();
       ClassInfo classInfo = packageManager.getClassInfo(eObject);
       if (classInfo == null)
         throw new ImplementationError("Class not registered as CDO persistent: " + eObject.eClass());
 
-      // TODO Remove this after EMF has fixed zero bug
-      if (!changeDescription.getObjectChanges().isEmpty())
-      {
-        // All changes to attached objects are handled through attachment
-        changeDescription.getObjectChanges().removeKey(eObject);
-      }
+      // All changes to attached objects are handled through attachment
+      changeDescription.getObjectChanges().removeKey(eObject);
 
       long oid = ResourceManagerImpl.getOID(eObject);
       if (oid == CDOProtocol.NO_MORE_OBJECTS) throw new ImplementationError("oid == 0");
@@ -282,23 +297,27 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
 
       boolean isContent = (eObject.eContainer() == null);
 
-      if (isDebugEnabled())
-        debug("Transmitting object to attach: oid=" + packageManager.getOidEncoder().toString(oid)
-            + ", cid=" + cid + ", isContent=" + isContent);
+      if (TRACER.isEnabled())
+      {
+        TRACER.trace("Transmitting object to attach: oid="
+            + packageManager.getOidEncoder().toString(oid) + ", cid=" + cid + ", isContent="
+            + isContent);
+      }
 
-      transmitLong(oid);
-      transmitInt(cid);
-      transmitBoolean(isContent);
+      out.writeLong(oid);
+      out.writeInt(cid);
+      out.writeBoolean(isContent);
 
-      commitObjectsToAttachAttributes(eObject);
+      commitObjectsToAttachAttributes(out, eObject);
       rememberObjectsToAttachReferences(eObject, classInfo);
     }
 
     // Then transmit the references of all new objects together 
-    commitReferencesToAdd();
+    commitReferencesToAdd(out);
   }
 
-  private void commitObjectsToAttachAttributes(EObject eObject)
+  private void commitObjectsToAttachAttributes(ExtendedDataOutputStream out, EObject eObject)
+      throws IOException
   {
     ClassInfo classInfo = packageManager.getClassInfo(eObject);
     if (classInfo == null)
@@ -306,18 +325,23 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
 
     while (classInfo != null)
     {
-      if (isDebugEnabled()) debug("Transmitting attributeSegment " + classInfo.getFullName());
+      if (TRACER.isEnabled())
+      {
+        TRACER.trace("Transmitting attributeSegment " + classInfo.getFullName());
+      }
 
       AttributeInfo[] attributeInfos = classInfo.getAttributeInfos();
 
       for (int i = 0; i < attributeInfos.length; i++)
       {
         AttributeInfo attributeInfo = attributeInfos[i];
-
-        if (isDebugEnabled()) debug("Transmitting attribute " + attributeInfo.getName());
+        if (TRACER.isEnabled())
+        {
+          TRACER.trace("Transmitting attribute " + attributeInfo.getName());
+        }
 
         AttributeConverter converter = packageManager.getAttributeConverter();
-        converter.toChannel(eObject, attributeInfo.getEAttribute(), getChannel());
+        converter.toChannel(eObject, attributeInfo.getEAttribute(), out);
       }
 
       classInfo = classInfo.getParent();
@@ -357,9 +381,9 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
     }
   }
 
-  private void commitReferencesToAdd()
+  private void commitReferencesToAdd(ExtendedDataOutputStream out) throws IOException
   {
-    transmitInt(referenceRecords.size());
+    out.writeInt(referenceRecords.size());
 
     for (Iterator<ReferenceRecord> it = referenceRecords.iterator(); it.hasNext();)
     {
@@ -368,26 +392,31 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
       EReference feature = record.getFeature();
       int ordinal = record.getOrdinal();
       long target = record.getTarget();
+      boolean containment = feature.isContainment();
 
-      if (isDebugEnabled())
-        debug("Transmitting reference to add: oid=" + packageManager.getOidEncoder().toString(oid)
-            + ", feature=" + feature.getFeatureID() + ", ordinal=" + ordinal + ", target=" + packageManager.getOidEncoder().toString(target));
+      if (TRACER.isEnabled())
+      {
+        TRACER.trace("Transmitting reference to add: oid="
+            + packageManager.getOidEncoder().toString(oid) + ", feature=" + feature.getFeatureID()
+            + ", ordinal=" + ordinal + ", target="
+            + packageManager.getOidEncoder().toString(target) + ", containment=" + containment);
+      }
 
-      transmitLong(oid);
-      transmitInt(feature.getFeatureID());
-      transmitInt(ordinal); // TODO ordinal necessary?
-      transmitLong(target);
-      transmitBoolean(feature.isContainment());
+      out.writeLong(oid);
+      out.writeInt(feature.getFeatureID());
+      out.writeInt(ordinal); // TODO ordinal necessary?
+      out.writeLong(target);
+      out.writeBoolean(containment);
     }
   }
 
-  private void commitObjectChanges()
+  private void commitObjectChanges(ExtendedDataOutputStream out) throws IOException
   {
     EMap objectChanges = changeDescription.getObjectChanges();
 
-    if (isDebugEnabled())
+    if (TRACER.isEnabled())
     {
-      debug("commitObjectChanges(" + objectChanges.size() + " objects)");
+      TRACER.trace("commitObjectChanges(" + objectChanges.size() + " objects)");
     }
 
     for (Iterator<?> iter = objectChanges.iterator(); iter.hasNext();)
@@ -396,14 +425,15 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
       EObject eObject = (EObject) entry.getKey();
       EList featureChanges = (EList) entry.getValue();
 
-      transmitObjectChange(eObject, featureChanges);
+      transmitObjectChange(out, eObject, featureChanges);
     }
 
-    transmitLong(CDOProtocol.NO_MORE_OBJECT_CHANGES);
+    out.writeLong(CDOProtocol.NO_MORE_OBJECT_CHANGES);
   }
 
   @SuppressWarnings("unchecked")
-  private void transmitObjectChange(EObject eObject, EList featureChanges)
+  private void transmitObjectChange(ExtendedDataOutputStream out, EObject eObject,
+      EList featureChanges) throws IOException
   {
     ClassInfo classInfo = packageManager.getClassInfo(eObject);
     if (classInfo == null)
@@ -425,18 +455,18 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
           break;
 
         case ATTRIBUTE_FEATURE:
-          tryObjectChangeHeader(eObject);
+          tryObjectChangeHeader(out, eObject);
           rememberAttributeChange(feature, eClassToAttributeChangesMap);
           break;
 
         case OBJECT_FEATURE:
-          tryObjectChangeHeader(eObject);
-          commitObjectChangeReferenceOne(eObject, (EReference) feature);
+          tryObjectChangeHeader(out, eObject);
+          commitObjectChangeReferenceOne(out, eObject, (EReference) feature);
           break;
 
         case COLLECTION_FEATURE:
-          tryObjectChangeHeader(eObject);
-          commitObjectChangeReferenceMany(eObject, featureChange, (EReference) feature);
+          tryObjectChangeHeader(out, eObject);
+          commitObjectChangeReferenceMany(out, eObject, featureChange, (EReference) feature);
           break;
 
         default:
@@ -450,18 +480,20 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
       return;
     }
 
-    transmitByte(CDOProtocol.NO_MORE_REFERENCE_CHANGES);
-    transmitAttributeChanges(eObject, eClassToAttributeChangesMap);
+    out.writeByte(CDOProtocol.NO_MORE_REFERENCE_CHANGES);
+    transmitAttributeChanges(out, eObject, eClassToAttributeChangesMap);
     changedObjects.add(eObject);
   }
 
   /**
+   * @param out 
    * @param object
    * @param classToAttributeChangesMap
+   * @throws IOException 
    */
   @SuppressWarnings("unchecked")
-  private void transmitAttributeChanges(EObject eObject,
-      Map<EClass, List<AttributeInfo>> eClassToAttributeChangesMap)
+  private void transmitAttributeChanges(ExtendedDataOutputStream out, EObject eObject,
+      Map<EClass, List<AttributeInfo>> eClassToAttributeChangesMap) throws IOException
   {
     Set<Entry<EClass, List<AttributeInfo>>> entrySet = eClassToAttributeChangesMap.entrySet();
     for (Iterator<Entry<EClass, List<AttributeInfo>>> mapIt = entrySet.iterator(); mapIt.hasNext();)
@@ -477,21 +509,23 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
       int cid = classInfo.getCID();
       int count = attributeChangesOfClassifierList.size();
 
-      if (isDebugEnabled())
-        debug("Transmitting segment " + classInfo.getFullName() + ": count=" + count);
+      if (TRACER.isEnabled())
+      {
+        TRACER.trace("Transmitting segment " + classInfo.getFullName() + ": count=" + count);
+      }
 
-      transmitInt(cid);
-      transmitInt(count);
+      out.writeInt(cid);
+      out.writeInt(count);
 
       for (Iterator<AttributeInfo> listIt = attributeChangesOfClassifierList.iterator(); listIt
           .hasNext();)
       {
         AttributeInfo attributeInfo = listIt.next();
-        transmitAttributeChange(eObject, attributeInfo);
+        transmitAttributeChange(out, eObject, attributeInfo);
       }
     }
 
-    transmitInt(CDOProtocol.NO_MORE_SEGMENTS);
+    out.writeInt(CDOProtocol.NO_MORE_SEGMENTS);
   }
 
   /**
@@ -556,43 +590,54 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
   }
 
   /**
+   * @param out 
    * @param eObject
+   * @throws IOException 
    */
-  private void tryObjectChangeHeader(EObject eObject)
+  private void tryObjectChangeHeader(ExtendedDataOutputStream out, EObject eObject)
+      throws IOException
   {
     if (firstChange)
     {
       firstChange = false;
-
       long oid = ResourceManagerImpl.getOID(eObject);
       int oca = ResourceManagerImpl.getOCA(eObject);
+      if (TRACER.isEnabled())
+      {
+        TRACER.trace("Transmitting object to change: " + ResourceManagerImpl.getLabel(eObject)
+            + ")");
+      }
 
-      if (isDebugEnabled())
-        debug("Transmitting object to change: " + ResourceManagerImpl.getLabel(eObject) + ")");
-
-      transmitLong(oid);
-      transmitInt(oca);
+      out.writeLong(oid);
+      out.writeInt(oca);
     }
   }
 
-  private void transmitAttributeChange(EObject eObject, AttributeInfo attributeInfo)
+  private void transmitAttributeChange(ExtendedDataOutputStream out, EObject eObject,
+      AttributeInfo attributeInfo) throws IOException
   {
-    if (isDebugEnabled()) debug("commitObjectChangeAttribute(" + attributeInfo.getName() + ")");
+    if (TRACER.isEnabled())
+    {
+      TRACER.trace("commitObjectChangeAttribute(" + attributeInfo.getName() + ")");
+    }
+
     EAttribute attribute = attributeInfo.getEAttribute();
-    transmitInt(attribute.getFeatureID());
+    out.writeInt(attribute.getFeatureID());
 
     AttributeConverter converter = packageManager.getAttributeConverter();
-    converter.toChannel(eObject, attribute, getChannel());
+    converter.toChannel(eObject, attribute, out);
   }
 
   @SuppressWarnings("unchecked")
-  private void commitObjectChangeReferenceMany(EObject object, FeatureChange featureChange,
-      EReference reference)
+  private void commitObjectChangeReferenceMany(ExtendedDataOutputStream out, EObject object,
+      FeatureChange featureChange, EReference reference) throws IOException
   {
-    if (isDebugEnabled()) debug("commitObjectChangeReferenceMany(" + reference.getName() + ")");
+    if (TRACER.isEnabled())
+    {
+      TRACER.trace("commitObjectChangeReferenceMany(" + reference.getName() + ")");
+    }
 
     long oid = ResourceManagerImpl.getOID(object);
-
     if (featureChange.isSet())
     {
       EList currentObjects = (EList) object.eGet(reference);
@@ -625,7 +670,8 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
           {
             int index = listChange.getIndex();
             int moveToIndex = listChange.getMoveToIndex();
-            transmitReferenceChange(CDOProtocol.LIST_MOVE, oid, reference, index, 0, moveToIndex);
+            transmitReferenceChange(out, CDOProtocol.LIST_MOVE, oid, reference, index, 0,
+                moveToIndex);
             break;
           }
           case ChangeKind.ADD:
@@ -636,14 +682,14 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
             {
               EObject value = (EObject) itValues.next();
               long target = ResourceManagerImpl.getOID(value);
-              transmitReferenceChange(CDOProtocol.LIST_ADD, oid, reference, index, target, 0);
+              transmitReferenceChange(out, CDOProtocol.LIST_ADD, oid, reference, index, target, 0);
             }
             break;
           }
           case ChangeKind.REMOVE:
           {
             int index = listChange.getIndex();
-            transmitReferenceChange(CDOProtocol.LIST_REMOVE, oid, reference, index, 0, 0);
+            transmitReferenceChange(out, CDOProtocol.LIST_REMOVE, oid, reference, index, 0, 0);
             break;
           }
           default:
@@ -665,82 +711,108 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest
         EObject value = (EObject) valuesIt.next();
         long target = ResourceManagerImpl.getOID(value);
 
-        transmitReferenceChange(CDOProtocol.LIST_ADD, oid, reference, ordinal++, target, 0);
+        transmitReferenceChange(out, CDOProtocol.LIST_ADD, oid, reference, ordinal++, target, 0);
       }
     }
   }
 
-  private void commitObjectChangeReferenceOne(EObject object, EReference reference)
+  private void commitObjectChangeReferenceOne(ExtendedDataOutputStream out, EObject object,
+      EReference reference) throws IOException
   {
-    if (isDebugEnabled()) debug("commitObjectChangeReferenceOne()");
-    EObject refObject = (EObject) object.eGet(reference);
+    if (TRACER.isEnabled())
+    {
+      TRACER.trace("commitObjectChangeReferenceOne()");
+    }
 
+    EObject refObject = (EObject) object.eGet(reference);
     long oid = ResourceManagerImpl.getOID(object);
     long target = refObject == null ? 0 : ResourceManagerImpl.getOID(refObject);
 
     // Add the reference
     byte changeKind = refObject == null ? CDOProtocol.FEATURE_UNSET : CDOProtocol.FEATURE_SET;
-    transmitReferenceChange(changeKind, oid, reference, 0, target, 0);
-    if (isDebugEnabled() && (refObject != null))
-      debug("--> " + reference.getName() + ": " + ResourceManagerImpl.getLabel(refObject));
+    transmitReferenceChange(out, changeKind, oid, reference, 0, target, 0);
+    if (TRACER.isEnabled() && refObject != null)
+    {
+      TRACER.trace("--> " + reference.getName() + ": " + ResourceManagerImpl.getLabel(refObject));
+    }
   }
 
-  private void transmitReferenceChange(byte changeKind, long sourceId, EReference feature,
-      int sourceOrdinal, long targetId, int moveToIndex)
+  private void transmitReferenceChange(ExtendedDataOutputStream out, byte changeKind,
+      long sourceId, EReference feature, int sourceOrdinal, long targetId, int moveToIndex)
+      throws IOException
   {
-    transmitByte(changeKind);
-    transmitLong(sourceId);
-    transmitInt(feature.getFeatureID());
+    out.writeByte(changeKind);
+    out.writeLong(sourceId);
+    out.writeInt(feature.getFeatureID());
 
     switch (changeKind)
     {
       case CDOProtocol.FEATURE_SET:
       {
-        if (isDebugEnabled())
-          debug("transmitReferenceChange(SET, oid="
+        if (TRACER.isEnabled())
+        {
+          TRACER.trace("transmitReferenceChange(SET, oid="
               + packageManager.getOidEncoder().toString(sourceId) + ", featureId="
               + feature.getFeatureID() + ", target="
-              + packageManager.getOidEncoder().toString(targetId) + ", content="
+              + packageManager.getOidEncoder().toString(targetId) + ", containment="
               + feature.isContainment() + ")");
-        transmitLong(targetId);
-        transmitBoolean(feature.isContainment());
+        }
+
+        out.writeLong(targetId);
+        out.writeBoolean(feature.isContainment());
         break;
       }
       case CDOProtocol.FEATURE_UNSET:
       {
-        // Do nothing
+        if (TRACER.isEnabled())
+        {
+          TRACER.trace("transmitReferenceChange(UNSET, oid="
+              + packageManager.getOidEncoder().toString(sourceId) + ", featureId="
+              + feature.getFeatureID() + ")");
+        }
+
         break;
       }
       case CDOProtocol.LIST_ADD:
       {
-        if (isDebugEnabled())
-          debug("transmitReferenceChange(ADD, oid="
+        if (TRACER.isEnabled())
+        {
+          TRACER.trace("transmitReferenceChange(ADD, oid="
               + packageManager.getOidEncoder().toString(sourceId) + ", featureId="
-              + feature.getFeatureID() + ", ordinal=" + sourceOrdinal + ", target=" + packageManager.getOidEncoder().toString(targetId)
-              + ", content=" + feature.isContainment() + ")");
-        transmitInt(sourceOrdinal);
-        transmitLong(targetId);
-        transmitBoolean(feature.isContainment());
+              + feature.getFeatureID() + ", ordinal=" + sourceOrdinal + ", target="
+              + packageManager.getOidEncoder().toString(targetId) + ", containment="
+              + feature.isContainment() + ")");
+        }
+
+        out.writeInt(sourceOrdinal);
+        out.writeLong(targetId);
+        out.writeBoolean(feature.isContainment());
         break;
       }
       case CDOProtocol.LIST_REMOVE:
       {
-        if (isDebugEnabled())
-          debug("transmitReferenceChange(REMOVE, oid="
+        if (TRACER.isEnabled())
+        {
+          TRACER.trace("transmitReferenceChange(REMOVE, oid="
               + packageManager.getOidEncoder().toString(sourceId) + ", featureId="
               + feature.getFeatureID() + ", ordinal=" + sourceOrdinal + ")");
-        transmitInt(sourceOrdinal);
+        }
+
+        out.writeInt(sourceOrdinal);
         break;
       }
       case CDOProtocol.LIST_MOVE:
       {
-        if (isDebugEnabled())
-          debug("transmitReferenceChange(MOVE, oid="
+        if (TRACER.isEnabled())
+        {
+          TRACER.trace("transmitReferenceChange(MOVE, oid="
               + packageManager.getOidEncoder().toString(sourceId) + ", featureId="
               + feature.getFeatureID() + ", ordinal=" + sourceOrdinal + ", moveToIndex="
               + moveToIndex + ")");
-        transmitInt(sourceOrdinal);
-        transmitInt(moveToIndex);
+        }
+
+        out.writeInt(sourceOrdinal);
+        out.writeInt(moveToIndex);
         break;
       }
     }

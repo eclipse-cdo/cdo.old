@@ -1,0 +1,3 @@
+org.eclipse.emf.cdo.core/debug = true
+org.eclipse.emf.cdo.core/debug.worker = true
+org.eclipse.emf.cdo.core/debug.extension = true

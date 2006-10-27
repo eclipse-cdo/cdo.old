@@ -11,50 +11,60 @@
 package org.eclipse.emf.cdo.client.protocol;
 
 
+import org.eclipse.net4j.transport.Channel;
+import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
+import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
+
 import org.eclipse.emf.cdo.client.impl.CDOCrossReferenceList;
 import org.eclipse.emf.cdo.core.CDOProtocol;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
+import java.io.IOException;
 
-public class QueryXRefsRequest extends AbstractDataRequest
+
+public class QueryXRefsRequest extends AbstractDataRequest<EList>
 {
   private long oid;
 
   private int rid;
 
-  public QueryXRefsRequest(long oid, int rid)
+  public QueryXRefsRequest(Channel channel, long oid, int rid)
   {
+    super(channel);
     this.oid = oid;
     this.rid = rid;
   }
 
-  public short getSignalId()
+  @Override
+  protected short getSignalID()
   {
     return CDOProtocol.QUERY_XREFS;
   }
 
-  public void request()
+  @Override
+  protected void requesting(ExtendedDataOutputStream out) throws IOException
   {
-    transmitLong(oid);
-    transmitInt(rid);
+    out.writeLong(oid);
+    out.writeInt(rid);
   }
 
-  public Object confirm()
+  @Override
+  protected EList confirming(ExtendedDataInputStream in) throws IOException
   {
     CDOCrossReferenceList result = new CDOCrossReferenceList();
-
     for (;;)
     {
-      long oid = receiveLong();
+      long oid = in.readLong();
       if (oid == CDOProtocol.NO_MORE_OBJECTS)
       {
         break;
       }
 
-      int feature = receiveInt();
-      int cid = receiveInt();
+      int feature = in.readInt();
+      int cid = in.readInt();
 
       EObject object = provideObject(oid, cid);
       EReference reference = (EReference) object.eClass().getEStructuralFeature(feature);

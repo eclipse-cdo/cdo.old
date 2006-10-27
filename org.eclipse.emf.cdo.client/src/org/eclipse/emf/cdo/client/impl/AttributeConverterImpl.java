@@ -11,7 +11,8 @@
 package org.eclipse.emf.cdo.client.impl;
 
 
-import org.eclipse.net4j.core.Channel;
+import org.eclipse.net4j.util.stream.ExtendedDataInput;
+import org.eclipse.net4j.util.stream.ExtendedDataOutput;
 
 import org.eclipse.emf.cdo.client.AttributeConverter;
 import org.eclipse.emf.cdo.core.impl.AbstractConverter;
@@ -21,18 +22,21 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
 
+import java.io.IOException;
+
 
 public class AttributeConverterImpl extends AbstractConverter implements AttributeConverter
 {
   private static final EcorePackage ECORE = EcorePackage.eINSTANCE;
 
-  public void fromChannel(EObject object, EAttribute attribute, Channel channel)
+  public void fromChannel(EObject object, EAttribute attribute, ExtendedDataInput channel)
+      throws IOException
   {
     int dataType = getCDODataType(attribute.getEAttributeType());
 
     if (dataType > MIN_PRIMITIVE)
     {
-      boolean isNull = channel.receiveBoolean();
+      boolean isNull = channel.readBoolean();
 
       if (isNull)
       {
@@ -56,7 +60,8 @@ public class AttributeConverterImpl extends AbstractConverter implements Attribu
     object.eSet(attribute, value);
   }
 
-  public void toChannel(EObject object, EAttribute attribute, Channel channel)
+  public void toChannel(EObject object, EAttribute attribute, ExtendedDataOutput channel)
+      throws IOException
   {
     int dataType = getCDODataType(attribute.getEAttributeType());
     Object value = object.eGet(attribute);
@@ -64,7 +69,7 @@ public class AttributeConverterImpl extends AbstractConverter implements Attribu
     if (dataType > MIN_PRIMITIVE)
     {
       boolean isNull = value == null;
-      channel.transmitBoolean(isNull);
+      channel.writeBoolean(isNull);
 
       if (isNull)
       {
@@ -85,12 +90,13 @@ public class AttributeConverterImpl extends AbstractConverter implements Attribu
     dispatchToChannel(channel, dataType, value);
   }
 
-  protected Object fromChannelUserDefined(Channel channel, EAttribute attribute)
+  protected Object fromChannelUserDefined(ExtendedDataInput channel, EAttribute attribute)
+      throws IOException
   {
     EFactory factory = attribute.getEType().getEPackage().getEFactoryInstance();
     EDataType dataType = attribute.getEAttributeType();
 
-    String deserialized = channel.receiveString();
+    String deserialized = channel.readString();
     Object value;
 
     if (dataType.getInstanceClassName().equals("java.lang.String"))
@@ -105,7 +111,8 @@ public class AttributeConverterImpl extends AbstractConverter implements Attribu
     return value;
   }
 
-  protected void toChannelUserDefined(Channel channel, EAttribute attribute, Object value)
+  protected void toChannelUserDefined(ExtendedDataOutput channel, EAttribute attribute, Object value)
+      throws IOException
   {
     EFactory factory = attribute.getEType().getEPackage().getEFactoryInstance();
     EDataType dataType = attribute.getEAttributeType();
@@ -125,7 +132,7 @@ public class AttributeConverterImpl extends AbstractConverter implements Attribu
       serialized = factory.convertToString(dataType, value);
     }
 
-    channel.transmitString(serialized);
+    channel.writeString(serialized);
   }
 
   public int getCDODataType(EDataType eDataType)

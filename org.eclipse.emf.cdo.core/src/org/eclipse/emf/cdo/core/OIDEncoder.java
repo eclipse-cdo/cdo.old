@@ -11,9 +11,6 @@
 package org.eclipse.emf.cdo.core;
 
 
-import org.eclipse.net4j.spring.Service;
-
-
 /**
  * Converts between the external and configurable internal representations of an 
  * <i>object identifier</i> ({@link OID}).<p>
@@ -27,7 +24,7 @@ import org.eclipse.net4j.spring.Service;
  * 
  * @author Eike Stepper
  */
-public interface OIDEncoder extends Service
+public interface OIDEncoder
 {
   /**
    * Extracts the {@link RID} from a packed {@link OID}.<p>

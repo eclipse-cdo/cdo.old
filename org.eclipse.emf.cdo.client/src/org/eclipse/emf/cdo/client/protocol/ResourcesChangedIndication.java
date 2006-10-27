@@ -11,7 +11,8 @@
 package org.eclipse.emf.cdo.client.protocol;
 
 
-import org.eclipse.net4j.core.impl.AbstractIndication;
+import org.eclipse.net4j.signal.Indication;
+import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
 
 import org.eclipse.emf.cdo.core.CDOResSignals;
 import org.eclipse.emf.cdo.core.protocol.NoMoreResourceChangesException;
@@ -20,23 +21,26 @@ import org.eclipse.emf.cdo.core.protocol.ResourceChangeInfo;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.io.IOException;
 
-public class ResourcesChangedIndication extends AbstractIndication
+
+public class ResourcesChangedIndication extends Indication
 {
-  public short getSignalId()
+  @Override
+  protected short getSignalID()
   {
     return CDOResSignals.RESOURCES_CHANGED;
   }
 
-  public void indicate()
+  @Override
+  protected void indicating(ExtendedDataInputStream in) throws IOException
   {
     List<ResourceChangeInfo> infos = new ArrayList<ResourceChangeInfo>();
-
     try
     {
       for (;;)
       {
-        infos.add(new ResourceChangeInfo(getChannel()));
+        infos.add(new ResourceChangeInfo(in));
       }
     }
     catch (NoMoreResourceChangesException ignore)
@@ -44,6 +48,6 @@ public class ResourcesChangedIndication extends AbstractIndication
     }
 
     ClientCDOResProtocolImpl protocol = (ClientCDOResProtocolImpl) getProtocol();
-    protocol.resourcesChanged(getChannel(), infos);
+    protocol.resourcesChanged(getProtocol().getChannel(), infos);
   }
 }

@@ -1,0 +1,4 @@
+org.eclipse.emf.cdo.client/debug = true
+org.eclipse.emf.cdo.client/debug.model = true
+org.eclipse.emf.cdo.client/debug.resource = true
+org.eclipse.emf.cdo.client/debug.protocol = true

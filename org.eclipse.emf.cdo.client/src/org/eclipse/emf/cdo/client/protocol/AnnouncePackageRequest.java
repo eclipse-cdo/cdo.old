@@ -11,43 +11,65 @@
 package org.eclipse.emf.cdo.client.protocol;
 
 
+import org.eclipse.net4j.transport.Channel;
+import org.eclipse.net4j.util.om.ContextTracer;
+import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
+import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
+
 import org.eclipse.emf.cdo.client.PackageInfo;
+import org.eclipse.emf.cdo.client.internal.CDOClient;
 import org.eclipse.emf.cdo.core.CDOProtocol;
 
+import java.io.IOException;
 
-public class AnnouncePackageRequest extends AbstractPackageRequest
+
+public class AnnouncePackageRequest extends AbstractPackageRequest<Boolean>
 {
+  private static final ContextTracer TRACER = new ContextTracer(CDOClient.DEBUG_PROTOCOL,
+      AnnouncePackageRequest.class);
+
   private PackageInfo packageInfo;
 
-  public AnnouncePackageRequest(PackageInfo packageInfo)
+  public AnnouncePackageRequest(Channel channel, PackageInfo packageInfo)
   {
+    super(channel);
     this.packageInfo = packageInfo;
   }
 
-  public short getSignalId()
+  @Override
+  protected short getSignalID()
   {
     return CDOProtocol.ANNOUNCE_PACKAGE;
   }
 
-  public void request()
+  @Override
+  protected void requesting(ExtendedDataOutputStream out) throws IOException
   {
-    if (isDebugEnabled()) debug("Announcing package " + packageInfo.getFullName());
-    transmitString(packageInfo.getFullName());
+    if (TRACER.isEnabled())
+    {
+      TRACER.trace("Announcing package " + packageInfo.getFullName());
+    }
+
+    out.writeString(packageInfo.getFullName());
   }
 
-  public Object confirm()
+  @Override
+  protected Boolean confirming(ExtendedDataInputStream in) throws IOException
   {
-    int count = receiveInt();
-
+    int count = in.readInt();
     if (count >= 0)
     {
-      handlePackageResponse(count);
-      return Boolean.TRUE;
+      handlePackageResponse(in, count);
+      return true;
     }
     else
     {
-      if (isDebugEnabled()) debug("Unknown package " + packageInfo.getFullName());
-      return Boolean.FALSE;
+      if (TRACER.isEnabled())
+      {
+        TRACER.trace("Unknown package " + packageInfo.getFullName());
+      }
+
+      return false;
     }
   }
 }

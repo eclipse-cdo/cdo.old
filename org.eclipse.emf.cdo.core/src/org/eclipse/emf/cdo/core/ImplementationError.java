@@ -8,42 +8,35 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.core.internal;
-
-
-import org.eclipse.net4j.util.eclipse.AbstractPlugin;
+package org.eclipse.emf.cdo.core;
 
 
 /**
- * The main plugin class to be used in the desktop.
+ * @author Eike Stepper
  */
-public class CorePlugin extends AbstractPlugin
+public class ImplementationError extends RuntimeException
 {
-  //The shared instance.
-  private static CorePlugin plugin;
-
   /**
-   * The constructor.
+   * Needed for serialization.<p>
    */
-  public CorePlugin()
-  {
-    if (plugin == null) plugin = this;
-  }
+  private static final long serialVersionUID = 1L;
 
-  protected void doStart() throws Exception
+  public ImplementationError()
   {
   }
 
-  protected void doStop() throws Exception
+  public ImplementationError(String message)
   {
-    plugin = null;
+    super(message);
   }
 
-  /**
-   * Returns the shared instance.
-   */
-  public static CorePlugin getDefault()
+  public ImplementationError(Throwable cause)
   {
-    return plugin;
+    super(cause);
+  }
+
+  public ImplementationError(String message, Throwable cause)
+  {
+    super(message, cause);
   }
 }

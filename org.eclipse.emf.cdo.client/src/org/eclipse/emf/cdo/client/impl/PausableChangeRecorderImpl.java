@@ -75,43 +75,7 @@ public class PausableChangeRecorderImpl extends ChangeRecorder implements Pausab
     {
       originalTargetObjects.add(target);
     }
-
-    //    Iterator contents = 
-    //      target instanceof EObject ? 
-    //        resolveProxies ?  
-    //          ((EObject)target).eContents().iterator() : 
-    //          ((InternalEList)((EObject)target).eContents()).basicIterator() :
-    //        target instanceof ResourceSet ? 
-    //          ((ResourceSet)target).getResources().iterator() : 
-    //            target instanceof Resource ? 
-    //              ((Resource)target).getContents().iterator() : 
-    //                null;
-    //
-    //    if (contents != null)
-    //    {
-    //      while (contents.hasNext())
-    //      {
-    //        Notifier notifier = (Notifier)contents.next();
-    //        addAdapter(notifier);
-    //      }
-    //    }
   }
-
-  //  public void notifyChanged(Notification notification)
-  //  {
-  //    Object notifier = notification.getNotifier();
-  //    if (notifier instanceof Resource)
-  //    {
-  //      int featureID = notification.getFeatureID(Resource.class);
-  //      switch (featureID)
-  //      {
-  //        case Resource.RESOURCE__IS_LOADED:
-  //          return;
-  //      }
-  //    }
-  //
-  //    super.notifyChanged(notification);
-  //  }
 
   @Override
   public void addAdapter(Notifier notifier)

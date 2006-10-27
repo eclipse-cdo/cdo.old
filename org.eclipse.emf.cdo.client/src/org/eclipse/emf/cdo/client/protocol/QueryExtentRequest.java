@@ -11,6 +11,10 @@
 package org.eclipse.emf.cdo.client.protocol;
 
 
+import org.eclipse.net4j.transport.Channel;
+import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
+import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
+
 import org.eclipse.emf.cdo.core.CDOProtocol;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -18,8 +22,10 @@ import org.eclipse.emf.ecore.EObject;
 import java.util.HashSet;
 import java.util.Set;
 
+import java.io.IOException;
 
-public class QueryExtentRequest extends AbstractDataRequest
+
+public class QueryExtentRequest extends AbstractDataRequest<Set<EObject>>
 {
   private int cid;
 
@@ -27,38 +33,41 @@ public class QueryExtentRequest extends AbstractDataRequest
 
   private int rid;
 
-  public QueryExtentRequest(int cid, boolean exactMatch, int rid)
+  public QueryExtentRequest(Channel channel, int cid, boolean exactMatch, int rid)
   {
+    super(channel);
     this.cid = cid;
     this.exactMatch = exactMatch;
     this.rid = rid;
   }
 
-  public short getSignalId()
+  @Override
+  protected short getSignalID()
   {
     return CDOProtocol.QUERY_EXTENT;
   }
 
-  public void request()
+  @Override
+  protected void requesting(ExtendedDataOutputStream out) throws IOException
   {
-    transmitInt(cid);
-    transmitBoolean(exactMatch);
-    transmitInt(rid);
+    out.writeInt(cid);
+    out.writeBoolean(exactMatch);
+    out.writeInt(rid);
   }
 
-  public Object confirm()
+  @Override
+  protected Set<EObject> confirming(ExtendedDataInputStream in) throws IOException
   {
-    Set result = new HashSet();
-
+    Set<EObject> result = new HashSet();
     for (;;)
     {
-      long oid = receiveLong();
+      long oid = in.readLong();
       if (oid == CDOProtocol.NO_MORE_OBJECTS)
       {
         break;
       }
 
-      int classifierId = (exactMatch ? cid : receiveInt());
+      int classifierId = (exactMatch ? cid : in.readInt());
       EObject object = provideObject(oid, classifierId);
       result.add(object);
     }

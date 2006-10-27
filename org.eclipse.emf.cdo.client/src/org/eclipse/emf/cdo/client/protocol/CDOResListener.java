@@ -11,7 +11,7 @@
 package org.eclipse.emf.cdo.client.protocol;
 
 
-import org.eclipse.net4j.core.Channel;
+import org.eclipse.net4j.transport.Channel;
 
 import org.eclipse.emf.cdo.core.protocol.ResourceChangeInfo;
 

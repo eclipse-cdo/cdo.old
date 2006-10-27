@@ -11,7 +11,7 @@
 package org.eclipse.emf.cdo.client.impl;
 
 
-import org.eclipse.net4j.core.Channel;
+import org.eclipse.net4j.transport.Channel;
 
 import org.eclipse.emf.cdo.client.ClassInfo;
 import org.eclipse.emf.cdo.client.PackageInfo;
@@ -83,7 +83,7 @@ public class PackageInfoImpl implements PackageInfo
     return announced;
   }
 
-  public void announce(Channel channel)
+  public void announce(Channel channel) throws Exception
   {
     if (!ClientCDOProtocolImpl.requestAnnouncePackage(channel, this))
     {

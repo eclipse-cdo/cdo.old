@@ -11,30 +11,39 @@
 package org.eclipse.emf.cdo.client.protocol;
 
 
-import org.eclipse.net4j.core.impl.AbstractIndication;
+import org.eclipse.net4j.signal.Indication;
+import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
 
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.core.CDOProtocol;
 
+import java.io.IOException;
 
-public class InvalidationNotificationIndication extends AbstractIndication
+
+public class InvalidationNotificationIndication extends Indication
 {
-  public short getSignalId()
+  public InvalidationNotificationIndication()
+  {
+  }
+
+  @Override
+  protected short getSignalID()
   {
     return CDOProtocol.INVALIDATION_NOTIFICATION;
   }
 
-  public void indicate()
+  @Override
+  protected void indicating(ExtendedDataInputStream in) throws IOException
   {
-    int count = receiveInt();
+    int count = in.readInt();
     long[] oids = new long[count];
 
     for (int i = 0; i < count; i++)
     {
-      oids[i] = receiveLong();
+      oids[i] = in.readLong();
     }
 
-    ResourceManager resourceManager = ClientCDOProtocolImpl.getResourceManager(getChannel());
+    ResourceManager resourceManager = ((ClientCDOProtocolImpl) getProtocol()).getResourceManager();
     resourceManager.invalidateObjects(oids);
   }
 }

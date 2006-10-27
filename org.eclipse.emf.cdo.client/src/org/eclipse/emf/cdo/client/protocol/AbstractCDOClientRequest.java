@@ -11,7 +11,8 @@
 package org.eclipse.emf.cdo.client.protocol;
 
 
-import org.eclipse.net4j.core.impl.AbstractRequestWithConfirmation;
+import org.eclipse.net4j.signal.RequestWithConfirmation;
+import org.eclipse.net4j.transport.Channel;
 
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.PackageManager;
@@ -20,18 +21,28 @@ import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.client.impl.ResourceGetterImpl;
 
 
-public abstract class AbstractCDOClientRequest extends AbstractRequestWithConfirmation
+public abstract class AbstractCDOClientRequest<RESULT> extends RequestWithConfirmation<RESULT>
 {
   private ResourceGetter resourceGetter;
+
+  public AbstractCDOClientRequest(Channel channel)
+  {
+    super(channel);
+  }
 
   public PackageManager getPackageManager()
   {
     return getResourceManager().getPackageManager();
   }
 
+  protected Channel getChannel()
+  {
+    return getProtocol().getChannel();
+  }
+
   public ResourceManager getResourceManager()
   {
-    return ClientCDOProtocolImpl.getResourceManager(getChannel());
+    return ((ClientCDOProtocolImpl) getProtocol()).getResourceManager();
   }
 
   protected CDOResource getResource(int rid)

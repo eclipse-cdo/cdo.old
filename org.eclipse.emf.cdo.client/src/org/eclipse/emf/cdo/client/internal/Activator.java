@@ -11,10 +11,9 @@
 package org.eclipse.emf.cdo.client.internal;
 
 
-import org.eclipse.net4j.util.eclipse.Element;
-import org.eclipse.net4j.util.eclipse.ExtensionParser;
-import org.eclipse.net4j.util.eclipse.ListExtensionParser;
-
+import org.eclipse.emf.cdo.core.util.extensions.Element;
+import org.eclipse.emf.cdo.core.util.extensions.ExtensionParser;
+import org.eclipse.emf.cdo.core.util.extensions.ListExtensionParser;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
@@ -35,7 +34,7 @@ import java.util.List;
  * <!-- end-user-doc -->
  * @generated
  */
-public final class ClientActivator extends EMFPlugin
+public final class Activator extends EMFPlugin
 {
   /**
    * @ADDED
@@ -53,7 +52,7 @@ public final class ClientActivator extends EMFPlugin
    * <!-- end-user-doc -->
    * @generated
    */
-  public static final ClientActivator INSTANCE = new ClientActivator();
+  public static final Activator INSTANCE = new Activator();
 
   /**
    * Keep track of the singleton.
@@ -69,7 +68,7 @@ public final class ClientActivator extends EMFPlugin
    * <!-- end-user-doc -->
    * @generated NOT
    */
-  public ClientActivator()
+  public Activator()
   {
     super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE});
   }
@@ -127,10 +126,14 @@ public final class ClientActivator extends EMFPlugin
       plugin = this;
     }
 
+    /**
+     * @ADDED
+     */
     @Override
     public void start(BundleContext context) throws Exception
     {
       super.start(context);
+      CDOClient.BUNDLE.setBundleContext(context);
       ExtensionParser mappingParser = new MappingExtensionParser(mappingElements);
 
       IExtensionRegistry registry = Platform.getExtensionRegistry();
@@ -138,11 +141,15 @@ public final class ClientActivator extends EMFPlugin
       mappingParser.parse(point);
     }
 
+    /**
+     * @ADDED
+     */
     @Override
     public void stop(BundleContext context) throws Exception
     {
       mappingElements = null;
       plugin = null;
+      CDOClient.BUNDLE.setBundleContext(null);
       super.stop(context);
     }
 

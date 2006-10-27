@@ -11,49 +11,63 @@
 package org.eclipse.emf.cdo.client.protocol;
 
 
-import org.eclipse.net4j.core.impl.AbstractRequestWithConfirmation;
+import org.eclipse.net4j.signal.RequestWithConfirmation;
+import org.eclipse.net4j.transport.Channel;
+import org.eclipse.net4j.util.om.ContextTracer;
+import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
+import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
 
+import org.eclipse.emf.cdo.client.internal.CDOClient;
 import org.eclipse.emf.cdo.core.CDOResProtocol;
 import org.eclipse.emf.cdo.core.CDOResSignals;
 
 import java.util.Set;
 
+import java.io.IOException;
 
-public class DeleteResourcesRequest extends AbstractRequestWithConfirmation
+
+public class DeleteResourcesRequest extends RequestWithConfirmation<Boolean>
 {
+  private static final ContextTracer TRACER = new ContextTracer(CDOClient.DEBUG_PROTOCOL,
+      DeleteResourcesRequest.class);
+
   private Set<Integer> rids;
 
-  public DeleteResourcesRequest(Set<Integer> rids)
+  public DeleteResourcesRequest(Channel channel, Set<Integer> rids)
   {
+    super(channel);
     this.rids = rids;
   }
 
-  public short getSignalId()
+  @Override
+  protected short getSignalID()
   {
     return CDOResSignals.DELETE_RESOURCES;
   }
 
-  public void request()
+  @Override
+  protected void requesting(ExtendedDataOutputStream out) throws IOException
   {
     for (Integer rid : rids)
     {
-      if (isDebugEnabled())
+      if (TRACER.isEnabled())
       {
-        debug("Deleting rid " + rid);
+        TRACER.trace("Deleting rid " + rid);
       }
 
-      transmitInt(rid);
+      out.writeInt(rid);
     }
 
-    transmitInt(CDOResProtocol.NO_MORE_RESOURCES);
+    out.writeInt(CDOResProtocol.NO_MORE_RESOURCES);
   }
 
-  public Object confirm()
+  @Override
+  protected Boolean confirming(ExtendedDataInputStream in) throws IOException
   {
-    boolean ok = receiveBoolean();
-    if (isDebugEnabled())
+    boolean ok = in.readBoolean();
+    if (TRACER.isEnabled())
     {
-      debug("Deleted resources: " + ok);
+      TRACER.trace("Deleted resources: " + ok);
     }
 
     return ok;

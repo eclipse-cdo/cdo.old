@@ -11,18 +11,17 @@
 package org.eclipse.emf.cdo.client.protocol;
 
 
-import org.eclipse.net4j.core.Channel;
-import org.eclipse.net4j.core.Indication;
-import org.eclipse.net4j.core.Request;
-import org.eclipse.net4j.spring.ValidationException;
-import org.eclipse.net4j.util.ImplementationError;
+import org.eclipse.net4j.signal.SignalReactor;
+import org.eclipse.net4j.transport.Channel;
 
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.PackageInfo;
 import org.eclipse.emf.cdo.client.PackageManager;
 import org.eclipse.emf.cdo.client.ResourceManager;
+import org.eclipse.emf.cdo.core.ImplementationError;
 import org.eclipse.emf.cdo.core.protocol.AbstractCDOProtocol;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.resource.Resource;
 
@@ -32,11 +31,15 @@ import java.util.Set;
 
 public class ClientCDOProtocolImpl extends AbstractCDOProtocol
 {
+  public static final long REQUEST_TIMEOUT = 10 * 60 * 1000;
+
   protected PackageManager packageManager;
 
-  public int getType()
+  protected ResourceManager resourceManager;
+
+  public ClientCDOProtocolImpl(Channel channel)
   {
-    return CLIENT;
+    super(channel);
   }
 
   public PackageManager getPackageManager()
@@ -46,119 +49,100 @@ public class ClientCDOProtocolImpl extends AbstractCDOProtocol
 
   public void setPackageManager(PackageManager packageManager)
   {
-    doSet("packageManager", packageManager);
+    this.packageManager = packageManager;
   }
 
-  public Indication createIndication(short signalId)
+  public ResourceManager getResourceManager()
   {
-    switch (signalId)
+    return resourceManager;
+  }
+
+  public void setResourceManager(ResourceManager resourceManager)
+  {
+    this.resourceManager = resourceManager;
+  }
+
+  @Override
+  protected SignalReactor createSignalReactor(short signalID)
+  {
+    switch (signalID)
     {
       case REMOVAL_NOTIFICATION:
         return new RemovalNotificationIndication();
-        
+
       case INVALIDATION_NOTIFICATION:
         return new InvalidationNotificationIndication();
 
       default:
-        throw new ImplementationError("Invalid " + PROTOCOL_NAME + " signalId: " + signalId);
+        throw new ImplementationError("Invalid " + PROTOCOL_NAME + " signalID: " + signalID);
     }
-  }
-
-  /**
-   * @return Returns the associated ResourceManager for the given channel.
-   * It is needed to dispatch notifications of the server to the resource.
-   */
-  public static ResourceManager getResourceManager(Channel channel)
-  {
-    assertValidChannel(channel);
-    ResourceManager channelData = (ResourceManager) channel.getProtocolData();
-    if (channelData == null)
-    {
-      throw new ImplementationError("ChannelData has not been set");
-    }
-
-    return channelData;
-  }
-
-  public static void setResourceManager(Channel channel, ResourceManager resourceManager)
-  {
-    assertValidChannel(channel);
-    if (channel.getProtocolData() != null)
-    {
-      throw new ImplementationError("ChannelData has already been set");
-    }
-
-    channel.setProtocolData(resourceManager);
   }
 
   public static boolean requestAnnouncePackage(Channel channel, PackageInfo packageInfo)
+      throws Exception
   {
-    assertValidChannel(channel);
-    Request signal = new AnnouncePackageRequest(packageInfo);
-    Object returnValue = channel.transmit(signal);
-    return returnValue != null && returnValue instanceof Boolean
-        && ((Boolean) returnValue).booleanValue();
+    AnnouncePackageRequest signal = new AnnouncePackageRequest(channel, packageInfo);
+    Boolean returnValue = signal.send(REQUEST_TIMEOUT);
+    return returnValue != null && ((Boolean) returnValue).booleanValue();
   }
 
   public static void requestDescribePackage(Channel channel, PackageInfo packageInfo)
+      throws Exception
   {
-    assertValidChannel(channel);
-    Request signal = new DescribePackageRequest(packageInfo);
-    channel.transmit(signal);
+    DescribePackageRequest signal = new DescribePackageRequest(channel, packageInfo);
+    signal.send(REQUEST_TIMEOUT);
   }
 
-  public static int requestResourcePath(Channel channel, String path)
+  public static int requestResourcePath(Channel channel, String path) throws Exception
   {
-    assertValidChannel(channel);
-    Request signal = new ResourcePathRequest(path);
-    return ((Integer) channel.transmit(signal)).intValue();
+    ResourcePathRequest signal = new ResourcePathRequest(channel, path);
+    return signal.send(REQUEST_TIMEOUT);
   }
 
-  public static String requestResourceRID(Channel channel, int rid)
+  public static String requestResourceRID(Channel channel, int rid) throws Exception
   {
-    assertValidChannel(channel);
-    Request signal = new ResourceRIDRequest(rid);
-    return (String) channel.transmit(signal);
+    ResourceRIDRequest signal = new ResourceRIDRequest(channel, rid);
+    return signal.send(REQUEST_TIMEOUT);
   }
 
-  public static Set requestQueryExtent(Channel channel, int cid, boolean exactMatch, int rid)
+  public static Set<EObject> requestQueryExtent(Channel channel, int cid, boolean exactMatch,
+      int rid) throws Exception
   {
-    assertValidChannel(channel);
-    Request signal = new QueryExtentRequest(cid, exactMatch, rid);
-    return (Set) channel.transmit(signal);
+    QueryExtentRequest signal = new QueryExtentRequest(channel, cid, exactMatch, rid);
+    return signal.send(REQUEST_TIMEOUT);
   }
 
   public static Set requestQueryExtent(Channel channel, int cid, boolean exactMatch)
+      throws Exception
   {
     return requestQueryExtent(channel, cid, exactMatch, GLOBAL_EXTENT);
   }
 
-  public static Set requestQueryExtent(Channel channel, int cid)
+  public static Set requestQueryExtent(Channel channel, int cid) throws Exception
   {
     return requestQueryExtent(channel, cid, false);
   }
 
-  public static EList requestQueryXRefs(Channel channel, long oid, int rid)
+  public static EList requestQueryXRefs(Channel channel, long oid, int rid) throws Exception
   {
-    assertValidChannel(channel);
-    Request signal = new QueryXRefsRequest(oid, rid);
-    return (EList) channel.transmit(signal);
+    QueryXRefsRequest signal = new QueryXRefsRequest(channel, oid, rid);
+    return signal.send(REQUEST_TIMEOUT);
   }
 
-  public static void requestLoadResource(Channel channel, int rid, PackageManager packageManager)
+  public static EObject requestLoadResource(Channel channel, int rid, PackageManager packageManager)
+      throws Exception
   {
-    assertValidChannel(channel);
     packageManager.announceNewPackages(channel);
-
-    Request signal = new LoadResourceRequest(rid);
-    channel.transmit(signal);
-
+    LoadResourceRequest signal = new LoadResourceRequest(channel, rid);
+    EObject firstObject = signal.send(REQUEST_TIMEOUT);
     postProcessNewResources(channel);
+    return firstObject;
   }
 
-  private static void postProcessNewResources(Channel channel)
+  private static void postProcessNewResources(Channel channel) throws Exception
   {
-    ResourceManager resourceManager = getResourceManager(channel);
+    ResourceManager resourceManager = ((ClientCDOProtocolImpl) channel.getReceiveHandler())
+        .getResourceManager();
     EList resources = resourceManager.getResourceSet().getResources();
 
     for (Iterator iter = resources.iterator(); iter.hasNext();)
@@ -183,29 +167,42 @@ public class ClientCDOProtocolImpl extends AbstractCDOProtocol
     }
   }
 
-  public static void requestLoad(Channel channel, long oid)
+  public static EObject requestLoad(Channel channel, long oid) throws Exception
   {
-    assertValidChannel(channel);
-    Request signal = new LoadObjectRequest(oid);
-    channel.transmit(signal);
-
+    LoadObjectRequest signal = new LoadObjectRequest(channel, oid);
+    EObject firstObject = signal.send(REQUEST_TIMEOUT);
     postProcessNewResources(channel);
+    return firstObject;
   }
 
   public static boolean requestCommit(Channel channel, ChangeDescription changeDescription,
-      PackageManager packageManager)
+      PackageManager packageManager) throws Exception
   {
-    assertValidChannel(channel);
     packageManager.announceNewPackages(channel);
-
-    Request signal = new CommitTransactionRequest(changeDescription);
-    Object result = channel.transmit(signal);
-    return ((Boolean) result).booleanValue();
+    CommitTransactionRequest signal = new CommitTransactionRequest(channel, changeDescription);
+    Boolean success = signal.send(REQUEST_TIMEOUT);
+    return success;
   }
 
-  protected void validate() throws ValidationException
+  @Override
+  protected void onAboutToActivate() throws Exception
   {
-    super.validate();
-    assertNotNull("packageManager");
+    super.onAboutToActivate();
+    if (packageManager == null)
+    {
+      throw new IllegalStateException("packageManager == null");
+    }
+
+    if (resourceManager == null)
+    {
+      throw new IllegalStateException("resourceManager == null");
+    }
+  }
+
+  @Override
+  protected void onDeactivate() throws Exception
+  {
+    packageManager = null;
+    super.onDeactivate();
   }
 }

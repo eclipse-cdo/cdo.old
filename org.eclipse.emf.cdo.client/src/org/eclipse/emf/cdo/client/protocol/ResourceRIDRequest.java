@@ -11,42 +11,60 @@
 package org.eclipse.emf.cdo.client.protocol;
 
 
+import org.eclipse.net4j.transport.Channel;
+import org.eclipse.net4j.util.om.ContextTracer;
+import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
+import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
+
+import org.eclipse.emf.cdo.client.internal.CDOClient;
 import org.eclipse.emf.cdo.core.CDOProtocol;
 
+import java.io.IOException;
 
-public class ResourceRIDRequest extends AbstractCDOClientRequest
+
+public class ResourceRIDRequest extends AbstractCDOClientRequest<String>
 {
+  private static final ContextTracer TRACER = new ContextTracer(CDOClient.DEBUG_PROTOCOL,
+      ResourceRIDRequest.class);
+
   private int rid;
 
-  public ResourceRIDRequest(int rid)
+  public ResourceRIDRequest(Channel channel, int rid)
   {
+    super(channel);
     this.rid = rid;
   }
 
-  public short getSignalId()
+  @Override
+  protected short getSignalID()
   {
     return CDOProtocol.RESOURCE_RID;
   }
 
-  public void request()
+  @Override
+  protected void requesting(ExtendedDataOutputStream out) throws IOException
   {
-    if (isDebugEnabled()) debug("Requesting rid " + rid);
-    transmitInt(rid);
+    if (TRACER.isEnabled())
+    {
+      TRACER.trace("Requesting rid " + rid);
+    }
+
+    out.writeInt(rid);
   }
 
-  public Object confirm()
+  @Override
+  protected String confirming(ExtendedDataInputStream in) throws IOException
   {
-    String path = receiveString();
-
-    if (isDebugEnabled())
+    String path = in.readString();
+    if (TRACER.isEnabled())
     {
       if (path != null)
       {
-        debug("Responded path " + path);
+        TRACER.trace("Responded path " + path);
       }
       else
       {
-        debug("No resource with rid " + rid);
+        TRACER.trace("No resource with rid " + rid);
       }
     }
 

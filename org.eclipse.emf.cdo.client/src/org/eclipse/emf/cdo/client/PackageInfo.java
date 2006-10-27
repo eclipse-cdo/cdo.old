@@ -11,7 +11,7 @@
 package org.eclipse.emf.cdo.client;
 
 
-import org.eclipse.net4j.core.Channel;
+import org.eclipse.net4j.transport.Channel;
 
 import org.eclipse.emf.cdo.mapping.PackageMapping;
 import org.eclipse.emf.ecore.EPackage;
@@ -89,7 +89,7 @@ public interface PackageInfo
   /**
    * For internal use only.<p>
    */
-  public void announce(Channel channel);
+  public void announce(Channel channel) throws Exception;
 
   /**
    * Returns the {@link PackageManager} managing this {@link PackageInfo}.<p>

@@ -11,8 +11,7 @@
 package org.eclipse.emf.cdo.client;
 
 
-import org.eclipse.net4j.core.Channel;
-import org.eclipse.net4j.spring.Service;
+import org.eclipse.net4j.transport.Channel;
 
 import org.eclipse.emf.cdo.client.protocol.CommitTransactionRequest;
 import org.eclipse.emf.cdo.core.OID;
@@ -37,7 +36,7 @@ import java.util.Set;
  *
  * @author Eike Stepper
  */
-public interface ResourceManager extends Service
+public interface ResourceManager
 {
   /**
    * Returns <code>true</code> if the current transaction can only be rolled back
@@ -70,7 +69,7 @@ public interface ResourceManager extends Service
    * @throws OptimisticControlException if one or several of the objects to be committed
    * has never versions at server side.<p> 
    */
-  public void commit() throws OptimisticControlException;
+  public void commit() throws Exception;
 
   /**
    * Rolls back the current transaction that is started with the creation 
@@ -168,7 +167,7 @@ public interface ResourceManager extends Service
   /**
    * For internal use only.<p>
    */
-  public void requestObject(CDOPersistable cdoObject);
+  public void requestObject(CDOPersistable cdoObject) throws Exception;
 
   /**
    * For internal use only.<p>
@@ -184,6 +183,11 @@ public interface ResourceManager extends Service
    * For internal use only.<p>
    */
   public void invalidateObjects(long[] oids);
+
+  /**
+   * For internal use only.<p>
+   */
+  public void detachObject(EObject object);
 
   /**
    * For internal use only.<p>
@@ -246,7 +250,7 @@ public interface ResourceManager extends Service
    * @return A {@link Set} of all the objects that can safely be casted to the 
    * context {@link EClass}.
    */
-  public Set queryExtent(EClass context);
+  public Set<EObject> queryExtent(EClass context);
 
   /**
    * Convenience method to query polymorphic extents, returns the same result as 
@@ -261,7 +265,7 @@ public interface ResourceManager extends Service
    * @return A {@link Set} of all the objects that can safely be casted to the 
    * context {@link EClass}.
    */
-  public Set queryExtent(EClass context, CDOResource resource);
+  public Set<EObject> queryExtent(EClass context, CDOResource resource);
 
   /**
    * Sends a request to the CDO server to query all
@@ -286,7 +290,7 @@ public interface ResourceManager extends Service
    * @return A {@link Set} of all the objects that can safely be casted to the context 
    *    {@link EClass}.
    */
-  public Set queryExtent(EClass context, boolean exactMatch, CDOResource resource);
+  public Set<EObject> queryExtent(EClass context, boolean exactMatch, CDOResource resource);
 
   /**
    * Convenience method to query gloabl extents, returns the same result as 
@@ -302,7 +306,7 @@ public interface ResourceManager extends Service
    * @return A {@link Set} of all the objects in all resources of the CDO respository 
    *    that can safely be casted to the context {@link EClass}.
    */
-  public Set queryExtent(EClass context, boolean exactMatch);
+  public Set<EObject> queryExtent(EClass context, boolean exactMatch);
 
   /**
    * TODO Document method queryCrossReferences<p>

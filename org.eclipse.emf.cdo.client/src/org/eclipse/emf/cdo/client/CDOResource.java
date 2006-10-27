@@ -92,7 +92,7 @@ public interface CDOResource extends Resource
    * @return The {@link ResourceInfo} of this {@link CDOResource}.
    */
   public ResourceInfo getInfo();
-  
+
   /**
    * For internal use only.
    */

@@ -11,11 +11,10 @@
 package org.eclipse.emf.cdo.client.impl;
 
 
-import org.eclipse.net4j.util.ImplementationError;
-
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceGetter;
 import org.eclipse.emf.cdo.client.ResourceManager;
+import org.eclipse.emf.cdo.core.ImplementationError;
 
 
 public class ResourceGetterImpl implements ResourceGetter

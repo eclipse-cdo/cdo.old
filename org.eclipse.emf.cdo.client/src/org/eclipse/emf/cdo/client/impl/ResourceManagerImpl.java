@@ -11,13 +11,11 @@
 package org.eclipse.emf.cdo.client.impl;
 
 
-import org.eclipse.net4j.core.Channel;
-import org.eclipse.net4j.core.Connector;
-import org.eclipse.net4j.spring.ValidationException;
-import org.eclipse.net4j.spring.impl.ServiceImpl;
-import org.eclipse.net4j.util.ImplementationError;
-import org.eclipse.net4j.util.thread.DeadlockDetector;
-import org.eclipse.net4j.util.thread.Worker;
+import org.eclipse.net4j.transport.Channel;
+import org.eclipse.net4j.transport.Connector;
+import org.eclipse.net4j.transport.ConnectorException;
+import org.eclipse.net4j.util.lifecycle.AbstractLifecycle;
+import org.eclipse.net4j.util.om.ContextTracer;
 
 import org.eclipse.emf.cdo.client.CDOPersistable;
 import org.eclipse.emf.cdo.client.CDOResource;
@@ -26,9 +24,13 @@ import org.eclipse.emf.cdo.client.OptimisticControlException;
 import org.eclipse.emf.cdo.client.PackageManager;
 import org.eclipse.emf.cdo.client.PausableChangeRecorder;
 import org.eclipse.emf.cdo.client.ResourceManager;
+import org.eclipse.emf.cdo.client.internal.CDOClient;
 import org.eclipse.emf.cdo.client.protocol.ClientCDOProtocolImpl;
 import org.eclipse.emf.cdo.core.CDOProtocol;
+import org.eclipse.emf.cdo.core.ImplementationError;
 import org.eclipse.emf.cdo.core.OIDEncoder;
+import org.eclipse.emf.cdo.core.util.thread.DeadlockDetector;
+import org.eclipse.emf.cdo.core.util.thread.Worker;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -56,9 +58,12 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 
-public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
+public class ResourceManagerImpl extends AbstractLifecycle implements ResourceManager
 {
   private static final int CAPACITY_oidToObjectMap = 10007;
+
+  private static final ContextTracer TRACER = new ContextTracer(CDOClient.DEBUG_RESOURCE,
+      ResourceManagerImpl.class);
 
   private ResourceSet resourceSet;
 
@@ -75,6 +80,8 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
   private transient Map pathToResourceMap = new HashMap();
 
   private transient Map oidToObjectMap = new HashMap(CAPACITY_oidToObjectMap);
+
+  private transient List<EObject> detachedObjects = new ArrayList<EObject>();
 
   private transient List<Long> deferredInvalidations = new ArrayList<Long>();
 
@@ -136,7 +143,7 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
 
   public void setPackageManager(PackageManager packageManager)
   {
-    doSet("packageManager", packageManager);
+    this.packageManager = packageManager;
   }
 
   public Connector getConnector()
@@ -146,7 +153,7 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
 
   public void setConnector(Connector connector)
   {
-    doSet("connector", connector);
+    this.connector = connector;
   }
 
   public ResourceSet getResourceSet()
@@ -156,7 +163,7 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
 
   public void setResourceSet(ResourceSet resourceSet)
   {
-    doSet("resourceSet", resourceSet);
+    this.resourceSet = resourceSet;
 
     resourceSet.eAdapters().add(resourceSetAdapter);
     transaction = new PausableChangeRecorderImpl();
@@ -217,24 +224,32 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     return resource;
   }
 
-  public Set queryExtent(EClass context, boolean exactMatch, CDOResource resource)
+  public Set<EObject> queryExtent(EClass context, boolean exactMatch, CDOResource resource)
   {
     ClassInfo classInfo = packageManager.getClassInfo(context);
-    return ClientCDOProtocolImpl.requestQueryExtent(getChannel(), classInfo.getCID(), exactMatch,
-        resource != null ? resource.getRID() : CDOProtocol.GLOBAL_EXTENT);
+    try
+    {
+      return ClientCDOProtocolImpl.requestQueryExtent(getChannel(), classInfo.getCID(), exactMatch,
+          resource != null ? resource.getRID() : CDOProtocol.GLOBAL_EXTENT);
+    }
+    catch (Exception ex)
+    {
+      CDOClient.LOG.error(ex);
+      return null;
+    }
   }
 
-  public Set queryExtent(EClass context, boolean exactMatch)
+  public Set<EObject> queryExtent(EClass context, boolean exactMatch)
   {
     return queryExtent(context, exactMatch, null);
   }
 
-  public Set queryExtent(EClass context, CDOResource resource)
+  public Set<EObject> queryExtent(EClass context, CDOResource resource)
   {
     return queryExtent(context, false, resource);
   }
 
-  public Set queryExtent(EClass context)
+  public Set<EObject> queryExtent(EClass context)
   {
     return queryExtent(context, false, null);
   }
@@ -244,8 +259,16 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     if (object instanceof CDOPersistable)
     {
       long oid = ((CDOPersistable) object).cdoGetOID();
-      return ClientCDOProtocolImpl.requestQueryXRefs(getChannel(), oid, resource != null ? resource
-          .getRID() : CDOProtocol.GLOBAL_XREFS);
+      try
+      {
+        return ClientCDOProtocolImpl.requestQueryXRefs(getChannel(), oid,
+            resource != null ? resource.getRID() : CDOProtocol.GLOBAL_XREFS);
+      }
+      catch (Exception ex)
+      {
+        CDOClient.LOG.error(ex);
+        return null;
+      }
     }
 
     return ECollections.EMPTY_ELIST;
@@ -260,8 +283,14 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
   {
     if (cachedChannel == null)
     {
-      cachedChannel = connector.addChannel(CDOProtocol.PROTOCOL_NAME);
-      ClientCDOProtocolImpl.setResourceManager(cachedChannel, this);
+      try
+      {
+        cachedChannel = connector.openChannel(CDOProtocol.PROTOCOL_NAME);
+      }
+      catch (ConnectorException ex)
+      {
+        CDOClient.LOG.error(ex);
+      }
     }
 
     return cachedChannel;
@@ -270,7 +299,10 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
   protected void notifyRemovedResource(CDOResource resource)
   {
     Integer rid = new Integer(resource.getRID());
-    if (isDebugEnabled()) debug("Removing resource with rid " + rid);
+    if (TRACER.isEnabled())
+    {
+      TRACER.trace("Removing resource with rid " + rid);
+    }
 
     synchronized (ridToResourceMap)
     {
@@ -288,14 +320,23 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     return deferredInvalidations.contains(object);
   }
 
-  public void commit()
+  public void commit() throws Exception
   {
     if (transaction == null)
     {
       throw new ImplementationError("No transaction!");
     }
 
+    stopRequestingObjects();
+    transaction.setRecording(true);
     ChangeDescription cd = transaction.endRecording();
+    startRequestingObjects();
+
+    // This is a workaround because cd.getObjectsToAttach() seemed to be useless most of the times
+    cd.getObjectsToAttach().clear();
+    cd.getObjectsToAttach().addAll(detachedObjects);
+    detachedObjects.clear();
+
     boolean ok = ClientCDOProtocolImpl.requestCommit(getChannel(), cd, getPackageManager());
     processDeferredInvalidations();
     transaction.beginRecording(resourceSet);
@@ -351,20 +392,25 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     transaction.setLoading(false);
   }
 
-  public void requestObject(CDOPersistable cdoObject)
+  public void requestObject(CDOPersistable cdoObject) throws Exception
   {
     long oid = cdoObject.cdoGetOID();
-    if (isDebugEnabled())
-      debug("Demand loading object: " + packageManager.getOidEncoder().toString(oid));
+    if (TRACER.isEnabled())
+    {
+      TRACER.trace("Demand loading object: " + packageManager.getOidEncoder().toString(oid));
+    }
+
     ClientCDOProtocolImpl.requestLoad(getChannel(), oid);
   }
 
   public void reRegisterObject(EObject object, long newId)
   {
     Long oldId = new Long(getOID(object));
-    if (isDebugEnabled())
-      debug("Re-registering object " + packageManager.getOidEncoder().toString(oldId) + " -> "
-          + packageManager.getOidEncoder().toString(newId));
+    if (TRACER.isEnabled())
+    {
+      TRACER.trace("Re-registering object " + packageManager.getOidEncoder().toString(oldId)
+          + " -> " + packageManager.getOidEncoder().toString(newId));
+    }
 
     oidToObjectMap.remove(oldId);
     oidToObjectMap.put(new Long(newId), object);
@@ -390,9 +436,9 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
 
   public void startRequestingObjects()
   {
-    if (isDebugEnabled())
+    if (TRACER.isEnabled())
     {
-      debug("START requesting objects: " + Thread.currentThread());
+      TRACER.trace("START requesting objects: " + Thread.currentThread());
     }
 
     requestingObjects = true;
@@ -401,9 +447,9 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
 
   public void stopRequestingObjects()
   {
-    if (isDebugEnabled())
+    if (TRACER.isEnabled())
     {
-      debug("STOP requesting objects: " + Thread.currentThread());
+      TRACER.trace("STOP requesting objects: " + Thread.currentThread());
     }
 
     requestingObjects = false;
@@ -445,7 +491,7 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
 
   public void invalidateObjects(long[] oids)
   {
-    if (isDebugEnabled())
+    if (TRACER.isEnabled())
     {
       StringBuffer buffer = new StringBuffer();
       for (int i = 0; i < oids.length; i++)
@@ -454,11 +500,17 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
         buffer.append(buffer.length() == 0 ? "[" : ", ");
         buffer.append(packageManager.getOidEncoder().toString(oid));
       }
+
       buffer.append("]");
-      debug("Invalidating objects " + buffer);
+      TRACER.trace("Invalidating objects " + buffer);
     }
 
     invalidator.enqueue(oids);
+  }
+
+  public void detachObject(EObject object)
+  {
+    detachedObjects.add(object);
   }
 
   public URI createProxyURI(long oid)
@@ -473,9 +525,9 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     buffer.append("#");
     buffer.append(oidFragment);
 
-    if (isDebugEnabled())
+    if (TRACER.isEnabled())
     {
-      debug("Creating proxy URI " + buffer.toString());
+      TRACER.trace("Creating proxy URI " + buffer.toString());
     }
 
     return URI.createURI(buffer.toString());
@@ -487,40 +539,63 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
     {
       try
       {
-        cachedChannel.stop();
+        cachedChannel.close();
         cachedChannel = null;
       }
       catch (Exception ex)
       {
-        error("Problem while stopping channel " + cachedChannel, ex);
+        CDOClient.LOG.error("Problem while stopping channel " + cachedChannel, ex);
       }
     }
   }
 
   @Override
-  protected void validate() throws ValidationException
+  protected void onAboutToActivate() throws Exception
   {
-    super.validate();
-    assertNotNull("packageManager");
-    assertNotNull("connector");
-    assertNotNull("resourceSet");
+    super.onAboutToActivate();
+    if (packageManager == null)
+    {
+      throw new IllegalStateException("packageManager == null");
+    }
+
+    if (connector == null)
+    {
+      throw new IllegalStateException("connector == null");
+    }
+
+    if (resourceSet == null)
+    {
+      throw new IllegalStateException("resourceSet == null");
+    }
   }
 
   @Override
-  protected void activate() throws Exception
+  protected void onActivate() throws Exception
   {
-    super.activate();
+    super.onActivate();
     invalidator = new Invalidator();
     invalidator.setDaemon(true);
     invalidator.startup();
   }
 
   @Override
-  protected void deactivate() throws Exception
+  protected void onDeactivate() throws Exception
   {
     invalidator.shutdown(200);
     invalidator = null;
-    super.deactivate();
+    cachedChannel = null;
+    connector = null;
+    deferredInvalidations = null;
+    invalidationListeners = null;
+    invalidator = null;
+    oidToObjectMap = null;
+    packageManager = null;
+    pathToResourceMap = null;
+    resourceSet = null;
+    resourceSetAdapter = null;
+    ridToResourceMap = null;
+    transaction = null;
+    super.onDeactivate();
   }
 
   public EObject createEObject(EClass eClass, long oid, int oca, CDOResource resource)
@@ -630,17 +705,17 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
       EObject object = getObject(oid);
       if (object == null)
       {
-        if (isDebugEnabled())
+        if (TRACER.isEnabled())
         {
-          debug("Processing invalidation " + packageManager.getOidEncoder().toString(oid)
+          TRACER.trace("Processing invalidation " + packageManager.getOidEncoder().toString(oid)
               + " (IGNORED)");
         }
       }
       else if (transaction.isChanged(object))
       {
-        if (isDebugEnabled())
+        if (TRACER.isEnabled())
         {
-          debug("Processing invalidation " + packageManager.getOidEncoder().toString(oid)
+          TRACER.trace("Processing invalidation " + packageManager.getOidEncoder().toString(oid)
               + " (DEFERRED)");
         }
 
@@ -649,9 +724,9 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
       }
       else
       {
-        if (isDebugEnabled())
+        if (TRACER.isEnabled())
         {
-          debug("Processing invalidation " + packageManager.getOidEncoder().toString(oid));
+          TRACER.trace("Processing invalidation " + packageManager.getOidEncoder().toString(oid));
         }
 
         invalidated.add(object);
@@ -679,7 +754,7 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
 
     public Invalidator()
     {
-      super(getFullBeanName() + ".Invalidator");
+      super("ResourceManager.Invalidator");
     }
 
     public void enqueue(long[] oids)
@@ -703,6 +778,11 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
       try
       {
         Entry entry = queue.poll(50L, TimeUnit.MILLISECONDS);
+        if (!isActive())
+        {
+          return TERMINATE;
+        }
+
         if (entry != null)
         {
           while (System.currentTimeMillis() < entry.entered + 50 || !isRequestingObjects())
@@ -726,6 +806,7 @@ public class ResourceManagerImpl extends ServiceImpl implements ResourceManager
 
         throw ex;
       }
+
       return NO_PAUSE;
     }
 

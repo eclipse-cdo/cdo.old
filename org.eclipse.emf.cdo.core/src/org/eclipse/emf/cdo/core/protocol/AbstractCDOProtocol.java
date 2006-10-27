@@ -11,25 +11,21 @@
 package org.eclipse.emf.cdo.core.protocol;
 
 
-import org.eclipse.net4j.core.Channel;
-import org.eclipse.net4j.core.impl.AbstractProtocol;
-import org.eclipse.net4j.util.ImplementationError;
+import org.eclipse.net4j.signal.SignalProtocol;
+import org.eclipse.net4j.transport.Channel;
 
 import org.eclipse.emf.cdo.core.CDOProtocol;
 
 
-public abstract class AbstractCDOProtocol extends AbstractProtocol implements CDOProtocol
+public abstract class AbstractCDOProtocol extends SignalProtocol implements CDOProtocol
 {
-  public String getName()
+  public AbstractCDOProtocol(Channel channel)
   {
-    return PROTOCOL_NAME;
+    super(channel);
   }
 
-  protected static void assertValidChannel(Channel channel)
+  public String getProtocolID()
   {
-    if (!channel.getProtocol().getName().equals(PROTOCOL_NAME))
-    {
-      throw new ImplementationError("CDO protocol not associated with channel " + channel);
-    }
+    return PROTOCOL_NAME;
   }
 }

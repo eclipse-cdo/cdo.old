@@ -11,15 +11,10 @@
 package org.eclipse.emf.cdo.core;
 
 
-import org.eclipse.net4j.core.CustomProtocolException;
-
-
 /**
- * The {@link CDOException} class.<p>
- *
  * @author Eike Stepper
  */
-public class CDOException extends CustomProtocolException
+public class CDOException extends RuntimeException
 {
   /**
    * Needed for serialization.<p>

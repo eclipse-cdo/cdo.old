@@ -11,7 +11,10 @@
 package org.eclipse.emf.cdo.core.protocol;
 
 
-public class NoMoreResourceChangesException extends Exception
+import java.io.IOException;
+
+
+public class NoMoreResourceChangesException extends IOException
 {
   private static final long serialVersionUID = 3192284008660476749L;
 
@@ -20,16 +23,6 @@ public class NoMoreResourceChangesException extends Exception
   }
 
   public NoMoreResourceChangesException(String arg0)
-  {
-    super(arg0);
-  }
-
-  public NoMoreResourceChangesException(String arg0, Throwable arg1)
-  {
-    super(arg0, arg1);
-  }
-
-  public NoMoreResourceChangesException(Throwable arg0)
   {
     super(arg0);
   }

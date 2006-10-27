@@ -11,8 +11,7 @@
 package org.eclipse.emf.cdo.client;
 
 
-import org.eclipse.net4j.core.Channel;
-import org.eclipse.net4j.spring.Service;
+import org.eclipse.net4j.transport.Channel;
 
 import org.eclipse.emf.cdo.core.CID;
 import org.eclipse.emf.cdo.core.OIDEncoder;
@@ -32,7 +31,7 @@ import java.util.List;
  *
  * @author Eike Stepper
  */
-public interface PackageManager extends Service
+public interface PackageManager
 {
   /**
    * Returns a list of the contained {@link PackageInfo} instances.<p>

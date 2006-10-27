@@ -11,26 +11,40 @@
 package org.eclipse.emf.cdo.client.protocol;
 
 
-import org.eclipse.net4j.util.ImplementationError;
+import org.eclipse.net4j.transport.Channel;
+import org.eclipse.net4j.util.om.ContextTracer;
+import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
 
 import org.eclipse.emf.cdo.client.ClassInfo;
 import org.eclipse.emf.cdo.client.PackageManager;
+import org.eclipse.emf.cdo.client.internal.CDOClient;
+import org.eclipse.emf.cdo.core.ImplementationError;
 
 import java.util.Iterator;
 
+import java.io.IOException;
 
-public abstract class AbstractPackageRequest extends AbstractCDOClientRequest
+
+public abstract class AbstractPackageRequest<RESULT> extends AbstractCDOClientRequest<RESULT>
 {
-  protected void handlePackageResponse(int count)
+  private static final ContextTracer TRACER = new ContextTracer(CDOClient.DEBUG_PROTOCOL,
+      AbstractPackageRequest.class);
+
+  public AbstractPackageRequest(Channel channel)
+  {
+    super(channel);
+  }
+
+  protected void handlePackageResponse(ExtendedDataInputStream in, int count) throws IOException
   {
     for (int i = 0; i < count; i++)
     {
-      int cid = receiveInt();
-      String className = receiveString();
+      int cid = in.readInt();
+      String className = in.readString();
 
-      if (isDebugEnabled())
+      if (TRACER.isEnabled())
       {
-        debug("Responded class " + className + " = " + cid);
+        TRACER.trace("Responded class " + className + " = " + cid);
       }
 
       setCIDOnClassInfo(className, cid);

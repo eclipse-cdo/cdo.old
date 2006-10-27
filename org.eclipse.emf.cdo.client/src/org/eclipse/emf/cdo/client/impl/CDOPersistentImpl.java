@@ -11,12 +11,11 @@
 package org.eclipse.emf.cdo.client.impl;
 
 
-import org.eclipse.net4j.core.AlreadyRequestingException;
-
 import org.eclipse.emf.cdo.client.CDOPackage;
 import org.eclipse.emf.cdo.client.CDOPersistent;
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceManager;
+import org.eclipse.emf.cdo.client.internal.CDOClient;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -24,9 +23,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
-
-import org.apache.log4j.Logger;
 
 
 /**
@@ -40,12 +36,6 @@ import org.apache.log4j.Logger;
  */
 public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersistent
 {
-  /**
-   * @ADDED
-   */
-  @SuppressWarnings("unused")
-  private static final Logger logger = Logger.getLogger(CDOPersistentImpl.class);
-
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -157,15 +147,8 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
   @Override
   public EList eContents()
   {
-    try
-    {
-      cdoLoad();
-      return super.eContents();
-    }
-    catch (AlreadyRequestingException ex)
-    {
-      return new BasicInternalEList(EObject.class);
-    }
+    cdoLoad();
+    return super.eContents();
   }
 
   /**
@@ -225,30 +208,21 @@ public abstract class CDOPersistentImpl extends EObjectImpl implements CDOPersis
    */
   public void cdoLoad()
   {
-    //    try
-    //    {
     if (cdoResource != null && !cdoIsNew() && !cdoIsLoaded())
     {
       ResourceManager resourceManager = cdoResource.getResourceManager();
       if (resourceManager.isRequestingObjects())
       {
-        resourceManager.requestObject(this);
+        try
+        {
+          resourceManager.requestObject(this);
+        }
+        catch (Exception ex)
+        {
+          CDOClient.LOG.error(ex);
+        }
       }
-      //        else
-      //        {
-      //          if (logger.isDebugEnabled())
-      //          {
-      //            logger.debug("ResourceManager IN USE: " + Thread.currentThread());
-      // logger.debug(DeadlockDetector.identifySource());
-      //          }
-      //        }
     }
-    //    }
-    //    catch (RuntimeException ex)
-    //    {
-    //      logger.error("Problem while loading object", ex);
-    //      throw ex;
-    //    }
   }
 
   /**

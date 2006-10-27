@@ -11,13 +11,12 @@
 package org.eclipse.emf.cdo.client.impl;
 
 
-import org.eclipse.net4j.util.ImplementationError;
-import org.eclipse.net4j.util.StringHelper;
-
 import org.eclipse.emf.cdo.client.AttributeConverter;
 import org.eclipse.emf.cdo.client.MappingProvider;
 import org.eclipse.emf.cdo.core.CDODataTypes;
+import org.eclipse.emf.cdo.core.ImplementationError;
 import org.eclipse.emf.cdo.core.UnknownDataTypeException;
+import org.eclipse.emf.cdo.core.util.StringHelper;
 import org.eclipse.emf.cdo.mapping.AttributeMapping;
 import org.eclipse.emf.cdo.mapping.ClassMapping;
 import org.eclipse.emf.cdo.mapping.MappingFactory;

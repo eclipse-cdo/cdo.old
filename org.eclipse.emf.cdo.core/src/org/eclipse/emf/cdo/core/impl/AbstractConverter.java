@@ -11,16 +11,19 @@
 package org.eclipse.emf.cdo.core.impl;
 
 
-import org.eclipse.net4j.core.Channel;
-import org.eclipse.net4j.spring.impl.ServiceImpl;
+import org.eclipse.net4j.util.lifecycle.AbstractLifecycle;
+import org.eclipse.net4j.util.stream.ExtendedDataInput;
+import org.eclipse.net4j.util.stream.ExtendedDataOutput;
 
 import org.eclipse.emf.cdo.core.CDODataTypes;
 import org.eclipse.emf.cdo.core.UnknownDataTypeException;
 
+import java.io.IOException;
 
-public abstract class AbstractConverter extends ServiceImpl implements CDODataTypes
+
+public abstract class AbstractConverter extends AbstractLifecycle implements CDODataTypes
 {
-  protected Object dispatchFromChannel(Channel channel, int dataType)
+  protected Object dispatchFromChannel(ExtendedDataInput channel, int dataType) throws IOException
   {
     switch (dataType)
     {
@@ -49,7 +52,8 @@ public abstract class AbstractConverter extends ServiceImpl implements CDODataTy
     }
   }
 
-  protected void dispatchToChannel(Channel channel, int dataType, Object value)
+  protected void dispatchToChannel(ExtendedDataOutput channel, int dataType, Object value)
+      throws IOException
   {
     switch (dataType)
     {
@@ -88,118 +92,118 @@ public abstract class AbstractConverter extends ServiceImpl implements CDODataTy
     }
   }
 
-  protected Object fromChannelChar(Channel channel)
+  protected Object fromChannelChar(ExtendedDataInput channel) throws IOException
   {
-    char value = channel.receiveChar();
+    char value = channel.readChar();
     return new Character(value);
   }
 
-  protected void toChannelChar(Channel channel, Object value)
+  protected void toChannelChar(ExtendedDataOutput channel, Object value) throws IOException
   {
     char v = ((Character) value).charValue();
-    channel.transmitChar(v);
+    channel.writeChar(v);
   }
 
-  protected Object fromChannelBoolean(Channel channel)
+  protected Object fromChannelBoolean(ExtendedDataInput channel) throws IOException
   {
-    boolean value = channel.receiveBoolean();
+    boolean value = channel.readBoolean();
     return new Boolean(value);
   }
 
-  protected void toChannelBoolean(Channel channel, Object value)
+  protected void toChannelBoolean(ExtendedDataOutput channel, Object value) throws IOException
   {
     boolean v = ((Boolean) value).booleanValue();
-    channel.transmitBoolean(v);
+    channel.writeBoolean(v);
   }
 
-  protected Object fromChannelByte(Channel channel)
+  protected Object fromChannelByte(ExtendedDataInput channel) throws IOException
   {
-    byte value = channel.receiveByte();
+    byte value = channel.readByte();
     return new Byte(value);
   }
 
-  protected void toChannelByte(Channel channel, Object value)
+  protected void toChannelByte(ExtendedDataOutput channel, Object value) throws IOException
   {
     byte v = ((Byte) value).byteValue();
-    channel.transmitByte(v);
+    channel.writeByte(v);
   }
 
-  protected Object fromChannelShort(Channel channel)
+  protected Object fromChannelShort(ExtendedDataInput channel) throws IOException
   {
-    short value = channel.receiveShort();
+    short value = channel.readShort();
     return new Short(value);
   }
 
-  protected void toChannelShort(Channel channel, Object value)
+  protected void toChannelShort(ExtendedDataOutput channel, Object value) throws IOException
   {
     short v = ((Short) value).shortValue();
-    channel.transmitShort(v);
+    channel.writeShort(v);
   }
 
-  protected Object fromChannelInteger(Channel channel)
+  protected Object fromChannelInteger(ExtendedDataInput channel) throws IOException
   {
-    int value = channel.receiveInt();
+    int value = channel.readInt();
     return new Integer(value);
   }
 
-  protected void toChannelInteger(Channel channel, Object value)
+  protected void toChannelInteger(ExtendedDataOutput channel, Object value) throws IOException
   {
     int v = ((Integer) value).intValue();
-    channel.transmitInt(v);
+    channel.writeInt(v);
   }
 
-  protected Object fromChannelLong(Channel channel)
+  protected Object fromChannelLong(ExtendedDataInput channel) throws IOException
   {
-    long value = channel.receiveLong();
+    long value = channel.readLong();
     return new Long(value);
   }
 
-  protected void toChannelLong(Channel channel, Object value)
+  protected void toChannelLong(ExtendedDataOutput channel, Object value) throws IOException
   {
     long v = ((Long) value).longValue();
-    channel.transmitLong(v);
+    channel.writeLong(v);
   }
 
-  protected Object fromChannelFloat(Channel channel)
+  protected Object fromChannelFloat(ExtendedDataInput channel) throws IOException
   {
-    float value = channel.receiveFloat();
+    float value = channel.readFloat();
     return new Float(value);
   }
 
-  protected void toChannelFloat(Channel channel, Object value)
+  protected void toChannelFloat(ExtendedDataOutput channel, Object value) throws IOException
   {
     float v = ((Float) value).floatValue();
-    channel.transmitFloat(v);
+    channel.writeFloat(v);
   }
 
-  protected Object fromChannelDouble(Channel channel)
+  protected Object fromChannelDouble(ExtendedDataInput channel) throws IOException
   {
-    double value = channel.receiveDouble();
+    double value = channel.readDouble();
     return new Double(value);
   }
 
-  protected void toChannelDouble(Channel channel, Object value)
+  protected void toChannelDouble(ExtendedDataOutput channel, Object value) throws IOException
   {
     double v = ((Double) value).doubleValue();
-    channel.transmitDouble(v);
+    channel.writeDouble(v);
   }
 
-  protected Object fromChannelString(Channel channel)
+  protected Object fromChannelString(ExtendedDataInput channel) throws IOException
   {
-    return channel.receiveString();
+    return channel.readString();
   }
 
-  protected void toChannelString(Channel channel, Object value)
+  protected void toChannelString(ExtendedDataOutput channel, Object value) throws IOException
   {
-    channel.transmitString((String) value);
+    channel.writeString((String) value);
   }
 
-  protected Object fromChannelUserDefined(Channel channel)
+  protected Object fromChannelUserDefined(ExtendedDataInput channel) throws IOException
   {
     return fromChannelString(channel);
   }
 
-  protected void toChannelUserDefined(Channel channel, Object value)
+  protected void toChannelUserDefined(ExtendedDataOutput channel, Object value) throws IOException
   {
     toChannelString(channel, value);
   }

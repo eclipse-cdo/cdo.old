@@ -88,20 +88,31 @@ public class ClassInfoImpl implements ClassInfo
     if (!parentCached)
     {
       parentCached = true;
-
       for (Iterator<?> it = eClass.getEAllSuperTypes().iterator(); it.hasNext();)
       {
         EClass candidate = (EClass) it.next();
-        if (candidate != null && !candidate.isInterface()
-            && !candidate.equals(CDOPackage.eINSTANCE.getCDOPersistent()))
+        if (isValidClass(candidate))
         {
           parent = packageInfo.getPackageManager().getClassInfo(candidate);
-          break;
+          if (parent != null)
+          {
+            break;
+          }
         }
       }
     }
 
     return parent;
+  }
+
+  public static boolean isValidClass(EClass eClass)
+  {
+    return eClass != null && !eClass.isInterface() && !isRootClass(eClass);
+  }
+
+  public static boolean isRootClass(EClass eClass)
+  {
+    return eClass == CDOPackage.eINSTANCE.getCDOPersistent();
   }
 
   public AttributeInfo[] getAttributeInfos()
@@ -113,34 +124,6 @@ public class ClassInfoImpl implements ClassInfo
   {
     return allReferences;
   }
-
-  //  public String toString()
-  //  {
-  //    if (inheritance == null) return eClass.getName();
-  //    StringBuffer buffer = new StringBuffer(eClass.getName());
-  //    for (int i = 0; i < inheritance.length; i++)
-  //    {
-  //      buffer.append(" -> " + inheritance[i].getName());
-  //    }
-  //    return buffer.toString();
-  //  }
-  //
-  //  public void dump()
-  //  {
-  //    System.out.println(this);
-  //    for (int i = 0; i < attributes.length; i++)
-  //    {
-  //      System.out.println((i < attributes.length - ownAttributesCount ? "  " : " *")
-  //          + attributes[i].getName() + "(" + attributes[i].getFeatureID() + "): "
-  //          + attributes[i].getEType().getName() + "      " + attributes[i]);
-  //    }
-  //
-  //    for (int i = 0; i < allReferences.length; i++)
-  //    {
-  //      System.out.println("  " + allReferences[i].getName() + "(" + allReferences[i].getFeatureID()
-  //          + "): " + allReferences[i].getEType().getName() + "      " + allReferences[i]);
-  //    }
-  //  }
 
   @SuppressWarnings("unchecked")
   protected void initAttributeInfos()

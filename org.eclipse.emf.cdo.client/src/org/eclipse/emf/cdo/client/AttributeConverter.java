@@ -11,13 +11,16 @@
 package org.eclipse.emf.cdo.client;
 
 
-import org.eclipse.net4j.core.Channel;
-import org.eclipse.net4j.spring.Service;
+import org.eclipse.net4j.transport.Channel;
+import org.eclipse.net4j.util.stream.ExtendedDataInput;
+import org.eclipse.net4j.util.stream.ExtendedDataOutput;
 
 import org.eclipse.emf.cdo.core.CDODataTypes;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
+
+import java.io.IOException;
 
 
 /**
@@ -34,14 +37,14 @@ import org.eclipse.emf.ecore.EObject;
  * and at client side (different interfaces). Their interpretations of the data type 
  * formats have to be identical under all circumstances! Otherwise unpredictable
  * behaviour will occur, in the best case resulting in an 
- * {@link org.eclipse.net4j.core.OutOfSequenceException} being thrown and always rendering the
+ * {@link org.eclipse.net4j.OutOfSequenceException} being thrown and always rendering the
  * affected {@link Channel} unusable. Other channels of the same 
- * {@link org.eclipse.net4j.core.Connector} are not affected.<p>
+ * {@link org.eclipse.net4j.Connector} are not affected.<p>
  *
  * @see CDODataTypes
  * @author Eike Stepper
  */
-public interface AttributeConverter extends Service, CDODataTypes
+public interface AttributeConverter extends CDODataTypes
 {
   /**
    * Reads a value from a {@link Channel} and writes it to the given
@@ -51,7 +54,8 @@ public interface AttributeConverter extends Service, CDODataTypes
    * @param attribute The attribute to store the value in.
    * @param channel The channel to read the value from.
    */
-  public void fromChannel(EObject object, EAttribute attribute, Channel channel);
+  public void fromChannel(EObject object, EAttribute attribute, ExtendedDataInput channel)
+      throws IOException;
 
   /**
    * Reads a value from an object attribute and writes it to the given
@@ -61,7 +65,8 @@ public interface AttributeConverter extends Service, CDODataTypes
    * @param attribute The attribute to read the value from.
    * @param channel The channel to write the value to.
    */
-  public void toChannel(EObject object, EAttribute attribute, Channel channel);
+  public void toChannel(EObject object, EAttribute attribute, ExtendedDataOutput channel)
+      throws IOException;
 
   /**
    * Returns the CDO data type ID (as specified in 

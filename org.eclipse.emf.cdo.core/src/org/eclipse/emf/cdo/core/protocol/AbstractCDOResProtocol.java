@@ -11,25 +11,21 @@
 package org.eclipse.emf.cdo.core.protocol;
 
 
-import org.eclipse.net4j.core.Channel;
-import org.eclipse.net4j.core.impl.AbstractProtocol;
-import org.eclipse.net4j.util.ImplementationError;
+import org.eclipse.net4j.signal.SignalProtocol;
+import org.eclipse.net4j.transport.Channel;
 
 import org.eclipse.emf.cdo.core.CDOResProtocol;
 
 
-public abstract class AbstractCDOResProtocol extends AbstractProtocol implements CDOResProtocol
+public abstract class AbstractCDOResProtocol extends SignalProtocol implements CDOResProtocol
 {
-  public String getName()
+  public AbstractCDOResProtocol(Channel channel)
   {
-    return PROTOCOL_NAME;
+    super(channel);
   }
 
-  protected static void assertValidChannel(Channel channel)
+  public String getProtocolID()
   {
-    if (!channel.getProtocol().getName().equals(PROTOCOL_NAME))
-    {
-      throw new ImplementationError("CDORES protocol not associated with channel " + channel);
-    }
+    return PROTOCOL_NAME;
   }
 }

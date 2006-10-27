@@ -11,7 +11,7 @@
 package org.eclipse.emf.cdo.core;
 
 
-import org.eclipse.net4j.core.Protocol;
+import org.eclipse.net4j.transport.Protocol;
 
 
 /**

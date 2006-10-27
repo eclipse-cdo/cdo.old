@@ -11,7 +11,10 @@
 package org.eclipse.emf.cdo.core.protocol;
 
 
-import org.eclipse.net4j.core.Channel;
+import org.eclipse.net4j.util.stream.ExtendedDataInput;
+import org.eclipse.net4j.util.stream.ExtendedDataOutput;
+
+import java.io.IOException;
 
 
 public final class ResourceChangeInfo
@@ -35,12 +38,16 @@ public final class ResourceChangeInfo
     this.path = path;
   }
 
-  public ResourceChangeInfo(Channel channel) throws NoMoreResourceChangesException
+  public ResourceChangeInfo(ExtendedDataInput channel) throws IOException
   {
-    changeKind = channel.receiveByte();
-    if (changeKind == NONE) throw new NoMoreResourceChangesException();
-    rid = channel.receiveInt();
-    path = channel.receiveString();
+    changeKind = channel.readByte();
+    if (changeKind == NONE)
+    {
+      throw new NoMoreResourceChangesException();
+    }
+
+    rid = channel.readInt();
+    path = channel.readString();
   }
 
   public byte getChangeKind()
@@ -58,10 +65,10 @@ public final class ResourceChangeInfo
     return rid;
   }
 
-  public void transmit(Channel channel)
+  public void transmit(ExtendedDataOutput channel) throws IOException
   {
-    channel.transmitByte(changeKind);
-    channel.transmitInt(rid);
-    channel.transmitString(path);
+    channel.writeByte(changeKind);
+    channel.writeInt(rid);
+    channel.writeString(path);
   }
 }

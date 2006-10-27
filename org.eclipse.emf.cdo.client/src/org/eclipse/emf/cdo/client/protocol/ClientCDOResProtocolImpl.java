@@ -11,12 +11,11 @@
 package org.eclipse.emf.cdo.client.protocol;
 
 
-import org.eclipse.net4j.core.Channel;
-import org.eclipse.net4j.core.Indication;
-import org.eclipse.net4j.core.Request;
-import org.eclipse.net4j.util.ImplementationError;
+import org.eclipse.net4j.signal.SignalReactor;
+import org.eclipse.net4j.transport.Channel;
 
 import org.eclipse.emf.cdo.client.ResourceInfo;
+import org.eclipse.emf.cdo.core.ImplementationError;
 import org.eclipse.emf.cdo.core.protocol.AbstractCDOResProtocol;
 import org.eclipse.emf.cdo.core.protocol.ResourceChangeInfo;
 
@@ -27,26 +26,25 @@ import java.util.Set;
 
 public class ClientCDOResProtocolImpl extends AbstractCDOResProtocol
 {
+  public static final long REQUEST_TIMEOUT = ClientCDOProtocolImpl.REQUEST_TIMEOUT;
+
   private List<CDOResListener> listeners = new ArrayList<CDOResListener>();
 
-  public ClientCDOResProtocolImpl()
+  public ClientCDOResProtocolImpl(Channel channel)
   {
+    super(channel);
   }
 
-  public int getType()
+  @Override
+  protected SignalReactor createSignalReactor(short signalID)
   {
-    return CLIENT;
-  }
-
-  public Indication createIndication(short signalId)
-  {
-    switch (signalId)
+    switch (signalID)
     {
       case RESOURCES_CHANGED:
         return new ResourcesChangedIndication();
 
       default:
-        throw new ImplementationError("Invalid " + PROTOCOL_NAME + " signalId: " + signalId);
+        throw new ImplementationError("Invalid " + PROTOCOL_NAME + " signalID: " + signalID);
     }
   }
 
@@ -68,17 +66,22 @@ public class ClientCDOResProtocolImpl extends AbstractCDOResProtocol
     }
   }
 
-  public static List<ResourceInfo> queryAllResources(Channel channel)
+  public static List<ResourceInfo> queryAllResources(Channel channel) throws Exception
   {
-    assertValidChannel(channel);
-    Request signal = new QueryAllResourcesRequest();
-    return (List<ResourceInfo>) channel.transmit(signal);
+    QueryAllResourcesRequest signal = new QueryAllResourcesRequest(channel);
+    return signal.send(REQUEST_TIMEOUT);
   }
 
-  public static boolean deleteResources(Channel channel, Set<Integer> rids)
+  public static boolean deleteResources(Channel channel, Set<Integer> rids) throws Exception
   {
-    assertValidChannel(channel);
-    Request signal = new DeleteResourcesRequest(rids);
-    return (Boolean) channel.transmit(signal);
+    DeleteResourcesRequest signal = new DeleteResourcesRequest(channel, rids);
+    return signal.send(REQUEST_TIMEOUT);
+  }
+
+  @Override
+  protected void onDeactivate() throws Exception
+  {
+    listeners = null;
+    super.onDeactivate();
   }
 }

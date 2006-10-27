@@ -3,11 +3,17 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.emf.cdo.core
 Bundle-Version: 0.7.0.qualifier
-Bundle-Activator: org.eclipse.emf.cdo.core.internal.CorePlugin
+Bundle-Activator: org.eclipse.emf.cdo.core.internal.Activator
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Require-Bundle: org.eclipse.net4j.core;visibility:=reexport
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore,
+ org.eclipse.net4j;visibility:=reexport
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.emf.cdo.core,
  org.eclipse.emf.cdo.core.impl,
- org.eclipse.emf.cdo.core.protocol
+ org.eclipse.emf.cdo.core.protocol,
+ org.eclipse.emf.cdo.core.util,
+ org.eclipse.emf.cdo.core.util.extensions,
+ org.eclipse.emf.cdo.core.util.thread
+Import-Package: org.osgi.framework;version="1.3.0"
