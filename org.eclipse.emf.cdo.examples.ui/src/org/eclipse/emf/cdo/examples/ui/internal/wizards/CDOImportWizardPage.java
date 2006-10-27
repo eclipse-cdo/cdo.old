@@ -10,13 +10,14 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.examples.ui.internal.wizards;
 
+import org.eclipse.emf.cdo.examples.ui.ResourceFactoryHelper;
+
+import org.eclipse.emf.common.util.URI;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.emf.cdo.examples.ui.ResourceFactoryHelper;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.WizardPage;
@@ -40,7 +41,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 
 public class CDOImportWizardPage extends WizardPage
 {
@@ -75,7 +75,7 @@ public class CDOImportWizardPage extends WizardPage
       Composite control = new Composite(parent, SWT.NONE);
       control.setLayout(new GridLayout(1, false));
       control.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL
-              | GridData.VERTICAL_ALIGN_FILL));
+          | GridData.VERTICAL_ALIGN_FILL));
 
       Group sourceGroup = createGroup(control, "Source");
 
@@ -86,7 +86,7 @@ public class CDOImportWizardPage extends WizardPage
 
       sourceURIField = new Text(grid, SWT.BORDER);
       sourceURIField.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL
-              | GridData.GRAB_HORIZONTAL));
+          | GridData.GRAB_HORIZONTAL));
       sourceURIField.addModifyListener(new ModifyListener()
       {
         public void modifyText(ModifyEvent e)
@@ -155,7 +155,7 @@ public class CDOImportWizardPage extends WizardPage
 
       destinationPathField = new Text(destinationGroup, SWT.BORDER);
       destinationPathField.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL
-              | GridData.GRAB_HORIZONTAL));
+          | GridData.GRAB_HORIZONTAL));
       destinationPathField.addModifyListener(new ModifyListener()
       {
         public void modifyText(ModifyEvent e)
@@ -177,7 +177,7 @@ public class CDOImportWizardPage extends WizardPage
   {
     IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
     ResourceListSelectionDialog dialog = new ResourceListSelectionDialog(getShell(), root,
-            IResource.FILE);
+        IResource.FILE);
     dialog.setBlockOnOpen(true);
     dialog.setAllowUserToToggleDerived(true);
     dialog.setTitle(CDOImportWizard.TITLE);

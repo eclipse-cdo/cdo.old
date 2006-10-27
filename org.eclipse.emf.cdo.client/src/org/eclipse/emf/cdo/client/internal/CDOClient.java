@@ -22,7 +22,7 @@ import org.eclipse.net4j.util.om.OMTracer;
  */
 public final class CDOClient
 {
-  public static final String BUNDLE_ID = "org.eclipse.net4j"; //$NON-NLS-1$
+  public static final String BUNDLE_ID = "org.eclipse.emf.cdo.client"; //$NON-NLS-1$
 
   public static final OMBundle BUNDLE = OMPlatform.INSTANCE.bundle(BUNDLE_ID, CDOClient.class);
 

@@ -10,13 +10,12 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.examples.ui;
 
-
 import org.eclipse.emf.cdo.client.ResourceInfo;
+
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
-
 
 public class ResourceLabelProvider extends LabelProvider
 {

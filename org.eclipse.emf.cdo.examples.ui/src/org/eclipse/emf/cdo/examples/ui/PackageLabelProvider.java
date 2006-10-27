@@ -10,14 +10,14 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.examples.ui;
 
-
 import org.eclipse.emf.cdo.client.ClassInfo;
 import org.eclipse.emf.cdo.client.PackageInfo;
 import org.eclipse.emf.cdo.examples.ui.internal.ExampleUIActivator;
+
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
+
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
-
 
 public final class PackageLabelProvider extends LabelProvider
 {
@@ -31,13 +31,13 @@ public final class PackageLabelProvider extends LabelProvider
     if (element instanceof PackageInfo)
     {
       return ExtendedImageRegistry.getInstance().getImage(
-              ExampleUIActivator.INSTANCE.getImage("full/obj16/EPackage"));
+          ExampleUIActivator.INSTANCE.getImage("full/obj16/EPackage"));
     }
 
     if (element instanceof ClassInfo)
     {
       return ExtendedImageRegistry.getInstance().getImage(
-              ExampleUIActivator.INSTANCE.getImage("full/obj16/EClass"));
+          ExampleUIActivator.INSTANCE.getImage("full/obj16/EClass"));
     }
 
     return super.getImage(element);

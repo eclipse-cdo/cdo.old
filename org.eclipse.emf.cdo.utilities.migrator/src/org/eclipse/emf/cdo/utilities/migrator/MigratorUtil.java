@@ -10,14 +10,6 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.utilities.migrator;
 
-
-import org.eclipse.net4j.util.eclipse.ResourcesHelper;
-
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.EList;
@@ -29,6 +21,12 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
@@ -44,12 +42,13 @@ import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 public class MigratorUtil
 {
   /**
-   * TODO Document field REQUIRE_BUNDLE_HEADER<p>
-   * Stores the <code>{@link String}</code> value of the <code>REQUIRE_BUNDLE_HEADER<code> property.<p>
+   * TODO Document field REQUIRE_BUNDLE_HEADER
+   * <p>
+   * Stores the <code>{@link String}</code> value of the
+   * <code>REQUIRE_BUNDLE_HEADER<code> property.<p>
    */
   private static final String REQUIRE_BUNDLE_HEADER = "Require-Bundle:";
 
@@ -64,7 +63,8 @@ public class MigratorUtil
   private static final String TEMPLATES_URI = "platform:/resource" + CLIENT_PATH + "/templates";
 
   /**
-   * @return <code>true</code> if manifest was modified, <code>false</code> otherwise.
+   * @return <code>true</code> if manifest was modified, <code>false</code>
+   *         otherwise.
    * @throws IOException
    * @throws CoreException
    */
@@ -89,7 +89,7 @@ public class MigratorUtil
       if (oldContent.indexOf(CLIENT_PLUGIN_ID) == -1)
       {
         newContent = oldContent.replaceFirst(REQUIRE_BUNDLE_HEADER, REQUIRE_BUNDLE_HEADER + " "
-                + CLIENT_PLUGIN_ID + ",");
+            + CLIENT_PLUGIN_ID + ",");
       }
       else
       {
@@ -107,9 +107,10 @@ public class MigratorUtil
   }
 
   /**
-   * @return The number of added extensions.<p>
+   * @return The number of added extensions.
+   *         <p>
    * @throws IOException
-   * @throws CoreException 
+   * @throws CoreException
    */
   public static int addMappings(String fullPath) throws IOException, CoreException
   {
@@ -127,10 +128,10 @@ public class MigratorUtil
     else
     {
       content[0] = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + // 
-              "<?eclipse version=\"3.0\"?>\n" + //
-              "<plugin>\n" + //
-              "\n" + //
-              "</plugin>\n";
+          "<?eclipse version=\"3.0\"?>\n" + //
+          "<plugin>\n" + //
+          "\n" + //
+          "</plugin>\n";
     }
 
     int additions = addPackageMapping(ePackage, content);
@@ -143,8 +144,11 @@ public class MigratorUtil
   }
 
   /**
-   * @param content Element 0 contains the whole content and can be modified.<p>
-   * @return The number of added extensions.<p>
+   * @param content
+   *          Element 0 contains the whole content and can be modified.
+   *          <p>
+   * @return The number of added extensions.
+   *         <p>
    */
   private static int addPackageMapping(EPackage ePackage, String[] content)
   {
@@ -172,16 +176,16 @@ public class MigratorUtil
   private static void addMapping(String[] content, String nsURI, String map)
   {
     content[0] = content[0].replaceFirst("</plugin>",
-            "  <extension point=\"org.eclipse.emf.cdo.client.mappings\">\n" + "    <mapping\n"
-                    + "       map=\"" + map + "\"\n" + "       uri=\"" + nsURI + "\"/>\n"
-                    + "  </extension>\n" + "\n" + "</plugin>");
+        "  <extension point=\"org.eclipse.emf.cdo.client.mappings\">\n" + "    <mapping\n"
+            + "       map=\"" + map + "\"\n" + "       uri=\"" + nsURI + "\"/>\n"
+            + "  </extension>\n" + "\n" + "</plugin>");
   }
 
   private static boolean containsMapping(String content, String nsURI)
   {
     String regex = "<extension[\\s]+point[\\s]*=[\\s]*\"org\\.eclipse\\.emf\\.cdo\\.client\\.mappings\">"
-            + "[\\s\\S]*uri[\\s]*=[\\s]*\"" + Pattern.quote(nsURI) + "\"[\\s\\S]*" + //
-            "(/>|</mapping>)";
+        + "[\\s\\S]*uri[\\s]*=[\\s]*\"" + Pattern.quote(nsURI) + "\"[\\s\\S]*" + //
+        "(/>|</mapping>)";
 
     Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
     Matcher matcher = pattern.matcher(content);
@@ -190,7 +194,8 @@ public class MigratorUtil
 
   /**
    * @return <code>true</code> if a modification occured, <code>false</code>
-   * otherwise.<p>
+   *         otherwise.
+   *         <p>
    */
   public static boolean migrateGenmodel(String fullPath) throws IOException
   {
@@ -229,7 +234,8 @@ public class MigratorUtil
   }
 
   /**
-   * @return The number of modifications.<p>
+   * @return The number of modifications.
+   *         <p>
    */
   public static int migrateEcore(String fullPath) throws IOException
   {
@@ -249,7 +255,8 @@ public class MigratorUtil
   }
 
   /**
-   * @return The number of modifications.<p>
+   * @return The number of modifications.
+   *         <p>
    */
   private static int migrateEcorePackage(EPackage ePackage, EClass cdoRootClass)
   {
@@ -279,7 +286,8 @@ public class MigratorUtil
 
   /**
    * @return <code>true</code> if a modification occured, <code>false</code>
-   * otherwise.<p>
+   *         otherwise.
+   *         <p>
    */
   private static boolean migrateEcoreClass(EClass eClass, EClass cdoRootClass)
   {
@@ -355,10 +363,9 @@ public class MigratorUtil
     }
 
     IRunnableWithProgress op = org.eclipse.pde.internal.ui.wizards.imports.PluginImportWizard
-            .getImportOperation(
-                    shell,
-                    org.eclipse.pde.internal.ui.wizards.imports.PluginImportOperation.IMPORT_WITH_SOURCE,
-                    new IPluginModelBase[] {model}, false);
+        .getImportOperation(shell,
+            org.eclipse.pde.internal.ui.wizards.imports.PluginImportOperation.IMPORT_WITH_SOURCE,
+            new IPluginModelBase[] { model }, false);
     PlatformUI.getWorkbench().getProgressService().busyCursorWhile(op);
     return true;
   }
@@ -367,13 +374,13 @@ public class MigratorUtil
   private static IPluginModelBase findClientPlugin()
   {
     org.eclipse.pde.internal.core.PluginModelManager manager = org.eclipse.pde.internal.core.PDECore
-            .getDefault().getModelManager();
+        .getDefault().getModelManager();
     IPluginModelBase[] models = manager.getExternalModels();
-    //    ArrayList<String> names = new ArrayList<String>();
+    // ArrayList<String> names = new ArrayList<String>();
     for (IPluginModelBase model : models)
     {
       String name = model.getBundleDescription().getName();
-      //      names.add(name);
+      // names.add(name);
 
       if (CLIENT_PLUGIN_ID.equals(name))
       {
@@ -381,11 +388,11 @@ public class MigratorUtil
       }
     }
 
-    //    Collections.sort(names);
-    //    for (String name : names)
-    //    {
-    //      System.out.println(name);
-    //    }
+    // Collections.sort(names);
+    // for (String name : names)
+    // {
+    // System.out.println(name);
+    // }
 
     return null;
   }

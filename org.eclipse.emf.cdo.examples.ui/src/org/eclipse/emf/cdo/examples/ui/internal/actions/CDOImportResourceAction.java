@@ -1,11 +1,10 @@
 package org.eclipse.emf.cdo.examples.ui.internal.actions;
 
-
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.examples.ui.UIUtils;
 import org.eclipse.emf.cdo.examples.ui.internal.wizards.CDOImportWizard;
-import org.eclipse.jface.action.Action;
 
+import org.eclipse.jface.action.Action;
 
 public final class CDOImportResourceAction extends Action
 {

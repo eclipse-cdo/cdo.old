@@ -10,8 +10,6 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.examples.ui.internal.wizards;
 
-
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ClassInfo;
 import org.eclipse.emf.cdo.client.ResourceManager;
@@ -19,12 +17,15 @@ import org.eclipse.emf.cdo.client.impl.ResourceInfoImpl;
 import org.eclipse.emf.cdo.core.CDOProtocol;
 import org.eclipse.emf.cdo.examples.client.internal.ExampleClientPlugin;
 import org.eclipse.emf.cdo.examples.ui.UIUtils;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -33,7 +34,6 @@ import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
 import java.lang.reflect.InvocationTargetException;
-
 
 public class CDONewWizard extends Wizard implements INewWizard
 {
@@ -120,10 +120,10 @@ public class CDONewWizard extends Wizard implements INewWizard
   }
 
   private void doFinish(String resourcePath, ClassInfo rootElement, IProgressMonitor monitor)
-          throws Exception
+      throws Exception
   {
     ResourceManager resourceManager = this.resourceManager == null ? ExampleClientPlugin
-            .createResourceManager(new ResourceSetImpl()) : this.resourceManager;
+        .createResourceManager(new ResourceSetImpl()) : this.resourceManager;
 
     URI uri = URI.createURI(CDOProtocol.PROTOCOL_SCHEME + resourcePath);
     CDOResource resource = (CDOResource)resourceManager.createResource(uri);

@@ -10,25 +10,13 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.examples.ui.internal.editors;
 
-
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IMarker;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IResourceChangeEvent;
-import org.eclipse.core.resources.IResourceChangeListener;
-import org.eclipse.core.resources.IResourceDelta;
-import org.eclipse.core.resources.IResourceDeltaVisitor;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.OptimisticControlException;
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.client.ResourceManager.InvalidationListener;
 import org.eclipse.emf.cdo.examples.client.internal.ExampleClientPlugin;
 import org.eclipse.emf.cdo.examples.ui.internal.ExampleUIActivator;
+
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
@@ -56,6 +44,19 @@ import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
+
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IResourceChangeEvent;
+import org.eclipse.core.resources.IResourceChangeListener;
+import org.eclipse.core.resources.IResourceDelta;
+import org.eclipse.core.resources.IResourceDeltaVisitor;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IStatusLineManager;
@@ -126,7 +127,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-
 /**
  * This is an example of a Library model editor. <!-- begin-user-doc --> <!--
  * end-user-doc -->
@@ -135,7 +135,7 @@ import java.util.Map;
  */
 @SuppressWarnings("unchecked")
 public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProvider,
-        ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker, InvalidationListener
+    ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker, InvalidationListener
 {
   /**
    * @ADDED
@@ -403,12 +403,12 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
             public boolean visit(IResourceDelta delta)
             {
               if (delta.getFlags() != IResourceDelta.MARKERS
-                      && delta.getResource().getType() == IResource.FILE)
+                  && delta.getResource().getType() == IResource.FILE)
               {
                 if ((delta.getKind() & (IResourceDelta.CHANGED | IResourceDelta.REMOVED)) != 0)
                 {
                   Resource resource = resourceSet.getResource(URI.createURI(delta.getFullPath()
-                          .toString()), false);
+                      .toString()), false);
                   if (resource != null)
                   {
                     if ((delta.getKind() & IResourceDelta.REMOVED) != 0)
@@ -548,7 +548,7 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
   protected boolean handleDirtyConflict()
   {
     return MessageDialog.openQuestion(getSite().getShell(), getString("_UI_FileConflict_label"),
-            getString("_WARN_FileConflict"));
+        getString("_WARN_FileConflict"));
   }
 
   /**
@@ -765,10 +765,10 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
     getSite().registerContextMenu(contextMenu, viewer);
 
     int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
-    Transfer[] transfers = new Transfer[] {LocalTransfer.getInstance()};
+    Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
     viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(viewer));
     viewer.addDropSupport(dndOperations, transfers, new EditingDomainViewerDropAdapter(
-            editingDomain, viewer));
+        editingDomain, viewer));
   }
 
   /**
@@ -935,7 +935,7 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
           // Set up the tree viewer.
           //
           contentOutlineViewer
-                  .setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+              .setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
           contentOutlineViewer.setLabelProvider(labelProvider);
           contentOutlineViewer.setInput(editingDomain.getResourceSet());
 
@@ -954,7 +954,7 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
         }
 
         public void makeContributions(IMenuManager menuManager, IToolBarManager toolBarManager,
-                IStatusLineManager statusLineManager)
+            IStatusLineManager statusLineManager)
         {
           super.makeContributions(menuManager, toolBarManager, statusLineManager);
           contentOutlineStatusLineManager = statusLineManager;
@@ -1010,7 +1010,7 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
         }
       };
       propertySheetPage
-              .setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
+          .setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
     }
 
     return propertySheetPage;
@@ -1025,7 +1025,7 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
   public void handleContentOutlineSelection(ISelection selection)
   {
     if (currentViewerPane != null && !selection.isEmpty()
-            && selection instanceof IStructuredSelection)
+        && selection instanceof IStructuredSelection)
     {
       Iterator selectedElements = ((IStructuredSelection)selection).iterator();
       if (selectedElements.hasNext())
@@ -1144,7 +1144,7 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
         ((BasicCommandStack)editingDomain.getCommandStack()).saveIsDone();
         firePropertyChange(IEditorPart.PROP_DIRTY);
         MessageDialog.openError(getSite().getShell(), "Optimistic Control Exception",
-                targetException.getLocalizedMessage());
+            targetException.getLocalizedMessage());
       }
       else
       {
@@ -1189,7 +1189,7 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
       if (file != null)
       {
         doSaveAs(URI.createPlatformResourceURI(file.getFullPath().toString()), new FileEditorInput(
-                file));
+            file));
       }
     }
   }
@@ -1205,8 +1205,8 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
     setInputWithNotify(editorInput);
     setPartName(editorInput.getName());
     IProgressMonitor progressMonitor = getActionBars().getStatusLineManager() != null ? getActionBars()
-            .getStatusLineManager().getProgressMonitor()
-            : new NullProgressMonitor();
+        .getStatusLineManager().getProgressMonitor()
+        : new NullProgressMonitor();
     doSave(progressMonitor);
   }
 
@@ -1253,7 +1253,7 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
     site.setSelectionProvider(this);
     site.getPage().addPartListener(partListener);
     ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceChangeListener,
-            IResourceChangeEvent.POST_CHANGE);
+        IResourceChangeEvent.POST_CHANGE);
   }
 
   /**
@@ -1334,8 +1334,8 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
   public void setStatusLineManager(ISelection selection)
   {
     IStatusLineManager statusLineManager = currentViewer != null
-            && currentViewer == contentOutlineViewer ? contentOutlineStatusLineManager
-            : getActionBars().getStatusLineManager();
+        && currentViewer == contentOutlineViewer ? contentOutlineStatusLineManager
+        : getActionBars().getStatusLineManager();
 
     if (statusLineManager != null)
     {
@@ -1352,14 +1352,14 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
         case 1:
         {
           String text = new AdapterFactoryItemDelegator(adapterFactory).getText(collection
-                  .iterator().next());
+              .iterator().next());
           statusLineManager.setMessage(getString("_UI_SingleObjectSelected", text));
           break;
         }
         default:
         {
           statusLineManager.setMessage(getString("_UI_MultiObjectSelected", Integer
-                  .toString(collection.size())));
+              .toString(collection.size())));
           break;
         }
         }
@@ -1390,7 +1390,7 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
    */
   private static String getString(String key, Object s1)
   {
-    return ExampleUIActivator.INSTANCE.getString(key, new Object[] {s1});
+    return ExampleUIActivator.INSTANCE.getString(key, new Object[] { s1 });
   }
 
   /**
@@ -1517,7 +1517,7 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
    * @ADDED
    */
   public void notifyInvalidation(ResourceManager resourceManager, final List<EObject> invalidated,
-          final List<EObject> deferred)
+      final List<EObject> deferred)
   {
     final Display display = Display.getDefault();
     display.asyncExec(new Runnable()
@@ -1553,7 +1553,7 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
           }
         }
 
-        // Refresh property sheet page 
+        // Refresh property sheet page
         IPropertySheetPage page = getPropertySheetPage();
         if (page instanceof PropertySheetPage)
         {
@@ -1612,7 +1612,7 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
    * @ADDED
    */
   public final class CDOLabelProvider extends AdapterFactoryLabelProvider implements IFontProvider,
-          IColorProvider
+      IColorProvider
   {
     private Font boldFont;
 
@@ -1658,7 +1658,7 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
     public Font getFont(Object element)
     {
       if (ExampleUIActivator.getPlugin().isShowChanges()
-              && getResourceManager().getTransaction().isChanged(element))
+          && getResourceManager().getTransaction().isChanged(element))
       {
         return getBoldFont();
       }
@@ -1674,7 +1674,7 @@ public class CDOEditor extends MultiPageEditorPart implements IEditingDomainProv
     public Color getForeground(Object element)
     {
       if (ExampleUIActivator.getPlugin().isShowConflicts() && element instanceof EObject
-              && getResourceManager().hasDeferredInvalidation((EObject)element))
+          && getResourceManager().hasDeferredInvalidation((EObject)element))
       {
         return getRedColor();
       }

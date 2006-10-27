@@ -11,8 +11,7 @@
 package org.eclipse.emf.cdo.dbgen.impl;
 
 
-import org.eclipse.net4j.util.StringHelper;
-
+import org.eclipse.emf.cdo.core.util.StringHelper;
 import org.eclipse.emf.cdo.dbgen.Column;
 import org.eclipse.emf.cdo.dbgen.ColumnNotFoundException;
 import org.eclipse.emf.cdo.dbgen.ColumnType;

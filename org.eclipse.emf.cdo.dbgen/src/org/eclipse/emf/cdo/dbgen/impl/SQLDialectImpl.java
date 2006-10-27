@@ -11,10 +11,10 @@
 package org.eclipse.emf.cdo.dbgen.impl;
 
 
-import org.eclipse.net4j.util.Argument;
-import org.eclipse.net4j.util.ImplementationError;
-import org.eclipse.net4j.util.StringHelper;
+import org.eclipse.net4j.util.om.ContextTracer;
 
+import org.eclipse.emf.cdo.core.ImplementationError;
+import org.eclipse.emf.cdo.core.util.StringHelper;
 import org.eclipse.emf.cdo.dbgen.Column;
 import org.eclipse.emf.cdo.dbgen.ColumnType;
 import org.eclipse.emf.cdo.dbgen.Database;
@@ -24,10 +24,9 @@ import org.eclipse.emf.cdo.dbgen.SQLDialect;
 import org.eclipse.emf.cdo.dbgen.Table;
 import org.eclipse.emf.cdo.dbgen.TableCreationException;
 import org.eclipse.emf.cdo.dbgen.UnknownSQLTypeException;
-import org.eclipse.emf.cdo.dbgen.internal.DBGenActivator;
-import org.eclipse.emf.cdo.dbgen.internal.DBGenActivator.DialectElement;
-
-import org.apache.log4j.Logger;
+import org.eclipse.emf.cdo.dbgen.internal.Activator;
+import org.eclipse.emf.cdo.dbgen.internal.DBGen;
+import org.eclipse.emf.cdo.dbgen.internal.Activator.DialectElement;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.DatabaseMetaDataCallback;
@@ -48,12 +47,9 @@ import javax.sql.DataSource;
 
 public class SQLDialectImpl implements SQLDialect
 {
-  /**
-   * Logger for this class
-   */
-  private static final Logger logger = Logger.getLogger(SQLDialectImpl.class);
+  private static final ContextTracer TRACER = new ContextTracer(DBGen.DEBUG, SQLDialectImpl.class);
 
-  private DBGenActivator.DialectElement dialectElement;
+  private Activator.DialectElement dialectElement;
 
   private String stringBIGINT = "BIGINT";
 
@@ -101,12 +97,16 @@ public class SQLDialectImpl implements SQLDialect
 
   public SQLDialectImpl(DialectElement dialectElement)
   {
-    Argument.isNotNull(dialectElement);
+    if (dialectElement == null)
+    {
+      throw new IllegalArgumentException("dialectElement == null");
+    }
+
     this.dialectElement = dialectElement;
     initTypeMappings();
   }
 
-  public DBGenActivator.DialectElement getDialectElement()
+  public Activator.DialectElement getDialectElement()
   {
     return dialectElement;
   }
@@ -339,8 +339,11 @@ public class SQLDialectImpl implements SQLDialect
           {
             String table = tables.getString(3);
             String key = table.toUpperCase();
+            if (TRACER.isEnabled())
+            {
+              TRACER.trace("Found existing table " + key);
+            }
 
-            if (logger.isDebugEnabled()) logger.debug("Found existing table " + key);
             result.put(key, table);
           }
           return null;
@@ -349,7 +352,7 @@ public class SQLDialectImpl implements SQLDialect
     }
     catch (MetaDataAccessException ex)
     {
-      logger.error("Error while retrieving JDBC metadata", ex);
+      DBGen.LOG.error("Error while retrieving JDBC metadata", ex);
     }
 
     return result;
@@ -362,10 +365,12 @@ public class SQLDialectImpl implements SQLDialect
   {
     JdbcTemplate template = new JdbcTemplate(dataSource);
     String tableSQL = composeTableCreationString(table);
-    if (logger.isDebugEnabled()) logger.debug(tableSQL);
+    if (TRACER.isEnabled())
+    {
+      TRACER.trace(tableSQL);
+    }
 
     template.execute(tableSQL);
-
     for (Iterator indexIt = table.getIndices().iterator(); indexIt.hasNext();)
     {
       Index index = (Index) indexIt.next();
@@ -383,7 +388,11 @@ public class SQLDialectImpl implements SQLDialect
         continue;
       }
 
-      if (logger.isDebugEnabled()) logger.debug(indexSQL);
+      if (TRACER.isEnabled())
+      {
+        TRACER.trace(indexSQL);
+      }
+
       template.execute(indexSQL);
     }
   }
@@ -401,16 +410,16 @@ public class SQLDialectImpl implements SQLDialect
     }
     catch (Throwable t)
     {
-      logger.warn("Error while dropping table " + table, t);
+      DBGen.LOG.warn("Problem while dropping table " + table, t);
     }
   }
 
   private void initTypeMappings()
   {
-    DBGenActivator.TypeMappingElement[] elements = dialectElement.getTypeMappings();
+    Activator.TypeMappingElement[] elements = dialectElement.getTypeMappings();
     for (int i = 0; i < elements.length; i++)
     {
-      DBGenActivator.TypeMappingElement element = elements[i];
+      Activator.TypeMappingElement element = elements[i];
       if ("BIGINT".equals(element.getSqlType()))
       {
         stringBIGINT = element.getVendorString();

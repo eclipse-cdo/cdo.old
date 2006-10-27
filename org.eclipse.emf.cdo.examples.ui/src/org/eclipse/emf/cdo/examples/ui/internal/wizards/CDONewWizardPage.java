@@ -10,11 +10,11 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.examples.ui.internal.wizards;
 
-
 import org.eclipse.emf.cdo.client.ClassInfo;
 import org.eclipse.emf.cdo.examples.client.internal.ExampleClientPlugin;
 import org.eclipse.emf.cdo.examples.ui.PackageContentProvider;
 import org.eclipse.emf.cdo.examples.ui.PackageLabelProvider;
+
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -33,7 +33,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
-
 
 public class CDONewWizardPage extends WizardPage
 {
@@ -131,7 +130,7 @@ public class CDONewWizardPage extends WizardPage
   {
     resourcePathText.setText("/");
     resourcePathText.setSelection(1);
-    //    rootElementViewer.expandAll();
+    // rootElementViewer.expandAll();
   }
 
   private void dialogChanged()

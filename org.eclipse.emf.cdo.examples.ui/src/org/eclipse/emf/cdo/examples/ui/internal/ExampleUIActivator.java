@@ -10,19 +10,20 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.examples.ui.internal;
 
-
-import org.eclipse.emf.cdo.client.internal.ClientActivator;
+import org.eclipse.emf.cdo.client.internal.Activator;
 import org.eclipse.emf.cdo.examples.ui.internal.preferences.PreferenceConstants;
+
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Display;
-import org.osgi.framework.BundleContext;
 
+import org.osgi.framework.BundleContext;
 
 public final class ExampleUIActivator extends EMFPlugin
 {
@@ -32,7 +33,7 @@ public final class ExampleUIActivator extends EMFPlugin
 
   public ExampleUIActivator()
   {
-    super(new ResourceLocator[] {ClientActivator.INSTANCE});
+    super(new ResourceLocator[] { Activator.INSTANCE });
   }
 
   public ResourceLocator getPluginResourceLocator()

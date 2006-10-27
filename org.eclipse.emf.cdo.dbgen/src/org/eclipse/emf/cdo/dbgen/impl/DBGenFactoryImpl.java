@@ -18,7 +18,10 @@ import org.eclipse.emf.cdo.dbgen.DBGenPackage;
 import org.eclipse.emf.cdo.dbgen.Database;
 import org.eclipse.emf.cdo.dbgen.Index;
 import org.eclipse.emf.cdo.dbgen.IndexType;
+import org.eclipse.emf.cdo.dbgen.SQLDialect;
 import org.eclipse.emf.cdo.dbgen.Table;
+import org.eclipse.emf.cdo.dbgen.internal.Activator;
+import org.eclipse.emf.cdo.dbgen.internal.Activator.DialectElement;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -68,6 +71,15 @@ public class DBGenFactoryImpl extends EFactoryImpl implements DBGenFactory
   public DBGenFactoryImpl()
   {
     super();
+  }
+
+  /**
+   * @ADDED
+   */
+  public SQLDialect createDialect(String dialectName)
+  {
+    DialectElement element = Activator.INSTANCE.getDialectElement(dialectName);
+    return new SQLDialectImpl(element);
   }
 
   /**

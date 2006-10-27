@@ -10,8 +10,6 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.examples.ui.internal.wizards;
 
-
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.cdo.client.CDOPersistable;
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceInfo;
@@ -20,7 +18,10 @@ import org.eclipse.emf.cdo.examples.client.internal.ExampleClientPlugin;
 import org.eclipse.emf.cdo.examples.ui.ResourceContentProvider;
 import org.eclipse.emf.cdo.examples.ui.ResourceFactoryHelper;
 import org.eclipse.emf.cdo.examples.ui.ResourceLabelProvider;
+
 import org.eclipse.emf.common.util.URI;
+
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -49,7 +50,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 
 public class CDOExportWizardPage extends WizardPage
 {
@@ -85,25 +85,25 @@ public class CDOExportWizardPage extends WizardPage
     try
     {
       ResourceCache resourceCache = resource == null ? ExampleClientPlugin.getResourceCache()
-              : ExampleClientPlugin.createResourceCache(resource.getResourceManager());
+          : ExampleClientPlugin.createResourceCache(resource.getResourceManager());
 
       Composite control = new Composite(parent, SWT.NONE);
       control.setLayout(new GridLayout(1, false));
       control.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL
-              | GridData.VERTICAL_ALIGN_FILL));
+          | GridData.VERTICAL_ALIGN_FILL));
 
       Group sourceGroup = createGroup(control, "Source", 1, GridData.HORIZONTAL_ALIGN_FILL
-              | GridData.GRAB_HORIZONTAL | GridData.VERTICAL_ALIGN_FILL | GridData.GRAB_VERTICAL);
+          | GridData.GRAB_HORIZONTAL | GridData.VERTICAL_ALIGN_FILL | GridData.GRAB_VERTICAL);
 
       sourcePathViewer = new TableViewer(sourceGroup, SWT.BORDER | SWT.SINGLE | SWT.H_SCROLL
-              | SWT.V_SCROLL);
+          | SWT.V_SCROLL);
       sourcePathViewer.setContentProvider(new ResourceContentProvider());
       sourcePathViewer.setLabelProvider(new ResourceLabelProvider());
       sourcePathViewer.setSorter(new ViewerSorter());
       sourcePathViewer.setInput(resourceCache);
       sourcePathViewer.getControl().setLayoutData(
-              new GridData(GridData.HORIZONTAL_ALIGN_FILL | GridData.GRAB_HORIZONTAL
-                      | GridData.VERTICAL_ALIGN_FILL | GridData.GRAB_VERTICAL));
+          new GridData(GridData.HORIZONTAL_ALIGN_FILL | GridData.GRAB_HORIZONTAL
+              | GridData.VERTICAL_ALIGN_FILL | GridData.GRAB_VERTICAL));
       sourcePathViewer.addSelectionChangedListener(new ISelectionChangedListener()
       {
         public void selectionChanged(SelectionChangedEvent event)
@@ -113,7 +113,7 @@ public class CDOExportWizardPage extends WizardPage
       });
 
       Group destinationGroup = createGroup(control, "Destination", 2,
-              GridData.HORIZONTAL_ALIGN_FILL | GridData.GRAB_HORIZONTAL);
+          GridData.HORIZONTAL_ALIGN_FILL | GridData.GRAB_HORIZONTAL);
       Label pathLabel = new Label(destinationGroup, SWT.NONE);
       pathLabel.setText("URI:");
 
@@ -121,7 +121,7 @@ public class CDOExportWizardPage extends WizardPage
 
       destinationURIField = new Text(grid, SWT.BORDER);
       destinationURIField.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL
-              | GridData.GRAB_HORIZONTAL));
+          | GridData.GRAB_HORIZONTAL));
       destinationURIField.addModifyListener(new ModifyListener()
       {
         public void modifyText(ModifyEvent e)

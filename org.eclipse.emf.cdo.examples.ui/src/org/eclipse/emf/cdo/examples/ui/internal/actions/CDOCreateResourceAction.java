@@ -1,15 +1,15 @@
 package org.eclipse.emf.cdo.examples.ui.internal.actions;
 
-
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.examples.ui.UIUtils;
 import org.eclipse.emf.cdo.examples.ui.internal.wizards.CDONewWizard;
-import org.eclipse.jface.action.Action;
 
+import org.eclipse.jface.action.Action;
 
 public final class CDOCreateResourceAction extends Action
 {
   public static final String ACTION_ID = "CDOCreateResourceAction";
+
   public static final String TITLE = CDONewWizard.TITLE + "...";
 
   private ResourceManager resourceManager;

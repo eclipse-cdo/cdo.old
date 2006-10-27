@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.emf.cdo.dbgen/src"
     editDirectory="/org.eclipse.emf.cdo.dbgen.edit/src" modelPluginID="org.eclipse.emf.cdo.dbgen"
-    redirection="" modelName="DBGen" modelPluginClass="org.eclipse.emf.cdo.dbgen.internal.DBGenActivator"
+    redirection="" modelName="DBGen" modelPluginClass="org.eclipse.emf.cdo.dbgen.internal.Activator"
     editPluginClass="org.eclipse.emf.cdo.dbgen.provider.DBGenEditActivator" editorPluginClass="org.eclipse.emf.cdo.dbgen.presentation.DBGenEditorActivator"
     updateClasspath="false" featureMapWrapperClass="" codeFormatting="true" testsDirectory=""
     testSuiteClass="" importerID="org.eclipse.emf.importer.ecore">

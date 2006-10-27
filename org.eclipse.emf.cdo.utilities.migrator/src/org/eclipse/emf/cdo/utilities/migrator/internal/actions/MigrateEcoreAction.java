@@ -10,11 +10,10 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.utilities.migrator.internal.actions;
 
+import org.eclipse.emf.cdo.utilities.migrator.MigratorUtil;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.cdo.utilities.migrator.MigratorUtil;
-
 
 public class MigrateEcoreAction extends AbstractFileAction
 {

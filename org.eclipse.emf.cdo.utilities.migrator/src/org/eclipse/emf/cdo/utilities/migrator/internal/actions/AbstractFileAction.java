@@ -10,6 +10,7 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.utilities.migrator.internal.actions;
 
+import org.eclipse.emf.cdo.utilities.migrator.MigratorUtil;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -18,7 +19,6 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.cdo.utilities.migrator.MigratorUtil;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -31,7 +31,6 @@ import org.eclipse.ui.PlatformUI;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
-
 
 public abstract class AbstractFileAction implements IObjectActionDelegate
 {
@@ -83,7 +82,7 @@ public abstract class AbstractFileAction implements IObjectActionDelegate
       return;
     }
 
-    final String[] msg = {null};
+    final String[] msg = { null };
     if (!needClientProject || ensureClientProject())
     {
       IRunnableWithProgress op = new IRunnableWithProgress()
@@ -131,8 +130,8 @@ public abstract class AbstractFileAction implements IObjectActionDelegate
     if (project == null || !project.exists())
     {
       if (!MessageDialog
-              .openConfirm(new Shell(), TITLE,
-                      "The CDO Client project does not exist in the workspace. Shall it be imported as source plugin?"))
+          .openConfirm(new Shell(), TITLE,
+              "The CDO Client project does not exist in the workspace. Shall it be imported as source plugin?"))
       {
         return false;
       }
@@ -158,9 +157,8 @@ public abstract class AbstractFileAction implements IObjectActionDelegate
 
     if (!project.isOpen())
     {
-      if (!MessageDialog
-              .openConfirm(new Shell(), TITLE,
-                      "The CDO Client project exists in the workspace but is not open. Shall it be opened?"))
+      if (!MessageDialog.openConfirm(new Shell(), TITLE,
+          "The CDO Client project exists in the workspace but is not open. Shall it be opened?"))
       {
         return false;
       }

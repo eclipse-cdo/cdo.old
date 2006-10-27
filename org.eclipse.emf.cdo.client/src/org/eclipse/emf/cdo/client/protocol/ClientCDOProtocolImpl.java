@@ -13,6 +13,9 @@ package org.eclipse.emf.cdo.client.protocol;
 
 import org.eclipse.net4j.signal.SignalReactor;
 import org.eclipse.net4j.transport.Channel;
+import org.eclipse.net4j.transport.Protocol;
+import org.eclipse.net4j.transport.ProtocolFactory;
+import org.eclipse.net4j.transport.Connector.Type;
 
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.PackageInfo;
@@ -25,6 +28,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.resource.Resource;
 
+import org.eclipse.internal.net4j.transport.AbstractProtocolFactory;
+
 import java.util.Iterator;
 import java.util.Set;
 
@@ -33,6 +38,7 @@ public class ClientCDOProtocolImpl extends AbstractCDOProtocol
 {
   public static final long REQUEST_TIMEOUT = 10 * 60 * 1000;
 
+  // TODO Remove packageManager
   protected PackageManager packageManager;
 
   protected ResourceManager resourceManager;
@@ -68,10 +74,10 @@ public class ClientCDOProtocolImpl extends AbstractCDOProtocol
     switch (signalID)
     {
       case REMOVAL_NOTIFICATION:
-        return new RemovalNotificationIndication();
+        return new RemovalNotificationIndication(resourceManager);
 
       case INVALIDATION_NOTIFICATION:
-        return new InvalidationNotificationIndication();
+        return new InvalidationNotificationIndication(resourceManager);
 
       default:
         throw new ImplementationError("Invalid " + PROTOCOL_NAME + " signalID: " + signalID);
@@ -204,5 +210,27 @@ public class ClientCDOProtocolImpl extends AbstractCDOProtocol
   {
     packageManager = null;
     super.onDeactivate();
+  }
+
+
+  /**
+   * @author Eike Stepper
+   */
+  public static final class Factory extends AbstractProtocolFactory
+  {
+    public Protocol createProtocol(Channel channel)
+    {
+      return new ClientCDOProtocolImpl(channel);
+    }
+
+    public Set<Type> getConnectorTypes()
+    {
+      return ProtocolFactory.FOR_CLIENTS;
+    }
+
+    public String getID()
+    {
+      return PROTOCOL_NAME;
+    }
   }
 }

@@ -10,22 +10,20 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.utilities.migrator.internal;
 
-
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-
 
 /**
  * The main plugin class to be used in the desktop.
  */
 public class MigratorPlugin extends AbstractUIPlugin
 {
-  //The shared instance.
+  // The shared instance.
   private static MigratorPlugin plugin;
 
-  //Resource bundle.
+  // Resource bundle.
   private ResourceBundle resourceBundle;
 
   /**
@@ -55,8 +53,8 @@ public class MigratorPlugin extends AbstractUIPlugin
   }
 
   /**
-   * Returns the string from the plugin's resource bundle,
-   * or 'key' if not found.
+   * Returns the string from the plugin's resource bundle, or 'key' if not
+   * found.
    */
   public static String getResourceString(String key)
   {

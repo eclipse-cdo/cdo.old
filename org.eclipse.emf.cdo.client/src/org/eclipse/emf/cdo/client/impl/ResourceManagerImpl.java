@@ -136,6 +136,15 @@ public class ResourceManagerImpl extends AbstractLifecycle implements ResourceMa
     }
   };
 
+  public ResourceManagerImpl()
+  {
+  }
+
+  public Exception close()
+  {
+    return deactivate();
+  }
+
   public PackageManager getPackageManager()
   {
     return packageManager;

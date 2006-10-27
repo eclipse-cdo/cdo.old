@@ -10,7 +10,6 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.examples.ui;
 
-
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceInfo;
 import org.eclipse.emf.cdo.client.ResourceManager;
@@ -20,7 +19,9 @@ import org.eclipse.emf.cdo.examples.ui.internal.editors.CDOEditorInput;
 import org.eclipse.emf.cdo.examples.ui.internal.wizards.CDOExportWizard;
 import org.eclipse.emf.cdo.examples.ui.internal.wizards.CDOImportWizard;
 import org.eclipse.emf.cdo.examples.ui.internal.wizards.CDONewWizard;
+
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
+
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -38,7 +39,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheetPage;
-
 
 public class UIUtils
 {
@@ -85,7 +85,7 @@ public class UIUtils
     catch (PartInitException ex)
     {
       MessageDialog.openError(new Shell(), "CDO Explorer", "Can't open CDO Editor for "
-              + resourceInfo);
+          + resourceInfo);
       return null;
     }
   }
@@ -93,7 +93,7 @@ public class UIUtils
   public static ImageDescriptor getImageDescriptor(String key)
   {
     return ExtendedImageRegistry.getInstance().getImageDescriptor(
-            ExampleUIActivator.INSTANCE.getImage(key));
+        ExampleUIActivator.INSTANCE.getImage(key));
   }
 
   public static Image getImage(String key)
@@ -154,8 +154,8 @@ public class UIUtils
     IWorkbench workbench = PlatformUI.getWorkbench();
     IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
     IStructuredSelection selection = page.getSelection() instanceof IStructuredSelection ? (IStructuredSelection)page
-            .getSelection()
-            : null;
+        .getSelection()
+        : null;
     wizard.init(workbench, selection);
 
     WizardDialog dialog = new WizardDialog(new Shell(), wizard);

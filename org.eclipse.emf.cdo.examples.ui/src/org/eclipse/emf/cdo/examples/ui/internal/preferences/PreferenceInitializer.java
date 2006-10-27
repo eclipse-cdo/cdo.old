@@ -1,10 +1,9 @@
 package org.eclipse.emf.cdo.examples.ui.internal.preferences;
 
+import org.eclipse.emf.cdo.examples.ui.internal.ExampleUIActivator;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
-import org.eclipse.emf.cdo.examples.ui.internal.ExampleUIActivator;
 import org.eclipse.jface.preference.IPreferenceStore;
-
 
 /**
  * Class used to initialize default preference values.

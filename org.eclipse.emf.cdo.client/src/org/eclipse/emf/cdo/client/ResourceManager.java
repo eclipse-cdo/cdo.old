@@ -84,6 +84,8 @@ public interface ResourceManager
    */
   public void rollback();
 
+  public Exception close();
+
   /**
    * For internal use only.<p>
    */

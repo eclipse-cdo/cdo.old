@@ -10,16 +10,16 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.examples.ui.internal.editors;
 
-
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.cdo.client.ResourceInfo;
 import org.eclipse.emf.cdo.core.CDOProtocol;
 import org.eclipse.emf.cdo.examples.ui.internal.ExampleUIActivator;
+
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
+
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
-
 
 public final class CDOEditorInput implements IEditorInput
 {

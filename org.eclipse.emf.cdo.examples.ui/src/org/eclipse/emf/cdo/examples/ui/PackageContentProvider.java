@@ -10,15 +10,14 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.examples.ui;
 
-
 import org.eclipse.emf.cdo.client.ClassInfo;
 import org.eclipse.emf.cdo.client.PackageInfo;
 import org.eclipse.emf.cdo.client.PackageManager;
+
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
 import java.util.List;
-
 
 public final class PackageContentProvider implements ITreeContentProvider
 {

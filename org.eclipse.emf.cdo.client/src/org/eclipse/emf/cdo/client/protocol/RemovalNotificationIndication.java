@@ -22,6 +22,13 @@ import java.io.IOException;
 
 public class RemovalNotificationIndication extends Indication
 {
+  private ResourceManager resourceManager;
+
+  public RemovalNotificationIndication(ResourceManager resourceManager)
+  {
+    this.resourceManager = resourceManager;
+  }
+
   @Override
   protected short getSignalID()
   {
@@ -39,7 +46,6 @@ public class RemovalNotificationIndication extends Indication
       rids[i] = in.readInt();
     }
 
-    ResourceManager resourceManager = ((ClientCDOProtocolImpl) getProtocol()).getResourceManager();
     resourceManager.handleRemovedResources(rids);
   }
 }

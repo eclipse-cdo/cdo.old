@@ -10,7 +10,6 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.examples.ui.internal.editors;
 
-
 import org.eclipse.emf.cdo.client.ResourceInfo;
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.core.CDOProtocol;
@@ -19,6 +18,7 @@ import org.eclipse.emf.cdo.examples.ui.internal.actions.CDOCreateResourceAction;
 import org.eclipse.emf.cdo.examples.ui.internal.actions.CDOExportResourceAction;
 import org.eclipse.emf.cdo.examples.ui.internal.actions.CDOImportResourceAction;
 import org.eclipse.emf.cdo.examples.ui.internal.dialogs.CDOLoadResourceDialog;
+
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
@@ -28,6 +28,7 @@ import org.eclipse.emf.edit.ui.action.CreateSiblingAction;
 import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
 import org.eclipse.emf.edit.ui.action.LoadResourceAction;
 import org.eclipse.emf.edit.ui.action.ValidateAction;
+
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
@@ -56,16 +57,15 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-
 /**
- * This is the action bar contributor for the Library model editor.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * This is the action bar contributor for the Library model editor. <!--
+ * begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 @SuppressWarnings("unchecked")
 public class CDOActionBarContributor extends EditingDomainActionBarContributor implements
-        ISelectionChangedListener
+    ISelectionChangedListener
 {
   /**
    * @ADDED
@@ -88,29 +88,29 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
   protected CDOExportResourceAction exportResourceAction;
 
   /**
-   * This keeps track of the active editor.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This keeps track of the active editor. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @generated
    */
   protected IEditorPart activeEditorPart;
 
   /**
-   * This keeps track of the current selection provider.
-   * <!-- begin-user-doc -->
+   * This keeps track of the current selection provider. <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected ISelectionProvider selectionProvider;
 
   /**
-   * This action opens the Properties view.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This action opens the Properties view. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @generated
    */
   protected IAction showPropertiesViewAction = new Action(ExampleUIActivator.INSTANCE
-          .getString("_UI_ShowPropertiesView_menu_item"))
+      .getString("_UI_ShowPropertiesView_menu_item"))
   {
     public void run()
     {
@@ -127,13 +127,13 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
 
   /**
    * This action refreshes the viewer of the current editor if the editor
-   * implements {@link org.eclipse.emf.common.ui.viewer.IViewerProvider}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * implements {@link org.eclipse.emf.common.ui.viewer.IViewerProvider}. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected IAction refreshViewerAction = new Action(ExampleUIActivator.INSTANCE
-          .getString("_UI_RefreshViewer_menu_item"))
+      .getString("_UI_RefreshViewer_menu_item"))
   {
     public boolean isEnabled()
     {
@@ -154,43 +154,45 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
   };
 
   /**
-   * This will contain one {@link org.eclipse.emf.edit.ui.action.CreateChildAction} corresponding to each descriptor
-   * generated for the current selection by the item provider.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This will contain one
+   * {@link org.eclipse.emf.edit.ui.action.CreateChildAction} corresponding to
+   * each descriptor generated for the current selection by the item provider.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected Collection createChildActions;
 
   /**
-   * This is the menu manager into which menu contribution items should be added for CreateChild actions.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This is the menu manager into which menu contribution items should be added
+   * for CreateChild actions. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected IMenuManager createChildMenuManager;
 
   /**
-   * This will contain one {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction} corresponding to each descriptor
-   * generated for the current selection by the item provider.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This will contain one
+   * {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction} corresponding to
+   * each descriptor generated for the current selection by the item provider.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected Collection createSiblingActions;
 
   /**
-   * This is the menu manager into which menu contribution items should be added for CreateSibling actions.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This is the menu manager into which menu contribution items should be added
+   * for CreateSibling actions. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected IMenuManager createSiblingMenuManager;
 
   /**
-   * This creates an instance of the contributor.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This creates an instance of the contributor. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @generated
    */
   public CDOActionBarContributor()
@@ -204,9 +206,9 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
   }
 
   /**
-   * This adds Separators for editor additions to the tool bar.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This adds Separators for editor additions to the tool bar. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void contributeToToolBar(IToolBarManager toolBarManager)
@@ -217,9 +219,9 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
 
   /**
    * This adds to the menu bar a menu and some separators for editor additions,
-   * as well as the sub-menus for object creation items.
-   * <!-- begin-user-doc -->
+   * as well as the sub-menus for object creation items. <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void contributeToMenu(IMenuManager menuManager)
@@ -227,7 +229,7 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
     super.contributeToMenu(menuManager);
 
     IMenuManager submenuManager = new MenuManager(ExampleUIActivator.INSTANCE
-            .getString("_UI_CDOEditor_menu"), "org.eclipse.emf.cdo.ui.MenuID");
+        .getString("_UI_CDOEditor_menu"), "org.eclipse.emf.cdo.ui.MenuID");
     menuManager.insertAfter("additions", submenuManager);
     submenuManager.add(new Separator("settings"));
     submenuManager.add(new Separator("actions"));
@@ -237,13 +239,13 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
     // Prepare for CreateChild item addition or removal.
     //
     createChildMenuManager = new MenuManager(ExampleUIActivator.INSTANCE
-            .getString("_UI_CreateChild_menu_item"));
+        .getString("_UI_CreateChild_menu_item"));
     submenuManager.insertBefore("additions", createChildMenuManager);
 
     // Prepare for CreateSibling item addition or removal.
     //
     createSiblingMenuManager = new MenuManager(ExampleUIActivator.INSTANCE
-            .getString("_UI_CreateSibling_menu_item"));
+        .getString("_UI_CreateSibling_menu_item"));
     submenuManager.insertBefore("additions", createSiblingMenuManager);
 
     // Force an update because Eclipse hides empty menus now.
@@ -260,9 +262,10 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
   }
 
   /**
-   * When the active editor changes, this remembers the change and registers with it as a selection provider.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * When the active editor changes, this remembers the change and registers
+   * with it as a selection provider. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
+   * 
    * @generated NOT
    */
   public void setActiveEditor(IEditorPart part)
@@ -307,17 +310,18 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
       if (selectionProvider.getSelection() != null)
       {
         selectionChanged(new SelectionChangedEvent(selectionProvider, selectionProvider
-                .getSelection()));
+            .getSelection()));
       }
     }
   }
 
   /**
    * This implements {@link org.eclipse.jface.viewers.ISelectionChangedListener},
-   * handling {@link org.eclipse.jface.viewers.SelectionChangedEvent}s by querying for the children and siblings
-   * that can be added to the selected object and updating the menus accordingly.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * handling {@link org.eclipse.jface.viewers.SelectionChangedEvent}s by
+   * querying for the children and siblings that can be added to the selected
+   * object and updating the menus accordingly. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @generated
    */
   public void selectionChanged(SelectionChangedEvent event)
@@ -367,10 +371,10 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
   }
 
   /**
-   * This generates a {@link org.eclipse.emf.edit.ui.action.CreateChildAction} for each object in <code>descriptors</code>,
-   * and returns the collection of these actions.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This generates a {@link org.eclipse.emf.edit.ui.action.CreateChildAction}
+   * for each object in <code>descriptors</code>, and returns the collection
+   * of these actions. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected Collection generateCreateChildActions(Collection descriptors, ISelection selection)
@@ -387,10 +391,10 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
   }
 
   /**
-   * This generates a {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction} for each object in <code>descriptors</code>,
-   * and returns the collection of these actions.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This generates a {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction}
+   * for each object in <code>descriptors</code>, and returns the collection
+   * of these actions. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected Collection generateCreateSiblingActions(Collection descriptors, ISelection selection)
@@ -407,16 +411,18 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
   }
 
   /**
-   * This populates the specified <code>manager</code> with {@link org.eclipse.jface.action.ActionContributionItem}s
-   * based on the {@link org.eclipse.jface.action.IAction}s contained in the <code>actions</code> collection,
-   * by inserting them before the specified contribution item <code>contributionID</code>.
-   * If <code>ID</code> is <code>null</code>, they are simply added.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This populates the specified <code>manager</code> with
+   * {@link org.eclipse.jface.action.ActionContributionItem}s based on the
+   * {@link org.eclipse.jface.action.IAction}s contained in the
+   * <code>actions</code> collection, by inserting them before the specified
+   * contribution item <code>contributionID</code>. If <code>ID</code> is
+   * <code>null</code>, they are simply added. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @generated
    */
   protected void populateManager(IContributionManager manager, Collection actions,
-          String contributionID)
+      String contributionID)
   {
     if (actions != null)
     {
@@ -436,10 +442,12 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
   }
 
   /**
-   * This removes from the specified <code>manager</code> all {@link org.eclipse.jface.action.ActionContributionItem}s
-   * based on the {@link org.eclipse.jface.action.IAction}s contained in the <code>actions</code> collection.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This removes from the specified <code>manager</code> all
+   * {@link org.eclipse.jface.action.ActionContributionItem}s based on the
+   * {@link org.eclipse.jface.action.IAction}s contained in the
+   * <code>actions</code> collection. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @generated
    */
   protected void depopulateManager(IContributionManager manager, Collection actions)
@@ -472,9 +480,9 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
   }
 
   /**
-   * This populates the pop-up menu before it appears.
-   * <!-- begin-user-doc -->
+   * This populates the pop-up menu before it appears. <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void menuAboutToShow(IMenuManager menuManager)
@@ -483,20 +491,20 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
     MenuManager submenuManager = null;
 
     submenuManager = new MenuManager(ExampleUIActivator.INSTANCE
-            .getString("_UI_CreateChild_menu_item"));
+        .getString("_UI_CreateChild_menu_item"));
     populateManager(submenuManager, createChildActions, null);
     menuManager.insertBefore("additions", submenuManager);
 
     submenuManager = new MenuManager(ExampleUIActivator.INSTANCE
-            .getString("_UI_CreateSibling_menu_item"));
+        .getString("_UI_CreateSibling_menu_item"));
     populateManager(submenuManager, createSiblingActions, null);
     menuManager.insertBefore("additions", submenuManager);
   }
 
   /**
-   * This inserts global actions before the "additions-end" separator.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This inserts global actions before the "additions-end" separator. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   protected void addGlobalActions(IMenuManager menuManager)
@@ -521,9 +529,9 @@ public class CDOActionBarContributor extends EditingDomainActionBarContributor i
   }
 
   /**
-   * This ensures that a delete action will clean up all references to deleted objects.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This ensures that a delete action will clean up all references to deleted
+   * objects. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected boolean removeAllReferencesOnDelete()

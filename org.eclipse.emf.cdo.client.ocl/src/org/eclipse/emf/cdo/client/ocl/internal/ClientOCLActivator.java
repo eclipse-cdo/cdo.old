@@ -11,7 +11,7 @@
 package org.eclipse.emf.cdo.client.ocl.internal;
 
 
-import org.eclipse.emf.cdo.client.internal.ClientActivator;
+import org.eclipse.emf.cdo.client.internal.Activator;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 
@@ -26,7 +26,7 @@ public final class ClientOCLActivator extends EMFPlugin
 
   public ClientOCLActivator()
   {
-    super(new ResourceLocator[] { ClientActivator.INSTANCE});
+    super(new ResourceLocator[] { Activator.INSTANCE});
   }
 
   public ResourceLocator getPluginResourceLocator()

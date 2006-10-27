@@ -11,17 +11,18 @@
 package org.eclipse.emf.cdo.jdbc;
 
 
-import org.eclipse.net4j.util.eclipse.AbstractPlugin;
-import org.eclipse.net4j.util.eclipse.Element;
-import org.eclipse.net4j.util.eclipse.ExecutableElement;
-import org.eclipse.net4j.util.eclipse.ExtensionParser;
-import org.eclipse.net4j.util.eclipse.ListExtensionParser;
+import org.eclipse.emf.cdo.core.util.extensions.Element;
+import org.eclipse.emf.cdo.core.util.extensions.ExecutableElement;
+import org.eclipse.emf.cdo.core.util.extensions.ExtensionParser;
+import org.eclipse.emf.cdo.core.util.extensions.ListExtensionParser;
 
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 
 import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleActivator;
+import org.osgi.framework.BundleContext;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -33,14 +34,14 @@ import java.net.URL;
 /**
  * The main plugin class to be used in the desktop.
  */
-public class JDBCPlugin extends AbstractPlugin
+public class Activator implements BundleActivator
 {
   public static final String PLUGIN_ID = "org.eclipse.emf.cdo.jdbc";
 
   public static final String DRIVERS_EXT_POINT_ID = "drivers";
 
   //The shared instance.
-  private static JDBCPlugin plugin;
+  private static Activator plugin;
 
   private List<DriverElement> driverElements = new ArrayList<DriverElement>();
 
@@ -49,7 +50,7 @@ public class JDBCPlugin extends AbstractPlugin
   /**
    * The constructor.
    */
-  public JDBCPlugin()
+  public Activator()
   {
     if (plugin == null) plugin = this;
   }
@@ -57,7 +58,7 @@ public class JDBCPlugin extends AbstractPlugin
   /**
    * Returns the shared instance.
    */
-  public static JDBCPlugin getDefault()
+  public static Activator getDefault()
   {
     return plugin;
   }
@@ -118,19 +119,21 @@ public class JDBCPlugin extends AbstractPlugin
     return driver == null ? null : driver.getSupportedDialects();
   }
 
-  protected void doStart() throws Exception
+  public void start(BundleContext context) throws Exception
   {
+    JDBC.BUNDLE.setBundleContext(context);
     IExtensionRegistry registry = Platform.getExtensionRegistry();
     IExtensionPoint point = registry.getExtensionPoint(PLUGIN_ID + "." + DRIVERS_EXT_POINT_ID);
     driverParser.parse(point);
     checkLibraries();
   }
 
-  protected void doStop() throws Exception
+  public void stop(BundleContext context) throws Exception
   {
     driverParser = null;
     driverElements = null;
     plugin = null;
+    JDBC.BUNDLE.setBundleContext(null);
   }
 
   @SuppressWarnings("deprecation")
@@ -150,7 +153,7 @@ public class JDBCPlugin extends AbstractPlugin
           if (entry == null)
           {
             String downloadURL = library.getDownloadURL();
-            warn("MISSING JDBC LIBRARY: " + fragmentId + "/" + entryPath
+            JDBC.LOG.warn("Missing JDBC library: " + fragmentId + "/" + entryPath
                 + (downloadURL != null ? " (" + downloadURL + ")" : ""));
 
           }

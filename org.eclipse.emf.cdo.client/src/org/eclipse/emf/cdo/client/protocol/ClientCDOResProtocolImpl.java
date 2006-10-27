@@ -13,11 +13,16 @@ package org.eclipse.emf.cdo.client.protocol;
 
 import org.eclipse.net4j.signal.SignalReactor;
 import org.eclipse.net4j.transport.Channel;
+import org.eclipse.net4j.transport.Protocol;
+import org.eclipse.net4j.transport.ProtocolFactory;
+import org.eclipse.net4j.transport.Connector.Type;
 
 import org.eclipse.emf.cdo.client.ResourceInfo;
 import org.eclipse.emf.cdo.core.ImplementationError;
 import org.eclipse.emf.cdo.core.protocol.AbstractCDOResProtocol;
 import org.eclipse.emf.cdo.core.protocol.ResourceChangeInfo;
+
+import org.eclipse.internal.net4j.transport.AbstractProtocolFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,5 +88,27 @@ public class ClientCDOResProtocolImpl extends AbstractCDOResProtocol
   {
     listeners = null;
     super.onDeactivate();
+  }
+
+
+  /**
+   * @author Eike Stepper
+   */
+  public static final class Factory extends AbstractProtocolFactory
+  {
+    public Protocol createProtocol(Channel channel)
+    {
+      return new ClientCDOResProtocolImpl(channel);
+    }
+
+    public Set<Type> getConnectorTypes()
+    {
+      return ProtocolFactory.FOR_CLIENTS;
+    }
+
+    public String getID()
+    {
+      return PROTOCOL_NAME;
+    }
   }
 }

@@ -11,12 +11,8 @@
 package org.eclipse.emf.cdo.examples.client.internal;
 
 
-import org.eclipse.net4j.core.Channel;
-import org.eclipse.net4j.core.Connector;
-import org.eclipse.net4j.spring.Container;
-import org.eclipse.net4j.spring.ContainerCreationException;
-import org.eclipse.net4j.spring.impl.ContainerImpl;
-import org.eclipse.net4j.util.eclipse.AbstractPlugin;
+import org.eclipse.net4j.transport.Channel;
+import org.eclipse.net4j.transport.Connector;
 
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.PackageManager;

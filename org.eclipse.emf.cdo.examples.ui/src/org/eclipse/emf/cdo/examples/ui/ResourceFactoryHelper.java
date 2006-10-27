@@ -10,7 +10,6 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.examples.ui;
 
-
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
@@ -19,7 +18,6 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 
 import java.util.Collection;
 import java.util.Map;
-
 
 public class ResourceFactoryHelper
 {

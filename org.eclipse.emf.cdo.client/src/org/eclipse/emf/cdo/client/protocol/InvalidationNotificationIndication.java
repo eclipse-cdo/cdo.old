@@ -22,8 +22,11 @@ import java.io.IOException;
 
 public class InvalidationNotificationIndication extends Indication
 {
-  public InvalidationNotificationIndication()
+  private ResourceManager resourceManager;
+
+  public InvalidationNotificationIndication(ResourceManager resourceManager)
   {
+    this.resourceManager = resourceManager;
   }
 
   @Override
@@ -43,7 +46,6 @@ public class InvalidationNotificationIndication extends Indication
       oids[i] = in.readLong();
     }
 
-    ResourceManager resourceManager = ((ClientCDOProtocolImpl) getProtocol()).getResourceManager();
     resourceManager.invalidateObjects(oids);
   }
 }

@@ -11,9 +11,8 @@
 package org.eclipse.emf.cdo.examples.client.internal;
 
 
-import org.eclipse.net4j.core.Channel;
-import org.eclipse.net4j.core.Connector;
-import org.eclipse.net4j.util.thread.DeadlockDetector;
+import org.eclipse.net4j.transport.Channel;
+import org.eclipse.net4j.transport.Connector;
 
 import org.eclipse.emf.cdo.client.ResourceInfo;
 import org.eclipse.emf.cdo.client.impl.ResourceInfoImpl;
@@ -21,6 +20,7 @@ import org.eclipse.emf.cdo.client.protocol.CDOResListener;
 import org.eclipse.emf.cdo.client.protocol.ClientCDOResProtocolImpl;
 import org.eclipse.emf.cdo.core.CDOResProtocol;
 import org.eclipse.emf.cdo.core.protocol.ResourceChangeInfo;
+import org.eclipse.emf.cdo.core.util.thread.DeadlockDetector;
 import org.eclipse.emf.cdo.examples.client.ResourceCache;
 
 import java.util.ArrayList;

@@ -10,25 +10,23 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.examples.ui.internal.wizards;
 
-
-import org.eclipse.core.resources.IContainer;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.OperationCanceledException;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.core.CDOProtocol;
 import org.eclipse.emf.cdo.examples.client.internal.ExampleClientPlugin;
 import org.eclipse.emf.cdo.examples.ui.ResourceFactoryHelper;
 import org.eclipse.emf.cdo.examples.ui.internal.ExampleUIActivator;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -42,7 +40,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
-
 
 public class CDOExportWizard extends Wizard implements IImportWizard
 {
@@ -133,7 +130,7 @@ public class CDOExportWizard extends Wizard implements IImportWizard
   }
 
   private void doFinish(String sourcePath, String resourceFactoryExtension, String destinationURI,
-          IProgressMonitor monitor) throws Exception
+      IProgressMonitor monitor) throws Exception
   {
     // Prepare source
     ResourceManager resourceManager;
@@ -153,10 +150,10 @@ public class CDOExportWizard extends Wizard implements IImportWizard
 
     // Prepare destination
     URI uri = URI.createURI(destinationURI);
-    IPath path = new Path( uri.path()).removeLastSegments(1);
+    IPath path = new Path(uri.path()).removeLastSegments(1);
     ContainerGenerator gen = new ContainerGenerator(path);
     gen.generateContainer(monitor);
-    
+
     ResourceSet resourceSet = new ResourceSetImpl();
     Map map = resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap();
     map.put("*", ResourceFactoryHelper.getResourceFactory(resourceFactoryExtension));

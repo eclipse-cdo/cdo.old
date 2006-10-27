@@ -33,6 +33,11 @@ public interface DBGenFactory extends EFactory
   DBGenFactory eINSTANCE = org.eclipse.emf.cdo.dbgen.impl.DBGenFactoryImpl.init();
 
   /**
+   * @ADDED
+   */
+  public SQLDialect createDialect(String dialectName);
+
+  /**
    * Returns a new object of class '<em>Database</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

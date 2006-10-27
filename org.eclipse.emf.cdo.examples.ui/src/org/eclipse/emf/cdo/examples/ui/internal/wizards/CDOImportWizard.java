@@ -10,8 +10,6 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.examples.ui.internal.wizards;
 
-
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceManager;
 import org.eclipse.emf.cdo.client.impl.ResourceInfoImpl;
@@ -20,11 +18,14 @@ import org.eclipse.emf.cdo.examples.client.internal.ExampleClientPlugin;
 import org.eclipse.emf.cdo.examples.ui.ResourceFactoryHelper;
 import org.eclipse.emf.cdo.examples.ui.UIUtils;
 import org.eclipse.emf.cdo.examples.ui.internal.ExampleUIActivator;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -35,7 +36,6 @@ import org.eclipse.ui.IWorkbench;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
-
 
 public class CDOImportWizard extends Wizard implements IImportWizard
 {
@@ -140,7 +140,7 @@ public class CDOImportWizard extends Wizard implements IImportWizard
   }
 
   private void doFinish(String sourceURI, String resourceFactoryExtension, String destinationPath,
-          IProgressMonitor monitor) throws Exception
+      IProgressMonitor monitor) throws Exception
   {
     // Prepare source
     ResourceSet resourceSet = new ResourceSetImpl();
@@ -150,7 +150,7 @@ public class CDOImportWizard extends Wizard implements IImportWizard
 
     // Prepare destination
     ResourceManager resourceManager = this.resourceManager == null ? ExampleClientPlugin
-            .createResourceManager(new ResourceSetImpl()) : this.resourceManager;
+        .createResourceManager(new ResourceSetImpl()) : this.resourceManager;
     URI uri = URI.createURI(CDOProtocol.PROTOCOL_SCHEME + destinationPath);
     CDOResource target = (CDOResource)resourceManager.createResource(uri);
 

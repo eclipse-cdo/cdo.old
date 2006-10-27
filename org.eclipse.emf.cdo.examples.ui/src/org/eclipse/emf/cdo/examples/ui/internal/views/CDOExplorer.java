@@ -10,9 +10,6 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.examples.ui.internal.views;
 
-
-import org.eclipse.net4j.core.Channel;
-
 import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.ResourceInfo;
 import org.eclipse.emf.cdo.client.protocol.ClientCDOResProtocolImpl;
@@ -24,6 +21,9 @@ import org.eclipse.emf.cdo.examples.ui.UIUtils;
 import org.eclipse.emf.cdo.examples.ui.internal.actions.CDOCreateResourceAction;
 import org.eclipse.emf.cdo.examples.ui.internal.actions.CDOExportResourceAction;
 import org.eclipse.emf.cdo.examples.ui.internal.actions.CDOImportResourceAction;
+
+import org.eclipse.net4j.transport.Channel;
+
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -50,7 +50,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-
 public class CDOExplorer extends ViewPart implements ISelectionProvider
 {
   public static final String VIEW_ID = "org.eclipse.emf.cdo.examples.ui.CDOExplorer";
@@ -73,7 +72,8 @@ public class CDOExplorer extends ViewPart implements ISelectionProvider
 
   public CDOExplorer()
   {
-    if (INSTANCE != null) throw new IllegalStateException();
+    if (INSTANCE != null)
+      throw new IllegalStateException();
     resourceCache = ExampleClientPlugin.getResourceCache();
   }
 
@@ -183,7 +183,7 @@ public class CDOExplorer extends ViewPart implements ISelectionProvider
       public void run()
       {
         if (MessageDialog.openQuestion(viewer.getControl().getShell(), "CDO Explorer",
-                "Sure to delete the selected resources from the CDO repository?"))
+            "Sure to delete the selected resources from the CDO repository?"))
         {
           Set<Integer> rids = new HashSet<Integer>();
           ISelection selection = viewer.getSelection();
@@ -231,7 +231,7 @@ public class CDOExplorer extends ViewPart implements ISelectionProvider
     deleteResourceAction.setText("Delete CDO Resource");
     deleteResourceAction.setToolTipText("Delete CDO Resource");
     deleteResourceAction.setImageDescriptor(UIUtils
-            .getImageDescriptor("full/ctool16/DeleteCDOResource"));
+        .getImageDescriptor("full/ctool16/DeleteCDOResource"));
 
     openResourceAction = new Action()
     {

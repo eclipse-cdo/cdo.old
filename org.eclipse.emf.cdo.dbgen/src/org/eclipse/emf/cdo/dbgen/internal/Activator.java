@@ -11,12 +11,9 @@
 package org.eclipse.emf.cdo.dbgen.internal;
 
 
-import org.eclipse.net4j.util.eclipse.Element;
-import org.eclipse.net4j.util.eclipse.ExtensionParser;
-import org.eclipse.net4j.util.eclipse.ListExtensionParser;
-
-import org.eclipse.emf.cdo.dbgen.SQLDialect;
-import org.eclipse.emf.cdo.dbgen.impl.SQLDialectImpl;
+import org.eclipse.emf.cdo.core.util.extensions.Element;
+import org.eclipse.emf.cdo.core.util.extensions.ExtensionParser;
+import org.eclipse.emf.cdo.core.util.extensions.ListExtensionParser;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 
@@ -37,7 +34,7 @@ import java.util.List;
  * <!-- end-user-doc -->
  * @generated
  */
-public final class DBGenActivator extends EMFPlugin
+public final class Activator extends EMFPlugin
 {
   /**
    * Keep track of the singleton.
@@ -45,7 +42,7 @@ public final class DBGenActivator extends EMFPlugin
    * <!-- end-user-doc -->
    * @generated
    */
-  public static final DBGenActivator INSTANCE = new DBGenActivator();
+  public static final Activator INSTANCE = new Activator();
 
   public static final String DIALECTS_EXT_POINT_ID = "dialects";
 
@@ -67,7 +64,7 @@ public final class DBGenActivator extends EMFPlugin
    * <!-- end-user-doc -->
    * @generated
    */
-  public DBGenActivator()
+  public Activator()
   {
     super(new ResourceLocator[] {});
   }
@@ -82,12 +79,6 @@ public final class DBGenActivator extends EMFPlugin
   public ResourceLocator getPluginResourceLocator()
   {
     return plugin;
-  }
-
-  public SQLDialect createDialect(String dialectName)
-  {
-    DialectElement element = getDialectElement(dialectName);
-    return new SQLDialectImpl(element);
   }
 
   /**
@@ -158,6 +149,7 @@ public final class DBGenActivator extends EMFPlugin
     public void start(BundleContext context) throws Exception
     {
       super.start(context);
+      DBGen.BUNDLE.setBundleContext(context);
       IExtensionRegistry registry = Platform.getExtensionRegistry();
       IExtensionPoint point = registry.getExtensionPoint(PLUGIN_ID + "." + DIALECTS_EXT_POINT_ID);
       dialectParser.parse(point);
@@ -169,6 +161,7 @@ public final class DBGenActivator extends EMFPlugin
       dialectParser = null;
       dialectElements = null;
       plugin = null;
+      DBGen.BUNDLE.setBundleContext(null);
       super.stop(context);
     }
   }

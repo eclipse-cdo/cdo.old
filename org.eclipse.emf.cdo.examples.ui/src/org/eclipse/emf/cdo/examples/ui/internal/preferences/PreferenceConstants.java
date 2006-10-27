@@ -1,6 +1,5 @@
 package org.eclipse.emf.cdo.examples.ui.internal.preferences;
 
-
 /**
  * Constant definitions for plug-in preferences
  */

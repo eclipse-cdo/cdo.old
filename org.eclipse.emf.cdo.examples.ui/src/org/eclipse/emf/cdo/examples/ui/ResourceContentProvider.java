@@ -10,11 +10,10 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.examples.ui;
 
-
 import org.eclipse.emf.cdo.examples.client.ResourceCache;
+
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-
 
 public class ResourceContentProvider implements IStructuredContentProvider, ResourceCache.Listener
 {
@@ -51,7 +50,8 @@ public class ResourceContentProvider implements IStructuredContentProvider, Reso
 
   public Object[] getElements(Object parent)
   {
-    if (resourceCache == null) return new Object[0];
+    if (resourceCache == null)
+      return new Object[0];
     return resourceCache.getAllResources().toArray();
   }
 
