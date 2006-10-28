@@ -12,7 +12,7 @@ package org.eclipse.emf.cdo.client.protocol;
 
 
 import org.eclipse.net4j.transport.Channel;
-import org.eclipse.net4j.util.om.ContextTracer;
+import org.eclipse.net4j.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
 import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
 
@@ -53,7 +53,7 @@ public class LoadObjectRequest extends AbstractDataRequest<EObject>
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace("Loading object " + getPackageManager().getOidEncoder().toString(oid));
+      TRACER.trace(this, "Loading object " + getPackageManager().getOidEncoder().toString(oid));
     }
 
     out.writeLong(oid);

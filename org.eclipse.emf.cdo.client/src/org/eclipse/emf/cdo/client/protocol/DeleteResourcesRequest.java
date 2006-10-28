@@ -13,7 +13,7 @@ package org.eclipse.emf.cdo.client.protocol;
 
 import org.eclipse.net4j.signal.RequestWithConfirmation;
 import org.eclipse.net4j.transport.Channel;
-import org.eclipse.net4j.util.om.ContextTracer;
+import org.eclipse.net4j.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
 import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
 
@@ -52,7 +52,7 @@ public class DeleteResourcesRequest extends RequestWithConfirmation<Boolean>
     {
       if (TRACER.isEnabled())
       {
-        TRACER.trace("Deleting rid " + rid);
+        TRACER.trace(this, "Deleting rid " + rid);
       }
 
       out.writeInt(rid);
@@ -67,7 +67,7 @@ public class DeleteResourcesRequest extends RequestWithConfirmation<Boolean>
     boolean ok = in.readBoolean();
     if (TRACER.isEnabled())
     {
-      TRACER.trace("Deleted resources: " + ok);
+      TRACER.trace(this, "Deleted resources: " + ok);
     }
 
     return ok;

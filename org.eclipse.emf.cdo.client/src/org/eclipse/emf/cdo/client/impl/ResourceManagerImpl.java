@@ -15,7 +15,7 @@ import org.eclipse.net4j.transport.Channel;
 import org.eclipse.net4j.transport.Connector;
 import org.eclipse.net4j.transport.ConnectorException;
 import org.eclipse.net4j.util.lifecycle.AbstractLifecycle;
-import org.eclipse.net4j.util.om.ContextTracer;
+import org.eclipse.net4j.util.om.trace.ContextTracer;
 
 import org.eclipse.emf.cdo.client.CDOPersistable;
 import org.eclipse.emf.cdo.client.CDOResource;
@@ -310,7 +310,7 @@ public class ResourceManagerImpl extends AbstractLifecycle implements ResourceMa
     Integer rid = new Integer(resource.getRID());
     if (TRACER.isEnabled())
     {
-      TRACER.trace("Removing resource with rid " + rid);
+      TRACER.trace(this, "Removing resource with rid " + rid);
     }
 
     synchronized (ridToResourceMap)
@@ -406,7 +406,7 @@ public class ResourceManagerImpl extends AbstractLifecycle implements ResourceMa
     long oid = cdoObject.cdoGetOID();
     if (TRACER.isEnabled())
     {
-      TRACER.trace("Demand loading object: " + packageManager.getOidEncoder().toString(oid));
+      TRACER.trace(this, "Demand loading object: " + packageManager.getOidEncoder().toString(oid));
     }
 
     ClientCDOProtocolImpl.requestLoad(getChannel(), oid);
@@ -417,7 +417,7 @@ public class ResourceManagerImpl extends AbstractLifecycle implements ResourceMa
     Long oldId = new Long(getOID(object));
     if (TRACER.isEnabled())
     {
-      TRACER.trace("Re-registering object " + packageManager.getOidEncoder().toString(oldId)
+      TRACER.trace(this, "Re-registering object " + packageManager.getOidEncoder().toString(oldId)
           + " -> " + packageManager.getOidEncoder().toString(newId));
     }
 
@@ -447,7 +447,7 @@ public class ResourceManagerImpl extends AbstractLifecycle implements ResourceMa
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace("START requesting objects: " + Thread.currentThread());
+      TRACER.trace(this, "START requesting objects: " + Thread.currentThread());
     }
 
     requestingObjects = true;
@@ -458,7 +458,7 @@ public class ResourceManagerImpl extends AbstractLifecycle implements ResourceMa
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace("STOP requesting objects: " + Thread.currentThread());
+      TRACER.trace(this, "STOP requesting objects: " + Thread.currentThread());
     }
 
     requestingObjects = false;
@@ -511,7 +511,7 @@ public class ResourceManagerImpl extends AbstractLifecycle implements ResourceMa
       }
 
       buffer.append("]");
-      TRACER.trace("Invalidating objects " + buffer);
+      TRACER.trace(this, "Invalidating objects " + buffer);
     }
 
     invalidator.enqueue(oids);
@@ -536,7 +536,7 @@ public class ResourceManagerImpl extends AbstractLifecycle implements ResourceMa
 
     if (TRACER.isEnabled())
     {
-      TRACER.trace("Creating proxy URI " + buffer.toString());
+      TRACER.trace(this, "Creating proxy URI " + buffer.toString());
     }
 
     return URI.createURI(buffer.toString());
@@ -716,16 +716,16 @@ public class ResourceManagerImpl extends AbstractLifecycle implements ResourceMa
       {
         if (TRACER.isEnabled())
         {
-          TRACER.trace("Processing invalidation " + packageManager.getOidEncoder().toString(oid)
-              + " (IGNORED)");
+          TRACER.trace(this, "Processing invalidation "
+              + packageManager.getOidEncoder().toString(oid) + " (IGNORED)");
         }
       }
       else if (transaction.isChanged(object))
       {
         if (TRACER.isEnabled())
         {
-          TRACER.trace("Processing invalidation " + packageManager.getOidEncoder().toString(oid)
-              + " (DEFERRED)");
+          TRACER.trace(this, "Processing invalidation "
+              + packageManager.getOidEncoder().toString(oid) + " (DEFERRED)");
         }
 
         deferred.add(object);
@@ -735,7 +735,8 @@ public class ResourceManagerImpl extends AbstractLifecycle implements ResourceMa
       {
         if (TRACER.isEnabled())
         {
-          TRACER.trace("Processing invalidation " + packageManager.getOidEncoder().toString(oid));
+          TRACER.trace(this, "Processing invalidation "
+              + packageManager.getOidEncoder().toString(oid));
         }
 
         invalidated.add(object);

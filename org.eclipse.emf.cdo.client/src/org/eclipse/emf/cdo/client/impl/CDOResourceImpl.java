@@ -12,7 +12,7 @@ package org.eclipse.emf.cdo.client.impl;
 
 
 import org.eclipse.net4j.transport.Channel;
-import org.eclipse.net4j.util.om.ContextTracer;
+import org.eclipse.net4j.util.om.trace.ContextTracer;
 
 import org.eclipse.emf.cdo.client.CDOPersistable;
 import org.eclipse.emf.cdo.client.CDOResource;
@@ -186,7 +186,7 @@ public class CDOResourceImpl extends ResourceImpl implements CDOResource
     {
       if (TRACER.isEnabled())
       {
-        TRACER.trace("Object " + oid + " found --> " + ResourceManagerImpl.getLabel(object));
+        TRACER.trace(this, "Object " + oid + " found --> " + ResourceManagerImpl.getLabel(object));
       }
     }
     else
@@ -239,7 +239,7 @@ public class CDOResourceImpl extends ResourceImpl implements CDOResource
         long oid = getNextTempOID();
         if (TRACER.isEnabled())
         {
-          TRACER.trace("Attaching object " + eObject + " with oid " + oid);
+          TRACER.trace(this, "Attaching object " + eObject + " with oid " + oid);
         }
 
         ResourceManagerImpl.initPersistable(persistable, this, oid, CDOPersistable.NOT_LOADED_YET);

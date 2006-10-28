@@ -12,7 +12,7 @@ package org.eclipse.emf.cdo.client.protocol;
 
 
 import org.eclipse.net4j.transport.Channel;
-import org.eclipse.net4j.util.om.ContextTracer;
+import org.eclipse.net4j.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
 
 import org.eclipse.emf.cdo.client.ClassInfo;
@@ -44,7 +44,7 @@ public abstract class AbstractPackageRequest<RESULT> extends AbstractCDOClientRe
 
       if (TRACER.isEnabled())
       {
-        TRACER.trace("Responded class " + className + " = " + cid);
+        TRACER.trace(this, "Responded class " + className + " = " + cid);
       }
 
       setCIDOnClassInfo(className, cid);

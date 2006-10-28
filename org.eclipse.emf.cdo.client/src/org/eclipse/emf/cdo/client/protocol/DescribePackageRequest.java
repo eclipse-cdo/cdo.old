@@ -12,7 +12,7 @@ package org.eclipse.emf.cdo.client.protocol;
 
 
 import org.eclipse.net4j.transport.Channel;
-import org.eclipse.net4j.util.om.ContextTracer;
+import org.eclipse.net4j.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
 import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
 
@@ -49,7 +49,7 @@ public class DescribePackageRequest extends AbstractPackageRequest<Boolean>
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace("Describing package " + packageInfo.getFullName());
+      TRACER.trace(this, "Describing package " + packageInfo.getFullName());
     }
 
     out.writeString(packageInfo.getFullName());
@@ -60,7 +60,7 @@ public class DescribePackageRequest extends AbstractPackageRequest<Boolean>
       ClassInfo classInfo = classes[i];
       if (TRACER.isEnabled())
       {
-        TRACER.trace("Describing class " + classInfo.getFullName());
+        TRACER.trace(this, "Describing class " + classInfo.getFullName());
       }
 
       out.writeString(classInfo.getFullName());
@@ -83,7 +83,7 @@ public class DescribePackageRequest extends AbstractPackageRequest<Boolean>
     {
       if (TRACER.isEnabled())
       {
-        TRACER.trace("Unknown package " + packageInfo.getFullName());
+        TRACER.trace(this, "Unknown package " + packageInfo.getFullName());
       }
 
       return false;
@@ -101,7 +101,7 @@ public class DescribePackageRequest extends AbstractPackageRequest<Boolean>
       AttributeInfo attributeInfo = attributes[j];
       if (TRACER.isEnabled())
       {
-        TRACER.trace("Describing attribute " + attributeInfo.getName());
+        TRACER.trace(this, "Describing attribute " + attributeInfo.getName());
       }
 
       out.writeString(attributeInfo.getName());

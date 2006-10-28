@@ -12,7 +12,7 @@ package org.eclipse.emf.cdo.client.protocol;
 
 
 import org.eclipse.net4j.transport.Channel;
-import org.eclipse.net4j.util.om.ContextTracer;
+import org.eclipse.net4j.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
 import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
 
@@ -46,7 +46,7 @@ public class ResourceRIDRequest extends AbstractCDOClientRequest<String>
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace("Requesting rid " + rid);
+      TRACER.trace(this, "Requesting rid " + rid);
     }
 
     out.writeInt(rid);
@@ -60,11 +60,11 @@ public class ResourceRIDRequest extends AbstractCDOClientRequest<String>
     {
       if (path != null)
       {
-        TRACER.trace("Responded path " + path);
+        TRACER.trace(this, "Responded path " + path);
       }
       else
       {
-        TRACER.trace("No resource with rid " + rid);
+        TRACER.trace(this, "No resource with rid " + rid);
       }
     }
 

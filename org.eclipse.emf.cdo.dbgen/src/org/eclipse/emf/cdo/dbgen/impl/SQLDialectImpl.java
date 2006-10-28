@@ -11,7 +11,7 @@
 package org.eclipse.emf.cdo.dbgen.impl;
 
 
-import org.eclipse.net4j.util.om.ContextTracer;
+import org.eclipse.net4j.util.om.trace.ContextTracer;
 
 import org.eclipse.emf.cdo.core.ImplementationError;
 import org.eclipse.emf.cdo.core.util.StringHelper;
@@ -341,7 +341,7 @@ public class SQLDialectImpl implements SQLDialect
             String key = table.toUpperCase();
             if (TRACER.isEnabled())
             {
-              TRACER.trace("Found existing table " + key);
+              TRACER.trace(this, "Found existing table " + key);
             }
 
             result.put(key, table);
@@ -367,7 +367,7 @@ public class SQLDialectImpl implements SQLDialect
     String tableSQL = composeTableCreationString(table);
     if (TRACER.isEnabled())
     {
-      TRACER.trace(tableSQL);
+      TRACER.trace(this, tableSQL);
     }
 
     template.execute(tableSQL);
@@ -390,7 +390,7 @@ public class SQLDialectImpl implements SQLDialect
 
       if (TRACER.isEnabled())
       {
-        TRACER.trace(indexSQL);
+        TRACER.trace(this, indexSQL);
       }
 
       template.execute(indexSQL);

@@ -13,7 +13,7 @@ package org.eclipse.emf.cdo.client.impl;
 
 import org.eclipse.net4j.transport.Channel;
 import org.eclipse.net4j.util.lifecycle.AbstractLifecycle;
-import org.eclipse.net4j.util.om.ContextTracer;
+import org.eclipse.net4j.util.om.trace.ContextTracer;
 
 import org.eclipse.emf.cdo.client.AttributeConverter;
 import org.eclipse.emf.cdo.client.ClassInfo;
@@ -106,7 +106,7 @@ public class PackageManagerImpl extends AbstractLifecycle implements PackageMana
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace("Analyzing package " + ePackage.getNsURI());
+      TRACER.trace(this, "Analyzing package " + ePackage.getNsURI());
     }
 
     MappingProvider provider = getMappingProvider(ePackage, mappingFile);
@@ -131,7 +131,7 @@ public class PackageManagerImpl extends AbstractLifecycle implements PackageMana
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace("Analyzing class " + eClass.getName());
+      TRACER.trace(this, "Analyzing class " + eClass.getName());
     }
 
     ClassMapping classMapping = provider.getClassMapping(eClass.getName());
@@ -164,7 +164,7 @@ public class PackageManagerImpl extends AbstractLifecycle implements PackageMana
       {
         if (TRACER.isEnabled())
         {
-          TRACER.trace("Using mapping file " + mappingFile);
+          TRACER.trace(this, "Using mapping file " + mappingFile);
         }
 
         MappingProvider provider = new XMLMappingProviderImpl(mappingFile);
@@ -174,7 +174,7 @@ public class PackageManagerImpl extends AbstractLifecycle implements PackageMana
       {
         if (TRACER.isEnabled())
         {
-          TRACER.trace("Creating mapping file " + mappingFile);
+          TRACER.trace(this, "Creating mapping file " + mappingFile);
         }
 
         MappingProvider provider = new AnnotationMappingProviderImpl(ePackage, autoPersistent,
@@ -269,7 +269,7 @@ public class PackageManagerImpl extends AbstractLifecycle implements PackageMana
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace("Announcing new packages");
+      TRACER.trace(this, "Announcing new packages");
     }
 
     if (newPackagesToAnnounce)
@@ -280,7 +280,7 @@ public class PackageManagerImpl extends AbstractLifecycle implements PackageMana
         {
           if (TRACER.isEnabled())
           {
-            TRACER.trace("Announcing package " + packageInfo.getFullName());
+            TRACER.trace(this, "Announcing package " + packageInfo.getFullName());
           }
 
           try

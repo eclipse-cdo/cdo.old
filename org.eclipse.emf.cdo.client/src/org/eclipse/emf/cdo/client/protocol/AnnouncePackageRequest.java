@@ -12,7 +12,7 @@ package org.eclipse.emf.cdo.client.protocol;
 
 
 import org.eclipse.net4j.transport.Channel;
-import org.eclipse.net4j.util.om.ContextTracer;
+import org.eclipse.net4j.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
 import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
 
@@ -47,7 +47,7 @@ public class AnnouncePackageRequest extends AbstractPackageRequest<Boolean>
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace("Announcing package " + packageInfo.getFullName());
+      TRACER.trace(this, "Announcing package " + packageInfo.getFullName());
     }
 
     out.writeString(packageInfo.getFullName());
@@ -66,7 +66,7 @@ public class AnnouncePackageRequest extends AbstractPackageRequest<Boolean>
     {
       if (TRACER.isEnabled())
       {
-        TRACER.trace("Unknown package " + packageInfo.getFullName());
+        TRACER.trace(this, "Unknown package " + packageInfo.getFullName());
       }
 
       return false;
