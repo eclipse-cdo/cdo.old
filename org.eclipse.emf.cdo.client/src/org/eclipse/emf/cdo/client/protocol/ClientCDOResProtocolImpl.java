@@ -96,7 +96,7 @@ public class ClientCDOResProtocolImpl extends AbstractCDOResProtocol
    */
   public static final class Factory extends AbstractProtocolFactory
   {
-    public Protocol createProtocol(Channel channel)
+    public Protocol createProtocol(Channel channel, Object protocolData)
     {
       return new ClientCDOResProtocolImpl(channel);
     }

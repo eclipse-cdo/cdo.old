@@ -21,6 +21,7 @@ import org.eclipse.emf.cdo.client.CDOResource;
 import org.eclipse.emf.cdo.client.PackageInfo;
 import org.eclipse.emf.cdo.client.PackageManager;
 import org.eclipse.emf.cdo.client.ResourceManager;
+import org.eclipse.emf.cdo.client.internal.CDOClient;
 import org.eclipse.emf.cdo.core.ImplementationError;
 import org.eclipse.emf.cdo.core.protocol.AbstractCDOProtocol;
 import org.eclipse.emf.common.util.EList;
@@ -38,14 +39,16 @@ public class ClientCDOProtocolImpl extends AbstractCDOProtocol
 {
   public static final long REQUEST_TIMEOUT = 10 * 60 * 1000;
 
-  // TODO Remove packageManager
   protected PackageManager packageManager;
 
   protected ResourceManager resourceManager;
 
-  public ClientCDOProtocolImpl(Channel channel)
+  public ClientCDOProtocolImpl(Channel channel, PackageManager packageManager,
+      ResourceManager resourceManager)
   {
     super(channel);
+    this.packageManager = packageManager;
+    this.resourceManager = resourceManager;
   }
 
   public PackageManager getPackageManager()
@@ -53,19 +56,9 @@ public class ClientCDOProtocolImpl extends AbstractCDOProtocol
     return packageManager;
   }
 
-  public void setPackageManager(PackageManager packageManager)
-  {
-    this.packageManager = packageManager;
-  }
-
   public ResourceManager getResourceManager()
   {
     return resourceManager;
-  }
-
-  public void setResourceManager(ResourceManager resourceManager)
-  {
-    this.resourceManager = resourceManager;
   }
 
   @Override
@@ -218,9 +211,28 @@ public class ClientCDOProtocolImpl extends AbstractCDOProtocol
    */
   public static final class Factory extends AbstractProtocolFactory
   {
-    public Protocol createProtocol(Channel channel)
+    private PackageManager packageManager;
+
+    public Factory(PackageManager packageManager)
     {
-      return new ClientCDOProtocolImpl(channel);
+      this.packageManager = packageManager;
+    }
+
+    public Protocol createProtocol(Channel channel, Object protocolData)
+    {
+      ClientCDOProtocolImpl protocol = new ClientCDOProtocolImpl(channel, packageManager,
+          (ResourceManager) protocolData);
+      try
+      {
+        protocol.activate();
+      }
+      catch (Exception ex)
+      {
+        CDOClient.LOG.error(ex);
+        return null;
+      }
+
+      return protocol;
     }
 
     public Set<Type> getConnectorTypes()

@@ -294,7 +294,7 @@ public class ResourceManagerImpl extends AbstractLifecycle implements ResourceMa
     {
       try
       {
-        cachedChannel = connector.openChannel(CDOProtocol.PROTOCOL_NAME);
+        cachedChannel = connector.openChannel(CDOProtocol.PROTOCOL_NAME, this);
       }
       catch (ConnectorException ex)
       {
@@ -542,22 +542,6 @@ public class ResourceManagerImpl extends AbstractLifecycle implements ResourceMa
     return URI.createURI(buffer.toString());
   }
 
-  public void stop()
-  {
-    if (cachedChannel != null)
-    {
-      try
-      {
-        cachedChannel.close();
-        cachedChannel = null;
-      }
-      catch (Exception ex)
-      {
-        CDOClient.LOG.error("Problem while stopping channel " + cachedChannel, ex);
-      }
-    }
-  }
-
   @Override
   protected void onAboutToActivate() throws Exception
   {
@@ -592,7 +576,22 @@ public class ResourceManagerImpl extends AbstractLifecycle implements ResourceMa
   {
     invalidator.shutdown(200);
     invalidator = null;
-    cachedChannel = null;
+    if (cachedChannel != null)
+    {
+      try
+      {
+        cachedChannel.close();
+      }
+      catch (Exception ex)
+      {
+        CDOClient.LOG.error("Problem while stopping channel " + cachedChannel, ex);
+      }
+      finally
+      {
+        cachedChannel = null;
+      }
+    }
+
     connector = null;
     deferredInvalidations = null;
     invalidationListeners = null;
@@ -760,7 +759,7 @@ public class ResourceManagerImpl extends AbstractLifecycle implements ResourceMa
 
   private final class Invalidator extends Worker
   {
-    private BlockingQueue<Entry> queue = new LinkedBlockingQueue<Entry>();
+    private BlockingQueue<Entry> queue = new LinkedBlockingQueue();
 
     public Invalidator()
     {
@@ -787,7 +786,7 @@ public class ResourceManagerImpl extends AbstractLifecycle implements ResourceMa
     {
       try
       {
-        Entry entry = queue.poll(50L, TimeUnit.MILLISECONDS);
+        Entry entry = queue.poll(100L, TimeUnit.MILLISECONDS);
         if (!isActive())
         {
           return TERMINATE;
@@ -802,6 +801,10 @@ public class ResourceManagerImpl extends AbstractLifecycle implements ResourceMa
 
           processInvalidations(entry.oids);
         }
+      }
+      catch (NullPointerException ex)
+      {
+        return TERMINATE;
       }
       catch (InterruptedException ex)
       {
