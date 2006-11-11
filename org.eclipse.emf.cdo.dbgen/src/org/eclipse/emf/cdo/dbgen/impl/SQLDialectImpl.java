@@ -341,7 +341,7 @@ public class SQLDialectImpl implements SQLDialect
             String key = table.toUpperCase();
             if (TRACER.isEnabled())
             {
-              TRACER.trace(this, "Found existing table " + key);
+              TRACER.trace("Found existing table " + key);
             }
 
             result.put(key, table);
@@ -367,7 +367,7 @@ public class SQLDialectImpl implements SQLDialect
     String tableSQL = composeTableCreationString(table);
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, tableSQL);
+      TRACER.trace(tableSQL);
     }
 
     template.execute(tableSQL);
@@ -390,7 +390,7 @@ public class SQLDialectImpl implements SQLDialect
 
       if (TRACER.isEnabled())
       {
-        TRACER.trace(this, indexSQL);
+        TRACER.trace(indexSQL);
       }
 
       template.execute(indexSQL);

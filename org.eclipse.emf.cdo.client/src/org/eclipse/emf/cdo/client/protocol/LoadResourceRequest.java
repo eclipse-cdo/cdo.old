@@ -53,7 +53,7 @@ public class LoadResourceRequest extends AbstractDataRequest<EObject>
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, "Loading rid " + rid);
+      TRACER.trace("Loading rid " + rid);
     }
 
     out.writeInt(rid);
@@ -95,7 +95,7 @@ public class LoadResourceRequest extends AbstractDataRequest<EObject>
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, "Providing object " + eClass.getName() + " "
+      TRACER.trace("Providing object " + eClass.getName() + " "
           + getPackageManager().getOidEncoder().toString(oid) + "v" + oca);
     }
 

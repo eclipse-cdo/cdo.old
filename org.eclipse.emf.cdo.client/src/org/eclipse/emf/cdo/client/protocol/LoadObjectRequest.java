@@ -53,7 +53,7 @@ public class LoadObjectRequest extends AbstractDataRequest<EObject>
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, "Loading object " + getPackageManager().getOidEncoder().toString(oid));
+      TRACER.trace("Loading object " + getPackageManager().getOidEncoder().toString(oid));
     }
 
     out.writeLong(oid);

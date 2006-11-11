@@ -46,7 +46,7 @@ public class ResourcePathRequest extends AbstractCDOClientRequest<Integer>
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, "Requesting path " + path);
+      TRACER.trace("Requesting path " + path);
     }
 
     out.writeString(path);
@@ -60,11 +60,11 @@ public class ResourcePathRequest extends AbstractCDOClientRequest<Integer>
     {
       if (rid > 0)
       {
-        TRACER.trace(this, "Responded rid " + rid);
+        TRACER.trace("Responded rid " + rid);
       }
       else
       {
-        TRACER.trace(this, "No resource with path " + path + " - reserved rid " + -rid);
+        TRACER.trace("No resource with path " + path + " - reserved rid " + -rid);
       }
     }
 

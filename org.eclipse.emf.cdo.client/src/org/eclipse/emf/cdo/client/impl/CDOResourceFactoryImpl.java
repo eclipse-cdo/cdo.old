@@ -54,7 +54,7 @@ public class CDOResourceFactoryImpl implements Resource.Factory
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, "Creating resource from URI " + uri);
+      TRACER.trace("Creating resource from URI " + uri);
     }
 
     try
@@ -131,7 +131,7 @@ public class CDOResourceFactoryImpl implements Resource.Factory
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, "Creating resource with path " + path);
+      TRACER.trace("Creating resource with path " + path);
     }
 
     int rid = ClientCDOProtocolImpl.requestResourcePath(resourceManager.getChannel(), path);
@@ -148,7 +148,7 @@ public class CDOResourceFactoryImpl implements Resource.Factory
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, "Creating resource with RID " + rid);
+      TRACER.trace("Creating resource with RID " + rid);
     }
 
     return createResource(rid, null, true);

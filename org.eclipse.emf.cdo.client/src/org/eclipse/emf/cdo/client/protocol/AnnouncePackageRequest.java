@@ -47,7 +47,7 @@ public class AnnouncePackageRequest extends AbstractPackageRequest<Boolean>
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, "Announcing package " + packageInfo.getFullName());
+      TRACER.trace("Announcing package " + packageInfo.getFullName());
     }
 
     out.writeString(packageInfo.getFullName());
@@ -66,7 +66,7 @@ public class AnnouncePackageRequest extends AbstractPackageRequest<Boolean>
     {
       if (TRACER.isEnabled())
       {
-        TRACER.trace(this, "Unknown package " + packageInfo.getFullName());
+        TRACER.trace("Unknown package " + packageInfo.getFullName());
       }
 
       return false;

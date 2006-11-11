@@ -227,7 +227,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest<Boolean>
     EList attached = changeDescription.getObjectsToAttach();
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, "commitObjectsToDetach(" + attached.size() + " object"
+      TRACER.trace("commitObjectsToDetach(" + attached.size() + " object"
           + (attached.size() != 1 ? "s" : "") + ")");
     }
 
@@ -244,7 +244,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest<Boolean>
       {
         if (TRACER.isEnabled())
         {
-          TRACER.trace(this, ResourceManagerImpl.getLabel(object));
+          TRACER.trace(ResourceManagerImpl.getLabel(object));
         }
 
         out.writeLong(oid);
@@ -274,7 +274,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest<Boolean>
 
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, "commitObjectsToAttach(" + objectsToAttach.size() + " object"
+      TRACER.trace("commitObjectsToAttach(" + objectsToAttach.size() + " object"
           + (objectsToAttach.size() != 1 ? "s" : "") + ")");
     }
 
@@ -299,7 +299,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest<Boolean>
 
       if (TRACER.isEnabled())
       {
-        TRACER.trace(this, "Transmitting object to attach: oid="
+        TRACER.trace("Transmitting object to attach: oid="
             + packageManager.getOidEncoder().toString(oid) + ", cid=" + cid + ", isContent="
             + isContent);
       }
@@ -327,7 +327,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest<Boolean>
     {
       if (TRACER.isEnabled())
       {
-        TRACER.trace(this, "Transmitting attributeSegment " + classInfo.getFullName());
+        TRACER.trace("Transmitting attributeSegment " + classInfo.getFullName());
       }
 
       AttributeInfo[] attributeInfos = classInfo.getAttributeInfos();
@@ -337,7 +337,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest<Boolean>
         AttributeInfo attributeInfo = attributeInfos[i];
         if (TRACER.isEnabled())
         {
-          TRACER.trace(this, "Transmitting attribute " + attributeInfo.getName());
+          TRACER.trace("Transmitting attribute " + attributeInfo.getName());
         }
 
         AttributeConverter converter = packageManager.getAttributeConverter();
@@ -396,7 +396,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest<Boolean>
 
       if (TRACER.isEnabled())
       {
-        TRACER.trace(this, "Transmitting reference to add: oid="
+        TRACER.trace("Transmitting reference to add: oid="
             + packageManager.getOidEncoder().toString(oid) + ", feature=" + feature.getFeatureID()
             + ", ordinal=" + ordinal + ", target="
             + packageManager.getOidEncoder().toString(target) + ", containment=" + containment);
@@ -416,7 +416,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest<Boolean>
 
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, "commitObjectChanges(" + objectChanges.size() + " objects)");
+      TRACER.trace("commitObjectChanges(" + objectChanges.size() + " objects)");
     }
 
     for (Iterator<?> iter = objectChanges.iterator(); iter.hasNext();)
@@ -511,7 +511,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest<Boolean>
 
       if (TRACER.isEnabled())
       {
-        TRACER.trace(this, "Transmitting segment " + classInfo.getFullName() + ": count=" + count);
+        TRACER.trace("Transmitting segment " + classInfo.getFullName() + ": count=" + count);
       }
 
       out.writeInt(cid);
@@ -604,8 +604,8 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest<Boolean>
       int oca = ResourceManagerImpl.getOCA(eObject);
       if (TRACER.isEnabled())
       {
-        TRACER.trace(this, "Transmitting object to change: "
-            + ResourceManagerImpl.getLabel(eObject) + ")");
+        TRACER.trace("Transmitting object to change: " + ResourceManagerImpl.getLabel(eObject)
+            + ")");
       }
 
       out.writeLong(oid);
@@ -618,7 +618,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest<Boolean>
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, "commitObjectChangeAttribute(" + attributeInfo.getName() + ")");
+      TRACER.trace("commitObjectChangeAttribute(" + attributeInfo.getName() + ")");
     }
 
     EAttribute attribute = attributeInfo.getEAttribute();
@@ -634,7 +634,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest<Boolean>
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, "commitObjectChangeReferenceMany(" + reference.getName() + ")");
+      TRACER.trace("commitObjectChangeReferenceMany(" + reference.getName() + ")");
     }
 
     long oid = ResourceManagerImpl.getOID(object);
@@ -721,7 +721,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest<Boolean>
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, "commitObjectChangeReferenceOne()");
+      TRACER.trace("commitObjectChangeReferenceOne()");
     }
 
     EObject refObject = (EObject) object.eGet(reference);
@@ -733,8 +733,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest<Boolean>
     transmitReferenceChange(out, changeKind, oid, reference, 0, target, 0);
     if (TRACER.isEnabled() && refObject != null)
     {
-      TRACER.trace(this, "--> " + reference.getName() + ": "
-          + ResourceManagerImpl.getLabel(refObject));
+      TRACER.trace("--> " + reference.getName() + ": " + ResourceManagerImpl.getLabel(refObject));
     }
   }
 
@@ -752,7 +751,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest<Boolean>
       {
         if (TRACER.isEnabled())
         {
-          TRACER.trace(this, "transmitReferenceChange(SET, oid="
+          TRACER.trace("transmitReferenceChange(SET, oid="
               + packageManager.getOidEncoder().toString(sourceId) + ", featureId="
               + feature.getFeatureID() + ", target="
               + packageManager.getOidEncoder().toString(targetId) + ", containment="
@@ -767,7 +766,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest<Boolean>
       {
         if (TRACER.isEnabled())
         {
-          TRACER.trace(this, "transmitReferenceChange(UNSET, oid="
+          TRACER.trace("transmitReferenceChange(UNSET, oid="
               + packageManager.getOidEncoder().toString(sourceId) + ", featureId="
               + feature.getFeatureID() + ")");
         }
@@ -778,7 +777,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest<Boolean>
       {
         if (TRACER.isEnabled())
         {
-          TRACER.trace(this, "transmitReferenceChange(ADD, oid="
+          TRACER.trace("transmitReferenceChange(ADD, oid="
               + packageManager.getOidEncoder().toString(sourceId) + ", featureId="
               + feature.getFeatureID() + ", ordinal=" + sourceOrdinal + ", target="
               + packageManager.getOidEncoder().toString(targetId) + ", containment="
@@ -794,7 +793,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest<Boolean>
       {
         if (TRACER.isEnabled())
         {
-          TRACER.trace(this, "transmitReferenceChange(REMOVE, oid="
+          TRACER.trace("transmitReferenceChange(REMOVE, oid="
               + packageManager.getOidEncoder().toString(sourceId) + ", featureId="
               + feature.getFeatureID() + ", ordinal=" + sourceOrdinal + ")");
         }
@@ -806,7 +805,7 @@ public class CommitTransactionRequest extends AbstractCDOClientRequest<Boolean>
       {
         if (TRACER.isEnabled())
         {
-          TRACER.trace(this, "transmitReferenceChange(MOVE, oid="
+          TRACER.trace("transmitReferenceChange(MOVE, oid="
               + packageManager.getOidEncoder().toString(sourceId) + ", featureId="
               + feature.getFeatureID() + ", ordinal=" + sourceOrdinal + ", moveToIndex="
               + moveToIndex + ")");

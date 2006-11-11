@@ -163,7 +163,7 @@ public abstract class Worker extends Thread
           {
             if (TRACER.isEnabled())
             {
-              TRACER.trace(this, "Interrupted while pausing worker " + getLabel());
+              TRACER.trace("Interrupted while pausing worker " + getLabel());
             }
 
             break;
@@ -229,7 +229,7 @@ public abstract class Worker extends Thread
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, "Shutting down worker " + getLabel());
+      TRACER.trace("Shutting down worker " + getLabel());
     }
 
     running = false;
@@ -253,7 +253,7 @@ public abstract class Worker extends Thread
     {
       if (TRACER.isEnabled())
       {
-        TRACER.trace(this, ex);
+        TRACER.trace(ex);
       }
     }
 
@@ -261,7 +261,7 @@ public abstract class Worker extends Thread
     {
       if (TRACER.isEnabled())
       {
-        TRACER.trace(this, "Shutdown timeout expired. Interrupting worker " + getLabel());
+        TRACER.trace("Shutdown timeout expired. Interrupting worker " + getLabel());
       }
 
       interrupt();
@@ -274,7 +274,7 @@ public abstract class Worker extends Thread
       {
         if (TRACER.isEnabled())
         {
-          TRACER.trace(this, ex);
+          TRACER.trace(ex);
         }
       }
     }

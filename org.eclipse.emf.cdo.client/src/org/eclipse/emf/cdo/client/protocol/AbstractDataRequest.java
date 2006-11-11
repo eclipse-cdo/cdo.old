@@ -52,7 +52,7 @@ public abstract class AbstractDataRequest<RESULT> extends AbstractCDOClientReque
 
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, "Receiving object " + classInfo.getName() + " "
+      TRACER.trace("Receiving object " + classInfo.getName() + " "
           + getPackageManager().getOidEncoder().toString(oid) + "v" + oca);
     }
 
@@ -77,8 +77,8 @@ public abstract class AbstractDataRequest<RESULT> extends AbstractCDOClientReque
 
       if (TRACER.isEnabled())
       {
-        TRACER.trace(this, "Receiving container oid="
-            + getPackageManager().getOidEncoder().toString(oid) + ", cid=" + cid);
+        TRACER.trace("Receiving container oid=" + getPackageManager().getOidEncoder().toString(oid)
+            + ", cid=" + cid);
       }
 
       provideObject(oid, cid);
@@ -93,7 +93,7 @@ public abstract class AbstractDataRequest<RESULT> extends AbstractCDOClientReque
 
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, "Creating proxy " + eClass.getName() + " " + oidEncoder.toString(oid));
+      TRACER.trace("Creating proxy " + eClass.getName() + " " + oidEncoder.toString(oid));
     }
 
     int rid = oidEncoder.getRID(oid);
@@ -114,7 +114,7 @@ public abstract class AbstractDataRequest<RESULT> extends AbstractCDOClientReque
     if (TRACER.isEnabled())
     {
       OIDEncoder oidEncoder = getPackageManager().getOidEncoder();
-      TRACER.trace(this, "Searching proxy " + oidEncoder.toString(oid));
+      TRACER.trace("Searching proxy " + oidEncoder.toString(oid));
     }
 
     EObject object = getResourceManager().getProxyObject(oid);
@@ -135,7 +135,7 @@ public abstract class AbstractDataRequest<RESULT> extends AbstractCDOClientReque
         AttributeInfo attributeInfo = attributeInfos[i];
         if (TRACER.isEnabled())
         {
-          TRACER.trace(this, "Receiving attribute " + attributeInfo.getName());
+          TRACER.trace("Receiving attribute " + attributeInfo.getName());
         }
 
         converter.fromChannel(object, attributeInfo.getEAttribute(), in);
@@ -167,7 +167,7 @@ public abstract class AbstractDataRequest<RESULT> extends AbstractCDOClientReque
       int cid = in.readInt();
       if (TRACER.isEnabled())
       {
-        TRACER.trace(this, "Receiving reference \"" + reference.getName() + "\": "
+        TRACER.trace("Receiving reference \"" + reference.getName() + "\": "
             + getPackageManager().getOidEncoder().toString(targetId) + ", cid=" + cid
             + ", feature=" + featureId);
       }

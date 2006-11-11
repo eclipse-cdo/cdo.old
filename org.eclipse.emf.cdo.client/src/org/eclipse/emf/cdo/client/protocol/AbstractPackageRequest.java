@@ -44,7 +44,7 @@ public abstract class AbstractPackageRequest<RESULT> extends AbstractCDOClientRe
 
       if (TRACER.isEnabled())
       {
-        TRACER.trace(this, "Responded class " + className + " = " + cid);
+        TRACER.trace("Responded class " + className + " = " + cid);
       }
 
       setCIDOnClassInfo(className, cid);

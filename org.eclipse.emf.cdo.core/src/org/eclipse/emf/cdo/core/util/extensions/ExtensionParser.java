@@ -77,8 +77,8 @@ public class ExtensionParser
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, "Parsing plugin " + extension.getNamespaceIdentifier()
-          + " (extension-point = " + extension.getExtensionPointUniqueIdentifier() + ")");
+      TRACER.trace("Parsing plugin " + extension.getNamespaceIdentifier() + " (extension-point = "
+          + extension.getExtensionPointUniqueIdentifier() + ")");
     }
 
     IConfigurationElement[] elems = extension.getConfigurationElements();
@@ -97,7 +97,7 @@ public class ExtensionParser
 
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, "All extension data: " + StringHelper.implode(result, ", "));
+      TRACER.trace("All extension data: " + StringHelper.implode(result, ", "));
     }
 
     return result;
@@ -125,7 +125,7 @@ public class ExtensionParser
 
       if (TRACER.isEnabled())
       {
-        TRACER.trace(this, "Dispatching " + context + "." + attributeName + " = " + attributeValue);
+        TRACER.trace("Dispatching " + context + "." + attributeName + " = " + attributeValue);
       }
 
       elementData.dispatchAttributeValue(attributeName, attributeValue);

@@ -49,7 +49,7 @@ public class DescribePackageRequest extends AbstractPackageRequest<Boolean>
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, "Describing package " + packageInfo.getFullName());
+      TRACER.trace("Describing package " + packageInfo.getFullName());
     }
 
     out.writeString(packageInfo.getFullName());
@@ -60,7 +60,7 @@ public class DescribePackageRequest extends AbstractPackageRequest<Boolean>
       ClassInfo classInfo = classes[i];
       if (TRACER.isEnabled())
       {
-        TRACER.trace(this, "Describing class " + classInfo.getFullName());
+        TRACER.trace("Describing class " + classInfo.getFullName());
       }
 
       out.writeString(classInfo.getFullName());
@@ -83,7 +83,7 @@ public class DescribePackageRequest extends AbstractPackageRequest<Boolean>
     {
       if (TRACER.isEnabled())
       {
-        TRACER.trace(this, "Unknown package " + packageInfo.getFullName());
+        TRACER.trace("Unknown package " + packageInfo.getFullName());
       }
 
       return false;
@@ -101,7 +101,7 @@ public class DescribePackageRequest extends AbstractPackageRequest<Boolean>
       AttributeInfo attributeInfo = attributes[j];
       if (TRACER.isEnabled())
       {
-        TRACER.trace(this, "Describing attribute " + attributeInfo.getName());
+        TRACER.trace("Describing attribute " + attributeInfo.getName());
       }
 
       out.writeString(attributeInfo.getName());

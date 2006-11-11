@@ -106,7 +106,7 @@ public class PackageManagerImpl extends AbstractLifecycle implements PackageMana
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, "Analyzing package " + ePackage.getNsURI());
+      TRACER.trace("Analyzing package " + ePackage.getNsURI());
     }
 
     MappingProvider provider = getMappingProvider(ePackage, mappingFile);
@@ -131,7 +131,7 @@ public class PackageManagerImpl extends AbstractLifecycle implements PackageMana
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, "Analyzing class " + eClass.getName());
+      TRACER.trace("Analyzing class " + eClass.getName());
     }
 
     ClassMapping classMapping = provider.getClassMapping(eClass.getName());
@@ -164,7 +164,7 @@ public class PackageManagerImpl extends AbstractLifecycle implements PackageMana
       {
         if (TRACER.isEnabled())
         {
-          TRACER.trace(this, "Using mapping file " + mappingFile);
+          TRACER.trace("Using mapping file " + mappingFile);
         }
 
         MappingProvider provider = new XMLMappingProviderImpl(mappingFile);
@@ -174,7 +174,7 @@ public class PackageManagerImpl extends AbstractLifecycle implements PackageMana
       {
         if (TRACER.isEnabled())
         {
-          TRACER.trace(this, "Creating mapping file " + mappingFile);
+          TRACER.trace("Creating mapping file " + mappingFile);
         }
 
         MappingProvider provider = new AnnotationMappingProviderImpl(ePackage, autoPersistent,
@@ -269,7 +269,7 @@ public class PackageManagerImpl extends AbstractLifecycle implements PackageMana
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, "Announcing new packages");
+      TRACER.trace("Announcing new packages");
     }
 
     if (newPackagesToAnnounce)
@@ -280,7 +280,7 @@ public class PackageManagerImpl extends AbstractLifecycle implements PackageMana
         {
           if (TRACER.isEnabled())
           {
-            TRACER.trace(this, "Announcing package " + packageInfo.getFullName());
+            TRACER.trace("Announcing package " + packageInfo.getFullName());
           }
 
           try

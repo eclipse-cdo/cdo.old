@@ -52,7 +52,7 @@ public class DeleteResourcesRequest extends RequestWithConfirmation<Boolean>
     {
       if (TRACER.isEnabled())
       {
-        TRACER.trace(this, "Deleting rid " + rid);
+        TRACER.trace("Deleting rid " + rid);
       }
 
       out.writeInt(rid);
@@ -67,7 +67,7 @@ public class DeleteResourcesRequest extends RequestWithConfirmation<Boolean>
     boolean ok = in.readBoolean();
     if (TRACER.isEnabled())
     {
-      TRACER.trace(this, "Deleted resources: " + ok);
+      TRACER.trace("Deleted resources: " + ok);
     }
 
     return ok;
