@@ -77,7 +77,7 @@ public class IndexImpl extends EObjectImpl implements Index
    * @generated
    * @ordered
    */
-  protected EList columns = null;
+  protected EList<Column> columns = null;
 
   /**
    * The default value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -114,6 +114,7 @@ public class IndexImpl extends EObjectImpl implements Index
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   protected EClass eStaticClass()
   {
     return DBGenPackage.Literals.INDEX;
@@ -194,11 +195,11 @@ public class IndexImpl extends EObjectImpl implements Index
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList getColumns()
+  public EList<Column> getColumns()
   {
     if (columns == null)
     {
-      columns = new EObjectResolvingEList(Column.class, this, DBGenPackage.INDEX__COLUMNS);
+      columns = new EObjectResolvingEList<Column>(Column.class, this, DBGenPackage.INDEX__COLUMNS);
     }
     return columns;
   }
@@ -274,6 +275,7 @@ public class IndexImpl extends EObjectImpl implements Index
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID,
       NotificationChain msgs)
   {
@@ -291,6 +293,7 @@ public class IndexImpl extends EObjectImpl implements Index
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID,
       NotificationChain msgs)
   {
@@ -307,6 +310,7 @@ public class IndexImpl extends EObjectImpl implements Index
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
   {
     switch (eContainerFeatureID)
@@ -323,6 +327,7 @@ public class IndexImpl extends EObjectImpl implements Index
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
@@ -344,6 +349,8 @@ public class IndexImpl extends EObjectImpl implements Index
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
+  @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
@@ -356,7 +363,7 @@ public class IndexImpl extends EObjectImpl implements Index
         return;
       case DBGenPackage.INDEX__COLUMNS:
         getColumns().clear();
-        getColumns().addAll((Collection) newValue);
+        getColumns().addAll((Collection<? extends Column>) newValue);
         return;
       case DBGenPackage.INDEX__TYPE:
         setType((IndexType) newValue);
@@ -370,6 +377,7 @@ public class IndexImpl extends EObjectImpl implements Index
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void eUnset(int featureID)
   {
     switch (featureID)
@@ -395,6 +403,7 @@ public class IndexImpl extends EObjectImpl implements Index
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public boolean eIsSet(int featureID)
   {
     switch (featureID)
@@ -416,6 +425,7 @@ public class IndexImpl extends EObjectImpl implements Index
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public String toString()
   {
     if (eIsProxy()) return super.toString();

@@ -83,7 +83,7 @@ public class TableImpl extends EObjectImpl implements Table
    * @generated
    * @ordered
    */
-  protected EList columns = null;
+  protected EList<Column> columns = null;
 
   /**
    * The cached value of the '{@link #getIndices() <em>Indices</em>}' containment reference list.
@@ -93,7 +93,7 @@ public class TableImpl extends EObjectImpl implements Table
    * @generated
    * @ordered
    */
-  protected EList indices = null;
+  protected EList<Index> indices = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -110,6 +110,7 @@ public class TableImpl extends EObjectImpl implements Table
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   protected EClass eStaticClass()
   {
     return DBGenPackage.Literals.TABLE;
@@ -190,11 +191,11 @@ public class TableImpl extends EObjectImpl implements Table
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList getColumns()
+  public EList<Column> getColumns()
   {
     if (columns == null)
     {
-      columns = new EObjectContainmentWithInverseEList(Column.class, this,
+      columns = new EObjectContainmentWithInverseEList<Column>(Column.class, this,
           DBGenPackage.TABLE__COLUMNS, DBGenPackage.COLUMN__TABLE);
     }
     return columns;
@@ -205,11 +206,11 @@ public class TableImpl extends EObjectImpl implements Table
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList getIndices()
+  public EList<Index> getIndices()
   {
     if (indices == null)
     {
-      indices = new EObjectContainmentWithInverseEList(Index.class, this,
+      indices = new EObjectContainmentWithInverseEList<Index>(Index.class, this,
           DBGenPackage.TABLE__INDICES, DBGenPackage.INDEX__TABLE);
     }
     return indices;
@@ -361,6 +362,8 @@ public class TableImpl extends EObjectImpl implements Table
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
+  @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID,
       NotificationChain msgs)
   {
@@ -370,9 +373,11 @@ public class TableImpl extends EObjectImpl implements Table
         if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
         return basicSetDatabase((Database) otherEnd, msgs);
       case DBGenPackage.TABLE__COLUMNS:
-        return ((InternalEList) getColumns()).basicAdd(otherEnd, msgs);
+        return ((InternalEList<InternalEObject>) (InternalEList<?>) getColumns()).basicAdd(
+            otherEnd, msgs);
       case DBGenPackage.TABLE__INDICES:
-        return ((InternalEList) getIndices()).basicAdd(otherEnd, msgs);
+        return ((InternalEList<InternalEObject>) (InternalEList<?>) getIndices()).basicAdd(
+            otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -382,6 +387,7 @@ public class TableImpl extends EObjectImpl implements Table
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID,
       NotificationChain msgs)
   {
@@ -390,9 +396,9 @@ public class TableImpl extends EObjectImpl implements Table
       case DBGenPackage.TABLE__DATABASE:
         return basicSetDatabase(null, msgs);
       case DBGenPackage.TABLE__COLUMNS:
-        return ((InternalEList) getColumns()).basicRemove(otherEnd, msgs);
+        return ((InternalEList<?>) getColumns()).basicRemove(otherEnd, msgs);
       case DBGenPackage.TABLE__INDICES:
-        return ((InternalEList) getIndices()).basicRemove(otherEnd, msgs);
+        return ((InternalEList<?>) getIndices()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -402,6 +408,7 @@ public class TableImpl extends EObjectImpl implements Table
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
   {
     switch (eContainerFeatureID)
@@ -418,6 +425,7 @@ public class TableImpl extends EObjectImpl implements Table
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
@@ -439,6 +447,8 @@ public class TableImpl extends EObjectImpl implements Table
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
+  @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
@@ -451,11 +461,11 @@ public class TableImpl extends EObjectImpl implements Table
         return;
       case DBGenPackage.TABLE__COLUMNS:
         getColumns().clear();
-        getColumns().addAll((Collection) newValue);
+        getColumns().addAll((Collection<? extends Column>) newValue);
         return;
       case DBGenPackage.TABLE__INDICES:
         getIndices().clear();
-        getIndices().addAll((Collection) newValue);
+        getIndices().addAll((Collection<? extends Index>) newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -466,6 +476,7 @@ public class TableImpl extends EObjectImpl implements Table
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void eUnset(int featureID)
   {
     switch (featureID)
@@ -491,6 +502,7 @@ public class TableImpl extends EObjectImpl implements Table
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public boolean eIsSet(int featureID)
   {
     switch (featureID)
@@ -533,6 +545,7 @@ public class TableImpl extends EObjectImpl implements Table
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public String toString()
   {
     if (eIsProxy()) return super.toString();

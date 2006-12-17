@@ -104,7 +104,7 @@ public interface Index extends EObject
    * @model type="org.eclipse.emf.cdo.dbgen.Column"
    * @generated
    */
-  EList getColumns();
+  EList<Column> getColumns();
 
   /**
    * Returns the value of the '<em><b>Type</b></em>' attribute.

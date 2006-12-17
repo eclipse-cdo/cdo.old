@@ -6,7 +6,7 @@
     modelPluginID="org.eclipse.emf.cdo.mapping" runtimeJar="true" modelName="Mapping"
     modelPluginClass="org.eclipse.emf.cdo.mapping.internal.MappingActivator" editPluginClass="org.eclipse.emf.cdo.mapping.provider.MappingEditActivator"
     editorPluginClass="org.eclipse.emf.cdo.mapping.presentation.MappingEditorActivator"
-    codeFormatting="true" testsDirectory="" testSuiteClass="">
+    codeFormatting="true" testsDirectory="" testSuiteClass="" complianceLevel="5.0">
   <genPackages prefix="Mapping" basePackage="org.eclipse.emf.cdo" ecorePackage="mapping.ecore#/">
     <genClasses ecoreClass="mapping.ecore#//PackageMapping">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mapping.ecore#//PackageMapping/classes"/>

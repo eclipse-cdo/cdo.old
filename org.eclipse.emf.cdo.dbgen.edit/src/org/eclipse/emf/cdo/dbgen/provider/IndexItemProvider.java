@@ -30,10 +30,9 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.emf.cdo.dbgen.Index} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.eclipse.emf.cdo.dbgen.Index} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class IndexItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
@@ -71,9 +70,9 @@ public class IndexItemProvider extends ItemProviderAdapter implements IEditingDo
   }
 
   /**
-   * This adds a property descriptor for the Name feature. <!-- begin-user-doc
+   * This adds a property descriptor for the Name feature.
+   * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected void addNamePropertyDescriptor(Object object)
@@ -101,9 +100,9 @@ public class IndexItemProvider extends ItemProviderAdapter implements IEditingDo
   }
 
   /**
-   * This adds a property descriptor for the Type feature. <!-- begin-user-doc
+   * This adds a property descriptor for the Type feature.
+   * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected void addTypePropertyDescriptor(Object object)
@@ -116,8 +115,8 @@ public class IndexItemProvider extends ItemProviderAdapter implements IEditingDo
   }
 
   /**
-   * This returns Index.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This returns Index.gif.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public Object getImage(Object object)
@@ -126,9 +125,9 @@ public class IndexItemProvider extends ItemProviderAdapter implements IEditingDo
   }
 
   /**
-   * This returns the label text for the adapted class. <!-- begin-user-doc -->
+   * This returns the label text for the adapted class.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public String getText(Object object)
@@ -139,11 +138,10 @@ public class IndexItemProvider extends ItemProviderAdapter implements IEditingDo
   }
 
   /**
-   * This handles model notifications by calling {@link #updateChildren} to
-   * update any cached children and by creating a viewer notification, which it
-   * passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+   * This handles model notifications by calling {@link #updateChildren} to update any cached
+   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   public void notifyChanged(Notification notification)
@@ -162,11 +160,10 @@ public class IndexItemProvider extends ItemProviderAdapter implements IEditingDo
   }
 
   /**
-   * This adds to the collection of
-   * {@link org.eclipse.emf.edit.command.CommandParameter}s describing all of
-   * the children that can be created under this object. <!-- begin-user-doc -->
+   * This adds to the collection of {@link org.eclipse.emf.edit.command.CommandParameter}s
+   * describing all of the children that can be created under this object.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)

@@ -49,7 +49,7 @@ public interface ClassMapping extends EObject
    * @model type="org.eclipse.emf.cdo.mapping.AttributeMapping" containment="true"
    * @generated
    */
-  EList getAttributes();
+  EList<AttributeMapping> getAttributes();
 
   /**
    * Returns the value of the '<em><b>Class Name</b></em>' attribute.

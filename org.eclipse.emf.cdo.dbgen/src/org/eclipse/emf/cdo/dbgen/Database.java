@@ -76,7 +76,7 @@ public interface Database extends EObject
    * @model type="org.eclipse.emf.cdo.dbgen.Table" opposite="database" containment="true"
    * @generated
    */
-  EList getTables();
+  EList<Table> getTables();
 
   /**
    * <!-- begin-user-doc -->

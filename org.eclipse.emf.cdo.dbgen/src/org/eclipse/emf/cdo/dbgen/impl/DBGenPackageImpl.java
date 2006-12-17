@@ -443,6 +443,10 @@ public class DBGenPackageImpl extends EPackageImpl implements DBGenPackage
     setNsPrefix(eNS_PREFIX);
     setNsURI(eNS_URI);
 
+    // Create type parameters
+
+    // Set bounds for type parameters
+
     // Add supertypes to classes
 
     // Initialize classes and features; add operations and parameters
@@ -476,7 +480,7 @@ public class DBGenPackageImpl extends EPackageImpl implements DBGenPackage
         -1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
         !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    addEOperation(tableEClass, this.getIndex(), "getPrimaryIndex", 0, 1);
+    op = addEOperation(tableEClass, this.getIndex(), "getPrimaryIndex", 0, 1);
 
     op = addEOperation(tableEClass, this.getColumn(), "getColumn", 0, 1);
     addEParameter(op, ecorePackage.getEString(), "name", 0, 1);

@@ -48,7 +48,7 @@ public interface PackageMapping extends EObject
    * @model type="org.eclipse.emf.cdo.mapping.ClassMapping" containment="true" required="true"
    * @generated
    */
-  EList getClasses();
+  EList<ClassMapping> getClasses();
 
   /**
    * Returns the value of the '<em><b>Package Name</b></em>' attribute.

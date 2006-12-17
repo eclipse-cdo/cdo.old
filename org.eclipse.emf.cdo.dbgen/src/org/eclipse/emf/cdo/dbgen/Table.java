@@ -106,7 +106,7 @@ public interface Table extends EObject
    * @model type="org.eclipse.emf.cdo.dbgen.Column" opposite="table" containment="true"
    * @generated
    */
-  EList getColumns();
+  EList<Column> getColumns();
 
   /**
    * Returns the value of the '<em><b>Indices</b></em>' containment reference list.
@@ -124,7 +124,7 @@ public interface Table extends EObject
    * @model type="org.eclipse.emf.cdo.dbgen.Index" opposite="table" containment="true"
    * @generated
    */
-  EList getIndices();
+  EList<Index> getIndices();
 
   /**
    * <!-- begin-user-doc -->

@@ -305,6 +305,10 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
     setNsPrefix(eNS_PREFIX);
     setNsURI(eNS_URI);
 
+    // Create type parameters
+
+    // Set bounds for type parameters
+
     // Add supertypes to classes
 
     // Initialize classes and features; add operations and parameters
@@ -336,7 +340,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
     op = addEOperation(classMappingEClass, this.getAttributeMapping(), "getAttributeMapping", 0, 1);
     addEParameter(op, ecorePackage.getEString(), "name", 0, 1);
 
-    addEOperation(classMappingEClass, ecorePackage.getEString(), "getColumnNames", 0, 1);
+    op = addEOperation(classMappingEClass, ecorePackage.getEString(), "getColumnNames", 0, 1);
 
     initEClass(attributeMappingEClass, AttributeMapping.class, "AttributeMapping", !IS_ABSTRACT,
         !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

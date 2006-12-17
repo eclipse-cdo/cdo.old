@@ -11,6 +11,7 @@
 package org.eclipse.emf.cdo.mapping.util;
 
 
+import org.eclipse.emf.cdo.mapping.*;
 import org.eclipse.emf.cdo.mapping.AttributeMapping;
 import org.eclipse.emf.cdo.mapping.ClassMapping;
 import org.eclipse.emf.cdo.mapping.MappingPackage;
@@ -61,6 +62,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl
    * @return whether this factory is applicable for the type of the object.
    * @generated
    */
+  @Override
   public boolean isFactoryForType(Object object)
   {
     if (object == modelPackage)
@@ -80,24 +82,28 @@ public class MappingAdapterFactory extends AdapterFactoryImpl
    * <!-- end-user-doc -->
    * @generated
    */
-  protected MappingSwitch modelSwitch = new MappingSwitch()
+  protected MappingSwitch<Adapter> modelSwitch = new MappingSwitch<Adapter>()
   {
-    public Object casePackageMapping(PackageMapping object)
+    @Override
+    public Adapter casePackageMapping(PackageMapping object)
     {
       return createPackageMappingAdapter();
     }
 
-    public Object caseClassMapping(ClassMapping object)
+    @Override
+    public Adapter caseClassMapping(ClassMapping object)
     {
       return createClassMappingAdapter();
     }
 
-    public Object caseAttributeMapping(AttributeMapping object)
+    @Override
+    public Adapter caseAttributeMapping(AttributeMapping object)
     {
       return createAttributeMappingAdapter();
     }
 
-    public Object defaultCase(EObject object)
+    @Override
+    public Adapter defaultCase(EObject object)
     {
       return createEObjectAdapter();
     }
@@ -111,9 +117,10 @@ public class MappingAdapterFactory extends AdapterFactoryImpl
    * @return the adapter for the <code>target</code>.
    * @generated
    */
+  @Override
   public Adapter createAdapter(Notifier target)
   {
-    return (Adapter) modelSwitch.doSwitch((EObject) target);
+    return modelSwitch.doSwitch((EObject) target);
   }
 
   /**

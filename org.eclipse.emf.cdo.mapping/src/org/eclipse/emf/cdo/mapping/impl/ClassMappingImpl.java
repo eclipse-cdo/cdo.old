@@ -53,7 +53,7 @@ public class ClassMappingImpl extends EObjectImpl implements ClassMapping
    * @generated
    * @ordered
    */
-  protected EList attributes = null;
+  protected EList<AttributeMapping> attributes = null;
 
   /**
    * The default value of the '{@link #getClassName() <em>Class Name</em>}' attribute.
@@ -110,6 +110,7 @@ public class ClassMappingImpl extends EObjectImpl implements ClassMapping
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   protected EClass eStaticClass()
   {
     return MappingPackage.Literals.CLASS_MAPPING;
@@ -120,11 +121,11 @@ public class ClassMappingImpl extends EObjectImpl implements ClassMapping
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList getAttributes()
+  public EList<AttributeMapping> getAttributes()
   {
     if (attributes == null)
     {
-      attributes = new EObjectContainmentEList(AttributeMapping.class, this,
+      attributes = new EObjectContainmentEList<AttributeMapping>(AttributeMapping.class, this,
           MappingPackage.CLASS_MAPPING__ATTRIBUTES);
     }
     return attributes;
@@ -232,13 +233,14 @@ public class ClassMappingImpl extends EObjectImpl implements ClassMapping
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID,
       NotificationChain msgs)
   {
     switch (featureID)
     {
       case MappingPackage.CLASS_MAPPING__ATTRIBUTES:
-        return ((InternalEList) getAttributes()).basicRemove(otherEnd, msgs);
+        return ((InternalEList<?>) getAttributes()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -248,6 +250,7 @@ public class ClassMappingImpl extends EObjectImpl implements ClassMapping
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
@@ -267,13 +270,15 @@ public class ClassMappingImpl extends EObjectImpl implements ClassMapping
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
+  @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
       case MappingPackage.CLASS_MAPPING__ATTRIBUTES:
         getAttributes().clear();
-        getAttributes().addAll((Collection) newValue);
+        getAttributes().addAll((Collection<? extends AttributeMapping>) newValue);
         return;
       case MappingPackage.CLASS_MAPPING__CLASS_NAME:
         setClassName((String) newValue);
@@ -290,6 +295,7 @@ public class ClassMappingImpl extends EObjectImpl implements ClassMapping
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void eUnset(int featureID)
   {
     switch (featureID)
@@ -312,6 +318,7 @@ public class ClassMappingImpl extends EObjectImpl implements ClassMapping
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public boolean eIsSet(int featureID)
   {
     switch (featureID)
@@ -333,6 +340,7 @@ public class ClassMappingImpl extends EObjectImpl implements ClassMapping
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public String toString()
   {
     if (eIsProxy()) return super.toString();

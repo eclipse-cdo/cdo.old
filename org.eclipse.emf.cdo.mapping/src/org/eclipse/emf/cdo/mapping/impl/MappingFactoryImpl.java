@@ -11,6 +11,7 @@
 package org.eclipse.emf.cdo.mapping.impl;
 
 
+import org.eclipse.emf.cdo.mapping.*;
 import org.eclipse.emf.cdo.mapping.AttributeMapping;
 import org.eclipse.emf.cdo.mapping.ClassMapping;
 import org.eclipse.emf.cdo.mapping.MappingFactory;
@@ -71,6 +72,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EObject create(EClass eClass)
   {
     switch (eClass.getClassifierID())
@@ -136,6 +138,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory
    * @deprecated
    * @generated
    */
+  @Deprecated
   public static MappingPackage getPackage()
   {
     return MappingPackage.eINSTANCE;

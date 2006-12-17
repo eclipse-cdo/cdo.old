@@ -11,6 +11,7 @@
 package org.eclipse.emf.cdo.dbgen.impl;
 
 
+import org.eclipse.emf.cdo.dbgen.*;
 import org.eclipse.emf.cdo.dbgen.Column;
 import org.eclipse.emf.cdo.dbgen.ColumnType;
 import org.eclipse.emf.cdo.dbgen.DBGenFactory;
@@ -87,6 +88,7 @@ public class DBGenFactoryImpl extends EFactoryImpl implements DBGenFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EObject create(EClass eClass)
   {
     switch (eClass.getClassifierID())
@@ -110,6 +112,7 @@ public class DBGenFactoryImpl extends EFactoryImpl implements DBGenFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Object createFromString(EDataType eDataType, String initialValue)
   {
     switch (eDataType.getClassifierID())
@@ -129,6 +132,7 @@ public class DBGenFactoryImpl extends EFactoryImpl implements DBGenFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public String convertToString(EDataType eDataType, Object instanceValue)
   {
     switch (eDataType.getClassifierID())
@@ -251,6 +255,7 @@ public class DBGenFactoryImpl extends EFactoryImpl implements DBGenFactory
    * @deprecated
    * @generated
    */
+  @Deprecated
   public static DBGenPackage getPackage()
   {
     return DBGenPackage.eINSTANCE;

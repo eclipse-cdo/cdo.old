@@ -73,7 +73,7 @@ public class DatabaseImpl extends EObjectImpl implements Database
    * @generated
    * @ordered
    */
-  protected EList tables = null;
+  protected EList<Table> tables = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -90,6 +90,7 @@ public class DatabaseImpl extends EObjectImpl implements Database
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   protected EClass eStaticClass()
   {
     return DBGenPackage.Literals.DATABASE;
@@ -124,11 +125,11 @@ public class DatabaseImpl extends EObjectImpl implements Database
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList getTables()
+  public EList<Table> getTables()
   {
     if (tables == null)
     {
-      tables = new EObjectContainmentWithInverseEList(Table.class, this,
+      tables = new EObjectContainmentWithInverseEList<Table>(Table.class, this,
           DBGenPackage.DATABASE__TABLES, DBGenPackage.TABLE__DATABASE);
     }
     return tables;
@@ -152,13 +153,16 @@ public class DatabaseImpl extends EObjectImpl implements Database
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
+  @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID,
       NotificationChain msgs)
   {
     switch (featureID)
     {
       case DBGenPackage.DATABASE__TABLES:
-        return ((InternalEList) getTables()).basicAdd(otherEnd, msgs);
+        return ((InternalEList<InternalEObject>) (InternalEList<?>) getTables()).basicAdd(otherEnd,
+            msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -168,13 +172,14 @@ public class DatabaseImpl extends EObjectImpl implements Database
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID,
       NotificationChain msgs)
   {
     switch (featureID)
     {
       case DBGenPackage.DATABASE__TABLES:
-        return ((InternalEList) getTables()).basicRemove(otherEnd, msgs);
+        return ((InternalEList<?>) getTables()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -184,6 +189,7 @@ public class DatabaseImpl extends EObjectImpl implements Database
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
@@ -201,6 +207,8 @@ public class DatabaseImpl extends EObjectImpl implements Database
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
+  @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
@@ -210,7 +218,7 @@ public class DatabaseImpl extends EObjectImpl implements Database
         return;
       case DBGenPackage.DATABASE__TABLES:
         getTables().clear();
-        getTables().addAll((Collection) newValue);
+        getTables().addAll((Collection<? extends Table>) newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -221,6 +229,7 @@ public class DatabaseImpl extends EObjectImpl implements Database
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void eUnset(int featureID)
   {
     switch (featureID)
@@ -240,6 +249,7 @@ public class DatabaseImpl extends EObjectImpl implements Database
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public boolean eIsSet(int featureID)
   {
     switch (featureID)
@@ -275,6 +285,7 @@ public class DatabaseImpl extends EObjectImpl implements Database
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public String toString()
   {
     if (eIsProxy()) return super.toString();

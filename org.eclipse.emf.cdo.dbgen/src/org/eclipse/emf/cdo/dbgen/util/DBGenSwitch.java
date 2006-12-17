@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import java.util.List;
+import org.eclipse.emf.cdo.dbgen.*;
 
 
 /**
@@ -35,7 +36,7 @@ import java.util.List;
  * @see org.eclipse.emf.cdo.dbgen.DBGenPackage
  * @generated
  */
-public class DBGenSwitch
+public class DBGenSwitch<T>
 {
   /**
    * The cached model package
@@ -66,7 +67,7 @@ public class DBGenSwitch
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
-  public Object doSwitch(EObject theEObject)
+  public T doSwitch(EObject theEObject)
   {
     return doSwitch(theEObject.eClass(), theEObject);
   }
@@ -78,7 +79,7 @@ public class DBGenSwitch
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
-  protected Object doSwitch(EClass theEClass, EObject theEObject)
+  protected T doSwitch(EClass theEClass, EObject theEObject)
   {
     if (theEClass.eContainer() == modelPackage)
     {
@@ -86,9 +87,9 @@ public class DBGenSwitch
     }
     else
     {
-      List eSuperTypes = theEClass.getESuperTypes();
-      return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(
-          (EClass) eSuperTypes.get(0), theEObject);
+      List<EClass> eSuperTypes = theEClass.getESuperTypes();
+      return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0),
+          theEObject);
     }
   }
 
@@ -99,35 +100,35 @@ public class DBGenSwitch
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
-  protected Object doSwitch(int classifierID, EObject theEObject)
+  protected T doSwitch(int classifierID, EObject theEObject)
   {
     switch (classifierID)
     {
       case DBGenPackage.DATABASE:
       {
         Database database = (Database) theEObject;
-        Object result = caseDatabase(database);
+        T result = caseDatabase(database);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
       case DBGenPackage.TABLE:
       {
         Table table = (Table) theEObject;
-        Object result = caseTable(table);
+        T result = caseTable(table);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
       case DBGenPackage.COLUMN:
       {
         Column column = (Column) theEObject;
-        Object result = caseColumn(column);
+        T result = caseColumn(column);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
       case DBGenPackage.INDEX:
       {
         Index index = (Index) theEObject;
-        Object result = caseIndex(index);
+        T result = caseIndex(index);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -147,7 +148,7 @@ public class DBGenSwitch
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public Object caseDatabase(Database object)
+  public T caseDatabase(Database object)
   {
     return null;
   }
@@ -163,7 +164,7 @@ public class DBGenSwitch
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public Object caseTable(Table object)
+  public T caseTable(Table object)
   {
     return null;
   }
@@ -179,7 +180,7 @@ public class DBGenSwitch
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public Object caseColumn(Column object)
+  public T caseColumn(Column object)
   {
     return null;
   }
@@ -195,7 +196,7 @@ public class DBGenSwitch
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public Object caseIndex(Index object)
+  public T caseIndex(Index object)
   {
     return null;
   }
@@ -211,7 +212,7 @@ public class DBGenSwitch
    * @see #doSwitch(org.eclipse.emf.ecore.EObject)
    * @generated
    */
-  public Object defaultCase(EObject object)
+  public T defaultCase(EObject object)
   {
     return null;
   }

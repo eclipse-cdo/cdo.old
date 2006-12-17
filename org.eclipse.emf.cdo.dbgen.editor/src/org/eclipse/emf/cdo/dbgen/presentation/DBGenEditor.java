@@ -951,7 +951,8 @@ public class DBGenEditor extends MultiPageEditorPart implements IEditingDomainPr
     // Assumes that the input is a file object.
     //
     IFileEditorInput modelFile = (IFileEditorInput) getEditorInput();
-    URI resourceURI = URI.createPlatformResourceURI(modelFile.getFile().getFullPath().toString());
+    URI resourceURI = URI.createPlatformResourceURI(modelFile.getFile().getFullPath().toString(),
+        true);
     ;
     Exception exception = null;
     Resource resource = null;
@@ -1046,6 +1047,8 @@ public class DBGenEditor extends MultiPageEditorPart implements IEditingDomainPr
 
         selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
         selectionViewer.setInput(editingDomain.getResourceSet());
+        selectionViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet()
+            .getResources().get(0)), true);
         viewerPane.setTitle(editingDomain.getResourceSet());
 
         new AdapterFactoryTreeEditor(selectionViewer.getTree(), adapterFactory);
@@ -1371,9 +1374,8 @@ public class DBGenEditor extends MultiPageEditorPart implements IEditingDomainPr
           {
             // Select the root object in the view.
             //
-            ArrayList selection = new ArrayList();
-            selection.add(editingDomain.getResourceSet().getResources().get(0));
-            contentOutlineViewer.setSelection(new StructuredSelection(selection), true);
+            contentOutlineViewer.setSelection(new StructuredSelection(editingDomain
+                .getResourceSet().getResources().get(0)), true);
           }
         }
 
@@ -1613,8 +1615,8 @@ public class DBGenEditor extends MultiPageEditorPart implements IEditingDomainPr
       IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
       if (file != null)
       {
-        doSaveAs(URI.createPlatformResourceURI(file.getFullPath().toString()), new FileEditorInput(
-            file));
+        doSaveAs(URI.createPlatformResourceURI(file.getFullPath().toString(), true),
+            new FileEditorInput(file));
       }
     }
   }

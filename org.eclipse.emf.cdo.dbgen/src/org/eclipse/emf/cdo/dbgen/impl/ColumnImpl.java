@@ -138,6 +138,7 @@ public class ColumnImpl extends EObjectImpl implements Column
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   protected EClass eStaticClass()
   {
     return DBGenPackage.Literals.COLUMN;
@@ -291,6 +292,7 @@ public class ColumnImpl extends EObjectImpl implements Column
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID,
       NotificationChain msgs)
   {
@@ -308,6 +310,7 @@ public class ColumnImpl extends EObjectImpl implements Column
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID,
       NotificationChain msgs)
   {
@@ -324,6 +327,7 @@ public class ColumnImpl extends EObjectImpl implements Column
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
   {
     switch (eContainerFeatureID)
@@ -340,6 +344,7 @@ public class ColumnImpl extends EObjectImpl implements Column
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
@@ -363,6 +368,7 @@ public class ColumnImpl extends EObjectImpl implements Column
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
@@ -391,6 +397,7 @@ public class ColumnImpl extends EObjectImpl implements Column
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void eUnset(int featureID)
   {
     switch (featureID)
@@ -419,6 +426,7 @@ public class ColumnImpl extends EObjectImpl implements Column
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public boolean eIsSet(int featureID)
   {
     switch (featureID)
@@ -443,6 +451,7 @@ public class ColumnImpl extends EObjectImpl implements Column
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public String toString()
   {
     if (eIsProxy()) return super.toString();

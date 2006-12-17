@@ -52,7 +52,7 @@ public class PackageMappingImpl extends EObjectImpl implements PackageMapping
    * @generated
    * @ordered
    */
-  protected EList classes = null;
+  protected EList<ClassMapping> classes = null;
 
   /**
    * The default value of the '{@link #getPackageName() <em>Package Name</em>}' attribute.
@@ -89,6 +89,7 @@ public class PackageMappingImpl extends EObjectImpl implements PackageMapping
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   protected EClass eStaticClass()
   {
     return MappingPackage.Literals.PACKAGE_MAPPING;
@@ -99,11 +100,11 @@ public class PackageMappingImpl extends EObjectImpl implements PackageMapping
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList getClasses()
+  public EList<ClassMapping> getClasses()
   {
     if (classes == null)
     {
-      classes = new EObjectContainmentEList(ClassMapping.class, this,
+      classes = new EObjectContainmentEList<ClassMapping>(ClassMapping.class, this,
           MappingPackage.PACKAGE_MAPPING__CLASSES);
     }
     return classes;
@@ -156,13 +157,14 @@ public class PackageMappingImpl extends EObjectImpl implements PackageMapping
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID,
       NotificationChain msgs)
   {
     switch (featureID)
     {
       case MappingPackage.PACKAGE_MAPPING__CLASSES:
-        return ((InternalEList) getClasses()).basicRemove(otherEnd, msgs);
+        return ((InternalEList<?>) getClasses()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -172,6 +174,7 @@ public class PackageMappingImpl extends EObjectImpl implements PackageMapping
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
@@ -189,13 +192,15 @@ public class PackageMappingImpl extends EObjectImpl implements PackageMapping
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
+  @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
       case MappingPackage.PACKAGE_MAPPING__CLASSES:
         getClasses().clear();
-        getClasses().addAll((Collection) newValue);
+        getClasses().addAll((Collection<? extends ClassMapping>) newValue);
         return;
       case MappingPackage.PACKAGE_MAPPING__PACKAGE_NAME:
         setPackageName((String) newValue);
@@ -209,6 +214,7 @@ public class PackageMappingImpl extends EObjectImpl implements PackageMapping
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void eUnset(int featureID)
   {
     switch (featureID)
@@ -228,6 +234,7 @@ public class PackageMappingImpl extends EObjectImpl implements PackageMapping
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public boolean eIsSet(int featureID)
   {
     switch (featureID)
@@ -246,6 +253,7 @@ public class PackageMappingImpl extends EObjectImpl implements PackageMapping
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public String toString()
   {
     if (eIsProxy()) return super.toString();

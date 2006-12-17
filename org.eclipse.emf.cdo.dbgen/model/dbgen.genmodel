@@ -6,7 +6,7 @@
     redirection="" modelName="DBGen" modelPluginClass="org.eclipse.emf.cdo.dbgen.internal.Activator"
     editPluginClass="org.eclipse.emf.cdo.dbgen.provider.DBGenEditActivator" editorPluginClass="org.eclipse.emf.cdo.dbgen.presentation.DBGenEditorActivator"
     updateClasspath="false" featureMapWrapperClass="" codeFormatting="true" testsDirectory=""
-    testSuiteClass="" importerID="org.eclipse.emf.importer.ecore">
+    testSuiteClass="" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0">
   <foreignModel>dbgen.ecore</foreignModel>
   <genPackages prefix="DBGen" basePackage="org.eclipse.emf.cdo" disposableProviderFactory="true"
       ecorePackage="dbgen.ecore#/">

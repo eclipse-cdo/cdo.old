@@ -11,6 +11,7 @@
 package org.eclipse.emf.cdo.dbgen.util;
 
 
+import org.eclipse.emf.cdo.dbgen.*;
 import org.eclipse.emf.cdo.dbgen.Column;
 import org.eclipse.emf.cdo.dbgen.DBGenPackage;
 import org.eclipse.emf.cdo.dbgen.Database;
@@ -62,6 +63,7 @@ public class DBGenAdapterFactory extends AdapterFactoryImpl
    * @return whether this factory is applicable for the type of the object.
    * @generated
    */
+  @Override
   public boolean isFactoryForType(Object object)
   {
     if (object == modelPackage)
@@ -81,29 +83,34 @@ public class DBGenAdapterFactory extends AdapterFactoryImpl
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DBGenSwitch modelSwitch = new DBGenSwitch()
+  protected DBGenSwitch<Adapter> modelSwitch = new DBGenSwitch<Adapter>()
   {
-    public Object caseDatabase(Database object)
+    @Override
+    public Adapter caseDatabase(Database object)
     {
       return createDatabaseAdapter();
     }
 
-    public Object caseTable(Table object)
+    @Override
+    public Adapter caseTable(Table object)
     {
       return createTableAdapter();
     }
 
-    public Object caseColumn(Column object)
+    @Override
+    public Adapter caseColumn(Column object)
     {
       return createColumnAdapter();
     }
 
-    public Object caseIndex(Index object)
+    @Override
+    public Adapter caseIndex(Index object)
     {
       return createIndexAdapter();
     }
 
-    public Object defaultCase(EObject object)
+    @Override
+    public Adapter defaultCase(EObject object)
     {
       return createEObjectAdapter();
     }
@@ -117,9 +124,10 @@ public class DBGenAdapterFactory extends AdapterFactoryImpl
    * @return the adapter for the <code>target</code>.
    * @generated
    */
+  @Override
   public Adapter createAdapter(Notifier target)
   {
-    return (Adapter) modelSwitch.doSwitch((EObject) target);
+    return modelSwitch.doSwitch((EObject) target);
   }
 
   /**
