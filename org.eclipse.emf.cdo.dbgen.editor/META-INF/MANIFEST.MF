@@ -6,6 +6,7 @@ Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.eclipse.emf.cdo.dbgen.presentation.DBGenEditorActivator$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.emf.cdo.dbgen.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,

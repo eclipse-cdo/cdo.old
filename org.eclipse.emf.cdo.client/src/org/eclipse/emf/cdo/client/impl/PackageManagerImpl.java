@@ -249,8 +249,7 @@ public class PackageManagerImpl extends AbstractLifecycle implements PackageMana
   protected void saveMappingModel(String fileName, PackageMapping model) throws IOException
   {
     ResourceSet resourceSet = new ResourceSetImpl();
-    Map<String, Resource.Factory> map = resourceSet.getResourceFactoryRegistry()
-        .getExtensionToFactoryMap();
+    Map<String, Object> map = resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap();
     map.put("xml", new XMLResourceFactoryImpl());
 
     URI uri = URI.createFileURI(fileName);

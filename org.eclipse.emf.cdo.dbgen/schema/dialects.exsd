@@ -42,7 +42,7 @@
    <element name="dialect">
       <complexType>
          <sequence>
-            <element ref="typeMapping" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="typeMapping" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="name" type="string" use="required">
             <annotation>

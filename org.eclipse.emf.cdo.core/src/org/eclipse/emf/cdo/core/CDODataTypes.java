@@ -11,6 +11,9 @@
 package org.eclipse.emf.cdo.core;
 
 
+import static org.eclipse.emf.cdo.core.CDODataTypes.MAX_PRIMITIVE;
+
+
 /**
  * Defines symbolic constants for the data types to be 
  * used in payload traffic of the CDO protocol.<p>
