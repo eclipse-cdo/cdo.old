@@ -223,28 +223,28 @@ public class CDOPackageImpl extends EPackageImpl implements CDOPackage
     initEClass(cdoPersistableEClass, CDOPersistable.class, "CDOPersistable", IS_ABSTRACT,
         IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    addEOperation(cdoPersistableEClass, ecorePackage.getELong(), "cdoGetOID", 0, 1);
+    EOperation op = addEOperation(cdoPersistableEClass, ecorePackage.getELong(), "cdoGetOID", 0, 1);
 
-    EOperation op = addEOperation(cdoPersistableEClass, null, "cdoSetOID");
+    op = addEOperation(cdoPersistableEClass, null, "cdoSetOID");
     addEParameter(op, ecorePackage.getELong(), "oid", 0, 1);
 
-    addEOperation(cdoPersistableEClass, ecorePackage.getEInt(), "cdoGetOCA", 0, 1);
+    op = addEOperation(cdoPersistableEClass, ecorePackage.getEInt(), "cdoGetOCA", 0, 1);
 
     op = addEOperation(cdoPersistableEClass, null, "cdoSetOCA");
     addEParameter(op, ecorePackage.getEInt(), "oca", 0, 1);
 
     addEOperation(cdoPersistableEClass, null, "cdoLoad");
 
-    addEOperation(cdoPersistableEClass, ecorePackage.getEBoolean(), "cdoIsNew", 0, 1);
+    op = addEOperation(cdoPersistableEClass, ecorePackage.getEBoolean(), "cdoIsNew", 0, 1);
 
-    addEOperation(cdoPersistableEClass, ecorePackage.getEBoolean(), "cdoIsLoaded", 0, 1);
+    op = addEOperation(cdoPersistableEClass, ecorePackage.getEBoolean(), "cdoIsLoaded", 0, 1);
 
-    addEOperation(cdoPersistableEClass, this.getCDOResource(), "cdoGetResource", 0, 1);
+    op = addEOperation(cdoPersistableEClass, this.getCDOResource(), "cdoGetResource", 0, 1);
 
     op = addEOperation(cdoPersistableEClass, null, "cdoSetResource");
     addEParameter(op, this.getCDOResource(), "resource", 0, 1);
 
-    addEOperation(cdoPersistableEClass, ecorePackage.getELong(), "cdoSetNew", 0, 1);
+    op = addEOperation(cdoPersistableEClass, ecorePackage.getELong(), "cdoSetNew", 0, 1);
 
     initEClass(cdoPersistentEClass, CDOPersistent.class, "CDOPersistent", IS_ABSTRACT,
         !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
