@@ -235,6 +235,11 @@ public class ClientCDOProtocolImpl extends AbstractCDOProtocol
       return protocol;
     }
 
+    public String getProtocolID()
+    {
+      return "cdo";
+    }
+
     public Set<Type> getConnectorTypes()
     {
       return ProtocolFactory.FOR_CLIENTS;

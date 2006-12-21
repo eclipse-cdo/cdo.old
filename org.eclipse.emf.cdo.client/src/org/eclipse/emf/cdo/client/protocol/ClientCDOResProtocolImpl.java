@@ -101,6 +101,11 @@ public class ClientCDOResProtocolImpl extends AbstractCDOResProtocol
       return new ClientCDOResProtocolImpl(channel);
     }
 
+    public String getProtocolID()
+    {
+      return "cdores";
+    }
+
     public Set<Type> getConnectorTypes()
     {
       return ProtocolFactory.FOR_CLIENTS;
