@@ -2,6 +2,10 @@ package org.eclipse.emf.cdo.internal.protocol;
 
 import org.eclipse.emf.cdo.protocol.CDOID;
 
+import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
+
+import java.io.IOException;
+
 /**
  * @author Eike Stepper
  */
@@ -59,6 +63,12 @@ public final class CDOIDImpl implements CDOID
 
     rid = Integer.parseInt(s1);
     oid = Integer.parseInt(s2);
+  }
+
+  public CDOIDImpl(ExtendedDataInputStream in) throws IOException
+  {
+    rid = in.readInt();
+    oid = in.readInt();
   }
 
   public int getRID()

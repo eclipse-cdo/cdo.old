@@ -5,5 +5,6 @@ Bundle-SymbolicName: org.eclipse.emf.cdo.protocol
 Bundle-Version: 0.8.0.qualifier
 Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.net4j;bundle-version="0.8.0";visibility:=reexport
 Export-Package: org.eclipse.emf.cdo.internal.protocol;version="0.8.0",
  org.eclipse.emf.cdo.protocol;version="0.8.0"
