@@ -16,4 +16,8 @@ package org.eclipse.emf.cdo.protocol;
 public interface CDOConstants
 {
   public static final String PROTOCOL_NAME = "cdo";
+
+  public static final short LOAD_RESOURCE_ID_SIGNAL = 1;
+
+  public static final short LOAD_RESOURCE_PATH_SIGNAL = 2;
 }
