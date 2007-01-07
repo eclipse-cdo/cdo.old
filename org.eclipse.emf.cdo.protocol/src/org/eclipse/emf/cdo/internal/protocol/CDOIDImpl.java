@@ -7,11 +7,7 @@ import org.eclipse.emf.cdo.protocol.CDOID;
  */
 public final class CDOIDImpl implements CDOID
 {
-  /**
-   * TODO Stores the {@link char} value of the {@link #SEPARATOR} property.
-   * <p>
-   */
-  public static final char SEPARATOR = ':';
+  private static final char SEPARATOR = ':';
 
   private static final int INITIAL_ID = 0;
 
