@@ -3,6 +3,7 @@ package org.eclipse.emf.cdo.internal.protocol;
 import org.eclipse.emf.cdo.protocol.CDOID;
 
 import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
+import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
 
 import java.io.IOException;
 
@@ -89,6 +90,12 @@ public final class CDOIDImpl implements CDOID
   public void setOID(int oid)
   {
     this.oid = oid;
+  }
+
+  public void write(ExtendedDataOutputStream out) throws IOException
+  {
+    out.writeInt(rid);
+    out.writeInt(oid);
   }
 
   @Override

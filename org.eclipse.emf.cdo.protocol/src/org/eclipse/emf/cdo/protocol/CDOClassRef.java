@@ -10,28 +10,38 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol;
 
+import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
+
+import java.io.IOException;
+
 /**
  * @author Eike Stepper
  */
-public final class CDOProtocolData
+public final class CDOClassRef
 {
-  private String repositoryName;
+  private String modelURI;
 
-  private String userName;
+  private int classifierID;
 
-  public CDOProtocolData(String repositoryName, String userName)
+  public CDOClassRef(String modelURI, int classifierID)
   {
-    this.repositoryName = repositoryName;
-    this.userName = userName;
+    this.modelURI = modelURI;
+    this.classifierID = classifierID;
   }
 
-  public String getRepositoryName()
+  public CDOClassRef(ExtendedDataInputStream in) throws IOException
   {
-    return repositoryName;
+    modelURI = in.readString();
+    classifierID = in.readInt();
   }
 
-  public String getUserName()
+  public String getModelURI()
   {
-    return userName;
+    return modelURI;
+  }
+
+  public int getClassifierID()
+  {
+    return classifierID;
   }
 }
