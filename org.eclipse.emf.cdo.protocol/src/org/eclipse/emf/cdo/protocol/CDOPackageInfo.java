@@ -19,19 +19,19 @@ import java.io.IOException;
 /**
  * @author Eike Stepper
  */
-public final class CDOModelInfo
+public final class CDOPackageInfo
 {
   private int modelID;
 
   private String uri;
 
-  public CDOModelInfo(int modelID, String uri)
+  public CDOPackageInfo(int modelID, String uri)
   {
     this.uri = uri;
     this.modelID = modelID;
   }
 
-  public CDOModelInfo(ExtendedDataInputStream in) throws IOException
+  public CDOPackageInfo(ExtendedDataInputStream in) throws IOException
   {
     modelID = in.readInt();
     uri = in.readString();
@@ -56,9 +56,9 @@ public final class CDOModelInfo
   @Override
   public boolean equals(Object obj)
   {
-    if (obj instanceof CDOModelInfo)
+    if (obj instanceof CDOPackageInfo)
     {
-      CDOModelInfo that = (CDOModelInfo)obj;
+      CDOPackageInfo that = (CDOPackageInfo)obj;
       return this.modelID == that.modelID && ObjectUtil.equals(this.uri, that.uri);
     }
 

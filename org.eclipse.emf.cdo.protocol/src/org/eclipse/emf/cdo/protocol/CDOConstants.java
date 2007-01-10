@@ -17,6 +17,20 @@ public interface CDOConstants
 {
   public static final String PROTOCOL_NAME = "cdo";
 
+  public static final int CDORESOURCE_PACKAGE_ID = 0;
+
+  public static final String CDORESOURCE_PACKAGE_NAME = "cdoresource";
+
+  public static final String CDORESOURCE_PACKAGE_URI = "http://www.eclipse.org/emf/CDO/resource/1.0.0";
+
+  public static final String CDORESOURCE_CLASS_NAME = "CDOResource";
+
+  public static final int CDORESOURCE_CLASS_ID = 0;
+
+  public static final String CDORESOURCE_CONTENTS_NAME = "contents";
+
+  public static final int CDORESOURCE_CONTENTS_ID = 0;
+
   public static final short OPEN_SESSION_SIGNAL = 1;
 
   public static final short ADD_MODELS_SIGNAL = 2;
