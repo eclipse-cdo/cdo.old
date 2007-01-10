@@ -13,17 +13,13 @@ package org.eclipse.emf.cdo.protocol;
 /**
  * @author Eike Stepper
  */
-public interface CDOPackage
+public interface CDOPackage extends CDOModelElement
 {
-  public abstract int getID();
+  public String getURI();
 
-  public abstract String getName();
+  public CDOPackageInfo getPackageInfo();
 
-  public abstract String getURI();
+  public CDOModelResolver getClassResolver();
 
-  public abstract CDOPackageInfo getPackageInfo();
-
-  public abstract CDOClassResolver getClassResolver();
-
-  public abstract CDOClass[] getCDOClasses();
+  public CDOClass[] getCDOClasses();
 }

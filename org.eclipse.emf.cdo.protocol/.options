@@ -1,2 +1,3 @@
 org.eclipse.emf.cdo.protocol/debug = true
 org.eclipse.emf.cdo.protocol/debug.protocol = true
+org.eclipse.emf.cdo.protocol/debug.model = true

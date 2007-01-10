@@ -13,9 +13,13 @@ package org.eclipse.emf.cdo.protocol;
 /**
  * @author Eike Stepper
  */
-public interface CDOClassResolver
+public interface CDOModelElement
 {
-  public CDOClass getCDOClass(CDOClassID classID);
+  public static final int UNINITIALIZED_ID = -1;
 
-  public CDOClass getCDOClass(CDOClassRef classRef);
+  public int getID();
+
+  public String getName();
+
+  public Object getPeerData();
 }

@@ -11,28 +11,19 @@
 package org.eclipse.emf.cdo.protocol;
 
 /**
- * TODO The {@link CDOClass} class.
- * <p>
- * 
  * @author Eike Stepper
  */
-public interface CDOClass
+public interface CDOClass extends CDOModelElement
 {
+  public abstract boolean isAbstract();
 
   public abstract CDOPackage getCDOPackage();
 
-  public abstract int getClassifierID();
-
-  public abstract String getName();
-
-  public abstract boolean isAbstract();
+  public abstract CDOModelResolver getClassResolver();
 
   public abstract CDOFeature[] getCDOFeatures();
 
   public abstract CDOClassID getClassID();
 
   public abstract CDOClassRef getClassRef();
-
-  public abstract CDOClassResolver getClassResolver();
-
 }

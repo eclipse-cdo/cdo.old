@@ -13,57 +13,56 @@ package org.eclipse.emf.cdo.internal.protocol;
 import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
 import org.eclipse.emf.cdo.protocol.CDOClass;
 import org.eclipse.emf.cdo.protocol.CDOClassRef;
-import org.eclipse.emf.cdo.protocol.CDOClassResolver;
 import org.eclipse.emf.cdo.protocol.CDOFeature;
+import org.eclipse.emf.cdo.protocol.CDOModelResolver;
 import org.eclipse.emf.cdo.protocol.CDOPackage;
 import org.eclipse.emf.cdo.protocol.CDOTypes;
 
 import org.eclipse.net4j.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
+import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 
 /**
  * @author Eike Stepper
  */
-public final class CDOFeatureImpl implements CDOFeature
+public final class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
 {
+  private static final ContextTracer MODEL = new ContextTracer(CDOProtocol.DEBUG_MODEL,
+      CDOFeatureImpl.class);
+
   private static final ContextTracer PROTOCOL = new ContextTracer(CDOProtocol.DEBUG_PROTOCOL,
       CDOFeatureImpl.class);
 
-  private CDOClass cdoClass;
-
-  private int featureID;
-
-  private String name;
+  private CDOClassImpl cdoClass;
 
   private int type;
 
   private boolean many;
 
-  private Object referenceType;
+  private Object referenceClass;
 
-  public CDOFeatureImpl(CDOClass c, int featureID, String name, int type, boolean many,
+  public CDOFeatureImpl(CDOClassImpl c, int id, String name, int type, boolean many,
       CDOClassRef classRef)
   {
+    super(id, name);
     cdoClass = c;
-    this.featureID = featureID;
-    this.name = name;
     this.type = type;
     this.many = many;
-    referenceType = classRef;
+    referenceClass = classRef;
   }
 
-  public CDOFeatureImpl(CDOClass c, ExtendedDataInputStream in) throws IOException
+  public CDOFeatureImpl(CDOClassImpl c, ExtendedDataInputStream in) throws IOException
   {
+    super(in);
     cdoClass = c;
-    featureID = in.readInt();
-    name = in.readString();
     type = in.readInt();
     many = in.readBoolean();
     if (PROTOCOL.isEnabled())
     {
-      PROTOCOL.format("Read feature: featureID={0}, name={1}, type={2}, many={3}", featureID, name,
+      PROTOCOL.format("Read feature: ID={0}, name={1}, type={2}, many={3}", getID(), getName(),
           type, many);
     }
 
@@ -73,24 +72,38 @@ public final class CDOFeatureImpl implements CDOFeature
       classRef = new CDOClassRef(in);
       if (PROTOCOL.isEnabled())
       {
-        PROTOCOL.format("Read reference type: classRef={0}, className={1}", classRef, null);
+        PROTOCOL.format("Read reference type: classRef={0}", classRef);
       }
     }
   }
 
-  public CDOClass getCDOClass()
+  public void write(ExtendedDataOutputStream out) throws IOException
+  {
+    if (PROTOCOL.isEnabled())
+    {
+      PROTOCOL.format("Writing feature: ID={0}, name={1}, type={2}, many={3}", getID(), getName(),
+          type, many);
+    }
+
+    super.write(out);
+    out.writeInt(type);
+    out.writeBoolean(many);
+
+    if (type == CDOTypes.OBJECT)
+    {
+      CDOClassRef classRef = getReferenceClassRef();
+      if (PROTOCOL.isEnabled())
+      {
+        PROTOCOL.format("Writing reference type: classRef={0}", classRef);
+      }
+
+      classRef.write(out);
+    }
+  }
+
+  public CDOClassImpl getCDOClass()
   {
     return cdoClass;
-  }
-
-  public int getFeatureID()
-  {
-    return featureID;
-  }
-
-  public String getName()
-  {
-    return name;
   }
 
   public int getType()
@@ -108,11 +121,11 @@ public final class CDOFeatureImpl implements CDOFeature
     return type == CDOTypes.OBJECT;
   }
 
-  public CDOClass getReferenceType()
+  public CDOClassImpl getReferenceClass()
   {
-    if (referenceType instanceof CDOClassImpl)
+    if (referenceClass instanceof CDOClassImpl)
     {
-      return (CDOClass)referenceType;
+      return (CDOClassImpl)referenceClass;
     }
 
     throw new IllegalStateException("Feature definition not initialized: " + this);
@@ -120,30 +133,34 @@ public final class CDOFeatureImpl implements CDOFeature
 
   public CDOClassRef getReferenceClassRef()
   {
-    if (referenceType instanceof CDOClassImpl)
+    if (referenceClass instanceof CDOClassImpl)
     {
-      return ((CDOClass)referenceType).getClassRef();
+      return ((CDOClass)referenceClass).getClassRef();
     }
 
-    return (CDOClassRef)referenceType;
+    return (CDOClassRef)referenceClass;
   }
 
   public void initialize()
   {
-    if (isReference())
+    if (referenceClass instanceof CDOClassRef)
     {
-      CDOClassResolver classResolver = getClassResolver();
-      CDOClassRef classRef = (CDOClassRef)referenceType;
-      referenceType = classResolver.getCDOClass(classRef);
-      if (PROTOCOL.isEnabled())
+      CDOClassRef classRef = (CDOClassRef)referenceClass;
+      referenceClass = getClassResolver().getCDOClass(classRef);
+      if (MODEL.isEnabled())
       {
-        PROTOCOL.format("Resolving reference type: {0} --> {1}", classRef, getReferenceType()
+        MODEL.format("Resolving reference type: {0} --> {1}", classRef, getReferenceClass()
             .getClassID());
+      }
+
+      if (referenceClass == null)
+      {
+        throw new IllegalStateException("Unable to resolve reference type: " + classRef);
       }
     }
   }
 
-  public CDOClassResolver getClassResolver()
+  public CDOModelResolver getClassResolver()
   {
     return getCDOPackage().getClassResolver();
   }
@@ -151,5 +168,12 @@ public final class CDOFeatureImpl implements CDOFeature
   public CDOPackage getCDOPackage()
   {
     return cdoClass.getCDOPackage();
+  }
+
+  @Override
+  public String toString()
+  {
+    return MessageFormat.format("CDOFeature(id={0}, name={1}, type={2}, many={3}, classRef={4})",
+        getID(), getName(), type, many, referenceClass);
   }
 }

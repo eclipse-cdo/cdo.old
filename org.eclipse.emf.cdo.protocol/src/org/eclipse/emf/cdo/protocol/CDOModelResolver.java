@@ -13,21 +13,19 @@ package org.eclipse.emf.cdo.protocol;
 /**
  * @author Eike Stepper
  */
-public interface CDOFeature extends CDOModelElement
+public interface CDOModelResolver
 {
-  public abstract int getType();
+  public String getPackageURI(int modelID);
 
-  public abstract boolean isMany();
+  public int getPackageID(String uri);
 
-  public abstract boolean isReference();
+  public CDOPackage getCDOPackage(int modelID);
 
-  public abstract CDOClass getReferenceClass();
+  public CDOPackage getCDOPackage(String uri);
 
-  public abstract CDOClass getCDOClass();
+  public CDOPackage[] getCDOPackages();
 
-  public abstract CDOPackage getCDOPackage();
+  public CDOClass getCDOClass(CDOClassID classID);
 
-  public abstract CDOModelResolver getClassResolver();
-
-  public abstract CDOClassRef getReferenceClassRef();
+  public CDOClass getCDOClass(CDOClassRef classRef);
 }

@@ -12,7 +12,7 @@ package org.eclipse.emf.cdo.internal.protocol;
 
 import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
 import org.eclipse.emf.cdo.protocol.CDOClass;
-import org.eclipse.emf.cdo.protocol.CDOClassResolver;
+import org.eclipse.emf.cdo.protocol.CDOModelResolver;
 import org.eclipse.emf.cdo.protocol.CDOPackage;
 import org.eclipse.emf.cdo.protocol.CDOPackageInfo;
 
@@ -21,24 +21,22 @@ import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
 import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Eike Stepper
  */
-public final class CDOPackageImpl implements CDOPackage
+public final class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
 {
-  public static final int UNINITIALIZED_ID = -1;
+  private static final ContextTracer MODEL = new ContextTracer(CDOProtocol.DEBUG_MODEL,
+      CDOPackageImpl.class);
 
   private static final ContextTracer PROTOCOL = new ContextTracer(CDOProtocol.DEBUG_PROTOCOL,
       CDOPackageImpl.class);
 
-  private CDOClassResolver classResolver;
-
-  private int id;
-
-  private String name;
+  private CDOModelResolver classResolver;
 
   private String uri;
 
@@ -46,24 +44,22 @@ public final class CDOPackageImpl implements CDOPackage
 
   private List<CDOClassImpl> index = new ArrayList(0);
 
-  public CDOPackageImpl(CDOClassResolver classResolver, int id, String name, String uri)
+  public CDOPackageImpl(CDOModelResolver classResolver, int id, String name, String uri)
   {
+    super(id, name);
     this.classResolver = classResolver;
-    this.id = id;
-    this.name = name;
     this.uri = uri;
   }
 
-  public CDOPackageImpl(CDOClassResolver classResolver, ExtendedDataInputStream in)
+  public CDOPackageImpl(CDOModelResolver classResolver, ExtendedDataInputStream in)
       throws IOException
   {
+    super(in);
     this.classResolver = classResolver;
-    id = in.readInt();
-    name = in.readString();
     uri = in.readString();
     if (PROTOCOL.isEnabled())
     {
-      PROTOCOL.format("Read package: id={0}, name={1}, URI={2}", id, name, uri);
+      PROTOCOL.format("Read package: ID={0}, name={1}, URI={2}", getID(), getName(), uri);
     }
 
     int size = in.readInt();
@@ -81,31 +77,30 @@ public final class CDOPackageImpl implements CDOPackage
 
   public void write(ExtendedDataOutputStream out) throws IOException
   {
-  }
-
-  public CDOClassResolver getClassResolver()
-  {
-    return classResolver;
-  }
-
-  public int getID()
-  {
-    if (id == UNINITIALIZED_ID)
+    if (PROTOCOL.isEnabled())
     {
-      throw new IllegalStateException("id == UNINITIALIZED_ID");
+      PROTOCOL.format("Writing package: ID={0}, name={0}, URI={1}", getID(), getName(), uri);
     }
 
-    return id;
+    super.write(out);
+    out.writeString(uri);
+
+    int size = cdoClasses.size();
+    if (PROTOCOL.isEnabled())
+    {
+      PROTOCOL.format("Writing {0} classes", size);
+    }
+
+    out.writeInt(size);
+    for (CDOClassImpl cdoClass : cdoClasses)
+    {
+      cdoClass.write(out);
+    }
   }
 
-  public void setID(int id)
+  public CDOModelResolver getClassResolver()
   {
-    this.id = id;
-  }
-
-  public String getName()
-  {
-    return name;
+    return classResolver;
   }
 
   public String getURI()
@@ -115,7 +110,7 @@ public final class CDOPackageImpl implements CDOPackage
 
   public CDOPackageInfo getPackageInfo()
   {
-    return new CDOPackageInfo(id, uri);
+    return new CDOPackageInfo(getID(), uri);
   }
 
   public CDOClass[] getCDOClasses()
@@ -125,19 +120,18 @@ public final class CDOPackageImpl implements CDOPackage
 
   public void addCDOClass(CDOClassImpl c)
   {
-    int classifierID = c.getClassifierID();
-    if (PROTOCOL.isEnabled())
+    int id = c.getID();
+    if (MODEL.isEnabled())
     {
-      PROTOCOL.format("Adding class: classifierID={0}, name={1}, abstract={2}", classifierID, c
-          .getName(), c.isAbstract());
+      MODEL.format("Adding class: ID={0}, name={1}, abstract={2}", id, c.getName(), c.isAbstract());
     }
 
-    while (classifierID >= index.size())
+    while (id >= index.size())
     {
       index.add(null);
     }
 
-    index.set(classifierID, c);
+    index.set(id, c);
     cdoClasses.add(c);
   }
 
@@ -152,5 +146,11 @@ public final class CDOPackageImpl implements CDOPackage
   public CDOClass getCDOClass(int classifierID)
   {
     return index.get(classifierID);
+  }
+
+  @Override
+  public String toString()
+  {
+    return MessageFormat.format("CDOPackage(id={0}, name={1}, uri={2})", getID(), getName(), uri);
   }
 }
