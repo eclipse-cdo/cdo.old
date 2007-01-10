@@ -10,7 +10,6 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol;
 
-import org.eclipse.net4j.util.ObjectUtil;
 import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
 import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
 
@@ -19,28 +18,24 @@ import java.io.IOException;
 /**
  * @author Eike Stepper
  */
-public final class CDOModelInfo
+public final class CDOClassID
 {
+  private static final char SEPARATOR = '#';
+
   private int modelID;
 
-  private String uri;
+  private int classifierID;
 
-  public CDOModelInfo(int modelID, String uri)
+  public CDOClassID(int modelID, int classifierID)
   {
-    this.uri = uri;
     this.modelID = modelID;
+    this.classifierID = classifierID;
   }
 
-  public CDOModelInfo(ExtendedDataInputStream in) throws IOException
+  public CDOClassID(ExtendedDataInputStream in) throws IOException
   {
     modelID = in.readInt();
-    uri = in.readString();
-  }
-
-  public void write(ExtendedDataOutputStream out) throws IOException
-  {
-    out.writeInt(modelID);
-    out.writeString(uri);
+    classifierID = in.readInt();
   }
 
   public int getModelID()
@@ -48,18 +43,24 @@ public final class CDOModelInfo
     return modelID;
   }
 
-  public String getURI()
+  public int getClassifierID()
   {
-    return uri;
+    return classifierID;
+  }
+
+  public void write(ExtendedDataOutputStream out) throws IOException
+  {
+    out.writeInt(modelID);
+    out.writeInt(classifierID);
   }
 
   @Override
   public boolean equals(Object obj)
   {
-    if (obj instanceof CDOModelInfo)
+    if (obj instanceof CDOClassID)
     {
-      CDOModelInfo that = (CDOModelInfo)obj;
-      return this.modelID == that.modelID && ObjectUtil.equals(this.uri, that.uri);
+      CDOClassID that = (CDOClassID)obj;
+      return this.modelID == that.modelID && this.classifierID == that.classifierID;
     }
 
     return false;
@@ -68,12 +69,12 @@ public final class CDOModelInfo
   @Override
   public int hashCode()
   {
-    return modelID ^ uri.hashCode();
+    return modelID ^ classifierID;
   }
 
   @Override
   public String toString()
   {
-    return "" + modelID + " <--> " + uri;
+    return "" + modelID + SEPARATOR + classifierID;
   }
 }

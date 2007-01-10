@@ -10,7 +10,9 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol;
 
+import org.eclipse.net4j.util.ObjectUtil;
 import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
+import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
 
 import java.io.IOException;
 
@@ -35,6 +37,12 @@ public final class CDOClassRef
     classifierID = in.readInt();
   }
 
+  public void write(ExtendedDataOutputStream out) throws IOException
+  {
+    out.writeString(modelURI);
+    out.writeInt(classifierID);
+  }
+
   public String getModelURI()
   {
     return modelURI;
@@ -43,5 +51,30 @@ public final class CDOClassRef
   public int getClassifierID()
   {
     return classifierID;
+  }
+
+  @Override
+  public boolean equals(Object obj)
+  {
+    if (obj instanceof CDOClassRef)
+    {
+      CDOClassRef that = (CDOClassRef)obj;
+      return ObjectUtil.equals(this.modelURI, that.modelURI)
+          && this.classifierID == that.classifierID;
+    }
+
+    return false;
+  }
+
+  @Override
+  public int hashCode()
+  {
+    return modelURI.hashCode() ^ classifierID;
+  }
+
+  @Override
+  public String toString()
+  {
+    return modelURI + "#" + classifierID;
   }
 }
