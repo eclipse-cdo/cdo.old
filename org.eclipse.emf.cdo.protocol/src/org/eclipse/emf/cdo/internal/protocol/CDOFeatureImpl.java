@@ -101,6 +101,18 @@ public final class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeat
     }
   }
 
+  public void write(ExtendedDataOutputStream out, Object object)
+  {
+    // TODO Implement method CDOFeatureImpl.write()
+    throw new UnsupportedOperationException("Not yet implemented");
+  }
+
+  public Object read(ExtendedDataInputStream in)
+  {
+    // TODO Implement method CDOFeatureImpl.write()
+    throw new UnsupportedOperationException("Not yet implemented");
+  }
+
   public CDOClassImpl getCDOClass()
   {
     return cdoClass;

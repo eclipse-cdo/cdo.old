@@ -30,6 +30,8 @@ public final class CDOProtocol
 
   public static final OMTracer DEBUG_MODEL = DEBUG.tracer("model"); //$NON-NLS-1$
 
+  public static final OMTracer DEBUG_REVISION = DEBUG.tracer("revision"); //$NON-NLS-1$
+
   public static final OMLogger LOG = BUNDLE.logger();
 
   private CDOProtocol()

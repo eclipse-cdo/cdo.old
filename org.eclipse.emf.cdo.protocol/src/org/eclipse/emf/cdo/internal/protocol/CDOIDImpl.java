@@ -18,6 +18,8 @@ public final class CDOIDImpl implements CDOID
 
   private static int lastTransientID = INITIAL_ID;
 
+  private static boolean NULL_CREATED;
+
   /**
    * TODO Check if RID is necessary at all
    */
@@ -25,51 +27,10 @@ public final class CDOIDImpl implements CDOID
 
   private int oid;
 
-  public CDOIDImpl()
-  {
-    rid = 0;
-    oid = --lastTransientID;
-  }
-
-  public CDOIDImpl(int rid, int oid)
+  private CDOIDImpl(int rid, int oid)
   {
     this.rid = rid;
     this.oid = oid;
-  }
-
-  public CDOIDImpl(CDOID source)
-  {
-    this(source.getRID(), source.getOID());
-  }
-
-  public CDOIDImpl(String s)
-  {
-    int pos = s.indexOf(SEPARATOR);
-    if (pos == -1)
-    {
-      throw new IllegalArgumentException("No separator: " + s);
-    }
-
-    String s1 = s.substring(0, pos - 1);
-    if (s1.length() == 0)
-    {
-      throw new IllegalArgumentException("No RID: " + s);
-    }
-
-    String s2 = s.substring(pos + 1);
-    if (s2.length() == 0)
-    {
-      throw new IllegalArgumentException("No OID: " + s);
-    }
-
-    rid = Integer.parseInt(s1);
-    oid = Integer.parseInt(s2);
-  }
-
-  public CDOIDImpl(ExtendedDataInputStream in) throws IOException
-  {
-    rid = in.readInt();
-    oid = in.readInt();
   }
 
   public int getRID()
@@ -125,5 +86,104 @@ public final class CDOIDImpl implements CDOID
   public static void internalReset()
   {
     lastTransientID = INITIAL_ID;
+  }
+
+  public static CDOID createNew()
+  {
+    return new CDOIDImpl(0, --lastTransientID);
+  }
+
+  public static CDOID create(int rid, int oid)
+  {
+    if (rid == 0 && oid == 0)
+    {
+      return NULL;
+    }
+
+    return new CDOIDImpl(rid, oid);
+  }
+
+  public static CDOID copy(CDOID source)
+  {
+    return source;
+    // return create(((CDOIDImpl)source).rid, ((CDOIDImpl)source).oid);
+  }
+
+  public static CDOID read(ExtendedDataInputStream in) throws IOException
+  {
+    int rid = in.readInt();
+    int oid = in.readInt();
+    return create(rid, oid);
+  }
+
+  public static CDOID parse(String s) throws NumberFormatException
+  {
+    int pos = s.indexOf(SEPARATOR);
+    if (pos == -1)
+    {
+      throw new NumberFormatException("No separator: " + s);
+    }
+
+    String s1 = s.substring(0, pos - 1);
+    if (s1.length() == 0)
+    {
+      throw new NumberFormatException("No RID: " + s);
+    }
+
+    String s2 = s.substring(pos + 1);
+    if (s2.length() == 0)
+    {
+      throw new NumberFormatException("No OID: " + s);
+    }
+
+    int rid = Integer.parseInt(s1);
+    int oid = Integer.parseInt(s2);
+    return create(rid, oid);
+  }
+
+  public static CDOID internalCreateNull()
+  {
+    if (NULL_CREATED)
+    {
+      throw new ImplementationError("NULL is already created");
+    }
+
+    NULL_CREATED = true;
+    return new CDOID()
+    {
+      public int getOID()
+      {
+        return 0;
+      }
+
+      public int getRID()
+      {
+        return 0;
+      }
+
+      public void write(ExtendedDataOutputStream out) throws IOException
+      {
+        out.writeInt(0);
+        out.writeInt(0);
+      }
+
+      @Override
+      public boolean equals(Object obj)
+      {
+        return NULL == obj;
+      }
+
+      @Override
+      public int hashCode()
+      {
+        return 0;
+      }
+
+      @Override
+      public String toString()
+      {
+        return "NULL";
+      }
+    };
   }
 }
