@@ -17,9 +17,11 @@ public interface CDOPackage extends CDOModelElement
 {
   public String getURI();
 
+  public int getClassCount();
+
+  public CDOClass[] getCDOClasses();
+
   public CDOPackageInfo getPackageInfo();
 
   public CDOModelResolver getClassResolver();
-
-  public CDOClass[] getCDOClasses();
 }

@@ -14,7 +14,6 @@ import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
 import org.eclipse.emf.cdo.protocol.CDOClass;
 import org.eclipse.emf.cdo.protocol.CDOClassID;
 import org.eclipse.emf.cdo.protocol.CDOClassRef;
-import org.eclipse.emf.cdo.protocol.CDOFeature;
 import org.eclipse.emf.cdo.protocol.CDOModelResolver;
 import org.eclipse.emf.cdo.protocol.CDOPackage;
 
@@ -43,6 +42,8 @@ public final class CDOClassImpl extends CDOModelElementImpl implements CDOClass
   private boolean isAbstract;
 
   private List<CDOFeatureImpl> cdoFeatures = new ArrayList(0);
+
+  private transient List<Integer> index = new ArrayList(0);
 
   public CDOClassImpl(CDOPackage p, int id, String name, boolean isAbstract)
   {
@@ -108,9 +109,20 @@ public final class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     return isAbstract;
   }
 
-  public CDOFeature[] getCDOFeatures()
+  public int getFeatureCount()
+  {
+    return cdoFeatures.size();
+  }
+
+  public CDOFeatureImpl[] getCDOFeatures()
   {
     return cdoFeatures.toArray(new CDOFeatureImpl[cdoFeatures.size()]);
+  }
+
+  public CDOFeatureImpl getCDOFeature(int featureID)
+  {
+    int i = index.get(featureID);
+    return cdoFeatures.get(i);
   }
 
   public void addCDOFeature(CDOFeatureImpl f)
@@ -121,7 +133,18 @@ public final class CDOClassImpl extends CDOModelElementImpl implements CDOClass
           f.getName(), f.getType(), f.isMany(), f.getReferenceClassRef());
     }
 
+    setIndex(f.getID(), cdoFeatures.size());
     cdoFeatures.add(f);
+  }
+
+  private void setIndex(int id, int i)
+  {
+    while (index.size() <= id)
+    {
+      index.add(null);
+    }
+
+    index.set(id, i);
   }
 
   public CDOClassID getClassID()

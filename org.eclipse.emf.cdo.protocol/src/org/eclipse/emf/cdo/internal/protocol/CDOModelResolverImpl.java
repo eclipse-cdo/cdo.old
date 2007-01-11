@@ -11,7 +11,6 @@
 package org.eclipse.emf.cdo.internal.protocol;
 
 import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
-import org.eclipse.emf.cdo.protocol.CDOClass;
 import org.eclipse.emf.cdo.protocol.CDOClassID;
 import org.eclipse.emf.cdo.protocol.CDOClassRef;
 import org.eclipse.emf.cdo.protocol.CDOModelResolver;
@@ -75,14 +74,14 @@ public class CDOModelResolverImpl implements CDOModelResolver
     uriToPackage.put(p.getURI(), p);
   }
 
-  public CDOClass getCDOClass(CDOClassID classID)
+  public CDOClassImpl getCDOClass(CDOClassID classID)
   {
     CDOPackageImpl p = getCDOPackage(classID.getModelID());
     int classifierID = classID.getClassifierID();
     return p.getCDOClass(classifierID);
   }
 
-  public CDOClass getCDOClass(CDOClassRef classRef)
+  public CDOClassImpl getCDOClass(CDOClassRef classRef)
   {
     CDOPackageImpl p = getCDOPackage(classRef.getModelURI());
     int classifierID = classRef.getClassifierID();

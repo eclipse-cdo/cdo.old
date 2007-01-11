@@ -113,6 +113,11 @@ public final class CDOPackageImpl extends CDOModelElementImpl implements CDOPack
     return new CDOPackageInfo(getID(), uri);
   }
 
+  public int getClassCount()
+  {
+    return cdoClasses.size();
+  }
+
   public CDOClass[] getCDOClasses()
   {
     return cdoClasses.toArray(new CDOClassImpl[cdoClasses.size()]);
@@ -143,7 +148,7 @@ public final class CDOPackageImpl extends CDOModelElementImpl implements CDOPack
     }
   }
 
-  public CDOClass getCDOClass(int classifierID)
+  public CDOClassImpl getCDOClass(int classifierID)
   {
     return index.get(classifierID);
   }

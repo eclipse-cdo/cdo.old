@@ -15,15 +15,17 @@ package org.eclipse.emf.cdo.protocol;
  */
 public interface CDOClass extends CDOModelElement
 {
-  public abstract boolean isAbstract();
+  public boolean isAbstract();
 
-  public abstract CDOPackage getCDOPackage();
+  public CDOPackage getCDOPackage();
 
-  public abstract CDOModelResolver getClassResolver();
+  public CDOModelResolver getClassResolver();
 
-  public abstract CDOFeature[] getCDOFeatures();
+  public int getFeatureCount();
 
-  public abstract CDOClassID getClassID();
+  public CDOFeature[] getCDOFeatures();
 
-  public abstract CDOClassRef getClassRef();
+  public CDOClassID getClassID();
+
+  public CDOClassRef getClassRef();
 }
