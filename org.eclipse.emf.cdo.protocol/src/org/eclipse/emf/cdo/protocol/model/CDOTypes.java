@@ -8,7 +8,7 @@
  * Contributors:
  *  public static final int ike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.protocol;
+package org.eclipse.emf.cdo.protocol.model;
 
 /**
  * TODO Assert that typeIDs match classifierIDs in EcorePackage

@@ -8,9 +8,8 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.protocol;
+package org.eclipse.emf.cdo.protocol.util;
 
-import org.eclipse.net4j.util.ObjectUtil;
 import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
 import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
 
@@ -19,33 +18,29 @@ import java.io.IOException;
 /**
  * @author Eike Stepper
  */
-public final class CDOClassRef
+public final class CDOClassID
 {
-  private String modelURI;
+  private static final char SEPARATOR = '#';
+
+  private int modelID;
 
   private int classifierID;
 
-  public CDOClassRef(String modelURI, int classifierID)
+  public CDOClassID(int modelID, int classifierID)
   {
-    this.modelURI = modelURI;
+    this.modelID = modelID;
     this.classifierID = classifierID;
   }
 
-  public CDOClassRef(ExtendedDataInputStream in) throws IOException
+  public CDOClassID(ExtendedDataInputStream in) throws IOException
   {
-    modelURI = in.readString();
+    modelID = in.readInt();
     classifierID = in.readInt();
   }
 
-  public void write(ExtendedDataOutputStream out) throws IOException
+  public int getModelID()
   {
-    out.writeString(modelURI);
-    out.writeInt(classifierID);
-  }
-
-  public String getModelURI()
-  {
-    return modelURI;
+    return modelID;
   }
 
   public int getClassifierID()
@@ -53,14 +48,19 @@ public final class CDOClassRef
     return classifierID;
   }
 
+  public void write(ExtendedDataOutputStream out) throws IOException
+  {
+    out.writeInt(modelID);
+    out.writeInt(classifierID);
+  }
+
   @Override
   public boolean equals(Object obj)
   {
-    if (obj instanceof CDOClassRef)
+    if (obj instanceof CDOClassID)
     {
-      CDOClassRef that = (CDOClassRef)obj;
-      return ObjectUtil.equals(this.modelURI, that.modelURI)
-          && this.classifierID == that.classifierID;
+      CDOClassID that = (CDOClassID)obj;
+      return this.modelID == that.modelID && this.classifierID == that.classifierID;
     }
 
     return false;
@@ -69,12 +69,12 @@ public final class CDOClassRef
   @Override
   public int hashCode()
   {
-    return modelURI.hashCode() ^ classifierID;
+    return modelID ^ classifierID;
   }
 
   @Override
   public String toString()
   {
-    return modelURI + "#" + classifierID;
+    return "" + modelID + SEPARATOR + classifierID;
   }
 }

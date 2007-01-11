@@ -8,11 +8,12 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.internal.protocol;
+package org.eclipse.emf.cdo.internal.protocol.revision;
 
 import org.eclipse.emf.cdo.protocol.CDOID;
-import org.eclipse.emf.cdo.protocol.CDORevision;
-import org.eclipse.emf.cdo.protocol.CDORevisionResolver;
+import org.eclipse.emf.cdo.protocol.revision.CDORevision;
+import org.eclipse.emf.cdo.protocol.revision.CDORevisionResolver;
+import org.eclipse.emf.cdo.protocol.util.ImplementationError;
 
 import java.util.HashMap;
 import java.util.LinkedList;

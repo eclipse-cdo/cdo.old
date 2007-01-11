@@ -8,7 +8,7 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.protocol;
+package org.eclipse.emf.cdo.protocol.util;
 
 import org.eclipse.net4j.util.ObjectUtil;
 import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
@@ -19,47 +19,48 @@ import java.io.IOException;
 /**
  * @author Eike Stepper
  */
-public final class CDOPackageInfo
+public final class CDOClassRef
 {
-  private int modelID;
+  private String modelURI;
 
-  private String uri;
+  private int classifierID;
 
-  public CDOPackageInfo(int modelID, String uri)
+  public CDOClassRef(String modelURI, int classifierID)
   {
-    this.uri = uri;
-    this.modelID = modelID;
+    this.modelURI = modelURI;
+    this.classifierID = classifierID;
   }
 
-  public CDOPackageInfo(ExtendedDataInputStream in) throws IOException
+  public CDOClassRef(ExtendedDataInputStream in) throws IOException
   {
-    modelID = in.readInt();
-    uri = in.readString();
+    modelURI = in.readString();
+    classifierID = in.readInt();
   }
 
   public void write(ExtendedDataOutputStream out) throws IOException
   {
-    out.writeInt(modelID);
-    out.writeString(uri);
+    out.writeString(modelURI);
+    out.writeInt(classifierID);
   }
 
-  public int getModelID()
+  public String getModelURI()
   {
-    return modelID;
+    return modelURI;
   }
 
-  public String getURI()
+  public int getClassifierID()
   {
-    return uri;
+    return classifierID;
   }
 
   @Override
   public boolean equals(Object obj)
   {
-    if (obj instanceof CDOPackageInfo)
+    if (obj instanceof CDOClassRef)
     {
-      CDOPackageInfo that = (CDOPackageInfo)obj;
-      return this.modelID == that.modelID && ObjectUtil.equals(this.uri, that.uri);
+      CDOClassRef that = (CDOClassRef)obj;
+      return ObjectUtil.equals(this.modelURI, that.modelURI)
+          && this.classifierID == that.classifierID;
     }
 
     return false;
@@ -68,12 +69,12 @@ public final class CDOPackageInfo
   @Override
   public int hashCode()
   {
-    return modelID ^ uri.hashCode();
+    return modelURI.hashCode() ^ classifierID;
   }
 
   @Override
   public String toString()
   {
-    return "" + modelID + " <--> " + uri;
+    return modelURI + "#" + classifierID;
   }
 }

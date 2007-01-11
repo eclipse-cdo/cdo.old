@@ -8,24 +8,31 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.protocol;
+package org.eclipse.emf.cdo.protocol.revision;
+
+import org.eclipse.emf.cdo.protocol.CDOID;
+import org.eclipse.emf.cdo.protocol.model.CDOClass;
 
 /**
  * @author Eike Stepper
  */
-public interface CDOModelResolver
+public interface CDORevision
 {
-  public String getPackageURI(int modelID);
+  public static final long UNSPECIFIED_DATE = 0;
 
-  public int getPackageID(String uri);
+  public CDOClass getCDOClass();
 
-  public CDOPackage getCDOPackage(int modelID);
+  public CDOID getID();
 
-  public CDOPackage getCDOPackage(String uri);
+  public int getVersion();
 
-  public CDOPackage[] getCDOPackages();
+  public long getCreated();
 
-  public CDOClass getCDOClass(CDOClassID classID);
+  public long getRevised();
 
-  public CDOClass getCDOClass(CDOClassRef classRef);
+  public boolean isActual();
+
+  public boolean isValid(long timeStamp);
+
+  public CDORevisionData getData();
 }

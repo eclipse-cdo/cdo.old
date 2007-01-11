@@ -8,26 +8,31 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.protocol;
+package org.eclipse.emf.cdo.protocol.util;
 
 /**
  * @author Eike Stepper
  */
-public interface CDOFeature extends CDOModelElement
+public class TransportException extends RuntimeException
 {
-  public abstract int getType();
+  private static final long serialVersionUID = 1L;
 
-  public abstract boolean isMany();
+  public TransportException()
+  {
+  }
 
-  public abstract boolean isReference();
+  public TransportException(String message)
+  {
+    super(message);
+  }
 
-  public abstract CDOClass getReferenceClass();
+  public TransportException(String message, Throwable cause)
+  {
+    super(message, cause);
+  }
 
-  public abstract CDOClass getCDOClass();
-
-  public abstract CDOPackage getCDOPackage();
-
-  public abstract CDOModelResolver getClassResolver();
-
-  public abstract CDOClassRef getReferenceClassRef();
+  public TransportException(Throwable cause)
+  {
+    super(cause);
+  }
 }

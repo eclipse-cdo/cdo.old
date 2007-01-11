@@ -8,14 +8,18 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.internal.protocol;
+package org.eclipse.emf.cdo.internal.protocol.revision;
 
+import org.eclipse.emf.cdo.internal.protocol.CDOIDImpl;
 import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
-import org.eclipse.emf.cdo.protocol.CDOClassID;
-import org.eclipse.emf.cdo.protocol.CDOFeature;
+import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
+import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
+import org.eclipse.emf.cdo.internal.protocol.model.CDOModelResolverImpl;
 import org.eclipse.emf.cdo.protocol.CDOID;
-import org.eclipse.emf.cdo.protocol.CDORevision;
-import org.eclipse.emf.cdo.protocol.CDORevisionData;
+import org.eclipse.emf.cdo.protocol.model.CDOFeature;
+import org.eclipse.emf.cdo.protocol.revision.CDORevision;
+import org.eclipse.emf.cdo.protocol.revision.CDORevisionData;
+import org.eclipse.emf.cdo.protocol.util.CDOClassID;
 
 import org.eclipse.net4j.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.stream.ExtendedDataInputStream;

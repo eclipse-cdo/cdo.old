@@ -8,18 +8,22 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.protocol;
+package org.eclipse.emf.cdo.protocol.model;
+
+import org.eclipse.emf.cdo.protocol.util.CDOPackageInfo;
 
 /**
  * @author Eike Stepper
  */
-public interface CDOModelElement
+public interface CDOPackage extends CDOModelElement
 {
-  public static final int UNINITIALIZED_ID = -1;
+  public String getURI();
 
-  public int getID();
+  public int getClassCount();
 
-  public String getName();
+  public CDOClass[] getCDOClasses();
 
-  public Object getPeerData();
+  public CDOPackageInfo getPackageInfo();
+
+  public CDOModelResolver getClassResolver();
 }

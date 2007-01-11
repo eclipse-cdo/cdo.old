@@ -8,31 +8,27 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.internal.protocol;
+package org.eclipse.emf.cdo.protocol.model;
+
+import org.eclipse.emf.cdo.protocol.util.CDOClassID;
+import org.eclipse.emf.cdo.protocol.util.CDOClassRef;
 
 /**
  * @author Eike Stepper
  */
-public class ImplementationError extends RuntimeException
+public interface CDOModelResolver
 {
-  private static final long serialVersionUID = 1L;
+  public String getPackageURI(int modelID);
 
-  public ImplementationError()
-  {
-  }
+  public int getPackageID(String uri);
 
-  public ImplementationError(String message)
-  {
-    super(message);
-  }
+  public CDOPackage getCDOPackage(int modelID);
 
-  public ImplementationError(String message, Throwable cause)
-  {
-    super(message, cause);
-  }
+  public CDOPackage getCDOPackage(String uri);
 
-  public ImplementationError(Throwable cause)
-  {
-    super(cause);
-  }
+  public CDOPackage[] getCDOPackages();
+
+  public CDOClass getCDOClass(CDOClassID classID);
+
+  public CDOClass getCDOClass(CDOClassRef classRef);
 }
