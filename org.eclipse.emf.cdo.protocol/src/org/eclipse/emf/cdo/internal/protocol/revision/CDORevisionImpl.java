@@ -13,7 +13,6 @@ package org.eclipse.emf.cdo.internal.protocol.revision;
 import org.eclipse.emf.cdo.internal.protocol.CDOIDImpl;
 import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
-import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOModelResolverImpl;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
@@ -114,11 +113,14 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     containerID.write(out);
     out.writeInt(containingFeatureID);
 
-    CDOFeatureImpl[] features = cdoClass.getCDOFeatures();
-    for (int i = 0; i < features.length; i++)
-    {
-      features[i].write(out, settings[i]);
-    }
+    // TODO Implement method CDORevisionImpl.write()
+    throw new UnsupportedOperationException("Not yet implemented");
+
+    // CDOFeatureImpl[] features = cdoClass.getCDOFeatures();
+    // for (int i = 0; i < features.length; i++)
+    // {
+    // features[i].write(out, settings[i]);
+    // }
   }
 
   public CDOClassImpl getCDOClass()

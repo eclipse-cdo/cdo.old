@@ -17,19 +17,21 @@ import org.eclipse.emf.cdo.protocol.util.CDOClassRef;
  */
 public interface CDOFeature extends CDOModelElement
 {
-  public abstract int getType();
+  public int getType();
 
-  public abstract boolean isMany();
+  public boolean isMany();
 
-  public abstract boolean isReference();
+  public boolean isReference();
 
-  public abstract CDOClass getReferenceClass();
+  public boolean isContainment();
 
-  public abstract CDOClass getCDOClass();
+  public CDOClass getReferenceClass();
 
-  public abstract CDOPackage getCDOPackage();
+  public CDOClass getCDOClass();
 
-  public abstract CDOModelResolver getClassResolver();
+  public CDOPackage getCDOPackage();
 
-  public abstract CDOClassRef getReferenceClassRef();
+  public CDOModelResolver getClassResolver();
+
+  public CDOClassRef getReferenceClassRef();
 }

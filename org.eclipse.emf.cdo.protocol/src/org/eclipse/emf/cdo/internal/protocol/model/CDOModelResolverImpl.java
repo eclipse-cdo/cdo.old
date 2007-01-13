@@ -39,6 +39,8 @@ public class CDOModelResolverImpl implements CDOModelResolver
 
   private CDOClassImpl cdoResourceClass;
 
+  private CDOFeatureImpl cdoResourceContents;
+
   public CDOModelResolverImpl()
   {
     initCDOResourceModel();
@@ -105,16 +107,22 @@ public class CDOModelResolverImpl implements CDOModelResolver
     return cdoResourceClass;
   }
 
+  public CDOFeatureImpl getCDOResourceContents()
+  {
+    return cdoResourceContents;
+  }
+
   private void initCDOResourceModel()
   {
     cdoResourcePackage = new CDOPackageImpl(this, CDOConstants.CDORESOURCE_PACKAGE_ID,
         CDOConstants.CDORESOURCE_PACKAGE_NAME, CDOConstants.CDORESOURCE_PACKAGE_URI);
     cdoResourceClass = new CDOClassImpl(cdoResourcePackage, CDOConstants.CDORESOURCE_CLASS_ID,
         CDOConstants.CDORESOURCE_CLASS_NAME, false);
-    CDOFeatureImpl f = new CDOFeatureImpl(cdoResourceClass, CDOConstants.CDORESOURCE_CONTENTS_ID,
-        CDOConstants.CDORESOURCE_CONTENTS_NAME, CDOTypes.OBJECT, true, null);
+    cdoResourceContents = new CDOFeatureImpl(cdoResourceClass,
+        CDOConstants.CDORESOURCE_CONTENTS_ID, CDOConstants.CDORESOURCE_CONTENTS_NAME,
+        CDOTypes.OBJECT, true, true, null);
 
-    cdoResourceClass.addCDOFeature(f);
+    cdoResourceClass.addCDOFeature(cdoResourceContents);
     cdoResourcePackage.addCDOClass(cdoResourceClass);
     addCDOPackage(cdoResourcePackage);
   }

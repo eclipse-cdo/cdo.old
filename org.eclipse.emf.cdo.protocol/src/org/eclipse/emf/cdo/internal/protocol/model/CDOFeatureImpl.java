@@ -42,15 +42,18 @@ public final class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeat
 
   private boolean many;
 
+  private boolean containment;
+
   private Object referenceClass;
 
   public CDOFeatureImpl(CDOClassImpl c, int id, String name, int type, boolean many,
-      CDOClassRef classRef)
+      boolean containment, CDOClassRef classRef)
   {
     super(id, name);
     cdoClass = c;
     this.type = type;
     this.many = many;
+    this.containment = containment;
     referenceClass = classRef;
   }
 
@@ -60,10 +63,11 @@ public final class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeat
     cdoClass = c;
     type = in.readInt();
     many = in.readBoolean();
+    containment = in.readBoolean();
     if (PROTOCOL.isEnabled())
     {
-      PROTOCOL.format("Read feature: ID={0}, name={1}, type={2}, many={3}", getID(), getName(),
-          type, many);
+      PROTOCOL.format("Read feature: ID={0}, name={1}, type={2}, many={3}, containment={4}",
+          getID(), getName(), type, many, containment);
     }
 
     CDOClassRef classRef = null;
@@ -81,13 +85,14 @@ public final class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeat
   {
     if (PROTOCOL.isEnabled())
     {
-      PROTOCOL.format("Writing feature: ID={0}, name={1}, type={2}, many={3}", getID(), getName(),
-          type, many);
+      PROTOCOL.format("Writing feature: ID={0}, name={1}, type={2}, many={3}, containment={4}",
+          getID(), getName(), type, many, containment);
     }
 
     super.write(out);
     out.writeInt(type);
     out.writeBoolean(many);
+    out.writeBoolean(containment);
 
     if (type == CDOTypes.OBJECT)
     {
@@ -99,18 +104,6 @@ public final class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeat
 
       classRef.write(out);
     }
-  }
-
-  public void write(ExtendedDataOutputStream out, Object object)
-  {
-    // TODO Implement method CDOFeatureImpl.write()
-    throw new UnsupportedOperationException("Not yet implemented");
-  }
-
-  public Object read(ExtendedDataInputStream in)
-  {
-    // TODO Implement method CDOFeatureImpl.write()
-    throw new UnsupportedOperationException("Not yet implemented");
   }
 
   public CDOClassImpl getCDOClass()
@@ -131,6 +124,11 @@ public final class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeat
   public boolean isReference()
   {
     return type == CDOTypes.OBJECT;
+  }
+
+  public boolean isContainment()
+  {
+    return containment;
   }
 
   public CDOClassImpl getReferenceClass()

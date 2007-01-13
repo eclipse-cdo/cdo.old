@@ -11,6 +11,7 @@
 package org.eclipse.emf.cdo.protocol.model;
 
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
+import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
 import org.eclipse.emf.cdo.protocol.util.CDOClassID;
 import org.eclipse.emf.cdo.protocol.util.CDOClassRef;
 
@@ -36,4 +37,6 @@ public interface CDOModelResolver
   public CDOPackage getCDOResourcePackage();
 
   public CDOClassImpl getCDOResourceClass();
+
+  public CDOFeatureImpl getCDOResourceContents();
 }
