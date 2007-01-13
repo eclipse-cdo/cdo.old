@@ -10,6 +10,7 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.model;
 
+import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
 import org.eclipse.emf.cdo.protocol.util.CDOClassID;
 import org.eclipse.emf.cdo.protocol.util.CDOClassRef;
 
@@ -31,4 +32,8 @@ public interface CDOModelResolver
   public CDOClass getCDOClass(CDOClassID classID);
 
   public CDOClass getCDOClass(CDOClassRef classRef);
+
+  public CDOPackage getCDOResourcePackage();
+
+  public CDOClassImpl getCDOResourceClass();
 }

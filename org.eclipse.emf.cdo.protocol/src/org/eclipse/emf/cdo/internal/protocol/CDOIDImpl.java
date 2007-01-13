@@ -15,10 +15,6 @@ public final class CDOIDImpl implements CDOID
 {
   private static final char SEPARATOR = ':';
 
-  private static final int INITIAL_ID = 0;
-
-  private static int lastTransientID = INITIAL_ID;
-
   private static boolean NULL_CREATED;
 
   /**
@@ -82,16 +78,6 @@ public final class CDOIDImpl implements CDOID
   public String toString()
   {
     return "" + rid + SEPARATOR + oid;
-  }
-
-  public static void internalReset()
-  {
-    lastTransientID = INITIAL_ID;
-  }
-
-  public static CDOID createNew()
-  {
-    return new CDOIDImpl(0, --lastTransientID);
   }
 
   public static CDOID create(int rid, int oid)

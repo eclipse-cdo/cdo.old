@@ -11,8 +11,10 @@
 package org.eclipse.emf.cdo.internal.protocol.model;
 
 import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
+import org.eclipse.emf.cdo.protocol.CDOConstants;
 import org.eclipse.emf.cdo.protocol.model.CDOModelResolver;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
+import org.eclipse.emf.cdo.protocol.model.CDOTypes;
 import org.eclipse.emf.cdo.protocol.util.CDOClassID;
 import org.eclipse.emf.cdo.protocol.util.CDOClassRef;
 
@@ -33,8 +35,13 @@ public class CDOModelResolverImpl implements CDOModelResolver
 
   private Map<String, CDOPackageImpl> uriToPackage = new HashMap();
 
+  private CDOPackageImpl cdoResourcePackage;
+
+  private CDOClassImpl cdoResourceClass;
+
   public CDOModelResolverImpl()
   {
+    initCDOResourceModel();
   }
 
   public String getPackageURI(int packageID)
@@ -86,5 +93,29 @@ public class CDOModelResolverImpl implements CDOModelResolver
     CDOPackageImpl p = getCDOPackage(classRef.getModelURI());
     int classifierID = classRef.getClassifierID();
     return p.getCDOClass(classifierID);
+  }
+
+  public CDOPackageImpl getCDOResourcePackage()
+  {
+    return cdoResourcePackage;
+  }
+
+  public CDOClassImpl getCDOResourceClass()
+  {
+    return cdoResourceClass;
+  }
+
+  private void initCDOResourceModel()
+  {
+    cdoResourcePackage = new CDOPackageImpl(this, CDOConstants.CDORESOURCE_PACKAGE_ID,
+        CDOConstants.CDORESOURCE_PACKAGE_NAME, CDOConstants.CDORESOURCE_PACKAGE_URI);
+    cdoResourceClass = new CDOClassImpl(cdoResourcePackage, CDOConstants.CDORESOURCE_CLASS_ID,
+        CDOConstants.CDORESOURCE_CLASS_NAME, false);
+    CDOFeatureImpl f = new CDOFeatureImpl(cdoResourceClass, CDOConstants.CDORESOURCE_CONTENTS_ID,
+        CDOConstants.CDORESOURCE_CONTENTS_NAME, CDOTypes.OBJECT, true, null);
+
+    cdoResourceClass.addCDOFeature(f);
+    cdoResourcePackage.addCDOClass(cdoResourceClass);
+    addCDOPackage(cdoResourcePackage);
   }
 }
