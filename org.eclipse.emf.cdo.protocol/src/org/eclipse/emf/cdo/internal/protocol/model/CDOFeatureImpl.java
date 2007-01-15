@@ -11,12 +11,10 @@
 package org.eclipse.emf.cdo.internal.protocol.model;
 
 import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
-import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.model.CDOModelResolver;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 import org.eclipse.emf.cdo.protocol.model.CDOTypes;
-import org.eclipse.emf.cdo.protocol.util.CDOClassRef;
 
 import org.eclipse.net4j.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
@@ -36,7 +34,9 @@ public final class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeat
   private static final ContextTracer PROTOCOL = new ContextTracer(CDOProtocol.DEBUG_PROTOCOL,
       CDOFeatureImpl.class);
 
-  private CDOClassImpl cdoClass;
+  private CDOClassImpl containingClass;
+
+  private int featureID;
 
   private int type;
 
@@ -44,36 +44,39 @@ public final class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeat
 
   private boolean containment;
 
-  private Object referenceClass;
+  private Object referenceType;
 
-  public CDOFeatureImpl(CDOClassImpl c, int id, String name, int type, boolean many,
-      boolean containment, CDOClassRef classRef)
+  public CDOFeatureImpl(CDOClassImpl containingClass, int featureID, String name, int type,
+      boolean many, boolean containment, CDOClassRefImpl referenceType)
   {
-    super(id, name);
-    cdoClass = c;
+    super(name);
+    this.containingClass = containingClass;
+    this.featureID = featureID;
     this.type = type;
     this.many = many;
     this.containment = containment;
-    referenceClass = classRef;
+    this.referenceType = referenceType;
   }
 
-  public CDOFeatureImpl(CDOClassImpl c, ExtendedDataInputStream in) throws IOException
+  public CDOFeatureImpl(CDOClassImpl containingClass, ExtendedDataInputStream in)
+      throws IOException
   {
     super(in);
-    cdoClass = c;
+    this.containingClass = containingClass;
+    featureID = in.readInt();
     type = in.readInt();
     many = in.readBoolean();
     containment = in.readBoolean();
     if (PROTOCOL.isEnabled())
     {
       PROTOCOL.format("Read feature: ID={0}, name={1}, type={2}, many={3}, containment={4}",
-          getID(), getName(), type, many, containment);
+          featureID, getName(), type, many, containment);
     }
 
-    CDOClassRef classRef = null;
-    if (type == CDOTypes.OBJECT)
+    CDOClassProxy classRef = null;
+    if (isReference())
     {
-      classRef = new CDOClassRef(in);
+      classRef = new CDOClassProxy(in);
       if (PROTOCOL.isEnabled())
       {
         PROTOCOL.format("Read reference type: classRef={0}", classRef);
@@ -86,17 +89,18 @@ public final class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeat
     if (PROTOCOL.isEnabled())
     {
       PROTOCOL.format("Writing feature: ID={0}, name={1}, type={2}, many={3}, containment={4}",
-          getID(), getName(), type, many, containment);
+          featureID, getName(), type, many, containment);
     }
 
     super.write(out);
+    out.writeInt(featureID);
     out.writeInt(type);
     out.writeBoolean(many);
     out.writeBoolean(containment);
 
     if (type == CDOTypes.OBJECT)
     {
-      CDOClassRef classRef = getReferenceClassRef();
+      CDOClassProxy classRef = getReferenceClassRef();
       if (PROTOCOL.isEnabled())
       {
         PROTOCOL.format("Writing reference type: classRef={0}", classRef);
@@ -106,9 +110,14 @@ public final class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeat
     }
   }
 
-  public CDOClassImpl getCDOClass()
+  public CDOClassImpl getContainingClass()
   {
-    return cdoClass;
+    return containingClass;
+  }
+
+  public int getFeatureID()
+  {
+    return featureID;
   }
 
   public int getType()
@@ -131,59 +140,42 @@ public final class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeat
     return containment;
   }
 
-  public CDOClassImpl getReferenceClass()
+  public CDOClassImpl getReferenceType()
   {
-    if (referenceClass instanceof CDOClassImpl)
+    if (referenceType instanceof CDOClassImpl)
     {
-      return (CDOClassImpl)referenceClass;
+      return (CDOClassImpl)referenceType;
     }
 
     throw new IllegalStateException("Feature definition not initialized: " + this);
   }
 
-  public CDOClassRef getReferenceClassRef()
-  {
-    if (referenceClass instanceof CDOClassImpl)
-    {
-      return ((CDOClass)referenceClass).getClassRef();
-    }
-
-    return (CDOClassRef)referenceClass;
-  }
-
   public void initialize()
   {
-    if (referenceClass instanceof CDOClassRef)
+    if (isReference() && referenceType instanceof CDOClassProxy)
     {
-      CDOClassRef classRef = (CDOClassRef)referenceClass;
-      referenceClass = getClassResolver().getCDOClass(classRef);
-      if (MODEL.isEnabled())
-      {
-        MODEL.format("Resolving reference type: {0} --> {1}", classRef, getReferenceClass()
-            .getClassID());
-      }
-
-      if (referenceClass == null)
+      CDOClassProxy classRef = (CDOClassProxy)referenceType;
+      referenceType = getModelResolver().resolveClass(classRef);
+      if (referenceType == null)
       {
         throw new IllegalStateException("Unable to resolve reference type: " + classRef);
       }
     }
   }
 
-  public CDOModelResolver getClassResolver()
+  public CDOModelResolver getModelResolver()
   {
-    return getCDOPackage().getClassResolver();
+    return getContainingPackage().getModelResolver();
   }
 
-  public CDOPackage getCDOPackage()
+  public CDOPackage getContainingPackage()
   {
-    return cdoClass.getCDOPackage();
+    return containingClass.getContainingPackage();
   }
 
   @Override
   public String toString()
   {
-    return MessageFormat.format("CDOFeature(id={0}, name={1}, type={2}, many={3}, classRef={4})",
-        getID(), getName(), type, many, referenceClass);
+    return MessageFormat.format("CDOFeature(ID={0}, name={1}", featureID, getName());
   }
 }

@@ -15,11 +15,7 @@ package org.eclipse.emf.cdo.protocol.model;
  */
 public interface CDOModelElement
 {
-  public static final int UNINITIALIZED_ID = -1;
-
-  public int getID();
-
   public String getName();
 
-  public Object getPeerData();
+  public Object getInfo();
 }

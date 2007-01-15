@@ -14,7 +14,6 @@ import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.model.CDOModelResolver;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
-import org.eclipse.emf.cdo.protocol.util.CDOPackageInfo;
 
 import org.eclipse.net4j.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
@@ -36,30 +35,30 @@ public final class CDOPackageImpl extends CDOModelElementImpl implements CDOPack
   private static final ContextTracer PROTOCOL = new ContextTracer(CDOProtocol.DEBUG_PROTOCOL,
       CDOPackageImpl.class);
 
-  private CDOModelResolver classResolver;
+  private CDOModelResolver modelResolver;
 
-  private String uri;
+  private String packageURI;
 
-  private List<CDOClassImpl> cdoClasses = new ArrayList(0);
+  private List<CDOClassImpl> classes = new ArrayList(0);
 
   private List<CDOClassImpl> index = new ArrayList(0);
 
-  public CDOPackageImpl(CDOModelResolver classResolver, int id, String name, String uri)
+  public CDOPackageImpl(CDOModelResolver modelResolver, String packageURI, String name)
   {
-    super(id, name);
-    this.classResolver = classResolver;
-    this.uri = uri;
+    super(name);
+    this.modelResolver = modelResolver;
+    this.packageURI = packageURI;
   }
 
-  public CDOPackageImpl(CDOModelResolver classResolver, ExtendedDataInputStream in)
+  public CDOPackageImpl(CDOModelResolver modelResolver, ExtendedDataInputStream in)
       throws IOException
   {
     super(in);
-    this.classResolver = classResolver;
-    uri = in.readString();
+    this.modelResolver = modelResolver;
+    packageURI = in.readString();
     if (PROTOCOL.isEnabled())
     {
-      PROTOCOL.format("Read package: ID={0}, name={1}, URI={2}", getID(), getName(), uri);
+      PROTOCOL.format("Read package: URI={0}, name={1}", packageURI, getName());
     }
 
     int size = in.readInt();
@@ -71,7 +70,7 @@ public final class CDOPackageImpl extends CDOModelElementImpl implements CDOPack
     for (int i = 0; i < size; i++)
     {
       CDOClassImpl c = new CDOClassImpl(this, in);
-      addCDOClass(c);
+      addClass(c);
     }
   }
 
@@ -79,83 +78,78 @@ public final class CDOPackageImpl extends CDOModelElementImpl implements CDOPack
   {
     if (PROTOCOL.isEnabled())
     {
-      PROTOCOL.format("Writing package: ID={0}, name={0}, URI={1}", getID(), getName(), uri);
+      PROTOCOL.format("Writing package: URI={0}, name={0}", packageURI, getName());
     }
 
     super.write(out);
-    out.writeString(uri);
+    out.writeString(packageURI);
 
-    int size = cdoClasses.size();
+    int size = classes.size();
     if (PROTOCOL.isEnabled())
     {
       PROTOCOL.format("Writing {0} classes", size);
     }
 
     out.writeInt(size);
-    for (CDOClassImpl cdoClass : cdoClasses)
+    for (CDOClassImpl cdoClass : classes)
     {
       cdoClass.write(out);
     }
   }
 
-  public CDOModelResolver getClassResolver()
+  public CDOModelResolver getModelResolver()
   {
-    return classResolver;
+    return modelResolver;
   }
 
-  public String getURI()
+  public String getPackageURI()
   {
-    return uri;
-  }
-
-  public CDOPackageInfo getPackageInfo()
-  {
-    return new CDOPackageInfo(getID(), uri);
+    return packageURI;
   }
 
   public int getClassCount()
   {
-    return cdoClasses.size();
+    return classes.size();
   }
 
-  public CDOClass[] getCDOClasses()
+  public CDOClass[] getClasses()
   {
-    return cdoClasses.toArray(new CDOClassImpl[cdoClasses.size()]);
+    return classes.toArray(new CDOClassImpl[classes.size()]);
   }
 
-  public void addCDOClass(CDOClassImpl c)
+  public CDOClassImpl lookupClass(int classifierID)
   {
-    int id = c.getID();
+    return index.get(classifierID);
+  }
+
+  public void addClass(CDOClassImpl cdoClass)
+  {
+    int classifierID = cdoClass.getClassifierID();
     if (MODEL.isEnabled())
     {
-      MODEL.format("Adding class: ID={0}, name={1}, abstract={2}", id, c.getName(), c.isAbstract());
+      MODEL.format("Adding class: {0}", cdoClass);
     }
 
-    while (id >= index.size())
+    while (classifierID >= index.size())
     {
       index.add(null);
     }
 
-    index.set(id, c);
-    cdoClasses.add(c);
+    index.set(classifierID, cdoClass);
+    classes.add(cdoClass);
   }
 
   public void initialize()
   {
-    for (CDOClassImpl c : cdoClasses)
+    for (CDOClassImpl cdoClass : classes)
     {
-      c.initialize();
+      cdoClass.initialize();
     }
-  }
-
-  public CDOClassImpl getCDOClass(int classifierID)
-  {
-    return index.get(classifierID);
   }
 
   @Override
   public String toString()
   {
-    return MessageFormat.format("CDOPackage(id={0}, name={1}, uri={2})", getID(), getName(), uri);
+    return MessageFormat.format("CDOPackage(URI={0}, name={1})", packageURI, getName());
   }
 }

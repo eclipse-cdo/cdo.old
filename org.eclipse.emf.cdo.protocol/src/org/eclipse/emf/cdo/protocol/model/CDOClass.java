@@ -10,25 +10,24 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.model;
 
-import org.eclipse.emf.cdo.protocol.util.CDOClassID;
-import org.eclipse.emf.cdo.protocol.util.CDOClassRef;
-
 /**
  * @author Eike Stepper
  */
 public interface CDOClass extends CDOModelElement
 {
+  public int getClassifierID();
+
   public boolean isAbstract();
-
-  public CDOPackage getCDOPackage();
-
-  public CDOModelResolver getClassResolver();
 
   public int getFeatureCount();
 
-  public CDOFeature[] getCDOFeatures();
+  public CDOFeature[] getFeatures();
 
-  public CDOClassID getClassID();
+  public CDOFeature lookupFeature(int featureID);
 
-  public CDOClassRef getClassRef();
+  public CDOClassRef createClassRef();
+
+  public CDOPackage getContainingPackage();
+
+  public CDOModelResolver getModelResolver();
 }

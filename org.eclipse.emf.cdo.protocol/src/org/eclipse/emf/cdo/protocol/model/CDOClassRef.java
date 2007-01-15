@@ -13,23 +13,9 @@ package org.eclipse.emf.cdo.protocol.model;
 /**
  * @author Eike Stepper
  */
-public interface CDOFeature extends CDOModelElement
+public interface CDOClassRef
 {
-  public int getFeatureID();
+  public String getPackageURI();
 
-  public int getType();
-
-  public boolean isMany();
-
-  public boolean isReference();
-
-  public boolean isContainment();
-
-  public CDOClass getReferenceType();
-
-  public CDOClass getContainingClass();
-
-  public CDOPackage getContainingPackage();
-
-  public CDOModelResolver getModelResolver();
+  public int getClassifierID();
 }

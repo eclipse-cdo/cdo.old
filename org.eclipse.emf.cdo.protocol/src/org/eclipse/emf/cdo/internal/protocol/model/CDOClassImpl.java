@@ -12,10 +12,9 @@ package org.eclipse.emf.cdo.internal.protocol.model;
 
 import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
+import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 import org.eclipse.emf.cdo.protocol.model.CDOModelResolver;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
-import org.eclipse.emf.cdo.protocol.util.CDOClassID;
-import org.eclipse.emf.cdo.protocol.util.CDOClassRef;
 
 import org.eclipse.net4j.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
@@ -37,29 +36,35 @@ public final class CDOClassImpl extends CDOModelElementImpl implements CDOClass
   private static final ContextTracer PROTOCOL = new ContextTracer(CDOProtocol.DEBUG_PROTOCOL,
       CDOClassImpl.class);
 
-  private CDOPackage cdoPackage;
+  private CDOPackage containingPackage;
+
+  private int classifierID;
 
   private boolean isAbstract;
 
-  private List<CDOFeatureImpl> cdoFeatures = new ArrayList(0);
+  private List<CDOFeatureImpl> features = new ArrayList(0);
 
   private transient List<Integer> index = new ArrayList(0);
 
-  public CDOClassImpl(CDOPackage p, int id, String name, boolean isAbstract)
+  public CDOClassImpl(CDOPackage containingPackage, int classifierID, String name,
+      boolean isAbstract)
   {
-    super(id, name);
-    cdoPackage = p;
+    super(name);
+    this.containingPackage = containingPackage;
+    this.classifierID = classifierID;
     this.isAbstract = isAbstract;
   }
 
-  public CDOClassImpl(CDOPackage p, ExtendedDataInputStream in) throws IOException
+  public CDOClassImpl(CDOPackage containingPackage, ExtendedDataInputStream in) throws IOException
   {
     super(in);
-    cdoPackage = p;
+    this.containingPackage = containingPackage;
+    classifierID = in.readInt();
     isAbstract = in.readBoolean();
     if (PROTOCOL.isEnabled())
     {
-      PROTOCOL.format("Read class: ID={0}, name={1}, abstract={2}", getID(), getName(), isAbstract);
+      PROTOCOL.format("Read class: ID={0}, name={1}, abstract={2}", classifierID, getName(),
+          isAbstract);
     }
 
     int size = in.readInt();
@@ -70,8 +75,8 @@ public final class CDOClassImpl extends CDOModelElementImpl implements CDOClass
 
     for (int i = 0; i < size; i++)
     {
-      CDOFeatureImpl f = new CDOFeatureImpl(this, in);
-      addCDOFeature(f);
+      CDOFeatureImpl cdoFeature = new CDOFeatureImpl(this, in);
+      addFeature(cdoFeature);
     }
   }
 
@@ -79,29 +84,35 @@ public final class CDOClassImpl extends CDOModelElementImpl implements CDOClass
   {
     if (PROTOCOL.isEnabled())
     {
-      PROTOCOL.format("Writing class: ID={0}, name={1}, abstract={2}", getID(), getName(),
+      PROTOCOL.format("Writing class: ID={0}, name={1}, abstract={2}", classifierID, getName(),
           isAbstract);
     }
 
     super.write(out);
+    out.writeInt(classifierID);
     out.writeBoolean(isAbstract);
 
-    int size = cdoFeatures.size();
+    int size = features.size();
     if (PROTOCOL.isEnabled())
     {
       PROTOCOL.format("Writing {0} features", size);
     }
 
     out.writeInt(size);
-    for (CDOFeatureImpl cdoFeature : cdoFeatures)
+    for (CDOFeatureImpl cdoFeature : features)
     {
       cdoFeature.write(out);
     }
   }
 
-  public CDOPackage getCDOPackage()
+  public CDOPackage getContainingPackage()
   {
-    return cdoPackage;
+    return containingPackage;
+  }
+
+  public int getClassifierID()
+  {
+    return classifierID;
   }
 
   public boolean isAbstract()
@@ -111,30 +122,35 @@ public final class CDOClassImpl extends CDOModelElementImpl implements CDOClass
 
   public int getFeatureCount()
   {
-    return cdoFeatures.size();
+    return features.size();
   }
 
-  public CDOFeatureImpl[] getCDOFeatures()
+  public CDOFeatureImpl[] getFeatures()
   {
-    return cdoFeatures.toArray(new CDOFeatureImpl[cdoFeatures.size()]);
+    return features.toArray(new CDOFeatureImpl[features.size()]);
   }
 
-  public CDOFeatureImpl getCDOFeature(int featureID)
+  public CDOFeatureImpl lookupFeature(int featureID)
   {
     int i = index.get(featureID);
-    return cdoFeatures.get(i);
+    return features.get(i);
   }
 
-  public void addCDOFeature(CDOFeatureImpl f)
+  public CDOClassRef createClassRef()
   {
+    return new CDOClassRefImpl(containingPackage.getPackageURI(), classifierID);
+  }
+
+  public void addFeature(CDOFeatureImpl cdoFeature)
+  {
+    int featureID = cdoFeature.getFeatureID();
     if (MODEL.isEnabled())
     {
-      MODEL.format("Adding feature: ID={0}, name={1}, type={2}, many={3}, classRef={4}", f.getID(),
-          f.getName(), f.getType(), f.isMany(), f.getReferenceClassRef());
+      MODEL.format("Adding feature: {0}", cdoFeature);
     }
 
-    setIndex(f.getID(), cdoFeatures.size());
-    cdoFeatures.add(f);
+    setIndex(featureID, features.size());
+    features.add(cdoFeature);
   }
 
   private void setIndex(int id, int i)
@@ -147,33 +163,22 @@ public final class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     index.set(id, i);
   }
 
-  public CDOClassID getClassID()
-  {
-    return new CDOClassID(cdoPackage.getID(), getID());
-  }
-
-  public CDOClassRef getClassRef()
-  {
-    return new CDOClassRef(cdoPackage.getURI(), getID());
-  }
-
   public void initialize()
   {
-    for (CDOFeatureImpl featureDef : cdoFeatures)
+    for (CDOFeatureImpl cdoFeature : features)
     {
-      featureDef.initialize();
+      cdoFeature.initialize();
     }
   }
 
-  public CDOModelResolver getClassResolver()
+  public CDOModelResolver getModelResolver()
   {
-    return cdoPackage.getClassResolver();
+    return containingPackage.getModelResolver();
   }
 
   @Override
   public String toString()
   {
-    return MessageFormat.format("CDOClass(id={0}, name={1}, abstract={2})", getID(), getName(),
-        isAbstract);
+    return MessageFormat.format("CDOClass(id={0}, name={1})", classifierID, getName());
   }
 }

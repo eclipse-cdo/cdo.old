@@ -22,38 +22,28 @@ import java.io.IOException;
 /**
  * @author Eike Stepper
  */
-public class CDOModelElementImpl implements CDOModelElement
+public abstract class CDOModelElementImpl implements CDOModelElement
 {
   private static final ContextTracer MODEL = new ContextTracer(CDOProtocol.DEBUG_MODEL,
       CDOModelElementImpl.class);
 
-  private int id = UNINITIALIZED_ID;
-
   private String name;
 
-  private Object peerData;
+  private Object info;
 
-  public CDOModelElementImpl(int id, String name)
+  public CDOModelElementImpl(String name)
   {
-    this.id = id;
     this.name = name;
   }
 
   public CDOModelElementImpl(ExtendedDataInputStream in) throws IOException
   {
-    id = in.readInt();
     name = in.readString();
   }
 
   public void write(ExtendedDataOutputStream out) throws IOException
   {
-    out.writeInt(id);
     out.writeString(name);
-  }
-
-  public int getID()
-  {
-    return id;
   }
 
   public String getName()
@@ -61,33 +51,18 @@ public class CDOModelElementImpl implements CDOModelElement
     return name;
   }
 
-  public Object getPeerData()
+  public Object getInfo()
   {
-    return peerData;
+    return info;
   }
 
-  public void setID(int id)
-  {
-    if (this.id == id)
-    {
-      throw new IllegalArgumentException("this.id == id == " + id);
-    }
-
-    if (MODEL.isEnabled())
-    {
-      MODEL.format("Setting ID: {0} --> {1}", this, id);
-    }
-
-    this.id = id;
-  }
-
-  public void setPeerData(Object peerData)
+  public void setInfo(Object info)
   {
     if (MODEL.isEnabled())
     {
-      MODEL.format("Setting peerData: {0} --> {1}", this, peerData);
+      MODEL.format("Setting info: {0} --> {1}", this, info);
     }
 
-    this.peerData = peerData;
+    this.info = info;
   }
 }

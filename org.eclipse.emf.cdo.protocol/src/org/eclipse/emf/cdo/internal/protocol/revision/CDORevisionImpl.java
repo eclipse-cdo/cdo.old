@@ -79,7 +79,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
       throws IOException
   {
     CDOClassID classID = new CDOClassID(in);
-    cdoClass = modelResolver.getCDOClass(classID);
+    cdoClass = modelResolver.resolveClass(classID);
     id = CDOIDImpl.read(in);
     if (TRACER.isEnabled())
     {

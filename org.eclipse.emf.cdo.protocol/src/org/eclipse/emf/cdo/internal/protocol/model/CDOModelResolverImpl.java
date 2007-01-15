@@ -15,11 +15,12 @@ import org.eclipse.emf.cdo.protocol.CDOConstants;
 import org.eclipse.emf.cdo.protocol.model.CDOModelResolver;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 import org.eclipse.emf.cdo.protocol.model.CDOTypes;
-import org.eclipse.emf.cdo.protocol.util.CDOClassID;
-import org.eclipse.emf.cdo.protocol.util.CDOClassRef;
 
 import org.eclipse.net4j.util.om.trace.ContextTracer;
+import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
+import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,9 +32,7 @@ public class CDOModelResolverImpl implements CDOModelResolver
   private static final ContextTracer TRACER = new ContextTracer(CDOProtocol.DEBUG_MODEL,
       CDOModelResolverImpl.class);
 
-  private Map<Integer, CDOPackageImpl> idToPackage = new HashMap();
-
-  private Map<String, CDOPackageImpl> uriToPackage = new HashMap();
+  private Map<String, CDOPackageImpl> packages = new HashMap();
 
   private CDOPackageImpl cdoResourcePackage;
 
@@ -46,55 +45,38 @@ public class CDOModelResolverImpl implements CDOModelResolver
     initCDOResourceModel();
   }
 
-  public String getPackageURI(int packageID)
+  public CDOPackageImpl lookupPackage(String uri)
   {
-    return getCDOPackage(packageID).getURI();
+    return packages.get(uri);
   }
 
-  public int getPackageID(String uri)
+  public int getPackageCount()
   {
-    return getCDOPackage(uri).getID();
+    return packages.size();
   }
 
-  public CDOPackageImpl getCDOPackage(int packageID)
+  public CDOPackage[] getPackages()
   {
-    return idToPackage.get(packageID);
+    return packages.values().toArray(new CDOPackageImpl[packages.size()]);
   }
 
-  public CDOPackageImpl getCDOPackage(String uri)
-  {
-    return uriToPackage.get(uri);
-  }
-
-  public CDOPackage[] getCDOPackages()
-  {
-    return idToPackage.values().toArray(new CDOPackageImpl[idToPackage.size()]);
-  }
-
-  public void addCDOPackage(CDOPackageImpl p)
+  public void addPackage(CDOPackageImpl cdoPackage)
   {
     if (TRACER.isEnabled())
     {
-      TRACER
-          .format("Adding package: ID={0}, name={1}, URI={2}", p.getID(), p.getName(), p.getURI());
+      TRACER.format("Adding package: {0}", cdoPackage);
     }
 
-    idToPackage.put(p.getID(), p);
-    uriToPackage.put(p.getURI(), p);
+    packages.put(cdoPackage.getPackageURI(), cdoPackage);
   }
 
-  public CDOClassImpl getCDOClass(CDOClassID classID)
+  public CDOClassImpl resolveClass(CDOClassProxy classRef)
   {
-    CDOPackageImpl p = getCDOPackage(classID.getModelID());
-    int classifierID = classID.getClassifierID();
-    return p.getCDOClass(classifierID);
-  }
-
-  public CDOClassImpl getCDOClass(CDOClassRef classRef)
-  {
-    CDOPackageImpl p = getCDOPackage(classRef.getModelURI());
+    String packageURI = classRef.getPackageURI();
     int classifierID = classRef.getClassifierID();
-    return p.getCDOClass(classifierID);
+    CDOPackageImpl cdoPackage = lookupPackage(packageURI);
+    CDOClassImpl cdoClass = cdoPackage.lookupClass(classifierID);
+    return cdoClass;
   }
 
   public CDOPackageImpl getCDOResourcePackage()
@@ -114,16 +96,17 @@ public class CDOModelResolverImpl implements CDOModelResolver
 
   private void initCDOResourceModel()
   {
-    cdoResourcePackage = new CDOPackageImpl(this, CDOConstants.CDORESOURCE_PACKAGE_ID,
-        CDOConstants.CDORESOURCE_PACKAGE_NAME, CDOConstants.CDORESOURCE_PACKAGE_URI);
+    cdoResourcePackage = new CDOPackageImpl(this, CDOConstants.CDORESOURCE_PACKAGE_URI,
+        CDOConstants.CDORESOURCE_PACKAGE_NAME);
     cdoResourceClass = new CDOClassImpl(cdoResourcePackage, CDOConstants.CDORESOURCE_CLASS_ID,
         CDOConstants.CDORESOURCE_CLASS_NAME, false);
     cdoResourceContents = new CDOFeatureImpl(cdoResourceClass,
         CDOConstants.CDORESOURCE_CONTENTS_ID, CDOConstants.CDORESOURCE_CONTENTS_NAME,
         CDOTypes.OBJECT, true, true, null);
 
-    cdoResourceClass.addCDOFeature(cdoResourceContents);
-    cdoResourcePackage.addCDOClass(cdoResourceClass);
-    addCDOPackage(cdoResourcePackage);
+    cdoResourceClass.addFeature(cdoResourceContents);
+    cdoResourcePackage.addClass(cdoResourceClass);
+    addPackage(cdoResourcePackage);
   }
+
 }

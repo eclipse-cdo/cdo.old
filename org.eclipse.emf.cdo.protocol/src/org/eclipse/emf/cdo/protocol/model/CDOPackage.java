@@ -10,20 +10,18 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.model;
 
-import org.eclipse.emf.cdo.protocol.util.CDOPackageInfo;
-
 /**
  * @author Eike Stepper
  */
 public interface CDOPackage extends CDOModelElement
 {
-  public String getURI();
+  public String getPackageURI();
 
   public int getClassCount();
 
-  public CDOClass[] getCDOClasses();
+  public CDOClass[] getClasses();
 
-  public CDOPackageInfo getPackageInfo();
+  public CDOClass lookupClass(int classifierID);
 
-  public CDOModelResolver getClassResolver();
+  public CDOModelResolver getModelResolver();
 }

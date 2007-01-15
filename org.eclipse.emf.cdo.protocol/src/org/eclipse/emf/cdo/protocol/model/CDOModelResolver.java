@@ -12,27 +12,17 @@ package org.eclipse.emf.cdo.protocol.model;
 
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
-import org.eclipse.emf.cdo.protocol.util.CDOClassID;
-import org.eclipse.emf.cdo.protocol.util.CDOClassRef;
 
 /**
  * @author Eike Stepper
  */
 public interface CDOModelResolver
 {
-  public String getPackageURI(int modelID);
+  public int getPackageCount();
 
-  public int getPackageID(String uri);
+  public CDOPackage[] getPackages();
 
-  public CDOPackage getCDOPackage(int modelID);
-
-  public CDOPackage getCDOPackage(String uri);
-
-  public CDOPackage[] getCDOPackages();
-
-  public CDOClass getCDOClass(CDOClassID classID);
-
-  public CDOClass getCDOClass(CDOClassRef classRef);
+  public CDOPackage lookupPackage(String packageURI);
 
   public CDOPackage getCDOResourcePackage();
 
