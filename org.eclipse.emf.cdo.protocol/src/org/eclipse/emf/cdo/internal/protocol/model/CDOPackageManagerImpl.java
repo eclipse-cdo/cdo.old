@@ -13,7 +13,7 @@ package org.eclipse.emf.cdo.internal.protocol.model;
 import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
 import org.eclipse.emf.cdo.internal.protocol.model.core.CDOCorePackageImpl;
 import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
-import org.eclipse.emf.cdo.protocol.model.CDOModelResolver;
+import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 
 import org.eclipse.net4j.util.om.trace.ContextTracer;
@@ -24,16 +24,16 @@ import java.util.Map;
 /**
  * @author Eike Stepper
  */
-public class CDOModelResolverImpl implements CDOModelResolver
+public class CDOPackageManagerImpl implements CDOPackageManager
 {
-  public static final CDOModelResolverImpl INSTANCE = (CDOModelResolverImpl)CDOModelResolver.INSTANCE;
+  public static final CDOPackageManagerImpl INSTANCE = (CDOPackageManagerImpl)CDOPackageManager.INSTANCE;
 
   private static final ContextTracer TRACER = new ContextTracer(CDOProtocol.DEBUG_MODEL,
-      CDOModelResolverImpl.class);
+      CDOPackageManagerImpl.class);
 
   private Map<String, CDOPackageImpl> packages = new HashMap();
 
-  public CDOModelResolverImpl()
+  public CDOPackageManagerImpl()
   {
     addPackage(CDOCorePackageImpl.INSTANCE);
   }
@@ -61,12 +61,6 @@ public class CDOModelResolverImpl implements CDOModelResolver
     }
 
     packages.put(cdoPackage.getPackageURI(), cdoPackage);
-  }
-
-  public CDOClassImpl resolveClass(CDOClassRef classRef)
-  {
-    CDOPackageImpl cdoPackage = lookupPackage(classRef.getPackageURI());
-    return cdoPackage.lookupClass(classRef.getClassifierID());
   }
 
   public CDOCorePackageImpl getCDOCorePackage()

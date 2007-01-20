@@ -191,7 +191,7 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
       if (referenceType instanceof CDOClassRefImpl)
       {
         CDOClassRefImpl classRef = (CDOClassRefImpl)referenceType;
-        referenceType = CDOModelResolverImpl.INSTANCE.resolveClass(classRef);
+        referenceType = CDOClassResolverImpl.INSTANCE.resolveClass(classRef);
         if (referenceType == null)
         {
           throw new IllegalStateException("Unable to resolve reference type: " + classRef);

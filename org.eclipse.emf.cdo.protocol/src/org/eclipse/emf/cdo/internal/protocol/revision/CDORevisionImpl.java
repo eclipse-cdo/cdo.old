@@ -13,12 +13,12 @@ package org.eclipse.emf.cdo.internal.protocol.revision;
 import org.eclipse.emf.cdo.internal.protocol.CDOIDImpl;
 import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
-import org.eclipse.emf.cdo.internal.protocol.model.CDOModelResolverImpl;
+import org.eclipse.emf.cdo.internal.protocol.model.CDOClassRefImpl;
+import org.eclipse.emf.cdo.internal.protocol.model.CDOClassResolverImpl;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionData;
-import org.eclipse.emf.cdo.protocol.util.CDOClassID;
 
 import org.eclipse.net4j.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
@@ -63,6 +63,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     settings = new Object[cdoClass.getFeatureCount()];
   }
 
+  @Deprecated
   public CDORevisionImpl(CDORevisionImpl source)
   {
     cdoClass = source.cdoClass;
@@ -75,15 +76,15 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     settings = cloneSettings();
   }
 
-  public CDORevisionImpl(CDOModelResolverImpl modelResolver, ExtendedDataInputStream in)
-      throws IOException
+  public CDORevisionImpl(ExtendedDataInputStream in) throws IOException
   {
-    CDOClassID classID = new CDOClassID(in);
-    cdoClass = modelResolver.resolveClass(classID);
+    CDOClassRefImpl classRef = new CDOClassRefImpl(in, null);
+    cdoClass = CDOClassResolverImpl.INSTANCE.resolveClass(classRef);
     id = CDOIDImpl.read(in);
     if (TRACER.isEnabled())
     {
-      TRACER.format("Reading revision: class={0}, id={1}", cdoClass, id);
+      TRACER.format("Reading revision: ID={0}, classRef={1}, className={2}", id, classRef, cdoClass
+          .getName());
     }
 
     version = in.readInt();
@@ -98,14 +99,14 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   public void write(ExtendedDataOutputStream out) throws IOException
   {
-    CDOClassID classID = cdoClass.getClassID();
+    CDOClassRefImpl classRef = cdoClass.createClassRef();
     if (TRACER.isEnabled())
     {
-      TRACER.format("Writing revision: ID={0}, classID={1}, className={2}", id, classID, cdoClass
+      TRACER.format("Writing revision: ID={0}, classRef={1}, className={2}", id, classRef, cdoClass
           .getName());
     }
 
-    classID.write(out);
+    classRef.write(out, null);
     id.write(out);
     out.writeInt(version);
     out.writeLong(created);
@@ -332,12 +333,12 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   private Object getValue(CDOFeature feature)
   {
-    return settings[feature.getID()];
+    return settings[feature.getFeatureID()];
   }
 
   private Object setValue(CDOFeature feature, Object value)
   {
-    int i = feature.getID();
+    int i = feature.getFeatureID();
     Object old = settings[i];
     settings[i] = value;
     return old;
@@ -345,7 +346,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   private RList getList(CDOFeature feature)
   {
-    int i = feature.getID();
+    int i = feature.getFeatureID();
     RList result = (RList)settings[i];
     if (result == null)
     {

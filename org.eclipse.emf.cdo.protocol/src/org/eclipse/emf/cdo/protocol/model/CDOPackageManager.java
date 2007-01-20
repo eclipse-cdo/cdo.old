@@ -10,23 +10,21 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.model;
 
-import org.eclipse.emf.cdo.internal.protocol.model.CDOModelResolverImpl;
+import org.eclipse.emf.cdo.internal.protocol.model.CDOPackageManagerImpl;
 import org.eclipse.emf.cdo.protocol.model.core.CDOCorePackage;
 
 /**
  * @author Eike Stepper
  */
-public interface CDOModelResolver
+public interface CDOPackageManager
 {
-  public static final CDOModelResolver INSTANCE = new CDOModelResolverImpl();
+  public static final CDOPackageManager INSTANCE = new CDOPackageManagerImpl();
 
   public int getPackageCount();
 
   public CDOPackage[] getPackages();
 
   public CDOPackage lookupPackage(String packageURI);
-
-  public CDOClass resolveClass(CDOClassRef classRef);
 
   public CDOCorePackage getCDOCorePackage();
 }
