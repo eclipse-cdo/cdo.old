@@ -73,10 +73,11 @@ public final class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeat
           featureID, getName(), type, many, containment);
     }
 
-    CDOClassProxy classRef = null;
+    CDOClassRefImpl classRef = null;
     if (isReference())
     {
-      classRef = new CDOClassProxy(in);
+      String defaultURI = containingClass.getContainingPackage().getPackageURI();
+      classRef = new CDOClassRefImpl(in, defaultURI);
       if (PROTOCOL.isEnabled())
       {
         PROTOCOL.format("Read reference type: classRef={0}", classRef);
@@ -100,7 +101,7 @@ public final class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeat
 
     if (type == CDOTypes.OBJECT)
     {
-      CDOClassProxy classRef = getReferenceClassRef();
+      CDOClassRefImpl classRef = getReferenceClassRef();
       if (PROTOCOL.isEnabled())
       {
         PROTOCOL.format("Writing reference type: classRef={0}", classRef);
