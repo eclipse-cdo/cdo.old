@@ -8,9 +8,9 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.protocol.model.core;
+package org.eclipse.emf.cdo.protocol.model.resource;
 
-import org.eclipse.emf.cdo.internal.protocol.model.core.CDOContentsFeatureImpl;
+import org.eclipse.emf.cdo.internal.protocol.model.resource.CDOContentsFeatureImpl;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 
 /**

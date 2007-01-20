@@ -12,7 +12,7 @@ package org.eclipse.emf.cdo.protocol.model;
 
 import org.eclipse.emf.cdo.internal.protocol.model.CDOPackageManagerImpl;
 import org.eclipse.emf.cdo.protocol.model.core.CDOCorePackage;
-import org.eclipse.emf.cdo.protocol.model.core.CDOResourcePackage;
+import org.eclipse.emf.cdo.protocol.model.resource.CDOResourcePackage;
 
 /**
  * @author Eike Stepper

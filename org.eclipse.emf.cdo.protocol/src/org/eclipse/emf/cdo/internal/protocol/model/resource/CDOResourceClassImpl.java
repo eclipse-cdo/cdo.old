@@ -8,10 +8,10 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.internal.protocol.model.core;
+package org.eclipse.emf.cdo.internal.protocol.model.resource;
 
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
-import org.eclipse.emf.cdo.protocol.model.core.CDOResourceClass;
+import org.eclipse.emf.cdo.protocol.model.resource.CDOResourceClass;
 
 /**
  * @author Eike Stepper

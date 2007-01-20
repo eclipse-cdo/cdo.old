@@ -8,21 +8,21 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.internal.protocol.model.core;
+package org.eclipse.emf.cdo.protocol.model.resource;
 
-import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
-import org.eclipse.emf.cdo.protocol.model.core.CDOContentsFeature;
+import org.eclipse.emf.cdo.internal.protocol.model.resource.CDOResourceClassImpl;
+import org.eclipse.emf.cdo.protocol.model.CDOClass;
 
 /**
  * @author Eike Stepper
  */
-public class CDOContentsFeatureImpl extends CDOFeatureImpl implements CDOContentsFeature
+public interface CDOResourceClass extends CDOClass
 {
-  public static final CDOContentsFeatureImpl INSTANCE = (CDOContentsFeatureImpl)CDOContentsFeature.INSTANCE;
+  public static final CDOResourceClass INSTANCE = new CDOResourceClassImpl();
 
-  public CDOContentsFeatureImpl()
-  {
-    super(FEATURE_ID, NAME, CDOObjectClassImpl.INSTANCE, true, true);
-  }
+  public static final int CLASSIFIER_ID = 0;
 
+  public static final String NAME = "CDOResource";
+
+  public CDOContentsFeature getCDOContentsFeature();
 }
