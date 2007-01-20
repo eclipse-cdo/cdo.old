@@ -19,13 +19,13 @@ public interface CDOConstants
 
   public static final short OPEN_SESSION_SIGNAL = 1;
 
-  public static final short ADD_MODELS_SIGNAL = 2;
-
-  public static final short MODELS_ADDED_SIGNAL = 3;
-
-  public static final short LOAD_RESOURCE_ID_SIGNAL = 4;
-
-  public static final short LOAD_RESOURCE_PATH_SIGNAL = 5;
+  // public static final short ADD_MODELS_SIGNAL = 2;
+  //
+  // public static final short MODELS_ADDED_SIGNAL = 3;
+  //
+  // public static final short LOAD_RESOURCE_ID_SIGNAL = 4;
+  //
+  // public static final short LOAD_RESOURCE_PATH_SIGNAL = 5;
 
   public static final short COMMIT_TRANSACTION_SIGNAL = 6;
 
