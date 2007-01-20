@@ -20,7 +20,8 @@ public interface CDOClassResolver
   public static final CDOClassResolver INSTANCE = new CDOClassResolverImpl();
 
   /**
-   * TODO Check if the functionality of this class could be moved to a static util method
+   * TODO Check if the functionality of this class could be moved to a static
+   * util method
    */
   public CDOClass resolveClass(CDOClassRef classRef);
 }

@@ -32,7 +32,7 @@ import java.util.ArrayList;
  */
 public class CDORevisionImpl implements CDORevision, CDORevisionData
 {
-  private static final ContextTracer TRACER = new ContextTracer(CDOProtocol.DEBUG_REVISION,
+  public static final ContextTracer TRACER = new ContextTracer(CDOProtocol.DEBUG_REVISION,
       CDORevisionImpl.class);
 
   private CDOClassImpl cdoClass;
@@ -107,11 +107,11 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     }
 
     classRef.write(out, null);
-    id.write(out);
+    CDOIDImpl.write(out, id);
     out.writeInt(version);
     out.writeLong(created);
     out.writeLong(revised);
-    containerID.write(out);
+    CDOIDImpl.write(out, containerID);
     out.writeInt(containingFeatureID);
 
     // TODO Implement method CDORevisionImpl.write()

@@ -11,7 +11,6 @@
 package org.eclipse.emf.cdo.internal.protocol.model.core;
 
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
-import org.eclipse.emf.cdo.protocol.model.core.CDOCorePackage;
 import org.eclipse.emf.cdo.protocol.model.core.CDOObjectClass;
 
 /**

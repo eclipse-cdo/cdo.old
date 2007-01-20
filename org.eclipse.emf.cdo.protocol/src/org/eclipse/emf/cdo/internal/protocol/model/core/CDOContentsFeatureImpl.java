@@ -11,7 +11,6 @@
 package org.eclipse.emf.cdo.internal.protocol.model.core;
 
 import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
-import org.eclipse.emf.cdo.protocol.model.CDOTypes;
 import org.eclipse.emf.cdo.protocol.model.core.CDOContentsFeature;
 
 /**

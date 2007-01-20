@@ -8,6 +8,8 @@ import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
 import java.io.IOException;
 
 /**
+ * TODO Optimize transfer of {@link CDOClassRefImpl} instances
+ * 
  * @author Eike Stepper
  */
 public final class CDOClassRefImpl implements CDOClassRef
@@ -24,6 +26,7 @@ public final class CDOClassRefImpl implements CDOClassRef
 
   public CDOClassRefImpl(ExtendedDataInputStream in, String defaultURI) throws IOException
   {
+    // TODO Optimize transfer of URIs
     packageURI = in.readString();
     if (packageURI == null)
     {
@@ -35,6 +38,7 @@ public final class CDOClassRefImpl implements CDOClassRef
 
   public void write(ExtendedDataOutputStream out, String defaultURI) throws IOException
   {
+    // TODO Optimize transfer of URIs
     out.writeString(packageURI.equals(defaultURI) ? null : packageURI);
     out.writeInt(classifierID);
   }
