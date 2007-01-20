@@ -10,19 +10,20 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.model.core;
 
-import org.eclipse.emf.cdo.internal.protocol.model.core.CDOCorePackageImpl;
+import org.eclipse.emf.cdo.internal.protocol.model.core.CDOResourcePackageImpl;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 
 /**
  * @author Eike Stepper
  */
-public interface CDOCorePackage extends CDOPackage
+public interface CDOResourcePackage extends CDOPackage
 {
-  public static final CDOCorePackage INSTANCE = new CDOCorePackageImpl();
+  public static final CDOResourcePackage INSTANCE = new CDOResourcePackageImpl();
 
-  public static final String PACKAGE_URI = "http://www.eclipse.org/emf/CDO/core/1.0.0";
+  public static final String PACKAGE_URI = "http://www.eclipse.org/emf/CDO/resource/1.0.0";
 
-  public static final String NAME = "cdocore";
+  public static final String NAME = "cdoresource";
 
-  public CDOObjectClass getCDOObjectClass();
+  public CDOResourceClass getCDOResourceClass();
+
 }

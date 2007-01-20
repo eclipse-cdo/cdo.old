@@ -12,6 +12,7 @@ package org.eclipse.emf.cdo.internal.protocol.model;
 
 import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
 import org.eclipse.emf.cdo.internal.protocol.model.core.CDOCorePackageImpl;
+import org.eclipse.emf.cdo.internal.protocol.model.core.CDOResourcePackageImpl;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
@@ -65,5 +66,10 @@ public class CDOPackageManagerImpl implements CDOPackageManager
   public CDOCorePackageImpl getCDOCorePackage()
   {
     return CDOCorePackageImpl.INSTANCE;
+  }
+
+  public CDOResourcePackageImpl getCDOResourcePackage()
+  {
+    return CDOResourcePackageImpl.INSTANCE;
   }
 }

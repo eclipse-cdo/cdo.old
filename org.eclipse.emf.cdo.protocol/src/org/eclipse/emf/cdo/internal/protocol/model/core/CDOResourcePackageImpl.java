@@ -11,29 +11,29 @@
 package org.eclipse.emf.cdo.internal.protocol.model.core;
 
 import org.eclipse.emf.cdo.internal.protocol.model.CDOPackageImpl;
-import org.eclipse.emf.cdo.protocol.model.core.CDOCorePackage;
+import org.eclipse.emf.cdo.protocol.model.core.CDOResourcePackage;
 
 /**
  * @author Eike Stepper
  */
-public final class CDOCorePackageImpl extends CDOPackageImpl implements CDOCorePackage
+public final class CDOResourcePackageImpl extends CDOPackageImpl implements CDOResourcePackage
 {
-  public static final CDOCorePackageImpl INSTANCE = (CDOCorePackageImpl)CDOCorePackage.INSTANCE;
+  public static final CDOResourcePackageImpl INSTANCE = (CDOResourcePackageImpl)CDOResourcePackage.INSTANCE;
 
-  public CDOCorePackageImpl()
+  public CDOResourcePackageImpl()
   {
     super(PACKAGE_URI, NAME);
-    addClass(CDOObjectClassImpl.INSTANCE);
+    addClass(CDOResourceClassImpl.INSTANCE);
   }
 
-  public CDOObjectClassImpl getCDOObjectClass()
+  public CDOResourceClassImpl getCDOResourceClass()
   {
-    return CDOObjectClassImpl.INSTANCE;
+    return CDOResourceClassImpl.INSTANCE;
   }
 
   @Override
   public String toString()
   {
-    return "CDOCorePackage";
+    return "CDOResourcePackage";
   }
 }

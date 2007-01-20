@@ -12,6 +12,7 @@ package org.eclipse.emf.cdo.protocol.model;
 
 import org.eclipse.emf.cdo.internal.protocol.model.CDOPackageManagerImpl;
 import org.eclipse.emf.cdo.protocol.model.core.CDOCorePackage;
+import org.eclipse.emf.cdo.protocol.model.core.CDOResourcePackage;
 
 /**
  * @author Eike Stepper
@@ -27,4 +28,6 @@ public interface CDOPackageManager
   public CDOPackage lookupPackage(String packageURI);
 
   public CDOCorePackage getCDOCorePackage();
+
+  public CDOResourcePackage getCDOResourcePackage();
 }

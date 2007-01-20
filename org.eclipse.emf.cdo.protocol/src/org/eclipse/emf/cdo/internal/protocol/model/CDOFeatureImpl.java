@@ -46,13 +46,12 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
 
   private Object referenceType;
 
-  public CDOFeatureImpl(int featureID, String name, int type, boolean many, boolean containment)
+  public CDOFeatureImpl(int featureID, String name, int type, boolean many)
   {
     super(name);
     this.featureID = featureID;
     this.type = type;
     this.many = many;
-    this.containment = containment;
   }
 
   public CDOFeatureImpl(int featureID, String name, CDOClassImpl referenceType, boolean many,
