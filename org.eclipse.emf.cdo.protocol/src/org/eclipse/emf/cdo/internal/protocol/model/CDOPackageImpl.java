@@ -12,7 +12,6 @@ package org.eclipse.emf.cdo.internal.protocol.model;
 
 import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
-import org.eclipse.emf.cdo.protocol.model.CDOModelResolver;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 
 import org.eclipse.net4j.util.om.trace.ContextTracer;
@@ -27,7 +26,7 @@ import java.util.List;
 /**
  * @author Eike Stepper
  */
-public final class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
+public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
 {
   private static final ContextTracer MODEL = new ContextTracer(CDOProtocol.DEBUG_MODEL,
       CDOPackageImpl.class);
@@ -35,26 +34,21 @@ public final class CDOPackageImpl extends CDOModelElementImpl implements CDOPack
   private static final ContextTracer PROTOCOL = new ContextTracer(CDOProtocol.DEBUG_PROTOCOL,
       CDOPackageImpl.class);
 
-  private CDOModelResolver modelResolver;
-
   private String packageURI;
 
   private List<CDOClassImpl> classes = new ArrayList(0);
 
   private List<CDOClassImpl> index = new ArrayList(0);
 
-  public CDOPackageImpl(CDOModelResolver modelResolver, String packageURI, String name)
+  public CDOPackageImpl(String packageURI, String name)
   {
     super(name);
-    this.modelResolver = modelResolver;
     this.packageURI = packageURI;
   }
 
-  public CDOPackageImpl(CDOModelResolver modelResolver, ExtendedDataInputStream in)
-      throws IOException
+  public CDOPackageImpl(ExtendedDataInputStream in) throws IOException
   {
     super(in);
-    this.modelResolver = modelResolver;
     packageURI = in.readString();
     if (PROTOCOL.isEnabled())
     {
@@ -69,8 +63,8 @@ public final class CDOPackageImpl extends CDOModelElementImpl implements CDOPack
 
     for (int i = 0; i < size; i++)
     {
-      CDOClassImpl c = new CDOClassImpl(this, in);
-      addClass(c);
+      CDOClassImpl cdoClass = new CDOClassImpl(in);
+      addClass(cdoClass);
     }
   }
 
@@ -95,11 +89,6 @@ public final class CDOPackageImpl extends CDOModelElementImpl implements CDOPack
     {
       cdoClass.write(out);
     }
-  }
-
-  public CDOModelResolver getModelResolver()
-  {
-    return modelResolver;
   }
 
   public String getPackageURI()
@@ -130,12 +119,8 @@ public final class CDOPackageImpl extends CDOModelElementImpl implements CDOPack
       MODEL.format("Adding class: {0}", cdoClass);
     }
 
-    while (classifierID >= index.size())
-    {
-      index.add(null);
-    }
-
-    index.set(classifierID, cdoClass);
+    cdoClass.setContainingPackage(this);
+    setIndex(classifierID, cdoClass);
     classes.add(cdoClass);
   }
 
@@ -151,5 +136,15 @@ public final class CDOPackageImpl extends CDOModelElementImpl implements CDOPack
   public String toString()
   {
     return MessageFormat.format("CDOPackage(URI={0}, name={1})", packageURI, getName());
+  }
+
+  private void setIndex(int classifierID, CDOClassImpl cdoClass)
+  {
+    while (classifierID >= index.size())
+    {
+      index.add(null);
+    }
+
+    index.set(classifierID, cdoClass);
   }
 }

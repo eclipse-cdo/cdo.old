@@ -8,25 +8,27 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.protocol.model;
+package org.eclipse.emf.cdo.internal.protocol.model.core;
 
-import org.eclipse.emf.cdo.internal.protocol.model.CDOModelResolverImpl;
+import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
 import org.eclipse.emf.cdo.protocol.model.core.CDOCorePackage;
+import org.eclipse.emf.cdo.protocol.model.core.CDOResourceClass;
 
 /**
  * @author Eike Stepper
  */
-public interface CDOModelResolver
+public class CDOResourceClassImpl extends CDOClassImpl implements CDOResourceClass
 {
-  public static final CDOModelResolver INSTANCE = new CDOModelResolverImpl();
+  public static final CDOResourceClassImpl INSTANCE = (CDOResourceClassImpl)CDOResourceClass.INSTANCE;
 
-  public int getPackageCount();
+  public CDOResourceClassImpl()
+  {
+    super(CLASSIFIER_ID, NAME, false);
+    addFeature(CDOContentsFeatureImpl.INSTANCE);
+  }
 
-  public CDOPackage[] getPackages();
-
-  public CDOPackage lookupPackage(String packageURI);
-
-  public CDOClass resolveClass(CDOClassRef classRef);
-
-  public CDOCorePackage getCDOCorePackage();
+  public CDOContentsFeatureImpl getCDOContentsFeature()
+  {
+    return CDOContentsFeatureImpl.INSTANCE;
+  }
 }

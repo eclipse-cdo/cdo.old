@@ -30,6 +30,4 @@ public interface CDOFeature extends CDOModelElement
   public CDOClass getContainingClass();
 
   public CDOPackage getContainingPackage();
-
-  public CDOModelResolver getModelResolver();
 }

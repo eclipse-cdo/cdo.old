@@ -11,17 +11,13 @@
 package org.eclipse.emf.cdo.internal.protocol.model;
 
 import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
-import org.eclipse.emf.cdo.protocol.CDOConstants;
+import org.eclipse.emf.cdo.internal.protocol.model.core.CDOCorePackageImpl;
 import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 import org.eclipse.emf.cdo.protocol.model.CDOModelResolver;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
-import org.eclipse.emf.cdo.protocol.model.CDOTypes;
 
 import org.eclipse.net4j.util.om.trace.ContextTracer;
-import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
-import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,20 +26,16 @@ import java.util.Map;
  */
 public class CDOModelResolverImpl implements CDOModelResolver
 {
+  public static final CDOModelResolverImpl INSTANCE = (CDOModelResolverImpl)CDOModelResolver.INSTANCE;
+
   private static final ContextTracer TRACER = new ContextTracer(CDOProtocol.DEBUG_MODEL,
       CDOModelResolverImpl.class);
 
   private Map<String, CDOPackageImpl> packages = new HashMap();
 
-  private CDOPackageImpl cdoCorePackage;
-
-  private CDOClassImpl cdoCoreResourceClass;
-
-  private CDOFeatureImpl cdoCoreResourceContentsFeature;
-
   public CDOModelResolverImpl()
   {
-    initCDOCoreModel();
+    addPackage(CDOCorePackageImpl.INSTANCE);
   }
 
   public CDOPackageImpl lookupPackage(String uri)
@@ -73,41 +65,12 @@ public class CDOModelResolverImpl implements CDOModelResolver
 
   public CDOClassImpl resolveClass(CDOClassRef classRef)
   {
-    String packageURI = classRef.getPackageURI();
-    int classifierID = classRef.getClassifierID();
-    CDOPackageImpl cdoPackage = lookupPackage(packageURI);
-    CDOClassImpl cdoClass = cdoPackage.lookupClass(classifierID);
-    return cdoClass;
+    CDOPackageImpl cdoPackage = lookupPackage(classRef.getPackageURI());
+    return cdoPackage.lookupClass(classRef.getClassifierID());
   }
 
-  public CDOPackageImpl getCDOResourcePackage()
+  public CDOCorePackageImpl getCDOCorePackage()
   {
-    return cdoCorePackage;
+    return CDOCorePackageImpl.INSTANCE;
   }
-
-  public CDOClassImpl getCDOResourceClass()
-  {
-    return cdoCoreResourceClass;
-  }
-
-  public CDOFeatureImpl getCDOResourceContents()
-  {
-    return cdoCoreResourceContentsFeature;
-  }
-
-  private void initCDOCoreModel()
-  {
-    cdoCorePackage = new CDOPackageImpl(this, CDOConstants.CDORESOURCE_PACKAGE_URI,
-        CDOConstants.CDORESOURCE_PACKAGE_NAME);
-    cdoCoreResourceClass = new CDOClassImpl(cdoCorePackage, CDOConstants.CDORESOURCE_CLASS_ID,
-        CDOConstants.CDORESOURCE_CLASS_NAME, false);
-    cdoCoreResourceContentsFeature = new CDOFeatureImpl(cdoCoreResourceClass,
-        CDOConstants.CDORESOURCE_CONTENTS_ID, CDOConstants.CDORESOURCE_CONTENTS_NAME,
-        CDOTypes.OBJECT, true, true, null);
-
-    cdoCoreResourceClass.addFeature(cdoCoreResourceContentsFeature);
-    cdoCorePackage.addClass(cdoCoreResourceClass);
-    addPackage(cdoCorePackage);
-  }
-
 }

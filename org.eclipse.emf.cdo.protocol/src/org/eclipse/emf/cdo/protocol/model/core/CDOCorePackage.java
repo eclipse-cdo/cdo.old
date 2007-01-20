@@ -8,24 +8,24 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.protocol.model;
+package org.eclipse.emf.cdo.protocol.model.core;
+
+import org.eclipse.emf.cdo.internal.protocol.model.core.CDOCorePackageImpl;
+import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 
 /**
  * @author Eike Stepper
  */
-public interface CDOClass extends CDOModelElement
+public interface CDOCorePackage extends CDOPackage
 {
-  public int getClassifierID();
+  public static final CDOCorePackage INSTANCE = new CDOCorePackageImpl();
 
-  public boolean isAbstract();
+  public static final String PACKAGE_URI = "http://www.eclipse.org/emf/CDO/resource/1.0.0";
 
-  public int getFeatureCount();
+  public static final String NAME = "cdoresource";
 
-  public CDOFeature[] getFeatures();
+  public CDOObjectClass getCDOObjectClass();
 
-  public CDOFeature lookupFeature(int featureID);
+  public CDOResourceClass getCDOResourceClass();
 
-  public CDOClassRef createClassRef();
-
-  public CDOPackage getContainingPackage();
 }
