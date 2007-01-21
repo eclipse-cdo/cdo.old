@@ -52,6 +52,10 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
     this.featureID = featureID;
     this.type = type;
     this.many = many;
+    if (MODEL.isEnabled())
+    {
+      MODEL.format("Created {0}", this);
+    }
   }
 
   public CDOFeatureImpl(int featureID, String name, CDOClassImpl referenceType, boolean many,
@@ -212,6 +216,6 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
   @Override
   public String toString()
   {
-    return MessageFormat.format("CDOFeature(ID={0}, name={1}", featureID, getName());
+    return MessageFormat.format("CDOFeature(ID={0}, name={1})", featureID, getName());
   }
 }

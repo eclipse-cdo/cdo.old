@@ -44,6 +44,10 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
   {
     super(name);
     this.packageURI = packageURI;
+    if (MODEL.isEnabled())
+    {
+      MODEL.format("Created {0}", this);
+    }
   }
 
   public CDOPackageImpl(ExtendedDataInputStream in) throws IOException

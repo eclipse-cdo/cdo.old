@@ -49,6 +49,10 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     super(name);
     this.classifierID = classifierID;
     this.isAbstract = isAbstract;
+    if (MODEL.isEnabled())
+    {
+      MODEL.format("Created {0}", this);
+    }
   }
 
   public CDOClassImpl(ExtendedDataInputStream in) throws IOException

@@ -26,10 +26,10 @@ import java.util.Map;
  */
 public class CDOPackageManagerImpl implements CDOPackageManager
 {
-  public static final CDOPackageManagerImpl INSTANCE = (CDOPackageManagerImpl)CDOPackageManager.INSTANCE;
-
   private static final ContextTracer TRACER = new ContextTracer(CDOProtocol.DEBUG_MODEL,
       CDOPackageManagerImpl.class);
+
+  public static final CDOPackageManagerImpl INSTANCE = (CDOPackageManagerImpl)CDOPackageManager.INSTANCE;
 
   private Map<String, CDOPackageImpl> packages = new HashMap();
 
