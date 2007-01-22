@@ -148,8 +148,10 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
       MODEL.format("Adding feature: {0}", cdoFeature);
     }
 
+    int i = features.size();
+    setIndex(featureID, i);
+    cdoFeature.setFeatureIndex(i);
     cdoFeature.setContainingClass(this);
-    setIndex(featureID, features.size());
     features.add(cdoFeature);
   }
 

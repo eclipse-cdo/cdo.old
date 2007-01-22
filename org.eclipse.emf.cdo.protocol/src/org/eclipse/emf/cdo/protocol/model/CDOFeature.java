@@ -17,6 +17,8 @@ public interface CDOFeature extends CDOModelElement
 {
   public int getFeatureID();
 
+  public int getFeatureIndex();
+
   public int getType();
 
   public boolean isMany();

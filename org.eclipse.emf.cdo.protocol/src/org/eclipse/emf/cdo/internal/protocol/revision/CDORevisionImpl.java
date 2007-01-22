@@ -333,12 +333,12 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   private Object getValue(CDOFeature feature)
   {
-    return settings[feature.getFeatureID()];
+    return settings[feature.getFeatureIndex()];
   }
 
   private Object setValue(CDOFeature feature, Object value)
   {
-    int i = feature.getFeatureID();
+    int i = feature.getFeatureIndex();
     Object old = settings[i];
     settings[i] = value;
     return old;
@@ -346,7 +346,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   private RList getList(CDOFeature feature)
   {
-    int i = feature.getFeatureID();
+    int i = feature.getFeatureIndex();
     RList result = (RList)settings[i];
     if (result == null)
     {

@@ -38,6 +38,8 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
 
   private int featureID;
 
+  private int featureIndex;
+
   private int type;
 
   private boolean many;
@@ -152,6 +154,11 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
     return featureID;
   }
 
+  public int getFeatureIndex()
+  {
+    return featureIndex;
+  }
+
   public int getType()
   {
     return type;
@@ -211,6 +218,11 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
   public void setContainingClass(CDOClassImpl containingClass)
   {
     this.containingClass = containingClass;
+  }
+
+  public void setFeatureIndex(int featureIndex)
+  {
+    this.featureIndex = featureIndex;
   }
 
   @Override
