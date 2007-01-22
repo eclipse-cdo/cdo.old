@@ -12,10 +12,6 @@ import java.io.IOException;
  */
 public class CDOIDImpl implements CDOID
 {
-  private static final long INITIAL_TEMPORARY_OID = 0L;
-
-  private static long lastTemporaryOID = INITIAL_TEMPORARY_OID;
-
   private long value;
 
   CDOIDImpl(long value)
@@ -53,16 +49,6 @@ public class CDOIDImpl implements CDOID
   public String toString()
   {
     return Long.toString(value);
-  }
-
-  public static void resetTemporaryCDOID()
-  {
-    lastTemporaryOID = INITIAL_TEMPORARY_OID;
-  }
-
-  public static CDOID createNew()
-  {
-    return new CDOIDImpl(--lastTemporaryOID);
   }
 
   public static CDOID create(long value)
