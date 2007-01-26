@@ -6,6 +6,7 @@ import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
 import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 
 /**
  * TODO Optimize transfer of {@link CDOClassRefImpl} instances
@@ -51,5 +52,11 @@ public final class CDOClassRefImpl implements CDOClassRef
   public int getClassifierID()
   {
     return classifierID;
+  }
+
+  @Override
+  public String toString()
+  {
+    return MessageFormat.format("CDOClassRef({0}, {1})", packageURI, classifierID);
   }
 }

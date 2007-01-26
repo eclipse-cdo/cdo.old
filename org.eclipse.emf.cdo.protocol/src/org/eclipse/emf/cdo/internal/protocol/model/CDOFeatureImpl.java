@@ -13,7 +13,6 @@ package org.eclipse.emf.cdo.internal.protocol.model;
 import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
-import org.eclipse.emf.cdo.protocol.model.CDOTypes;
 
 import org.eclipse.net4j.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
@@ -40,7 +39,7 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
 
   private int featureIndex;
 
-  private int type;
+  private CDOTypeImpl type;
 
   private boolean many;
 
@@ -48,7 +47,7 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
 
   private Object referenceType;
 
-  public CDOFeatureImpl(int featureID, String name, int type, boolean many)
+  public CDOFeatureImpl(int featureID, String name, CDOTypeImpl type, boolean many)
   {
     super(name);
     this.featureID = featureID;
@@ -77,7 +76,7 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
   {
     super(name);
     this.featureID = featureID;
-    this.type = CDOTypes.OBJECT;
+    this.type = CDOTypeImpl.OBJECT;
     this.many = many;
     this.containment = containment;
     this.referenceType = referenceType;
@@ -87,7 +86,7 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
   {
     super(in);
     featureID = in.readInt();
-    type = in.readInt();
+    type = CDOTypeImpl.read(in);
     many = in.readBoolean();
     containment = in.readBoolean();
     if (PROTOCOL.isEnabled())
@@ -118,7 +117,7 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
 
     super.write(out);
     out.writeInt(featureID);
-    out.writeInt(type);
+    type.write(out);
     out.writeBoolean(many);
     out.writeBoolean(containment);
 
@@ -159,7 +158,7 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
     return featureIndex;
   }
 
-  public int getType()
+  public CDOTypeImpl getType()
   {
     return type;
   }
@@ -171,7 +170,7 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
 
   public boolean isReference()
   {
-    return type == CDOTypes.OBJECT;
+    return type == CDOTypeImpl.OBJECT;
   }
 
   public boolean isContainment()

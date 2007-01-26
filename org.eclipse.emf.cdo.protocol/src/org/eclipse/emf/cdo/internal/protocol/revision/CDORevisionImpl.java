@@ -15,6 +15,8 @@ import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassRefImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassResolverImpl;
+import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
+import org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
@@ -26,6 +28,7 @@ import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Eike Stepper
@@ -49,7 +52,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   private int containingFeatureID;
 
-  private Object[] settings;
+  private Object[] values;
 
   public CDORevisionImpl(CDOClassImpl cdoClass, CDOID id)
   {
@@ -60,7 +63,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     revised = UNSPECIFIED_DATE;
     containerID = CDOID.NULL;
     containingFeatureID = 0;
-    settings = new Object[cdoClass.getFeatureCount()];
+    values = new Object[cdoClass.getFeatureCount()];
   }
 
   @Deprecated
@@ -73,7 +76,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     revised = source.revised; // == UNSPECIFIED
     containerID = source.containerID;
     containingFeatureID = source.containingFeatureID;
-    settings = cloneSettings();
+    values = cloneSettings();
   }
 
   public CDORevisionImpl(ExtendedDataInputStream in) throws IOException
@@ -92,9 +95,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     revised = in.readLong();
     containerID = CDOIDImpl.read(in);
     containingFeatureID = in.readInt();
-
-    // TODO Implement method RevisionImpl.RevisionImpl()
-    throw new UnsupportedOperationException("Not yet implemented");
+    readValues(in);
   }
 
   public void write(ExtendedDataOutputStream out) throws IOException
@@ -113,15 +114,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     out.writeLong(revised);
     CDOIDImpl.write(out, containerID);
     out.writeInt(containingFeatureID);
-
-    // TODO Implement method CDORevisionImpl.write()
-    throw new UnsupportedOperationException("Not yet implemented");
-
-    // CDOFeatureImpl[] features = cdoClass.getCDOFeatures();
-    // for (int i = 0; i < features.length; i++)
-    // {
-    // features[i].write(out, settings[i]);
-    // }
+    writeValues(out);
   }
 
   public CDOClassImpl getCDOClass()
@@ -138,7 +131,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
   {
     if (TRACER.isEnabled())
     {
-      TRACER.format("Changing id {0} -> {1}", this.id, id);
+      TRACER.format("Setting ID: {0} -> {1}", this.id, id);
     }
 
     this.id = id;
@@ -331,35 +324,90 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     return cdoClass.getName() + "@" + id + "v" + version;
   }
 
+  private void readValues(ExtendedDataInputStream in) throws IOException
+  {
+    values = new Object[cdoClass.getFeatureCount()];
+    CDOFeatureImpl[] features = cdoClass.getFeatures();
+    for (int i = 0; i < features.length; i++)
+    {
+      CDOFeatureImpl feature = features[i];
+      CDOTypeImpl type = feature.getType();
+      if (feature.isMany())
+      {
+        int size = in.readInt();
+        List list = new MoveableList(size);
+        for (int j = 0; j < size; j++)
+        {
+          list.add(type.readValue(in));
+        }
+
+        values[i] = list;
+      }
+      else
+      {
+        values[i] = type.readValue(in);
+      }
+    }
+  }
+
+  private void writeValues(ExtendedDataOutputStream out) throws IOException
+  {
+    CDOFeatureImpl[] features = cdoClass.getFeatures();
+    for (int i = 0; i < features.length; i++)
+    {
+      CDOFeatureImpl feature = features[i];
+      if (feature.isMany())
+      {
+        List list = (List)values[i];
+        out.writeInt(list.size());
+        for (Object value : list)
+        {
+          feature.getType().writeValue(out, value);
+        }
+      }
+      else
+      {
+        Object value = values[i];
+        feature.getType().writeValue(out, value);
+      }
+    }
+  }
+
   private Object getValue(CDOFeature feature)
   {
-    return settings[feature.getFeatureIndex()];
+    return values[feature.getFeatureIndex()];
   }
 
   private Object setValue(CDOFeature feature, Object value)
   {
     int i = feature.getFeatureIndex();
-    Object old = settings[i];
-    settings[i] = value;
+    Object old = values[i];
+    values[i] = value;
     return old;
   }
 
-  private RList getList(CDOFeature feature)
+  private MoveableList getList(CDOFeature feature)
   {
     int i = feature.getFeatureIndex();
-    RList result = (RList)settings[i];
+    MoveableList result = (MoveableList)values[i];
     if (result == null)
     {
-      result = new RList();
-      settings[i] = result;
+      result = new MoveableList(0);
+      values[i] = result;
     }
 
     return result;
   }
 
-  private static final class RList extends ArrayList<Object>
+  private static final class MoveableList extends ArrayList<Object>
   {
     private static final long serialVersionUID = 1L;
+
+    public MoveableList(int initialCapacity)
+    {
+      super(initialCapacity);
+
+    }
 
     public Object move(int targetIndex, int sourceIndex)
     {

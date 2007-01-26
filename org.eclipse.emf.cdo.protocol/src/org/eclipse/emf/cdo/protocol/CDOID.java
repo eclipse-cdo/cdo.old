@@ -10,4 +10,6 @@ public interface CDOID
   public static final CDOID NULL = new CDOIDNull();
 
   public long getValue();
+
+  public boolean isTemporary();
 }

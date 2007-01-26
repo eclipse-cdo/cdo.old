@@ -10,10 +10,12 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.revision;
 
+import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionResolver;
-import org.eclipse.emf.cdo.protocol.util.ImplementationError;
+
+import org.eclipse.net4j.util.om.trace.ContextTracer;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -24,6 +26,9 @@ import java.util.Map;
  */
 public class CDORevisionResolverImpl implements CDORevisionResolver
 {
+  private static final ContextTracer TRACER = new ContextTracer(CDOProtocol.DEBUG_REVISION,
+      CDORevisionResolverImpl.class);
+
   private Map<CDOID, TimeLine> revisions = new HashMap();
 
   public CDORevisionResolverImpl()
@@ -97,13 +102,19 @@ public class CDORevisionResolverImpl implements CDORevisionResolver
     @Override
     public boolean add(CDORevision revision)
     {
+      if (TRACER.isEnabled())
+      {
+        TRACER.format("Adding revision: {0}", revision);
+      }
+
       if (revision.isActual())
       {
         addFirst(revision);
       }
       else
       {
-        throw new ImplementationError();
+        // TODO Implement method TimeLine.add()
+        throw new UnsupportedOperationException("Not yet implemented");
       }
 
       return true;

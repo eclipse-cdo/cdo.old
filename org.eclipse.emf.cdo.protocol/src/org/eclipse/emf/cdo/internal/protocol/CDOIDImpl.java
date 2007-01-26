@@ -24,6 +24,11 @@ public class CDOIDImpl implements CDOID
     return value;
   }
 
+  public boolean isTemporary()
+  {
+    return value < 0;
+  }
+
   @Override
   public boolean equals(Object obj)
   {
