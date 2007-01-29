@@ -18,9 +18,9 @@ import org.eclipse.emf.cdo.protocol.model.CDOFeature;
  */
 public interface CDOContentsFeature extends CDOFeature
 {
-  public static final CDOContentsFeature INSTANCE = new CDOContentsFeatureImpl();
+  public static final CDOContentsFeature INSTANCE = CDOContentsFeatureImpl.INSTANCE;
 
-  public static final int FEATURE_ID = 0;
+  public static final int FEATURE_ID = 2;
 
   public static final String NAME = "contents";
 }

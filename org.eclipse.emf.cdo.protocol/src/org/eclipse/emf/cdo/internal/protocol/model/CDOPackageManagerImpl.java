@@ -36,6 +36,7 @@ public class CDOPackageManagerImpl implements CDOPackageManager
   public CDOPackageManagerImpl()
   {
     addPackage(CDOCorePackageImpl.INSTANCE);
+    addPackage(CDOResourcePackageImpl.INSTANCE);
   }
 
   public CDOPackageImpl lookupPackage(String uri)

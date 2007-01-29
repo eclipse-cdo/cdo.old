@@ -19,7 +19,7 @@ import org.eclipse.emf.cdo.protocol.model.resource.CDOContentsFeature;
  */
 public class CDOContentsFeatureImpl extends CDOFeatureImpl implements CDOContentsFeature
 {
-  public static final CDOContentsFeatureImpl INSTANCE = (CDOContentsFeatureImpl)CDOContentsFeature.INSTANCE;
+  public static final CDOContentsFeatureImpl INSTANCE = new CDOContentsFeatureImpl();
 
   public CDOContentsFeatureImpl()
   {

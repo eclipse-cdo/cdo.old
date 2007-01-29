@@ -29,7 +29,12 @@ public abstract class CDOModelElementImpl implements CDOModelElement
 
   private String name;
 
-  private Object info;
+  private Object clientInfo;
+
+  /**
+   * TODO Check if needed
+   */
+  private Object serverInfo;
 
   public CDOModelElementImpl(String name)
   {
@@ -51,18 +56,33 @@ public abstract class CDOModelElementImpl implements CDOModelElement
     return name;
   }
 
-  public Object getInfo()
+  public Object getClientInfo()
   {
-    return info;
+    return clientInfo;
   }
 
-  public void setInfo(Object info)
+  public void setClientInfo(Object clientInfo)
   {
     if (MODEL.isEnabled())
     {
-      MODEL.format("Setting info: {0} --> {1}", this, info);
+      MODEL.format("Setting client info: {0} --> {1}", this, clientInfo);
     }
 
-    this.info = info;
+    this.clientInfo = clientInfo;
+  }
+
+  public Object getServerInfo()
+  {
+    return serverInfo;
+  }
+
+  public void setServerInfo(Object serverInfo)
+  {
+    if (MODEL.isEnabled())
+    {
+      MODEL.format("Setting server info: {0} --> {1}", this, serverInfo);
+    }
+
+    this.serverInfo = serverInfo;
   }
 }

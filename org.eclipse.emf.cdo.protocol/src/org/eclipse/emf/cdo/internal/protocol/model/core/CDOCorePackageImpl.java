@@ -30,10 +30,4 @@ public final class CDOCorePackageImpl extends CDOPackageImpl implements CDOCoreP
   {
     return CDOObjectClassImpl.INSTANCE;
   }
-
-  @Override
-  public String toString()
-  {
-    return "CDOCorePackage";
-  }
 }

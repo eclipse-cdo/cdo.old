@@ -18,12 +18,24 @@ import org.eclipse.emf.cdo.protocol.model.resource.CDOResourceClass;
  */
 public class CDOResourceClassImpl extends CDOClassImpl implements CDOResourceClass
 {
-  public static final CDOResourceClassImpl INSTANCE = (CDOResourceClassImpl)CDOResourceClass.INSTANCE;
+  public static final CDOResourceClassImpl INSTANCE = new CDOResourceClassImpl();
 
   public CDOResourceClassImpl()
   {
     super(CLASSIFIER_ID, NAME, false);
+    addFeature(CDOPathFeatureImpl.INSTANCE);
     addFeature(CDOContentsFeatureImpl.INSTANCE);
+  }
+
+  @Override
+  public boolean isResource()
+  {
+    return true;
+  }
+
+  public CDOPathFeatureImpl getCDOPathFeature()
+  {
+    return CDOPathFeatureImpl.INSTANCE;
   }
 
   public CDOContentsFeatureImpl getCDOContentsFeature()

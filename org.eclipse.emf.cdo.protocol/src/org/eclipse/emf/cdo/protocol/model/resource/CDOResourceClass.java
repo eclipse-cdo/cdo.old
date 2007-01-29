@@ -18,11 +18,13 @@ import org.eclipse.emf.cdo.protocol.model.CDOClass;
  */
 public interface CDOResourceClass extends CDOClass
 {
-  public static final CDOResourceClass INSTANCE = new CDOResourceClassImpl();
+  public static final CDOResourceClass INSTANCE = CDOResourceClassImpl.INSTANCE;
 
   public static final int CLASSIFIER_ID = 0;
 
   public static final String NAME = "CDOResource";
+
+  public CDOPathFeature getCDOPathFeature();
 
   public CDOContentsFeature getCDOContentsFeature();
 }

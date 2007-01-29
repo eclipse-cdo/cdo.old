@@ -29,6 +29,7 @@ import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Eike Stepper
@@ -177,6 +178,11 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     return created <= timeStamp && revised == UNSPECIFIED_DATE;
   }
 
+  public boolean isResource()
+  {
+    return cdoClass.isResource();
+  }
+
   public CDORevisionData getData()
   {
     return this;
@@ -318,6 +324,43 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     // return result;
   }
 
+  public void adjustReferences(Map<CDOID, CDOID> idMappings)
+  {
+    if (TRACER.isEnabled())
+    {
+      TRACER.format("Adjusting references for revision {0}", this);
+    }
+
+    CDOFeatureImpl[] features = cdoClass.getFeatures();
+    for (int i = 0; i < features.length; i++)
+    {
+      CDOFeatureImpl feature = features[i];
+      if (feature.isReference())
+      {
+        if (feature.isMany())
+        {
+          List list = (List)values[i];
+          for (int j = 0; j < list.size(); j++)
+          {
+            CDOID newID = remapID(feature, list.get(j), idMappings);
+            if (newID != null)
+            {
+              list.set(j, newID);
+            }
+          }
+        }
+        else
+        {
+          CDOID newID = remapID(feature, values[i], idMappings);
+          if (newID != null)
+          {
+            values[i] = newID;
+          }
+        }
+      }
+    }
+  }
+
   @Override
   public String toString()
   {
@@ -397,6 +440,29 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     }
 
     return result;
+  }
+
+  private static CDOID remapID(CDOFeatureImpl feature, Object value, Map<CDOID, CDOID> idMappings)
+  {
+    if (value instanceof CDOID)
+    {
+      CDOID oldID = (CDOID)value;
+      if (oldID.isTemporary())
+      {
+        CDOID newID = idMappings.get(oldID);
+        if (newID != null)
+        {
+          if (TRACER.isEnabled())
+          {
+            TRACER.format("Adjusting {0}: {1} --> {2}", feature, oldID, newID);
+          }
+
+          return newID;
+        }
+      }
+    }
+
+    return null;
   }
 
   private static final class MoveableList extends ArrayList<Object>

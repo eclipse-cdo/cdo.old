@@ -17,5 +17,7 @@ public interface CDOModelElement
 {
   public String getName();
 
-  public Object getInfo();
+  public Object getClientInfo();
+
+  public Object getServerInfo();
 }

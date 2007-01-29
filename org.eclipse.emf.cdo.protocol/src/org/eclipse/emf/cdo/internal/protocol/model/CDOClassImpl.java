@@ -119,6 +119,11 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     return isAbstract;
   }
 
+  public boolean isResource()
+  {
+    return false;
+  }
+
   public int getFeatureCount()
   {
     return features.size();

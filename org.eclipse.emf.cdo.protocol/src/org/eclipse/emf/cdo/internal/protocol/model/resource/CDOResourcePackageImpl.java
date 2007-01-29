@@ -18,7 +18,7 @@ import org.eclipse.emf.cdo.protocol.model.resource.CDOResourcePackage;
  */
 public final class CDOResourcePackageImpl extends CDOPackageImpl implements CDOResourcePackage
 {
-  public static final CDOResourcePackageImpl INSTANCE = (CDOResourcePackageImpl)CDOResourcePackage.INSTANCE;
+  public static final CDOResourcePackageImpl INSTANCE = new CDOResourcePackageImpl();
 
   public CDOResourcePackageImpl()
   {
@@ -29,11 +29,5 @@ public final class CDOResourcePackageImpl extends CDOPackageImpl implements CDOR
   public CDOResourceClassImpl getCDOResourceClass()
   {
     return CDOResourceClassImpl.INSTANCE;
-  }
-
-  @Override
-  public String toString()
-  {
-    return "CDOResourcePackage";
   }
 }

@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * @author Eike Stepper
  */
-public class CDORevisionResolverImpl implements CDORevisionResolver
+public abstract class CDORevisionResolverImpl implements CDORevisionResolver
 {
   private static final ContextTracer TRACER = new ContextTracer(CDOProtocol.DEBUG_REVISION,
       CDORevisionResolverImpl.class);
@@ -47,12 +47,6 @@ public class CDORevisionResolverImpl implements CDORevisionResolver
     throw new UnsupportedOperationException("Not yet implemented");
   }
 
-  public CDORevision loadActual(CDOID id)
-  {
-    // TODO Implement method CDORevisionManagerImpl.loadActual()
-    throw new UnsupportedOperationException("Not yet implemented");
-  }
-
   public void addRevision(CDORevision revision)
   {
     TimeLine timeLine = getTimeLine(revision.getID());
@@ -71,6 +65,11 @@ public class CDORevisionResolverImpl implements CDORevisionResolver
     return timeLine;
   }
 
+  protected abstract CDORevisionImpl loadActual(CDOID id);
+
+  /**
+   * @author Eike Stepper
+   */
   private final class TimeLine extends LinkedList<CDORevision>
   {
     private static final long serialVersionUID = 1L;

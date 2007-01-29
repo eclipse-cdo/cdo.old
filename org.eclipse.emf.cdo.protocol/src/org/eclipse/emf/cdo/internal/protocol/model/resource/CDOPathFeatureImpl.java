@@ -8,26 +8,22 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.protocol.model;
+package org.eclipse.emf.cdo.internal.protocol.model.resource;
+
+import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
+import org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl;
+import org.eclipse.emf.cdo.protocol.model.resource.CDOPathFeature;
 
 /**
  * @author Eike Stepper
  */
-public interface CDOClass extends CDOModelElement
+public class CDOPathFeatureImpl extends CDOFeatureImpl implements CDOPathFeature
 {
-  public int getClassifierID();
+  public static final CDOPathFeatureImpl INSTANCE = new CDOPathFeatureImpl();
 
-  public boolean isAbstract();
+  public CDOPathFeatureImpl()
+  {
+    super(FEATURE_ID, NAME, CDOTypeImpl.STRING, false);
+  }
 
-  public boolean isResource();
-
-  public int getFeatureCount();
-
-  public CDOFeature[] getFeatures();
-
-  public CDOFeature lookupFeature(int featureID);
-
-  public CDOClassRef createClassRef();
-
-  public CDOPackage getContainingPackage();
 }
