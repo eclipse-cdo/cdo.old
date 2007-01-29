@@ -21,7 +21,9 @@ public interface CDOConstants
 
   public static final short LOAD_RESOURCE_SIGNAL = 2;
 
-  public static final short COMMIT_TRANSACTION_SIGNAL = 3;
+  public static final short LOAD_OBJECT_SIGNAL = 3;
+
+  public static final short COMMIT_TRANSACTION_SIGNAL = 4;
 
   public static final int ERROR_REPOSITORY_NOT_FOUND = -1;
 

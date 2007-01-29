@@ -12,7 +12,6 @@ package org.eclipse.emf.cdo.internal.protocol.revision;
 
 import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
 import org.eclipse.emf.cdo.protocol.CDOID;
-import org.eclipse.emf.cdo.protocol.revision.CDORevision;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionResolver;
 
 import org.eclipse.net4j.util.om.trace.ContextTracer;
@@ -35,19 +34,19 @@ public abstract class CDORevisionResolverImpl implements CDORevisionResolver
   {
   }
 
-  public CDORevision getActualRevision(CDOID id)
+  public CDORevisionImpl getActualRevision(CDOID id)
   {
     TimeLine timeLine = getTimeLine(id);
     return timeLine.getActual();
   }
 
-  public CDORevision getHistoricalRevision(CDOID id, long timeStamp)
+  public CDORevisionImpl getHistoricalRevision(CDOID id, long timeStamp)
   {
     // TODO Implement method CDORevisionManagerImpl.getHistoricalRevision()
     throw new UnsupportedOperationException("Not yet implemented");
   }
 
-  public void addRevision(CDORevision revision)
+  public void addRevision(CDORevisionImpl revision)
   {
     TimeLine timeLine = getTimeLine(revision.getID());
     timeLine.add(revision);
@@ -70,7 +69,7 @@ public abstract class CDORevisionResolverImpl implements CDORevisionResolver
   /**
    * @author Eike Stepper
    */
-  private final class TimeLine extends LinkedList<CDORevision>
+  private final class TimeLine extends LinkedList<CDORevisionImpl>
   {
     private static final long serialVersionUID = 1L;
 
@@ -78,6 +77,11 @@ public abstract class CDORevisionResolverImpl implements CDORevisionResolver
 
     public TimeLine(CDOID id)
     {
+      if (id == null)
+      {
+        throw new IllegalArgumentException("id == null");
+      }
+
       this.id = id;
     }
 
@@ -86,9 +90,9 @@ public abstract class CDORevisionResolverImpl implements CDORevisionResolver
       return id;
     }
 
-    public CDORevision getActual()
+    public CDORevisionImpl getActual()
     {
-      CDORevision revision = isEmpty() ? null : getFirst();
+      CDORevisionImpl revision = isEmpty() ? null : getFirst();
       if (revision == null || !revision.isActual())
       {
         revision = loadActual(id);
@@ -99,7 +103,7 @@ public abstract class CDORevisionResolverImpl implements CDORevisionResolver
     }
 
     @Override
-    public boolean add(CDORevision revision)
+    public boolean add(CDORevisionImpl revision)
     {
       if (TRACER.isEnabled())
       {
