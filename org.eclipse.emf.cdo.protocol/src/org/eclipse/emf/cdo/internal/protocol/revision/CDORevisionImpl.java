@@ -132,7 +132,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
   {
     if (TRACER.isEnabled())
     {
-      TRACER.format("Setting ID: {0} -> {1}", this.id, id);
+      TRACER.format("Setting ID: {0}", id);
     }
 
     this.id = id;
