@@ -18,6 +18,8 @@ import org.eclipse.emf.cdo.protocol.model.CDOFeature;
  */
 public interface CDORevisionData
 {
+  public CDOID getResourceID();
+
   public CDOID getContainerID();
 
   public int getContainingFeatureID();

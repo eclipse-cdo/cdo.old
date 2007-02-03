@@ -49,6 +49,8 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   private long revised;
 
+  private CDOID resourceID;
+
   private CDOID containerID;
 
   private int containingFeatureID;
@@ -62,6 +64,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     version = 0;
     created = UNSPECIFIED_DATE;
     revised = UNSPECIFIED_DATE;
+    resourceID = CDOID.NULL;
     containerID = CDOID.NULL;
     containingFeatureID = 0;
     values = new Object[cdoClass.getFeatureCount()];
@@ -75,6 +78,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     version = source.version + 1;
     created = source.created;
     revised = source.revised; // == UNSPECIFIED
+    resourceID = source.resourceID;
     containerID = source.containerID;
     containingFeatureID = source.containingFeatureID;
     values = cloneSettings();
@@ -94,6 +98,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     version = in.readInt();
     created = in.readLong();
     revised = in.readLong();
+    resourceID = CDOIDImpl.read(in);
     containerID = CDOIDImpl.read(in);
     containingFeatureID = in.readInt();
     readValues(in);
@@ -113,6 +118,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     out.writeInt(version);
     out.writeLong(created);
     out.writeLong(revised);
+    CDOIDImpl.write(out, resourceID);
     CDOIDImpl.write(out, containerID);
     out.writeInt(containingFeatureID);
     writeValues(out);
@@ -186,6 +192,16 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
   public CDORevisionData getData()
   {
     return this;
+  }
+
+  public CDOID getResourceID()
+  {
+    return resourceID;
+  }
+
+  public void setResourceID(CDOID resourceID)
+  {
+    this.resourceID = resourceID;
   }
 
   public CDOID getContainerID()
@@ -331,6 +347,9 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
       TRACER.format("Adjusting references for revision {0}", this);
     }
 
+    resourceID = (CDOID)remapID(resourceID, idMappings);
+    containerID = (CDOID)remapID(containerID, idMappings);
+
     CDOFeatureImpl[] features = cdoClass.getFeatures();
     for (int i = 0; i < features.length; i++)
     {
@@ -342,8 +361,9 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
           List list = (List)values[i];
           for (int j = 0; j < list.size(); j++)
           {
-            CDOID newID = remapID(feature, list.get(j), idMappings);
-            if (newID != null)
+            Object oldID = list.get(j);
+            Object newID = remapID(oldID, idMappings);
+            if (newID != oldID)
             {
               list.set(j, newID);
             }
@@ -351,11 +371,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
         }
         else
         {
-          CDOID newID = remapID(feature, values[i], idMappings);
-          if (newID != null)
-          {
-            values[i] = newID;
-          }
+          values[i] = remapID(values[i], idMappings);
         }
       }
     }
@@ -442,7 +458,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     return result;
   }
 
-  private static CDOID remapID(CDOFeatureImpl feature, Object value, Map<CDOID, CDOID> idMappings)
+  private static Object remapID(Object value, Map<CDOID, CDOID> idMappings)
   {
     if (value instanceof CDOID)
     {
@@ -454,7 +470,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
         {
           if (TRACER.isEnabled())
           {
-            TRACER.format("Adjusting {0}: {1} --> {2}", feature, oldID, newID);
+            TRACER.format("Adjusting ID: {0} --> {1}", oldID, newID);
           }
 
           return newID;
@@ -462,7 +478,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
       }
     }
 
-    return null;
+    return value;
   }
 
   private static final class MoveableList extends ArrayList<Object>
