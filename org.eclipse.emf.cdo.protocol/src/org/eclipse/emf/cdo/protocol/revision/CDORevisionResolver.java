@@ -11,12 +11,11 @@
 package org.eclipse.emf.cdo.protocol.revision;
 
 import org.eclipse.emf.cdo.protocol.CDOID;
-import org.eclipse.emf.cdo.protocol.event.CDOEventSource;
 
 /**
  * @author Eike Stepper
  */
-public interface CDORevisionResolver extends CDOEventSource
+public interface CDORevisionResolver
 {
   public CDORevision getActualRevision(CDOID id);
 

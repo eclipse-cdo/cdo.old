@@ -12,10 +12,12 @@ package org.eclipse.emf.cdo.protocol.event;
 
 import org.eclipse.emf.cdo.protocol.CDOID;
 
+import java.util.Set;
+
 /**
  * @author Eike Stepper
  */
 public interface CDOInvalidationEvent extends CDOEvent
 {
-  public CDOID[] getDirtyIDs();
+  public Set<CDOID> getDirtyOIDs();
 }

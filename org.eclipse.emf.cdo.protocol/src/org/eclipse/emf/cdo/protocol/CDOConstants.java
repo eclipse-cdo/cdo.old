@@ -25,6 +25,8 @@ public interface CDOConstants
 
   public static final short COMMIT_TRANSACTION_SIGNAL = 4;
 
+  public static final short INVALIDATION_SIGNAL = 5;
+
   public static final int ERROR_REPOSITORY_NOT_FOUND = -1;
 
   public static final int ERROR_NO_SESSION = -2;

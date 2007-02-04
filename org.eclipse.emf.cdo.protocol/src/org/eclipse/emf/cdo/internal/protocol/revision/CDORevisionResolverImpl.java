@@ -11,7 +11,6 @@
 package org.eclipse.emf.cdo.internal.protocol.revision;
 
 import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
-import org.eclipse.emf.cdo.internal.protocol.event.CDOEventSourceImpl;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionResolver;
 
@@ -24,8 +23,7 @@ import java.util.Map;
 /**
  * @author Eike Stepper
  */
-public abstract class CDORevisionResolverImpl extends CDOEventSourceImpl implements
-    CDORevisionResolver
+public abstract class CDORevisionResolverImpl implements CDORevisionResolver
 {
   private static final ContextTracer TRACER = new ContextTracer(CDOProtocol.DEBUG_REVISION,
       CDORevisionResolverImpl.class);
