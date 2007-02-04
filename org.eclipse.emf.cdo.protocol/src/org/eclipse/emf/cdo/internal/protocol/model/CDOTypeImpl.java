@@ -30,6 +30,13 @@ public abstract class CDOTypeImpl extends CDOModelElementImpl implements CDOType
 
   public static final CDOTypeImpl BOOLEAN = new CDOTypeImpl("BOOLEAN", 22, false)
   {
+    @SuppressWarnings("cast")
+    @Override
+    public Object copyValue(Object value)
+    {
+      return (Boolean)value;
+    }
+
     @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
@@ -45,6 +52,13 @@ public abstract class CDOTypeImpl extends CDOModelElementImpl implements CDOType
 
   public static final CDOTypeImpl BYTE = new CDOTypeImpl("BYTE", 24, false)
   {
+    @SuppressWarnings("cast")
+    @Override
+    public Object copyValue(Object value)
+    {
+      return (Byte)value;
+    }
+
     @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
@@ -60,6 +74,13 @@ public abstract class CDOTypeImpl extends CDOModelElementImpl implements CDOType
 
   public static final CDOTypeImpl CHAR = new CDOTypeImpl("CHAR", 27, false)
   {
+    @SuppressWarnings("cast")
+    @Override
+    public Object copyValue(Object value)
+    {
+      return (Character)value;
+    }
+
     @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
@@ -75,6 +96,13 @@ public abstract class CDOTypeImpl extends CDOModelElementImpl implements CDOType
 
   public static final CDOTypeImpl DOUBLE = new CDOTypeImpl("DOUBLE", 31, false)
   {
+    @SuppressWarnings("cast")
+    @Override
+    public Object copyValue(Object value)
+    {
+      return (Double)value;
+    }
+
     @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
@@ -90,6 +118,13 @@ public abstract class CDOTypeImpl extends CDOModelElementImpl implements CDOType
 
   public static final CDOTypeImpl FLOAT = new CDOTypeImpl("FLOAT", 37, false)
   {
+    @SuppressWarnings("cast")
+    @Override
+    public Object copyValue(Object value)
+    {
+      return (Float)value;
+    }
+
     @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
@@ -105,6 +140,13 @@ public abstract class CDOTypeImpl extends CDOModelElementImpl implements CDOType
 
   public static final CDOTypeImpl INT = new CDOTypeImpl("INT", 39, false)
   {
+    @SuppressWarnings("cast")
+    @Override
+    public Object copyValue(Object value)
+    {
+      return (Integer)value;
+    }
+
     @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
@@ -120,6 +162,13 @@ public abstract class CDOTypeImpl extends CDOModelElementImpl implements CDOType
 
   public static final CDOTypeImpl LONG = new CDOTypeImpl("LONG", 43, false)
   {
+    @SuppressWarnings("cast")
+    @Override
+    public Object copyValue(Object value)
+    {
+      return (Long)value;
+    }
+
     @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
@@ -135,6 +184,13 @@ public abstract class CDOTypeImpl extends CDOModelElementImpl implements CDOType
 
   public static final CDOTypeImpl SHORT = new CDOTypeImpl("SHORT", 48, false)
   {
+    @SuppressWarnings("cast")
+    @Override
+    public Object copyValue(Object value)
+    {
+      return (Short)value;
+    }
+
     @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
@@ -150,6 +206,13 @@ public abstract class CDOTypeImpl extends CDOModelElementImpl implements CDOType
 
   public static final CDOTypeImpl OBJECT = new CDOTypeImpl("OBJECT", 10, true)
   {
+    @SuppressWarnings("cast")
+    @Override
+    public Object copyValue(Object value)
+    {
+      return (CDOID)value;
+    }
+
     @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
@@ -166,6 +229,12 @@ public abstract class CDOTypeImpl extends CDOModelElementImpl implements CDOType
   public static final CDOTypeImpl BOOLEAN_OBJECT = new CDOTypeImpl("BOOLEAN_OBJECT", 23, true)
   {
     @Override
+    public Object copyValue(Object value)
+    {
+      throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
       throw new UnsupportedOperationException("Not yet implemented");
@@ -180,6 +249,12 @@ public abstract class CDOTypeImpl extends CDOModelElementImpl implements CDOType
 
   public static final CDOTypeImpl BYTE_OBJECT = new CDOTypeImpl("BYTE_OBJECT", 26, true)
   {
+    @Override
+    public Object copyValue(Object value)
+    {
+      throw new UnsupportedOperationException("Not yet implemented");
+    }
+
     @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
@@ -196,6 +271,12 @@ public abstract class CDOTypeImpl extends CDOModelElementImpl implements CDOType
   public static final CDOTypeImpl CHARACTER_OBJECT = new CDOTypeImpl("CHARACTER_OBJECT", 28, true)
   {
     @Override
+    public Object copyValue(Object value)
+    {
+      throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
       throw new UnsupportedOperationException("Not yet implemented");
@@ -210,6 +291,12 @@ public abstract class CDOTypeImpl extends CDOModelElementImpl implements CDOType
 
   public static final CDOTypeImpl DATE = new CDOTypeImpl("DATE", 29, true)
   {
+    @Override
+    public Object copyValue(Object value)
+    {
+      throw new UnsupportedOperationException("Not yet implemented");
+    }
+
     @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
@@ -226,6 +313,12 @@ public abstract class CDOTypeImpl extends CDOModelElementImpl implements CDOType
   public static final CDOTypeImpl DOUBLE_OBJECT = new CDOTypeImpl("DOUBLE_OBJECT", 32, true)
   {
     @Override
+    public Object copyValue(Object value)
+    {
+      throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
       throw new UnsupportedOperationException("Not yet implemented");
@@ -240,6 +333,12 @@ public abstract class CDOTypeImpl extends CDOModelElementImpl implements CDOType
 
   public static final CDOTypeImpl FLOAT_OBJECT = new CDOTypeImpl("FLOAT_OBJECT", 38, true)
   {
+    @Override
+    public Object copyValue(Object value)
+    {
+      throw new UnsupportedOperationException("Not yet implemented");
+    }
+
     @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
@@ -256,6 +355,12 @@ public abstract class CDOTypeImpl extends CDOModelElementImpl implements CDOType
   public static final CDOTypeImpl INTEGER_OBJECT = new CDOTypeImpl("INTEGER_OBJECT", 40, true)
   {
     @Override
+    public Object copyValue(Object value)
+    {
+      throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
       throw new UnsupportedOperationException("Not yet implemented");
@@ -270,6 +375,12 @@ public abstract class CDOTypeImpl extends CDOModelElementImpl implements CDOType
 
   public static final CDOTypeImpl LONG_OBJECT = new CDOTypeImpl("LONG_OBJECT", 44, true)
   {
+    @Override
+    public Object copyValue(Object value)
+    {
+      throw new UnsupportedOperationException("Not yet implemented");
+    }
+
     @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
@@ -286,6 +397,12 @@ public abstract class CDOTypeImpl extends CDOModelElementImpl implements CDOType
   public static final CDOTypeImpl SHORT_OBJECT = new CDOTypeImpl("SHORT_OBJECT", 49, true)
   {
     @Override
+    public Object copyValue(Object value)
+    {
+      throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
       throw new UnsupportedOperationException("Not yet implemented");
@@ -300,6 +417,13 @@ public abstract class CDOTypeImpl extends CDOModelElementImpl implements CDOType
 
   public static final CDOTypeImpl STRING = new CDOTypeImpl("STRING", 50, true)
   {
+    @SuppressWarnings("cast")
+    @Override
+    public Object copyValue(Object value)
+    {
+      return (String)value;
+    }
+
     @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
@@ -344,6 +468,8 @@ public abstract class CDOTypeImpl extends CDOModelElementImpl implements CDOType
 
     index.set(typeID, this);
   }
+
+  public abstract Object copyValue(Object value);
 
   public abstract void writeValue(ExtendedDataOutputStream out, Object value) throws IOException;
 

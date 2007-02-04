@@ -10,37 +10,42 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.revision;
 
-import org.eclipse.emf.cdo.protocol.CDOID;
-import org.eclipse.emf.cdo.protocol.model.CDOClass;
+import java.util.List;
 
 /**
  * @author Eike Stepper
  */
-public interface CDORevision
+public interface CDORevisionDelta
 {
-  public static final long UNSPECIFIED_DATE = 0;
+  public CDORevision getOrigin();
 
-  public CDOClass getCDOClass();
+  public CDORevision getTarget();
 
-  public CDOID getID();
+  public List<Change> getChanges();
 
-  public int getVersion();
+  /**
+   * @author Eike Stepper
+   */
+  public interface Change
+  {
+    // public CDORevisionDelta getDelta();
+    //
+    // public CDOFeature getFeature();
+    //
+    // public Object getOriginValue();
+    //
+    // public Object getTargetValue();
+  }
 
-  public long getCreated();
+  /**
+   * @author Eike Stepper
+   */
+  public interface ListChange extends Change
+  {
 
-  public long getRevised();
-
-  public boolean isActual();
-
-  public boolean isValid(long timeStamp);
-
-  public boolean isResource();
-
-  public CDORevisionData getData();
-
-  public CDORevisionDelta getDelta();
-
-  public CDORevisionDelta getDelta(CDORevision origin);
-
-  public CDORevision getPreviousRevision();
+    public enum ChangeKind
+    {
+      ADDED, REMOVED, MOVED
+    }
+  }
 }

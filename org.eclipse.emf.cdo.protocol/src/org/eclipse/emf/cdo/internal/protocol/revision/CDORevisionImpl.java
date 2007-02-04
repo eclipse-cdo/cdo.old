@@ -70,18 +70,17 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     values = new Object[cdoClass.getFeatureCount()];
   }
 
-  @Deprecated
   public CDORevisionImpl(CDORevisionImpl source)
   {
     cdoClass = source.cdoClass;
-    id = CDOIDImpl.copy(source.id);
+    id = source.id;
     version = source.version + 1;
     created = source.created;
     revised = source.revised; // == UNSPECIFIED
     resourceID = source.resourceID;
     containerID = source.containerID;
     containingFeatureID = source.containingFeatureID;
-    values = cloneSettings();
+    copyValues(source.values);
   }
 
   public CDORevisionImpl(ExtendedDataInputStream in) throws IOException
@@ -192,6 +191,22 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
   public CDORevisionData getData()
   {
     return this;
+  }
+
+  public CDORevisionDeltaImpl getDelta()
+  {
+    return getDelta(getPreviousRevision());
+  }
+
+  public CDORevisionDeltaImpl getDelta(CDORevision origin)
+  {
+    return new CDORevisionDeltaImpl((CDORevisionImpl)origin, this);
+  }
+
+  public CDORevisionImpl getPreviousRevision()
+  {
+    // TODO Implement method CDORevisionImpl.getPreviousRevision()
+    throw new UnsupportedOperationException("Not yet implemented");
   }
 
   public CDOID getResourceID()
@@ -316,30 +331,6 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     setValue(feature, null);
   }
 
-  public Object[] cloneSettings()
-  {
-    // TODO Implement method CDORevisionImpl.cloneSettings()
-    throw new UnsupportedOperationException("Not yet implemented");
-
-    // CDOFeature[] features = cdoClass.getCDOFeatures();
-    // Object[] result = new Object[features.length];
-    // for (int i = 0; i < features.length; i++)
-    // {
-    // CDOFeature feature = features[i];
-    // Object setting = settings[i];
-    // if (feature.isReference())
-    // {
-    // result[i] = RevisionUtil.cloneReference((EReference)feature, setting);
-    // }
-    // else
-    // {
-    // result[i] = RevisionUtil.cloneAttribute((EAttribute)feature, setting);
-    // }
-    // }
-    //
-    // return result;
-  }
-
   public void adjustReferences(Map<CDOID, CDOID> idMappings)
   {
     if (TRACER.isEnabled())
@@ -381,6 +372,59 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
   public String toString()
   {
     return cdoClass.getName() + "@" + id + "v" + version;
+  }
+
+  public Object getValue(CDOFeature feature)
+  {
+    return values[feature.getFeatureIndex()];
+  }
+
+  public Object setValue(CDOFeature feature, Object value)
+  {
+    int i = feature.getFeatureIndex();
+    Object old = values[i];
+    values[i] = value;
+    return old;
+  }
+
+  public MoveableList getList(CDOFeature feature)
+  {
+    int i = feature.getFeatureIndex();
+    MoveableList result = (MoveableList)values[i];
+    if (result == null)
+    {
+      result = new MoveableList(0);
+      values[i] = result;
+    }
+
+    return result;
+  }
+
+  private void copyValues(Object[] sourceValues)
+  {
+    values = new Object[cdoClass.getFeatureCount()];
+    CDOFeatureImpl[] features = cdoClass.getFeatures();
+    for (int i = 0; i < features.length; i++)
+    {
+      CDOFeatureImpl feature = features[i];
+      CDOTypeImpl type = feature.getType();
+      if (feature.isMany())
+      {
+        MoveableList sourceList = (MoveableList)sourceValues[i];
+        int size = sourceList.size();
+        List list = new MoveableList(size);
+        for (int j = 0; j < size; j++)
+        {
+          list.add(type.copyValue(sourceList.get(j)));
+        }
+
+        values[i] = list;
+      }
+      else
+      {
+        values[i] = type.copyValue(sourceValues[i]);
+      }
+    }
   }
 
   private void readValues(ExtendedDataInputStream in) throws IOException
@@ -430,32 +474,6 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
         feature.getType().writeValue(out, value);
       }
     }
-  }
-
-  private Object getValue(CDOFeature feature)
-  {
-    return values[feature.getFeatureIndex()];
-  }
-
-  private Object setValue(CDOFeature feature, Object value)
-  {
-    int i = feature.getFeatureIndex();
-    Object old = values[i];
-    values[i] = value;
-    return old;
-  }
-
-  private MoveableList getList(CDOFeature feature)
-  {
-    int i = feature.getFeatureIndex();
-    MoveableList result = (MoveableList)values[i];
-    if (result == null)
-    {
-      result = new MoveableList(0);
-      values[i] = result;
-    }
-
-    return result;
   }
 
   private static Object remapID(Object value, Map<CDOID, CDOID> idMappings)

@@ -10,7 +10,10 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol;
 
+import org.eclipse.emf.cdo.internal.protocol.CDOIDImpl;
 import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
+import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
+import org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl;
 import org.eclipse.emf.cdo.protocol.CDOID;
 
 import org.eclipse.net4j.util.om.trace.ContextTracer;
@@ -34,11 +37,11 @@ public final class RevisionUtil
   {
   }
 
-  public static Object cloneAttribute(EAttribute attribute, Object setting)
+  public static Object cloneAttribute(CDOFeatureImpl feature, Object setting)
   {
-    EDataType dataType = attribute.getEAttributeType();
+    CDOTypeImpl type = feature.getType();
     EFactory factory = dataType.getEPackage().getEFactoryInstance();
-    if (attribute.isMany())
+    if (feature.isMany())
     {
       EList<Object> sourceList = (EList<Object>)setting;
       EList<Object> targetList = new BasicEList<Object>(sourceList.size());
@@ -96,7 +99,7 @@ public final class RevisionUtil
     return factory.createFromString(dataType, literal);
   }
 
-  public static Object cloneReference(EReference reference, Object setting)
+  public static Object cloneReference(CDOFeatureImpl reference, Object setting)
   {
     if (reference.isMany())
     {

@@ -8,17 +8,16 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.protocol.revision;
+package org.eclipse.emf.cdo.protocol.event;
 
-import org.eclipse.emf.cdo.protocol.CDOID;
-import org.eclipse.emf.cdo.protocol.event.CDOEventSource;
+import java.util.List;
 
 /**
  * @author Eike Stepper
  */
-public interface CDORevisionResolver extends CDOEventSource
+public interface CDOEvent
 {
-  public CDORevision getActualRevision(CDOID id);
+  public List<CDOEventSource> getSources();
 
-  public CDORevision getHistoricalRevision(CDOID id, long timeStamp);
+  public boolean hasSource(CDOEventSource source);
 }
