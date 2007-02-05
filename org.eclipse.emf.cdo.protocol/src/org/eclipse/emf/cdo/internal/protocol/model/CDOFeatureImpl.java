@@ -27,11 +27,9 @@ import java.text.MessageFormat;
 public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
 {
   @SuppressWarnings("unused")
-  private static final ContextTracer MODEL = new ContextTracer(CDOProtocol.DEBUG_MODEL,
-      CDOFeatureImpl.class);
+  private static final ContextTracer MODEL = new ContextTracer(CDOProtocol.DEBUG_MODEL, CDOFeatureImpl.class);
 
-  private static final ContextTracer PROTOCOL = new ContextTracer(CDOProtocol.DEBUG_PROTOCOL,
-      CDOFeatureImpl.class);
+  private static final ContextTracer PROTOCOL = new ContextTracer(CDOProtocol.DEBUG_PROTOCOL, CDOFeatureImpl.class);
 
   private CDOClassImpl containingClass;
 
@@ -59,20 +57,18 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
     }
   }
 
-  public CDOFeatureImpl(int featureID, String name, CDOClassImpl referenceType, boolean many,
-      boolean containment)
+  public CDOFeatureImpl(int featureID, String name, CDOClassImpl referenceType, boolean many, boolean containment)
   {
     this(featureID, name, many, containment, referenceType, false);
   }
 
-  public CDOFeatureImpl(int featureID, String name, CDOClassRefImpl referenceType, boolean many,
-      boolean containment)
+  public CDOFeatureImpl(int featureID, String name, CDOClassRefImpl referenceType, boolean many, boolean containment)
   {
     this(featureID, name, many, containment, referenceType, true);
   }
 
-  private CDOFeatureImpl(int featureID, String name, boolean many, boolean containment,
-      Object referenceType, boolean resolved)
+  private CDOFeatureImpl(int featureID, String name, boolean many, boolean containment, Object referenceType,
+      boolean resolved)
   {
     super(name);
     this.featureID = featureID;
@@ -91,8 +87,8 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
     containment = in.readBoolean();
     if (PROTOCOL.isEnabled())
     {
-      PROTOCOL.format("Read feature: ID={0}, name={1}, type={2}, many={3}, containment={4}",
-          featureID, getName(), type, many, containment);
+      PROTOCOL.format("Read feature: ID={0}, name={1}, type={2}, many={3}, containment={4}", featureID, getName(),
+          type, many, containment);
     }
 
     CDOClassRefImpl classRef = null;
@@ -111,8 +107,8 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
   {
     if (PROTOCOL.isEnabled())
     {
-      PROTOCOL.format("Writing feature: ID={0}, name={1}, type={2}, many={3}, containment={4}",
-          featureID, getName(), type, many, containment);
+      PROTOCOL.format("Writing feature: ID={0}, name={1}, type={2}, many={3}, containment={4}", featureID, getName(),
+          type, many, containment);
     }
 
     super.write(out);

@@ -18,7 +18,7 @@ import org.eclipse.emf.cdo.protocol.model.CDOClass;
  */
 public interface CDOObjectClass extends CDOClass
 {
-  public static final CDOObjectClass INSTANCE = new CDOObjectClassImpl();
+  public static final CDOObjectClass INSTANCE = CDOObjectClassImpl.INSTANCE;
 
   public static final int CLASSIFIER_ID = 0;
 

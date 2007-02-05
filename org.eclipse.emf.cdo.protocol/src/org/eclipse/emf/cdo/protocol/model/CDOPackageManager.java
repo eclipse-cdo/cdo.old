@@ -19,7 +19,7 @@ import org.eclipse.emf.cdo.protocol.model.resource.CDOResourcePackage;
  */
 public interface CDOPackageManager
 {
-  public static final CDOPackageManager INSTANCE = new CDOPackageManagerImpl();
+  public static final CDOPackageManager INSTANCE = CDOPackageManagerImpl.INSTANCE;
 
   public int getPackageCount();
 

@@ -17,7 +17,7 @@ import org.eclipse.emf.cdo.internal.protocol.model.CDOClassResolverImpl;
  */
 public interface CDOClassResolver
 {
-  public static final CDOClassResolver INSTANCE = new CDOClassResolverImpl();
+  public static final CDOClassResolver INSTANCE = CDOClassResolverImpl.INSTANCE;
 
   /**
    * TODO Check if the functionality of this class could be moved to a static

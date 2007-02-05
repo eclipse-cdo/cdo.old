@@ -13,12 +13,15 @@ package org.eclipse.emf.cdo.internal.protocol.model;
 import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 import org.eclipse.emf.cdo.protocol.model.CDOClassResolver;
 
+import org.eclipse.net4j.util.lifecycle.Singleton;
+
 /**
  * @author Eike Stepper
  */
 public class CDOClassResolverImpl implements CDOClassResolver
 {
-  public static final CDOClassResolverImpl INSTANCE = (CDOClassResolverImpl)CDOClassResolver.INSTANCE;
+  @Singleton
+  public static final CDOClassResolverImpl INSTANCE = new CDOClassResolverImpl();
 
   public CDOClassResolverImpl()
   {

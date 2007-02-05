@@ -18,7 +18,7 @@ import org.eclipse.emf.cdo.protocol.model.CDOPackage;
  */
 public interface CDOCorePackage extends CDOPackage
 {
-  public static final CDOCorePackage INSTANCE = new CDOCorePackageImpl();
+  public static final CDOCorePackage INSTANCE = CDOCorePackageImpl.INSTANCE;
 
   public static final String PACKAGE_URI = "http://www.eclipse.org/emf/CDO/core/1.0.0";
 

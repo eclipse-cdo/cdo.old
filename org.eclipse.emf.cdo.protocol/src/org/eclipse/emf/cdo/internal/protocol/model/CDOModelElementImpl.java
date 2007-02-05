@@ -24,8 +24,7 @@ import java.io.IOException;
  */
 public abstract class CDOModelElementImpl implements CDOModelElement
 {
-  private static final ContextTracer MODEL = new ContextTracer(CDOProtocol.DEBUG_MODEL,
-      CDOModelElementImpl.class);
+  private static final ContextTracer MODEL = new ContextTracer(CDOProtocol.DEBUG_MODEL, CDOModelElementImpl.class);
 
   private String name;
 

@@ -36,8 +36,7 @@ import java.util.Map;
  */
 public class CDORevisionImpl implements CDORevision, CDORevisionData
 {
-  public static final ContextTracer TRACER = new ContextTracer(CDOProtocol.DEBUG_REVISION,
-      CDORevisionImpl.class);
+  public static final ContextTracer TRACER = new ContextTracer(CDOProtocol.DEBUG_REVISION, CDORevisionImpl.class);
 
   private CDOClassImpl cdoClass;
 
@@ -90,8 +89,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     id = CDOIDImpl.read(in);
     if (TRACER.isEnabled())
     {
-      TRACER.format("Reading revision: ID={0}, classRef={1}, className={2}", id, classRef, cdoClass
-          .getName());
+      TRACER.format("Reading revision: ID={0}, classRef={1}, className={2}", id, classRef, cdoClass.getName());
     }
 
     version = in.readInt();
@@ -108,8 +106,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     CDOClassRefImpl classRef = cdoClass.createClassRef();
     if (TRACER.isEnabled())
     {
-      TRACER.format("Writing revision: ID={0}, classRef={1}, className={2}", id, classRef, cdoClass
-          .getName());
+      TRACER.format("Writing revision: ID={0}, classRef={1}, className={2}", id, classRef, cdoClass.getName());
     }
 
     classRef.write(out, null);

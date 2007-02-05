@@ -13,12 +13,15 @@ package org.eclipse.emf.cdo.internal.protocol.model.core;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOPackageImpl;
 import org.eclipse.emf.cdo.protocol.model.core.CDOCorePackage;
 
+import org.eclipse.net4j.util.lifecycle.Singleton;
+
 /**
  * @author Eike Stepper
  */
 public final class CDOCorePackageImpl extends CDOPackageImpl implements CDOCorePackage
 {
-  public static final CDOCorePackageImpl INSTANCE = (CDOCorePackageImpl)CDOCorePackage.INSTANCE;
+  @Singleton
+  public static final CDOCorePackageImpl INSTANCE = new CDOCorePackageImpl();
 
   public CDOCorePackageImpl()
   {

@@ -28,11 +28,9 @@ import java.util.List;
  */
 public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
 {
-  private static final ContextTracer MODEL = new ContextTracer(CDOProtocol.DEBUG_MODEL,
-      CDOPackageImpl.class);
+  private static final ContextTracer MODEL = new ContextTracer(CDOProtocol.DEBUG_MODEL, CDOPackageImpl.class);
 
-  private static final ContextTracer PROTOCOL = new ContextTracer(CDOProtocol.DEBUG_PROTOCOL,
-      CDOPackageImpl.class);
+  private static final ContextTracer PROTOCOL = new ContextTracer(CDOProtocol.DEBUG_PROTOCOL, CDOPackageImpl.class);
 
   private String packageURI;
 

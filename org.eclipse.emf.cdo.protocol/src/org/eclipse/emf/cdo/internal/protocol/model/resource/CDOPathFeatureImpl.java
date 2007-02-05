@@ -14,11 +14,14 @@ import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl;
 import org.eclipse.emf.cdo.protocol.model.resource.CDOPathFeature;
 
+import org.eclipse.net4j.util.lifecycle.Singleton;
+
 /**
  * @author Eike Stepper
  */
 public class CDOPathFeatureImpl extends CDOFeatureImpl implements CDOPathFeature
 {
+  @Singleton
   public static final CDOPathFeatureImpl INSTANCE = new CDOPathFeatureImpl();
 
   public CDOPathFeatureImpl()

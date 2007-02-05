@@ -28,11 +28,9 @@ import java.util.List;
  */
 public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
 {
-  private static final ContextTracer MODEL = new ContextTracer(CDOProtocol.DEBUG_MODEL,
-      CDOClassImpl.class);
+  private static final ContextTracer MODEL = new ContextTracer(CDOProtocol.DEBUG_MODEL, CDOClassImpl.class);
 
-  private static final ContextTracer PROTOCOL = new ContextTracer(CDOProtocol.DEBUG_PROTOCOL,
-      CDOClassImpl.class);
+  private static final ContextTracer PROTOCOL = new ContextTracer(CDOProtocol.DEBUG_PROTOCOL, CDOClassImpl.class);
 
   private CDOPackageImpl containingPackage;
 
@@ -62,8 +60,7 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     isAbstract = in.readBoolean();
     if (PROTOCOL.isEnabled())
     {
-      PROTOCOL.format("Read class: ID={0}, name={1}, abstract={2}", classifierID, getName(),
-          isAbstract);
+      PROTOCOL.format("Read class: ID={0}, name={1}, abstract={2}", classifierID, getName(), isAbstract);
     }
 
     int size = in.readInt();
@@ -83,8 +80,7 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
   {
     if (PROTOCOL.isEnabled())
     {
-      PROTOCOL.format("Writing class: ID={0}, name={1}, abstract={2}", classifierID, getName(),
-          isAbstract);
+      PROTOCOL.format("Writing class: ID={0}, name={1}, abstract={2}", classifierID, getName(), isAbstract);
     }
 
     super.write(out);

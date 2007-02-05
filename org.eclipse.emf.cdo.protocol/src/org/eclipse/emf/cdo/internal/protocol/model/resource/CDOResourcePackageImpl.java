@@ -13,11 +13,14 @@ package org.eclipse.emf.cdo.internal.protocol.model.resource;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOPackageImpl;
 import org.eclipse.emf.cdo.protocol.model.resource.CDOResourcePackage;
 
+import org.eclipse.net4j.util.lifecycle.Singleton;
+
 /**
  * @author Eike Stepper
  */
 public final class CDOResourcePackageImpl extends CDOPackageImpl implements CDOResourcePackage
 {
+  @Singleton
   public static final CDOResourcePackageImpl INSTANCE = new CDOResourcePackageImpl();
 
   public CDOResourcePackageImpl()
