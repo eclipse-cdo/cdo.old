@@ -38,9 +38,5 @@ public interface CDORevision
 
   public CDORevisionData getData();
 
-  public CDORevisionDelta getDelta();
-
-  public CDORevisionDelta getDelta(CDORevision origin);
-
-  public CDORevision getPreviousRevision();
+  public CDORevisionDelta createDelta(CDORevision origin);
 }

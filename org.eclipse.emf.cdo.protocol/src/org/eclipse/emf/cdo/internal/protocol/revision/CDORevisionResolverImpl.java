@@ -14,6 +14,7 @@ import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionResolver;
 
+import org.eclipse.net4j.util.ReflectUtil;
 import org.eclipse.net4j.util.om.trace.ContextTracer;
 
 import java.util.HashMap;
@@ -48,9 +49,20 @@ public abstract class CDORevisionResolverImpl implements CDORevisionResolver
 
   public void addRevision(CDORevisionImpl revision)
   {
+    if (TRACER.isEnabled())
+    {
+      TRACER.format("Adding revision: {0}, created={1,date} {1,time}, revised={2,date} {2,time}, actual={3}, ",
+          revision, revision.getCreated(), revision.getRevised(), revision.isActual());
+    }
+
     TimeLine timeLine = getTimeLine(revision.getID());
     timeLine.add(revision);
-    // xxx();
+  }
+
+  @Override
+  public String toString()
+  {
+    return ReflectUtil.getSimpleClassName(this) + revisions;
   }
 
   private TimeLine getTimeLine(CDOID id)
@@ -106,13 +118,14 @@ public abstract class CDORevisionResolverImpl implements CDORevisionResolver
     @Override
     public boolean add(CDORevisionImpl revision)
     {
-      if (TRACER.isEnabled())
-      {
-        TRACER.format("Adding revision: {0}", revision);
-      }
-
       if (revision.isActual())
       {
+        CDORevisionImpl previousRevision = isEmpty() ? null : getFirst();
+        if (previousRevision != null && previousRevision.isActual())
+        {
+          previousRevision.setRevised(revision.getCreated() - 1);
+        }
+
         addFirst(revision);
       }
       else

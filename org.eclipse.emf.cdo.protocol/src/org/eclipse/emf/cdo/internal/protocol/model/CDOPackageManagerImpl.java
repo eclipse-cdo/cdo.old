@@ -13,6 +13,7 @@ package org.eclipse.emf.cdo.internal.protocol.model;
 import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
 import org.eclipse.emf.cdo.internal.protocol.model.core.CDOCorePackageImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.resource.CDOResourcePackageImpl;
+import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
@@ -63,6 +64,19 @@ public class CDOPackageManagerImpl implements CDOPackageManager
     }
 
     packages.put(cdoPackage.getPackageURI(), cdoPackage);
+  }
+
+  public CDOClassImpl resolveClass(CDOClassRef classRef)
+  {
+    String packageURI = classRef.getPackageURI();
+    int classifierID = classRef.getClassifierID();
+    CDOPackageImpl cdoPackage = lookupPackage(packageURI);
+    if (cdoPackage != null)
+    {
+      return cdoPackage.lookupClass(classifierID);
+    }
+
+    return null;
   }
 
   public CDOCorePackageImpl getCDOCorePackage()

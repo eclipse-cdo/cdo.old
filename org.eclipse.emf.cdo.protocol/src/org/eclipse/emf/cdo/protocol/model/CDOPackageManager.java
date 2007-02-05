@@ -27,6 +27,8 @@ public interface CDOPackageManager
 
   public CDOPackage lookupPackage(String packageURI);
 
+  public CDOClass resolveClass(CDOClassRef classRef);
+
   public CDOCorePackage getCDOCorePackage();
 
   public CDOResourcePackage getCDOResourcePackage();

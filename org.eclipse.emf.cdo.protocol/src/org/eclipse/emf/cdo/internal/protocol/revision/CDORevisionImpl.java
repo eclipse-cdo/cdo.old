@@ -14,8 +14,8 @@ import org.eclipse.emf.cdo.internal.protocol.CDOIDImpl;
 import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassRefImpl;
-import org.eclipse.emf.cdo.internal.protocol.model.CDOClassResolverImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
+import org.eclipse.emf.cdo.internal.protocol.model.CDOPackageManagerImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
@@ -73,7 +73,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
   {
     cdoClass = source.cdoClass;
     id = source.id;
-    version = source.version + 1;
+    version = source.version;
     created = source.created;
     revised = source.revised; // == UNSPECIFIED
     resourceID = source.resourceID;
@@ -85,7 +85,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
   public CDORevisionImpl(ExtendedDataInputStream in) throws IOException
   {
     CDOClassRefImpl classRef = new CDOClassRefImpl(in, null);
-    cdoClass = CDOClassResolverImpl.INSTANCE.resolveClass(classRef);
+    cdoClass = CDOPackageManagerImpl.INSTANCE.resolveClass(classRef);
     id = CDOIDImpl.read(in);
     if (TRACER.isEnabled())
     {
@@ -147,7 +147,22 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   public void setVersion(int version)
   {
+    if (TRACER.isEnabled())
+    {
+      TRACER.format("Setting version: {0}", version);
+    }
+
     this.version = version;
+  }
+
+  public int increaseVersion()
+  {
+    if (TRACER.isEnabled())
+    {
+      TRACER.format("Increasing version: {0}", version + 1);
+    }
+
+    return ++version;
   }
 
   public long getCreated()
@@ -157,6 +172,11 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   public void setCreated(long created)
   {
+    if (TRACER.isEnabled())
+    {
+      TRACER.format("Setting created: {0,date} {0,time}", created);
+    }
+
     this.created = created;
   }
 
@@ -167,6 +187,11 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   public void setRevised(long revised)
   {
+    if (TRACER.isEnabled())
+    {
+      TRACER.format("Setting revised: {0,date} {0,time}", revised);
+    }
+
     this.revised = revised;
   }
 
@@ -190,20 +215,9 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     return this;
   }
 
-  public CDORevisionDeltaImpl getDelta()
-  {
-    return getDelta(getPreviousRevision());
-  }
-
-  public CDORevisionDeltaImpl getDelta(CDORevision origin)
+  public CDORevisionDeltaImpl createDelta(CDORevision origin)
   {
     return new CDORevisionDeltaImpl((CDORevisionImpl)origin, this);
-  }
-
-  public CDORevisionImpl getPreviousRevision()
-  {
-    // TODO Implement method CDORevisionImpl.getPreviousRevision()
-    throw new UnsupportedOperationException("Not yet implemented");
   }
 
   public CDOID getResourceID()
@@ -213,6 +227,11 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   public void setResourceID(CDOID resourceID)
   {
+    if (TRACER.isEnabled())
+    {
+      TRACER.format("Setting resourceID: {0}", resourceID);
+    }
+
     this.resourceID = resourceID;
   }
 
@@ -223,6 +242,11 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   public void setContainerID(CDOID containerID)
   {
+    if (TRACER.isEnabled())
+    {
+      TRACER.format("Setting containerID: {0}", containerID);
+    }
+
     this.containerID = containerID;
   }
 
@@ -233,6 +257,11 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   public void setContainingFeature(int containingFeatureID)
   {
+    if (TRACER.isEnabled())
+    {
+      TRACER.format("Setting containingFeatureID: {0}", containingFeatureID);
+    }
+
     this.containingFeatureID = containingFeatureID;
   }
 
@@ -283,14 +312,22 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   public Object[] toArray(CDOFeature feature)
   {
-    // TODO Implement method CDORevisionImpl.toArray()
-    throw new UnsupportedOperationException("Not yet implemented");
+    if (!feature.isMany())
+    {
+      throw new IllegalStateException("!feature.isMany()");
+    }
+
+    return getList(feature).toArray();
   }
 
   public <T> T[] toArray(CDOFeature feature, T[] array)
   {
-    // TODO Implement method CDORevisionImpl.toArray()
-    throw new UnsupportedOperationException("Not yet implemented");
+    if (!feature.isMany())
+    {
+      throw new IllegalStateException("!feature.isMany()");
+    }
+
+    return getList(feature).toArray(array);
   }
 
   public void add(CDOFeature feature, int index, Object value)

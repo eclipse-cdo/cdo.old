@@ -10,6 +10,9 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.revision;
 
+import org.eclipse.emf.cdo.internal.protocol.revision.CDORevisionImpl;
+import org.eclipse.emf.cdo.protocol.model.CDOFeature;
+
 import java.util.List;
 
 /**
@@ -17,35 +20,67 @@ import java.util.List;
  */
 public interface CDORevisionDelta
 {
-  public CDORevision getOrigin();
+  public int getSourceVersion();
 
-  public CDORevision getTarget();
+  public int getTargetVersion();
 
-  public List<Change> getChanges();
+  public List<FeatureChange> getFeatureChanges();
 
   /**
    * @author Eike Stepper
    */
-  public interface Change
+  public interface FeatureChange
   {
-    // public CDORevisionDelta getDelta();
-    //
-    // public CDOFeature getFeature();
-    //
-    // public Object getOriginValue();
-    //
-    // public Object getTargetValue();
+    public CDOFeature getFeature();
   }
 
   /**
+   * @see CDORevisionImpl#set(CDOFeature, int, Object)
    * @author Eike Stepper
    */
-  public interface ListChange extends Change
+  public interface SetFeatureChange extends FeatureChange
   {
+    public int getIndex();
 
-    public enum ChangeKind
-    {
-      ADDED, REMOVED, MOVED
-    }
+    public Object getValue();
+  }
+
+  /**
+   * @see CDORevisionImpl#unset(CDOFeature)
+   * @author Eike Stepper
+   */
+  public interface UnsetFeatureChange extends FeatureChange
+  {
+  }
+
+  /**
+   * @see CDORevisionImpl#add(CDOFeature, int, Object)
+   * @author Eike Stepper
+   */
+  public interface AddFeatureChange extends FeatureChange
+  {
+    public int getIndex();
+
+    public Object getValue();
+  }
+
+  /**
+   * @see CDORevisionImpl#remove(CDOFeature, int)
+   * @author Eike Stepper
+   */
+  public interface RemoveFeatureChange extends FeatureChange
+  {
+    public int getIndex();
+  }
+
+  /**
+   * @see CDORevisionImpl#move(CDOFeature, int, int)
+   * @author Eike Stepper
+   */
+  public interface MoveFeatureChange extends FeatureChange
+  {
+    public int getSourceIndex();
+
+    public int getTargetIndex();
   }
 }

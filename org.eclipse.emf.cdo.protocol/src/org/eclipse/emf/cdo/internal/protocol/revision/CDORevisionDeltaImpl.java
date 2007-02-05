@@ -12,7 +12,6 @@ package org.eclipse.emf.cdo.internal.protocol.revision;
 
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
-import org.eclipse.emf.cdo.protocol.revision.CDORevision;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionDelta;
 
 import org.eclipse.net4j.util.ObjectUtil;
@@ -52,21 +51,21 @@ public class CDORevisionDeltaImpl implements CDORevisionDelta
     }
   }
 
-  public CDORevision getOrigin()
+  public int getSourceVersion()
   {
-    // TODO Implement method CDORevisionDeltaImpl.getOrigin()
+    // TODO Implement method CDORevisionDeltaImpl.getSourceVersion()
     throw new UnsupportedOperationException("Not yet implemented");
   }
 
-  public CDORevision getTarget()
+  public int getTargetVersion()
   {
-    // TODO Implement method CDORevisionDeltaImpl.getTarget()
+    // TODO Implement method CDORevisionDeltaImpl.getTargetVersion()
     throw new UnsupportedOperationException("Not yet implemented");
   }
 
-  public List<Change> getChanges()
+  public List<FeatureChange> getFeatureChanges()
   {
-    // TODO Implement method CDORevisionDeltaImpl.getChanges()
+    // TODO Implement method CDORevisionDeltaImpl.getFeatureChanges()
     throw new UnsupportedOperationException("Not yet implemented");
   }
 }
