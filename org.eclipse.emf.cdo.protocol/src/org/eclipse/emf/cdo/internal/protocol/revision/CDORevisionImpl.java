@@ -505,6 +505,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
       else
       {
         Object value = values[i];
+        System.out.println(feature);
         feature.getType().writeValue(out, value);
       }
     }

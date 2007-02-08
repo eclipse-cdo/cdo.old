@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * @author Eike Stepper
  */
-public abstract class CDOTypeImpl extends CDOModelElementImpl implements CDOType
+public abstract class CDOTypeImpl implements CDOType
 {
   private static List<CDOTypeImpl> index = new ArrayList();
 
@@ -437,16 +437,23 @@ public abstract class CDOTypeImpl extends CDOModelElementImpl implements CDOType
     }
   };
 
+  private String name;
+
   private int typeID;
 
   private boolean canBeNull;
 
   private CDOTypeImpl(String name, int typeID, boolean canBeNull)
   {
-    super(name);
+    this.name = name;
     this.typeID = typeID;
     this.canBeNull = canBeNull;
     setIndex();
+  }
+
+  public String getName()
+  {
+    return name;
   }
 
   public int getTypeID()
@@ -459,14 +466,10 @@ public abstract class CDOTypeImpl extends CDOModelElementImpl implements CDOType
     return canBeNull;
   }
 
-  private void setIndex()
+  @Override
+  public String toString()
   {
-    while (index.size() <= typeID)
-    {
-      index.add(null);
-    }
-
-    index.set(typeID, this);
+    return name;
   }
 
   public abstract Object copyValue(Object value);
@@ -489,5 +492,15 @@ public abstract class CDOTypeImpl extends CDOModelElementImpl implements CDOType
   public static CDOTypeImpl getType(int typeID)
   {
     return index.get(typeID);
+  }
+
+  private void setIndex()
+  {
+    while (index.size() <= typeID)
+    {
+      index.add(null);
+    }
+
+    index.set(typeID, this);
   }
 }

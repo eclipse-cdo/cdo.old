@@ -172,7 +172,7 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
   @Override
   public String toString()
   {
-    return MessageFormat.format("CDOClass(id={0}, name={1})", classifierID, getName());
+    return MessageFormat.format("CDOClass(ID={0}, name={1})", classifierID, getName());
   }
 
   private void setIndex(int id, int i)

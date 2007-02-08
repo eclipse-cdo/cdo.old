@@ -15,7 +15,7 @@ import org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl;
 /**
  * @author Eike Stepper
  */
-public interface CDOType extends CDOModelElement
+public interface CDOType
 {
   public static final CDOType OBJECT = CDOTypeImpl.OBJECT;
 
@@ -54,6 +54,8 @@ public interface CDOType extends CDOModelElement
   public static final CDOType SHORT_OBJECT = CDOTypeImpl.SHORT_OBJECT;
 
   public static final CDOType STRING = CDOTypeImpl.STRING;
+
+  public String getName();
 
   public int getTypeID();
 
