@@ -101,7 +101,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     readValues(in);
   }
 
-  public void write(ExtendedDataOutputStream out) throws IOException
+  public void write(ExtendedDataOutputStream out, CDODanglingReferenceConverter converter) throws IOException
   {
     CDOClassRefImpl classRef = cdoClass.createClassRef();
     if (TRACER.isEnabled())
@@ -117,7 +117,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     CDOIDImpl.write(out, resourceID);
     CDOIDImpl.write(out, containerID);
     out.writeInt(containingFeatureID);
-    writeValues(out);
+    writeValues(out, converter);
   }
 
   public CDOClassImpl getCDOClass()
@@ -384,7 +384,8 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
         if (feature.isMany())
         {
           List list = (List)values[i];
-          for (int j = 0; j < list.size(); j++)
+          int size = list == null ? 0 : list.size();
+          for (int j = 0; j < size; j++)
           {
             Object oldID = list.get(j);
             Object newID = remapID(oldID, idMappings);
@@ -487,28 +488,55 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     }
   }
 
-  private void writeValues(ExtendedDataOutputStream out) throws IOException
+  private void writeValues(ExtendedDataOutputStream out, CDODanglingReferenceConverter converter) throws IOException
   {
     CDOFeatureImpl[] features = cdoClass.getFeatures();
     for (int i = 0; i < features.length; i++)
     {
       CDOFeatureImpl feature = features[i];
+      System.out.println(feature);
       if (feature.isMany())
       {
         List list = (List)values[i];
-        out.writeInt(list.size());
-        for (Object value : list)
+        int size = list == null ? 0 : list.size();
+        out.writeInt(size);
+        for (int j = 0; j < size; j++)
         {
+          Object value = list.get(j);
+          if (isDanglingReference(feature, value))
+          {
+            value = converter.convertToID(value);
+            list.set(j, value);
+          }
+
           feature.getType().writeValue(out, value);
         }
       }
       else
       {
-        Object value = values[i];
-        System.out.println(feature);
-        feature.getType().writeValue(out, value);
+        if (isDanglingReference(feature, values[i]))
+        {
+          values[i] = converter.convertToID(values[i]);
+        }
+
+        feature.getType().writeValue(out, values[i]);
       }
     }
+  }
+
+  private boolean isDanglingReference(CDOFeatureImpl feature, Object value)
+  {
+    if (!feature.isReference())
+    {
+      return false;
+    }
+
+    if (value instanceof CDOID)
+    {
+      return false;
+    }
+
+    return true;
   }
 
   private static Object remapID(Object value, Map<CDOID, CDOID> idMappings)

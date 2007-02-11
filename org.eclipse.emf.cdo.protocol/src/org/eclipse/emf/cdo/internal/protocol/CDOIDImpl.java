@@ -85,6 +85,6 @@ public class CDOIDImpl implements CDOID
 
   public static void write(ExtendedDataOutputStream out, CDOID id) throws IOException
   {
-    out.writeLong(id.getValue());
+    out.writeLong(id == null ? 0L : id.getValue());
   }
 }
