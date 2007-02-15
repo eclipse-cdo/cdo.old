@@ -44,15 +44,14 @@ public abstract class ExtensionParser
   public final void parse()
   {
     IExtensionRegistry registry = Platform.getExtensionRegistry();
-    parse(registry.getConfigurationElementsFor(namespace, extPointName), null);
+    parse(registry.getConfigurationElementsFor(namespace, extPointName), "");
   }
 
   public final void parse(IConfigurationElement[] elements, String path)
   {
     for (IConfigurationElement element : elements)
     {
-      String name = element.getName();
-      parse(element, path == null ? name : path + PATH_SEPARATOR + name);
+      parse(element, path + PATH_SEPARATOR + element.getName());
     }
   }
 

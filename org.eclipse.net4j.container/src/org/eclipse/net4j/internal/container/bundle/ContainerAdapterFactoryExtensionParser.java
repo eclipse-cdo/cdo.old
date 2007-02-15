@@ -10,6 +10,9 @@
  **************************************************************************/
 package org.eclipse.net4j.internal.container.bundle;
 
+import org.eclipse.net4j.container.ContainerAdapterFactory;
+import org.eclipse.net4j.container.ContainerManager;
+
 import org.eclipse.core.runtime.IConfigurationElement;
 
 /**
@@ -21,7 +24,11 @@ public class ContainerAdapterFactoryExtensionParser extends ExtensionParser
 
   public static final String EXT_POINT_NAME = "containerAdapterFactories";
 
-  public static final String PATH = "";
+  public static final String PATH = "/containerAdapterFactory";
+
+  public static final String TYPE_ATTR = "type";
+
+  public static final String CLASS_ATTR = "class";
 
   public ContainerAdapterFactoryExtensionParser()
   {
@@ -33,6 +40,17 @@ public class ContainerAdapterFactoryExtensionParser extends ExtensionParser
   {
     if (PATH.equals(path))
     {
+      try
+      {
+        ContainerAdapterFactory factory = (ContainerAdapterFactory)element.createExecutableExtension(CLASS_ATTR);
+        ContainerManager.INSTANCE.getContainer().register(factory);
+      }
+      catch (Exception ex)
+      {
+        ContainerBundle.LOG.error(ex);
+      }
+
+      return false;
     }
 
     return true;

@@ -1,5 +1,6 @@
 package org.eclipse.net4j.container.internal.ui.views;
 
+import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.container.ContainerManager;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -121,7 +122,8 @@ public class Net4jExplorerView extends ViewPart
 
     public void inputChanged(Viewer v, Object oldInput, Object newInput)
     {
-      ContainerManager.INSTANCE.getContainer();
+      Container container = ContainerManager.INSTANCE.getContainer();
+      System.out.println(container);
     }
 
     public void dispose()
