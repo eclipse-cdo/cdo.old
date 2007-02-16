@@ -8,28 +8,13 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.protocol;
+package org.eclipse.emf.cdo.container;
+
+import org.eclipse.net4j.container.ContainerAdapter;
 
 /**
  * @author Eike Stepper
  */
-public interface CDOConstants
+public interface CDOContainerAdapter extends ContainerAdapter
 {
-  public static final String PROTOCOL_NAME = "cdo";
-
-  public static final short OPEN_SESSION_SIGNAL = 1;
-
-  public static final short RESOURCE_ID_SIGNAL = 2;
-
-  public static final short RESOURCE_PATH_SIGNAL = 3;
-
-  public static final short LOAD_OBJECT_SIGNAL = 4;
-
-  public static final short COMMIT_TRANSACTION_SIGNAL = 5;
-
-  public static final short INVALIDATION_SIGNAL = 6;
-
-  public static final int ERROR_REPOSITORY_NOT_FOUND = -1;
-
-  public static final int ERROR_NO_SESSION = -2;
 }
