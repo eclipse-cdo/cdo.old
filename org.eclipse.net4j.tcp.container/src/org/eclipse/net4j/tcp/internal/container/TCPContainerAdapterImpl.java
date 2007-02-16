@@ -68,15 +68,23 @@ public class TCPContainerAdapterImpl extends TransportContainerAdapter implement
     return new TCPConnectorFactoryImpl();
   }
 
-  public void initAcceptor(Acceptor acceptor)
+  @Override
+  protected void initAcceptor(Acceptor acceptor)
   {
-    TCPAcceptorImpl tcpAcceptor = (TCPAcceptorImpl)acceptor;
-    tcpAcceptor.setSelector(getSelector());
+    if (acceptor instanceof TCPAcceptorImpl)
+    {
+      TCPAcceptorImpl tcpAcceptor = (TCPAcceptorImpl)acceptor;
+      tcpAcceptor.setSelector(getSelector());
+    }
   }
 
-  public void initConnector(Connector connector)
+  @Override
+  protected void initConnector(Connector connector)
   {
-    AbstractTCPConnector tcpConnector = (AbstractTCPConnector)connector;
-    tcpConnector.setSelector(getSelector());
+    if (connector instanceof AbstractTCPConnector)
+    {
+      AbstractTCPConnector tcpConnector = (AbstractTCPConnector)connector;
+      tcpConnector.setSelector(getSelector());
+    }
   }
 }

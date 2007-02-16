@@ -302,7 +302,10 @@ public abstract class AbstractContainer extends LifecycleImpl implements Contain
 
     for (ContainerAdapter adapter : adapters.values())
     {
-      adapter.initAcceptor(acceptor);
+      if (adapter instanceof AbstractContainerAdapter)
+      {
+        ((AbstractContainerAdapter)adapter).initAcceptor(acceptor);
+      }
     }
 
     try
@@ -341,7 +344,10 @@ public abstract class AbstractContainer extends LifecycleImpl implements Contain
 
     for (ContainerAdapter adapter : adapters.values())
     {
-      adapter.initConnector(connector);
+      if (adapter instanceof AbstractContainerAdapter)
+      {
+        ((AbstractContainerAdapter)adapter).initConnector(connector);
+      }
     }
 
     try

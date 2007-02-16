@@ -8,17 +8,13 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.net4j.container;
+package org.eclipse.net4j.jvm.container;
 
-import org.eclipse.net4j.transport.Acceptor;
-import org.eclipse.net4j.transport.Connector;
+import org.eclipse.net4j.container.ContainerAdapter;
 
 /**
  * @author Eike Stepper
  */
-public interface ContainerAdapter
+public interface JVMContainerAdapter extends ContainerAdapter
 {
-  public Container getContainer();
-
-  public String getType();
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.net4j.container.containerAdapterFactories">
+      <containerAdapterFactory
+            class="org.eclipse.net4j.jvm.internal.container.JVMContainerAdapterFactoryImpl"
+            type="JVM">
+      </containerAdapterFactory>
+   </extension>
+
+</plugin>

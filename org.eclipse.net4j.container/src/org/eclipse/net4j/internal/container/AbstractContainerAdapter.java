@@ -12,6 +12,8 @@ package org.eclipse.net4j.internal.container;
 
 import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.container.ContainerAdapter;
+import org.eclipse.net4j.transport.Acceptor;
+import org.eclipse.net4j.transport.Connector;
 import org.eclipse.net4j.util.lifecycle.LifecycleImpl;
 
 /**
@@ -37,5 +39,13 @@ public abstract class AbstractContainerAdapter extends LifecycleImpl implements 
   public String getType()
   {
     return type;
+  }
+
+  protected void initAcceptor(Acceptor acceptor)
+  {
+  }
+
+  protected void initConnector(Connector connector)
+  {
   }
 }
