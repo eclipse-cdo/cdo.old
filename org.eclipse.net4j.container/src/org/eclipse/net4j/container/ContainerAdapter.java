@@ -10,9 +10,6 @@
  **************************************************************************/
 package org.eclipse.net4j.container;
 
-import org.eclipse.net4j.transport.Acceptor;
-import org.eclipse.net4j.transport.Connector;
-
 /**
  * @author Eike Stepper
  */
