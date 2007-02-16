@@ -5,7 +5,7 @@
          point="org.eclipse.net4j.container.containerAdapterFactories">
       <containerAdapterFactory
             class="org.eclipse.net4j.jvm.internal.container.JVMContainerAdapterFactoryImpl"
-            type="JVM">
+            type="jvm">
       </containerAdapterFactory>
    </extension>
 
