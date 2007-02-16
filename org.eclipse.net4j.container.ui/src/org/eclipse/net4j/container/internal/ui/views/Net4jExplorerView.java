@@ -82,7 +82,6 @@ public class Net4jExplorerView extends ViewPart
     viewers[index] = createViewer(parent, index);
     Control control = viewers[index].getControl();
     control.setLayoutData(new GridData(GridData.FILL_BOTH));
-    // control.setLayout(new GridLayout());
 
     final TabItem factoryTab = new TabItem(tabFolder, SWT.NULL);
     factoryTab.setText(label);
@@ -170,7 +169,10 @@ public class Net4jExplorerView extends ViewPart
         {
           String description = dialog.getValue();
           Acceptor acceptor = CONTAINER.getAcceptor(description);
-          showMessage("Acceptor added: " + acceptor);
+          if (acceptor == null)
+          {
+            showMessage("Error while creating acceptor for description" + description);
+          }
         }
       }
     };

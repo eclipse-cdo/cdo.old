@@ -11,14 +11,19 @@
 package org.eclipse.net4j.internal.container;
 
 import org.eclipse.net4j.container.Container;
+import org.eclipse.net4j.container.ContainerAdapterFactory;
 import org.eclipse.net4j.container.ContainerManager;
 import org.eclipse.net4j.container.ContainerUtil;
+import org.eclipse.net4j.internal.container.bundle.ContainerBundle;
+import org.eclipse.net4j.util.lifecycle.LifecycleImpl;
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
+
+import java.io.File;
 
 /**
  * @author Eike Stepper
  */
-public class ContainerManagerImpl implements ContainerManager
+public class ContainerManagerImpl extends LifecycleImpl implements ContainerManager
 {
   public static final ContainerManagerImpl INSTANCE = new ContainerManagerImpl();
 
@@ -30,20 +35,32 @@ public class ContainerManagerImpl implements ContainerManager
 
   public Container getContainer()
   {
-    if (container == null)
+    return container;
+  }
+
+  @Override
+  protected void onActivate() throws Exception
+  {
+    super.onActivate();
+    container = ContainerUtil.createContainer();
+    File store = ContainerBundle.getBundleContext().getDataFile("container.state");
+    ContainerAdapterFactory factory = new StoreContainerAdapterFactoryImpl(store);
+    container.register(factory);
+    LifecycleUtil.activate(container);
+  }
+
+  @Override
+  protected void onDeactivate() throws Exception
+  {
+    try
     {
-      try
-      {
-        container = ContainerUtil.createContainer();
-        LifecycleUtil.activate(container);
-      }
-      catch (Exception ex)
-      {
-        // TODO Introduce unchecked LifecycleException
-        throw new IllegalStateException(ex);
-      }
+      LifecycleUtil.deactivateNoisy(container);
+    }
+    finally
+    {
+      container = null;
     }
 
-    return container;
+    super.onDeactivate();
   }
 }

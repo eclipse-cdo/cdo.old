@@ -10,12 +10,15 @@
  **************************************************************************/
 package org.eclipse.net4j.internal.container.bundle;
 
+import org.eclipse.net4j.internal.container.ContainerManagerImpl;
+import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
 import org.eclipse.net4j.util.om.OMBundle;
 import org.eclipse.net4j.util.om.OMLogger;
 import org.eclipse.net4j.util.om.OMPlatform;
 import org.eclipse.net4j.util.om.OMTracer;
 
-import org.osgi.framework.BundleActivator;
+import org.eclipse.core.runtime.Plugin;
+
 import org.osgi.framework.BundleContext;
 
 /**
@@ -31,25 +34,36 @@ public final class ContainerBundle
 
   public static final OMLogger LOG = BUNDLE.logger();
 
+  private static BundleContext bundleContext;
+
   private ContainerBundle()
   {
+  }
+
+  public static BundleContext getBundleContext()
+  {
+    return bundleContext;
   }
 
   /**
    * @author Eike Stepper
    */
-  public static class Activator implements BundleActivator
+  public static class Activator extends Plugin
   {
     public void start(BundleContext context) throws Exception
     {
+      bundleContext = context;
       BUNDLE.setBundleContext(context);
+      LifecycleUtil.activate(ContainerManagerImpl.INSTANCE);
       ExtensionParser parser = new ContainerAdapterFactoryExtensionParser();
       parser.parse();
     }
 
     public void stop(BundleContext context) throws Exception
     {
+      LifecycleUtil.deactivate(ContainerManagerImpl.INSTANCE);
       BUNDLE.setBundleContext(null);
+      bundleContext = null;
     }
   }
 }
