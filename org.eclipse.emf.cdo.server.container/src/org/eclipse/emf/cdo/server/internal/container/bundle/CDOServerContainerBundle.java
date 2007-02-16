@@ -21,17 +21,17 @@ import org.osgi.framework.BundleContext;
 /**
  * @author Eike Stepper
  */
-public final class ServerContainerBundle
+public final class CDOServerContainerBundle
 {
   public static final String BUNDLE_ID = "org.eclipse.net4j.jvm.container"; //$NON-NLS-1$
 
-  public static final OMBundle BUNDLE = OMPlatform.INSTANCE.bundle(BUNDLE_ID, ServerContainerBundle.class);
+  public static final OMBundle BUNDLE = OMPlatform.INSTANCE.bundle(BUNDLE_ID, CDOServerContainerBundle.class);
 
   public static final OMTracer DEBUG = BUNDLE.tracer("debug"); //$NON-NLS-1$
 
   public static final OMLogger LOG = BUNDLE.logger();
 
-  private ServerContainerBundle()
+  private CDOServerContainerBundle()
   {
   }
 

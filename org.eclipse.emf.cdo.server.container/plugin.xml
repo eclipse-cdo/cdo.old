@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.net4j.container.containerAdapterFactories">
       <containerAdapterFactory
-            class="org.eclipse.emf.cdo.server.internal.container.ServerContainerAdapterFactoryImpl"
+            class="org.eclipse.emf.cdo.server.internal.container.CDOServerContainerAdapterFactoryImpl"
             type="cdoserver">
       </containerAdapterFactory>
    </extension>

@@ -20,9 +20,7 @@ import org.eclipse.net4j.internal.tcp.TCPSelectorImpl;
 import org.eclipse.net4j.tcp.TCPConstants;
 import org.eclipse.net4j.tcp.TCPSelector;
 import org.eclipse.net4j.tcp.container.TCPContainerAdapter;
-import org.eclipse.net4j.transport.Acceptor;
 import org.eclipse.net4j.transport.AcceptorFactory;
-import org.eclipse.net4j.transport.Connector;
 import org.eclipse.net4j.transport.ConnectorFactory;
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
 
@@ -69,22 +67,17 @@ public class TCPContainerAdapterImpl extends TransportContainerAdapter implement
   }
 
   @Override
-  protected void initAcceptor(Acceptor acceptor)
+  protected void addedToContainer(Object object)
   {
-    if (acceptor instanceof TCPAcceptorImpl)
+    if (object instanceof TCPAcceptorImpl)
     {
-      TCPAcceptorImpl tcpAcceptor = (TCPAcceptorImpl)acceptor;
-      tcpAcceptor.setSelector(getSelector());
+      TCPAcceptorImpl acceptor = (TCPAcceptorImpl)object;
+      acceptor.setSelector(getSelector());
     }
-  }
-
-  @Override
-  protected void initConnector(Connector connector)
-  {
-    if (connector instanceof AbstractTCPConnector)
+    else if (object instanceof AbstractTCPConnector)
     {
-      AbstractTCPConnector tcpConnector = (AbstractTCPConnector)connector;
-      tcpConnector.setSelector(getSelector());
+      AbstractTCPConnector connector = (AbstractTCPConnector)object;
+      connector.setSelector(getSelector());
     }
   }
 }

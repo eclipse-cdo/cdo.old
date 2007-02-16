@@ -8,13 +8,14 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.server.container;
+package org.eclipse.net4j.container;
 
-import org.eclipse.net4j.container.ContainerAdapter;
+import javax.management.MBeanServer;
 
 /**
  * @author Eike Stepper
  */
-public interface ServerContainerAdapter extends ContainerAdapter
+public interface JMXContainerAdapter extends ContainerAdapter
 {
+  public MBeanServer getMBeanServer();
 }

@@ -17,10 +17,13 @@ import org.eclipse.net4j.transport.Channel;
 import org.eclipse.net4j.transport.ChannelID;
 import org.eclipse.net4j.transport.Connector;
 import org.eclipse.net4j.transport.ConnectorFactory;
+import org.eclipse.net4j.transport.ConnectorLocation;
 import org.eclipse.net4j.transport.ProtocolFactory;
 import org.eclipse.net4j.transport.ProtocolFactoryID;
 import org.eclipse.net4j.util.registry.IRegistry;
 
+import java.util.Collection;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 
 /**
@@ -95,4 +98,10 @@ public interface Container
    */
 
   public IRegistry<ChannelID, Channel> getChannelRegistry();
+
+  public Collection<Channel> getChannels(String protocolID, Set<ConnectorLocation> locations);
+
+  public Collection<Channel> getChannels(String protocolID);
+
+  public Collection<Channel> getChannels(Set<ConnectorLocation> locations);
 }

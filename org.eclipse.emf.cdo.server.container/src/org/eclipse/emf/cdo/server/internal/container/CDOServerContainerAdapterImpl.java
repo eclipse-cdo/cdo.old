@@ -10,25 +10,26 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.server.internal.container;
 
+import org.eclipse.emf.cdo.internal.server.protocol.ServerProtocolFactory;
 import org.eclipse.emf.cdo.server.ServerConstants;
+import org.eclipse.emf.cdo.server.container.CDOServerContainerAdapter;
 
 import org.eclipse.net4j.container.Container;
-import org.eclipse.net4j.container.ContainerAdapter;
-import org.eclipse.net4j.container.ContainerAdapterFactory;
+import org.eclipse.net4j.internal.container.ProtocolContainerAdapter;
+import org.eclipse.net4j.transport.ProtocolFactory;
 
-public final class ServerContainerAdapterFactoryImpl implements ContainerAdapterFactory
+/**
+ * @author Eike Stepper
+ */
+public class CDOServerContainerAdapterImpl extends ProtocolContainerAdapter implements CDOServerContainerAdapter
 {
-  public ServerContainerAdapterFactoryImpl()
+  public CDOServerContainerAdapterImpl(Container container)
   {
+    super(container, ServerConstants.TYPE);
   }
 
-  public String getType()
+  protected ProtocolFactory createProtocolFactory()
   {
-    return ServerConstants.TYPE;
-  }
-
-  public ContainerAdapter createAdapter(Container container)
-  {
-    return new ServerContainerAdapterImpl(container);
+    return new ServerProtocolFactory();
   }
 }
