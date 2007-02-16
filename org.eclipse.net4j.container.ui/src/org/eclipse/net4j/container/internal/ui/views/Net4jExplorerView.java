@@ -2,7 +2,6 @@ package org.eclipse.net4j.container.internal.ui.views;
 
 import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.container.ContainerManager;
-import org.eclipse.net4j.transport.Acceptor;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuListener;
@@ -55,7 +54,7 @@ public class Net4jExplorerView extends ViewPart
 
   private Action addAcceptorAction;
 
-  // private Action action2;
+  private Action addConnectorAction;
 
   private Action doubleClickAction;
 
@@ -134,13 +133,13 @@ public class Net4jExplorerView extends ViewPart
   private void fillLocalPullDown(IMenuManager manager)
   {
     manager.add(addAcceptorAction);
+    manager.add(addConnectorAction);
     // manager.add(new Separator());
     // manager.add(action2);
   }
 
   private void fillContextMenu(IMenuManager manager)
   {
-    manager.add(addAcceptorAction);
     // manager.add(action2);
     // manager.add(new Separator());
     // drillDownAdapter.addNavigationActions(manager);
@@ -152,6 +151,7 @@ public class Net4jExplorerView extends ViewPart
   private void fillLocalToolBar(IToolBarManager manager)
   {
     manager.add(addAcceptorAction);
+    manager.add(addConnectorAction);
     // manager.add(action2);
     // manager.add(new Separator());
     // drillDownAdapter.addNavigationActions(manager);
@@ -168,8 +168,8 @@ public class Net4jExplorerView extends ViewPart
         if (dialog.open() == InputDialog.OK)
         {
           String description = dialog.getValue();
-          Acceptor acceptor = CONTAINER.getAcceptor(description);
-          if (acceptor == null)
+          Object object = CONTAINER.getAcceptor(description);
+          if (object == null)
           {
             showMessage("Error while creating acceptor for description" + description);
           }
@@ -181,17 +181,27 @@ public class Net4jExplorerView extends ViewPart
     addAcceptorAction.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(
         ISharedImages.IMG_TOOL_NEW_WIZARD));
 
-    // action2 = new Action()
-    // {
-    // public void run()
-    // {
-    // showMessage("Action 2 executed");
-    // }
-    // };
-    // action2.setText("Action 2");
-    // action2.setToolTipText("Action 2 tooltip");
-    // action2.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(
-    // ISharedImages.IMG_OBJS_INFO_TSK));
+    addConnectorAction = new Action()
+    {
+      public void run()
+      {
+        InputDialog dialog = new InputDialog(getCurrentViewer().getControl().getShell(), "Net4j Explorer",
+            "Enter a connector description:", null, null);
+        if (dialog.open() == InputDialog.OK)
+        {
+          String description = dialog.getValue();
+          Object object = CONTAINER.getConnector(description);
+          if (object == null)
+          {
+            showMessage("Error while creating connector for description" + description);
+          }
+        }
+      }
+    };
+    addConnectorAction.setText("Add Connector");
+    addConnectorAction.setToolTipText("Add a connector");
+    addConnectorAction.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(
+        ISharedImages.IMG_TOOL_NEW_WIZARD));
 
     doubleClickAction = new Action()
     {
