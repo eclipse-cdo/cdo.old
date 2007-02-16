@@ -117,7 +117,7 @@ public class StoreContainerAdapterImpl extends AbstractContainerAdapter implemen
       TRACER.trace("Initializing config");
     }
 
-    config = new Config(new HashSet(), new HashSet());
+    config = new Config();
   }
 
   private void loadConfig() throws Exception
@@ -253,18 +253,12 @@ public class StoreContainerAdapterImpl extends AbstractContainerAdapter implemen
   {
     private static final long serialVersionUID = 1L;
 
-    private Set<String> acceptorDescriptions;
+    private Set<String> acceptorDescriptions = new HashSet();
 
-    private Set<String> connectorDescriptions;
+    private Set<String> connectorDescriptions = new HashSet();
 
     public Config()
     {
-    }
-
-    public Config(Set<String> acceptorDescriptions, Set<String> connectorDescriptions)
-    {
-      this.acceptorDescriptions = acceptorDescriptions;
-      this.connectorDescriptions = connectorDescriptions;
     }
 
     public Set<String> getAcceptorDescriptions()

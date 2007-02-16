@@ -405,12 +405,14 @@ public class ContainerImpl extends LifecycleImpl implements Container
       LifecycleUtil.deactivateNoisy(adapter);
     }
 
-    for (Connector connector : getConnectorRegistry().values())
+    Collection<Connector> connectors = getConnectorRegistry().values();
+    for (Connector connector : connectors.toArray(new Connector[connectors.size()]))
     {
       LifecycleUtil.deactivateNoisy(connector);
     }
 
-    for (Acceptor acceptor : getAcceptorRegistry().values())
+    Collection<Acceptor> acceptors = getAcceptorRegistry().values();
+    for (Acceptor acceptor : acceptors.toArray(new Acceptor[acceptors.size()]))
     {
       LifecycleUtil.deactivateNoisy(acceptor);
     }
