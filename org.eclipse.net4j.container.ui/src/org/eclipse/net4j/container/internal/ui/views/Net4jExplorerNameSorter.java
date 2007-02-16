@@ -8,14 +8,10 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.net4j.container;
+package org.eclipse.net4j.container.internal.ui.views;
 
-import javax.management.MBeanServer;
+import org.eclipse.jface.viewers.ViewerSorter;
 
-/**
- * @author Eike Stepper
- */
-public interface JMXContainerAdapter extends ContainerAdapter
+public class Net4jExplorerNameSorter extends ViewerSorter
 {
-  public MBeanServer getMBeanServer();
 }
