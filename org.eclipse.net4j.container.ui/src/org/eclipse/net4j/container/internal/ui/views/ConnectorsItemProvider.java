@@ -76,7 +76,7 @@ public class ConnectorsItemProvider extends ItemProvider<Container> implements I
     if (obj instanceof Channel)
     {
       Channel channel = (Channel)obj;
-      return MessageFormat.format("{0} = {1}", channel.getChannelIndex(), channel.getReceiveHandler());
+      return MessageFormat.format("[{0}] {1}", channel.getChannelIndex(), channel.getReceiveHandler());
     }
 
     return super.getText(obj);
