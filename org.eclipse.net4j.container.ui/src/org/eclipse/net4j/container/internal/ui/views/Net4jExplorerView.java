@@ -37,7 +37,7 @@ public class Net4jExplorerView extends ViewPart
 
   private static final String[] TAB_LABELS = { "Adapters", "Factories", "Acceptors", "Connectors" };
 
-  private static final boolean[] WITH_TREE = { false, true, false, true };
+  private static final boolean[] WITH_TREE = { false, true, true, true };
 
   private static final int TABS = TAB_LABELS.length;
 

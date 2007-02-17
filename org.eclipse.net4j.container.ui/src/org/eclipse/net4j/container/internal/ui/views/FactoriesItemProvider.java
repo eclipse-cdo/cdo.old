@@ -11,12 +11,15 @@
 package org.eclipse.net4j.container.internal.ui.views;
 
 import org.eclipse.net4j.container.Container;
+import org.eclipse.net4j.container.internal.ui.bundle.SharedIcons;
 import org.eclipse.net4j.transport.AcceptorFactory;
 import org.eclipse.net4j.transport.ConnectorFactory;
 import org.eclipse.net4j.transport.ProtocolFactory;
 import org.eclipse.net4j.util.registry.IRegistry;
 import org.eclipse.net4j.util.registry.IRegistryEvent;
 import org.eclipse.net4j.util.registry.IRegistryListener;
+
+import org.eclipse.swt.graphics.Image;
 
 import java.text.MessageFormat;
 import java.util.Collection;
@@ -113,6 +116,17 @@ public class FactoriesItemProvider extends ItemProvider<Container> implements IR
     }
 
     return super.getText(obj);
+  }
+
+  @Override
+  public Image getImage(Object obj)
+  {
+    if (obj instanceof IRegistry)
+    {
+      return SharedIcons.OBJ_FOLDER.createImage();
+    }
+
+    return SharedIcons.OBJ_FACTORY.createImage();
   }
 
   @Override

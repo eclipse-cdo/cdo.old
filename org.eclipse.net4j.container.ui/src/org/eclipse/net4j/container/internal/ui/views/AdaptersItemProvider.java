@@ -12,8 +12,11 @@ package org.eclipse.net4j.container.internal.ui.views;
 
 import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.container.ContainerAdapterFactory;
+import org.eclipse.net4j.container.internal.ui.bundle.SharedIcons;
 import org.eclipse.net4j.util.registry.IRegistryEvent;
 import org.eclipse.net4j.util.registry.IRegistryListener;
+
+import org.eclipse.swt.graphics.Image;
 
 import java.text.MessageFormat;
 import java.util.Collection;
@@ -53,13 +56,14 @@ public class AdaptersItemProvider extends ItemProvider<Container> implements IRe
   @Override
   public String getText(Object obj)
   {
-    if (obj instanceof ContainerAdapterFactory)
-    {
-      ContainerAdapterFactory factory = (ContainerAdapterFactory)obj;
-      return MessageFormat.format("{0} ({1})", factory.getType(), factory.getClass().getName());
-    }
+    ContainerAdapterFactory factory = (ContainerAdapterFactory)obj;
+    return MessageFormat.format("{0} ({1})", factory.getType(), factory.getClass().getName());
+  }
 
-    return super.getText(obj);
+  @Override
+  public Image getImage(Object obj)
+  {
+    return SharedIcons.OBJ_ADAPTER.createImage();
   }
 
   @Override

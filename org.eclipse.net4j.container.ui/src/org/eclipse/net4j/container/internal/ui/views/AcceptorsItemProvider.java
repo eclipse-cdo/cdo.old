@@ -11,9 +11,13 @@
 package org.eclipse.net4j.container.internal.ui.views;
 
 import org.eclipse.net4j.container.Container;
+import org.eclipse.net4j.container.internal.ui.bundle.SharedIcons;
 import org.eclipse.net4j.transport.Acceptor;
+import org.eclipse.net4j.transport.Connector;
 import org.eclipse.net4j.util.registry.IRegistryEvent;
 import org.eclipse.net4j.util.registry.IRegistryListener;
+
+import org.eclipse.swt.graphics.Image;
 
 import java.util.Collection;
 
@@ -30,6 +34,23 @@ public class AcceptorsItemProvider extends ItemProvider<Container> implements IR
       return getInput();
     }
 
+    if (child instanceof Connector)
+    {
+      Connector connector = (Connector)child;
+      Collection<Acceptor> acceptors = getInput().getAcceptorRegistry().values();
+      for (Acceptor acceptor : acceptors)
+      {
+        Connector[] connectors = acceptor.getAcceptedConnectors();
+        for (Connector c : connectors)
+        {
+          if (c == connector)
+          {
+            return acceptor;
+          }
+        }
+      }
+    }
+
     return null;
   }
 
@@ -41,6 +62,12 @@ public class AcceptorsItemProvider extends ItemProvider<Container> implements IR
       return values.toArray(new Object[values.size()]);
     }
 
+    if (parent instanceof Acceptor)
+    {
+      Acceptor acceptor = (Acceptor)parent;
+      return acceptor.getAcceptedConnectors();
+    }
+
     return NO_CHILDREN;
   }
 
@@ -50,14 +77,50 @@ public class AcceptorsItemProvider extends ItemProvider<Container> implements IR
   }
 
   @Override
+  public String getText(Object obj)
+  {
+    if (obj instanceof Acceptor)
+    {
+      Acceptor acceptor = (Acceptor)obj;
+      return acceptor.getDescription();
+    }
+
+    if (obj instanceof Connector)
+    {
+      Connector connector = (Connector)obj;
+      return connector.getDescription();
+    }
+
+    return super.getText(obj);
+  }
+
+  @Override
+  public Image getImage(Object obj)
+  {
+    if (obj instanceof Acceptor)
+    {
+      return SharedIcons.OBJ_ACCEPTOR.createImage();
+    }
+
+    if (obj instanceof Connector)
+    {
+      return SharedIcons.OBJ_CONNECTOR.createImage();
+    }
+
+    return null;
+  }
+
+  @Override
   protected void connectInput(Container input)
   {
     input.getAcceptorRegistry().addRegistryListener(this);
+    input.getConnectorRegistry().addRegistryListener(this);
   }
 
   @Override
   protected void disconnectInput(Container input)
   {
     input.getAcceptorRegistry().removeRegistryListener(this);
+    input.getConnectorRegistry().removeRegistryListener(this);
   }
 }
