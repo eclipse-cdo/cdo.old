@@ -12,7 +12,7 @@ package org.eclipse.net4j.tcp.internal.container;
 
 import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.internal.container.TransportContainerAdapter;
-import org.eclipse.net4j.internal.tcp.AbstractTCPConnector;
+import org.eclipse.net4j.internal.tcp.ClientTCPConnectorImpl;
 import org.eclipse.net4j.internal.tcp.TCPAcceptorFactoryImpl;
 import org.eclipse.net4j.internal.tcp.TCPAcceptorImpl;
 import org.eclipse.net4j.internal.tcp.TCPConnectorFactoryImpl;
@@ -74,9 +74,9 @@ public class TCPContainerAdapterImpl extends TransportContainerAdapter implement
       TCPAcceptorImpl acceptor = (TCPAcceptorImpl)object;
       acceptor.setSelector(getSelector());
     }
-    else if (object instanceof AbstractTCPConnector)
+    else if (object instanceof ClientTCPConnectorImpl)
     {
-      AbstractTCPConnector connector = (AbstractTCPConnector)object;
+      ClientTCPConnectorImpl connector = (ClientTCPConnectorImpl)object;
       connector.setSelector(getSelector());
     }
   }

@@ -13,12 +13,14 @@ package org.eclipse.net4j.container.internal.ui.views;
 import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.container.internal.ui.bundle.SharedIcons;
 import org.eclipse.net4j.transport.Acceptor;
+import org.eclipse.net4j.transport.Channel;
 import org.eclipse.net4j.transport.Connector;
 import org.eclipse.net4j.util.registry.IRegistryEvent;
 import org.eclipse.net4j.util.registry.IRegistryListener;
 
 import org.eclipse.swt.graphics.Image;
 
+import java.text.MessageFormat;
 import java.util.Collection;
 
 public class AcceptorsItemProvider extends ItemProvider<Container> implements IRegistryListener
@@ -51,6 +53,11 @@ public class AcceptorsItemProvider extends ItemProvider<Container> implements IR
       }
     }
 
+    if (child instanceof Channel)
+    {
+      return ((Channel)child).getConnector();
+    }
+
     return null;
   }
 
@@ -66,6 +73,11 @@ public class AcceptorsItemProvider extends ItemProvider<Container> implements IR
     {
       Acceptor acceptor = (Acceptor)parent;
       return acceptor.getAcceptedConnectors();
+    }
+
+    if (parent instanceof Connector)
+    {
+      return ((Connector)parent).getChannels();
     }
 
     return NO_CHILDREN;
@@ -91,6 +103,12 @@ public class AcceptorsItemProvider extends ItemProvider<Container> implements IR
       return connector.getDescription();
     }
 
+    if (obj instanceof Channel)
+    {
+      Channel channel = (Channel)obj;
+      return MessageFormat.format("[{0}] {1}", channel.getChannelIndex(), channel.getReceiveHandler());
+    }
+
     return super.getText(obj);
   }
 
@@ -107,6 +125,11 @@ public class AcceptorsItemProvider extends ItemProvider<Container> implements IR
       return SharedIcons.OBJ_CONNECTOR.createImage();
     }
 
+    if (obj instanceof Channel)
+    {
+      return SharedIcons.OBJ_CHANNEL.createImage();
+    }
+
     return null;
   }
 
@@ -115,6 +138,7 @@ public class AcceptorsItemProvider extends ItemProvider<Container> implements IR
   {
     input.getAcceptorRegistry().addRegistryListener(this);
     input.getConnectorRegistry().addRegistryListener(this);
+    input.getChannelRegistry().addRegistryListener(this);
   }
 
   @Override
@@ -122,5 +146,6 @@ public class AcceptorsItemProvider extends ItemProvider<Container> implements IR
   {
     input.getAcceptorRegistry().removeRegistryListener(this);
     input.getConnectorRegistry().removeRegistryListener(this);
+    input.getChannelRegistry().removeRegistryListener(this);
   }
 }

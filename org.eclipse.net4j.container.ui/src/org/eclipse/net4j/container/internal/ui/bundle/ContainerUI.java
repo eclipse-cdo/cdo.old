@@ -14,6 +14,9 @@ import org.eclipse.net4j.util.om.OMBundle;
 import org.eclipse.net4j.util.om.OMLogger;
 import org.eclipse.net4j.util.om.OMPlatform;
 import org.eclipse.net4j.util.om.OMTracer;
+import org.eclipse.net4j.util.om.log.EclipseLoggingBridge;
+
+import org.eclipse.internal.net4j.bundle.AbstractOMPlatform;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -42,6 +45,7 @@ public final class ContainerUI
   {
     public void start(BundleContext context) throws Exception
     {
+      AbstractOMPlatform.INSTANCE.addLogHandler(EclipseLoggingBridge.INSTANCE);
       BUNDLE.setBundleContext(context);
     }
 

@@ -400,7 +400,8 @@ public class ContainerImpl extends LifecycleImpl implements Container
   {
     channelRegistry.removeRegistryListener(registryListener);
     getAdapterFactoryRegistry().removeRegistryListener(adapterFactoryRegistryListener);
-    for (ContainerAdapter adapter : adapters.values())
+    Collection<ContainerAdapter> adapters = this.adapters.values();
+    for (ContainerAdapter adapter : adapters.toArray(new ContainerAdapter[adapters.size()]))
     {
       LifecycleUtil.deactivateNoisy(adapter);
     }

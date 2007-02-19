@@ -20,11 +20,14 @@ import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.internal.container.ProtocolContainerAdapter;
 import org.eclipse.net4j.transport.Connector;
 import org.eclipse.net4j.transport.ProtocolFactory;
+import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
 import org.eclipse.net4j.util.registry.IRegistry;
 
 import org.eclipse.emf.internal.cdo.protocol.ClientProtocolFactory;
 
 import org.eclipse.internal.net4j.util.registry.HashMapRegistry;
+
+import java.util.Collection;
 
 /**
  * @author Eike Stepper
@@ -79,7 +82,12 @@ public class CDOContainerAdapterImpl extends ProtocolContainerAdapter implements
   @Override
   protected void onDeactivate() throws Exception
   {
-    sessionRegistry.clear();
+    Collection<CDOSession> sessions = sessionRegistry.values();
+    for (CDOSession session : sessions.toArray(new CDOSession[sessions.size()]))
+    {
+      LifecycleUtil.deactivateNoisy(session);
+    }
+
     sessionRegistry = null;
     super.onDeactivate();
   }

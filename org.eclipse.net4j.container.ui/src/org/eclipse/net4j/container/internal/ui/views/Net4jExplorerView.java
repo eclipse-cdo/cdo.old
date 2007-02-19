@@ -35,20 +35,18 @@ public class Net4jExplorerView extends ViewPart
 {
   private static final Container CONTAINER = ContainerManager.INSTANCE.getContainer();
 
-  private static final String[] TAB_LABELS = { "Adapters", "Factories", "Acceptors", "Connectors" };
+  private static final String[] TAB_LABELS = { "Connectors", "Acceptors", "Factories", "Adapters" };
 
-  private static final boolean[] WITH_TREE = { false, true, true, true };
+  private static final boolean[] WITH_TREE = { true, true, true, false };
 
-  private static final int TABS = TAB_LABELS.length;
-
-  private static final ItemProvider[] ITEM_PROVIDERS = { new AdaptersItemProvider(), new FactoriesItemProvider(),
-      new AcceptorsItemProvider(), new ConnectorsItemProvider() };
+  private static final ItemProvider[] ITEM_PROVIDERS = { new ConnectorsItemProvider(), new AcceptorsItemProvider(),
+      new FactoriesItemProvider(), new AdaptersItemProvider() };
 
   private TabFolder tabFolder;
 
-  private Control[] tabControls = new Control[TABS];
+  private Control[] tabControls = new Control[TAB_LABELS.length];
 
-  private StructuredViewer[] viewers = new StructuredViewer[TABS];
+  private StructuredViewer[] viewers = new StructuredViewer[TAB_LABELS.length];
 
   // private DrillDownAdapter drillDownAdapter;
 

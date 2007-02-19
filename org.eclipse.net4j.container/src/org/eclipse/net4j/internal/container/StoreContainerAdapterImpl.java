@@ -177,12 +177,26 @@ public class StoreContainerAdapterImpl extends AbstractContainerAdapter implemen
   {
     for (String description : config.getAcceptorDescriptions())
     {
-      getContainer().getAcceptor(description);
+      try
+      {
+        getContainer().getAcceptor(description);
+      }
+      catch (Exception ignore)
+      {
+        // Do nothing
+      }
     }
 
     for (String description : config.getConnectorDescriptions())
     {
-      getContainer().getConnector(description);
+      try
+      {
+        getContainer().getConnector(description);
+      }
+      catch (Exception ignore)
+      {
+        // Do nothing
+      }
     }
   }
 
