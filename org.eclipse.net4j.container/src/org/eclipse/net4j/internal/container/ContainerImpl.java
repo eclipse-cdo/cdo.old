@@ -18,16 +18,21 @@ import org.eclipse.net4j.container.ContainerAdapter;
 import org.eclipse.net4j.container.ContainerAdapterFactory;
 import org.eclipse.net4j.container.ContainerUtil;
 import org.eclipse.net4j.transport.Acceptor;
+import org.eclipse.net4j.transport.AcceptorConnectorsEvent;
 import org.eclipse.net4j.transport.AcceptorFactory;
 import org.eclipse.net4j.transport.BufferProvider;
 import org.eclipse.net4j.transport.Channel;
 import org.eclipse.net4j.transport.ChannelID;
 import org.eclipse.net4j.transport.Connector;
+import org.eclipse.net4j.transport.ConnectorChannelsEvent;
 import org.eclipse.net4j.transport.ConnectorFactory;
 import org.eclipse.net4j.transport.ConnectorLocation;
 import org.eclipse.net4j.transport.Protocol;
 import org.eclipse.net4j.transport.ProtocolFactory;
 import org.eclipse.net4j.transport.ProtocolFactoryID;
+import org.eclipse.net4j.util.event.IEvent;
+import org.eclipse.net4j.util.event.IListener;
+import org.eclipse.net4j.util.lifecycle.LifecycleAdapter;
 import org.eclipse.net4j.util.lifecycle.LifecycleImpl;
 import org.eclipse.net4j.util.lifecycle.LifecycleListener;
 import org.eclipse.net4j.util.lifecycle.LifecycleNotifier;
@@ -40,7 +45,6 @@ import org.eclipse.net4j.util.registry.IRegistryListener;
 import org.eclipse.internal.net4j.bundle.Net4j;
 import org.eclipse.internal.net4j.transport.AbstractAcceptor;
 import org.eclipse.internal.net4j.transport.AbstractConnector;
-import org.eclipse.internal.net4j.transport.ChannelImpl;
 import org.eclipse.internal.net4j.transport.DescriptionUtil;
 import org.eclipse.internal.net4j.util.registry.HashMapRegistry;
 
@@ -138,29 +142,58 @@ public class ContainerImpl extends LifecycleImpl implements Container
     }
   };
 
-  private LifecycleListener lifecycleListener = new LifecycleListener()
+  private LifecycleListener lifecycleListener = new LifecycleAdapter()
   {
-    public void notifyLifecycleAboutToActivate(LifecycleNotifier notifier)
-    {
-    }
-
-    public void notifyLifecycleActivated(LifecycleNotifier notifier)
-    {
-    }
-
+    @Override
     public void notifyLifecycleDeactivating(LifecycleNotifier notifier)
     {
-      if (notifier instanceof ChannelImpl)
+      if (notifier instanceof Acceptor)
       {
-        channelRegistry.remove(((ChannelImpl)notifier).getID());
-      }
-      else if (notifier instanceof Acceptor)
-      {
-        acceptorRegistry.remove(((Acceptor)notifier).getDescription());
+        Acceptor acceptor = (Acceptor)notifier;
+        acceptorRegistry.remove(acceptor.getDescription());
+        LifecycleUtil.removeListener(acceptor, lifecycleListener);
+        acceptor.removeListener(acceptorListener);
       }
       else if (notifier instanceof Connector)
       {
-        connectorRegistry.remove(((Connector)notifier).getDescription());
+        Connector connector = (Connector)notifier;
+        connectorRegistry.remove(connector.getDescription());
+        LifecycleUtil.removeListener(connector, lifecycleListener);
+        connector.removeListener(connectorListener);
+      }
+    }
+  };
+
+  private IListener acceptorListener = new IListener()
+  {
+    public void notifyEvent(IEvent event)
+    {
+      if (event instanceof AcceptorConnectorsEvent)
+      {
+        AcceptorConnectorsEvent e = (AcceptorConnectorsEvent)event;
+        Connector connector = e.getAcceptedConnector();
+        connector.addListener(connectorListener);
+      }
+    }
+  };
+
+  private IListener connectorListener = new IListener()
+  {
+    public void notifyEvent(IEvent event)
+    {
+      if (event instanceof ConnectorChannelsEvent)
+      {
+        ConnectorChannelsEvent e = (ConnectorChannelsEvent)event;
+        Channel channel = e.getChannel();
+        switch (e.getType())
+        {
+        case OPENED:
+          channelRegistry.put(channel.getID(), channel);
+          break;
+        case CLOSING:
+          channelRegistry.remove(channel.getID());
+          break;
+        }
       }
     }
   };
@@ -514,6 +547,7 @@ public class ContainerImpl extends LifecycleImpl implements Container
     added(acceptor);
 
     LifecycleUtil.activate(acceptor);
+    acceptor.addListener(acceptorListener);
     return acceptor;
   }
 
@@ -540,6 +574,7 @@ public class ContainerImpl extends LifecycleImpl implements Container
     added(connector);
 
     LifecycleUtil.activate(connector);
+    connector.addListener(connectorListener);
     return connector;
   }
 
