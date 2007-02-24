@@ -181,9 +181,12 @@ public class StoreContainerAdapterImpl extends AbstractContainerAdapter implemen
       {
         getContainer().getAcceptor(description);
       }
-      catch (Exception ignore)
+      catch (Exception ex)
       {
-        // Do nothing
+        if (TRACER.isEnabled())
+        {
+          TRACER.format("Failed to get acceptor for description {0} due to {1}", description, ex);
+        }
       }
     }
 
@@ -193,9 +196,12 @@ public class StoreContainerAdapterImpl extends AbstractContainerAdapter implemen
       {
         getContainer().getConnector(description);
       }
-      catch (Exception ignore)
+      catch (Exception ex)
       {
-        // Do nothing
+        if (TRACER.isEnabled())
+        {
+          TRACER.format("Failed to get connector for description {0} due to {1}", description, ex);
+        }
       }
     }
   }

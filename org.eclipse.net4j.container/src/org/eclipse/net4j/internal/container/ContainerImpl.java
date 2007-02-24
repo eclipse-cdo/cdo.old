@@ -488,16 +488,7 @@ public class ContainerImpl extends LifecycleImpl implements Container
     acceptor.setProtocolFactoryRegistry(getProtocolFactoryRegistry());
     added(acceptor);
 
-    try
-    {
-      LifecycleUtil.activate(acceptor);
-    }
-    catch (Exception ex)
-    {
-      Net4j.LOG.error(ex);
-      acceptor = null;
-    }
-
+    LifecycleUtil.activate(acceptor);
     return acceptor;
   }
 
@@ -523,16 +514,7 @@ public class ContainerImpl extends LifecycleImpl implements Container
     connector.setProtocolFactoryRegistry(getProtocolFactoryRegistry());
     added(connector);
 
-    try
-    {
-      LifecycleUtil.activate(connector);
-    }
-    catch (Exception ex)
-    {
-      Net4j.LOG.error(ex);
-      connector = null;
-    }
-
+    LifecycleUtil.activate(connector);
     return connector;
   }
 
