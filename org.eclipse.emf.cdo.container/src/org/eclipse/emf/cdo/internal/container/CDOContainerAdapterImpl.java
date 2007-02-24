@@ -16,7 +16,7 @@ import org.eclipse.emf.cdo.container.CDOContainerAdapter;
 import org.eclipse.emf.cdo.internal.container.bundle.CDOContainerBundle;
 import org.eclipse.emf.cdo.util.CDOUtil;
 
-import org.eclipse.net4j.container.Container;
+import org.eclipse.net4j.internal.container.ContainerImpl;
 import org.eclipse.net4j.internal.container.ProtocolContainerAdapter;
 import org.eclipse.net4j.transport.Connector;
 import org.eclipse.net4j.transport.ProtocolFactory;
@@ -36,7 +36,7 @@ public class CDOContainerAdapterImpl extends ProtocolContainerAdapter implements
 {
   private IRegistry<String, CDOSession> sessionRegistry;
 
-  public CDOContainerAdapterImpl(Container container)
+  public CDOContainerAdapterImpl(ContainerImpl container)
   {
     super(container, CDOConstants.TYPE);
   }

@@ -10,7 +10,6 @@
  **************************************************************************/
 package org.eclipse.net4j.internal.container;
 
-import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.container.ContainerAdapter;
 import org.eclipse.net4j.container.ContainerAdapterFactory;
 import org.eclipse.net4j.container.StoreConstants;
@@ -31,7 +30,7 @@ public final class StoreContainerAdapterFactoryImpl implements ContainerAdapterF
     return StoreConstants.TYPE;
   }
 
-  public ContainerAdapter createAdapter(Container container)
+  public ContainerAdapter createAdapter(ContainerImpl container)
   {
     return new StoreContainerAdapterImpl(container, store);
   }

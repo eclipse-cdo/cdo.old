@@ -14,7 +14,7 @@ import org.eclipse.emf.cdo.internal.server.protocol.ServerProtocolFactory;
 import org.eclipse.emf.cdo.server.ServerConstants;
 import org.eclipse.emf.cdo.server.container.CDOServerContainerAdapter;
 
-import org.eclipse.net4j.container.Container;
+import org.eclipse.net4j.internal.container.ContainerImpl;
 import org.eclipse.net4j.internal.container.ProtocolContainerAdapter;
 import org.eclipse.net4j.transport.ProtocolFactory;
 
@@ -23,7 +23,7 @@ import org.eclipse.net4j.transport.ProtocolFactory;
  */
 public class CDOServerContainerAdapterImpl extends ProtocolContainerAdapter implements CDOServerContainerAdapter
 {
-  public CDOServerContainerAdapterImpl(Container container)
+  public CDOServerContainerAdapterImpl(ContainerImpl container)
   {
     super(container, ServerConstants.TYPE);
   }

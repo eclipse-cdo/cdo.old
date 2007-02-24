@@ -10,14 +10,13 @@
  **************************************************************************/
 package org.eclipse.net4j.internal.container;
 
-import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.transport.ProtocolFactory;
 
 public abstract class ProtocolContainerAdapter extends AbstractContainerAdapter
 {
   private ProtocolFactory protocolFactory;
 
-  protected ProtocolContainerAdapter(Container container, String type)
+  protected ProtocolContainerAdapter(ContainerImpl container, String type)
   {
     super(container, type);
     protocolFactory = createProtocolFactory();

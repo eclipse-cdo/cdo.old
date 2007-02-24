@@ -10,7 +10,7 @@
  **************************************************************************/
 package org.eclipse.net4j.tcp.internal.container;
 
-import org.eclipse.net4j.container.Container;
+import org.eclipse.net4j.internal.container.ContainerImpl;
 import org.eclipse.net4j.internal.container.TransportContainerAdapter;
 import org.eclipse.net4j.internal.tcp.ClientTCPConnectorImpl;
 import org.eclipse.net4j.internal.tcp.TCPAcceptorFactoryImpl;
@@ -31,7 +31,7 @@ public class TCPContainerAdapterImpl extends TransportContainerAdapter implement
 {
   private TCPSelector selector;
 
-  public TCPContainerAdapterImpl(Container container)
+  public TCPContainerAdapterImpl(ContainerImpl container)
   {
     super(container, TCPConstants.TYPE);
     selector = new TCPSelectorImpl();

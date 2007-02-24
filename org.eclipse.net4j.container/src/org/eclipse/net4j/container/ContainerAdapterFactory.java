@@ -10,6 +10,8 @@
  **************************************************************************/
 package org.eclipse.net4j.container;
 
+import org.eclipse.net4j.internal.container.ContainerImpl;
+
 /**
  * @author Eike Stepper
  */
@@ -17,5 +19,5 @@ public interface ContainerAdapterFactory
 {
   public String getType();
 
-  public ContainerAdapter createAdapter(Container container);
+  public ContainerAdapter createAdapter(ContainerImpl container);
 }

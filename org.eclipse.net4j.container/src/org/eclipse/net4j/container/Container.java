@@ -45,6 +45,12 @@ public interface Container
 
   public void deregister(ContainerAdapterFactory factory);
 
+  /*
+   * ContainerAdapter
+   */
+
+  public IRegistry<String, ContainerAdapter> getAdapterRegistry();
+
   public ContainerAdapter getAdapter(String type);
 
   /*

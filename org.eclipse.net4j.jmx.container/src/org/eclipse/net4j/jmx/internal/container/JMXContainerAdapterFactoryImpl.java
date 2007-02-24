@@ -10,9 +10,9 @@
  **************************************************************************/
 package org.eclipse.net4j.jmx.internal.container;
 
-import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.container.ContainerAdapter;
 import org.eclipse.net4j.container.ContainerAdapterFactory;
+import org.eclipse.net4j.internal.container.ContainerImpl;
 import org.eclipse.net4j.jmx.container.JMXConstants;
 
 public final class JMXContainerAdapterFactoryImpl implements ContainerAdapterFactory
@@ -26,7 +26,7 @@ public final class JMXContainerAdapterFactoryImpl implements ContainerAdapterFac
     return JMXConstants.TYPE;
   }
 
-  public ContainerAdapter createAdapter(Container container)
+  public ContainerAdapter createAdapter(ContainerImpl container)
   {
     return new JMXContainerAdapterImpl(container);
   }

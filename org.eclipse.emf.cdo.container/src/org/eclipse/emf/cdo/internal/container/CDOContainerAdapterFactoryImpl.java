@@ -12,9 +12,9 @@ package org.eclipse.emf.cdo.internal.container;
 
 import org.eclipse.emf.cdo.CDOConstants;
 
-import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.container.ContainerAdapter;
 import org.eclipse.net4j.container.ContainerAdapterFactory;
+import org.eclipse.net4j.internal.container.ContainerImpl;
 
 public final class CDOContainerAdapterFactoryImpl implements ContainerAdapterFactory
 {
@@ -27,7 +27,7 @@ public final class CDOContainerAdapterFactoryImpl implements ContainerAdapterFac
     return CDOConstants.TYPE;
   }
 
-  public ContainerAdapter createAdapter(Container container)
+  public ContainerAdapter createAdapter(ContainerImpl container)
   {
     return new CDOContainerAdapterImpl(container);
   }

@@ -12,9 +12,9 @@ package org.eclipse.emf.cdo.server.internal.container;
 
 import org.eclipse.emf.cdo.server.ServerConstants;
 
-import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.container.ContainerAdapter;
 import org.eclipse.net4j.container.ContainerAdapterFactory;
+import org.eclipse.net4j.internal.container.ContainerImpl;
 
 public final class CDOServerContainerAdapterFactoryImpl implements ContainerAdapterFactory
 {
@@ -27,7 +27,7 @@ public final class CDOServerContainerAdapterFactoryImpl implements ContainerAdap
     return ServerConstants.TYPE;
   }
 
-  public ContainerAdapter createAdapter(Container container)
+  public ContainerAdapter createAdapter(ContainerImpl container)
   {
     return new CDOServerContainerAdapterImpl(container);
   }

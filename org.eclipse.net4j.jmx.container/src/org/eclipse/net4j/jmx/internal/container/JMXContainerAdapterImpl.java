@@ -10,8 +10,8 @@
  **************************************************************************/
 package org.eclipse.net4j.jmx.internal.container;
 
-import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.internal.container.AbstractContainerAdapter;
+import org.eclipse.net4j.internal.container.ContainerImpl;
 import org.eclipse.net4j.jmx.container.JMXConstants;
 import org.eclipse.net4j.jmx.container.JMXContainerAdapter;
 
@@ -25,7 +25,7 @@ public class JMXContainerAdapterImpl extends AbstractContainerAdapter implements
 {
   private MBeanServer mbeanServer;
 
-  public JMXContainerAdapterImpl(Container container)
+  public JMXContainerAdapterImpl(ContainerImpl container)
   {
     super(container, JMXConstants.TYPE);
   }

@@ -13,14 +13,11 @@ package org.eclipse.net4j.internal.container;
 import static org.eclipse.net4j.util.registry.IRegistryDelta.Kind.DEREGISTERED;
 import static org.eclipse.net4j.util.registry.IRegistryDelta.Kind.REGISTERED;
 
-import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.container.StoreConstants;
 import org.eclipse.net4j.container.StoreContainerAdapter;
 import org.eclipse.net4j.internal.container.bundle.ContainerBundle;
 import org.eclipse.net4j.transport.Acceptor;
-import org.eclipse.net4j.transport.AcceptorFactory;
 import org.eclipse.net4j.transport.Connector;
-import org.eclipse.net4j.transport.ConnectorFactory;
 import org.eclipse.net4j.util.IOUtil;
 import org.eclipse.net4j.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.registry.IRegistryDelta;
@@ -51,7 +48,7 @@ public class StoreContainerAdapterImpl extends AbstractContainerAdapter implemen
 
   private boolean dirty;
 
-  public StoreContainerAdapterImpl(Container container, File store)
+  public StoreContainerAdapterImpl(ContainerImpl container, File store)
   {
     super(container, StoreConstants.TYPE);
     this.store = store;
@@ -88,6 +85,8 @@ public class StoreContainerAdapterImpl extends AbstractContainerAdapter implemen
     super.onActivate();
     loadConfig();
     createObjects();
+    getContainer().getAdapterFactoryRegistry().addRegistryListener(this);
+    getContainer().getAdapterRegistry().addRegistryListener(this);
     getContainer().getAcceptorFactoryRegistry().addRegistryListener(this);
     getContainer().getAcceptorRegistry().addRegistryListener(this);
     getContainer().getConnectorFactoryRegistry().addRegistryListener(this);
@@ -97,6 +96,8 @@ public class StoreContainerAdapterImpl extends AbstractContainerAdapter implemen
   @Override
   protected void onDeactivate() throws Exception
   {
+    getContainer().getAdapterFactoryRegistry().removeRegistryListener(this);
+    getContainer().getAdapterRegistry().removeRegistryListener(this);
     getContainer().getAcceptorFactoryRegistry().removeRegistryListener(this);
     getContainer().getAcceptorRegistry().removeRegistryListener(this);
     getContainer().getConnectorFactoryRegistry().removeRegistryListener(this);
@@ -114,7 +115,7 @@ public class StoreContainerAdapterImpl extends AbstractContainerAdapter implemen
   {
     if (TRACER.isEnabled())
     {
-      TRACER.trace("Initializing config");
+      TRACER.trace("Initializing configuration");
     }
 
     config = new Config();
@@ -125,7 +126,7 @@ public class StoreContainerAdapterImpl extends AbstractContainerAdapter implemen
     ObjectInputStream ois = null;
     if (TRACER.isEnabled())
     {
-      TRACER.trace("Loading config");
+      TRACER.trace("Loading configuration");
     }
 
     try
@@ -154,7 +155,7 @@ public class StoreContainerAdapterImpl extends AbstractContainerAdapter implemen
     ObjectOutputStream oos = null;
     if (TRACER.isEnabled())
     {
-      TRACER.trace("Saving config");
+      TRACER.trace("Saving configuration");
     }
 
     try
@@ -230,11 +231,7 @@ public class StoreContainerAdapterImpl extends AbstractContainerAdapter implemen
         }
       }
     }
-    else if (object instanceof AcceptorFactory)
-    {
-      createObjects();
-    }
-    else if (object instanceof ConnectorFactory)
+    else
     {
       createObjects();
     }

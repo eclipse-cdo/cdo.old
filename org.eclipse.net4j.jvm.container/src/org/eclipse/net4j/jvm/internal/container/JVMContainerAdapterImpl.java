@@ -10,7 +10,7 @@
  **************************************************************************/
 package org.eclipse.net4j.jvm.internal.container;
 
-import org.eclipse.net4j.container.Container;
+import org.eclipse.net4j.internal.container.ContainerImpl;
 import org.eclipse.net4j.internal.container.TransportContainerAdapter;
 import org.eclipse.net4j.internal.jvm.JVMAcceptorFactoryImpl;
 import org.eclipse.net4j.internal.jvm.JVMConnectorFactoryImpl;
@@ -24,7 +24,7 @@ import org.eclipse.net4j.transport.ConnectorFactory;
  */
 public class JVMContainerAdapterImpl extends TransportContainerAdapter implements JVMContainerAdapter
 {
-  public JVMContainerAdapterImpl(Container container)
+  public JVMContainerAdapterImpl(ContainerImpl container)
   {
     super(container, JVMConstants.TYPE);
   }

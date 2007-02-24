@@ -223,7 +223,7 @@ public class ContainerImpl extends LifecycleImpl implements Container
     return channelRegistry;
   }
 
-  public IRegistry<String, ContainerAdapter> getAdapters()
+  public IRegistry<String, ContainerAdapter> getAdapterRegistry()
   {
     return adapters;
   }
@@ -368,6 +368,31 @@ public class ContainerImpl extends LifecycleImpl implements Container
     {
       ProtocolFactoryID id = factory.getID(location);
       registry.remove(id);
+    }
+  }
+
+  public void added(Object object)
+  {
+    for (ContainerAdapter adapter : adapters.values())
+    {
+      if (adapter instanceof AbstractContainerAdapter)
+      {
+        ((AbstractContainerAdapter)adapter).addedToContainer(object);
+      }
+    }
+
+    LifecycleUtil.addListener(object, lifecycleListener);
+  }
+
+  public void removed(Object object)
+  {
+    LifecycleUtil.removeListener(object, lifecycleListener);
+    for (ContainerAdapter adapter : adapters.values())
+    {
+      if (adapter instanceof AbstractContainerAdapter)
+      {
+        ((AbstractContainerAdapter)adapter).removedFromContainer(object);
+      }
     }
   }
 
@@ -518,31 +543,6 @@ public class ContainerImpl extends LifecycleImpl implements Container
     return connector;
   }
 
-  private void added(Object object)
-  {
-    for (ContainerAdapter adapter : adapters.values())
-    {
-      if (adapter instanceof AbstractContainerAdapter)
-      {
-        ((AbstractContainerAdapter)adapter).addedToContainer(object);
-      }
-    }
-
-    LifecycleUtil.addListener(object, lifecycleListener);
-  }
-
-  private void removed(Object object)
-  {
-    LifecycleUtil.removeListener(object, lifecycleListener);
-    for (ContainerAdapter adapter : adapters.values())
-    {
-      if (adapter instanceof AbstractContainerAdapter)
-      {
-        ((AbstractContainerAdapter)adapter).removedFromContainer(object);
-      }
-    }
-  }
-
   private ContainerAdapter addAdapter(String type)
   {
     ContainerAdapterFactory factory = adapterFactoryRegistry.get(type);
@@ -557,6 +557,7 @@ public class ContainerImpl extends LifecycleImpl implements Container
       adapters.put(type, adapter);
     }
 
+    added(adapter);
     return adapter;
   }
 

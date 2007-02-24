@@ -10,7 +10,6 @@
  **************************************************************************/
 package org.eclipse.net4j.internal.container;
 
-import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.transport.AcceptorFactory;
 import org.eclipse.net4j.transport.ConnectorFactory;
 
@@ -20,7 +19,7 @@ public abstract class TransportContainerAdapter extends AbstractContainerAdapter
 
   private ConnectorFactory connectorFactory;
 
-  protected TransportContainerAdapter(Container container, String type)
+  protected TransportContainerAdapter(ContainerImpl container, String type)
   {
     super(container, type);
     acceptorFactory = createAcceptorFactory();

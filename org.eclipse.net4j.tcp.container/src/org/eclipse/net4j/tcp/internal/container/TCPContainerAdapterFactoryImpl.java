@@ -10,9 +10,9 @@
  **************************************************************************/
 package org.eclipse.net4j.tcp.internal.container;
 
-import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.container.ContainerAdapter;
 import org.eclipse.net4j.container.ContainerAdapterFactory;
+import org.eclipse.net4j.internal.container.ContainerImpl;
 import org.eclipse.net4j.tcp.TCPConstants;
 
 public final class TCPContainerAdapterFactoryImpl implements ContainerAdapterFactory
@@ -26,7 +26,7 @@ public final class TCPContainerAdapterFactoryImpl implements ContainerAdapterFac
     return TCPConstants.TYPE;
   }
 
-  public ContainerAdapter createAdapter(Container container)
+  public ContainerAdapter createAdapter(ContainerImpl container)
   {
     return new TCPContainerAdapterImpl(container);
   }
