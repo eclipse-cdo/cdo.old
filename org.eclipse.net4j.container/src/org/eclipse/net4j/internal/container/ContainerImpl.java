@@ -18,6 +18,8 @@ import org.eclipse.net4j.container.ContainerAdapter;
 import org.eclipse.net4j.container.ContainerAdapterFactory;
 import org.eclipse.net4j.container.ContainerUtil;
 import org.eclipse.net4j.internal.container.bundle.ContainerBundle;
+import org.eclipse.net4j.internal.container.store.FileStore;
+import org.eclipse.net4j.internal.container.store.Store;
 import org.eclipse.net4j.transport.Acceptor;
 import org.eclipse.net4j.transport.AcceptorConnectorsEvent;
 import org.eclipse.net4j.transport.AcceptorFactory;
@@ -44,8 +46,6 @@ import org.eclipse.net4j.util.registry.IRegistry;
 import org.eclipse.net4j.util.registry.IRegistryDelta;
 import org.eclipse.net4j.util.registry.IRegistryEvent;
 import org.eclipse.net4j.util.registry.IRegistryListener;
-import org.eclipse.net4j.util.store.FileStore;
-import org.eclipse.net4j.util.store.Store;
 
 import org.eclipse.internal.net4j.bundle.Net4j;
 import org.eclipse.internal.net4j.transport.AbstractAcceptor;
@@ -54,12 +54,8 @@ import org.eclipse.internal.net4j.transport.DescriptionUtil;
 import org.eclipse.internal.net4j.util.registry.HashMapRegistry;
 
 import java.io.File;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -84,7 +80,7 @@ public class ContainerImpl extends LifecycleImpl implements Container
 
   private static final ContextTracer TRACER = new ContextTracer(ContainerBundle.DEBUG, ContainerImpl.class);
 
-  private Store<Config> store;
+  private Store<ContainerConfig> store;
 
   private IRegistry<String, ContainerAdapterFactory> adapterFactoryRegistry;
 
@@ -290,7 +286,7 @@ public class ContainerImpl extends LifecycleImpl implements Container
       }
     }
 
-    private Config getConfig()
+    private ContainerConfig getConfig()
     {
       return store.getContent();
     }
@@ -795,40 +791,7 @@ public class ContainerImpl extends LifecycleImpl implements Container
   /**
    * @author Eike Stepper
    */
-  public static final class Config implements Serializable
-  {
-    private static final long serialVersionUID = 1L;
-
-    private Set<String> acceptorDescriptions = new HashSet();
-
-    private Set<String> connectorDescriptions = new HashSet();
-
-    private Map<String, Set<String>> adapterConfigs = new HashMap();
-
-    public Config()
-    {
-    }
-
-    public Set<String> getAcceptorDescriptions()
-    {
-      return acceptorDescriptions;
-    }
-
-    public Set<String> getConnectorDescriptions()
-    {
-      return connectorDescriptions;
-    }
-
-    public Map<String, Set<String>> getAdapterConfigs()
-    {
-      return adapterConfigs;
-    }
-  }
-
-  /**
-   * @author Eike Stepper
-   */
-  private static final class ConfigStore extends FileStore<Config>
+  private static final class ConfigStore extends FileStore<ContainerConfig>
   {
     private ConfigStore(File file)
     {
@@ -836,9 +799,9 @@ public class ContainerImpl extends LifecycleImpl implements Container
     }
 
     @Override
-    protected Config getInitialContent()
+    protected ContainerConfig getInitialContent()
     {
-      return new Config();
+      return new ContainerConfig();
     }
   }
 }

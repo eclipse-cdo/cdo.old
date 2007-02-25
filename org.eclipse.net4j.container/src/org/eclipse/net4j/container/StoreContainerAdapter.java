@@ -10,7 +10,7 @@
  **************************************************************************/
 package org.eclipse.net4j.container;
 
-import org.eclipse.net4j.util.store.Store;
+import org.eclipse.net4j.internal.container.store.Store;
 
 /**
  * @author Eike Stepper
