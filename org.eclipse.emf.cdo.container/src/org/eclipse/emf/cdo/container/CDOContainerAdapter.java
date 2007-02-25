@@ -13,6 +13,7 @@ package org.eclipse.emf.cdo.container;
 import org.eclipse.emf.cdo.CDOSession;
 
 import org.eclipse.net4j.container.ContainerAdapter;
+import org.eclipse.net4j.transport.ConnectorException;
 import org.eclipse.net4j.util.registry.IRegistry;
 
 /**
@@ -22,5 +23,5 @@ public interface CDOContainerAdapter extends ContainerAdapter
 {
   public IRegistry<String, CDOSession> getSessionRegistry();
 
-  public CDOSession getSession(String description);
+  public CDOSession getSession(String description) throws ConnectorException;
 }

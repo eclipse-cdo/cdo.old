@@ -56,6 +56,8 @@ import org.eclipse.internal.net4j.util.registry.HashMapRegistry;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -161,16 +163,16 @@ public class ContainerImpl extends LifecycleImpl implements Container
       {
         Acceptor acceptor = (Acceptor)notifier;
         acceptorRegistry.remove(acceptor.getDescription());
-        LifecycleUtil.removeListener(acceptor, lifecycleListener);
         acceptor.removeListener(acceptorListener);
       }
       else if (notifier instanceof Connector)
       {
         Connector connector = (Connector)notifier;
         connectorRegistry.remove(connector.getDescription());
-        LifecycleUtil.removeListener(connector, lifecycleListener);
         connector.removeListener(connectorListener);
       }
+
+      LifecycleUtil.removeListener(notifier, lifecycleListener);
     }
   };
 
@@ -299,12 +301,8 @@ public class ContainerImpl extends LifecycleImpl implements Container
         {
           getAcceptor(description);
         }
-        catch (Exception ex)
+        catch (Exception ignore)
         {
-          if (TRACER.isEnabled())
-          {
-            TRACER.format("Failed to get acceptor for description {0} due to {1}", description, ex);
-          }
         }
       }
 
@@ -314,12 +312,8 @@ public class ContainerImpl extends LifecycleImpl implements Container
         {
           getConnector(description);
         }
-        catch (Exception ex)
+        catch (Exception ignore)
         {
-          if (TRACER.isEnabled())
-          {
-            TRACER.format("Failed to get connector for description {0} due to {1}", description, ex);
-          }
         }
       }
     }
@@ -354,9 +348,145 @@ public class ContainerImpl extends LifecycleImpl implements Container
     channelRegistry = createChannelRegistry();
   }
 
-  public Store getStore()
+  public Set<String> getAdapterConfig(String type)
   {
-    return store;
+    if (store != null)
+    {
+      ContainerConfig config = store.getContent();
+      final Set<String> adapterConfig = config.getAdapterConfig(type);
+      return new Set<String>()
+      {
+        public boolean add(String e)
+        {
+          if (adapterConfig.add(e))
+          {
+            store.setDirty();
+            return true;
+          }
+
+          return false;
+        }
+
+        public boolean addAll(Collection<? extends String> c)
+        {
+          if (adapterConfig.addAll(c))
+          {
+            store.setDirty();
+            return true;
+          }
+
+          return false;
+        }
+
+        public void clear()
+        {
+          if (!isEmpty())
+          {
+            store.setDirty();
+          }
+
+          adapterConfig.clear();
+        }
+
+        public boolean contains(Object o)
+        {
+          return adapterConfig.contains(o);
+        }
+
+        public boolean containsAll(Collection<?> c)
+        {
+          return adapterConfig.containsAll(c);
+        }
+
+        public boolean equals(Object o)
+        {
+          return adapterConfig.equals(o);
+        }
+
+        public int hashCode()
+        {
+          return adapterConfig.hashCode();
+        }
+
+        public boolean isEmpty()
+        {
+          return adapterConfig.isEmpty();
+        }
+
+        public Iterator<String> iterator()
+        {
+          final Iterator<String> it = adapterConfig.iterator();
+          return new Iterator<String>()
+          {
+            public boolean hasNext()
+            {
+              return it.hasNext();
+            }
+
+            public String next()
+            {
+              return it.next();
+            }
+
+            public void remove()
+            {
+              store.setDirty();
+              it.remove();
+            }
+          };
+        }
+
+        public boolean remove(Object o)
+        {
+          if (adapterConfig.remove(o))
+          {
+            store.setDirty();
+            return true;
+          }
+
+          return false;
+        }
+
+        public boolean removeAll(Collection<?> c)
+        {
+          if (adapterConfig.removeAll(c))
+          {
+            store.setDirty();
+            return true;
+          }
+
+          return false;
+        }
+
+        public boolean retainAll(Collection<?> c)
+        {
+          if (adapterConfig.retainAll(c))
+          {
+            store.setDirty();
+            return true;
+          }
+
+          return false;
+        }
+
+        public int size()
+        {
+          return adapterConfig.size();
+        }
+
+        public Object[] toArray()
+        {
+          return adapterConfig.toArray();
+        }
+
+        public <T> T[] toArray(T[] a)
+        {
+          return adapterConfig.toArray(a);
+        }
+      };
+    }
+
+    return Collections.emptySet();
   }
 
   public IRegistry<String, ContainerAdapterFactory> getAdapterFactoryRegistry()

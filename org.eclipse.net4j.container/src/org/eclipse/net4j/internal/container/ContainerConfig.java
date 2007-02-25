@@ -33,8 +33,15 @@ public final class ContainerConfig implements Serializable
     return connectorDescriptions;
   }
 
-  public Map<String, Set<String>> getAdapterConfigs()
+  public Set<String> getAdapterConfig(String type)
   {
-    return adapterConfigs;
+    Set<String> result = adapterConfigs.get(type);
+    if (result == null)
+    {
+      result = new HashSet();
+      adapterConfigs.put(type, result);
+    }
+
+    return result;
   }
 }
