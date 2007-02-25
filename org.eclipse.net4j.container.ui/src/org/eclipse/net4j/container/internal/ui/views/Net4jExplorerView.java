@@ -1,6 +1,5 @@
 package org.eclipse.net4j.container.internal.ui.views;
 
-import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.container.ContainerManager;
 
 import org.eclipse.jface.action.Action;
@@ -33,8 +32,6 @@ import org.eclipse.ui.part.ViewPart;
 
 public class Net4jExplorerView extends ViewPart
 {
-  private static final Container CONTAINER = ContainerManager.INSTANCE.getContainer();
-
   private static final String[] TAB_LABELS = { "Connectors", "Acceptors", "Factories", "Adapters" };
 
   private static final boolean[] WITH_TREE = { true, true, true, false };
@@ -95,7 +92,7 @@ public class Net4jExplorerView extends ViewPart
     viewer.setContentProvider(ITEM_PROVIDERS[index]);
     viewer.setLabelProvider(ITEM_PROVIDERS[index]);
     viewer.setSorter(new Net4jExplorerNameSorter());
-    viewer.setInput(CONTAINER);
+    viewer.setInput(ContainerManager.INSTANCE.getContainer());
     return viewer;
   }
 
@@ -166,7 +163,7 @@ public class Net4jExplorerView extends ViewPart
         if (dialog.open() == InputDialog.OK)
         {
           String description = dialog.getValue();
-          Object object = CONTAINER.getConnector(description);
+          Object object = ContainerManager.INSTANCE.getContainer().getConnector(description);
           if (object == null)
           {
             showMessage("Error while creating connector for description" + description);
@@ -188,7 +185,7 @@ public class Net4jExplorerView extends ViewPart
         if (dialog.open() == InputDialog.OK)
         {
           String description = dialog.getValue();
-          Object object = CONTAINER.getAcceptor(description);
+          Object object = ContainerManager.INSTANCE.getContainer().getAcceptor(description);
           if (object == null)
           {
             showMessage("Error while creating acceptor for description" + description);

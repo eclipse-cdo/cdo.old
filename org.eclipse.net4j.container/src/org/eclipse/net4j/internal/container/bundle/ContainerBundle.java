@@ -17,9 +17,7 @@ import org.eclipse.net4j.util.om.OMLogger;
 import org.eclipse.net4j.util.om.OMPlatform;
 import org.eclipse.net4j.util.om.OMTracer;
 
-import org.eclipse.core.runtime.Plugin;
-
-import org.osgi.framework.BundleContext;
+import org.eclipse.internal.net4j.util.om.OSGiActivator;
 
 /**
  * @author Eike Stepper
@@ -41,20 +39,24 @@ public final class ContainerBundle
   /**
    * @author Eike Stepper
    */
-  public static class Activator extends Plugin
+  public static class Activator extends OSGiActivator
   {
-    public void start(BundleContext context) throws Exception
+    @Override
+    protected OMBundle getOMBundle()
     {
-      BUNDLE.setBundleContext(context);
+      return BUNDLE;
+    }
+
+    public void start() throws Exception
+    {
       LifecycleUtil.activate(ContainerManagerImpl.INSTANCE);
       ExtensionParser parser = new ContainerAdapterFactoryExtensionParser();
       parser.parse();
     }
 
-    public void stop(BundleContext context) throws Exception
+    public void stop() throws Exception
     {
       LifecycleUtil.deactivate(ContainerManagerImpl.INSTANCE);
-      BUNDLE.setBundleContext(null);
     }
   }
 }

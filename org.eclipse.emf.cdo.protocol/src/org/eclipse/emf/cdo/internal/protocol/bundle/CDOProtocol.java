@@ -15,6 +15,8 @@ import org.eclipse.net4j.util.om.OMLogger;
 import org.eclipse.net4j.util.om.OMPlatform;
 import org.eclipse.net4j.util.om.OMTracer;
 
+import org.eclipse.internal.net4j.util.om.OSGiActivator;
+
 /**
  * @author Eike Stepper
  */
@@ -36,5 +38,14 @@ public final class CDOProtocol
 
   private CDOProtocol()
   {
+  }
+
+  public static final class Activator extends OSGiActivator
+  {
+    @Override
+    protected OMBundle getOMBundle()
+    {
+      return BUNDLE;
+    }
   }
 }

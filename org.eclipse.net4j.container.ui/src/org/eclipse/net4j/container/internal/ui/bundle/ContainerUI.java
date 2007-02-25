@@ -14,12 +14,8 @@ import org.eclipse.net4j.util.om.OMBundle;
 import org.eclipse.net4j.util.om.OMLogger;
 import org.eclipse.net4j.util.om.OMPlatform;
 import org.eclipse.net4j.util.om.OMTracer;
-import org.eclipse.net4j.util.om.log.EclipseLoggingBridge;
 
-import org.eclipse.internal.net4j.bundle.AbstractOMPlatform;
-
-import org.osgi.framework.BundleActivator;
-import org.osgi.framework.BundleContext;
+import org.eclipse.internal.net4j.util.om.OSGiActivator;
 
 /**
  * @author Eike Stepper
@@ -41,17 +37,12 @@ public final class ContainerUI
   /**
    * @author Eike Stepper
    */
-  public static class Activator implements BundleActivator
+  public static class Activator extends OSGiActivator
   {
-    public void start(BundleContext context) throws Exception
+    @Override
+    protected OMBundle getOMBundle()
     {
-      AbstractOMPlatform.INSTANCE.addLogHandler(EclipseLoggingBridge.INSTANCE);
-      BUNDLE.setBundleContext(context);
-    }
-
-    public void stop(BundleContext context) throws Exception
-    {
-      BUNDLE.setBundleContext(null);
+      return BUNDLE;
     }
   }
 }
