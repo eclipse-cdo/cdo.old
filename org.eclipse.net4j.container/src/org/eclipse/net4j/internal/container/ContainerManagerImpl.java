@@ -11,7 +11,6 @@
 package org.eclipse.net4j.internal.container;
 
 import org.eclipse.net4j.container.Container;
-import org.eclipse.net4j.container.ContainerAdapterFactory;
 import org.eclipse.net4j.container.ContainerManager;
 import org.eclipse.net4j.container.ContainerUtil;
 import org.eclipse.net4j.internal.container.bundle.ContainerBundle;
@@ -42,10 +41,8 @@ public class ContainerManagerImpl extends LifecycleImpl implements ContainerMana
   protected void onActivate() throws Exception
   {
     super.onActivate();
-    container = ContainerUtil.createContainer();
-    File store = ContainerBundle.getBundleContext().getDataFile("container.state");
-    ContainerAdapterFactory factory = new StoreContainerAdapterFactoryImpl(store);
-    container.register(factory);
+    File file = ContainerBundle.getBundleContext().getDataFile("container.state");
+    container = ContainerUtil.createContainer(file);
     LifecycleUtil.activate(container);
   }
 

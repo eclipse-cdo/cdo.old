@@ -17,9 +17,13 @@ import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.container.ContainerAdapter;
 import org.eclipse.net4j.container.ContainerAdapterFactory;
 import org.eclipse.net4j.container.ContainerUtil;
+import org.eclipse.net4j.internal.container.bundle.ContainerBundle;
+import org.eclipse.net4j.internal.container.store.FileStore;
+import org.eclipse.net4j.internal.container.store.Store;
 import org.eclipse.net4j.transport.Acceptor;
 import org.eclipse.net4j.transport.AcceptorConnectorsEvent;
 import org.eclipse.net4j.transport.AcceptorFactory;
+import org.eclipse.net4j.transport.BufferHandler;
 import org.eclipse.net4j.transport.BufferProvider;
 import org.eclipse.net4j.transport.Channel;
 import org.eclipse.net4j.transport.ChannelID;
@@ -37,6 +41,7 @@ import org.eclipse.net4j.util.lifecycle.LifecycleImpl;
 import org.eclipse.net4j.util.lifecycle.LifecycleListener;
 import org.eclipse.net4j.util.lifecycle.LifecycleNotifier;
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
+import org.eclipse.net4j.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.registry.IRegistry;
 import org.eclipse.net4j.util.registry.IRegistryDelta;
 import org.eclipse.net4j.util.registry.IRegistryEvent;
@@ -48,8 +53,13 @@ import org.eclipse.internal.net4j.transport.AbstractConnector;
 import org.eclipse.internal.net4j.transport.DescriptionUtil;
 import org.eclipse.internal.net4j.util.registry.HashMapRegistry;
 
+import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -71,6 +81,10 @@ public class ContainerImpl extends LifecycleImpl implements Container
       return thread;
     }
   };
+
+  private static final ContextTracer TRACER = new ContextTracer(ContainerBundle.DEBUG, ContainerImpl.class);
+
+  private Store<Config> store;
 
   private IRegistry<String, ContainerAdapterFactory> adapterFactoryRegistry;
 
@@ -198,6 +212,123 @@ public class ContainerImpl extends LifecycleImpl implements Container
     }
   };
 
+  private IRegistryListener storeHandler = new IRegistryListener()
+  {
+    public void notifyRegistryEvent(IRegistryEvent event)
+    {
+      IRegistryDelta<String, Object>[] deltas = event.getDeltas();
+      for (IRegistryDelta<String, Object> delta : deltas)
+      {
+        String description = delta.getKey();
+        Object object = delta.getValue();
+        switch (delta.getKind())
+        {
+        case REGISTERED:
+          objectAdded(description, object);
+          break;
+
+        case DEREGISTERED:
+          objectRemoved(description, object);
+          break;
+        }
+      }
+    }
+
+    private void objectAdded(String description, Object object)
+    {
+      if (object instanceof Acceptor)
+      {
+        if (getConfig().getAcceptorDescriptions().add(description))
+        {
+          store.setDirty();
+          if (TRACER.isEnabled())
+          {
+            TRACER.trace("Added acceptor description: " + description);
+          }
+        }
+      }
+      else if (object instanceof Connector)
+      {
+        if (getConfig().getConnectorDescriptions().add(description))
+        {
+          store.setDirty();
+          if (TRACER.isEnabled())
+          {
+            TRACER.trace("Added connector description: " + description);
+          }
+        }
+      }
+      else
+      {
+        createObjects();
+      }
+    }
+
+    private void objectRemoved(String description, Object object)
+    {
+      if (object instanceof Acceptor)
+      {
+        if (getConfig().getAcceptorDescriptions().remove(description))
+        {
+          store.setDirty();
+          if (TRACER.isEnabled())
+          {
+            TRACER.trace("Removed acceptor description: " + description);
+          }
+        }
+      }
+      else if (object instanceof Connector)
+      {
+        if (getConfig().getConnectorDescriptions().remove(description))
+        {
+          store.setDirty();
+          if (TRACER.isEnabled())
+          {
+            TRACER.trace("Removed connector description: " + description);
+          }
+        }
+      }
+    }
+
+    private Config getConfig()
+    {
+      return store.getContent();
+    }
+
+    private void createObjects()
+    {
+      for (String description : getConfig().getAcceptorDescriptions())
+      {
+        try
+        {
+          getAcceptor(description);
+        }
+        catch (Exception ex)
+        {
+          if (TRACER.isEnabled())
+          {
+            TRACER.format("Failed to get acceptor for description {0} due to {1}", description, ex);
+          }
+        }
+      }
+
+      for (String description : getConfig().getConnectorDescriptions())
+      {
+        try
+        {
+          getConnector(description);
+        }
+        catch (Exception ex)
+        {
+          if (TRACER.isEnabled())
+          {
+            TRACER.format("Failed to get connector for description {0} due to {1}", description, ex);
+          }
+        }
+      }
+    }
+  };
+
   public ContainerImpl()
   {
     adapterFactoryRegistry = createAdapterFactoryRegistry();
@@ -209,6 +340,27 @@ public class ContainerImpl extends LifecycleImpl implements Container
     acceptorRegistry = createAcceptorRegistry();
     connectorRegistry = createConnectorRegistry();
     channelRegistry = createChannelRegistry();
+  }
+
+  public ContainerImpl(File file)
+  {
+    this();
+    store = new ConfigStore(file);
+
+    adapterFactoryRegistry = createAdapterFactoryRegistry();
+    executorService = createExecutorService();
+    bufferProvider = createBufferProvider();
+    acceptorFactoryRegistry = createAcceptorFactoryRegistry();
+    connectorFactoryRegistry = createConnectorFactoryRegistry();
+    protocolFactoryRegistry = createProtocolFactoryRegistry();
+    acceptorRegistry = createAcceptorRegistry();
+    connectorRegistry = createConnectorRegistry();
+    channelRegistry = createChannelRegistry();
+  }
+
+  public Store getStore()
+  {
+    return store;
   }
 
   public IRegistry<String, ContainerAdapterFactory> getAdapterFactoryRegistry()
@@ -323,9 +475,10 @@ public class ContainerImpl extends LifecycleImpl implements Container
         }
         else
         {
-          if (channel.getReceiveHandler() instanceof Protocol)
+          BufferHandler receiveHandler = channel.getReceiveHandler();
+          if (receiveHandler instanceof Protocol)
           {
-            Protocol protocol = (Protocol)channel.getReceiveHandler();
+            Protocol protocol = (Protocol)receiveHandler;
             if (protocolID.equals(protocol.getProtocolID()))
             {
               result.add(channel);
@@ -451,11 +604,39 @@ public class ContainerImpl extends LifecycleImpl implements Container
 
     registry.addRegistryListener(adapterFactoryRegistryListener);
     channelRegistry.addRegistryListener(registryListener);
+
+    if (store != null)
+    {
+      store.activate();
+
+      getAdapterFactoryRegistry().addRegistryListener(storeHandler);
+      getAdapterRegistry().addRegistryListener(storeHandler);
+
+      getAcceptorFactoryRegistry().addRegistryListener(storeHandler);
+      getAcceptorRegistry().addRegistryListener(storeHandler);
+
+      getConnectorFactoryRegistry().addRegistryListener(storeHandler);
+      getConnectorRegistry().addRegistryListener(storeHandler);
+    }
   }
 
   @Override
   protected void onDeactivate() throws Exception
   {
+    if (store != null)
+    {
+      getAdapterFactoryRegistry().removeRegistryListener(storeHandler);
+      getAdapterRegistry().removeRegistryListener(storeHandler);
+
+      getAcceptorFactoryRegistry().removeRegistryListener(storeHandler);
+      getAcceptorRegistry().removeRegistryListener(storeHandler);
+
+      getConnectorFactoryRegistry().removeRegistryListener(storeHandler);
+      getConnectorRegistry().removeRegistryListener(storeHandler);
+
+      store.deactivate();
+    }
+
     channelRegistry.removeRegistryListener(registryListener);
     getAdapterFactoryRegistry().removeRegistryListener(adapterFactoryRegistryListener);
     Collection<ContainerAdapter> adapters = this.adapters.values();
@@ -608,6 +789,56 @@ public class ContainerImpl extends LifecycleImpl implements Container
     {
       ex.printStackTrace();
       return null;
+    }
+  }
+
+  /**
+   * @author Eike Stepper
+   */
+  public static final class Config implements Serializable
+  {
+    private static final long serialVersionUID = 1L;
+
+    private Set<String> acceptorDescriptions = new HashSet();
+
+    private Set<String> connectorDescriptions = new HashSet();
+
+    private Map<String, Set<String>> adapterConfigs = new HashMap();
+
+    public Config()
+    {
+    }
+
+    public Set<String> getAcceptorDescriptions()
+    {
+      return acceptorDescriptions;
+    }
+
+    public Set<String> getConnectorDescriptions()
+    {
+      return connectorDescriptions;
+    }
+
+    public Map<String, Set<String>> getAdapterConfigs()
+    {
+      return adapterConfigs;
+    }
+  }
+
+  /**
+   * @author Eike Stepper
+   */
+  private static final class ConfigStore extends FileStore<Config>
+  {
+    private ConfigStore(File file)
+    {
+      super(file);
+    }
+
+    @Override
+    protected Config getInitialContent()
+    {
+      return new Config();
     }
   }
 }

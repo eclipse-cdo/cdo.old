@@ -10,12 +10,12 @@
  **************************************************************************/
 package org.eclipse.net4j.container;
 
-import java.io.File;
+import org.eclipse.net4j.internal.container.store.Store;
 
 /**
  * @author Eike Stepper
  */
 public interface StoreContainerAdapter extends ContainerAdapter
 {
-  public File getStore();
+  public Store getStore();
 }

@@ -50,9 +50,9 @@ public class Net4jExplorerView extends ViewPart
 
   // private DrillDownAdapter drillDownAdapter;
 
-  private Action addAcceptorAction;
-
   private Action addConnectorAction;
+
+  private Action addAcceptorAction;
 
   private Action doubleClickAction;
 
@@ -130,8 +130,8 @@ public class Net4jExplorerView extends ViewPart
 
   private void fillLocalPullDown(IMenuManager manager)
   {
-    manager.add(addAcceptorAction);
     manager.add(addConnectorAction);
+    manager.add(addAcceptorAction);
     // manager.add(new Separator());
     // manager.add(action2);
   }
@@ -148,8 +148,8 @@ public class Net4jExplorerView extends ViewPart
 
   private void fillLocalToolBar(IToolBarManager manager)
   {
-    manager.add(addAcceptorAction);
     manager.add(addConnectorAction);
+    manager.add(addAcceptorAction);
     // manager.add(action2);
     // manager.add(new Separator());
     // drillDownAdapter.addNavigationActions(manager);
@@ -157,28 +157,6 @@ public class Net4jExplorerView extends ViewPart
 
   private void makeActions()
   {
-    addAcceptorAction = new Action()
-    {
-      public void run()
-      {
-        InputDialog dialog = new InputDialog(getCurrentViewer().getControl().getShell(), "Net4j Explorer",
-            "Enter an acceptor description:", null, null);
-        if (dialog.open() == InputDialog.OK)
-        {
-          String description = dialog.getValue();
-          Object object = CONTAINER.getAcceptor(description);
-          if (object == null)
-          {
-            showMessage("Error while creating acceptor for description" + description);
-          }
-        }
-      }
-    };
-    addAcceptorAction.setText("Add Acceptor");
-    addAcceptorAction.setToolTipText("Add an acceptor");
-    addAcceptorAction.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(
-        ISharedImages.IMG_TOOL_NEW_WIZARD));
-
     addConnectorAction = new Action()
     {
       public void run()
@@ -199,6 +177,28 @@ public class Net4jExplorerView extends ViewPart
     addConnectorAction.setText("Add Connector");
     addConnectorAction.setToolTipText("Add a connector");
     addConnectorAction.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(
+        ISharedImages.IMG_TOOL_NEW_WIZARD));
+
+    addAcceptorAction = new Action()
+    {
+      public void run()
+      {
+        InputDialog dialog = new InputDialog(getCurrentViewer().getControl().getShell(), "Net4j Explorer",
+            "Enter an acceptor description:", null, null);
+        if (dialog.open() == InputDialog.OK)
+        {
+          String description = dialog.getValue();
+          Object object = CONTAINER.getAcceptor(description);
+          if (object == null)
+          {
+            showMessage("Error while creating acceptor for description" + description);
+          }
+        }
+      }
+    };
+    addAcceptorAction.setText("Add Acceptor");
+    addAcceptorAction.setToolTipText("Add an acceptor");
+    addAcceptorAction.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(
         ISharedImages.IMG_TOOL_NEW_WIZARD));
 
     doubleClickAction = new Action()

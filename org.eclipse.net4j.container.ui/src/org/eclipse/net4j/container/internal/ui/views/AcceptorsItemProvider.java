@@ -13,8 +13,10 @@ package org.eclipse.net4j.container.internal.ui.views;
 import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.container.internal.ui.bundle.SharedIcons;
 import org.eclipse.net4j.transport.Acceptor;
+import org.eclipse.net4j.transport.BufferHandler;
 import org.eclipse.net4j.transport.Channel;
 import org.eclipse.net4j.transport.Connector;
+import org.eclipse.net4j.transport.Protocol;
 import org.eclipse.net4j.util.registry.IRegistryEvent;
 import org.eclipse.net4j.util.registry.IRegistryListener;
 
@@ -106,7 +108,9 @@ public class AcceptorsItemProvider extends ItemProvider<Container> implements IR
     if (obj instanceof Channel)
     {
       Channel channel = (Channel)obj;
-      return MessageFormat.format("[{0}] {1}", channel.getChannelIndex(), channel.getReceiveHandler());
+      BufferHandler receiveHandler = channel.getReceiveHandler();
+      Object str = receiveHandler instanceof Protocol ? ((Protocol)receiveHandler).getProtocolID() : receiveHandler;
+      return MessageFormat.format("[{0}] {1}", channel.getChannelIndex(), str);
     }
 
     return super.getText(obj);

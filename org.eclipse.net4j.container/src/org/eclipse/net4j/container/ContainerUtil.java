@@ -18,6 +18,8 @@ import org.eclipse.internal.net4j.transport.BufferFactoryImpl;
 import org.eclipse.internal.net4j.transport.BufferPoolImpl;
 import org.eclipse.internal.net4j.transport.BufferUtil;
 
+import java.io.File;
+
 /**
  * @author Eike Stepper
  */
@@ -30,6 +32,11 @@ public final class ContainerUtil
   public static Container createContainer()
   {
     return new ContainerImpl();
+  }
+
+  public static Container createContainer(File file)
+  {
+    return new ContainerImpl(file);
   }
 
   public static BufferProvider createBufferFactory(short bufferCapacity)
