@@ -34,15 +34,8 @@ public final class ContainerBundle
 
   public static final OMLogger LOG = BUNDLE.logger();
 
-  private static BundleContext bundleContext;
-
   private ContainerBundle()
   {
-  }
-
-  public static BundleContext getBundleContext()
-  {
-    return bundleContext;
   }
 
   /**
@@ -52,7 +45,6 @@ public final class ContainerBundle
   {
     public void start(BundleContext context) throws Exception
     {
-      bundleContext = context;
       BUNDLE.setBundleContext(context);
       LifecycleUtil.activate(ContainerManagerImpl.INSTANCE);
       ExtensionParser parser = new ContainerAdapterFactoryExtensionParser();
@@ -63,7 +55,6 @@ public final class ContainerBundle
     {
       LifecycleUtil.deactivate(ContainerManagerImpl.INSTANCE);
       BUNDLE.setBundleContext(null);
-      bundleContext = null;
     }
   }
 }

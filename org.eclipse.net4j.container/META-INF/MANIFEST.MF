@@ -10,5 +10,4 @@ Require-Bundle: org.eclipse.core.runtime,
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.net4j.container;version="0.8.0.qualifier",
  org.eclipse.net4j.internal.container;version="0.8.0.qualifier",
- org.eclipse.net4j.internal.container.bundle;version="0.8.0.qualifier",
- org.eclipse.net4j.internal.container.store;version="0.8.0.qualifier"
+ org.eclipse.net4j.internal.container.bundle;version="0.8.0.qualifier"

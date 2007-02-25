@@ -18,8 +18,6 @@ import org.eclipse.net4j.container.ContainerAdapter;
 import org.eclipse.net4j.container.ContainerAdapterFactory;
 import org.eclipse.net4j.container.ContainerUtil;
 import org.eclipse.net4j.internal.container.bundle.ContainerBundle;
-import org.eclipse.net4j.internal.container.store.FileStore;
-import org.eclipse.net4j.internal.container.store.Store;
 import org.eclipse.net4j.transport.Acceptor;
 import org.eclipse.net4j.transport.AcceptorConnectorsEvent;
 import org.eclipse.net4j.transport.AcceptorFactory;
@@ -46,6 +44,8 @@ import org.eclipse.net4j.util.registry.IRegistry;
 import org.eclipse.net4j.util.registry.IRegistryDelta;
 import org.eclipse.net4j.util.registry.IRegistryEvent;
 import org.eclipse.net4j.util.registry.IRegistryListener;
+import org.eclipse.net4j.util.store.FileStore;
+import org.eclipse.net4j.util.store.Store;
 
 import org.eclipse.internal.net4j.bundle.Net4j;
 import org.eclipse.internal.net4j.transport.AbstractAcceptor;

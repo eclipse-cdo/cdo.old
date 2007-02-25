@@ -41,7 +41,8 @@ public class ContainerManagerImpl extends LifecycleImpl implements ContainerMana
   protected void onActivate() throws Exception
   {
     super.onActivate();
-    File file = ContainerBundle.getBundleContext().getDataFile("container.state");
+    File folder = new File(ContainerBundle.BUNDLE.getStateLocation());
+    File file = new File(folder, "container.state");
     container = ContainerUtil.createContainer(file);
     LifecycleUtil.activate(container);
   }
