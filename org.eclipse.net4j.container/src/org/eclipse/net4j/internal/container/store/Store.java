@@ -24,6 +24,9 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 
 /**
+ * <b>Important Note:</b> This class can't be factored out to another bundle
+ * because it can cause NoClassDefFoundError to be thrown.
+ * 
  * @author Eike Stepper
  */
 public abstract class Store<CONTENT> extends LifecycleImpl
