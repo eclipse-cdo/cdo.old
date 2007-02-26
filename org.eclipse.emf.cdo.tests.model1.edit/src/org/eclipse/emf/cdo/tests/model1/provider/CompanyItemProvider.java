@@ -6,21 +6,14 @@
  */
 package org.eclipse.emf.cdo.tests.model1.provider;
 
-
-import java.util.Collection;
-import java.util.List;
-
 import org.eclipse.emf.cdo.tests.model1.Company;
 import org.eclipse.emf.cdo.tests.model1.Model1Factory;
 import org.eclipse.emf.cdo.tests.model1.Model1Package;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -31,25 +24,23 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import java.util.Collection;
+import java.util.List;
+
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.cdo.tests.model1.Company} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * This is the item provider adapter for a
+ * {@link org.eclipse.emf.cdo.tests.model1.Company} object. <!-- begin-user-doc
+ * --> <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class CompanyItemProvider
-  extends ItemProviderAdapter
-  implements	
-    IEditingDomainItemProvider,	
-    IStructuredItemContentProvider,	
-    ITreeItemContentProvider,	
-    IItemLabelProvider,	
-    IItemPropertySource		
+public class CompanyItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+    IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
   /**
-   * This constructs an instance from a factory and a notifier.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This constructs an instance from a factory and a notifier. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public CompanyItemProvider(AdapterFactory adapterFactory)
@@ -58,9 +49,9 @@ public class CompanyItemProvider
   }
 
   /**
-   * This returns the property descriptors for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This returns the property descriptors for the adapted class. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -75,11 +66,13 @@ public class CompanyItemProvider
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+   * This specifies how to implement {@link #getChildren} and is used to deduce
+   * an appropriate feature for an
+   * {@link org.eclipse.emf.edit.command.AddCommand},
+   * {@link org.eclipse.emf.edit.command.RemoveCommand} or
    * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -98,23 +91,23 @@ public class CompanyItemProvider
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   protected EStructuralFeature getChildFeature(Object object, Object child)
   {
-    // Check the type of the specified child object and return the proper feature to use for
+    // Check the type of the specified child object and return the proper
+    // feature to use for
     // adding (see {@link AddCommand}) it as a child.
 
     return super.getChildFeature(object, child);
   }
 
   /**
-   * This returns Company.gif.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This returns Company.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -124,9 +117,9 @@ public class CompanyItemProvider
   }
 
   /**
-   * This returns the label text for the adapted class.
-   * <!-- begin-user-doc -->
+   * This returns the label text for the adapted class. <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -136,10 +129,11 @@ public class CompanyItemProvider
   }
 
   /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached
-   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This handles model notifications by calling {@link #updateChildren} to
+   * update any cached children and by creating a viewer notification, which it
+   * passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -149,22 +143,23 @@ public class CompanyItemProvider
 
     switch (notification.getFeatureID(Company.class))
     {
-      case Model1Package.COMPANY__CATEGORIES:
-      case Model1Package.COMPANY__SUPPLIERS:
-      case Model1Package.COMPANY__PURCHASE_ORDERS:
-      case Model1Package.COMPANY__CUSTOMERS:
-      case Model1Package.COMPANY__SALES_ORDERS:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-        return;
+    case Model1Package.COMPANY__CATEGORIES:
+    case Model1Package.COMPANY__SUPPLIERS:
+    case Model1Package.COMPANY__PURCHASE_ORDERS:
+    case Model1Package.COMPANY__CUSTOMERS:
+    case Model1Package.COMPANY__SALES_ORDERS:
+      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+      return;
     }
     super.notifyChanged(notification);
   }
 
   /**
-   * This adds to the collection of {@link org.eclipse.emf.edit.command.CommandParameter}s
-   * describing all of the children that can be created under this object.
-   * <!-- begin-user-doc -->
+   * This adds to the collection of
+   * {@link org.eclipse.emf.edit.command.CommandParameter}s describing all of
+   * the children that can be created under this object. <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -172,36 +167,26 @@ public class CompanyItemProvider
   {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add
-      (createChildParameter
-        (Model1Package.Literals.COMPANY__CATEGORIES,
-         Model1Factory.eINSTANCE.createCategory()));
+    newChildDescriptors.add(createChildParameter(Model1Package.Literals.COMPANY__CATEGORIES, Model1Factory.eINSTANCE
+        .createCategory()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (Model1Package.Literals.COMPANY__SUPPLIERS,
-         Model1Factory.eINSTANCE.createSupplier()));
+    newChildDescriptors.add(createChildParameter(Model1Package.Literals.COMPANY__SUPPLIERS, Model1Factory.eINSTANCE
+        .createSupplier()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (Model1Package.Literals.COMPANY__PURCHASE_ORDERS,
-         Model1Factory.eINSTANCE.createPurchaseOrder()));
+    newChildDescriptors.add(createChildParameter(Model1Package.Literals.COMPANY__PURCHASE_ORDERS,
+        Model1Factory.eINSTANCE.createPurchaseOrder()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (Model1Package.Literals.COMPANY__CUSTOMERS,
-         Model1Factory.eINSTANCE.createCustomer()));
+    newChildDescriptors.add(createChildParameter(Model1Package.Literals.COMPANY__CUSTOMERS, Model1Factory.eINSTANCE
+        .createCustomer()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (Model1Package.Literals.COMPANY__SALES_ORDERS,
-         Model1Factory.eINSTANCE.createSalesOrder()));
+    newChildDescriptors.add(createChildParameter(Model1Package.Literals.COMPANY__SALES_ORDERS, Model1Factory.eINSTANCE
+        .createSalesOrder()));
   }
 
   /**
-   * Return the resource locator for this item provider's resources.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Return the resource locator for this item provider's resources. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
