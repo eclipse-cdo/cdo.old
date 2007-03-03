@@ -11,10 +11,10 @@
 package org.eclipse.net4j.internal.container.store;
 
 import org.eclipse.net4j.util.IOUtil;
-import org.eclipse.net4j.util.lifecycle.LifecycleImpl;
 import org.eclipse.net4j.util.om.trace.ContextTracer;
 
 import org.eclipse.internal.net4j.bundle.Net4j;
+import org.eclipse.internal.net4j.util.lifecycle.LifecycleImpl;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

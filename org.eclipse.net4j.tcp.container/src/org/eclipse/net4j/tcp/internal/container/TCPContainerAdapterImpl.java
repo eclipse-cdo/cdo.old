@@ -18,7 +18,6 @@ import org.eclipse.net4j.internal.tcp.TCPAcceptorImpl;
 import org.eclipse.net4j.internal.tcp.TCPConnectorFactoryImpl;
 import org.eclipse.net4j.internal.tcp.TCPSelectorImpl;
 import org.eclipse.net4j.tcp.TCPConstants;
-import org.eclipse.net4j.tcp.TCPSelector;
 import org.eclipse.net4j.tcp.container.TCPContainerAdapter;
 import org.eclipse.net4j.transport.AcceptorFactory;
 import org.eclipse.net4j.transport.ConnectorFactory;
@@ -29,7 +28,7 @@ import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
  */
 public class TCPContainerAdapterImpl extends TransportContainerAdapter implements TCPContainerAdapter
 {
-  private TCPSelector selector;
+  private TCPSelectorImpl selector;
 
   public TCPContainerAdapterImpl(ContainerImpl container)
   {
@@ -37,7 +36,7 @@ public class TCPContainerAdapterImpl extends TransportContainerAdapter implement
     selector = new TCPSelectorImpl();
   }
 
-  public TCPSelector getSelector()
+  public TCPSelectorImpl getSelector()
   {
     return selector;
   }

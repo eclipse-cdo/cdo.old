@@ -11,7 +11,8 @@
 package org.eclipse.net4j.internal.container;
 
 import org.eclipse.net4j.container.ContainerAdapter;
-import org.eclipse.net4j.util.lifecycle.LifecycleImpl;
+
+import org.eclipse.internal.net4j.util.lifecycle.LifecycleImpl;
 
 /**
  * @author Eike Stepper

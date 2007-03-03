@@ -10,6 +10,9 @@
  **************************************************************************/
 package org.eclipse.net4j.container.internal.ui.views;
 
+import static org.eclipse.net4j.util.registry.IRegistryDelta.Kind.DEREGISTERED;
+import static org.eclipse.net4j.util.registry.IRegistryDelta.Kind.REGISTERED;
+
 import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.container.internal.ui.bundle.SharedIcons;
 import org.eclipse.net4j.transport.Acceptor;
@@ -17,6 +20,9 @@ import org.eclipse.net4j.transport.BufferHandler;
 import org.eclipse.net4j.transport.Channel;
 import org.eclipse.net4j.transport.Connector;
 import org.eclipse.net4j.transport.Protocol;
+import org.eclipse.net4j.util.event.IEvent;
+import org.eclipse.net4j.util.event.IListener;
+import org.eclipse.net4j.util.registry.IRegistryDelta;
 import org.eclipse.net4j.util.registry.IRegistryEvent;
 import org.eclipse.net4j.util.registry.IRegistryListener;
 
@@ -25,7 +31,7 @@ import org.eclipse.swt.graphics.Image;
 import java.text.MessageFormat;
 import java.util.Collection;
 
-public class AcceptorsItemProvider extends ItemProvider<Container> implements IRegistryListener
+public class AcceptorsItemProvider extends ItemProvider<Container> implements IRegistryListener, IListener
 {
   public AcceptorsItemProvider()
   {
@@ -86,6 +92,30 @@ public class AcceptorsItemProvider extends ItemProvider<Container> implements IR
   }
 
   public void notifyRegistryEvent(IRegistryEvent event)
+  {
+    refreshViewer(false);
+
+    IRegistryDelta[] deltas = event.getDeltas();
+    for (IRegistryDelta delta : deltas)
+    {
+      if (delta.getValue() instanceof Acceptor)
+      {
+        Acceptor acceptor = (Acceptor)delta.getValue();
+        switch (delta.getKind())
+        {
+        case REGISTERED:
+          acceptor.addListener(this);
+          break;
+
+        case DEREGISTERED:
+          acceptor.removeListener(this);
+          break;
+        }
+      }
+    }
+  }
+
+  public void notifyEvent(IEvent event)
   {
     refreshViewer(false);
   }

@@ -37,7 +37,6 @@ import org.eclipse.net4j.transport.ProtocolFactoryID;
 import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.net4j.util.lifecycle.LifecycleAdapter;
-import org.eclipse.net4j.util.lifecycle.LifecycleImpl;
 import org.eclipse.net4j.util.lifecycle.LifecycleListener;
 import org.eclipse.net4j.util.lifecycle.LifecycleNotifier;
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
@@ -51,6 +50,7 @@ import org.eclipse.internal.net4j.bundle.Net4j;
 import org.eclipse.internal.net4j.transport.AbstractAcceptor;
 import org.eclipse.internal.net4j.transport.AbstractConnector;
 import org.eclipse.internal.net4j.transport.DescriptionUtil;
+import org.eclipse.internal.net4j.util.lifecycle.LifecycleImpl;
 import org.eclipse.internal.net4j.util.registry.HashMapRegistry;
 
 import java.io.File;
@@ -238,7 +238,7 @@ public class ContainerImpl extends LifecycleImpl implements Container
       {
         if (getConfig().getAcceptorDescriptions().add(description))
         {
-          store.setDirty();
+          setStoreDirty();
           if (TRACER.isEnabled())
           {
             TRACER.trace("Added acceptor description: " + description);
@@ -249,7 +249,7 @@ public class ContainerImpl extends LifecycleImpl implements Container
       {
         if (getConfig().getConnectorDescriptions().add(description))
         {
-          store.setDirty();
+          setStoreDirty();
           if (TRACER.isEnabled())
           {
             TRACER.trace("Added connector description: " + description);
@@ -268,7 +268,7 @@ public class ContainerImpl extends LifecycleImpl implements Container
       {
         if (getConfig().getAcceptorDescriptions().remove(description))
         {
-          store.setDirty();
+          setStoreDirty();
           if (TRACER.isEnabled())
           {
             TRACER.trace("Removed acceptor description: " + description);
@@ -279,7 +279,7 @@ public class ContainerImpl extends LifecycleImpl implements Container
       {
         if (getConfig().getConnectorDescriptions().remove(description))
         {
-          store.setDirty();
+          setStoreDirty();
           if (TRACER.isEnabled())
           {
             TRACER.trace("Removed connector description: " + description);
@@ -336,16 +336,6 @@ public class ContainerImpl extends LifecycleImpl implements Container
   {
     this();
     store = new ConfigStore(file);
-
-    adapterFactoryRegistry = createAdapterFactoryRegistry();
-    executorService = createExecutorService();
-    bufferProvider = createBufferProvider();
-    acceptorFactoryRegistry = createAcceptorFactoryRegistry();
-    connectorFactoryRegistry = createConnectorFactoryRegistry();
-    protocolFactoryRegistry = createProtocolFactoryRegistry();
-    acceptorRegistry = createAcceptorRegistry();
-    connectorRegistry = createConnectorRegistry();
-    channelRegistry = createChannelRegistry();
   }
 
   public Set<String> getAdapterConfig(String type)
@@ -353,137 +343,8 @@ public class ContainerImpl extends LifecycleImpl implements Container
     if (store != null)
     {
       ContainerConfig config = store.getContent();
-      final Set<String> adapterConfig = config.getAdapterConfig(type);
-      return new Set<String>()
-      {
-        public boolean add(String e)
-        {
-          if (adapterConfig.add(e))
-          {
-            store.setDirty();
-            return true;
-          }
-
-          return false;
-        }
-
-        public boolean addAll(Collection<? extends String> c)
-        {
-          if (adapterConfig.addAll(c))
-          {
-            store.setDirty();
-            return true;
-          }
-
-          return false;
-        }
-
-        public void clear()
-        {
-          if (!isEmpty())
-          {
-            store.setDirty();
-          }
-
-          adapterConfig.clear();
-        }
-
-        public boolean contains(Object o)
-        {
-          return adapterConfig.contains(o);
-        }
-
-        public boolean containsAll(Collection<?> c)
-        {
-          return adapterConfig.containsAll(c);
-        }
-
-        public boolean equals(Object o)
-        {
-          return adapterConfig.equals(o);
-        }
-
-        public int hashCode()
-        {
-          return adapterConfig.hashCode();
-        }
-
-        public boolean isEmpty()
-        {
-          return adapterConfig.isEmpty();
-        }
-
-        public Iterator<String> iterator()
-        {
-          final Iterator<String> it = adapterConfig.iterator();
-          return new Iterator<String>()
-          {
-            public boolean hasNext()
-            {
-              return it.hasNext();
-            }
-
-            public String next()
-            {
-              return it.next();
-            }
-
-            public void remove()
-            {
-              store.setDirty();
-              it.remove();
-            }
-          };
-        }
-
-        public boolean remove(Object o)
-        {
-          if (adapterConfig.remove(o))
-          {
-            store.setDirty();
-            return true;
-          }
-
-          return false;
-        }
-
-        public boolean removeAll(Collection<?> c)
-        {
-          if (adapterConfig.removeAll(c))
-          {
-            store.setDirty();
-            return true;
-          }
-
-          return false;
-        }
-
-        public boolean retainAll(Collection<?> c)
-        {
-          if (adapterConfig.retainAll(c))
-          {
-            store.setDirty();
-            return true;
-          }
-
-          return false;
-        }
-
-        public int size()
-        {
-          return adapterConfig.size();
-        }
-
-        public Object[] toArray()
-        {
-          return adapterConfig.toArray();
-        }
-
-        public <T> T[] toArray(T[] a)
-        {
-          return adapterConfig.toArray(a);
-        }
-      };
+      Set<String> adapterConfig = config.getAdapterConfig(type);
+      return new AdapterConfigSet(adapterConfig);
     }
 
     return Collections.emptySet();
@@ -885,6 +746,21 @@ public class ContainerImpl extends LifecycleImpl implements Container
     return connector;
   }
 
+  private ContainerAdapter createAdapter(ContainerAdapterFactory factory)
+  {
+    try
+    {
+      ContainerAdapter adapter = factory.createAdapter(this);
+      LifecycleUtil.activate(adapter);
+      return adapter;
+    }
+    catch (Exception ex)
+    {
+      ex.printStackTrace();
+      return null;
+    }
+  }
+
   private ContainerAdapter addAdapter(String type)
   {
     ContainerAdapterFactory factory = adapterFactoryRegistry.get(type);
@@ -903,18 +779,152 @@ public class ContainerImpl extends LifecycleImpl implements Container
     return adapter;
   }
 
-  private ContainerAdapter createAdapter(ContainerAdapterFactory factory)
+  private void setStoreDirty()
   {
-    try
+    if (store != null)
     {
-      ContainerAdapter adapter = factory.createAdapter(this);
-      LifecycleUtil.activate(adapter);
-      return adapter;
+      store.setDirty();
     }
-    catch (Exception ex)
+  }
+
+  /**
+   * @author Eike Stepper
+   */
+  private final class AdapterConfigSet implements Set<String>
+  {
+    private final Set<String> delegate;
+
+    private AdapterConfigSet(Set<String> delegate)
     {
-      ex.printStackTrace();
-      return null;
+      this.delegate = delegate;
+    }
+
+    public boolean add(String e)
+    {
+      if (delegate.add(e))
+      {
+        setStoreDirty();
+        return true;
+      }
+
+      return false;
+    }
+
+    public boolean addAll(Collection<? extends String> c)
+    {
+      if (delegate.addAll(c))
+      {
+        setStoreDirty();
+        return true;
+      }
+
+      return false;
+    }
+
+    public void clear()
+    {
+      if (!isEmpty())
+      {
+        setStoreDirty();
+      }
+
+      delegate.clear();
+    }
+
+    public boolean contains(Object o)
+    {
+      return delegate.contains(o);
+    }
+
+    public boolean containsAll(Collection<?> c)
+    {
+      return delegate.containsAll(c);
+    }
+
+    public boolean equals(Object o)
+    {
+      return delegate.equals(o);
+    }
+
+    public int hashCode()
+    {
+      return delegate.hashCode();
+    }
+
+    public boolean isEmpty()
+    {
+      return delegate.isEmpty();
+    }
+
+    public Iterator<String> iterator()
+    {
+      final Iterator<String> it = delegate.iterator();
+      return new Iterator<String>()
+      {
+        public boolean hasNext()
+        {
+          return it.hasNext();
+        }
+
+        public String next()
+        {
+          return it.next();
+        }
+
+        public void remove()
+        {
+          setStoreDirty();
+          it.remove();
+        }
+      };
+    }
+
+    public boolean remove(Object o)
+    {
+      if (delegate.remove(o))
+      {
+        setStoreDirty();
+        return true;
+      }
+
+      return false;
+    }
+
+    public boolean removeAll(Collection<?> c)
+    {
+      if (delegate.removeAll(c))
+      {
+        setStoreDirty();
+        return true;
+      }
+
+      return false;
+    }
+
+    public boolean retainAll(Collection<?> c)
+    {
+      if (delegate.retainAll(c))
+      {
+        setStoreDirty();
+        return true;
+      }
+
+      return false;
+    }
+
+    public int size()
+    {
+      return delegate.size();
+    }
+
+    public Object[] toArray()
+    {
+      return delegate.toArray();
+    }
+
+    public <T> T[] toArray(T[] a)
+    {
+      return delegate.toArray(a);
     }
   }
 

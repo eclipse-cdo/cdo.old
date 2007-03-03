@@ -14,8 +14,9 @@ import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.container.ContainerManager;
 import org.eclipse.net4j.container.ContainerUtil;
 import org.eclipse.net4j.internal.container.bundle.ContainerBundle;
-import org.eclipse.net4j.util.lifecycle.LifecycleImpl;
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
+
+import org.eclipse.internal.net4j.util.lifecycle.LifecycleImpl;
 
 import java.io.File;
 
