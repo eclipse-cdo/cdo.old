@@ -16,8 +16,8 @@ import org.eclipse.net4j.internal.jvm.JVMAcceptorFactoryImpl;
 import org.eclipse.net4j.internal.jvm.JVMConnectorFactoryImpl;
 import org.eclipse.net4j.jvm.JVMConstants;
 import org.eclipse.net4j.jvm.container.JVMContainerAdapter;
-import org.eclipse.net4j.transport.AcceptorFactory;
-import org.eclipse.net4j.transport.ConnectorFactory;
+import org.eclipse.net4j.transport.IAcceptorFactory;
+import org.eclipse.net4j.transport.IConnectorFactory;
 
 /**
  * @author Eike Stepper
@@ -29,12 +29,12 @@ public class JVMContainerAdapterImpl extends TransportContainerAdapter implement
     super(container, JVMConstants.TYPE);
   }
 
-  protected AcceptorFactory createAcceptorFactory()
+  protected IAcceptorFactory createAcceptorFactory()
   {
     return new JVMAcceptorFactoryImpl();
   }
 
-  protected ConnectorFactory createConnectorFactory()
+  protected IConnectorFactory createConnectorFactory()
   {
     return new JVMConnectorFactoryImpl();
   }

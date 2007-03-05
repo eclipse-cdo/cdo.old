@@ -17,7 +17,6 @@ import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
-import org.eclipse.net4j.util.lifecycle.Singleton;
 import org.eclipse.net4j.util.om.trace.ContextTracer;
 
 import java.util.HashMap;
@@ -30,7 +29,7 @@ public class CDOPackageManagerImpl implements CDOPackageManager
 {
   private static final ContextTracer TRACER = new ContextTracer(CDOProtocol.DEBUG_MODEL, CDOPackageManagerImpl.class);
 
-  @Singleton
+  // @Singleton
   public static final CDOPackageManagerImpl INSTANCE = new CDOPackageManagerImpl();
 
   private Map<String, CDOPackageImpl> packages = new HashMap();

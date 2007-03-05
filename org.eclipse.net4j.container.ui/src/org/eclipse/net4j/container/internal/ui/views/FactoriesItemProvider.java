@@ -12,12 +12,10 @@ package org.eclipse.net4j.container.internal.ui.views;
 
 import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.container.internal.ui.bundle.SharedIcons;
-import org.eclipse.net4j.transport.AcceptorFactory;
-import org.eclipse.net4j.transport.ConnectorFactory;
-import org.eclipse.net4j.transport.ProtocolFactory;
+import org.eclipse.net4j.transport.IAcceptorFactory;
+import org.eclipse.net4j.transport.IConnectorFactory;
+import org.eclipse.net4j.transport.IProtocolFactory;
 import org.eclipse.net4j.util.registry.IRegistry;
-import org.eclipse.net4j.util.registry.IRegistryEvent;
-import org.eclipse.net4j.util.registry.IRegistryListener;
 
 import org.eclipse.swt.graphics.Image;
 
@@ -39,17 +37,17 @@ public class FactoriesItemProvider extends ItemProvider<Container> implements IR
       return getInput();
     }
 
-    if (child instanceof AcceptorFactory)
+    if (child instanceof IAcceptorFactory)
     {
       return registries[1];
     }
 
-    if (child instanceof ConnectorFactory)
+    if (child instanceof IConnectorFactory)
     {
       return registries[2];
     }
 
-    if (child instanceof ProtocolFactory)
+    if (child instanceof IProtocolFactory)
     {
       return registries[3];
     }
@@ -96,21 +94,21 @@ public class FactoriesItemProvider extends ItemProvider<Container> implements IR
       return "Protocol Factories";
     }
 
-    if (obj instanceof AcceptorFactory)
+    if (obj instanceof IAcceptorFactory)
     {
-      AcceptorFactory factory = (AcceptorFactory)obj;
+      IAcceptorFactory factory = (IAcceptorFactory)obj;
       return MessageFormat.format("{0} = {1}", factory.getType(), factory.getClass().getName());
     }
 
-    if (obj instanceof ConnectorFactory)
+    if (obj instanceof IConnectorFactory)
     {
-      ConnectorFactory factory = (ConnectorFactory)obj;
+      IConnectorFactory factory = (IConnectorFactory)obj;
       return MessageFormat.format("{0} = {1}", factory.getType(), factory.getClass().getName());
     }
 
-    if (obj instanceof ProtocolFactory)
+    if (obj instanceof IProtocolFactory)
     {
-      ProtocolFactory factory = (ProtocolFactory)obj;
+      IProtocolFactory factory = (IProtocolFactory)obj;
       return MessageFormat.format("{0} {1} = {2}", factory.getProtocolID(), factory.getLocations(), factory.getClass()
           .getName());
     }

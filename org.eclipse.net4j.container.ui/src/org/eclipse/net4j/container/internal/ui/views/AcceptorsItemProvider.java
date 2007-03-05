@@ -10,21 +10,15 @@
  **************************************************************************/
 package org.eclipse.net4j.container.internal.ui.views;
 
-import static org.eclipse.net4j.util.registry.IRegistryDelta.Kind.DEREGISTERED;
-import static org.eclipse.net4j.util.registry.IRegistryDelta.Kind.REGISTERED;
-
 import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.container.internal.ui.bundle.SharedIcons;
-import org.eclipse.net4j.transport.Acceptor;
-import org.eclipse.net4j.transport.BufferHandler;
-import org.eclipse.net4j.transport.Channel;
-import org.eclipse.net4j.transport.Connector;
-import org.eclipse.net4j.transport.Protocol;
+import org.eclipse.net4j.transport.IAcceptor;
+import org.eclipse.net4j.transport.IBufferHandler;
+import org.eclipse.net4j.transport.IChannel;
+import org.eclipse.net4j.transport.IConnector;
+import org.eclipse.net4j.transport.IProtocol;
 import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
-import org.eclipse.net4j.util.registry.IRegistryDelta;
-import org.eclipse.net4j.util.registry.IRegistryEvent;
-import org.eclipse.net4j.util.registry.IRegistryListener;
 
 import org.eclipse.swt.graphics.Image;
 
@@ -39,19 +33,19 @@ public class AcceptorsItemProvider extends ItemProvider<Container> implements IR
 
   public Object getParent(Object child)
   {
-    if (child instanceof Acceptor)
+    if (child instanceof IAcceptor)
     {
       return getInput();
     }
 
-    if (child instanceof Connector)
+    if (child instanceof IConnector)
     {
-      Connector connector = (Connector)child;
-      Collection<Acceptor> acceptors = getInput().getAcceptorRegistry().values();
-      for (Acceptor acceptor : acceptors)
+      IConnector connector = (IConnector)child;
+      Collection<IAcceptor> acceptors = getInput().getAcceptorRegistry().values();
+      for (IAcceptor acceptor : acceptors)
       {
-        Connector[] connectors = acceptor.getAcceptedConnectors();
-        for (Connector c : connectors)
+        IConnector[] connectors = acceptor.getAcceptedConnectors();
+        for (IConnector c : connectors)
         {
           if (c == connector)
           {
@@ -61,9 +55,9 @@ public class AcceptorsItemProvider extends ItemProvider<Container> implements IR
       }
     }
 
-    if (child instanceof Channel)
+    if (child instanceof IChannel)
     {
-      return ((Channel)child).getConnector();
+      return ((IChannel)child).getConnector();
     }
 
     return null;
@@ -77,15 +71,15 @@ public class AcceptorsItemProvider extends ItemProvider<Container> implements IR
       return values.toArray(new Object[values.size()]);
     }
 
-    if (parent instanceof Acceptor)
+    if (parent instanceof IAcceptor)
     {
-      Acceptor acceptor = (Acceptor)parent;
+      IAcceptor acceptor = (IAcceptor)parent;
       return acceptor.getAcceptedConnectors();
     }
 
-    if (parent instanceof Connector)
+    if (parent instanceof IConnector)
     {
-      return ((Connector)parent).getChannels();
+      return ((IConnector)parent).getChannels();
     }
 
     return NO_CHILDREN;
@@ -98,9 +92,9 @@ public class AcceptorsItemProvider extends ItemProvider<Container> implements IR
     IRegistryDelta[] deltas = event.getDeltas();
     for (IRegistryDelta delta : deltas)
     {
-      if (delta.getValue() instanceof Acceptor)
+      if (delta.getElement() instanceof IAcceptor)
       {
-        Acceptor acceptor = (Acceptor)delta.getValue();
+        IAcceptor acceptor = (IAcceptor)delta.getElement();
         switch (delta.getKind())
         {
         case REGISTERED:
@@ -123,23 +117,23 @@ public class AcceptorsItemProvider extends ItemProvider<Container> implements IR
   @Override
   public String getText(Object obj)
   {
-    if (obj instanceof Acceptor)
+    if (obj instanceof IAcceptor)
     {
-      Acceptor acceptor = (Acceptor)obj;
+      IAcceptor acceptor = (IAcceptor)obj;
       return acceptor.getDescription();
     }
 
-    if (obj instanceof Connector)
+    if (obj instanceof IConnector)
     {
-      Connector connector = (Connector)obj;
+      IConnector connector = (IConnector)obj;
       return connector.getDescription();
     }
 
-    if (obj instanceof Channel)
+    if (obj instanceof IChannel)
     {
-      Channel channel = (Channel)obj;
-      BufferHandler receiveHandler = channel.getReceiveHandler();
-      Object str = receiveHandler instanceof Protocol ? ((Protocol)receiveHandler).getProtocolID() : receiveHandler;
+      IChannel channel = (IChannel)obj;
+      IBufferHandler receiveHandler = channel.getReceiveHandler();
+      Object str = receiveHandler instanceof IProtocol ? ((IProtocol)receiveHandler).getProtocolID() : receiveHandler;
       return MessageFormat.format("[{0}] {1}", channel.getChannelIndex(), str);
     }
 
@@ -149,17 +143,17 @@ public class AcceptorsItemProvider extends ItemProvider<Container> implements IR
   @Override
   public Image getImage(Object obj)
   {
-    if (obj instanceof Acceptor)
+    if (obj instanceof IAcceptor)
     {
       return SharedIcons.OBJ_ACCEPTOR.createImage();
     }
 
-    if (obj instanceof Connector)
+    if (obj instanceof IConnector)
     {
       return SharedIcons.OBJ_CONNECTOR.createImage();
     }
 
-    if (obj instanceof Channel)
+    if (obj instanceof IChannel)
     {
       return SharedIcons.OBJ_CHANNEL.createImage();
     }

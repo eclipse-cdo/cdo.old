@@ -13,14 +13,12 @@ package org.eclipse.emf.cdo.internal.protocol.model.core;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
 import org.eclipse.emf.cdo.protocol.model.core.CDOObjectClass;
 
-import org.eclipse.net4j.util.lifecycle.Singleton;
-
 /**
  * @author Eike Stepper
  */
 public class CDOObjectClassImpl extends CDOClassImpl implements CDOObjectClass
 {
-  @Singleton
+  // @Singleton
   public static final CDOObjectClassImpl INSTANCE = new CDOObjectClassImpl();
 
   public CDOObjectClassImpl()

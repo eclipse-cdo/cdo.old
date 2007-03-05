@@ -10,16 +10,16 @@
  **************************************************************************/
 package org.eclipse.net4j.container;
 
-import org.eclipse.net4j.transport.Acceptor;
-import org.eclipse.net4j.transport.AcceptorFactory;
-import org.eclipse.net4j.transport.BufferProvider;
-import org.eclipse.net4j.transport.Channel;
-import org.eclipse.net4j.transport.ChannelID;
-import org.eclipse.net4j.transport.Connector;
-import org.eclipse.net4j.transport.ConnectorFactory;
 import org.eclipse.net4j.transport.ConnectorLocation;
-import org.eclipse.net4j.transport.ProtocolFactory;
-import org.eclipse.net4j.transport.ProtocolFactoryID;
+import org.eclipse.net4j.transport.IAcceptor;
+import org.eclipse.net4j.transport.IAcceptorFactory;
+import org.eclipse.net4j.transport.IBufferProvider;
+import org.eclipse.net4j.transport.IChannel;
+import org.eclipse.net4j.transport.IChannelID;
+import org.eclipse.net4j.transport.IConnector;
+import org.eclipse.net4j.transport.IConnectorFactory;
+import org.eclipse.net4j.transport.IProtocolFactory;
+import org.eclipse.net4j.transport.IProtocolFactoryID;
 import org.eclipse.net4j.util.registry.IRegistry;
 
 import java.util.Collection;
@@ -33,7 +33,7 @@ public interface Container
 {
   public ExecutorService getExecutorService();
 
-  public BufferProvider getBufferProvider();
+  public IBufferProvider getBufferProvider();
 
   /*
    * ContainerAdapterFactory
@@ -57,57 +57,57 @@ public interface Container
    * AcceptorFactory
    */
 
-  public IRegistry<String, AcceptorFactory> getAcceptorFactoryRegistry();
+  public IRegistry<String, IAcceptorFactory> getAcceptorFactoryRegistry();
 
-  public void register(AcceptorFactory factory);
+  public void register(IAcceptorFactory factory);
 
-  public void deregister(AcceptorFactory factory);
+  public void deregister(IAcceptorFactory factory);
 
   /*
    * ConnectorFactory
    */
 
-  public IRegistry<String, ConnectorFactory> getConnectorFactoryRegistry();
+  public IRegistry<String, IConnectorFactory> getConnectorFactoryRegistry();
 
-  public void register(ConnectorFactory factory);
+  public void register(IConnectorFactory factory);
 
-  public void deregister(ConnectorFactory factory);
+  public void deregister(IConnectorFactory factory);
 
   /*
    * ProtocolFactory
    */
 
-  public IRegistry<ProtocolFactoryID, ProtocolFactory> getProtocolFactoryRegistry();
+  public IRegistry<IProtocolFactoryID, IProtocolFactory> getProtocolFactoryRegistry();
 
-  public void register(ProtocolFactory factory);
+  public void register(IProtocolFactory factory);
 
-  public void deregister(ProtocolFactory factory);
+  public void deregister(IProtocolFactory factory);
 
   /*
    * Acceptor
    */
 
-  public IRegistry<String, Acceptor> getAcceptorRegistry();
+  public IRegistry<String, IAcceptor> getAcceptorRegistry();
 
-  public Acceptor getAcceptor(String description);
+  public IAcceptor getAcceptor(String description);
 
   /*
    * Connector
    */
 
-  public IRegistry<String, Connector> getConnectorRegistry();
+  public IRegistry<String, IConnector> getConnectorRegistry();
 
-  public Connector getConnector(String description);
+  public IConnector getConnector(String description);
 
   /*
    * Channel
    */
 
-  public IRegistry<ChannelID, Channel> getChannelRegistry();
+  public IRegistry<IChannelID, IChannel> getChannelRegistry();
 
-  public Collection<Channel> getChannels(String protocolID, Set<ConnectorLocation> locations);
+  public Collection<IChannel> getChannels(String protocolID, Set<ConnectorLocation> locations);
 
-  public Collection<Channel> getChannels(String protocolID);
+  public Collection<IChannel> getChannels(String protocolID);
 
-  public Collection<Channel> getChannels(Set<ConnectorLocation> locations);
+  public Collection<IChannel> getChannels(Set<ConnectorLocation> locations);
 }

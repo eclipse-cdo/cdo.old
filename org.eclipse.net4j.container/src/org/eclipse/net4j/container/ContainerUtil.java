@@ -11,11 +11,11 @@
 package org.eclipse.net4j.container;
 
 import org.eclipse.net4j.internal.container.ContainerImpl;
-import org.eclipse.net4j.transport.BufferPool;
-import org.eclipse.net4j.transport.BufferProvider;
+import org.eclipse.net4j.transport.IBufferPool;
+import org.eclipse.net4j.transport.IBufferProvider;
 
-import org.eclipse.internal.net4j.transport.BufferFactoryImpl;
-import org.eclipse.internal.net4j.transport.BufferPoolImpl;
+import org.eclipse.internal.net4j.transport.BufferFactory;
+import org.eclipse.internal.net4j.transport.BufferPool;
 import org.eclipse.internal.net4j.transport.BufferUtil;
 
 import java.io.File;
@@ -39,27 +39,27 @@ public final class ContainerUtil
     return new ContainerImpl(file);
   }
 
-  public static BufferProvider createBufferFactory(short bufferCapacity)
+  public static IBufferProvider createBufferFactory(short bufferCapacity)
   {
-    return new BufferFactoryImpl(bufferCapacity);
+    return new BufferFactory(bufferCapacity);
   }
 
-  public static BufferProvider createBufferFactory()
+  public static IBufferProvider createBufferFactory()
   {
-    return new BufferFactoryImpl(BufferUtil.DEFAULT_BUFFER_CAPACITY);
+    return new BufferFactory(BufferUtil.DEFAULT_BUFFER_CAPACITY);
   }
 
-  public static BufferPool createBufferPool(BufferProvider factory)
+  public static IBufferPool createBufferPool(IBufferProvider factory)
   {
-    return new BufferPoolImpl(factory);
+    return new BufferPool(factory);
   }
 
-  public static BufferPool createBufferPool(short bufferCapacity)
+  public static IBufferPool createBufferPool(short bufferCapacity)
   {
     return createBufferPool(createBufferFactory(bufferCapacity));
   }
 
-  public static BufferPool createBufferPool()
+  public static IBufferPool createBufferPool()
   {
     return createBufferPool(createBufferFactory());
   }

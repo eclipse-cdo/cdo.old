@@ -19,8 +19,8 @@ import org.eclipse.net4j.internal.tcp.TCPConnectorFactoryImpl;
 import org.eclipse.net4j.internal.tcp.TCPSelectorImpl;
 import org.eclipse.net4j.tcp.TCPConstants;
 import org.eclipse.net4j.tcp.container.TCPContainerAdapter;
-import org.eclipse.net4j.transport.AcceptorFactory;
-import org.eclipse.net4j.transport.ConnectorFactory;
+import org.eclipse.net4j.transport.IAcceptorFactory;
+import org.eclipse.net4j.transport.IConnectorFactory;
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
 
 /**
@@ -42,25 +42,25 @@ public class TCPContainerAdapterImpl extends TransportContainerAdapter implement
   }
 
   @Override
-  protected void onActivate() throws Exception
+  protected void doActivate() throws Exception
   {
-    super.onActivate();
+    super.doActivate();
     LifecycleUtil.activate(selector);
   }
 
   @Override
-  protected void onDeactivate() throws Exception
+  protected void doDeactivate() throws Exception
   {
     LifecycleUtil.deactivate(selector);
-    super.onDeactivate();
+    super.doDeactivate();
   }
 
-  protected AcceptorFactory createAcceptorFactory()
+  protected IAcceptorFactory createAcceptorFactory()
   {
     return new TCPAcceptorFactoryImpl();
   }
 
-  protected ConnectorFactory createConnectorFactory()
+  protected IConnectorFactory createConnectorFactory()
   {
     return new TCPConnectorFactoryImpl();
   }

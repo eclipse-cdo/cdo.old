@@ -16,7 +16,7 @@ import org.eclipse.emf.cdo.server.container.CDOServerContainerAdapter;
 
 import org.eclipse.net4j.internal.container.ContainerImpl;
 import org.eclipse.net4j.internal.container.ProtocolContainerAdapter;
-import org.eclipse.net4j.transport.ProtocolFactory;
+import org.eclipse.net4j.transport.IProtocolFactory;
 
 /**
  * @author Eike Stepper
@@ -28,7 +28,7 @@ public class CDOServerContainerAdapterImpl extends ProtocolContainerAdapter impl
     super(container, ServerConstants.TYPE);
   }
 
-  protected ProtocolFactory createProtocolFactory()
+  protected IProtocolFactory createProtocolFactory()
   {
     return new ServerProtocolFactory();
   }

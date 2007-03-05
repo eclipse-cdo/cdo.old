@@ -10,11 +10,11 @@
  **************************************************************************/
 package org.eclipse.net4j.internal.container;
 
-import org.eclipse.net4j.transport.ProtocolFactory;
+import org.eclipse.net4j.transport.IProtocolFactory;
 
 public abstract class ProtocolContainerAdapter extends AbstractContainerAdapter
 {
-  private ProtocolFactory protocolFactory;
+  private IProtocolFactory protocolFactory;
 
   protected ProtocolContainerAdapter(ContainerImpl container, String type)
   {
@@ -23,18 +23,18 @@ public abstract class ProtocolContainerAdapter extends AbstractContainerAdapter
   }
 
   @Override
-  protected void onActivate() throws Exception
+  protected void doActivate() throws Exception
   {
-    super.onActivate();
+    super.doActivate();
     getContainer().register(protocolFactory);
   }
 
   @Override
-  protected void onDeactivate() throws Exception
+  protected void doDeactivate() throws Exception
   {
     getContainer().deregister(protocolFactory);
-    super.onDeactivate();
+    super.doDeactivate();
   }
 
-  protected abstract ProtocolFactory createProtocolFactory();
+  protected abstract IProtocolFactory createProtocolFactory();
 }

@@ -36,17 +36,17 @@ public class JMXContainerAdapterImpl extends AbstractContainerAdapter implements
   }
 
   @Override
-  protected void onActivate() throws Exception
+  protected void doActivate() throws Exception
   {
-    super.onActivate();
+    super.doActivate();
     mbeanServer = MBeanServerFactory.createMBeanServer();
   }
 
   @Override
-  protected void onDeactivate() throws Exception
+  protected void doDeactivate() throws Exception
   {
     MBeanServerFactory.releaseMBeanServer(mbeanServer);
     mbeanServer = null;
-    super.onDeactivate();
+    super.doDeactivate();
   }
 }

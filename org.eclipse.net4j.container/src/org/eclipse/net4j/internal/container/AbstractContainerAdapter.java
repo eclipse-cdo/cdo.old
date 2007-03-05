@@ -12,12 +12,12 @@ package org.eclipse.net4j.internal.container;
 
 import org.eclipse.net4j.container.ContainerAdapter;
 
-import org.eclipse.internal.net4j.util.lifecycle.LifecycleImpl;
+import org.eclipse.internal.net4j.util.lifecycle.Lifecycle;
 
 /**
  * @author Eike Stepper
  */
-public abstract class AbstractContainerAdapter extends LifecycleImpl implements ContainerAdapter
+public abstract class AbstractContainerAdapter extends Lifecycle implements ContainerAdapter
 {
   private ContainerImpl container;
 

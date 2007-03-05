@@ -14,14 +14,12 @@ import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.core.CDOObjectClassImpl;
 import org.eclipse.emf.cdo.protocol.model.resource.CDOContentsFeature;
 
-import org.eclipse.net4j.util.lifecycle.Singleton;
-
 /**
  * @author Eike Stepper
  */
 public class CDOContentsFeatureImpl extends CDOFeatureImpl implements CDOContentsFeature
 {
-  @Singleton
+  // @Singleton
   public static final CDOContentsFeatureImpl INSTANCE = new CDOContentsFeatureImpl();
 
   public CDOContentsFeatureImpl()

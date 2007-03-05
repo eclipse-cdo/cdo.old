@@ -13,8 +13,6 @@ package org.eclipse.net4j.container.internal.ui.views;
 import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.container.ContainerAdapterFactory;
 import org.eclipse.net4j.container.internal.ui.bundle.SharedIcons;
-import org.eclipse.net4j.util.registry.IRegistryEvent;
-import org.eclipse.net4j.util.registry.IRegistryListener;
 
 import org.eclipse.swt.graphics.Image;
 

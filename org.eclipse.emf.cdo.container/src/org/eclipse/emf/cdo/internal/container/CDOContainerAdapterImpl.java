@@ -10,8 +10,6 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.container;
 
-import static org.eclipse.net4j.util.registry.IRegistryDelta.Kind.REGISTERED;
-
 import org.eclipse.emf.cdo.CDOConstants;
 import org.eclipse.emf.cdo.CDOSession;
 import org.eclipse.emf.cdo.container.CDOContainerAdapter;
@@ -19,17 +17,13 @@ import org.eclipse.emf.cdo.util.CDOUtil;
 
 import org.eclipse.net4j.internal.container.ContainerImpl;
 import org.eclipse.net4j.internal.container.ProtocolContainerAdapter;
-import org.eclipse.net4j.transport.Connector;
 import org.eclipse.net4j.transport.ConnectorException;
-import org.eclipse.net4j.transport.ProtocolFactory;
-import org.eclipse.net4j.util.lifecycle.LifecycleAdapter;
-import org.eclipse.net4j.util.lifecycle.LifecycleListener;
-import org.eclipse.net4j.util.lifecycle.LifecycleNotifier;
+import org.eclipse.net4j.transport.IConnector;
+import org.eclipse.net4j.transport.IProtocolFactory;
+import org.eclipse.net4j.util.container.IContainerDelta;
+import org.eclipse.net4j.util.event.EventUtil;
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
 import org.eclipse.net4j.util.registry.IRegistry;
-import org.eclipse.net4j.util.registry.IRegistryDelta;
-import org.eclipse.net4j.util.registry.IRegistryEvent;
-import org.eclipse.net4j.util.registry.IRegistryListener;
 
 import org.eclipse.emf.internal.cdo.protocol.ClientProtocolFactory;
 
@@ -59,16 +53,16 @@ public class CDOContainerAdapterImpl extends ProtocolContainerAdapter implements
   {
     public void notifyRegistryEvent(IRegistryEvent<String, CDOSession> event)
     {
-      IRegistryDelta<String, CDOSession>[] deltas = event.getDeltas();
-      for (IRegistryDelta<String, CDOSession> delta : deltas)
+      IContainerDelta<String, CDOSession>[] deltas = event.getDeltas();
+      for (IContainerDelta<String, CDOSession> delta : deltas)
       {
         String description = delta.getKey();
-        CDOSession session = delta.getValue();
+        CDOSession session = delta.getElement();
         switch (delta.getKind())
         {
         case REGISTERED:
           descriptions.add(description);
-          LifecycleUtil.addListener(session, lifecycleListener);
+          EventUtil.addListener(session, lifecycleListener);
           break;
         }
       }
@@ -88,7 +82,7 @@ public class CDOContainerAdapterImpl extends ProtocolContainerAdapter implements
         sessionRegistry.remove(description);
       }
 
-      LifecycleUtil.removeListener(notifier, lifecycleListener);
+      EventUtil.removeListener(notifier, lifecycleListener);
     }
   };
 
@@ -108,22 +102,22 @@ public class CDOContainerAdapterImpl extends ProtocolContainerAdapter implements
     String repositoryName = tokens[0];
     String connectorDescription = tokens[1];
 
-    Connector connector = getContainer().getConnector(connectorDescription);
+    IConnector connector = getContainer().getConnector(connectorDescription);
     CDOSession session = CDOUtil.openSession(connector, repositoryName);
 
     sessionRegistry.put(description, session);
     return session;
   }
 
-  protected ProtocolFactory createProtocolFactory()
+  protected IProtocolFactory createProtocolFactory()
   {
     return new ClientProtocolFactory();
   }
 
   @Override
-  protected void onActivate() throws Exception
+  protected void doActivate() throws Exception
   {
-    super.onActivate();
+    super.doActivate();
     sessionRegistry = createSessionRegistry();
     descriptions = getDescriptions();
     createSessions();
@@ -133,7 +127,7 @@ public class CDOContainerAdapterImpl extends ProtocolContainerAdapter implements
   }
 
   @Override
-  protected void onDeactivate() throws Exception
+  protected void doDeactivate() throws Exception
   {
     sessionRegistry.removeRegistryListener(sessionRegistryListener);
     getContainer().getConnectorFactoryRegistry().removeRegistryListener(registryListener);
@@ -146,7 +140,7 @@ public class CDOContainerAdapterImpl extends ProtocolContainerAdapter implements
     }
 
     sessionRegistry = null;
-    super.onDeactivate();
+    super.doDeactivate();
   }
 
   protected IRegistry<String, CDOSession> createSessionRegistry()

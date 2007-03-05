@@ -10,9 +10,6 @@
  **************************************************************************/
 package org.eclipse.net4j.internal.container;
 
-import static org.eclipse.net4j.util.registry.IRegistryDelta.Kind.DEREGISTERED;
-import static org.eclipse.net4j.util.registry.IRegistryDelta.Kind.REGISTERED;
-
 import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.container.ContainerAdapter;
 import org.eclipse.net4j.container.ContainerAdapterFactory;
@@ -20,37 +17,33 @@ import org.eclipse.net4j.container.ContainerUtil;
 import org.eclipse.net4j.internal.container.bundle.ContainerBundle;
 import org.eclipse.net4j.internal.container.store.FileStore;
 import org.eclipse.net4j.internal.container.store.Store;
-import org.eclipse.net4j.transport.Acceptor;
-import org.eclipse.net4j.transport.AcceptorConnectorsEvent;
-import org.eclipse.net4j.transport.AcceptorFactory;
-import org.eclipse.net4j.transport.BufferHandler;
-import org.eclipse.net4j.transport.BufferProvider;
-import org.eclipse.net4j.transport.Channel;
-import org.eclipse.net4j.transport.ChannelID;
-import org.eclipse.net4j.transport.Connector;
-import org.eclipse.net4j.transport.ConnectorChannelsEvent;
-import org.eclipse.net4j.transport.ConnectorFactory;
 import org.eclipse.net4j.transport.ConnectorLocation;
-import org.eclipse.net4j.transport.Protocol;
-import org.eclipse.net4j.transport.ProtocolFactory;
-import org.eclipse.net4j.transport.ProtocolFactoryID;
+import org.eclipse.net4j.transport.IAcceptor;
+import org.eclipse.net4j.transport.IAcceptorAcceptedEvent;
+import org.eclipse.net4j.transport.IAcceptorFactory;
+import org.eclipse.net4j.transport.IBufferHandler;
+import org.eclipse.net4j.transport.IBufferProvider;
+import org.eclipse.net4j.transport.IChannel;
+import org.eclipse.net4j.transport.IChannelID;
+import org.eclipse.net4j.transport.IConnector;
+import org.eclipse.net4j.transport.IConnectorChannelsEvent;
+import org.eclipse.net4j.transport.IConnectorFactory;
+import org.eclipse.net4j.transport.IProtocol;
+import org.eclipse.net4j.transport.IProtocolFactory;
+import org.eclipse.net4j.transport.IProtocolFactoryID;
+import org.eclipse.net4j.util.container.IContainerDelta;
+import org.eclipse.net4j.util.event.EventUtil;
 import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
-import org.eclipse.net4j.util.lifecycle.LifecycleAdapter;
-import org.eclipse.net4j.util.lifecycle.LifecycleListener;
-import org.eclipse.net4j.util.lifecycle.LifecycleNotifier;
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
 import org.eclipse.net4j.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.registry.IRegistry;
-import org.eclipse.net4j.util.registry.IRegistryDelta;
-import org.eclipse.net4j.util.registry.IRegistryEvent;
-import org.eclipse.net4j.util.registry.IRegistryListener;
 
 import org.eclipse.internal.net4j.bundle.Net4j;
-import org.eclipse.internal.net4j.transport.AbstractAcceptor;
-import org.eclipse.internal.net4j.transport.AbstractConnector;
+import org.eclipse.internal.net4j.transport.Acceptor;
+import org.eclipse.internal.net4j.transport.Connector;
 import org.eclipse.internal.net4j.transport.DescriptionUtil;
-import org.eclipse.internal.net4j.util.lifecycle.LifecycleImpl;
+import org.eclipse.internal.net4j.util.lifecycle.Lifecycle;
 import org.eclipse.internal.net4j.util.registry.HashMapRegistry;
 
 import java.io.File;
@@ -66,7 +59,7 @@ import java.util.concurrent.ThreadFactory;
 /**
  * @author Eike Stepper
  */
-public class ContainerImpl extends LifecycleImpl implements Container
+public class ContainerImpl extends Lifecycle implements Container
 {
   public static final short DEFAULT_BUFFER_CAPACITY = 4096;
 
@@ -86,21 +79,21 @@ public class ContainerImpl extends LifecycleImpl implements Container
 
   private IRegistry<String, ContainerAdapterFactory> adapterFactoryRegistry;
 
-  private IRegistry<String, AcceptorFactory> acceptorFactoryRegistry;
+  private IRegistry<String, IAcceptorFactory> acceptorFactoryRegistry;
 
-  private IRegistry<String, ConnectorFactory> connectorFactoryRegistry;
+  private IRegistry<String, IConnectorFactory> connectorFactoryRegistry;
 
-  private IRegistry<ProtocolFactoryID, ProtocolFactory> protocolFactoryRegistry;
+  private IRegistry<IProtocolFactoryID, IProtocolFactory> protocolFactoryRegistry;
 
-  private IRegistry<String, Acceptor> acceptorRegistry;
+  private IRegistry<String, IAcceptor> acceptorRegistry;
 
-  private IRegistry<String, Connector> connectorRegistry;
+  private IRegistry<String, IConnector> connectorRegistry;
 
-  private IRegistry<ChannelID, Channel> channelRegistry;
+  private IRegistry<IChannelID, IChannel> channelRegistry;
 
   private ExecutorService executorService;
 
-  private BufferProvider bufferProvider;
+  private IBufferProvider bufferProvider;
 
   private IRegistry<String, ContainerAdapter> adapters = new HashMapRegistry();
 
@@ -108,17 +101,17 @@ public class ContainerImpl extends LifecycleImpl implements Container
   {
     public void notifyRegistryEvent(IRegistryEvent event)
     {
-      IRegistryDelta[] deltas = event.getDeltas();
-      for (IRegistryDelta delta : deltas)
+      IContainerDelta[] deltas = event.getDeltas();
+      for (IContainerDelta delta : deltas)
       {
         switch (delta.getKind())
         {
         case REGISTERED:
-          added(delta.getValue());
+          added(delta.getElement());
           break;
 
         case DEREGISTERED:
-          removed(delta.getValue());
+          removed(delta.getElement());
           break;
         }
       }
@@ -129,12 +122,12 @@ public class ContainerImpl extends LifecycleImpl implements Container
   {
     public void notifyRegistryEvent(IRegistryEvent<String, ContainerAdapterFactory> event)
     {
-      IRegistryDelta<String, ContainerAdapterFactory>[] deltas = event.getDeltas();
-      for (IRegistryDelta<String, ContainerAdapterFactory> delta : deltas)
+      IContainerDelta<String, ContainerAdapterFactory>[] deltas = event.getDeltas();
+      for (IContainerDelta<String, ContainerAdapterFactory> delta : deltas)
       {
         try
         {
-          ContainerAdapterFactory factory = delta.getValue();
+          ContainerAdapterFactory factory = delta.getElement();
           switch (delta.getKind())
           {
           case REGISTERED:
@@ -159,20 +152,20 @@ public class ContainerImpl extends LifecycleImpl implements Container
     @Override
     public void notifyLifecycleDeactivating(LifecycleNotifier notifier)
     {
-      if (notifier instanceof Acceptor)
+      if (notifier instanceof IAcceptor)
       {
-        Acceptor acceptor = (Acceptor)notifier;
+        IAcceptor acceptor = (IAcceptor)notifier;
         acceptorRegistry.remove(acceptor.getDescription());
         acceptor.removeListener(acceptorListener);
       }
-      else if (notifier instanceof Connector)
+      else if (notifier instanceof IConnector)
       {
-        Connector connector = (Connector)notifier;
+        IConnector connector = (IConnector)notifier;
         connectorRegistry.remove(connector.getDescription());
         connector.removeListener(connectorListener);
       }
 
-      LifecycleUtil.removeListener(notifier, lifecycleListener);
+      EventUtil.removeListener(notifier, lifecycleListener);
     }
   };
 
@@ -180,10 +173,10 @@ public class ContainerImpl extends LifecycleImpl implements Container
   {
     public void notifyEvent(IEvent event)
     {
-      if (event instanceof AcceptorConnectorsEvent)
+      if (event instanceof IAcceptorAcceptedEvent)
       {
-        AcceptorConnectorsEvent e = (AcceptorConnectorsEvent)event;
-        Connector connector = e.getAcceptedConnector();
+        IAcceptorAcceptedEvent e = (IAcceptorAcceptedEvent)event;
+        IConnector connector = e.getConnector();
         connector.addListener(connectorListener);
       }
     }
@@ -193,10 +186,10 @@ public class ContainerImpl extends LifecycleImpl implements Container
   {
     public void notifyEvent(IEvent event)
     {
-      if (event instanceof ConnectorChannelsEvent)
+      if (event instanceof IConnectorChannelsEvent)
       {
-        ConnectorChannelsEvent e = (ConnectorChannelsEvent)event;
-        Channel channel = e.getChannel();
+        IConnectorChannelsEvent e = (IConnectorChannelsEvent)event;
+        IChannel channel = e.getChannel();
         switch (e.getType())
         {
         case OPENED:
@@ -214,11 +207,11 @@ public class ContainerImpl extends LifecycleImpl implements Container
   {
     public void notifyRegistryEvent(IRegistryEvent event)
     {
-      IRegistryDelta<String, Object>[] deltas = event.getDeltas();
-      for (IRegistryDelta<String, Object> delta : deltas)
+      IContainerDelta<String, Object>[] deltas = event.getDeltas();
+      for (IContainerDelta<String, Object> delta : deltas)
       {
         String description = delta.getKey();
-        Object object = delta.getValue();
+        Object object = delta.getElement();
         switch (delta.getKind())
         {
         case REGISTERED:
@@ -234,7 +227,7 @@ public class ContainerImpl extends LifecycleImpl implements Container
 
     private void objectAdded(String description, Object object)
     {
-      if (object instanceof Acceptor)
+      if (object instanceof IAcceptor)
       {
         if (getConfig().getAcceptorDescriptions().add(description))
         {
@@ -245,7 +238,7 @@ public class ContainerImpl extends LifecycleImpl implements Container
           }
         }
       }
-      else if (object instanceof Connector)
+      else if (object instanceof IConnector)
       {
         if (getConfig().getConnectorDescriptions().add(description))
         {
@@ -264,7 +257,7 @@ public class ContainerImpl extends LifecycleImpl implements Container
 
     private void objectRemoved(String description, Object object)
     {
-      if (object instanceof Acceptor)
+      if (object instanceof IAcceptor)
       {
         if (getConfig().getAcceptorDescriptions().remove(description))
         {
@@ -275,7 +268,7 @@ public class ContainerImpl extends LifecycleImpl implements Container
           }
         }
       }
-      else if (object instanceof Connector)
+      else if (object instanceof IConnector)
       {
         if (getConfig().getConnectorDescriptions().remove(description))
         {
@@ -360,37 +353,37 @@ public class ContainerImpl extends LifecycleImpl implements Container
     return executorService;
   }
 
-  public BufferProvider getBufferProvider()
+  public IBufferProvider getBufferProvider()
   {
     return bufferProvider;
   }
 
-  public IRegistry<String, AcceptorFactory> getAcceptorFactoryRegistry()
+  public IRegistry<String, IAcceptorFactory> getAcceptorFactoryRegistry()
   {
     return acceptorFactoryRegistry;
   }
 
-  public IRegistry<String, ConnectorFactory> getConnectorFactoryRegistry()
+  public IRegistry<String, IConnectorFactory> getConnectorFactoryRegistry()
   {
     return connectorFactoryRegistry;
   }
 
-  public IRegistry<ProtocolFactoryID, ProtocolFactory> getProtocolFactoryRegistry()
+  public IRegistry<IProtocolFactoryID, IProtocolFactory> getProtocolFactoryRegistry()
   {
     return protocolFactoryRegistry;
   }
 
-  public IRegistry<String, Acceptor> getAcceptorRegistry()
+  public IRegistry<String, IAcceptor> getAcceptorRegistry()
   {
     return acceptorRegistry;
   }
 
-  public IRegistry<String, Connector> getConnectorRegistry()
+  public IRegistry<String, IConnector> getConnectorRegistry()
   {
     return connectorRegistry;
   }
 
-  public IRegistry<ChannelID, Channel> getChannelRegistry()
+  public IRegistry<IChannelID, IChannel> getChannelRegistry()
   {
     return channelRegistry;
   }
@@ -405,10 +398,10 @@ public class ContainerImpl extends LifecycleImpl implements Container
     return adapters.get(type);
   }
 
-  public Acceptor getAcceptor(String description)
+  public IAcceptor getAcceptor(String description)
   {
-    IRegistry<String, Acceptor> registry = getAcceptorRegistry();
-    Acceptor acceptor = registry.get(description);
+    IRegistry<String, IAcceptor> registry = getAcceptorRegistry();
+    IAcceptor acceptor = registry.get(description);
     if (acceptor == null)
     {
       acceptor = createAcceptor(description);
@@ -421,10 +414,10 @@ public class ContainerImpl extends LifecycleImpl implements Container
     return acceptor;
   }
 
-  public Connector getConnector(String description)
+  public IConnector getConnector(String description)
   {
-    IRegistry<String, Connector> registry = getConnectorRegistry();
-    Connector connector = registry.get(description);
+    IRegistry<String, IConnector> registry = getConnectorRegistry();
+    IConnector connector = registry.get(description);
     if (connector == null)
     {
       connector = createConnector(description);
@@ -437,22 +430,22 @@ public class ContainerImpl extends LifecycleImpl implements Container
     return connector;
   }
 
-  public Collection<Channel> getChannels(String protocolID, Set<ConnectorLocation> locations)
+  public Collection<IChannel> getChannels(String protocolID, Set<ConnectorLocation> locations)
   {
     if (locations == null)
     {
-      locations = ProtocolFactory.SYMMETRIC;
+      locations = IProtocolFactory.SYMMETRIC;
     }
 
-    IRegistry<ChannelID, Channel> channelRegistry = getChannelRegistry();
+    IRegistry<IChannelID, IChannel> channelRegistry = getChannelRegistry();
     if (channelRegistry == null)
     {
       return null;
     }
 
-    Collection<Channel> channels = channelRegistry.values();
-    Collection<Channel> result = new ArrayList(channels.size());
-    for (Channel channel : channels)
+    Collection<IChannel> channels = channelRegistry.values();
+    Collection<IChannel> result = new ArrayList(channels.size());
+    for (IChannel channel : channels)
     {
       if (locations.contains(channel.getConnector().getLocation()))
       {
@@ -462,10 +455,10 @@ public class ContainerImpl extends LifecycleImpl implements Container
         }
         else
         {
-          BufferHandler receiveHandler = channel.getReceiveHandler();
-          if (receiveHandler instanceof Protocol)
+          IBufferHandler receiveHandler = channel.getReceiveHandler();
+          if (receiveHandler instanceof IProtocol)
           {
-            Protocol protocol = (Protocol)receiveHandler;
+            IProtocol protocol = (IProtocol)receiveHandler;
             if (protocolID.equals(protocol.getProtocolID()))
             {
               result.add(channel);
@@ -478,12 +471,12 @@ public class ContainerImpl extends LifecycleImpl implements Container
     return result;
   }
 
-  public Collection<Channel> getChannels(String protocolID)
+  public Collection<IChannel> getChannels(String protocolID)
   {
     return getChannels(protocolID, null);
   }
 
-  public Collection<Channel> getChannels(Set<ConnectorLocation> locations)
+  public Collection<IChannel> getChannels(Set<ConnectorLocation> locations)
   {
     return getChannels(null, locations);
   }
@@ -500,46 +493,46 @@ public class ContainerImpl extends LifecycleImpl implements Container
     registry.remove(factory.getType());
   }
 
-  public void register(AcceptorFactory factory)
+  public void register(IAcceptorFactory factory)
   {
-    IRegistry<String, AcceptorFactory> registry = getAcceptorFactoryRegistry();
+    IRegistry<String, IAcceptorFactory> registry = getAcceptorFactoryRegistry();
     registry.put(factory.getType(), factory);
   }
 
-  public void deregister(AcceptorFactory factory)
+  public void deregister(IAcceptorFactory factory)
   {
-    IRegistry<String, AcceptorFactory> registry = getAcceptorFactoryRegistry();
+    IRegistry<String, IAcceptorFactory> registry = getAcceptorFactoryRegistry();
     registry.remove(factory.getType());
   }
 
-  public void register(ConnectorFactory factory)
+  public void register(IConnectorFactory factory)
   {
-    IRegistry<String, ConnectorFactory> registry = getConnectorFactoryRegistry();
+    IRegistry<String, IConnectorFactory> registry = getConnectorFactoryRegistry();
     registry.put(factory.getType(), factory);
   }
 
-  public void deregister(ConnectorFactory factory)
+  public void deregister(IConnectorFactory factory)
   {
-    IRegistry<String, ConnectorFactory> registry = getConnectorFactoryRegistry();
+    IRegistry<String, IConnectorFactory> registry = getConnectorFactoryRegistry();
     registry.remove(factory.getType());
   }
 
-  public void register(ProtocolFactory factory)
+  public void register(IProtocolFactory factory)
   {
-    IRegistry<ProtocolFactoryID, ProtocolFactory> registry = getProtocolFactoryRegistry();
+    IRegistry<IProtocolFactoryID, IProtocolFactory> registry = getProtocolFactoryRegistry();
     for (ConnectorLocation location : factory.getLocations())
     {
-      ProtocolFactoryID id = factory.getID(location);
+      IProtocolFactoryID id = factory.getID(location);
       registry.put(id, factory);
     }
   }
 
-  public void deregister(ProtocolFactory factory)
+  public void deregister(IProtocolFactory factory)
   {
-    IRegistry<ProtocolFactoryID, ProtocolFactory> registry = getProtocolFactoryRegistry();
+    IRegistry<IProtocolFactoryID, IProtocolFactory> registry = getProtocolFactoryRegistry();
     for (ConnectorLocation location : factory.getLocations())
     {
-      ProtocolFactoryID id = factory.getID(location);
+      IProtocolFactoryID id = factory.getID(location);
       registry.remove(id);
     }
   }
@@ -570,9 +563,9 @@ public class ContainerImpl extends LifecycleImpl implements Container
   }
 
   @Override
-  protected void onAboutToActivate() throws Exception
+  protected void doBeforeActivate() throws Exception
   {
-    super.onAboutToActivate();
+    super.doBeforeActivate();
     if (adapterFactoryRegistry == null)
     {
       throw new IllegalStateException("adapterFactoryRegistry == null");
@@ -580,9 +573,9 @@ public class ContainerImpl extends LifecycleImpl implements Container
   }
 
   @Override
-  protected void onActivate() throws Exception
+  protected void doActivate() throws Exception
   {
-    super.onActivate();
+    super.doActivate();
     IRegistry<String, ContainerAdapterFactory> registry = getAdapterFactoryRegistry();
     for (ContainerAdapterFactory factory : registry.values())
     {
@@ -608,7 +601,7 @@ public class ContainerImpl extends LifecycleImpl implements Container
   }
 
   @Override
-  protected void onDeactivate() throws Exception
+  protected void doDeactivate() throws Exception
   {
     if (store != null)
     {
@@ -632,19 +625,19 @@ public class ContainerImpl extends LifecycleImpl implements Container
       LifecycleUtil.deactivateNoisy(adapter);
     }
 
-    Collection<Connector> connectors = getConnectorRegistry().values();
-    for (Connector connector : connectors.toArray(new Connector[connectors.size()]))
+    Collection<IConnector> connectors = getConnectorRegistry().values();
+    for (IConnector connector : connectors.toArray(new IConnector[connectors.size()]))
     {
       LifecycleUtil.deactivateNoisy(connector);
     }
 
-    Collection<Acceptor> acceptors = getAcceptorRegistry().values();
-    for (Acceptor acceptor : acceptors.toArray(new Acceptor[acceptors.size()]))
+    Collection<IAcceptor> acceptors = getAcceptorRegistry().values();
+    for (IAcceptor acceptor : acceptors.toArray(new IAcceptor[acceptors.size()]))
     {
       LifecycleUtil.deactivateNoisy(acceptor);
     }
 
-    super.onDeactivate();
+    super.doDeactivate();
   }
 
   protected IRegistry<String, ContainerAdapterFactory> createAdapterFactoryRegistry()
@@ -687,27 +680,27 @@ public class ContainerImpl extends LifecycleImpl implements Container
     return Executors.newCachedThreadPool(THREAD_FACTORY);
   }
 
-  protected BufferProvider createBufferProvider()
+  protected IBufferProvider createBufferProvider()
   {
     return ContainerUtil.createBufferPool(DEFAULT_BUFFER_CAPACITY);
   }
 
-  private Acceptor createAcceptor(String description)
+  private IAcceptor createAcceptor(String description)
   {
-    IRegistry<String, AcceptorFactory> registry = getAcceptorFactoryRegistry();
+    IRegistry<String, IAcceptorFactory> registry = getAcceptorFactoryRegistry();
     if (registry == null)
     {
       return null;
     }
 
     String type = DescriptionUtil.getType(description);
-    AcceptorFactory factory = registry.get(type);
+    IAcceptorFactory factory = registry.get(type);
     if (factory == null)
     {
       return null;
     }
 
-    AbstractAcceptor acceptor = (AbstractAcceptor)factory.createAcceptor();
+    Acceptor acceptor = (Acceptor)factory.createAcceptor();
     acceptor.setReceiveExecutor(getExecutorService());
     acceptor.setBufferProvider(getBufferProvider());
     acceptor.setDescription(description);
@@ -719,22 +712,22 @@ public class ContainerImpl extends LifecycleImpl implements Container
     return acceptor;
   }
 
-  private Connector createConnector(String description)
+  private IConnector createConnector(String description)
   {
-    IRegistry<String, ConnectorFactory> registry = getConnectorFactoryRegistry();
+    IRegistry<String, IConnectorFactory> registry = getConnectorFactoryRegistry();
     if (registry == null)
     {
       return null;
     }
 
     String type = DescriptionUtil.getType(description);
-    ConnectorFactory factory = registry.get(type);
+    IConnectorFactory factory = registry.get(type);
     if (factory == null)
     {
       return null;
     }
 
-    AbstractConnector connector = (AbstractConnector)factory.createConnector();
+    Connector connector = (Connector)factory.createConnector();
     connector.setReceiveExecutor(getExecutorService());
     connector.setBufferProvider(getBufferProvider());
     connector.setDescription(description);

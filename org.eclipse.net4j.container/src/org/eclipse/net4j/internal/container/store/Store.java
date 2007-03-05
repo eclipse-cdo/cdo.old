@@ -14,7 +14,7 @@ import org.eclipse.net4j.util.IOUtil;
 import org.eclipse.net4j.util.om.trace.ContextTracer;
 
 import org.eclipse.internal.net4j.bundle.Net4j;
-import org.eclipse.internal.net4j.util.lifecycle.LifecycleImpl;
+import org.eclipse.internal.net4j.util.lifecycle.Lifecycle;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -29,7 +29,7 @@ import java.io.OutputStream;
  * 
  * @author Eike Stepper
  */
-public abstract class Store<CONTENT> extends LifecycleImpl
+public abstract class Store<CONTENT> extends Lifecycle
 {
   private static final ContextTracer TRACER = new ContextTracer(Net4j.DEBUG, Store.class);
 
@@ -57,14 +57,14 @@ public abstract class Store<CONTENT> extends LifecycleImpl
   }
 
   @Override
-  protected void onActivate() throws Exception
+  protected void doActivate() throws Exception
   {
-    super.onActivate();
+    super.doActivate();
     loadContent();
   }
 
   @Override
-  protected void onDeactivate() throws Exception
+  protected void doDeactivate() throws Exception
   {
     if (dirty)
     {
@@ -72,7 +72,7 @@ public abstract class Store<CONTENT> extends LifecycleImpl
       dirty = false;
     }
 
-    super.onDeactivate();
+    super.doDeactivate();
   }
 
   private void loadContent() throws Exception

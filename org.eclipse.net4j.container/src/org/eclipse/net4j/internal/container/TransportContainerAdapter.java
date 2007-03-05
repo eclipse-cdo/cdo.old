@@ -10,14 +10,14 @@
  **************************************************************************/
 package org.eclipse.net4j.internal.container;
 
-import org.eclipse.net4j.transport.AcceptorFactory;
-import org.eclipse.net4j.transport.ConnectorFactory;
+import org.eclipse.net4j.transport.IAcceptorFactory;
+import org.eclipse.net4j.transport.IConnectorFactory;
 
 public abstract class TransportContainerAdapter extends AbstractContainerAdapter
 {
-  private AcceptorFactory acceptorFactory;
+  private IAcceptorFactory acceptorFactory;
 
-  private ConnectorFactory connectorFactory;
+  private IConnectorFactory connectorFactory;
 
   protected TransportContainerAdapter(ContainerImpl container, String type)
   {
@@ -27,22 +27,22 @@ public abstract class TransportContainerAdapter extends AbstractContainerAdapter
   }
 
   @Override
-  protected void onActivate() throws Exception
+  protected void doActivate() throws Exception
   {
-    super.onActivate();
+    super.doActivate();
     getContainer().register(acceptorFactory);
     getContainer().register(connectorFactory);
   }
 
   @Override
-  protected void onDeactivate() throws Exception
+  protected void doDeactivate() throws Exception
   {
     getContainer().deregister(connectorFactory);
     getContainer().deregister(acceptorFactory);
-    super.onDeactivate();
+    super.doDeactivate();
   }
 
-  protected abstract AcceptorFactory createAcceptorFactory();
+  protected abstract IAcceptorFactory createAcceptorFactory();
 
-  protected abstract ConnectorFactory createConnectorFactory();
+  protected abstract IConnectorFactory createConnectorFactory();
 }

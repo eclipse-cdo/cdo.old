@@ -16,14 +16,14 @@ import org.eclipse.net4j.container.ContainerUtil;
 import org.eclipse.net4j.internal.container.bundle.ContainerBundle;
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
 
-import org.eclipse.internal.net4j.util.lifecycle.LifecycleImpl;
+import org.eclipse.internal.net4j.util.lifecycle.Lifecycle;
 
 import java.io.File;
 
 /**
  * @author Eike Stepper
  */
-public class ContainerManagerImpl extends LifecycleImpl implements ContainerManager
+public class ContainerManagerImpl extends Lifecycle implements ContainerManager
 {
   public static final ContainerManagerImpl INSTANCE = new ContainerManagerImpl();
 
@@ -39,9 +39,9 @@ public class ContainerManagerImpl extends LifecycleImpl implements ContainerMana
   }
 
   @Override
-  protected void onActivate() throws Exception
+  protected void doActivate() throws Exception
   {
-    super.onActivate();
+    super.doActivate();
     File folder = new File(ContainerBundle.BUNDLE.getStateLocation());
     File file = new File(folder, "container.state");
     container = ContainerUtil.createContainer(file);
@@ -49,7 +49,7 @@ public class ContainerManagerImpl extends LifecycleImpl implements ContainerMana
   }
 
   @Override
-  protected void onDeactivate() throws Exception
+  protected void doDeactivate() throws Exception
   {
     try
     {
@@ -60,6 +60,6 @@ public class ContainerManagerImpl extends LifecycleImpl implements ContainerMana
       container = null;
     }
 
-    super.onDeactivate();
+    super.doDeactivate();
   }
 }

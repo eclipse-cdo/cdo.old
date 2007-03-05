@@ -12,12 +12,10 @@ package org.eclipse.net4j.container.internal.ui.views;
 
 import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.container.internal.ui.bundle.SharedIcons;
-import org.eclipse.net4j.transport.BufferHandler;
-import org.eclipse.net4j.transport.Channel;
-import org.eclipse.net4j.transport.Connector;
-import org.eclipse.net4j.transport.Protocol;
-import org.eclipse.net4j.util.registry.IRegistryEvent;
-import org.eclipse.net4j.util.registry.IRegistryListener;
+import org.eclipse.net4j.transport.IBufferHandler;
+import org.eclipse.net4j.transport.IChannel;
+import org.eclipse.net4j.transport.IConnector;
+import org.eclipse.net4j.transport.IProtocol;
 
 import org.eclipse.swt.graphics.Image;
 
@@ -32,14 +30,14 @@ public class ConnectorsItemProvider extends ItemProvider<Container> implements I
 
   public Object getParent(Object child)
   {
-    if (child instanceof Connector)
+    if (child instanceof IConnector)
     {
       return getInput();
     }
 
-    if (child instanceof Channel)
+    if (child instanceof IChannel)
     {
-      return ((Channel)child).getConnector();
+      return ((IChannel)child).getConnector();
     }
 
     return null;
@@ -53,9 +51,9 @@ public class ConnectorsItemProvider extends ItemProvider<Container> implements I
       return values.toArray(new Object[values.size()]);
     }
 
-    if (parent instanceof Connector)
+    if (parent instanceof IConnector)
     {
-      return ((Connector)parent).getChannels();
+      return ((IConnector)parent).getChannels();
     }
 
     return NO_CHILDREN;
@@ -69,17 +67,17 @@ public class ConnectorsItemProvider extends ItemProvider<Container> implements I
   @Override
   public String getText(Object obj)
   {
-    if (obj instanceof Connector)
+    if (obj instanceof IConnector)
     {
-      Connector connector = (Connector)obj;
+      IConnector connector = (IConnector)obj;
       return connector.getDescription();
     }
 
-    if (obj instanceof Channel)
+    if (obj instanceof IChannel)
     {
-      Channel channel = (Channel)obj;
-      BufferHandler receiveHandler = channel.getReceiveHandler();
-      Object str = receiveHandler instanceof Protocol ? ((Protocol)receiveHandler).getProtocolID() : receiveHandler;
+      IChannel channel = (IChannel)obj;
+      IBufferHandler receiveHandler = channel.getReceiveHandler();
+      Object str = receiveHandler instanceof IProtocol ? ((IProtocol)receiveHandler).getProtocolID() : receiveHandler;
       return MessageFormat.format("[{0}] {1}", channel.getChannelIndex(), str);
     }
 
@@ -89,12 +87,12 @@ public class ConnectorsItemProvider extends ItemProvider<Container> implements I
   @Override
   public Image getImage(Object obj)
   {
-    if (obj instanceof Connector)
+    if (obj instanceof IConnector)
     {
       return SharedIcons.OBJ_CONNECTOR.createImage();
     }
 
-    if (obj instanceof Channel)
+    if (obj instanceof IChannel)
     {
       return SharedIcons.OBJ_CHANNEL.createImage();
     }
