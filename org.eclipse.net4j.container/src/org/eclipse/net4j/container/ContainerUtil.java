@@ -11,12 +11,6 @@
 package org.eclipse.net4j.container;
 
 import org.eclipse.net4j.internal.container.ContainerImpl;
-import org.eclipse.net4j.transport.IBufferPool;
-import org.eclipse.net4j.transport.IBufferProvider;
-
-import org.eclipse.internal.net4j.transport.BufferFactory;
-import org.eclipse.internal.net4j.transport.BufferPool;
-import org.eclipse.internal.net4j.transport.BufferUtil;
 
 import java.io.File;
 
@@ -37,30 +31,5 @@ public final class ContainerUtil
   public static Container createContainer(File file)
   {
     return new ContainerImpl(file);
-  }
-
-  public static IBufferProvider createBufferFactory(short bufferCapacity)
-  {
-    return new BufferFactory(bufferCapacity);
-  }
-
-  public static IBufferProvider createBufferFactory()
-  {
-    return new BufferFactory(BufferUtil.DEFAULT_BUFFER_CAPACITY);
-  }
-
-  public static IBufferPool createBufferPool(IBufferProvider factory)
-  {
-    return new BufferPool(factory);
-  }
-
-  public static IBufferPool createBufferPool(short bufferCapacity)
-  {
-    return createBufferPool(createBufferFactory(bufferCapacity));
-  }
-
-  public static IBufferPool createBufferPool()
-  {
-    return createBufferPool(createBufferFactory());
   }
 }
