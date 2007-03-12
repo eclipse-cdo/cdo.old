@@ -16,8 +16,6 @@ import org.eclipse.net4j.internal.jvm.JVMAcceptorFactoryImpl;
 import org.eclipse.net4j.internal.jvm.JVMConnectorFactoryImpl;
 import org.eclipse.net4j.jvm.JVMConstants;
 import org.eclipse.net4j.jvm.container.JVMContainerAdapter;
-import org.eclipse.net4j.transport.IAcceptorFactory;
-import org.eclipse.net4j.transport.IConnectorFactory;
 
 /**
  * @author Eike Stepper

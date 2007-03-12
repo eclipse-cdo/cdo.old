@@ -12,12 +12,10 @@ package org.eclipse.net4j.container;
 
 import org.eclipse.net4j.transport.ConnectorLocation;
 import org.eclipse.net4j.transport.IAcceptor;
-import org.eclipse.net4j.transport.IAcceptorFactory;
 import org.eclipse.net4j.transport.IBufferProvider;
 import org.eclipse.net4j.transport.IChannel;
 import org.eclipse.net4j.transport.IChannelID;
 import org.eclipse.net4j.transport.IConnector;
-import org.eclipse.net4j.transport.IConnectorFactory;
 import org.eclipse.net4j.transport.IProtocolFactory;
 import org.eclipse.net4j.transport.IProtocolFactoryID;
 import org.eclipse.net4j.util.registry.IRegistry;

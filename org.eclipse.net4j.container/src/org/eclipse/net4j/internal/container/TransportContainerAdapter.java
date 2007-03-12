@@ -10,9 +10,6 @@
  **************************************************************************/
 package org.eclipse.net4j.internal.container;
 
-import org.eclipse.net4j.transport.IAcceptorFactory;
-import org.eclipse.net4j.transport.IConnectorFactory;
-
 public abstract class TransportContainerAdapter extends AbstractContainerAdapter
 {
   private IAcceptorFactory acceptorFactory;

@@ -19,8 +19,6 @@ import org.eclipse.net4j.internal.tcp.TCPConnectorFactoryImpl;
 import org.eclipse.net4j.internal.tcp.TCPSelectorImpl;
 import org.eclipse.net4j.tcp.TCPConstants;
 import org.eclipse.net4j.tcp.container.TCPContainerAdapter;
-import org.eclipse.net4j.transport.IAcceptorFactory;
-import org.eclipse.net4j.transport.IConnectorFactory;
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
 
 /**

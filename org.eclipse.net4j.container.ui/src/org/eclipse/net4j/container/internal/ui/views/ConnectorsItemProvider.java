@@ -16,6 +16,7 @@ import org.eclipse.net4j.transport.IBufferHandler;
 import org.eclipse.net4j.transport.IChannel;
 import org.eclipse.net4j.transport.IConnector;
 import org.eclipse.net4j.transport.IProtocol;
+import org.eclipse.net4j.util.registry.IRegistryEvent;
 
 import org.eclipse.swt.graphics.Image;
 

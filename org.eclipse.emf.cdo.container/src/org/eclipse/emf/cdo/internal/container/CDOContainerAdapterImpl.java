@@ -24,6 +24,7 @@ import org.eclipse.net4j.util.container.IContainerDelta;
 import org.eclipse.net4j.util.event.EventUtil;
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
 import org.eclipse.net4j.util.registry.IRegistry;
+import org.eclipse.net4j.util.registry.IRegistryEvent;
 
 import org.eclipse.emf.internal.cdo.protocol.ClientProtocolFactory;
 

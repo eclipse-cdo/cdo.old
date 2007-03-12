@@ -19,6 +19,7 @@ import org.eclipse.net4j.transport.IConnector;
 import org.eclipse.net4j.transport.IProtocol;
 import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
+import org.eclipse.net4j.util.registry.IRegistryEvent;
 
 import org.eclipse.swt.graphics.Image;
 

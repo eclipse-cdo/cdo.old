@@ -13,24 +13,22 @@ package org.eclipse.net4j.internal.container;
 import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.container.ContainerAdapter;
 import org.eclipse.net4j.container.ContainerAdapterFactory;
-import org.eclipse.net4j.container.ContainerUtil;
 import org.eclipse.net4j.internal.container.bundle.ContainerBundle;
 import org.eclipse.net4j.internal.container.store.FileStore;
 import org.eclipse.net4j.internal.container.store.Store;
 import org.eclipse.net4j.transport.ConnectorLocation;
 import org.eclipse.net4j.transport.IAcceptor;
 import org.eclipse.net4j.transport.IAcceptorAcceptedEvent;
-import org.eclipse.net4j.transport.IAcceptorFactory;
 import org.eclipse.net4j.transport.IBufferHandler;
 import org.eclipse.net4j.transport.IBufferProvider;
 import org.eclipse.net4j.transport.IChannel;
 import org.eclipse.net4j.transport.IChannelID;
 import org.eclipse.net4j.transport.IConnector;
 import org.eclipse.net4j.transport.IConnectorChannelsEvent;
-import org.eclipse.net4j.transport.IConnectorFactory;
 import org.eclipse.net4j.transport.IProtocol;
 import org.eclipse.net4j.transport.IProtocolFactory;
 import org.eclipse.net4j.transport.IProtocolFactoryID;
+import org.eclipse.net4j.transport.TransportUtil;
 import org.eclipse.net4j.util.container.IContainerDelta;
 import org.eclipse.net4j.util.event.EventUtil;
 import org.eclipse.net4j.util.event.IEvent;
@@ -38,6 +36,7 @@ import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
 import org.eclipse.net4j.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.registry.IRegistry;
+import org.eclipse.net4j.util.registry.IRegistryEvent;
 
 import org.eclipse.internal.net4j.bundle.Net4j;
 import org.eclipse.internal.net4j.transport.Acceptor;
@@ -682,7 +681,7 @@ public class ContainerImpl extends Lifecycle implements Container
 
   protected IBufferProvider createBufferProvider()
   {
-    return ContainerUtil.createBufferPool(DEFAULT_BUFFER_CAPACITY);
+    return TransportUtil.createBufferPool(DEFAULT_BUFFER_CAPACITY);
   }
 
   private IAcceptor createAcceptor(String description)
