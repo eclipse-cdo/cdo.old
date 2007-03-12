@@ -18,6 +18,7 @@ import org.eclipse.net4j.transport.IChannelID;
 import org.eclipse.net4j.transport.IConnector;
 import org.eclipse.net4j.transport.IProtocolFactory;
 import org.eclipse.net4j.transport.IProtocolFactoryID;
+import org.eclipse.net4j.util.factory.IFactory;
 import org.eclipse.net4j.util.registry.IRegistry;
 
 import java.util.Collection;
@@ -39,9 +40,9 @@ public interface Container
 
   public IRegistry<String, ContainerAdapterFactory> getAdapterFactoryRegistry();
 
-  public void register(ContainerAdapterFactory factory);
+  public void registerContainerAdapterFactory(ContainerAdapterFactory factory);
 
-  public void deregister(ContainerAdapterFactory factory);
+  public void deregisterContainerAdapterFactory(ContainerAdapterFactory factory);
 
   /*
    * ContainerAdapter
@@ -55,21 +56,21 @@ public interface Container
    * AcceptorFactory
    */
 
-  public IRegistry<String, IAcceptorFactory> getAcceptorFactoryRegistry();
+  public IRegistry<String, IFactory<IAcceptor>> getAcceptorFactoryRegistry();
 
-  public void register(IAcceptorFactory factory);
+  public void registerAcceptorFactory(IFactory<IAcceptor> factory);
 
-  public void deregister(IAcceptorFactory factory);
+  public void deregisterAcceptorFactory(IFactory<IAcceptor> factory);
 
   /*
    * ConnectorFactory
    */
 
-  public IRegistry<String, IConnectorFactory> getConnectorFactoryRegistry();
+  public IRegistry<String, IFactory<IConnector>> getConnectorFactoryRegistry();
 
-  public void register(IConnectorFactory factory);
+  public void registerConnectorFactory(IFactory<IConnector> factory);
 
-  public void deregister(IConnectorFactory factory);
+  public void deregisterConnectorFactory(IFactory<IConnector> factory);
 
   /*
    * ProtocolFactory
@@ -77,9 +78,9 @@ public interface Container
 
   public IRegistry<IProtocolFactoryID, IProtocolFactory> getProtocolFactoryRegistry();
 
-  public void register(IProtocolFactory factory);
+  public void registerProtocolFactory(IProtocolFactory factory);
 
-  public void deregister(IProtocolFactory factory);
+  public void deregisterProtocolFactory(IProtocolFactory factory);
 
   /*
    * Acceptor

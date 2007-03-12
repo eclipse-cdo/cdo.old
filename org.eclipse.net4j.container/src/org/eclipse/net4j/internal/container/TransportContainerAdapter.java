@@ -27,15 +27,15 @@ public abstract class TransportContainerAdapter extends AbstractContainerAdapter
   protected void doActivate() throws Exception
   {
     super.doActivate();
-    getContainer().register(acceptorFactory);
-    getContainer().register(connectorFactory);
+    getContainer().registerAcceptorFactory(acceptorFactory);
+    getContainer().registerAcceptorFactory(connectorFactory);
   }
 
   @Override
   protected void doDeactivate() throws Exception
   {
-    getContainer().deregister(connectorFactory);
-    getContainer().deregister(acceptorFactory);
+    getContainer().deregisterAcceptorFactory(connectorFactory);
+    getContainer().deregisterAcceptorFactory(acceptorFactory);
     super.doDeactivate();
   }
 

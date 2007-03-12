@@ -43,7 +43,7 @@ public class ContainerAdapterFactoryExtensionParser extends ExtensionParser
       try
       {
         ContainerAdapterFactory factory = (ContainerAdapterFactory)element.createExecutableExtension(CLASS_ATTR);
-        ContainerManager.INSTANCE.getContainer().register(factory);
+        ContainerManager.INSTANCE.getContainer().registerContainerAdapterFactory(factory);
       }
       catch (Exception ex)
       {

@@ -492,25 +492,25 @@ public class ContainerImpl extends Lifecycle implements Container
     registry.remove(factory.getType());
   }
 
-  public void register(IAcceptorFactory factory)
+  public void registerAcceptorFactory(IAcceptorFactory factory)
   {
     IRegistry<String, IAcceptorFactory> registry = getAcceptorFactoryRegistry();
     registry.put(factory.getType(), factory);
   }
 
-  public void deregister(IAcceptorFactory factory)
+  public void deregisterAcceptorFactory(IAcceptorFactory factory)
   {
     IRegistry<String, IAcceptorFactory> registry = getAcceptorFactoryRegistry();
     registry.remove(factory.getType());
   }
 
-  public void register(IConnectorFactory factory)
+  public void registerAcceptorFactory(IConnectorFactory factory)
   {
     IRegistry<String, IConnectorFactory> registry = getConnectorFactoryRegistry();
     registry.put(factory.getType(), factory);
   }
 
-  public void deregister(IConnectorFactory factory)
+  public void deregisterAcceptorFactory(IConnectorFactory factory)
   {
     IRegistry<String, IConnectorFactory> registry = getConnectorFactoryRegistry();
     registry.remove(factory.getType());
