@@ -10,7 +10,6 @@
  **************************************************************************/
 package org.eclipse.net4j.container.internal.ui.views;
 
-import org.eclipse.net4j.container.Container;
 import org.eclipse.net4j.container.internal.ui.bundle.SharedIcons;
 import org.eclipse.net4j.transport.IBufferHandler;
 import org.eclipse.net4j.transport.IChannel;

@@ -1,7 +1,5 @@
 package org.eclipse.net4j.container.internal.ui.views;
 
-import org.eclipse.net4j.container.ContainerManager;
-
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
