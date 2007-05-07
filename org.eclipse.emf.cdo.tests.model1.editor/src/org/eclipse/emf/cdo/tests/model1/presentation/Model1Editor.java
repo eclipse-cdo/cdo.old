@@ -393,7 +393,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
         case Resource.RESOURCE__WARNINGS:
         {
           Resource resource = (Resource)notification.getNotifier();
-          Diagnostic diagnostic = analyzeResourceProblems((Resource)notification.getNotifier(), null);
+          Diagnostic diagnostic = analyzeResourceProblems(resource, null);
           if (diagnostic.getSeverity() != Diagnostic.OK)
           {
             resourceToDiagnosticMap.put(resource, diagnostic);
