@@ -1,1 +1,0 @@
-<%if (!genFeature.isBasicSet()) {%>cdoLoad();<%}%>

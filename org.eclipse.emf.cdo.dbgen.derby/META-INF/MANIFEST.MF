@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: CDO DBGen DERBY Dialect
-Bundle-SymbolicName: org.eclipse.emf.cdo.dbgen.derby;singleton:=true
-Bundle-Version: 0.8.0.qualifier
-Bundle-Vendor: Eclipse.org
-Fragment-Host: org.eclipse.emf.cdo.dbgen;bundle-version="0.8.0"
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
