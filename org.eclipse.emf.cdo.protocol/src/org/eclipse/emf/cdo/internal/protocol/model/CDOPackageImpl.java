@@ -13,6 +13,7 @@ package org.eclipse.emf.cdo.internal.protocol.model;
 import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
+import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
 import org.eclipse.net4j.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
@@ -70,6 +71,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     }
   }
 
+  @Override
   public void write(ExtendedDataOutputStream out) throws IOException
   {
     if (PROTOCOL.isEnabled())
@@ -106,6 +108,25 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
   public CDOClass[] getClasses()
   {
     return classes.toArray(new CDOClassImpl[classes.size()]);
+  }
+
+  public CDOClass[] getConcreteClasses()
+  {
+    List<CDOClassImpl> result = new ArrayList(0);
+    for (CDOClassImpl cdoClass : classes)
+    {
+      if (!cdoClass.isAbstract())
+      {
+        CDOPackage cdoPackage = cdoClass.getContainingPackage();
+        if (cdoPackage != CDOPackageManager.INSTANCE.getCDOCorePackage()
+            && cdoPackage != CDOPackageManager.INSTANCE.getCDOResourcePackage())
+        {
+          result.add(cdoClass);
+        }
+      }
+    }
+
+    return result.toArray(new CDOClassImpl[result.size()]);
   }
 
   public CDOClassImpl lookupClass(int classifierID)

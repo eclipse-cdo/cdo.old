@@ -21,5 +21,7 @@ public interface CDOPackage extends CDOModelElement
 
   public CDOClass[] getClasses();
 
+  public CDOClass[] getConcreteClasses();
+
   public CDOClass lookupClass(int classifierID);
 }
