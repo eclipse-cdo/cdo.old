@@ -60,4 +60,6 @@ public interface CDOType
   public int getTypeID();
 
   public boolean canBeNull();
+
+  public Object getDefaultValue();
 }

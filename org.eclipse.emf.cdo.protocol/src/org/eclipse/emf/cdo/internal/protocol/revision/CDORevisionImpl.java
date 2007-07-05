@@ -101,7 +101,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     readValues(in);
   }
 
-  public void write(ExtendedDataOutputStream out, CDODanglingReferenceConverter converter) throws IOException
+  public void write(ExtendedDataOutputStream out, CDOReferenceConverter converter) throws IOException
   {
     CDOClassRefImpl classRef = cdoClass.createClassRef();
     if (TRACER.isEnabled())
@@ -488,7 +488,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     }
   }
 
-  private void writeValues(ExtendedDataOutputStream out, CDODanglingReferenceConverter converter) throws IOException
+  private void writeValues(ExtendedDataOutputStream out, CDOReferenceConverter converter) throws IOException
   {
     CDOFeatureImpl[] features = cdoClass.getFeatures();
     for (int i = 0; i < features.length; i++)

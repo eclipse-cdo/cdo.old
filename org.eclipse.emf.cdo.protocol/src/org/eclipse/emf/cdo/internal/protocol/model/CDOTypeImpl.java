@@ -28,19 +28,41 @@ public abstract class CDOTypeImpl implements CDOType
 {
   private static List<CDOTypeImpl> index = new ArrayList();
 
-  public static final CDOTypeImpl BOOLEAN = new CDOTypeImpl("BOOLEAN", 22, false)
+  private static final byte BOOLEAN_DEFAULT_PRIMITIVE = 0;
+
+  private static final char CHARACTER_DEFAULT_PRIMITIVE = 0;
+
+  private static final short SHORT_DEFAULT_PRIMITIVE = 0;
+
+  public static final Boolean BOOLEAN_DEFAULT = new Boolean(false);
+
+  public static final Byte BYTE_DEFAULT = new Byte(BOOLEAN_DEFAULT_PRIMITIVE);
+
+  public static final Character CHARACTER_DEFAULT = new Character(CHARACTER_DEFAULT_PRIMITIVE);
+
+  public static final Double DOUBLE_DEFAULT = new Double(0.0);
+
+  public static final Float FLOAT_DEFAULT = new Float(0.0);
+
+  public static final Integer INTEGER_DEFAULT = new Integer(0);
+
+  public static final Long LONG_DEFAULT = new Long(0L);
+
+  public static final Short SHORT_DEFAULT = new Short(SHORT_DEFAULT_PRIMITIVE);
+
+  public static final CDOTypeImpl BOOLEAN = new CDOTypeImpl("BOOLEAN", 22, false, BOOLEAN_DEFAULT)
   {
     @SuppressWarnings("cast")
     @Override
     public Object copyValue(Object value)
     {
-      return (Boolean)value;
+      return value == null ? getDefaultValue() : (Boolean)value;
     }
 
     @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
-      out.writeBoolean((Boolean)value);
+      out.writeBoolean((Boolean)(value == null ? getDefaultValue() : value));
     }
 
     @Override
@@ -50,19 +72,19 @@ public abstract class CDOTypeImpl implements CDOType
     }
   };
 
-  public static final CDOTypeImpl BYTE = new CDOTypeImpl("BYTE", 24, false)
+  public static final CDOTypeImpl BYTE = new CDOTypeImpl("BYTE", 24, false, BYTE_DEFAULT)
   {
     @SuppressWarnings("cast")
     @Override
     public Object copyValue(Object value)
     {
-      return (Byte)value;
+      return value == null ? getDefaultValue() : (Byte)value;
     }
 
     @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
-      out.writeByte((Byte)value);
+      out.writeByte((Byte)(value == null ? getDefaultValue() : value));
     }
 
     @Override
@@ -72,19 +94,19 @@ public abstract class CDOTypeImpl implements CDOType
     }
   };
 
-  public static final CDOTypeImpl CHAR = new CDOTypeImpl("CHAR", 27, false)
+  public static final CDOTypeImpl CHAR = new CDOTypeImpl("CHAR", 27, false, CHARACTER_DEFAULT)
   {
     @SuppressWarnings("cast")
     @Override
     public Object copyValue(Object value)
     {
-      return (Character)value;
+      return value == null ? getDefaultValue() : (Character)value;
     }
 
     @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
-      out.writeChar(((Character)value).charValue());
+      out.writeChar(((Character)(value == null ? getDefaultValue() : value)).charValue());
     }
 
     @Override
@@ -94,19 +116,19 @@ public abstract class CDOTypeImpl implements CDOType
     }
   };
 
-  public static final CDOTypeImpl DOUBLE = new CDOTypeImpl("DOUBLE", 31, false)
+  public static final CDOTypeImpl DOUBLE = new CDOTypeImpl("DOUBLE", 31, false, DOUBLE_DEFAULT)
   {
     @SuppressWarnings("cast")
     @Override
     public Object copyValue(Object value)
     {
-      return (Double)value;
+      return value == null ? getDefaultValue() : (Double)value;
     }
 
     @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
-      out.writeDouble((Double)value);
+      out.writeDouble((Double)(value == null ? getDefaultValue() : value));
     }
 
     @Override
@@ -116,19 +138,19 @@ public abstract class CDOTypeImpl implements CDOType
     }
   };
 
-  public static final CDOTypeImpl FLOAT = new CDOTypeImpl("FLOAT", 37, false)
+  public static final CDOTypeImpl FLOAT = new CDOTypeImpl("FLOAT", 37, false, FLOAT_DEFAULT)
   {
     @SuppressWarnings("cast")
     @Override
     public Object copyValue(Object value)
     {
-      return (Float)value;
+      return value == null ? getDefaultValue() : (Float)value;
     }
 
     @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
-      out.writeFloat((Float)value);
+      out.writeFloat((Float)(value == null ? getDefaultValue() : value));
     }
 
     @Override
@@ -138,19 +160,19 @@ public abstract class CDOTypeImpl implements CDOType
     }
   };
 
-  public static final CDOTypeImpl INT = new CDOTypeImpl("INT", 39, false)
+  public static final CDOTypeImpl INT = new CDOTypeImpl("INT", 39, false, INTEGER_DEFAULT)
   {
     @SuppressWarnings("cast")
     @Override
     public Object copyValue(Object value)
     {
-      return (Integer)value;
+      return value == null ? getDefaultValue() : (Integer)value;
     }
 
     @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
-      out.writeInt((Integer)value);
+      out.writeInt((Integer)(value == null ? getDefaultValue() : value));
     }
 
     @Override
@@ -160,19 +182,19 @@ public abstract class CDOTypeImpl implements CDOType
     }
   };
 
-  public static final CDOTypeImpl LONG = new CDOTypeImpl("LONG", 43, false)
+  public static final CDOTypeImpl LONG = new CDOTypeImpl("LONG", 43, false, LONG_DEFAULT)
   {
     @SuppressWarnings("cast")
     @Override
     public Object copyValue(Object value)
     {
-      return (Long)value;
+      return value == null ? getDefaultValue() : (Long)value;
     }
 
     @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
-      out.writeLong((Long)value);
+      out.writeLong((Long)(value == null ? getDefaultValue() : value));
     }
 
     @Override
@@ -182,19 +204,19 @@ public abstract class CDOTypeImpl implements CDOType
     }
   };
 
-  public static final CDOTypeImpl SHORT = new CDOTypeImpl("SHORT", 48, false)
+  public static final CDOTypeImpl SHORT = new CDOTypeImpl("SHORT", 48, false, SHORT_DEFAULT)
   {
     @SuppressWarnings("cast")
     @Override
     public Object copyValue(Object value)
     {
-      return (Short)value;
+      return value == null ? getDefaultValue() : (Short)value;
     }
 
     @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
-      out.writeShort((Short)value);
+      out.writeShort((Short)(value == null ? getDefaultValue() : value));
     }
 
     @Override
@@ -204,13 +226,13 @@ public abstract class CDOTypeImpl implements CDOType
     }
   };
 
-  public static final CDOTypeImpl OBJECT = new CDOTypeImpl("OBJECT", 10, true)
+  public static final CDOTypeImpl OBJECT = new CDOTypeImpl("OBJECT", 10, true, CDOID.NULL)
   {
     @SuppressWarnings("cast")
     @Override
     public Object copyValue(Object value)
     {
-      return (CDOID)value;
+      return value;
     }
 
     @Override
@@ -443,12 +465,20 @@ public abstract class CDOTypeImpl implements CDOType
 
   private boolean canBeNull;
 
-  private CDOTypeImpl(String name, int typeID, boolean canBeNull)
+  private Object defaultValue;
+
+  private CDOTypeImpl(String name, int typeID, boolean canBeNull, Object defaultValue)
   {
     this.name = name;
     this.typeID = typeID;
     this.canBeNull = canBeNull;
+    this.defaultValue = defaultValue;
     setIndex();
+  }
+
+  private CDOTypeImpl(String name, int typeID, boolean canBeNull)
+  {
+    this(name, typeID, canBeNull, null);
   }
 
   public String getName()
@@ -464,6 +494,11 @@ public abstract class CDOTypeImpl implements CDOType
   public boolean canBeNull()
   {
     return canBeNull;
+  }
+
+  public Object getDefaultValue()
+  {
+    return defaultValue;
   }
 
   @Override
