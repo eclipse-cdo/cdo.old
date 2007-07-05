@@ -189,7 +189,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
   {
     if (TRACER.isEnabled())
     {
-      TRACER.format("Setting revised: {0,date} {0,time}", revised);
+      TRACER.format("Setting revised: {0} -> {1,date} {1,time}", this, revised);
     }
 
     this.revised = revised;

@@ -51,8 +51,8 @@ public abstract class CDORevisionResolverImpl implements CDORevisionResolver
   {
     if (TRACER.isEnabled())
     {
-      TRACER.format("Adding revision: {0}, created={1,date} {1,time}, revised={2,date} {2,time}, actual={3}, ",
-          revision, revision.getCreated(), revision.getRevised(), revision.isActual());
+      TRACER.format("Adding revision: {0}, created={1,date} {1,time}, revised={2,date} {2,time}, actual={3}", revision,
+          revision.getCreated(), revision.getRevised(), revision.isActual());
     }
 
     TimeLine timeLine = getTimeLine(revision.getID());
