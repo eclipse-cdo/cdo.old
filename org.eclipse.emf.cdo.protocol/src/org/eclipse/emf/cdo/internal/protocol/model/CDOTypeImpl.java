@@ -19,6 +19,7 @@ import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -316,19 +317,34 @@ public abstract class CDOTypeImpl implements CDOType
     @Override
     public Object copyValue(Object value)
     {
-      throw new UnsupportedOperationException("Not yet implemented");
+      return value == null ? null : new Date(((Date)value).getTime());
     }
 
     @Override
     public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
     {
-      throw new UnsupportedOperationException("Not yet implemented");
+      if (value != null)
+      {
+        out.writeBoolean(true);
+        out.writeLong(((Date)value).getTime());
+      }
+      else
+      {
+        out.writeBoolean(false);
+      }
     }
 
     @Override
     public Object readValue(ExtendedDataInputStream in) throws IOException
     {
-      throw new UnsupportedOperationException("Not yet implemented");
+      if (in.readBoolean())
+      {
+        return new Date(in.readLong());
+      }
+      else
+      {
+        return null;
+      }
     }
   };
 
