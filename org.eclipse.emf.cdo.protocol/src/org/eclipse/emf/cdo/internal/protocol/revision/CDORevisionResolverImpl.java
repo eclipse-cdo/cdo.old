@@ -19,6 +19,7 @@ import org.eclipse.net4j.util.om.trace.ContextTracer;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.ListIterator;
 import java.util.Map;
 
 /**
@@ -43,12 +44,17 @@ public abstract class CDORevisionResolverImpl implements CDORevisionResolver
 
   public CDORevisionImpl getHistoricalRevision(CDOID id, long timeStamp)
   {
-    // TODO Implement method CDORevisionManagerImpl.getHistoricalRevision()
-    throw new UnsupportedOperationException("Not yet implemented");
+    TimeLine timeLine = getTimeLine(id);
+    return timeLine.getHistorical(timeStamp);
   }
 
   public void addRevision(CDORevisionImpl revision)
   {
+    if (!revision.isActual())
+    {
+      throw new IllegalArgumentException("!revision.isActual()");
+    }
+
     if (TRACER.isEnabled())
     {
       TRACER.format("Adding revision: {0}, created={1,date} {1,time}, revised={2,date} {2,time}, actual={3}", revision,
@@ -78,6 +84,8 @@ public abstract class CDORevisionResolverImpl implements CDORevisionResolver
   }
 
   protected abstract CDORevisionImpl loadActual(CDOID id);
+
+  protected abstract CDORevisionImpl loadHistorical(CDOID id, long timeStamp);
 
   /**
    * @author Eike Stepper
@@ -115,25 +123,40 @@ public abstract class CDORevisionResolverImpl implements CDORevisionResolver
       return revision;
     }
 
+    public CDORevisionImpl getHistorical(long timeStamp)
+    {
+      ListIterator<CDORevisionImpl> it = listIterator();
+      while (it.hasNext())
+      {
+        CDORevisionImpl revision = it.next();
+        long revised = revision.getRevised();
+        if (revised != 0 && revised < timeStamp)
+        {
+          break;
+        }
+
+        long created = revision.getCreated();
+        if ((revised == 0 || revised >= timeStamp) && timeStamp >= created)
+        {
+          return revision;
+        }
+      }
+
+      CDORevisionImpl revision = loadHistorical(id, timeStamp);
+      it.add(revision);
+      return revision;
+    }
+
     @Override
     public boolean add(CDORevisionImpl revision)
     {
-      if (revision.isActual())
+      CDORevisionImpl previousRevision = isEmpty() ? null : getFirst();
+      if (previousRevision != null && previousRevision.isActual())
       {
-        CDORevisionImpl previousRevision = isEmpty() ? null : getFirst();
-        if (previousRevision != null && previousRevision.isActual())
-        {
-          previousRevision.setRevised(revision.getCreated() - 1);
-        }
-
-        addFirst(revision);
-      }
-      else
-      {
-        // TODO Implement method TimeLine.add()
-        throw new UnsupportedOperationException("Not yet implemented");
+        previousRevision.setRevised(revision.getCreated() - 1);
       }
 
+      addFirst(revision);
       return true;
     }
   }
