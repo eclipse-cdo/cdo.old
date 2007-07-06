@@ -17,7 +17,7 @@ import org.eclipse.emf.cdo.protocol.CDOID;
  */
 public interface CDORevisionResolver
 {
-  public CDORevision getActualRevision(CDOID id);
+  public CDORevision getRevision(CDOID id);
 
-  public CDORevision getHistoricalRevision(CDOID id, long timeStamp);
+  public CDORevision getRevision(CDOID id, long timeStamp);
 }

@@ -136,6 +136,7 @@ public abstract class CDORevisionResolverImpl implements CDORevisionResolver
         }
 
         long created = revision.getCreated();
+        // TODO Replace by revision.isValid()
         if ((revised == 0 || revised >= timeStamp) && timeStamp >= created)
         {
           return revision;

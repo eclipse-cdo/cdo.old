@@ -30,7 +30,7 @@ public interface CDORevision
 
   public long getRevised();
 
-  public boolean isActual();
+  public boolean isCurrent();
 
   public boolean isValid(long timeStamp);
 
