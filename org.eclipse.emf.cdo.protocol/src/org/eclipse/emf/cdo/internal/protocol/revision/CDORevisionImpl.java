@@ -195,7 +195,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     this.revised = revised;
   }
 
-  public boolean isActual()
+  public boolean isCurrent()
   {
     return revised == UNSPECIFIED_DATE;
   }

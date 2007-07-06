@@ -36,29 +36,29 @@ public abstract class CDORevisionResolverImpl implements CDORevisionResolver
   {
   }
 
-  public CDORevisionImpl getActualRevision(CDOID id)
+  public CDORevisionImpl getRevision(CDOID id)
   {
     TimeLine timeLine = getTimeLine(id);
-    return timeLine.getActual();
+    return timeLine.getRevision();
   }
 
-  public CDORevisionImpl getHistoricalRevision(CDOID id, long timeStamp)
+  public CDORevisionImpl getRevision(CDOID id, long timeStamp)
   {
     TimeLine timeLine = getTimeLine(id);
-    return timeLine.getHistorical(timeStamp);
+    return timeLine.getRevision(timeStamp);
   }
 
   public void addRevision(CDORevisionImpl revision)
   {
-    if (!revision.isActual())
+    if (!revision.isCurrent())
     {
-      throw new IllegalArgumentException("!revision.isActual()");
+      throw new IllegalArgumentException("!revision.isCurrent()");
     }
 
     if (TRACER.isEnabled())
     {
-      TRACER.format("Adding revision: {0}, created={1,date} {1,time}, revised={2,date} {2,time}, actual={3}", revision,
-          revision.getCreated(), revision.getRevised(), revision.isActual());
+      TRACER.format("Adding revision: {0}, created={1,date} {1,time}, revised={2,date} {2,time}, current={3}",
+          revision, revision.getCreated(), revision.getRevised(), revision.isCurrent());
     }
 
     TimeLine timeLine = getTimeLine(revision.getID());
@@ -83,9 +83,9 @@ public abstract class CDORevisionResolverImpl implements CDORevisionResolver
     return timeLine;
   }
 
-  protected abstract CDORevisionImpl loadActual(CDOID id);
+  protected abstract CDORevisionImpl loadRevision(CDOID id);
 
-  protected abstract CDORevisionImpl loadHistorical(CDOID id, long timeStamp);
+  protected abstract CDORevisionImpl loadRevision(CDOID id, long timeStamp);
 
   /**
    * @author Eike Stepper
@@ -111,19 +111,19 @@ public abstract class CDORevisionResolverImpl implements CDORevisionResolver
       return id;
     }
 
-    public CDORevisionImpl getActual()
+    public CDORevisionImpl getRevision()
     {
       CDORevisionImpl revision = isEmpty() ? null : getFirst();
-      if (revision == null || !revision.isActual())
+      if (revision == null || !revision.isCurrent())
       {
-        revision = loadActual(id);
+        revision = loadRevision(id);
         addFirst(revision);
       }
 
       return revision;
     }
 
-    public CDORevisionImpl getHistorical(long timeStamp)
+    public CDORevisionImpl getRevision(long timeStamp)
     {
       ListIterator<CDORevisionImpl> it = listIterator();
       while (it.hasNext())
@@ -142,7 +142,7 @@ public abstract class CDORevisionResolverImpl implements CDORevisionResolver
         }
       }
 
-      CDORevisionImpl revision = loadHistorical(id, timeStamp);
+      CDORevisionImpl revision = loadRevision(id, timeStamp);
       it.add(revision);
       return revision;
     }
@@ -151,7 +151,7 @@ public abstract class CDORevisionResolverImpl implements CDORevisionResolver
     public boolean add(CDORevisionImpl revision)
     {
       CDORevisionImpl previousRevision = isEmpty() ? null : getFirst();
-      if (previousRevision != null && previousRevision.isActual())
+      if (previousRevision != null && previousRevision.isCurrent())
       {
         previousRevision.setRevised(revision.getCreated() - 1);
       }
