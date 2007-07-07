@@ -61,6 +61,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.StringTokenizer;
+import org.eclipse.emf.common.CommonPlugin;
 
 /**
  * This is a simple wizard for creating a new model file. <!-- begin-user-doc
@@ -163,7 +164,7 @@ public class Model1ModelWizard extends Wizard implements INewWizard
           }
         }
       }
-      Collections.sort(initialObjectNames, java.text.Collator.getInstance());
+      Collections.sort(initialObjectNames, CommonPlugin.INSTANCE.getComparator());
     }
     return initialObjectNames;
   }

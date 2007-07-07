@@ -41,7 +41,9 @@ import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
 import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
+import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
 import org.eclipse.core.resources.IFile;
@@ -95,7 +97,6 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
@@ -700,15 +701,24 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   public Model1Editor()
   {
     super();
+    initializeEditingDomain();
+  }
 
+  /**
+   * This sets up the editing domain for the model editor. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected void initializeEditingDomain()
+  {
     // Create an adapter factory that yields item providers.
     //
-    List<AdapterFactory> factories = new ArrayList<AdapterFactory>();
-    factories.add(new ResourceItemProviderAdapterFactory());
-    factories.add(new Model1ItemProviderAdapterFactory());
-    factories.add(new ReflectiveItemProviderAdapterFactory());
+    adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
-    adapterFactory = new ComposedAdapterFactory(factories);
+    adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
+    adapterFactory.addAdapterFactory(new Model1ItemProviderAdapterFactory());
+    adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
     // Create the command stack that will notify this editor as commands are
     // executed.
@@ -972,7 +982,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
     contextMenu.addMenuListener(this);
     Menu menu = contextMenu.createContextMenu(viewer.getControl());
     viewer.getControl().setMenu(menu);
-    getSite().registerContextMenu(contextMenu, viewer);
+    getSite().registerContextMenu(contextMenu, new UnwrappingSelectionProvider(viewer));
 
     int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
     Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
@@ -989,10 +999,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
    */
   public void createModel()
   {
-    // Assumes that the input is a file object.
-    //
-    IFileEditorInput modelFile = (IFileEditorInput)getEditorInput();
-    URI resourceURI = URI.createPlatformResourceURI(modelFile.getFile().getFullPath().toString(), true);
+    URI resourceURI = EditUIUtil.getURI(getEditorInput());
     Exception exception = null;
     Resource resource = null;
     try
@@ -1016,7 +1023,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * Returns a dignostic describing the errors and warnings listed in the
+   * Returns a diagnostic describing the errors and warnings listed in the
    * resource and the specified exception (if any). <!-- begin-user-doc --> <!--
    * end-user-doc -->
    * 
@@ -1281,7 +1288,13 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
         setPageText(pageIndex, getString("_UI_TreeWithColumnsPage_label"));
       }
 
-      setActivePage(0);
+      getSite().getShell().getDisplay().asyncExec(new Runnable()
+      {
+        public void run()
+        {
+          setActivePage(0);
+        }
+      });
     }
 
     // Ensures that this editor will only display the page's tab
@@ -1303,7 +1316,13 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
       }
     });
 
-    updateProblemIndication();
+    getSite().getShell().getDisplay().asyncExec(new Runnable()
+    {
+      public void run()
+      {
+        updateProblemIndication();
+      }
+    });
   }
 
   /**
@@ -1565,6 +1584,11 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   @Override
   public void doSave(IProgressMonitor progressMonitor)
   {
+    // Save only resources that have actually changed.
+    //
+    final Map<Object, Object> saveOptions = new HashMap<Object, Object>();
+    saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
+
     // Do the work within an operation because this is a long running activity
     // that modifies the workbench.
     //
@@ -1586,7 +1610,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
             try
             {
               savedResources.add(resource);
-              resource.save(Collections.EMPTY_MAP);
+              resource.save(saveOptions);
             }
             catch (Exception exception)
             {
@@ -1621,7 +1645,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This returns wether something has been persisted to the URI of the
+   * This returns whether something has been persisted to the URI of the
    * specified resource. The implementation uses the URI converter from the
    * editor's resource set to try to open an input stream. <!-- begin-user-doc
    * --> <!-- end-user-doc -->
