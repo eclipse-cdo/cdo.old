@@ -65,6 +65,23 @@ public abstract class CDORevisionResolverImpl implements CDORevisionResolver
     timeLine.add(revision);
   }
 
+  public void removeRevision(CDORevisionImpl revision)
+  {
+    if (!revision.isCurrent())
+    {
+      throw new IllegalArgumentException("!revision.isCurrent()");
+    }
+
+    if (TRACER.isEnabled())
+    {
+      TRACER.format("Removing revision: {0}, created={1,date} {1,time}, revised={2,date} {2,time}, current={3}",
+          revision, revision.getCreated(), revision.getRevised(), revision.isCurrent());
+    }
+
+    TimeLine timeLine = getTimeLine(revision.getID());
+    timeLine.remove(revision);
+  }
+
   @Override
   public String toString()
   {
