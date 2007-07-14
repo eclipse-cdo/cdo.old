@@ -15,9 +15,9 @@ import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 
-import org.eclipse.net4j.util.om.trace.ContextTracer;
-import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
-import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
+import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
+import org.eclipse.net4j.util.io.ExtendedDataInputStream;
+import org.eclipse.net4j.util.io.ExtendedDataOutputStream;
 
 import java.io.IOException;
 import java.text.MessageFormat;

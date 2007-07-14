@@ -14,8 +14,8 @@ import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionResolver;
 
+import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.ReflectUtil;
-import org.eclipse.net4j.util.om.trace.ContextTracer;
 
 import java.util.HashMap;
 import java.util.LinkedList;

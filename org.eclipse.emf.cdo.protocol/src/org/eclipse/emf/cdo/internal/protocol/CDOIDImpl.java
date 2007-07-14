@@ -2,8 +2,8 @@ package org.eclipse.emf.cdo.internal.protocol;
 
 import org.eclipse.emf.cdo.protocol.CDOID;
 
-import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
-import org.eclipse.net4j.util.stream.ExtendedDataOutputStream;
+import org.eclipse.net4j.util.io.ExtendedDataInputStream;
+import org.eclipse.net4j.util.io.ExtendedDataOutputStream;
 
 import java.io.IOException;
 

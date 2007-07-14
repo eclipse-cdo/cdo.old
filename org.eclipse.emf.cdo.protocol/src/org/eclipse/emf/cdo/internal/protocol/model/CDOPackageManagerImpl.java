@@ -19,9 +19,9 @@ import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
 import org.eclipse.net4j.internal.util.container.SingleDeltaContainerEvent;
 import org.eclipse.net4j.internal.util.event.Notifier;
+import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.container.IContainer;
 import org.eclipse.net4j.util.container.IContainerDelta;
-import org.eclipse.net4j.util.om.trace.ContextTracer;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -29,7 +29,7 @@ import java.util.concurrent.ConcurrentMap;
 /**
  * @author Eike Stepper
  */
-public class CDOPackageManagerImpl extends Notifier implements CDOPackageManager, IContainer<CDOPackage>
+public abstract class CDOPackageManagerImpl extends Notifier implements CDOPackageManager, IContainer<CDOPackage>
 {
   private static final ContextTracer TRACER = new ContextTracer(CDOProtocol.DEBUG_MODEL, CDOPackageManagerImpl.class);
 
@@ -110,4 +110,6 @@ public class CDOPackageManagerImpl extends Notifier implements CDOPackageManager
       throw new IllegalStateException("Duplicate package: " + cdoPackage);
     }
   }
+
+  protected abstract CDOPackageImpl resolve(String packageURI);
 }

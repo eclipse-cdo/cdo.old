@@ -10,6 +10,7 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.model;
 
+import org.eclipse.emf.cdo.internal.protocol.model.CDOPackageImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOPackageManagerImpl;
 
 /**
@@ -23,6 +24,14 @@ public final class ModelUtil
 
   public static CDOPackageManager createPackageManager()
   {
-    return new CDOPackageManagerImpl();
+    return new CDOPackageManagerImpl()
+    {
+
+      @Override
+      protected CDOPackageImpl resolve(String packageURI)
+      {
+        return null;
+      }
+    };
   }
 }
