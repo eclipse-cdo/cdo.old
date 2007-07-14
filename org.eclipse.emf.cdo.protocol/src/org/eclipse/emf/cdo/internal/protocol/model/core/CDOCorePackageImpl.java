@@ -11,6 +11,7 @@
 package org.eclipse.emf.cdo.internal.protocol.model.core;
 
 import org.eclipse.emf.cdo.internal.protocol.model.CDOPackageImpl;
+import org.eclipse.emf.cdo.internal.protocol.model.CDOPackageManagerImpl;
 import org.eclipse.emf.cdo.protocol.model.core.CDOCorePackage;
 
 /**
@@ -18,17 +19,16 @@ import org.eclipse.emf.cdo.protocol.model.core.CDOCorePackage;
  */
 public final class CDOCorePackageImpl extends CDOPackageImpl implements CDOCorePackage
 {
-  // @Singleton
-  public static final CDOCorePackageImpl INSTANCE = new CDOCorePackageImpl();
+  private CDOObjectClassImpl cdoObjectClass;
 
-  public CDOCorePackageImpl()
+  public CDOCorePackageImpl(CDOPackageManagerImpl packageManager)
   {
-    super(PACKAGE_URI, NAME);
-    addClass(CDOObjectClassImpl.INSTANCE);
+    super(packageManager, PACKAGE_URI, NAME);
+    addClass(cdoObjectClass = new CDOObjectClassImpl());
   }
 
   public CDOObjectClassImpl getCDOObjectClass()
   {
-    return CDOObjectClassImpl.INSTANCE;
+    return cdoObjectClass;
   }
 }

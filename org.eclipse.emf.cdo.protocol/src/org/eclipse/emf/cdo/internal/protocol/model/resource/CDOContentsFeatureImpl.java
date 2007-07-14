@@ -10,8 +10,9 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.model.resource;
 
+import org.eclipse.emf.cdo.internal.protocol.model.CDOClassProxy;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
-import org.eclipse.emf.cdo.internal.protocol.model.core.CDOObjectClassImpl;
+import org.eclipse.emf.cdo.internal.protocol.model.CDOPackageManagerImpl;
 import org.eclipse.emf.cdo.protocol.model.resource.CDOContentsFeature;
 
 /**
@@ -19,12 +20,8 @@ import org.eclipse.emf.cdo.protocol.model.resource.CDOContentsFeature;
  */
 public class CDOContentsFeatureImpl extends CDOFeatureImpl implements CDOContentsFeature
 {
-  // @Singleton
-  public static final CDOContentsFeatureImpl INSTANCE = new CDOContentsFeatureImpl();
-
-  public CDOContentsFeatureImpl()
+  public CDOContentsFeatureImpl(CDOPackageManagerImpl packageManager)
   {
-    super(FEATURE_ID, NAME, CDOObjectClassImpl.INSTANCE, true, true);
+    super(FEATURE_ID, NAME, new CDOClassProxy(packageManager.getCDOCorePackage().getCDOObjectClass()), true, true);
   }
-
 }

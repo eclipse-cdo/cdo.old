@@ -6,52 +6,60 @@
  */
 package org.eclipse.emf.cdo.tests.model1.provider;
 
-import org.eclipse.emf.cdo.tests.model1.Category;
+
+import java.util.Collection;
+import java.util.List;
+
 import org.eclipse.emf.cdo.tests.model1.Model1Factory;
 import org.eclipse.emf.cdo.tests.model1.Model1Package;
+import org.eclipse.emf.cdo.tests.model1.Order;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import java.util.Collection;
-import java.util.List;
-
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.cdo.tests.model1.Category} object.
- * <!-- begin-user-doc
- * --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.emf.cdo.tests.model1.Order} object.
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
  * @generated
  */
-public class CategoryItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-    IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
+public class OrderItemProvider
+  extends ItemProviderAdapter
+  implements	
+    IEditingDomainItemProvider,	
+    IStructuredItemContentProvider,	
+    ITreeItemContentProvider,	
+    IItemLabelProvider,	
+    IItemPropertySource		
 {
   /**
-   * This constructs an instance from a factory and a notifier. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This constructs an instance from a factory and a notifier.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-  public CategoryItemProvider(AdapterFactory adapterFactory)
+  public OrderItemProvider(AdapterFactory adapterFactory)
   {
     super(adapterFactory);
   }
 
   /**
-   * This returns the property descriptors for the adapted class. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This returns the property descriptors for the adapted class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -61,39 +69,16 @@ public class CategoryItemProvider extends ItemProviderAdapter implements IEditin
     {
       super.getPropertyDescriptors(object);
 
-      addNamePropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
-  }
-
-  /**
-   * This adds a property descriptor for the Name feature.
-   * <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addNamePropertyDescriptor(Object object)
-  {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Category_name_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Category_name_feature", "_UI_Category_type"),
-         Model1Package.Literals.CATEGORY__NAME,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
   }
 
   /**
    * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
    * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
    * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -102,14 +87,14 @@ public class CategoryItemProvider extends ItemProviderAdapter implements IEditin
     if (childrenFeatures == null)
     {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(Model1Package.Literals.CATEGORY__CATEGORIES);
-      childrenFeatures.add(Model1Package.Literals.CATEGORY__PRODUCTS);
+      childrenFeatures.add(Model1Package.Literals.ORDER__ORDER_DETAILS);
     }
     return childrenFeatures;
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -122,14 +107,15 @@ public class CategoryItemProvider extends ItemProviderAdapter implements IEditin
   }
 
   /**
-   * This returns Category.gif.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This returns Order.gif.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getImage(Object object)
   {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/Category"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/Order"));
   }
 
   /**
@@ -141,17 +127,14 @@ public class CategoryItemProvider extends ItemProviderAdapter implements IEditin
   @Override
   public String getText(Object object)
   {
-    String label = ((Category)object).getName();
-    return label == null || label.length() == 0 ?
-      getString("_UI_Category_type") :
-      getString("_UI_Category_type") + " " + label;
+    return getString("_UI_Order_type");
   }
 
   /**
    * This handles model notifications by calling {@link #updateChildren} to update any cached
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -159,13 +142,9 @@ public class CategoryItemProvider extends ItemProviderAdapter implements IEditin
   {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(Category.class))
+    switch (notification.getFeatureID(Order.class))
     {
-      case Model1Package.CATEGORY__NAME:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-        return;
-      case Model1Package.CATEGORY__CATEGORIES:
-      case Model1Package.CATEGORY__PRODUCTS:
+      case Model1Package.ORDER__ORDER_DETAILS:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
         return;
     }
@@ -173,10 +152,10 @@ public class CategoryItemProvider extends ItemProviderAdapter implements IEditin
   }
 
   /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-   * describing the children that can be created under this object. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+   * that can be created under this object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -186,19 +165,14 @@ public class CategoryItemProvider extends ItemProviderAdapter implements IEditin
 
     newChildDescriptors.add
       (createChildParameter
-        (Model1Package.Literals.CATEGORY__CATEGORIES,
-         Model1Factory.eINSTANCE.createCategory()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (Model1Package.Literals.CATEGORY__PRODUCTS,
-         Model1Factory.eINSTANCE.createProduct()));
+        (Model1Package.Literals.ORDER__ORDER_DETAILS,
+         Model1Factory.eINSTANCE.createOrderDetail()));
   }
 
   /**
-   * Return the resource locator for this item provider's resources. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Return the resource locator for this item provider's resources.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override

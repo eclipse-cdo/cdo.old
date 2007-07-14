@@ -18,6 +18,7 @@ import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOPackageManagerImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl;
 import org.eclipse.emf.cdo.protocol.CDOID;
+import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionData;
@@ -82,10 +83,10 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     copyValues(source.values);
   }
 
-  public CDORevisionImpl(ExtendedDataInputStream in) throws IOException
+  public CDORevisionImpl(CDOPackageManagerImpl packageManager, ExtendedDataInputStream in) throws IOException
   {
-    CDOClassRefImpl classRef = new CDOClassRefImpl(in, null);
-    cdoClass = CDOPackageManagerImpl.INSTANCE.resolveClass(classRef);
+    CDOClassRef classRef = new CDOClassRefImpl(in, null);
+    cdoClass = packageManager.resolveClass(classRef);
     id = CDOIDImpl.read(in);
     if (TRACER.isEnabled())
     {

@@ -64,25 +64,25 @@ import java.util.StringTokenizer;
 import org.eclipse.emf.common.CommonPlugin;
 
 /**
- * This is a simple wizard for creating a new model file. <!-- begin-user-doc
+ * This is a simple wizard for creating a new model file.
+ * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class Model1ModelWizard extends Wizard implements INewWizard
 {
   /**
-   * This caches an instance of the model package. <!-- begin-user-doc --> <!--
+   * This caches an instance of the model package.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   protected Model1Package model1Package = Model1Package.eINSTANCE;
 
   /**
-   * This caches an instance of the model factory. <!-- begin-user-doc --> <!--
+   * This caches an instance of the model factory.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   protected Model1Factory model1Factory = model1Package.getModel1Factory();
@@ -96,25 +96,24 @@ public class Model1ModelWizard extends Wizard implements INewWizard
   protected Model1ModelWizardNewFileCreationPage newFileCreationPage;
 
   /**
-   * This is the initial object creation page. <!-- begin-user-doc --> <!--
+   * This is the initial object creation page.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   protected Model1ModelWizardInitialObjectCreationPage initialObjectCreationPage;
 
   /**
-   * Remember the selection during initialization for populating the default
-   * container. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Remember the selection during initialization for populating the default container.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected IStructuredSelection selection;
 
   /**
-   * Remember the workbench during initialization. <!-- begin-user-doc --> <!--
+   * Remember the workbench during initialization.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   protected IWorkbench workbench;
@@ -128,9 +127,9 @@ public class Model1ModelWizard extends Wizard implements INewWizard
   protected List<String> initialObjectNames;
 
   /**
-   * This just records the information. <!-- begin-user-doc --> <!--
+   * This just records the information.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   public void init(IWorkbench workbench, IStructuredSelection selection)
@@ -138,8 +137,7 @@ public class Model1ModelWizard extends Wizard implements INewWizard
     this.workbench = workbench;
     this.selection = selection;
     setWindowTitle(Model1EditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
-    setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(Model1EditorPlugin.INSTANCE
-        .getImage("full/wizban/NewModel1")));
+    setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(Model1EditorPlugin.INSTANCE.getImage("full/wizban/NewModel1")));
   }
 
   /**
@@ -170,8 +168,8 @@ public class Model1ModelWizard extends Wizard implements INewWizard
   }
 
   /**
-   * Create a new model. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Create a new model.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected EObject createInitialModel()
@@ -182,9 +180,9 @@ public class Model1ModelWizard extends Wizard implements INewWizard
   }
 
   /**
-   * Do the work after everything is specified. <!-- begin-user-doc --> <!--
+   * Do the work after everything is specified.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -198,49 +196,50 @@ public class Model1ModelWizard extends Wizard implements INewWizard
 
       // Do the work within an operation.
       //
-      WorkspaceModifyOperation operation = new WorkspaceModifyOperation()
-      {
-        @Override
-        protected void execute(IProgressMonitor progressMonitor)
+      WorkspaceModifyOperation operation =
+        new WorkspaceModifyOperation()
         {
-          try
+          @Override
+          protected void execute(IProgressMonitor progressMonitor)
           {
-            // Create a resource set
-            //
-            ResourceSet resourceSet = new ResourceSetImpl();
-
-            // Get the URI of the model file.
-            //
-            URI fileURI = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
-
-            // Create a resource for this file.
-            //
-            Resource resource = resourceSet.createResource(fileURI);
-
-            // Add the initial model object to the contents.
-            //
-            EObject rootObject = createInitialModel();
-            if (rootObject != null)
+            try
             {
-              resource.getContents().add(rootObject);
-            }
+              // Create a resource set
+              //
+              ResourceSet resourceSet = new ResourceSetImpl();
 
-            // Save the contents of the resource to the file system.
-            //
-            Map<Object, Object> options = new HashMap<Object, Object>();
-            options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
-            resource.save(options);
+              // Get the URI of the model file.
+              //
+              URI fileURI = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
+
+              // Create a resource for this file.
+              //
+              Resource resource = resourceSet.createResource(fileURI);
+
+              // Add the initial model object to the contents.
+              //
+              EObject rootObject = createInitialModel();
+              if (rootObject != null)
+              {
+                resource.getContents().add(rootObject);
+              }
+
+              // Save the contents of the resource to the file system.
+              //
+              Map<Object, Object> options = new HashMap<Object, Object>();
+              options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
+              resource.save(options);
+            }
+            catch (Exception exception)
+            {
+              Model1EditorPlugin.INSTANCE.log(exception);
+            }
+            finally
+            {
+              progressMonitor.done();
+            }
           }
-          catch (Exception exception)
-          {
-            Model1EditorPlugin.INSTANCE.log(exception);
-          }
-          finally
-          {
-            progressMonitor.done();
-          }
-        }
-      };
+        };
 
       getContainer().run(false, false, operation);
 
@@ -252,26 +251,27 @@ public class Model1ModelWizard extends Wizard implements INewWizard
       if (activePart instanceof ISetSelectionTarget)
       {
         final ISelection targetSelection = new StructuredSelection(modelFile);
-        getShell().getDisplay().asyncExec(new Runnable()
-        {
-          public void run()
-          {
-            ((ISetSelectionTarget)activePart).selectReveal(targetSelection);
-          }
-        });
+        getShell().getDisplay().asyncExec
+          (new Runnable()
+           {
+             public void run()
+             {
+               ((ISetSelectionTarget)activePart).selectReveal(targetSelection);
+             }
+           });
       }
 
       // Open an editor on the new file.
       //
       try
       {
-        page.openEditor(new FileEditorInput(modelFile), workbench.getEditorRegistry().getDefaultEditor(
-            modelFile.getFullPath().toString()).getId());
+        page.openEditor
+          (new FileEditorInput(modelFile),
+           workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());
       }
       catch (PartInitException exception)
       {
-        MessageDialog.openError(workbenchWindow.getShell(), Model1EditorPlugin.INSTANCE
-            .getString("_UI_OpenEditorError_label"), exception.getMessage());
+        MessageDialog.openError(workbenchWindow.getShell(), Model1EditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
         return false;
       }
 
@@ -285,16 +285,16 @@ public class Model1ModelWizard extends Wizard implements INewWizard
   }
 
   /**
-   * This is the one page of the wizard. <!-- begin-user-doc --> <!--
+   * This is the one page of the wizard.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   public class Model1ModelWizardNewFileCreationPage extends WizardNewFileCreationPage
   {
     /**
-     * Pass in the selection. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * Pass in the selection.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     public Model1ModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection)
@@ -319,8 +319,7 @@ public class Model1ModelWizard extends Wizard implements INewWizard
         String enteredExt = new Path(getFileName()).getFileExtension();
         if (enteredExt == null || !enteredExt.equals(requiredExt))
         {
-          setErrorMessage(Model1EditorPlugin.INSTANCE
-              .getString("_WARN_FilenameExtension", new Object[] { requiredExt }));
+          setErrorMessage(Model1EditorPlugin.INSTANCE.getString("_WARN_FilenameExtension", new Object [] { requiredExt }));
           return false;
         }
         else
@@ -336,7 +335,6 @@ public class Model1ModelWizard extends Wizard implements INewWizard
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public IFile getModelFile()
@@ -355,7 +353,6 @@ public class Model1ModelWizard extends Wizard implements INewWizard
   {
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected Combo initialObjectField;
@@ -367,14 +364,13 @@ public class Model1ModelWizard extends Wizard implements INewWizard
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected Combo encodingField;
 
     /**
-     * Pass in the selection. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * Pass in the selection.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     public Model1ModelWizardInitialObjectCreationPage(String pageId)
@@ -384,7 +380,6 @@ public class Model1ModelWizard extends Wizard implements INewWizard
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void createControl(Composite parent)
@@ -461,20 +456,18 @@ public class Model1ModelWizard extends Wizard implements INewWizard
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected ModifyListener validator = new ModifyListener()
-    {
-      public void modifyText(ModifyEvent e)
       {
-        setPageComplete(validatePage());
-      }
-    };
+        public void modifyText(ModifyEvent e)
+        {
+          setPageComplete(validatePage());
+        }
+      };
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected boolean validatePage()
@@ -484,7 +477,6 @@ public class Model1ModelWizard extends Wizard implements INewWizard
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -508,7 +500,6 @@ public class Model1ModelWizard extends Wizard implements INewWizard
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public String getInitialObjectName()
@@ -527,7 +518,6 @@ public class Model1ModelWizard extends Wizard implements INewWizard
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public String getEncoding()
@@ -536,9 +526,9 @@ public class Model1ModelWizard extends Wizard implements INewWizard
     }
 
     /**
-     * Returns the label for the specified type name. <!-- begin-user-doc -->
+     * Returns the label for the specified type name.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected String getLabel(String typeName)
@@ -547,7 +537,7 @@ public class Model1ModelWizard extends Wizard implements INewWizard
       {
         return Model1EditPlugin.INSTANCE.getString("_UI_" + typeName + "_type");
       }
-      catch (MissingResourceException mre)
+      catch(MissingResourceException mre)
       {
         Model1EditorPlugin.INSTANCE.log(mre);
       }
@@ -556,7 +546,6 @@ public class Model1ModelWizard extends Wizard implements INewWizard
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected Collection<String> getEncodings()
@@ -564,8 +553,7 @@ public class Model1ModelWizard extends Wizard implements INewWizard
       if (encodings == null)
       {
         encodings = new ArrayList<String>();
-        for (StringTokenizer stringTokenizer = new StringTokenizer(Model1EditorPlugin.INSTANCE
-            .getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens();)
+        for (StringTokenizer stringTokenizer = new StringTokenizer(Model1EditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); )
         {
           encodings.add(stringTokenizer.nextToken());
         }
@@ -588,12 +576,10 @@ public class Model1ModelWizard extends Wizard implements INewWizard
     newFileCreationPage = new Model1ModelWizardNewFileCreationPage("Whatever", selection);
     newFileCreationPage.setTitle(Model1EditorPlugin.INSTANCE.getString("_UI_Model1ModelWizard_label"));
     newFileCreationPage.setDescription(Model1EditorPlugin.INSTANCE.getString("_UI_Model1ModelWizard_description"));
-    newFileCreationPage.setFileName(Model1EditorPlugin.INSTANCE.getString("_UI_Model1EditorFilenameDefaultBase") + "."
-        + Model1EditorPlugin.INSTANCE.getString("_UI_Model1EditorFilenameExtension"));
+    newFileCreationPage.setFileName(Model1EditorPlugin.INSTANCE.getString("_UI_Model1EditorFilenameDefaultBase") + "." + Model1EditorPlugin.INSTANCE.getString("_UI_Model1EditorFilenameExtension"));
     addPage(newFileCreationPage);
 
-    // Try and get the resource selection to determine a current directory for
-    // the file dialog.
+    // Try and get the resource selection to determine a current directory for the file dialog.
     //
     if (selection != null && !selection.isEmpty())
     {
@@ -620,10 +606,8 @@ public class Model1ModelWizard extends Wizard implements INewWizard
 
           // Make up a unique new name here.
           //
-          String defaultModelBaseFilename = Model1EditorPlugin.INSTANCE
-              .getString("_UI_Model1EditorFilenameDefaultBase");
-          String defaultModelFilenameExtension = Model1EditorPlugin.INSTANCE
-              .getString("_UI_Model1EditorFilenameExtension");
+          String defaultModelBaseFilename = Model1EditorPlugin.INSTANCE.getString("_UI_Model1EditorFilenameDefaultBase");
+          String defaultModelFilenameExtension = Model1EditorPlugin.INSTANCE.getString("_UI_Model1EditorFilenameExtension");
           String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
           for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i)
           {
@@ -635,14 +619,13 @@ public class Model1ModelWizard extends Wizard implements INewWizard
     }
     initialObjectCreationPage = new Model1ModelWizardInitialObjectCreationPage("Whatever2");
     initialObjectCreationPage.setTitle(Model1EditorPlugin.INSTANCE.getString("_UI_Model1ModelWizard_label"));
-    initialObjectCreationPage.setDescription(Model1EditorPlugin.INSTANCE
-        .getString("_UI_Wizard_initial_object_description"));
+    initialObjectCreationPage.setDescription(Model1EditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
     addPage(initialObjectCreationPage);
   }
 
   /**
-   * Get the file from the page. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Get the file from the page.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public IFile getModelFile()

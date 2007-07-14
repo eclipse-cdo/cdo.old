@@ -25,9 +25,11 @@ public interface CDOProtocolConstants
 
   public static final short LOAD_OBJECT_SIGNAL = 4;
 
-  public static final short COMMIT_TRANSACTION_SIGNAL = 5;
+  public static final short REGISTER_PACKAGES_SIGNAL = 5;
 
-  public static final short INVALIDATION_SIGNAL = 6;
+  public static final short COMMIT_TRANSACTION_SIGNAL = 6;
+
+  public static final short INVALIDATION_SIGNAL = 7;
 
   public static final int ERROR_REPOSITORY_NOT_FOUND = -1;
 

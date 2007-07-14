@@ -10,11 +10,14 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.model;
 
+
 /**
  * @author Eike Stepper
  */
 public interface CDOPackage extends CDOModelElement
 {
+  public CDOPackageManager getPackageManager();
+
   public String getPackageURI();
 
   public int getClassCount();

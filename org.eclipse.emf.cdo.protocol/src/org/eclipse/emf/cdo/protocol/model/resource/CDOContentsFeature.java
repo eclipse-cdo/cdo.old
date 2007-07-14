@@ -10,7 +10,6 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.model.resource;
 
-import org.eclipse.emf.cdo.internal.protocol.model.resource.CDOContentsFeatureImpl;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 
 /**
@@ -18,8 +17,6 @@ import org.eclipse.emf.cdo.protocol.model.CDOFeature;
  */
 public interface CDOContentsFeature extends CDOFeature
 {
-  public static final CDOContentsFeature INSTANCE = CDOContentsFeatureImpl.INSTANCE;
-
   public static final int FEATURE_ID = 2;
 
   public static final String NAME = "contents";

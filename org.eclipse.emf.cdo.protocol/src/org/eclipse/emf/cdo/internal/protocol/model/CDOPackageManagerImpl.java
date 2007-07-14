@@ -17,27 +17,32 @@ import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
+import org.eclipse.net4j.internal.util.container.SingleDeltaContainerEvent;
+import org.eclipse.net4j.internal.util.event.Notifier;
+import org.eclipse.net4j.util.container.IContainer;
+import org.eclipse.net4j.util.container.IContainerDelta;
 import org.eclipse.net4j.util.om.trace.ContextTracer;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * @author Eike Stepper
  */
-public class CDOPackageManagerImpl implements CDOPackageManager
+public class CDOPackageManagerImpl extends Notifier implements CDOPackageManager, IContainer<CDOPackage>
 {
   private static final ContextTracer TRACER = new ContextTracer(CDOProtocol.DEBUG_MODEL, CDOPackageManagerImpl.class);
 
-  // @Singleton
-  public static final CDOPackageManagerImpl INSTANCE = new CDOPackageManagerImpl();
+  private ConcurrentMap<String, CDOPackageImpl> packages = new ConcurrentHashMap();
 
-  private Map<String, CDOPackageImpl> packages = new HashMap();
+  private CDOCorePackageImpl cdoCorePackage;
+
+  private CDOResourcePackageImpl cdoResourcePackage;
 
   public CDOPackageManagerImpl()
   {
-    addPackage(CDOCorePackageImpl.INSTANCE);
-    addPackage(CDOResourcePackageImpl.INSTANCE);
+    addPackage(cdoCorePackage = new CDOCorePackageImpl(this));
+    addPackage(cdoResourcePackage = new CDOResourcePackageImpl(this));
   }
 
   public CDOPackageImpl lookupPackage(String uri)
@@ -52,17 +57,7 @@ public class CDOPackageManagerImpl implements CDOPackageManager
 
   public CDOPackage[] getPackages()
   {
-    return packages.values().toArray(new CDOPackageImpl[packages.size()]);
-  }
-
-  public void addPackage(CDOPackageImpl cdoPackage)
-  {
-    if (TRACER.isEnabled())
-    {
-      TRACER.format("Adding package: {0}", cdoPackage);
-    }
-
-    packages.put(cdoPackage.getPackageURI(), cdoPackage);
+    return (CDOPackage[])packages.values().toArray();
   }
 
   public CDOClassImpl resolveClass(CDOClassRef classRef)
@@ -80,11 +75,39 @@ public class CDOPackageManagerImpl implements CDOPackageManager
 
   public CDOCorePackageImpl getCDOCorePackage()
   {
-    return CDOCorePackageImpl.INSTANCE;
+    return cdoCorePackage;
   }
 
   public CDOResourcePackageImpl getCDOResourcePackage()
   {
-    return CDOResourcePackageImpl.INSTANCE;
+    return cdoResourcePackage;
+  }
+
+  public boolean isEmpty()
+  {
+    return packages.isEmpty();
+  }
+
+  public CDOPackage[] getElements()
+  {
+    return getPackages();
+  }
+
+  public void addPackage(CDOPackageImpl cdoPackage)
+  {
+    CDOPackageImpl existing = packages.putIfAbsent(cdoPackage.getPackageURI(), cdoPackage);
+    if (existing == null)
+    {
+      if (TRACER.isEnabled())
+      {
+        TRACER.format("Added package: {0}", cdoPackage);
+      }
+
+      fireEvent(new SingleDeltaContainerEvent(this, cdoPackage, IContainerDelta.Kind.ADDED));
+    }
+    else
+    {
+      throw new IllegalStateException("Duplicate package: " + cdoPackage);
+    }
   }
 }

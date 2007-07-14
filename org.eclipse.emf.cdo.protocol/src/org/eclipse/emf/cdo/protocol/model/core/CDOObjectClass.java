@@ -10,7 +10,6 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.model.core;
 
-import org.eclipse.emf.cdo.internal.protocol.model.core.CDOObjectClassImpl;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
 
 /**
@@ -18,8 +17,6 @@ import org.eclipse.emf.cdo.protocol.model.CDOClass;
  */
 public interface CDOObjectClass extends CDOClass
 {
-  public static final CDOObjectClass INSTANCE = CDOObjectClassImpl.INSTANCE;
-
   public static final int CLASSIFIER_ID = 0;
 
   public static final String NAME = "CDOObject";

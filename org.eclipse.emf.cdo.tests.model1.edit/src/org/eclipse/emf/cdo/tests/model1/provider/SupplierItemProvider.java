@@ -27,13 +27,12 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.emf.cdo.tests.model1.Supplier} object. <!-- begin-user-doc
+ * This is the item provider adapter for a {@link org.eclipse.emf.cdo.tests.model1.Supplier} object.
+ * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- * 
  * @generated
  */
-public class SupplierItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+public class SupplierItemProvider extends AddressItemProvider implements IEditingDomainItemProvider,
     IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
   /**
@@ -60,29 +59,37 @@ public class SupplierItemProvider extends ItemProviderAdapter implements IEditin
     {
       super.getPropertyDescriptors(object);
 
-      addNamePropertyDescriptor(object);
+      addPurchaseOrdersPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the Name feature. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
-   * 
+   * This adds a property descriptor for the Purchase Orders feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-  protected void addNamePropertyDescriptor(Object object)
+  protected void addPurchaseOrdersPropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
-        .getRootAdapterFactory(), getResourceLocator(), getString("_UI_Supplier_name_feature"), getString(
-        "_UI_PropertyDescriptor_description", "_UI_Supplier_name_feature", "_UI_Supplier_type"),
-        Model1Package.Literals.SUPPLIER__NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-        null));
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_Supplier_purchaseOrders_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Supplier_purchaseOrders_feature", "_UI_Supplier_type"),
+         Model1Package.Literals.SUPPLIER__PURCHASE_ORDERS,
+         true,
+         false,
+         true,
+         null,
+         null,
+         null));
   }
 
   /**
-   * This returns Supplier.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This returns Supplier.gif.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -92,38 +99,31 @@ public class SupplierItemProvider extends ItemProviderAdapter implements IEditin
   }
 
   /**
-   * This returns the label text for the adapted class. <!-- begin-user-doc -->
+   * This returns the label text for the adapted class.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public String getText(Object object)
   {
     String label = ((Supplier)object).getName();
-    return label == null || label.length() == 0 ? getString("_UI_Supplier_type") : getString("_UI_Supplier_type") + " "
-        + label;
+    return label == null || label.length() == 0 ?
+      getString("_UI_Supplier_type") :
+      getString("_UI_Supplier_type") + " " + label;
   }
 
   /**
-   * This handles model notifications by calling {@link #updateChildren} to
-   * update any cached children and by creating a viewer notification, which it
-   * passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+   * This handles model notifications by calling {@link #updateChildren} to update any cached
+   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public void notifyChanged(Notification notification)
   {
     updateChildren(notification);
-
-    switch (notification.getFeatureID(Supplier.class))
-    {
-    case Model1Package.SUPPLIER__NAME:
-      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-      return;
-    }
     super.notifyChanged(notification);
   }
 

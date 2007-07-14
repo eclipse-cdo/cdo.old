@@ -10,7 +10,6 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.model;
 
-import org.eclipse.emf.cdo.internal.protocol.model.CDOPackageManagerImpl;
 import org.eclipse.emf.cdo.protocol.model.core.CDOCorePackage;
 import org.eclipse.emf.cdo.protocol.model.resource.CDOResourcePackage;
 
@@ -19,8 +18,6 @@ import org.eclipse.emf.cdo.protocol.model.resource.CDOResourcePackage;
  */
 public interface CDOPackageManager
 {
-  public static final CDOPackageManager INSTANCE = CDOPackageManagerImpl.INSTANCE;
-
   public int getPackageCount();
 
   public CDOPackage[] getPackages();
@@ -32,4 +29,6 @@ public interface CDOPackageManager
   public CDOCorePackage getCDOCorePackage();
 
   public CDOResourcePackage getCDOResourcePackage();
+
+  public boolean isEmpty();
 }

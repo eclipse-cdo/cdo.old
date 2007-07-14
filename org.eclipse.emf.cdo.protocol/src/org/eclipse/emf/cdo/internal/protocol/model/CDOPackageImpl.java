@@ -13,7 +13,6 @@ package org.eclipse.emf.cdo.internal.protocol.model;
 import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
-import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
 import org.eclipse.net4j.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
@@ -33,15 +32,18 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
 
   private static final ContextTracer PROTOCOL = new ContextTracer(CDOProtocol.DEBUG_PROTOCOL, CDOPackageImpl.class);
 
+  private CDOPackageManagerImpl packageManager;
+
   private String packageURI;
 
   private List<CDOClassImpl> classes = new ArrayList(0);
 
   private List<CDOClassImpl> index = new ArrayList(0);
 
-  public CDOPackageImpl(String packageURI, String name)
+  public CDOPackageImpl(CDOPackageManagerImpl packageManager, String packageURI, String name)
   {
     super(name);
+    this.packageManager = packageManager;
     this.packageURI = packageURI;
     if (MODEL.isEnabled())
     {
@@ -49,9 +51,10 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     }
   }
 
-  public CDOPackageImpl(ExtendedDataInputStream in) throws IOException
+  public CDOPackageImpl(CDOPackageManagerImpl packageManager, ExtendedDataInputStream in) throws IOException
   {
     super(in);
+    this.packageManager = packageManager;
     packageURI = in.readString();
     if (PROTOCOL.isEnabled())
     {
@@ -95,6 +98,11 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     }
   }
 
+  public CDOPackageManagerImpl getPackageManager()
+  {
+    return packageManager;
+  }
+
   public String getPackageURI()
   {
     return packageURI;
@@ -118,8 +126,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
       if (!cdoClass.isAbstract())
       {
         CDOPackage cdoPackage = cdoClass.getContainingPackage();
-        if (cdoPackage != CDOPackageManager.INSTANCE.getCDOCorePackage()
-            && cdoPackage != CDOPackageManager.INSTANCE.getCDOResourcePackage())
+        if (cdoPackage != packageManager.getCDOCorePackage() && cdoPackage != packageManager.getCDOResourcePackage())
         {
           result.add(cdoClass);
         }

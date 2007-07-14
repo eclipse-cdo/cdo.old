@@ -12,7 +12,6 @@ package org.eclipse.emf.cdo.internal.protocol.model;
 
 import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
-import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 
 import org.eclipse.net4j.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.stream.ExtendedDataInputStream;
@@ -32,13 +31,25 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
 
   private static final ContextTracer PROTOCOL = new ContextTracer(CDOProtocol.DEBUG_PROTOCOL, CDOClassImpl.class);
 
+  private static final byte SEGMENT_THIS = 0;
+
+  private static final byte SEGMENT_SAME = 1;
+
+  private static final byte SEGMENT_NEXT = 2;
+
   private CDOPackageImpl containingPackage;
 
   private int classifierID;
 
   private boolean isAbstract;
 
+  private List<CDOClassProxy> superTypes = new ArrayList(0);
+
+  private CDOClassImpl[] allSuperTypes;
+
   private List<CDOFeatureImpl> features = new ArrayList(0);
+
+  private CDOFeatureImpl[] allFeatures;
 
   private transient List<Integer> index = new ArrayList(0);
 
@@ -74,8 +85,21 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
       CDOFeatureImpl cdoFeature = new CDOFeatureImpl(in);
       addFeature(cdoFeature);
     }
+
+    size = in.readInt();
+    if (PROTOCOL.isEnabled())
+    {
+      PROTOCOL.format("Reading {0} super types", size);
+    }
+
+    for (int i = 0; i < size; i++)
+    {
+      CDOClassRefImpl classRef = new CDOClassRefImpl(in, containingPackage.getPackageURI());
+    }
+
   }
 
+  @Override
   public void write(ExtendedDataOutputStream out) throws IOException
   {
     if (PROTOCOL.isEnabled())
@@ -87,20 +111,51 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     out.writeInt(classifierID);
     out.writeBoolean(isAbstract);
 
-    int size = features.size();
     if (PROTOCOL.isEnabled())
     {
-      PROTOCOL.format("Writing {0} features", size);
+      PROTOCOL.format("Writing {0} features", features.size());
     }
 
-    out.writeInt(size);
+    out.writeInt(features.size());
     for (CDOFeatureImpl cdoFeature : features)
     {
       cdoFeature.write(out);
     }
+
+    if (PROTOCOL.isEnabled())
+    {
+      PROTOCOL.format("Writing {0} super types", allSuperTypes.length);
+    }
+
+    out.writeInt(allSuperTypes.length);
+    for (CDOClassImpl cdoClass : allSuperTypes)
+    {
+      cdoClass.createClassRef().write(out, containingPackage.getPackageURI());
+    }
+
+    CDOClassImpl lastClass = null;
+    for (CDOFeatureImpl cdoFeature : allFeatures)
+    {
+      CDOClassImpl containingClass = cdoFeature.getContainingClass();
+      if (containingClass == this)
+      {
+        out.writeByte(SEGMENT_THIS);
+        break;
+      }
+      else if (containingClass == lastClass)
+      {
+        out.writeByte(SEGMENT_SAME);
+      }
+      else
+      {
+        out.writeByte(SEGMENT_NEXT);
+        containingClass.createClassRef().write(out, containingPackage.getPackageURI());
+        lastClass = containingClass;
+      }
+    }
   }
 
-  public CDOPackage getContainingPackage()
+  public CDOPackageImpl getContainingPackage()
   {
     return containingPackage;
   }
@@ -120,6 +175,38 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     return false;
   }
 
+  public int getSuperTypeCount()
+  {
+    return superTypes.size();
+  }
+
+  public CDOClass[] getSuperTypes()
+  {
+    int size = superTypes.size();
+    CDOClass[] result = new CDOClass[size];
+    for (int i = 0; i < size; i++)
+    {
+      result[i] = getSuperType(i);
+    }
+
+    return result;
+  }
+
+  public CDOClass getSuperType(int index)
+  {
+    return superTypes.get(index).getCDOClass();
+  }
+
+  public CDOClassImpl[] getAllSuperTypes()
+  {
+    return allSuperTypes;
+  }
+
+  public void setAllSuperTypes(CDOClassImpl[] allSuperTypes)
+  {
+    this.allSuperTypes = allSuperTypes;
+  }
+
   public int getFeatureCount()
   {
     return features.size();
@@ -133,12 +220,22 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
   public CDOFeatureImpl lookupFeature(int featureID)
   {
     int i = index.get(featureID);
-    return features.get(i);
+    return allFeatures[i];
   }
 
   public CDOClassRefImpl createClassRef()
   {
     return new CDOClassRefImpl(containingPackage.getPackageURI(), classifierID);
+  }
+
+  public void addSuperType(CDOClassRefImpl classRef)
+  {
+    if (MODEL.isEnabled())
+    {
+      MODEL.format("Adding super type: {0}", classRef);
+    }
+
+    superTypes.add(new CDOClassProxy(classRef, containingPackage.getPackageManager()));
   }
 
   public void addFeature(CDOFeatureImpl cdoFeature)
@@ -154,6 +251,16 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     cdoFeature.setFeatureIndex(i);
     cdoFeature.setContainingClass(this);
     features.add(cdoFeature);
+  }
+
+  public CDOFeatureImpl[] getAllFeatures()
+  {
+    return allFeatures;
+  }
+
+  public void setAllFeatures(CDOFeatureImpl[] allFeatures)
+  {
+    this.allFeatures = allFeatures;
   }
 
   public void setContainingPackage(CDOPackageImpl containingPackage)

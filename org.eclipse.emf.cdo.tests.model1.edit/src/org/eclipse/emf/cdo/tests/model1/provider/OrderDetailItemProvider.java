@@ -74,30 +74,47 @@ public class OrderDetailItemProvider extends ItemProviderAdapter implements IEdi
    */
   protected void addProductPropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
-        .getRootAdapterFactory(), getResourceLocator(), getString("_UI_OrderDetail_product_feature"), getString(
-        "_UI_PropertyDescriptor_description", "_UI_OrderDetail_product_feature", "_UI_OrderDetail_type"),
-        Model1Package.Literals.ORDER_DETAIL__PRODUCT, true, false, true, null, null, null));
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_OrderDetail_product_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_OrderDetail_product_feature", "_UI_OrderDetail_type"),
+         Model1Package.Literals.ORDER_DETAIL__PRODUCT,
+         true,
+         false,
+         true,
+         null,
+         null,
+         null));
   }
 
   /**
-   * This adds a property descriptor for the Price feature. <!-- begin-user-doc
+   * This adds a property descriptor for the Price feature.
+   * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected void addPricePropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
-        .getRootAdapterFactory(), getResourceLocator(), getString("_UI_OrderDetail_price_feature"), getString(
-        "_UI_PropertyDescriptor_description", "_UI_OrderDetail_price_feature", "_UI_OrderDetail_type"),
-        Model1Package.Literals.ORDER_DETAIL__PRICE, true, false, false, ItemPropertyDescriptor.REAL_VALUE_IMAGE, null,
-        null));
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_OrderDetail_price_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_OrderDetail_price_feature", "_UI_OrderDetail_type"),
+         Model1Package.Literals.ORDER_DETAIL__PRICE,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+         null,
+         null));
   }
 
   /**
-   * This returns OrderDetail.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This returns OrderDetail.gif.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -107,9 +124,9 @@ public class OrderDetailItemProvider extends ItemProviderAdapter implements IEdi
   }
 
   /**
-   * This returns the label text for the adapted class. <!-- begin-user-doc -->
+   * This returns the label text for the adapted class.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -120,11 +137,10 @@ public class OrderDetailItemProvider extends ItemProviderAdapter implements IEdi
   }
 
   /**
-   * This handles model notifications by calling {@link #updateChildren} to
-   * update any cached children and by creating a viewer notification, which it
-   * passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+   * This handles model notifications by calling {@link #updateChildren} to update any cached
+   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -134,9 +150,9 @@ public class OrderDetailItemProvider extends ItemProviderAdapter implements IEdi
 
     switch (notification.getFeatureID(OrderDetail.class))
     {
-    case Model1Package.ORDER_DETAIL__PRICE:
-      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-      return;
+      case Model1Package.ORDER_DETAIL__PRICE:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+        return;
     }
     super.notifyChanged(notification);
   }

@@ -10,7 +10,6 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.model.resource;
 
-import org.eclipse.emf.cdo.internal.protocol.model.resource.CDOResourcePackageImpl;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 
 /**
@@ -18,8 +17,6 @@ import org.eclipse.emf.cdo.protocol.model.CDOPackage;
  */
 public interface CDOResourcePackage extends CDOPackage
 {
-  public static final CDOResourcePackage INSTANCE = CDOResourcePackageImpl.INSTANCE;
-
   public static final String PACKAGE_URI = "http://www.eclipse.org/emf/CDO/resource/1.0.0";
 
   public static final String NAME = "cdoresource";

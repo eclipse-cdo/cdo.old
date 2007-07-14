@@ -19,33 +19,36 @@ import org.eclipse.emf.common.util.ResourceLocator;
 public final class Model1EditorPlugin extends EMFPlugin
 {
   /**
-   * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Keep track of the singleton.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public static final Model1EditorPlugin INSTANCE = new Model1EditorPlugin();
 
   /**
-   * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Keep track of the singleton.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   private static Implementation plugin;
 
   /**
-   * Create the instance. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Create the instance.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public Model1EditorPlugin()
   {
-    super(new ResourceLocator[] {});
+    super
+      (new ResourceLocator [] 
+      {
+      });
   }
 
   /**
-   * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc
+   * Returns the singleton instance of the Eclipse plugin.
+   * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
-   * 
    * @return the singleton instance.
    * @generated
    */
@@ -56,9 +59,9 @@ public final class Model1EditorPlugin extends EMFPlugin
   }
 
   /**
-   * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc
+   * Returns the singleton instance of the Eclipse plugin.
+   * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
-   * 
    * @return the singleton instance.
    * @generated
    */
@@ -76,14 +79,14 @@ public final class Model1EditorPlugin extends EMFPlugin
   public static class Implementation extends EclipseUIPlugin
   {
     /**
-     * Creates an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * Creates an instance.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     public Implementation()
     {
       super();
-
+  
       // Remember the static instance.
       //
       plugin = this;

@@ -21,11 +21,29 @@ public interface CDOClass extends CDOModelElement
 
   public boolean isResource();
 
+  public int getSuperTypeCount();
+
+  public CDOClass getSuperType(int index);
+
+  public CDOClass[] getSuperTypes();
+
+  /**
+   * @return An array of all super types. The array is not a copy and must not
+   *         be modified!
+   */
+  public CDOClass[] getAllSuperTypes();
+
   public int getFeatureCount();
+
+  public CDOFeature lookupFeature(int featureID);
 
   public CDOFeature[] getFeatures();
 
-  public CDOFeature lookupFeature(int featureID);
+  /**
+   * @return An array of all features. The array is not a copy and must not be
+   *         modified!
+   */
+  public CDOFeature[] getAllFeatures();
 
   public CDOClassRef createClassRef();
 

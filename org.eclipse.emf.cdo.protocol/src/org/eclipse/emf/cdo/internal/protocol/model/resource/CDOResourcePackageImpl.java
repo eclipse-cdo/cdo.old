@@ -11,6 +11,7 @@
 package org.eclipse.emf.cdo.internal.protocol.model.resource;
 
 import org.eclipse.emf.cdo.internal.protocol.model.CDOPackageImpl;
+import org.eclipse.emf.cdo.internal.protocol.model.CDOPackageManagerImpl;
 import org.eclipse.emf.cdo.protocol.model.resource.CDOResourcePackage;
 
 /**
@@ -18,17 +19,16 @@ import org.eclipse.emf.cdo.protocol.model.resource.CDOResourcePackage;
  */
 public final class CDOResourcePackageImpl extends CDOPackageImpl implements CDOResourcePackage
 {
-  // @Singleton
-  public static final CDOResourcePackageImpl INSTANCE = new CDOResourcePackageImpl();
+  private CDOResourceClassImpl cdoResourceClass;
 
-  public CDOResourcePackageImpl()
+  public CDOResourcePackageImpl(CDOPackageManagerImpl packageManager)
   {
-    super(PACKAGE_URI, NAME);
-    addClass(CDOResourceClassImpl.INSTANCE);
+    super(packageManager, PACKAGE_URI, NAME);
+    addClass(cdoResourceClass = new CDOResourceClassImpl(packageManager));
   }
 
   public CDOResourceClassImpl getCDOResourceClass()
   {
-    return CDOResourceClassImpl.INSTANCE;
+    return cdoResourceClass;
   }
 }

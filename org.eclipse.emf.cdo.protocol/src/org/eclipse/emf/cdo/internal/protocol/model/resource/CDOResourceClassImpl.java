@@ -11,6 +11,7 @@
 package org.eclipse.emf.cdo.internal.protocol.model.resource;
 
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
+import org.eclipse.emf.cdo.internal.protocol.model.CDOPackageManagerImpl;
 import org.eclipse.emf.cdo.protocol.model.resource.CDOResourceClass;
 
 /**
@@ -18,14 +19,15 @@ import org.eclipse.emf.cdo.protocol.model.resource.CDOResourceClass;
  */
 public class CDOResourceClassImpl extends CDOClassImpl implements CDOResourceClass
 {
-  // @Singleton
-  public static final CDOResourceClassImpl INSTANCE = new CDOResourceClassImpl();
+  private CDOPathFeatureImpl cdoPathFeature;
 
-  public CDOResourceClassImpl()
+  private CDOContentsFeatureImpl cdoContentsFeature;
+
+  public CDOResourceClassImpl(CDOPackageManagerImpl packageManager)
   {
     super(CLASSIFIER_ID, NAME, false);
-    addFeature(CDOPathFeatureImpl.INSTANCE);
-    addFeature(CDOContentsFeatureImpl.INSTANCE);
+    addFeature(cdoPathFeature = new CDOPathFeatureImpl());
+    addFeature(cdoContentsFeature = new CDOContentsFeatureImpl(packageManager));
   }
 
   @Override
@@ -36,11 +38,11 @@ public class CDOResourceClassImpl extends CDOClassImpl implements CDOResourceCla
 
   public CDOPathFeatureImpl getCDOPathFeature()
   {
-    return CDOPathFeatureImpl.INSTANCE;
+    return cdoPathFeature;
   }
 
   public CDOContentsFeatureImpl getCDOContentsFeature()
   {
-    return CDOContentsFeatureImpl.INSTANCE;
+    return cdoContentsFeature;
   }
 }

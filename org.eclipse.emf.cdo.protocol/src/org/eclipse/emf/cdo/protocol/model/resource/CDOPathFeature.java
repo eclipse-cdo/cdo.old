@@ -10,7 +10,6 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.model.resource;
 
-import org.eclipse.emf.cdo.internal.protocol.model.resource.CDOPathFeatureImpl;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 
 /**
@@ -18,8 +17,6 @@ import org.eclipse.emf.cdo.protocol.model.CDOFeature;
  */
 public interface CDOPathFeature extends CDOFeature
 {
-  public static final CDOPathFeature INSTANCE = CDOPathFeatureImpl.INSTANCE;
-
   public static final int FEATURE_ID = 8;
 
   public static final String NAME = "path";

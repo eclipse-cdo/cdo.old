@@ -19,12 +19,8 @@ import org.eclipse.emf.cdo.protocol.model.resource.CDOPathFeature;
  */
 public class CDOPathFeatureImpl extends CDOFeatureImpl implements CDOPathFeature
 {
-  // @Singleton
-  public static final CDOPathFeatureImpl INSTANCE = new CDOPathFeatureImpl();
-
   public CDOPathFeatureImpl()
   {
     super(FEATURE_ID, NAME, CDOTypeImpl.STRING, false);
   }
-
 }
