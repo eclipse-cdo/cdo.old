@@ -39,12 +39,14 @@ public final class CDOProtocol
   {
   }
 
+  /**
+   * @author Eike Stepper
+   */
   public static final class Activator extends OSGiActivator
   {
-    @Override
-    protected OMBundle getOMBundle()
+    public Activator()
     {
-      return BUNDLE;
+      super(BUNDLE);
     }
   }
 }
