@@ -10,7 +10,7 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.model;
 
-import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
+import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
 import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
@@ -28,9 +28,9 @@ import java.text.MessageFormat;
 public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
 {
   @SuppressWarnings("unused")
-  private static final ContextTracer MODEL = new ContextTracer(CDOProtocol.DEBUG_MODEL, CDOFeatureImpl.class);
+  private static final ContextTracer MODEL = new ContextTracer(OM.DEBUG_MODEL, CDOFeatureImpl.class);
 
-  private static final ContextTracer PROTOCOL = new ContextTracer(CDOProtocol.DEBUG_PROTOCOL, CDOFeatureImpl.class);
+  private static final ContextTracer PROTOCOL = new ContextTracer(OM.DEBUG_PROTOCOL, CDOFeatureImpl.class);
 
   private CDOClassImpl containingClass;
 

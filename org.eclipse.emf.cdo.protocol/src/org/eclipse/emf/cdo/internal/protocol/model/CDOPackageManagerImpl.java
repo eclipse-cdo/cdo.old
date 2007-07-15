@@ -10,7 +10,7 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.model;
 
-import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
+import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
 import org.eclipse.emf.cdo.internal.protocol.model.core.CDOCorePackageImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.resource.CDOResourcePackageImpl;
 import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
@@ -31,7 +31,7 @@ import java.util.concurrent.ConcurrentMap;
  */
 public abstract class CDOPackageManagerImpl extends Notifier implements CDOPackageManager, IContainer<CDOPackage>
 {
-  private static final ContextTracer TRACER = new ContextTracer(CDOProtocol.DEBUG_MODEL, CDOPackageManagerImpl.class);
+  private static final ContextTracer TRACER = new ContextTracer(OM.DEBUG_MODEL, CDOPackageManagerImpl.class);
 
   private ConcurrentMap<String, CDOPackageImpl> packages = new ConcurrentHashMap();
 

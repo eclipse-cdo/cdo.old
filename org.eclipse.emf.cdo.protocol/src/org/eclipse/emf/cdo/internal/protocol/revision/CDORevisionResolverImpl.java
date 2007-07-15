@@ -10,7 +10,7 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.revision;
 
-import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
+import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionResolver;
 
@@ -27,8 +27,7 @@ import java.util.Map;
  */
 public abstract class CDORevisionResolverImpl implements CDORevisionResolver
 {
-  private static final ContextTracer TRACER = new ContextTracer(CDOProtocol.DEBUG_REVISION,
-      CDORevisionResolverImpl.class);
+  private static final ContextTracer TRACER = new ContextTracer(OM.DEBUG_REVISION, CDORevisionResolverImpl.class);
 
   private Map<CDOID, TimeLine> revisions = new HashMap();
 

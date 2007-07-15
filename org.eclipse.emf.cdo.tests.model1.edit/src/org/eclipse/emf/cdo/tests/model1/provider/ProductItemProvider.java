@@ -27,9 +27,10 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.cdo.tests.model1.Product} object.
- * <!-- begin-user-doc
+ * This is the item provider adapter for a
+ * {@link org.eclipse.emf.cdo.tests.model1.Product} object. <!-- begin-user-doc
  * --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ProductItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
@@ -66,26 +67,18 @@ public class ProductItemProvider extends ItemProviderAdapter implements IEditing
   }
 
   /**
-   * This adds a property descriptor for the Name feature.
-   * <!-- begin-user-doc
+   * This adds a property descriptor for the Name feature. <!-- begin-user-doc
    * --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void addNamePropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Product_name_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Product_name_feature", "_UI_Product_type"),
-         Model1Package.Literals.PRODUCT__NAME,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
+        .getRootAdapterFactory(), getResourceLocator(), getString("_UI_Product_name_feature"), getString(
+        "_UI_PropertyDescriptor_description", "_UI_Product_name_feature", "_UI_Product_type"),
+        Model1Package.Literals.PRODUCT__NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+        null));
   }
 
   /**
@@ -96,24 +89,15 @@ public class ProductItemProvider extends ItemProviderAdapter implements IEditing
    */
   protected void addOrderDetailsPropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Product_orderDetails_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Product_orderDetails_feature", "_UI_Product_type"),
-         Model1Package.Literals.PRODUCT__ORDER_DETAILS,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
+        .getRootAdapterFactory(), getResourceLocator(), getString("_UI_Product_orderDetails_feature"), getString(
+        "_UI_PropertyDescriptor_description", "_UI_Product_orderDetails_feature", "_UI_Product_type"),
+        Model1Package.Literals.PRODUCT__ORDER_DETAILS, true, false, true, null, null, null));
   }
 
   /**
-   * This returns Product.gif.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This returns Product.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -123,25 +107,25 @@ public class ProductItemProvider extends ItemProviderAdapter implements IEditing
   }
 
   /**
-   * This returns the label text for the adapted class.
-   * <!-- begin-user-doc -->
+   * This returns the label text for the adapted class. <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public String getText(Object object)
   {
     String label = ((Product)object).getName();
-    return label == null || label.length() == 0 ?
-      getString("_UI_Product_type") :
-      getString("_UI_Product_type") + " " + label;
+    return label == null || label.length() == 0 ? getString("_UI_Product_type") : getString("_UI_Product_type") + " "
+        + label;
   }
 
   /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached
-   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-   * <!-- begin-user-doc --> <!--
+   * This handles model notifications by calling {@link #updateChildren} to
+   * update any cached children and by creating a viewer notification, which it
+   * passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
    * end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -151,9 +135,9 @@ public class ProductItemProvider extends ItemProviderAdapter implements IEditing
 
     switch (notification.getFeatureID(Product.class))
     {
-      case Model1Package.PRODUCT__NAME:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-        return;
+    case Model1Package.PRODUCT__NAME:
+      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+      return;
     }
     super.notifyChanged(notification);
   }

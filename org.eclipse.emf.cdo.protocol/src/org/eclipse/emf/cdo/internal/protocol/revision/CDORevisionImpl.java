@@ -11,7 +11,7 @@
 package org.eclipse.emf.cdo.internal.protocol.revision;
 
 import org.eclipse.emf.cdo.internal.protocol.CDOIDImpl;
-import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
+import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassRefImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
@@ -37,7 +37,7 @@ import java.util.Map;
  */
 public class CDORevisionImpl implements CDORevision, CDORevisionData
 {
-  public static final ContextTracer TRACER = new ContextTracer(CDOProtocol.DEBUG_REVISION, CDORevisionImpl.class);
+  public static final ContextTracer TRACER = new ContextTracer(OM.DEBUG_REVISION, CDORevisionImpl.class);
 
   private CDOClassImpl cdoClass;
 

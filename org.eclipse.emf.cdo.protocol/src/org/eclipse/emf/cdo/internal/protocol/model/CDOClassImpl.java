@@ -10,7 +10,7 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.model;
 
-import org.eclipse.emf.cdo.internal.protocol.bundle.CDOProtocol;
+import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
 
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
@@ -27,9 +27,9 @@ import java.util.List;
  */
 public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
 {
-  private static final ContextTracer MODEL = new ContextTracer(CDOProtocol.DEBUG_MODEL, CDOClassImpl.class);
+  private static final ContextTracer MODEL = new ContextTracer(OM.DEBUG_MODEL, CDOClassImpl.class);
 
-  private static final ContextTracer PROTOCOL = new ContextTracer(CDOProtocol.DEBUG_PROTOCOL, CDOClassImpl.class);
+  private static final ContextTracer PROTOCOL = new ContextTracer(OM.DEBUG_PROTOCOL, CDOClassImpl.class);
 
   private static final byte SEGMENT_THIS = 0;
 

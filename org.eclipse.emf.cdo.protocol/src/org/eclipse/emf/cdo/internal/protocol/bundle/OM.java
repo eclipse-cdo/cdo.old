@@ -19,11 +19,11 @@ import org.eclipse.net4j.util.om.trace.OMTracer;
 /**
  * @author Eike Stepper
  */
-public final class CDOProtocol
+public abstract class OM
 {
   public static final String BUNDLE_ID = "org.eclipse.emf.cdo.protocol"; //$NON-NLS-1$
 
-  public static final OMBundle BUNDLE = OMPlatform.INSTANCE.bundle(BUNDLE_ID, CDOProtocol.class);
+  public static final OMBundle BUNDLE = OMPlatform.INSTANCE.bundle(BUNDLE_ID, OM.class);
 
   public static final OMTracer DEBUG = BUNDLE.tracer("debug"); //$NON-NLS-1$
 
@@ -35,14 +35,10 @@ public final class CDOProtocol
 
   public static final OMLogger LOG = BUNDLE.logger();
 
-  private CDOProtocol()
-  {
-  }
-
   /**
    * @author Eike Stepper
    */
-  public static final class Activator extends OSGiActivator
+  static final class Activator extends OSGiActivator
   {
     public Activator()
     {

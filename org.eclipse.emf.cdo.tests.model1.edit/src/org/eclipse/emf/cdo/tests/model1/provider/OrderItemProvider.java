@@ -6,7 +6,6 @@
  */
 package org.eclipse.emf.cdo.tests.model1.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -31,24 +30,19 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.cdo.tests.model1.Order} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * This is the item provider adapter for a
+ * {@link org.eclipse.emf.cdo.tests.model1.Order} object. <!-- begin-user-doc
+ * --> <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class OrderItemProvider
-  extends ItemProviderAdapter
-  implements	
-    IEditingDomainItemProvider,	
-    IStructuredItemContentProvider,	
-    ITreeItemContentProvider,	
-    IItemLabelProvider,	
-    IItemPropertySource		
+public class OrderItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+    IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
   /**
-   * This constructs an instance from a factory and a notifier.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This constructs an instance from a factory and a notifier. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public OrderItemProvider(AdapterFactory adapterFactory)
@@ -57,9 +51,9 @@ public class OrderItemProvider
   }
 
   /**
-   * This returns the property descriptors for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This returns the property descriptors for the adapted class. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -74,11 +68,13 @@ public class OrderItemProvider
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+   * This specifies how to implement {@link #getChildren} and is used to deduce
+   * an appropriate feature for an
+   * {@link org.eclipse.emf.edit.command.AddCommand},
+   * {@link org.eclipse.emf.edit.command.RemoveCommand} or
    * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -93,23 +89,23 @@ public class OrderItemProvider
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   protected EStructuralFeature getChildFeature(Object object, Object child)
   {
-    // Check the type of the specified child object and return the proper feature to use for
+    // Check the type of the specified child object and return the proper
+    // feature to use for
     // adding (see {@link AddCommand}) it as a child.
 
     return super.getChildFeature(object, child);
   }
 
   /**
-   * This returns Order.gif.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This returns Order.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -119,9 +115,9 @@ public class OrderItemProvider
   }
 
   /**
-   * This returns the label text for the adapted class.
-   * <!-- begin-user-doc -->
+   * This returns the label text for the adapted class. <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -131,10 +127,11 @@ public class OrderItemProvider
   }
 
   /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached
-   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This handles model notifications by calling {@link #updateChildren} to
+   * update any cached children and by creating a viewer notification, which it
+   * passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -144,18 +141,18 @@ public class OrderItemProvider
 
     switch (notification.getFeatureID(Order.class))
     {
-      case Model1Package.ORDER__ORDER_DETAILS:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-        return;
+    case Model1Package.ORDER__ORDER_DETAILS:
+      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+      return;
     }
     super.notifyChanged(notification);
   }
 
   /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-   * that can be created under this object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+   * describing the children that can be created under this object. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -163,16 +160,14 @@ public class OrderItemProvider
   {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add
-      (createChildParameter
-        (Model1Package.Literals.ORDER__ORDER_DETAILS,
-         Model1Factory.eINSTANCE.createOrderDetail()));
+    newChildDescriptors.add(createChildParameter(Model1Package.Literals.ORDER__ORDER_DETAILS, Model1Factory.eINSTANCE
+        .createOrderDetail()));
   }
 
   /**
-   * Return the resource locator for this item provider's resources.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Return the resource locator for this item provider's resources. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

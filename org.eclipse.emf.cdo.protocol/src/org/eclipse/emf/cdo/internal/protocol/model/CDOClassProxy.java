@@ -10,7 +10,6 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.model;
 
-
 /**
  * @author Eike Stepper
  */
