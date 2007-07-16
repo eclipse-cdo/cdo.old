@@ -1,5 +1,5 @@
 /***************************************************************************
- * Copyright (c) 2004-2007 Eike Stepper, Germany.
+ * Copyright (c) 2004 - 2007 Eike Stepper, Germany.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,26 +13,26 @@ package org.eclipse.emf.cdo.protocol.util;
 /**
  * @author Eike Stepper
  */
-public class TransportException extends CDOException
+public class CDOException extends RuntimeException
 {
   private static final long serialVersionUID = 1L;
 
-  public TransportException()
+  public CDOException()
   {
   }
 
-  public TransportException(String message)
+  public CDOException(String message)
   {
     super(message);
   }
 
-  public TransportException(String message, Throwable cause)
-  {
-    super(message, cause);
-  }
-
-  public TransportException(Throwable cause)
+  public CDOException(Throwable cause)
   {
     super(cause);
+  }
+
+  public CDOException(String message, Throwable cause)
+  {
+    super(message, cause);
   }
 }

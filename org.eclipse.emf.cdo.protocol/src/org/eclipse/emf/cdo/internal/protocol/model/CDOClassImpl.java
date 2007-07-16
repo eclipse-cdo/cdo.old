@@ -86,17 +86,17 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
       addFeature(cdoFeature);
     }
 
-    size = in.readInt();
-    if (PROTOCOL.isEnabled())
-    {
-      PROTOCOL.format("Reading {0} super types", size);
-    }
-
-    for (int i = 0; i < size; i++)
-    {
-      CDOClassRefImpl classRef = new CDOClassRefImpl(in, containingPackage.getPackageURI());
-    }
-
+    // size = in.readInt();
+    // if (PROTOCOL.isEnabled())
+    // {
+    // PROTOCOL.format("Reading {0} super types", size);
+    // }
+    //
+    // for (int i = 0; i < size; i++)
+    // {
+    // CDOClassRefImpl classRef = new CDOClassRefImpl(in,
+    // containingPackage.getPackageURI());
+    // }
   }
 
   @Override
@@ -122,37 +122,38 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
       cdoFeature.write(out);
     }
 
-    if (PROTOCOL.isEnabled())
-    {
-      PROTOCOL.format("Writing {0} super types", allSuperTypes.length);
-    }
-
-    out.writeInt(allSuperTypes.length);
-    for (CDOClassImpl cdoClass : allSuperTypes)
-    {
-      cdoClass.createClassRef().write(out, containingPackage.getPackageURI());
-    }
-
-    CDOClassImpl lastClass = null;
-    for (CDOFeatureImpl cdoFeature : allFeatures)
-    {
-      CDOClassImpl containingClass = cdoFeature.getContainingClass();
-      if (containingClass == this)
-      {
-        out.writeByte(SEGMENT_THIS);
-        break;
-      }
-      else if (containingClass == lastClass)
-      {
-        out.writeByte(SEGMENT_SAME);
-      }
-      else
-      {
-        out.writeByte(SEGMENT_NEXT);
-        containingClass.createClassRef().write(out, containingPackage.getPackageURI());
-        lastClass = containingClass;
-      }
-    }
+    // if (PROTOCOL.isEnabled())
+    // {
+    // PROTOCOL.format("Writing {0} super types", allSuperTypes.length);
+    // }
+    //
+    // out.writeInt(allSuperTypes.length);
+    // for (CDOClassImpl cdoClass : allSuperTypes)
+    // {
+    // cdoClass.createClassRef().write(out, containingPackage.getPackageURI());
+    // }
+    //
+    // CDOClassImpl lastClass = null;
+    // for (CDOFeatureImpl cdoFeature : allFeatures)
+    // {
+    // CDOClassImpl containingClass = cdoFeature.getContainingClass();
+    // if (containingClass == this)
+    // {
+    // out.writeByte(SEGMENT_THIS);
+    // break;
+    // }
+    // else if (containingClass == lastClass)
+    // {
+    // out.writeByte(SEGMENT_SAME);
+    // }
+    // else
+    // {
+    // out.writeByte(SEGMENT_NEXT);
+    // containingClass.createClassRef().write(out,
+    // containingPackage.getPackageURI());
+    // lastClass = containingClass;
+    // }
+    // }
   }
 
   public CDOPackageImpl getContainingPackage()
