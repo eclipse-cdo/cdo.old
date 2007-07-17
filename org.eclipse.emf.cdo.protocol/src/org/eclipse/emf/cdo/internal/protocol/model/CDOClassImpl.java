@@ -221,7 +221,7 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
   public CDOFeatureImpl lookupFeature(int featureID)
   {
     int i = index.get(featureID);
-    return allFeatures[i];
+    return features.get(i);// XXX Use allFeatures!!!
   }
 
   public CDOClassRefImpl createClassRef()
