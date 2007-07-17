@@ -46,9 +46,10 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
 
   private CDOClassProxy referenceType;
 
-  public CDOFeatureImpl(int featureID, String name, CDOTypeImpl type, boolean many)
+  public CDOFeatureImpl(CDOClassImpl containingClass, int featureID, String name, CDOTypeImpl type, boolean many)
   {
     super(name);
+    this.containingClass = containingClass;
     this.featureID = featureID;
     this.type = type;
     this.many = many;
@@ -58,9 +59,11 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
     }
   }
 
-  public CDOFeatureImpl(int featureID, String name, CDOClassProxy referenceType, boolean many, boolean containment)
+  public CDOFeatureImpl(CDOClassImpl containingClass, int featureID, String name, CDOClassProxy referenceType,
+      boolean many, boolean containment)
   {
     super(name);
+    this.containingClass = containingClass;
     this.featureID = featureID;
     this.type = CDOTypeImpl.OBJECT;
     this.many = many;
@@ -72,9 +75,10 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
     }
   }
 
-  public CDOFeatureImpl(ExtendedDataInputStream in) throws IOException
+  public CDOFeatureImpl(CDOClassImpl containingClass, ExtendedDataInputStream in) throws IOException
   {
     super(in);
+    this.containingClass = containingClass;
     featureID = in.readInt();
     type = CDOTypeImpl.read(in);
     many = in.readBoolean();
@@ -184,11 +188,6 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
   public CDOPackage getContainingPackage()
   {
     return containingClass.getContainingPackage();
-  }
-
-  public void setContainingClass(CDOClassImpl containingClass)
-  {
-    this.containingClass = containingClass;
   }
 
   public void setFeatureIndex(int featureIndex)

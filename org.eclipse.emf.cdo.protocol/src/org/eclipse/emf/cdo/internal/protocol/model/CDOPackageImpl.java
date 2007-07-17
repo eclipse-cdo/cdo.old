@@ -69,7 +69,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
 
     for (int i = 0; i < size; i++)
     {
-      CDOClassImpl cdoClass = new CDOClassImpl(in);
+      CDOClassImpl cdoClass = new CDOClassImpl(this, in);
       addClass(cdoClass);
     }
   }
@@ -149,7 +149,6 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
       MODEL.format("Adding class: {0}", cdoClass);
     }
 
-    cdoClass.setContainingPackage(this);
     setIndex(classifierID, cdoClass);
     classes.add(cdoClass);
   }

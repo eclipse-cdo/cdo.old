@@ -87,6 +87,33 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
   {
     CDOClassRef classRef = new CDOClassRefImpl(in, null);
     cdoClass = packageManager.resolveClass(classRef);
+    if (cdoClass == null)
+    {
+      System.err.println();
+      System.err.println();
+      System.err.println();
+      System.err.println();
+      System.err.println();
+      System.err.println();
+      System.err.println();
+      System.err.println();
+      System.err.println();
+      System.err.println();
+      System.err.println();
+      System.err.println(classRef);
+      System.err.println();
+      System.err.println();
+      System.err.println();
+      System.err.println();
+      System.err.println();
+      System.err.println();
+      System.err.println();
+      System.err.println();
+      System.err.println();
+      System.err.println();
+      System.err.println();
+    }
+
     id = CDOIDImpl.read(in);
     if (TRACER.isEnabled())
     {

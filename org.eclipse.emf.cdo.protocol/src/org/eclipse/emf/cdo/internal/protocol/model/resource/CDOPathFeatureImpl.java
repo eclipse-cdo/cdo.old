@@ -10,6 +10,7 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.model.resource;
 
+import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl;
 import org.eclipse.emf.cdo.protocol.model.resource.CDOPathFeature;
@@ -19,8 +20,8 @@ import org.eclipse.emf.cdo.protocol.model.resource.CDOPathFeature;
  */
 public class CDOPathFeatureImpl extends CDOFeatureImpl implements CDOPathFeature
 {
-  public CDOPathFeatureImpl()
+  public CDOPathFeatureImpl(CDOClassImpl containingClass)
   {
-    super(FEATURE_ID, NAME, CDOTypeImpl.STRING, false);
+    super(containingClass, FEATURE_ID, NAME, CDOTypeImpl.STRING, false);
   }
 }

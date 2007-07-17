@@ -10,6 +10,7 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.model.resource;
 
+import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassProxy;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOPackageManagerImpl;
@@ -20,8 +21,9 @@ import org.eclipse.emf.cdo.protocol.model.resource.CDOContentsFeature;
  */
 public class CDOContentsFeatureImpl extends CDOFeatureImpl implements CDOContentsFeature
 {
-  public CDOContentsFeatureImpl(CDOPackageManagerImpl packageManager)
+  public CDOContentsFeatureImpl(CDOClassImpl containingClass, CDOPackageManagerImpl packageManager)
   {
-    super(FEATURE_ID, NAME, new CDOClassProxy(packageManager.getCDOCorePackage().getCDOObjectClass()), true, true);
+    super(containingClass, FEATURE_ID, NAME, new CDOClassProxy(packageManager.getCDOCorePackage().getCDOObjectClass()),
+        true, true);
   }
 }

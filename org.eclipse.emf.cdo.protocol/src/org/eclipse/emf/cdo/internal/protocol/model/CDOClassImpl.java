@@ -53,9 +53,10 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
 
   private transient List<Integer> index = new ArrayList(0);
 
-  public CDOClassImpl(int classifierID, String name, boolean isAbstract)
+  public CDOClassImpl(CDOPackageImpl containingPackage, int classifierID, String name, boolean isAbstract)
   {
     super(name);
+    this.containingPackage = containingPackage;
     this.classifierID = classifierID;
     this.isAbstract = isAbstract;
     if (MODEL.isEnabled())
@@ -64,9 +65,10 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     }
   }
 
-  public CDOClassImpl(ExtendedDataInputStream in) throws IOException
+  public CDOClassImpl(CDOPackageImpl containingPackage, ExtendedDataInputStream in) throws IOException
   {
     super(in);
+    this.containingPackage = containingPackage;
     classifierID = in.readInt();
     isAbstract = in.readBoolean();
     if (PROTOCOL.isEnabled())
@@ -82,7 +84,7 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
 
     for (int i = 0; i < size; i++)
     {
-      CDOFeatureImpl cdoFeature = new CDOFeatureImpl(in);
+      CDOFeatureImpl cdoFeature = new CDOFeatureImpl(this, in);
       addFeature(cdoFeature);
     }
 
@@ -250,7 +252,6 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     int i = features.size();
     setIndex(featureID, i);
     cdoFeature.setFeatureIndex(i);
-    cdoFeature.setContainingClass(this);
     features.add(cdoFeature);
   }
 
@@ -262,11 +263,6 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
   public void setAllFeatures(CDOFeatureImpl[] allFeatures)
   {
     this.allFeatures = allFeatures;
-  }
-
-  public void setContainingPackage(CDOPackageImpl containingPackage)
-  {
-    this.containingPackage = containingPackage;
   }
 
   public void initialize()

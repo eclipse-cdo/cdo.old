@@ -24,7 +24,7 @@ public final class CDOCorePackageImpl extends CDOPackageImpl implements CDOCoreP
   public CDOCorePackageImpl(CDOPackageManagerImpl packageManager)
   {
     super(packageManager, PACKAGE_URI, NAME);
-    addClass(cdoObjectClass = new CDOObjectClassImpl());
+    addClass(cdoObjectClass = new CDOObjectClassImpl(this));
   }
 
   public CDOObjectClassImpl getCDOObjectClass()
