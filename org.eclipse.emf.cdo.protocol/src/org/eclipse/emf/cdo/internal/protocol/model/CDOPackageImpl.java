@@ -40,13 +40,16 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
 
   private List<CDOClassImpl> index;
 
+  private String ecore;
+
   private boolean persistent = true;
 
-  public CDOPackageImpl(CDOPackageManagerImpl packageManager, String packageURI, String name)
+  public CDOPackageImpl(CDOPackageManagerImpl packageManager, String packageURI, String name, String ecore)
   {
     super(name);
     this.packageManager = packageManager;
     this.packageURI = packageURI;
+    this.ecore = ecore;
     if (MODEL.isEnabled())
     {
       MODEL.format("Created {0}", this);
@@ -96,6 +99,8 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
       CDOClassImpl cdoClass = new CDOClassImpl(this, in);
       addClass(cdoClass);
     }
+
+    ecore = in.readString();
   }
 
   @Override
@@ -122,6 +127,8 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
       {
         cdoClass.write(out);
       }
+
+      out.writeString(ecore);
     }
   }
 
@@ -147,6 +154,10 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     return classes.toArray(new CDOClassImpl[classes.size()]);
   }
 
+  /**
+   * @return All classes with <code>isAbstract() == false</code> and
+   *         <code>isSystem() == false</code>.
+   */
   public CDOClass[] getConcreteClasses()
   {
     resolve();
@@ -156,7 +167,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
       if (!cdoClass.isAbstract())
       {
         CDOPackage cdoPackage = cdoClass.getContainingPackage();
-        if (cdoPackage != packageManager.getCDOCorePackage() && cdoPackage != packageManager.getCDOResourcePackage())
+        if (!cdoPackage.isSystem())
         {
           result.add(cdoClass);
         }
@@ -172,9 +183,24 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     return index.get(classifierID);
   }
 
+  public String getEcore()
+  {
+    return ecore;
+  }
+
+  public void setEcore(String ecore)
+  {
+    this.ecore = ecore;
+  }
+
   public boolean isSystem()
   {
     return false;
+  }
+
+  public boolean isDynamic()
+  {
+    return ecore != null;
   }
 
   public boolean isPersistent()

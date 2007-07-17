@@ -57,7 +57,7 @@ public abstract class CDOPackageManagerImpl extends Notifier implements CDOPacka
     return packages.size();
   }
 
-  public CDOPackageImpl[] getPackages()
+  public CDOPackage[] getPackages()
   {
     return packages.values().toArray(new CDOPackageImpl[packages.size()]);
   }
@@ -107,7 +107,7 @@ public abstract class CDOPackageManagerImpl extends Notifier implements CDOPacka
 
   public void addPackage(CDOPackageImpl cdoPackage)
   {
-    CDOPackageImpl existing = packages.putIfAbsent(cdoPackage.getPackageURI(), cdoPackage);
+    CDOPackage existing = packages.putIfAbsent(cdoPackage.getPackageURI(), cdoPackage);
     if (existing == null)
     {
       if (TRACER.isEnabled())

@@ -11,7 +11,6 @@
 package org.eclipse.emf.cdo.internal.protocol.model;
 
 import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
-import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 
@@ -105,15 +104,16 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
           type, many, containment);
     }
 
-    CDOClassRef classRef = null;
     if (isReference())
     {
       String defaultURI = containingClass.getContainingPackage().getPackageURI();
-      classRef = new CDOClassRefImpl(in, defaultURI);
+      CDOClassRefImpl classRef = new CDOClassRefImpl(in, defaultURI);
       if (PROTOCOL.isEnabled())
       {
         PROTOCOL.format("Read reference type: classRef={0}", classRef);
       }
+
+      referenceType = new CDOClassProxy(classRef, containingClass.getContainingPackage().getPackageManager());
     }
   }
 
@@ -134,6 +134,11 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
 
     if (isReference())
     {
+      if (referenceType == null)
+      {
+        System.out.println(type);
+      }
+
       CDOClassRefImpl classRef = referenceType.getCDOClassRef();
       if (PROTOCOL.isEnabled())
       {
