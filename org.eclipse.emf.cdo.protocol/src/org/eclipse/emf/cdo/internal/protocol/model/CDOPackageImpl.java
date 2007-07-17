@@ -105,7 +105,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     {
       if (PROTOCOL.isEnabled())
       {
-        PROTOCOL.format("Writing package: URI={0}, name={0}", packageURI, getName());
+        PROTOCOL.format("Writing package: URI={0}, name={1}", packageURI, getName());
       }
 
       super.write(out);

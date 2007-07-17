@@ -49,6 +49,11 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
   public CDOFeatureImpl(CDOClassImpl containingClass, int featureID, String name, CDOTypeImpl type, boolean many)
   {
     super(name);
+    if (type == CDOTypeImpl.OBJECT)
+    {
+      throw new IllegalArgumentException("type == OBJECT");
+    }
+
     this.containingClass = containingClass;
     this.featureID = featureID;
     this.type = type;
@@ -63,6 +68,11 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
       boolean many, boolean containment)
   {
     super(name);
+    if (referenceType == null)
+    {
+      throw new IllegalArgumentException("referenceType == null");
+    }
+
     this.containingClass = containingClass;
     this.featureID = featureID;
     this.type = CDOTypeImpl.OBJECT;
@@ -124,7 +134,7 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
 
     if (isReference())
     {
-      CDOClassRefImpl classRef = getReferenceTypeClassRef();
+      CDOClassRefImpl classRef = referenceType.getCDOClassRef();
       if (PROTOCOL.isEnabled())
       {
         PROTOCOL.format("Writing reference type: classRef={0}", classRef);
@@ -132,11 +142,6 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
 
       classRef.write(out, getContainingPackage().getPackageURI());
     }
-  }
-
-  private CDOClassRefImpl getReferenceTypeClassRef()
-  {
-    return referenceType.getCDOClassRef();
   }
 
   public CDOClassImpl getContainingClass()
