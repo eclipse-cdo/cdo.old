@@ -22,6 +22,7 @@ import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionData;
+import org.eclipse.emf.cdo.protocol.util.ImplementationError;
 
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.io.ExtendedDataInputStream;
@@ -89,29 +90,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     cdoClass = packageManager.resolveClass(classRef);
     if (cdoClass == null)
     {
-      System.err.println();
-      System.err.println();
-      System.err.println();
-      System.err.println();
-      System.err.println();
-      System.err.println();
-      System.err.println();
-      System.err.println();
-      System.err.println();
-      System.err.println();
-      System.err.println();
-      System.err.println(classRef);
-      System.err.println();
-      System.err.println();
-      System.err.println();
-      System.err.println();
-      System.err.println();
-      System.err.println();
-      System.err.println();
-      System.err.println();
-      System.err.println();
-      System.err.println();
-      System.err.println();
+      throw new ImplementationError("ClassRef unresolveable: " + classRef);
     }
 
     id = CDOIDImpl.read(in);
