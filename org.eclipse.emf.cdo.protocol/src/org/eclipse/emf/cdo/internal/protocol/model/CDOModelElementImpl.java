@@ -30,17 +30,18 @@ public abstract class CDOModelElementImpl implements CDOModelElement
 
   private Object clientInfo;
 
-  /**
-   * TODO Check if needed
-   */
   private Object serverInfo;
 
-  public CDOModelElementImpl(String name)
+  protected CDOModelElementImpl(String name)
   {
     this.name = name;
   }
 
-  public CDOModelElementImpl(ExtendedDataInputStream in) throws IOException
+  protected CDOModelElementImpl()
+  {
+  }
+
+  public void read(ExtendedDataInputStream in) throws IOException
   {
     name = in.readString();
   }

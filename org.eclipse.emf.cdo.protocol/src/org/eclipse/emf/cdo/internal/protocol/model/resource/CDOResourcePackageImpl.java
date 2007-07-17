@@ -31,4 +31,10 @@ public final class CDOResourcePackageImpl extends CDOPackageImpl implements CDOR
   {
     return cdoResourceClass;
   }
+
+  @Override
+  public boolean isSystem()
+  {
+    return true;
+  }
 }

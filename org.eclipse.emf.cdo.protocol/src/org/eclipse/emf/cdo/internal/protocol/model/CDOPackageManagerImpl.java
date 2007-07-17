@@ -23,6 +23,8 @@ import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.container.IContainer;
 import org.eclipse.net4j.util.container.IContainerDelta;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -55,22 +57,18 @@ public abstract class CDOPackageManagerImpl extends Notifier implements CDOPacka
     return packages.size();
   }
 
-  public CDOPackage[] getPackages()
+  public CDOPackageImpl[] getPackages()
   {
-    return packages.values().toArray(new CDOPackage[packages.size()]);
+    return packages.values().toArray(new CDOPackageImpl[packages.size()]);
   }
 
   public CDOClassImpl resolveClass(CDOClassRef classRef)
   {
     String packageURI = classRef.getPackageURI();
-    int classifierID = classRef.getClassifierID();
     CDOPackageImpl cdoPackage = lookupPackage(packageURI);
-    if (cdoPackage != null)
-    {
-      return cdoPackage.lookupClass(classifierID);
-    }
 
-    return null;
+    int classifierID = classRef.getClassifierID();
+    return cdoPackage.lookupClass(classifierID);
   }
 
   public CDOCorePackageImpl getCDOCorePackage()
@@ -93,6 +91,20 @@ public abstract class CDOPackageManagerImpl extends Notifier implements CDOPacka
     return getPackages();
   }
 
+  public List<CDOPackageImpl> getTransientPackages()
+  {
+    List<CDOPackageImpl> result = new ArrayList();
+    for (CDOPackageImpl cdoPackage : packages.values())
+    {
+      if (!cdoPackage.isPersistent())
+      {
+        result.add(cdoPackage);
+      }
+    }
+
+    return result;
+  }
+
   public void addPackage(CDOPackageImpl cdoPackage)
   {
     CDOPackageImpl existing = packages.putIfAbsent(cdoPackage.getPackageURI(), cdoPackage);
@@ -111,5 +123,10 @@ public abstract class CDOPackageManagerImpl extends Notifier implements CDOPacka
     }
   }
 
-  protected abstract CDOPackageImpl resolve(String packageURI);
+  /**
+   * @param cdoPackage
+   *          is a proxy CDO package. The implementer of this method must only
+   *          use the package URI of the cdoPackage passed in.
+   */
+  protected abstract void resolve(CDOPackageImpl cdoPackage);
 }

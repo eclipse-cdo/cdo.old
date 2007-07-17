@@ -36,9 +36,11 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
 
   private String packageURI;
 
-  private List<CDOClassImpl> classes = new ArrayList(0);
+  private List<CDOClassImpl> classes;
 
-  private List<CDOClassImpl> index = new ArrayList(0);
+  private List<CDOClassImpl> index;
+
+  private boolean persistent = true;
 
   public CDOPackageImpl(CDOPackageManagerImpl packageManager, String packageURI, String name)
   {
@@ -49,12 +51,34 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     {
       MODEL.format("Created {0}", this);
     }
+
+    createLists();
   }
 
   public CDOPackageImpl(CDOPackageManagerImpl packageManager, ExtendedDataInputStream in) throws IOException
   {
-    super(in);
     this.packageManager = packageManager;
+    createLists();
+    read(in);
+  }
+
+  /**
+   * Creates a proxy CDO package
+   */
+  public CDOPackageImpl(CDOPackageManagerImpl packageManager, String packageURI)
+  {
+    this.packageManager = packageManager;
+    this.packageURI = packageURI;
+    if (MODEL.isEnabled())
+    {
+      MODEL.format("Created proxy package {0}", packageURI);
+    }
+  }
+
+  @Override
+  public void read(ExtendedDataInputStream in) throws IOException
+  {
+    super.read(in);
     packageURI = in.readString();
     if (PROTOCOL.isEnabled())
     {
@@ -77,24 +101,27 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
   @Override
   public void write(ExtendedDataOutputStream out) throws IOException
   {
-    if (PROTOCOL.isEnabled())
+    if (classes != null && !classes.isEmpty())
     {
-      PROTOCOL.format("Writing package: URI={0}, name={0}", packageURI, getName());
-    }
+      if (PROTOCOL.isEnabled())
+      {
+        PROTOCOL.format("Writing package: URI={0}, name={0}", packageURI, getName());
+      }
 
-    super.write(out);
-    out.writeString(packageURI);
+      super.write(out);
+      out.writeString(packageURI);
 
-    int size = classes.size();
-    if (PROTOCOL.isEnabled())
-    {
-      PROTOCOL.format("Writing {0} classes", size);
-    }
+      int size = classes.size();
+      if (PROTOCOL.isEnabled())
+      {
+        PROTOCOL.format("Writing {0} classes", size);
+      }
 
-    out.writeInt(size);
-    for (CDOClassImpl cdoClass : classes)
-    {
-      cdoClass.write(out);
+      out.writeInt(size);
+      for (CDOClassImpl cdoClass : classes)
+      {
+        cdoClass.write(out);
+      }
     }
   }
 
@@ -110,16 +137,19 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
 
   public int getClassCount()
   {
+    resolve();
     return classes.size();
   }
 
   public CDOClass[] getClasses()
   {
+    resolve();
     return classes.toArray(new CDOClassImpl[classes.size()]);
   }
 
   public CDOClass[] getConcreteClasses()
   {
+    resolve();
     List<CDOClassImpl> result = new ArrayList(0);
     for (CDOClassImpl cdoClass : classes)
     {
@@ -138,7 +168,23 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
 
   public CDOClassImpl lookupClass(int classifierID)
   {
+    resolve();
     return index.get(classifierID);
+  }
+
+  public boolean isSystem()
+  {
+    return false;
+  }
+
+  public boolean isPersistent()
+  {
+    return persistent;
+  }
+
+  public void setPersistent(boolean persistent)
+  {
+    this.persistent = persistent;
   }
 
   public void addClass(CDOClassImpl cdoClass)
@@ -175,5 +221,20 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     }
 
     index.set(classifierID, cdoClass);
+  }
+
+  private void resolve()
+  {
+    if (classes == null)
+    {
+      createLists();
+      packageManager.resolve(this);
+    }
+  }
+
+  private void createLists()
+  {
+    classes = new ArrayList(0);
+    index = new ArrayList(0);
   }
 }

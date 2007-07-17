@@ -17,19 +17,19 @@ public interface CDOProtocolConstants
 {
   public static final String PROTOCOL_NAME = "cdo";
 
-  public static final short OPEN_SESSION_SIGNAL = 1;
+  public static final short SIGNAL_OPEN_SESSION = 1;
 
-  public static final short RESOURCE_ID_SIGNAL = 2;
+  public static final short SIGNAL_RESOURCE_ID = 2;
 
-  public static final short RESOURCE_PATH_SIGNAL = 3;
+  public static final short SIGNAL_RESOURCE_PATH = 3;
 
-  public static final short LOAD_OBJECT_SIGNAL = 4;
+  public static final short SIGNAL_LOAD_PACKAGE = 4;
 
-  public static final short REGISTER_PACKAGES_SIGNAL = 5;
+  public static final short SIGNAL_LOAD_OBJECT = 5;
 
-  public static final short COMMIT_TRANSACTION_SIGNAL = 6;
+  public static final short SIGNAL_COMMIT_TRANSACTION = 6;
 
-  public static final short INVALIDATION_SIGNAL = 7;
+  public static final short SIGNAL_INVALIDATION = 7;
 
   public static final int ERROR_REPOSITORY_NOT_FOUND = -1;
 

@@ -77,8 +77,14 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
 
   public CDOFeatureImpl(CDOClassImpl containingClass, ExtendedDataInputStream in) throws IOException
   {
-    super(in);
     this.containingClass = containingClass;
+    read(in);
+  }
+
+  @Override
+  public void read(ExtendedDataInputStream in) throws IOException
+  {
+    super.read(in);
     featureID = in.readInt();
     type = CDOTypeImpl.read(in);
     many = in.readBoolean();

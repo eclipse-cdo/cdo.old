@@ -67,8 +67,14 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
 
   public CDOClassImpl(CDOPackageImpl containingPackage, ExtendedDataInputStream in) throws IOException
   {
-    super(in);
     this.containingPackage = containingPackage;
+    read(in);
+  }
+
+  @Override
+  public void read(ExtendedDataInputStream in) throws IOException
+  {
+    super.read(in);
     classifierID = in.readInt();
     isAbstract = in.readBoolean();
     if (PROTOCOL.isEnabled())

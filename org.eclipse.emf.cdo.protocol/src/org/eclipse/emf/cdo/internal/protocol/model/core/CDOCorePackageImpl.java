@@ -31,4 +31,10 @@ public final class CDOCorePackageImpl extends CDOPackageImpl implements CDOCoreP
   {
     return cdoObjectClass;
   }
+
+  @Override
+  public boolean isSystem()
+  {
+    return true;
+  }
 }
