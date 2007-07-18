@@ -228,18 +228,19 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     classes.add(cdoClass);
   }
 
-  public void initialize()
+  @Override
+  public String toString()
+  {
+    return MessageFormat.format("CDOPackage(URI={0}, name={1})", packageURI, getName());
+  }
+
+  @Override
+  protected void onInitialize()
   {
     for (CDOClassImpl cdoClass : classes)
     {
       cdoClass.initialize();
     }
-  }
-
-  @Override
-  public String toString()
-  {
-    return MessageFormat.format("CDOPackage(URI={0}, name={1})", packageURI, getName());
   }
 
   private void setIndex(int classifierID, CDOClassImpl cdoClass)

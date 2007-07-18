@@ -12,7 +12,6 @@ package org.eclipse.emf.cdo.internal.protocol.model;
 
 import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
-import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.io.ExtendedDataInputStream;
@@ -149,6 +148,16 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
     }
   }
 
+  public CDOPackageManagerImpl getPackageManager()
+  {
+    return getContainingPackage().getPackageManager();
+  }
+
+  public CDOPackageImpl getContainingPackage()
+  {
+    return containingClass.getContainingPackage();
+  }
+
   public CDOClassImpl getContainingClass()
   {
     return containingClass;
@@ -197,15 +206,6 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
     return null;
   }
 
-  public void initialize()
-  {
-  }
-
-  public CDOPackage getContainingPackage()
-  {
-    return containingClass.getContainingPackage();
-  }
-
   public void setFeatureIndex(int featureIndex)
   {
     this.featureIndex = featureIndex;
@@ -215,5 +215,10 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
   public String toString()
   {
     return MessageFormat.format("CDOFeature(ID={0}, name={1}, type={2})", featureID, getName(), getType());
+  }
+
+  @Override
+  protected void onInitialize()
+  {
   }
 }

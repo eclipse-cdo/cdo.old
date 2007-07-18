@@ -12,6 +12,7 @@ package org.eclipse.emf.cdo.internal.protocol.model;
 
 import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
 import org.eclipse.emf.cdo.protocol.model.CDOModelElement;
+import org.eclipse.emf.cdo.protocol.util.ImplementationError;
 
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.io.ExtendedDataInputStream;
@@ -31,6 +32,8 @@ public abstract class CDOModelElementImpl implements CDOModelElement
   private Object clientInfo;
 
   private Object serverInfo;
+
+  private boolean initialized;
 
   protected CDOModelElementImpl(String name)
   {
@@ -85,4 +88,22 @@ public abstract class CDOModelElementImpl implements CDOModelElement
 
     this.serverInfo = serverInfo;
   }
+
+  public boolean isInitialized()
+  {
+    return initialized;
+  }
+
+  public final void initialize()
+  {
+    if (initialized)
+    {
+      throw new ImplementationError("Duplicate initialization");
+    }
+
+    initialized = true;
+    onInitialize();
+  }
+
+  protected abstract void onInitialize();
 }

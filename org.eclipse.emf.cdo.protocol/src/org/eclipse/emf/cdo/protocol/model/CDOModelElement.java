@@ -15,6 +15,8 @@ package org.eclipse.emf.cdo.protocol.model;
  */
 public interface CDOModelElement
 {
+  public CDOPackageManager getPackageManager();
+
   public String getName();
 
   public Object getClientInfo();

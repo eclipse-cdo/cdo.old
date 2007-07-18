@@ -31,12 +31,6 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
 
   private static final ContextTracer PROTOCOL = new ContextTracer(OM.DEBUG_PROTOCOL, CDOClassImpl.class);
 
-  private static final byte SEGMENT_THIS = 0;
-
-  private static final byte SEGMENT_SAME = 1;
-
-  private static final byte SEGMENT_NEXT = 2;
-
   private CDOPackageImpl containingPackage;
 
   private int classifierID;
@@ -45,13 +39,13 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
 
   private List<CDOClassProxy> superTypes = new ArrayList(0);
 
-  private CDOClassImpl[] allSuperTypes;
-
   private List<CDOFeatureImpl> features = new ArrayList(0);
 
-  private CDOFeatureImpl[] allFeatures;
-
   private transient List<Integer> index = new ArrayList(0);
+
+  private CDOClassImpl[] allSuperTypes;
+
+  private CDOFeatureImpl[] allFeatures;
 
   public CDOClassImpl(CDOPackageImpl containingPackage, int classifierID, String name, boolean isAbstract)
   {
@@ -77,34 +71,13 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     super.read(in);
     classifierID = in.readInt();
     isAbstract = in.readBoolean();
+    readSuperTypes(in);
+    readFeatures(in);
+
     if (PROTOCOL.isEnabled())
     {
       PROTOCOL.format("Read class: ID={0}, name={1}, abstract={2}", classifierID, getName(), isAbstract);
     }
-
-    int size = in.readInt();
-    if (PROTOCOL.isEnabled())
-    {
-      PROTOCOL.format("Reading {0} features", size);
-    }
-
-    for (int i = 0; i < size; i++)
-    {
-      CDOFeatureImpl cdoFeature = new CDOFeatureImpl(this, in);
-      addFeature(cdoFeature);
-    }
-
-    // size = in.readInt();
-    // if (PROTOCOL.isEnabled())
-    // {
-    // PROTOCOL.format("Reading {0} super types", size);
-    // }
-    //
-    // for (int i = 0; i < size; i++)
-    // {
-    // CDOClassRefImpl classRef = new CDOClassRefImpl(in,
-    // containingPackage.getPackageURI());
-    // }
   }
 
   @Override
@@ -118,50 +91,13 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     super.write(out);
     out.writeInt(classifierID);
     out.writeBoolean(isAbstract);
+    writeSuperTypes(out);
+    writeFeatures(out);
+  }
 
-    if (PROTOCOL.isEnabled())
-    {
-      PROTOCOL.format("Writing {0} features", features.size());
-    }
-
-    out.writeInt(features.size());
-    for (CDOFeatureImpl cdoFeature : features)
-    {
-      cdoFeature.write(out);
-    }
-
-    // if (PROTOCOL.isEnabled())
-    // {
-    // PROTOCOL.format("Writing {0} super types", allSuperTypes.length);
-    // }
-    //
-    // out.writeInt(allSuperTypes.length);
-    // for (CDOClassImpl cdoClass : allSuperTypes)
-    // {
-    // cdoClass.createClassRef().write(out, containingPackage.getPackageURI());
-    // }
-    //
-    // CDOClassImpl lastClass = null;
-    // for (CDOFeatureImpl cdoFeature : allFeatures)
-    // {
-    // CDOClassImpl containingClass = cdoFeature.getContainingClass();
-    // if (containingClass == this)
-    // {
-    // out.writeByte(SEGMENT_THIS);
-    // break;
-    // }
-    // else if (containingClass == lastClass)
-    // {
-    // out.writeByte(SEGMENT_SAME);
-    // }
-    // else
-    // {
-    // out.writeByte(SEGMENT_NEXT);
-    // containingClass.createClassRef().write(out,
-    // containingPackage.getPackageURI());
-    // lastClass = containingClass;
-    // }
-    // }
+  public CDOPackageManagerImpl getPackageManager()
+  {
+    return containingPackage.getPackageManager();
   }
 
   public CDOPackageImpl getContainingPackage()
@@ -189,10 +125,10 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     return superTypes.size();
   }
 
-  public CDOClass[] getSuperTypes()
+  public CDOClassImpl[] getSuperTypes()
   {
     int size = superTypes.size();
-    CDOClass[] result = new CDOClass[size];
+    CDOClassImpl[] result = new CDOClassImpl[size];
     for (int i = 0; i < size; i++)
     {
       result[i] = getSuperType(i);
@@ -201,19 +137,9 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     return result;
   }
 
-  public CDOClass getSuperType(int index)
+  public CDOClassImpl getSuperType(int index)
   {
     return superTypes.get(index).getCDOClass();
-  }
-
-  public CDOClassImpl[] getAllSuperTypes()
-  {
-    return allSuperTypes;
-  }
-
-  public void setAllSuperTypes(CDOClassImpl[] allSuperTypes)
-  {
-    this.allSuperTypes = allSuperTypes;
   }
 
   public int getFeatureCount()
@@ -235,6 +161,46 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
   public CDOClassRefImpl createClassRef()
   {
     return new CDOClassRefImpl(containingPackage.getPackageURI(), classifierID);
+  }
+
+  public CDOClassImpl[] getAllSuperTypes()
+  {
+    if (allSuperTypes == null)
+    {
+      List<CDOClassImpl> result = new ArrayList(0);
+      for (CDOClassImpl superType : getSuperTypes())
+      {
+        CDOClassImpl[] higherSupers = superType.getAllSuperTypes();
+        for (CDOClassImpl higherSuper : higherSupers)
+        {
+          addUnique(higherSuper, result);
+        }
+
+        addUnique(superType, result);
+      }
+
+      allSuperTypes = result.toArray(new CDOClassImpl[result.size()]);
+    }
+
+    return allSuperTypes;
+  }
+
+  public CDOFeatureImpl[] getAllFeatures()
+  {
+    if (allFeatures == null)
+    {
+      List<CDOFeatureImpl> result = new ArrayList(0);
+      for (CDOClassImpl superType : getSuperTypes())
+      {
+        CDOFeatureImpl[] features = superType.getAllFeatures();
+        addAllFeatures(features, result);
+      }
+
+      addAllFeatures(getFeatures(), result);
+      allFeatures = result.toArray(new CDOFeatureImpl[result.size()]);
+    }
+
+    return allFeatures;
   }
 
   public void addSuperType(CDOClassRefImpl classRef)
@@ -261,28 +227,19 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     features.add(cdoFeature);
   }
 
-  public CDOFeatureImpl[] getAllFeatures()
+  @Override
+  public String toString()
   {
-    return allFeatures;
+    return MessageFormat.format("CDOClass(ID={0}, name={1})", classifierID, getName());
   }
 
-  public void setAllFeatures(CDOFeatureImpl[] allFeatures)
-  {
-    this.allFeatures = allFeatures;
-  }
-
-  public void initialize()
+  @Override
+  protected void onInitialize()
   {
     for (CDOFeatureImpl cdoFeature : features)
     {
       cdoFeature.initialize();
     }
-  }
-
-  @Override
-  public String toString()
-  {
-    return MessageFormat.format("CDOClass(ID={0}, name={1})", classifierID, getName());
   }
 
   private void setIndex(int id, int i)
@@ -293,5 +250,81 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     }
 
     index.set(id, i);
+  }
+
+  private void readSuperTypes(ExtendedDataInputStream in) throws IOException
+  {
+    int size = in.readInt();
+    if (PROTOCOL.isEnabled())
+    {
+      PROTOCOL.format("Reading {0} super types", size);
+    }
+
+    for (int i = 0; i < size; i++)
+    {
+      CDOClassRefImpl classRef = new CDOClassRefImpl(in, containingPackage.getPackageURI());
+      superTypes.add(new CDOClassProxy(classRef, containingPackage.getPackageManager()));
+    }
+  }
+
+  private void readFeatures(ExtendedDataInputStream in) throws IOException
+  {
+    int size = in.readInt();
+    if (PROTOCOL.isEnabled())
+    {
+      PROTOCOL.format("Reading {0} features", size);
+    }
+
+    for (int i = 0; i < size; i++)
+    {
+      CDOFeatureImpl cdoFeature = new CDOFeatureImpl(this, in);
+      addFeature(cdoFeature);
+    }
+  }
+
+  private void writeSuperTypes(ExtendedDataOutputStream out) throws IOException
+  {
+    int size = superTypes.size();
+    if (PROTOCOL.isEnabled())
+    {
+      PROTOCOL.format("Writing {0} super types", size);
+    }
+
+    out.writeInt(size);
+    for (CDOClassProxy proxy : superTypes)
+    {
+      proxy.getCDOClassRef().write(out, containingPackage.getPackageURI());
+    }
+  }
+
+  private void writeFeatures(ExtendedDataOutputStream out) throws IOException
+  {
+    int size = features.size();
+    if (PROTOCOL.isEnabled())
+    {
+      PROTOCOL.format("Writing {0} features", size);
+    }
+
+    out.writeInt(size);
+    for (CDOFeatureImpl cdoFeature : features)
+    {
+      cdoFeature.write(out);
+    }
+  }
+
+  private static void addAllFeatures(CDOFeatureImpl[] features, List<CDOFeatureImpl> result)
+  {
+    for (CDOFeatureImpl feature : features)
+    {
+      addUnique(feature, result);
+    }
+  }
+
+  private static void addUnique(Object object, List result)
+  {
+    if (!result.contains(object))
+    {
+      result.add(object);
+    }
   }
 }
