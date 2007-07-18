@@ -42,14 +42,18 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
 
   private String ecore;
 
+  private boolean dynamic;
+
   private boolean persistent = true;
 
-  public CDOPackageImpl(CDOPackageManagerImpl packageManager, String packageURI, String name, String ecore)
+  public CDOPackageImpl(CDOPackageManagerImpl packageManager, String packageURI, String name, String ecore,
+      boolean dynamic)
   {
     super(name);
     this.packageManager = packageManager;
     this.packageURI = packageURI;
     this.ecore = ecore;
+    this.dynamic = dynamic;
     if (MODEL.isEnabled())
     {
       MODEL.format("Created {0}", this);
@@ -101,35 +105,34 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     }
 
     ecore = in.readString();
+    dynamic = in.readBoolean();
   }
 
   @Override
   public void write(ExtendedDataOutputStream out) throws IOException
   {
-    if (classes != null && !classes.isEmpty())
+    if (PROTOCOL.isEnabled())
     {
-      if (PROTOCOL.isEnabled())
-      {
-        PROTOCOL.format("Writing package: URI={0}, name={1}", packageURI, getName());
-      }
-
-      super.write(out);
-      out.writeString(packageURI);
-
-      int size = classes.size();
-      if (PROTOCOL.isEnabled())
-      {
-        PROTOCOL.format("Writing {0} classes", size);
-      }
-
-      out.writeInt(size);
-      for (CDOClassImpl cdoClass : classes)
-      {
-        cdoClass.write(out);
-      }
-
-      out.writeString(ecore);
+      PROTOCOL.format("Writing package: URI={0}, name={1}", packageURI, getName());
     }
+
+    super.write(out);
+    out.writeString(packageURI);
+
+    int size = classes.size();
+    if (PROTOCOL.isEnabled())
+    {
+      PROTOCOL.format("Writing {0} classes", size);
+    }
+
+    out.writeInt(size);
+    for (CDOClassImpl cdoClass : classes)
+    {
+      cdoClass.write(out);
+    }
+
+    out.writeString(ecore);
+    out.writeBoolean(dynamic);
   }
 
   public CDOPackageManagerImpl getPackageManager()
@@ -185,22 +188,22 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
 
   public String getEcore()
   {
+    if (ecore == null)
+    {
+      ecore = packageManager.provideEcore(this);
+    }
+
     return ecore;
   }
 
-  public void setEcore(String ecore)
+  public boolean isDynamic()
   {
-    this.ecore = ecore;
+    return dynamic;
   }
 
   public boolean isSystem()
   {
     return false;
-  }
-
-  public boolean isDynamic()
-  {
-    return ecore != null;
   }
 
   public boolean isPersistent()

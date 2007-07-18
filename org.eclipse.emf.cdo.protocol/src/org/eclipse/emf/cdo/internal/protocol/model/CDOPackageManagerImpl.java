@@ -129,4 +129,9 @@ public abstract class CDOPackageManagerImpl extends Notifier implements CDOPacka
    *          use the package URI of the cdoPackage passed in.
    */
   protected abstract void resolve(CDOPackageImpl cdoPackage);
+
+  /**
+   * Only called on clients for generated models
+   */
+  protected abstract String provideEcore(CDOPackageImpl cdoPackage);
 }
