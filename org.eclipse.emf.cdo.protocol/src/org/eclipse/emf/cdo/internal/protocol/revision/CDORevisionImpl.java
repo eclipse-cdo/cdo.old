@@ -453,14 +453,17 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
       if (feature.isMany())
       {
         MoveableList sourceList = (MoveableList)sourceValues[i];
-        int size = sourceList.size();
-        List list = new MoveableList(size);
-        for (int j = 0; j < size; j++)
+        if (sourceList != null)
         {
-          list.add(type.copyValue(sourceList.get(j)));
-        }
+          int size = sourceList.size();
+          List list = new MoveableList(size);
+          for (int j = 0; j < size; j++)
+          {
+            list.add(type.copyValue(sourceList.get(j)));
+          }
 
-        values[i] = list;
+          values[i] = list;
+        }
       }
       else
       {
