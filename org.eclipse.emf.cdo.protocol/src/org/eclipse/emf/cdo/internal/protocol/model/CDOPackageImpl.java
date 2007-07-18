@@ -87,9 +87,11 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
   {
     super.read(in);
     packageURI = in.readString();
+    dynamic = in.readBoolean();
+    ecore = in.readString();
     if (PROTOCOL.isEnabled())
     {
-      PROTOCOL.format("Read package: URI={0}, name={1}", packageURI, getName());
+      PROTOCOL.format("Read package: URI={0}, name={1}, dynamic={2}", packageURI, getName(), dynamic);
     }
 
     int size = in.readInt();
@@ -103,9 +105,6 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
       CDOClassImpl cdoClass = new CDOClassImpl(this, in);
       addClass(cdoClass);
     }
-
-    ecore = in.readString();
-    dynamic = in.readBoolean();
   }
 
   @Override
@@ -113,11 +112,13 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
   {
     if (PROTOCOL.isEnabled())
     {
-      PROTOCOL.format("Writing package: URI={0}, name={1}", packageURI, getName());
+      PROTOCOL.format("Writing package: URI={0}, name={1}, dynamic={2}", packageURI, getName(), dynamic);
     }
 
     super.write(out);
     out.writeString(packageURI);
+    out.writeBoolean(dynamic);
+    out.writeString(ecore);
 
     int size = classes.size();
     if (PROTOCOL.isEnabled())
@@ -130,9 +131,6 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     {
       cdoClass.write(out);
     }
-
-    out.writeString(ecore);
-    out.writeBoolean(dynamic);
   }
 
   public CDOPackageManagerImpl getPackageManager()
@@ -231,7 +229,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
   @Override
   public String toString()
   {
-    return MessageFormat.format("CDOPackage(URI={0}, name={1})", packageURI, getName());
+    return MessageFormat.format("CDOPackage(URI={0}, name={1}, dynamic={2})", packageURI, getName(), dynamic);
   }
 
   @Override

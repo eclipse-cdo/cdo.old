@@ -41,11 +41,11 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
 
   private List<CDOFeatureImpl> features = new ArrayList(0);
 
-  private transient List<Integer> index = new ArrayList(0);
+  private transient List<Integer> indices;
 
-  private CDOClassImpl[] allSuperTypes;
+  private transient CDOClassImpl[] allSuperTypes;
 
-  private CDOFeatureImpl[] allFeatures;
+  private transient CDOFeatureImpl[] allFeatures;
 
   public CDOClassImpl(CDOPackageImpl containingPackage, int classifierID, String name, boolean isAbstract)
   {
@@ -154,8 +154,8 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
 
   public CDOFeatureImpl lookupFeature(int featureID)
   {
-    int i = index.get(featureID);
-    return features.get(i);// XXX Use allFeatures!!!
+    int i = getIndex(featureID);
+    return getAllFeatures()[i];
   }
 
   public CDOClassRefImpl createClassRef()
@@ -183,6 +183,24 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     }
 
     return allSuperTypes;
+  }
+
+  public int getIndex(int featureID)
+  {
+    if (indices == null)
+    {
+      CDOFeatureImpl[] features = getAllFeatures();
+      indices = new ArrayList(features.length);
+      int index = 0;
+      for (CDOFeatureImpl feature : features)
+      {
+        feature.setFeatureIndex(index);
+        setIndex(feature.getFeatureID(), index);
+        index++;
+      }
+    }
+
+    return indices.get(featureID);
   }
 
   public CDOFeatureImpl[] getAllFeatures()
@@ -215,15 +233,11 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
 
   public void addFeature(CDOFeatureImpl cdoFeature)
   {
-    int featureID = cdoFeature.getFeatureID();
     if (MODEL.isEnabled())
     {
       MODEL.format("Adding feature: {0}", cdoFeature);
     }
 
-    int i = features.size();
-    setIndex(featureID, i);
-    cdoFeature.setFeatureIndex(i);
     features.add(cdoFeature);
   }
 
@@ -242,14 +256,14 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     }
   }
 
-  private void setIndex(int id, int i)
+  private void setIndex(int featureID, int index)
   {
-    while (index.size() <= id)
+    while (indices.size() <= featureID)
     {
-      index.add(null);
+      indices.add(null);
     }
 
-    index.set(id, i);
+    indices.set(featureID, index);
   }
 
   private void readSuperTypes(ExtendedDataInputStream in) throws IOException

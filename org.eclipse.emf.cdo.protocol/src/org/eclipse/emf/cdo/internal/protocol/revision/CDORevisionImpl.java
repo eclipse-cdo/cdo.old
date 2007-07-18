@@ -68,7 +68,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     resourceID = CDOID.NULL;
     containerID = CDOID.NULL;
     containingFeatureID = 0;
-    values = new Object[cdoClass.getFeatureCount()];
+    values = new Object[cdoClass.getAllFeatures().length];
   }
 
   public CDORevisionImpl(CDORevisionImpl source)
@@ -382,7 +382,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     resourceID = (CDOID)remapID(resourceID, idMappings);
     containerID = (CDOID)remapID(containerID, idMappings);
 
-    CDOFeatureImpl[] features = cdoClass.getFeatures();
+    CDOFeatureImpl[] features = cdoClass.getAllFeatures();
     for (int i = 0; i < features.length; i++)
     {
       CDOFeatureImpl feature = features[i];
@@ -444,8 +444,8 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   private void copyValues(Object[] sourceValues)
   {
-    values = new Object[cdoClass.getFeatureCount()];
-    CDOFeatureImpl[] features = cdoClass.getFeatures();
+    CDOFeatureImpl[] features = cdoClass.getAllFeatures();
+    values = new Object[features.length];
     for (int i = 0; i < features.length; i++)
     {
       CDOFeatureImpl feature = features[i];
@@ -471,8 +471,8 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   private void readValues(ExtendedDataInputStream in) throws IOException
   {
-    values = new Object[cdoClass.getFeatureCount()];
-    CDOFeatureImpl[] features = cdoClass.getFeatures();
+    CDOFeatureImpl[] features = cdoClass.getAllFeatures();
+    values = new Object[features.length];
     for (int i = 0; i < features.length; i++)
     {
       CDOFeatureImpl feature = features[i];
@@ -497,7 +497,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   private void writeValues(ExtendedDataOutputStream out, CDOReferenceConverter converter) throws IOException
   {
-    CDOFeatureImpl[] features = cdoClass.getFeatures();
+    CDOFeatureImpl[] features = cdoClass.getAllFeatures();
     for (int i = 0; i < features.length; i++)
     {
       CDOFeatureImpl feature = features[i];

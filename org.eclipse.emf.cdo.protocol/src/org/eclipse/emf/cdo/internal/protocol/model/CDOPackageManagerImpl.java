@@ -66,6 +66,15 @@ public abstract class CDOPackageManagerImpl extends Notifier implements CDOPacka
   {
     String packageURI = classRef.getPackageURI();
     CDOPackageImpl cdoPackage = lookupPackage(packageURI);
+    if (cdoPackage == null)
+    {
+      if (TRACER.isEnabled())
+      {
+        TRACER.trace("CDO package not found: " + packageURI);
+      }
+
+      return null;
+    }
 
     int classifierID = classRef.getClassifierID();
     return cdoPackage.lookupClass(classifierID);
