@@ -25,7 +25,8 @@ import java.text.MessageFormat;
  */
 public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
 {
-  @SuppressWarnings("unused")
+  private static final int UNKNOWN_FEATURE_INDEX = Integer.MIN_VALUE;
+
   private static final ContextTracer MODEL = new ContextTracer(OM.DEBUG_MODEL, CDOFeatureImpl.class);
 
   private static final ContextTracer PROTOCOL = new ContextTracer(OM.DEBUG_PROTOCOL, CDOFeatureImpl.class);
@@ -34,7 +35,7 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
 
   private int featureID;
 
-  private int featureIndex;
+  private int featureIndex = UNKNOWN_FEATURE_INDEX;
 
   private CDOTypeImpl type;
 
@@ -170,6 +171,11 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
 
   public int getFeatureIndex()
   {
+    if (featureIndex == UNKNOWN_FEATURE_INDEX)
+    {
+      featureIndex = containingClass.getIndex(featureID);
+    }
+
     return featureIndex;
   }
 
