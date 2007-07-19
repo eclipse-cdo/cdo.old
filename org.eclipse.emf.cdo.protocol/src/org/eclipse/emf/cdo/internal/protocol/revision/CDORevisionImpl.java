@@ -513,7 +513,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
         for (int j = 0; j < size; j++)
         {
           Object value = list.get(j);
-          if (isDanglingReference(feature, value))
+          if (value != null && isDanglingReference(feature, value))
           {
             value = converter.convertToID(value);
             list.set(j, value);
@@ -524,7 +524,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
       }
       else
       {
-        if (isDanglingReference(feature, values[i]))
+        if (values[i] != null && isDanglingReference(feature, values[i]))
         {
           values[i] = converter.convertToID(values[i]);
         }

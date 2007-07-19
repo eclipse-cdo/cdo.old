@@ -10,7 +10,6 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.model;
 
-
 /**
  * @author Eike Stepper
  */
@@ -55,5 +54,16 @@ public final class CDOClassProxy
     }
 
     return classRef;
+  }
+
+  @Override
+  public String toString()
+  {
+    if (cdoClass != null)
+    {
+      return cdoClass.toString();
+    }
+
+    return classRef.toString();
   }
 }
