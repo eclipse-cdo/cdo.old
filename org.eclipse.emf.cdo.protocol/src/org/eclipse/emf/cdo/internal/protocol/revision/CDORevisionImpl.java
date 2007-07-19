@@ -572,7 +572,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     return value;
   }
 
-  private static final class MoveableList extends ArrayList<Object>
+  public static final class MoveableList extends ArrayList<Object>
   {
     private static final long serialVersionUID = 1L;
 
