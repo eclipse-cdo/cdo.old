@@ -38,6 +38,5 @@ public interface CDORevision
 
   public CDORevisionData getData();
 
-  @Deprecated
   public CDORevisionDelta createDelta(CDORevision origin);
 }
