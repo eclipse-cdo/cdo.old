@@ -277,6 +277,11 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     for (int i = 0; i < size; i++)
     {
       CDOClassRefImpl classRef = new CDOClassRefImpl(in, containingPackage.getPackageURI());
+      if (PROTOCOL.isEnabled())
+      {
+        PROTOCOL.format("Read super type: classRef={0}", classRef, classifierID);
+      }
+
       superTypes.add(new CDOClassProxy(classRef, containingPackage.getPackageManager()));
     }
   }
@@ -307,7 +312,13 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     out.writeInt(size);
     for (CDOClassProxy proxy : superTypes)
     {
-      proxy.getCDOClassRef().write(out, containingPackage.getPackageURI());
+      CDOClassRefImpl classRef = proxy.getCDOClassRef();
+      if (PROTOCOL.isEnabled())
+      {
+        PROTOCOL.format("Writing super type: classRef={0}", classRef);
+      }
+
+      classRef.write(out, containingPackage.getPackageURI());
     }
   }
 
