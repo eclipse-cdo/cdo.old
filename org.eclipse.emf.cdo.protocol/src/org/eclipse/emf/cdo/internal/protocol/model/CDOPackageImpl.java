@@ -10,7 +10,9 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.model;
 
+import org.eclipse.emf.cdo.internal.protocol.CDOIDRangeImpl;
 import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
+import org.eclipse.emf.cdo.protocol.CDOIDRange;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 
@@ -44,16 +46,19 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
 
   private boolean dynamic;
 
+  private CDOIDRange metaIDRange;
+
   private boolean persistent = true;
 
   public CDOPackageImpl(CDOPackageManagerImpl packageManager, String packageURI, String name, String ecore,
-      boolean dynamic)
+      boolean dynamic, CDOIDRange metaIDRange)
   {
     super(name);
     this.packageManager = packageManager;
     this.packageURI = packageURI;
     this.ecore = ecore;
     this.dynamic = dynamic;
+    this.metaIDRange = metaIDRange;
     if (MODEL.isEnabled())
     {
       MODEL.format("Created {0}", this);
@@ -89,9 +94,11 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     packageURI = in.readString();
     dynamic = in.readBoolean();
     ecore = in.readString();
+    metaIDRange = CDOIDRangeImpl.read(in);
     if (PROTOCOL.isEnabled())
     {
-      PROTOCOL.format("Read package: URI={0}, name={1}, dynamic={2}", packageURI, getName(), dynamic);
+      PROTOCOL.format("Read package: URI={0}, name={1}, dynamic={2}, metaIDRange={3}", packageURI, getName(), dynamic,
+          metaIDRange);
     }
 
     int size = in.readInt();
@@ -112,13 +119,15 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
   {
     if (PROTOCOL.isEnabled())
     {
-      PROTOCOL.format("Writing package: URI={0}, name={1}, dynamic={2}", packageURI, getName(), dynamic);
+      PROTOCOL.format("Writing package: URI={0}, name={1}, dynamic={2}, metaIDRange={3}", packageURI, getName(),
+          dynamic, metaIDRange);
     }
 
     super.write(out);
     out.writeString(packageURI);
     out.writeBoolean(dynamic);
     out.writeString(ecore);
+    CDOIDRangeImpl.write(out, metaIDRange);
 
     int size = classes.size();
     if (PROTOCOL.isEnabled())
@@ -194,6 +203,11 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     return ecore;
   }
 
+  public CDOIDRange getMetaIDRange()
+  {
+    return metaIDRange;
+  }
+
   public boolean isDynamic()
   {
     return dynamic;
@@ -229,7 +243,8 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
   @Override
   public String toString()
   {
-    return MessageFormat.format("CDOPackage(URI={0}, name={1}, dynamic={2})", packageURI, getName(), dynamic);
+    return MessageFormat.format("CDOPackage(URI={0}, name={1}, dynamic={2}, metaIDRange={3})", packageURI, getName(),
+        dynamic, metaIDRange);
   }
 
   @Override

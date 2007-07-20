@@ -19,6 +19,12 @@ public final class CDOIDNull extends CDOIDImpl
   }
 
   @Override
+  public boolean isNull()
+  {
+    return true;
+  }
+
+  @Override
   public boolean equals(Object obj)
   {
     return CDOIDImpl.NULL == obj;

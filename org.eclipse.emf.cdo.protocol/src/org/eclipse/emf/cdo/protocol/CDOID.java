@@ -11,5 +11,9 @@ public interface CDOID
 
   public long getValue();
 
+  public boolean isNull();
+
   public boolean isTemporary();
+
+  public boolean isMeta();
 }

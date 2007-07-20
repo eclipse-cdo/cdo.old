@@ -12,6 +12,8 @@ import java.io.IOException;
  */
 public class CDOIDImpl implements CDOID
 {
+  private static final byte BYTE_ONE = 1;
+
   private long value;
 
   CDOIDImpl(long value)
@@ -24,9 +26,19 @@ public class CDOIDImpl implements CDOID
     return value;
   }
 
+  public boolean isNull()
+  {
+    return false;
+  }
+
   public boolean isTemporary()
   {
     return value < 0;
+  }
+
+  public boolean isMeta()
+  {
+    return (value & BYTE_ONE) != 0;
   }
 
   @Override
@@ -47,7 +59,7 @@ public class CDOIDImpl implements CDOID
   @Override
   public int hashCode()
   {
-    return (int)(value ^ (value >>> 32));
+    return (int)(value ^ value >>> 32);
   }
 
   @Override

@@ -10,6 +10,8 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.model;
 
+import org.eclipse.emf.cdo.protocol.CDOIDRange;
+
 /**
  * @author Eike Stepper
  */
@@ -30,4 +32,6 @@ public interface CDOPackage extends CDOModelElement
   public boolean isSystem();
 
   public boolean isDynamic();
+
+  public CDOIDRange getMetaIDRange();
 }
