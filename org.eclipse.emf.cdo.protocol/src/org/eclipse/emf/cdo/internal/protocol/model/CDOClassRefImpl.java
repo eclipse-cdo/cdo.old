@@ -1,9 +1,7 @@
 package org.eclipse.emf.cdo.internal.protocol.model;
 
-import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
 import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 
-import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.io.ExtendedDataInputStream;
 import org.eclipse.net4j.util.io.ExtendedDataOutputStream;
 
@@ -17,8 +15,6 @@ import java.text.MessageFormat;
  */
 public final class CDOClassRefImpl implements CDOClassRef
 {
-  private static final ContextTracer PROTOCOL = new ContextTracer(OM.DEBUG_PROTOCOL, CDOClassRefImpl.class);
-
   private String packageURI;
 
   private int classifierID;

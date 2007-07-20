@@ -17,5 +17,5 @@ import org.eclipse.emf.cdo.protocol.CDOID;
  */
 public interface CDOReferenceConverter
 {
-  public CDOID convertToID(Object object);
+  public CDOID convertReference(Object idOrObject);
 }
