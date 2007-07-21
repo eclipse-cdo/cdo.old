@@ -108,7 +108,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     readValues(in);
   }
 
-  public void write(ExtendedDataOutputStream out, CDOReferenceConverter converter) throws IOException
+  public void write(ExtendedDataOutputStream out, CDOIDProvider converter) throws IOException
   {
     CDOClassRefImpl classRef = cdoClass.createClassRef();
     if (TRACER.isEnabled())
@@ -498,7 +498,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     }
   }
 
-  private void writeValues(ExtendedDataOutputStream out, CDOReferenceConverter converter) throws IOException
+  private void writeValues(ExtendedDataOutputStream out, CDOIDProvider idProvider) throws IOException
   {
     CDOFeatureImpl[] features = cdoClass.getAllFeatures();
     for (int i = 0; i < features.length; i++)
@@ -518,7 +518,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
           if (value != null && isDanglingReference(feature, value))
           {
-            value = converter.convertReference(value);
+            value = idProvider.provideCDOID(value);
             list.set(j, value);
           }
 
@@ -530,7 +530,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
         System.out.println("  " + values[i]);
         if (values[i] != null && isDanglingReference(feature, values[i]))
         {
-          values[i] = converter.convertReference(values[i]);
+          values[i] = idProvider.provideCDOID(values[i]);
         }
 
         feature.getType().writeValue(out, values[i]);
