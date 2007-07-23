@@ -77,13 +77,15 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
   /**
    * Creates a proxy CDO package
    */
-  public CDOPackageImpl(CDOPackageManagerImpl packageManager, String packageURI)
+  public CDOPackageImpl(CDOPackageManagerImpl packageManager, String packageURI, boolean dynamic, CDOIDRange metaIDRange)
   {
     this.packageManager = packageManager;
     this.packageURI = packageURI;
+    this.dynamic = dynamic;
+    this.metaIDRange = metaIDRange;
     if (MODEL.isEnabled())
     {
-      MODEL.format("Created proxy package {0}", packageURI);
+      MODEL.format("Created proxy package {0}, dynamic={1}, metaIDRange={2}", packageURI, dynamic, metaIDRange);
     }
   }
 
