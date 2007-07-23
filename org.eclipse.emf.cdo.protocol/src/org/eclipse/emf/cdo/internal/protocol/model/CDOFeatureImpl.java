@@ -134,11 +134,6 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
 
     if (isReference())
     {
-      if (referenceType == null)
-      {
-        System.out.println(type);
-      }
-
       CDOClassRefImpl classRef = referenceType.getCDOClassRef();
       if (PROTOCOL.isEnabled())
       {

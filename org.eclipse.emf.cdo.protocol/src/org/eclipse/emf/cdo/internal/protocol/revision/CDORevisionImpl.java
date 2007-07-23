@@ -504,8 +504,6 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     for (int i = 0; i < features.length; i++)
     {
       CDOFeatureImpl feature = features[i];
-      System.out.println(feature);
-
       if (feature.isMany())
       {
         List list = (List)values[i];
@@ -514,7 +512,6 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
         for (int j = 0; j < size; j++)
         {
           Object value = list.get(j);
-          System.out.println("  " + value);
 
           if (value != null && isDanglingReference(feature, value))
           {
@@ -527,7 +524,6 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
       }
       else
       {
-        System.out.println("  " + values[i]);
         if (values[i] != null && isDanglingReference(feature, values[i]))
         {
           values[i] = idProvider.provideCDOID(values[i]);
