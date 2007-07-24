@@ -1,6 +1,6 @@
 package org.eclipse.emf.cdo.internal.protocol;
 
-import org.eclipse.emf.cdo.protocol.util.ImplementationError;
+import org.eclipse.net4j.util.ImplementationError;
 
 /**
  * @author Eike Stepper
