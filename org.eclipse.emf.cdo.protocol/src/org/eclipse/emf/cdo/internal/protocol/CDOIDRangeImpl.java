@@ -39,6 +39,16 @@ public final class CDOIDRangeImpl extends Pair<CDOID, CDOID> implements CDOIDRan
     this(CDOIDImpl.create(id1), CDOIDImpl.create(id2));
   }
 
+  public boolean isMeta()
+  {
+    return getElement1().isMeta();
+  }
+
+  public boolean isTemporary()
+  {
+    return getElement1().isTemporary();
+  }
+
   public CDOID getLowerBound()
   {
     return getElement1();
@@ -58,7 +68,7 @@ public final class CDOIDRangeImpl extends Pair<CDOID, CDOID> implements CDOIDRan
     }
 
     index <<= 1;
-    if (lowerBound.isMeta())
+    if (lowerBound.isTemporary())
     {
       index = -index;
     }

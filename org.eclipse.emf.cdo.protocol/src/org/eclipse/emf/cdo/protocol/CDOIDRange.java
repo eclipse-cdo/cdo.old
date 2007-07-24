@@ -15,6 +15,10 @@ package org.eclipse.emf.cdo.protocol;
  */
 public interface CDOIDRange
 {
+  public boolean isMeta();
+
+  public boolean isTemporary();
+
   public CDOID getLowerBound();
 
   public CDOID getUpperBound();

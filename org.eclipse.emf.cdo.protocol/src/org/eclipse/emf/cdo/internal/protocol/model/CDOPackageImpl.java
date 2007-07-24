@@ -210,6 +210,11 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     return metaIDRange;
   }
 
+  public void setMetaIDRange(CDOIDRange metaIDRange)
+  {
+    this.metaIDRange = metaIDRange;
+  }
+
   public boolean isDynamic()
   {
     return dynamic;
