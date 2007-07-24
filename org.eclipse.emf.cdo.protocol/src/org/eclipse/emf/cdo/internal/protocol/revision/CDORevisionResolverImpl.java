@@ -37,6 +37,21 @@ public abstract class CDORevisionResolverImpl implements CDORevisionResolver
 
   public CDORevisionImpl getRevision(CDOID id)
   {
+    if (id.isNull())
+    {
+      throw new IllegalArgumentException("id.isNull()");
+    }
+
+    if (id.isMeta())
+    {
+      throw new IllegalArgumentException("id.isMeta()");
+    }
+
+    if (id.isTemporary())
+    {
+      throw new IllegalArgumentException("id.isTemporary()");
+    }
+
     TimeLine timeLine = getTimeLine(id);
     return timeLine.getRevision();
   }

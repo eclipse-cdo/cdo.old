@@ -13,7 +13,7 @@ package org.eclipse.emf.cdo.protocol.util;
 /**
  * @author Eike Stepper
  */
-public class ImplementationError extends RuntimeException
+public class ImplementationError extends Error
 {
   private static final long serialVersionUID = 1L;
 
