@@ -33,5 +33,9 @@ public interface CDOPackage extends CDOModelElement
 
   public boolean isDynamic();
 
+  public boolean isProxy();
+
+  public boolean isPersistent();
+
   public CDOIDRange getMetaIDRange();
 }

@@ -225,6 +225,11 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     return false;
   }
 
+  public boolean isProxy()
+  {
+    return classes == null;
+  }
+
   public boolean isPersistent()
   {
     return persistent;
