@@ -10,17 +10,17 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.weaver;
 
-import org.eclipse.emf.cdo.internal.weaver.bundle.OM;
 import org.eclipse.emf.cdo.weaver.ICDOWeaver;
 
 import org.eclipse.net4j.util.WrappedException;
 
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.Platform;
 
 import org.aspectj.weaver.loadtime.WeavingURLClassLoader;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -37,11 +37,20 @@ public class CDOWeaver implements ICDOWeaver
   {
   }
 
-  public ClassLoader weave(URL[] classURLs)
+  public void setBundleContext(BundleContext bundleContext)
   {
-    ClassLoader parent = OM.class.getClassLoader();
+    this.bundleContext = bundleContext;
+  }
+
+  public ClassLoader weave(URL[] urls)
+  {
+    // ClassLoader parent = OM.class.getClassLoader();
     URL[] aspectURLs = { getAspectURL() };
-    WeavingURLClassLoader classLoader = new WeavingURLClassLoader(classURLs, aspectURLs, parent)
+    URL[] classURLs = new URL[urls.length + 2];
+    System.arraycopy(urls, 0, classURLs, 2, urls.length);
+    classURLs[0] = getEMFCommonURL();
+    classURLs[1] = getCDOStubURL();
+    WeavingURLClassLoader classLoader = new WeavingURLClassLoader(classURLs, aspectURLs, null)
     {
       @Override
       public void acceptClass(String name, byte[] bytes)
@@ -54,11 +63,26 @@ public class CDOWeaver implements ICDOWeaver
     return classLoader;
   }
 
+  private URL getEMFCommonURL()
+  {
+    return getURL(Platform.getBundle("org.eclipse.emf.common"), "/");
+  }
+
+  private URL getCDOStubURL()
+  {
+    return getURL(bundleContext.getBundle(), "lib/cdo-stub.jar");
+  }
+
   private URL getAspectURL()
+  {
+    return getURL(bundleContext.getBundle(), "lib/persistence-aspect.jar");
+  }
+
+  private URL getURL(Bundle bundle, String path)
   {
     try
     {
-      URL url = bundleContext.getBundle().getEntry("lib/persistence-aspect.jar");
+      URL url = bundle.getEntry(path);
       url = FileLocator.toFileURL(url);
       return url;
     }
@@ -66,16 +90,5 @@ public class CDOWeaver implements ICDOWeaver
     {
       throw WrappedException.wrap(ex);
     }
-  }
-
-  public void setBundleContext(BundleContext bundleContext)
-  {
-    this.bundleContext = bundleContext;
-  }
-
-  public static void main(String[] args) throws Exception
-  {
-    URL classURLs[] = { new File("/org.eclipse.emf.ecore_2.3.1.v200707242120.jar").toURL() };
-    INSTANCE.weave(classURLs);
   }
 }
