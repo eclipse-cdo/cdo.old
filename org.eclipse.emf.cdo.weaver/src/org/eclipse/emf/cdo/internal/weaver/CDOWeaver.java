@@ -12,6 +12,10 @@ package org.eclipse.emf.cdo.internal.weaver;
 
 import org.eclipse.emf.cdo.weaver.ICDOWeaver;
 
+import org.aspectj.weaver.loadtime.WeavingURLClassLoader;
+
+import java.net.URL;
+
 /**
  * @author Eike Stepper
  */
@@ -25,6 +29,10 @@ public class CDOWeaver implements ICDOWeaver
 
   public void weave()
   {
+    ClassLoader parent = null;
+    URL[] classURLs = {};
+    URL[] aspectURLs = {};
+    WeavingURLClassLoader classLoader = new WeavingURLClassLoader(classURLs, aspectURLs, parent);
   }
 
   public static void main(String[] args) throws Exception
