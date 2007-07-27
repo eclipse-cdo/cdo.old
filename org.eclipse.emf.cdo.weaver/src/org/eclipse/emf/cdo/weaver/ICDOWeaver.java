@@ -12,10 +12,14 @@ package org.eclipse.emf.cdo.weaver;
 
 import org.eclipse.emf.cdo.internal.weaver.CDOWeaver;
 
+import java.net.URL;
+
 /**
  * @author Eike Stepper
  */
 public interface ICDOWeaver
 {
   public static final ICDOWeaver INSTANCE = CDOWeaver.INSTANCE;
+
+  public ClassLoader weave(URL[] classURLs);
 }
