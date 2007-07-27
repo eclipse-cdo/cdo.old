@@ -9,7 +9,7 @@ import org.eclipse.emf.internal.cdo.weaver.IPersistenceCallback;
 /**
  * @author Eike Stepper
  */
-aspect EcoreEListMixin
+aspect EcoreEListAspect
 {
   pointcut writeAccess(EcoreEList ecoreList): target(ecoreList) && (
                                               execution(* add(*)) ||
