@@ -12,17 +12,23 @@ package org.eclipse.emf.cdo.internal.weaver;
 
 import org.eclipse.emf.cdo.weaver.ICDOWeaver;
 
+import org.eclipse.net4j.util.ImplementationError;
+import org.eclipse.net4j.util.ReflectUtil;
 import org.eclipse.net4j.util.WrappedException;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
 
-import org.aspectj.weaver.loadtime.WeavingURLClassLoader;
+import org.aspectj.weaver.tools.GeneratedClassHandler;
+import org.aspectj.weaver.tools.WeavingAdaptor;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
+import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.net.URL;
+import java.security.CodeSource;
 
 /**
  * @author Eike Stepper
@@ -42,7 +48,41 @@ public class CDOWeaver implements ICDOWeaver
     this.bundleContext = bundleContext;
   }
 
-  public ClassLoader weave(URL[] urls)
+  public void test()
+  {
+    try
+    {
+      URL urls[] = { new File("/org.eclipse.emf.ecore_2.3.1.v200707242120.jar").toURL() };
+
+      URL[] aspectURLs = { getAspectURL() };
+      URL[] classURLs = new URL[urls.length + 2];
+      System.arraycopy(urls, 0, classURLs, 2, urls.length);
+      classURLs[0] = getEMFCommonURL();
+      classURLs[1] = getCDOStubURL();
+
+      ClassLoader classLoader = new CDOWeaverURLClassLoader(classURLs, aspectURLs, null)
+      {
+        @Override
+        protected void woven(String name, byte[] newb, CodeSource cs)
+        {
+          System.out.println("Woven " + name);
+        }
+      };
+
+      Class<?> c = classLoader.loadClass("org.eclipse.emf.ecore.impl.EObjectImpl");
+      Method method = ReflectUtil.getMethod(c, "getPersistenceCallback");
+      if (method == null)
+      {
+        throw new ImplementationError();
+      }
+    }
+    catch (Throwable t)
+    {
+      t.printStackTrace();
+    }
+  }
+
+  public WeavingAdaptor weave(URL[] urls)
   {
     // ClassLoader parent = OM.class.getClassLoader();
     URL[] aspectURLs = { getAspectURL() };
@@ -50,17 +90,15 @@ public class CDOWeaver implements ICDOWeaver
     System.arraycopy(urls, 0, classURLs, 2, urls.length);
     classURLs[0] = getEMFCommonURL();
     classURLs[1] = getCDOStubURL();
-    WeavingURLClassLoader classLoader = new WeavingURLClassLoader(classURLs, aspectURLs, null)
+    WeavingAdaptor weavingAdaptor = new WeavingAdaptor(new GeneratedClassHandler()
     {
-      @Override
       public void acceptClass(String name, byte[] bytes)
       {
         System.out.println("acceptClass: " + name);
-        super.acceptClass(name, bytes);
       }
-    };
+    }, classURLs, aspectURLs);
 
-    return classLoader;
+    return weavingAdaptor;
   }
 
   private URL getEMFCommonURL()
