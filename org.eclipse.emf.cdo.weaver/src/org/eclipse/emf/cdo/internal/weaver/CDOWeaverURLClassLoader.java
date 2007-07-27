@@ -30,7 +30,7 @@ public class CDOWeaverURLClassLoader extends ExtensibleURLClassLoader implements
 
   private WeavingAdaptor adaptor;
 
-  private Map generatedClasses = new HashMap(); /* String -> byte[] */
+  private Map<String, byte[]> generatedClasses = new HashMap();
 
   public CDOWeaverURLClassLoader(URL[] classURLs, URL[] aspectURLs, ClassLoader parent)
   {
@@ -82,7 +82,7 @@ public class CDOWeaverURLClassLoader extends ExtensibleURLClassLoader implements
     byte[] bytes = super.getBytes(name);
     if (bytes == null)
     {
-      return (byte[])generatedClasses.remove(name);
+      return generatedClasses.remove(name);
     }
 
     return bytes;
