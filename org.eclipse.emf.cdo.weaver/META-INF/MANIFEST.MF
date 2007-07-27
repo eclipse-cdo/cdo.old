@@ -6,9 +6,10 @@ Bundle-Version: 1.0.0.qulifier
 Bundle-Activator: org.eclipse.emf.cdo.internal.weaver.bundle.Activator
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.cdo,
+ org.aspectj.runtime,
+ org.aspectj.weaver
 Eclipse-LazyStart: true
-Bundle-ClassPath: lib/aspectjrt.jar,
- lib/aspectjweaver.jar,
- lib/persistence-aspect.jar,
+Bundle-ClassPath: lib/persistence-aspect.jar,
  .
