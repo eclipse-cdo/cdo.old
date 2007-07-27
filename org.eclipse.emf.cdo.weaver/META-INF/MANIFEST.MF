@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.emf.cdo.weaver
+Bundle-Version: 1.0.0.qulifier
+Bundle-Activator: org.eclipse.emf.cdo.internal.weaver.bundle.Activator
+Bundle-Vendor: %providerName
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore
+Eclipse-LazyStart: true
+Bundle-ClassPath: lib/aspectjrt.jar,
+ lib/aspectjweaver.jar,
+ lib/persistence-aspect.jar,
+ .
