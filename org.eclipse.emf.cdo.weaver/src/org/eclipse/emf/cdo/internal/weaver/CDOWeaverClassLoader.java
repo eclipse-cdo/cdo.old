@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * @author Eike Stepper
  */
-public class CDOWeaverURLClassLoader extends ExtensibleURLClassLoader implements WeavingClassLoader
+public class CDOWeaverClassLoader extends ExtensibleURLClassLoader implements WeavingClassLoader
 {
   private URL[] aspectURLs;
 
@@ -32,7 +32,7 @@ public class CDOWeaverURLClassLoader extends ExtensibleURLClassLoader implements
 
   private Map<String, byte[]> generatedClasses = new HashMap();
 
-  public CDOWeaverURLClassLoader(URL[] classURLs, URL[] aspectURLs, ClassLoader parent)
+  public CDOWeaverClassLoader(URL[] classURLs, URL[] aspectURLs, ClassLoader parent)
   {
     super(classURLs, parent);
     this.aspectURLs = aspectURLs;

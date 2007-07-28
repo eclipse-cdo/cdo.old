@@ -60,7 +60,7 @@ public class CDOWeaver implements ICDOWeaver
       classURLs[0] = getEMFCommonURL();
       classURLs[1] = getCDOStubURL();
 
-      ClassLoader classLoader = new CDOWeaverURLClassLoader(classURLs, aspectURLs, null)
+      ClassLoader classLoader = new CDOWeaverClassLoader(classURLs, aspectURLs, null)
       {
         @Override
         protected void woven(String name, byte[] newb, CodeSource cs)
