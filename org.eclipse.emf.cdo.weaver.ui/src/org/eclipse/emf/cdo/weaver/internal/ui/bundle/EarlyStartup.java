@@ -8,7 +8,7 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.weaver.internal.ui;
+package org.eclipse.emf.cdo.weaver.internal.ui.bundle;
 
 import org.eclipse.ui.IStartup;
 

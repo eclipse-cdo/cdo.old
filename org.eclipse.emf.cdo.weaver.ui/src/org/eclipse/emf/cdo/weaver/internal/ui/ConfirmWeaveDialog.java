@@ -74,13 +74,9 @@ public class ConfirmWeaveDialog extends TitleAreaDialog
     setShellStyle(getShellStyle() | SWT.APPLICATION_MODAL | SWT.MAX | SWT.TITLE | SWT.RESIZE);
 
     this.bundleMap = bundleMap;
+    ignoredBundles = OM.getIgnoredBundles();
     skippedBundles.addAll(bundleMap.keySet());
-    String[] symbolicNames = OM.PREF_IGNORED_BUNDLES.getValue();
-    for (String symbolicName : symbolicNames)
-    {
-      ignoredBundles.add(symbolicName);
-      skippedBundles.remove(symbolicName);
-    }
+    skippedBundles.removeAll(ignoredBundles);
   }
 
   @Override
@@ -131,7 +127,7 @@ public class ConfirmWeaveDialog extends TitleAreaDialog
   @Override
   protected void okPressed()
   {
-    OM.PREF_IGNORED_BUNDLES.setValue(ignoredBundles.toArray(new String[ignoredBundles.size()]));
+    OM.setIgnoredBundles(ignoredBundles);
     super.okPressed();
   }
 

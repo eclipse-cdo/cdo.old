@@ -30,6 +30,8 @@ import org.eclipse.swt.widgets.Display;
 
 import org.osgi.framework.BundleContext;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.SortedSet;
@@ -57,6 +59,98 @@ public abstract class OM
 
   public static final OMPreference<Boolean> PREF_CHECK_DURING_STARTUP = PREFS.init("PREF_CHECK_DURING_STARTUP", true);
 
+  public static Set<String> getIgnoredBundles()
+  {
+    return new HashSet(Arrays.asList(PREF_IGNORED_BUNDLES.getValue()));
+  }
+
+  public static void setIgnoredBundles(Set<String> ignoredBundles)
+  {
+    OM.PREF_IGNORED_BUNDLES.setValue(ignoredBundles.toArray(new String[ignoredBundles.size()]));
+  }
+
+  public static Map<String, SortedSet<PackageInfo>> getUnwovenBundles()
+  {
+    Set<String> persistentPackageURIs = CDOUtil.getPersistentPackageURIs();
+    IConfigurationElement[] generatedPackages = Platform.getExtensionRegistry().getConfigurationElementsFor(
+        "org.eclipse.emf.ecore.generated_package");
+    Map<String, SortedSet<PackageInfo>> bundleMap = new TreeMap();
+
+    for (IConfigurationElement generatedPackage : generatedPackages)
+    {
+      String symbolicName = generatedPackage.getContributor().getName();
+      String uri = generatedPackage.getAttribute("uri");
+      if (!StringUtil.isEmpty(uri))
+      {
+        if (!persistentPackageURIs.contains(uri))
+        {
+          SortedSet<PackageInfo> packageInfos = bundleMap.get(symbolicName);
+          if (packageInfos == null)
+          {
+            packageInfos = new TreeSet();
+            bundleMap.put(symbolicName, packageInfos);
+          }
+
+          packageInfos.add(new PackageInfo(uri, symbolicName));
+        }
+      }
+    }
+
+    return bundleMap;
+  }
+
+  private static void confirmWeave()
+  {
+    if (!PREF_CHECK_DURING_STARTUP.getValue())
+    {
+      return;
+    }
+
+    final Map<String, SortedSet<PackageInfo>> bundleMap = getUnwovenBundles();
+    HashSet copy = new HashSet(bundleMap.keySet());
+    copy.removeAll(getIgnoredBundles());
+    if (copy.isEmpty())
+    {
+      return;
+    }
+
+    Display display = getDisplay();
+    display.asyncExec(new Runnable()
+    {
+      public void run()
+      {
+        try
+        {
+          Dialog dialog = new ConfirmWeaveDialog(bundleMap);
+          dialog.open();
+        }
+        catch (RuntimeException ex)
+        {
+          LOG.error(ex);
+        }
+      }
+    });
+  }
+
+  /**
+   * TODO Factor out
+   */
+  private static Display getDisplay()
+  {
+    Display display = Display.getCurrent();
+    if (display == null)
+    {
+      display = Display.getDefault();
+    }
+
+    if (display == null)
+    {
+      display = new Display();
+    }
+
+    return display;
+  }
+
   /**
    * @author Eike Stepper
    */
@@ -80,75 +174,6 @@ public abstract class OM
       {
         LOG.error(ex);
       }
-    }
-
-    private Display getDisplay()
-    {
-      Display display = Display.getCurrent();
-      if (display == null)
-      {
-        display = Display.getDefault();
-      }
-
-      if (display == null)
-      {
-        display = new Display();
-      }
-      return display;
-    }
-
-    private void confirmWeave()
-    {
-      final Map<String, SortedSet<PackageInfo>> bundleMap = getBundlesToBeWeaved();
-      if (!bundleMap.isEmpty())
-      {
-        Display display = getDisplay();
-        display.asyncExec(new Runnable()
-        {
-          public void run()
-          {
-            try
-            {
-              Dialog dialog = new ConfirmWeaveDialog(bundleMap);
-              dialog.open();
-            }
-            catch (RuntimeException ex)
-            {
-              LOG.error(ex);
-            }
-          }
-        });
-      }
-    }
-
-    public Map<String, SortedSet<PackageInfo>> getBundlesToBeWeaved()
-    {
-      Set<String> persistentPackageURIs = CDOUtil.getPersistentPackageURIs();
-      IConfigurationElement[] generatedPackages = Platform.getExtensionRegistry().getConfigurationElementsFor(
-          "org.eclipse.emf.ecore.generated_package");
-      Map<String, SortedSet<PackageInfo>> bundleMap = new TreeMap();
-
-      for (IConfigurationElement generatedPackage : generatedPackages)
-      {
-        String symbolicName = generatedPackage.getContributor().getName();
-        String uri = generatedPackage.getAttribute("uri");
-        if (!StringUtil.isEmpty(uri))
-        {
-          if (!persistentPackageURIs.contains(uri))
-          {
-            SortedSet<PackageInfo> packageInfos = bundleMap.get(symbolicName);
-            if (packageInfos == null)
-            {
-              packageInfos = new TreeSet();
-              bundleMap.put(symbolicName, packageInfos);
-            }
-
-            packageInfos.add(new PackageInfo(uri, symbolicName));
-          }
-        }
-      }
-
-      return bundleMap;
     }
   }
 }

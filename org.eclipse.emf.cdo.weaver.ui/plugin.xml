@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.ui.startup">
       <startup
-            class="org.eclipse.emf.cdo.weaver.internal.ui.EarlyStartup">
+            class="org.eclipse.emf.cdo.weaver.internal.ui.bundle.EarlyStartup">
       </startup>
    </extension>
 
