@@ -24,7 +24,8 @@ import java.util.Map;
 /**
  * @author Eike Stepper
  */
-public class CDOWeaverClassLoader extends ExtensibleURLClassLoader implements WeavingClassLoader
+@Deprecated
+class CDOWeaverClassLoader extends ExtensibleURLClassLoader implements WeavingClassLoader
 {
   private URL[] aspectURLs;
 

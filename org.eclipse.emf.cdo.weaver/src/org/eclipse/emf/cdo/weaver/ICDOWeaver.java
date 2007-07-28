@@ -12,8 +12,6 @@ package org.eclipse.emf.cdo.weaver;
 
 import org.eclipse.emf.cdo.internal.weaver.CDOWeaver;
 
-import org.aspectj.weaver.tools.WeavingAdaptor;
-
 import java.net.URL;
 
 /**
@@ -25,5 +23,5 @@ public interface ICDOWeaver
 
   public void test();
 
-  public WeavingAdaptor weave(URL[] classURLs);
+  public void weave(URL[] classURLs);
 }
