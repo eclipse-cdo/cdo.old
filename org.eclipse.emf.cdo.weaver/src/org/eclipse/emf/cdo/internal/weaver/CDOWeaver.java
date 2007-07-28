@@ -18,6 +18,7 @@ import org.eclipse.net4j.util.io.IORuntimeException;
 import org.eclipse.net4j.util.io.IOUtil;
 import org.eclipse.net4j.util.io.NIOUtil;
 import org.eclipse.net4j.util.io.TMPUtil;
+import org.eclipse.net4j.util.io.ZIPUtil;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
@@ -38,6 +39,8 @@ import java.util.Arrays;
  */
 public class CDOWeaver implements ICDOWeaver
 {
+  private static final String JAR_SUFFIX = ".jar";
+
   private static final String CLASS_SUFFIX = ".class";
 
   public static final CDOWeaver INSTANCE = new CDOWeaver();
@@ -53,42 +56,136 @@ public class CDOWeaver implements ICDOWeaver
     this.bundleContext = bundleContext;
   }
 
-  public void weave(URL[] urls)
+  public File[] weave(File[] bundleLocations) throws IORuntimeException
   {
-  }
+    File[] newBundleLocations = new File[bundleLocations.length];
+    URL[] aspectURLs = { getAspectURL() };
+    URL[] classURLs = new URL[5 + bundleLocations.length];
+    classURLs[0] = getRTJarURL();
+    classURLs[1] = getAspectJRuntimeURL();
+    classURLs[2] = getAspectJWeaverURL();
+    classURLs[3] = getEMFCommonURL();
+    classURLs[4] = getCDOStubURL();
 
-  public void test()
-  {
     try
     {
-      String root = File.separator + "_weaver";
-      String bundleFileName = "org.eclipse.emf.ecore_2.3.1";
-      String bundleFolderName = root + File.separator + bundleFileName;
-
-      File sourceFolder = new File(bundleFolderName);
-      File targetFolder = TMPUtil.createTempFolder("tmp_", "_" + bundleFileName, new File(root));
-
-      URL[] classURLs = { getRTJarURL(), getAspectJRuntimeURL(), getAspectJWeaverURL(), getEMFCommonURL(),
-          getCDOStubURL(), sourceFolder.toURL() };
-      URL[] aspectURLs = { getAspectURL() };
-
-      // TraceFactory.getTraceFactory().getTrace(BcelWeaver.class).setTraceEnabled(true);
-      // TraceFactory.getTraceFactory().getTrace(WeavingAdaptor.class).setTraceEnabled(true);
-      WeavingAdaptor weavingAdaptor = new WeavingAdaptor(new GeneratedClassHandler()
+      for (int i = 0; i < bundleLocations.length; i++)
       {
-        public void acceptClass(String name, byte[] bytes)
-        {
-          throw new ImplementationError("Must have overseen something");
-        }
-      }, classURLs, aspectURLs);
-
-      recurse(sourceFolder, targetFolder, "", weavingAdaptor);
+        throw new MalformedURLException("XXX");
+      }
     }
-    catch (Throwable t)
+    catch (MalformedURLException ex)
     {
-      t.printStackTrace();
+      throw new IORuntimeException(ex);
     }
+
+    for (int i = 0; i < bundleLocations.length; i++)
+    {
+      File bundleLocation = bundleLocations[i];
+      if (!bundleLocation.exists())
+      {
+        throw new IORuntimeException("File not found: " + bundleLocation.getAbsolutePath());
+      }
+
+      String name = bundleLocation.getName();
+      if (bundleLocation.isDirectory())
+      {
+        File wovenFolder = new File(bundleLocation.getParentFile(), getTargetName(name));
+        weaveFolder(bundleLocation, wovenFolder, classURLs, aspectURLs);
+
+        newBundleLocations[i] = wovenFolder;
+      }
+      else
+      {
+        if (name.endsWith(JAR_SUFFIX))
+        {
+          File unzippedFolder = null;
+          File wovenFolder = null;
+
+          try
+          {
+            name = name.substring(0, name.length() - JAR_SUFFIX.length());
+            unzippedFolder = TMPUtil.createTempFolder(name + "-unzipped");
+            ZIPUtil.unzip(bundleLocation, unzippedFolder);
+
+            wovenFolder = TMPUtil.createTempFolder(name + "-woven");
+            weaveFolder(unzippedFolder, wovenFolder, classURLs, aspectURLs);
+
+            File jarFile = new File(bundleLocation.getParentFile(), getTargetName(name) + JAR_SUFFIX);
+            ZIPUtil.zip(jarFile, wovenFolder, true);
+
+            newBundleLocations[i] = jarFile;
+          }
+          finally
+          {
+            if (unzippedFolder != null)
+            {
+              unzippedFolder.delete();
+            }
+
+            if (wovenFolder != null)
+            {
+              wovenFolder.delete();
+            }
+          }
+        }
+      }
+    }
+
+    return newBundleLocations;
   }
+
+  private String getTargetName(String name)
+  {
+    return name + "-CDO";
+  }
+
+  private void weaveFolder(File sourceFolder, File targetFolder, URL[] classURLs, URL[] aspectURLs)
+  {
+    WeavingAdaptor weavingAdaptor = new WeavingAdaptor(new GeneratedClassHandler()
+    {
+      public void acceptClass(String name, byte[] bytes)
+      {
+        throw new ImplementationError("Must have overseen something");
+      }
+    }, classURLs, aspectURLs);
+
+    recurse(sourceFolder, targetFolder, "", weavingAdaptor);
+  }
+
+  // public void test()
+  // {
+  // try
+  // {
+  // String root = File.separator + "_weaver";
+  // String bundleFileName = "org.eclipse.emf.ecore_2.3.1";
+  // String bundleFolderName = root + File.separator + bundleFileName;
+  //
+  // File sourceFolder = new File(bundleFolderName);
+  // File targetFolder = TMPUtil.createTempFolder("tmp_", "_" + bundleFileName,
+  // new File(root));
+  //
+  // URL[] classURLs = { getRTJarURL(), getAspectJRuntimeURL(),
+  // getAspectJWeaverURL(), getEMFCommonURL(),
+  // getCDOStubURL(), sourceFolder.toURL() };
+  // URL[] aspectURLs = { getAspectURL() };
+  //
+  // WeavingAdaptor weavingAdaptor = new WeavingAdaptor(new
+  // GeneratedClassHandler()
+  // {
+  // public void acceptClass(String name, byte[] bytes)
+  // {
+  // throw new ImplementationError("Must have overseen something");
+  // }
+  // }, classURLs, aspectURLs);
+  //
+  // recurse(sourceFolder, targetFolder, "", weavingAdaptor);
+  // }
+  // catch (Throwable t)
+  // {
+  // t.printStackTrace();
+  // }
+  // }
 
   private static void recurse(File sourceFolder, File targetFolder, String path, WeavingAdaptor weavingAdaptor)
   {

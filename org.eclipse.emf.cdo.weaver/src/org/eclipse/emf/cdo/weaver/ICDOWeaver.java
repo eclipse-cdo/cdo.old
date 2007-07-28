@@ -12,7 +12,9 @@ package org.eclipse.emf.cdo.weaver;
 
 import org.eclipse.emf.cdo.internal.weaver.CDOWeaver;
 
-import java.net.URL;
+import org.eclipse.net4j.util.io.IORuntimeException;
+
+import java.io.File;
 
 /**
  * @author Eike Stepper
@@ -21,7 +23,5 @@ public interface ICDOWeaver
 {
   public static final ICDOWeaver INSTANCE = CDOWeaver.INSTANCE;
 
-  public void test();
-
-  public void weave(URL[] classURLs);
+  public File[] weave(File[] bundleLocations) throws IORuntimeException;
 }

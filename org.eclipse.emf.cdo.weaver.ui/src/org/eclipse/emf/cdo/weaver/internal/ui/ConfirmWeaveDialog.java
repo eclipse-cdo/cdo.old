@@ -10,7 +10,9 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.weaver.internal.ui;
 
+import org.eclipse.emf.cdo.internal.weaver.CDOWeaver;
 import org.eclipse.emf.cdo.util.EMFUtil;
+import org.eclipse.emf.cdo.weaver.ICDOWeaver;
 import org.eclipse.emf.cdo.weaver.internal.ui.bundle.OM;
 
 import org.eclipse.net4j.ui.widgets.PreferenceButton;
@@ -41,6 +43,8 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -127,6 +131,22 @@ public class ConfirmWeaveDialog extends TitleAreaDialog
   @Override
   protected void okPressed()
   {
+    List<File> list = new ArrayList();
+    Set<String> symbolicNames = new HashSet(bundleMap.keySet());
+    symbolicNames.removeAll(skippedBundles);
+    symbolicNames.removeAll(ignoredBundles);
+    for (String symbolicName : symbolicNames)
+    {
+      URL bundleURL = CDOWeaver.getBundleURL(symbolicName);
+      list.add(new File(bundleURL.getFile()));
+    }
+
+    File[] locations = list.toArray(new File[list.size()]);
+    System.out.println(locations);
+
+    File[] newLocations = ICDOWeaver.INSTANCE.weave(locations);
+    System.out.println(newLocations);
+
     OM.setIgnoredBundles(ignoredBundles);
     super.okPressed();
   }
