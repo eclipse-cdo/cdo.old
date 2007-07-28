@@ -146,21 +146,6 @@ public class CDOWeaver implements ICDOWeaver
     }
   }
 
-  private URL getRTJarURL()
-  {
-    try
-    {
-      String javaHome = System.getProperty("java.home");
-      File javaLib = new File(javaHome, "lib");
-      File rtJar = new File(javaLib, "rt.jar");
-      return rtJar.toURL();
-    }
-    catch (MalformedURLException ex)
-    {
-      throw WrappedException.wrap(ex);
-    }
-  }
-
   private URL getAspectJRuntimeURL()
   {
     Bundle bundle = Platform.getBundle("org.aspectj.runtime");
@@ -188,12 +173,19 @@ public class CDOWeaver implements ICDOWeaver
     return getURL(bundleContext.getBundle(), "lib/persistence-aspect.jar");
   }
 
-  public static URL[] addURLs(URL[] urls1, URL[] urls2)
+  public static URL getRTJarURL()
   {
-    URL[] result = new URL[urls1.length + urls2.length];
-    System.arraycopy(urls1, 0, result, 0, urls1.length);
-    System.arraycopy(urls2, 0, result, urls1.length, urls2.length);
-    return result;
+    try
+    {
+      String javaHome = System.getProperty("java.home");
+      File javaLib = new File(javaHome, "lib");
+      File rtJar = new File(javaLib, "rt.jar");
+      return rtJar.toURL();
+    }
+    catch (MalformedURLException ex)
+    {
+      throw WrappedException.wrap(ex);
+    }
   }
 
   public static URL getURL(Bundle bundle, String path)
@@ -213,5 +205,13 @@ public class CDOWeaver implements ICDOWeaver
   public static URL getBundleURL(String symbolicName)
   {
     return getURL(Platform.getBundle(symbolicName), "/");
+  }
+
+  public static URL[] addURLs(URL[] urls1, URL[] urls2)
+  {
+    URL[] result = new URL[urls1.length + urls2.length];
+    System.arraycopy(urls1, 0, result, 0, urls1.length);
+    System.arraycopy(urls2, 0, result, urls1.length, urls2.length);
+    return result;
   }
 }
