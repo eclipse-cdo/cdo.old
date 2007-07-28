@@ -11,7 +11,9 @@
 package org.eclipse.emf.cdo.weaver.internal.ui;
 
 import org.eclipse.emf.cdo.util.EMFUtil;
+import org.eclipse.emf.cdo.weaver.internal.ui.bundle.OM;
 
+import org.eclipse.net4j.ui.widgets.PreferenceButton;
 import org.eclipse.net4j.util.StringUtil;
 
 import org.eclipse.emf.ecore.EClass;
@@ -33,11 +35,11 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.PlatformUI;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -64,16 +66,21 @@ public class ConfirmWeaveDialog extends TitleAreaDialog
 
   private Set<String> ignoredBundles = new HashSet();
 
-  private boolean showIgnoreBundles = false;
-
   private TreeViewer viewer;
 
   public ConfirmWeaveDialog(Map<String, SortedSet<PackageInfo>> bundleMap)
   {
-    super(new Shell());
+    super(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+    setShellStyle(getShellStyle() | SWT.APPLICATION_MODAL | SWT.MAX | SWT.TITLE | SWT.RESIZE);
+
     this.bundleMap = bundleMap;
     skippedBundles.addAll(bundleMap.keySet());
-    setShellStyle(getShellStyle() | SWT.APPLICATION_MODAL | SWT.MAX | SWT.TITLE | SWT.RESIZE);
+    String[] symbolicNames = OM.PREF_IGNORED_BUNDLES.getValue();
+    for (String symbolicName : symbolicNames)
+    {
+      ignoredBundles.add(symbolicName);
+      skippedBundles.remove(symbolicName);
+    }
   }
 
   @Override
@@ -105,22 +112,26 @@ public class ConfirmWeaveDialog extends TitleAreaDialog
   protected void createButtonsForButtonBar(Composite parent)
   {
     super.createButtonsForButtonBar(parent);
-    final Button showIgnored = new Button(parent, SWT.CHECK);
+    final PreferenceButton showIgnored = new PreferenceButton(parent, SWT.CHECK, OM.PREF_SHOW_IGNORED_BUNDLES);
     showIgnored.setText("Show ignored bundles");
     showIgnored.addSelectionListener(new SelectionAdapter()
     {
       @Override
       public void widgetSelected(SelectionEvent e)
       {
-        showIgnoreBundles = showIgnored.getSelection();
-        viewer.refresh();
+        OM.PREF_SHOW_IGNORED_BUNDLES.setValue(showIgnored.getSelection());
+        viewer.refresh(true);
       }
     });
+
+    PreferenceButton startup = new PreferenceButton(parent, SWT.CHECK, OM.PREF_CHECK_DURING_STARTUP);
+    startup.setText("Check during startup");
   }
 
   @Override
   protected void okPressed()
   {
+    OM.PREF_IGNORED_BUNDLES.setValue(ignoredBundles.toArray(new String[ignoredBundles.size()]));
     super.okPressed();
   }
 
@@ -227,7 +238,7 @@ public class ConfirmWeaveDialog extends TitleAreaDialog
         List<String> list = new ArrayList();
         for (String symbolicName : bundleMap.keySet())
         {
-          if (showIgnoreBundles || !ignoredBundles.contains(symbolicName))
+          if (OM.PREF_SHOW_IGNORED_BUNDLES.getValue() || !ignoredBundles.contains(symbolicName))
           {
             list.add(symbolicName);
           }

@@ -19,6 +19,8 @@ import org.eclipse.net4j.util.om.OMBundle;
 import org.eclipse.net4j.util.om.OMPlatform;
 import org.eclipse.net4j.util.om.OSGiActivator;
 import org.eclipse.net4j.util.om.log.OMLogger;
+import org.eclipse.net4j.util.om.pref.OMPreference;
+import org.eclipse.net4j.util.om.pref.OMPreferences;
 import org.eclipse.net4j.util.om.trace.OMTracer;
 
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -46,6 +48,14 @@ public abstract class OM
   public static final OMTracer DEBUG = BUNDLE.tracer("debug"); //$NON-NLS-1$
 
   public static final OMLogger LOG = BUNDLE.logger();
+
+  public static final OMPreferences PREFS = BUNDLE.preferences();
+
+  public static final OMPreference<String[]> PREF_IGNORED_BUNDLES = PREFS.initArray("PREF_IGNORED_BUNDLES");
+
+  public static final OMPreference<Boolean> PREF_SHOW_IGNORED_BUNDLES = PREFS.init("PREF_SHOW_IGNORED_BUNDLES", false);
+
+  public static final OMPreference<Boolean> PREF_CHECK_DURING_STARTUP = PREFS.init("PREF_CHECK_DURING_STARTUP", true);
 
   /**
    * @author Eike Stepper
