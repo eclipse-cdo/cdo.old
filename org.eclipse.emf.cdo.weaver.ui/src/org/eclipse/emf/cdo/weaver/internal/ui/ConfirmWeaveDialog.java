@@ -94,9 +94,9 @@ public class ConfirmWeaveDialog extends TitleAreaDialog
   protected Control createDialogArea(Composite parent)
   {
     Composite composite = (Composite)super.createDialogArea(parent);
-    setTitle("The following EMF models have been detected that\n" //
-        + "are not fully CDO persistence capable. Select the\n" // 
-        + "model elements to be automatically converted."); //
+    setTitle(TITLE);
+    setMessage("Some EMF models have been detected that are not fully CDO persistence capable.\n"
+        + "Select the bundles you wish to be converted with the context menu.");
 
     viewer = new TreeViewer(composite, SWT.MULTI);
     viewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
