@@ -1,6 +1,6 @@
 package org.eclipse.emf.cdo.weaver.internal.ui;
 
-import org.eclipse.emf.cdo.weaver.ICDOWeaver;
+import org.eclipse.emf.cdo.weaver.internal.ui.bundle.OM;
 
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
@@ -15,7 +15,7 @@ public class SampleAction implements IWorkbenchWindowActionDelegate
 
   public void run(IAction action)
   {
-    ICDOWeaver.INSTANCE.test();
+    OM.PREF_IGNORED_BUNDLES.unSet();
   }
 
   public void selectionChanged(IAction action, ISelection selection)

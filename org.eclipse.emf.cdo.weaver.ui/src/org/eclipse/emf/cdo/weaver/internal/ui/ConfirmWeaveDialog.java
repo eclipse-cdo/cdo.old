@@ -142,10 +142,11 @@ public class ConfirmWeaveDialog extends TitleAreaDialog
     }
 
     File[] locations = list.toArray(new File[list.size()]);
-    System.out.println(locations);
-
     File[] newLocations = ICDOWeaver.INSTANCE.weave(locations);
-    System.out.println(newLocations);
+    for (int i = 0; i < locations.length; i++)
+    {
+      System.out.println(locations[i] + " --> " + newLocations[i]);
+    }
 
     OM.setIgnoredBundles(ignoredBundles);
     super.okPressed();

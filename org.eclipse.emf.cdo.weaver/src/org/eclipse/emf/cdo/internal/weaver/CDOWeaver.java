@@ -67,26 +67,27 @@ public class CDOWeaver implements ICDOWeaver
     classURLs[3] = getEMFCommonURL();
     classURLs[4] = getCDOStubURL();
 
-    try
-    {
-      for (int i = 0; i < bundleLocations.length; i++)
-      {
-        throw new MalformedURLException("XXX");
-      }
-    }
-    catch (MalformedURLException ex)
-    {
-      throw new IORuntimeException(ex);
-    }
-
     for (int i = 0; i < bundleLocations.length; i++)
     {
       File bundleLocation = bundleLocations[i];
       if (!bundleLocation.exists())
       {
-        throw new IORuntimeException("File not found: " + bundleLocation.getAbsolutePath());
+        throw new IORuntimeException("Bundle not found: " + bundleLocation.getAbsolutePath());
       }
 
+      try
+      {
+        classURLs[5 + i] = bundleLocation.toURL();
+      }
+      catch (MalformedURLException ex)
+      {
+        throw new IORuntimeException(ex);
+      }
+    }
+
+    for (int i = 0; i < bundleLocations.length; i++)
+    {
+      File bundleLocation = bundleLocations[i];
       String name = bundleLocation.getName();
       if (bundleLocation.isDirectory())
       {
