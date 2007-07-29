@@ -10,6 +10,7 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.weaver;
 
+import org.eclipse.emf.cdo.internal.weaver.bundle.OM;
 import org.eclipse.emf.cdo.weaver.ICDOWeaver;
 
 import org.eclipse.net4j.util.ImplementationError;
@@ -47,6 +48,8 @@ public class CDOWeaver implements ICDOWeaver
 
   private BundleContext bundleContext;
 
+  private URL[] basicClassURLs;
+
   private CDOWeaver()
   {
   }
@@ -54,141 +57,72 @@ public class CDOWeaver implements ICDOWeaver
   public void setBundleContext(BundleContext bundleContext)
   {
     this.bundleContext = bundleContext;
+    if (bundleContext != null)
+    {
+      basicClassURLs = new URL[] { getRTJarURL(), getAspectJRuntimeURL(), getAspectJWeaverURL(), getEMFCommonURL(),
+          getCDOStubURL() };
+    }
   }
 
   public File[] weave(File[] bundleLocations) throws IORuntimeException
   {
     File[] newBundleLocations = new File[bundleLocations.length];
+    URL[] classURLs = getClassURLs(bundleLocations);
     URL[] aspectURLs = { getAspectURL() };
-    URL[] classURLs = new URL[5 + bundleLocations.length];
-    classURLs[0] = getRTJarURL();
-    classURLs[1] = getAspectJRuntimeURL();
-    classURLs[2] = getAspectJWeaverURL();
-    classURLs[3] = getEMFCommonURL();
-    classURLs[4] = getCDOStubURL();
-
+    WeavingAdaptor weavingAdaptor = new WeavingAdaptor(new WeaverHandler(), classURLs, aspectURLs);
     for (int i = 0; i < bundleLocations.length; i++)
     {
-      File bundleLocation = bundleLocations[i];
-      if (!bundleLocation.exists())
-      {
-        throw new IORuntimeException("Bundle not found: " + bundleLocation.getAbsolutePath());
-      }
-
-      try
-      {
-        classURLs[5 + i] = bundleLocation.toURL();
-      }
-      catch (MalformedURLException ex)
-      {
-        throw new IORuntimeException(ex);
-      }
-    }
-
-    for (int i = 0; i < bundleLocations.length; i++)
-    {
-      File bundleLocation = bundleLocations[i];
-      String name = bundleLocation.getName();
-      if (bundleLocation.isDirectory())
-      {
-        File wovenFolder = new File(bundleLocation.getParentFile(), getTargetName(name));
-        weaveFolder(bundleLocation, wovenFolder, classURLs, aspectURLs);
-
-        newBundleLocations[i] = wovenFolder;
-      }
-      else
-      {
-        if (name.endsWith(JAR_SUFFIX))
-        {
-          File unzippedFolder = null;
-          File wovenFolder = null;
-
-          try
-          {
-            name = name.substring(0, name.length() - JAR_SUFFIX.length());
-            unzippedFolder = TMPUtil.createTempFolder(name + "-unzipped");
-            ZIPUtil.unzip(bundleLocation, unzippedFolder);
-
-            wovenFolder = TMPUtil.createTempFolder(name + "-woven");
-            weaveFolder(unzippedFolder, wovenFolder, classURLs, aspectURLs);
-
-            File jarFile = new File(bundleLocation.getParentFile(), getTargetName(name) + JAR_SUFFIX);
-            ZIPUtil.zip(jarFile, wovenFolder, true);
-
-            newBundleLocations[i] = jarFile;
-          }
-          finally
-          {
-            if (unzippedFolder != null)
-            {
-              unzippedFolder.delete();
-            }
-
-            if (wovenFolder != null)
-            {
-              wovenFolder.delete();
-            }
-          }
-        }
-      }
+      newBundleLocations[i] = weaveBundle(bundleLocations[i], weavingAdaptor);
     }
 
     return newBundleLocations;
   }
 
-  private String getTargetName(String name)
+  private File weaveBundle(File bundleLocation, WeavingAdaptor weavingAdaptor)
   {
-    return name + "-CDO";
-  }
+    File unzippedFolder = null;
+    File wovenFolder = null;
 
-  private void weaveFolder(File sourceFolder, File targetFolder, URL[] classURLs, URL[] aspectURLs)
-  {
-    WeavingAdaptor weavingAdaptor = new WeavingAdaptor(new GeneratedClassHandler()
+    try
     {
-      public void acceptClass(String name, byte[] bytes)
+      String name = bundleLocation.getName();
+      if (bundleLocation.isDirectory())
       {
-        throw new ImplementationError("Must have overseen something");
-      }
-    }, classURLs, aspectURLs);
+        wovenFolder = new File(bundleLocation.getParentFile(), getTargetName(name));
+        weaveFolder(bundleLocation, wovenFolder, "", weavingAdaptor);
 
-    recurse(sourceFolder, targetFolder, "", weavingAdaptor);
+        return wovenFolder;
+      }
+
+      if (name.endsWith(JAR_SUFFIX))
+      {
+        name = name.substring(0, name.length() - JAR_SUFFIX.length());
+        unzippedFolder = TMPUtil.createTempFolder(name + "-unzipped");
+        ZIPUtil.unzip(bundleLocation, unzippedFolder);
+
+        wovenFolder = TMPUtil.createTempFolder(name + "-woven");
+        weaveFolder(unzippedFolder, wovenFolder, "", weavingAdaptor);
+
+        File jarFile = new File(bundleLocation.getParentFile(), getTargetName(name) + JAR_SUFFIX);
+        ZIPUtil.zip(jarFile, wovenFolder, true);
+
+        return jarFile;
+      }
+    }
+    catch (RuntimeException ex)
+    {
+      OM.LOG.error(ex);
+      IOUtil.delete(wovenFolder);
+    }
+    finally
+    {
+      IOUtil.delete(unzippedFolder);
+    }
+
+    return null;
   }
 
-  // public void test()
-  // {
-  // try
-  // {
-  // String root = File.separator + "_weaver";
-  // String bundleFileName = "org.eclipse.emf.ecore_2.3.1";
-  // String bundleFolderName = root + File.separator + bundleFileName;
-  //
-  // File sourceFolder = new File(bundleFolderName);
-  // File targetFolder = TMPUtil.createTempFolder("tmp_", "_" + bundleFileName,
-  // new File(root));
-  //
-  // URL[] classURLs = { getRTJarURL(), getAspectJRuntimeURL(),
-  // getAspectJWeaverURL(), getEMFCommonURL(),
-  // getCDOStubURL(), sourceFolder.toURL() };
-  // URL[] aspectURLs = { getAspectURL() };
-  //
-  // WeavingAdaptor weavingAdaptor = new WeavingAdaptor(new
-  // GeneratedClassHandler()
-  // {
-  // public void acceptClass(String name, byte[] bytes)
-  // {
-  // throw new ImplementationError("Must have overseen something");
-  // }
-  // }, classURLs, aspectURLs);
-  //
-  // recurse(sourceFolder, targetFolder, "", weavingAdaptor);
-  // }
-  // catch (Throwable t)
-  // {
-  // t.printStackTrace();
-  // }
-  // }
-
-  private static void recurse(File sourceFolder, File targetFolder, String path, WeavingAdaptor weavingAdaptor)
+  private void weaveFolder(File sourceFolder, File targetFolder, String path, WeavingAdaptor weavingAdaptor)
   {
     File source = new File(sourceFolder, path);
     File target = new File(targetFolder, path);
@@ -203,7 +137,7 @@ public class CDOWeaver implements ICDOWeaver
 
       for (String name : source.list())
       {
-        recurse(sourceFolder, targetFolder, path + File.separator + name, weavingAdaptor);
+        weaveFolder(sourceFolder, targetFolder, path + File.separator + name, weavingAdaptor);
       }
     }
     else
@@ -244,6 +178,11 @@ public class CDOWeaver implements ICDOWeaver
     }
   }
 
+  private String getTargetName(String name)
+  {
+    return name + "-CDO";
+  }
+
   private URL getAspectJRuntimeURL()
   {
     Bundle bundle = Platform.getBundle("org.aspectj.runtime");
@@ -269,6 +208,31 @@ public class CDOWeaver implements ICDOWeaver
   private URL getAspectURL()
   {
     return getURL(bundleContext.getBundle(), "lib/persistence-aspect.jar");
+  }
+
+  private URL[] getClassURLs(File[] bundleLocations)
+  {
+    URL[] classURLs = new URL[basicClassURLs.length + bundleLocations.length];
+    System.arraycopy(basicClassURLs, 0, classURLs, 0, basicClassURLs.length);
+    for (int i = 0; i < bundleLocations.length; i++)
+    {
+      File bundleLocation = bundleLocations[i];
+      if (!bundleLocation.exists())
+      {
+        throw new IORuntimeException("Bundle not found: " + bundleLocation.getAbsolutePath());
+      }
+
+      try
+      {
+        classURLs[basicClassURLs.length + i] = bundleLocation.toURL();
+      }
+      catch (MalformedURLException ex)
+      {
+        throw new IORuntimeException(ex);
+      }
+    }
+
+    return classURLs;
   }
 
   public static URL getRTJarURL()
@@ -311,5 +275,20 @@ public class CDOWeaver implements ICDOWeaver
     System.arraycopy(urls1, 0, result, 0, urls1.length);
     System.arraycopy(urls2, 0, result, urls1.length, urls2.length);
     return result;
+  }
+
+  /**
+   * @author Eike Stepper
+   */
+  private final class WeaverHandler implements GeneratedClassHandler
+  {
+    public WeaverHandler()
+    {
+    }
+
+    public void acceptClass(String name, byte[] bytes)
+    {
+      throw new ImplementationError("Must have overseen something");
+    }
   }
 }
