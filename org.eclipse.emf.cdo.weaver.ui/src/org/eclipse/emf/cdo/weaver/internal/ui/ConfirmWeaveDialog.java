@@ -17,6 +17,7 @@ import org.eclipse.emf.cdo.weaver.internal.ui.bundle.OM;
 
 import org.eclipse.net4j.ui.widgets.PreferenceButton;
 import org.eclipse.net4j.util.StringUtil;
+import org.eclipse.net4j.util.om.monitor.MonitoredJob;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -131,14 +132,21 @@ public class ConfirmWeaveDialog extends TitleAreaDialog
   @Override
   protected void okPressed()
   {
-    File[] locations = getLocations();
-    File[] newLocations = locations.length != 0 ? ICDOWeaver.INSTANCE.weave(locations) : new File[locations.length];
-    for (int i = 0; i < locations.length; i++)
-    {
-      System.out.println(locations[i] + " --> " + newLocations[i]);
-    }
-
     OM.setIgnoredBundles(ignoredBundles);
+    final File[] locations = getLocations();
+    new MonitoredJob(OM.BUNDLE_ID, "Converting bundles")
+    {
+      @Override
+      protected void run() throws Exception
+      {
+        File[] newLocations = locations.length != 0 ? ICDOWeaver.INSTANCE.weave(locations) : new File[locations.length];
+        for (int i = 0; i < locations.length; i++)
+        {
+          System.out.println(locations[i] + " --> " + newLocations[i]);
+        }
+      }
+    }.schedule();
+
     super.okPressed();
   }
 
