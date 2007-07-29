@@ -131,18 +131,8 @@ public class ConfirmWeaveDialog extends TitleAreaDialog
   @Override
   protected void okPressed()
   {
-    List<File> list = new ArrayList();
-    Set<String> symbolicNames = new HashSet(bundleMap.keySet());
-    symbolicNames.removeAll(skippedBundles);
-    symbolicNames.removeAll(ignoredBundles);
-    for (String symbolicName : symbolicNames)
-    {
-      URL bundleURL = CDOWeaver.getBundleURL(symbolicName);
-      list.add(new File(bundleURL.getFile()));
-    }
-
-    File[] locations = list.toArray(new File[list.size()]);
-    File[] newLocations = ICDOWeaver.INSTANCE.weave(locations);
+    File[] locations = getLocations();
+    File[] newLocations = locations.length != 0 ? ICDOWeaver.INSTANCE.weave(locations) : new File[locations.length];
     for (int i = 0; i < locations.length; i++)
     {
       System.out.println(locations[i] + " --> " + newLocations[i]);
@@ -209,7 +199,22 @@ public class ConfirmWeaveDialog extends TitleAreaDialog
     }
   }
 
-  protected List<String> getSelectedBundles()
+  private File[] getLocations()
+  {
+    List<File> locations = new ArrayList();
+    Set<String> symbolicNames = new HashSet(bundleMap.keySet());
+    symbolicNames.removeAll(skippedBundles);
+    symbolicNames.removeAll(ignoredBundles);
+    for (String symbolicName : symbolicNames)
+    {
+      URL bundleURL = CDOWeaver.getBundleURL(symbolicName);
+      locations.add(new File(bundleURL.getFile()));
+    }
+
+    return locations.toArray(new File[locations.size()]);
+  }
+
+  private List<String> getSelectedBundles()
   {
     List<String> symbolicNames = new ArrayList();
     IStructuredSelection selection = (IStructuredSelection)viewer.getSelection();
