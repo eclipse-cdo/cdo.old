@@ -6,6 +6,8 @@ Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.eclipse.emf.cdo.weaver.internal.ui.bundle.OM$Activator
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.update.configurator,
  org.eclipse.net4j.ui,
- org.eclipse.emf.cdo.weaver
+ org.eclipse.emf.cdo.weaver,
+ org.eclipse.update.core
 Eclipse-LazyStart: true
