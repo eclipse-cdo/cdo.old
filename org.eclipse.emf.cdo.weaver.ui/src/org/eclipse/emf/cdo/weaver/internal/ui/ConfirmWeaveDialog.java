@@ -17,6 +17,7 @@ import org.eclipse.emf.cdo.weaver.internal.ui.bundle.OM;
 
 import org.eclipse.net4j.ui.widgets.PreferenceButton;
 import org.eclipse.net4j.util.StringUtil;
+import org.eclipse.net4j.util.om.monitor.IMessageHandler;
 import org.eclipse.net4j.util.om.monitor.MonitorUtil;
 import org.eclipse.net4j.util.om.monitor.MonitoredJob;
 import org.eclipse.net4j.util.om.monitor.OMMonitor;
@@ -25,7 +26,6 @@ import org.eclipse.net4j.util.om.monitor.OMSubMonitor;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
-import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -143,8 +143,29 @@ public class ConfirmWeaveDialog extends TitleAreaDialog
     symbolicNames.removeAll(ignoredBundles);
     if (!symbolicNames.isEmpty())
     {
-      Job job = new WeaveJob(symbolicNames);
-      job.schedule();
+      MonitorUtil.Legacy.startMonitoring(new IMessageHandler()
+      {
+        public void handleMessage(String msg, int level)
+        {
+          OM.LOG.info(msg);
+        }
+      });
+
+      try
+      {
+        weave(symbolicNames);
+      }
+      finally
+      {
+        MonitorUtil.Legacy.stopMonitoring();
+      }
+
+      // IProgressService progressService =
+      // PlatformUI.getWorkbench().getProgressService();
+      // progressService.showInDialog(null, new WeaveJob(symbolicNames));
+
+      // Job job = new WeaveJob(symbolicNames);
+      // job.schedule();
     }
 
     super.okPressed();
@@ -207,6 +228,33 @@ public class ConfirmWeaveDialog extends TitleAreaDialog
     }
   }
 
+  public static void weave(Set<String> symbolicNames)
+  {
+    List<File> list = new ArrayList();
+    OMMonitor monitor = MonitorUtil.begin(2 * symbolicNames.size(), "Converting bundles");
+    for (String symbolicName : symbolicNames)
+    {
+      URL bundleURL = CDOWeaver.getBundleURL(symbolicName);
+      list.add(new File(bundleURL.getFile()));
+      monitor.worked("Located bundle " + symbolicName);
+    }
+
+    OMSubMonitor subMonitor = monitor.fork(symbolicNames.size());
+    try
+    {
+      File[] locations = list.toArray(new File[list.size()]);
+      File[] newLocations = ICDOWeaver.INSTANCE.weave(locations);
+      for (int i = 0; i < locations.length; i++)
+      {
+        System.out.println(locations[i] + " --> " + newLocations[i]);
+      }
+    }
+    finally
+    {
+      subMonitor.join("Converted all bundles");
+    }
+  }
+
   private List<String> getSelectedBundles()
   {
     List<String> symbolicNames = new ArrayList();
@@ -239,29 +287,7 @@ public class ConfirmWeaveDialog extends TitleAreaDialog
     @Override
     protected void run() throws Exception
     {
-      List<File> list = new ArrayList();
-      OMMonitor monitor = MonitorUtil.begin(2 * symbolicNames.size(), "Converting bundles");
-      for (String symbolicName : symbolicNames)
-      {
-        URL bundleURL = CDOWeaver.getBundleURL(symbolicName);
-        list.add(new File(bundleURL.getFile()));
-        monitor.worked("Located bundle " + symbolicName);
-      }
-
-      OMSubMonitor subMonitor = monitor.fork(symbolicNames.size());
-      try
-      {
-        File[] locations = list.toArray(new File[list.size()]);
-        File[] newLocations = ICDOWeaver.INSTANCE.weave(locations);
-        for (int i = 0; i < locations.length; i++)
-        {
-          System.out.println(locations[i] + " --> " + newLocations[i]);
-        }
-      }
-      finally
-      {
-        subMonitor.join("Converted all bundles");
-      }
+      weave(symbolicNames);
     }
   }
 
