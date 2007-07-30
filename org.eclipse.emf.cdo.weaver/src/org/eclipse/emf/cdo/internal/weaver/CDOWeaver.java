@@ -22,6 +22,7 @@ import org.eclipse.net4j.util.io.TMPUtil;
 import org.eclipse.net4j.util.io.ZIPUtil;
 import org.eclipse.net4j.util.om.monitor.MonitorUtil;
 import org.eclipse.net4j.util.om.monitor.OMMonitor;
+import org.eclipse.net4j.util.om.monitor.OMSubMonitor;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
@@ -66,23 +67,24 @@ public class CDOWeaver implements ICDOWeaver
     }
   }
 
-  public File[] weave(final File[] bundleLocations) throws IORuntimeException
+  public File[] weave(File[] bundleLocations) throws IORuntimeException
   {
-    OMMonitor monitor = MonitorUtil.begin(bundleLocations.length, "Converting " + bundleLocations.length + " bundles");
-    final File[] newBundleLocations = new File[bundleLocations.length];
-    final URL[] classURLs = getClassURLs(bundleLocations);
-    final URL[] aspectURLs = { getAspectURL() };
+    OMMonitor monitor = MonitorUtil.begin(bundleLocations.length, "Weaving " + bundleLocations.length + " bundles");
+    File[] newBundleLocations = new File[bundleLocations.length];
+    URL[] classURLs = getClassURLs(bundleLocations);
+    URL[] aspectURLs = { getAspectURL() };
 
     for (int i = 0; i < bundleLocations.length; i++)
     {
-      final int ii = i;
-      monitor.fork(new Runnable()
+      OMSubMonitor subMonitor = monitor.fork();
+      try
       {
-        public void run()
-        {
-          newBundleLocations[ii] = weaveBundle(bundleLocations[ii], classURLs, aspectURLs);
-        }
-      }, "Woven bundle " + bundleLocations[i]);
+        newBundleLocations[i] = weaveBundle(bundleLocations[i], classURLs, aspectURLs);
+      }
+      finally
+      {
+        subMonitor.join("Woven bundle " + bundleLocations[i]);
+      }
     }
 
     return newBundleLocations;
@@ -90,8 +92,11 @@ public class CDOWeaver implements ICDOWeaver
 
   private File weaveBundle(File bundleLocation, URL[] classURLs, URL[] aspectURLs)
   {
-    OMMonitor monitor = MonitorUtil.begin(2, "Converting bundle " + bundleLocation.getAbsolutePath());
-    final WeavingAdaptor weavingAdaptor = new WeavingAdaptor(new WeaverHandler(), classURLs, aspectURLs);
+    String name = bundleLocation.getName();
+    boolean dir = bundleLocation.isDirectory();
+    OMMonitor monitor = MonitorUtil.begin(dir ? 2 : 4, "Weaving bundle " + name);
+
+    WeavingAdaptor weavingAdaptor = new WeavingAdaptor(new WeaverHandler(), classURLs, aspectURLs);
     monitor.worked("Initialized weaving adapter");
 
     File unzippedFolder = null;
@@ -99,11 +104,18 @@ public class CDOWeaver implements ICDOWeaver
 
     try
     {
-      String name = bundleLocation.getName();
-      if (bundleLocation.isDirectory())
+      if (dir)
       {
-        wovenFolder = new File(bundleLocation.getParentFile(), getTargetName(name));
-        weaveFolder(bundleLocation, wovenFolder, "", weavingAdaptor);
+        OMSubMonitor sm = monitor.fork();
+        try
+        {
+          wovenFolder = new File(bundleLocation.getParentFile(), getTargetName(name));
+          weaveFolder(bundleLocation, wovenFolder, "", weavingAdaptor);
+        }
+        finally
+        {
+          sm.join("Woven bundle " + name);
+        }
 
         return wovenFolder;
       }
@@ -111,14 +123,38 @@ public class CDOWeaver implements ICDOWeaver
       if (name.endsWith(JAR_SUFFIX))
       {
         name = name.substring(0, name.length() - JAR_SUFFIX.length());
-        unzippedFolder = TMPUtil.createTempFolder(name + "-unzipped");
-        ZIPUtil.unzip(bundleLocation, unzippedFolder);
+        OMSubMonitor sm1 = monitor.fork();
+        try
+        {
+          unzippedFolder = TMPUtil.createTempFolder(name + "-unzipped");
+          ZIPUtil.unzip(bundleLocation, unzippedFolder);
+        }
+        finally
+        {
+          sm1.join("Unzipped bundle " + name);
+        }
 
-        wovenFolder = TMPUtil.createTempFolder(name + "-woven");
-        weaveFolder(unzippedFolder, wovenFolder, "", weavingAdaptor);
+        OMSubMonitor sm2 = monitor.fork();
+        try
+        {
+          wovenFolder = TMPUtil.createTempFolder(name + "-woven");
+          weaveFolder(unzippedFolder, wovenFolder, "", weavingAdaptor);
+        }
+        finally
+        {
+          sm2.join("Woven bundle " + name);
+        }
 
         File jarFile = new File(bundleLocation.getParentFile(), getTargetName(name) + JAR_SUFFIX);
-        ZIPUtil.zip(jarFile, wovenFolder, true);
+        OMSubMonitor sm3 = monitor.fork();
+        try
+        {
+          ZIPUtil.zip(jarFile, wovenFolder, true);
+        }
+        finally
+        {
+          sm3.join("Zipped bundle " + name);
+        }
 
         return jarFile;
       }
@@ -144,15 +180,28 @@ public class CDOWeaver implements ICDOWeaver
 
     if (source.isDirectory())
     {
-      if (!target.exists())
+      String[] names = source.list();
+      boolean exists = target.exists();
+      OMMonitor monitor = MonitorUtil.begin(names.length + (exists ? 1 : 0));
+
+      if (!exists)
       {
         target.mkdirs();
-        System.out.println("Created folder " + target.getAbsolutePath());
+        monitor.worked("Created folder " + target.getAbsolutePath());
       }
 
-      for (String name : source.list())
+      for (String name : names)
       {
-        weaveFolder(sourceFolder, targetFolder, path + File.separator + name, weavingAdaptor);
+        OMSubMonitor sm = monitor.fork();
+        try
+        {
+          weaveFolder(sourceFolder, targetFolder, path + File.separator + name, weavingAdaptor);
+        }
+        finally
+        {
+          sm.join();
+        }
+
       }
     }
     else
@@ -162,22 +211,45 @@ public class CDOWeaver implements ICDOWeaver
       {
         try
         {
+          OMMonitor monitor = MonitorUtil.begin(3);
           String className = path.substring(1, path.length() - CLASS_SUFFIX.length()).replace(File.separatorChar, '.');
-          byte[] inBytes = IOUtil.readFile(source);
-          byte[] outBytes = weavingAdaptor.weaveClass(className, inBytes);
+
+          byte[] inBytes;
+          OMSubMonitor sm1 = monitor.fork();
+          try
+          {
+            inBytes = IOUtil.readFile(source);
+          }
+          finally
+          {
+            sm1.join();
+          }
+
+          byte[] outBytes;
+          OMSubMonitor sm2 = monitor.fork();
+          try
+          {
+            outBytes = weavingAdaptor.weaveClass(className, inBytes);
+          }
+          finally
+          {
+            sm2.join();
+          }
+
           if (outBytes == null)
           {
             throw new ImplementationError();
           }
 
-          IOUtil.writeFile(target, outBytes);
-          if (Arrays.equals(inBytes, outBytes))
+          OMSubMonitor sm3 = monitor.fork();
+          try
           {
-            System.out.println("Copied file    " + target.getAbsolutePath());
+            IOUtil.writeFile(target, outBytes);
           }
-          else
+          finally
           {
-            System.out.println("Woven class    " + className);
+            boolean unchanged = Arrays.equals(inBytes, outBytes);
+            sm3.join(unchanged ? "Copied file " + target.getAbsolutePath() : "Woven class " + className);
           }
         }
         catch (IOException ex)
@@ -187,8 +259,15 @@ public class CDOWeaver implements ICDOWeaver
       }
       else
       {
-        NIOUtil.copyFile(source, target);
-        System.out.println("Copied file    " + target.getAbsolutePath());
+        OMSubMonitor sm = MonitorUtil.begin(1).fork();
+        try
+        {
+          NIOUtil.copyFile(source, target);
+        }
+        finally
+        {
+          sm.join("Copied file " + target.getAbsolutePath());
+        }
       }
     }
   }
