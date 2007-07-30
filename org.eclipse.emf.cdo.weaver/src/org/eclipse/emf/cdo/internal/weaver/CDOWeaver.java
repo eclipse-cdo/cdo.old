@@ -20,7 +20,8 @@ import org.eclipse.net4j.util.io.IOUtil;
 import org.eclipse.net4j.util.io.NIOUtil;
 import org.eclipse.net4j.util.io.TMPUtil;
 import org.eclipse.net4j.util.io.ZIPUtil;
-import org.eclipse.net4j.util.om.monitor.MONITOR;
+import org.eclipse.net4j.util.om.monitor.MonitorUtil;
+import org.eclipse.net4j.util.om.monitor.OMMonitor;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
@@ -67,7 +68,7 @@ public class CDOWeaver implements ICDOWeaver
 
   public File[] weave(final File[] bundleLocations) throws IORuntimeException
   {
-    MONITOR.begin(bundleLocations.length, "Converting " + bundleLocations.length + " bundles");
+    OMMonitor monitor = MonitorUtil.begin(bundleLocations.length, "Converting " + bundleLocations.length + " bundles");
     final File[] newBundleLocations = new File[bundleLocations.length];
     final URL[] classURLs = getClassURLs(bundleLocations);
     final URL[] aspectURLs = { getAspectURL() };
@@ -75,7 +76,7 @@ public class CDOWeaver implements ICDOWeaver
     for (int i = 0; i < bundleLocations.length; i++)
     {
       final int ii = i;
-      MONITOR.fork(new Runnable()
+      monitor.fork(new Runnable()
       {
         public void run()
         {
@@ -89,9 +90,9 @@ public class CDOWeaver implements ICDOWeaver
 
   private File weaveBundle(File bundleLocation, URL[] classURLs, URL[] aspectURLs)
   {
-    MONITOR.begin(2, "Converting bundle " + bundleLocation.getAbsolutePath());
+    OMMonitor monitor = MonitorUtil.begin(2, "Converting bundle " + bundleLocation.getAbsolutePath());
     final WeavingAdaptor weavingAdaptor = new WeavingAdaptor(new WeaverHandler(), classURLs, aspectURLs);
-    MONITOR.worked("Initialized weaving adapter");
+    monitor.worked("Initialized weaving adapter");
 
     File unzippedFolder = null;
     File wovenFolder = null;
@@ -130,7 +131,7 @@ public class CDOWeaver implements ICDOWeaver
     finally
     {
       IOUtil.delete(unzippedFolder);
-      MONITOR.worked();
+      monitor.worked();
     }
 
     return null;
