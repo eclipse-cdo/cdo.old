@@ -182,7 +182,8 @@ public class CDOWeaver implements ICDOWeaver
     {
       String[] names = source.list();
       boolean exists = target.exists();
-      OMMonitor monitor = MonitorUtil.begin(names.length + (exists ? 1 : 0));
+      OMMonitor monitor = MonitorUtil.begin(names.length + (exists ? 1 : 0), "Processing folder "
+          + source.getAbsolutePath());
 
       if (!exists)
       {
@@ -211,8 +212,8 @@ public class CDOWeaver implements ICDOWeaver
       {
         try
         {
-          OMMonitor monitor = MonitorUtil.begin(3);
           String className = path.substring(1, path.length() - CLASS_SUFFIX.length()).replace(File.separatorChar, '.');
+          OMMonitor monitor = MonitorUtil.begin(3, "Processing class " + className);
 
           byte[] inBytes;
           OMSubMonitor sm1 = monitor.fork();
@@ -259,7 +260,8 @@ public class CDOWeaver implements ICDOWeaver
       }
       else
       {
-        OMSubMonitor sm = MonitorUtil.begin(1).fork();
+        OMMonitor monitor = MonitorUtil.begin(1, "Processing file " + source.getAbsolutePath());
+        OMSubMonitor sm = monitor.fork();
         try
         {
           NIOUtil.copyFile(source, target);
