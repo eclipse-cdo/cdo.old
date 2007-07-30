@@ -182,7 +182,7 @@ public class CDOWeaver implements ICDOWeaver
     {
       String[] names = source.list();
       boolean exists = target.exists();
-      OMMonitor monitor = MonitorUtil.begin(names.length + (exists ? 1 : 0), "Processing folder "
+      OMMonitor monitor = MonitorUtil.begin(names.length + (exists ? 0 : 1), "Processing folder "
           + source.getAbsolutePath());
 
       if (!exists)
@@ -215,7 +215,7 @@ public class CDOWeaver implements ICDOWeaver
           String className = path.substring(1, path.length() - CLASS_SUFFIX.length()).replace(File.separatorChar, '.');
           OMMonitor monitor = MonitorUtil.begin(3, "Processing class " + className);
 
-          byte[] inBytes;
+          byte[] inBytes = null;
           OMSubMonitor sm1 = monitor.fork();
           try
           {
@@ -226,20 +226,27 @@ public class CDOWeaver implements ICDOWeaver
             sm1.join();
           }
 
-          byte[] outBytes;
+          byte[] outBytes = null;
           OMSubMonitor sm2 = monitor.fork();
           try
           {
             outBytes = weavingAdaptor.weaveClass(className, inBytes);
+            if (outBytes == null)
+            {
+              throw new ImplementationError();
+            }
           }
           finally
           {
-            sm2.join();
-          }
-
-          if (outBytes == null)
-          {
-            throw new ImplementationError();
+            if (outBytes == null)
+            {
+              sm2.join();
+            }
+            else
+            {
+              boolean unchanged = Arrays.equals(inBytes, outBytes);
+              sm2.join("Woven class " + className + (unchanged ? " (unchanged)" : ""));
+            }
           }
 
           OMSubMonitor sm3 = monitor.fork();
@@ -249,8 +256,7 @@ public class CDOWeaver implements ICDOWeaver
           }
           finally
           {
-            boolean unchanged = Arrays.equals(inBytes, outBytes);
-            sm3.join(unchanged ? "Copied file " + target.getAbsolutePath() : "Woven class " + className);
+            sm3.join("Written class " + className);
           }
         }
         catch (IOException ex)
