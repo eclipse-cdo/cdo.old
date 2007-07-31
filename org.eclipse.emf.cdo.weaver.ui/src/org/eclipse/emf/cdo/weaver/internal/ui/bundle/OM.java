@@ -14,7 +14,6 @@ import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.cdo.weaver.BundleInfo;
 import org.eclipse.emf.cdo.weaver.ICDOWeaver;
 import org.eclipse.emf.cdo.weaver.internal.ui.ConfirmWeaveDialog;
-import org.eclipse.emf.cdo.weaver.internal.ui.PackageInfo;
 
 import org.eclipse.net4j.ui.UIActivator;
 import org.eclipse.net4j.util.StringUtil;
@@ -47,9 +46,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.SortedSet;
 import java.util.TreeMap;
-import java.util.TreeSet;
 
 /**
  * @author Eike Stepper
@@ -188,36 +185,6 @@ public abstract class OM
     }
 
     return null;
-  }
-
-  private static Map<String, SortedSet<PackageInfo>> getUnwovenBundlesOLD()
-  {
-    Set<String> persistentPackageURIs = CDOUtil.getPersistentPackageURIs();
-    IConfigurationElement[] generatedPackages = Platform.getExtensionRegistry().getConfigurationElementsFor(
-        EMF_EXT_POINT);
-    Map<String, SortedSet<PackageInfo>> bundleMap = new TreeMap();
-
-    for (IConfigurationElement generatedPackage : generatedPackages)
-    {
-      String symbolicName = generatedPackage.getContributor().getName();
-      String uri = generatedPackage.getAttribute("uri");
-      if (!StringUtil.isEmpty(uri))
-      {
-        if (!persistentPackageURIs.contains(uri))
-        {
-          SortedSet<PackageInfo> packageInfos = bundleMap.get(symbolicName);
-          if (packageInfos == null)
-          {
-            packageInfos = new TreeSet();
-            bundleMap.put(symbolicName, packageInfos);
-          }
-
-          packageInfos.add(new PackageInfo(uri, symbolicName));
-        }
-      }
-    }
-
-    return bundleMap;
   }
 
   private static void confirmWeave()
