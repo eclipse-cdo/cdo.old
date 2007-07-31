@@ -83,7 +83,7 @@ public class CDOWeaver implements ICDOWeaver
       }
       finally
       {
-        subMonitor.join("Woven bundle " + bundleLocations[i]);
+        subMonitor.join();
       }
     }
 

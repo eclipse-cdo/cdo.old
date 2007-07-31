@@ -66,7 +66,7 @@ import java.util.SortedSet;
  */
 public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
 {
-  private static final String TITLE = "CDO Package Weaver";
+  private static final String TITLE = "CDO Package Converter";
 
   private static final String MESSAGE = "Some EMF models have been detected that are not fully CDO persistence capable.\n"
       + "Select the bundles you wish to be converted with the context menu.";
