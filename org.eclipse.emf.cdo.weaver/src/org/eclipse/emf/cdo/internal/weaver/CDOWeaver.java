@@ -182,13 +182,13 @@ public class CDOWeaver implements ICDOWeaver
     {
       String[] names = source.list();
       boolean exists = target.exists();
-      OMMonitor monitor = MonitorUtil.begin(names.length + (exists ? 0 : 1), "Processing source folder "
-          + source.getAbsolutePath());
+      OMMonitor monitor = MonitorUtil.begin(names.length + (exists ? 0 : 1), "Processing folder "
+          + (path.length() == 0 ? File.separator : path));
 
       if (!exists)
       {
         target.mkdirs();
-        monitor.worked("Created target folder " + target.getAbsolutePath());
+        monitor.worked("Created folder " + target.getAbsolutePath());
       }
 
       for (String name : names)
@@ -256,7 +256,7 @@ public class CDOWeaver implements ICDOWeaver
           }
           finally
           {
-            sm3.join((unchanged ? "Copied " : "Woven ") + className);
+            sm3.join((unchanged ? "Copied class " : "Woven class ") + className);
           }
         }
         catch (IOException ex)
@@ -274,7 +274,7 @@ public class CDOWeaver implements ICDOWeaver
         }
         finally
         {
-          sm.join("Copied " + target.getAbsolutePath());
+          sm.join("Copied file " + (path.length() == 0 ? File.separator : path));
         }
       }
     }
