@@ -106,7 +106,7 @@ public class CDOWeaver implements ICDOWeaver
         OMSubMonitor sm = monitor.fork();
         try
         {
-          wovenFolder = new File(bundleLocation.getParentFile(), getTargetName(name));
+          wovenFolder = new File(bundleLocation.getParentFile(), getTargetName(bundleInfo));
           weaveFolder(bundleLocation, wovenFolder, "", weavingAdaptor);
         }
         finally
@@ -117,44 +117,40 @@ public class CDOWeaver implements ICDOWeaver
         return wovenFolder;
       }
 
-      if (name.endsWith(ICDOWeaver.JAR_SUFFIX))
+      OMSubMonitor sm1 = monitor.fork();
+      try
       {
-        name = name.substring(0, name.length() - ICDOWeaver.JAR_SUFFIX.length());
-        OMSubMonitor sm1 = monitor.fork();
-        try
-        {
-          unzippedFolder = TMPUtil.createTempFolder(name + "-unzipped");
-          ZIPUtil.unzip(bundleLocation, unzippedFolder);
-        }
-        finally
-        {
-          sm1.join("Unzipped bundle " + name);
-        }
-
-        OMSubMonitor sm2 = monitor.fork();
-        try
-        {
-          wovenFolder = TMPUtil.createTempFolder(name + "-woven");
-          weaveFolder(unzippedFolder, wovenFolder, "", weavingAdaptor);
-        }
-        finally
-        {
-          sm2.join("Woven bundle " + name);
-        }
-
-        File jarFile = new File(bundleLocation.getParentFile(), getTargetName(name) + ICDOWeaver.JAR_SUFFIX);
-        OMSubMonitor sm3 = monitor.fork();
-        try
-        {
-          ZIPUtil.zip(jarFile, wovenFolder, true);
-        }
-        finally
-        {
-          sm3.join("Zipped bundle " + name);
-        }
-
-        return jarFile;
+        unzippedFolder = TMPUtil.createTempFolder(name + "-unzipped");
+        ZIPUtil.unzip(bundleLocation, unzippedFolder);
       }
+      finally
+      {
+        sm1.join("Unzipped bundle " + name);
+      }
+
+      OMSubMonitor sm2 = monitor.fork();
+      try
+      {
+        wovenFolder = TMPUtil.createTempFolder(name + "-woven");
+        weaveFolder(unzippedFolder, wovenFolder, "", weavingAdaptor);
+      }
+      finally
+      {
+        sm2.join("Woven bundle " + name);
+      }
+
+      File jarFile = new File(bundleLocation.getParentFile(), getTargetName(bundleInfo) + ICDOWeaver.JAR_SUFFIX);
+      OMSubMonitor sm3 = monitor.fork();
+      try
+      {
+        ZIPUtil.zip(jarFile, wovenFolder, true);
+      }
+      finally
+      {
+        sm3.join("Zipped bundle " + name);
+      }
+
+      return jarFile;
     }
     catch (RuntimeException ex)
     {
@@ -278,9 +274,9 @@ public class CDOWeaver implements ICDOWeaver
     }
   }
 
-  private String getTargetName(String name)
+  private String getTargetName(BundleInfo bundleInfo)
   {
-    return name + "-CDO";
+    return bundleInfo.getName() + "_" + bundleInfo.getVersion() + "-CDO";
   }
 
   private URL getAspectJRuntimeURL()
