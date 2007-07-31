@@ -14,7 +14,7 @@ import org.eclipse.emf.cdo.internal.weaver.CDOWeaver;
 
 import org.eclipse.net4j.util.io.IORuntimeException;
 
-import java.io.File;
+import java.util.Collection;
 
 /**
  * @author Eike Stepper
@@ -23,6 +23,12 @@ public interface ICDOWeaver
 {
   public static final ICDOWeaver INSTANCE = CDOWeaver.INSTANCE;
 
+  public static final String JAR_SUFFIX = ".jar";
+
+  public static final String CLASS_SUFFIX = ".class";
+
+  public static final String CDO_MARKER = ".cdo";
+
   /**
    * @param bundleLocations
    *          The locations bundle of the bundles in the file system. Each
@@ -30,5 +36,5 @@ public interface ICDOWeaver
    *          both cases the bundle must contain its classes in the bundle root
    *          directory.
    */
-  public File[] weave(File[] bundleLocations) throws IORuntimeException;
+  public void weave(Collection<BundleInfo> bundleInfos) throws IORuntimeException;
 }

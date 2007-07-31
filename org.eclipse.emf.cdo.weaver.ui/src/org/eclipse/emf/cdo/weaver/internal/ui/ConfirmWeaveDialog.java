@@ -10,8 +10,8 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.weaver.internal.ui;
 
-import org.eclipse.emf.cdo.internal.weaver.CDOWeaver;
 import org.eclipse.emf.cdo.util.EMFUtil;
+import org.eclipse.emf.cdo.weaver.BundleInfo;
 import org.eclipse.emf.cdo.weaver.ICDOWeaver;
 import org.eclipse.emf.cdo.weaver.internal.ui.bundle.OM;
 
@@ -19,13 +19,10 @@ import org.eclipse.net4j.ui.widgets.BaseDialog;
 import org.eclipse.net4j.ui.widgets.MonitorDialog;
 import org.eclipse.net4j.ui.widgets.PreferenceButton;
 import org.eclipse.net4j.util.StringUtil;
-import org.eclipse.net4j.util.om.monitor.MonitorUtil;
-import org.eclipse.net4j.util.om.monitor.MonitoredJob;
-import org.eclipse.net4j.util.om.monitor.OMMonitor;
-import org.eclipse.net4j.util.om.monitor.OMSubMonitor;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
@@ -49,8 +46,6 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.ui.PlatformUI;
 
-import java.io.File;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -59,7 +54,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.SortedSet;
 
 /**
  * @author Eike Stepper
@@ -73,13 +67,13 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
 
   private static final Object[] NO_CHILDREN = {};
 
-  private Map<String, SortedSet<PackageInfo>> bundleMap;
+  private Map<String, BundleInfo> bundleMap;
 
   private Set<String> skippedBundles = new HashSet();
 
   private Set<String> ignoredBundles = new HashSet();
 
-  public ConfirmWeaveDialog(Map<String, SortedSet<PackageInfo>> bundleMap)
+  public ConfirmWeaveDialog(Map<String, BundleInfo> bundleMap)
   {
     super(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), DEFAULT_SHELL_STYLE | SWT.APPLICATION_MODAL,
         TITLE, MESSAGE, OM.Activator.INSTANCE.getDialogSettings());
@@ -109,13 +103,6 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
     setCurrentViewer(viewer);
   }
 
-  private void addColumn(Tree tree, String title, int width, int alignment)
-  {
-    TreeColumn column = new TreeColumn(tree, alignment);
-    column.setText(title);
-    column.setWidth(width);
-  }
-
   @Override
   protected void createButtonsForButtonBar(Composite parent)
   {
@@ -141,10 +128,19 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
   {
     OM.setIgnoredBundles(ignoredBundles);
 
-    final Set<String> symbolicNames = new HashSet(bundleMap.keySet());
-    symbolicNames.removeAll(skippedBundles);
-    symbolicNames.removeAll(ignoredBundles);
-    if (!symbolicNames.isEmpty())
+    final List<BundleInfo> bundleInfos = new ArrayList();
+    for (BundleInfo bundleInfo : bundleMap.values())
+    {
+      String name = bundleInfo.getName();
+      if (!skippedBundles.contains(name) || !ignoredBundles.contains(name))
+      {
+        bundleInfos.add(bundleInfo);
+      }
+    }
+
+    super.okPressed();
+
+    if (!bundleInfos.isEmpty())
     {
       MonitorDialog dialog = new MonitorDialog(getShell(), getShellStyle(), "Converting Bundles", OM.Activator.INSTANCE
           .getDialogSettings());
@@ -152,34 +148,26 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
       {
         public void run()
         {
-          weave(symbolicNames);
+          ICDOWeaver.INSTANCE.weave(bundleInfos);
         }
       });
-
-      // IProgressService progressService =
-      // PlatformUI.getWorkbench().getProgressService();
-      // progressService.showInDialog(null, new WeaveJob(symbolicNames));
-
-      // Job job = new WeaveJob(symbolicNames);
-      // job.schedule();
     }
 
-    super.okPressed();
   }
 
   @Override
   protected void fillContextMenu(IMenuManager manager, TreeViewer viewer)
   {
-    final List<String> symbolicNames = getSelectedBundles();
-    if (!symbolicNames.isEmpty())
+    final List<String> selectedBundles = getSelectedBundles();
+    if (!selectedBundles.isEmpty())
     {
       manager.add(new Action("Convert", SharedIcons.getDescriptor(SharedIcons.ETOOL_CONVERT))
       {
         @Override
         public void run()
         {
-          skippedBundles.removeAll(symbolicNames);
-          ignoredBundles.removeAll(symbolicNames);
+          skippedBundles.removeAll(selectedBundles);
+          ignoredBundles.removeAll(selectedBundles);
           getCurrentViewer().refresh(true);
         }
       });
@@ -189,8 +177,8 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
         @Override
         public void run()
         {
-          skippedBundles.addAll(symbolicNames);
-          ignoredBundles.removeAll(symbolicNames);
+          skippedBundles.addAll(selectedBundles);
+          ignoredBundles.removeAll(selectedBundles);
           getCurrentViewer().refresh(true);
         }
       });
@@ -200,8 +188,8 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
         @Override
         public void run()
         {
-          skippedBundles.removeAll(symbolicNames);
-          ignoredBundles.addAll(symbolicNames);
+          skippedBundles.removeAll(selectedBundles);
+          ignoredBundles.addAll(selectedBundles);
           getCurrentViewer().refresh(true);
         }
       });
@@ -226,67 +214,27 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
     }
   }
 
-  public static void weave(Set<String> symbolicNames)
+  private void addColumn(Tree tree, String title, int width, int alignment)
   {
-    List<File> list = new ArrayList();
-    OMMonitor monitor = MonitorUtil.begin(2 * symbolicNames.size(), "Converting bundles");
-    for (String symbolicName : symbolicNames)
-    {
-      URL bundleURL = CDOWeaver.getBundleURL(symbolicName);
-      list.add(new File(bundleURL.getFile()));
-      monitor.worked("Located bundle " + symbolicName);
-    }
-
-    OMSubMonitor subMonitor = monitor.fork(symbolicNames.size());
-    try
-    {
-      File[] locations = list.toArray(new File[list.size()]);
-      File[] newLocations = ICDOWeaver.INSTANCE.weave(locations);
-      for (int i = 0; i < locations.length; i++)
-      {
-        System.out.println(locations[i] + " --> " + newLocations[i]);
-      }
-    }
-    finally
-    {
-      subMonitor.join("Converted all bundles");
-    }
+    TreeColumn column = new TreeColumn(tree, alignment);
+    column.setText(title);
+    column.setWidth(width);
   }
 
   private List<String> getSelectedBundles()
   {
-    List<String> symbolicNames = new ArrayList();
+    List<String> selectedBundles = new ArrayList();
     IStructuredSelection selection = (IStructuredSelection)getCurrentViewer().getSelection();
     for (Iterator it = selection.iterator(); it.hasNext();)
     {
       Object element = it.next();
-      if (element instanceof String)
+      if (element instanceof BundleInfo)
       {
-        symbolicNames.add((String)element);
+        selectedBundles.add(((BundleInfo)element).getName());
       }
     }
 
-    return symbolicNames;
-  }
-
-  /**
-   * @author Eike Stepper
-   */
-  private static final class WeaveJob extends MonitoredJob
-  {
-    private Set<String> symbolicNames;
-
-    private WeaveJob(Set<String> symbolicNames)
-    {
-      super(OM.BUNDLE_ID, "Converting bundles");
-      this.symbolicNames = symbolicNames;
-    }
-
-    @Override
-    protected void run() throws Exception
-    {
-      weave(symbolicNames);
-    }
+    return selectedBundles;
   }
 
   /**
@@ -304,7 +252,6 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
 
     public void inputChanged(Viewer viewer, Object oldInput, Object newInput)
     {
-      bundleMap = (Map<String, SortedSet<PackageInfo>>)newInput;
     }
 
     public Object[] getElements(Object inputElement)
@@ -316,12 +263,12 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
     {
       if (parentElement == bundleMap)
       {
-        List<String> list = new ArrayList();
-        for (String symbolicName : bundleMap.keySet())
+        List<BundleInfo> list = new ArrayList();
+        for (BundleInfo bundleInfo : bundleMap.values())
         {
-          if (OM.PREF_SHOW_IGNORED_BUNDLES.getValue() || !ignoredBundles.contains(symbolicName))
+          if (OM.PREF_SHOW_IGNORED_BUNDLES.getValue() || !ignoredBundles.contains(bundleInfo.getName()))
           {
-            list.add(symbolicName);
+            list.add(bundleInfo);
           }
         }
 
@@ -329,17 +276,16 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
         return list.toArray();
       }
 
-      if (parentElement instanceof String)
+      if (parentElement instanceof BundleInfo)
       {
-        String symbolicName = (String)parentElement;
-        SortedSet<PackageInfo> packageInfos = bundleMap.get(symbolicName);
-        return packageInfos.toArray();
+        BundleInfo bundleInfo = (BundleInfo)parentElement;
+        return bundleInfo.getPackageURIs().toArray();
       }
 
-      if (parentElement instanceof PackageInfo)
+      if (parentElement instanceof String)
       {
-        PackageInfo packageInfo = (PackageInfo)parentElement;
-        EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(packageInfo.getPackageURI());
+        String packageURI = (String)parentElement;
+        EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(packageURI);
         List<EClass> eClasses = EMFUtil.getPersistentClasses(ePackage);
         Collections.sort(eClasses, new Comparator()
         {
@@ -352,31 +298,42 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
         return eClasses.toArray();
       }
 
+      if (parentElement instanceof EClass)
+      {
+        EClass eClass = (EClass)parentElement;
+        return eClass.getEStructuralFeatures().toArray();
+      }
+
       return NO_CHILDREN;
     }
 
     public Object getParent(Object element)
     {
+      if (element instanceof EStructuralFeature)
+      {
+        EStructuralFeature eFeature = (EStructuralFeature)element;
+        return eFeature.getEContainingClass();
+      }
+
       if (element instanceof EClass)
       {
         EClass eClass = (EClass)element;
-        String uri = eClass.getEPackage().getNsURI();
-        for (SortedSet<PackageInfo> packageInfos : bundleMap.values())
+        return eClass.getEPackage().getNsURI();
+      }
+
+      if (element instanceof String)
+      {
+        String packageURI = (String)element;
+        for (BundleInfo bundleInfo : bundleMap.values())
         {
-          for (PackageInfo packageInfo : packageInfos)
+          for (String uri : bundleInfo.getPackageURIs())
           {
-            if (uri.equals(packageInfo.getPackageURI()))
+            if (uri.equals(packageURI))
             {
-              return packageInfo;
+              return bundleInfo;
             }
           }
         }
-      }
-
-      if (element instanceof PackageInfo)
-      {
-        PackageInfo packageInfo = (PackageInfo)element;
-        return packageInfo.getBundleSymbolicName();
       }
 
       return null;
@@ -402,10 +359,16 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
     @Override
     public String getText(Object element)
     {
-      if (element instanceof PackageInfo)
+      if (element instanceof BundleInfo)
       {
-        PackageInfo packageInfo = (PackageInfo)element;
-        return packageInfo.getPackageURI();
+        BundleInfo bundleInfo = (BundleInfo)element;
+        return bundleInfo.getName();
+      }
+
+      if (element instanceof String)
+      {
+        String packageURI = (String)element;
+        return packageURI;
       }
 
       if (element instanceof EClass)
@@ -414,15 +377,21 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
         return eClass.getName();
       }
 
+      if (element instanceof EStructuralFeature)
+      {
+        EStructuralFeature eFeature = (EStructuralFeature)element;
+        return eFeature.getName();
+      }
+
       return element.toString();
     }
 
     @Override
     public Image getImage(Object element)
     {
-      if (element instanceof PackageInfo)
+      if (element instanceof EStructuralFeature)
       {
-        return SharedIcons.getImage(SharedIcons.OBJ_PACKAGE);
+        return SharedIcons.getImage(SharedIcons.OBJ_FEATURE);
       }
 
       if (element instanceof EClass)
@@ -432,12 +401,18 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
 
       if (element instanceof String)
       {
-        if (skippedBundles.contains(element))
+        return SharedIcons.getImage(SharedIcons.OBJ_PACKAGE);
+      }
+
+      if (element instanceof BundleInfo)
+      {
+        BundleInfo bundleInfo = (BundleInfo)element;
+        if (skippedBundles.contains(bundleInfo.getName()))
         {
           return SharedIcons.getImage(SharedIcons.OBJ_PLUGIN_SKIP);
         }
 
-        if (ignoredBundles.contains(element))
+        if (ignoredBundles.contains(bundleInfo.getName()))
         {
           return SharedIcons.getImage(SharedIcons.OBJ_PLUGIN_IGNORE);
         }
@@ -470,17 +445,20 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
         return getImage(element);
       }
 
-      if (element instanceof String)
+      if (element instanceof BundleInfo)
       {
-        String symbolicName = (String)element;
-        if (symbolicName.toLowerCase().endsWith(".jar"))
+        BundleInfo bundleInfo = (BundleInfo)element;
+        if (bundleInfo.getLocation() == null)
+        {
+          return SharedIcons.getImage(SharedIcons.OBJ_ERROR);
+        }
+
+        if (bundleInfo.isArchive())
         {
           return SharedIcons.getImage(SharedIcons.OBJ_ARCHIVE);
         }
-        else
-        {
-          return SharedIcons.getImage(SharedIcons.OBJ_FOLDER);
-        }
+
+        return SharedIcons.getImage(SharedIcons.OBJ_FOLDER);
       }
 
       return null;

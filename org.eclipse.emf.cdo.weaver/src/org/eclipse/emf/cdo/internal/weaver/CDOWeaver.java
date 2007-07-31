@@ -11,6 +11,7 @@
 package org.eclipse.emf.cdo.internal.weaver;
 
 import org.eclipse.emf.cdo.internal.weaver.bundle.OM;
+import org.eclipse.emf.cdo.weaver.BundleInfo;
 import org.eclipse.emf.cdo.weaver.ICDOWeaver;
 
 import org.eclipse.net4j.util.ImplementationError;
@@ -37,16 +38,13 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * @author Eike Stepper
  */
 public class CDOWeaver implements ICDOWeaver
 {
-  private static final String JAR_SUFFIX = ".jar";
-
-  private static final String CLASS_SUFFIX = ".class";
-
   public static final CDOWeaver INSTANCE = new CDOWeaver();
 
   private BundleContext bundleContext;
@@ -67,32 +65,31 @@ public class CDOWeaver implements ICDOWeaver
     }
   }
 
-  public File[] weave(File[] bundleLocations) throws IORuntimeException
+  public void weave(Collection<BundleInfo> bundleInfos) throws IORuntimeException
   {
-    OMMonitor monitor = MonitorUtil.begin(bundleLocations.length, "Weaving " + bundleLocations.length + " bundles");
-    File[] newBundleLocations = new File[bundleLocations.length];
-    URL[] classURLs = getClassURLs(bundleLocations);
+    int count = bundleInfos.size();
+    OMMonitor monitor = MonitorUtil.begin(count, "Weaving " + count + " bundles");
+    URL[] classURLs = getClassURLs(bundleInfos);
     URL[] aspectURLs = { getAspectURL() };
 
-    for (int i = 0; i < bundleLocations.length; i++)
+    for (BundleInfo bundleInfo : bundleInfos)
     {
       OMSubMonitor subMonitor = monitor.fork();
       try
       {
-        newBundleLocations[i] = weaveBundle(bundleLocations[i], classURLs, aspectURLs);
+        weaveBundle(bundleInfo, classURLs, aspectURLs);
       }
       finally
       {
         subMonitor.join();
       }
     }
-
-    return newBundleLocations;
   }
 
-  private File weaveBundle(File bundleLocation, URL[] classURLs, URL[] aspectURLs)
+  private File weaveBundle(BundleInfo bundleInfo, URL[] classURLs, URL[] aspectURLs)
   {
-    String name = bundleLocation.getName();
+    String name = bundleInfo.getName();
+    File bundleLocation = bundleInfo.getLocation();
     boolean dir = bundleLocation.isDirectory();
     OMMonitor monitor = MonitorUtil.begin(dir ? 2 : 4, "Weaving bundle " + name);
 
@@ -120,9 +117,9 @@ public class CDOWeaver implements ICDOWeaver
         return wovenFolder;
       }
 
-      if (name.endsWith(JAR_SUFFIX))
+      if (name.endsWith(ICDOWeaver.JAR_SUFFIX))
       {
-        name = name.substring(0, name.length() - JAR_SUFFIX.length());
+        name = name.substring(0, name.length() - ICDOWeaver.JAR_SUFFIX.length());
         OMSubMonitor sm1 = monitor.fork();
         try
         {
@@ -145,7 +142,7 @@ public class CDOWeaver implements ICDOWeaver
           sm2.join("Woven bundle " + name);
         }
 
-        File jarFile = new File(bundleLocation.getParentFile(), getTargetName(name) + JAR_SUFFIX);
+        File jarFile = new File(bundleLocation.getParentFile(), getTargetName(name) + ICDOWeaver.JAR_SUFFIX);
         OMSubMonitor sm3 = monitor.fork();
         try
         {
@@ -208,11 +205,12 @@ public class CDOWeaver implements ICDOWeaver
     else
     {
       String name = source.getName();
-      if (name.endsWith(CLASS_SUFFIX))
+      if (name.endsWith(ICDOWeaver.CLASS_SUFFIX))
       {
         try
         {
-          String className = path.substring(1, path.length() - CLASS_SUFFIX.length()).replace(File.separatorChar, '.');
+          String className = path.substring(1, path.length() - ICDOWeaver.CLASS_SUFFIX.length()).replace(
+              File.separatorChar, '.');
           OMMonitor monitor = MonitorUtil.begin(3);
 
           byte[] inBytes = null;
@@ -312,13 +310,14 @@ public class CDOWeaver implements ICDOWeaver
     return getURL(bundleContext.getBundle(), "lib/persistence-aspect.jar");
   }
 
-  private URL[] getClassURLs(File[] bundleLocations)
+  private URL[] getClassURLs(Collection<BundleInfo> bundleInfos)
   {
-    URL[] classURLs = new URL[basicClassURLs.length + bundleLocations.length];
+    URL[] classURLs = new URL[basicClassURLs.length + bundleInfos.size()];
     System.arraycopy(basicClassURLs, 0, classURLs, 0, basicClassURLs.length);
-    for (int i = 0; i < bundleLocations.length; i++)
+    int i = 0;
+    for (BundleInfo bundleInfo : bundleInfos)
     {
-      File bundleLocation = bundleLocations[i];
+      File bundleLocation = bundleInfo.getLocation();
       if (!bundleLocation.exists())
       {
         throw new IORuntimeException("Bundle not found: " + bundleLocation.getAbsolutePath());
@@ -326,7 +325,7 @@ public class CDOWeaver implements ICDOWeaver
 
       try
       {
-        classURLs[basicClassURLs.length + i] = bundleLocation.toURL();
+        classURLs[basicClassURLs.length + i++] = bundleLocation.toURL();
       }
       catch (MalformedURLException ex)
       {
