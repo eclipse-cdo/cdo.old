@@ -15,9 +15,10 @@ import org.eclipse.emf.cdo.util.EMFUtil;
 import org.eclipse.emf.cdo.weaver.ICDOWeaver;
 import org.eclipse.emf.cdo.weaver.internal.ui.bundle.OM;
 
+import org.eclipse.net4j.ui.widgets.BaseDialog;
+import org.eclipse.net4j.ui.widgets.MonitorDialog;
 import org.eclipse.net4j.ui.widgets.PreferenceButton;
 import org.eclipse.net4j.util.StringUtil;
-import org.eclipse.net4j.util.om.monitor.IMessageHandler;
 import org.eclipse.net4j.util.om.monitor.MonitorUtil;
 import org.eclipse.net4j.util.om.monitor.MonitoredJob;
 import org.eclipse.net4j.util.om.monitor.OMMonitor;
@@ -27,25 +28,25 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.jface.action.Action;
-import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.jface.action.MenuManager;
-import org.eclipse.jface.dialogs.TitleAreaDialog;
+import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.ITableColorProvider;
+import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
-import org.eclipse.jface.viewers.ITreeSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Menu;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.ui.PlatformUI;
 
 import java.io.File;
@@ -63,9 +64,12 @@ import java.util.SortedSet;
 /**
  * @author Eike Stepper
  */
-public class ConfirmWeaveDialog extends TitleAreaDialog
+public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
 {
   private static final String TITLE = "CDO Package Weaver";
+
+  private static final String MESSAGE = "Some EMF models have been detected that are not fully CDO persistence capable.\n"
+      + "Select the bundles you wish to be converted with the context menu.";
 
   private static final Object[] NO_CHILDREN = {};
 
@@ -75,12 +79,10 @@ public class ConfirmWeaveDialog extends TitleAreaDialog
 
   private Set<String> ignoredBundles = new HashSet();
 
-  private TreeViewer viewer;
-
   public ConfirmWeaveDialog(Map<String, SortedSet<PackageInfo>> bundleMap)
   {
-    super(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
-    setShellStyle(getShellStyle() | SWT.APPLICATION_MODAL | SWT.MAX | SWT.TITLE | SWT.RESIZE);
+    super(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), DEFAULT_SHELL_STYLE | SWT.APPLICATION_MODAL,
+        TITLE, MESSAGE, OM.Activator.INSTANCE.getDialogSettings());
 
     this.bundleMap = bundleMap;
     ignoredBundles = OM.getIgnoredBundles();
@@ -89,28 +91,29 @@ public class ConfirmWeaveDialog extends TitleAreaDialog
   }
 
   @Override
-  protected void configureShell(Shell newShell)
+  protected void createUI(Composite parent)
   {
-    super.configureShell(newShell);
-    newShell.setText(TITLE);
-  }
+    Tree tree = new Tree(parent, SWT.MULTI);
+    tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+    tree.setHeaderVisible(true);
+    tree.setLinesVisible(true);
+    tree.setLinesVisible(true);
+    addColumn(tree, "Bundle", 300, SWT.LEFT);
+    addColumn(tree, "Location", 300, SWT.LEFT);
 
-  @Override
-  protected Control createDialogArea(Composite parent)
-  {
-    Composite composite = (Composite)super.createDialogArea(parent);
-    setTitle(TITLE);
-    setMessage("Some EMF models have been detected that are not fully CDO persistence capable.\n"
-        + "Select the bundles you wish to be converted with the context menu.");
-
-    viewer = new TreeViewer(composite, SWT.MULTI);
-    viewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+    TreeViewer viewer = new TreeViewer(tree);
     viewer.setContentProvider(new WeaveContentProvider());
     viewer.setLabelProvider(new WeaveLabelProvider());
     viewer.setInput(bundleMap);
 
-    hookContextMenu();
-    return composite;
+    setCurrentViewer(viewer);
+  }
+
+  private void addColumn(Tree tree, String title, int width, int alignment)
+  {
+    TreeColumn column = new TreeColumn(tree, alignment);
+    column.setText(title);
+    column.setWidth(width);
   }
 
   @Override
@@ -125,7 +128,7 @@ public class ConfirmWeaveDialog extends TitleAreaDialog
       public void widgetSelected(SelectionEvent e)
       {
         OM.PREF_SHOW_IGNORED_BUNDLES.setValue(showIgnored.getSelection());
-        viewer.refresh(true);
+        getCurrentViewer().refresh(true);
       }
     });
 
@@ -138,27 +141,20 @@ public class ConfirmWeaveDialog extends TitleAreaDialog
   {
     OM.setIgnoredBundles(ignoredBundles);
 
-    Set<String> symbolicNames = new HashSet(bundleMap.keySet());
+    final Set<String> symbolicNames = new HashSet(bundleMap.keySet());
     symbolicNames.removeAll(skippedBundles);
     symbolicNames.removeAll(ignoredBundles);
     if (!symbolicNames.isEmpty())
     {
-      MonitorUtil.Legacy.startMonitoring(new IMessageHandler()
+      MonitorDialog dialog = new MonitorDialog(getShell(), getShellStyle(), "Converting Bundles", OM.Activator.INSTANCE
+          .getDialogSettings());
+      dialog.run(true, true, new Runnable()
       {
-        public void handleMessage(String msg, int level)
+        public void run()
         {
-          OM.LOG.info(msg);
+          weave(symbolicNames);
         }
       });
-
-      try
-      {
-        weave(symbolicNames);
-      }
-      finally
-      {
-        MonitorUtil.Legacy.stopMonitoring();
-      }
 
       // IProgressService progressService =
       // PlatformUI.getWorkbench().getProgressService();
@@ -171,24 +167,8 @@ public class ConfirmWeaveDialog extends TitleAreaDialog
     super.okPressed();
   }
 
-  protected void hookContextMenu()
-  {
-    MenuManager menuMgr = new MenuManager("#PopupMenu");
-    menuMgr.setRemoveAllWhenShown(true);
-    menuMgr.addMenuListener(new IMenuListener()
-    {
-      public void menuAboutToShow(IMenuManager manager)
-      {
-        ITreeSelection selection = (ITreeSelection)viewer.getSelection();
-        fillContextMenu(manager, selection);
-      }
-    });
-
-    Menu menu = menuMgr.createContextMenu(viewer.getControl());
-    viewer.getControl().setMenu(menu);
-  }
-
-  protected void fillContextMenu(IMenuManager manager, ITreeSelection selection)
+  @Override
+  protected void fillContextMenu(IMenuManager manager, TreeViewer viewer)
   {
     final List<String> symbolicNames = getSelectedBundles();
     if (!symbolicNames.isEmpty())
@@ -200,18 +180,18 @@ public class ConfirmWeaveDialog extends TitleAreaDialog
         {
           skippedBundles.removeAll(symbolicNames);
           ignoredBundles.removeAll(symbolicNames);
-          viewer.refresh(true);
+          getCurrentViewer().refresh(true);
         }
       });
 
-      manager.add(new Action("Skip this time", SharedIcons.getDescriptor(SharedIcons.ETOOL_SKIP))
+      manager.add(new Action("Skip this time")
       {
         @Override
         public void run()
         {
           skippedBundles.addAll(symbolicNames);
           ignoredBundles.removeAll(symbolicNames);
-          viewer.refresh(true);
+          getCurrentViewer().refresh(true);
         }
       });
 
@@ -222,7 +202,25 @@ public class ConfirmWeaveDialog extends TitleAreaDialog
         {
           skippedBundles.removeAll(symbolicNames);
           ignoredBundles.addAll(symbolicNames);
-          viewer.refresh(true);
+          getCurrentViewer().refresh(true);
+        }
+      });
+
+      manager.add(new Separator());
+
+      manager.add(new Action("Browse archives...", SharedIcons.getDescriptor(SharedIcons.ETOOL_BROWSE_ARCHIVES))
+      {
+        @Override
+        public void run()
+        {
+        }
+      });
+
+      manager.add(new Action("Browse folders...", SharedIcons.getDescriptor(SharedIcons.ETOOL_BROWSE_FOLDERS))
+      {
+        @Override
+        public void run()
+        {
         }
       });
     }
@@ -258,7 +256,7 @@ public class ConfirmWeaveDialog extends TitleAreaDialog
   private List<String> getSelectedBundles()
   {
     List<String> symbolicNames = new ArrayList();
-    IStructuredSelection selection = (IStructuredSelection)viewer.getSelection();
+    IStructuredSelection selection = (IStructuredSelection)getCurrentViewer().getSelection();
     for (Iterator it = selection.iterator(); it.hasNext();)
     {
       Object element = it.next();
@@ -393,8 +391,10 @@ public class ConfirmWeaveDialog extends TitleAreaDialog
   /**
    * @author Eike Stepper
    */
-  private class WeaveLabelProvider extends LabelProvider
+  private class WeaveLabelProvider extends LabelProvider implements ITableLabelProvider, ITableColorProvider
   {
+    private final Color gray = Display.getCurrent().getSystemColor(SWT.COLOR_GRAY);
+
     public WeaveLabelProvider()
     {
     }
@@ -443,6 +443,59 @@ public class ConfirmWeaveDialog extends TitleAreaDialog
         }
 
         return SharedIcons.getImage(SharedIcons.OBJ_PLUGIN_CONVERT);
+      }
+
+      return null;
+    }
+
+    public String getColumnText(Object element, int columnIndex)
+    {
+      if (columnIndex == 0)
+      {
+        return getText(element);
+      }
+
+      if (element instanceof String)
+      {
+        return (String)element;
+      }
+
+      return null;
+    }
+
+    public Image getColumnImage(Object element, int columnIndex)
+    {
+      if (columnIndex == 0)
+      {
+        return getImage(element);
+      }
+
+      if (element instanceof String)
+      {
+        String symbolicName = (String)element;
+        if (symbolicName.toLowerCase().endsWith(".jar"))
+        {
+          return SharedIcons.getImage(SharedIcons.OBJ_ARCHIVE);
+        }
+        else
+        {
+          return SharedIcons.getImage(SharedIcons.OBJ_FOLDER);
+        }
+      }
+
+      return null;
+    }
+
+    public Color getBackground(Object element, int columnIndex)
+    {
+      return null;
+    }
+
+    public Color getForeground(Object element, int columnIndex)
+    {
+      if (ignoredBundles.contains(element))
+      {
+        return gray;
       }
 
       return null;

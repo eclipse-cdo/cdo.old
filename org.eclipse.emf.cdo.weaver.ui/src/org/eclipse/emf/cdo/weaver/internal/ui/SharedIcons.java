@@ -31,7 +31,13 @@ public class SharedIcons
 
   public static final String ETOOL_CONVERT = ETOOL + "convert";
 
-  public static final String ETOOL_SKIP = ETOOL + "skip";
+  public static final String ETOOL_BROWSE_ARCHIVES = OBJ + "archive";
+
+  public static final String ETOOL_BROWSE_FOLDERS = OBJ + "folder";
+
+  public static final String OBJ_ARCHIVE = OBJ + "archive";
+
+  public static final String OBJ_FOLDER = OBJ + "folder";
 
   public static final String OBJ_PLUGIN_CONVERT = OBJ + "plugin_convert";
 

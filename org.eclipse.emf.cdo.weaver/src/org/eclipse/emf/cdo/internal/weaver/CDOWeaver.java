@@ -213,7 +213,7 @@ public class CDOWeaver implements ICDOWeaver
         try
         {
           String className = path.substring(1, path.length() - CLASS_SUFFIX.length()).replace(File.separatorChar, '.');
-          OMMonitor monitor = MonitorUtil.begin(3, "Processing class " + className);
+          OMMonitor monitor = MonitorUtil.begin(3);
 
           byte[] inBytes = null;
           OMSubMonitor sm1 = monitor.fork();
@@ -244,11 +244,11 @@ public class CDOWeaver implements ICDOWeaver
             }
             else
             {
-              boolean unchanged = Arrays.equals(inBytes, outBytes);
-              sm2.join("Woven class " + className + (unchanged ? " (unchanged)" : ""));
+              sm2.join();
             }
           }
 
+          boolean unchanged = Arrays.equals(inBytes, outBytes);
           OMSubMonitor sm3 = monitor.fork();
           try
           {
@@ -256,7 +256,7 @@ public class CDOWeaver implements ICDOWeaver
           }
           finally
           {
-            sm3.join("Written class " + className);
+            sm3.join(unchanged ? "Copied file    " + target.getAbsolutePath() : "Woven class    " + className);
           }
         }
         catch (IOException ex)
@@ -266,7 +266,7 @@ public class CDOWeaver implements ICDOWeaver
       }
       else
       {
-        OMMonitor monitor = MonitorUtil.begin(1, "Processing file " + source.getAbsolutePath());
+        OMMonitor monitor = MonitorUtil.begin(1);
         OMSubMonitor sm = monitor.fork();
         try
         {
@@ -274,7 +274,7 @@ public class CDOWeaver implements ICDOWeaver
         }
         finally
         {
-          sm.join("Copied file " + target.getAbsolutePath());
+          sm.join("Copied file    " + target.getAbsolutePath());
         }
       }
     }

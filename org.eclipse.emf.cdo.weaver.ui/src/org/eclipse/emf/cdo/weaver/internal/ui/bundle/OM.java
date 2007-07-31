@@ -14,10 +14,10 @@ import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.cdo.weaver.internal.ui.ConfirmWeaveDialog;
 import org.eclipse.emf.cdo.weaver.internal.ui.PackageInfo;
 
+import org.eclipse.net4j.ui.UIActivator;
 import org.eclipse.net4j.util.StringUtil;
 import org.eclipse.net4j.util.om.OMBundle;
 import org.eclipse.net4j.util.om.OMPlatform;
-import org.eclipse.net4j.util.om.OSGiActivator;
 import org.eclipse.net4j.util.om.log.OMLogger;
 import org.eclipse.net4j.util.om.pref.OMPreference;
 import org.eclipse.net4j.util.om.pref.OMPreferences;
@@ -154,11 +154,14 @@ public abstract class OM
   /**
    * @author Eike Stepper
    */
-  public static final class Activator extends OSGiActivator
+  public static final class Activator extends UIActivator
   {
+    public static Activator INSTANCE;
+
     public Activator()
     {
       super(BUNDLE);
+      INSTANCE = this;
     }
 
     @Override
