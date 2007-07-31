@@ -35,6 +35,8 @@ public class SharedIcons
 
   public static final String ETOOL_BROWSE_FOLDERS = OBJ + "folder";
 
+  public static final String OBJ_ERROR = OBJ + "error";
+
   public static final String OBJ_ARCHIVE = OBJ + "archive";
 
   public static final String OBJ_FOLDER = OBJ + "folder";
@@ -48,6 +50,8 @@ public class SharedIcons
   public static final String OBJ_PACKAGE = OBJ + "EPackage";
 
   public static final String OBJ_CLASS = OBJ + "EClass";
+
+  public static final String OBJ_FEATURE = OBJ + "EFeature";
 
   public static Image getImage(String key)
   {

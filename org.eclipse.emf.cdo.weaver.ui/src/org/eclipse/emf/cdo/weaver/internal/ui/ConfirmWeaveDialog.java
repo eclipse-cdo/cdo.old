@@ -46,6 +46,7 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.ui.PlatformUI;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -430,9 +431,14 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
         return getText(element);
       }
 
-      if (element instanceof String)
+      if (element instanceof BundleInfo)
       {
-        return (String)element;
+        BundleInfo bundleInfo = (BundleInfo)element;
+        File location = bundleInfo.getLocation();
+        if (location != null)
+        {
+          return location.getAbsolutePath();
+        }
       }
 
       return null;
