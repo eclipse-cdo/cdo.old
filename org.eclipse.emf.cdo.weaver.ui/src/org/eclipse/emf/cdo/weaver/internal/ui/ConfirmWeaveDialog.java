@@ -41,7 +41,9 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.ui.PlatformUI;
@@ -94,7 +96,7 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
     tree.setLinesVisible(true);
     tree.setLinesVisible(true);
     addColumn(tree, "Bundle", 300, SWT.LEFT);
-    addColumn(tree, "Location", 300, SWT.LEFT);
+    addColumn(tree, "Location", 600, SWT.LEFT);
 
     TreeViewer viewer = new TreeViewer(tree);
     viewer.setContentProvider(new WeaveContentProvider());
@@ -133,7 +135,7 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
     for (BundleInfo bundleInfo : bundleMap.values())
     {
       String name = bundleInfo.getName();
-      if (!skippedBundles.contains(name) || !ignoredBundles.contains(name))
+      if (!skippedBundles.contains(name) && !ignoredBundles.contains(name))
       {
         bundleInfos.add(bundleInfo);
       }
@@ -195,23 +197,44 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
         }
       });
 
-      manager.add(new Separator());
-
-      manager.add(new Action("Browse archives...", SharedIcons.getDescriptor(SharedIcons.ETOOL_BROWSE_ARCHIVES))
+      if (selectedBundles.size() == 1)
       {
-        @Override
-        public void run()
-        {
-        }
-      });
+        String symbolicName = selectedBundles.get(0);
+        final BundleInfo bundleInfo = bundleMap.get(symbolicName);
+        manager.add(new Separator());
 
-      manager.add(new Action("Browse folders...", SharedIcons.getDescriptor(SharedIcons.ETOOL_BROWSE_FOLDERS))
-      {
-        @Override
-        public void run()
+        manager.add(new Action("Browse archives...", SharedIcons.getDescriptor(SharedIcons.ETOOL_BROWSE_ARCHIVES))
         {
-        }
-      });
+          @Override
+          public void run()
+          {
+            FileDialog dialog = new FileDialog(getShell(), getShellStyle());
+            dialog.setFileName(bundleInfo.getName() + "_" + bundleInfo.getVersion() + ICDOWeaver.JAR_SUFFIX);
+            String path = dialog.open();
+            if (path != null)
+            {
+              bundleInfo.setLocation(new File(path));
+              getCurrentViewer().refresh(true);
+            }
+          }
+        });
+
+        manager.add(new Action("Browse folders...", SharedIcons.getDescriptor(SharedIcons.ETOOL_BROWSE_FOLDERS))
+        {
+          @Override
+          public void run()
+          {
+            DirectoryDialog dialog = new DirectoryDialog(getShell(), getShellStyle());
+            dialog.setFilterPath(bundleInfo.getName() + "_" + bundleInfo.getVersion());
+            String path = dialog.open();
+            if (path != null)
+            {
+              bundleInfo.setLocation(new File(path));
+              getCurrentViewer().refresh(true);
+            }
+          }
+        });
+      }
     }
   }
 

@@ -52,6 +52,11 @@ public final class BundleInfo implements Comparable
     return location;
   }
 
+  public void setLocation(File location)
+  {
+    this.location = location;
+  }
+
   public List<String> getPackageURIs()
   {
     return packageURIs;
