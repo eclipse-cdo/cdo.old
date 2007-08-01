@@ -1,41 +1,29 @@
 package org.eclipse.emf.cdo.weaver.ajdt;
 
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.internal.cdo.weaver.IPersistenceAware;
-import org.eclipse.emf.internal.cdo.weaver.IPersistenceCallback;
 
 /**
  * @author Eike Stepper
  */
 aspect EObjectMixin
 {
-  declare parents: EObjectImpl implements IPersistenceAware;
+  private Object EObjectImpl.readCallback = null;
 
-  private IPersistenceCallback EObjectImpl.persistenceCallback = null;
-
-  public IPersistenceCallback EObjectImpl.getPersistenceCallback()
-  {
-    return persistenceCallback;
-  }
-
-  public void EObjectImpl.setPersistenceCallback(IPersistenceCallback callback)
-  {
-    persistenceCallback = callback;
-  }
+  private Object EObjectImpl.writeCallback = null;
 
   public void EObjectImpl.beforeRead()
   {
-    if (persistenceCallback != null)
+    if (readCallback != null)
     {
-      persistenceCallback.beforeRead(this);
+      readCallback.equals(this);
     }
   }
 
   public void EObjectImpl.beforeWrite()
   {
-    if (persistenceCallback != null)
+    if (writeCallback != null)
     {
-      persistenceCallback.beforeWrite(this);
+      writeCallback.equals(this);
     }
   }
 }

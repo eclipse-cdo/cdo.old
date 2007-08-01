@@ -56,7 +56,7 @@ public class CDOWeaver implements ICDOWeaver
 
   private static final String BUNDLE_VERSION_HEADER = Constants.BUNDLE_VERSION.toLowerCase();
 
-  private static final String CDO_VERSION_SUFFIX = "z";
+  private static final String CDO_VERSION_SUFFIX = "-CDO";
 
   private BundleContext bundleContext;
 
@@ -71,8 +71,7 @@ public class CDOWeaver implements ICDOWeaver
     this.bundleContext = bundleContext;
     if (bundleContext != null)
     {
-      basicClassURLs = new URL[] { getRTJarURL(), getAspectJRuntimeURL(), getAspectJWeaverURL(), getEMFCommonURL(),
-          getCDOStubURL() };
+      basicClassURLs = new URL[] { getRTJarURL(), getAspectJRuntimeURL(), getAspectJWeaverURL(), getEMFCommonURL() };
     }
   }
 
@@ -355,11 +354,6 @@ public class CDOWeaver implements ICDOWeaver
   private URL getEMFCommonURL()
   {
     return getBundleURL("org.eclipse.emf.common");
-  }
-
-  private URL getCDOStubURL()
-  {
-    return getURL(bundleContext.getBundle(), "lib/cdo-stub.jar");
   }
 
   private URL getAspectURL()

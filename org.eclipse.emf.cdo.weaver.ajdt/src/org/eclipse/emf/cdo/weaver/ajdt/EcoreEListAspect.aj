@@ -3,8 +3,6 @@ package org.eclipse.emf.cdo.weaver.ajdt;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreEList;
-import org.eclipse.emf.internal.cdo.weaver.IPersistenceAware;
-import org.eclipse.emf.internal.cdo.weaver.IPersistenceCallback;
 
 /**
  * @author Eike Stepper
