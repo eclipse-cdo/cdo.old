@@ -81,6 +81,11 @@ public abstract class OM
     OM.PREF_IGNORED_BUNDLES.setValue(ignoredBundles.toArray(new String[ignoredBundles.size()]));
   }
 
+  public static void resetIgnoredBundles()
+  {
+    OM.PREF_IGNORED_BUNDLES.unSet();
+  }
+
   public static Map<String, BundleInfo> getUnwovenBundles()
   {
     File[] siteLocations = null;
