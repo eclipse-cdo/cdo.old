@@ -16,6 +16,7 @@ import org.eclipse.emf.cdo.weaver.ICDOWeaver;
 
 import org.eclipse.net4j.util.ImplementationError;
 import org.eclipse.net4j.util.WrappedException;
+import org.eclipse.net4j.util.io.IOFilter;
 import org.eclipse.net4j.util.io.IORuntimeException;
 import org.eclipse.net4j.util.io.IOUtil;
 import org.eclipse.net4j.util.io.NIOUtil;
@@ -32,6 +33,7 @@ import org.aspectj.weaver.tools.GeneratedClassHandler;
 import org.aspectj.weaver.tools.WeavingAdaptor;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.Constants;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,6 +51,10 @@ public class CDOWeaver implements ICDOWeaver
   public static final CDOWeaver INSTANCE = new CDOWeaver();
 
   private static final String MANIFEST_PATH = "/META-INF/MANIFEST.MF".replace('/', File.separatorChar);
+
+  private static final String BUNDLE_VERSION_HEADER = Constants.BUNDLE_VERSION.toLowerCase();
+
+  private static final String CDO_VERSION_SUFFIX = "-CDO";
 
   private BundleContext bundleContext;
 
@@ -96,7 +102,7 @@ public class CDOWeaver implements ICDOWeaver
     boolean dir = bundleLocation.isDirectory();
     OMMonitor monitor = MonitorUtil.begin(dir ? 2 : 4, "Weaving bundle " + name);
 
-    WeavingAdaptor weavingAdaptor = new WeavingAdaptor(new WeaverHandler(), classURLs, aspectURLs);
+    WeavingAdaptor weavingAdaptor = new WeavingAdaptor(new WeavingHandler(), classURLs, aspectURLs);
     monitor.worked("Initialized weaving adapter");
 
     File unzippedFolder = null;
@@ -110,7 +116,7 @@ public class CDOWeaver implements ICDOWeaver
         try
         {
           wovenFolder = new File(bundleLocation.getParentFile(), getTargetName(bundleInfo));
-          weaveFolder(bundleLocation, wovenFolder, weavingAdaptor);
+          weaveFolder(bundleInfo, bundleLocation, wovenFolder, weavingAdaptor);
         }
         finally
         {
@@ -135,7 +141,7 @@ public class CDOWeaver implements ICDOWeaver
       try
       {
         wovenFolder = TMPUtil.createTempFolder(name + "-woven");
-        weaveFolder(unzippedFolder, wovenFolder, weavingAdaptor);
+        weaveFolder(bundleInfo, unzippedFolder, wovenFolder, weavingAdaptor);
       }
       finally
       {
@@ -169,7 +175,7 @@ public class CDOWeaver implements ICDOWeaver
     return null;
   }
 
-  private void weaveFolder(File sourceFolder, File targetFolder, WeavingAdaptor weavingAdaptor)
+  private void weaveFolder(BundleInfo bundleInfo, File sourceFolder, File targetFolder, WeavingAdaptor weavingAdaptor)
   {
     int sourceLength = sourceFolder.getAbsolutePath().length();
     List<File> sources = IOUtil.listBreadthFirst(sourceFolder);
@@ -192,12 +198,13 @@ public class CDOWeaver implements ICDOWeaver
       }
       else
       {
-        weaveFile(source, target, path, weavingAdaptor, monitor);
+        weaveFile(bundleInfo, source, target, path, weavingAdaptor, monitor);
       }
     }
   }
 
-  private void weaveFile(File source, File target, String path, WeavingAdaptor weavingAdaptor, OMMonitor monitor)
+  private void weaveFile(BundleInfo bundleInfo, File source, File target, String path, WeavingAdaptor weavingAdaptor,
+      OMMonitor monitor)
   {
     String name = source.getName();
     if (name.endsWith(ICDOWeaver.CLASS_SUFFIX))
@@ -212,7 +219,7 @@ public class CDOWeaver implements ICDOWeaver
       {
         if (isManifest)
         {
-          IOUtil.copyFile(source, target);
+          IOUtil.copyText(source, target, new ReversioningFilter(bundleInfo.getVersion()));
         }
         else
         {
@@ -287,7 +294,7 @@ public class CDOWeaver implements ICDOWeaver
 
   private String getTargetName(BundleInfo bundleInfo)
   {
-    return bundleInfo.getName() + "_" + bundleInfo.getVersion() + "-CDO";
+    return bundleInfo.getName() + "_" + bundleInfo.getVersion() + CDO_VERSION_SUFFIX;
   }
 
   private URL getAspectJRuntimeURL()
@@ -388,9 +395,32 @@ public class CDOWeaver implements ICDOWeaver
   /**
    * @author Eike Stepper
    */
-  private final class WeaverHandler implements GeneratedClassHandler
+  private static final class ReversioningFilter implements IOFilter<String>
   {
-    public WeaverHandler()
+    private String version;
+
+    private ReversioningFilter(String version)
+    {
+      this.version = version;
+    }
+
+    public String filter(String line)
+    {
+      if (line.toLowerCase().startsWith(BUNDLE_VERSION_HEADER))
+      {
+        line = line.replaceFirst(version, version + CDO_VERSION_SUFFIX);
+      }
+
+      return line;
+    }
+  }
+
+  /**
+   * @author Eike Stepper
+   */
+  private static final class WeavingHandler implements GeneratedClassHandler
+  {
+    public WeavingHandler()
     {
     }
 
