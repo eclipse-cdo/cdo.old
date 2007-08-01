@@ -54,7 +54,7 @@ public class CDOWeaver implements ICDOWeaver
 
   private static final String BUNDLE_VERSION_HEADER = Constants.BUNDLE_VERSION.toLowerCase();
 
-  private static final String CDO_VERSION_SUFFIX = "-CDO";
+  private static final String CDO_VERSION_SUFFIX = "z-CDO";
 
   private BundleContext bundleContext;
 
