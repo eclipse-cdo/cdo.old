@@ -143,7 +143,7 @@ public class CDOWeaver implements ICDOWeaver
       OMSubMonitor sm3 = monitor.fork();
       try
       {
-        ZIPUtil.zip(jarFile, wovenFolder, true);
+        ZIPUtil.zip(wovenFolder, true, jarFile);
       }
       finally
       {
