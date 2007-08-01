@@ -41,6 +41,11 @@ public class CDOIDImpl implements CDOID
     return (value & BYTE_ONE) != 0;
   }
 
+  public CDOID getNext()
+  {
+    return CDOIDImpl.create(value < 0 ? value - 2 : value + 2);
+  }
+
   @Override
   public boolean equals(Object obj)
   {

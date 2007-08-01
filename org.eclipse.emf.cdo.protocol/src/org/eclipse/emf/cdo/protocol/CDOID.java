@@ -16,4 +16,6 @@ public interface CDOID
   public boolean isTemporary();
 
   public boolean isMeta();
+
+  public CDOID getNext();
 }
