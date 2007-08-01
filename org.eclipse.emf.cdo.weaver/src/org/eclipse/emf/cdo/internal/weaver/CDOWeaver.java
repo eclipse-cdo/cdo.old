@@ -22,6 +22,7 @@ import org.eclipse.net4j.util.io.IOUtil;
 import org.eclipse.net4j.util.io.NIOUtil;
 import org.eclipse.net4j.util.io.TMPUtil;
 import org.eclipse.net4j.util.io.ZIPUtil;
+import org.eclipse.net4j.util.io.ZIPUtil.UnzipHandler;
 import org.eclipse.net4j.util.om.monitor.MonitorUtil;
 import org.eclipse.net4j.util.om.monitor.OMMonitor;
 import org.eclipse.net4j.util.om.monitor.OMSubMonitor;
@@ -37,6 +38,7 @@ import org.osgi.framework.Constants;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
@@ -54,7 +56,7 @@ public class CDOWeaver implements ICDOWeaver
 
   private static final String BUNDLE_VERSION_HEADER = Constants.BUNDLE_VERSION.toLowerCase();
 
-  private static final String CDO_VERSION_SUFFIX = "z-CDO";
+  private static final String CDO_VERSION_SUFFIX = "z";
 
   private BundleContext bundleContext;
 
@@ -93,6 +95,47 @@ public class CDOWeaver implements ICDOWeaver
         subMonitor.join();
       }
     }
+  }
+
+  public static void main(String[] args) throws Exception
+  {
+    // ZIPUtil.unzip(new
+    // File("C:\\ws\\cdo.0.8.0\\.metadata\\org.eclipse.emf.ecore_2.3.1.v200707242120.zip"),
+    // new UnzipHandler()
+    // {
+    // public void unzipDirectory(String name) throws IOException
+    // {
+    // System.out.println(name);
+    // }
+    //
+    // public void unzipFile(String name, InputStream zipStream) throws
+    // IOException
+    // {
+    // System.out.println(name);
+    // }
+    // });
+    //
+    // System.out.println();
+    // System.out.println();
+    // System.out.println();
+    // System.out.println();
+    // System.out.println();
+    // System.out.println();
+    // System.out.println();
+
+    ZIPUtil.unzip(new File("C:\\develop\\eclipse\\plugins\\org.eclipse.emf.ecore_2.3.1.v200707242120z.jar"),
+        new UnzipHandler()
+        {
+          public void unzipDirectory(String name) throws IOException
+          {
+            System.out.println(name);
+          }
+
+          public void unzipFile(String name, InputStream zipStream) throws IOException
+          {
+            System.out.println(name);
+          }
+        });
   }
 
   private File weaveBundle(BundleInfo bundleInfo, URL[] classURLs, URL[] aspectURLs)
