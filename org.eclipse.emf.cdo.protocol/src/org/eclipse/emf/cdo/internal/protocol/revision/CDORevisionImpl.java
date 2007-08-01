@@ -557,15 +557,17 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
       if (oldID.isTemporary())
       {
         CDOID newID = idMappings.get(oldID);
-        if (newID != null)
+        if (newID == null)
         {
-          if (TRACER.isEnabled())
-          {
-            TRACER.format("Adjusting ID: {0} --> {1}", oldID, newID);
-          }
-
-          return newID;
+          throw new ImplementationError("Missing mapping for " + oldID);
         }
+
+        if (TRACER.isEnabled())
+        {
+          TRACER.format("Adjusting ID: {0} --> {1}", oldID, newID);
+        }
+
+        return newID;
       }
     }
 

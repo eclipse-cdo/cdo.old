@@ -26,4 +26,6 @@ public interface CDOIDRange
   public CDOID get(long index);
 
   public long getCount();
+
+  public boolean contains(CDOID id);
 }

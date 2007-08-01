@@ -57,7 +57,7 @@ public abstract class CDOPackageManagerImpl extends Notifier implements CDOPacka
     return packages.size();
   }
 
-  public CDOPackage[] getPackages()
+  public CDOPackageImpl[] getPackages()
   {
     return packages.values().toArray(new CDOPackageImpl[packages.size()]);
   }

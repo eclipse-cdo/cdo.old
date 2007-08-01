@@ -81,6 +81,22 @@ public final class CDOIDRangeImpl extends Pair<CDOID, CDOID> implements CDOIDRan
     return (Math.abs(getUpperBound().getValue() - getLowerBound().getValue()) >> 1) + 1;
   }
 
+  public boolean contains(CDOID id)
+  {
+    long lowerBound = getLowerBound().getValue();
+    long upperBound = getUpperBound().getValue();
+
+    long value = id.getValue();
+    if (lowerBound < 0)
+    {
+      return upperBound <= value && value <= lowerBound;
+    }
+    else
+    {
+      return lowerBound <= value && value <= upperBound;
+    }
+  }
+
   @Override
   public String toString()
   {
