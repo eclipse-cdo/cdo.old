@@ -58,6 +58,10 @@ public class CDOWeaver implements ICDOWeaver
 
   private static final String MANIFEST_PATH = "/META-INF/MANIFEST.MF".replace('/', File.separatorChar);
 
+  private static final String ASPECTJ_RT_PATH = "/aspectjrt".replace('/', File.separatorChar);
+
+  private static final String ASPECTJ_WEAVER_PATH = "/aspectjweaver.jar".replace('/', File.separatorChar);
+
   private static final String MIXIN_PATH = "/mixin".replace('/', File.separatorChar);
 
   private static final String ECORE_PATH = "/org/eclipse/emf/ecore/impl".replace('/', File.separatorChar);
@@ -102,47 +106,6 @@ public class CDOWeaver implements ICDOWeaver
         subMonitor.join();
       }
     }
-  }
-
-  public static void main(String[] args) throws Exception
-  {
-    // ZIPUtil.unzip(new
-    // File("C:\\ws\\cdo.0.8.0\\.metadata\\org.eclipse.emf.ecore_2.3.1.v200707242120.zip"),
-    // new UnzipHandler()
-    // {
-    // public void unzipDirectory(String name) throws IOException
-    // {
-    // System.out.println(name);
-    // }
-    //
-    // public void unzipFile(String name, InputStream zipStream) throws
-    // IOException
-    // {
-    // System.out.println(name);
-    // }
-    // });
-    //
-    // System.out.println();
-    // System.out.println();
-    // System.out.println();
-    // System.out.println();
-    // System.out.println();
-    // System.out.println();
-    // System.out.println();
-
-    ZIPUtil.unzip(new File("C:\\develop\\eclipse\\plugins\\org.eclipse.emf.ecore_2.3.1.v200707242120z.jar"),
-        new UnzipHandler()
-        {
-          public void unzipDirectory(String name) throws IOException
-          {
-            System.out.println(name);
-          }
-
-          public void unzipFile(String name, InputStream zipStream) throws IOException
-          {
-            System.out.println(name);
-          }
-        });
   }
 
   private File weaveBundle(BundleInfo bundleInfo, URL[] classURLs, URL[] aspectURLs)
@@ -246,7 +209,8 @@ public class CDOWeaver implements ICDOWeaver
 
         if (path.equals(ECORE_PATH))
         {
-          mixinEcore(target);
+          mixinEcore(target, monitor);
+          copyAspectJRT(targetFolder, monitor);
         }
 
         monitor.worked(3, exists ? null : "Created folder " + target.getAbsolutePath());
@@ -262,7 +226,7 @@ public class CDOWeaver implements ICDOWeaver
       OMMonitor monitor)
   {
     String name = source.getName();
-    if (name.endsWith(ICDOWeaver.CLASS_SUFFIX))
+    if (name.endsWith(CLASS_SUFFIX))
     {
       weaveClass(source, target, path, weavingAdaptor, monitor);
     }
@@ -294,8 +258,7 @@ public class CDOWeaver implements ICDOWeaver
   {
     try
     {
-      String className = path.substring(1, path.length() - ICDOWeaver.CLASS_SUFFIX.length()).replace(
-          File.separatorChar, '.');
+      String className = path.substring(1, path.length() - CLASS_SUFFIX.length()).replace(File.separatorChar, '.');
 
       byte[] inBytes = null;
       OMSubMonitor sm1 = monitor.fork();
@@ -347,7 +310,7 @@ public class CDOWeaver implements ICDOWeaver
     }
   }
 
-  private void mixinEcore(File ecoreFolder)
+  private void mixinEcore(File ecoreFolder, OMMonitor monitor)
   {
     String path = (MIXIN_PATH + ECORE_PATH).replace(File.separatorChar, '/') + "/";
     Bundle bundle = bundleContext.getBundle();
@@ -371,6 +334,30 @@ public class CDOWeaver implements ICDOWeaver
         IOUtil.closeSilent(input);
         IOUtil.closeSilent(output);
       }
+
+      monitor.message("Mixed in org.eclipse.emf.ecore.impl." + type);
+    }
+  }
+
+  private void copyAspectJRT(File targetFolder, OMMonitor monitor)
+  {
+    Bundle bundle = bundleContext.getBundle();
+    URL entry = getURL(bundle, ASPECTJ_RT_PATH);
+    File rtFolder = new File(entry.getFile());
+    int rtLength = rtFolder.getAbsolutePath().length();
+
+    List<File> sources = IOUtil.listBreadthFirst(rtFolder);
+    for (File source : sources)
+    {
+      if (source.isFile())
+      {
+        String path = source.getAbsolutePath().substring(rtLength);
+        File target = new File(targetFolder, path);
+        NIOUtil.copyFile(source, target);
+
+        String className = path.substring(1, path.length() - CLASS_SUFFIX.length()).replace(File.separatorChar, '.');
+        monitor.message("Copied class " + className);
+      }
     }
   }
 
@@ -381,14 +368,12 @@ public class CDOWeaver implements ICDOWeaver
 
   private URL getAspectJRuntimeURL()
   {
-    Bundle bundle = Platform.getBundle("org.aspectj.runtime");
-    return getURL(bundle, "aspectjrt.jar");
+    return getURL(bundleContext.getBundle(), ASPECTJ_RT_PATH.replace(File.separatorChar, '/'));
   }
 
   private URL getAspectJWeaverURL()
   {
-    Bundle bundle = Platform.getBundle("org.aspectj.weaver");
-    return getURL(bundle, "aspectjweaver.jar");
+    return getURL(bundleContext.getBundle(), ASPECTJ_WEAVER_PATH.replace(File.separatorChar, '/'));
   }
 
   private URL getEMFCommonURL()
@@ -398,7 +383,7 @@ public class CDOWeaver implements ICDOWeaver
 
   private URL getAspectURL()
   {
-    return getURL(bundleContext.getBundle(), MIXIN_PATH);
+    return getURL(bundleContext.getBundle(), MIXIN_PATH.replace(File.separatorChar, '/'));
   }
 
   private URL[] getClassURLs(Collection<BundleInfo> bundleInfos)
@@ -425,6 +410,48 @@ public class CDOWeaver implements ICDOWeaver
     }
 
     return classURLs;
+  }
+
+  public static void main(String[] args) throws Exception
+  {
+    // XXX
+    // ZIPUtil.unzip(new
+    // File("C:\\ws\\cdo.0.8.0\\.metadata\\org.eclipse.emf.ecore_2.3.1.v200707242120.zip"),
+    // new UnzipHandler()
+    // {
+    // public void unzipDirectory(String name) throws IOException
+    // {
+    // System.out.println(name);
+    // }
+    //
+    // public void unzipFile(String name, InputStream zipStream) throws
+    // IOException
+    // {
+    // System.out.println(name);
+    // }
+    // });
+    //
+    // System.out.println();
+    // System.out.println();
+    // System.out.println();
+    // System.out.println();
+    // System.out.println();
+    // System.out.println();
+    // System.out.println();
+
+    ZIPUtil.unzip(new File("C:\\develop\\eclipse\\plugins\\org.eclipse.emf.ecore_2.3.1.v200707242120-CDO.jar"),
+        new UnzipHandler()
+        {
+          public void unzipDirectory(String name) throws IOException
+          {
+            System.out.println(name);
+          }
+
+          public void unzipFile(String name, InputStream zipStream) throws IOException
+          {
+            System.out.println(name);
+          }
+        });
   }
 
   public static URL getRTJarURL()
@@ -458,14 +485,6 @@ public class CDOWeaver implements ICDOWeaver
   public static URL getBundleURL(String symbolicName)
   {
     return getURL(Platform.getBundle(symbolicName), "/");
-  }
-
-  public static URL[] addURLs(URL[] urls1, URL[] urls2)
-  {
-    URL[] result = new URL[urls1.length + urls2.length];
-    System.arraycopy(urls1, 0, result, 0, urls1.length);
-    System.arraycopy(urls2, 0, result, urls1.length, urls2.length);
-    return result;
   }
 
   /**

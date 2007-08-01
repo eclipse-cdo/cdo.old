@@ -6,10 +6,11 @@ Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.eclipse.emf.cdo.internal.weaver.bundle.OM$Activator
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.runtime,
- org.aspectj.weaver,
  org.eclipse.emf.cdo;visibility:=reexport
 Eclipse-LazyStart: true
-Bundle-ClassPath: .
+Bundle-ClassPath: .,
+ aspectjrt/,
+ aspectjweaver.jar
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.emf.cdo.internal.weaver;version="0.8.0",
  org.eclipse.emf.cdo.weaver;version="0.8.0"
