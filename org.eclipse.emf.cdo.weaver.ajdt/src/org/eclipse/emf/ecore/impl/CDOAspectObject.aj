@@ -13,7 +13,7 @@ package org.eclipse.emf.ecore.impl;
 /**
  * @author Eike Stepper
  */
-aspect CDPAspectObject
+aspect CDOAspectObject
 {
   pointcut writeAccess(EObjectImpl eObject): target(eObject) && execution(void set*(*));
 

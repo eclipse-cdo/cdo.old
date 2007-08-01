@@ -39,6 +39,7 @@ import org.osgi.framework.Constants;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
@@ -52,7 +53,14 @@ public class CDOWeaver implements ICDOWeaver
 {
   public static final CDOWeaver INSTANCE = new CDOWeaver();
 
+  private static final String[] ASPECT_TYPES = { "CDOAspectList", "CDOAspectMixin", "CDOAspectObject", "CDOAware",
+      "CDOCallback" };
+
   private static final String MANIFEST_PATH = "/META-INF/MANIFEST.MF".replace('/', File.separatorChar);
+
+  private static final String MIXIN_PATH = "/mixin".replace('/', File.separatorChar);
+
+  private static final String ECORE_PATH = "/org/eclipse/emf/ecore/impl".replace('/', File.separatorChar);
 
   private static final String BUNDLE_VERSION_HEADER = Constants.BUNDLE_VERSION.toLowerCase();
 
@@ -236,6 +244,11 @@ public class CDOWeaver implements ICDOWeaver
           target.mkdirs();
         }
 
+        if (path.equals(ECORE_PATH))
+        {
+          mixinEcore(target);
+        }
+
         monitor.worked(3, exists ? null : "Created folder " + target.getAbsolutePath());
       }
       else
@@ -334,6 +347,33 @@ public class CDOWeaver implements ICDOWeaver
     }
   }
 
+  private void mixinEcore(File ecoreFolder)
+  {
+    String path = (MIXIN_PATH + ECORE_PATH).replace(File.separatorChar, '/') + "/";
+    Bundle bundle = bundleContext.getBundle();
+    for (String type : ASPECT_TYPES)
+    {
+      InputStream input = null;
+      OutputStream output = IOUtil.openOutputStream(new File(ecoreFolder, type + CLASS_SUFFIX));
+
+      try
+      {
+        URL entry = bundle.getEntry(path + type + CLASS_SUFFIX);
+        input = entry.openStream();
+        IOUtil.copy(input, output);
+      }
+      catch (IOException ex)
+      {
+        throw new IORuntimeException(ex);
+      }
+      finally
+      {
+        IOUtil.closeSilent(input);
+        IOUtil.closeSilent(output);
+      }
+    }
+  }
+
   private String getTargetName(BundleInfo bundleInfo)
   {
     return bundleInfo.getName() + "_" + bundleInfo.getVersion() + CDO_VERSION_SUFFIX;
@@ -358,7 +398,7 @@ public class CDOWeaver implements ICDOWeaver
 
   private URL getAspectURL()
   {
-    return getURL(bundleContext.getBundle(), "lib/persistence-aspect.jar");
+    return getURL(bundleContext.getBundle(), MIXIN_PATH);
   }
 
   private URL[] getClassURLs(Collection<BundleInfo> bundleInfos)
@@ -407,8 +447,7 @@ public class CDOWeaver implements ICDOWeaver
     try
     {
       URL url = bundle.getEntry(path);
-      url = FileLocator.toFileURL(url);
-      return url;
+      return FileLocator.toFileURL(url);
     }
     catch (IOException ex)
     {
