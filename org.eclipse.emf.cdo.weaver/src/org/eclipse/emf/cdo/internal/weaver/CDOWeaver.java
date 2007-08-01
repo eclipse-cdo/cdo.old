@@ -39,6 +39,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Eike Stepper
@@ -46,6 +47,8 @@ import java.util.Collection;
 public class CDOWeaver implements ICDOWeaver
 {
   public static final CDOWeaver INSTANCE = new CDOWeaver();
+
+  private static final String MANIFEST_PATH = "/META-INF/MANIFEST.MF".replace('/', File.separatorChar);
 
   private BundleContext bundleContext;
 
@@ -107,7 +110,7 @@ public class CDOWeaver implements ICDOWeaver
         try
         {
           wovenFolder = new File(bundleLocation.getParentFile(), getTargetName(bundleInfo));
-          weaveFolder(bundleLocation, wovenFolder, "", weavingAdaptor);
+          weaveFolder(bundleLocation, wovenFolder, weavingAdaptor);
         }
         finally
         {
@@ -132,7 +135,7 @@ public class CDOWeaver implements ICDOWeaver
       try
       {
         wovenFolder = TMPUtil.createTempFolder(name + "-woven");
-        weaveFolder(unzippedFolder, wovenFolder, "", weavingAdaptor);
+        weaveFolder(unzippedFolder, wovenFolder, weavingAdaptor);
       }
       finally
       {
@@ -166,111 +169,119 @@ public class CDOWeaver implements ICDOWeaver
     return null;
   }
 
-  private void weaveFolder(File sourceFolder, File targetFolder, String path, WeavingAdaptor weavingAdaptor)
+  private void weaveFolder(File sourceFolder, File targetFolder, WeavingAdaptor weavingAdaptor)
   {
-    File source = new File(sourceFolder, path);
-    File target = new File(targetFolder, path);
+    int sourceLength = sourceFolder.getAbsolutePath().length();
+    List<File> sources = IOUtil.listBreadthFirst(sourceFolder);
+    OMMonitor monitor = MonitorUtil.begin(3 * sources.size(), "Processing " + sourceFolder.getAbsolutePath());
 
-    if (source.isDirectory())
+    for (File source : sources)
     {
-      String[] names = source.list();
-      boolean exists = target.exists();
-      OMMonitor monitor = MonitorUtil.begin(names.length + (exists ? 0 : 1), "Processing folder "
-          + (path.length() == 0 ? File.separator : path));
+      String path = source.getAbsolutePath().substring(sourceLength);
+      File target = new File(targetFolder, path);
 
-      if (!exists)
+      if (source.isDirectory())
       {
-        target.mkdirs();
-        monitor.worked("Created folder " + target.getAbsolutePath());
-      }
-
-      for (String name : names)
-      {
-        OMSubMonitor sm = monitor.fork();
-        try
+        boolean exists = target.exists();
+        if (!exists)
         {
-          weaveFolder(sourceFolder, targetFolder, path + File.separator + name, weavingAdaptor);
-        }
-        finally
-        {
-          sm.join();
+          target.mkdirs();
         }
 
-      }
-    }
-    else
-    {
-      String name = source.getName();
-      if (name.endsWith(ICDOWeaver.CLASS_SUFFIX))
-      {
-        try
-        {
-          String className = path.substring(1, path.length() - ICDOWeaver.CLASS_SUFFIX.length()).replace(
-              File.separatorChar, '.');
-          OMMonitor monitor = MonitorUtil.begin(3);
-
-          byte[] inBytes = null;
-          OMSubMonitor sm1 = monitor.fork();
-          try
-          {
-            inBytes = IOUtil.readFile(source);
-          }
-          finally
-          {
-            sm1.join();
-          }
-
-          byte[] outBytes = null;
-          OMSubMonitor sm2 = monitor.fork();
-          try
-          {
-            outBytes = weavingAdaptor.weaveClass(className, inBytes);
-            if (outBytes == null)
-            {
-              throw new ImplementationError();
-            }
-          }
-          finally
-          {
-            if (outBytes == null)
-            {
-              sm2.join();
-            }
-            else
-            {
-              sm2.join();
-            }
-          }
-
-          boolean unchanged = Arrays.equals(inBytes, outBytes);
-          OMSubMonitor sm3 = monitor.fork();
-          try
-          {
-            IOUtil.writeFile(target, outBytes);
-          }
-          finally
-          {
-            sm3.join((unchanged ? "Copied class " : "Woven class ") + className);
-          }
-        }
-        catch (IOException ex)
-        {
-          throw new IORuntimeException(ex);
-        }
+        monitor.worked(3, exists ? null : "Created folder " + target.getAbsolutePath());
       }
       else
       {
-        OMMonitor monitor = MonitorUtil.begin(1);
-        OMSubMonitor sm = monitor.fork();
-        try
+        weaveFile(source, target, path, weavingAdaptor, monitor);
+      }
+    }
+  }
+
+  private void weaveFile(File source, File target, String path, WeavingAdaptor weavingAdaptor, OMMonitor monitor)
+  {
+    String name = source.getName();
+    if (name.endsWith(ICDOWeaver.CLASS_SUFFIX))
+    {
+      weaveClass(source, target, path, weavingAdaptor, monitor);
+    }
+    else
+    {
+      boolean isManifest = path.equalsIgnoreCase(MANIFEST_PATH);
+      OMSubMonitor sm = monitor.fork(3);
+      try
+      {
+        if (isManifest)
+        {
+          IOUtil.copyFile(source, target);
+        }
+        else
         {
           NIOUtil.copyFile(source, target);
         }
-        finally
+      }
+      finally
+      {
+        sm.join(isManifest ? "Reversioned " + MANIFEST_PATH : "Copied file "
+            + (path.length() == 0 ? File.separator : path));
+      }
+    }
+  }
+
+  private void weaveClass(File source, File target, String path, WeavingAdaptor weavingAdaptor, OMMonitor monitor)
+      throws ImplementationError
+  {
+    try
+    {
+      String className = path.substring(1, path.length() - ICDOWeaver.CLASS_SUFFIX.length()).replace(
+          File.separatorChar, '.');
+
+      byte[] inBytes = null;
+      OMSubMonitor sm1 = monitor.fork();
+      try
+      {
+        inBytes = IOUtil.readFile(source);
+      }
+      finally
+      {
+        sm1.join();
+      }
+
+      byte[] outBytes = null;
+      OMSubMonitor sm2 = monitor.fork();
+      try
+      {
+        outBytes = weavingAdaptor.weaveClass(className, inBytes);
+        if (outBytes == null)
         {
-          sm.join("Copied file " + (path.length() == 0 ? File.separator : path));
+          throw new ImplementationError();
         }
       }
+      finally
+      {
+        if (outBytes == null)
+        {
+          sm2.join();
+        }
+        else
+        {
+          sm2.join();
+        }
+      }
+
+      boolean unchanged = Arrays.equals(inBytes, outBytes);
+      OMSubMonitor sm3 = monitor.fork();
+      try
+      {
+        IOUtil.writeFile(target, outBytes);
+      }
+      finally
+      {
+        sm3.join((unchanged ? "Copied class " : "Woven class ") + className);
+      }
+    }
+    catch (IOException ex)
+    {
+      throw new IORuntimeException(ex);
     }
   }
 
