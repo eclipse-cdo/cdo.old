@@ -25,7 +25,7 @@ public interface CDOProtocolConstants
 
   public static final short SIGNAL_LOAD_PACKAGE = 4;
 
-  public static final short SIGNAL_LOAD_OBJECT = 5;
+  public static final short SIGNAL_LOAD_REVISION = 5;
 
   public static final short SIGNAL_COMMIT_TRANSACTION = 6;
 

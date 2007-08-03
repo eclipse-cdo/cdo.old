@@ -1,6 +1,9 @@
 package org.eclipse.emf.cdo.internal.protocol;
 
+import org.eclipse.emf.cdo.internal.protocol.model.CDOClassRefImpl;
 import org.eclipse.emf.cdo.protocol.CDOID;
+import org.eclipse.emf.cdo.protocol.CDOIDTyped;
+import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 
 import org.eclipse.net4j.util.io.ExtendedDataInputStream;
 import org.eclipse.net4j.util.io.ExtendedDataOutputStream;
@@ -83,6 +86,21 @@ public class CDOIDImpl implements CDOID
     return new CDOIDImpl(value);
   }
 
+  public static CDOIDTyped create(long value, CDOClassRef type)
+  {
+    if (value == 0)
+    {
+      throw new IllegalArgumentException("value == 0");
+    }
+
+    if (type == null)
+    {
+      throw new IllegalArgumentException("type == null");
+    }
+
+    return new Typed(value, type);
+  }
+
   public static CDOID copy(CDOID source)
   {
     return source;
@@ -97,11 +115,49 @@ public class CDOIDImpl implements CDOID
   public static CDOID read(ExtendedDataInputStream in) throws IOException
   {
     long value = in.readLong();
+    boolean typed = in.readBoolean();
+    if (typed)
+    {
+      CDOClassRefImpl type = new CDOClassRefImpl(in, null);
+      return create(value, type);
+    }
+
     return create(value);
   }
 
   public static void write(ExtendedDataOutputStream out, CDOID id) throws IOException
   {
     out.writeLong(id == null ? 0L : id.getValue());
+    if (id instanceof CDOIDTyped)
+    {
+      CDOIDTyped typed = (CDOIDTyped)id;
+      out.writeBoolean(true);
+
+      CDOClassRefImpl type = (CDOClassRefImpl)typed.getType();
+      type.write(out, null);
+    }
+    else
+    {
+      out.writeBoolean(false);
+    }
+  }
+
+  /**
+   * @author Eike Stepper
+   */
+  public static class Typed extends CDOIDImpl implements CDOIDTyped
+  {
+    private CDOClassRef type;
+
+    Typed(long value, CDOClassRef type)
+    {
+      super(value);
+      this.type = type;
+    }
+
+    public CDOClassRef getType()
+    {
+      return type;
+    }
   }
 }
