@@ -64,6 +64,11 @@ public abstract class CDOPackageManagerImpl extends Notifier implements CDOPacka
 
   public CDOClassImpl resolveClass(CDOClassRef classRef)
   {
+    if (classRef == null)
+    {
+      throw new IllegalArgumentException("classRef == null");
+    }
+
     String packageURI = classRef.getPackageURI();
     CDOPackageImpl cdoPackage = lookupPackage(packageURI);
     if (cdoPackage == null)

@@ -533,21 +533,6 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     }
   }
 
-  private boolean isDanglingReference(CDOFeatureImpl feature, Object value)
-  {
-    if (!feature.isReference())
-    {
-      return false;
-    }
-
-    if (value instanceof CDOID)
-    {
-      return false;
-    }
-
-    return true;
-  }
-
   private static Object remapID(Object value, Map<CDOID, CDOID> idMappings)
   {
     if (value instanceof CDOID)
