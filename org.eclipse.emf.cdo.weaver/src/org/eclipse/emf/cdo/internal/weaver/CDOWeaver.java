@@ -22,7 +22,6 @@ import org.eclipse.net4j.util.io.IOUtil;
 import org.eclipse.net4j.util.io.NIOUtil;
 import org.eclipse.net4j.util.io.TMPUtil;
 import org.eclipse.net4j.util.io.ZIPUtil;
-import org.eclipse.net4j.util.io.ZIPUtil.UnzipHandler;
 import org.eclipse.net4j.util.om.monitor.MonitorUtil;
 import org.eclipse.net4j.util.om.monitor.OMMonitor;
 import org.eclipse.net4j.util.om.monitor.OMSubMonitor;
@@ -410,48 +409,6 @@ public class CDOWeaver implements ICDOWeaver
     }
 
     return classURLs;
-  }
-
-  public static void main(String[] args) throws Exception
-  {
-    // XXX
-    // ZIPUtil.unzip(new
-    // File("C:\\ws\\cdo.0.8.0\\.metadata\\org.eclipse.emf.ecore_2.3.1.v200707242120.zip"),
-    // new UnzipHandler()
-    // {
-    // public void unzipDirectory(String name) throws IOException
-    // {
-    // System.out.println(name);
-    // }
-    //
-    // public void unzipFile(String name, InputStream zipStream) throws
-    // IOException
-    // {
-    // System.out.println(name);
-    // }
-    // });
-    //
-    // System.out.println();
-    // System.out.println();
-    // System.out.println();
-    // System.out.println();
-    // System.out.println();
-    // System.out.println();
-    // System.out.println();
-
-    ZIPUtil.unzip(new File("C:\\develop\\eclipse\\plugins\\org.eclipse.emf.ecore_2.3.1.v200707242120-CDO.jar"),
-        new UnzipHandler()
-        {
-          public void unzipDirectory(String name) throws IOException
-          {
-            System.out.println(name);
-          }
-
-          public void unzipFile(String name, InputStream zipStream) throws IOException
-          {
-            System.out.println(name);
-          }
-        });
   }
 
   public static URL getRTJarURL()
