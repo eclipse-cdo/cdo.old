@@ -22,155 +22,206 @@ import java.util.ListIterator;
  * @author Eike Stepper
  */
 aspect CDOAspectList
-{
-  
+{  
   public boolean EcoreEList.add(E object)
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeWrite();
     return super.add(object);
   }
   
   public void EcoreEList.add(int index, E object)
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeWrite();
     super.add(index, object);
   }
   
   public boolean EcoreEList.addAll(Collection<? extends E> collection)
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeWrite();
     return super.addAll(collection);
   }
   
   public boolean EcoreEList.addAll(int index, Collection<? extends E> collection)
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeWrite();
     return super.addAll(index, collection);
   }
   
   public boolean EcoreEList.addAllUnique(Collection<? extends E> collection)
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeWrite();
     return super.addAllUnique(collection);
   }
   
   public boolean EcoreEList.addAllUnique(int index, Collection<? extends E> collection)
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeWrite();
     return super.addAllUnique(index, collection);
   }
   
   public boolean EcoreEList.addAllUnique(int index, Object[] objects, int start, int end)
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeWrite();
     return super.addAllUnique(index, objects, start, end);
   }
   
   public boolean EcoreEList.addAllUnique(Object[] objects, int start, int end)
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeWrite();
     return super.addAllUnique(objects, start, end);
   }
   
   public void EcoreEList.addUnique(E object)
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeWrite();
     super.addUnique(object);
   }
   
   public void EcoreEList.addUnique(int index, E object)
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeWrite();
     super.addUnique(index, object);
   }
   
   public void EcoreEList.clear()
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeWrite();
     super.clear();
   }
   
   public Object EcoreEList.clone()
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeRead();
     return super.clone();
   }
   
   public boolean EcoreEList.containsAll(Collection<?> collection)
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeRead();
     return super.containsAll(collection);
   }
   
   public boolean EcoreEList.equals(Object object)
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeRead();
     return super.equals(object);
   }
   
   public E EcoreEList.get(int index)
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeRead();
     return super.get(index);
   }
   
   public int EcoreEList.hashCode()
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeRead();
     return super.hashCode();
   }
   
   public boolean EcoreEList.isEmpty()
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeRead();
     return super.isEmpty();
   }
   
   public Iterator<E> EcoreEList.iterator()
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeRead();
     return super.iterator();
   }
   
   public ListIterator<E> EcoreEList.listIterator()
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeRead();
     return super.listIterator();
   }
   
   public ListIterator<E> EcoreEList.listIterator(int index)
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeRead();
     return super.listIterator(index);
   }
   
   public void EcoreEList.move(int index, E object)
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeWrite();
     super.move(index, object);
   }
   
-  public E EcoreEList.move(int targetIndex, int sourceIndex)
-  {
-    return super.move(targetIndex, sourceIndex);
-  }
-  
-  public E EcoreEList.remove(int index)
-  {
-    return super.remove(index);
-  }
+  /*
+   * public E EcoreEList.move(int targetIndex, int sourceIndex) { return
+   * super.move(targetIndex, sourceIndex); } public E EcoreEList.remove(int
+   * index) { return super.remove(index); }
+   */
   
   public boolean EcoreEList.remove(Object object)
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeWrite();
     return super.remove(object);
   }
   
   public boolean EcoreEList.removeAll(Collection<?> collection)
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeWrite();
     return super.removeAll(collection);
   }
   
   public boolean EcoreEList.retainAll(Collection<?> collection)
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeWrite();
     return super.retainAll(collection);
   }
 
   public E EcoreEList.set(int index, E object)
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeWrite();
     return super.set(index, object);
   }
 
   public E EcoreEList.setUnique(int index, E object)
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeWrite();
     return super.setUnique(index, object);
   }
 
   public int EcoreEList.size()
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeRead();
     return super.size();
   }
 
   public List<E> EcoreEList.subList(int fromIndex, int toIndex)
   {
+    EObject owner = getEObject();
+    if (owner instanceof EObjectImpl) ((EObjectImpl)owner).beforeRead();
     return super.subList(fromIndex, toIndex);
   }
 
