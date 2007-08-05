@@ -122,8 +122,7 @@ public class EFactoryImpl extends EModelElementImpl implements EFactory
         msgs = ((InternalEObject)newEPackage).eInverseAdd(this, EcorePackage.EPACKAGE__EFACTORY_INSTANCE,
             EPackage.class, msgs);
       msgs = basicSetEPackage(newEPackage, msgs);
-      if (msgs != null)
-        msgs.dispatch();
+      if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EFACTORY__EPACKAGE, newEPackage, newEPackage));
@@ -341,8 +340,7 @@ public class EFactoryImpl extends EModelElementImpl implements EFactory
     }
 
     Class<?> c = EcoreUtil.wrapperClassFor(eDataType.getInstanceClass());
-    if (c == null)
-      return null;
+    if (c == null) return null;
 
     if (c == Character.class)
     {

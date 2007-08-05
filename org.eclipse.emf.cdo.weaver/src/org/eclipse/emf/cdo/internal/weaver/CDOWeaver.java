@@ -53,7 +53,7 @@ public class CDOWeaver implements ICDOWeaver
   public static final CDOWeaver INSTANCE = new CDOWeaver();
 
   private static final String[] ASPECT_TYPES = { "CDOAspectList", "CDOAspectMixin", "CDOAspectObject", "CDOAware",
-      "CDOCallback" };
+      "CDOCallback", "CDOEcoreEList" };
 
   private static final String MANIFEST_PATH = "/META-INF/MANIFEST.MF".replace('/', File.separatorChar);
 
@@ -66,8 +66,6 @@ public class CDOWeaver implements ICDOWeaver
   private static final String ECORE_PATH = "/org/eclipse/emf/ecore/impl".replace('/', File.separatorChar);
 
   private static final String BUNDLE_VERSION_HEADER = Constants.BUNDLE_VERSION.toLowerCase();
-
-  private static final String CDO_VERSION_SUFFIX = "-CDO";
 
   private BundleContext bundleContext;
 
@@ -191,7 +189,7 @@ public class CDOWeaver implements ICDOWeaver
   {
     int sourceLength = sourceFolder.getAbsolutePath().length();
     List<File> sources = IOUtil.listBreadthFirst(sourceFolder);
-    OMMonitor monitor = MonitorUtil.begin(3 * sources.size(), "Processing " + sourceFolder.getAbsolutePath());
+    OMMonitor monitor = MonitorUtil.begin(3 * sources.size());
 
     for (File source : sources)
     {

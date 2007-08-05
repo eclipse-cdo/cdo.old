@@ -13,7 +13,7 @@ package org.eclipse.emf.ecore.impl;
 /**
  * @author Eike Stepper
  */
-aspect CDOAspectMixin
+public aspect CDOAspectMixin
 {
   declare parents: EObjectImpl implements CDOAware;
 
@@ -31,7 +31,7 @@ aspect CDOAspectMixin
 
   public void EObjectImpl.beforeRead()
   {
-    if (cdoCallback != null)
+    if (cdoCallback != null && eDeliver())
     {
       cdoCallback.beforeRead(this);
     }
@@ -39,7 +39,7 @@ aspect CDOAspectMixin
 
   public void EObjectImpl.beforeWrite()
   {
-    if (cdoCallback != null)
+    if (cdoCallback != null && eDeliver())
     {
       cdoCallback.beforeWrite(this);
     }

@@ -129,6 +129,22 @@ public abstract class OM
       }
     }
 
+    // String symbolicName = "org.eclipse.emf.common";
+    // Bundle bundle = Platform.getBundle(symbolicName);
+    // String version =
+    // (String)bundle.getHeaders().get(Constants.BUNDLE_VERSION);
+    // if (!isAlreadyWoven(bundle, version))
+    // {
+    // if (siteLocations == null)
+    // {
+    // siteLocations = getSiteLocations();
+    // }
+    //
+    // File location = getLocation(symbolicName + "_" + version, siteLocations);
+    // BundleInfo bundleInfo = new BundleInfo(symbolicName, version, location);
+    // bundleMap.put(symbolicName, bundleInfo);
+    // }
+
     return bundleMap;
   }
 

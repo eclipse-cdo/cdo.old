@@ -27,6 +27,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.notify.impl.NotificationImpl;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -34,28 +35,33 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements FeatureMap.Internal,
-    FeatureMap.Internal.Wrapper
+public abstract class DelegatingFeatureMap extends DelegatingEcoreEList<FeatureMap.Entry> implements
+    FeatureMap.Internal, FeatureMap.Internal.Wrapper
 {
-  private static final long serialVersionUID = 1L;
-
-  protected Wrapper wrapper = this;
+  protected FeatureMap.Internal.Wrapper wrapper = this;
 
   protected final FeatureMapUtil.Validator featureMapValidator;
 
-  public BasicFeatureMap(InternalEObject owner, int featureID)
-  {
-    super(Entry.Internal.class, owner, featureID);
+  protected final EStructuralFeature eStructuralFeature;
 
+  public DelegatingFeatureMap(InternalEObject owner, int featureID)
+  {
+    super(owner);
+    this.eStructuralFeature = owner.eClass().getEStructuralFeature(featureID);
     featureMapValidator = FeatureMapUtil.getValidator(owner.eClass(), getEStructuralFeature());
   }
 
-  public BasicFeatureMap(InternalEObject owner, int featureID, EStructuralFeature eStructuralFeature)
+  public DelegatingFeatureMap(InternalEObject owner, EStructuralFeature eStructuralFeature)
   {
-    super(Entry.Internal.class, owner, featureID);
-
-    featureMapValidator = FeatureMapUtil.getValidator(owner.eClass(), eStructuralFeature);
+    super(owner);
+    this.eStructuralFeature = eStructuralFeature;
+    featureMapValidator = FeatureMapUtil.getValidator(owner.eClass(), getEStructuralFeature());
   }
+
+  /*
+   * List theList = new java.util.ArrayList(); protected List delegateList() {
+   * return theList; }
+   */
 
   public Wrapper getWrapper()
   {
@@ -73,16 +79,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
   }
 
   @Override
-  protected Object[] newData(int capacity)
-  {
-    return new FeatureMap.Entry.Internal[capacity];
-  }
-
-  @Override
   protected Entry validate(int index, Entry object)
   {
-    if (modCount == 0)
-      return object;
+    if (modCount == 0) return object;
 
     Entry result = super.validate(index, object);
     EStructuralFeature eStructuralFeature = object.getEStructuralFeature();
@@ -92,6 +91,36 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
           + eStructuralFeature.getName() + "'");
     }
     return result;
+  }
+
+  @Override
+  protected boolean isEObject()
+  {
+    return false;
+  }
+
+  @Override
+  protected boolean isUnique()
+  {
+    return false;
+  }
+
+  @Override
+  protected boolean canContainNull()
+  {
+    return false;
+  }
+
+  @Override
+  protected EClassifier getFeatureType()
+  {
+    return org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEJavaObject();
+  }
+
+  @Override
+  public EStructuralFeature getEStructuralFeature()
+  {
+    return eStructuralFeature;
   }
 
   protected FeatureMap.Entry createEntry(EStructuralFeature eStructuralFeature, Object value)
@@ -131,11 +160,11 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
   {
     FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
     int count = 0;
+    int size = delegateSize();
     int result = size;
-    Entry[] entries = (Entry[])data;
     for (int i = 0; i < size; ++i)
     {
-      Entry entry = entries[i];
+      Entry entry = delegateGet(i);
       if (validator.isValid(entry.getEStructuralFeature()))
       {
         if (index == count)
@@ -167,9 +196,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     EObject resolved = resolveProxy((EObject)object);
     if (resolved != object)
     {
-      Entry oldObject = (Entry)data[entryIndex];
+      Entry oldObject = delegateGet(entryIndex);
       Entry entry = createEntry(feature, resolved);
-      assign(entryIndex, validate(entryIndex, entry));
+      delegateSet(entryIndex, validate(entryIndex, entry));
       didSet(entryIndex, entry, oldObject);
 
       if (isNotificationRequired())
@@ -216,25 +245,23 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
   @Override
   public NotificationChain shadowAdd(Entry object, NotificationChain notifications)
   {
-    return shadowAdd((FeatureMap.Entry.Internal)object, notifications);
-  }
-
-  public NotificationChain shadowAdd(FeatureMap.Entry.Internal entry, NotificationChain notifications)
-  {
-    EStructuralFeature feature = entry.getEStructuralFeature();
-    Object value = entry.getValue();
-    // EATM must fix isSet bits.
-    NotificationImpl notification = feature.isMany() ? createNotification(Notification.ADD, feature, null, value,
-        indexOf(feature, value), true) : createNotification(Notification.SET, feature, feature.getDefaultValue(),
-        value, Notification.NO_INDEX, true);
-
-    if (notifications != null)
+    if (isNotificationRequired())
     {
-      notifications.add(notification);
-    }
-    else
-    {
-      notifications = notification;
+      EStructuralFeature feature = object.getEStructuralFeature();
+      Object value = object.getValue();
+      // EATM must fix isSet bits.
+      NotificationImpl notification = feature.isMany() ? createNotification(Notification.ADD, feature, null, value,
+          indexOf(feature, value), true) : createNotification(Notification.SET, feature, feature.getDefaultValue(),
+          value, Notification.NO_INDEX, true);
+
+      if (notifications != null)
+      {
+        notifications.add(notification);
+      }
+      else
+      {
+        notifications = notification;
+      }
     }
     return notifications;
   }
@@ -242,49 +269,38 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
   @Override
   public NotificationChain inverseAdd(Entry object, NotificationChain notifications)
   {
-    return inverseAdd((FeatureMap.Entry.Internal)object, notifications);
-  }
-
-  public NotificationChain inverseAdd(FeatureMap.Entry.Internal entry, NotificationChain notifications)
-  {
-    return entry.inverseAdd(owner, featureID, notifications);
+    FeatureMap.Entry.Internal entry = (FeatureMap.Entry.Internal)object;
+    return entry.inverseAdd(owner, getFeatureID(), notifications);
   }
 
   @Override
   public NotificationChain shadowRemove(Entry object, NotificationChain notifications)
   {
-    return shadowRemove((FeatureMap.Entry.Internal)object, notifications);
-  }
-
-  public NotificationChain shadowRemove(FeatureMap.Entry.Internal entry, NotificationChain notifications)
-  {
-    EStructuralFeature feature = entry.getEStructuralFeature();
-    Object value = entry.getValue();
-    NotificationImpl notification = feature.isMany() ? createNotification(Notification.REMOVE, feature, value, null,
-        indexOf(feature, value), true) : createNotification(feature.isUnsettable() ? Notification.UNSET
-        : Notification.SET, feature, value, feature.getDefaultValue(), Notification.NO_INDEX, true);
-
-    if (notifications != null)
+    if (isNotificationRequired())
     {
-      notifications.add(notification);
-    }
-    else
-    {
-      notifications = notification;
-    }
+      EStructuralFeature feature = object.getEStructuralFeature();
+      Object value = object.getValue();
+      NotificationImpl notification = feature.isMany() ? createNotification(Notification.REMOVE, feature, value, null,
+          indexOf(feature, value), true) : createNotification(feature.isUnsettable() ? Notification.UNSET
+          : Notification.SET, feature, value, feature.getDefaultValue(), Notification.NO_INDEX, true);
 
+      if (notifications != null)
+      {
+        notifications.add(notification);
+      }
+      else
+      {
+        notifications = notification;
+      }
+    }
     return notifications;
   }
 
   @Override
   public NotificationChain inverseRemove(Entry object, NotificationChain notifications)
   {
-    return inverseRemove((FeatureMap.Entry.Internal)object, notifications);
-  }
-
-  public NotificationChain inverseRemove(FeatureMap.Entry.Internal entry, NotificationChain notifications)
-  {
-    return entry.inverseRemove(owner, featureID, notifications);
+    FeatureMap.Entry.Internal entry = (FeatureMap.Entry.Internal)object;
+    return entry.inverseRemove(owner, getFeatureID(), notifications);
   }
 
   @Override
@@ -342,8 +358,7 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     }
     else if (targetIndex != sourceIndex)
     {
-      Entry[] entries = (Entry[])data;
-      Entry sourceEntry = entries[sourceIndex];
+      Entry sourceEntry = delegateGet(sourceIndex);
       EStructuralFeature feature = sourceEntry.getEStructuralFeature();
       if (isMany(feature))
       {
@@ -359,7 +374,7 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
           }
           else
           {
-            Entry entry = entries[i];
+            Entry entry = delegateGet(i);
             boolean isValid = validator.isValid(entry.getEStructuralFeature());
             if (i == targetIndex)
             {
@@ -389,17 +404,15 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
   @Override
   public Entry set(int index, Entry object)
   {
-    Entry entry = object;
-    EStructuralFeature entryFeature = entry.getEStructuralFeature();
+    EStructuralFeature entryFeature = object.getEStructuralFeature();
     if (isMany(entryFeature))
     {
       if (entryFeature.isUnique())
       {
-        Entry[] entries = (Entry[])data;
-        for (int i = 0; i < size; ++i)
+        for (int i = 0, size = delegateSize(); i < size; ++i)
         {
-          Entry otherEntry = entries[i];
-          if (otherEntry.equals(entry) && i != index)
+          Entry otherEntry = delegateGet(i);
+          if (otherEntry.equals(object) && i != index)
           {
             throw new IllegalArgumentException("The 'no duplicates' constraint is violated");
           }
@@ -409,10 +422,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     else
     {
       FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), entryFeature);
-      Entry[] entries = (Entry[])data;
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry otherEntry = entries[i];
+        Entry otherEntry = delegateGet(i);
         if (validator.isValid(otherEntry.getEStructuralFeature()) && i != index)
         {
           throw new IllegalArgumentException("The multiplicity constraint is violated");
@@ -431,11 +443,10 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
   @Override
   public boolean add(Entry object)
   {
-    Entry entry = object;
-    EStructuralFeature entryFeature = entry.getEStructuralFeature();
+    EStructuralFeature entryFeature = object.getEStructuralFeature();
     if (isMany(entryFeature))
     {
-      if (entryFeature.isUnique() && contains(entryFeature, entry.getValue()))
+      if (entryFeature.isUnique() && contains(entryFeature, object.getValue()))
       {
         return false;
       }
@@ -443,13 +454,12 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     else
     {
       FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), entryFeature);
-      Entry[] entries = (Entry[])data;
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry otherEntry = entries[i];
+        Entry otherEntry = delegateGet(i);
         if (validator.isValid(otherEntry.getEStructuralFeature()))
         {
-          if (otherEntry.equals(entry))
+          if (otherEntry.equals(object))
           {
             return false;
           }
@@ -473,17 +483,15 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
   @Override
   public void add(int index, Entry object)
   {
-    Entry entry = object;
-    EStructuralFeature entryFeature = entry.getEStructuralFeature();
+    EStructuralFeature entryFeature = object.getEStructuralFeature();
     if (isMany(entryFeature))
     {
       if (entryFeature.isUnique())
       {
-        Entry[] entries = (Entry[])data;
-        for (int i = 0; i < size; ++i)
+        for (int i = 0, size = delegateSize(); i < size; ++i)
         {
-          Entry otherEntry = entries[i];
-          if (otherEntry.equals(entry) && i != index)
+          Entry otherEntry = delegateGet(i);
+          if (otherEntry.equals(object) && i != index)
           {
             throw new IllegalArgumentException("The 'no duplicates' constraint is violated");
           }
@@ -493,10 +501,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     else
     {
       FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), entryFeature);
-      Entry[] entries = (Entry[])data;
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry otherEntry = entries[i];
+        Entry otherEntry = delegateGet(i);
         if (validator.isValid(otherEntry.getEStructuralFeature()))
         {
           throw new IllegalArgumentException("The multiplicity constraint is violated");
@@ -529,11 +536,10 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
       else
       {
         FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), entryFeature);
-        Entry[] entries = (Entry[])data;
         boolean include = true;
-        for (int j = 0; j < size; ++j)
+        for (int j = 0, size = delegateSize(); j < size; ++j)
         {
-          Entry otherEntry = entries[j];
+          Entry otherEntry = delegateGet(j);
           if (validator.isValid(otherEntry.getEStructuralFeature()))
           {
             doSet(j, entry);
@@ -573,11 +579,10 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
       else
       {
         FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), entryFeature);
-        Entry[] entries = (Entry[])data;
         boolean include = true;
-        for (int j = 0; j < size; ++j)
+        for (int j = 0, size = delegateSize(); j < size; ++j)
         {
-          Entry otherEntry = entries[j];
+          Entry otherEntry = delegateGet(j);
           if (validator.isValid(otherEntry.getEStructuralFeature()))
           {
             doSet(j, entry);
@@ -604,10 +609,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
   {
     FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
     int result = 0;
-    Entry[] entries = (Entry[])data;
-    for (int i = 0; i < size; ++i)
+    for (int i = 0, size = delegateSize(); i < size; ++i)
     {
-      Entry entry = entries[i];
+      Entry entry = delegateGet(i);
       if (validator.isValid(entry.getEStructuralFeature()))
       {
         ++result;
@@ -619,10 +623,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
   public boolean isEmpty(EStructuralFeature feature)
   {
     FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
-    Entry[] entries = (Entry[])data;
-    for (int i = 0; i < size; ++i)
+    for (int i = 0, size = delegateSize(); i < size; ++i)
     {
-      Entry entry = entries[i];
+      Entry entry = delegateGet(i);
       if (validator.isValid(entry.getEStructuralFeature()))
       {
         return false;
@@ -634,12 +637,11 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
   public boolean contains(EStructuralFeature feature, Object object)
   {
     FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
-    Entry[] entries = (Entry[])data;
     if (FeatureMapUtil.isFeatureMap(feature))
     {
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()) && entry.equals(object))
         {
           return true;
@@ -648,9 +650,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     }
     else if (object != null)
     {
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()) && object.equals(entry.getValue()))
         {
           return true;
@@ -659,9 +661,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     }
     else
     {
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()) && entry.getValue() == null)
         {
           return false;
@@ -674,9 +676,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
 
   public boolean containsAll(EStructuralFeature feature, Collection<?> collection)
   {
-    for (Iterator<?> i = collection.iterator(); i.hasNext();)
+    for (Object object : collection)
     {
-      if (!contains(feature, i.next()))
+      if (!contains(feature, object))
       {
         return false;
       }
@@ -689,12 +691,11 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
   {
     FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
     int result = 0;
-    Entry[] entries = (Entry[])data;
     if (FeatureMapUtil.isFeatureMap(feature))
     {
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           if (entry.equals(object))
@@ -707,9 +708,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     }
     else if (object != null)
     {
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           if (object.equals(entry.getValue()))
@@ -722,9 +723,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     }
     else
     {
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           if (entry.getValue() == null)
@@ -744,12 +745,11 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
     int result = -1;
     int count = 0;
-    Entry[] entries = (Entry[])data;
     if (FeatureMapUtil.isFeatureMap(feature))
     {
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           if (entry.equals(object))
@@ -762,9 +762,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     }
     else if (object != null)
     {
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           if (object.equals(entry.getValue()))
@@ -777,9 +777,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     }
     else
     {
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           if (entry.getValue() == null)
@@ -830,7 +830,7 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     return new ValueListIteratorImpl<Object>(index);
   }
 
-  protected class ValueListIteratorImpl<E1> extends EListIterator<E1> implements ValueListIterator<E1>
+  protected class ValueListIteratorImpl<E> extends EListIterator<E> implements ValueListIterator<E>
   {
     public ValueListIteratorImpl()
     {
@@ -853,20 +853,20 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
 
     @SuppressWarnings("unchecked")
     @Override
-    public E1 next()
+    public E next()
     {
-      return (E1)doNext().getValue();
+      return (E)doNext().getValue();
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public E1 previous()
+    public E previous()
     {
-      return (E1)doPrevious().getValue();
+      return (E)doPrevious().getValue();
     }
 
     @Override
-    public void add(E1 value)
+    public void add(E value)
     {
       doAdd(FeatureMapUtil.createEntry(feature(), value));
     }
@@ -895,7 +895,7 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
         : (EStructuralFeature.Setting)new FeatureMapUtil.FeatureValue(feature, this);
   }
 
-  public List<Object> basicList(final EStructuralFeature feature)
+  public List<Object> basicList(EStructuralFeature feature)
   {
     return new FeatureMapUtil.FeatureEList.Basic<Object>(feature, this);
   }
@@ -924,12 +924,11 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
   {
     List<Object> result = new BasicEList<Object>();
     FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
-    Entry[] entries = (Entry[])data;
     if (FeatureMapUtil.isFeatureMap(feature))
     {
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           result.add(entry);
@@ -938,9 +937,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     }
     else
     {
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           result.add(entry.getValue());
@@ -954,12 +953,11 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
   {
     List<Object> result = new BasicEList<Object>();
     FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
-    Entry[] entries = (Entry[])data;
     if (FeatureMapUtil.isFeatureMap(feature))
     {
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           result.add(entry);
@@ -968,9 +966,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     }
     else
     {
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           result.add(entry.getValue());
@@ -991,10 +989,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     else
     {
       FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
-      Entry[] entries = (Entry[])data;
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           if (shouldUnset(feature, object))
@@ -1003,7 +1000,7 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
           }
           else
           {
-            doSet(i, FeatureMapUtil.isFeatureMap(feature) ? (Entry)object : (Entry)createEntry(feature, object));
+            doSet(i, FeatureMapUtil.isFeatureMap(feature) ? (Entry)object : createEntry(feature, object));
           }
           return;
         }
@@ -1042,10 +1039,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     else
     {
       FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
-      Entry[] entries = (Entry[])data;
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           if (isFeatureMap ? entry.equals(object) : object == null ? entry.getValue() == null : object.equals(entry
@@ -1073,10 +1069,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     else
     {
       FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
-      Entry[] entries = (Entry[])data;
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           if (isFeatureMap ? entry.equals(object) : object == null ? entry.getValue() == null : object.equals(entry
@@ -1109,10 +1104,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     else
     {
       FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
-      Entry[] entries = (Entry[])data;
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           throw new IllegalArgumentException("The multiplicity constraint is violated");
@@ -1175,10 +1169,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
       else
       {
         FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
-        Entry[] entries = (Entry[])data;
-        for (int i = 0; i < size; ++i)
+        for (int i = 0, size = delegateSize(); i < size; ++i)
         {
-          Entry entry = entries[i];
+          Entry entry = delegateGet(i);
           if (validator.isValid(entry.getEStructuralFeature()))
           {
             if (collection.contains(entry.getValue()))
@@ -1240,12 +1233,10 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
       {
         throw new IllegalArgumentException("The multiplicity constraint is violated");
       }
-
       FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
-      Entry[] entries = (Entry[])data;
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           if (collection.contains(isFeatureMap ? entry : entry.getValue()))
@@ -1307,10 +1298,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     else
     {
       FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
-      Entry[] entries = (Entry[])data;
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           throw new IllegalArgumentException("The multiplicity constraint is violated");
@@ -1349,47 +1339,15 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
   {
     // Validate now since the call we make after will skip validating.
     ++modCount;
-    validate(size, object);
+    validate(delegateSize(), object);
 
-    addUnique((FeatureMap.Entry.Internal)object);
+    super.addUnique(object);
   }
 
   public void addUnique(Entry.Internal entry)
   {
     modCount = -1;
-    if (isNotificationRequired())
-    {
-      int index = size;
-      boolean oldIsSet = isSet();
-      doAddUnique(entry);
-      NotificationImpl notification = createNotification(Notification.ADD, null, entry, index, oldIsSet);
-      if (hasInverse())
-      {
-        NotificationChain notifications = inverseAdd(entry, null);
-        notifications = shadowAdd(entry, notifications);
-
-        if (notifications == null)
-        {
-          dispatchNotification(notification);
-        }
-        else
-        {
-          notifications.add(notification);
-          notifications.dispatch();
-        }
-      }
-      else
-      {
-        dispatchNotification(notification);
-      }
-    }
-    else
-    {
-      doAddUnique(entry);
-      NotificationChain notifications = inverseAdd(entry, null);
-      if (notifications != null)
-        notifications.dispatch();
-    }
+    super.addUnique(entry);
   }
 
   @Override
@@ -1399,88 +1357,19 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     return super.addAllUnique(collection);
   }
 
-  public boolean addAllUnique(FeatureMap.Entry.Internal[] entries, int start, int end)
-  {
-    return addAllUnique(size, entries, start, end);
-  }
-
-  public boolean addAllUnique(int index, FeatureMap.Entry.Internal[] entries, int start, int end)
+  public boolean addAllUnique(Entry.Internal[] entries, int start, int end)
   {
     modCount = -1;
-
-    int collectionSize = end - start;
-    if (collectionSize == 0)
-    {
-      return false;
-    }
-    else
-    {
-      if (isNotificationRequired())
-      {
-        boolean oldIsSet = isSet();
-        doAddAllUnique(index, entries, start, end);
-        NotificationImpl notification;
-        if (collectionSize == 0)
-        {
-          notification = createNotification(Notification.ADD, null, entries[0], index, oldIsSet);
-        }
-        else
-        {
-          if (start != 0 || end != entries.length)
-          {
-            Object[] actualObjects = new Object[collectionSize];
-            for (int i = 0, j = start; j < end; ++i, ++j)
-            {
-              actualObjects[i] = entries[j];
-            }
-            notification = createNotification(Notification.ADD_MANY, null, actualObjects, index, oldIsSet);
-          }
-          else
-          {
-            notification = createNotification(Notification.ADD_MANY, null, entries, index, oldIsSet);
-          }
-        }
-        NotificationChain notifications = null;
-        for (int i = start; i < end; ++i)
-        {
-          FeatureMap.Entry.Internal value = entries[i];
-          notifications = inverseAdd(value, notifications);
-          notifications = shadowAdd(value, notifications);
-        }
-        if (notifications == null)
-        {
-          dispatchNotification(notification);
-        }
-        else
-        {
-          notifications.add(notification);
-          notifications.dispatch();
-        }
-      }
-      else
-      {
-        doAddAllUnique(index, entries, start, end);
-        NotificationChain notifications = null;
-        for (int i = start; i < end; ++i)
-        {
-          notifications = inverseAdd(entries[i], notifications);
-        }
-        if (notifications != null)
-          notifications.dispatch();
-      }
-
-      return true;
-    }
+    return super.addAllUnique(size(), entries, start, end);
   }
 
   public NotificationChain basicAdd(EStructuralFeature feature, Object object, NotificationChain notifications)
   {
     if (object == null)
     {
-      Entry[] entries = (Entry[])data;
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (entry.getEStructuralFeature() == feature)
         {
           return super.basicRemove(entry, notifications);
@@ -1490,10 +1379,10 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
 
     Entry entry = FeatureMapUtil.isFeatureMap(feature) ? (Entry)object : createEntry(feature, object);
 
+    notifications = basicAdd(entry, notifications);
     if (isNotificationRequired())
     {
       boolean oldIsSet = !isEmpty(feature);
-      notifications = basicAdd(entry, notifications);
       NotificationImpl notification = feature.isMany() ? createNotification(Notification.ADD, feature, null, object,
           indexOf(feature, object), oldIsSet) : createNotification(Notification.SET, feature,
           feature.getDefaultValue(), object, Notification.NO_INDEX, oldIsSet);
@@ -1507,22 +1396,17 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
         notifications = notification;
       }
     }
-    else
-    {
-      notifications = basicAdd(entry, notifications);
-    }
     return notifications;
   }
 
   public boolean remove(EStructuralFeature feature, Object object)
   {
     FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
-    Entry[] entries = (Entry[])data;
     if (FeatureMapUtil.isFeatureMap(feature))
     {
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           if (entry.equals(object))
@@ -1535,9 +1419,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     }
     else if (object != null)
     {
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           if (object.equals(entry.getValue()))
@@ -1550,9 +1434,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     }
     else
     {
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           if (entry.getValue() == null)
@@ -1570,11 +1454,10 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
   public Object remove(EStructuralFeature feature, int index)
   {
     FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
-    Entry[] entries = (Entry[])data;
     int count = 0;
-    for (int i = 0; i < size; ++i)
+    for (int i = 0, size = delegateSize(); i < size; ++i)
     {
-      Entry entry = entries[i];
+      Entry entry = delegateGet(i);
       if (validator.isValid(entry.getEStructuralFeature()))
       {
         if (count == index)
@@ -1599,10 +1482,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     {
       FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
       List<Entry> entryCollection = new BasicEList<Entry>(collection.size());
-      Entry[] entries = (Entry[])data;
-      for (int i = size; --i >= 0;)
+      for (int i = delegateSize(); --i >= 0;)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           if (collection.contains(entry.getValue()))
@@ -1620,13 +1502,12 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
   {
     FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
     int count = 0;
-    Entry[] entries = (Entry[])data;
     Entry match = null;
     if (FeatureMapUtil.isFeatureMap(feature))
     {
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           if (entry.equals(object))
@@ -1638,11 +1519,11 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
         }
       }
     }
-    else if (object != null)
+    if (object != null)
     {
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           if (object.equals(entry.getValue()))
@@ -1656,9 +1537,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     }
     else
     {
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           if (entry.getValue() == null)
@@ -1699,10 +1580,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     boolean isFeatureMap = FeatureMapUtil.isFeatureMap(feature);
     FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
     List<Entry> entryCollection = new BasicEList<Entry>(collection.size());
-    Entry[] entries = (Entry[])data;
-    for (int i = size; --i >= 0;)
+    for (int i = delegateSize(); --i >= 0;)
     {
-      Entry entry = entries[i];
+      Entry entry = delegateGet(i);
       if (validator.isValid(entry.getEStructuralFeature()))
       {
         if (!collection.contains(isFeatureMap ? entry : entry.getValue()))
@@ -1719,17 +1599,16 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
   {
     FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
     List<Entry> entryCollection = new BasicEList<Entry>();
-    Entry[] entries = (Entry[])data;
-    for (int i = size; --i >= 0;)
+    for (int i = delegateSize(); --i >= 0;)
     {
-      Entry entry = entries[i];
+      Entry entry = delegateGet(i);
       if (validator.isValid(entry.getEStructuralFeature()))
       {
         entryCollection.add(entry);
       }
     }
 
-    if (!removeAll(entryCollection) && owner.eNotificationRequired())
+    if (!removeAll(entryCollection))
     {
       dispatchNotification(feature.isMany() ? createNotification(Notification.REMOVE_MANY, feature,
           Collections.EMPTY_LIST, null, Notification.NO_INDEX, false) : createNotification(
@@ -1748,14 +1627,13 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     if (isMany(feature))
     {
       FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
-      Entry[] entries = (Entry[])data;
       Object result = null;
       int entryTargetIndex = -1;
       int entrySourceIndex = -1;
       int count = 0;
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           if (count == targetIndex)
@@ -1797,7 +1675,6 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
 
   public Object get(EStructuralFeature feature, boolean resolve)
   {
-    Entry[] entries = (Entry[])data;
     if (isMany(feature))
     {
       return list(feature);
@@ -1806,9 +1683,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     {
       FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
       int count = 0;
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           if (FeatureMapUtil.isFeatureMap(feature))
@@ -1835,13 +1712,12 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
   public Object get(EStructuralFeature feature, int index, boolean resolve)
   {
     FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
-    Entry[] entries = (Entry[])data;
     if (isMany(feature))
     {
       int count = 0;
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           if (count == index)
@@ -1855,7 +1731,7 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
               Object value = entry.getValue();
               if (value != null && resolve && isResolveProxies(feature))
               {
-                value = resolveProxy(feature, i, count, value);
+                value = resolveProxy(feature, i, count, entry.getValue());
               }
               return value;
             }
@@ -1868,9 +1744,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     else
     {
       int count = 0;
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           if (FeatureMapUtil.isFeatureMap(feature))
@@ -1897,7 +1773,6 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
   public Object set(EStructuralFeature feature, int index, Object object)
   {
     FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
-    Entry[] entries = (Entry[])data;
     if (isMany(feature))
     {
       if (feature.isUnique())
@@ -1910,9 +1785,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
       }
 
       int count = 0;
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           if (count == index)
@@ -1928,9 +1803,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     {
       // Index should be -1.
 
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           return FeatureMapUtil.isFeatureMap(feature) ? entry : entry.getValue();
@@ -1944,13 +1819,12 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
   public Object setUnique(EStructuralFeature feature, int index, Object object)
   {
     FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
-    Entry[] entries = (Entry[])data;
     if (isMany(feature))
     {
       int count = 0;
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           if (count == index)
@@ -1966,9 +1840,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     {
       // Index should be -1.
 
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           return setUnique(i, FeatureMapUtil.isFeatureMap(feature) ? (Entry)object : createEntry(feature, object));
@@ -1988,10 +1862,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
   {
     FeatureMapUtil.Validator validator = FeatureMapUtil.getValidator(owner.eClass(), feature);
     List<Entry> removals = null;
-    Entry[] entries = (Entry[])data;
-    for (int i = 0; i < size; ++i)
+    for (int i = 0, size = delegateSize(); i < size; ++i)
     {
-      Entry entry = entries[i];
+      Entry entry = delegateGet(i);
       if (validator.isValid(entry.getEStructuralFeature()))
       {
         if (removals == null)
@@ -2021,10 +1894,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     {
       Entry match = null;
       EStructuralFeature feature = null;
-      Entry[] entries = (Entry[])data;
-      for (int i = 0; i < size; ++i)
+      for (int i = 0, size = delegateSize(); i < size; ++i)
       {
-        Entry entry = entries[i];
+        Entry entry = delegateGet(i);
         if (object.equals(entry.getValue()))
         {
           feature = entry.getEStructuralFeature();
@@ -2074,10 +1946,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     protected boolean scanNext()
     {
       int size = featureMap.size();
-      Entry[] entries = (Entry[])((BasicEList<?>)featureMap).data();
       while (entryCursor < size)
       {
-        Entry entry = entries[entryCursor];
+        Entry entry = featureMap.get(entryCursor);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           preparedResult = extractValue(entry);
@@ -2095,10 +1966,9 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     @Override
     protected boolean scanPrevious()
     {
-      Entry[] entries = (Entry[])((BasicEList<?>)featureMap).data();
       while (--entryCursor >= 0)
       {
-        Entry entry = entries[entryCursor];
+        Entry entry = featureMap.get(entryCursor);
         if (validator.isValid(entry.getEStructuralFeature()))
         {
           preparedResult = extractValue(entry);
@@ -2135,7 +2005,18 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
    */
   public static class FeatureMapEObjectImpl extends org.eclipse.emf.ecore.impl.EObjectImpl
   {
-    protected BasicFeatureMap featureMap = new BasicFeatureMap(this, -1);
+    protected DelegatingFeatureMap featureMap = new DelegatingFeatureMap(this, -1)
+    {
+      private static final long serialVersionUID = 1L;
+
+      protected List<Entry> theList = new java.util.ArrayList<Entry>();
+
+      @Override
+      protected List<Entry> delegateList()
+      {
+        return theList;
+      }
+    };
 
     public FeatureMapEObjectImpl()
     {

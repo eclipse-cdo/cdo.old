@@ -1,0 +1,21 @@
+<project name="copy-mixin-to-weaver" basedir="." default="main">
+
+	<target name="clean">
+		<delete>
+			<fileset dir="../org.eclipse.emf.cdo.weaver/mixin">
+				<include name="**/*.class" />
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="copy">
+		<copy todir="../org.eclipse.emf.cdo.weaver/mixin">
+			<fileset dir="bin">
+				<include name="**/*.class" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="main" depends="clean, copy" />
+
+</project>

@@ -935,7 +935,7 @@ public final class FeatureMapUtil
 
     public void add(int index, EStructuralFeature feature, Object value)
     {
-      add(index, isFeatureMap(feature) ? (FeatureMap.Entry)value : createEntry(feature, value));
+      add(index, isFeatureMap(feature) ? (Entry)value : createEntry(feature, value));
     }
 
     public void add(EStructuralFeature feature, int index, Object value)
@@ -1505,8 +1505,7 @@ public final class FeatureMapUtil
 
     public boolean isValid(EStructuralFeature feature)
     {
-      if (eStructuralFeature == feature)
-        return true;
+      if (eStructuralFeature == feature) return true;
 
       Boolean result = cache.get(feature);
       if (result == null)

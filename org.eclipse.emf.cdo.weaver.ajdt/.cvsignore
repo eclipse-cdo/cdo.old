@@ -1,3 +1,2 @@
 bin
-bin-ecore
-bin-cdo
+bin-*

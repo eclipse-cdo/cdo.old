@@ -27,7 +27,7 @@ public interface ICDOWeaver
 
   public static final String CLASS_SUFFIX = ".class";
 
-  public static final String CDO_MARKER = ".cdo";
+  public static final String CDO_VERSION_SUFFIX = "-CDO";
 
   /**
    * @param bundleLocations
