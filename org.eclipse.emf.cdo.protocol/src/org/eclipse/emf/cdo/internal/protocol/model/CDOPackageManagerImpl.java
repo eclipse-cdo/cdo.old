@@ -137,6 +137,11 @@ public abstract class CDOPackageManagerImpl extends Notifier implements CDOPacka
     }
   }
 
+  public void removePackage(CDOPackageImpl cdoPackage)
+  {
+    packages.remove(cdoPackage.getPackageURI());
+  }
+
   /**
    * @param cdoPackage
    *          is a proxy CDO package. The implementer of this method must only
