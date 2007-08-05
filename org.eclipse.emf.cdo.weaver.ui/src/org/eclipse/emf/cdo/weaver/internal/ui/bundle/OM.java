@@ -111,7 +111,8 @@ public abstract class OM
         }
 
         Bundle bundle = Platform.getBundle(symbolicName);
-        if (isAlreadyWoven(bundle))
+        String version = (String)bundle.getHeaders().get(Constants.BUNDLE_VERSION);
+        if (isAlreadyWoven(bundle, version))
         {
           continue;
         }
@@ -121,7 +122,6 @@ public abstract class OM
           siteLocations = getSiteLocations();
         }
 
-        String version = (String)bundle.getHeaders().get(Constants.BUNDLE_VERSION);
         File location = getLocation(symbolicName + "_" + version, siteLocations);
         bundleInfo = new BundleInfo(symbolicName, version, location);
         bundleInfo.addPackageURI(uri);
@@ -132,9 +132,9 @@ public abstract class OM
     return bundleMap;
   }
 
-  private static boolean isAlreadyWoven(Bundle bundle)
+  private static boolean isAlreadyWoven(Bundle bundle, String version)
   {
-    return bundle.getEntry(ICDOWeaver.CDO_MARKER) != null;
+    return version.endsWith(ICDOWeaver.CDO_VERSION_SUFFIX);
   }
 
   private static File[] getSiteLocations()
