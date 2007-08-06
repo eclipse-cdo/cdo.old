@@ -10,6 +10,7 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.weaver.internal.ui.bundle;
 
+import org.eclipse.emf.cdo.util.CDOPackageType;
 import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.cdo.weaver.BundleInfo;
 import org.eclipse.emf.cdo.weaver.ICDOWeaver;
@@ -25,8 +26,11 @@ import org.eclipse.net4j.util.om.pref.OMPreference;
 import org.eclipse.net4j.util.om.pref.OMPreferences;
 import org.eclipse.net4j.util.om.trace.OMTracer;
 
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.swt.widgets.Display;
@@ -53,8 +57,6 @@ import java.util.TreeMap;
  */
 public abstract class OM
 {
-  private static final String EMF_EXT_POINT = "org.eclipse.emf.ecore.generated_package";
-
   public static final String BUNDLE_ID = "org.eclipse.emf.cdo.weaver.ui"; //$NON-NLS-1$
 
   public static final OMBundle BUNDLE = OMPlatform.INSTANCE.bundle(BUNDLE_ID, OM.class);
@@ -89,16 +91,18 @@ public abstract class OM
   public static Map<String, BundleInfo> getUnwovenBundles()
   {
     File[] siteLocations = null;
+    Map<String, CDOPackageType> packageTypes = CDOUtil.getPackageTypes();
     Map<String, BundleInfo> bundleMap = new TreeMap();
 
-    Set<String> persistentPackageURIs = CDOUtil.getPersistentPackageURIs();
-    for (IConfigurationElement element : Platform.getExtensionRegistry().getConfigurationElementsFor(EMF_EXT_POINT))
+    IExtensionRegistry registry = Platform.getExtensionRegistry();
+    for (IConfigurationElement element : registry.getConfigurationElementsFor(EcorePlugin.getPlugin().getBundle()
+        .getSymbolicName(), EcorePlugin.GENERATED_PACKAGE_PPID))
     {
       String symbolicName = element.getContributor().getName();
       String uri = element.getAttribute("uri");
       if (!StringUtil.isEmpty(uri))
       {
-        if (persistentPackageURIs.contains(uri))
+        if (packageTypes.get(uri) != CDOPackageType.LEGACY)
         {
           continue;
         }
@@ -112,10 +116,6 @@ public abstract class OM
 
         Bundle bundle = Platform.getBundle(symbolicName);
         String version = (String)bundle.getHeaders().get(Constants.BUNDLE_VERSION);
-        if (isAlreadyWoven(bundle, version))
-        {
-          continue;
-        }
 
         if (siteLocations == null)
         {
@@ -146,11 +146,6 @@ public abstract class OM
     // }
 
     return bundleMap;
-  }
-
-  private static boolean isAlreadyWoven(Bundle bundle, String version)
-  {
-    return version.endsWith(ICDOWeaver.CDO_VERSION_SUFFIX);
   }
 
   private static File[] getSiteLocations()

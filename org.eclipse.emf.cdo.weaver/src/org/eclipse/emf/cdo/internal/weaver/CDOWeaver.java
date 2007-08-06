@@ -11,6 +11,7 @@
 package org.eclipse.emf.cdo.internal.weaver;
 
 import org.eclipse.emf.cdo.internal.weaver.bundle.OM;
+import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.cdo.weaver.BundleInfo;
 import org.eclipse.emf.cdo.weaver.ICDOWeaver;
 
@@ -360,7 +361,7 @@ public class CDOWeaver implements ICDOWeaver
 
   private String getTargetName(BundleInfo bundleInfo)
   {
-    return bundleInfo.getName() + "_" + bundleInfo.getVersion() + CDO_VERSION_SUFFIX;
+    return bundleInfo.getName() + "_" + bundleInfo.getVersion() + CDOUtil.CDO_VERSION_SUFFIX;
   }
 
   private URL getAspectJRuntimeURL()
@@ -458,7 +459,7 @@ public class CDOWeaver implements ICDOWeaver
     {
       if (line.toLowerCase().startsWith(BUNDLE_VERSION_HEADER))
       {
-        line = line.replaceFirst(version, version + CDO_VERSION_SUFFIX);
+        line = line.replaceFirst(version, version + CDOUtil.CDO_VERSION_SUFFIX);
       }
 
       return line;

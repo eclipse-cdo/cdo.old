@@ -27,8 +27,6 @@ public interface ICDOWeaver
 
   public static final String CLASS_SUFFIX = ".class";
 
-  public static final String CDO_VERSION_SUFFIX = "-CDO";
-
   /**
    * @param bundleLocations
    *          The locations bundle of the bundles in the file system. Each
