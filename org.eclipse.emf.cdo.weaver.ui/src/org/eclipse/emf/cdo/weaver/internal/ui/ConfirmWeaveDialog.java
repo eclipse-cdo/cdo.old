@@ -94,7 +94,6 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
     tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
     tree.setHeaderVisible(true);
     tree.setLinesVisible(true);
-    tree.setLinesVisible(true);
     addColumn(tree, "Bundle", 300, SWT.LEFT);
     addColumn(tree, "Location", 600, SWT.LEFT);
 
