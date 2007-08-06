@@ -154,7 +154,6 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
         }
       });
     }
-
   }
 
   @Override
