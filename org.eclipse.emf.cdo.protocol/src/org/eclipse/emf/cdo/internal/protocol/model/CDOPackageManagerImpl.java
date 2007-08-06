@@ -49,6 +49,11 @@ public abstract class CDOPackageManagerImpl extends Notifier implements CDOPacka
 
   public CDOPackageImpl lookupPackage(String uri)
   {
+    if (uri == null)
+    {
+      return null;
+    }
+
     return packages.get(uri);
   }
 
@@ -121,7 +126,13 @@ public abstract class CDOPackageManagerImpl extends Notifier implements CDOPacka
 
   public void addPackage(CDOPackageImpl cdoPackage)
   {
-    CDOPackage existing = packages.putIfAbsent(cdoPackage.getPackageURI(), cdoPackage);
+    String uri = cdoPackage.getPackageURI();
+    if (uri == null)
+    {
+      throw new IllegalArgumentException("uri == null");
+    }
+
+    CDOPackage existing = packages.putIfAbsent(uri, cdoPackage);
     if (existing == null)
     {
       if (TRACER.isEnabled())
