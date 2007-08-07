@@ -16,6 +16,7 @@ import org.eclipse.emf.cdo.weaver.BundleInfo;
 import org.eclipse.emf.cdo.weaver.ICDOWeaver;
 
 import org.eclipse.net4j.util.ImplementationError;
+import org.eclipse.net4j.util.StringUtil;
 import org.eclipse.net4j.util.WrappedException;
 import org.eclipse.net4j.util.io.IOFilter;
 import org.eclipse.net4j.util.io.IORuntimeException;
@@ -28,6 +29,8 @@ import org.eclipse.net4j.util.om.monitor.OMMonitor;
 import org.eclipse.net4j.util.om.monitor.OMSubMonitor;
 
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 
 import org.aspectj.weaver.tools.GeneratedClassHandler;
@@ -42,6 +45,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -54,7 +58,7 @@ public class CDOWeaver implements ICDOWeaver
   public static final CDOWeaver INSTANCE = new CDOWeaver();
 
   private static final String[] ASPECT_TYPES = { "CDOAspectList", "CDOAspectMixin", "CDOAspectObject", "CDOAware",
-      "CDOCallback", "CDOEcoreEList" };
+      "CDOCallback" };
 
   private static final String MANIFEST_PATH = "/META-INF/MANIFEST.MF".replace('/', File.separatorChar);
 
@@ -88,7 +92,8 @@ public class CDOWeaver implements ICDOWeaver
   public void weave(Collection<BundleInfo> bundleInfos) throws IORuntimeException
   {
     int count = bundleInfos.size();
-    OMMonitor monitor = MonitorUtil.begin(count, "Weaving " + count + " bundles");
+    OMMonitor monitor = MonitorUtil.begin(2 * count, "Weaving " + count + " bundles");
+    List<File> sourceLocations = getSourceLocations(bundleInfos);
     URL[] classURLs = getClassURLs(bundleInfos);
     URL[] aspectURLs = { getAspectURL() };
 
@@ -103,7 +108,54 @@ public class CDOWeaver implements ICDOWeaver
       {
         subMonitor.join();
       }
+
+      copySource(bundleInfo, sourceLocations, monitor);
+      monitor.worked();
     }
+  }
+
+  private List<File> getSourceLocations(Collection<BundleInfo> bundleInfos)
+  {
+    List<File> folders = new ArrayList();
+    IExtensionRegistry registry = Platform.getExtensionRegistry();
+    for (IConfigurationElement element : registry.getConfigurationElementsFor("org.eclipse.pde.core", "source"))
+    {
+      if ("location".equals(element.getName()))
+      {
+        String path = element.getAttribute("path");
+        if (!StringUtil.isEmpty(path))
+        {
+          String bundleName = element.getContributor().getName();
+          Bundle bundle = Platform.getBundle(bundleName);
+          URL url = getURL(bundle, path);
+          File folder = new File(url.getFile());
+          if (folder.exists() && folder.isDirectory())
+          {
+            folders.add(folder);
+          }
+        }
+      }
+    }
+
+    return folders;
+  }
+
+  private void copySource(BundleInfo bundleInfo, List<File> sourceLocations, OMMonitor monitor)
+  {
+    String name = bundleInfo.getName() + "_" + bundleInfo.getVersion();
+    for (File folder : sourceLocations)
+    {
+      File source = new File(folder, name);
+      if (source.exists() && source.isDirectory())
+      {
+        File target = new File(folder, name + CDOUtil.CDO_VERSION_SUFFIX);
+        IOUtil.copyTree(source, target);
+        monitor.message("Copied source of " + name);
+        return;
+      }
+    }
+
+    monitor.message("Couldn't find source of " + name);
   }
 
   private File weaveBundle(BundleInfo bundleInfo, URL[] classURLs, URL[] aspectURLs)
@@ -262,6 +314,13 @@ public class CDOWeaver implements ICDOWeaver
       OMSubMonitor sm1 = monitor.fork();
       try
       {
+        if ("org.eclipse.emf.ecore.util.EcoreEList".equals(className))
+        {
+          URL url = getURL(bundleContext.getBundle(), "emf/EcoreEList.class");
+          source = new File(url.getFile());
+          monitor.message("Mixed in class " + className);
+        }
+
         inBytes = IOUtil.readFile(source);
       }
       finally
@@ -430,7 +489,7 @@ public class CDOWeaver implements ICDOWeaver
     try
     {
       URL url = bundle.getEntry(path);
-      return FileLocator.toFileURL(url);
+      return url == null ? null : FileLocator.toFileURL(url);
     }
     catch (IOException ex)
     {
