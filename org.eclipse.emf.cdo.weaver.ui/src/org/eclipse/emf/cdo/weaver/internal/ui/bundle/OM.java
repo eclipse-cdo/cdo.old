@@ -95,8 +95,8 @@ public abstract class OM
     Map<String, BundleInfo> bundleMap = new TreeMap();
 
     IExtensionRegistry registry = Platform.getExtensionRegistry();
-    for (IConfigurationElement element : registry.getConfigurationElementsFor(EcorePlugin.getPlugin().getBundle()
-        .getSymbolicName(), EcorePlugin.GENERATED_PACKAGE_PPID))
+    for (IConfigurationElement element : registry.getConfigurationElementsFor(ICDOWeaver.ECORE_NAME,
+        EcorePlugin.GENERATED_PACKAGE_PPID))
     {
       String symbolicName = element.getContributor().getName();
       String uri = element.getAttribute("uri");

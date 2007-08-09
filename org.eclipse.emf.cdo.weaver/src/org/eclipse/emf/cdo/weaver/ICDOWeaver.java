@@ -14,6 +14,8 @@ import org.eclipse.emf.cdo.internal.weaver.CDOWeaver;
 
 import org.eclipse.net4j.util.io.IORuntimeException;
 
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
 import java.util.Collection;
 
 /**
@@ -26,6 +28,8 @@ public interface ICDOWeaver
   public static final String JAR_SUFFIX = ".jar";
 
   public static final String CLASS_SUFFIX = ".class";
+
+  public static final String ECORE_NAME = EcorePlugin.getPlugin().getBundle().getSymbolicName();
 
   /**
    * @param bundleLocations

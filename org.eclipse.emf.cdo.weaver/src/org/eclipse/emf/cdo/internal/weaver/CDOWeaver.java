@@ -76,6 +76,8 @@ public class CDOWeaver implements ICDOWeaver
 
   private URL[] basicClassURLs;
 
+  private URL ecoreClassURL;
+
   private CDOWeaver()
   {
   }
@@ -86,6 +88,7 @@ public class CDOWeaver implements ICDOWeaver
     if (bundleContext != null)
     {
       basicClassURLs = new URL[] { getRTJarURL(), getAspectJRuntimeURL(), getAspectJWeaverURL(), getEMFCommonURL() };
+      ecoreClassURL = getEMFEcoreURL();
     }
   }
 
@@ -112,50 +115,6 @@ public class CDOWeaver implements ICDOWeaver
       copySource(bundleInfo, sourceLocations, monitor);
       monitor.worked();
     }
-  }
-
-  private List<File> getSourceLocations(Collection<BundleInfo> bundleInfos)
-  {
-    List<File> folders = new ArrayList();
-    IExtensionRegistry registry = Platform.getExtensionRegistry();
-    for (IConfigurationElement element : registry.getConfigurationElementsFor("org.eclipse.pde.core", "source"))
-    {
-      if ("location".equals(element.getName()))
-      {
-        String path = element.getAttribute("path");
-        if (!StringUtil.isEmpty(path))
-        {
-          String bundleName = element.getContributor().getName();
-          Bundle bundle = Platform.getBundle(bundleName);
-          URL url = getURL(bundle, path);
-          File folder = new File(url.getFile());
-          if (folder.exists() && folder.isDirectory())
-          {
-            folders.add(folder);
-          }
-        }
-      }
-    }
-
-    return folders;
-  }
-
-  private void copySource(BundleInfo bundleInfo, List<File> sourceLocations, OMMonitor monitor)
-  {
-    String name = bundleInfo.getName() + "_" + bundleInfo.getVersion();
-    for (File folder : sourceLocations)
-    {
-      File source = new File(folder, name);
-      if (source.exists() && source.isDirectory())
-      {
-        File target = new File(folder, name + CDOUtil.CDO_VERSION_SUFFIX);
-        IOUtil.copyTree(source, target);
-        monitor.message("Copied source of " + name);
-        return;
-      }
-    }
-
-    monitor.message("Couldn't find source of " + name);
   }
 
   private File weaveBundle(BundleInfo bundleInfo, URL[] classURLs, URL[] aspectURLs)
@@ -418,6 +377,50 @@ public class CDOWeaver implements ICDOWeaver
     }
   }
 
+  private void copySource(BundleInfo bundleInfo, List<File> sourceLocations, OMMonitor monitor)
+  {
+    String name = bundleInfo.getName() + "_" + bundleInfo.getVersion();
+    for (File folder : sourceLocations)
+    {
+      File source = new File(folder, name);
+      if (source.exists() && source.isDirectory())
+      {
+        File target = new File(folder, name + CDOUtil.CDO_VERSION_SUFFIX);
+        IOUtil.copyTree(source, target);
+        monitor.message("Copied source of " + name);
+        return;
+      }
+    }
+
+    monitor.message("Couldn't find source of " + name);
+  }
+
+  private List<File> getSourceLocations(Collection<BundleInfo> bundleInfos)
+  {
+    List<File> folders = new ArrayList();
+    IExtensionRegistry registry = Platform.getExtensionRegistry();
+    for (IConfigurationElement element : registry.getConfigurationElementsFor("org.eclipse.pde.core", "source"))
+    {
+      if ("location".equals(element.getName()))
+      {
+        String path = element.getAttribute("path");
+        if (!StringUtil.isEmpty(path))
+        {
+          String bundleName = element.getContributor().getName();
+          Bundle bundle = Platform.getBundle(bundleName);
+          URL url = getURL(bundle, path);
+          File folder = new File(url.getFile());
+          if (folder.exists() && folder.isDirectory())
+          {
+            folders.add(folder);
+          }
+        }
+      }
+    }
+
+    return folders;
+  }
+
   private String getTargetName(BundleInfo bundleInfo)
   {
     return bundleInfo.getName() + "_" + bundleInfo.getVersion() + CDOUtil.CDO_VERSION_SUFFIX;
@@ -438,6 +441,11 @@ public class CDOWeaver implements ICDOWeaver
     return getBundleURL("org.eclipse.emf.common");
   }
 
+  private URL getEMFEcoreURL()
+  {
+    return getBundleURL("org.eclipse.emf.ecore");
+  }
+
   private URL getAspectURL()
   {
     return getURL(bundleContext.getBundle(), MIXIN_PATH.replace(File.separatorChar, '/'));
@@ -445,9 +453,26 @@ public class CDOWeaver implements ICDOWeaver
 
   private URL[] getClassURLs(Collection<BundleInfo> bundleInfos)
   {
-    URL[] classURLs = new URL[basicClassURLs.length + bundleInfos.size()];
-    System.arraycopy(basicClassURLs, 0, classURLs, 0, basicClassURLs.length);
-    int i = 0;
+    List<URL> urls = new ArrayList(basicClassURLs.length + bundleInfos.size());
+    for (URL url : basicClassURLs)
+    {
+      urls.add(url);
+    }
+
+    if (!isEcoreContained(bundleInfos))
+    {
+      urls.add(ecoreClassURL);
+    }
+
+    try
+    {
+      // TODO Either analyze deps more intelligently or ask the user
+      urls.add(getBundleURL("org.eclipse.uml2.common"));
+    }
+    catch (RuntimeException ignore)
+    {
+    }
+
     for (BundleInfo bundleInfo : bundleInfos)
     {
       File bundleLocation = bundleInfo.getLocation();
@@ -458,7 +483,7 @@ public class CDOWeaver implements ICDOWeaver
 
       try
       {
-        classURLs[basicClassURLs.length + i++] = bundleLocation.toURL();
+        urls.add(bundleLocation.toURL());
       }
       catch (MalformedURLException ex)
       {
@@ -466,7 +491,20 @@ public class CDOWeaver implements ICDOWeaver
       }
     }
 
-    return classURLs;
+    return urls.toArray(new URL[urls.size()]);
+  }
+
+  private boolean isEcoreContained(Collection<BundleInfo> bundleInfos)
+  {
+    for (BundleInfo bundleInfo : bundleInfos)
+    {
+      if (bundleInfo.getName().equals(ECORE_NAME))
+      {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   public static URL getRTJarURL()
