@@ -19,19 +19,25 @@ public interface CDOProtocolConstants
 
   public static final short SIGNAL_OPEN_SESSION = 1;
 
-  public static final short SIGNAL_RESOURCE_ID = 2;
+  public static final short SIGNAL_VIEWS_CHANGED = 2;
 
-  public static final short SIGNAL_RESOURCE_PATH = 3;
+  public static final short SIGNAL_RESOURCE_ID = 3;
 
-  public static final short SIGNAL_LOAD_PACKAGE = 4;
+  public static final short SIGNAL_RESOURCE_PATH = 4;
 
-  public static final short SIGNAL_LOAD_REVISION = 5;
+  public static final short SIGNAL_LOAD_PACKAGE = 5;
 
-  public static final short SIGNAL_COMMIT_TRANSACTION = 6;
+  public static final short SIGNAL_LOAD_REVISION = 6;
 
-  public static final short SIGNAL_INVALIDATION = 7;
+  public static final short SIGNAL_COMMIT_TRANSACTION = 7;
+
+  public static final short SIGNAL_INVALIDATION = 8;
 
   public static final int ERROR_REPOSITORY_NOT_FOUND = -1;
 
   public static final int ERROR_NO_SESSION = -2;
+
+  public static final byte VIEW_ADDED = 1;
+
+  public static final byte VIEW_REMOVED = 2;
 }
