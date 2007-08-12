@@ -37,7 +37,11 @@ public interface CDOProtocolConstants
 
   public static final int ERROR_NO_SESSION = -2;
 
-  public static final byte VIEW_ADDED = 1;
+  public static final byte VIEW_TRANSACTION = 1;
 
-  public static final byte VIEW_REMOVED = 2;
+  public static final byte VIEW_AUDIT = 2;
+
+  public static final byte VIEW_READONLY = 3;
+
+  public static final byte VIEW_CLOSED = 4;
 }
