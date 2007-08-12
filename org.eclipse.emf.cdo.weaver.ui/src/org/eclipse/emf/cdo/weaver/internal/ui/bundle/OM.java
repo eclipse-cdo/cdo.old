@@ -16,7 +16,6 @@ import org.eclipse.emf.cdo.weaver.BundleInfo;
 import org.eclipse.emf.cdo.weaver.ICDOWeaver;
 import org.eclipse.emf.cdo.weaver.internal.ui.ConfirmWeaveDialog;
 
-import org.eclipse.net4j.ui.UIActivator;
 import org.eclipse.net4j.util.StringUtil;
 import org.eclipse.net4j.util.WrappedException;
 import org.eclipse.net4j.util.om.OMBundle;
@@ -25,6 +24,7 @@ import org.eclipse.net4j.util.om.log.OMLogger;
 import org.eclipse.net4j.util.om.pref.OMPreference;
 import org.eclipse.net4j.util.om.pref.OMPreferences;
 import org.eclipse.net4j.util.om.trace.OMTracer;
+import org.eclipse.net4j.util.ui.UIActivator;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 

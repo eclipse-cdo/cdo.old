@@ -8,7 +8,7 @@ Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.update.configurator,
  org.eclipse.ui.ide,
- org.eclipse.net4j.ui,
+ org.eclipse.net4j.util.ui,
  org.eclipse.emf.cdo.weaver,
  org.eclipse.update.core
 Eclipse-LazyStart: true

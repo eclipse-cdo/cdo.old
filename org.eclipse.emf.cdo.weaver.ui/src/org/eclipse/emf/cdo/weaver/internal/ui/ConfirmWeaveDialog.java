@@ -15,10 +15,10 @@ import org.eclipse.emf.cdo.weaver.BundleInfo;
 import org.eclipse.emf.cdo.weaver.ICDOWeaver;
 import org.eclipse.emf.cdo.weaver.internal.ui.bundle.OM;
 
-import org.eclipse.net4j.ui.widgets.BaseDialog;
-import org.eclipse.net4j.ui.widgets.MonitorDialog;
-import org.eclipse.net4j.ui.widgets.PreferenceButton;
 import org.eclipse.net4j.util.StringUtil;
+import org.eclipse.net4j.util.ui.widgets.BaseDialog;
+import org.eclipse.net4j.util.ui.widgets.MonitorDialog;
+import org.eclipse.net4j.util.ui.widgets.PreferenceButton;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
