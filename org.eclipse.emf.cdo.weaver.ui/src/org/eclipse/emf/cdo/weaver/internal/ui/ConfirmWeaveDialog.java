@@ -68,7 +68,7 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
   private static final String MESSAGE = "Some EMF models have been detected that are not fully CDO persistence capable.\n"
       + "Select the bundles you wish to be converted with the context menu.";
 
-  private static final Object[] NO_CHILDREN = {};
+  private static final Object[] NO_ELEMENTS = {};
 
   private Map<String, BundleInfo> bundleMap;
 
@@ -326,7 +326,7 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
         return eClass.getEStructuralFeatures().toArray();
       }
 
-      return NO_CHILDREN;
+      return NO_ELEMENTS;
     }
 
     public Object getParent(Object element)
