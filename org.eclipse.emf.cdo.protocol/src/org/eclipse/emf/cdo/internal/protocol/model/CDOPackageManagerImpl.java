@@ -17,11 +17,8 @@ import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
-import org.eclipse.net4j.internal.util.container.SingleDeltaContainerEvent;
-import org.eclipse.net4j.internal.util.event.Notifier;
+import org.eclipse.net4j.internal.util.container.Container;
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
-import org.eclipse.net4j.util.container.IContainer;
-import org.eclipse.net4j.util.container.IContainerDelta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +28,7 @@ import java.util.concurrent.ConcurrentMap;
 /**
  * @author Eike Stepper
  */
-public abstract class CDOPackageManagerImpl extends Notifier implements CDOPackageManager, IContainer<CDOPackage>
+public abstract class CDOPackageManagerImpl extends Container<CDOPackage> implements CDOPackageManager
 {
   private static final ContextTracer TRACER = new ContextTracer(OM.DEBUG_MODEL, CDOPackageManagerImpl.class);
 
@@ -67,6 +64,17 @@ public abstract class CDOPackageManagerImpl extends Notifier implements CDOPacka
     return packages.values().toArray(new CDOPackageImpl[packages.size()]);
   }
 
+  public CDOPackage[] getElements()
+  {
+    return getPackages();
+  }
+
+  @Override
+  public boolean isEmpty()
+  {
+    return packages.isEmpty();
+  }
+
   public CDOClassImpl resolveClass(CDOClassRef classRef)
   {
     if (classRef == null)
@@ -100,16 +108,6 @@ public abstract class CDOPackageManagerImpl extends Notifier implements CDOPacka
     return cdoResourcePackage;
   }
 
-  public boolean isEmpty()
-  {
-    return packages.isEmpty();
-  }
-
-  public CDOPackage[] getElements()
-  {
-    return getPackages();
-  }
-
   public List<CDOPackageImpl> getTransientPackages()
   {
     List<CDOPackageImpl> result = new ArrayList();
@@ -140,7 +138,7 @@ public abstract class CDOPackageManagerImpl extends Notifier implements CDOPacka
         TRACER.format("Added package: {0}", cdoPackage);
       }
 
-      fireEvent(new SingleDeltaContainerEvent(this, cdoPackage, IContainerDelta.Kind.ADDED));
+      fireElementAddedEvent(cdoPackage);
     }
     else
     {
@@ -151,6 +149,7 @@ public abstract class CDOPackageManagerImpl extends Notifier implements CDOPacka
   public void removePackage(CDOPackageImpl cdoPackage)
   {
     packages.remove(cdoPackage.getPackageURI());
+    fireElementRemovedEvent(cdoPackage);
   }
 
   /**

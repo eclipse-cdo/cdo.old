@@ -14,8 +14,8 @@ import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionResolver;
 
+import org.eclipse.net4j.internal.util.lifecycle.Lifecycle;
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
-import org.eclipse.net4j.util.ReflectUtil;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -25,7 +25,7 @@ import java.util.Map;
 /**
  * @author Eike Stepper
  */
-public abstract class CDORevisionResolverImpl implements CDORevisionResolver
+public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORevisionResolver
 {
   private static final ContextTracer TRACER = new ContextTracer(OM.DEBUG_REVISION, CDORevisionResolverImpl.class);
 
@@ -79,12 +79,6 @@ public abstract class CDORevisionResolverImpl implements CDORevisionResolver
 
     TimeLine timeLine = getTimeLine(revision.getID());
     timeLine.remove(revision);
-  }
-
-  @Override
-  public String toString()
-  {
-    return ReflectUtil.getSimpleClassName(this) + revisions;
   }
 
   private TimeLine getTimeLine(CDOID id)

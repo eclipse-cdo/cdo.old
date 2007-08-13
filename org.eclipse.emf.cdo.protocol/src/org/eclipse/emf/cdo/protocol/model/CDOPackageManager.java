@@ -13,10 +13,12 @@ package org.eclipse.emf.cdo.protocol.model;
 import org.eclipse.emf.cdo.protocol.model.core.CDOCorePackage;
 import org.eclipse.emf.cdo.protocol.model.resource.CDOResourcePackage;
 
+import org.eclipse.net4j.util.container.IContainer;
+
 /**
  * @author Eike Stepper
  */
-public interface CDOPackageManager
+public interface CDOPackageManager extends IContainer<CDOPackage>
 {
   public int getPackageCount();
 
@@ -29,6 +31,4 @@ public interface CDOPackageManager
   public CDOCorePackage getCDOCorePackage();
 
   public CDOResourcePackage getCDOResourcePackage();
-
-  public boolean isEmpty();
 }
