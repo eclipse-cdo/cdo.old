@@ -36,7 +36,7 @@ public final class CDOClassProxy
   {
     if (cdoClass == null)
     {
-      cdoClass = packageManager.resolveClass(classRef);
+      cdoClass = classRef.resolve(packageManager);
       if (cdoClass == null)
       {
         throw new IllegalStateException("Unable to resolve class ref: " + classRef);

@@ -13,7 +13,6 @@ package org.eclipse.emf.cdo.internal.protocol.model;
 import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
 import org.eclipse.emf.cdo.internal.protocol.model.core.CDOCorePackageImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.resource.CDOResourcePackageImpl;
-import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
@@ -73,29 +72,6 @@ public abstract class CDOPackageManagerImpl extends Container<CDOPackage> implem
   public boolean isEmpty()
   {
     return packages.isEmpty();
-  }
-
-  public CDOClassImpl resolveClass(CDOClassRef classRef)
-  {
-    if (classRef == null)
-    {
-      throw new IllegalArgumentException("classRef == null");
-    }
-
-    String packageURI = classRef.getPackageURI();
-    CDOPackageImpl cdoPackage = lookupPackage(packageURI);
-    if (cdoPackage == null)
-    {
-      if (TRACER.isEnabled())
-      {
-        TRACER.trace("CDO package not found: " + packageURI);
-      }
-
-      return null;
-    }
-
-    int classifierID = classRef.getClassifierID();
-    return cdoPackage.lookupClass(classifierID);
   }
 
   public CDOCorePackageImpl getCDOCorePackage()

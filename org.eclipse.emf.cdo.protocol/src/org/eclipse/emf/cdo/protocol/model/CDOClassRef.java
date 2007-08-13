@@ -18,4 +18,6 @@ public interface CDOClassRef
   public String getPackageURI();
 
   public int getClassifierID();
+
+  public CDOClass resolve(CDOPackageManager packageManager);
 }

@@ -1,6 +1,7 @@
 package org.eclipse.emf.cdo.internal.protocol.model;
 
 import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
+import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
 import org.eclipse.net4j.util.io.ExtendedDataInputStream;
 import org.eclipse.net4j.util.io.ExtendedDataOutputStream;
@@ -52,6 +53,17 @@ public final class CDOClassRefImpl implements CDOClassRef
   public int getClassifierID()
   {
     return classifierID;
+  }
+
+  public CDOClassImpl resolve(CDOPackageManager packageManager)
+  {
+    CDOPackageImpl cdoPackage = (CDOPackageImpl)packageManager.lookupPackage(packageURI);
+    if (cdoPackage != null)
+    {
+      return cdoPackage.lookupClass(classifierID);
+    }
+
+    return null;
   }
 
   @Override

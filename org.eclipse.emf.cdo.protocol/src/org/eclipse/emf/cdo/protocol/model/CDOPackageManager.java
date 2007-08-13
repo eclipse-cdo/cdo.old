@@ -26,8 +26,6 @@ public interface CDOPackageManager extends IContainer<CDOPackage>
 
   public CDOPackage lookupPackage(String packageURI);
 
-  public CDOClass resolveClass(CDOClassRef classRef);
-
   public CDOCorePackage getCDOCorePackage();
 
   public CDOResourcePackage getCDOResourcePackage();
