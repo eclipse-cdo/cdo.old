@@ -13,7 +13,6 @@ package org.eclipse.emf.cdo.internal.protocol.model;
 import org.eclipse.emf.cdo.internal.protocol.CDOIDRangeImpl;
 import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
 import org.eclipse.emf.cdo.protocol.CDOIDRange;
-import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
@@ -166,7 +165,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     return classes.size();
   }
 
-  public CDOClass[] getClasses()
+  public CDOClassImpl[] getClasses()
   {
     resolve();
     return classes.toArray(new CDOClassImpl[classes.size()]);
@@ -176,7 +175,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
    * @return All classes with <code>isAbstract() == false</code> and
    *         <code>isSystem() == false</code>.
    */
-  public CDOClass[] getConcreteClasses()
+  public CDOClassImpl[] getConcreteClasses()
   {
     resolve();
     List<CDOClassImpl> result = new ArrayList(0);
