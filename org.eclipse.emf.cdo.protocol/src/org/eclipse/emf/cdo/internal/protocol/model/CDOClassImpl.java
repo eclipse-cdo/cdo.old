@@ -12,6 +12,7 @@ package org.eclipse.emf.cdo.internal.protocol.model;
 
 import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
+import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.io.ExtendedDataInputStream;
@@ -95,7 +96,7 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     writeFeatures(out);
   }
 
-  public CDOPackageManagerImpl getPackageManager()
+  public CDOPackageManager getPackageManager()
   {
     return containingPackage.getPackageManager();
   }

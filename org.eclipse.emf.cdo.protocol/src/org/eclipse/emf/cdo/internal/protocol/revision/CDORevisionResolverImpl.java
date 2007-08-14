@@ -12,6 +12,7 @@ package org.eclipse.emf.cdo.internal.protocol.revision;
 
 import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
 import org.eclipse.emf.cdo.protocol.CDOID;
+import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionResolver;
 
 import org.eclipse.net4j.internal.util.lifecycle.Lifecycle;
@@ -33,6 +34,18 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
 
   public CDORevisionResolverImpl()
   {
+  }
+
+  public CDOClass getObjectType(CDOID id)
+  {
+    TimeLine timeLine = revisions.get(id);
+    if (timeLine == null || timeLine.isEmpty())
+    {
+      return null;
+    }
+
+    CDORevisionImpl revision = timeLine.getFirst();
+    return revision.getCDOClass();
   }
 
   public CDORevisionImpl getRevision(CDOID id)

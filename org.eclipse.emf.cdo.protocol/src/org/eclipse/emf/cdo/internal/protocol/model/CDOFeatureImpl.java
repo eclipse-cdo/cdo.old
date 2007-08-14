@@ -12,6 +12,7 @@ package org.eclipse.emf.cdo.internal.protocol.model;
 
 import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
+import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.io.ExtendedDataInputStream;
@@ -144,7 +145,7 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
     }
   }
 
-  public CDOPackageManagerImpl getPackageManager()
+  public CDOPackageManager getPackageManager()
   {
     return getContainingPackage().getPackageManager();
   }

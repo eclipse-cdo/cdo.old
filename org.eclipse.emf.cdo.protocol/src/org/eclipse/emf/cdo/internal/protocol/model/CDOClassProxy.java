@@ -10,18 +10,20 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.model;
 
+import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
+
 /**
  * @author Eike Stepper
  */
 public final class CDOClassProxy
 {
-  private CDOPackageManagerImpl packageManager;
+  private CDOPackageManager packageManager;
 
   private CDOClassRefImpl classRef;
 
   private CDOClassImpl cdoClass;
 
-  public CDOClassProxy(CDOClassRefImpl classRef, CDOPackageManagerImpl packageManager)
+  public CDOClassProxy(CDOClassRefImpl classRef, CDOPackageManager packageManager)
   {
     this.classRef = classRef;
     this.packageManager = packageManager;

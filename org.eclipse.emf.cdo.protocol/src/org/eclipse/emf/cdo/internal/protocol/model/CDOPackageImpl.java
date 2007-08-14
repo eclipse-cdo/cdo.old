@@ -15,6 +15,7 @@ import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
 import org.eclipse.emf.cdo.protocol.CDOIDRange;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
+import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.io.ExtendedDataInputStream;
@@ -34,7 +35,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
 
   private static final ContextTracer PROTOCOL = new ContextTracer(OM.DEBUG_PROTOCOL, CDOPackageImpl.class);
 
-  private CDOPackageManagerImpl packageManager;
+  private CDOPackageManager packageManager;
 
   private String packageURI;
 
@@ -50,7 +51,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
 
   private boolean persistent = true;
 
-  public CDOPackageImpl(CDOPackageManagerImpl packageManager, String packageURI, String name, String ecore,
+  public CDOPackageImpl(CDOPackageManager packageManager, String packageURI, String name, String ecore,
       boolean dynamic, CDOIDRange metaIDRange)
   {
     super(name);
@@ -67,7 +68,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     createLists();
   }
 
-  public CDOPackageImpl(CDOPackageManagerImpl packageManager, ExtendedDataInputStream in) throws IOException
+  public CDOPackageImpl(CDOPackageManager packageManager, ExtendedDataInputStream in) throws IOException
   {
     this.packageManager = packageManager;
     createLists();
@@ -144,7 +145,12 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     }
   }
 
-  public CDOPackageManagerImpl getPackageManager()
+  public void setPackageManager(CDOPackageManager packageManager)
+  {
+    this.packageManager = packageManager;
+  }
+
+  public CDOPackageManager getPackageManager()
   {
     return packageManager;
   }
@@ -197,9 +203,9 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
 
   public String getEcore()
   {
-    if (ecore == null)
+    if (ecore == null && packageManager instanceof CDOPackageManagerImpl)
     {
-      ecore = packageManager.provideEcore(this);
+      ecore = ((CDOPackageManagerImpl)packageManager).provideEcore(this);
     }
 
     return ecore;
@@ -280,10 +286,10 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
 
   private void resolve()
   {
-    if (classes == null)
+    if (classes == null && packageManager instanceof CDOPackageManagerImpl)
     {
       createLists();
-      packageManager.resolve(this);
+      ((CDOPackageManagerImpl)packageManager).resolve(this);
     }
   }
 
