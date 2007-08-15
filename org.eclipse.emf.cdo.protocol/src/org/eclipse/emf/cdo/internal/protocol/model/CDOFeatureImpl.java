@@ -135,7 +135,7 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
 
     if (isReference())
     {
-      CDOClassRefImpl classRef = referenceType.getCDOClassRef();
+      CDOClassRefImpl classRef = referenceType.getClassRef();
       if (PROTOCOL.isEnabled())
       {
         PROTOCOL.format("Writing reference type: classRef={0}", classRef);
@@ -206,6 +206,11 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
     }
 
     return null;
+  }
+
+  public CDOClassProxy getReferenceTypeProxy()
+  {
+    return referenceType;
   }
 
   public void setFeatureIndex(int featureIndex)

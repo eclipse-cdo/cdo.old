@@ -21,6 +21,7 @@ import org.eclipse.net4j.util.io.ExtendedDataOutputStream;
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -141,6 +142,11 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
   public CDOClassImpl getSuperType(int index)
   {
     return superTypes.get(index).getCDOClass();
+  }
+
+  public List<CDOClassProxy> getSuperTypeProxies()
+  {
+    return Collections.unmodifiableList(superTypes);
   }
 
   public int getFeatureCount()
@@ -313,7 +319,7 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     out.writeInt(size);
     for (CDOClassProxy proxy : superTypes)
     {
-      CDOClassRefImpl classRef = proxy.getCDOClassRef();
+      CDOClassRefImpl classRef = proxy.getClassRef();
       if (PROTOCOL.isEnabled())
       {
         PROTOCOL.format("Writing super type: classRef={0}", classRef);

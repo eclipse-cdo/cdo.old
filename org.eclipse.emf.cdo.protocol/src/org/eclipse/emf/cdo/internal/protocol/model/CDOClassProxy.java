@@ -34,6 +34,26 @@ public final class CDOClassProxy
     this.cdoClass = cdoClass;
   }
 
+  public String getPackageURI()
+  {
+    if (cdoClass == null)
+    {
+      return classRef.getPackageURI();
+    }
+
+    return cdoClass.getContainingPackage().getPackageURI();
+  }
+
+  public int getClassifierID()
+  {
+    if (cdoClass == null)
+    {
+      return classRef.getClassifierID();
+    }
+
+    return cdoClass.getClassifierID();
+  }
+
   public CDOClassImpl getCDOClass()
   {
     if (cdoClass == null)
@@ -48,7 +68,7 @@ public final class CDOClassProxy
     return cdoClass;
   }
 
-  public CDOClassRefImpl getCDOClassRef()
+  public CDOClassRefImpl getClassRef()
   {
     if (classRef == null)
     {
