@@ -48,6 +48,9 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
 
   private CDOIDRange metaIDRange;
 
+  /**
+   * TODO If this is only needed by the client then put it into server info
+   */
   private boolean persistent = true;
 
   public CDOPackageImpl(CDOPackageManager packageManager, String packageURI, String name, String ecore,
@@ -77,7 +80,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
   /**
    * Creates a proxy CDO package
    */
-  public CDOPackageImpl(CDOPackageManagerImpl packageManager, String packageURI, boolean dynamic, CDOIDRange metaIDRange)
+  public CDOPackageImpl(CDOPackageManager packageManager, String packageURI, boolean dynamic, CDOIDRange metaIDRange)
   {
     this.packageManager = packageManager;
     this.packageURI = packageURI;
@@ -208,6 +211,14 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     }
 
     return ecore;
+  }
+
+  /**
+   * TODO Add IStore API to demand read dynamic ecore string
+   */
+  public void setEcore(String ecore)
+  {
+    this.ecore = ecore;
   }
 
   public CDOIDRange getMetaIDRange()

@@ -103,7 +103,7 @@ public final class CDOIDRangeImpl extends Pair<CDOID, CDOID> implements CDOIDRan
     return MessageFormat.format("[{0}:{1}]", getLowerBound(), getUpperBound());
   }
 
-  public static final CDOIDRange create(long lowerBound, long upperBound)
+  public static CDOIDRange create(long lowerBound, long upperBound)
   {
     return new CDOIDRangeImpl(lowerBound, upperBound);
   }

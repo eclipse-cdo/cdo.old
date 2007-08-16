@@ -59,6 +59,11 @@ public abstract class CDOModelElementImpl implements CDOModelElement
     return name;
   }
 
+  public void setName(String name)
+  {
+    this.name = name;
+  }
+
   public Object getClientInfo()
   {
     return clientInfo;
