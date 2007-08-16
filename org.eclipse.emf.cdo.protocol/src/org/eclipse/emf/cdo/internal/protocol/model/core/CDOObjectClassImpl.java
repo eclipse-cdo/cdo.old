@@ -23,4 +23,10 @@ public class CDOObjectClassImpl extends CDOClassImpl implements CDOObjectClass
   {
     super(containingPackage, CLASSIFIER_ID, NAME, false);
   }
+
+  @Override
+  public boolean isRoot()
+  {
+    return true;
+  }
 }

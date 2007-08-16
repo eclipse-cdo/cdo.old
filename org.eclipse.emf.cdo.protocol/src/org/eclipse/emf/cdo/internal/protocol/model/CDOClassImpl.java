@@ -122,6 +122,11 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     return false;
   }
 
+  public boolean isRoot()
+  {
+    return false;
+  }
+
   public int getSuperTypeCount()
   {
     return superTypes.size();

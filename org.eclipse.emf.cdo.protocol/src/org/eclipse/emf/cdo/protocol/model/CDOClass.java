@@ -21,6 +21,8 @@ public interface CDOClass extends CDOModelElement
 
   public boolean isResource();
 
+  public boolean isRoot();
+
   public int getSuperTypeCount();
 
   public CDOClass getSuperType(int index);
