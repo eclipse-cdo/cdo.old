@@ -122,6 +122,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
   @Override
   public void write(ExtendedDataOutputStream out) throws IOException
   {
+    resolve();
     if (PROTOCOL.isEnabled())
     {
       PROTOCOL.format("Writing package: URI={0}, name={1}, dynamic={2}, metaIDRange={3}", packageURI, getName(),
