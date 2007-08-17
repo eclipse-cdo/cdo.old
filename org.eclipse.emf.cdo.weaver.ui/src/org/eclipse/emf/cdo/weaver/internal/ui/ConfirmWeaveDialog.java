@@ -309,11 +309,11 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
         String packageURI = (String)parentElement;
         EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(packageURI);
         List<EClass> eClasses = EMFUtil.getPersistentClasses(ePackage);
-        Collections.sort(eClasses, new Comparator()
+        Collections.sort(eClasses, new Comparator<EClass>()
         {
-          public int compare(Object o1, Object o2)
+          public int compare(EClass c1, EClass c2)
           {
-            return StringUtil.compare(((EClass)o1).getName(), ((EClass)o2).getName());
+            return StringUtil.compare(c1.getName(), c2.getName());
           }
         });
 
