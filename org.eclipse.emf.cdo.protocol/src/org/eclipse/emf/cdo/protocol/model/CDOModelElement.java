@@ -21,5 +21,9 @@ public interface CDOModelElement
 
   public Object getClientInfo();
 
+  public void setClientInfo(Object clientInfo);
+
   public Object getServerInfo();
+
+  public void setServerInfo(Object serverInfo);
 }
