@@ -11,12 +11,19 @@
 package org.eclipse.emf.cdo.protocol.revision;
 
 import org.eclipse.emf.cdo.protocol.CDOID;
+import org.eclipse.emf.cdo.protocol.model.CDOClass;
 
 /**
  * @author Eike Stepper
  */
 public interface CDORevisionResolver
 {
+  /**
+   * @return The type of an object if a revision for that object is in the
+   *         revision cache, <code>null</code> otherwise.
+   */
+  public CDOClass getObjectType(CDOID id);
+
   public CDORevision getRevision(CDOID id);
 
   public CDORevision getRevision(CDOID id, long timeStamp);
