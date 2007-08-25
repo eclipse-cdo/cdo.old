@@ -15,8 +15,8 @@ import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
-import org.eclipse.net4j.util.io.ExtendedDataInputStream;
-import org.eclipse.net4j.util.io.ExtendedDataOutputStream;
+import org.eclipse.net4j.util.io.ExtendedDataInput;
+import org.eclipse.net4j.util.io.ExtendedDataOutput;
 
 import java.io.IOException;
 import java.text.MessageFormat;
@@ -61,14 +61,14 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     }
   }
 
-  public CDOClassImpl(CDOPackageImpl containingPackage, ExtendedDataInputStream in) throws IOException
+  public CDOClassImpl(CDOPackageImpl containingPackage, ExtendedDataInput in) throws IOException
   {
     this.containingPackage = containingPackage;
     read(in);
   }
 
   @Override
-  public void read(ExtendedDataInputStream in) throws IOException
+  public void read(ExtendedDataInput in) throws IOException
   {
     super.read(in);
     classifierID = in.readInt();
@@ -83,7 +83,7 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
   }
 
   @Override
-  public void write(ExtendedDataOutputStream out) throws IOException
+  public void write(ExtendedDataOutput out) throws IOException
   {
     if (PROTOCOL.isEnabled())
     {
@@ -278,7 +278,7 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     indices.set(featureID, index);
   }
 
-  private void readSuperTypes(ExtendedDataInputStream in) throws IOException
+  private void readSuperTypes(ExtendedDataInput in) throws IOException
   {
     int size = in.readInt();
     if (PROTOCOL.isEnabled())
@@ -298,7 +298,7 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     }
   }
 
-  private void readFeatures(ExtendedDataInputStream in) throws IOException
+  private void readFeatures(ExtendedDataInput in) throws IOException
   {
     int size = in.readInt();
     if (PROTOCOL.isEnabled())
@@ -313,7 +313,7 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     }
   }
 
-  private void writeSuperTypes(ExtendedDataOutputStream out) throws IOException
+  private void writeSuperTypes(ExtendedDataOutput out) throws IOException
   {
     int size = superTypes.size();
     if (PROTOCOL.isEnabled())
@@ -334,7 +334,7 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     }
   }
 
-  private void writeFeatures(ExtendedDataOutputStream out) throws IOException
+  private void writeFeatures(ExtendedDataOutput out) throws IOException
   {
     int size = features.size();
     if (PROTOCOL.isEnabled())

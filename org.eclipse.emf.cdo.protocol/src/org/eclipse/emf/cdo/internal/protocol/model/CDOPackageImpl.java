@@ -17,8 +17,8 @@ import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
-import org.eclipse.net4j.util.io.ExtendedDataInputStream;
-import org.eclipse.net4j.util.io.ExtendedDataOutputStream;
+import org.eclipse.net4j.util.io.ExtendedDataInput;
+import org.eclipse.net4j.util.io.ExtendedDataOutput;
 
 import java.io.IOException;
 import java.text.MessageFormat;
@@ -70,7 +70,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     createLists();
   }
 
-  public CDOPackageImpl(CDOPackageManager packageManager, ExtendedDataInputStream in) throws IOException
+  public CDOPackageImpl(CDOPackageManager packageManager, ExtendedDataInput in) throws IOException
   {
     this.packageManager = packageManager;
     createLists();
@@ -93,7 +93,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
   }
 
   @Override
-  public void read(ExtendedDataInputStream in) throws IOException
+  public void read(ExtendedDataInput in) throws IOException
   {
     super.read(in);
     packageURI = in.readString();
@@ -120,7 +120,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
   }
 
   @Override
-  public void write(ExtendedDataOutputStream out) throws IOException
+  public void write(ExtendedDataOutput out) throws IOException
   {
     resolve();
     if (PROTOCOL.isEnabled())

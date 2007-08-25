@@ -24,8 +24,8 @@ import org.eclipse.emf.cdo.protocol.revision.CDORevisionData;
 
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.ImplementationError;
-import org.eclipse.net4j.util.io.ExtendedDataInputStream;
-import org.eclipse.net4j.util.io.ExtendedDataOutputStream;
+import org.eclipse.net4j.util.io.ExtendedDataInput;
+import org.eclipse.net4j.util.io.ExtendedDataOutput;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -83,7 +83,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     copyValues(source.values);
   }
 
-  public CDORevisionImpl(ExtendedDataInputStream in, CDOPackageManager packageManager) throws IOException
+  public CDORevisionImpl(ExtendedDataInput in, CDOPackageManager packageManager) throws IOException
   {
     CDOClassRefImpl classRef = new CDOClassRefImpl(in, null);
     cdoClass = classRef.resolve(packageManager);
@@ -107,7 +107,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     readValues(in);
   }
 
-  public void write(ExtendedDataOutputStream out, CDOIDProvider idProvider) throws IOException
+  public void write(ExtendedDataOutput out, CDOIDProvider idProvider) throws IOException
   {
     CDOClassRefImpl classRef = cdoClass.createClassRef();
     if (TRACER.isEnabled())
@@ -471,7 +471,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     }
   }
 
-  private void readValues(ExtendedDataInputStream in) throws IOException
+  private void readValues(ExtendedDataInput in) throws IOException
   {
     CDOFeatureImpl[] features = cdoClass.getAllFeatures();
     values = new Object[features.length];
@@ -497,7 +497,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     }
   }
 
-  private void writeValues(ExtendedDataOutputStream out, CDOIDProvider idProvider) throws IOException
+  private void writeValues(ExtendedDataOutput out, CDOIDProvider idProvider) throws IOException
   {
     CDOFeatureImpl[] features = cdoClass.getAllFeatures();
     for (int i = 0; i < features.length; i++)

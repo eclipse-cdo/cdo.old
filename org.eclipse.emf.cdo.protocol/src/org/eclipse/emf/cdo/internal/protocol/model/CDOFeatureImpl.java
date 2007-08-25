@@ -15,8 +15,8 @@ import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
-import org.eclipse.net4j.util.io.ExtendedDataInputStream;
-import org.eclipse.net4j.util.io.ExtendedDataOutputStream;
+import org.eclipse.net4j.util.io.ExtendedDataInput;
+import org.eclipse.net4j.util.io.ExtendedDataOutput;
 
 import java.io.IOException;
 import java.text.MessageFormat;
@@ -85,14 +85,14 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
     }
   }
 
-  public CDOFeatureImpl(CDOClassImpl containingClass, ExtendedDataInputStream in) throws IOException
+  public CDOFeatureImpl(CDOClassImpl containingClass, ExtendedDataInput in) throws IOException
   {
     this.containingClass = containingClass;
     read(in);
   }
 
   @Override
-  public void read(ExtendedDataInputStream in) throws IOException
+  public void read(ExtendedDataInput in) throws IOException
   {
     super.read(in);
     featureID = in.readInt();
@@ -119,7 +119,7 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
   }
 
   @Override
-  public void write(ExtendedDataOutputStream out) throws IOException
+  public void write(ExtendedDataOutput out) throws IOException
   {
     if (PROTOCOL.isEnabled())
     {

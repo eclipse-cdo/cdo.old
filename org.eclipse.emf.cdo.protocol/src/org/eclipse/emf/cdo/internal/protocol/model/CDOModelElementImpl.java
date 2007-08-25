@@ -15,8 +15,8 @@ import org.eclipse.emf.cdo.protocol.model.CDOModelElement;
 
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.ImplementationError;
-import org.eclipse.net4j.util.io.ExtendedDataInputStream;
-import org.eclipse.net4j.util.io.ExtendedDataOutputStream;
+import org.eclipse.net4j.util.io.ExtendedDataInput;
+import org.eclipse.net4j.util.io.ExtendedDataOutput;
 
 import java.io.IOException;
 
@@ -44,12 +44,12 @@ public abstract class CDOModelElementImpl implements CDOModelElement
   {
   }
 
-  public void read(ExtendedDataInputStream in) throws IOException
+  public void read(ExtendedDataInput in) throws IOException
   {
     name = in.readString();
   }
 
-  public void write(ExtendedDataOutputStream out) throws IOException
+  public void write(ExtendedDataOutput out) throws IOException
   {
     out.writeString(name);
   }

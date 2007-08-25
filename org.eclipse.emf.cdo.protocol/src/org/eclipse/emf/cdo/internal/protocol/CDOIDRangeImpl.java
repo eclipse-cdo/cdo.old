@@ -14,8 +14,8 @@ import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.CDOIDRange;
 
 import org.eclipse.net4j.util.collection.Pair;
-import org.eclipse.net4j.util.io.ExtendedDataInputStream;
-import org.eclipse.net4j.util.io.ExtendedDataOutputStream;
+import org.eclipse.net4j.util.io.ExtendedDataInput;
+import org.eclipse.net4j.util.io.ExtendedDataOutput;
 
 import java.io.IOException;
 import java.text.MessageFormat;
@@ -108,12 +108,12 @@ public final class CDOIDRangeImpl extends Pair<CDOID, CDOID> implements CDOIDRan
     return new CDOIDRangeImpl(lowerBound, upperBound);
   }
 
-  public static CDOIDRange read(ExtendedDataInputStream in) throws IOException
+  public static CDOIDRange read(ExtendedDataInput in) throws IOException
   {
     return new CDOIDRangeImpl(CDOIDImpl.read(in), CDOIDImpl.read(in));
   }
 
-  public static void write(ExtendedDataOutputStream out, CDOIDRange idRange) throws IOException
+  public static void write(ExtendedDataOutput out, CDOIDRange idRange) throws IOException
   {
     CDOIDImpl.write(out, idRange.getLowerBound());
     CDOIDImpl.write(out, idRange.getUpperBound());

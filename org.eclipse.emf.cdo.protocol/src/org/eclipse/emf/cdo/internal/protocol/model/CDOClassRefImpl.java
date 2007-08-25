@@ -3,8 +3,8 @@ package org.eclipse.emf.cdo.internal.protocol.model;
 import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
-import org.eclipse.net4j.util.io.ExtendedDataInputStream;
-import org.eclipse.net4j.util.io.ExtendedDataOutputStream;
+import org.eclipse.net4j.util.io.ExtendedDataInput;
+import org.eclipse.net4j.util.io.ExtendedDataOutput;
 
 import java.io.IOException;
 import java.text.MessageFormat;
@@ -26,7 +26,7 @@ public final class CDOClassRefImpl implements CDOClassRef
     this.classifierID = classifierID;
   }
 
-  public CDOClassRefImpl(ExtendedDataInputStream in, String defaultURI) throws IOException
+  public CDOClassRefImpl(ExtendedDataInput in, String defaultURI) throws IOException
   {
     // TODO Optimize transfer of URIs
     packageURI = in.readString();
@@ -38,7 +38,7 @@ public final class CDOClassRefImpl implements CDOClassRef
     classifierID = in.readInt();
   }
 
-  public void write(ExtendedDataOutputStream out, String defaultURI) throws IOException
+  public void write(ExtendedDataOutput out, String defaultURI) throws IOException
   {
     // TODO Optimize transfer of URIs
     out.writeString(packageURI.equals(defaultURI) ? null : packageURI);

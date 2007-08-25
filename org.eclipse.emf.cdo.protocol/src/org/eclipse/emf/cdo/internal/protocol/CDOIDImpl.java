@@ -5,8 +5,8 @@ import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.CDOIDTyped;
 import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 
-import org.eclipse.net4j.util.io.ExtendedDataInputStream;
-import org.eclipse.net4j.util.io.ExtendedDataOutputStream;
+import org.eclipse.net4j.util.io.ExtendedDataInput;
+import org.eclipse.net4j.util.io.ExtendedDataOutput;
 
 import java.io.IOException;
 
@@ -47,6 +47,21 @@ public class CDOIDImpl implements CDOID
   public CDOID getNext()
   {
     return CDOIDImpl.create(value < 0 ? value - 2 : value + 2);
+  }
+
+  public int compareTo(CDOID that)
+  {
+    if (value < that.getValue())
+    {
+      return -1;
+    }
+
+    if (value > that.getValue())
+    {
+      return 1;
+    }
+
+    return 0;
   }
 
   @Override
@@ -112,7 +127,7 @@ public class CDOIDImpl implements CDOID
     return create(value);
   }
 
-  public static CDOID read(ExtendedDataInputStream in) throws IOException
+  public static CDOID read(ExtendedDataInput in) throws IOException
   {
     long value = in.readLong();
     boolean typed = in.readBoolean();
@@ -125,7 +140,7 @@ public class CDOIDImpl implements CDOID
     return create(value);
   }
 
-  public static void write(ExtendedDataOutputStream out, CDOID id) throws IOException
+  public static void write(ExtendedDataOutput out, CDOID id) throws IOException
   {
     out.writeLong(id == null ? 0L : id.getValue());
     if (id instanceof CDOIDTyped)

@@ -14,8 +14,8 @@ import org.eclipse.emf.cdo.internal.protocol.CDOIDImpl;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.model.CDOType;
 
-import org.eclipse.net4j.util.io.ExtendedDataInputStream;
-import org.eclipse.net4j.util.io.ExtendedDataOutputStream;
+import org.eclipse.net4j.util.io.ExtendedDataInput;
+import org.eclipse.net4j.util.io.ExtendedDataOutput;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -61,13 +61,13 @@ public abstract class CDOTypeImpl implements CDOType
     }
 
     @Override
-    public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
+    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       out.writeBoolean((Boolean)(value == null ? getDefaultValue() : value));
     }
 
     @Override
-    public Object readValue(ExtendedDataInputStream in) throws IOException
+    public Object readValue(ExtendedDataInput in) throws IOException
     {
       return new Boolean(in.readBoolean());
     }
@@ -83,13 +83,13 @@ public abstract class CDOTypeImpl implements CDOType
     }
 
     @Override
-    public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
+    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       out.writeByte((Byte)(value == null ? getDefaultValue() : value));
     }
 
     @Override
-    public Object readValue(ExtendedDataInputStream in) throws IOException
+    public Object readValue(ExtendedDataInput in) throws IOException
     {
       return new Byte(in.readByte());
     }
@@ -105,13 +105,13 @@ public abstract class CDOTypeImpl implements CDOType
     }
 
     @Override
-    public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
+    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       out.writeChar(((Character)(value == null ? getDefaultValue() : value)).charValue());
     }
 
     @Override
-    public Object readValue(ExtendedDataInputStream in) throws IOException
+    public Object readValue(ExtendedDataInput in) throws IOException
     {
       return new Character(in.readChar());
     }
@@ -127,13 +127,13 @@ public abstract class CDOTypeImpl implements CDOType
     }
 
     @Override
-    public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
+    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       out.writeDouble((Double)(value == null ? getDefaultValue() : value));
     }
 
     @Override
-    public Object readValue(ExtendedDataInputStream in) throws IOException
+    public Object readValue(ExtendedDataInput in) throws IOException
     {
       return new Double(in.readDouble());
     }
@@ -149,13 +149,13 @@ public abstract class CDOTypeImpl implements CDOType
     }
 
     @Override
-    public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
+    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       out.writeFloat((Float)(value == null ? getDefaultValue() : value));
     }
 
     @Override
-    public Object readValue(ExtendedDataInputStream in) throws IOException
+    public Object readValue(ExtendedDataInput in) throws IOException
     {
       return new Float(in.readFloat());
     }
@@ -171,13 +171,13 @@ public abstract class CDOTypeImpl implements CDOType
     }
 
     @Override
-    public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
+    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       out.writeInt((Integer)(value == null ? getDefaultValue() : value));
     }
 
     @Override
-    public Object readValue(ExtendedDataInputStream in) throws IOException
+    public Object readValue(ExtendedDataInput in) throws IOException
     {
       return new Integer(in.readInt());
     }
@@ -193,13 +193,13 @@ public abstract class CDOTypeImpl implements CDOType
     }
 
     @Override
-    public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
+    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       out.writeLong((Long)(value == null ? getDefaultValue() : value));
     }
 
     @Override
-    public Object readValue(ExtendedDataInputStream in) throws IOException
+    public Object readValue(ExtendedDataInput in) throws IOException
     {
       return new Long(in.readLong());
     }
@@ -215,13 +215,13 @@ public abstract class CDOTypeImpl implements CDOType
     }
 
     @Override
-    public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
+    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       out.writeShort((Short)(value == null ? getDefaultValue() : value));
     }
 
     @Override
-    public Object readValue(ExtendedDataInputStream in) throws IOException
+    public Object readValue(ExtendedDataInput in) throws IOException
     {
       return new Short(in.readShort());
     }
@@ -237,13 +237,13 @@ public abstract class CDOTypeImpl implements CDOType
     }
 
     @Override
-    public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
+    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       CDOIDImpl.write(out, (CDOID)value);
     }
 
     @Override
-    public Object readValue(ExtendedDataInputStream in) throws IOException
+    public Object readValue(ExtendedDataInput in) throws IOException
     {
       return CDOIDImpl.read(in);
     }
@@ -258,13 +258,13 @@ public abstract class CDOTypeImpl implements CDOType
     }
 
     @Override
-    public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
+    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       throw new UnsupportedOperationException("Not yet implemented");
     }
 
     @Override
-    public Object readValue(ExtendedDataInputStream in) throws IOException
+    public Object readValue(ExtendedDataInput in) throws IOException
     {
       throw new UnsupportedOperationException("Not yet implemented");
     }
@@ -279,13 +279,13 @@ public abstract class CDOTypeImpl implements CDOType
     }
 
     @Override
-    public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
+    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       throw new UnsupportedOperationException("Not yet implemented");
     }
 
     @Override
-    public Object readValue(ExtendedDataInputStream in) throws IOException
+    public Object readValue(ExtendedDataInput in) throws IOException
     {
       throw new UnsupportedOperationException("Not yet implemented");
     }
@@ -300,13 +300,13 @@ public abstract class CDOTypeImpl implements CDOType
     }
 
     @Override
-    public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
+    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       throw new UnsupportedOperationException("Not yet implemented");
     }
 
     @Override
-    public Object readValue(ExtendedDataInputStream in) throws IOException
+    public Object readValue(ExtendedDataInput in) throws IOException
     {
       throw new UnsupportedOperationException("Not yet implemented");
     }
@@ -321,7 +321,7 @@ public abstract class CDOTypeImpl implements CDOType
     }
 
     @Override
-    public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
+    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       if (value != null)
       {
@@ -335,7 +335,7 @@ public abstract class CDOTypeImpl implements CDOType
     }
 
     @Override
-    public Object readValue(ExtendedDataInputStream in) throws IOException
+    public Object readValue(ExtendedDataInput in) throws IOException
     {
       if (in.readBoolean())
       {
@@ -357,13 +357,13 @@ public abstract class CDOTypeImpl implements CDOType
     }
 
     @Override
-    public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
+    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       throw new UnsupportedOperationException("Not yet implemented");
     }
 
     @Override
-    public Object readValue(ExtendedDataInputStream in) throws IOException
+    public Object readValue(ExtendedDataInput in) throws IOException
     {
       throw new UnsupportedOperationException("Not yet implemented");
     }
@@ -378,13 +378,13 @@ public abstract class CDOTypeImpl implements CDOType
     }
 
     @Override
-    public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
+    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       throw new UnsupportedOperationException("Not yet implemented");
     }
 
     @Override
-    public Object readValue(ExtendedDataInputStream in) throws IOException
+    public Object readValue(ExtendedDataInput in) throws IOException
     {
       throw new UnsupportedOperationException("Not yet implemented");
     }
@@ -399,13 +399,13 @@ public abstract class CDOTypeImpl implements CDOType
     }
 
     @Override
-    public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
+    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       throw new UnsupportedOperationException("Not yet implemented");
     }
 
     @Override
-    public Object readValue(ExtendedDataInputStream in) throws IOException
+    public Object readValue(ExtendedDataInput in) throws IOException
     {
       throw new UnsupportedOperationException("Not yet implemented");
     }
@@ -420,13 +420,13 @@ public abstract class CDOTypeImpl implements CDOType
     }
 
     @Override
-    public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
+    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       throw new UnsupportedOperationException("Not yet implemented");
     }
 
     @Override
-    public Object readValue(ExtendedDataInputStream in) throws IOException
+    public Object readValue(ExtendedDataInput in) throws IOException
     {
       throw new UnsupportedOperationException("Not yet implemented");
     }
@@ -441,13 +441,13 @@ public abstract class CDOTypeImpl implements CDOType
     }
 
     @Override
-    public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
+    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       throw new UnsupportedOperationException("Not yet implemented");
     }
 
     @Override
-    public Object readValue(ExtendedDataInputStream in) throws IOException
+    public Object readValue(ExtendedDataInput in) throws IOException
     {
       throw new UnsupportedOperationException("Not yet implemented");
     }
@@ -463,13 +463,13 @@ public abstract class CDOTypeImpl implements CDOType
     }
 
     @Override
-    public void writeValue(ExtendedDataOutputStream out, Object value) throws IOException
+    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       out.writeString((String)value);
     }
 
     @Override
-    public Object readValue(ExtendedDataInputStream in) throws IOException
+    public Object readValue(ExtendedDataInput in) throws IOException
     {
       return in.readString();
     }
@@ -525,16 +525,16 @@ public abstract class CDOTypeImpl implements CDOType
 
   public abstract Object copyValue(Object value);
 
-  public abstract void writeValue(ExtendedDataOutputStream out, Object value) throws IOException;
+  public abstract void writeValue(ExtendedDataOutput out, Object value) throws IOException;
 
-  public abstract Object readValue(ExtendedDataInputStream in) throws IOException;
+  public abstract Object readValue(ExtendedDataInput in) throws IOException;
 
-  public void write(ExtendedDataOutputStream out) throws IOException
+  public void write(ExtendedDataOutput out) throws IOException
   {
     out.writeByte(typeID);
   }
 
-  public static CDOTypeImpl read(ExtendedDataInputStream in) throws IOException
+  public static CDOTypeImpl read(ExtendedDataInput in) throws IOException
   {
     byte typeID = in.readByte();
     return getType(typeID);

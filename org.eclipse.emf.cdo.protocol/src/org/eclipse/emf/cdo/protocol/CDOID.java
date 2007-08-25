@@ -5,7 +5,7 @@ import org.eclipse.emf.cdo.internal.protocol.CDOIDNull;
 /**
  * @author Eike Stepper
  */
-public interface CDOID
+public interface CDOID extends Comparable<CDOID>
 {
   public static final CDOID NULL = new CDOIDNull();
 
