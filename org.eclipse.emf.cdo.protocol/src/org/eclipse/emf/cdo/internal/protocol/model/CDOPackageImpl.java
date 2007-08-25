@@ -208,6 +208,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
   {
     if (ecore == null && packageManager instanceof CDOPackageManagerImpl)
     {
+      // TODO Can ecore be null?
       ecore = ((CDOPackageManagerImpl)packageManager).provideEcore(this);
     }
 
