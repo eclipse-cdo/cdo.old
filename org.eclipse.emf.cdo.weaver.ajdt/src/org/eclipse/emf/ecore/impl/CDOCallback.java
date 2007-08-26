@@ -10,6 +10,8 @@
  **************************************************************************/
 package org.eclipse.emf.ecore.impl;
 
+// import org.eclipse.emf.ecore.resource.Resource;
+
 /**
  * @author Eike Stepper
  */
@@ -18,4 +20,6 @@ public interface CDOCallback
   public void beforeRead(EObjectImpl eObject);
 
   public void beforeWrite(EObjectImpl eObject);
+
+  // public Resource callbackResource(BasicEObjectImpl eObject);
 }

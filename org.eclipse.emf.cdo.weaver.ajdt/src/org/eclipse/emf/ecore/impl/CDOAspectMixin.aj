@@ -10,6 +10,8 @@
  **************************************************************************/
 package org.eclipse.emf.ecore.impl;
 
+import org.eclipse.emf.ecore.resource.Resource;
+
 /**
  * @author Eike Stepper
  */
@@ -44,4 +46,18 @@ public aspect CDOAspectMixin
       cdoCallback.beforeWrite(this);
     }
   }
+
+// public Resource BasicEObjectImpl.internalResource()
+// {
+// if (this instanceof EObjectImpl)
+// {
+// EObjectImpl eObject = (EObjectImpl)this;
+// if (eObject.getCDOCallback() != null)
+// {
+// return eObject.getCDOCallback().callbackResource(this);
+// }
+// }
+//
+// return null;
+// }
 }
