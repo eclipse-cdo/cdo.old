@@ -121,8 +121,9 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     return timeLine;
   }
 
-  protected void verifyRevision(CDORevisionImpl revision)
+  protected CDORevisionImpl verifyRevision(CDORevisionImpl revision)
   {
+    return revision;
   }
 
   protected abstract CDORevisionImpl loadRevision(CDOID id);
@@ -163,7 +164,12 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       }
       else
       {
-        verifyRevision(revision);
+        CDORevisionImpl oldRevision = revision;
+        revision = verifyRevision(oldRevision);
+        if (revision != oldRevision)
+        {
+          set(0, revision);
+        }
       }
 
       return revision;
