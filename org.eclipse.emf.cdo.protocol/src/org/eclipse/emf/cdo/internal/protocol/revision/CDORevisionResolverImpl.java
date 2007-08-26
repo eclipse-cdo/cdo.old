@@ -121,6 +121,10 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     return timeLine;
   }
 
+  protected void verifyRevision(CDORevisionImpl revision)
+  {
+  }
+
   protected abstract CDORevisionImpl loadRevision(CDOID id);
 
   protected abstract CDORevisionImpl loadRevision(CDOID id, long timeStamp);
@@ -157,12 +161,17 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
         revision = loadRevision(id);
         addFirst(revision);
       }
+      else
+      {
+        verifyRevision(revision);
+      }
 
       return revision;
     }
 
     public CDORevisionImpl getRevision(long timeStamp)
     {
+      // TODO Binary search?
       ListIterator<CDORevisionImpl> it = listIterator();
       while (it.hasNext())
       {
