@@ -12,14 +12,14 @@ package org.eclipse.emf.cdo.protocol.util;
 
 import org.eclipse.emf.cdo.protocol.CDOProtocolConstants;
 
-import org.eclipse.net4j.signal.ZIPStreamWrapperInjector;
+import org.eclipse.net4j.signal.GZIPStreamWrapperInjector;
 
 /**
  * @author Eike Stepper
  */
-public class CDOZIPStreamWrapperInjector extends ZIPStreamWrapperInjector
+public class CDOGZIPStreamWrapperInjector extends GZIPStreamWrapperInjector
 {
-  public CDOZIPStreamWrapperInjector()
+  public CDOGZIPStreamWrapperInjector()
   {
     super(CDOProtocolConstants.PROTOCOL_NAME);
   }
