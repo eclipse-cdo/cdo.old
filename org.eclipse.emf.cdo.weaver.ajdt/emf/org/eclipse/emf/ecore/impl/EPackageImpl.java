@@ -16,7 +16,6 @@
  */
 package org.eclipse.emf.ecore.impl;
 
-
 import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.HashMap;
@@ -58,32 +57,31 @@ import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>EPackage</b></em>'.
- * @extends BasicExtendedMetaData.EPackageExtendedMetaData.Holder
- * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.eclipse.emf.ecore.impl.EPackageImpl#getNsURI <em>Ns URI</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EPackageImpl#getNsPrefix <em>Ns Prefix</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EPackageImpl#getEFactoryInstance <em>EFactory Instance</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EPackageImpl#getEClassifiers <em>EClassifiers</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EPackageImpl#getESubpackages <em>ESubpackages</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EPackageImpl#getESuperPackage <em>ESuper Package</em>}</li>
- * </ul>
- * </p>
- *
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EPackage</b></em>'.
+ * 
+ * @extends BasicExtendedMetaData.EPackageExtendedMetaData.Holder <!--
+ *          end-user-doc -->
+ *          <p>
+ *          The following features are implemented:
+ *          <ul>
+ *          <li>{@link org.eclipse.emf.ecore.impl.EPackageImpl#getNsURI <em>Ns URI</em>}</li>
+ *          <li>{@link org.eclipse.emf.ecore.impl.EPackageImpl#getNsPrefix <em>Ns Prefix</em>}</li>
+ *          <li>{@link org.eclipse.emf.ecore.impl.EPackageImpl#getEFactoryInstance <em>EFactory Instance</em>}</li>
+ *          <li>{@link org.eclipse.emf.ecore.impl.EPackageImpl#getEClassifiers <em>EClassifiers</em>}</li>
+ *          <li>{@link org.eclipse.emf.ecore.impl.EPackageImpl#getESubpackages <em>ESubpackages</em>}</li>
+ *          <li>{@link org.eclipse.emf.ecore.impl.EPackageImpl#getESuperPackage <em>ESuper Package</em>}</li>
+ *          </ul>
+ *          </p>
  * @generated
  */
-public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicExtendedMetaData.EPackageExtendedMetaData.Holder
+public class EPackageImpl extends ENamedElementImpl implements EPackage,
+    BasicExtendedMetaData.EPackageExtendedMetaData.Holder
 {
   /**
    * The default value of the '{@link #getNsURI() <em>Ns URI</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getNsURI()
    * @generated
    * @ordered
@@ -101,14 +99,13 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   protected EcorePackage ecorePackage = null;
 
   /**
-   * The map from name to 
+   * The map from name to
    */
-  protected Map<String, EClassifier> eNameToEClassifierMap; 
+  protected Map<String, EClassifier> eNameToEClassifierMap;
 
   /**
-   * <!-- begin-user-doc -->
-   * Creates an instance.
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> Creates an instance. <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   protected EPackageImpl()
@@ -123,7 +120,9 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
 
   /**
    * Creates an instance with a factory.
-   * @param eFactory the factory of the new package.
+   * 
+   * @param eFactory
+   *          the factory of the new package.
    */
   protected EPackageImpl(EFactory eFactory)
   {
@@ -136,8 +135,12 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   }
 
   /**
-   * Creates a {@link org.eclipse.emf.ecore.EPackage.Registry#INSTANCE registered} instance that has a default factory.
-   * @param packageURI the registered {@link #getNsURI namespace URI} of the new package.
+   * Creates a
+   * {@link org.eclipse.emf.ecore.EPackage.Registry#INSTANCE registered}
+   * instance that has a default factory.
+   * 
+   * @param packageURI
+   *          the registered {@link #getNsURI namespace URI} of the new package.
    */
   protected EPackageImpl(String packageURI)
   {
@@ -145,9 +148,14 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   }
 
   /**
-   * Creates a {@link org.eclipse.emf.ecore.EPackage.Registry#INSTANCE registered} instance with a factory.
-   * @param packageURI the registered {@link #getNsURI namespace URI} of the new package.
-   * @param factory the factory of the new package.
+   * Creates a
+   * {@link org.eclipse.emf.ecore.EPackage.Registry#INSTANCE registered}
+   * instance with a factory.
+   * 
+   * @param packageURI
+   *          the registered {@link #getNsURI namespace URI} of the new package.
+   * @param factory
+   *          the factory of the new package.
    */
   protected EPackageImpl(String packageURI, EFactory factory)
   {
@@ -188,11 +196,12 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
     }
     super.freeze();
   }
-  
+
   @Override
   public void eSetProxyURI(URI uri)
   {
-    // If we turn the package into a proxy, ensure that the child classifiers clear their cached container.
+    // If we turn the package into a proxy, ensure that the child classifiers
+    // clear their cached container.
     //
     if (uri != null && eClassifiers != null)
     {
@@ -208,8 +217,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -229,8 +238,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
 
   /**
    * The cached value of the '{@link #getNsURI() <em>Ns URI</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getNsURI()
    * @generated
    * @ordered
@@ -238,9 +247,9 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   protected String nsURI = NS_URI_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getNsPrefix() <em>Ns Prefix</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The default value of the '{@link #getNsPrefix() <em>Ns Prefix</em>}'
+   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getNsPrefix()
    * @generated
    * @ordered
@@ -248,9 +257,9 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   protected static final String NS_PREFIX_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getNsPrefix() <em>Ns Prefix</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getNsPrefix() <em>Ns Prefix</em>}'
+   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getNsPrefix()
    * @generated
    * @ordered
@@ -258,9 +267,9 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   protected String nsPrefix = NS_PREFIX_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getEFactoryInstance() <em>EFactory Instance</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getEFactoryInstance() <em>EFactory Instance</em>}'
+   * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getEFactoryInstance()
    * @generated
    * @ordered
@@ -268,9 +277,9 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   protected EFactory eFactoryInstance;
 
   /**
-   * The cached value of the '{@link #getEClassifiers() <em>EClassifiers</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getEClassifiers() <em>EClassifiers</em>}'
+   * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getEClassifiers()
    * @generated
    * @ordered
@@ -278,9 +287,9 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   protected EList<EClassifier> eClassifiers;
 
   /**
-   * The cached value of the '{@link #getESubpackages() <em>ESubpackages</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getESubpackages() <em>ESubpackages</em>}'
+   * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getESubpackages()
    * @generated
    * @ordered
@@ -288,8 +297,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   protected EList<EPackage> eSubpackages;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String getNsURI()
@@ -298,8 +307,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setNsURI(String newNsURI)
@@ -311,8 +320,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String getNsPrefix()
@@ -321,8 +330,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setNsPrefix(String newNsPrefix)
@@ -334,8 +343,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EFactory getEFactoryInstance()
@@ -344,8 +353,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setEFactoryInstance(EFactory newEFactoryInstance)
@@ -354,19 +363,22 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
     {
       NotificationChain msgs = null;
       if (eFactoryInstance != null)
-        msgs = ((InternalEObject)eFactoryInstance).eInverseRemove(this, EcorePackage.EFACTORY__EPACKAGE, EFactory.class, msgs);
+        msgs = ((InternalEObject)eFactoryInstance).eInverseRemove(this, EcorePackage.EFACTORY__EPACKAGE,
+            EFactory.class, msgs);
       if (newEFactoryInstance != null)
-        msgs = ((InternalEObject)newEFactoryInstance).eInverseAdd(this, EcorePackage.EFACTORY__EPACKAGE, EFactory.class, msgs);
+        msgs = ((InternalEObject)newEFactoryInstance).eInverseAdd(this, EcorePackage.EFACTORY__EPACKAGE,
+            EFactory.class, msgs);
       msgs = basicSetEFactoryInstance(newEFactoryInstance, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EPACKAGE__EFACTORY_INSTANCE, newEFactoryInstance, newEFactoryInstance));
+      eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EPACKAGE__EFACTORY_INSTANCE,
+          newEFactoryInstance, newEFactoryInstance));
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetEFactoryInstance(EFactory newEFactoryInstance, NotificationChain msgs)
@@ -375,33 +387,36 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
     eFactoryInstance = newEFactoryInstance;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EcorePackage.EPACKAGE__EFACTORY_INSTANCE, oldEFactoryInstance, newEFactoryInstance);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+          EcorePackage.EPACKAGE__EFACTORY_INSTANCE, oldEFactoryInstance, newEFactoryInstance);
+      if (msgs == null)
+        msgs = notification;
+      else
+        msgs.add(notification);
     }
     return msgs;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public EList<EClassifier> getEClassifiers()
   {
     if (eClassifiers == null)
     {
-      eClassifiers = 
-        new EObjectContainmentWithInverseEList.Resolving<EClassifier>
-          (EClassifier.class, this, EcorePackage.EPACKAGE__ECLASSIFIERS, EcorePackage.ECLASSIFIER__EPACKAGE)
-        {
-          private static final long serialVersionUID = 1L;
+      eClassifiers = new EObjectContainmentWithInverseEList.Resolving<EClassifier>(EClassifier.class, this,
+          EcorePackage.EPACKAGE__ECLASSIFIERS, EcorePackage.ECLASSIFIER__EPACKAGE)
+      {
+        private static final long serialVersionUID = 1L;
 
-          @Override
-          protected void didChange()
-          {
-            eNameToEClassifierMap = null;
-          }
-        };
+        @Override
+        protected void didChange()
+        {
+          eNameToEClassifierMap = null;
+        }
+      };
     }
     return eClassifiers;
   }
@@ -431,8 +446,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -441,27 +456,27 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   {
     switch (featureID)
     {
-      case EcorePackage.EPACKAGE__EANNOTATIONS:
-        return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
-      case EcorePackage.EPACKAGE__EFACTORY_INSTANCE:
-        if (eFactoryInstance != null)
-          msgs = ((InternalEObject)eFactoryInstance).eInverseRemove(this, EcorePackage.EFACTORY__EPACKAGE, EFactory.class, msgs);
-        return basicSetEFactoryInstance((EFactory)otherEnd, msgs);
-      case EcorePackage.EPACKAGE__ECLASSIFIERS:
-        return ((InternalEList<InternalEObject>)(InternalEList<?>)getEClassifiers()).basicAdd(otherEnd, msgs);
-      case EcorePackage.EPACKAGE__ESUBPACKAGES:
-        return ((InternalEList<InternalEObject>)(InternalEList<?>)getESubpackages()).basicAdd(otherEnd, msgs);
-      case EcorePackage.EPACKAGE__ESUPER_PACKAGE:
-        if (eInternalContainer() != null)
-          msgs = eBasicRemoveFromContainer(msgs);
-        return eBasicSetContainer(otherEnd, EcorePackage.EPACKAGE__ESUPER_PACKAGE, msgs);
+    case EcorePackage.EPACKAGE__EANNOTATIONS:
+      return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
+    case EcorePackage.EPACKAGE__EFACTORY_INSTANCE:
+      if (eFactoryInstance != null)
+        msgs = ((InternalEObject)eFactoryInstance).eInverseRemove(this, EcorePackage.EFACTORY__EPACKAGE,
+            EFactory.class, msgs);
+      return basicSetEFactoryInstance((EFactory)otherEnd, msgs);
+    case EcorePackage.EPACKAGE__ECLASSIFIERS:
+      return ((InternalEList<InternalEObject>)(InternalEList<?>)getEClassifiers()).basicAdd(otherEnd, msgs);
+    case EcorePackage.EPACKAGE__ESUBPACKAGES:
+      return ((InternalEList<InternalEObject>)(InternalEList<?>)getESubpackages()).basicAdd(otherEnd, msgs);
+    case EcorePackage.EPACKAGE__ESUPER_PACKAGE:
+      if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+      return eBasicSetContainer(otherEnd, EcorePackage.EPACKAGE__ESUPER_PACKAGE, msgs);
     }
     return eDynamicInverseAdd(otherEnd, featureID, msgs);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -469,23 +484,23 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   {
     switch (featureID)
     {
-      case EcorePackage.EPACKAGE__EANNOTATIONS:
-        return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
-      case EcorePackage.EPACKAGE__EFACTORY_INSTANCE:
-        return basicSetEFactoryInstance(null, msgs);
-      case EcorePackage.EPACKAGE__ECLASSIFIERS:
-        return ((InternalEList<?>)getEClassifiers()).basicRemove(otherEnd, msgs);
-      case EcorePackage.EPACKAGE__ESUBPACKAGES:
-        return ((InternalEList<?>)getESubpackages()).basicRemove(otherEnd, msgs);
-      case EcorePackage.EPACKAGE__ESUPER_PACKAGE:
-        return eBasicSetContainer(null, EcorePackage.EPACKAGE__ESUPER_PACKAGE, msgs);
+    case EcorePackage.EPACKAGE__EANNOTATIONS:
+      return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
+    case EcorePackage.EPACKAGE__EFACTORY_INSTANCE:
+      return basicSetEFactoryInstance(null, msgs);
+    case EcorePackage.EPACKAGE__ECLASSIFIERS:
+      return ((InternalEList<?>)getEClassifiers()).basicRemove(otherEnd, msgs);
+    case EcorePackage.EPACKAGE__ESUBPACKAGES:
+      return ((InternalEList<?>)getESubpackages()).basicRemove(otherEnd, msgs);
+    case EcorePackage.EPACKAGE__ESUPER_PACKAGE:
+      return eBasicSetContainer(null, EcorePackage.EPACKAGE__ESUPER_PACKAGE, msgs);
     }
     return eDynamicInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -493,29 +508,30 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   {
     switch (eContainerFeatureID)
     {
-      case EcorePackage.EPACKAGE__ESUPER_PACKAGE:
-        return eInternalContainer().eInverseRemove(this, EcorePackage.EPACKAGE__ESUBPACKAGES, EPackage.class, msgs);
+    case EcorePackage.EPACKAGE__ESUPER_PACKAGE:
+      return eInternalContainer().eInverseRemove(this, EcorePackage.EPACKAGE__ESUBPACKAGES, EPackage.class, msgs);
     }
     return eDynamicBasicRemoveFromContainer(msgs);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EList<EPackage> getESubpackages()
   {
     if (eSubpackages == null)
     {
-      eSubpackages = new EObjectContainmentWithInverseEList.Resolving<EPackage>(EPackage.class, this, EcorePackage.EPACKAGE__ESUBPACKAGES, EcorePackage.EPACKAGE__ESUPER_PACKAGE);
+      eSubpackages = new EObjectContainmentWithInverseEList.Resolving<EPackage>(EPackage.class, this,
+          EcorePackage.EPACKAGE__ESUBPACKAGES, EcorePackage.EPACKAGE__ESUPER_PACKAGE);
     }
     return eSubpackages;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated modifiable
    */
   public EPackage getESuperPackage()
@@ -523,10 +539,9 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
     return (eContainerFeatureID == EcorePackage.EPACKAGE__ESUPER_PACKAGE) ? (EPackage)eContainer : null;
   }
 
-
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EPackage basicGetESuperPackage()
@@ -536,8 +551,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -545,30 +560,30 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   {
     switch (featureID)
     {
-      case EcorePackage.EPACKAGE__EANNOTATIONS:
-        return getEAnnotations();
-      case EcorePackage.EPACKAGE__NAME:
-        return getName();
-      case EcorePackage.EPACKAGE__NS_URI:
-        return getNsURI();
-      case EcorePackage.EPACKAGE__NS_PREFIX:
-        return getNsPrefix();
-      case EcorePackage.EPACKAGE__EFACTORY_INSTANCE:
-        return getEFactoryInstance();
-      case EcorePackage.EPACKAGE__ECLASSIFIERS:
-        return getEClassifiers();
-      case EcorePackage.EPACKAGE__ESUBPACKAGES:
-        return getESubpackages();
-      case EcorePackage.EPACKAGE__ESUPER_PACKAGE:
-        if (resolve) return getESuperPackage();
-        return basicGetESuperPackage();
+    case EcorePackage.EPACKAGE__EANNOTATIONS:
+      return getEAnnotations();
+    case EcorePackage.EPACKAGE__NAME:
+      return getName();
+    case EcorePackage.EPACKAGE__NS_URI:
+      return getNsURI();
+    case EcorePackage.EPACKAGE__NS_PREFIX:
+      return getNsPrefix();
+    case EcorePackage.EPACKAGE__EFACTORY_INSTANCE:
+      return getEFactoryInstance();
+    case EcorePackage.EPACKAGE__ECLASSIFIERS:
+      return getEClassifiers();
+    case EcorePackage.EPACKAGE__ESUBPACKAGES:
+      return getESubpackages();
+    case EcorePackage.EPACKAGE__ESUPER_PACKAGE:
+      if (resolve) return getESuperPackage();
+      return basicGetESuperPackage();
     }
     return eDynamicGet(featureID, resolve, coreType);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -577,37 +592,37 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   {
     switch (featureID)
     {
-      case EcorePackage.EPACKAGE__EANNOTATIONS:
-        getEAnnotations().clear();
-        getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
-        return;
-      case EcorePackage.EPACKAGE__NAME:
-        setName((String)newValue);
-        return;
-      case EcorePackage.EPACKAGE__NS_URI:
-        setNsURI((String)newValue);
-        return;
-      case EcorePackage.EPACKAGE__NS_PREFIX:
-        setNsPrefix((String)newValue);
-        return;
-      case EcorePackage.EPACKAGE__EFACTORY_INSTANCE:
-        setEFactoryInstance((EFactory)newValue);
-        return;
-      case EcorePackage.EPACKAGE__ECLASSIFIERS:
-        getEClassifiers().clear();
-        getEClassifiers().addAll((Collection<? extends EClassifier>)newValue);
-        return;
-      case EcorePackage.EPACKAGE__ESUBPACKAGES:
-        getESubpackages().clear();
-        getESubpackages().addAll((Collection<? extends EPackage>)newValue);
-        return;
+    case EcorePackage.EPACKAGE__EANNOTATIONS:
+      getEAnnotations().clear();
+      getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
+      return;
+    case EcorePackage.EPACKAGE__NAME:
+      setName((String)newValue);
+      return;
+    case EcorePackage.EPACKAGE__NS_URI:
+      setNsURI((String)newValue);
+      return;
+    case EcorePackage.EPACKAGE__NS_PREFIX:
+      setNsPrefix((String)newValue);
+      return;
+    case EcorePackage.EPACKAGE__EFACTORY_INSTANCE:
+      setEFactoryInstance((EFactory)newValue);
+      return;
+    case EcorePackage.EPACKAGE__ECLASSIFIERS:
+      getEClassifiers().clear();
+      getEClassifiers().addAll((Collection<? extends EClassifier>)newValue);
+      return;
+    case EcorePackage.EPACKAGE__ESUBPACKAGES:
+      getESubpackages().clear();
+      getESubpackages().addAll((Collection<? extends EPackage>)newValue);
+      return;
     }
     eDynamicSet(featureID, newValue);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -615,34 +630,34 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   {
     switch (featureID)
     {
-      case EcorePackage.EPACKAGE__EANNOTATIONS:
-        getEAnnotations().clear();
-        return;
-      case EcorePackage.EPACKAGE__NAME:
-        setName(NAME_EDEFAULT);
-        return;
-      case EcorePackage.EPACKAGE__NS_URI:
-        setNsURI(NS_URI_EDEFAULT);
-        return;
-      case EcorePackage.EPACKAGE__NS_PREFIX:
-        setNsPrefix(NS_PREFIX_EDEFAULT);
-        return;
-      case EcorePackage.EPACKAGE__EFACTORY_INSTANCE:
-        setEFactoryInstance((EFactory)null);
-        return;
-      case EcorePackage.EPACKAGE__ECLASSIFIERS:
-        getEClassifiers().clear();
-        return;
-      case EcorePackage.EPACKAGE__ESUBPACKAGES:
-        getESubpackages().clear();
-        return;
+    case EcorePackage.EPACKAGE__EANNOTATIONS:
+      getEAnnotations().clear();
+      return;
+    case EcorePackage.EPACKAGE__NAME:
+      setName(NAME_EDEFAULT);
+      return;
+    case EcorePackage.EPACKAGE__NS_URI:
+      setNsURI(NS_URI_EDEFAULT);
+      return;
+    case EcorePackage.EPACKAGE__NS_PREFIX:
+      setNsPrefix(NS_PREFIX_EDEFAULT);
+      return;
+    case EcorePackage.EPACKAGE__EFACTORY_INSTANCE:
+      setEFactoryInstance((EFactory)null);
+      return;
+    case EcorePackage.EPACKAGE__ECLASSIFIERS:
+      getEClassifiers().clear();
+      return;
+    case EcorePackage.EPACKAGE__ESUBPACKAGES:
+      getESubpackages().clear();
+      return;
     }
     eDynamicUnset(featureID);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -650,29 +665,29 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   {
     switch (featureID)
     {
-      case EcorePackage.EPACKAGE__EANNOTATIONS:
-        return eAnnotations != null && !eAnnotations.isEmpty();
-      case EcorePackage.EPACKAGE__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case EcorePackage.EPACKAGE__NS_URI:
-        return NS_URI_EDEFAULT == null ? nsURI != null : !NS_URI_EDEFAULT.equals(nsURI);
-      case EcorePackage.EPACKAGE__NS_PREFIX:
-        return NS_PREFIX_EDEFAULT == null ? nsPrefix != null : !NS_PREFIX_EDEFAULT.equals(nsPrefix);
-      case EcorePackage.EPACKAGE__EFACTORY_INSTANCE:
-        return eFactoryInstance != null;
-      case EcorePackage.EPACKAGE__ECLASSIFIERS:
-        return eClassifiers != null && !eClassifiers.isEmpty();
-      case EcorePackage.EPACKAGE__ESUBPACKAGES:
-        return eSubpackages != null && !eSubpackages.isEmpty();
-      case EcorePackage.EPACKAGE__ESUPER_PACKAGE:
-        return basicGetESuperPackage() != null;
+    case EcorePackage.EPACKAGE__EANNOTATIONS:
+      return eAnnotations != null && !eAnnotations.isEmpty();
+    case EcorePackage.EPACKAGE__NAME:
+      return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+    case EcorePackage.EPACKAGE__NS_URI:
+      return NS_URI_EDEFAULT == null ? nsURI != null : !NS_URI_EDEFAULT.equals(nsURI);
+    case EcorePackage.EPACKAGE__NS_PREFIX:
+      return NS_PREFIX_EDEFAULT == null ? nsPrefix != null : !NS_PREFIX_EDEFAULT.equals(nsPrefix);
+    case EcorePackage.EPACKAGE__EFACTORY_INSTANCE:
+      return eFactoryInstance != null;
+    case EcorePackage.EPACKAGE__ECLASSIFIERS:
+      return eClassifiers != null && !eClassifiers.isEmpty();
+    case EcorePackage.EPACKAGE__ESUBPACKAGES:
+      return eSubpackages != null && !eSubpackages.isEmpty();
+    case EcorePackage.EPACKAGE__ESUPER_PACKAGE:
+      return basicGetESuperPackage() != null;
     }
     return eDynamicIsSet(featureID);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -694,13 +709,14 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   protected Resource createResource(String uri)
   {
     Resource resource = eResource();
-    if (resource == null) 
+    if (resource == null)
     {
       if (resourceFactory == null)
       {
         try
         {
-          resourceFactory = (Resource.Factory)CommonPlugin.loadClass("org.eclipse.emf.ecore.xmi", "org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl").newInstance();
+          resourceFactory = (Resource.Factory)CommonPlugin.loadClass("org.eclipse.emf.ecore.xmi",
+              "org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl").newInstance();
         }
         catch (Throwable exception)
         {
@@ -708,7 +724,7 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
         }
       }
       URI actualURI = URI.createURI(uri);
-      resource =  resourceFactory.createResource(actualURI);
+      resource = resourceFactory.createResource(actualURI);
       resource.getContents().add(this);
     }
     return resource;
@@ -751,7 +767,7 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
     r.setFeatureID(id);
     owner.getEStructuralFeatures().add(r);
   }
-  
+
   protected ETypeParameter addETypeParameter(EClassifier owner, String name)
   {
     ETypeParameter eTypeParameter = ecoreFactory.createETypeParameter();
@@ -767,7 +783,7 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
     owner.getETypeParameters().add(eTypeParameter);
     return eTypeParameter;
   }
-  
+
   protected EGenericType createEGenericType()
   {
     EGenericType eGenericType = ecoreFactory.createEGenericType();
@@ -789,7 +805,9 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   }
 
   final static protected boolean IS_ABSTRACT = true;
+
   final static protected boolean IS_INTERFACE = true;
+
   final static protected boolean IS_GENERATED_INSTANCE_CLASS = true;
 
   protected EClass initEClass(EClass c, Class<?> instanceClass, String name, boolean isAbstract, boolean isInterface)
@@ -800,7 +818,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
     return c;
   }
 
-  protected EClass initEClass(EClass c, Class<?> instanceClass, String name, boolean isAbstract, boolean isInterface, boolean isGenerated)
+  protected EClass initEClass(EClass c, Class<?> instanceClass, String name, boolean isAbstract, boolean isInterface,
+      boolean isGenerated)
   {
     initEClassifier(c, ecorePackage.getEClass(), instanceClass, name, isGenerated);
     c.setAbstract(isAbstract);
@@ -808,8 +827,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
     return c;
   }
 
-  protected EClass initEClass
-    (EClass c, Class<?> instanceClass, String name, boolean isAbstract, boolean isInterface, boolean isGenerated, String instanceTypeName)
+  protected EClass initEClass(EClass c, Class<?> instanceClass, String name, boolean isAbstract, boolean isInterface,
+      boolean isGenerated, String instanceTypeName)
   {
     initEClass(c, instanceClass, name, isAbstract, isInterface, isGenerated);
     if (instanceTypeName != null)
@@ -834,15 +853,16 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
     return d;
   }
 
-  protected EDataType initEDataType(EDataType d, Class<?> instanceClass, String name, boolean isSerializable, boolean isGenerated)
+  protected EDataType initEDataType(EDataType d, Class<?> instanceClass, String name, boolean isSerializable,
+      boolean isGenerated)
   {
     initEClassifier(d, ecorePackage.getEDataType(), instanceClass, name, isGenerated);
     d.setSerializable(isSerializable);
     return d;
   }
 
-  protected EDataType initEDataType
-    (EDataType d, Class<?> instanceClass, String name, boolean isSerializable, boolean isGenerated, String instanceTypeName)
+  protected EDataType initEDataType(EDataType d, Class<?> instanceClass, String name, boolean isSerializable,
+      boolean isGenerated, String instanceTypeName)
   {
     initEDataType(d, instanceClass, name, isSerializable, isGenerated);
     if (instanceTypeName != null)
@@ -861,7 +881,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
     }
   }
 
-  private void initEClassifier(EClassifier o, EClass metaObject, Class<?> instanceClass, String name, boolean isGenerated)
+  private void initEClassifier(EClassifier o, EClass metaObject, Class<?> instanceClass, String name,
+      boolean isGenerated)
   {
     o.setName(name);
     if (instanceClass != null)
@@ -885,257 +906,108 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   }
 
   protected static final boolean IS_DERIVED = true;
+
   protected static final boolean IS_TRANSIENT = true;
+
   protected static final boolean IS_VOLATILE = true;
+
   protected static final boolean IS_CHANGEABLE = true;
+
   protected static final boolean IS_UNSETTABLE = true;
+
   protected static final boolean IS_UNIQUE = true;
+
   protected static final boolean IS_ID = true;
+
   protected static final boolean IS_ORDERED = true;
 
   /**
    * @deprecated
    */
   @Deprecated
-  protected EAttribute initEAttribute
-    (EAttribute a, 
-     EClassifier type,
-     String name, 
-     String defaultValue,
-     int lowerBound, 
-     int upperBound, 
-     boolean isTransient, 
-     boolean isVolatile, 
-     boolean isChangeable, 
-     boolean isUnsettable)
+  protected EAttribute initEAttribute(EAttribute a, EClassifier type, String name, String defaultValue, int lowerBound,
+      int upperBound, boolean isTransient, boolean isVolatile, boolean isChangeable, boolean isUnsettable)
   {
-    return 
-      initEAttribute
-        (a, type, name, defaultValue, lowerBound, upperBound, isTransient, isVolatile, isChangeable, isUnsettable, false, true);
+    return initEAttribute(a, type, name, defaultValue, lowerBound, upperBound, isTransient, isVolatile, isChangeable,
+        isUnsettable, false, true);
   }
 
   /**
    * @deprecated
    */
   @Deprecated
-  protected EAttribute initEAttribute
-    (EAttribute a, 
-     EClassifier type,
-     String name, 
-     String defaultValue,
-     int lowerBound, 
-     int upperBound, 
-     boolean isTransient, 
-     boolean isVolatile, 
-     boolean isChangeable, 
-     boolean isUnsettable,
-     boolean isID)
+  protected EAttribute initEAttribute(EAttribute a, EClassifier type, String name, String defaultValue, int lowerBound,
+      int upperBound, boolean isTransient, boolean isVolatile, boolean isChangeable, boolean isUnsettable, boolean isID)
   {
-    return 
-      initEAttribute
-        (a, type, name, defaultValue, lowerBound, upperBound, isTransient, isVolatile, isChangeable, isUnsettable, isID, true);
+    return initEAttribute(a, type, name, defaultValue, lowerBound, upperBound, isTransient, isVolatile, isChangeable,
+        isUnsettable, isID, true);
   }
 
   /**
    * @deprecated
    */
   @Deprecated
-  protected EAttribute initEAttribute
-    (EAttribute a, 
-     EClassifier type,
-     String name, 
-     String defaultValue,
-     int lowerBound, 
-     int upperBound, 
-     boolean isTransient, 
-     boolean isVolatile, 
-     boolean isChangeable, 
-     boolean isUnsettable,
-     boolean isID,
-     boolean isUnique)
+  protected EAttribute initEAttribute(EAttribute a, EClassifier type, String name, String defaultValue, int lowerBound,
+      int upperBound, boolean isTransient, boolean isVolatile, boolean isChangeable, boolean isUnsettable,
+      boolean isID, boolean isUnique)
   {
-    return 
-      initEAttribute
-        (a, type, name, defaultValue, lowerBound, upperBound, isTransient, isVolatile, isChangeable, isUnsettable, isID, isUnique, false);
+    return initEAttribute(a, type, name, defaultValue, lowerBound, upperBound, isTransient, isVolatile, isChangeable,
+        isUnsettable, isID, isUnique, false);
   }
 
-  protected EAttribute initEAttribute
-    (EAttribute a, 
-     EClassifier type,
-     String name, 
-     String defaultValue,
-     int lowerBound, 
-     int upperBound, 
-     boolean isTransient, 
-     boolean isVolatile, 
-     boolean isChangeable, 
-     boolean isUnsettable,
-     boolean isID,
-     boolean isUnique,
-     boolean isDerived)
+  protected EAttribute initEAttribute(EAttribute a, EClassifier type, String name, String defaultValue, int lowerBound,
+      int upperBound, boolean isTransient, boolean isVolatile, boolean isChangeable, boolean isUnsettable,
+      boolean isID, boolean isUnique, boolean isDerived)
   {
-    return 
-      initEAttribute
-        (a, 
-         type, 
-         name, 
-         defaultValue, 
-         lowerBound, 
-         upperBound, 
-         isTransient, 
-         isVolatile, 
-         isChangeable, 
-         isUnsettable, 
-         isID, 
-         isUnique, 
-         isDerived, 
-         true);
+    return initEAttribute(a, type, name, defaultValue, lowerBound, upperBound, isTransient, isVolatile, isChangeable,
+        isUnsettable, isID, isUnique, isDerived, true);
   }
 
-  protected EAttribute initEAttribute
-    (EAttribute a, 
-     EClassifier type,
-     String name, 
-     String defaultValue,
-     int lowerBound, 
-     int upperBound, 
-     boolean isTransient, 
-     boolean isVolatile, 
-     boolean isChangeable, 
-     boolean isUnsettable,
-     boolean isID,
-     boolean isUnique,
-     boolean isDerived,
-     boolean isOrdered)
+  protected EAttribute initEAttribute(EAttribute a, EClassifier type, String name, String defaultValue, int lowerBound,
+      int upperBound, boolean isTransient, boolean isVolatile, boolean isChangeable, boolean isUnsettable,
+      boolean isID, boolean isUnique, boolean isDerived, boolean isOrdered)
   {
-    initEAttribute
-      (a, 
-       type, 
-       name, 
-       defaultValue, 
-       lowerBound, 
-       upperBound, 
-       ((EClassifier)a.eContainer()).getInstanceClass(),
-       isTransient, 
-       isVolatile, 
-       isChangeable, 
-       isUnsettable, 
-       isID,
-       isUnique, 
-       isDerived, 
-       isOrdered);
+    initEAttribute(a, type, name, defaultValue, lowerBound, upperBound, ((EClassifier)a.eContainer())
+        .getInstanceClass(), isTransient, isVolatile, isChangeable, isUnsettable, isID, isUnique, isDerived, isOrdered);
     return a;
   }
 
-  protected EAttribute initEAttribute
-    (EAttribute a, 
-     EClassifier type,
-     String name, 
-     String defaultValue,
-     int lowerBound, 
-     int upperBound, 
-     Class<?> containerClass,
-     boolean isTransient, 
-     boolean isVolatile, 
-     boolean isChangeable, 
-     boolean isUnsettable,
-     boolean isID,
-     boolean isUnique,
-     boolean isDerived,
-     boolean isOrdered)
+  protected EAttribute initEAttribute(EAttribute a, EClassifier type, String name, String defaultValue, int lowerBound,
+      int upperBound, Class<?> containerClass, boolean isTransient, boolean isVolatile, boolean isChangeable,
+      boolean isUnsettable, boolean isID, boolean isUnique, boolean isDerived, boolean isOrdered)
   {
-    initEStructuralFeature
-      (a, 
-       type, 
-       name, 
-       defaultValue, 
-       lowerBound, 
-       upperBound, 
-       containerClass,
-       isTransient, 
-       isVolatile, 
-       isChangeable, 
-       isUnsettable, 
-       isUnique, 
-       isDerived, 
-       isOrdered);
+    initEStructuralFeature(a, type, name, defaultValue, lowerBound, upperBound, containerClass, isTransient,
+        isVolatile, isChangeable, isUnsettable, isUnique, isDerived, isOrdered);
     a.setID(isID);
     return a;
   }
 
-  protected EAttribute initEAttribute
-    (EAttribute a, 
-     EGenericType type,
-     String name, 
-     String defaultValue,
-     int lowerBound, 
-     int upperBound, 
-     Class<?> containerClass,
-     boolean isTransient, 
-     boolean isVolatile, 
-     boolean isChangeable, 
-     boolean isUnsettable,
-     boolean isID,
-     boolean isUnique,
-     boolean isDerived,
-     boolean isOrdered)
+  protected EAttribute initEAttribute(EAttribute a, EGenericType type, String name, String defaultValue,
+      int lowerBound, int upperBound, Class<?> containerClass, boolean isTransient, boolean isVolatile,
+      boolean isChangeable, boolean isUnsettable, boolean isID, boolean isUnique, boolean isDerived, boolean isOrdered)
   {
-    initEStructuralFeature
-      (a, 
-       type, 
-       name, 
-       defaultValue, 
-       lowerBound, 
-       upperBound, 
-       containerClass,
-       isTransient, 
-       isVolatile, 
-       isChangeable, 
-       isUnsettable, 
-       isUnique, 
-       isDerived, 
-       isOrdered);
+    initEStructuralFeature(a, type, name, defaultValue, lowerBound, upperBound, containerClass, isTransient,
+        isVolatile, isChangeable, isUnsettable, isUnique, isDerived, isOrdered);
     a.setID(isID);
     return a;
   }
 
   final static protected boolean IS_COMPOSITE = true;
+
   final static protected boolean IS_RESOLVE_PROXIES = true;
+
   final static protected boolean IS_RESOLVABLE = true;
 
   /**
    * @deprecated
    */
   @Deprecated
-  protected EReference initEReference
-    (EReference r, 
-     EClassifier type, 
-     EReference otherEnd,
-     String name, 
-     String defaultValue,
-     int lowerBound, 
-     int upperBound, 
-     boolean isTransient, 
-     boolean isVolatile, 
-     boolean isChangeable, 
-     boolean isContainment, 
-     boolean isResolveProxies)
+  protected EReference initEReference(EReference r, EClassifier type, EReference otherEnd, String name,
+      String defaultValue, int lowerBound, int upperBound, boolean isTransient, boolean isVolatile,
+      boolean isChangeable, boolean isContainment, boolean isResolveProxies)
   {
-    initEReference
-      (r, 
-       type, 
-       otherEnd, 
-       name, 
-       defaultValue, 
-       lowerBound, 
-       upperBound, 
-       isTransient, 
-       isVolatile, 
-       isChangeable, 
-       isContainment, 
-       isResolveProxies, 
-       false, 
-       true);
+    initEReference(r, type, otherEnd, name, defaultValue, lowerBound, upperBound, isTransient, isVolatile,
+        isChangeable, isContainment, isResolveProxies, false, true);
     return r;
   }
 
@@ -1143,36 +1015,12 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
    * @deprecated
    */
   @Deprecated
-  protected EReference initEReference
-    (EReference r, 
-     EClassifier type, 
-     EReference otherEnd,
-     String name, 
-     String defaultValue,
-     int lowerBound, 
-     int upperBound, 
-     boolean isTransient, 
-     boolean isVolatile, 
-     boolean isChangeable, 
-     boolean isContainment, 
-     boolean isResolveProxies,
-     boolean isUnsettable)
+  protected EReference initEReference(EReference r, EClassifier type, EReference otherEnd, String name,
+      String defaultValue, int lowerBound, int upperBound, boolean isTransient, boolean isVolatile,
+      boolean isChangeable, boolean isContainment, boolean isResolveProxies, boolean isUnsettable)
   {
-    initEReference
-      (r, 
-       type, 
-       otherEnd, 
-       name, 
-       defaultValue, 
-       lowerBound, 
-       upperBound, 
-       isTransient, 
-       isVolatile, 
-       isChangeable, 
-       isContainment, 
-       isResolveProxies, 
-       isUnsettable, 
-       true);
+    initEReference(r, type, otherEnd, name, defaultValue, lowerBound, upperBound, isTransient, isVolatile,
+        isChangeable, isContainment, isResolveProxies, isUnsettable, true);
     return r;
   }
 
@@ -1180,151 +1028,43 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
    * @deprecated
    */
   @Deprecated
-  protected EReference initEReference
-    (EReference r, 
-     EClassifier type, 
-     EReference otherEnd,
-     String name, 
-     String defaultValue,
-     int lowerBound, 
-     int upperBound, 
-     boolean isTransient, 
-     boolean isVolatile, 
-     boolean isChangeable, 
-     boolean isContainment, 
-     boolean isResolveProxies,
-     boolean isUnsettable,
-     boolean isUnique)
+  protected EReference initEReference(EReference r, EClassifier type, EReference otherEnd, String name,
+      String defaultValue, int lowerBound, int upperBound, boolean isTransient, boolean isVolatile,
+      boolean isChangeable, boolean isContainment, boolean isResolveProxies, boolean isUnsettable, boolean isUnique)
   {
-    initEReference
-      (r, 
-       type, 
-       otherEnd, 
-       name, 
-       defaultValue, 
-       lowerBound, 
-       upperBound, 
-       isTransient, 
-       isVolatile, 
-       isChangeable, 
-       isContainment, 
-       isResolveProxies, 
-       isUnsettable, 
-       isUnique,
-       false);
+    initEReference(r, type, otherEnd, name, defaultValue, lowerBound, upperBound, isTransient, isVolatile,
+        isChangeable, isContainment, isResolveProxies, isUnsettable, isUnique, false);
     return r;
   }
 
-  protected EReference initEReference
-    (EReference r, 
-     EClassifier type, 
-     EReference otherEnd,
-     String name, 
-     String defaultValue,
-     int lowerBound, 
-     int upperBound, 
-     boolean isTransient, 
-     boolean isVolatile, 
-     boolean isChangeable, 
-     boolean isContainment, 
-     boolean isResolveProxies,
-     boolean isUnsettable,
-     boolean isUnique,
-     boolean isDerived)
+  protected EReference initEReference(EReference r, EClassifier type, EReference otherEnd, String name,
+      String defaultValue, int lowerBound, int upperBound, boolean isTransient, boolean isVolatile,
+      boolean isChangeable, boolean isContainment, boolean isResolveProxies, boolean isUnsettable, boolean isUnique,
+      boolean isDerived)
   {
-    initEReference
-      (r, 
-       type, 
-       otherEnd, 
-       name, 
-       defaultValue, 
-       lowerBound, 
-       upperBound, 
-       isTransient, 
-       isVolatile, 
-       isChangeable, 
-       isContainment, 
-       isResolveProxies, 
-       isUnsettable, 
-       isUnique,
-       isDerived,
-       true);
+    initEReference(r, type, otherEnd, name, defaultValue, lowerBound, upperBound, isTransient, isVolatile,
+        isChangeable, isContainment, isResolveProxies, isUnsettable, isUnique, isDerived, true);
     return r;
   }
 
-  protected EReference initEReference
-    (EReference r, 
-     EClassifier type, 
-     EReference otherEnd,
-     String name, 
-     String defaultValue,
-     int lowerBound, 
-     int upperBound, 
-     boolean isTransient, 
-     boolean isVolatile, 
-     boolean isChangeable, 
-     boolean isContainment, 
-     boolean isResolveProxies,
-     boolean isUnsettable,
-     boolean isUnique,
-     boolean isDerived,
-     boolean isOrdered)
+  protected EReference initEReference(EReference r, EClassifier type, EReference otherEnd, String name,
+      String defaultValue, int lowerBound, int upperBound, boolean isTransient, boolean isVolatile,
+      boolean isChangeable, boolean isContainment, boolean isResolveProxies, boolean isUnsettable, boolean isUnique,
+      boolean isDerived, boolean isOrdered)
   {
-    initEReference
-      (r, 
-       type, 
-       otherEnd,
-       name, 
-       defaultValue, 
-       lowerBound, 
-       upperBound, 
-       ((EClassifier)r.eContainer()).getInstanceClass(),
-       isTransient, 
-       isVolatile, 
-       isChangeable, 
-       isContainment,
-       isResolveProxies,
-       isUnsettable, 
-       isUnique, 
-       isDerived, 
-       isOrdered);
+    initEReference(r, type, otherEnd, name, defaultValue, lowerBound, upperBound, ((EClassifier)r.eContainer())
+        .getInstanceClass(), isTransient, isVolatile, isChangeable, isContainment, isResolveProxies, isUnsettable,
+        isUnique, isDerived, isOrdered);
     return r;
   }
 
-  protected EReference initEReference
-    (EReference r, 
-     EClassifier type, 
-     EReference otherEnd,
-     String name, 
-     String defaultValue,
-     int lowerBound, 
-     int upperBound, 
-     Class<?> containerClass,
-     boolean isTransient, 
-     boolean isVolatile, 
-     boolean isChangeable, 
-     boolean isContainment, 
-     boolean isResolveProxies,
-     boolean isUnsettable,
-     boolean isUnique,
-     boolean isDerived,
-     boolean isOrdered)
+  protected EReference initEReference(EReference r, EClassifier type, EReference otherEnd, String name,
+      String defaultValue, int lowerBound, int upperBound, Class<?> containerClass, boolean isTransient,
+      boolean isVolatile, boolean isChangeable, boolean isContainment, boolean isResolveProxies, boolean isUnsettable,
+      boolean isUnique, boolean isDerived, boolean isOrdered)
   {
-    initEStructuralFeature
-      (r, 
-       type, 
-       name, 
-       defaultValue, 
-       lowerBound, 
-       upperBound, 
-       containerClass,
-       isTransient, 
-       isVolatile, 
-       isChangeable, 
-       isUnsettable, 
-       isUnique, 
-       isDerived, 
-       isOrdered);
+    initEStructuralFeature(r, type, name, defaultValue, lowerBound, upperBound, containerClass, isTransient,
+        isVolatile, isChangeable, isUnsettable, isUnique, isDerived, isOrdered);
     r.setContainment(isContainment);
     if (otherEnd != null)
     {
@@ -1334,40 +1074,13 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
     return r;
   }
 
-  protected EReference initEReference
-    (EReference r, 
-     EGenericType type, 
-     EReference otherEnd,
-     String name, 
-     String defaultValue,
-     int lowerBound, 
-     int upperBound, 
-     Class<?> containerClass,
-     boolean isTransient, 
-     boolean isVolatile, 
-     boolean isChangeable, 
-     boolean isContainment, 
-     boolean isResolveProxies,
-     boolean isUnsettable,
-     boolean isUnique,
-     boolean isDerived,
-     boolean isOrdered)
+  protected EReference initEReference(EReference r, EGenericType type, EReference otherEnd, String name,
+      String defaultValue, int lowerBound, int upperBound, Class<?> containerClass, boolean isTransient,
+      boolean isVolatile, boolean isChangeable, boolean isContainment, boolean isResolveProxies, boolean isUnsettable,
+      boolean isUnique, boolean isDerived, boolean isOrdered)
   {
-    initEStructuralFeature
-      (r, 
-       type, 
-       name, 
-       defaultValue, 
-       lowerBound, 
-       upperBound, 
-       containerClass,
-       isTransient, 
-       isVolatile, 
-       isChangeable, 
-       isUnsettable, 
-       isUnique, 
-       isDerived, 
-       isOrdered);
+    initEStructuralFeature(r, type, name, defaultValue, lowerBound, upperBound, containerClass, isTransient,
+        isVolatile, isChangeable, isUnsettable, isUnique, isDerived, isOrdered);
     r.setContainment(isContainment);
     if (otherEnd != null)
     {
@@ -1377,21 +1090,9 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
     return r;
   }
 
-  private void initEStructuralFeature
-    (EStructuralFeature s, 
-     EClassifier type,
-     String name, 
-     String defaultValue,
-     int lowerBound, 
-     int upperBound, 
-     Class<?> containerClass,
-     boolean isTransient, 
-     boolean isVolatile, 
-     boolean isChangeable,
-     boolean isUnsettable,
-     boolean isUnique,
-     boolean isDerived,
-     boolean isOrdered)
+  private void initEStructuralFeature(EStructuralFeature s, EClassifier type, String name, String defaultValue,
+      int lowerBound, int upperBound, Class<?> containerClass, boolean isTransient, boolean isVolatile,
+      boolean isChangeable, boolean isUnsettable, boolean isUnique, boolean isDerived, boolean isOrdered)
   {
     s.setName(name);
     ((EStructuralFeatureImpl)s).setContainerClass(containerClass);
@@ -1411,21 +1112,9 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
     }
   }
 
-  private void initEStructuralFeature
-    (EStructuralFeature s, 
-     EGenericType type,
-     String name, 
-     String defaultValue,
-     int lowerBound, 
-     int upperBound, 
-     Class<?> containerClass,
-     boolean isTransient, 
-     boolean isVolatile, 
-     boolean isChangeable,
-     boolean isUnsettable,
-     boolean isUnique,
-     boolean isDerived,
-     boolean isOrdered)
+  private void initEStructuralFeature(EStructuralFeature s, EGenericType type, String name, String defaultValue,
+      int lowerBound, int upperBound, Class<?> containerClass, boolean isTransient, boolean isVolatile,
+      boolean isChangeable, boolean isUnsettable, boolean isUnique, boolean isDerived, boolean isOrdered)
   {
     s.setName(name);
     ((EStructuralFeatureImpl)s).setContainerClass(containerClass);
@@ -1444,7 +1133,7 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
       s.setDefaultValueLiteral(defaultValue);
     }
   }
-  
+
   protected EOperation addEOperation(EClass owner, EClassifier type, String name)
   {
     EOperation o = ecoreFactory.createEOperation();
@@ -1462,7 +1151,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
     return o;
   }
 
-  protected EOperation addEOperation(EClass owner, EClassifier type, String name, int lowerBound, int upperBound, boolean isUnique, boolean isOrdered)
+  protected EOperation addEOperation(EClass owner, EClassifier type, String name, int lowerBound, int upperBound,
+      boolean isUnique, boolean isOrdered)
   {
     EOperation o = addEOperation(owner, type, name, lowerBound, upperBound);
     o.setUnique(isUnique);
@@ -1496,7 +1186,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
     p.setUpperBound(upperBound);
   }
 
-  protected EParameter addEParameter(EOperation owner, EClassifier type, String name, int lowerBound, int upperBound, boolean isUnique, boolean isOrdered)
+  protected EParameter addEParameter(EOperation owner, EClassifier type, String name, int lowerBound, int upperBound,
+      boolean isUnique, boolean isOrdered)
   {
     EParameter p = internalAddEParameter(owner, type, name);
     p.setLowerBound(lowerBound);
@@ -1517,7 +1208,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
     p.setUpperBound(upperBound);
   }
 
-  protected void addEParameter(EOperation owner, EGenericType type, String name, int lowerBound, int upperBound, boolean isUnique, boolean isOrdered)
+  protected void addEParameter(EOperation owner, EGenericType type, String name, int lowerBound, int upperBound,
+      boolean isUnique, boolean isOrdered)
   {
     EParameter p = ecoreFactory.createEParameter();
     p.setEGenericType(type);
@@ -1546,7 +1238,7 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
     owner.getELiterals().add(l);
   }
 
-  protected void addAnnotation(ENamedElement eNamedElement, String source, String [] details)
+  protected void addAnnotation(ENamedElement eNamedElement, String source, String[] details)
   {
     EAnnotation eAnnotation = ecoreFactory.createEAnnotation();
     eAnnotation.setSource(source);
@@ -1558,7 +1250,7 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
     eNamedElement.getEAnnotations().add(eAnnotation);
   }
 
-  protected void addAnnotation(ENamedElement eNamedElement, int depth, String source, String [] details)
+  protected void addAnnotation(ENamedElement eNamedElement, int depth, String source, String[] details)
   {
     EAnnotation eAnnotation = ecoreFactory.createEAnnotation();
     eAnnotation.setSource(source);
@@ -1570,8 +1262,9 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
     EList<EAnnotation> annotations = eNamedElement.getEAnnotations();
     for (int i = 0; i < depth; ++i)
     {
-      @SuppressWarnings("unchecked") EList<EAnnotation> childAnnotations = 
-        (EList<EAnnotation>)(EList<?>)annotations.get(annotations.size() - 1).getContents();
+      @SuppressWarnings("unchecked")
+      EList<EAnnotation> childAnnotations = (EList<EAnnotation>)(EList<?>)annotations.get(annotations.size() - 1)
+          .getContents();
       annotations = childAnnotations;
     }
     annotations.add(eAnnotation);
@@ -1593,12 +1286,12 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
       target.getESubpackages().add(targetSubpackage);
     }
   }
-  
+
   protected void fixEClassifiers()
   {
     int id = 0;
-    
-    for (Iterator<EClassifier> i = getEClassifiers().iterator(); i.hasNext(); )
+
+    for (Iterator<EClassifier> i = getEClassifiers().iterator(); i.hasNext();)
     {
       EClassifierImpl eClassifier = (EClassifierImpl)i.next();
       if (eClassifier instanceof EClass)
@@ -1608,8 +1301,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
         fixEStructuralFeatures((EClass)eClassifier);
       }
     }
-    
-    for (Iterator<EClassifier> i = getEClassifiers().iterator(); i.hasNext(); )
+
+    for (Iterator<EClassifier> i = getEClassifiers().iterator(); i.hasNext();)
     {
       EClassifierImpl eClassifier = (EClassifierImpl)i.next();
       if (eClassifier.getClassifierID() == -1 && eClassifier instanceof EEnum)
@@ -1620,7 +1313,7 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
       }
     }
 
-    for (Iterator<EClassifier> i = getEClassifiers().iterator(); i.hasNext(); )
+    for (Iterator<EClassifier> i = getEClassifiers().iterator(); i.hasNext();)
     {
       EClassifierImpl eClassifier = (EClassifierImpl)i.next();
       if (eClassifier.getClassifierID() == -1 && eClassifier instanceof EDataType)
@@ -1656,16 +1349,19 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
     List<EStructuralFeature> features = eClass.getEStructuralFeatures();
     if (!features.isEmpty())
     {
-      // The container class must be null for the open content features of the document root
-      // to ensure that they are looked up in the actual eClass() 
-      // rather than assumed to be a feature with a feature ID relative to the actual class.
+      // The container class must be null for the open content features of the
+      // document root
+      // to ensure that they are looked up in the actual eClass()
+      // rather than assumed to be a feature with a feature ID relative to the
+      // actual class.
       // Otherwise, it's good to have this optimization.
       //
-      Class<?> containerClass = ExtendedMetaData.INSTANCE.getDocumentRoot(this) == eClass ? null : eClass.getInstanceClass();
+      Class<?> containerClass = ExtendedMetaData.INSTANCE.getDocumentRoot(this) == eClass ? null : eClass
+          .getInstanceClass();
 
       int id = eClass.getFeatureID(features.get(0));
-      
-      for (Iterator<EStructuralFeature> i = features.iterator(); i.hasNext(); )
+
+      for (Iterator<EStructuralFeature> i = features.iterator(); i.hasNext();)
       {
         EStructuralFeatureImpl eStructuralFeature = (EStructuralFeatureImpl)i.next();
         eStructuralFeature.setFeatureID(id++);
@@ -1677,7 +1373,7 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage, BasicEx
   protected void fixEEnumLiterals(EEnum eEnum)
   {
     Class<?> enumClass = eEnum.getInstanceClass();
-    
+
     try
     {
       Method getter = enumClass.getMethod("get", new Class[] { Integer.TYPE });

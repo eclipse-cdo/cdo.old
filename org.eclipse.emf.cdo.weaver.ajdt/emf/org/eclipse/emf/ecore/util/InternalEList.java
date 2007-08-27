@@ -16,14 +16,12 @@
  */
 package org.eclipse.emf.ecore.util;
 
-
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-
 
 public interface InternalEList<E> extends EList<E>
 {
@@ -84,13 +82,15 @@ public interface InternalEList<E> extends EList<E>
   {
     /**
      * Returns whether a value is held by the feature of the object.
+     * 
      * @return whether a value is held by the feature of the object.
      * @see org.eclipse.emf.ecore.EObject#eIsSet(org.eclipse.emf.ecore.EStructuralFeature)
      */
     boolean isSet();
-  
+
     /**
      * Unsets the value held by the feature of the object.
+     * 
      * @see org.eclipse.emf.ecore.EObject#eUnset(org.eclipse.emf.ecore.EStructuralFeature)
      */
     void unset();

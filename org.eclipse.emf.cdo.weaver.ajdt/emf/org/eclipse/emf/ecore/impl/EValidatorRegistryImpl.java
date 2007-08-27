@@ -16,14 +16,12 @@
  */
 package org.eclipse.emf.ecore.impl;
 
-
 import java.util.HashMap;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EValidator;
 
 import org.eclipse.emf.ecore.util.EObjectValidator;
-
 
 /**
  * An implementation of a validator registry.

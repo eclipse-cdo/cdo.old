@@ -16,10 +16,8 @@
  */
 package org.eclipse.emf.ecore.util;
 
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 
 public class EObjectResolvingEList<E> extends EObjectEList<E>
 {
@@ -39,7 +37,7 @@ public class EObjectResolvingEList<E> extends EObjectEList<E>
     {
       return true;
     }
-    
+
     @SuppressWarnings("unchecked")
     @Override
     protected E resolve(int index, E object)
@@ -58,7 +56,7 @@ public class EObjectResolvingEList<E> extends EObjectEList<E>
   {
     return true;
   }
-  
+
   @SuppressWarnings("unchecked")
   @Override
   protected E resolve(int index, E object)

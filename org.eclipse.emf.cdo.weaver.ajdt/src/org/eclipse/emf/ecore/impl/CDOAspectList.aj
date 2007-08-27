@@ -10,7 +10,6 @@
  **************************************************************************/
 package org.eclipse.emf.ecore.impl;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreEList;
 
 import java.util.Collection;

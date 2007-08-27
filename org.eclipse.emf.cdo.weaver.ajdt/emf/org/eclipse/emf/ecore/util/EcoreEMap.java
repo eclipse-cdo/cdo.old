@@ -14,8 +14,7 @@
  *
  * $Id$
  */
-package  org.eclipse.emf.ecore.util;
-
+package org.eclipse.emf.ecore.util;
 
 import java.lang.reflect.Array;
 import java.util.Iterator;
@@ -33,8 +32,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
-
-public class EcoreEMap<K, V> extends BasicEMap<K, V> implements InternalEList.Unsettable<Map.Entry<K, V>>, EStructuralFeature.Setting
+public class EcoreEMap<K, V> extends BasicEMap<K, V> implements InternalEList.Unsettable<Map.Entry<K, V>>,
+    EStructuralFeature.Setting
 {
   private static final long serialVersionUID = 1L;
 
@@ -47,8 +46,9 @@ public class EcoreEMap<K, V> extends BasicEMap<K, V> implements InternalEList.Un
       super(entryEClass, entryClass, null);
       delegateEList = new UnsettableDelegateEObjectContainmentEList<Entry<K, V>>(entryClass, owner, featureID);
     }
-    
-    protected class UnsettableDelegateEObjectContainmentEList<E extends Object & Entry<K, V>> extends DelegateEObjectContainmentEList<E>
+
+    protected class UnsettableDelegateEObjectContainmentEList<E extends Object & Entry<K, V>> extends
+        DelegateEObjectContainmentEList<E>
     {
       private static final long serialVersionUID = 1L;
 
@@ -90,6 +90,7 @@ public class EcoreEMap<K, V> extends BasicEMap<K, V> implements InternalEList.Un
   }
 
   protected EClass entryEClass;
+
   protected Class<?> entryClass;
 
   public EcoreEMap(EClass entryEClass, Class<?> entryClass, InternalEObject owner, int featureID)
@@ -98,7 +99,7 @@ public class EcoreEMap<K, V> extends BasicEMap<K, V> implements InternalEList.Un
     this.entryEClass = entryEClass;
     delegateEList = new DelegateEObjectContainmentEList<Entry<K, V>>(entryClass, owner, featureID);
   }
-  
+
   public EcoreEMap(EClass entryEClass, Class<?> entryClass, EList<Entry<K, V>> delegateEList)
   {
     this.entryClass = entryClass;
@@ -141,7 +142,7 @@ public class EcoreEMap<K, V> extends BasicEMap<K, V> implements InternalEList.Un
     }
 
     @Override
-    protected void didClear(int size, Object [] oldObjects)
+    protected void didClear(int size, Object[] oldObjects)
     {
       EcoreEMap.this.doClear();
     }
@@ -156,23 +157,23 @@ public class EcoreEMap<K, V> extends BasicEMap<K, V> implements InternalEList.Un
   @Override
   protected BasicEList<Entry<K, V>> newList()
   {
-    return
-      new BasicEList<Entry<K, V>>()
-      {
-        private static final long serialVersionUID = 1L;
+    return new BasicEList<Entry<K, V>>()
+    {
+      private static final long serialVersionUID = 1L;
 
-        @Override
-        public Object [] newData(int listCapacity)
-        {
-          return (Object [])Array.newInstance(entryClass, listCapacity);
-        }
-      };
+      @Override
+      public Object[] newData(int listCapacity)
+      {
+        return (Object[])Array.newInstance(entryClass, listCapacity);
+      }
+    };
   }
 
   @Override
   protected Entry<K, V> newEntry(int hash, K key, V value)
   {
-    @SuppressWarnings("unchecked") Entry<K, V> entry = (Entry<K, V>)entryEClass.getEPackage().getEFactoryInstance().create(entryEClass);
+    @SuppressWarnings("unchecked")
+    Entry<K, V> entry = (Entry<K, V>)entryEClass.getEPackage().getEFactoryInstance().create(entryEClass);
     entry.setHash(hash);
     entry.setKey(key);
     entry.setValue(value);
@@ -281,7 +282,8 @@ public class EcoreEMap<K, V> extends BasicEMap<K, V> implements InternalEList.Un
     if (value instanceof Map)
     {
       ((EStructuralFeature.Setting)delegateEList).unset();
-      @SuppressWarnings("unchecked") Map<? extends K, ? extends V> mapValue = (Map<? extends K, ? extends V>)value;
+      @SuppressWarnings("unchecked")
+      Map<? extends K, ? extends V> mapValue = (Map<? extends K, ? extends V>)value;
       putAll(mapValue);
     }
     else

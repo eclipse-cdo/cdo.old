@@ -16,31 +16,30 @@
  */
 package org.eclipse.emf.ecore.plugin;
 
-
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 
 import org.eclipse.emf.ecore.resource.Resource;
 
-
 /**
- * A plugin extension reader that populates the 
- * {@link org.eclipse.emf.ecore.resource.Resource.Factory.Registry#INSTANCE global} resource factory's 
- * {@link org.eclipse.emf.ecore.resource.Resource.Factory.Registry#getExtensionToFactoryMap() extension} map.
- * Clients are not expected to use this class directly.
+ * A plugin extension reader that populates the
+ * {@link org.eclipse.emf.ecore.resource.Resource.Factory.Registry#INSTANCE global}
+ * resource factory's
+ * {@link org.eclipse.emf.ecore.resource.Resource.Factory.Registry#getExtensionToFactoryMap() extension}
+ * map. Clients are not expected to use this class directly.
  */
 class ExtensionParserRegistryReader extends RegistryReader
 {
   static final String TAG_PARSER = "parser";
+
   static final String ATT_TYPE = "type";
+
   static final String ATT_CLASS = "class";
 
   public ExtensionParserRegistryReader()
   {
-    super
-      (Platform.getExtensionRegistry(),
-       EcorePlugin.getPlugin().getBundle().getSymbolicName(), 
-       EcorePlugin.EXTENSION_PARSER_PPID);
+    super(Platform.getExtensionRegistry(), EcorePlugin.getPlugin().getBundle().getSymbolicName(),
+        EcorePlugin.EXTENSION_PARSER_PPID);
   }
 
   @Override
@@ -59,12 +58,13 @@ class ExtensionParserRegistryReader extends RegistryReader
       }
       else if (add)
       {
-        Object previous = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(type, new ResourceFactoryDescriptor(element, ATT_CLASS));
+        Object previous = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(type,
+            new ResourceFactoryDescriptor(element, ATT_CLASS));
         if (previous instanceof ResourceFactoryDescriptor)
         {
           ResourceFactoryDescriptor descriptor = (ResourceFactoryDescriptor)previous;
-          EcorePlugin.INSTANCE.log
-            ("Both '" + descriptor.element.getContributor().getName() + "' and '" + element.getContributor().getName() + "' register an extension parser for '" + type + "'");
+          EcorePlugin.INSTANCE.log("Both '" + descriptor.element.getContributor().getName() + "' and '"
+              + element.getContributor().getName() + "' register an extension parser for '" + type + "'");
         }
         return true;
       }

@@ -16,40 +16,40 @@
  */
 package org.eclipse.emf.ecore.xml.namespace.impl;
 
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
 import org.eclipse.emf.ecore.util.Diagnostician;
-import org.eclipse.emf.ecore.xml.namespace.*;
+import org.eclipse.emf.ecore.xml.namespace.SpaceType;
+import org.eclipse.emf.ecore.xml.namespace.XMLNamespaceDocumentRoot;
+import org.eclipse.emf.ecore.xml.namespace.XMLNamespaceFactory;
+import org.eclipse.emf.ecore.xml.namespace.XMLNamespacePackage;
 import org.eclipse.emf.ecore.xml.type.XMLTypeFactory;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 
-
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
+ * end-user-doc -->
+ * 
  * @generated
  */
 public class XMLNamespaceFactoryImpl extends EFactoryImpl implements XMLNamespaceFactory
 {
   /**
-   * Creates the default factory implementation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @generated
    */
   public static XMLNamespaceFactory init()
   {
     try
     {
-      XMLNamespaceFactory theXMLNamespaceFactory = (XMLNamespaceFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.w3.org/XML/1998/namespace"); 
+      XMLNamespaceFactory theXMLNamespaceFactory = (XMLNamespaceFactory)EPackage.Registry.INSTANCE
+          .getEFactory("http://www.w3.org/XML/1998/namespace");
       if (theXMLNamespaceFactory != null)
       {
         return theXMLNamespaceFactory;
@@ -63,9 +63,9 @@ public class XMLNamespaceFactoryImpl extends EFactoryImpl implements XMLNamespac
   }
 
   /**
-   * Creates an instance of the factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @generated
    */
   public XMLNamespaceFactoryImpl()
@@ -74,8 +74,8 @@ public class XMLNamespaceFactoryImpl extends EFactoryImpl implements XMLNamespac
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -83,15 +83,16 @@ public class XMLNamespaceFactoryImpl extends EFactoryImpl implements XMLNamespac
   {
     switch (eClass.getClassifierID())
     {
-      case XMLNamespacePackage.XML_NAMESPACE_DOCUMENT_ROOT: return createXMLNamespaceDocumentRoot();
-      default:
-        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    case XMLNamespacePackage.XML_NAMESPACE_DOCUMENT_ROOT:
+      return createXMLNamespaceDocumentRoot();
+    default:
+      throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -99,22 +100,22 @@ public class XMLNamespaceFactoryImpl extends EFactoryImpl implements XMLNamespac
   {
     switch (eDataType.getClassifierID())
     {
-      case XMLNamespacePackage.SPACE_TYPE:
-        return createSpaceTypeFromString(eDataType, initialValue);
-      case XMLNamespacePackage.LANG_TYPE:
-        return createLangTypeFromString(eDataType, initialValue);
-      case XMLNamespacePackage.LANG_TYPE_NULL:
-        return createLangTypeNullFromString(eDataType, initialValue);
-      case XMLNamespacePackage.SPACE_TYPE_OBJECT:
-        return createSpaceTypeObjectFromString(eDataType, initialValue);
-      default:
-        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    case XMLNamespacePackage.SPACE_TYPE:
+      return createSpaceTypeFromString(eDataType, initialValue);
+    case XMLNamespacePackage.LANG_TYPE:
+      return createLangTypeFromString(eDataType, initialValue);
+    case XMLNamespacePackage.LANG_TYPE_NULL:
+      return createLangTypeNullFromString(eDataType, initialValue);
+    case XMLNamespacePackage.SPACE_TYPE_OBJECT:
+      return createSpaceTypeObjectFromString(eDataType, initialValue);
+    default:
+      throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -122,22 +123,22 @@ public class XMLNamespaceFactoryImpl extends EFactoryImpl implements XMLNamespac
   {
     switch (eDataType.getClassifierID())
     {
-      case XMLNamespacePackage.SPACE_TYPE:
-        return convertSpaceTypeToString(eDataType, instanceValue);
-      case XMLNamespacePackage.LANG_TYPE:
-        return convertLangTypeToString(eDataType, instanceValue);
-      case XMLNamespacePackage.LANG_TYPE_NULL:
-        return convertLangTypeNullToString(eDataType, instanceValue);
-      case XMLNamespacePackage.SPACE_TYPE_OBJECT:
-        return convertSpaceTypeObjectToString(eDataType, instanceValue);
-      default:
-        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    case XMLNamespacePackage.SPACE_TYPE:
+      return convertSpaceTypeToString(eDataType, instanceValue);
+    case XMLNamespacePackage.LANG_TYPE:
+      return convertLangTypeToString(eDataType, instanceValue);
+    case XMLNamespacePackage.LANG_TYPE_NULL:
+      return convertLangTypeNullToString(eDataType, instanceValue);
+    case XMLNamespacePackage.SPACE_TYPE_OBJECT:
+      return convertSpaceTypeObjectToString(eDataType, instanceValue);
+    default:
+      throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public XMLNamespaceDocumentRoot createXMLNamespaceDocumentRoot()
@@ -147,20 +148,22 @@ public class XMLNamespaceFactoryImpl extends EFactoryImpl implements XMLNamespac
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public SpaceType createSpaceTypeFromString(EDataType eDataType, String initialValue)
   {
     SpaceType result = SpaceType.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    if (result == null)
+      throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
+          + eDataType.getName() + "'");
     return result;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String convertSpaceTypeToString(EDataType eDataType, Object instanceValue)
@@ -169,8 +172,8 @@ public class XMLNamespaceFactoryImpl extends EFactoryImpl implements XMLNamespac
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String createLangTypeFromString(EDataType eDataType, String initialValue)
@@ -203,13 +206,13 @@ public class XMLNamespaceFactoryImpl extends EFactoryImpl implements XMLNamespac
       exception = e;
     }
     if (result != null || exception == null) return result;
-    
+
     throw exception;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String convertLangTypeToString(EDataType eDataType, Object instanceValue)
@@ -239,12 +242,12 @@ public class XMLNamespaceFactoryImpl extends EFactoryImpl implements XMLNamespac
         // Keep trying other member types until all have failed.
       }
     }
-    throw new IllegalArgumentException("Invalid value: '"+instanceValue+"' for datatype :"+eDataType.getName());
+    throw new IllegalArgumentException("Invalid value: '" + instanceValue + "' for datatype :" + eDataType.getName());
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String createLangTypeNullFromString(EDataType eDataType, String initialValue)
@@ -253,8 +256,8 @@ public class XMLNamespaceFactoryImpl extends EFactoryImpl implements XMLNamespac
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String convertLangTypeNullToString(EDataType eDataType, Object instanceValue)
@@ -263,8 +266,8 @@ public class XMLNamespaceFactoryImpl extends EFactoryImpl implements XMLNamespac
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public SpaceType createSpaceTypeObjectFromString(EDataType eDataType, String initialValue)
@@ -273,8 +276,8 @@ public class XMLNamespaceFactoryImpl extends EFactoryImpl implements XMLNamespac
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String convertSpaceTypeObjectToString(EDataType eDataType, Object instanceValue)
@@ -283,8 +286,8 @@ public class XMLNamespaceFactoryImpl extends EFactoryImpl implements XMLNamespac
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public XMLNamespacePackage getXMLNamespacePackage()
@@ -293,8 +296,8 @@ public class XMLNamespaceFactoryImpl extends EFactoryImpl implements XMLNamespac
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @deprecated
    * @generated
    */
@@ -304,4 +307,4 @@ public class XMLNamespaceFactoryImpl extends EFactoryImpl implements XMLNamespac
     return XMLNamespacePackage.eINSTANCE;
   }
 
-} //XMLNamespaceFactoryImpl
+} // XMLNamespaceFactoryImpl

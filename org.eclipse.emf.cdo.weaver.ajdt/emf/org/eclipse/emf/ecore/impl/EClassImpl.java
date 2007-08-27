@@ -17,7 +17,6 @@
 
 package org.eclipse.emf.ecore.impl;
 
-
 import java.lang.reflect.Array;
 import java.util.AbstractSequentialList;
 import java.util.Collection;
@@ -57,61 +56,70 @@ import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.emf.ecore.util.FeatureMapUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>EClass</b></em>'.
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EClass</b></em>'.
+ * 
  * @extends ESuperAdapter.Holder
- * @ignore
- * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#isAbstract <em>Abstract</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#isInterface <em>Interface</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getESuperTypes <em>ESuper Types</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEOperations <em>EOperations</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEAllAttributes <em>EAll Attributes</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEAllReferences <em>EAll References</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEReferences <em>EReferences</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEAttributes <em>EAttributes</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEAllContainments <em>EAll Containments</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEAllOperations <em>EAll Operations</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEAllStructuralFeatures <em>EAll Structural Features</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEAllSuperTypes <em>EAll Super Types</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEIDAttribute <em>EID Attribute</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEStructuralFeatures <em>EStructural Features</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEGenericSuperTypes <em>EGeneric Super Types</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEAllGenericSuperTypes <em>EAll Generic Super Types</em>}</li>
- * </ul>
- * </p>
- *
+ * @ignore <!-- end-user-doc -->
+ *         <p>
+ *         The following features are implemented:
+ *         <ul>
+ *         <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#isAbstract <em>Abstract</em>}</li>
+ *         <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#isInterface <em>Interface</em>}</li>
+ *         <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getESuperTypes <em>ESuper Types</em>}</li>
+ *         <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEOperations <em>EOperations</em>}</li>
+ *         <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEAllAttributes <em>EAll Attributes</em>}</li>
+ *         <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEAllReferences <em>EAll References</em>}</li>
+ *         <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEReferences <em>EReferences</em>}</li>
+ *         <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEAttributes <em>EAttributes</em>}</li>
+ *         <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEAllContainments <em>EAll Containments</em>}</li>
+ *         <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEAllOperations <em>EAll Operations</em>}</li>
+ *         <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEAllStructuralFeatures <em>EAll Structural Features</em>}</li>
+ *         <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEAllSuperTypes <em>EAll Super Types</em>}</li>
+ *         <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEIDAttribute <em>EID Attribute</em>}</li>
+ *         <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEStructuralFeatures <em>EStructural Features</em>}</li>
+ *         <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEGenericSuperTypes <em>EGeneric Super Types</em>}</li>
+ *         <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEAllGenericSuperTypes <em>EAll Generic Super Types</em>}</li>
+ *         </ul>
+ *         </p>
  * @generated
  */
 public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter.Holder
 {
   public interface FeatureSubsetSupplier
   {
-    EStructuralFeature [] containments();
-    EStructuralFeature [] crossReferences();
-    EStructuralFeature [] features();
+    EStructuralFeature[] containments();
+
+    EStructuralFeature[] crossReferences();
+
+    EStructuralFeature[] features();
   }
 
   protected EAttribute eIDAttribute;
+
   protected BasicEList<EAttribute> eAllAttributes;
+
   protected BasicEList<EReference> eAllReferences;
+
   protected BasicEList<EStructuralFeature> eAllStructuralFeatures;
+
   protected EStructuralFeature[] eAllStructuralFeaturesData;
-  protected BasicEList<EReference> eAllContainments;  
+
+  protected BasicEList<EReference> eAllContainments;
+
   protected BasicEList<EOperation> eAllOperations;
+
   protected BasicEList<EClass> eAllSuperTypes;
+
   protected BasicEList<EGenericType> eAllGenericSuperTypes;
+
   protected Map<String, EStructuralFeature> eNameToFeatureMap;
+
   protected ESuperAdapter eSuperAdapter;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected EClassImpl()
@@ -131,7 +139,7 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
     getEAllGenericSuperTypes();
 
     getESuperAdapter().getSubclasses().clear();
-    
+
     if (eStructuralFeatures != null)
     {
       for (int i = 0, size = eStructuralFeatures.size(); i < size; ++i)
@@ -148,7 +156,7 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
     }
     super.freeze();
   }
-  
+
   @Override
   public boolean isFrozen()
   {
@@ -156,8 +164,8 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -167,8 +175,8 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public EAttribute getEIDAttribute()
@@ -178,22 +186,23 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EList<EStructuralFeature> getEStructuralFeatures()
   {
     if (eStructuralFeatures == null)
     {
-      eStructuralFeatures = new EObjectContainmentWithInverseEList<EStructuralFeature>(EStructuralFeature.class, this, EcorePackage.ECLASS__ESTRUCTURAL_FEATURES, EcorePackage.ESTRUCTURAL_FEATURE__ECONTAINING_CLASS);
+      eStructuralFeatures = new EObjectContainmentWithInverseEList<EStructuralFeature>(EStructuralFeature.class, this,
+          EcorePackage.ECLASS__ESTRUCTURAL_FEATURES, EcorePackage.ESTRUCTURAL_FEATURE__ECONTAINING_CLASS);
     }
     return eStructuralFeatures;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public EList<EGenericType> getEGenericSuperTypes()
@@ -201,152 +210,141 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
     getESuperAdapter();
     if (eGenericSuperTypes == null)
     {
-      eGenericSuperTypes = 
-        new EObjectContainmentEList.Unsettable<EGenericType>(EGenericType.class, this, EcorePackage.ECLASS__EGENERIC_SUPER_TYPES)
+      eGenericSuperTypes = new EObjectContainmentEList.Unsettable<EGenericType>(EGenericType.class, this,
+          EcorePackage.ECLASS__EGENERIC_SUPER_TYPES)
+      {
+        private static final long serialVersionUID = 1L;
+
+        @Override
+        public boolean isSet()
         {
-          private static final long serialVersionUID = 1L;
+          for (EGenericType eGenericType : this)
+          {
+            if (eGenericType.getETypeParameter() != null || !eGenericType.getETypeArguments().isEmpty())
+            {
+              return true;
+            }
+          }
+          return false;
+        }
 
-          @Override
-          public boolean isSet()
+        protected EClass unwrap(EGenericType eGenericType)
+        {
+          EClassifier result = eGenericType.getERawType();
+          if (result instanceof EClass)
           {
-            for (EGenericType eGenericType : this)
-            {
-              if (eGenericType.getETypeParameter() != null || !eGenericType.getETypeArguments().isEmpty())
-              {
-                return true;
-              }
-            }
-            return false;
+            return (EClass)result;
           }
-          
-          protected EClass unwrap(EGenericType eGenericType)
+          else
           {
-            EClassifier result = eGenericType.getERawType();
-            if (result instanceof EClass)
-            {
-              return (EClass)result;
-            }
-            else
-            {
-              return EcorePackage.Literals.EOBJECT;
-            }
+            return EcorePackage.Literals.EOBJECT;
           }
+        }
 
-          @Override
-          protected boolean hasShadow()
-          {
-            return true;
-          }
-          
-          @Override
-          protected NotificationChain shadowAdd(EGenericType eGenericType, NotificationChain notifications)
-          {
-            ENotificationImpl notification =
-              new ENotificationImpl
-                (owner, Notification.ADD, EcorePackage.ECLASS__ESUPER_TYPES, null, unwrap(eGenericType), indexOf(eGenericType), false);
-            if (notifications == null)
-            {
-              notifications = notification;
-            }
-            else
-            {
-              notifications.add(notification);
-            }
-            return notifications;
-          }
-          
-          @Override
-          protected NotificationChain shadowRemove(EGenericType eGenericType, NotificationChain notifications)
-          {
-            ENotificationImpl notification =
-              new ENotificationImpl
-                (owner, Notification.REMOVE, EcorePackage.ECLASS__ESUPER_TYPES, unwrap(eGenericType), null, indexOf(eGenericType), false);
-            if (notifications == null)
-            {
-              notifications = notification;
-            }
-            else
-            {
-              notifications.add(notification);
-            }
-            return notifications;
-          }
-          
-          @Override
-          protected NotificationChain shadowSet(EGenericType oldEGenericType, EGenericType newEGenericType, NotificationChain notifications)
-          {
-            ENotificationImpl notification =
-              new ENotificationImpl
-                (owner, 
-                 Notification.SET, 
-                 EcorePackage.ECLASS__ESUPER_TYPES, 
-                 unwrap(oldEGenericType), 
-                 unwrap(newEGenericType), 
-                 indexOf(oldEGenericType), 
-                 false);
-            if (notifications == null)
-            {
-              notifications = notification;
-            }
-            else
-            {
-              notifications.add(notification);
-            }
-            return notifications;
-          }
-          
-          @Override
-          public EGenericType move(int targetIndex, int sourceIndex)
-          {
-            EGenericType result = super.move(targetIndex, sourceIndex);
-            if (isNotificationRequired())
-            {
-              dispatchNotification
-                (new ENotificationImpl
-                   (EClassImpl.this,
-                    Notification.MOVE, 
-                    EcorePackage.Literals.ECLASS__ESUPER_TYPES,
-                    new Integer(sourceIndex),
-                    unwrap(result), 
-                    targetIndex));
-            }
-            return result;
-          }
+        @Override
+        protected boolean hasShadow()
+        {
+          return true;
+        }
 
-          @Override
-          public void unset()
+        @Override
+        protected NotificationChain shadowAdd(EGenericType eGenericType, NotificationChain notifications)
+        {
+          ENotificationImpl notification = new ENotificationImpl(owner, Notification.ADD,
+              EcorePackage.ECLASS__ESUPER_TYPES, null, unwrap(eGenericType), indexOf(eGenericType), false);
+          if (notifications == null)
           {
-            // Don't really unset it.
-            clear();
+            notifications = notification;
           }
+          else
+          {
+            notifications.add(notification);
+          }
+          return notifications;
+        }
 
-          @Override
-          protected NotificationImpl createNotification(int eventType, Object oldObject, Object newObject, int index, boolean wasSet)
+        @Override
+        protected NotificationChain shadowRemove(EGenericType eGenericType, NotificationChain notifications)
+        {
+          ENotificationImpl notification = new ENotificationImpl(owner, Notification.REMOVE,
+              EcorePackage.ECLASS__ESUPER_TYPES, unwrap(eGenericType), null, indexOf(eGenericType), false);
+          if (notifications == null)
           {
-            switch (eventType)
-            {
-              case Notification.ADD:
-              {
-                return super.createNotification(eventType, oldObject, newObject, index, size > 1);
-              }
-              case Notification.ADD_MANY:
-              {
-                return super.createNotification(eventType, oldObject, newObject, index, size - ((List<?>)newObject).size() > 0);
-              }
-              default:
-              {
-                return super.createNotification(eventType, oldObject, newObject, index, true);
-              }
-            }
+            notifications = notification;
           }
-        };
+          else
+          {
+            notifications.add(notification);
+          }
+          return notifications;
+        }
+
+        @Override
+        protected NotificationChain shadowSet(EGenericType oldEGenericType, EGenericType newEGenericType,
+            NotificationChain notifications)
+        {
+          ENotificationImpl notification = new ENotificationImpl(owner, Notification.SET,
+              EcorePackage.ECLASS__ESUPER_TYPES, unwrap(oldEGenericType), unwrap(newEGenericType),
+              indexOf(oldEGenericType), false);
+          if (notifications == null)
+          {
+            notifications = notification;
+          }
+          else
+          {
+            notifications.add(notification);
+          }
+          return notifications;
+        }
+
+        @Override
+        public EGenericType move(int targetIndex, int sourceIndex)
+        {
+          EGenericType result = super.move(targetIndex, sourceIndex);
+          if (isNotificationRequired())
+          {
+            dispatchNotification(new ENotificationImpl(EClassImpl.this, Notification.MOVE,
+                EcorePackage.Literals.ECLASS__ESUPER_TYPES, new Integer(sourceIndex), unwrap(result), targetIndex));
+          }
+          return result;
+        }
+
+        @Override
+        public void unset()
+        {
+          // Don't really unset it.
+          clear();
+        }
+
+        @Override
+        protected NotificationImpl createNotification(int eventType, Object oldObject, Object newObject, int index,
+            boolean wasSet)
+        {
+          switch (eventType)
+          {
+          case Notification.ADD:
+          {
+            return super.createNotification(eventType, oldObject, newObject, index, size > 1);
+          }
+          case Notification.ADD_MANY:
+          {
+            return super.createNotification(eventType, oldObject, newObject, index,
+                size - ((List<?>)newObject).size() > 0);
+          }
+          default:
+          {
+            return super.createNotification(eventType, oldObject, newObject, index, true);
+          }
+          }
+        }
+      };
     }
     return eGenericSuperTypes;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void unsetEGenericSuperTypes()
@@ -355,8 +353,8 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean isSetEGenericSuperTypes()
@@ -364,19 +362,18 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
     return eGenericSuperTypes != null && ((InternalEList.Unsettable<?>)eGenericSuperTypes).isSet();
   }
 
-  private static final ThreadLocal<Set<EClass>> COMPUTATION_IN_PROGRESS = 
-    new ThreadLocal<Set<EClass>>()
+  private static final ThreadLocal<Set<EClass>> COMPUTATION_IN_PROGRESS = new ThreadLocal<Set<EClass>>()
+  {
+    @Override
+    protected java.util.Set<EClass> initialValue()
     {
-      @Override
-      protected java.util.Set<EClass> initialValue() 
-      {
-        return new HashSet<EClass>(); 
-      }
-    };
-      
+      return new HashSet<EClass>();
+    }
+  };
+
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public EList<EGenericType> getEAllGenericSuperTypes()
@@ -386,13 +383,13 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
       class EGenericSuperTypeEList extends UniqueEList<EGenericType>
       {
         private static final long serialVersionUID = 1L;
- 
+
         @Override
-        protected Object [] newData(int capacity)
+        protected Object[] newData(int capacity)
         {
-          return new EGenericType [capacity];
+          return new EGenericType[capacity];
         }
- 
+
         @Override
         protected boolean useEquals()
         {
@@ -401,7 +398,7 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
 
         public void eliminateEquivalentDuplicates()
         {
-          EGenericType [] eGenericTypes  = (EGenericType[])data;
+          EGenericType[] eGenericTypes = (EGenericType[])data;
           for (int i = size - 1; i >= 0; --i)
           {
             EGenericType eGenericType = eGenericTypes[i];
@@ -465,14 +462,14 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
             }
           }
         }
- 
+
         public EGenericType resolve(EGenericType eGenericType)
         {
           ETypeParameter eTypeParameter = eGenericType.getETypeParameter();
           if (eTypeParameter != null)
           {
             EObject eContainer = eTypeParameter.eContainer();
-            EGenericType [] eGenericTypes  = (EGenericType[])data;
+            EGenericType[] eGenericTypes = (EGenericType[])data;
             for (int i = 0; i < size; ++i)
             {
               EGenericType otherEGenericType = eGenericTypes[i];
@@ -490,7 +487,7 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
           return eGenericType;
         }
       }
-      EGenericSuperTypeEList  result = new EGenericSuperTypeEList();
+      EGenericSuperTypeEList result = new EGenericSuperTypeEList();
 
       Set<EClass> computationInProgress = COMPUTATION_IN_PROGRESS.get();
       if (computationInProgress.add(this))
@@ -508,11 +505,10 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
       }
 
       result.eliminateEquivalentDuplicates();
-      
+
       result.shrink();
-      eAllGenericSuperTypes = 
-        new EcoreEList.UnmodifiableEList.FastCompare<EGenericType>
-          (this, EcorePackage.eINSTANCE.getEClass_EAllGenericSuperTypes(), result.size(), result.data());
+      eAllGenericSuperTypes = new EcoreEList.UnmodifiableEList.FastCompare<EGenericType>(this, EcorePackage.eINSTANCE
+          .getEClass_EAllGenericSuperTypes(), result.size(), result.data());
       getESuperAdapter().setAllSuperCollectionModified(false);
     }
 
@@ -525,50 +521,48 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
     {
       eIDAttribute = null;
 
-      BasicEList<EAttribute> result =
-        new UniqueEList<EAttribute>()
+      BasicEList<EAttribute> result = new UniqueEList<EAttribute>()
+      {
+        private static final long serialVersionUID = 1L;
+
+        @Override
+        protected Object[] newData(int capacity)
         {
-          private static final long serialVersionUID = 1L;
+          return new EAttribute[capacity];
+        }
 
-          @Override
-          protected Object [] newData(int capacity)
-          {
-            return new EAttribute [capacity];
-          }
-
-          @Override
-          protected boolean useEquals()
-          {
-            return false;
-          }
-
-          @Override
-          protected void didAdd(int index, EAttribute eAttribute)
-          {
-            if (eAttribute.isID() && eIDAttribute == null) 
-            {
-              eIDAttribute = eAttribute;
-            }
-          }
-        };
-
-      BasicEList<EAttribute> attributes = 
-        new UniqueEList<EAttribute>()
+        @Override
+        protected boolean useEquals()
         {
-          private static final long serialVersionUID = 1L;
+          return false;
+        }
 
-          @Override
-          protected Object [] newData(int capacity)
+        @Override
+        protected void didAdd(int index, EAttribute eAttribute)
+        {
+          if (eAttribute.isID() && eIDAttribute == null)
           {
-            return new EAttribute [capacity];
+            eIDAttribute = eAttribute;
           }
+        }
+      };
 
-          @Override
-          protected boolean useEquals()
-          {
-            return false;
-          }
-        };
+      BasicEList<EAttribute> attributes = new UniqueEList<EAttribute>()
+      {
+        private static final long serialVersionUID = 1L;
+
+        @Override
+        protected Object[] newData(int capacity)
+        {
+          return new EAttribute[capacity];
+        }
+
+        @Override
+        protected boolean useEquals()
+        {
+          return false;
+        }
+      };
 
       Set<EClass> computationInProgress = COMPUTATION_IN_PROGRESS.get();
       if (computationInProgress.add(this))
@@ -588,32 +582,31 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
       }
 
       attributes.shrink();
-      eAttributes = 
-        new EcoreEList.UnmodifiableEList.FastCompare<EAttribute>
-          (this, EcorePackage.eINSTANCE.getEClass_EAttributes(), attributes.size(), attributes.data())
+      eAttributes = new EcoreEList.UnmodifiableEList.FastCompare<EAttribute>(this, EcorePackage.eINSTANCE
+          .getEClass_EAttributes(), attributes.size(), attributes.data())
+      {
+        private static final long serialVersionUID = 1L;
+
+        @SuppressWarnings("unchecked")
+        @Override
+        public void addUnique(EAttribute object)
         {
-          private static final long serialVersionUID = 1L;
+          ((InternalEList<EAttribute>)(InternalEList<?>)getEStructuralFeatures()).addUnique(object);
+        }
 
-          @SuppressWarnings("unchecked")
-          @Override
-          public void addUnique(EAttribute object)
-          {
-            ((InternalEList<EAttribute>)(InternalEList<?>)getEStructuralFeatures()).addUnique(object);
-          }
-
-          @Override
-          public boolean add(EAttribute object)
-          {
-            System.err.println("Please fix your code to add using EClass.getEStructuralFeatures() instead of EClass.getEAttributes()");
-            return getEStructuralFeatures().add(object);
-          }
-        };
+        @Override
+        public boolean add(EAttribute object)
+        {
+          System.err
+              .println("Please fix your code to add using EClass.getEStructuralFeatures() instead of EClass.getEAttributes()");
+          return getEStructuralFeatures().add(object);
+        }
+      };
 
       result.addAll(eAttributes);
       result.shrink();
-      eAllAttributes = 
-        new EcoreEList.UnmodifiableEList.FastCompare<EAttribute>
-          (this, EcorePackage.eINSTANCE.getEClass_EAllAttributes(), result.size(), result.data());
+      eAllAttributes = new EcoreEList.UnmodifiableEList.FastCompare<EAttribute>(this, EcorePackage.eINSTANCE
+          .getEClass_EAllAttributes(), result.size(), result.data());
       getESuperAdapter().setAllAttributesCollectionModified(false);
     }
 
@@ -634,9 +627,9 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
         }
 
         @Override
-        protected Object [] newData(int capacity)
+        protected Object[] newData(int capacity)
         {
-          return new EReference [capacity];
+          return new EReference[capacity];
         }
 
         @Override
@@ -666,32 +659,31 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
       }
 
       references.shrink();
-      eReferences = 
-        new EcoreEList.UnmodifiableEList.FastCompare<EReference>
-          (this, EcorePackage.eINSTANCE.getEClass_EReferences(), references.size(), references.data())
+      eReferences = new EcoreEList.UnmodifiableEList.FastCompare<EReference>(this, EcorePackage.eINSTANCE
+          .getEClass_EReferences(), references.size(), references.data())
+      {
+        private static final long serialVersionUID = 1L;
+
+        @SuppressWarnings("unchecked")
+        @Override
+        public void addUnique(EReference object)
         {
-          private static final long serialVersionUID = 1L;
+          ((InternalEList<EReference>)(InternalEList<?>)getEStructuralFeatures()).addUnique(object);
+        }
 
-          @SuppressWarnings("unchecked")
-          @Override
-          public void addUnique(EReference object)
-          {
-            ((InternalEList<EReference>)(InternalEList<?>)getEStructuralFeatures()).addUnique(object);
-          }
-
-          @Override
-          public boolean add(EReference object)
-          {
-            System.err.println("Please fix your code to add using EClass.getEStructuralFeatures() instead of EClass.getEReferences()");
-            return getEStructuralFeatures().add(object);
-          }
-        };
+        @Override
+        public boolean add(EReference object)
+        {
+          System.err
+              .println("Please fix your code to add using EClass.getEStructuralFeatures() instead of EClass.getEReferences()");
+          return getEStructuralFeatures().add(object);
+        }
+      };
 
       result.addAll(eReferences);
       result.shrink();
-      eAllReferences = 
-        new EcoreEList.UnmodifiableEList.FastCompare<EReference>
-          (this, EcorePackage.eINSTANCE.getEClass_EAllReferences(), result.size(), result.data());
+      eAllReferences = new EcoreEList.UnmodifiableEList.FastCompare<EReference>(this, EcorePackage.eINSTANCE
+          .getEClass_EAllReferences(), result.size(), result.data());
       getESuperAdapter().setAllReferencesCollectionModified(false);
     }
 
@@ -699,8 +691,8 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public EList<EReference> getEReferences()
@@ -710,8 +702,8 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public EList<EAttribute> getEAttributes()
@@ -721,16 +713,17 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated modifiable
    */
-  public EList<EStructuralFeature> getEAllStructuralFeatures() 
+  public EList<EStructuralFeature> getEAllStructuralFeatures()
   {
-    // The algorithm for the order of the features in this list should never change.
-    // Also, the fact that a new list is created whenever the contents change 
+    // The algorithm for the order of the features in this list should never
+    // change.
+    // Also, the fact that a new list is created whenever the contents change
     // is something else that should never change.
-    // There are clients who rely on both these behaviors, 
+    // There are clients who rely on both these behaviors,
     // and they will need to agree to any change,
     // so that they can adjust their own code.
     //
@@ -741,9 +734,9 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
         private static final long serialVersionUID = 1L;
 
         @Override
-        protected Object [] newData(int capacity)
+        protected Object[] newData(int capacity)
         {
-          return new EStructuralFeature [capacity];
+          return new EStructuralFeature[capacity];
         }
 
         @Override
@@ -771,25 +764,25 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
       }
       result.addAll(getEStructuralFeatures());
 
-      class EAllStructuralFeaturesList extends EcoreEList.UnmodifiableEList.FastCompare<EStructuralFeature> implements FeatureSubsetSupplier
+      class EAllStructuralFeaturesList extends EcoreEList.UnmodifiableEList.FastCompare<EStructuralFeature> implements
+          FeatureSubsetSupplier
       {
         private static final long serialVersionUID = 1L;
 
-        protected EStructuralFeature [] containments;
-        protected EStructuralFeature [] crossReferences;
+        protected EStructuralFeature[] containments;
+
+        protected EStructuralFeature[] crossReferences;
 
         public EAllStructuralFeaturesList(BasicEList<EStructuralFeature> eAllStructuralFeatures)
         {
-          super
-            (EClassImpl.this, 
-             EcorePackage.eINSTANCE.getEClass_EAllStructuralFeatures(), 
-             eAllStructuralFeatures.size(), 
-             eAllStructuralFeatures.data()) ;
+          super(EClassImpl.this, EcorePackage.eINSTANCE.getEClass_EAllStructuralFeatures(), eAllStructuralFeatures
+              .size(), eAllStructuralFeatures.data());
 
           BasicEList<EStructuralFeature> containmentsList = new EStructuralFeatureUniqueEList();
           BasicEList<EStructuralFeature> crossReferencesList = new EStructuralFeatureUniqueEList();
-          boolean isMixed = "mixed".equals(EcoreUtil.getAnnotation(EClassImpl.this, ExtendedMetaData.ANNOTATION_URI, "kind"));
-          for (int i = 0;  i < size; ++i)
+          boolean isMixed = "mixed".equals(EcoreUtil.getAnnotation(EClassImpl.this, ExtendedMetaData.ANNOTATION_URI,
+              "kind"));
+          for (int i = 0; i < size; ++i)
           {
             // Skip derived features.
             //
@@ -806,10 +799,11 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
               }
               else if (!eReference.isContainer())
               {
-                // Include derived relations only if they won't also come from mixed or a group.
+                // Include derived relations only if they won't also come from
+                // mixed or a group.
                 //
-                if (!eReference.isDerived() || 
-                      !isMixed && EcoreUtil.getAnnotation(eReference, ExtendedMetaData.ANNOTATION_URI, "group") == null)
+                if (!eReference.isDerived() || !isMixed
+                    && EcoreUtil.getAnnotation(eReference, ExtendedMetaData.ANNOTATION_URI, "group") == null)
                 {
                   crossReferencesList.add(eReference);
                 }
@@ -826,23 +820,23 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
           }
           containmentsList.shrink();
           crossReferencesList.shrink();
-          containments = (EStructuralFeature [])containmentsList.data();
-          crossReferences = (EStructuralFeature [])crossReferencesList.data();
+          containments = (EStructuralFeature[])containmentsList.data();
+          crossReferences = (EStructuralFeature[])crossReferencesList.data();
         }
 
-        public EStructuralFeature [] containments()
+        public EStructuralFeature[] containments()
         {
           return containments;
         }
 
-        public EStructuralFeature [] crossReferences()
+        public EStructuralFeature[] crossReferences()
         {
           return crossReferences;
         }
 
-        public EStructuralFeature [] features()
+        public EStructuralFeature[] features()
         {
-          return (EStructuralFeature [])data;
+          return (EStructuralFeature[])data;
         }
 
         @Override
@@ -875,42 +869,41 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
         eAllStructuralFeaturesData = NO_EALL_STRUCTURE_FEATURES_DATA;
       }
 
-      eNameToFeatureMap = null; 
-      
+      eNameToFeatureMap = null;
+
       getESuperAdapter().setAllStructuralFeaturesCollectionModified(false);
     }
 
     return eAllStructuralFeatures;
   }
-  
+
   private static final EStructuralFeature[] NO_EALL_STRUCTURE_FEATURES_DATA = {};
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated modifiable
    */
   public EList<EOperation> getEAllOperations()
   {
     if (eAllOperations == null)
     {
-      BasicEList<EOperation> result = 
-        new UniqueEList<EOperation>()
+      BasicEList<EOperation> result = new UniqueEList<EOperation>()
+      {
+        private static final long serialVersionUID = 1L;
+
+        @Override
+        protected Object[] newData(int capacity)
         {
-          private static final long serialVersionUID = 1L;
+          return new EOperation[capacity];
+        }
 
-          @Override
-          protected Object [] newData(int capacity)
-          {
-            return new EOperation [capacity];
-          }
-
-          @Override
-          protected boolean useEquals()
-          {
-            return false;
-          }
-        };
+        @Override
+        protected boolean useEquals()
+        {
+          return false;
+        }
+      };
 
       Set<EClass> computationInProgress = COMPUTATION_IN_PROGRESS.get();
       if (computationInProgress.add(this))
@@ -923,9 +916,8 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
       }
       result.addAll(getEOperations());
       result.shrink();
-      eAllOperations = 
-        new EcoreEList.UnmodifiableEList.FastCompare<EOperation>
-          (this, EcorePackage.eINSTANCE.getEClass_EAllOperations(), result.size(), result.data());
+      eAllOperations = new EcoreEList.UnmodifiableEList.FastCompare<EOperation>(this, EcorePackage.eINSTANCE
+          .getEClass_EAllOperations(), result.size(), result.data());
       getESuperAdapter().setAllOperationsCollectionModified(false);
     }
 
@@ -933,8 +925,8 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -942,62 +934,62 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   {
     switch (featureID)
     {
-      case EcorePackage.ECLASS__EANNOTATIONS:
-        return getEAnnotations();
-      case EcorePackage.ECLASS__NAME:
-        return getName();
-      case EcorePackage.ECLASS__INSTANCE_CLASS_NAME:
-        return getInstanceClassName();
-      case EcorePackage.ECLASS__INSTANCE_CLASS:
-        return getInstanceClass();
-      case EcorePackage.ECLASS__DEFAULT_VALUE:
-        return getDefaultValue();
-      case EcorePackage.ECLASS__INSTANCE_TYPE_NAME:
-        return getInstanceTypeName();
-      case EcorePackage.ECLASS__EPACKAGE:
-        if (resolve) return getEPackage();
-        return basicGetEPackage();
-      case EcorePackage.ECLASS__ETYPE_PARAMETERS:
-        return getETypeParameters();
-      case EcorePackage.ECLASS__ABSTRACT:
-        return isAbstract() ? Boolean.TRUE : Boolean.FALSE;
-      case EcorePackage.ECLASS__INTERFACE:
-        return isInterface() ? Boolean.TRUE : Boolean.FALSE;
-      case EcorePackage.ECLASS__ESUPER_TYPES:
-        return getESuperTypes();
-      case EcorePackage.ECLASS__EOPERATIONS:
-        return getEOperations();
-      case EcorePackage.ECLASS__EALL_ATTRIBUTES:
-        return getEAllAttributes();
-      case EcorePackage.ECLASS__EALL_REFERENCES:
-        return getEAllReferences();
-      case EcorePackage.ECLASS__EREFERENCES:
-        return getEReferences();
-      case EcorePackage.ECLASS__EATTRIBUTES:
-        return getEAttributes();
-      case EcorePackage.ECLASS__EALL_CONTAINMENTS:
-        return getEAllContainments();
-      case EcorePackage.ECLASS__EALL_OPERATIONS:
-        return getEAllOperations();
-      case EcorePackage.ECLASS__EALL_STRUCTURAL_FEATURES:
-        return getEAllStructuralFeatures();
-      case EcorePackage.ECLASS__EALL_SUPER_TYPES:
-        return getEAllSuperTypes();
-      case EcorePackage.ECLASS__EID_ATTRIBUTE:
-        return getEIDAttribute();
-      case EcorePackage.ECLASS__ESTRUCTURAL_FEATURES:
-        return getEStructuralFeatures();
-      case EcorePackage.ECLASS__EGENERIC_SUPER_TYPES:
-        return getEGenericSuperTypes();
-      case EcorePackage.ECLASS__EALL_GENERIC_SUPER_TYPES:
-        return getEAllGenericSuperTypes();
+    case EcorePackage.ECLASS__EANNOTATIONS:
+      return getEAnnotations();
+    case EcorePackage.ECLASS__NAME:
+      return getName();
+    case EcorePackage.ECLASS__INSTANCE_CLASS_NAME:
+      return getInstanceClassName();
+    case EcorePackage.ECLASS__INSTANCE_CLASS:
+      return getInstanceClass();
+    case EcorePackage.ECLASS__DEFAULT_VALUE:
+      return getDefaultValue();
+    case EcorePackage.ECLASS__INSTANCE_TYPE_NAME:
+      return getInstanceTypeName();
+    case EcorePackage.ECLASS__EPACKAGE:
+      if (resolve) return getEPackage();
+      return basicGetEPackage();
+    case EcorePackage.ECLASS__ETYPE_PARAMETERS:
+      return getETypeParameters();
+    case EcorePackage.ECLASS__ABSTRACT:
+      return isAbstract() ? Boolean.TRUE : Boolean.FALSE;
+    case EcorePackage.ECLASS__INTERFACE:
+      return isInterface() ? Boolean.TRUE : Boolean.FALSE;
+    case EcorePackage.ECLASS__ESUPER_TYPES:
+      return getESuperTypes();
+    case EcorePackage.ECLASS__EOPERATIONS:
+      return getEOperations();
+    case EcorePackage.ECLASS__EALL_ATTRIBUTES:
+      return getEAllAttributes();
+    case EcorePackage.ECLASS__EALL_REFERENCES:
+      return getEAllReferences();
+    case EcorePackage.ECLASS__EREFERENCES:
+      return getEReferences();
+    case EcorePackage.ECLASS__EATTRIBUTES:
+      return getEAttributes();
+    case EcorePackage.ECLASS__EALL_CONTAINMENTS:
+      return getEAllContainments();
+    case EcorePackage.ECLASS__EALL_OPERATIONS:
+      return getEAllOperations();
+    case EcorePackage.ECLASS__EALL_STRUCTURAL_FEATURES:
+      return getEAllStructuralFeatures();
+    case EcorePackage.ECLASS__EALL_SUPER_TYPES:
+      return getEAllSuperTypes();
+    case EcorePackage.ECLASS__EID_ATTRIBUTE:
+      return getEIDAttribute();
+    case EcorePackage.ECLASS__ESTRUCTURAL_FEATURES:
+      return getEStructuralFeatures();
+    case EcorePackage.ECLASS__EGENERIC_SUPER_TYPES:
+      return getEGenericSuperTypes();
+    case EcorePackage.ECLASS__EALL_GENERIC_SUPER_TYPES:
+      return getEAllGenericSuperTypes();
     }
     return eDynamicGet(featureID, resolve, coreType);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -1006,52 +998,52 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   {
     switch (featureID)
     {
-      case EcorePackage.ECLASS__EANNOTATIONS:
-        getEAnnotations().clear();
-        getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
-        return;
-      case EcorePackage.ECLASS__NAME:
-        setName((String)newValue);
-        return;
-      case EcorePackage.ECLASS__INSTANCE_CLASS_NAME:
-        setInstanceClassName((String)newValue);
-        return;
-      case EcorePackage.ECLASS__INSTANCE_TYPE_NAME:
-        setInstanceTypeName((String)newValue);
-        return;
-      case EcorePackage.ECLASS__ETYPE_PARAMETERS:
-        getETypeParameters().clear();
-        getETypeParameters().addAll((Collection<? extends ETypeParameter>)newValue);
-        return;
-      case EcorePackage.ECLASS__ABSTRACT:
-        setAbstract(((Boolean)newValue).booleanValue());
-        return;
-      case EcorePackage.ECLASS__INTERFACE:
-        setInterface(((Boolean)newValue).booleanValue());
-        return;
-      case EcorePackage.ECLASS__ESUPER_TYPES:
-        getESuperTypes().clear();
-        getESuperTypes().addAll((Collection<? extends EClass>)newValue);
-        return;
-      case EcorePackage.ECLASS__EOPERATIONS:
-        getEOperations().clear();
-        getEOperations().addAll((Collection<? extends EOperation>)newValue);
-        return;
-      case EcorePackage.ECLASS__ESTRUCTURAL_FEATURES:
-        getEStructuralFeatures().clear();
-        getEStructuralFeatures().addAll((Collection<? extends EStructuralFeature>)newValue);
-        return;
-      case EcorePackage.ECLASS__EGENERIC_SUPER_TYPES:
-        getEGenericSuperTypes().clear();
-        getEGenericSuperTypes().addAll((Collection<? extends EGenericType>)newValue);
-        return;
+    case EcorePackage.ECLASS__EANNOTATIONS:
+      getEAnnotations().clear();
+      getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
+      return;
+    case EcorePackage.ECLASS__NAME:
+      setName((String)newValue);
+      return;
+    case EcorePackage.ECLASS__INSTANCE_CLASS_NAME:
+      setInstanceClassName((String)newValue);
+      return;
+    case EcorePackage.ECLASS__INSTANCE_TYPE_NAME:
+      setInstanceTypeName((String)newValue);
+      return;
+    case EcorePackage.ECLASS__ETYPE_PARAMETERS:
+      getETypeParameters().clear();
+      getETypeParameters().addAll((Collection<? extends ETypeParameter>)newValue);
+      return;
+    case EcorePackage.ECLASS__ABSTRACT:
+      setAbstract(((Boolean)newValue).booleanValue());
+      return;
+    case EcorePackage.ECLASS__INTERFACE:
+      setInterface(((Boolean)newValue).booleanValue());
+      return;
+    case EcorePackage.ECLASS__ESUPER_TYPES:
+      getESuperTypes().clear();
+      getESuperTypes().addAll((Collection<? extends EClass>)newValue);
+      return;
+    case EcorePackage.ECLASS__EOPERATIONS:
+      getEOperations().clear();
+      getEOperations().addAll((Collection<? extends EOperation>)newValue);
+      return;
+    case EcorePackage.ECLASS__ESTRUCTURAL_FEATURES:
+      getEStructuralFeatures().clear();
+      getEStructuralFeatures().addAll((Collection<? extends EStructuralFeature>)newValue);
+      return;
+    case EcorePackage.ECLASS__EGENERIC_SUPER_TYPES:
+      getEGenericSuperTypes().clear();
+      getEGenericSuperTypes().addAll((Collection<? extends EGenericType>)newValue);
+      return;
     }
     eDynamicSet(featureID, newValue);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -1059,46 +1051,46 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   {
     switch (featureID)
     {
-      case EcorePackage.ECLASS__EANNOTATIONS:
-        getEAnnotations().clear();
-        return;
-      case EcorePackage.ECLASS__NAME:
-        setName(NAME_EDEFAULT);
-        return;
-      case EcorePackage.ECLASS__INSTANCE_CLASS_NAME:
-        unsetInstanceClassName();
-        return;
-      case EcorePackage.ECLASS__INSTANCE_TYPE_NAME:
-        unsetInstanceTypeName();
-        return;
-      case EcorePackage.ECLASS__ETYPE_PARAMETERS:
-        getETypeParameters().clear();
-        return;
-      case EcorePackage.ECLASS__ABSTRACT:
-        setAbstract(ABSTRACT_EDEFAULT);
-        return;
-      case EcorePackage.ECLASS__INTERFACE:
-        setInterface(INTERFACE_EDEFAULT);
-        return;
-      case EcorePackage.ECLASS__ESUPER_TYPES:
-        unsetESuperTypes();
-        return;
-      case EcorePackage.ECLASS__EOPERATIONS:
-        getEOperations().clear();
-        return;
-      case EcorePackage.ECLASS__ESTRUCTURAL_FEATURES:
-        getEStructuralFeatures().clear();
-        return;
-      case EcorePackage.ECLASS__EGENERIC_SUPER_TYPES:
-        unsetEGenericSuperTypes();
-        return;
+    case EcorePackage.ECLASS__EANNOTATIONS:
+      getEAnnotations().clear();
+      return;
+    case EcorePackage.ECLASS__NAME:
+      setName(NAME_EDEFAULT);
+      return;
+    case EcorePackage.ECLASS__INSTANCE_CLASS_NAME:
+      unsetInstanceClassName();
+      return;
+    case EcorePackage.ECLASS__INSTANCE_TYPE_NAME:
+      unsetInstanceTypeName();
+      return;
+    case EcorePackage.ECLASS__ETYPE_PARAMETERS:
+      getETypeParameters().clear();
+      return;
+    case EcorePackage.ECLASS__ABSTRACT:
+      setAbstract(ABSTRACT_EDEFAULT);
+      return;
+    case EcorePackage.ECLASS__INTERFACE:
+      setInterface(INTERFACE_EDEFAULT);
+      return;
+    case EcorePackage.ECLASS__ESUPER_TYPES:
+      unsetESuperTypes();
+      return;
+    case EcorePackage.ECLASS__EOPERATIONS:
+      getEOperations().clear();
+      return;
+    case EcorePackage.ECLASS__ESTRUCTURAL_FEATURES:
+      getEStructuralFeatures().clear();
+      return;
+    case EcorePackage.ECLASS__EGENERIC_SUPER_TYPES:
+      unsetEGenericSuperTypes();
+      return;
     }
     eDynamicUnset(featureID);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -1106,54 +1098,55 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   {
     switch (featureID)
     {
-      case EcorePackage.ECLASS__EANNOTATIONS:
-        return eAnnotations != null && !eAnnotations.isEmpty();
-      case EcorePackage.ECLASS__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case EcorePackage.ECLASS__INSTANCE_CLASS_NAME:
-        return isSetInstanceClassName();
-      case EcorePackage.ECLASS__INSTANCE_CLASS:
-        return getInstanceClass() != null;
-      case EcorePackage.ECLASS__DEFAULT_VALUE:
-        return DEFAULT_VALUE_EDEFAULT == null ? getDefaultValue() != null : !DEFAULT_VALUE_EDEFAULT.equals(getDefaultValue());
-      case EcorePackage.ECLASS__INSTANCE_TYPE_NAME:
-        return isSetInstanceTypeName();
-      case EcorePackage.ECLASS__EPACKAGE:
-        return basicGetEPackage() != null;
-      case EcorePackage.ECLASS__ETYPE_PARAMETERS:
-        return eTypeParameters != null && !eTypeParameters.isEmpty();
-      case EcorePackage.ECLASS__ABSTRACT:
-        return ((eFlags & ABSTRACT_EFLAG) != 0) != ABSTRACT_EDEFAULT;
-      case EcorePackage.ECLASS__INTERFACE:
-        return ((eFlags & INTERFACE_EFLAG) != 0) != INTERFACE_EDEFAULT;
-      case EcorePackage.ECLASS__ESUPER_TYPES:
-        return isSetESuperTypes();
-      case EcorePackage.ECLASS__EOPERATIONS:
-        return eOperations != null && !eOperations.isEmpty();
-      case EcorePackage.ECLASS__EALL_ATTRIBUTES:
-        return !getEAllAttributes().isEmpty();
-      case EcorePackage.ECLASS__EALL_REFERENCES:
-        return !getEAllReferences().isEmpty();
-      case EcorePackage.ECLASS__EREFERENCES:
-        return !getEReferences().isEmpty();
-      case EcorePackage.ECLASS__EATTRIBUTES:
-        return !getEAttributes().isEmpty();
-      case EcorePackage.ECLASS__EALL_CONTAINMENTS:
-        return !getEAllContainments().isEmpty();
-      case EcorePackage.ECLASS__EALL_OPERATIONS:
-        return !getEAllOperations().isEmpty();
-      case EcorePackage.ECLASS__EALL_STRUCTURAL_FEATURES:
-        return !getEAllStructuralFeatures().isEmpty();
-      case EcorePackage.ECLASS__EALL_SUPER_TYPES:
-        return !getEAllSuperTypes().isEmpty();
-      case EcorePackage.ECLASS__EID_ATTRIBUTE:
-        return getEIDAttribute() != null;
-      case EcorePackage.ECLASS__ESTRUCTURAL_FEATURES:
-        return eStructuralFeatures != null && !eStructuralFeatures.isEmpty();
-      case EcorePackage.ECLASS__EGENERIC_SUPER_TYPES:
-        return isSetEGenericSuperTypes();
-      case EcorePackage.ECLASS__EALL_GENERIC_SUPER_TYPES:
-        return !getEAllGenericSuperTypes().isEmpty();
+    case EcorePackage.ECLASS__EANNOTATIONS:
+      return eAnnotations != null && !eAnnotations.isEmpty();
+    case EcorePackage.ECLASS__NAME:
+      return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+    case EcorePackage.ECLASS__INSTANCE_CLASS_NAME:
+      return isSetInstanceClassName();
+    case EcorePackage.ECLASS__INSTANCE_CLASS:
+      return getInstanceClass() != null;
+    case EcorePackage.ECLASS__DEFAULT_VALUE:
+      return DEFAULT_VALUE_EDEFAULT == null ? getDefaultValue() != null : !DEFAULT_VALUE_EDEFAULT
+          .equals(getDefaultValue());
+    case EcorePackage.ECLASS__INSTANCE_TYPE_NAME:
+      return isSetInstanceTypeName();
+    case EcorePackage.ECLASS__EPACKAGE:
+      return basicGetEPackage() != null;
+    case EcorePackage.ECLASS__ETYPE_PARAMETERS:
+      return eTypeParameters != null && !eTypeParameters.isEmpty();
+    case EcorePackage.ECLASS__ABSTRACT:
+      return ((eFlags & ABSTRACT_EFLAG) != 0) != ABSTRACT_EDEFAULT;
+    case EcorePackage.ECLASS__INTERFACE:
+      return ((eFlags & INTERFACE_EFLAG) != 0) != INTERFACE_EDEFAULT;
+    case EcorePackage.ECLASS__ESUPER_TYPES:
+      return isSetESuperTypes();
+    case EcorePackage.ECLASS__EOPERATIONS:
+      return eOperations != null && !eOperations.isEmpty();
+    case EcorePackage.ECLASS__EALL_ATTRIBUTES:
+      return !getEAllAttributes().isEmpty();
+    case EcorePackage.ECLASS__EALL_REFERENCES:
+      return !getEAllReferences().isEmpty();
+    case EcorePackage.ECLASS__EREFERENCES:
+      return !getEReferences().isEmpty();
+    case EcorePackage.ECLASS__EATTRIBUTES:
+      return !getEAttributes().isEmpty();
+    case EcorePackage.ECLASS__EALL_CONTAINMENTS:
+      return !getEAllContainments().isEmpty();
+    case EcorePackage.ECLASS__EALL_OPERATIONS:
+      return !getEAllOperations().isEmpty();
+    case EcorePackage.ECLASS__EALL_STRUCTURAL_FEATURES:
+      return !getEAllStructuralFeatures().isEmpty();
+    case EcorePackage.ECLASS__EALL_SUPER_TYPES:
+      return !getEAllSuperTypes().isEmpty();
+    case EcorePackage.ECLASS__EID_ATTRIBUTE:
+      return getEIDAttribute() != null;
+    case EcorePackage.ECLASS__ESTRUCTURAL_FEATURES:
+      return eStructuralFeatures != null && !eStructuralFeatures.isEmpty();
+    case EcorePackage.ECLASS__EGENERIC_SUPER_TYPES:
+      return isSetEGenericSuperTypes();
+    case EcorePackage.ECLASS__EALL_GENERIC_SUPER_TYPES:
+      return !getEAllGenericSuperTypes().isEmpty();
     }
     return eDynamicIsSet(featureID);
   }
@@ -1162,23 +1155,22 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   {
     if (eAllContainments == null)
     {
-      BasicEList<EReference> result = 
-        new UniqueEList<EReference>()
+      BasicEList<EReference> result = new UniqueEList<EReference>()
+      {
+        private static final long serialVersionUID = 1L;
+
+        @Override
+        protected Object[] newData(int capacity)
         {
-          private static final long serialVersionUID = 1L;
+          return new EReference[capacity];
+        }
 
-          @Override
-          protected Object [] newData(int capacity)
-          {
-            return new EReference [capacity];
-          }
-
-          @Override
-          protected boolean useEquals()
-          {
-            return false;
-          }
-        };
+        @Override
+        protected boolean useEquals()
+        {
+          return false;
+        }
+      };
 
       for (EReference eReference : getEAllReferences())
       {
@@ -1189,9 +1181,8 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
       }
 
       result.shrink();
-      eAllContainments = 
-        new EcoreEList.UnmodifiableEList.FastCompare<EReference>
-          (this, EcorePackage.eINSTANCE.getEClass_EAllContainments(), result.size(), result.data()); 
+      eAllContainments = new EcoreEList.UnmodifiableEList.FastCompare<EReference>(this, EcorePackage.eINSTANCE
+          .getEClass_EAllContainments(), result.size(), result.data());
       getESuperAdapter().setAllContainmentsCollectionModified(false);
     }
 
@@ -1203,7 +1194,8 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
     getFeatureCount();
     if (eNameToFeatureMap == null)
     {
-      Map<String, EStructuralFeature> result = new HashMap<String, EStructuralFeature>(3 * eAllStructuralFeatures.size() / 2 + 1);
+      Map<String, EStructuralFeature> result = new HashMap<String, EStructuralFeature>(3 * eAllStructuralFeatures
+          .size() / 2 + 1);
       for (EStructuralFeature eStructuralFeature : eAllStructuralFeatures)
       {
         result.put(eStructuralFeature.getName(), eStructuralFeature);
@@ -1214,8 +1206,8 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -1224,23 +1216,22 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   {
     switch (featureID)
     {
-      case EcorePackage.ECLASS__EANNOTATIONS:
-        return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
-      case EcorePackage.ECLASS__EPACKAGE:
-        if (eInternalContainer() != null)
-          msgs = eBasicRemoveFromContainer(msgs);
-        return eBasicSetContainer(otherEnd, EcorePackage.ECLASS__EPACKAGE, msgs);
-      case EcorePackage.ECLASS__EOPERATIONS:
-        return ((InternalEList<InternalEObject>)(InternalEList<?>)getEOperations()).basicAdd(otherEnd, msgs);
-      case EcorePackage.ECLASS__ESTRUCTURAL_FEATURES:
-        return ((InternalEList<InternalEObject>)(InternalEList<?>)getEStructuralFeatures()).basicAdd(otherEnd, msgs);
+    case EcorePackage.ECLASS__EANNOTATIONS:
+      return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
+    case EcorePackage.ECLASS__EPACKAGE:
+      if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+      return eBasicSetContainer(otherEnd, EcorePackage.ECLASS__EPACKAGE, msgs);
+    case EcorePackage.ECLASS__EOPERATIONS:
+      return ((InternalEList<InternalEObject>)(InternalEList<?>)getEOperations()).basicAdd(otherEnd, msgs);
+    case EcorePackage.ECLASS__ESTRUCTURAL_FEATURES:
+      return ((InternalEList<InternalEObject>)(InternalEList<?>)getEStructuralFeatures()).basicAdd(otherEnd, msgs);
     }
     return eDynamicInverseAdd(otherEnd, featureID, msgs);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -1248,18 +1239,18 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   {
     switch (featureID)
     {
-      case EcorePackage.ECLASS__EANNOTATIONS:
-        return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
-      case EcorePackage.ECLASS__EPACKAGE:
-        return eBasicSetContainer(null, EcorePackage.ECLASS__EPACKAGE, msgs);
-      case EcorePackage.ECLASS__ETYPE_PARAMETERS:
-        return ((InternalEList<?>)getETypeParameters()).basicRemove(otherEnd, msgs);
-      case EcorePackage.ECLASS__EOPERATIONS:
-        return ((InternalEList<?>)getEOperations()).basicRemove(otherEnd, msgs);
-      case EcorePackage.ECLASS__ESTRUCTURAL_FEATURES:
-        return ((InternalEList<?>)getEStructuralFeatures()).basicRemove(otherEnd, msgs);
-      case EcorePackage.ECLASS__EGENERIC_SUPER_TYPES:
-        return ((InternalEList<?>)getEGenericSuperTypes()).basicRemove(otherEnd, msgs);
+    case EcorePackage.ECLASS__EANNOTATIONS:
+      return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
+    case EcorePackage.ECLASS__EPACKAGE:
+      return eBasicSetContainer(null, EcorePackage.ECLASS__EPACKAGE, msgs);
+    case EcorePackage.ECLASS__ETYPE_PARAMETERS:
+      return ((InternalEList<?>)getETypeParameters()).basicRemove(otherEnd, msgs);
+    case EcorePackage.ECLASS__EOPERATIONS:
+      return ((InternalEList<?>)getEOperations()).basicRemove(otherEnd, msgs);
+    case EcorePackage.ECLASS__ESTRUCTURAL_FEATURES:
+      return ((InternalEList<?>)getEStructuralFeatures()).basicRemove(otherEnd, msgs);
+    case EcorePackage.ECLASS__EGENERIC_SUPER_TYPES:
+      return ((InternalEList<?>)getEGenericSuperTypes()).basicRemove(otherEnd, msgs);
     }
     return eDynamicInverseRemove(otherEnd, featureID, msgs);
   }
@@ -1272,34 +1263,32 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
     }
     return eAllStructuralFeaturesData;
   }
-  
+
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public int getFeatureCount()
   {
     return getEAllStructuralFeaturesData().length;
   }
-  
-  public EStructuralFeature getEStructuralFeature(int featureID) 
+
+  public EStructuralFeature getEStructuralFeature(int featureID)
   {
-    EStructuralFeature [] eAllStructuralFeaturesData  = getEAllStructuralFeaturesData();
-    return 
-      featureID >= 0 && featureID < eAllStructuralFeaturesData.length ? 
-        eAllStructuralFeaturesData[featureID] : 
-        null;
+    EStructuralFeature[] eAllStructuralFeaturesData = getEAllStructuralFeaturesData();
+    return featureID >= 0 && featureID < eAllStructuralFeaturesData.length ? eAllStructuralFeaturesData[featureID]
+        : null;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public int getFeatureID(EStructuralFeature feature)
   {
-    EStructuralFeature [] eAllStructuralFeaturesData  = getEAllStructuralFeaturesData();
+    EStructuralFeature[] eAllStructuralFeaturesData = getEAllStructuralFeaturesData();
     int index = feature.getFeatureID();
     if (index != -1)
     {
@@ -1315,9 +1304,9 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   }
 
   /**
-   * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The default value of the '{@link #isAbstract() <em>Abstract</em>}'
+   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #isAbstract()
    * @generated
    * @ordered
@@ -1325,9 +1314,9 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   protected static final boolean ABSTRACT_EDEFAULT = false;
 
   /**
-   * The flag representing the value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The flag representing the value of the '{@link #isAbstract() <em>Abstract</em>}'
+   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #isAbstract()
    * @generated
    * @ordered
@@ -1335,9 +1324,9 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   protected static final int ABSTRACT_EFLAG = 1 << 8;
 
   /**
-   * The default value of the '{@link #isInterface() <em>Interface</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The default value of the '{@link #isInterface() <em>Interface</em>}'
+   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #isInterface()
    * @generated
    * @ordered
@@ -1345,9 +1334,9 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   protected static final boolean INTERFACE_EDEFAULT = false;
 
   /**
-   * The flag representing the value of the '{@link #isInterface() <em>Interface</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The flag representing the value of the '{@link #isInterface() <em>Interface</em>}'
+   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #isInterface()
    * @generated
    * @ordered
@@ -1355,9 +1344,9 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   protected static final int INTERFACE_EFLAG = 1 << 9;
 
   /**
-   * The cached value of the '{@link #getESuperTypes() <em>ESuper Types</em>}' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getESuperTypes() <em>ESuper Types</em>}'
+   * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getESuperTypes()
    * @generated
    * @ordered
@@ -1365,9 +1354,9 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   protected EList<EClass> eSuperTypes;
 
   /**
-   * The cached value of the '{@link #getEOperations() <em>EOperations</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getEOperations() <em>EOperations</em>}'
+   * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getEOperations()
    * @generated
    * @ordered
@@ -1375,9 +1364,9 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   protected EList<EOperation> eOperations;
 
   /**
-   * The cached value of the '{@link #getEReferences() <em>EReferences</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getEReferences() <em>EReferences</em>}'
+   * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getEReferences()
    * @generated NOT
    * @ordered
@@ -1385,9 +1374,9 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   protected BasicEList<EReference> eReferences = null;
 
   /**
-   * The cached value of the '{@link #getEAttributes() <em>EAttributes</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getEAttributes() <em>EAttributes</em>}'
+   * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getEAttributes()
    * @generated NOT
    * @ordered
@@ -1395,9 +1384,9 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   protected BasicEList<EAttribute> eAttributes = null;
 
   /**
-   * The cached value of the '{@link #getEStructuralFeatures() <em>EStructural Features</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getEStructuralFeatures() <em>EStructural Features</em>}'
+   * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getEStructuralFeatures()
    * @generated
    * @ordered
@@ -1405,9 +1394,9 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   protected EList<EStructuralFeature> eStructuralFeatures;
 
   /**
-   * The cached value of the '{@link #getEGenericSuperTypes() <em>EGeneric Super Types</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getEGenericSuperTypes() <em>EGeneric Super Types</em>}'
+   * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getEGenericSuperTypes()
    * @generated
    * @ordered
@@ -1415,8 +1404,8 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   protected EList<EGenericType> eGenericSuperTypes;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean isAbstract()
@@ -1425,21 +1414,24 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setAbstract(boolean newAbstract)
   {
     boolean oldAbstract = (eFlags & ABSTRACT_EFLAG) != 0;
-    if (newAbstract) eFlags |= ABSTRACT_EFLAG; else eFlags &= ~ABSTRACT_EFLAG;
+    if (newAbstract)
+      eFlags |= ABSTRACT_EFLAG;
+    else
+      eFlags &= ~ABSTRACT_EFLAG;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ECLASS__ABSTRACT, oldAbstract, newAbstract));
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean isInterface()
@@ -1448,21 +1440,24 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setInterface(boolean newInterface)
   {
     boolean oldInterface = (eFlags & INTERFACE_EFLAG) != 0;
-    if (newInterface) eFlags |= INTERFACE_EFLAG; else eFlags &= ~INTERFACE_EFLAG;
+    if (newInterface)
+      eFlags |= INTERFACE_EFLAG;
+    else
+      eFlags &= ~INTERFACE_EFLAG;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ECLASS__INTERFACE, oldInterface, newInterface));
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -1484,381 +1479,383 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
     getESuperAdapter();
     if (eSuperTypes == null)
     {
-      eSuperTypes = 
-        new DelegatingEcoreEList<EClass>(this)
+      eSuperTypes = new DelegatingEcoreEList<EClass>(this)
+      {
+        private static final long serialVersionUID = 1L;
+
+        @Override
+        protected List<EClass> delegateList()
         {
-          private static final long serialVersionUID = 1L;
+          return null;
+        }
 
-          @Override
-          protected List<EClass> delegateList()
+        @Override
+        protected List<EClass> delegateBasicList()
+        {
+          return new AbstractSequentialList<EClass>()
           {
-            return null;
+            @Override
+            public ListIterator<EClass> listIterator(int index)
+            {
+              return basicListIterator();
+            }
+
+            @Override
+            public int size()
+            {
+              return delegateSize();
+            }
+          };
+        }
+
+        @Override
+        protected Iterator<EClass> delegateIterator()
+        {
+          return iterator();
+        }
+
+        @Override
+        protected ListIterator<EClass> delegateListIterator()
+        {
+          return listIterator();
+        }
+
+        protected EGenericType wrap(EClass eClass)
+        {
+          EGenericType eGenericType = EcoreFactory.eINSTANCE.createEGenericType();
+          eGenericType.setEClassifier(eClass);
+          return eGenericType;
+        }
+
+        protected EClass unwrap(EGenericType eGenericType)
+        {
+          EClassifier result = ((EGenericTypeImpl)eGenericType).basicGetERawType();
+          if (result instanceof EClass)
+          {
+            return (EClass)result;
           }
-
-          @Override
-          protected List<EClass> delegateBasicList()
+          else
           {
-            return 
-              new AbstractSequentialList<EClass>() 
+            return EcorePackage.Literals.EOBJECT;
+          }
+        }
+
+        @Override
+        protected void delegateAdd(int index, EClass eClass)
+        {
+          getEGenericSuperTypes().add(index, wrap(eClass));
+        }
+
+        @Override
+        protected void delegateClear()
+        {
+          getEGenericSuperTypes().clear();
+        }
+
+        @Override
+        protected void delegateAdd(EClass eClass)
+        {
+          getEGenericSuperTypes().add(wrap(eClass));
+        }
+
+        @Override
+        protected boolean delegateContains(Object object)
+        {
+          for (EClass eClass : this)
+          {
+            if (object == eClass)
+            {
+              return true;
+            }
+          }
+          return false;
+        }
+
+        @Override
+        protected boolean delegateContainsAll(Collection<?> collection)
+        {
+          for (Object object : collection)
+          {
+            if (!delegateContains(object))
+            {
+              return false;
+            }
+          }
+          return true;
+        }
+
+        @Override
+        protected boolean delegateEquals(Object object)
+        {
+          if (object instanceof List)
+          {
+            List<?> list = (List<?>)object;
+            if (list.size() == delegateSize())
+            {
+              for (Iterator<?> i = list.iterator(), j = iterator(); i.hasNext();)
               {
-                @Override
-                public ListIterator<EClass> listIterator(int index)
+                if (i.next() != j.next())
                 {
-                  return basicListIterator();
+                  return false;
                 }
-
-                @Override
-                public int size()
-                {
-                  return delegateSize();
-                }
-              };
+              }
+              return true;
+            }
           }
+          return false;
+        }
 
-          @Override
-          protected Iterator<EClass> delegateIterator()
+        @Override
+        protected EClass delegateGet(int index)
+        {
+          EGenericType eGenericType = getEGenericSuperTypes().get(index);
+          return unwrap(eGenericType);
+        }
+
+        @Override
+        protected int delegateHashCode()
+        {
+          int hashCode = 1;
+          for (EGenericType eGenericType : getEGenericSuperTypes())
           {
-            return iterator();
+            Object object = unwrap(eGenericType);
+            hashCode = 31 * hashCode + (object == null ? 0 : object.hashCode());
           }
+          return hashCode;
+        }
 
-          @Override
-          protected ListIterator<EClass> delegateListIterator()
+        @Override
+        protected int delegateIndexOf(Object object)
+        {
+          int index = 0;
+          for (EGenericType eGenericType : getEGenericSuperTypes())
           {
-            return listIterator();
+            if (object == unwrap(eGenericType))
+            {
+              return index;
+            }
+            ++index;
           }
+          return -1;
+        }
 
-          protected EGenericType wrap(EClass eClass)
+        @Override
+        protected boolean delegateIsEmpty()
+        {
+          return getEGenericSuperTypes().isEmpty();
+        }
+
+        @Override
+        protected int delegateLastIndexOf(Object object)
+        {
+          EList<EGenericType> eGenericSuperTypes = getEGenericSuperTypes();
+          for (int i = eGenericSuperTypes.size(); i > 0; --i)
           {
-            EGenericType eGenericType = EcoreFactory.eINSTANCE.createEGenericType();
+            if (eGenericSuperTypes.get(i) == object)
+            {
+              return i;
+            }
+          }
+          return -1;
+        }
+
+        @Override
+        protected EClass delegateRemove(int index)
+        {
+          EGenericType eGenericType = getEGenericSuperTypes().remove(index);
+          return unwrap(eGenericType);
+        }
+
+        @Override
+        protected EClass delegateSet(int index, EClass eClass)
+        {
+          EGenericType eGenericType = getEGenericSuperTypes().get(index);
+          EClass result = unwrap(eGenericType);
+
+          // If this is just a proxy being resolved...
+          //
+          if (resolveProxy(result) == eClass)
+          {
+            // Force the raw type to be resolved so we don't resolve this
+            // endlessly.
+            //
+            eGenericType.getERawType();
+          }
+          else
+          {
+            // Update the classifier and hence the raw type as normal.
+            //
             eGenericType.setEClassifier(eClass);
-            return eGenericType;
+          }
+          return result;
+        }
+
+        @Override
+        protected int delegateSize()
+        {
+          return getEGenericSuperTypes().size();
+        }
+
+        @Override
+        protected Object[] delegateToArray()
+        {
+          int size = delegateSize();
+          Object[] result = new Object[size];
+
+          int index = 0;
+          for (EGenericType eGenericType : getEGenericSuperTypes())
+          {
+            result[index++] = unwrap(eGenericType);
+          }
+          return result;
+        }
+
+        @Override
+        protected <T> T[] delegateToArray(T[] array)
+        {
+          int size = delegateSize();
+          if (array.length < size)
+          {
+            @SuppressWarnings("unchecked")
+            T[] newArray = (T[])Array.newInstance(array.getClass().getComponentType(), size);
+            array = newArray;
           }
 
-          protected EClass unwrap(EGenericType eGenericType)
+          if (array.length > size)
           {
-            EClassifier result = ((EGenericTypeImpl)eGenericType).basicGetERawType();
-            if (result instanceof EClass)
+            array[size] = null;
+          }
+
+          int index = 0;
+          for (EGenericType eGenericType : getEGenericSuperTypes())
+          {
+            @SuppressWarnings("unchecked")
+            T rawType = (T)unwrap(eGenericType);
+            array[index++] = rawType;
+          }
+
+          return array;
+        }
+
+        @Override
+        protected String delegateToString()
+        {
+          StringBuffer stringBuffer = new StringBuffer();
+          stringBuffer.append("[");
+          EList<EGenericType> eGenericSuperTypes = getEGenericSuperTypes();
+          for (int i = 0, size = delegateSize(); i < size;)
+          {
+            stringBuffer.append(String.valueOf(unwrap(eGenericSuperTypes.get(i))));
+            if (++i < size)
             {
-              return (EClass)result;
-            }
-            else
-            {
-              return EcorePackage.Literals.EOBJECT;
+              stringBuffer.append(", ");
             }
           }
+          stringBuffer.append("]");
+          return stringBuffer.toString();
+        }
 
-          @Override
-          protected void delegateAdd(int index, EClass eClass)
-          {
-            getEGenericSuperTypes().add(index, wrap(eClass));
-          }
+        @Override
+        protected boolean isInstance(Object object)
+        {
+          return object instanceof EClass;
+        }
 
-          @Override
-          protected void delegateClear()
-          {
-            getEGenericSuperTypes().clear();
-          }
+        @Override
+        public int getFeatureID()
+        {
+          return EcorePackage.ECLASS__ESUPER_TYPES;
+        }
 
-          @Override
-          protected void delegateAdd(EClass eClass)
-          {
-            getEGenericSuperTypes().add(wrap(eClass));
-          }
+        @Override
+        protected boolean useEquals()
+        {
+          return true;
+        }
 
-          @Override
-          protected boolean delegateContains(Object object)
-          {
-            for (EClass eClass : this)
-            {
-              if (object == eClass)
-              {
-                return true;
-              }
-            }
-            return false;
-          }
+        @Override
+        protected boolean canContainNull()
+        {
+          return false;
+        }
 
-          @Override
-          protected boolean delegateContainsAll(Collection<?> collection)
-          {
-            for (Object object : collection)
-            {
-              if (!delegateContains(object))
-              {
-                return false;
-              }
-            }
-            return true;
-          }
+        @Override
+        protected boolean isUnique()
+        {
+          return true;
+        }
 
-          @Override
-          protected boolean delegateEquals(Object object)
-          {
-            if (object instanceof List)
-            {
-              List<?> list = (List<?>)object;
-              if (list.size() == delegateSize())
-              {
-                for (Iterator<?> i = list.iterator(), j = iterator(); i.hasNext(); )
-                {
-                  if (i.next() != j.next())
-                  {
-                    return false;
-                  }
-                }
-                return true;
-              }
-            }
-            return false;
-          }
+        @Override
+        protected boolean hasInverse()
+        {
+          return false;
+        }
 
-          @Override
-          protected EClass delegateGet(int index)
-          {
-            EGenericType eGenericType = getEGenericSuperTypes().get(index);
-            return unwrap(eGenericType);
-          }
+        @Override
+        protected boolean hasManyInverse()
+        {
+          return false;
+        }
 
-          @Override
-          protected int delegateHashCode()
-          {
-            int hashCode = 1;
-            for (EGenericType eGenericType : getEGenericSuperTypes())
-            {
-              Object object = unwrap(eGenericType);
-              hashCode = 31 * hashCode + (object == null ? 0 : object.hashCode());
-            }
-            return hashCode;
-          }
+        @Override
+        protected boolean hasNavigableInverse()
+        {
+          return false;
+        }
 
-          @Override
-          protected int delegateIndexOf(Object object)
-          {
-            int index = 0;
-            for (EGenericType eGenericType : getEGenericSuperTypes())
-            {
-              if (object == unwrap(eGenericType))
-              {
-                return index;
-              }
-              ++index;
-            }
-            return -1;
-          }
+        @Override
+        protected boolean isEObject()
+        {
+          return true;
+        }
 
-          @Override
-          protected boolean delegateIsEmpty()
-          {
-            return getEGenericSuperTypes().isEmpty();
-          }
+        @Override
+        protected boolean isContainment()
+        {
+          return false;
+        }
 
-          @Override
-          protected int delegateLastIndexOf(Object object)
-          {
-            EList<EGenericType> eGenericSuperTypes = getEGenericSuperTypes();
-            for (int i = eGenericSuperTypes.size(); i > 0; --i)
-            {
-              if (eGenericSuperTypes.get(i) == object)
-              {
-                return i;
-              }
-            }
-            return -1;
-          }
+        @Override
+        protected boolean hasProxies()
+        {
+          return true;
+        }
 
-          @Override
-          protected EClass delegateRemove(int index)
-          {
-            EGenericType eGenericType = getEGenericSuperTypes().remove(index);
-            return unwrap(eGenericType);
-          }
+        @Override
+        protected boolean hasInstanceClass()
+        {
+          return true;
+        }
 
-          @Override
-          protected EClass delegateSet(int index, EClass eClass)
-          {
-            EGenericType eGenericType = getEGenericSuperTypes().get(index);
-            EClass result = unwrap(eGenericType);
+        @Override
+        public boolean isSet()
+        {
+          return isSetESuperTypes();
+        }
 
-            // If this is just a proxy being resolved...
-            //
-            if (resolveProxy(result) == eClass)
-            {
-              // Force the raw type to be resolved so we don't resolve this endlessly.
-              //
-              eGenericType.getERawType();
-            }
-            else
-            {
-              // Update the classifier and hence the raw type as normal.
-              //
-              eGenericType.setEClassifier(eClass);
-            }
-            return result;
-          }
+        @Override
+        protected NotificationImpl createNotification(int eventType, Object oldObject, Object newObject, int index,
+            boolean wasSet)
+        {
+          // The notification for this list is being thrown by the
+          // delegating list
+          //
+          return null;
+        }
 
-          @Override
-          protected int delegateSize()
-          {
-            return getEGenericSuperTypes().size();
-          }
-
-          @Override
-          protected Object[] delegateToArray()
-          {
-            int size = delegateSize();
-            Object[] result = new Object[size];
-            
-            int index = 0;
-            for (EGenericType eGenericType : getEGenericSuperTypes())
-            {
-              result[index++] = unwrap(eGenericType);
-            }
-            return result;
-          }
-
-          @Override
-          protected <T> T[] delegateToArray(T[] array)
-          {
-            int size = delegateSize();
-            if (array.length < size)
-            {
-              @SuppressWarnings("unchecked") T[] newArray = (T[])Array.newInstance(array.getClass().getComponentType(), size);
-              array = newArray;
-            }
-          
-            if (array.length > size)
-            {
-              array[size] = null;
-            }
-
-            int index = 0;
-            for (EGenericType eGenericType : getEGenericSuperTypes())
-            {
-              @SuppressWarnings("unchecked") T rawType = (T)unwrap(eGenericType);
-              array[index++] = rawType;
-            }
-
-            return array;
-          }
-
-          @Override
-          protected String delegateToString()
-          {
-            StringBuffer stringBuffer = new StringBuffer();
-            stringBuffer.append("[");
-            EList<EGenericType> eGenericSuperTypes = getEGenericSuperTypes();
-            for (int i = 0, size = delegateSize(); i < size; )
-            {
-              stringBuffer.append(String.valueOf(unwrap(eGenericSuperTypes.get(i))));
-              if (++i < size)
-              {
-                stringBuffer.append(", ");
-              }
-            }
-            stringBuffer.append("]");
-            return stringBuffer.toString();
-          }
-
-          @Override
-          protected boolean isInstance(Object object)
-          {
-            return object instanceof EClass;
-          }
-
-          @Override
-          public int getFeatureID()
-          {
-            return EcorePackage.ECLASS__ESUPER_TYPES;
-          }
-
-          @Override
-          protected boolean useEquals()
-          {
-            return true;
-          }
-
-          @Override
-          protected boolean canContainNull()
-          {
-            return false;
-          }
-
-          @Override
-          protected boolean isUnique()
-          {
-            return true;
-          }
-
-          @Override
-          protected boolean hasInverse()
-          {
-            return false;
-          }
-
-          @Override
-          protected boolean hasManyInverse()
-          {
-            return false;
-          }
-
-          @Override
-          protected boolean hasNavigableInverse()
-          {
-            return false;
-          }
-
-          @Override
-          protected boolean isEObject()
-          {
-            return true;
-          }
-
-          @Override
-          protected boolean isContainment()
-          {
-            return false;
-          }
-
-          @Override
-          protected boolean hasProxies()
-          {
-            return true;
-          }
-
-          @Override
-          protected boolean hasInstanceClass()
-          {
-            return true;
-          }
-          
-          @Override
-          public boolean isSet()
-          {
-            return isSetESuperTypes();
-          }
-          
-          @Override
-          protected NotificationImpl createNotification(int eventType, Object oldObject, Object newObject, int index, boolean wasSet)
-          {
-            // The notification for this list is being thrown by the
-            // delegating list
-            //
-            return null;
-          }
-          
-          @Override
-          protected void dispatchNotification(Notification notification)
-          {
-            // Do nothing
-          }
-        };
+        @Override
+        protected void dispatchNotification(Notification notification)
+        {
+          // Do nothing
+        }
+      };
     }
     return eSuperTypes;
   }
-  
+
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void unsetESuperTypes()
@@ -1867,34 +1864,35 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public boolean isSetESuperTypes()
   {
-    return  eSuperTypes != null && !eSuperTypes.isEmpty() && !isSetEGenericSuperTypes();
+    return eSuperTypes != null && !eSuperTypes.isEmpty() && !isSetEGenericSuperTypes();
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EList<EOperation> getEOperations()
   {
     if (eOperations == null)
     {
-      eOperations = new EObjectContainmentWithInverseEList<EOperation>(EOperation.class, this, EcorePackage.ECLASS__EOPERATIONS, EcorePackage.EOPERATION__ECONTAINING_CLASS);
+      eOperations = new EObjectContainmentWithInverseEList<EOperation>(EOperation.class, this,
+          EcorePackage.ECLASS__EOPERATIONS, EcorePackage.EOPERATION__ECONTAINING_CLASS);
     }
     return eOperations;
   }
 
   /**
-   * Determines if the class or interface represented by this Class object is either
-   * the same as, or is a super class or super interface of, the class or interface
-   * represented by the specified someClass parameter.  Semantics are the same as
-   * java.lang.Class#isAssignableFrom
+   * Determines if the class or interface represented by this Class object is
+   * either the same as, or is a super class or super interface of, the class or
+   * interface represented by the specified someClass parameter. Semantics are
+   * the same as java.lang.Class#isAssignableFrom
    */
   public boolean isSuperTypeOf(EClass someClass)
   {
@@ -1908,23 +1906,22 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   {
     if (eAllSuperTypes == null)
     {
-      BasicEList<EClass> result = 
-        new UniqueEList<EClass>()
+      BasicEList<EClass> result = new UniqueEList<EClass>()
+      {
+        private static final long serialVersionUID = 1L;
+
+        @Override
+        protected Object[] newData(int capacity)
         {
-          private static final long serialVersionUID = 1L;
+          return new EClassifier[capacity];
+        }
 
-          @Override
-          protected Object [] newData(int capacity)
-          {
-            return new EClassifier [capacity];
-          }
-
-          @Override
-          protected boolean useEquals()
-          {
-            return false;
-          }
-        };
+        @Override
+        protected boolean useEquals()
+        {
+          return false;
+        }
+      };
 
       Set<EClass> computationInProgress = COMPUTATION_IN_PROGRESS.get();
       if (computationInProgress.add(this))
@@ -1939,9 +1936,8 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
       }
 
       result.shrink();
-      eAllSuperTypes = 
-        new EcoreEList.UnmodifiableEList.FastCompare<EClass>
-          (this, EcorePackage.eINSTANCE.getEClass_EAllSuperTypes(), result.size(), result.data());
+      eAllSuperTypes = new EcoreEList.UnmodifiableEList.FastCompare<EClass>(this, EcorePackage.eINSTANCE
+          .getEClass_EAllSuperTypes(), result.size(), result.data());
       getESuperAdapter().setAllSuperCollectionModified(false);
     }
 
@@ -1958,42 +1954,41 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   {
     if (eSuperAdapter == null)
     {
-      eSuperAdapter = 
-        new ESuperAdapter()
+      eSuperAdapter = new ESuperAdapter()
+      {
+        @Override
+        void setFlags(int featureId)
         {
-          @Override
-          void setFlags(int featureId)
+          super.setFlags(featureId);
+
+          if (isAllAttributesCollectionModified())
           {
-            super.setFlags(featureId);
-            
-            if (isAllAttributesCollectionModified())
-            {
-              eAllAttributes = null;
-            }
-            if (isAllReferencesCollectionModified())
-            {
-              eAllReferences = null;
-            }
-            if (isAllStructuralFeaturesCollectionModified())
-            {
-              eAllStructuralFeatures = null;
-              eAllStructuralFeaturesData = null;
-            }
-            if (isAllOperationsCollectionModified())
-            {
-              eAllOperations = null;
-            }
-            if (isAllContainmentsCollectionModified())
-            {
-              eAllContainments = null;
-            }
-            if (isAllSuperCollectionModified())
-            {
-              eAllSuperTypes = null;
-              eAllGenericSuperTypes = null;
-            }
+            eAllAttributes = null;
           }
-        };
+          if (isAllReferencesCollectionModified())
+          {
+            eAllReferences = null;
+          }
+          if (isAllStructuralFeaturesCollectionModified())
+          {
+            eAllStructuralFeatures = null;
+            eAllStructuralFeaturesData = null;
+          }
+          if (isAllOperationsCollectionModified())
+          {
+            eAllOperations = null;
+          }
+          if (isAllContainmentsCollectionModified())
+          {
+            eAllContainments = null;
+          }
+          if (isAllSuperCollectionModified())
+          {
+            eAllSuperTypes = null;
+            eAllGenericSuperTypes = null;
+          }
+        }
+      };
       eAdapters().add(0, eSuperAdapter);
     }
     return eSuperAdapter;
@@ -2017,7 +2012,8 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   @Override
   public EObject eObjectForURIFragmentSegment(String uriFragmentSegment)
   {
-    EObject result = eAllStructuralFeaturesData == null || eOperations != null && !eOperations.isEmpty() ? null : getEStructuralFeature(uriFragmentSegment);
+    EObject result = eAllStructuralFeaturesData == null || eOperations != null && !eOperations.isEmpty() ? null
+        : getEStructuralFeature(uriFragmentSegment);
     return result != null ? result : super.eObjectForURIFragmentSegment(uriFragmentSegment);
   }
 

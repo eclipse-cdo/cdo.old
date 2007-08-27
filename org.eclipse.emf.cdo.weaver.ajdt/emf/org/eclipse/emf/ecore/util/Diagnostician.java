@@ -16,26 +16,21 @@
  */
 package org.eclipse.emf.ecore.util;
 
-
-//import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
+// import java.util.Collections;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
-
-import org.eclipse.emf.ecore.EValidator;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A validity checker for basic EObject constraints.
@@ -76,22 +71,21 @@ public class Diagnostician implements EValidator.SubstitutionLabelProvider, EVal
     Map<Object, Object> context = new HashMap<Object, Object>();
     context.put(EValidator.SubstitutionLabelProvider.class, this);
     context.put(EValidator.class, this);
-    BasicDiagnostic diagnostics = 
-      new BasicDiagnostic
-        (EObjectValidator.DIAGNOSTIC_SOURCE,
-         0,
-         EcorePlugin.INSTANCE.getString
-           ("_UI_DiagnosticRoot_diagnostic", 
-            new Object [] { getObjectLabel(eObject) }),
-         new Object [] { eObject });
+    BasicDiagnostic diagnostics = new BasicDiagnostic(EObjectValidator.DIAGNOSTIC_SOURCE, 0, EcorePlugin.INSTANCE
+        .getString("_UI_DiagnosticRoot_diagnostic", new Object[] { getObjectLabel(eObject) }), new Object[] { eObject });
     validate(eObject, diagnostics, context);
     return diagnostics;
   }
 
   /**
-   * Validates the object in the given context, optionally producing diagnostics.
-   * @param eObject the object to validate.
-   * @param diagnostics a place to accumulate diagnostics; if it's <code>null</code>, no diagnostics should be produced.
+   * Validates the object in the given context, optionally producing
+   * diagnostics.
+   * 
+   * @param eObject
+   *          the object to validate.
+   * @param diagnostics
+   *          a place to accumulate diagnostics; if it's <code>null</code>,
+   *          no diagnostics should be produced.
    * @return whether the object is valid.
    */
   public boolean validate(EObject eObject, DiagnosticChain diagnostics)
@@ -104,7 +98,7 @@ public class Diagnostician implements EValidator.SubstitutionLabelProvider, EVal
 
   public boolean validate(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context)
   {
-    return validate(eObject.eClass(), eObject, diagnostics, context); 
+    return validate(eObject.eClass(), eObject, diagnostics, context);
   }
 
   public boolean validate(EClass eClass, EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context)
@@ -137,7 +131,7 @@ public class Diagnostician implements EValidator.SubstitutionLabelProvider, EVal
     List<EObject> eContents = eObject.eContents();
     if (!eContents.isEmpty())
     {
-      Iterator<EObject> i = eContents.iterator(); 
+      Iterator<EObject> i = eContents.iterator();
       EObject child = i.next();
       boolean result = validate(child, diagnostics, context);
       while (i.hasNext() && (result || diagnostics != null))
@@ -158,14 +152,9 @@ public class Diagnostician implements EValidator.SubstitutionLabelProvider, EVal
     Map<Object, Object> context = new HashMap<Object, Object>();
     context.put(EValidator.SubstitutionLabelProvider.class, this);
     context.put(EValidator.class, this);
-    BasicDiagnostic diagnostics = 
-      new BasicDiagnostic
-        (EObjectValidator.DIAGNOSTIC_SOURCE,
-         0,
-         EcorePlugin.INSTANCE.getString
-           ("_UI_DiagnosticRoot_diagnostic", 
-            new Object [] { getValueLabel(eDataType, value) }),
-         new Object [] { value, eDataType });
+    BasicDiagnostic diagnostics = new BasicDiagnostic(EObjectValidator.DIAGNOSTIC_SOURCE, 0, EcorePlugin.INSTANCE
+        .getString("_UI_DiagnosticRoot_diagnostic", new Object[] { getValueLabel(eDataType, value) }), new Object[] {
+        value, eDataType });
     validate(eDataType, value, diagnostics, context);
     return diagnostics;
   }

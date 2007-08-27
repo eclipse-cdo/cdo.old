@@ -16,10 +16,8 @@
  */
 package org.eclipse.emf.ecore.resource.impl;
 
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-
 
 /**
  * A trivial implementation of a resource factory.
@@ -33,10 +31,13 @@ public class ResourceFactoryImpl implements Resource.Factory
   {
     super();
   }
-  
+
   /**
-   * Returns a newly allocated default resource {@link org.eclipse.emf.ecore.resource.impl.ResourceImpl#ResourceImpl(URI) implementation}.
-   * @param uri the URI.
+   * Returns a newly allocated default resource
+   * {@link org.eclipse.emf.ecore.resource.impl.ResourceImpl#ResourceImpl(URI) implementation}.
+   * 
+   * @param uri
+   *          the URI.
    * @return a new resource for the URI.
    */
   public Resource createResource(URI uri)

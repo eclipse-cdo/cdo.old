@@ -16,20 +16,16 @@
  */
 package org.eclipse.emf.ecore;
 
-
-
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>EParameter</b></em>'.
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>EParameter</b></em>'.
  * <!-- end-user-doc -->
- *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.ecore.EParameter#getEOperation <em>EOperation</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.EParameter#getEOperation <em>EOperation</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.emf.ecore.EcorePackage#getEParameter()
  * @model
  * @generated
@@ -37,13 +33,14 @@ package org.eclipse.emf.ecore;
 public interface EParameter extends ETypedElement
 {
   /**
-   * Returns the value of the '<em><b>EOperation</b></em>' container reference.
-   * It is bidirectional and its opposite is '{@link org.eclipse.emf.ecore.EOperation#getEParameters <em>EParameters</em>}'.
+   * Returns the value of the '<em><b>EOperation</b></em>' container
+   * reference. It is bidirectional and its opposite is '{@link org.eclipse.emf.ecore.EOperation#getEParameters <em>EParameters</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * It represents the containing operation.
    * </p>
    * <!-- end-user-doc -->
+   * 
    * @return the value of the '<em>EOperation</em>' container reference.
    * @see org.eclipse.emf.ecore.EcorePackage#getEParameter_EOperation()
    * @see org.eclipse.emf.ecore.EOperation#getEParameters
@@ -52,4 +49,4 @@ public interface EParameter extends ETypedElement
    */
   EOperation getEOperation();
 
-} //EParameter
+} // EParameter

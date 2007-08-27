@@ -16,43 +16,41 @@
  */
 package org.eclipse.emf.ecore.xml.namespace.util;
 
-import java.util.Map;
-
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
-
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.EObjectValidator;
-
-import org.eclipse.emf.ecore.xml.namespace.*;
-
+import org.eclipse.emf.ecore.xml.namespace.SpaceType;
+import org.eclipse.emf.ecore.xml.namespace.XMLNamespaceDocumentRoot;
+import org.eclipse.emf.ecore.xml.namespace.XMLNamespacePackage;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
-
 import org.eclipse.emf.ecore.xml.type.util.XMLTypeValidator;
 
+import java.util.Map;
+
 /**
- * <!-- begin-user-doc -->
- * The <b>Validator</b> for the model.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Validator</b> for the model. <!--
+ * end-user-doc -->
+ * 
  * @see org.eclipse.emf.ecore.xml.namespace.XMLNamespacePackage
  * @generated
  */
 public class XMLNamespaceValidator extends EObjectValidator
 {
   /**
-   * The cached model package
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached model package <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public static final XMLNamespaceValidator INSTANCE = new XMLNamespaceValidator();
 
   /**
-   * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * A constant for the
+   * {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of
+   * diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes}
+   * from this package. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see org.eclipse.emf.common.util.Diagnostic#getSource()
    * @see org.eclipse.emf.common.util.Diagnostic#getCode()
    * @generated
@@ -60,33 +58,35 @@ public class XMLNamespaceValidator extends EObjectValidator
   public static final String DIAGNOSTIC_SOURCE = "org.eclipse.emf.ecore.xml.namespace";
 
   /**
-   * A constant with a fixed name that can be used as the base value for additional hand written constants.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * A constant with a fixed name that can be used as the base value for
+   * additional hand written constants. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @generated
    */
   private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
 
   /**
-   * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * A constant with a fixed name that can be used as the base value for
+   * additional hand written constants in a derived class. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
 
   /**
-   * The cached base package validator.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached base package validator. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @generated
    */
   protected XMLTypeValidator xmlTypeValidator;
 
   /**
-   * Creates an instance of the switch.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Creates an instance of the switch. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @generated
    */
   public XMLNamespaceValidator()
@@ -96,9 +96,9 @@ public class XMLNamespaceValidator extends EObjectValidator
   }
 
   /**
-   * Returns the package of this validator switch.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the package of this validator switch. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -108,9 +108,9 @@ public class XMLNamespaceValidator extends EObjectValidator
   }
 
   /**
-   * Calls <code>validateXXX</code> for the corresponding classifier of the model.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Calls <code>validateXXX</code> for the corresponding classifier of the
+   * model. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -118,34 +118,35 @@ public class XMLNamespaceValidator extends EObjectValidator
   {
     switch (classifierID)
     {
-      case XMLNamespacePackage.XML_NAMESPACE_DOCUMENT_ROOT:
-        return validateXMLNamespaceDocumentRoot((XMLNamespaceDocumentRoot)value, diagnostics, context);
-      case XMLNamespacePackage.SPACE_TYPE:
-        return validateSpaceType((SpaceType)value, diagnostics, context);
-      case XMLNamespacePackage.LANG_TYPE:
-        return validateLangType((String)value, diagnostics, context);
-      case XMLNamespacePackage.LANG_TYPE_NULL:
-        return validateLangTypeNull((String)value, diagnostics, context);
-      case XMLNamespacePackage.SPACE_TYPE_OBJECT:
-        return validateSpaceTypeObject((SpaceType)value, diagnostics, context);
-      default: 
-        return true;
+    case XMLNamespacePackage.XML_NAMESPACE_DOCUMENT_ROOT:
+      return validateXMLNamespaceDocumentRoot((XMLNamespaceDocumentRoot)value, diagnostics, context);
+    case XMLNamespacePackage.SPACE_TYPE:
+      return validateSpaceType((SpaceType)value, diagnostics, context);
+    case XMLNamespacePackage.LANG_TYPE:
+      return validateLangType((String)value, diagnostics, context);
+    case XMLNamespacePackage.LANG_TYPE_NULL:
+      return validateLangTypeNull((String)value, diagnostics, context);
+    case XMLNamespacePackage.SPACE_TYPE_OBJECT:
+      return validateSpaceTypeObject((SpaceType)value, diagnostics, context);
+    default:
+      return true;
     }
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
-  public boolean validateXMLNamespaceDocumentRoot(XMLNamespaceDocumentRoot xmlNamespaceDocumentRoot, DiagnosticChain diagnostics, Map<Object, Object> context)
+  public boolean validateXMLNamespaceDocumentRoot(XMLNamespaceDocumentRoot xmlNamespaceDocumentRoot,
+      DiagnosticChain diagnostics, Map<Object, Object> context)
   {
     return validate_EveryDefaultConstraint(xmlNamespaceDocumentRoot, diagnostics, context);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateSpaceType(SpaceType spaceType, DiagnosticChain diagnostics, Map<Object, Object> context)
@@ -154,8 +155,8 @@ public class XMLNamespaceValidator extends EObjectValidator
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateLangType(String langType, DiagnosticChain diagnostics, Map<Object, Object> context)
@@ -165,9 +166,9 @@ public class XMLNamespaceValidator extends EObjectValidator
   }
 
   /**
-   * Validates the MemberTypes constraint of '<em>Lang Type</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Validates the MemberTypes constraint of '<em>Lang Type</em>'. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateLangType_MemberTypes(String langType, DiagnosticChain diagnostics, Map<Object, Object> context)
@@ -203,8 +204,8 @@ public class XMLNamespaceValidator extends EObjectValidator
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateLangTypeNull(String langTypeNull, DiagnosticChain diagnostics, Map<Object, Object> context)
@@ -213,13 +214,14 @@ public class XMLNamespaceValidator extends EObjectValidator
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
-  public boolean validateSpaceTypeObject(SpaceType spaceTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context)
+  public boolean validateSpaceTypeObject(SpaceType spaceTypeObject, DiagnosticChain diagnostics,
+      Map<Object, Object> context)
   {
     return true;
   }
 
-} //XMLNamespaceValidator
+} // XMLNamespaceValidator

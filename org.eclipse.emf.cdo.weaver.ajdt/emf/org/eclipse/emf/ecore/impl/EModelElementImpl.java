@@ -16,7 +16,6 @@
  */
 package org.eclipse.emf.ecore.impl;
 
-
 import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -34,26 +33,24 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>EModel Element</b></em>'.
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EModel Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.ecore.impl.EModelElementImpl#getEAnnotations <em>EAnnotations</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.impl.EModelElementImpl#getEAnnotations <em>EAnnotations</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated not
  */
 public abstract class EModelElementImpl extends FlatEObjectImpl implements EModelElement
 {
   /**
-   * The cached value of the '{@link #getEAnnotations() <em>EAnnotations</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getEAnnotations() <em>EAnnotations</em>}'
+   * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getEAnnotations()
    * @generated
    * @ordered
@@ -61,8 +58,8 @@ public abstract class EModelElementImpl extends FlatEObjectImpl implements EMode
   protected EList<EAnnotation> eAnnotations;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected EModelElementImpl()
@@ -71,12 +68,14 @@ public abstract class EModelElementImpl extends FlatEObjectImpl implements EMode
   }
 
   /**
-   * The bit of {@link #eFlags} that is used to represent being {@link #freeze() frozen}.
+   * The bit of {@link #eFlags} that is used to represent being
+   * {@link #freeze() frozen}.
    */
   protected static final int EFROZEN = ELAST_EOBJECT_FLAG << 1;
 
   /**
-   * The last bit used by this class; derived classes may use bit values higher than this.
+   * The last bit used by this class; derived classes may use bit values higher
+   * than this.
    */
   protected static final int ELAST_EMODEL_ELEMENT_FLAG = EFROZEN;
 
@@ -88,7 +87,7 @@ public abstract class EModelElementImpl extends FlatEObjectImpl implements EMode
   protected void freeze(Object eModelElement)
   {
     if (eModelElement instanceof EModelElementImpl)
-    { 
+    {
       ((EModelElementImpl)eModelElement).freeze();
     }
   }
@@ -104,8 +103,8 @@ public abstract class EModelElementImpl extends FlatEObjectImpl implements EMode
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -115,22 +114,23 @@ public abstract class EModelElementImpl extends FlatEObjectImpl implements EMode
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EList<EAnnotation> getEAnnotations()
   {
     if (eAnnotations == null)
     {
-      eAnnotations = new EObjectContainmentWithInverseEList<EAnnotation>(EAnnotation.class, this, EcorePackage.EMODEL_ELEMENT__EANNOTATIONS, EcorePackage.EANNOTATION__EMODEL_ELEMENT);
+      eAnnotations = new EObjectContainmentWithInverseEList<EAnnotation>(EAnnotation.class, this,
+          EcorePackage.EMODEL_ELEMENT__EANNOTATIONS, EcorePackage.EANNOTATION__EMODEL_ELEMENT);
     }
     return eAnnotations;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public EAnnotation getEAnnotation(String source)
@@ -142,7 +142,7 @@ public abstract class EModelElementImpl extends FlatEObjectImpl implements EMode
         int size = eAnnotations.size();
         if (size > 0)
         {
-          EAnnotation [] eAnnotationArray = (EAnnotation[])((BasicEList<?>)eAnnotations).data();
+          EAnnotation[] eAnnotationArray = (EAnnotation[])((BasicEList<?>)eAnnotations).data();
           if (source == null)
           {
             for (int i = 0; i < size; ++i)
@@ -196,8 +196,8 @@ public abstract class EModelElementImpl extends FlatEObjectImpl implements EMode
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -206,15 +206,15 @@ public abstract class EModelElementImpl extends FlatEObjectImpl implements EMode
   {
     switch (featureID)
     {
-      case EcorePackage.EMODEL_ELEMENT__EANNOTATIONS:
-        return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
+    case EcorePackage.EMODEL_ELEMENT__EANNOTATIONS:
+      return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
     }
     return eDynamicInverseAdd(otherEnd, featureID, msgs);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -222,15 +222,15 @@ public abstract class EModelElementImpl extends FlatEObjectImpl implements EMode
   {
     switch (featureID)
     {
-      case EcorePackage.EMODEL_ELEMENT__EANNOTATIONS:
-        return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
+    case EcorePackage.EMODEL_ELEMENT__EANNOTATIONS:
+      return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
     }
     return eDynamicInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -238,15 +238,15 @@ public abstract class EModelElementImpl extends FlatEObjectImpl implements EMode
   {
     switch (featureID)
     {
-      case EcorePackage.EMODEL_ELEMENT__EANNOTATIONS:
-        return getEAnnotations();
+    case EcorePackage.EMODEL_ELEMENT__EANNOTATIONS:
+      return getEAnnotations();
     }
     return eDynamicGet(featureID, resolve, coreType);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -255,17 +255,17 @@ public abstract class EModelElementImpl extends FlatEObjectImpl implements EMode
   {
     switch (featureID)
     {
-      case EcorePackage.EMODEL_ELEMENT__EANNOTATIONS:
-        getEAnnotations().clear();
-        getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
-        return;
+    case EcorePackage.EMODEL_ELEMENT__EANNOTATIONS:
+      getEAnnotations().clear();
+      getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
+      return;
     }
     eDynamicSet(featureID, newValue);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -273,16 +273,16 @@ public abstract class EModelElementImpl extends FlatEObjectImpl implements EMode
   {
     switch (featureID)
     {
-      case EcorePackage.EMODEL_ELEMENT__EANNOTATIONS:
-        getEAnnotations().clear();
-        return;
+    case EcorePackage.EMODEL_ELEMENT__EANNOTATIONS:
+      getEAnnotations().clear();
+      return;
     }
     eDynamicUnset(featureID);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -290,8 +290,8 @@ public abstract class EModelElementImpl extends FlatEObjectImpl implements EMode
   {
     switch (featureID)
     {
-      case EcorePackage.EMODEL_ELEMENT__EANNOTATIONS:
-        return eAnnotations != null && !eAnnotations.isEmpty();
+    case EcorePackage.EMODEL_ELEMENT__EANNOTATIONS:
+      return eAnnotations != null && !eAnnotations.isEmpty();
     }
     return eDynamicIsSet(featureID);
   }
@@ -322,10 +322,7 @@ public abstract class EModelElementImpl extends FlatEObjectImpl implements EMode
           }
         }
         name = eEncodeValue(name);
-        return 
-          count > 0 ?
-            name + "." + count : 
-            name;
+        return count > 0 ? name + "." + count : name;
       }
     }
     else if (eObject instanceof EAnnotation)
@@ -350,10 +347,10 @@ public abstract class EModelElementImpl extends FlatEObjectImpl implements EMode
             }
           }
         }
-        
+
         StringBuffer result = new StringBuffer(source.length() + 5);
         result.append('%');
-        result.append(URI.encodeSegment(source,  false));
+        result.append(URI.encodeSegment(source, false));
         result.append('%');
         if (count > 0)
         {
@@ -365,13 +362,14 @@ public abstract class EModelElementImpl extends FlatEObjectImpl implements EMode
     }
     return super.eURIFragmentSegment(eStructuralFeature, eObject);
   }
-  
+
   @Override
   public EObject eObjectForURIFragmentSegment(String uriFragmentSegment)
   {
     if (uriFragmentSegment.length() > 0)
     {
-      // Is the first character a special character, i.e., something other than '@'?
+      // Is the first character a special character, i.e., something other than
+      // '@'?
       //
       char firstCharacter = uriFragmentSegment.charAt(0);
       if (firstCharacter != '@')
@@ -388,7 +386,7 @@ public abstract class EModelElementImpl extends FlatEObjectImpl implements EMode
             // Decode all encoded characters.
             //
             String source = URI.decode(uriFragmentSegment.substring(1, index));
-            
+
             // Check for a count, i.e., a '.' followed by a number.
             //
             int count = 0;
@@ -404,7 +402,7 @@ public abstract class EModelElementImpl extends FlatEObjectImpl implements EMode
                 throw new WrappedException(exception);
               }
             }
-            
+
             // Look for the annotation with the matching source.
             //
             for (Object object : eContents())
@@ -442,7 +440,7 @@ public abstract class EModelElementImpl extends FlatEObjectImpl implements EMode
           }
 
           name = URI.decode(name);
-    
+
           // Look for a matching named element.
           //
           for (Object object : eContents())
@@ -457,11 +455,11 @@ public abstract class EModelElementImpl extends FlatEObjectImpl implements EMode
             }
           }
         }
-  
+
         return null;
       }
     }
-    
+
     return super.eObjectForURIFragmentSegment(uriFragmentSegment);
   }
 

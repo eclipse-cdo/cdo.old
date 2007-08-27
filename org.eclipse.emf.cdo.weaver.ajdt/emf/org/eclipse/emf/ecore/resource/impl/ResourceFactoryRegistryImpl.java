@@ -16,13 +16,11 @@
  */
 package org.eclipse.emf.ecore.resource.impl;
 
-
 import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-
 
 /**
  * An extensible implementation of a resource factory registry.
@@ -50,19 +48,22 @@ public class ResourceFactoryRegistryImpl implements Resource.Factory.Registry
   /**
    * Returns the resource factory appropriate for the given URI.
    * <p>
-   * This implementation does the {@link org.eclipse.emf.ecore.resource.Resource.Factory.Registry#getFactory typical} thing.
-   * It will delegate to {@link #delegatedGetFactory(URI)} 
-   * in the case that the typical behaviour doesn't produce a result;
-   * clients are encouraged to override that method only.
+   * This implementation does the
+   * {@link org.eclipse.emf.ecore.resource.Resource.Factory.Registry#getFactory typical}
+   * thing. It will delegate to {@link #delegatedGetFactory(URI)} in the case
+   * that the typical behaviour doesn't produce a result; clients are encouraged
+   * to override that method only.
    * </p>
-   * @param uri the URI.
+   * 
+   * @param uri
+   *          the URI.
    * @return the resource factory appropriate for the given URI.
    * @see org.eclipse.emf.ecore.resource.ResourceSet#createResource(URI)
    */
   public Resource.Factory getFactory(URI uri)
   {
     String protocol = uri.scheme();
-    Object resourceFactory =  protocolToFactoryMap.get(protocol);
+    Object resourceFactory = protocolToFactoryMap.get(protocol);
     if (resourceFactory == null)
     {
       String extension = uri.fileExtension();
@@ -77,19 +78,20 @@ public class ResourceFactoryRegistryImpl implements Resource.Factory.Registry
       }
     }
 
-    return 
-      resourceFactory instanceof Resource.Factory.Descriptor ?
-        ((Resource.Factory.Descriptor)resourceFactory).createFactory() :
-        (Resource.Factory)resourceFactory;
+    return resourceFactory instanceof Resource.Factory.Descriptor ? ((Resource.Factory.Descriptor)resourceFactory)
+        .createFactory() : (Resource.Factory)resourceFactory;
   }
 
   /**
-   * Returns the resource factory appropriate for the given URI, when standard alternatives fail.
+   * Returns the resource factory appropriate for the given URI, when standard
+   * alternatives fail.
    * <p>
-   * This implementation returns <code>null</code>;
-   * clients are encouraged to override it.
+   * This implementation returns <code>null</code>; clients are encouraged to
+   * override it.
    * </p>
-   * @param uri the URI.
+   * 
+   * @param uri
+   *          the URI.
    * @return the resource factory appropriate for the given URI.
    * @see #getFactory(URI)
    */

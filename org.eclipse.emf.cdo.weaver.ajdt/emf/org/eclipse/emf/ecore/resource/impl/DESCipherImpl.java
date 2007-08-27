@@ -31,42 +31,48 @@ import javax.crypto.spec.DESKeySpec;
 import org.eclipse.emf.ecore.resource.URIConverter;
 
 /**
- * <p>EMF implementation for the {@link URIConverter.Cipher} interface using 
- * the DES encryption algorithm.</p>  
- * <p>This shows how this class can be used:</p>
+ * <p>
+ * EMF implementation for the {@link URIConverter.Cipher} interface using the
+ * DES encryption algorithm.
+ * </p>
+ * <p>
+ * This shows how this class can be used:
+ * </p>
+ * 
  * <pre>
  * Map options = new HashMap();
- * options.put(Resource.OPTION_CIPHER, 
- *             new DESCipherImpl("a very long key indeed"));
+ * options.put(Resource.OPTION_CIPHER, new DESCipherImpl(&quot;a very long key indeed&quot;));
  * resource.save(options);
  * resource.load(options);
- * </pre> 
+ * </pre>
+ * 
  * @since 2.3.0
  */
 public class DESCipherImpl implements URIConverter.Cipher
 {
   protected static final String ENCRYPTION_SCHEME = "DES";
+
   protected static final String UNICODE_FORMAT = "UTF-8";
 
   protected String stringKey;
+
   protected SecretKey key;
-  
-  
+
   public DESCipherImpl()
   {
     this(null);
   }
-  
+
   public DESCipherImpl(String key)
   {
     this.stringKey = key;
   }
-  
+
   public OutputStream encrypt(OutputStream outputStream) throws Exception
   {
     Cipher cipher = Cipher.getInstance(ENCRYPTION_SCHEME);
     cipher.init(Cipher.ENCRYPT_MODE, getKey());
-    
+
     // The CipherOutputStream shoudln't close the underlying stream
     //
     outputStream = new FilterOutputStream(outputStream)
@@ -79,7 +85,7 @@ public class DESCipherImpl implements URIConverter.Cipher
     };
     return new CipherOutputStream(outputStream, cipher);
   }
-  
+
   public void finish(OutputStream outputStream) throws Exception
   {
     outputStream.close();
@@ -91,7 +97,7 @@ public class DESCipherImpl implements URIConverter.Cipher
     cipher.init(Cipher.DECRYPT_MODE, getKey());
     return new CipherInputStream(inputStream, cipher);
   }
-  
+
   public void finish(InputStream inputStream) throws Exception
   {
     // Do nothing.

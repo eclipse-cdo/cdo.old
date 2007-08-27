@@ -16,7 +16,6 @@
  */
 package org.eclipse.emf.ecore.impl;
 
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
@@ -25,9 +24,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.util.FeatureMapUtil;
 
-
 /**
- * An implementation of '<em><b>EObject</b></em>' that delegates to a {@link org.eclipse.emf.ecore.InternalEObject.EStore store}.
+ * An implementation of '<em><b>EObject</b></em>' that delegates to a
+ * {@link org.eclipse.emf.ecore.InternalEObject.EStore store}.
  */
 public class DynamicEStoreEObjectImpl extends DynamicEObjectImpl
 {
@@ -136,10 +135,8 @@ public class DynamicEStoreEObjectImpl extends DynamicEObjectImpl
   @Override
   public boolean eDynamicIsSet(EStructuralFeature eStructuralFeature)
   {
-    return 
-      eStructuralFeature.isTransient() ?
-        super.eDynamicIsSet(eStructuralFeature) :
-        eStore().isSet(this, eStructuralFeature);
+    return eStructuralFeature.isTransient() ? super.eDynamicIsSet(eStructuralFeature) : eStore().isSet(this,
+        eStructuralFeature);
   }
 
   protected <T> EList<T> createList(EStructuralFeature eStructuralFeature)
@@ -207,12 +204,9 @@ public class DynamicEStoreEObjectImpl extends DynamicEObjectImpl
     this.eStore = store;
   }
 
-/*
-  public String toString()
-  {
-    String result = super.toString();
-    int index = result.indexOf("DynamicEStoreEObjectImpl");
-    return index == -1 ? result : result.substring(0, index) + result.substring(index + 13);
-  }
-*/
+  /*
+   * public String toString() { String result = super.toString(); int index =
+   * result.indexOf("DynamicEStoreEObjectImpl"); return index == -1 ? result :
+   * result.substring(0, index) + result.substring(index + 13); }
+   */
 }

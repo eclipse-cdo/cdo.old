@@ -16,14 +16,12 @@
  */
 package org.eclipse.emf.ecore.resource.impl;
 
-
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.URI;
-
 
 /**
  * An extensible implementation of a URI mapping registry.
@@ -34,13 +32,14 @@ public class URIMappingRegistryImpl extends BasicEMap<URI, URI>
 
   /**
    * The implementation of the global mapping registry.
+   * 
    * @see org.eclipse.emf.ecore.resource.URIConverter#URI_MAP
    */
   public static final URIMappingRegistryImpl INSTANCE = new URIMappingRegistryImpl();
 
   /**
-   * A list of lists of prefix URIs; 
-   * it is indexed by segment count to yield a list of prefixes of that length.
+   * A list of lists of prefix URIs; it is indexed by segment count to yield a
+   * list of prefixes of that length.
    */
   protected BasicEList<List<Entry<URI, URI>>> prefixMaps = new BasicEList<List<Entry<URI, URI>>>();
 
@@ -64,8 +63,8 @@ public class URIMappingRegistryImpl extends BasicEMap<URI, URI>
   }
 
   /**
-   * An extended implementation that maintains a bit 
-   * indicating if the entry represents a folder to folder mapping.
+   * An extended implementation that maintains a bit indicating if the entry
+   * represents a folder to folder mapping.
    */
   protected class MappingEntryImpl extends EntryImpl
   {
@@ -93,11 +92,13 @@ public class URIMappingRegistryImpl extends BasicEMap<URI, URI>
   }
 
   /**
-   * Returns the remapped URI, or the URI itself.
-   * This implementation uses the map to find an exact match.
-   * Failing that, it matches the {@link #prefixMaps} prefixes in order.
-   * And failing that, it delegates to {@link #delegatedGetURI(URI) delegatedGetURI}.
-   * @param uri the URI to remap.
+   * Returns the remapped URI, or the URI itself. This implementation uses the
+   * map to find an exact match. Failing that, it matches the
+   * {@link #prefixMaps} prefixes in order. And failing that, it delegates to
+   * {@link #delegatedGetURI(URI) delegatedGetURI}.
+   * 
+   * @param uri
+   *          the URI to remap.
    * @return the remapped URI, or the URI itself.
    */
   public URI getURI(URI uri)
@@ -134,7 +135,9 @@ public class URIMappingRegistryImpl extends BasicEMap<URI, URI>
    * <p>
    * This implementation returns <code>uri</code>.
    * </p>
-   * @param uri the URI.
+   * 
+   * @param uri
+   *          the URI.
    * @return the mapped URI.
    * @see #getURI(URI)
    */
@@ -157,9 +160,11 @@ public class URIMappingRegistryImpl extends BasicEMap<URI, URI>
     }
 
     /**
-     * Returns the remapped URI, or the URI itself.
-     * This implementation delegates to the containing {@link URIMappingRegistryImpl}.
-     * @param uri the URI to remap.
+     * Returns the remapped URI, or the URI itself. This implementation
+     * delegates to the containing {@link URIMappingRegistryImpl}.
+     * 
+     * @param uri
+     *          the URI to remap.
      * @return the remapped URI, or the URI itself.
      */
     public URI getURI(URI uri)
@@ -168,7 +173,7 @@ public class URIMappingRegistryImpl extends BasicEMap<URI, URI>
     }
   }
 
-  /** 
+  /**
    * Returns a map view that implements {@link URIConverterImpl.URIMap}.
    */
   @Override
@@ -255,7 +260,7 @@ public class URIMappingRegistryImpl extends BasicEMap<URI, URI>
    * Discards all the {@link #prefixMaps prefix maps}.
    */
   @Override
-  protected void didClear(BasicEList<Entry<URI, URI>> [] oldEntryData)
+  protected void didClear(BasicEList<Entry<URI, URI>>[] oldEntryData)
   {
     prefixMaps = null;
   }

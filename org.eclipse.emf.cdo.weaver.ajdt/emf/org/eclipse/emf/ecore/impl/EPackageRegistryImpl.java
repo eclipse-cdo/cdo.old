@@ -16,7 +16,6 @@
  */
 package org.eclipse.emf.ecore.impl;
 
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,16 +28,17 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-
 /**
- * An implementation of a package registry that can delegate failed lookup to another registry.
+ * An implementation of a package registry that can delegate failed lookup to
+ * another registry.
  */
 public class EPackageRegistryImpl extends HashMap<String, Object> implements EPackage.Registry
 {
   private static final long serialVersionUID = 1L;
 
   /**
-   * Creates the {@link EPackage.Registry#INSTANCE instance} of the global registry.
+   * Creates the {@link EPackage.Registry#INSTANCE instance} of the global
+   * registry.
    */
   public static EPackage.Registry createGlobalRegistry()
   {
@@ -72,7 +72,7 @@ public class EPackageRegistryImpl extends HashMap<String, Object> implements EPa
     }
   }
 
-  /** 
+  /**
    * The delegate registry.
    */
   protected EPackage.Registry delegateRegistry;
@@ -162,6 +162,7 @@ public class EPackageRegistryImpl extends HashMap<String, Object> implements EPa
 
   /**
    * Returns the package from the delegate registry, if there is one.
+   * 
    * @return the package from the delegate registry.
    */
   protected EPackage delegatedGetEPackage(String nsURI)
@@ -176,6 +177,7 @@ public class EPackageRegistryImpl extends HashMap<String, Object> implements EPa
 
   /**
    * Returns the factory from the delegate registry, if there is one.
+   * 
    * @return the factory from the delegate registry.
    */
   protected EFactory delegatedGetEFactory(String nsURI)
@@ -192,7 +194,9 @@ public class EPackageRegistryImpl extends HashMap<String, Object> implements EPa
    * Returns whether this map or the delegate map contains this key. Note that
    * if there is a delegate map, the result of this method may
    * <em><b>not</b></em> be the same as <code>keySet().contains(key)</code>.
-   * @param key the key whose presence in this map is to be tested.
+   * 
+   * @param key
+   *          the key whose presence in this map is to be tested.
    * @return whether this map or the delegate map contains this key.
    */
   @Override
@@ -208,7 +212,9 @@ public class EPackageRegistryImpl extends HashMap<String, Object> implements EPa
 
   /**
    * Returns the package registry associated with the given class loader.
-   * @param classLoader the class loader.
+   * 
+   * @param classLoader
+   *          the class loader.
    * @return the package registry associated with the given class loader.
    */
   public static synchronized EPackage.Registry getRegistry(ClassLoader classLoader)
@@ -226,7 +232,8 @@ public class EPackageRegistryImpl extends HashMap<String, Object> implements EPa
   }
 
   /**
-   * A package registry implementation that delegates to a class loader specific registry.
+   * A package registry implementation that delegates to a class loader specific
+   * registry.
    */
   public static class Delegator implements EPackage.Registry
   {
@@ -275,39 +282,42 @@ public class EPackageRegistryImpl extends HashMap<String, Object> implements EPa
       return delegateRegistry().get(key);
     }
 
-    public Object put(String key, Object value) 
+    public Object put(String key, Object value)
     {
       // TODO Binary incompatibility; an old override must override putAll.
       Class<?> valueClass = value.getClass();
-      if (valueClass == EPackageImpl.class) 
+      if (valueClass == EPackageImpl.class)
       {
         return delegateRegistry().put(key, value);
-      } 
-      else 
+      }
+      else
       {
         String valueClassName = valueClass.getName();
 
-        // Find the uppermost class loader in the hierarchy that can load the class.
+        // Find the uppermost class loader in the hierarchy that can load the
+        // class.
         //
         ClassLoader result = Thread.currentThread().getContextClassLoader();
         for (ClassLoader classLoader = result.getParent(); classLoader != null; classLoader = classLoader.getParent())
         {
-          try 
+          try
           {
             Class<?> loadedClass = classLoader.loadClass(valueClassName);
-            if (loadedClass == valueClass) 
+            if (loadedClass == valueClass)
             {
               result = classLoader;
-            } 
-            else 
+            }
+            else
             {
-              // The class address was not equal, so we don't want this class loader,
-              // but instead want the last result that was able to load the class.
+              // The class address was not equal, so we don't want this class
+              // loader,
+              // but instead want the last result that was able to load the
+              // class.
               //
               break;
             }
-          } 
-          catch (ClassNotFoundException exception) 
+          }
+          catch (ClassNotFoundException exception)
           {
             // We can't find the class, so we don't want this class loader,
             // but instead want the last result that was able to load the class.
@@ -316,7 +326,8 @@ public class EPackageRegistryImpl extends HashMap<String, Object> implements EPa
           }
         }
 
-        // Register with the upper most class loader that's able to load the class.
+        // Register with the upper most class loader that's able to load the
+        // class.
         //
         return delegateRegistry(result).put(key, value);
       }

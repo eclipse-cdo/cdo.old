@@ -74,7 +74,6 @@
 
 package org.eclipse.emf.ecore.xml.type.internal;
 
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.DateFormat;
@@ -97,44 +96,47 @@ import org.eclipse.emf.ecore.xml.type.InvalidDatatypeValueException;
 import org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil;
 
 /**
- * An internal extension of Java's XMLGregorianCalendar to represent
- * <a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/">W3C XML Schema 1.0</a> 
- * dateTime, time, date, gYearMonth,  gYear, gMonthDay, gDay, gMonth data types.
- * <p> 
- * NOTE: this class is for internal use only. 
+ * An internal extension of Java's XMLGregorianCalendar to represent <a
+ * href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/">W3C XML Schema 1.0</a>
+ * dateTime, time, date, gYearMonth, gYear, gMonthDay, gDay, gMonth data types.
+ * <p>
+ * NOTE: this class is for internal use only.
  */
 public final class XMLCalendar extends XMLGregorianCalendar
 {
   public final static short DATETIME = 0;
+
   public final static short TIME = 1;
+
   public final static short DATE = 2;
+
   public final static short GYEARMONTH = 3;
+
   public final static short GYEAR = 4;
+
   public final static short GMONTHDAY = 5;
+
   public final static short GDAY = 6;
+
   public final static short GMONTH = 7;
-  
-  protected static final String [] XML_SCHEMA_TYPES =
-    {
-      "dateTime",
-      "time",
-      "date",
-      "gYearMonth",
-      "gYear",
-      "gMonthDay",
-      "gDay",
-      "gMonth"
-    };
-  
+
+  protected static final String[] XML_SCHEMA_TYPES = { "dateTime", "time", "date", "gYearMonth", "gYear", "gMonthDay",
+      "gDay", "gMonth" };
+
   public final static int EQUALS = 0;
+
   public final static int LESS_THAN = -1;
+
   public final static int GREATER_THAN = 1;
+
   public final static int INDETERMINATE = 2;
-  
+
   final short dataType;
+
   final private XMLGregorianCalendar xmlGregorianCalendar;
+
   private Date date;
-  
+
   static final DatatypeFactory datatypeFactory;
   static
   {
@@ -147,21 +149,16 @@ public final class XMLCalendar extends XMLGregorianCalendar
       throw new RuntimeException(exception);
     }
   }
-  
-  protected static final DateFormat [] EDATE_FORMATS =
-  {
-    new SafeSimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'"),
-    new SafeSimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss"),
-    new SafeSimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'.'S"), 
-    new SafeSimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'.'S'Z'"),
-    new SafeSimpleDateFormat("yyyy-MM-dd'Z'"),
-    new SafeSimpleDateFormat("yyyy-MM-dd")
-  };
+
+  protected static final DateFormat[] EDATE_FORMATS = { new SafeSimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'"),
+      new SafeSimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss"), new SafeSimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'.'S"),
+      new SafeSimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'.'S'Z'"), new SafeSimpleDateFormat("yyyy-MM-dd'Z'"),
+      new SafeSimpleDateFormat("yyyy-MM-dd") };
 
   static
   {
     EDATE_FORMATS[0].setTimeZone(TimeZone.getTimeZone("GMT"));
-    EDATE_FORMATS[3].setTimeZone(TimeZone.getTimeZone("GMT"));    
+    EDATE_FORMATS[3].setTimeZone(TimeZone.getTimeZone("GMT"));
   }
 
   private XMLCalendar(XMLGregorianCalendar xmlGregorianCalendar, Date date, short dataType)
@@ -170,7 +167,7 @@ public final class XMLCalendar extends XMLGregorianCalendar
     this.date = date;
     this.dataType = dataType;
   }
-  
+
   public XMLCalendar(String value, short datatype)
   {
     value = XMLTypeUtil.normalize(value, true);
@@ -194,37 +191,35 @@ public final class XMLCalendar extends XMLGregorianCalendar
     this.dataType = dataType;
     this.date = date;
   }
-  
+
   public static int compare(XMLCalendar value1, XMLCalendar value2)
   {
     switch (value1.xmlGregorianCalendar.compare(value2.xmlGregorianCalendar))
     {
-      case DatatypeConstants.EQUAL:
-      {
-        return XMLCalendar.EQUALS;
-      }
-      case DatatypeConstants.LESSER:
-      {
-        return XMLCalendar.LESS_THAN;
-      }
-      case DatatypeConstants.GREATER:
-      {
-        return XMLCalendar.GREATER_THAN;
-      }
-      default:
-      {
-        return XMLCalendar.INDETERMINATE;
-      }
+    case DatatypeConstants.EQUAL:
+    {
+      return XMLCalendar.EQUALS;
+    }
+    case DatatypeConstants.LESSER:
+    {
+      return XMLCalendar.LESS_THAN;
+    }
+    case DatatypeConstants.GREATER:
+    {
+      return XMLCalendar.GREATER_THAN;
+    }
+    default:
+    {
+      return XMLCalendar.INDETERMINATE;
+    }
     }
   }
 
   @Override
   public boolean equals(Object object)
   {
-    return 
-      object instanceof XMLCalendar ? 
-         xmlGregorianCalendar.equals(((XMLCalendar)object).xmlGregorianCalendar) :
-         object instanceof XMLGregorianCalendar && xmlGregorianCalendar.equals(object);
+    return object instanceof XMLCalendar ? xmlGregorianCalendar.equals(((XMLCalendar)object).xmlGregorianCalendar)
+        : object instanceof XMLGregorianCalendar && xmlGregorianCalendar.equals(object);
   }
 
   @Override
@@ -232,7 +227,7 @@ public final class XMLCalendar extends XMLGregorianCalendar
   {
     return xmlGregorianCalendar.hashCode();
   }
-  
+
   @Override
   public String toString()
   {

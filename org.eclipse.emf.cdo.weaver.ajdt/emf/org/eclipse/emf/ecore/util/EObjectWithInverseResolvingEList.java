@@ -16,10 +16,8 @@
  */
 package org.eclipse.emf.ecore.util;
 
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 
 public class EObjectWithInverseResolvingEList<E> extends EObjectWithInverseEList<E>
 {
@@ -55,7 +53,7 @@ public class EObjectWithInverseResolvingEList<E> extends EObjectWithInverseEList
     {
       return true;
     }
-    
+
     @SuppressWarnings("unchecked")
     @Override
     protected E resolve(int index, E object)
@@ -80,8 +78,7 @@ public class EObjectWithInverseResolvingEList<E> extends EObjectWithInverseEList
     }
   }
 
-  public EObjectWithInverseResolvingEList
-    (Class<?> dataClass, InternalEObject owner, int featureID, int inverseFeatureID)
+  public EObjectWithInverseResolvingEList(Class<?> dataClass, InternalEObject owner, int featureID, int inverseFeatureID)
   {
     super(dataClass, owner, featureID, inverseFeatureID);
   }
@@ -91,7 +88,7 @@ public class EObjectWithInverseResolvingEList<E> extends EObjectWithInverseEList
   {
     return true;
   }
-  
+
   @SuppressWarnings("unchecked")
   @Override
   protected E resolve(int index, E object)

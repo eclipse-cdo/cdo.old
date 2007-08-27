@@ -16,7 +16,6 @@
  */
 package org.eclipse.emf.ecore.impl;
 
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
@@ -25,25 +24,23 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>EParameter</b></em>'.
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EParameter</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.ecore.impl.EParameterImpl#getEOperation <em>EOperation</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.impl.EParameterImpl#getEOperation <em>EOperation</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class EParameterImpl extends ETypedElementImpl implements EParameter
 {
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected EParameterImpl()
@@ -52,8 +49,8 @@ public class EParameterImpl extends ETypedElementImpl implements EParameter
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -63,8 +60,8 @@ public class EParameterImpl extends ETypedElementImpl implements EParameter
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated modifiable
    */
   public EOperation getEOperation()
@@ -73,8 +70,8 @@ public class EParameterImpl extends ETypedElementImpl implements EParameter
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -83,19 +80,18 @@ public class EParameterImpl extends ETypedElementImpl implements EParameter
   {
     switch (featureID)
     {
-      case EcorePackage.EPARAMETER__EANNOTATIONS:
-        return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
-      case EcorePackage.EPARAMETER__EOPERATION:
-        if (eInternalContainer() != null)
-          msgs = eBasicRemoveFromContainer(msgs);
-        return eBasicSetContainer(otherEnd, EcorePackage.EPARAMETER__EOPERATION, msgs);
+    case EcorePackage.EPARAMETER__EANNOTATIONS:
+      return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
+    case EcorePackage.EPARAMETER__EOPERATION:
+      if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+      return eBasicSetContainer(otherEnd, EcorePackage.EPARAMETER__EOPERATION, msgs);
     }
     return eDynamicInverseAdd(otherEnd, featureID, msgs);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -103,19 +99,19 @@ public class EParameterImpl extends ETypedElementImpl implements EParameter
   {
     switch (featureID)
     {
-      case EcorePackage.EPARAMETER__EANNOTATIONS:
-        return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
-      case EcorePackage.EPARAMETER__EGENERIC_TYPE:
-        return basicUnsetEGenericType(msgs);
-      case EcorePackage.EPARAMETER__EOPERATION:
-        return eBasicSetContainer(null, EcorePackage.EPARAMETER__EOPERATION, msgs);
+    case EcorePackage.EPARAMETER__EANNOTATIONS:
+      return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
+    case EcorePackage.EPARAMETER__EGENERIC_TYPE:
+      return basicUnsetEGenericType(msgs);
+    case EcorePackage.EPARAMETER__EOPERATION:
+      return eBasicSetContainer(null, EcorePackage.EPARAMETER__EOPERATION, msgs);
     }
     return eDynamicInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -123,15 +119,15 @@ public class EParameterImpl extends ETypedElementImpl implements EParameter
   {
     switch (eContainerFeatureID)
     {
-      case EcorePackage.EPARAMETER__EOPERATION:
-        return eInternalContainer().eInverseRemove(this, EcorePackage.EOPERATION__EPARAMETERS, EOperation.class, msgs);
+    case EcorePackage.EPARAMETER__EOPERATION:
+      return eInternalContainer().eInverseRemove(this, EcorePackage.EOPERATION__EPARAMETERS, EOperation.class, msgs);
     }
     return eDynamicBasicRemoveFromContainer(msgs);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -139,36 +135,36 @@ public class EParameterImpl extends ETypedElementImpl implements EParameter
   {
     switch (featureID)
     {
-      case EcorePackage.EPARAMETER__EANNOTATIONS:
-        return getEAnnotations();
-      case EcorePackage.EPARAMETER__NAME:
-        return getName();
-      case EcorePackage.EPARAMETER__ORDERED:
-        return isOrdered() ? Boolean.TRUE : Boolean.FALSE;
-      case EcorePackage.EPARAMETER__UNIQUE:
-        return isUnique() ? Boolean.TRUE : Boolean.FALSE;
-      case EcorePackage.EPARAMETER__LOWER_BOUND:
-        return new Integer(getLowerBound());
-      case EcorePackage.EPARAMETER__UPPER_BOUND:
-        return new Integer(getUpperBound());
-      case EcorePackage.EPARAMETER__MANY:
-        return isMany() ? Boolean.TRUE : Boolean.FALSE;
-      case EcorePackage.EPARAMETER__REQUIRED:
-        return isRequired() ? Boolean.TRUE : Boolean.FALSE;
-      case EcorePackage.EPARAMETER__ETYPE:
-        if (resolve) return getEType();
-        return basicGetEType();
-      case EcorePackage.EPARAMETER__EGENERIC_TYPE:
-        return getEGenericType();
-      case EcorePackage.EPARAMETER__EOPERATION:
-        return getEOperation();
+    case EcorePackage.EPARAMETER__EANNOTATIONS:
+      return getEAnnotations();
+    case EcorePackage.EPARAMETER__NAME:
+      return getName();
+    case EcorePackage.EPARAMETER__ORDERED:
+      return isOrdered() ? Boolean.TRUE : Boolean.FALSE;
+    case EcorePackage.EPARAMETER__UNIQUE:
+      return isUnique() ? Boolean.TRUE : Boolean.FALSE;
+    case EcorePackage.EPARAMETER__LOWER_BOUND:
+      return new Integer(getLowerBound());
+    case EcorePackage.EPARAMETER__UPPER_BOUND:
+      return new Integer(getUpperBound());
+    case EcorePackage.EPARAMETER__MANY:
+      return isMany() ? Boolean.TRUE : Boolean.FALSE;
+    case EcorePackage.EPARAMETER__REQUIRED:
+      return isRequired() ? Boolean.TRUE : Boolean.FALSE;
+    case EcorePackage.EPARAMETER__ETYPE:
+      if (resolve) return getEType();
+      return basicGetEType();
+    case EcorePackage.EPARAMETER__EGENERIC_TYPE:
+      return getEGenericType();
+    case EcorePackage.EPARAMETER__EOPERATION:
+      return getEOperation();
     }
     return eDynamicGet(featureID, resolve, coreType);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -176,30 +172,30 @@ public class EParameterImpl extends ETypedElementImpl implements EParameter
   {
     switch (featureID)
     {
-      case EcorePackage.EPARAMETER__EANNOTATIONS:
-        return eAnnotations != null && !eAnnotations.isEmpty();
-      case EcorePackage.EPARAMETER__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case EcorePackage.EPARAMETER__ORDERED:
-        return ((eFlags & ORDERED_EFLAG) != 0) != ORDERED_EDEFAULT;
-      case EcorePackage.EPARAMETER__UNIQUE:
-        return ((eFlags & UNIQUE_EFLAG) != 0) != UNIQUE_EDEFAULT;
-      case EcorePackage.EPARAMETER__LOWER_BOUND:
-        return lowerBound != LOWER_BOUND_EDEFAULT;
-      case EcorePackage.EPARAMETER__UPPER_BOUND:
-        return upperBound != UPPER_BOUND_EDEFAULT;
-      case EcorePackage.EPARAMETER__MANY:
-        return isMany() != MANY_EDEFAULT;
-      case EcorePackage.EPARAMETER__REQUIRED:
-        return isRequired() != REQUIRED_EDEFAULT;
-      case EcorePackage.EPARAMETER__ETYPE:
-        return isSetEType();
-      case EcorePackage.EPARAMETER__EGENERIC_TYPE:
-        return isSetEGenericType();
-      case EcorePackage.EPARAMETER__EOPERATION:
-        return getEOperation() != null;
+    case EcorePackage.EPARAMETER__EANNOTATIONS:
+      return eAnnotations != null && !eAnnotations.isEmpty();
+    case EcorePackage.EPARAMETER__NAME:
+      return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+    case EcorePackage.EPARAMETER__ORDERED:
+      return ((eFlags & ORDERED_EFLAG) != 0) != ORDERED_EDEFAULT;
+    case EcorePackage.EPARAMETER__UNIQUE:
+      return ((eFlags & UNIQUE_EFLAG) != 0) != UNIQUE_EDEFAULT;
+    case EcorePackage.EPARAMETER__LOWER_BOUND:
+      return lowerBound != LOWER_BOUND_EDEFAULT;
+    case EcorePackage.EPARAMETER__UPPER_BOUND:
+      return upperBound != UPPER_BOUND_EDEFAULT;
+    case EcorePackage.EPARAMETER__MANY:
+      return isMany() != MANY_EDEFAULT;
+    case EcorePackage.EPARAMETER__REQUIRED:
+      return isRequired() != REQUIRED_EDEFAULT;
+    case EcorePackage.EPARAMETER__ETYPE:
+      return isSetEType();
+    case EcorePackage.EPARAMETER__EGENERIC_TYPE:
+      return isSetEGenericType();
+    case EcorePackage.EPARAMETER__EOPERATION:
+      return getEOperation() != null;
     }
     return eDynamicIsSet(featureID);
   }
 
-} //EParameterImpl
+} // EParameterImpl

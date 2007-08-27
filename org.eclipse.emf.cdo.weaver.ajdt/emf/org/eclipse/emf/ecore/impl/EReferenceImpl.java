@@ -16,7 +16,6 @@
  */
 package org.eclipse.emf.ecore.impl;
 
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -31,31 +30,29 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>EReference</b></em>'.
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EReference</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.ecore.impl.EReferenceImpl#isContainment <em>Containment</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EReferenceImpl#isContainer <em>Container</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EReferenceImpl#isResolveProxies <em>Resolve Proxies</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EReferenceImpl#getEOpposite <em>EOpposite</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EReferenceImpl#getEReferenceType <em>EReference Type</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EReferenceImpl#getEKeys <em>EKeys</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.impl.EReferenceImpl#isContainment <em>Containment</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.impl.EReferenceImpl#isContainer <em>Container</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.impl.EReferenceImpl#isResolveProxies <em>Resolve Proxies</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.impl.EReferenceImpl#getEOpposite <em>EOpposite</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.impl.EReferenceImpl#getEReferenceType <em>EReference Type</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.impl.EReferenceImpl#getEKeys <em>EKeys</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
 {
   /**
-   * The default value of the '{@link #isContainment() <em>Containment</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The default value of the '{@link #isContainment() <em>Containment</em>}'
+   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #isContainment()
    * @generated
    * @ordered
@@ -63,9 +60,9 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   protected static final boolean CONTAINMENT_EDEFAULT = false;
 
   /**
-   * The flag representing the value of the '{@link #isContainment() <em>Containment</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The flag representing the value of the '{@link #isContainment() <em>Containment</em>}'
+   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #isContainment()
    * @generated
    * @ordered
@@ -73,9 +70,9 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   protected static final int CONTAINMENT_EFLAG = 1 << 15;
 
   /**
-   * The default value of the '{@link #isContainer() <em>Container</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The default value of the '{@link #isContainer() <em>Container</em>}'
+   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #isContainer()
    * @generated
    * @ordered
@@ -83,9 +80,9 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   protected static final boolean CONTAINER_EDEFAULT = false;
 
   /**
-   * The default value of the '{@link #isResolveProxies() <em>Resolve Proxies</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The default value of the '{@link #isResolveProxies() <em>Resolve Proxies</em>}'
+   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #isResolveProxies()
    * @generated
    * @ordered
@@ -93,9 +90,9 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   protected static final boolean RESOLVE_PROXIES_EDEFAULT = true;
 
   /**
-   * The flag representing the value of the '{@link #isResolveProxies() <em>Resolve Proxies</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The flag representing the value of the '{@link #isResolveProxies() <em>Resolve Proxies</em>}'
+   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #isResolveProxies()
    * @generated
    * @ordered
@@ -103,9 +100,9 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   protected static final int RESOLVE_PROXIES_EFLAG = 1 << 16;
 
   /**
-   * The cached value of the '{@link #getEOpposite() <em>EOpposite</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getEOpposite() <em>EOpposite</em>}'
+   * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getEOpposite()
    * @generated
    * @ordered
@@ -113,9 +110,9 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   protected EReference eOpposite;
 
   /**
-   * The cached value of the '{@link #getEKeys() <em>EKeys</em>}' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getEKeys() <em>EKeys</em>}' reference
+   * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getEKeys()
    * @generated
    * @ordered
@@ -123,8 +120,8 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   protected EList<EAttribute> eKeys;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected EReferenceImpl()
@@ -134,8 +131,8 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -149,10 +146,9 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
     return getEOpposite() != null;
   }
 
-
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -162,21 +158,25 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setContainment(boolean newContainment)
   {
     boolean oldContainment = (eFlags & CONTAINMENT_EFLAG) != 0;
-    if (newContainment) eFlags |= CONTAINMENT_EFLAG; else eFlags &= ~CONTAINMENT_EFLAG;
+    if (newContainment)
+      eFlags |= CONTAINMENT_EFLAG;
+    else
+      eFlags &= ~CONTAINMENT_EFLAG;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EREFERENCE__CONTAINMENT, oldContainment, newContainment));
+      eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EREFERENCE__CONTAINMENT, oldContainment,
+          newContainment));
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated modifiable
    */
   @Override
@@ -187,8 +187,8 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -198,21 +198,25 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setResolveProxies(boolean newResolveProxies)
   {
     boolean oldResolveProxies = (eFlags & RESOLVE_PROXIES_EFLAG) != 0;
-    if (newResolveProxies) eFlags |= RESOLVE_PROXIES_EFLAG; else eFlags &= ~RESOLVE_PROXIES_EFLAG;
+    if (newResolveProxies)
+      eFlags |= RESOLVE_PROXIES_EFLAG;
+    else
+      eFlags &= ~RESOLVE_PROXIES_EFLAG;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EREFERENCE__RESOLVE_PROXIES, oldResolveProxies, newResolveProxies));
+      eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EREFERENCE__RESOLVE_PROXIES,
+          oldResolveProxies, newResolveProxies));
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -225,15 +229,16 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
       if (eOpposite != oldEOpposite)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.EREFERENCE__EOPPOSITE, oldEOpposite, eOpposite));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.EREFERENCE__EOPPOSITE, oldEOpposite,
+              eOpposite));
       }
     }
     return eOpposite;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference basicGetEOpposite()
@@ -242,8 +247,8 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setEOpposite(EReference newEOpposite)
@@ -257,8 +262,8 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   protected EClass eReferenceType;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public EClass getEReferenceType()
@@ -268,15 +273,15 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
       EClassifier eType = getEType();
       if (eType instanceof EClass)
       {
-        eReferenceType =(EClass)eType;
+        eReferenceType = (EClass)eType;
       }
     }
     return eReferenceType;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public EClass basicGetEReferenceType()
@@ -300,8 +305,8 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EList<EAttribute> getEKeys()
@@ -314,8 +319,8 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -323,64 +328,64 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   {
     switch (featureID)
     {
-      case EcorePackage.EREFERENCE__EANNOTATIONS:
-        return getEAnnotations();
-      case EcorePackage.EREFERENCE__NAME:
-        return getName();
-      case EcorePackage.EREFERENCE__ORDERED:
-        return isOrdered() ? Boolean.TRUE : Boolean.FALSE;
-      case EcorePackage.EREFERENCE__UNIQUE:
-        return isUnique() ? Boolean.TRUE : Boolean.FALSE;
-      case EcorePackage.EREFERENCE__LOWER_BOUND:
-        return new Integer(getLowerBound());
-      case EcorePackage.EREFERENCE__UPPER_BOUND:
-        return new Integer(getUpperBound());
-      case EcorePackage.EREFERENCE__MANY:
-        return isMany() ? Boolean.TRUE : Boolean.FALSE;
-      case EcorePackage.EREFERENCE__REQUIRED:
-        return isRequired() ? Boolean.TRUE : Boolean.FALSE;
-      case EcorePackage.EREFERENCE__ETYPE:
-        if (resolve) return getEType();
-        return basicGetEType();
-      case EcorePackage.EREFERENCE__EGENERIC_TYPE:
-        return getEGenericType();
-      case EcorePackage.EREFERENCE__CHANGEABLE:
-        return isChangeable() ? Boolean.TRUE : Boolean.FALSE;
-      case EcorePackage.EREFERENCE__VOLATILE:
-        return isVolatile() ? Boolean.TRUE : Boolean.FALSE;
-      case EcorePackage.EREFERENCE__TRANSIENT:
-        return isTransient() ? Boolean.TRUE : Boolean.FALSE;
-      case EcorePackage.EREFERENCE__DEFAULT_VALUE_LITERAL:
-        return getDefaultValueLiteral();
-      case EcorePackage.EREFERENCE__DEFAULT_VALUE:
-        return getDefaultValue();
-      case EcorePackage.EREFERENCE__UNSETTABLE:
-        return isUnsettable() ? Boolean.TRUE : Boolean.FALSE;
-      case EcorePackage.EREFERENCE__DERIVED:
-        return isDerived() ? Boolean.TRUE : Boolean.FALSE;
-      case EcorePackage.EREFERENCE__ECONTAINING_CLASS:
-        return getEContainingClass();
-      case EcorePackage.EREFERENCE__CONTAINMENT:
-        return isContainment() ? Boolean.TRUE : Boolean.FALSE;
-      case EcorePackage.EREFERENCE__CONTAINER:
-        return isContainer() ? Boolean.TRUE : Boolean.FALSE;
-      case EcorePackage.EREFERENCE__RESOLVE_PROXIES:
-        return isResolveProxies() ? Boolean.TRUE : Boolean.FALSE;
-      case EcorePackage.EREFERENCE__EOPPOSITE:
-        if (resolve) return getEOpposite();
-        return basicGetEOpposite();
-      case EcorePackage.EREFERENCE__EREFERENCE_TYPE:
-        if (resolve) return getEReferenceType();
-        return basicGetEReferenceType();
-      case EcorePackage.EREFERENCE__EKEYS:
-        return getEKeys();
+    case EcorePackage.EREFERENCE__EANNOTATIONS:
+      return getEAnnotations();
+    case EcorePackage.EREFERENCE__NAME:
+      return getName();
+    case EcorePackage.EREFERENCE__ORDERED:
+      return isOrdered() ? Boolean.TRUE : Boolean.FALSE;
+    case EcorePackage.EREFERENCE__UNIQUE:
+      return isUnique() ? Boolean.TRUE : Boolean.FALSE;
+    case EcorePackage.EREFERENCE__LOWER_BOUND:
+      return new Integer(getLowerBound());
+    case EcorePackage.EREFERENCE__UPPER_BOUND:
+      return new Integer(getUpperBound());
+    case EcorePackage.EREFERENCE__MANY:
+      return isMany() ? Boolean.TRUE : Boolean.FALSE;
+    case EcorePackage.EREFERENCE__REQUIRED:
+      return isRequired() ? Boolean.TRUE : Boolean.FALSE;
+    case EcorePackage.EREFERENCE__ETYPE:
+      if (resolve) return getEType();
+      return basicGetEType();
+    case EcorePackage.EREFERENCE__EGENERIC_TYPE:
+      return getEGenericType();
+    case EcorePackage.EREFERENCE__CHANGEABLE:
+      return isChangeable() ? Boolean.TRUE : Boolean.FALSE;
+    case EcorePackage.EREFERENCE__VOLATILE:
+      return isVolatile() ? Boolean.TRUE : Boolean.FALSE;
+    case EcorePackage.EREFERENCE__TRANSIENT:
+      return isTransient() ? Boolean.TRUE : Boolean.FALSE;
+    case EcorePackage.EREFERENCE__DEFAULT_VALUE_LITERAL:
+      return getDefaultValueLiteral();
+    case EcorePackage.EREFERENCE__DEFAULT_VALUE:
+      return getDefaultValue();
+    case EcorePackage.EREFERENCE__UNSETTABLE:
+      return isUnsettable() ? Boolean.TRUE : Boolean.FALSE;
+    case EcorePackage.EREFERENCE__DERIVED:
+      return isDerived() ? Boolean.TRUE : Boolean.FALSE;
+    case EcorePackage.EREFERENCE__ECONTAINING_CLASS:
+      return getEContainingClass();
+    case EcorePackage.EREFERENCE__CONTAINMENT:
+      return isContainment() ? Boolean.TRUE : Boolean.FALSE;
+    case EcorePackage.EREFERENCE__CONTAINER:
+      return isContainer() ? Boolean.TRUE : Boolean.FALSE;
+    case EcorePackage.EREFERENCE__RESOLVE_PROXIES:
+      return isResolveProxies() ? Boolean.TRUE : Boolean.FALSE;
+    case EcorePackage.EREFERENCE__EOPPOSITE:
+      if (resolve) return getEOpposite();
+      return basicGetEOpposite();
+    case EcorePackage.EREFERENCE__EREFERENCE_TYPE:
+      if (resolve) return getEReferenceType();
+      return basicGetEReferenceType();
+    case EcorePackage.EREFERENCE__EKEYS:
+      return getEKeys();
     }
     return eDynamicGet(featureID, resolve, coreType);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -389,69 +394,69 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   {
     switch (featureID)
     {
-      case EcorePackage.EREFERENCE__EANNOTATIONS:
-        getEAnnotations().clear();
-        getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
-        return;
-      case EcorePackage.EREFERENCE__NAME:
-        setName((String)newValue);
-        return;
-      case EcorePackage.EREFERENCE__ORDERED:
-        setOrdered(((Boolean)newValue).booleanValue());
-        return;
-      case EcorePackage.EREFERENCE__UNIQUE:
-        setUnique(((Boolean)newValue).booleanValue());
-        return;
-      case EcorePackage.EREFERENCE__LOWER_BOUND:
-        setLowerBound(((Integer)newValue).intValue());
-        return;
-      case EcorePackage.EREFERENCE__UPPER_BOUND:
-        setUpperBound(((Integer)newValue).intValue());
-        return;
-      case EcorePackage.EREFERENCE__ETYPE:
-        setEType((EClassifier)newValue);
-        return;
-      case EcorePackage.EREFERENCE__EGENERIC_TYPE:
-        setEGenericType((EGenericType)newValue);
-        return;
-      case EcorePackage.EREFERENCE__CHANGEABLE:
-        setChangeable(((Boolean)newValue).booleanValue());
-        return;
-      case EcorePackage.EREFERENCE__VOLATILE:
-        setVolatile(((Boolean)newValue).booleanValue());
-        return;
-      case EcorePackage.EREFERENCE__TRANSIENT:
-        setTransient(((Boolean)newValue).booleanValue());
-        return;
-      case EcorePackage.EREFERENCE__DEFAULT_VALUE_LITERAL:
-        setDefaultValueLiteral((String)newValue);
-        return;
-      case EcorePackage.EREFERENCE__UNSETTABLE:
-        setUnsettable(((Boolean)newValue).booleanValue());
-        return;
-      case EcorePackage.EREFERENCE__DERIVED:
-        setDerived(((Boolean)newValue).booleanValue());
-        return;
-      case EcorePackage.EREFERENCE__CONTAINMENT:
-        setContainment(((Boolean)newValue).booleanValue());
-        return;
-      case EcorePackage.EREFERENCE__RESOLVE_PROXIES:
-        setResolveProxies(((Boolean)newValue).booleanValue());
-        return;
-      case EcorePackage.EREFERENCE__EOPPOSITE:
-        setEOpposite((EReference)newValue);
-        return;
-      case EcorePackage.EREFERENCE__EKEYS:
-        getEKeys().clear();
-        getEKeys().addAll((Collection<? extends EAttribute>)newValue);
-        return;
+    case EcorePackage.EREFERENCE__EANNOTATIONS:
+      getEAnnotations().clear();
+      getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
+      return;
+    case EcorePackage.EREFERENCE__NAME:
+      setName((String)newValue);
+      return;
+    case EcorePackage.EREFERENCE__ORDERED:
+      setOrdered(((Boolean)newValue).booleanValue());
+      return;
+    case EcorePackage.EREFERENCE__UNIQUE:
+      setUnique(((Boolean)newValue).booleanValue());
+      return;
+    case EcorePackage.EREFERENCE__LOWER_BOUND:
+      setLowerBound(((Integer)newValue).intValue());
+      return;
+    case EcorePackage.EREFERENCE__UPPER_BOUND:
+      setUpperBound(((Integer)newValue).intValue());
+      return;
+    case EcorePackage.EREFERENCE__ETYPE:
+      setEType((EClassifier)newValue);
+      return;
+    case EcorePackage.EREFERENCE__EGENERIC_TYPE:
+      setEGenericType((EGenericType)newValue);
+      return;
+    case EcorePackage.EREFERENCE__CHANGEABLE:
+      setChangeable(((Boolean)newValue).booleanValue());
+      return;
+    case EcorePackage.EREFERENCE__VOLATILE:
+      setVolatile(((Boolean)newValue).booleanValue());
+      return;
+    case EcorePackage.EREFERENCE__TRANSIENT:
+      setTransient(((Boolean)newValue).booleanValue());
+      return;
+    case EcorePackage.EREFERENCE__DEFAULT_VALUE_LITERAL:
+      setDefaultValueLiteral((String)newValue);
+      return;
+    case EcorePackage.EREFERENCE__UNSETTABLE:
+      setUnsettable(((Boolean)newValue).booleanValue());
+      return;
+    case EcorePackage.EREFERENCE__DERIVED:
+      setDerived(((Boolean)newValue).booleanValue());
+      return;
+    case EcorePackage.EREFERENCE__CONTAINMENT:
+      setContainment(((Boolean)newValue).booleanValue());
+      return;
+    case EcorePackage.EREFERENCE__RESOLVE_PROXIES:
+      setResolveProxies(((Boolean)newValue).booleanValue());
+      return;
+    case EcorePackage.EREFERENCE__EOPPOSITE:
+      setEOpposite((EReference)newValue);
+      return;
+    case EcorePackage.EREFERENCE__EKEYS:
+      getEKeys().clear();
+      getEKeys().addAll((Collection<? extends EAttribute>)newValue);
+      return;
     }
     eDynamicSet(featureID, newValue);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -459,67 +464,67 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   {
     switch (featureID)
     {
-      case EcorePackage.EREFERENCE__EANNOTATIONS:
-        getEAnnotations().clear();
-        return;
-      case EcorePackage.EREFERENCE__NAME:
-        setName(NAME_EDEFAULT);
-        return;
-      case EcorePackage.EREFERENCE__ORDERED:
-        setOrdered(ORDERED_EDEFAULT);
-        return;
-      case EcorePackage.EREFERENCE__UNIQUE:
-        setUnique(UNIQUE_EDEFAULT);
-        return;
-      case EcorePackage.EREFERENCE__LOWER_BOUND:
-        setLowerBound(LOWER_BOUND_EDEFAULT);
-        return;
-      case EcorePackage.EREFERENCE__UPPER_BOUND:
-        setUpperBound(UPPER_BOUND_EDEFAULT);
-        return;
-      case EcorePackage.EREFERENCE__ETYPE:
-        unsetEType();
-        return;
-      case EcorePackage.EREFERENCE__EGENERIC_TYPE:
-        unsetEGenericType();
-        return;
-      case EcorePackage.EREFERENCE__CHANGEABLE:
-        setChangeable(CHANGEABLE_EDEFAULT);
-        return;
-      case EcorePackage.EREFERENCE__VOLATILE:
-        setVolatile(VOLATILE_EDEFAULT);
-        return;
-      case EcorePackage.EREFERENCE__TRANSIENT:
-        setTransient(TRANSIENT_EDEFAULT);
-        return;
-      case EcorePackage.EREFERENCE__DEFAULT_VALUE_LITERAL:
-        setDefaultValueLiteral(DEFAULT_VALUE_LITERAL_EDEFAULT);
-        return;
-      case EcorePackage.EREFERENCE__UNSETTABLE:
-        setUnsettable(UNSETTABLE_EDEFAULT);
-        return;
-      case EcorePackage.EREFERENCE__DERIVED:
-        setDerived(DERIVED_EDEFAULT);
-        return;
-      case EcorePackage.EREFERENCE__CONTAINMENT:
-        setContainment(CONTAINMENT_EDEFAULT);
-        return;
-      case EcorePackage.EREFERENCE__RESOLVE_PROXIES:
-        setResolveProxies(RESOLVE_PROXIES_EDEFAULT);
-        return;
-      case EcorePackage.EREFERENCE__EOPPOSITE:
-        setEOpposite((EReference)null);
-        return;
-      case EcorePackage.EREFERENCE__EKEYS:
-        getEKeys().clear();
-        return;
+    case EcorePackage.EREFERENCE__EANNOTATIONS:
+      getEAnnotations().clear();
+      return;
+    case EcorePackage.EREFERENCE__NAME:
+      setName(NAME_EDEFAULT);
+      return;
+    case EcorePackage.EREFERENCE__ORDERED:
+      setOrdered(ORDERED_EDEFAULT);
+      return;
+    case EcorePackage.EREFERENCE__UNIQUE:
+      setUnique(UNIQUE_EDEFAULT);
+      return;
+    case EcorePackage.EREFERENCE__LOWER_BOUND:
+      setLowerBound(LOWER_BOUND_EDEFAULT);
+      return;
+    case EcorePackage.EREFERENCE__UPPER_BOUND:
+      setUpperBound(UPPER_BOUND_EDEFAULT);
+      return;
+    case EcorePackage.EREFERENCE__ETYPE:
+      unsetEType();
+      return;
+    case EcorePackage.EREFERENCE__EGENERIC_TYPE:
+      unsetEGenericType();
+      return;
+    case EcorePackage.EREFERENCE__CHANGEABLE:
+      setChangeable(CHANGEABLE_EDEFAULT);
+      return;
+    case EcorePackage.EREFERENCE__VOLATILE:
+      setVolatile(VOLATILE_EDEFAULT);
+      return;
+    case EcorePackage.EREFERENCE__TRANSIENT:
+      setTransient(TRANSIENT_EDEFAULT);
+      return;
+    case EcorePackage.EREFERENCE__DEFAULT_VALUE_LITERAL:
+      setDefaultValueLiteral(DEFAULT_VALUE_LITERAL_EDEFAULT);
+      return;
+    case EcorePackage.EREFERENCE__UNSETTABLE:
+      setUnsettable(UNSETTABLE_EDEFAULT);
+      return;
+    case EcorePackage.EREFERENCE__DERIVED:
+      setDerived(DERIVED_EDEFAULT);
+      return;
+    case EcorePackage.EREFERENCE__CONTAINMENT:
+      setContainment(CONTAINMENT_EDEFAULT);
+      return;
+    case EcorePackage.EREFERENCE__RESOLVE_PROXIES:
+      setResolveProxies(RESOLVE_PROXIES_EDEFAULT);
+      return;
+    case EcorePackage.EREFERENCE__EOPPOSITE:
+      setEOpposite((EReference)null);
+      return;
+    case EcorePackage.EREFERENCE__EKEYS:
+      getEKeys().clear();
+      return;
     }
     eDynamicUnset(featureID);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -527,61 +532,63 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   {
     switch (featureID)
     {
-      case EcorePackage.EREFERENCE__EANNOTATIONS:
-        return eAnnotations != null && !eAnnotations.isEmpty();
-      case EcorePackage.EREFERENCE__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case EcorePackage.EREFERENCE__ORDERED:
-        return ((eFlags & ORDERED_EFLAG) != 0) != ORDERED_EDEFAULT;
-      case EcorePackage.EREFERENCE__UNIQUE:
-        return ((eFlags & UNIQUE_EFLAG) != 0) != UNIQUE_EDEFAULT;
-      case EcorePackage.EREFERENCE__LOWER_BOUND:
-        return lowerBound != LOWER_BOUND_EDEFAULT;
-      case EcorePackage.EREFERENCE__UPPER_BOUND:
-        return upperBound != UPPER_BOUND_EDEFAULT;
-      case EcorePackage.EREFERENCE__MANY:
-        return isMany() != MANY_EDEFAULT;
-      case EcorePackage.EREFERENCE__REQUIRED:
-        return isRequired() != REQUIRED_EDEFAULT;
-      case EcorePackage.EREFERENCE__ETYPE:
-        return isSetEType();
-      case EcorePackage.EREFERENCE__EGENERIC_TYPE:
-        return isSetEGenericType();
-      case EcorePackage.EREFERENCE__CHANGEABLE:
-        return ((eFlags & CHANGEABLE_EFLAG) != 0) != CHANGEABLE_EDEFAULT;
-      case EcorePackage.EREFERENCE__VOLATILE:
-        return ((eFlags & VOLATILE_EFLAG) != 0) != VOLATILE_EDEFAULT;
-      case EcorePackage.EREFERENCE__TRANSIENT:
-        return ((eFlags & TRANSIENT_EFLAG) != 0) != TRANSIENT_EDEFAULT;
-      case EcorePackage.EREFERENCE__DEFAULT_VALUE_LITERAL:
-        return DEFAULT_VALUE_LITERAL_EDEFAULT == null ? defaultValueLiteral != null : !DEFAULT_VALUE_LITERAL_EDEFAULT.equals(defaultValueLiteral);
-      case EcorePackage.EREFERENCE__DEFAULT_VALUE:
-        return DEFAULT_VALUE_EDEFAULT == null ? getDefaultValue() != null : !DEFAULT_VALUE_EDEFAULT.equals(getDefaultValue());
-      case EcorePackage.EREFERENCE__UNSETTABLE:
-        return ((eFlags & UNSETTABLE_EFLAG) != 0) != UNSETTABLE_EDEFAULT;
-      case EcorePackage.EREFERENCE__DERIVED:
-        return ((eFlags & DERIVED_EFLAG) != 0) != DERIVED_EDEFAULT;
-      case EcorePackage.EREFERENCE__ECONTAINING_CLASS:
-        return getEContainingClass() != null;
-      case EcorePackage.EREFERENCE__CONTAINMENT:
-        return ((eFlags & CONTAINMENT_EFLAG) != 0) != CONTAINMENT_EDEFAULT;
-      case EcorePackage.EREFERENCE__CONTAINER:
-        return isContainer() != CONTAINER_EDEFAULT;
-      case EcorePackage.EREFERENCE__RESOLVE_PROXIES:
-        return ((eFlags & RESOLVE_PROXIES_EFLAG) != 0) != RESOLVE_PROXIES_EDEFAULT;
-      case EcorePackage.EREFERENCE__EOPPOSITE:
-        return eOpposite != null;
-      case EcorePackage.EREFERENCE__EREFERENCE_TYPE:
-        return basicGetEReferenceType() != null;
-      case EcorePackage.EREFERENCE__EKEYS:
-        return eKeys != null && !eKeys.isEmpty();
+    case EcorePackage.EREFERENCE__EANNOTATIONS:
+      return eAnnotations != null && !eAnnotations.isEmpty();
+    case EcorePackage.EREFERENCE__NAME:
+      return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+    case EcorePackage.EREFERENCE__ORDERED:
+      return ((eFlags & ORDERED_EFLAG) != 0) != ORDERED_EDEFAULT;
+    case EcorePackage.EREFERENCE__UNIQUE:
+      return ((eFlags & UNIQUE_EFLAG) != 0) != UNIQUE_EDEFAULT;
+    case EcorePackage.EREFERENCE__LOWER_BOUND:
+      return lowerBound != LOWER_BOUND_EDEFAULT;
+    case EcorePackage.EREFERENCE__UPPER_BOUND:
+      return upperBound != UPPER_BOUND_EDEFAULT;
+    case EcorePackage.EREFERENCE__MANY:
+      return isMany() != MANY_EDEFAULT;
+    case EcorePackage.EREFERENCE__REQUIRED:
+      return isRequired() != REQUIRED_EDEFAULT;
+    case EcorePackage.EREFERENCE__ETYPE:
+      return isSetEType();
+    case EcorePackage.EREFERENCE__EGENERIC_TYPE:
+      return isSetEGenericType();
+    case EcorePackage.EREFERENCE__CHANGEABLE:
+      return ((eFlags & CHANGEABLE_EFLAG) != 0) != CHANGEABLE_EDEFAULT;
+    case EcorePackage.EREFERENCE__VOLATILE:
+      return ((eFlags & VOLATILE_EFLAG) != 0) != VOLATILE_EDEFAULT;
+    case EcorePackage.EREFERENCE__TRANSIENT:
+      return ((eFlags & TRANSIENT_EFLAG) != 0) != TRANSIENT_EDEFAULT;
+    case EcorePackage.EREFERENCE__DEFAULT_VALUE_LITERAL:
+      return DEFAULT_VALUE_LITERAL_EDEFAULT == null ? defaultValueLiteral != null : !DEFAULT_VALUE_LITERAL_EDEFAULT
+          .equals(defaultValueLiteral);
+    case EcorePackage.EREFERENCE__DEFAULT_VALUE:
+      return DEFAULT_VALUE_EDEFAULT == null ? getDefaultValue() != null : !DEFAULT_VALUE_EDEFAULT
+          .equals(getDefaultValue());
+    case EcorePackage.EREFERENCE__UNSETTABLE:
+      return ((eFlags & UNSETTABLE_EFLAG) != 0) != UNSETTABLE_EDEFAULT;
+    case EcorePackage.EREFERENCE__DERIVED:
+      return ((eFlags & DERIVED_EFLAG) != 0) != DERIVED_EDEFAULT;
+    case EcorePackage.EREFERENCE__ECONTAINING_CLASS:
+      return getEContainingClass() != null;
+    case EcorePackage.EREFERENCE__CONTAINMENT:
+      return ((eFlags & CONTAINMENT_EFLAG) != 0) != CONTAINMENT_EDEFAULT;
+    case EcorePackage.EREFERENCE__CONTAINER:
+      return isContainer() != CONTAINER_EDEFAULT;
+    case EcorePackage.EREFERENCE__RESOLVE_PROXIES:
+      return ((eFlags & RESOLVE_PROXIES_EFLAG) != 0) != RESOLVE_PROXIES_EDEFAULT;
+    case EcorePackage.EREFERENCE__EOPPOSITE:
+      return eOpposite != null;
+    case EcorePackage.EREFERENCE__EREFERENCE_TYPE:
+      return basicGetEReferenceType() != null;
+    case EcorePackage.EREFERENCE__EKEYS:
+      return eKeys != null && !eKeys.isEmpty();
     }
     return eDynamicIsSet(featureID);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

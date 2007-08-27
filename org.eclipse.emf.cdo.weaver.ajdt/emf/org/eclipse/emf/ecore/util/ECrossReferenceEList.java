@@ -16,7 +16,6 @@
  */
 package org.eclipse.emf.ecore.util;
 
-
 import java.util.List;
 import java.util.ListIterator;
 
@@ -25,22 +24,21 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.EClassImpl;
 
-
 /**
  * A virtual list of all the cross references of an EObject.
  */
 public class ECrossReferenceEList<E> extends EContentsEList<E>
 {
-  public static final ECrossReferenceEList<?> EMPTY_CROSS_REFERENCE_ELIST = 
-    new ECrossReferenceEList<Object>(null, (EStructuralFeature [])null)
+  public static final ECrossReferenceEList<?> EMPTY_CROSS_REFERENCE_ELIST = new ECrossReferenceEList<Object>(null,
+      (EStructuralFeature[])null)
+  {
+    @Override
+    public List<Object> basicList()
     {
-      @Override
-      public List<Object> basicList()
-      {
-        return this;
-      }
-    };
-  
+      return this;
+    }
+  };
+
   @SuppressWarnings("unchecked")
   public static <T> ECrossReferenceEList<T> emptyCrossReferenceEList()
   {
@@ -49,37 +47,33 @@ public class ECrossReferenceEList<E> extends EContentsEList<E>
 
   public static <T> ECrossReferenceEList<T> createECrossReferenceEList(EObject eObject)
   {
-    EStructuralFeature [] eStructuralFeatures = 
-      ((EClassImpl.FeatureSubsetSupplier)eObject.eClass().getEAllStructuralFeatures()).crossReferences();
-    
-    return 
-      eStructuralFeatures == null ?
-        ECrossReferenceEList.<T>emptyCrossReferenceEList() :
-        new ECrossReferenceEList<T>(eObject, eStructuralFeatures);
+    EStructuralFeature[] eStructuralFeatures = ((EClassImpl.FeatureSubsetSupplier)eObject.eClass()
+        .getEAllStructuralFeatures()).crossReferences();
+
+    return eStructuralFeatures == null ? ECrossReferenceEList.<T> emptyCrossReferenceEList()
+        : new ECrossReferenceEList<T>(eObject, eStructuralFeatures);
   }
 
   public ECrossReferenceEList(EObject eObject)
   {
-    super
-      (eObject, 
-       ((EClassImpl.FeatureSubsetSupplier)eObject.eClass().getEAllStructuralFeatures()).crossReferences());
+    super(eObject, ((EClassImpl.FeatureSubsetSupplier)eObject.eClass().getEAllStructuralFeatures()).crossReferences());
   }
 
-  protected ECrossReferenceEList(EObject eObject, EStructuralFeature [] eStructuralFeatures)
+  protected ECrossReferenceEList(EObject eObject, EStructuralFeature[] eStructuralFeatures)
   {
     super(eObject, eStructuralFeatures);
   }
 
   public static class FeatureIteratorImpl<E> extends EContentsEList.FeatureIteratorImpl<E>
   {
-    protected static final EStructuralFeature[] NO_FEATURES = new EStructuralFeature [0];
-    
+    protected static final EStructuralFeature[] NO_FEATURES = new EStructuralFeature[0];
+
     public FeatureIteratorImpl(EObject eObject)
     {
       this(eObject, ((EClassImpl.FeatureSubsetSupplier)eObject.eClass().getEAllStructuralFeatures()).crossReferences());
     }
 
-    public FeatureIteratorImpl(EObject eObject, EStructuralFeature [] eStructuralFeatures)
+    public FeatureIteratorImpl(EObject eObject, EStructuralFeature[] eStructuralFeatures)
     {
       super(eObject, eStructuralFeatures == null ? NO_FEATURES : eStructuralFeatures);
     }
@@ -106,7 +100,7 @@ public class ECrossReferenceEList<E> extends EContentsEList<E>
       super(eObject);
     }
 
-    public ResolvingFeatureIteratorImpl(EObject eObject, EStructuralFeature [] eStructuralFeatures)
+    public ResolvingFeatureIteratorImpl(EObject eObject, EStructuralFeature[] eStructuralFeatures)
     {
       super(eObject, eStructuralFeatures);
     }
@@ -151,7 +145,7 @@ public class ECrossReferenceEList<E> extends EContentsEList<E>
   {
     return new ResolvingFeatureIteratorImpl<E>(eObject, eStructuralFeatures);
   }
-  
+
   @Override
   protected ListIterator<E> newNonResolvingListIterator()
   {
@@ -161,14 +155,13 @@ public class ECrossReferenceEList<E> extends EContentsEList<E>
   @Override
   public List<E> basicList()
   {
-    return
-      new ECrossReferenceEList<E>(eObject, eStructuralFeatures)
+    return new ECrossReferenceEList<E>(eObject, eStructuralFeatures)
+    {
+      @Override
+      protected boolean resolve()
       {
-        @Override
-        protected boolean resolve()
-        {
-          return false;
-        }
-      };
+        return false;
+      }
+    };
   }
 }

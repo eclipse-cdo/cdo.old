@@ -22,8 +22,8 @@ import org.eclipse.emf.ecore.xml.type.internal.DataValue.XMLChar;
 
 /**
  * An internal extension of Java's QName that allows the prefix to be updated.
- * If not specified, the prefix is set to empty string ("").
- * If not specified, the namespace uri is set to empty string ("");
+ * If not specified, the prefix is set to empty string (""). If not specified,
+ * the namespace uri is set to empty string ("");
  * <p>
  * NOTE: this class is for internal use only.
  */
@@ -35,24 +35,27 @@ public final class QName extends javax.xml.namespace.QName
 
   /**
    * Constructs a QName.
-   * @param qname a <a href="http://www.w3.org/TR/REC-xml-names/#dt-qname">qualified name</a>
-   * Throws Exception if value is not legal qualified name 
+   * 
+   * @param qname
+   *          a <a href="http://www.w3.org/TR/REC-xml-names/#dt-qname">qualified
+   *          name</a> Throws Exception if value is not legal qualified name
    */
   public QName(String qname)
   {
-    super(null, qname.indexOf(':') != -1 ? qname.substring(qname.indexOf(':') + 1) : qname, qname.indexOf(':') != -1 ? qname.substring(0, qname.indexOf(':')) : "");
+    super(null, qname.indexOf(':') != -1 ? qname.substring(qname.indexOf(':') + 1) : qname,
+        qname.indexOf(':') != -1 ? qname.substring(0, qname.indexOf(':')) : "");
     setPrefix(super.getPrefix());
 
     // both prefix (if any) a localpart must be valid NCName
     if (prefix.length() > 0 && !XMLChar.isValidNCName(prefix))
-        throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1: invalid QName: "+qname);
+      throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1: invalid QName: " + qname);
 
-    if(!XMLChar.isValidNCName(getLocalPart()))
-      throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1: invalid QName: "+qname);
+    if (!XMLChar.isValidNCName(getLocalPart()))
+      throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1: invalid QName: " + qname);
   }
 
-  /** 
-   * Constructs a QName with the specified values. 
+  /**
+   * Constructs a QName with the specified values.
    */
   public QName(String namespaceURI, String localPart, String prefix)
   {
@@ -60,10 +63,10 @@ public final class QName extends javax.xml.namespace.QName
     setPrefix(prefix);
 
     if (this.prefix.length() > 0 && !XMLChar.isValidNCName(this.prefix))
-      throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1: invalid QName: "+prefix);
+      throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1: invalid QName: " + prefix);
 
     if (!XMLChar.isValidNCName(localPart))
-       throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1: invalid QName: "+localPart);
+      throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1: invalid QName: " + localPart);
   }
 
   /**
@@ -76,7 +79,8 @@ public final class QName extends javax.xml.namespace.QName
   }
 
   /**
-   * @param prefix The prefix to set.
+   * @param prefix
+   *          The prefix to set.
    */
   public void setPrefix(String prefix)
   {

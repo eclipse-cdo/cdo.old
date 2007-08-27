@@ -16,7 +16,6 @@
  */
 package org.eclipse.emf.ecore.resource.impl;
 
-
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
@@ -44,66 +43,72 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-
 /**
  * An extensible resource set implementation.
  * <p>
  * The following configuration and control mechanisms are provided:
  * <ul>
- *   <li><b>Resolve</b></li>
- *   <ul>
- *     <li>{@link #delegatedGetResource(URI, boolean)}</li>
- *     <li>{@link #getEObject(URI, boolean)}</li>
- *   </ul>
- *   <li><b>Demand</b></li>
- *   <ul>
- *     <li>{@link #demandCreateResource(URI)}</li>
- *     <li>{@link #demandLoad(Resource)}</li>
- *     <li>{@link #demandLoadHelper(Resource)}</li>
- *   </ul>
- * </ul> 
+ * <li><b>Resolve</b></li>
+ * <ul>
+ * <li>{@link #delegatedGetResource(URI, boolean)}</li>
+ * <li>{@link #getEObject(URI, boolean)}</li>
+ * </ul>
+ * <li><b>Demand</b></li>
+ * <ul>
+ * <li>{@link #demandCreateResource(URI)}</li>
+ * <li>{@link #demandLoad(Resource)}</li>
+ * <li>{@link #demandLoadHelper(Resource)}</li>
+ * </ul>
+ * </ul>
  * </p>
  */
 public class ResourceSetImpl extends NotifierImpl implements ResourceSet
 {
   /**
    * The contained resources.
+   * 
    * @see #getResources
    */
   protected EList<Resource> resources;
 
   /**
    * The registered adapter factories.
+   * 
    * @see #getAdapterFactories
    */
   protected EList<AdapterFactory> adapterFactories;
 
   /**
    * The load options.
+   * 
    * @see #getLoadOptions
    */
   protected Map<Object, Object> loadOptions;
 
   /**
    * The local resource factory registry.
+   * 
    * @see #getResourceFactoryRegistry
    */
   protected Resource.Factory.Registry resourceFactoryRegistry;
 
   /**
    * The URI converter.
+   * 
    * @see #getURIConverter
    */
   protected URIConverter uriConverter;
 
   /**
    * The local package registry.
+   * 
    * @see #getPackageRegistry
    */
   protected EPackage.Registry packageRegistry;
-  
+
   /**
    * A map to cache the resource associated with a specific URI.
+   * 
    * @see #setURIResourceMap(Map)
    */
   protected Map<URI, Resource> uriResourceMap;
@@ -115,9 +120,11 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
   {
     super();
   }
-  
+
   /**
-   * Returns the map used to cache the resource {@link #getResource(URI, boolean) associated} with a specific URI.
+   * Returns the map used to cache the resource
+   * {@link #getResource(URI, boolean) associated} with a specific URI.
+   * 
    * @return the map used to cache the resource associated with a specific URI.
    * @see #setURIResourceMap
    */
@@ -128,18 +135,21 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
 
   /**
    * Sets the map used to cache the resource associated with a specific URI.
-   * This cache is only activated if the map is not <code>null</code>.  
-   * The map will be lazily loaded by the {@link #getResource(URI, boolean) getResource} method.
-   * It is up to the client to clear the cache when it becomes invalid, 
-   * e.g., when the URI of a previously mapped resource is changed.
-   * @param uriResourceMap the new map or <code>null</code>.
+   * This cache is only activated if the map is not <code>null</code>. The
+   * map will be lazily loaded by the
+   * {@link #getResource(URI, boolean) getResource} method. It is up to the
+   * client to clear the cache when it becomes invalid, e.g., when the URI of a
+   * previously mapped resource is changed.
+   * 
+   * @param uriResourceMap
+   *          the new map or <code>null</code>.
    * @see #getURIResourceMap
    */
   public void setURIResourceMap(Map<URI, Resource> uriResourceMap)
   {
     this.uriResourceMap = uriResourceMap;
   }
-  
+
   /*
    * Javadoc copied from interface.
    */
@@ -169,29 +179,28 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
   {
     if (adapterFactories == null)
     {
-      adapterFactories = 
-        new BasicEList<AdapterFactory>()
+      adapterFactories = new BasicEList<AdapterFactory>()
+      {
+        private static final long serialVersionUID = 1L;
+
+        @Override
+        protected boolean useEquals()
         {
-          private static final long serialVersionUID = 1L;
+          return false;
+        }
 
-          @Override
-          protected boolean useEquals()
-          {
-            return false;
-          }
+        @Override
+        protected boolean isUnique()
+        {
+          return true;
+        }
 
-          @Override
-          protected boolean isUnique()
-          {
-            return true;
-          }
-
-          @Override
-          protected Object [] newData(int capacity)
-          {
-            return new AdapterFactory [capacity];
-          }
-        };
+        @Override
+        protected Object[] newData(int capacity)
+        {
+          return new AdapterFactory[capacity];
+        }
+      };
     }
     return adapterFactories;
   }
@@ -226,12 +235,14 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
   }
 
   /**
-   * Creates a new resource appropriate for the URI.
-   * It is called by {@link #getResource(URI, boolean) getResource(URI, boolean)} 
-   * when a URI that doesn't exist as a resource is demand loaded.
-   * This implementation simply calls {@link #createResource(URI) createResource(URI)}.
-   * Clients may extend this as appropriate.
-   * @param uri the URI of the resource to create.
+   * Creates a new resource appropriate for the URI. It is called by
+   * {@link #getResource(URI, boolean) getResource(URI, boolean)} when a URI
+   * that doesn't exist as a resource is demand loaded. This implementation
+   * simply calls {@link #createResource(URI) createResource(URI)}. Clients may
+   * extend this as appropriate.
+   * 
+   * @param uri
+   *          the URI of the resource to create.
    * @return a new resource.
    * @see #getResource(URI, boolean)
    */
@@ -241,13 +252,15 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
   }
 
   /**
-   * Loads the given resource.
-   * It is called by {@link #demandLoadHelper(Resource) demandLoadHelper(Resource)} 
-   * to perform a demand load.
-   * This implementation simply calls <code>resource.</code>{@link Resource#load(Map) load}({@link #getLoadOptions() getLoadOptions}()).
+   * Loads the given resource. It is called by
+   * {@link #demandLoadHelper(Resource) demandLoadHelper(Resource)} to perform a
+   * demand load. This implementation simply calls <code>resource.</code>{@link Resource#load(Map) load}({@link #getLoadOptions() getLoadOptions}()).
    * Clients may extend this as appropriate.
-   * @param resource  a resource that isn't loaded.
-   * @exception IOException if there are serious problems loading the resource.
+   * 
+   * @param resource
+   *          a resource that isn't loaded.
+   * @exception IOException
+   *              if there are serious problems loading the resource.
    * @see #getResource(URI, boolean)
    * @see #demandLoadHelper(Resource)
    */
@@ -255,13 +268,16 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
   {
     resource.load(getLoadOptions());
   }
-  
+
   /**
-   * Demand loads the given resource using {@link #demandLoad(Resource)} 
-   * and {@link WrappedException wraps} any {@link IOException} as a runtime exception. 
-   * It is called by {@link #getResource(URI, boolean) getResource(URI, boolean)} 
-   * to perform a demand load.
-   * @param resource a resource that isn't loaded.
+   * Demand loads the given resource using {@link #demandLoad(Resource)} and
+   * {@link WrappedException wraps} any {@link IOException} as a runtime
+   * exception. It is called by
+   * {@link #getResource(URI, boolean) getResource(URI, boolean)} to perform a
+   * demand load.
+   * 
+   * @param resource
+   *          a resource that isn't loaded.
    * @see #demandLoad(Resource)
    */
   protected void demandLoadHelper(Resource resource)
@@ -273,15 +289,17 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
     catch (IOException exception)
     {
       handleDemandLoadException(resource, exception);
-    }    
+    }
   }
-  
+
   /**
-   * Handles the exception thrown during demand load 
-   * by recording it as an error diagnostic 
-   * and throwing a wrapping runtime exception.
-   * @param resource the resource that threw an exception while loading.
-   * @param exception the exception thrown from the resource while loading.
+   * Handles the exception thrown during demand load by recording it as an error
+   * diagnostic and throwing a wrapping runtime exception.
+   * 
+   * @param resource
+   *          the resource that threw an exception while loading.
+   * @param exception
+   *          the exception thrown from the resource while loading.
    * @see #demandLoadHelper(Resource)
    */
   protected void handleDemandLoadException(Resource resource, IOException exception) throws RuntimeException
@@ -311,27 +329,31 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
         return 0;
       }
     }
-    
+
     Exception cause = exception instanceof Resource.IOWrappedException ? (Exception)exception.getCause() : exception;
     DiagnosticWrappedException wrappedException = new DiagnosticWrappedException(cause);
-    
+
     if (resource.getErrors().isEmpty())
     {
-      resource.getErrors().add(exception instanceof Resource.Diagnostic ? (Resource.Diagnostic)exception : wrappedException);
+      resource.getErrors().add(
+          exception instanceof Resource.Diagnostic ? (Resource.Diagnostic)exception : wrappedException);
     }
-    
+
     throw wrappedException;
   }
 
   /**
-   * Returns a resolved resource available outside of the resource set.
-   * It is called by {@link #getResource(URI, boolean) getResource(URI, boolean)} 
-   * after it has determined that the URI cannot be resolved 
-   * based on the existing contents of the resource set.
-   * This implementation looks up the URI in the {#getPackageRegistry() local} package registry.
-   * Clients may extend this as appropriate.
-   * @param uri the URI
-   * @param loadOnDemand whether demand loading is required.
+   * Returns a resolved resource available outside of the resource set. It is
+   * called by {@link #getResource(URI, boolean) getResource(URI, boolean)}
+   * after it has determined that the URI cannot be resolved based on the
+   * existing contents of the resource set. This implementation looks up the URI
+   * in the {#getPackageRegistry() local} package registry. Clients may extend
+   * this as appropriate.
+   * 
+   * @param uri
+   *          the URI
+   * @param loadOnDemand
+   *          whether demand loading is required.
    */
   protected Resource delegatedGetResource(URI uri, boolean loadOnDemand)
   {
@@ -353,11 +375,11 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
         if (loadOnDemand && !resource.isLoaded())
         {
           demandLoadHelper(resource);
-        }        
+        }
         return resource;
       }
     }
-    
+
     URIConverter theURIConverter = getURIConverter();
     URI normalizedURI = theURIConverter.normalize(uri);
     for (Resource resource : getResources())
@@ -368,15 +390,15 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
         {
           demandLoadHelper(resource);
         }
-        
+
         if (map != null)
         {
           map.put(uri, resource);
-        } 
+        }
         return resource;
       }
     }
-    
+
     Resource delegatedResource = delegatedGetResource(uri, loadOnDemand);
     if (delegatedResource != null)
     {
@@ -392,7 +414,8 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
       Resource resource = demandCreateResource(uri);
       if (resource == null)
       {
-        throw new RuntimeException("Cannot create a resource for '" + uri + "'; a registered resource factory is needed");
+        throw new RuntimeException("Cannot create a resource for '" + uri
+            + "'; a registered resource factory is needed");
       }
 
       demandLoadHelper(resource);
@@ -400,7 +423,7 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
       if (map != null)
       {
         map.put(uri, resource);
-      }      
+      }
       return resource;
     }
 
@@ -432,15 +455,14 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
   {
     if (resourceFactoryRegistry == null)
     {
-      resourceFactoryRegistry =
-        new ResourceFactoryRegistryImpl()
+      resourceFactoryRegistry = new ResourceFactoryRegistryImpl()
+      {
+        @Override
+        public Resource.Factory delegatedGetFactory(URI uri)
         {
-          @Override
-          public Resource.Factory delegatedGetFactory(URI uri)
-          {
-            return Resource.Factory.Registry.INSTANCE.getFactory(uri);
-          }
-        };
+          return Resource.Factory.Registry.INSTANCE.getFactory(uri);
+        }
+      };
     }
     return resourceFactoryRegistry;
   }
@@ -493,9 +515,9 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
     this.packageRegistry = packageRegistry;
   }
 
-
   /**
-   * A notifying list implementation for supporting {@link ResourceSet#getResources}.
+   * A notifying list implementation for supporting
+   * {@link ResourceSet#getResources}.
    */
   protected class ResourcesEList<E extends Object & Resource> extends NotifyingListImpl<E> implements InternalEList<E>
   {
@@ -508,9 +530,9 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
     }
 
     @Override
-    protected Object [] newData(int capacity)
+    protected Object[] newData(int capacity)
     {
-      return new Resource [capacity];
+      return new Resource[capacity];
     }
 
     @Override
@@ -579,7 +601,7 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
     {
       return super.basicListIterator();
     }
-  
+
     @Override
     public ListIterator<E> basicListIterator(int index)
     {
@@ -595,13 +617,13 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
 
   /**
    * Returns a standard label with the list of resources.
+   * 
    * @return the string form.
    */
   @Override
   public String toString()
   {
-    return 
-      getClass().getName() +  '@' + Integer.toHexString(hashCode()) + 
-        " resources=" + (resources == null ? "[]" : resources.toString());
+    return getClass().getName() + '@' + Integer.toHexString(hashCode()) + " resources="
+        + (resources == null ? "[]" : resources.toString());
   }
 }

@@ -27,25 +27,24 @@ import org.eclipse.emf.ecore.xml.type.ProcessingInstruction;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Processing Instruction Type</b></em>'.
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Processing Instruction Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.ecore.xml.type.impl.ProcessingInstructionImpl#getData <em>Data</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.xml.type.impl.ProcessingInstructionImpl#getTarget <em>Target</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.xml.type.impl.ProcessingInstructionImpl#getData <em>Data</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.xml.type.impl.ProcessingInstructionImpl#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ProcessingInstructionImpl extends EObjectImpl implements ProcessingInstruction
 {
   /**
    * The default value of the '{@link #getData() <em>Data</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getData()
    * @generated
    * @ordered
@@ -54,8 +53,8 @@ public class ProcessingInstructionImpl extends EObjectImpl implements Processing
 
   /**
    * The cached value of the '{@link #getData() <em>Data</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getData()
    * @generated
    * @ordered
@@ -63,9 +62,9 @@ public class ProcessingInstructionImpl extends EObjectImpl implements Processing
   protected String data = DATA_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getTarget() <em>Target</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The default value of the '{@link #getTarget() <em>Target</em>}'
+   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getTarget()
    * @generated
    * @ordered
@@ -74,8 +73,8 @@ public class ProcessingInstructionImpl extends EObjectImpl implements Processing
 
   /**
    * The cached value of the '{@link #getTarget() <em>Target</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getTarget()
    * @generated
    * @ordered
@@ -83,8 +82,8 @@ public class ProcessingInstructionImpl extends EObjectImpl implements Processing
   protected String target = TARGET_EDEFAULT;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected ProcessingInstructionImpl()
@@ -93,8 +92,8 @@ public class ProcessingInstructionImpl extends EObjectImpl implements Processing
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -104,8 +103,8 @@ public class ProcessingInstructionImpl extends EObjectImpl implements Processing
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String getData()
@@ -114,8 +113,8 @@ public class ProcessingInstructionImpl extends EObjectImpl implements Processing
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setData(String newData)
@@ -127,8 +126,8 @@ public class ProcessingInstructionImpl extends EObjectImpl implements Processing
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String getTarget()
@@ -137,8 +136,8 @@ public class ProcessingInstructionImpl extends EObjectImpl implements Processing
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setTarget(String newTarget)
@@ -146,12 +145,13 @@ public class ProcessingInstructionImpl extends EObjectImpl implements Processing
     String oldTarget = target;
     target = newTarget;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, XMLTypePackage.PROCESSING_INSTRUCTION__TARGET, oldTarget, target));
+      eNotify(new ENotificationImpl(this, Notification.SET, XMLTypePackage.PROCESSING_INSTRUCTION__TARGET, oldTarget,
+          target));
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -159,17 +159,17 @@ public class ProcessingInstructionImpl extends EObjectImpl implements Processing
   {
     switch (featureID)
     {
-      case XMLTypePackage.PROCESSING_INSTRUCTION__DATA:
-        return getData();
-      case XMLTypePackage.PROCESSING_INSTRUCTION__TARGET:
-        return getTarget();
+    case XMLTypePackage.PROCESSING_INSTRUCTION__DATA:
+      return getData();
+    case XMLTypePackage.PROCESSING_INSTRUCTION__TARGET:
+      return getTarget();
     }
     return eDynamicGet(featureID, resolve, coreType);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -177,19 +177,19 @@ public class ProcessingInstructionImpl extends EObjectImpl implements Processing
   {
     switch (featureID)
     {
-      case XMLTypePackage.PROCESSING_INSTRUCTION__DATA:
-        setData((String)newValue);
-        return;
-      case XMLTypePackage.PROCESSING_INSTRUCTION__TARGET:
-        setTarget((String)newValue);
-        return;
+    case XMLTypePackage.PROCESSING_INSTRUCTION__DATA:
+      setData((String)newValue);
+      return;
+    case XMLTypePackage.PROCESSING_INSTRUCTION__TARGET:
+      setTarget((String)newValue);
+      return;
     }
     eDynamicSet(featureID, newValue);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -197,19 +197,19 @@ public class ProcessingInstructionImpl extends EObjectImpl implements Processing
   {
     switch (featureID)
     {
-      case XMLTypePackage.PROCESSING_INSTRUCTION__DATA:
-        setData(DATA_EDEFAULT);
-        return;
-      case XMLTypePackage.PROCESSING_INSTRUCTION__TARGET:
-        setTarget(TARGET_EDEFAULT);
-        return;
+    case XMLTypePackage.PROCESSING_INSTRUCTION__DATA:
+      setData(DATA_EDEFAULT);
+      return;
+    case XMLTypePackage.PROCESSING_INSTRUCTION__TARGET:
+      setTarget(TARGET_EDEFAULT);
+      return;
     }
     eDynamicUnset(featureID);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -217,17 +217,17 @@ public class ProcessingInstructionImpl extends EObjectImpl implements Processing
   {
     switch (featureID)
     {
-      case XMLTypePackage.PROCESSING_INSTRUCTION__DATA:
-        return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
-      case XMLTypePackage.PROCESSING_INSTRUCTION__TARGET:
-        return TARGET_EDEFAULT == null ? target != null : !TARGET_EDEFAULT.equals(target);
+    case XMLTypePackage.PROCESSING_INSTRUCTION__DATA:
+      return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
+    case XMLTypePackage.PROCESSING_INSTRUCTION__TARGET:
+      return TARGET_EDEFAULT == null ? target != null : !TARGET_EDEFAULT.equals(target);
     }
     return eDynamicIsSet(featureID);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -244,4 +244,4 @@ public class ProcessingInstructionImpl extends EObjectImpl implements Processing
     return result.toString();
   }
 
-} //ProcessingInstructionTypeImpl
+} // ProcessingInstructionTypeImpl

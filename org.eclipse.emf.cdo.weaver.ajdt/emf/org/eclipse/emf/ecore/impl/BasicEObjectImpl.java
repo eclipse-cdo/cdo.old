@@ -16,7 +16,6 @@
  */
 package org.eclipse.emf.ecore.impl;
 
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -49,7 +48,6 @@ import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.util.FeatureMapUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-
 /**
  * An implementation of the model object '<em><b>EObject</b></em>'.
  */
@@ -61,21 +59,27 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   protected interface EPropertiesHolder extends EStructuralFeature.Internal.DynamicValueHolder
   {
     EClass getEClass();
+
     void setEClass(EClass eClass);
 
     URI getEProxyURI();
+
     void setEProxyURI(URI eProxyURI);
 
     Resource.Internal getEResource();
+
     void setEResource(Resource.Internal eResource);
 
     EList<EObject> getEContents();
+
     void setEContents(EList<EObject> eContents);
 
     EList<EObject> getECrossReferences();
+
     void setECrossReferences(EList<EObject> eCrossReferences);
 
     boolean hasSettings();
+
     void allocateSettings(int dynamicFeatureCount);
   }
 
@@ -85,10 +89,12 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   protected static class EPropertiesHolderBaseImpl implements EPropertiesHolder
   {
     protected EClass eClass;
-    protected Resource.Internal eResource;
-    protected Object [] eSettings;
 
-    protected static final Object [] NO_SETTINGS = new Object [0];
+    protected Resource.Internal eResource;
+
+    protected Object[] eSettings;
+
+    protected static final Object[] NO_SETTINGS = new Object[0];
 
     public EClass getEClass()
     {
@@ -147,7 +153,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
 
     public void allocateSettings(int dynamicFeatureCount)
     {
-      eSettings = dynamicFeatureCount == 0 ? NO_SETTINGS : new Object [dynamicFeatureCount];
+      eSettings = dynamicFeatureCount == 0 ? NO_SETTINGS : new Object[dynamicFeatureCount];
     }
 
     public Object dynamicGet(int dynamicFeatureID)
@@ -172,7 +178,9 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   protected static class EPropertiesHolderImpl extends EPropertiesHolderBaseImpl
   {
     protected URI eProxyURI;
+
     protected EList<EObject> eContents;
+
     protected EList<EObject> eCrossReferences;
 
     @Override
@@ -215,7 +223,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   /**
    * Creates a basic EObject.
    */
-  protected BasicEObjectImpl() 
+  protected BasicEObjectImpl()
   {
     super();
   }
@@ -230,7 +238,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     throw new UnsupportedOperationException();
     // if (eProperties == null)
     // {
-      // eProperties = new EPropertiesHolderImpl();
+    // eProperties = new EPropertiesHolderImpl();
     // }
     // return eProperties;
   }
@@ -251,7 +259,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   {
     if (!eHasSettings())
     {
-      int size =  eClass().getFeatureCount() - eStaticFeatureCount();
+      int size = eClass().getFeatureCount() - eStaticFeatureCount();
       eProperties().allocateSettings(size);
     }
 
@@ -272,9 +280,9 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   {
     if (eStructuralFeature == null)
     {
-      for (@SuppressWarnings("unchecked") EContentsEList.FeatureIterator<EObject> crossReferences = 
-             (EContentsEList.FeatureIterator<EObject>)((InternalEList<?>)eCrossReferences()).basicIterator(); 
-           crossReferences.hasNext(); )
+      for (@SuppressWarnings("unchecked")
+      EContentsEList.FeatureIterator<EObject> crossReferences = (EContentsEList.FeatureIterator<EObject>)((InternalEList<?>)eCrossReferences())
+          .basicIterator(); crossReferences.hasNext();)
       {
         EObject crossReference = crossReferences.next();
         if (crossReference == eObject)
@@ -283,7 +291,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
         }
       }
     }
-    
+
     StringBuilder result = new StringBuilder();
     result.append('@');
     result.append(eStructuralFeature.getName());
@@ -316,9 +324,9 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
         result.append('.');
         result.append(index);
       }
-      else 
+      else
       {
-        EAttribute [] eAttributes = (EAttribute[])((BasicEList<?>)eKeys).data();
+        EAttribute[] eAttributes = (EAttribute[])((BasicEList<?>)eKeys).data();
         result.append('[');
         for (int i = 0, size = eAttributes.length; i < size; ++i)
         {
@@ -327,7 +335,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
           {
             break;
           }
-          else 
+          else
           {
             if (i != 0)
             {
@@ -362,78 +370,16 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
         result.append(']');
       }
     }
-    
+
     return result.toString();
   }
-  
-  private static final String [] ESCAPE =
-   {
-     "%00",
-     "%01",
-     "%02",
-     "%03",
-     "%04",
-     "%05",
-     "%06",
-     "%07",
-     "%08",
-     "%09",
-     "%0A",
-     "%0B",
-     "%0C",
-     "%0D",
-     "%0E",
-     "%0F",
-     "%10",
-     "%11",
-     "%12",
-     "%13",
-     "%14",
-     "%15",
-     "%16",
-     "%17",
-     "%18",
-     "%19",
-     "%1A",
-     "%1B",
-     "%1C",
-     "%1D",
-     "%1E",
-     "%1F",
-     "%20",
-     null,
-     "%22",
-     "%23",
-     null,
-     "%25",
-     "%26",
-     "%27",
-     null,
-     null,
-     null,
-     null,
-     "%2C",
-     null,
-     null,
-     "%2F",
-     null,
-     null,
-     null,
-     null,
-     null,
-     null,
-     null,
-     null,
-     null,
-     null,
-     "%3A",
-     null,
-     "%3C",
-     null,
-     "%3E",
-     null,
-   };
-  
+
+  private static final String[] ESCAPE = { "%00", "%01", "%02", "%03", "%04", "%05", "%06", "%07", "%08", "%09", "%0A",
+      "%0B", "%0C", "%0D", "%0E", "%0F", "%10", "%11", "%12", "%13", "%14", "%15", "%16", "%17", "%18", "%19", "%1A",
+      "%1B", "%1C", "%1D", "%1E", "%1F", "%20", null, "%22", "%23", null, "%25", "%26", "%27", null, null, null, null,
+      "%2C", null, null, "%2F", null, null, null, null, null, null, null, null, null, null, "%3A", null, "%3C", null,
+      "%3E", null, };
+
   private static void eEncodeValue(StringBuilder result, EFactory eFactory, EDataType eDataType, Object value)
   {
     String stringValue = eFactory.convertToString(eDataType, value);
@@ -463,11 +409,13 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
       result.append('\'');
     }
   }
-  
+
   /**
    * Returns the encoded value or the original, if no encoding was needed.
+   * 
    * @see EModelElementImpl#eURIFragmentSegment(EStructuralFeature, EObject)
-   * @param value the value to be encoded.
+   * @param value
+   *          the value to be encoded.
    * @return the encoded value or the original, if no encoding was needed.
    */
   static String eEncodeValue(String value)
@@ -504,7 +452,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     int lastIndex = uriFragmentSegment.length() - 1;
     char lastChar = uriFragmentSegment.charAt(lastIndex);
     if (lastChar == ']')
-    {      
+    {
       int index = uriFragmentSegment.indexOf('[');
       if (index >= 0)
       {
@@ -545,7 +493,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
 
       if (dotIndex < 0)
       {
-        return (EObject)eGet(eStructuralFeature(uriFragmentSegment.substring(1)), false);      
+        return (EObject)eGet(eStructuralFeature(uriFragmentSegment.substring(1)), false);
       }
     }
 
@@ -565,99 +513,98 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
       EFactory eFactory = eDataType.getEPackage().getEFactoryInstance();
       switch (predicate.charAt(++index))
       {
-        case '\'':
+      case '\'':
+      {
+        int end = predicate.indexOf('\'', ++index);
+        addEntry(featureMapEntries, eAttribute, eDecodeValue(predicate.substring(index, end), eFactory, eDataType));
+        i = end + 1;
+        break;
+      }
+      case '"':
+      {
+        int end = predicate.indexOf('"', ++index);
+        addEntry(featureMapEntries, eAttribute, eDecodeValue(predicate.substring(index, end), eFactory, eDataType));
+        i = end + 1;
+        break;
+      }
+      case '[':
+      {
+        ArrayList<Object> values = new ArrayList<Object>();
+        addEntry(featureMapEntries, eAttribute, values);
+        LOOP: for (;;)
         {
-          int end = predicate.indexOf('\'', ++index);
-          addEntry(featureMapEntries, eAttribute, eDecodeValue(predicate.substring(index, end), eFactory, eDataType));
-          i = end + 1;
-          break;
-        }
-        case '"':
-        {
-          int end = predicate.indexOf('"', ++index);
-          addEntry(featureMapEntries, eAttribute, eDecodeValue(predicate.substring(index, end), eFactory, eDataType));
-          i = end + 1;
-          break;
-        }
-        case '[':
-        {
-          ArrayList<Object> values = new ArrayList<Object>();
-          addEntry(featureMapEntries, eAttribute, values);
-          LOOP:
-          for (;;)
+          switch (predicate.charAt(++index))
           {
-            switch (predicate.charAt(++index))
+          case '\'':
+          {
+            int end = predicate.indexOf('\'', ++index);
+            values.add(eDecodeValue(predicate.substring(index, end), eFactory, eDataType));
+            index = end + 1;
+            break;
+          }
+          case '"':
+          {
+            int end = predicate.indexOf('"', ++index);
+            values.add(eDecodeValue(predicate.substring(index, end), eFactory, eDataType));
+            index = end + 1;
+            break;
+          }
+          case 'n':
+          {
+            ++index;
+            if (predicate.indexOf("ull", index) == index)
             {
-              case '\'':
-              {
-                int end = predicate.indexOf('\'', ++index);
-                values.add(eDecodeValue(predicate.substring(index, end), eFactory, eDataType));
-                index = end + 1;
-                break;
-              }
-              case '"':
-              {
-                int end = predicate.indexOf('"', ++index);
-                values.add(eDecodeValue(predicate.substring(index, end), eFactory, eDataType));
-                index = end + 1;
-                break;
-              }
-              case 'n':
-              {
-                ++index;
-                if (predicate.indexOf("ull", index) == index)
-                {
-                  values.add(null);
-                }
-                else
-                {
-                  throw new RuntimeException("Expecting null");
-                }
-                index += 3;
-                break;
-              }
-            }
-            
-            if (index < length)
-            {
-              switch (predicate.charAt(index))
-              {
-                case ',':
-                {
-                  break;
-                }
-                case ']':
-                {
-                  break LOOP;
-                }
-                default:
-                {
-                  throw new RuntimeException("Expecting , or ]");
-                }
-              }
+              values.add(null);
             }
             else
             {
+              throw new RuntimeException("Expecting null");
+            }
+            index += 3;
+            break;
+          }
+          }
+
+          if (index < length)
+          {
+            switch (predicate.charAt(index))
+            {
+            case ',':
+            {
               break;
             }
-          }
-          i = index + 1;
-          break;
-        }
-        case 'n':
-        {
-          ++index;
-          if (predicate.indexOf("ull", index) == index)
-          {
-            addEntry(featureMapEntries, eAttribute, null);
+            case ']':
+            {
+              break LOOP;
+            }
+            default:
+            {
+              throw new RuntimeException("Expecting , or ]");
+            }
+            }
           }
           else
           {
-            throw new RuntimeException("Expecting null");
+            break;
           }
-          i = index + 3;
-          break;
         }
+        i = index + 1;
+        break;
+      }
+      case 'n':
+      {
+        ++index;
+        if (predicate.indexOf("ull", index) == index)
+        {
+          addEntry(featureMapEntries, eAttribute, null);
+        }
+        else
+        {
+          throw new RuntimeException("Expecting null");
+        }
+        i = index + 3;
+        break;
+      }
       }
       if (i < length)
       {
@@ -671,25 +618,25 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
         break;
       }
     }
-    
+
     return eObjectForURIFragmentPredicate(featureMapEntries, eReference);
   }
-  
-  private static final void addEntry(List<FeatureMap.Entry> featureMapEntries, final EAttribute eAttribute, final Object value)
+
+  private static final void addEntry(List<FeatureMap.Entry> featureMapEntries, final EAttribute eAttribute,
+      final Object value)
   {
-    featureMapEntries.add
-      (new FeatureMap.Entry()
-       {
-         public EStructuralFeature getEStructuralFeature()
-         {
-           return eAttribute;
-         }
- 
-         public Object getValue()
-         {
-           return value;
-         }
-       });
+    featureMapEntries.add(new FeatureMap.Entry()
+    {
+      public EStructuralFeature getEStructuralFeature()
+      {
+        return eAttribute;
+      }
+
+      public Object getValue()
+      {
+        return value;
+      }
+    });
   }
 
   private static Object eDecodeValue(String encodedValue, EFactory eFactory, EDataType eDataType)
@@ -698,13 +645,13 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     Object value = eFactory.createFromString(eDataType, literal);
     return value;
   }
-  
+
   private EObject eObjectForURIFragmentPredicate(List<FeatureMap.Entry> predicate, EReference eReference)
   {
     int size = predicate.size();
-    @SuppressWarnings("unchecked") EList<EObject> list = ((EList<EObject>)eGet(eReference, false));
-    LOOP:
-    for (EObject eObject : list)
+    @SuppressWarnings("unchecked")
+    EList<EObject> list = ((EList<EObject>)eGet(eReference, false));
+    LOOP: for (EObject eObject : list)
     {
       for (int i = 0; i < size; ++i)
       {
@@ -721,7 +668,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     }
     return null;
   }
-  
+
   private EStructuralFeature eStructuralFeature(String name) throws IllegalArgumentException
   {
     EStructuralFeature eStructuralFeature = eClass().getEStructuralFeature(name);
@@ -741,7 +688,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     }
     throw new IllegalArgumentException("The feature '" + name + "' is not a valid reference");
   }
-  
+
   private EAttribute eAttribute(EClass eClass, String name) throws IllegalArgumentException
   {
     EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(name);
@@ -760,7 +707,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   public EObject eContainer()
   {
     InternalEObject result = eInternalContainer();
-    if (result != null) 
+    if (result != null)
     {
       int eContainerFeatureID = eContainerFeatureID();
       if (result.eIsProxy())
@@ -788,7 +735,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   public InternalEObject eInternalContainer()
   {
     throw new UnsupportedOperationException();
-    //return eContainer;
+    // return eContainer;
   }
 
   public int eContainerFeatureID()
@@ -828,24 +775,23 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
 
   public TreeIterator<EObject> eAllContents()
   {
-    return 
-      new AbstractTreeIterator<EObject>(this, false)
-      {
-        private static final long serialVersionUID = 1L;
+    return new AbstractTreeIterator<EObject>(this, false)
+    {
+      private static final long serialVersionUID = 1L;
 
-        @Override
-        public Iterator<EObject> getChildren(Object object)
-        {
-          return ((EObject)object).eContents().iterator();
-        }
-      };
+      @Override
+      public Iterator<EObject> getChildren(Object object)
+      {
+        return ((EObject)object).eContents().iterator();
+      }
+    };
   }
 
   public EReference eContainmentFeature()
   {
     return eContainmentFeature(this, eInternalContainer(), eContainerFeatureID());
   }
-  
+
   protected static EReference eContainmentFeature(EObject eObject, EObject eContainer, int eContainerFeatureID)
   {
     if (eContainer == null)
@@ -856,7 +802,8 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     {
       if (eContainerFeatureID <= EOPPOSITE_FEATURE_BASE)
       {
-        EStructuralFeature eFeature =  eContainer.eClass().getEStructuralFeature(EOPPOSITE_FEATURE_BASE - eContainerFeatureID);
+        EStructuralFeature eFeature = eContainer.eClass().getEStructuralFeature(
+            EOPPOSITE_FEATURE_BASE - eContainerFeatureID);
         if (eFeature instanceof EReference)
         {
           return (EReference)eFeature;
@@ -899,10 +846,9 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     else
     {
       int eContainerFeatureID = eContainerFeatureID();
-      return
-        eContainerFeatureID <= EOPPOSITE_FEATURE_BASE ?
-          eContainer.eClass().getEStructuralFeature(EOPPOSITE_FEATURE_BASE - eContainerFeatureID) :
-          ((EReference)eClass().getEStructuralFeature(eContainerFeatureID)).getEOpposite();
+      return eContainerFeatureID <= EOPPOSITE_FEATURE_BASE ? eContainer.eClass().getEStructuralFeature(
+          EOPPOSITE_FEATURE_BASE - eContainerFeatureID) : ((EReference)eClass().getEStructuralFeature(
+          eContainerFeatureID)).getEOpposite();
     }
   }
 
@@ -923,10 +869,13 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     if (result == null)
     {
       int count = 0;
-      for (InternalEObject eContainer = eInternalContainer(); eContainer != null; eContainer = eContainer.eInternalContainer())
+      for (InternalEObject eContainer = eInternalContainer(); eContainer != null; eContainer = eContainer
+          .eInternalContainer())
       {
-        // Since the cycle is detected by checking if we hit "this" again, after many iterations we'll call this method recursively 
-        // in case we started with something that wasn't part of a cycle but later traversed up to a cycle.
+        // Since the cycle is detected by checking if we hit "this" again, after
+        // many iterations we'll call this method recursively
+        // in case we started with something that wasn't part of a cycle but
+        // later traversed up to a cycle.
         //
         if (++count > 100000)
         {
@@ -1011,17 +960,21 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   {
     EStructuralFeature eFeature = eClass().getEStructuralFeature(featureID);
     int dynamicFeatureID = featureID - eStaticFeatureCount();
-      
-    return dynamicFeatureID < 0 ?
-      eGet(eFeature, resolve) /* backward compatibility with old generated overrides */ : 
-      eSettingDelegate(eFeature).dynamicGet(this, eSettings(), dynamicFeatureID, resolve, coreType);
+
+    return dynamicFeatureID < 0 ? eGet(eFeature, resolve) /*
+                                                           * backward
+                                                           * compatibility with
+                                                           * old generated
+                                                           * overrides
+                                                           */
+        : eSettingDelegate(eFeature).dynamicGet(this, eSettings(), dynamicFeatureID, resolve, coreType);
   }
-  
+
   public Object eDynamicGet(EStructuralFeature eFeature, boolean resolve)
   {
     return eDynamicGet(eDynamicFeatureID(eFeature), eFeature, resolve, true);
   }
-  
+
   public Object eDynamicGet(int featureID, boolean resolve, boolean coreType)
   {
     return eDynamicGet(featureID - eStaticFeatureCount(), eClass().getEStructuralFeature(featureID), resolve, coreType);
@@ -1029,10 +982,8 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
 
   protected Object eDynamicGet(int dynamicFeatureID, EStructuralFeature eFeature, boolean resolve, boolean coreType)
   {
-    return
-      dynamicFeatureID < 0 ?
-        eOpenGet(eFeature, resolve) :
-        eSettingDelegate(eFeature).dynamicGet(this, eSettings(), dynamicFeatureID, resolve, coreType);
+    return dynamicFeatureID < 0 ? eOpenGet(eFeature, resolve) : eSettingDelegate(eFeature).dynamicGet(this,
+        eSettings(), dynamicFeatureID, resolve, coreType);
   }
 
   public Object eOpenGet(EStructuralFeature eFeature, boolean resolve)
@@ -1053,7 +1004,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     }
   }
 
-  public void eSet(EStructuralFeature eFeature, Object newValue) 
+  public void eSet(EStructuralFeature eFeature, Object newValue)
   {
     int featureID = eDerivedStructuralFeatureID(eFeature);
     if (featureID >= 0)
@@ -1082,7 +1033,10 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
       }
       else
       {
-        eSet(eFeature, newValue); /* backward compatibility with old generated overrides */ 
+        eSet(eFeature, newValue); /*
+                                   * backward compatibility with old generated
+                                   * overrides
+                                   */
       }
     }
     else
@@ -1091,7 +1045,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     }
   }
 
-  public void eDynamicSet(EStructuralFeature eFeature, Object newValue) 
+  public void eDynamicSet(EStructuralFeature eFeature, Object newValue)
   {
     eDynamicSet(eDynamicFeatureID(eFeature), eFeature, newValue);
   }
@@ -1117,7 +1071,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     }
   }
 
-  public void eOpenSet(EStructuralFeature eFeature, Object newValue) 
+  public void eOpenSet(EStructuralFeature eFeature, Object newValue)
   {
     EStructuralFeature openFeature = ExtendedMetaData.INSTANCE.getAffiliation(eClass(), eFeature);
     if (openFeature != null)
@@ -1135,7 +1089,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     }
   }
 
-  public void eUnset(EStructuralFeature eFeature) 
+  public void eUnset(EStructuralFeature eFeature)
   {
     int featureID = eDerivedStructuralFeatureID(eFeature);
     if (featureID >= 0)
@@ -1164,7 +1118,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
       }
       else
       {
-        eUnset(eFeature); /* backward compatibility with old generated overrides */ 
+        eUnset(eFeature); /* backward compatibility with old generated overrides */
       }
     }
     else
@@ -1173,7 +1127,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     }
   }
 
-  public void eDynamicUnset(EStructuralFeature eFeature) 
+  public void eDynamicUnset(EStructuralFeature eFeature)
   {
     eDynamicUnset(eDynamicFeatureID(eFeature), eFeature);
   }
@@ -1199,7 +1153,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     }
   }
 
-  public void eOpenUnset(EStructuralFeature eFeature) 
+  public void eOpenUnset(EStructuralFeature eFeature)
   {
     EStructuralFeature openFeature = ExtendedMetaData.INSTANCE.getAffiliation(eClass(), eFeature);
     if (openFeature != null)
@@ -1217,7 +1171,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     }
   }
 
-  public boolean eIsSet(EStructuralFeature eFeature) 
+  public boolean eIsSet(EStructuralFeature eFeature)
   {
     int featureID = eDerivedStructuralFeatureID(eFeature);
     if (featureID >= 0)
@@ -1234,13 +1188,16 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   {
     EStructuralFeature eFeature = eClass().getEStructuralFeature(featureID);
     int dynamicFeatureID = featureID - eStaticFeatureCount();
-      
-    return dynamicFeatureID < 0 ?
-      eIsSet(eFeature) /* backward compatibility with old generated overrides */ : 
-      eSettingDelegate(eFeature).dynamicIsSet(this, eSettings(), dynamicFeatureID);
+
+    return dynamicFeatureID < 0 ? eIsSet(eFeature) /*
+                                                     * backward compatibility
+                                                     * with old generated
+                                                     * overrides
+                                                     */
+        : eSettingDelegate(eFeature).dynamicIsSet(this, eSettings(), dynamicFeatureID);
   }
 
-  public boolean eDynamicIsSet(EStructuralFeature eFeature) 
+  public boolean eDynamicIsSet(EStructuralFeature eFeature)
   {
     return eDynamicIsSet(eDynamicFeatureID(eFeature), eFeature);
   }
@@ -1252,13 +1209,11 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
 
   protected boolean eDynamicIsSet(int dynamicFeatureID, EStructuralFeature eFeature)
   {
-    return
-      dynamicFeatureID < 0 ?
-        eOpenIsSet(eFeature) :
-        eSettingDelegate(eFeature).dynamicIsSet(this, eSettings(), dynamicFeatureID);
+    return dynamicFeatureID < 0 ? eOpenIsSet(eFeature) : eSettingDelegate(eFeature).dynamicIsSet(this, eSettings(),
+        dynamicFeatureID);
   }
 
-  public boolean eOpenIsSet(EStructuralFeature eFeature) 
+  public boolean eOpenIsSet(EStructuralFeature eFeature)
   {
     EStructuralFeature openFeature = ExtendedMetaData.INSTANCE.getAffiliation(eClass(), eFeature);
     if (openFeature != null)
@@ -1276,7 +1231,8 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     }
   }
 
-  public NotificationChain eBasicSetContainer(InternalEObject newContainer, int newContainerFeatureID, NotificationChain msgs)
+  public NotificationChain eBasicSetContainer(InternalEObject newContainer, int newContainerFeatureID,
+      NotificationChain msgs)
   {
     InternalEObject oldContainer = eInternalContainer();
     Resource.Internal oldResource = this.eDirectResource();
@@ -1291,7 +1247,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
       }
       oldResource = null;
     }
-    else 
+    else
     {
       if (oldContainer != null)
       {
@@ -1318,15 +1274,10 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
 
     if (eNotificationRequired())
     {
-      if (oldContainer != null && oldContainerFeatureID >=0 && oldContainerFeatureID != newContainerFeatureID)
+      if (oldContainer != null && oldContainerFeatureID >= 0 && oldContainerFeatureID != newContainerFeatureID)
       {
-        ENotificationImpl notification =
-          new ENotificationImpl
-           (this,
-            Notification.SET,
-            oldContainerFeatureID, 
-            oldContainer,
-            null);
+        ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, oldContainerFeatureID,
+            oldContainer, null);
         if (msgs == null)
         {
           msgs = notification;
@@ -1338,13 +1289,8 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
       }
       if (newContainerFeatureID >= 0)
       {
-        ENotificationImpl notification =
-          new ENotificationImpl
-           (this,
-            Notification.SET,
-            newContainerFeatureID, 
-            oldContainerFeatureID == newContainerFeatureID ? oldContainer : null,
-            newContainer);
+        ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, newContainerFeatureID,
+            oldContainerFeatureID == newContainerFeatureID ? oldContainer : null, newContainer);
         if (msgs == null)
         {
           msgs = notification;
@@ -1365,12 +1311,12 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     {
       return eBasicRemoveFromContainerFeature(msgs);
     }
-    else 
+    else
     {
       return eInternalContainer().eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
     }
   }
-  
+
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
   {
     return eDynamicBasicRemoveFromContainer(msgs);
@@ -1379,10 +1325,12 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   public NotificationChain eDynamicBasicRemoveFromContainer(NotificationChain msgs)
   {
     EReference inverseFeature = ((EReference)eClass().getEStructuralFeature(eContainerFeatureID())).getEOpposite();
-    return eInternalContainer().eInverseRemove(this, inverseFeature.getFeatureID(), inverseFeature.getContainerClass(), msgs);
+    return eInternalContainer().eInverseRemove(this, inverseFeature.getFeatureID(), inverseFeature.getContainerClass(),
+        msgs);
   }
 
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class<?> baseClass, NotificationChain msgs)
+  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class<?> baseClass,
+      NotificationChain msgs)
   {
     if (featureID >= 0)
     {
@@ -1397,24 +1345,27 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
       return eBasicSetContainer(otherEnd, featureID, msgs);
     }
   }
-  
+
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     return eDynamicInverseAdd(otherEnd, featureID, msgs);
   }
 
-  public NotificationChain eDynamicInverseAdd(InternalEObject otherEnd, int featureID, Class<?> inverseClass, NotificationChain msgs)
+  public NotificationChain eDynamicInverseAdd(InternalEObject otherEnd, int featureID, Class<?> inverseClass,
+      NotificationChain msgs)
   {
     return eDynamicInverseAdd(otherEnd, featureID, msgs);
   }
-  
+
   protected NotificationChain eDynamicInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     EStructuralFeature.Internal feature = (EStructuralFeature.Internal)eClass().getEStructuralFeature(featureID);
-    return feature.getSettingDelegate().dynamicInverseAdd(this, eSettings(), featureID - eStaticFeatureCount(), otherEnd, msgs);
+    return feature.getSettingDelegate().dynamicInverseAdd(this, eSettings(), featureID - eStaticFeatureCount(),
+        otherEnd, msgs);
   }
 
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class<?> baseClass, NotificationChain msgs)
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class<?> baseClass,
+      NotificationChain msgs)
   {
     if (featureID >= 0)
     {
@@ -1425,21 +1376,23 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
       return eBasicSetContainer(null, featureID, msgs);
     }
   }
-  
+
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     return eDynamicInverseRemove(otherEnd, featureID, msgs);
   }
 
-  public NotificationChain eDynamicInverseRemove(InternalEObject otherEnd, int featureID, Class<?> inverseClass, NotificationChain msgs)
+  public NotificationChain eDynamicInverseRemove(InternalEObject otherEnd, int featureID, Class<?> inverseClass,
+      NotificationChain msgs)
   {
     return eDynamicInverseRemove(otherEnd, featureID, msgs);
   }
-  
+
   protected NotificationChain eDynamicInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     EStructuralFeature.Internal feature = (EStructuralFeature.Internal)eClass().getEStructuralFeature(featureID);
-    return feature.getSettingDelegate().dynamicInverseRemove(this, eSettings(), featureID - eStaticFeatureCount(), otherEnd, msgs);
+    return feature.getSettingDelegate().dynamicInverseRemove(this, eSettings(), featureID - eStaticFeatureCount(),
+        otherEnd, msgs);
   }
 
   public URI eProxyURI()
@@ -1475,10 +1428,8 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   public int eDerivedStructuralFeatureID(EStructuralFeature eStructuralFeature)
   {
     Class<?> containerClass = eStructuralFeature.getContainerClass();
-    return 
-      containerClass == null ? 
-        eClass().getFeatureID(eStructuralFeature) : 
-        eDerivedStructuralFeatureID(eStructuralFeature.getFeatureID(), containerClass);
+    return containerClass == null ? eClass().getFeatureID(eStructuralFeature) : eDerivedStructuralFeatureID(
+        eStructuralFeature.getFeatureID(), containerClass);
   }
 
   public EClass eClass()
@@ -1502,10 +1453,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
 
   protected EClass eDynamicClass()
   {
-    return 
-      eBasicProperties() == null ?
-        null : 
-        eBasicProperties().getEClass();
+    return eBasicProperties() == null ? null : eBasicProperties().getEClass();
 
   }
 
@@ -1554,39 +1502,38 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
       return (EStructuralFeature.Setting)eGet(eFeature, false);
     }
 
-    EStructuralFeature.Setting setting =
-      new EStructuralFeature.Setting()
+    EStructuralFeature.Setting setting = new EStructuralFeature.Setting()
+    {
+      public EObject getEObject()
       {
-        public EObject getEObject()
-        {
-          return BasicEObjectImpl.this;
-        }
+        return BasicEObjectImpl.this;
+      }
 
-        public EStructuralFeature getEStructuralFeature()
-        {
-          return eFeature;
-        }
+      public EStructuralFeature getEStructuralFeature()
+      {
+        return eFeature;
+      }
 
-        public Object get(boolean resolve)
-        {
-          return BasicEObjectImpl.this.eGet(eFeature, resolve);
-        }
+      public Object get(boolean resolve)
+      {
+        return BasicEObjectImpl.this.eGet(eFeature, resolve);
+      }
 
-        public void set(Object newValue)
-        {
-          BasicEObjectImpl.this.eSet(eFeature, newValue);
-        }
+      public void set(Object newValue)
+      {
+        BasicEObjectImpl.this.eSet(eFeature, newValue);
+      }
 
-        public boolean isSet()
-        {
-          return BasicEObjectImpl.this.eIsSet(eFeature);
-        }
+      public boolean isSet()
+      {
+        return BasicEObjectImpl.this.eIsSet(eFeature);
+      }
 
-        public void unset()
-        {
-          BasicEObjectImpl.this.eUnset(eFeature);
-        }
-      };
+      public void unset()
+      {
+        BasicEObjectImpl.this.eUnset(eFeature);
+      }
+    };
     return setting;
   }
 
@@ -1603,8 +1550,11 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   /**
    * Returns the number of bits that are on in the two's complement bit pattern.
    * This is used to maintain the bit set representing which feature IDs
-   * currently have and index allocated in the {@link #eVirtualValues() virtual values}.
-   * @param value a two's complement bit pattern.
+   * currently have and index allocated in the
+   * {@link #eVirtualValues() virtual values}.
+   * 
+   * @param value
+   *          a two's complement bit pattern.
    * @return the number of bits that are on.
    */
   protected static int eVirtualBitCount(int value)
@@ -1618,9 +1568,12 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   }
 
   /**
-   * Returns the bit pattern at the given offset within the sequence of bit patterns 
-   * representing which features are assigned an index in the {@link #eVirtualValues() virtual values}.
-   * @param offset the offset within the bit sequence of bit patterns.
+   * Returns the bit pattern at the given offset within the sequence of bit
+   * patterns representing which features are assigned an index in the
+   * {@link #eVirtualValues() virtual values}.
+   * 
+   * @param offset
+   *          the offset within the bit sequence of bit patterns.
    * @return the bit pattern at the offset.
    */
   protected int eVirtualIndexBits(int offset)
@@ -1630,50 +1583,57 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   }
 
   /**
-   * Sets the bit pattern at the given offset within the sequence of bit patterns 
-   * representing which features are assigned an index in the {@link #eVirtualValues() virtual values}.
-   * @param offset the offset within the bit sequence of bit patterns.
-   * @param newIndexBits the new bit pattern at the offset.
+   * Sets the bit pattern at the given offset within the sequence of bit
+   * patterns representing which features are assigned an index in the
+   * {@link #eVirtualValues() virtual values}.
+   * 
+   * @param offset
+   *          the offset within the bit sequence of bit patterns.
+   * @param newIndexBits
+   *          the new bit pattern at the offset.
    */
   protected void eSetVirtualIndexBits(int offset, int newIndexBits)
   {
     // eVirtualIndexBits[offset] = newIndexBits;
     throw new UnsupportedOperationException();
   }
-  
+
   /**
-   * An action code indicating that an {@link #eVirtualIndex(int, int) index} 
+   * An action code indicating that an {@link #eVirtualIndex(int, int) index}
    * needs to be computed to perform a {@link #eVirtualSet(int, Object)} set.
    */
   protected static final int EVIRTUAL_SET = 0;
 
   /**
-   * An action code indicating that an {@link #eVirtualIndex(int, int)} index 
+   * An action code indicating that an {@link #eVirtualIndex(int, int)} index
    * needs to be computed to perform an {@link #eVirtualUnset(int) unset}.
    */
   protected static final int EVIRTUAL_UNSET = 1;
 
   /**
-   * An action code indicating that an {@link #eVirtualIndex(int, int) index} 
+   * An action code indicating that an {@link #eVirtualIndex(int, int) index}
    * needs to be computed to perform a {@link #eVirtualGet(int) get}.
    */
   protected static final int EVIRTUAL_GET = 2;
 
   /**
-   * An action code indicating that an {@link #eVirtualIndex(int, int) index} 
+   * An action code indicating that an {@link #eVirtualIndex(int, int) index}
    * needs to be computed to perform an {@link #eVirtualIsSet(int) isSet}.
    */
   protected static final int EVIRTUAL_IS_SET = 3;
-  
+
   /**
-   * Returns the index in the {@link #eVirtualValues() virtual values} for the feature ID,
-   * with the side effect of toggling the necessary bits to suit the action code.
-   * A result of less than zero indicates that the feature ID is not assigned an index.
-   * In the case of a set action, when the value was not previously set,
-   * the result will be the complement of the assigned index,
+   * Returns the index in the {@link #eVirtualValues() virtual values} for the
+   * feature ID, with the side effect of toggling the necessary bits to suit the
+   * action code. A result of less than zero indicates that the feature ID is
+   * not assigned an index. In the case of a set action, when the value was not
+   * previously set, the result will be the complement of the assigned index,
    * which can be corrected by <code>~index</code>.
-   * @param eDerivedStructuralFeatureID the ID of a feature of the class.
-   * @param action the reason for computing the ID.
+   * 
+   * @param eDerivedStructuralFeatureID
+   *          the ID of a feature of the class.
+   * @param action
+   *          the reason for computing the ID.
    * @return the virtual index.
    */
   protected int eVirtualIndex(int eDerivedStructuralFeatureID, int action)
@@ -1683,7 +1643,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     //
     int offset = eDerivedStructuralFeatureID >>> 5;
     int bits = eVirtualIndexBits(offset);
-    
+
     // Compute the index within that bit pattern for this feature ID
     // and fetch that bit at that index.
     //
@@ -1692,57 +1652,61 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
 
     switch (action)
     {
-      case EVIRTUAL_IS_SET:
+    case EVIRTUAL_IS_SET:
+    {
+      // For isSet, we only need to check the bit and return -1 when the bit is
+      // 0.
+      //
+      return bit - 1;
+    }
+    case EVIRTUAL_GET:
+    case EVIRTUAL_UNSET:
+    {
+      if (bit == 0)
       {
-        // For isSet, we only need to check the bit and return -1 when the bit is 0.
+        // If the value index set, there's no index to return.
         //
-        return bit - 1;
+        return -1;
       }
-      case EVIRTUAL_GET:
-      case EVIRTUAL_UNSET:
+      // Continue to compute the offset.
+    }
+    case EVIRTUAL_SET:
+    default:
+    {
+      // Depending on the action and the current state, we'll toggle the state.
+      // i.e., for unset, we need to turn it off if it's on,
+      // and for set we need to turn it on if it's off.
+      //
+      if (bit == action)
       {
-        if (bit == 0)
-        {
-          // If the value index set, there's no index to return.
-          //
-          return -1;
-        }
-        // Continue to compute the offset.
+        eSetVirtualIndexBits(offset, bits ^ (1 << bitIndex));
       }
-      case EVIRTUAL_SET:
-      default:
+
+      // Count just the bits up to this one.
+      // Note that shifting 32 bits is a no op.
+      //
+      int result = eVirtualBitCount(bitIndex == 0 ? 0 : bits << 32 - bitIndex);
+
+      // Count all the bits in the bit patterns up to this one in the sequence
+      // of bit patterns.
+      //
+      for (int i = offset; --i >= 0;)
       {
-        // Depending on the action and the current state, we'll toggle the state.
-        // i.e., for unset, we need to turn it off if it's on, 
-        // and for set we need to turn it on if it's off.
-        //
-        if (bit == action)
-        {
-          eSetVirtualIndexBits(offset, bits ^ (1 << bitIndex));
-        }
-
-        // Count just the bits up to this one.
-        // Note that shifting 32 bits is a no op.
-        //
-        int result = eVirtualBitCount(bitIndex == 0 ? 0 : bits << 32 - bitIndex);
-
-        // Count all the bits in the bit patterns up to this one in the sequence of bit patterns.
-        //
-        for (int i = offset; --i >= 0;)
-        {
-          result += eVirtualBitCount(eVirtualIndexBits(i));
-        }
-
-        // If the index was previously assigned, return it.
-        // Otherwise, return a negative result that encodes the newly assigned index.
-        //
-        return bit != 0 ? result : ~result;
+        result += eVirtualBitCount(eVirtualIndexBits(i));
       }
+
+      // If the index was previously assigned, return it.
+      // Otherwise, return a negative result that encodes the newly assigned
+      // index.
+      //
+      return bit != 0 ? result : ~result;
+    }
     }
   }
 
   /**
    * Returns the array of virtual values of the features that are current set.
+   * 
    * @return the array of virtual values of the features that are current set.
    */
   protected Object[] eVirtualValues()
@@ -1753,27 +1717,35 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
 
   /**
    * Sets the array of virtual values of the features that are current set.
-   * @param newValues the new array of virtual values.
+   * 
+   * @param newValues
+   *          the new array of virtual values.
    */
   protected void eSetVirtualValues(Object[] newValues)
   {
     // eVirtualValues = newValues;
     throw new UnsupportedOperationException();
   }
-  
+
   /**
    * Returns the value at the index.
-   * @param index the {@link #eVirtualIndex(int, int) index} in the {@link #eVirtualValues() virtual values}.
+   * 
+   * @param index
+   *          the {@link #eVirtualIndex(int, int) index} in the
+   *          {@link #eVirtualValues() virtual values}.
    * @return the value at the index.
    */
   protected Object eVirtualValue(int index)
   {
     return eVirtualValues()[index];
   }
-  
+
   /**
    * Sets the value at the index.
-   * @param index the {@link #eVirtualIndex(int, int) index} in the {@link #eVirtualValues() virtual values}.
+   * 
+   * @param index
+   *          the {@link #eVirtualIndex(int, int) index} in the
+   *          {@link #eVirtualValues() virtual values}.
    * @return the previous value at the index.
    */
   protected Object eSetVirtualValue(int index, Object value)
@@ -1785,21 +1757,28 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   }
 
   /**
-   * This method controls the growth of the {@link #eVirtualValues() virtual values} by returning the new capacity
-   * that should be allocated for the given minimum required capacity. Subclasses can override this to be more or
-   * less liberal in growth.
-   * @param minimumCapacity the minimum number of virtual value entries required.
-   * @return the actual number of entries to allocate space for, including a growth factor.
+   * This method controls the growth of the
+   * {@link #eVirtualValues() virtual values} by returning the new capacity that
+   * should be allocated for the given minimum required capacity. Subclasses can
+   * override this to be more or less liberal in growth.
+   * 
+   * @param minimumCapacity
+   *          the minimum number of virtual value entries required.
+   * @return the actual number of entries to allocate space for, including a
+   *         growth factor.
    */
   protected int eComputeVirtualValuesCapacity(int minimumCapacity)
   {
     // return minimumCapacity;
     return minimumCapacity + (minimumCapacity >> 3) + 2;
   }
-  
+
   /**
    * Adds the value at the index.
-   * @param index the {@link #eVirtualIndex(int, int) index} in the {@link #eVirtualValues() virtual values}.
+   * 
+   * @param index
+   *          the {@link #eVirtualIndex(int, int) index} in the
+   *          {@link #eVirtualValues() virtual values}.
    */
   protected void eAddVirtualValue(int index, Object value)
   {
@@ -1807,7 +1786,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     if (values == null)
     {
       int newLength = eComputeVirtualValuesCapacity(1);
-      values = new Object [newLength];
+      values = new Object[newLength];
       values[0] = value;
       for (int i = 1; i < newLength; ++i)
       {
@@ -1824,29 +1803,29 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
         {
           System.arraycopy(values, index, values, index + 1, length - index - 1);
         }
-  
+
         values[index] = value;
       }
       else
       {
         int newLength = eComputeVirtualValuesCapacity(length + 1);
-        Object[] newValues = new Object [newLength];
-  
+        Object[] newValues = new Object[newLength];
+
         for (int i = length; ++i < newLength;)
         {
           newValues[i] = EVIRTUAL_NO_VALUE;
         }
-  
+
         if (index > 0)
         {
           System.arraycopy(values, 0, newValues, 0, index);
         }
-  
+
         if (index < length)
         {
           System.arraycopy(values, index, newValues, index + 1, length - index);
         }
-  
+
         newValues[index] = value;
         eSetVirtualValues(newValues);
       }
@@ -1855,7 +1834,10 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
 
   /**
    * Removes the value at the index.
-   * @param index the {@link #eVirtualIndex(int, int) index} in the {@link #eVirtualValues() virtual values}.
+   * 
+   * @param index
+   *          the {@link #eVirtualIndex(int, int) index} in the
+   *          {@link #eVirtualValues() virtual values}.
    * @return the value at the index.
    */
   protected Object eRemoveVirtualValue(int index)
@@ -1863,7 +1845,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     Object[] values = eVirtualValues();
     Object oldValue = values[index];
     int length = values.length - 1;
-    
+
     if (index == 0 && (length == 0 || values[1] == EVIRTUAL_NO_VALUE))
     {
       eSetVirtualValues(null);
@@ -1877,26 +1859,34 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     }
     return oldValue;
   }
-  
+
   /**
-   * Returns the value for the feature ID, or <code>null</code>, if there isn't one.
-   * @param eDerivedStructuralFeatureID the feature ID to fetch.
+   * Returns the value for the feature ID, or <code>null</code>, if there
+   * isn't one.
+   * 
+   * @param eDerivedStructuralFeatureID
+   *          the feature ID to fetch.
    * @return the value for the feature ID.
    */
   public Object eVirtualGet(int eDerivedStructuralFeatureID)
   {
     return eVirtualGet(eDerivedStructuralFeatureID, null);
   }
-  
+
   /**
-   * Returns the value for the feature ID, or the default value, if there isn't one.
-   * @param eDerivedStructuralFeatureID the feature ID to fetch.
-   * @param defaultValue the default value.
+   * Returns the value for the feature ID, or the default value, if there isn't
+   * one.
+   * 
+   * @param eDerivedStructuralFeatureID
+   *          the feature ID to fetch.
+   * @param defaultValue
+   *          the default value.
    * @return the value for the feature ID.
    */
   public Object eVirtualGet(int eDerivedStructuralFeatureID, Object defaultValue)
   {
-    // Determine the index for the feature and return the value at that index, if an index is assigned.
+    // Determine the index for the feature and return the value at that index,
+    // if an index is assigned.
     //
     int index = eVirtualIndex(eDerivedStructuralFeatureID, EVIRTUAL_GET);
     return index < 0 ? defaultValue : eVirtualValue(index);
@@ -1904,7 +1894,9 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
 
   /**
    * Returns whether there is a value set for the feature ID.
-   * @param eDerivedStructuralFeatureID the feature ID to test.
+   * 
+   * @param eDerivedStructuralFeatureID
+   *          the feature ID to test.
    * @return whether there is a value set for the feature ID.
    */
   public boolean eVirtualIsSet(int eDerivedStructuralFeatureID)
@@ -1918,7 +1910,9 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
 
   /**
    * Sets the value for the feature ID.
-   * @param eDerivedStructuralFeatureID the feature ID to set.
+   * 
+   * @param eDerivedStructuralFeatureID
+   *          the feature ID to set.
    * @return the previous value for the feature ID or {@link #EVIRTUAL_NO_VALUE}.
    */
   public Object eVirtualSet(int eDerivedStructuralFeatureID, Object value)
@@ -1928,22 +1922,26 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     int index = eVirtualIndex(eDerivedStructuralFeatureID, EVIRTUAL_SET);
     if (index < 0)
     {
-      // If it's newly allocated, add a new value, and indicate there was no previous value.
+      // If it's newly allocated, add a new value, and indicate there was no
+      // previous value.
       //
       eAddVirtualValue(~index, value);
       return EVIRTUAL_NO_VALUE;
     }
     else
     {
-      // Set the value at the previously allocated index and return the previous value there.
+      // Set the value at the previously allocated index and return the previous
+      // value there.
       //
       return eSetVirtualValue(index, value);
     }
   }
-  
+
   /**
    * Unsets the value for the feature ID.
-   * @param eDerivedStructuralFeatureID the feature ID to unset.
+   * 
+   * @param eDerivedStructuralFeatureID
+   *          the feature ID to unset.
    * @return the previous value for the feature ID or {@link #EVIRTUAL_NO_VALUE}.
    */
   public Object eVirtualUnset(int eDerivedStructuralFeatureID)
@@ -1958,7 +1956,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
       return eRemoveVirtualValue(index);
     }
   }
-  
+
   @Override
   public String toString()
   {

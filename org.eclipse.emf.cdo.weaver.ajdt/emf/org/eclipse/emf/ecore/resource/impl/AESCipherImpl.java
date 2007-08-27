@@ -37,27 +37,37 @@ import javax.crypto.spec.SecretKeySpec;
 import org.eclipse.emf.ecore.resource.URIConverter;
 
 /**
- * <p>EMF implementation for the {@link URIConverter.Cipher} interface using 
- * the AES encryption algorithm.</p>  
- * <p>This shows how this class can be used:</p>
+ * <p>
+ * EMF implementation for the {@link URIConverter.Cipher} interface using the
+ * AES encryption algorithm.
+ * </p>
+ * <p>
+ * This shows how this class can be used:
+ * </p>
+ * 
  * <pre>
  * Map options = new HashMap();
- * options.put(Resource.OPTION_CIPHER, 
- *             new AESCipherImpl("12345")); // "That's amazing! I've got the same combination on my luggage!"
+ * options.put(Resource.OPTION_CIPHER, new AESCipherImpl(&quot;12345&quot;)); // &quot;That's amazing! I've got the same combination on my luggage!&quot;
  * resource.save(options);
  * resource.load(options);
- * </pre> 
+ * </pre>
  */
 public class AESCipherImpl implements URIConverter.Cipher
 {
   private static final String ENCRYPTION_ALGORITHM = "AES/CFB8/PKCS5Padding";
+
   private static final int ENCRYPTION_IV_LENGTH = 16;
+
   private static final String ENCRYPTION_KEY_ALGORITHM = "AES";
+
   private static final String PBE_ALGORITHM = "PBEWithMD5AndDES";
+
   private static final int PBE_IV_LENGTH = 8;
+
   private static final int PBE_ITERATIONS = 1000;
 
   private static KeyGenerator keygen;
+
   private static SecureRandom random;
 
   private static Key generateKey(int keysize)
@@ -85,7 +95,7 @@ public class AESCipherImpl implements URIConverter.Cipher
       random = new SecureRandom();
     }
 
-    byte[] bytes = new byte [length];
+    byte[] bytes = new byte[length];
     random.nextBytes(bytes);
 
     return bytes;
@@ -93,7 +103,7 @@ public class AESCipherImpl implements URIConverter.Cipher
 
   private static byte[] readBytes(int length, InputStream in) throws Exception
   {
-    byte[] bytes = new byte [length];
+    byte[] bytes = new byte[length];
     int read = in.read(bytes);
 
     if (read != length)
@@ -119,21 +129,31 @@ public class AESCipherImpl implements URIConverter.Cipher
   }
 
   private String password;
+
   private Key key;
+
   private int keysize = 128;
+
   private byte[] encryptedKeyBytes;
+
   private byte[] pbeIV;
+
   private byte[] encryptionIV;
 
   public AESCipherImpl(String password) throws Exception
   {
     this.password = password;
   }
-  
+
   /**
-   * <p>Sets the keysize to be used when creating the AES key. Using anything 
-   * larger than 128 may make the data file non-portable.</p>
-   * <p>The keysize cannot be changed after this Cipher is used.</p>
+   * <p>
+   * Sets the keysize to be used when creating the AES key. Using anything
+   * larger than 128 may make the data file non-portable.
+   * </p>
+   * <p>
+   * The keysize cannot be changed after this Cipher is used.
+   * </p>
+   * 
    * @param keysize
    */
   public void setKeysize(int keysize)
@@ -143,20 +163,20 @@ public class AESCipherImpl implements URIConverter.Cipher
       this.keysize = keysize;
     }
   }
-  
+
   public int getKeysize()
   {
     return keysize;
-  }  
+  }
 
   public OutputStream encrypt(OutputStream outputStream) throws Exception
   {
-    // If we haven't yet encrypted or decrypted, generate a key. This key will 
+    // If we haven't yet encrypted or decrypted, generate a key. This key will
     // only be used for encryption. Decryption keys are always derived from
     // the header of the input stream itself.
     if (key == null)
     {
-      // this is the key we will use to encrypt the data 
+      // this is the key we will use to encrypt the data
       key = generateKey(getKeysize());
 
       // create the IV for the password generation algorithm
@@ -169,7 +189,7 @@ public class AESCipherImpl implements URIConverter.Cipher
       encryptedKeyBytes = transformWithPassword(key.getEncoded(), pbeIV, password, Cipher.ENCRYPT_MODE);
     }
 
-    // write the header to the output stream. this has the format 
+    // write the header to the output stream. this has the format
     // (delimeters are not written):
     // PBE IV|ENCRYPTION IV|ENCRYPTED KEY LENGTH|ENCRYPTED KEY
     outputStream.write(pbeIV);
@@ -177,10 +197,10 @@ public class AESCipherImpl implements URIConverter.Cipher
     outputStream.write(encryptedKeyBytes.length);
     outputStream.write(encryptedKeyBytes);
 
-    // now create the encryption cipher 
+    // now create the encryption cipher
     Cipher cipher = Cipher.getInstance(ENCRYPTION_ALGORITHM);
     cipher.init(Cipher.ENCRYPT_MODE, key, new IvParameterSpec(encryptionIV));
-    
+
     // The CipherOutputStream shoudln't close the underlying stream
     //
     outputStream = new FilterOutputStream(outputStream)
@@ -190,7 +210,7 @@ public class AESCipherImpl implements URIConverter.Cipher
       {
         // Do nothing
       }
-    };    
+    };
     return new CipherOutputStream(outputStream, cipher);
   }
 
@@ -201,7 +221,7 @@ public class AESCipherImpl implements URIConverter.Cipher
 
   public InputStream decrypt(InputStream in) throws Exception
   {
-    // Read the header of the encrypted file.				
+    // Read the header of the encrypted file.
     byte[] pbeIV = readBytes(PBE_IV_LENGTH, in);
     byte[] encryptionIV = readBytes(ENCRYPTION_IV_LENGTH, in);
     int keyLength = in.read();
@@ -231,5 +251,5 @@ public class AESCipherImpl implements URIConverter.Cipher
   public void finish(InputStream in) throws Exception
   {
     // Do nothing
-  }  
+  }
 }

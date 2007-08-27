@@ -10,7 +10,6 @@
  **************************************************************************/
 package org.eclipse.emf.ecore.impl;
 
-import org.eclipse.emf.ecore.resource.Resource;
 
 /**
  * @author Eike Stepper

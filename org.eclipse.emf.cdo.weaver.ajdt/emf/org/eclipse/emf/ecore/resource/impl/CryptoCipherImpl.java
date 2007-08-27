@@ -16,10 +16,10 @@
  */
 package org.eclipse.emf.ecore.resource.impl;
 
-
 /**
- * @deprecated Deprecated in 2.3.0.  Use {@link DESCipherImpl} or
- * {@link AESCipherImpl} instead.  This class will be removed in future versions of EMF.
+ * @deprecated Deprecated in 2.3.0. Use {@link DESCipherImpl} or
+ *             {@link AESCipherImpl} instead. This class will be removed in
+ *             future versions of EMF.
  */
 @Deprecated
 public class CryptoCipherImpl extends DESCipherImpl
@@ -28,7 +28,7 @@ public class CryptoCipherImpl extends DESCipherImpl
   {
     super(null);
   }
-  
+
   public CryptoCipherImpl(String key)
   {
     super(key);

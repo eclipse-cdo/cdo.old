@@ -16,7 +16,6 @@
  */
 package org.eclipse.emf.ecore.util;
 
-
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -36,10 +35,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-
-public abstract class DelegatingEcoreEList<E>
-  extends DelegatingNotifyingListImpl<E>
-  implements InternalEList.Unsettable<E>, EStructuralFeature.Setting
+public abstract class DelegatingEcoreEList<E> extends DelegatingNotifyingListImpl<E> implements
+    InternalEList.Unsettable<E>, EStructuralFeature.Setting
 {
   public static abstract class Unsettable<E> extends DelegatingEcoreEList<E>
   {
@@ -261,7 +258,8 @@ public abstract class DelegatingEcoreEList<E>
   {
     if (isEObject() && hasProxies())
     {
-      @SuppressWarnings("unchecked") E resolved = (E)resolveProxy((EObject)object);
+      @SuppressWarnings("unchecked")
+      E resolved = (E)resolveProxy((EObject)object);
       if (resolved != object)
       {
         E oldObject = delegateGet(index);
@@ -317,7 +315,7 @@ public abstract class DelegatingEcoreEList<E>
   }
 
   @Override
-  public <T> T[] toArray(T [] array)
+  public <T> T[] toArray(T[] array)
   {
     if (hasProxies())
     {
@@ -330,7 +328,8 @@ public abstract class DelegatingEcoreEList<E>
   }
 
   @Override
-  protected NotificationImpl createNotification(int eventType, Object oldObject, Object newObject, int index, boolean wasSet)
+  protected NotificationImpl createNotification(int eventType, Object oldObject, Object newObject, int index,
+      boolean wasSet)
   {
     return new ENotificationImpl(owner, eventType, getFeatureID(), oldObject, newObject, index, wasSet);
   }
@@ -367,72 +366,46 @@ public abstract class DelegatingEcoreEList<E>
   @Override
   public NotificationChain inverseAdd(E object, NotificationChain notifications)
   {
-    InternalEObject internalEObject = (InternalEObject) object;
+    InternalEObject internalEObject = (InternalEObject)object;
     if (hasNavigableInverse())
     {
       if (!hasInstanceClass())
       {
-        return 
-          internalEObject.eInverseAdd
-            (owner, 
-             internalEObject.eClass().getFeatureID(getInverseEReference()),
-             null,
-             notifications);
+        return internalEObject.eInverseAdd(owner, internalEObject.eClass().getFeatureID(getInverseEReference()), null,
+            notifications);
       }
       else
       {
-        return 
-          internalEObject.eInverseAdd
-            (owner, 
-             getInverseFeatureID(),
-             getInverseFeatureClass(),
-             notifications);
+        return internalEObject.eInverseAdd(owner, getInverseFeatureID(), getInverseFeatureClass(), notifications);
       }
     }
     else
     {
-      return 
-        internalEObject.eInverseAdd
-          (owner, 
-           InternalEObject.EOPPOSITE_FEATURE_BASE - getFeatureID(),
-           null,
-           notifications);
+      return internalEObject.eInverseAdd(owner, InternalEObject.EOPPOSITE_FEATURE_BASE - getFeatureID(), null,
+          notifications);
     }
   }
 
   @Override
   public NotificationChain inverseRemove(E object, NotificationChain notifications)
   {
-    InternalEObject internalEObject = (InternalEObject) object;
+    InternalEObject internalEObject = (InternalEObject)object;
     if (hasNavigableInverse())
     {
       if (!hasInstanceClass())
       {
-        return 
-          internalEObject.eInverseRemove
-            (owner, 
-             internalEObject.eClass().getFeatureID(getInverseEReference()),
-             null,
-             notifications);
+        return internalEObject.eInverseRemove(owner, internalEObject.eClass().getFeatureID(getInverseEReference()),
+            null, notifications);
       }
       else
       {
-        return 
-          internalEObject.eInverseRemove
-            (owner, 
-             getInverseFeatureID(),
-             getInverseFeatureClass(),
-             notifications);
+        return internalEObject.eInverseRemove(owner, getInverseFeatureID(), getInverseFeatureClass(), notifications);
       }
     }
     else
     {
-      return 
-        internalEObject.eInverseRemove
-          (owner, 
-           InternalEObject.EOPPOSITE_FEATURE_BASE - getFeatureID(),
-           null,
-           notifications);
+      return internalEObject.eInverseRemove(owner, InternalEObject.EOPPOSITE_FEATURE_BASE - getFeatureID(), null,
+          notifications);
     }
   }
 
@@ -447,18 +420,16 @@ public abstract class DelegatingEcoreEList<E>
       int size = size();
       if (size > 4)
       {
-        if (!isInstance(object)) 
+        if (!isInstance(object))
         {
           return false;
         }
         else if (isContainment())
         {
           InternalEObject eObject = (InternalEObject)object;
-          boolean result =
-            eObject.eInternalContainer() == owner && 
-              (hasNavigableInverse() ? 
-                 eObject.eContainerFeatureID() == getInverseFeatureID() :
-                 InternalEObject.EOPPOSITE_FEATURE_BASE - eObject.eContainerFeatureID() == getFeatureID());
+          boolean result = eObject.eInternalContainer() == owner
+              && (hasNavigableInverse() ? eObject.eContainerFeatureID() == getInverseFeatureID()
+                  : InternalEObject.EOPPOSITE_FEATURE_BASE - eObject.eContainerFeatureID() == getFeatureID());
           if (hasProxies() && !result)
           {
             for (int i = 0; i < size; ++i)
@@ -472,7 +443,7 @@ public abstract class DelegatingEcoreEList<E>
           }
           return result;
         }
-        // We can also optimize single valued reverse. 
+        // We can also optimize single valued reverse.
         //
         else if (hasNavigableInverse() && !hasManyInverse())
         {
@@ -504,8 +475,7 @@ public abstract class DelegatingEcoreEList<E>
   public int indexOf(Object object)
   {
     int index = super.indexOf(object);
-    if (index >= 0)
-      return index;
+    if (index >= 0) return index;
 
     // EATM This might be better written as a single loop for the EObject case?
     //
@@ -528,7 +498,7 @@ public abstract class DelegatingEcoreEList<E>
   public int lastIndexOf(Object object)
   {
     int result = super.lastIndexOf(object);
-    if (isEObject () && result == -1)
+    if (isEObject() && result == -1)
     {
       for (int i = size() - 1; i >= 0; --i)
       {
@@ -589,13 +559,13 @@ public abstract class DelegatingEcoreEList<E>
     clear();
   }
 
-  public static class UnmodifiableEList<E>
-    extends DelegatingEList.UnmodifiableEList<E>
-    implements InternalEList.Unsettable<E>, EStructuralFeature.Setting
+  public static class UnmodifiableEList<E> extends DelegatingEList.UnmodifiableEList<E> implements
+      InternalEList.Unsettable<E>, EStructuralFeature.Setting
   {
     private static final long serialVersionUID = 1L;
 
     protected final InternalEObject owner;
+
     protected final EStructuralFeature eStructuralFeature;
 
     public UnmodifiableEList(InternalEObject owner, EStructuralFeature eStructuralFeature, List<E> underlyingList)
@@ -679,16 +649,27 @@ public abstract class DelegatingEcoreEList<E>
   public static abstract class Generic<E> extends DelegatingEcoreEList<E>
   {
     public static final int IS_SET = EcoreEList.Generic.IS_SET;
+
     public static final int IS_UNSETTABLE = EcoreEList.Generic.IS_UNSETTABLE;
+
     public static final int HAS_INSTANCE_CLASS = EcoreEList.Generic.HAS_INSTANCE_CLASS;
+
     public static final int HAS_NAVIGABLE_INVERSE = EcoreEList.Generic.HAS_NAVIGABLE_INVERSE;
+
     public static final int HAS_MANY_INVERSE = EcoreEList.Generic.HAS_MANY_INVERSE;
+
     public static final int IS_CONTAINMENT = EcoreEList.Generic.IS_CONTAINMENT;
+
     public static final int IS_CONTAINER = EcoreEList.Generic.IS_CONTAINER;
+
     public static final int IS_UNIQUE = EcoreEList.Generic.IS_UNIQUE;
+
     public static final int IS_PRIMITIVE = EcoreEList.Generic.IS_PRIMITIVE;
+
     public static final int IS_ENUM = EcoreEList.Generic.IS_ENUM;
+
     public static final int IS_EOBJECT = EcoreEList.Generic.IS_EOBJECT;
+
     public static final int HAS_PROXIES = EcoreEList.Generic.HAS_PROXIES;
 
     public static int kind(EStructuralFeature eStructuralFeature)
@@ -739,7 +720,7 @@ public abstract class DelegatingEcoreEList<E>
     @Override
     protected boolean hasNavigableInverse()
     {
-      return (kind & HAS_NAVIGABLE_INVERSE) != 0; 
+      return (kind & HAS_NAVIGABLE_INVERSE) != 0;
     }
 
     @Override

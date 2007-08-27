@@ -16,7 +16,6 @@
  */
 package org.eclipse.emf.ecore.impl;
 
-
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -27,15 +26,15 @@ import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EcorePackage;
 
-
 /**
  * An adapter implementation for maintaining {@link EClass}es
  */
-public class ESuperAdapter extends AdapterImpl 
+public class ESuperAdapter extends AdapterImpl
 {
   public interface Holder
   {
     ESuperAdapter getESuperAdapter();
+
     boolean isFrozen();
   }
 
@@ -50,19 +49,29 @@ public class ESuperAdapter extends AdapterImpl
   protected EList<EClass> subclasses;
 
   protected static final int ATTRIBUTES_MODIFIED = 0x0001;
+
   protected static final int REFERENCES_MODIFIED = 0x0002;
+
   protected static final int STRUCTURAL_FEATURES_MODIFIED = 0x0004;
+
   protected static final int CONTAINMENTS_MODIFIED = 0x0008;
+
   protected static final int OPERATIONS_MODIFIED = 0x0010;
+
   protected static final int SUPERS_MODIFIED = 0x0020;
+
   protected static final int LAST_ESUPER_ADAPTER_MODIFIED = SUPERS_MODIFIED;
 
   protected int modifiedState = 0x003F;
 
   protected final static int SUPERS = 0;
+
   protected final static int ATTRIBUTES = 1;
+
   protected final static int REFERENCES = 2;
+
   protected final static int OPERATIONS = 3;
+
   protected final static int STRUCTURAL_FEATURES = 4;
 
   protected static int getFeatureID(Notification notification)
@@ -70,11 +79,16 @@ public class ESuperAdapter extends AdapterImpl
     int featureID = notification.getFeatureID(null);
     switch (featureID)
     {
-      case EcorePackage.ECLASS__ESUPER_TYPES: return SUPERS;
-      case EcorePackage.ECLASS__EATTRIBUTES: return ATTRIBUTES;
-      case EcorePackage.ECLASS__EREFERENCES: return REFERENCES;
-      case EcorePackage.ECLASS__EOPERATIONS: return OPERATIONS;
-      case EcorePackage.ECLASS__ESTRUCTURAL_FEATURES: return STRUCTURAL_FEATURES;
+    case EcorePackage.ECLASS__ESUPER_TYPES:
+      return SUPERS;
+    case EcorePackage.ECLASS__EATTRIBUTES:
+      return ATTRIBUTES;
+    case EcorePackage.ECLASS__EREFERENCES:
+      return REFERENCES;
+    case EcorePackage.ECLASS__EOPERATIONS:
+      return OPERATIONS;
+    case EcorePackage.ECLASS__ESTRUCTURAL_FEATURES:
+      return STRUCTURAL_FEATURES;
     }
     return -1;
   }
@@ -99,96 +113,96 @@ public class ESuperAdapter extends AdapterImpl
   public void notifyChanged(Notification notification)
   {
     int eventType = notification.getEventType();
-    if (eventType != Notification.REMOVING_ADAPTER) 
+    if (eventType != Notification.REMOVING_ADAPTER)
     {
       int featureID = getFeatureID(notification);
       if (featureID == SUPERS)
       {
         switch (eventType)
         {
-          case Notification.SET:
+        case Notification.SET:
+        {
+          Object oldValue = notification.getOldValue();
+          if (oldValue != null)
           {
-            Object oldValue = notification.getOldValue();
-            if (oldValue != null)
+            ESuperAdapter eSuperAdapter = ((Holder)oldValue).getESuperAdapter();
+            eSuperAdapter.getSubclasses().remove(notification.getNotifier());
+          }
+          Object newValue = notification.getNewValue();
+          if (newValue != null)
+          {
+            Holder holder = (Holder)newValue;
+            if (!holder.isFrozen())
             {
-              ESuperAdapter eSuperAdapter = ((Holder)oldValue).getESuperAdapter();
+              ESuperAdapter eSuperAdapter = holder.getESuperAdapter();
+              eSuperAdapter.getSubclasses().add((EClass)notification.getNotifier());
+            }
+          }
+          break;
+        }
+        case Notification.RESOLVE:
+        case Notification.ADD:
+        {
+          Object newValue = notification.getNewValue();
+          if (newValue != null)
+          {
+            Holder holder = (Holder)newValue;
+            if (!holder.isFrozen())
+            {
+              ESuperAdapter eSuperAdapter = holder.getESuperAdapter();
+              eSuperAdapter.getSubclasses().add((EClass)notification.getNotifier());
+            }
+          }
+          break;
+        }
+        case Notification.ADD_MANY:
+        {
+          Object newValue = notification.getNewValue();
+          if (newValue != null)
+          {
+            for (Iterator<?> i = ((Collection<?>)newValue).iterator(); i.hasNext();)
+            {
+              Holder holder = (Holder)i.next();
+              if (!holder.isFrozen())
+              {
+                ESuperAdapter eSuperAdapter = holder.getESuperAdapter();
+                eSuperAdapter.getSubclasses().add((EClass)notification.getNotifier());
+              }
+            }
+          }
+          break;
+        }
+        case Notification.REMOVE:
+        {
+          Object oldValue = notification.getOldValue();
+          if (oldValue != null)
+          {
+            Holder holder = (Holder)oldValue;
+            if (!holder.isFrozen())
+            {
+              ESuperAdapter eSuperAdapter = holder.getESuperAdapter();
               eSuperAdapter.getSubclasses().remove(notification.getNotifier());
             }
-            Object newValue = notification.getNewValue();
-            if (newValue != null)
-            {
-              Holder holder =  (Holder)newValue;
-              if (!holder.isFrozen())
-              {
-                ESuperAdapter eSuperAdapter = holder.getESuperAdapter();
-                eSuperAdapter.getSubclasses().add((EClass)notification.getNotifier());
-              }
-            }
-            break;
           }
-          case Notification.RESOLVE:
-          case Notification.ADD:
+          break;
+        }
+        case Notification.REMOVE_MANY:
+        {
+          Object oldValue = notification.getOldValue();
+          if (oldValue != null)
           {
-            Object newValue = notification.getNewValue();
-            if (newValue != null)
+            for (Iterator<?> i = ((Collection<?>)oldValue).iterator(); i.hasNext();)
             {
-              Holder holder = (Holder)newValue;
-              if (!holder.isFrozen())
-              {
-                ESuperAdapter eSuperAdapter = holder.getESuperAdapter();
-                eSuperAdapter.getSubclasses().add((EClass)notification.getNotifier());
-              }
-            }
-            break;
-          }
-          case Notification.ADD_MANY:
-          {
-            Object newValue = notification.getNewValue();
-            if (newValue != null)
-            {
-              for (Iterator<?> i = ((Collection<?>)newValue).iterator(); i.hasNext(); )
-              {
-                Holder holder =  (Holder)i.next();
-                if (!holder.isFrozen())
-                {
-                  ESuperAdapter eSuperAdapter = holder.getESuperAdapter();
-                  eSuperAdapter.getSubclasses().add((EClass)notification.getNotifier());
-                }
-              }
-            }
-            break;
-          }
-          case Notification.REMOVE:
-          {
-            Object oldValue = notification.getOldValue();
-            if (oldValue != null)
-            {
-              Holder holder = (Holder)oldValue;
+              Holder holder = (Holder)i.next();
               if (!holder.isFrozen())
               {
                 ESuperAdapter eSuperAdapter = holder.getESuperAdapter();
                 eSuperAdapter.getSubclasses().remove(notification.getNotifier());
               }
             }
-            break;
           }
-          case Notification.REMOVE_MANY:
-          {
-            Object oldValue = notification.getOldValue();
-            if (oldValue != null)
-            {
-              for (Iterator<?> i = ((Collection<?>)oldValue).iterator(); i.hasNext(); )
-              {
-                Holder holder = (Holder)i.next();
-                if (!holder.isFrozen())
-                {
-                  ESuperAdapter eSuperAdapter = holder.getESuperAdapter();
-                  eSuperAdapter.getSubclasses().remove(notification.getNotifier());
-                }
-              }
-            }
-            break;
-          }
+          break;
+        }
         }
       }
 
@@ -284,7 +298,7 @@ public class ESuperAdapter extends AdapterImpl
   public boolean isAllSuperCollectionModified()
   {
     return (modifiedState & SUPERS_MODIFIED) != 0;
-  } 
+  }
 
   public void setAllSuperCollectionModified(boolean set)
   {
@@ -302,23 +316,22 @@ public class ESuperAdapter extends AdapterImpl
   {
     if (subclasses == null)
     {
-      subclasses = 
-        new UniqueEList<EClass>()
+      subclasses = new UniqueEList<EClass>()
+      {
+        private static final long serialVersionUID = 1L;
+
+        @Override
+        protected Object[] newData(int capacity)
         {
-          private static final long serialVersionUID = 1L;
+          return new EClass[capacity];
+        }
 
-          @Override
-          protected Object [] newData(int capacity)
-          {
-            return new EClass [capacity];
-          }
-
-          @Override
-          protected boolean useEquals()
-          {
-            return false;
-          }
-        };
+        @Override
+        protected boolean useEquals()
+        {
+          return false;
+        }
+      };
     }
     return subclasses;
   }
@@ -329,49 +342,49 @@ public class ESuperAdapter extends AdapterImpl
 
     switch (featureId)
     {
-      case ATTRIBUTES:
-      {
-        setAllAttributesCollectionModified(true);
-        setAllStructuralFeaturesCollectionModified(true);
-        setAllContainmentsCollectionModified(true);
-        break;
-      }
-      case REFERENCES:
-      {
-        setAllReferencesCollectionModified(true);
-        setAllStructuralFeaturesCollectionModified(true);
-        setAllContainmentsCollectionModified(true);
-        break;
-      }
-      case STRUCTURAL_FEATURES:
-      {
-        setAllAttributesCollectionModified(true);
-        setAllReferencesCollectionModified(true);
-        setAllStructuralFeaturesCollectionModified(true);
-        setAllContainmentsCollectionModified(true);
-        break;
-      }
-      case OPERATIONS:
-      {
-        setAllOperationsCollectionModified(true);
-        setAllContainmentsCollectionModified(true);
-        break;
-      }
-      case SUPERS:
-      {
-        setAllSuperCollectionModified(true);
-        setAllOperationsCollectionModified(true);
-        setAllContainmentsCollectionModified(true);
-        setAllAttributesCollectionModified(true);
-        setAllReferencesCollectionModified(true);
-        setAllStructuralFeaturesCollectionModified(true);
-        break;
-      }
+    case ATTRIBUTES:
+    {
+      setAllAttributesCollectionModified(true);
+      setAllStructuralFeaturesCollectionModified(true);
+      setAllContainmentsCollectionModified(true);
+      break;
+    }
+    case REFERENCES:
+    {
+      setAllReferencesCollectionModified(true);
+      setAllStructuralFeaturesCollectionModified(true);
+      setAllContainmentsCollectionModified(true);
+      break;
+    }
+    case STRUCTURAL_FEATURES:
+    {
+      setAllAttributesCollectionModified(true);
+      setAllReferencesCollectionModified(true);
+      setAllStructuralFeaturesCollectionModified(true);
+      setAllContainmentsCollectionModified(true);
+      break;
+    }
+    case OPERATIONS:
+    {
+      setAllOperationsCollectionModified(true);
+      setAllContainmentsCollectionModified(true);
+      break;
+    }
+    case SUPERS:
+    {
+      setAllSuperCollectionModified(true);
+      setAllOperationsCollectionModified(true);
+      setAllContainmentsCollectionModified(true);
+      setAllAttributesCollectionModified(true);
+      setAllReferencesCollectionModified(true);
+      setAllStructuralFeaturesCollectionModified(true);
+      break;
+    }
     }
 
     if (modifiedState != oldModifiedState && subclasses != null)
     {
-      for (Iterator<?> i = subclasses.iterator(); i.hasNext(); )
+      for (Iterator<?> i = subclasses.iterator(); i.hasNext();)
       {
         Holder subclass = (Holder)i.next();
         ESuperAdapter eSuperAdapter = subclass.getESuperAdapter();

@@ -23,10 +23,9 @@ import java.util.List;
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Space Type</b></em>',
- * and utility methods for working with them.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Space Type</b></em>',
+ * and utility methods for working with them. <!-- end-user-doc -->
+ * 
  * @see org.eclipse.emf.ecore.xml.namespace.XMLNamespacePackage#getSpaceType()
  * @model extendedMetaData="name='space_._type'"
  * @generated
@@ -34,9 +33,9 @@ import org.eclipse.emf.common.util.Enumerator;
 public enum SpaceType implements Enumerator
 {
   /**
-   * The '<em><b>Default</b></em>' literal object.
-   * <!-- begin-user-doc -->
+   * The '<em><b>Default</b></em>' literal object. <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #DEFAULT
    * @generated
    * @ordered
@@ -44,9 +43,9 @@ public enum SpaceType implements Enumerator
   DEFAULT_LITERAL(0, "default", "default"),
 
   /**
-   * The '<em><b>Preserve</b></em>' literal object.
-   * <!-- begin-user-doc -->
+   * The '<em><b>Preserve</b></em>' literal object. <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #PRESERVE
    * @generated
    * @ordered
@@ -54,9 +53,9 @@ public enum SpaceType implements Enumerator
   PRESERVE_LITERAL(1, "preserve", "preserve");
 
   /**
-   * The '<em><b>Default</b></em>' literal value.
-   * <!-- begin-user-doc -->
+   * The '<em><b>Default</b></em>' literal value. <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #DEFAULT_LITERAL
    * @model name="default"
    * @generated
@@ -65,9 +64,9 @@ public enum SpaceType implements Enumerator
   public static final int DEFAULT = 0;
 
   /**
-   * The '<em><b>Preserve</b></em>' literal value.
-   * <!-- begin-user-doc -->
+   * The '<em><b>Preserve</b></em>' literal value. <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #PRESERVE_LITERAL
    * @model name="preserve"
    * @generated
@@ -76,30 +75,25 @@ public enum SpaceType implements Enumerator
   public static final int PRESERVE = 1;
 
   /**
-   * An array of all the '<em><b>Space Type</b></em>' enumerators.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * An array of all the '<em><b>Space Type</b></em>' enumerators. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
-  private static final SpaceType[] VALUES_ARRAY =
-    new SpaceType[]
-    {
-      DEFAULT_LITERAL,
-      PRESERVE_LITERAL,
-    };
+  private static final SpaceType[] VALUES_ARRAY = new SpaceType[] { DEFAULT_LITERAL, PRESERVE_LITERAL, };
 
   /**
-   * A public read-only list of all the '<em><b>Space Type</b></em>' enumerators.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * A public read-only list of all the '<em><b>Space Type</b></em>'
+   * enumerators. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public static final List<SpaceType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
   /**
-   * Returns the '<em><b>Space Type</b></em>' literal with the specified literal value.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the '<em><b>Space Type</b></em>' literal with the specified
+   * literal value. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public static SpaceType get(String literal)
@@ -116,9 +110,9 @@ public enum SpaceType implements Enumerator
   }
 
   /**
-   * Returns the '<em><b>Space Type</b></em>' literal with the specified name.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the '<em><b>Space Type</b></em>' literal with the specified
+   * name. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public static SpaceType getByName(String name)
@@ -135,46 +129,48 @@ public enum SpaceType implements Enumerator
   }
 
   /**
-   * Returns the '<em><b>Space Type</b></em>' literal with the specified integer value.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the '<em><b>Space Type</b></em>' literal with the specified
+   * integer value. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public static SpaceType get(int value)
   {
     switch (value)
     {
-      case DEFAULT: return DEFAULT_LITERAL;
-      case PRESERVE: return PRESERVE_LITERAL;
+    case DEFAULT:
+      return DEFAULT_LITERAL;
+    case PRESERVE:
+      return PRESERVE_LITERAL;
     }
     return null;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private final int value;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private final String name;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private final String literal;
 
   /**
-   * Only this class can construct instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Only this class can construct instances. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @generated
    */
   private SpaceType(int value, String name, String literal)
@@ -185,8 +181,8 @@ public enum SpaceType implements Enumerator
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public int getValue()
@@ -195,8 +191,8 @@ public enum SpaceType implements Enumerator
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String getName()
@@ -205,8 +201,8 @@ public enum SpaceType implements Enumerator
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String getLiteral()
@@ -215,9 +211,9 @@ public enum SpaceType implements Enumerator
   }
 
   /**
-   * Returns the literal value of the enumerator, which is its string representation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the literal value of the enumerator, which is its string
+   * representation. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -225,5 +221,5 @@ public enum SpaceType implements Enumerator
   {
     return literal;
   }
-  
-} //SpaceType
+
+} // SpaceType

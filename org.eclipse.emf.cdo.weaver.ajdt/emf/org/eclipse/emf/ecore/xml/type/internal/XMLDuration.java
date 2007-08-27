@@ -82,13 +82,12 @@ import javax.xml.datatype.DatatypeConstants.Field;
 
 import org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil;
 
-
 /**
- * An internal extension of Java's Duration to represent
- * the <a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/">W3C XML Schema 1.0</a>
+ * An internal extension of Java's Duration to represent the <a
+ * href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/">W3C XML Schema 1.0</a>
  * duration data type.
- * <p> 
- * NOTE: this class is for internal use only. 
+ * <p>
+ * NOTE: this class is for internal use only.
  */
 public final class XMLDuration extends Duration
 {
@@ -103,22 +102,22 @@ public final class XMLDuration extends Duration
   {
     switch (value1.duration.compare(value2.duration))
     {
-      case DatatypeConstants.EQUAL:
-      {
-        return XMLCalendar.EQUALS;
-      }
-      case DatatypeConstants.LESSER:
-      {
-        return XMLCalendar.LESS_THAN;
-      }
-      case DatatypeConstants.GREATER:
-      {
-        return XMLCalendar.GREATER_THAN;
-      }
-      default:
-      {
-        return XMLCalendar.INDETERMINATE;
-      }
+    case DatatypeConstants.EQUAL:
+    {
+      return XMLCalendar.EQUALS;
+    }
+    case DatatypeConstants.LESSER:
+    {
+      return XMLCalendar.LESS_THAN;
+    }
+    case DatatypeConstants.GREATER:
+    {
+      return XMLCalendar.GREATER_THAN;
+    }
+    default:
+    {
+      return XMLCalendar.INDETERMINATE;
+    }
     }
   }
 
@@ -127,15 +126,15 @@ public final class XMLDuration extends Duration
   {
     return object != null && duration.equals(object);
   }
-    
+
   @Override
   public int hashCode()
   {
     return duration.hashCode();
   }
-    
+
   @Override
-  public String toString() 
+  public String toString()
   {
     return duration.toString();
   }

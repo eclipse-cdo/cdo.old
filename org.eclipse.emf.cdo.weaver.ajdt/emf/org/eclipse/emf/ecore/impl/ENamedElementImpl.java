@@ -16,7 +16,6 @@
  */
 package org.eclipse.emf.ecore.impl;
 
-
 import java.util.Collection;
 import java.util.ListIterator;
 
@@ -31,26 +30,24 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.ECrossReferenceEList;
 
-
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>ENamed Element</b></em>'.
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>ENamed Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.ecore.impl.ENamedElementImpl#getName <em>Name</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.impl.ENamedElementImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class ENamedElementImpl extends EModelElementImpl implements ENamedElement
 {
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getName()
    * @generated
    * @ordered
@@ -59,8 +56,8 @@ public abstract class ENamedElementImpl extends EModelElementImpl implements ENa
 
   /**
    * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getName()
    * @generated
    * @ordered
@@ -68,8 +65,8 @@ public abstract class ENamedElementImpl extends EModelElementImpl implements ENa
   protected String name = NAME_EDEFAULT;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected ENamedElementImpl()
@@ -78,8 +75,8 @@ public abstract class ENamedElementImpl extends EModelElementImpl implements ENa
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -89,25 +86,21 @@ public abstract class ENamedElementImpl extends EModelElementImpl implements ENa
   }
 
   /**
-   * Default is ID if name is null       
+   * Default is ID if name is null
    */
   public String getName()
   {
     return getNameGen();
-/*
-    // if no default has been specified, use the id as the default.
-    String defaultName = this.getNameGen();
-
-    if (defaultName != null)
-      return defaultName;
-    else
-      return eID();
-*/
+    /*
+     * // if no default has been specified, use the id as the default. String
+     * defaultName = this.getNameGen(); if (defaultName != null) return
+     * defaultName; else return eID();
+     */
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -123,8 +116,8 @@ public abstract class ENamedElementImpl extends EModelElementImpl implements ENa
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String getNameGen()
@@ -133,8 +126,8 @@ public abstract class ENamedElementImpl extends EModelElementImpl implements ENa
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setName(String newName)
@@ -146,8 +139,8 @@ public abstract class ENamedElementImpl extends EModelElementImpl implements ENa
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -155,17 +148,17 @@ public abstract class ENamedElementImpl extends EModelElementImpl implements ENa
   {
     switch (featureID)
     {
-      case EcorePackage.ENAMED_ELEMENT__EANNOTATIONS:
-        return getEAnnotations();
-      case EcorePackage.ENAMED_ELEMENT__NAME:
-        return getName();
+    case EcorePackage.ENAMED_ELEMENT__EANNOTATIONS:
+      return getEAnnotations();
+    case EcorePackage.ENAMED_ELEMENT__NAME:
+      return getName();
     }
     return eDynamicGet(featureID, resolve, coreType);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -174,20 +167,20 @@ public abstract class ENamedElementImpl extends EModelElementImpl implements ENa
   {
     switch (featureID)
     {
-      case EcorePackage.ENAMED_ELEMENT__EANNOTATIONS:
-        getEAnnotations().clear();
-        getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
-        return;
-      case EcorePackage.ENAMED_ELEMENT__NAME:
-        setName((String)newValue);
-        return;
+    case EcorePackage.ENAMED_ELEMENT__EANNOTATIONS:
+      getEAnnotations().clear();
+      getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
+      return;
+    case EcorePackage.ENAMED_ELEMENT__NAME:
+      setName((String)newValue);
+      return;
     }
     eDynamicSet(featureID, newValue);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -195,19 +188,19 @@ public abstract class ENamedElementImpl extends EModelElementImpl implements ENa
   {
     switch (featureID)
     {
-      case EcorePackage.ENAMED_ELEMENT__EANNOTATIONS:
-        getEAnnotations().clear();
-        return;
-      case EcorePackage.ENAMED_ELEMENT__NAME:
-        setName(NAME_EDEFAULT);
-        return;
+    case EcorePackage.ENAMED_ELEMENT__EANNOTATIONS:
+      getEAnnotations().clear();
+      return;
+    case EcorePackage.ENAMED_ELEMENT__NAME:
+      setName(NAME_EDEFAULT);
+      return;
     }
     eDynamicUnset(featureID);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -215,10 +208,10 @@ public abstract class ENamedElementImpl extends EModelElementImpl implements ENa
   {
     switch (featureID)
     {
-      case EcorePackage.ENAMED_ELEMENT__EANNOTATIONS:
-        return eAnnotations != null && !eAnnotations.isEmpty();
-      case EcorePackage.ENAMED_ELEMENT__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+    case EcorePackage.ENAMED_ELEMENT__EANNOTATIONS:
+      return eAnnotations != null && !eAnnotations.isEmpty();
+    case EcorePackage.ENAMED_ELEMENT__NAME:
+      return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }
     return eDynamicIsSet(featureID);
   }
@@ -228,13 +221,11 @@ public abstract class ENamedElementImpl extends EModelElementImpl implements ENa
   {
     if (eContents == null)
     {
-      EStructuralFeature [] eStructuralFeatures = 
-        ((EClassImpl.FeatureSubsetSupplier)eClass().getEAllStructuralFeatures()).containments();
-      
-      eContents = 
-        eStructuralFeatures == null ?
-          EContentsEList.<EObject>emptyContentsEList() :
-          new EContentsEList<EObject>(this, eStructuralFeatures)
+      EStructuralFeature[] eStructuralFeatures = ((EClassImpl.FeatureSubsetSupplier)eClass()
+          .getEAllStructuralFeatures()).containments();
+
+      eContents = eStructuralFeatures == null ? EContentsEList.<EObject> emptyContentsEList()
+          : new EContentsEList<EObject>(this, eStructuralFeatures)
           {
             @Override
             protected boolean useIsSet()
@@ -245,29 +236,27 @@ public abstract class ENamedElementImpl extends EModelElementImpl implements ENa
             @Override
             protected ListIterator<EObject> newResolvingListIterator()
             {
-              return 
-                new ResolvingFeatureIteratorImpl<EObject>(eObject, eStructuralFeatures)
+              return new ResolvingFeatureIteratorImpl<EObject>(eObject, eStructuralFeatures)
+              {
+                @Override
+                protected boolean useIsSet()
                 {
-                  @Override
-                  protected boolean useIsSet()
-                  {
-                    return false;
-                  }
-                };
+                  return false;
+                }
+              };
             }
 
             @Override
             protected ListIterator<EObject> newNonResolvingListIterator()
             {
-              return 
-                new FeatureIteratorImpl<EObject>(eObject, eStructuralFeatures)
+              return new FeatureIteratorImpl<EObject>(eObject, eStructuralFeatures)
+              {
+                @Override
+                protected boolean useIsSet()
                 {
-                  @Override
-                  protected boolean useIsSet()
-                  {
-                    return false;
-                  }
-                };
+                  return false;
+                }
+              };
             }
 
           };
@@ -280,13 +269,11 @@ public abstract class ENamedElementImpl extends EModelElementImpl implements ENa
   {
     if (eCrossReferences == null)
     {
-      EStructuralFeature [] eStructuralFeatures = 
-        ((EClassImpl.FeatureSubsetSupplier)eClass().getEAllStructuralFeatures()).crossReferences();
+      EStructuralFeature[] eStructuralFeatures = ((EClassImpl.FeatureSubsetSupplier)eClass()
+          .getEAllStructuralFeatures()).crossReferences();
 
-      eCrossReferences =
-        eStructuralFeatures == null ?
-          ECrossReferenceEList.<EObject>emptyCrossReferenceEList() :
-          new ECrossReferenceEList<EObject>(this, eStructuralFeatures)
+      eCrossReferences = eStructuralFeatures == null ? ECrossReferenceEList.<EObject> emptyCrossReferenceEList()
+          : new ECrossReferenceEList<EObject>(this, eStructuralFeatures)
           {
             @Override
             protected boolean useIsSet()
@@ -297,29 +284,27 @@ public abstract class ENamedElementImpl extends EModelElementImpl implements ENa
             @Override
             protected ListIterator<EObject> newResolvingListIterator()
             {
-              return 
-                new ResolvingFeatureIteratorImpl<EObject>(eObject, eStructuralFeatures)
+              return new ResolvingFeatureIteratorImpl<EObject>(eObject, eStructuralFeatures)
+              {
+                @Override
+                protected boolean useIsSet()
                 {
-                  @Override
-                  protected boolean useIsSet()
-                  {
-                    return false;
-                  }
-                };
+                  return false;
+                }
+              };
             }
 
             @Override
             protected ListIterator<EObject> newNonResolvingListIterator()
             {
-              return 
-                new FeatureIteratorImpl<EObject>(eObject, eStructuralFeatures)
+              return new FeatureIteratorImpl<EObject>(eObject, eStructuralFeatures)
+              {
+                @Override
+                protected boolean useIsSet()
                 {
-                  @Override
-                  protected boolean useIsSet()
-                  {
-                    return false;
-                  }
-                };
+                  return false;
+                }
+              };
             }
           };
     }

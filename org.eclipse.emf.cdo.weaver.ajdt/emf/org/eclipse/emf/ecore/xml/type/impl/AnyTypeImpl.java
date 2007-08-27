@@ -27,26 +27,25 @@ import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Any Type</b></em>'.
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Any Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.ecore.xml.type.impl.AnyTypeImpl#getMixed <em>Mixed</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.xml.type.impl.AnyTypeImpl#getAny <em>Any</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.xml.type.impl.AnyTypeImpl#getAnyAttribute <em>Any Attribute</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.xml.type.impl.AnyTypeImpl#getMixed <em>Mixed</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.xml.type.impl.AnyTypeImpl#getAny <em>Any</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.xml.type.impl.AnyTypeImpl#getAnyAttribute <em>Any Attribute</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class AnyTypeImpl extends EObjectImpl implements AnyType
 {
   /**
-   * The cached value of the '{@link #getMixed() <em>Mixed</em>}' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getMixed() <em>Mixed</em>}' attribute
+   * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getMixed()
    * @generated
    * @ordered
@@ -54,9 +53,9 @@ public class AnyTypeImpl extends EObjectImpl implements AnyType
   protected FeatureMap mixed;
 
   /**
-   * The cached value of the '{@link #getAnyAttribute() <em>Any Attribute</em>}' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getAnyAttribute() <em>Any Attribute</em>}'
+   * attribute list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getAnyAttribute()
    * @generated
    * @ordered
@@ -64,8 +63,8 @@ public class AnyTypeImpl extends EObjectImpl implements AnyType
   protected FeatureMap anyAttribute;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected AnyTypeImpl()
@@ -74,8 +73,8 @@ public class AnyTypeImpl extends EObjectImpl implements AnyType
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -85,8 +84,8 @@ public class AnyTypeImpl extends EObjectImpl implements AnyType
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public FeatureMap getMixed()
@@ -99,18 +98,18 @@ public class AnyTypeImpl extends EObjectImpl implements AnyType
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public FeatureMap getAny()
   {
-    return (FeatureMap)getMixed().<FeatureMap.Entry>list(XMLTypePackage.Literals.ANY_TYPE__ANY);
+    return (FeatureMap)getMixed().<FeatureMap.Entry> list(XMLTypePackage.Literals.ANY_TYPE__ANY);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public FeatureMap getAnyAttribute()
@@ -123,8 +122,8 @@ public class AnyTypeImpl extends EObjectImpl implements AnyType
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -132,19 +131,19 @@ public class AnyTypeImpl extends EObjectImpl implements AnyType
   {
     switch (featureID)
     {
-      case XMLTypePackage.ANY_TYPE__MIXED:
-        return ((InternalEList<?>)getMixed()).basicRemove(otherEnd, msgs);
-      case XMLTypePackage.ANY_TYPE__ANY:
-        return ((InternalEList<?>)getAny()).basicRemove(otherEnd, msgs);
-      case XMLTypePackage.ANY_TYPE__ANY_ATTRIBUTE:
-        return ((InternalEList<?>)getAnyAttribute()).basicRemove(otherEnd, msgs);
+    case XMLTypePackage.ANY_TYPE__MIXED:
+      return ((InternalEList<?>)getMixed()).basicRemove(otherEnd, msgs);
+    case XMLTypePackage.ANY_TYPE__ANY:
+      return ((InternalEList<?>)getAny()).basicRemove(otherEnd, msgs);
+    case XMLTypePackage.ANY_TYPE__ANY_ATTRIBUTE:
+      return ((InternalEList<?>)getAnyAttribute()).basicRemove(otherEnd, msgs);
     }
     return eDynamicInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -152,22 +151,22 @@ public class AnyTypeImpl extends EObjectImpl implements AnyType
   {
     switch (featureID)
     {
-      case XMLTypePackage.ANY_TYPE__MIXED:
-        if (coreType) return getMixed();
-        return ((FeatureMap.Internal)getMixed()).getWrapper();
-      case XMLTypePackage.ANY_TYPE__ANY:
-        if (coreType) return getAny();
-        return ((FeatureMap.Internal)getAny()).getWrapper();
-      case XMLTypePackage.ANY_TYPE__ANY_ATTRIBUTE:
-        if (coreType) return getAnyAttribute();
-        return ((FeatureMap.Internal)getAnyAttribute()).getWrapper();
+    case XMLTypePackage.ANY_TYPE__MIXED:
+      if (coreType) return getMixed();
+      return ((FeatureMap.Internal)getMixed()).getWrapper();
+    case XMLTypePackage.ANY_TYPE__ANY:
+      if (coreType) return getAny();
+      return ((FeatureMap.Internal)getAny()).getWrapper();
+    case XMLTypePackage.ANY_TYPE__ANY_ATTRIBUTE:
+      if (coreType) return getAnyAttribute();
+      return ((FeatureMap.Internal)getAnyAttribute()).getWrapper();
     }
     return eDynamicGet(featureID, resolve, coreType);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -175,22 +174,22 @@ public class AnyTypeImpl extends EObjectImpl implements AnyType
   {
     switch (featureID)
     {
-      case XMLTypePackage.ANY_TYPE__MIXED:
-        ((FeatureMap.Internal)getMixed()).set(newValue);
-        return;
-      case XMLTypePackage.ANY_TYPE__ANY:
-        ((FeatureMap.Internal)getAny()).set(newValue);
-        return;
-      case XMLTypePackage.ANY_TYPE__ANY_ATTRIBUTE:
-        ((FeatureMap.Internal)getAnyAttribute()).set(newValue);
-        return;
+    case XMLTypePackage.ANY_TYPE__MIXED:
+      ((FeatureMap.Internal)getMixed()).set(newValue);
+      return;
+    case XMLTypePackage.ANY_TYPE__ANY:
+      ((FeatureMap.Internal)getAny()).set(newValue);
+      return;
+    case XMLTypePackage.ANY_TYPE__ANY_ATTRIBUTE:
+      ((FeatureMap.Internal)getAnyAttribute()).set(newValue);
+      return;
     }
     eDynamicSet(featureID, newValue);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -198,22 +197,22 @@ public class AnyTypeImpl extends EObjectImpl implements AnyType
   {
     switch (featureID)
     {
-      case XMLTypePackage.ANY_TYPE__MIXED:
-        getMixed().clear();
-        return;
-      case XMLTypePackage.ANY_TYPE__ANY:
-        getAny().clear();
-        return;
-      case XMLTypePackage.ANY_TYPE__ANY_ATTRIBUTE:
-        getAnyAttribute().clear();
-        return;
+    case XMLTypePackage.ANY_TYPE__MIXED:
+      getMixed().clear();
+      return;
+    case XMLTypePackage.ANY_TYPE__ANY:
+      getAny().clear();
+      return;
+    case XMLTypePackage.ANY_TYPE__ANY_ATTRIBUTE:
+      getAnyAttribute().clear();
+      return;
     }
     eDynamicUnset(featureID);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -221,19 +220,19 @@ public class AnyTypeImpl extends EObjectImpl implements AnyType
   {
     switch (featureID)
     {
-      case XMLTypePackage.ANY_TYPE__MIXED:
-        return mixed != null && !mixed.isEmpty();
-      case XMLTypePackage.ANY_TYPE__ANY:
-        return !getAny().isEmpty();
-      case XMLTypePackage.ANY_TYPE__ANY_ATTRIBUTE:
-        return anyAttribute != null && !anyAttribute.isEmpty();
+    case XMLTypePackage.ANY_TYPE__MIXED:
+      return mixed != null && !mixed.isEmpty();
+    case XMLTypePackage.ANY_TYPE__ANY:
+      return !getAny().isEmpty();
+    case XMLTypePackage.ANY_TYPE__ANY_ATTRIBUTE:
+      return anyAttribute != null && !anyAttribute.isEmpty();
     }
     return eDynamicIsSet(featureID);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -250,4 +249,4 @@ public class AnyTypeImpl extends EObjectImpl implements AnyType
     return result.toString();
   }
 
-} //AnyTypeImpl
+} // AnyTypeImpl

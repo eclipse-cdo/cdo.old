@@ -16,10 +16,8 @@
  */
 package org.eclipse.emf.ecore.util;
 
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.InternalEObject;
-
 
 public class EDataTypeEList<E> extends EcoreEList<E>
 {
@@ -84,7 +82,7 @@ public class EDataTypeEList<E> extends EcoreEList<E>
   {
     return false;
   }
-    
+
   @Override
   protected E resolve(int index, E object)
   {

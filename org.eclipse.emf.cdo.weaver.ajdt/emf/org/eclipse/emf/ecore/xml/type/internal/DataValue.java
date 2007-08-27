@@ -328,12 +328,12 @@ public final class DataValue
 
         if (!isData((d1 = base64Data[dataIndex++])) || !isData((d2 = base64Data[dataIndex++]))
             || !isData((d3 = base64Data[dataIndex++])) || !isData((d4 = base64Data[dataIndex++]))) return null;// if
-                                                                                                                // found
-                                                                                                                // "no
-                                                                                                                // data"
-                                                                                                                // just
-                                                                                                                // return
-                                                                                                                // null
+        // found
+        // "no
+        // data"
+        // just
+        // return
+        // null
 
         b1 = base64Alphabet[d1];
         b2 = base64Alphabet[d2];
@@ -380,7 +380,7 @@ public final class DataValue
         else
         {
           return null;// an error like "3c[Pad]r", "3cdX", "3cXd", "3cXX" where
-                      // X is non data
+          // X is non data
         }
       }
       else
@@ -905,8 +905,8 @@ public final class DataValue
 
       fIANA2JavaMap.put("ISO-8859-8", "ISO8859_8");
       fIANA2JavaMap.put("ISO-8859-8-I", "ISO8859_8"); // added since this
-                                                      // encoding only differs
-                                                      // w.r.t. presentation
+      // encoding only differs
+      // w.r.t. presentation
       fIANA2JavaMap.put("ISO-IR-138", "ISO8859_8");
       fIANA2JavaMap.put("ISO_8859-8", "ISO8859_8");
       fIANA2JavaMap.put("HEBREW", "ISO8859_8");
@@ -4031,7 +4031,7 @@ public final class DataValue
       CHARS[4601] = -19;
       Arrays.fill(CHARS, 4602, 7680, (byte)33); // Fill 3078 of value (byte) 33
       Arrays.fill(CHARS, 7680, 7836, (byte)-19); // Fill 156 of value (byte)
-                                                  // -19
+      // -19
       Arrays.fill(CHARS, 7836, 7840, (byte)33); // Fill 4 of value (byte) 33
       Arrays.fill(CHARS, 7840, 7930, (byte)-19); // Fill 90 of value (byte) -19
       Arrays.fill(CHARS, 7930, 7936, (byte)33); // Fill 6 of value (byte) 33
@@ -4085,47 +4085,47 @@ public final class DataValue
       Arrays.fill(CHARS, 8495, 8576, (byte)33); // Fill 81 of value (byte) 33
       Arrays.fill(CHARS, 8576, 8579, (byte)-19); // Fill 3 of value (byte) -19
       Arrays.fill(CHARS, 8579, 12293, (byte)33); // Fill 3714 of value (byte)
-                                                  // 33
+      // 33
       CHARS[12293] = -87;
       CHARS[12294] = 33;
       CHARS[12295] = -19;
       Arrays.fill(CHARS, 12296, 12321, (byte)33); // Fill 25 of value (byte) 33
       Arrays.fill(CHARS, 12321, 12330, (byte)-19); // Fill 9 of value (byte)
-                                                    // -19
+      // -19
       Arrays.fill(CHARS, 12330, 12336, (byte)-87); // Fill 6 of value (byte)
-                                                    // -87
+      // -87
       CHARS[12336] = 33;
       Arrays.fill(CHARS, 12337, 12342, (byte)-87); // Fill 5 of value (byte)
-                                                    // -87
+      // -87
       Arrays.fill(CHARS, 12342, 12353, (byte)33); // Fill 11 of value (byte) 33
       Arrays.fill(CHARS, 12353, 12437, (byte)-19); // Fill 84 of value (byte)
-                                                    // -19
+      // -19
       Arrays.fill(CHARS, 12437, 12441, (byte)33); // Fill 4 of value (byte) 33
       Arrays.fill(CHARS, 12441, 12443, (byte)-87); // Fill 2 of value (byte)
-                                                    // -87
+      // -87
       Arrays.fill(CHARS, 12443, 12445, (byte)33); // Fill 2 of value (byte) 33
       Arrays.fill(CHARS, 12445, 12447, (byte)-87); // Fill 2 of value (byte)
-                                                    // -87
+      // -87
       Arrays.fill(CHARS, 12447, 12449, (byte)33); // Fill 2 of value (byte) 33
       Arrays.fill(CHARS, 12449, 12539, (byte)-19); // Fill 90 of value (byte)
-                                                    // -19
+      // -19
       CHARS[12539] = 33;
       Arrays.fill(CHARS, 12540, 12543, (byte)-87); // Fill 3 of value (byte)
-                                                    // -87
+      // -87
       Arrays.fill(CHARS, 12543, 12549, (byte)33); // Fill 6 of value (byte) 33
       Arrays.fill(CHARS, 12549, 12589, (byte)-19); // Fill 40 of value (byte)
-                                                    // -19
+      // -19
       Arrays.fill(CHARS, 12589, 19968, (byte)33); // Fill 7379 of value (byte)
-                                                  // 33
+      // 33
       Arrays.fill(CHARS, 19968, 40870, (byte)-19); // Fill 20902 of value
-                                                    // (byte) -19
+      // (byte) -19
       Arrays.fill(CHARS, 40870, 44032, (byte)33); // Fill 3162 of value (byte)
-                                                  // 33
+      // 33
       Arrays.fill(CHARS, 44032, 55204, (byte)-19); // Fill 11172 of value
-                                                    // (byte) -19
+      // (byte) -19
       Arrays.fill(CHARS, 55204, 55296, (byte)33); // Fill 92 of value (byte) 33
       Arrays.fill(CHARS, 57344, 65534, (byte)33); // Fill 8190 of value (byte)
-                                                  // 33
+      // 33
 
     } // <clinit>()
 

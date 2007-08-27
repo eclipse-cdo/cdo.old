@@ -16,6 +16,29 @@
  */
 package org.eclipse.emf.ecore.xml.type.impl;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.ecore.xml.type.AnyType;
+import org.eclipse.emf.ecore.xml.type.InvalidDatatypeValueException;
+import org.eclipse.emf.ecore.xml.type.ProcessingInstruction;
+import org.eclipse.emf.ecore.xml.type.SimpleAnyType;
+import org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot;
+import org.eclipse.emf.ecore.xml.type.XMLTypeFactory;
+import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
+import org.eclipse.emf.ecore.xml.type.internal.XMLCalendar;
+import org.eclipse.emf.ecore.xml.type.internal.XMLDuration;
+import org.eclipse.emf.ecore.xml.type.internal.DataValue.Base64;
+import org.eclipse.emf.ecore.xml.type.internal.DataValue.HexBin;
+
+import javax.xml.datatype.DatatypeConstants;
+import javax.xml.datatype.Duration;
+import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.namespace.QName;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.DateFormat;
@@ -28,35 +51,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import javax.xml.datatype.DatatypeConstants;
-import javax.xml.datatype.Duration;
-import javax.xml.datatype.XMLGregorianCalendar;
-import javax.xml.namespace.QName;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-
-import org.eclipse.emf.ecore.impl.EFactoryImpl;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.emf.ecore.xml.type.*;
-import org.eclipse.emf.ecore.xml.type.internal.XMLCalendar;
-import org.eclipse.emf.ecore.xml.type.internal.XMLDuration;
-import org.eclipse.emf.ecore.xml.type.internal.DataValue.Base64;
-import org.eclipse.emf.ecore.xml.type.internal.DataValue.HexBin;
-
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
+ * end-user-doc -->
+ * 
  * @generated
  */
 public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
 {
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Object createAnySimpleType(String literal)
@@ -65,8 +70,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertAnySimpleType(Object instanceValue)
@@ -75,40 +80,36 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated NOT 
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated NOT
    */
   public String createAnyURI(String literal)
   {
-    // Per Schema 1.0 it is not clear if the result returned should be a valid URI. 
-    // For the future if we plant to surport IRIs then it is better not to massage
-    // the initialValue. 
-    // We should thought consider where would be the best way to validate anyURI values -- EL
-    
-    /*initialValue = collapseWhiteSpace(initialValue);
-    if (initialValue != null)
-    {
-      //encode special characters using XLink 5.4 algorithm
-      initialValue = URI.encode(initialValue);
-      // Support for relative URLs
-      // According to Java 1.1: URLs may also be specified with a
-      // String and the URL object that it is related to.
-      try 
-      {
-        new URI(URI.BASE_URI, initialValue);
-      }
-      catch (URI.MalformedURIException e)
-      {
-        throw new InvalidDatatypeValueException("Invalid anyURI value: '"+initialValue+"' :"+e.toString());
-      }
-    }*/
+    // Per Schema 1.0 it is not clear if the result returned should be a valid
+    // URI.
+    // For the future if we plant to surport IRIs then it is better not to
+    // massage
+    // the initialValue.
+    // We should thought consider where would be the best way to validate anyURI
+    // values -- EL
+
+    /*
+     * initialValue = collapseWhiteSpace(initialValue); if (initialValue !=
+     * null) { //encode special characters using XLink 5.4 algorithm
+     * initialValue = URI.encode(initialValue); // Support for relative URLs //
+     * According to Java 1.1: URLs may also be specified with a // String and
+     * the URL object that it is related to. try { new URI(URI.BASE_URI,
+     * initialValue); } catch (URI.MalformedURIException e) { throw new
+     * InvalidDatatypeValueException("Invalid anyURI value: '"+initialValue+"'
+     * :"+e.toString()); } }
+     */
     return literal;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertAnyURI(String instanceValue)
@@ -117,8 +118,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public byte[] createBase64Binary(String literal)
@@ -133,8 +134,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertBase64Binary(byte[] instanceValue)
@@ -143,28 +144,28 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public boolean createBoolean(String initialValue)
   {
-    return initialValue == null ? false : primitiveBooleanValueOf(initialValue);	
+    return initialValue == null ? false : primitiveBooleanValueOf(initialValue);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertBoolean(boolean instanceValue)
   {
     return instanceValue ? "true" : "false";
-  }	
-    
+  }
+
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Boolean createBooleanObject(String literal)
@@ -173,8 +174,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertBooleanObject(Boolean instanceValue)
@@ -183,28 +184,28 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public byte createByte(String literal)
   {
     return literal == null ? 0 : Byte.parseByte(collapseWhiteSpace(literal));
   }
-  
+
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertByte(byte instanceValue)
   {
     return Byte.toString(instanceValue);
   }
-    
+
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Byte createByteObject(String literal)
@@ -213,8 +214,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertByteObject(Byte instanceValue)
@@ -223,18 +224,18 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public XMLGregorianCalendar createDate(String literal)
   {
-    return literal == null ?  null : new XMLCalendar(collapseWhiteSpace(literal), XMLCalendar.DATE);
+    return literal == null ? null : new XMLCalendar(collapseWhiteSpace(literal), XMLCalendar.DATE);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertDate(XMLGregorianCalendar instanceValue)
@@ -251,7 +252,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
     }
     if (instanceValue instanceof Date)
     {
-      // Bug 124306: we should rely on XMLCalendar to normalize Dave value, to ensure that all Date value
+      // Bug 124306: we should rely on XMLCalendar to normalize Dave value, to
+      // ensure that all Date value
       // fields are taken into account.
       XMLGregorianCalendar value = new XMLCalendar((Date)instanceValue, XMLCalendar.DATE).normalize();
       value.setHour(DatatypeConstants.FIELD_UNDEFINED);
@@ -264,18 +266,18 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public XMLGregorianCalendar createDateTime(String literal)
   {
-    return literal == null ?  null : new XMLCalendar(collapseWhiteSpace(literal), XMLCalendar.DATETIME);
+    return literal == null ? null : new XMLCalendar(collapseWhiteSpace(literal), XMLCalendar.DATETIME);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertDateTime(XMLGregorianCalendar instanceValue)
@@ -298,8 +300,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public BigDecimal createDecimal(String literal)
@@ -308,8 +310,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertDecimal(BigDecimal instanceValue)
@@ -318,28 +320,28 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public double createDouble(String literal)
   {
     return literal == null ? 0.0 : Double.parseDouble(collapseWhiteSpace(literal));
   }
-  
+
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertDouble(double instanceValue)
   {
     return Double.toString(instanceValue);
-  }	
-    
+  }
+
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Double createDoubleObject(String literal)
@@ -348,8 +350,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertDoubleObject(Double instanceValue)
@@ -358,8 +360,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Duration createDuration(String literal)
@@ -368,8 +370,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertDuration(Duration instanceValue)
@@ -384,8 +386,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public List<String> createENTITIES(String literal)
@@ -394,8 +396,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public List<String> createENTITIESFromString(EDataType eDataType, String initialValue)
@@ -404,8 +406,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String convertENTITIES(List<? extends String> instanceValue)
@@ -414,8 +416,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String convertENTITIESToString(EDataType eDataType, Object instanceValue)
@@ -424,15 +426,15 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public List<String> createENTITIESBase(String literal)
   {
     if (literal == null) return null;
     List<String> result = new ArrayList<String>();
-    for (StringTokenizer stringTokenizer = new StringTokenizer(literal); stringTokenizer.hasMoreTokens(); )
+    for (StringTokenizer stringTokenizer = new StringTokenizer(literal); stringTokenizer.hasMoreTokens();)
     {
       String item = stringTokenizer.nextToken();
       result.add(createENTITY(item));
@@ -441,8 +443,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public List<String> createENTITIESBaseFromString(EDataType eDataType, String initialValue)
@@ -451,8 +453,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String convertENTITIESBase(List<? extends String> instanceValue)
@@ -469,8 +471,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertENTITIESBaseToString(EDataType eDataType, Object instanceValue)
@@ -479,7 +481,7 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
     List<?> list = (List<?>)instanceValue;
     if (list.isEmpty()) return "";
     StringBuffer result = new StringBuffer();
-    for (Iterator<?> i = list.iterator(); i.hasNext(); )
+    for (Iterator<?> i = list.iterator(); i.hasNext();)
     {
       result.append(convertENTITYToString(XMLTypePackage.Literals.ENTITY, i.next()));
       result.append(' ');
@@ -488,8 +490,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String createENTITY(String literal)
@@ -498,8 +500,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertENTITY(String instanceValue)
@@ -508,28 +510,28 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public float createFloat(String literal)
   {
     return literal == null ? 0.0F : Float.parseFloat(collapseWhiteSpace(literal));
   }
-  
+
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertFloat(float instanceValue)
   {
     return Float.toString(instanceValue);
-  }	
-    
+  }
+
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Float createFloatObject(String literal)
@@ -538,8 +540,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertFloatObject(Float instanceValue)
@@ -548,18 +550,18 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public XMLGregorianCalendar createGDay(String literal)
   {
-    return literal == null ?  null : new XMLCalendar(collapseWhiteSpace(literal), XMLCalendar.GDAY);
+    return literal == null ? null : new XMLCalendar(collapseWhiteSpace(literal), XMLCalendar.GDAY);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertGDay(XMLGregorianCalendar instanceValue)
@@ -573,18 +575,18 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public XMLGregorianCalendar createGMonth(String literal)
   {
-    return literal == null ?  null : new XMLCalendar(collapseWhiteSpace(literal), XMLCalendar.GMONTH);
+    return literal == null ? null : new XMLCalendar(collapseWhiteSpace(literal), XMLCalendar.GMONTH);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertGMonth(XMLGregorianCalendar instanceValue)
@@ -599,18 +601,18 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public XMLGregorianCalendar createGMonthDay(String literal)
   {
-    return literal == null ?  null : new XMLCalendar(collapseWhiteSpace(literal), XMLCalendar.GMONTHDAY);
+    return literal == null ? null : new XMLCalendar(collapseWhiteSpace(literal), XMLCalendar.GMONTHDAY);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertGMonthDay(XMLGregorianCalendar instanceValue)
@@ -625,18 +627,18 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public XMLGregorianCalendar createGYear(String literal)
   {
-    return literal == null ?  null : new XMLCalendar(collapseWhiteSpace(literal), XMLCalendar.GYEAR);
+    return literal == null ? null : new XMLCalendar(collapseWhiteSpace(literal), XMLCalendar.GYEAR);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertGYear(XMLGregorianCalendar instanceValue)
@@ -651,18 +653,18 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public XMLGregorianCalendar createGYearMonth(String literal)
   {
-    return literal == null ?  null : new XMLCalendar(collapseWhiteSpace(literal), XMLCalendar.GYEARMONTH);
+    return literal == null ? null : new XMLCalendar(collapseWhiteSpace(literal), XMLCalendar.GYEARMONTH);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertGYearMonth(XMLGregorianCalendar instanceValue)
@@ -677,8 +679,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public byte[] createHexBinary(String literal)
@@ -693,8 +695,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertHexBinary(byte[] instanceValue)
@@ -703,8 +705,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String createID(String literal)
@@ -713,8 +715,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String createIDFromString(EDataType eDataType, String initialValue)
@@ -723,8 +725,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertID(String instanceValue)
@@ -733,8 +735,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String createIDREF(String literal)
@@ -743,8 +745,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String createIDREFFromString(EDataType eDataType, String initialValue)
@@ -753,8 +755,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertIDREF(String instanceValue)
@@ -763,8 +765,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public List<String> createIDREFS(String literal)
@@ -773,8 +775,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public List<String> createIDREFSFromString(EDataType eDataType, String initialValue)
@@ -783,8 +785,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String convertIDREFS(List<? extends String> instanceValue)
@@ -793,8 +795,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String convertIDREFSToString(EDataType eDataType, Object instanceValue)
@@ -803,15 +805,15 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public List<String> createIDREFSBase(String literal)
   {
     if (literal == null) return null;
     List<String> result = new ArrayList<String>();
-    for (StringTokenizer stringTokenizer = new StringTokenizer(literal); stringTokenizer.hasMoreTokens(); )
+    for (StringTokenizer stringTokenizer = new StringTokenizer(literal); stringTokenizer.hasMoreTokens();)
     {
       String item = stringTokenizer.nextToken();
       result.add(createIDREF(item));
@@ -820,8 +822,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public List<String> createIDREFSBaseFromString(EDataType eDataType, String initialValue)
@@ -830,8 +832,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String convertIDREFSBase(List<? extends String> instanceValue)
@@ -848,8 +850,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -859,28 +861,28 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public int createInt(String initialValue)
   {
     return initialValue == null ? 0 : Integer.parseInt(collapseWhiteSpace(initialValue));
-  }	
+  }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertInt(int instanceValue)
   {
     return Integer.toString(instanceValue);
   }
-    
+
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public BigInteger createInteger(String literal)
@@ -889,8 +891,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertInteger(BigInteger instanceValue)
@@ -899,8 +901,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Integer createIntObject(String literal)
@@ -909,8 +911,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertIntObject(Integer instanceValue)
@@ -919,8 +921,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String createLanguage(String literal)
@@ -929,8 +931,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertLanguage(String instanceValue)
@@ -939,28 +941,28 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public long createLong(String literal)
   {
     return literal == null ? 0L : Long.parseLong(literal);
   }
-  
+
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertLong(long instanceValue)
   {
     return Long.toString(instanceValue);
   }
-    
+
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Long createLongObject(String literal)
@@ -969,8 +971,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertLongObject(Long instanceValue)
@@ -979,8 +981,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String createName(String literal)
@@ -989,8 +991,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertName(String instanceValue)
@@ -999,8 +1001,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String createNCName(String literal)
@@ -1009,8 +1011,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertNCName(String instanceValue)
@@ -1019,8 +1021,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public BigInteger createNegativeInteger(String literal)
@@ -1029,8 +1031,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public BigInteger createNegativeIntegerFromString(EDataType eDataType, String initialValue)
@@ -1039,8 +1041,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String convertNegativeInteger(BigInteger instanceValue)
@@ -1049,8 +1051,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String convertNegativeIntegerToString(EDataType eDataType, Object instanceValue)
@@ -1059,19 +1061,19 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String createNMTOKEN(String literal)
   {
     if (literal == null) return null;
-    return literal;  
+    return literal;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertNMTOKEN(String instanceValue)
@@ -1080,8 +1082,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public List<String> createNMTOKENS(String literal)
@@ -1090,8 +1092,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public List<String> createNMTOKENSFromString(EDataType eDataType, String initialValue)
@@ -1100,8 +1102,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String convertNMTOKENS(List<? extends String> instanceValue)
@@ -1110,8 +1112,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String convertNMTOKENSToString(EDataType eDataType, Object instanceValue)
@@ -1120,15 +1122,15 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public List<String> createNMTOKENSBase(String literal)
   {
     if (literal == null) return null;
     List<String> result = new ArrayList<String>();
-    for (StringTokenizer stringTokenizer = new StringTokenizer(literal); stringTokenizer.hasMoreTokens(); )
+    for (StringTokenizer stringTokenizer = new StringTokenizer(literal); stringTokenizer.hasMoreTokens();)
     {
       String item = stringTokenizer.nextToken();
       result.add(createNMTOKEN(item));
@@ -1137,8 +1139,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public List<String> createNMTOKENSBaseFromString(EDataType eDataType, String initialValue)
@@ -1147,8 +1149,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String convertNMTOKENSBase(List<? extends String> instanceValue)
@@ -1170,7 +1172,7 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
     List<?> list = (List<?>)instanceValue;
     if (list.isEmpty()) return "";
     StringBuffer result = new StringBuffer();
-    for (Iterator<?> i = list.iterator(); i.hasNext(); )
+    for (Iterator<?> i = list.iterator(); i.hasNext();)
     {
       result.append(convertNMTOKENToString(XMLTypePackage.Literals.NMTOKEN, i.next()));
       result.append(' ');
@@ -1179,8 +1181,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public BigInteger createNonNegativeInteger(String literal)
@@ -1189,8 +1191,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertNonNegativeInteger(BigInteger instanceValue)
@@ -1199,8 +1201,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public BigInteger createNonPositiveInteger(String literal)
@@ -1209,8 +1211,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertNonPositiveInteger(BigInteger instanceValue)
@@ -1219,8 +1221,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String createNormalizedString(String literal)
@@ -1229,8 +1231,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertNormalizedString(String instanceValue)
@@ -1239,8 +1241,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public QName createNOTATION(String literal)
@@ -1249,8 +1251,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertNOTATION(QName instanceValue)
@@ -1265,8 +1267,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public BigInteger createPositiveInteger(String literal)
@@ -1275,8 +1277,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public BigInteger createPositiveIntegerFromString(EDataType eDataType, String initialValue)
@@ -1285,8 +1287,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String convertPositiveInteger(BigInteger instanceValue)
@@ -1295,8 +1297,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String convertPositiveIntegerToString(EDataType eDataType, Object instanceValue)
@@ -1305,13 +1307,13 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public QName createQName(String literal)
   {
-    return literal == null ? null : new org.eclipse.emf.ecore.xml.type.internal.QName(collapseWhiteSpace(literal));    
+    return literal == null ? null : new org.eclipse.emf.ecore.xml.type.internal.QName(collapseWhiteSpace(literal));
   }
 
   public QName createQName(String namespaceURI, String localPart)
@@ -1325,8 +1327,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertQName(QName instanceValue)
@@ -1349,28 +1351,28 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public short createShort(String literal)
   {
     return literal == null ? 0 : Short.parseShort(literal);
   }
-  
+
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertShort(short instanceValue)
   {
     return Short.toString(instanceValue);
-  }	
-    
+  }
+
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Short createShortObject(String literal)
@@ -1379,8 +1381,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertShortObject(Short instanceValue)
@@ -1389,38 +1391,38 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String createString(String initialValue)
-  {	
+  {
     return initialValue;
-  }	
+  }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertString(String instanceValue)
   {
-    return instanceValue;	
-  }	
-  
+    return instanceValue;
+  }
+
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public XMLGregorianCalendar createTime(String literal)
   {
-    return literal == null ?  null : new XMLCalendar(collapseWhiteSpace(literal), XMLCalendar.TIME);
+    return literal == null ? null : new XMLCalendar(collapseWhiteSpace(literal), XMLCalendar.TIME);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertTime(XMLGregorianCalendar instanceValue)
@@ -1435,8 +1437,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String createToken(String literal)
@@ -1445,8 +1447,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertToken(String instanceValue)
@@ -1455,28 +1457,28 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public short createUnsignedByte(String literal)
   {
     return literal == null ? 0 : Short.parseShort(literal);
-  }	
-  
+  }
+
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertUnsignedByte(short instanceValue)
   {
     return Short.toString(instanceValue);
-  }	
-    
+  }
+
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Short createUnsignedByteObject(String literal)
@@ -1485,8 +1487,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertUnsignedByteObject(Short instanceValue)
@@ -1495,28 +1497,28 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public long createUnsignedInt(String literal)
   {
     return literal == null ? 0 : Long.parseLong(literal);
   }
-  
+
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertUnsignedInt(long instanceValue)
   {
     return Long.toString(instanceValue);
-  }	
-    
+  }
+
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Long createUnsignedIntObject(String literal)
@@ -1525,8 +1527,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertUnsignedIntObject(Long instanceValue)
@@ -1535,8 +1537,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public BigInteger createUnsignedLong(String literal)
@@ -1545,8 +1547,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public BigInteger createUnsignedLongFromString(EDataType eDataType, String initialValue)
@@ -1555,8 +1557,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String convertUnsignedLong(BigInteger instanceValue)
@@ -1565,8 +1567,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String convertUnsignedLongToString(EDataType eDataType, Object instanceValue)
@@ -1575,28 +1577,28 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public int createUnsignedShort(String literal)
   {
     return literal == null ? 0 : Integer.parseInt(literal);
-  }	
-  
+  }
+
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertUnsignedShort(int instanceValue)
   {
     return Integer.toString(instanceValue);
-  }	
-    
+  }
+
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Integer createUnsignedShortObject(String literal)
@@ -1605,8 +1607,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertUnsignedShortObject(Integer instanceValue)
@@ -1615,16 +1617,17 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * Creates the default factory implementation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @generated
    */
   public static XMLTypeFactory init()
   {
     try
     {
-      XMLTypeFactory theXMLTypeFactory = (XMLTypeFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/emf/2003/XMLType"); 
+      XMLTypeFactory theXMLTypeFactory = (XMLTypeFactory)EPackage.Registry.INSTANCE
+          .getEFactory("http://www.eclipse.org/emf/2003/XMLType");
       if (theXMLTypeFactory != null)
       {
         return theXMLTypeFactory;
@@ -1637,16 +1640,13 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
     return new XMLTypeFactoryImpl();
   }
 
-  protected static final DateFormat [] EDATE_FORMATS =
-  {
-    new SafeSimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ"),
-    new SafeSimpleDateFormat("yyyy-MM-ddZ")
-  };
+  protected static final DateFormat[] EDATE_FORMATS = { new SafeSimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ"),
+      new SafeSimpleDateFormat("yyyy-MM-ddZ") };
 
   /**
-   * Creates an instance of the factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
    * @generated
    */
   public XMLTypeFactoryImpl()
@@ -1655,8 +1655,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -1664,18 +1664,22 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   {
     switch (eClass.getClassifierID())
     {
-      case XMLTypePackage.ANY_TYPE: return createAnyType();
-      case XMLTypePackage.PROCESSING_INSTRUCTION: return createProcessingInstruction();
-      case XMLTypePackage.SIMPLE_ANY_TYPE: return createSimpleAnyType();
-      case XMLTypePackage.XML_TYPE_DOCUMENT_ROOT: return createXMLTypeDocumentRoot();
-      default:
-        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    case XMLTypePackage.ANY_TYPE:
+      return createAnyType();
+    case XMLTypePackage.PROCESSING_INSTRUCTION:
+      return createProcessingInstruction();
+    case XMLTypePackage.SIMPLE_ANY_TYPE:
+      return createSimpleAnyType();
+    case XMLTypePackage.XML_TYPE_DOCUMENT_ROOT:
+      return createXMLTypeDocumentRoot();
+    default:
+      throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -1683,130 +1687,130 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   {
     switch (eDataType.getClassifierID())
     {
-      case XMLTypePackage.ANY_SIMPLE_TYPE:
-        return createAnySimpleTypeFromString(eDataType, initialValue);
-      case XMLTypePackage.ANY_URI:
-        return createAnyURIFromString(eDataType, initialValue);
-      case XMLTypePackage.BASE64_BINARY:
-        return createBase64BinaryFromString(eDataType, initialValue);
-      case XMLTypePackage.BOOLEAN:
-        return createBooleanFromString(eDataType, initialValue);
-      case XMLTypePackage.BOOLEAN_OBJECT:
-        return createBooleanObjectFromString(eDataType, initialValue);
-      case XMLTypePackage.BYTE:
-        return createByteFromString(eDataType, initialValue);
-      case XMLTypePackage.BYTE_OBJECT:
-        return createByteObjectFromString(eDataType, initialValue);
-      case XMLTypePackage.DATE:
-        return createDateFromString(eDataType, initialValue);
-      case XMLTypePackage.DATE_TIME:
-        return createDateTimeFromString(eDataType, initialValue);
-      case XMLTypePackage.DECIMAL:
-        return createDecimalFromString(eDataType, initialValue);
-      case XMLTypePackage.DOUBLE:
-        return createDoubleFromString(eDataType, initialValue);
-      case XMLTypePackage.DOUBLE_OBJECT:
-        return createDoubleObjectFromString(eDataType, initialValue);
-      case XMLTypePackage.DURATION:
-        return createDurationFromString(eDataType, initialValue);
-      case XMLTypePackage.ENTITIES:
-        return createENTITIESFromString(eDataType, initialValue);
-      case XMLTypePackage.ENTITIES_BASE:
-        return createENTITIESBaseFromString(eDataType, initialValue);
-      case XMLTypePackage.ENTITY:
-        return createENTITYFromString(eDataType, initialValue);
-      case XMLTypePackage.FLOAT:
-        return createFloatFromString(eDataType, initialValue);
-      case XMLTypePackage.FLOAT_OBJECT:
-        return createFloatObjectFromString(eDataType, initialValue);
-      case XMLTypePackage.GDAY:
-        return createGDayFromString(eDataType, initialValue);
-      case XMLTypePackage.GMONTH:
-        return createGMonthFromString(eDataType, initialValue);
-      case XMLTypePackage.GMONTH_DAY:
-        return createGMonthDayFromString(eDataType, initialValue);
-      case XMLTypePackage.GYEAR:
-        return createGYearFromString(eDataType, initialValue);
-      case XMLTypePackage.GYEAR_MONTH:
-        return createGYearMonthFromString(eDataType, initialValue);
-      case XMLTypePackage.HEX_BINARY:
-        return createHexBinaryFromString(eDataType, initialValue);
-      case XMLTypePackage.ID:
-        return createIDFromString(eDataType, initialValue);
-      case XMLTypePackage.IDREF:
-        return createIDREFFromString(eDataType, initialValue);
-      case XMLTypePackage.IDREFS:
-        return createIDREFSFromString(eDataType, initialValue);
-      case XMLTypePackage.IDREFS_BASE:
-        return createIDREFSBaseFromString(eDataType, initialValue);
-      case XMLTypePackage.INT:
-        return createIntFromString(eDataType, initialValue);
-      case XMLTypePackage.INTEGER:
-        return createIntegerFromString(eDataType, initialValue);
-      case XMLTypePackage.INT_OBJECT:
-        return createIntObjectFromString(eDataType, initialValue);
-      case XMLTypePackage.LANGUAGE:
-        return createLanguageFromString(eDataType, initialValue);
-      case XMLTypePackage.LONG:
-        return createLongFromString(eDataType, initialValue);
-      case XMLTypePackage.LONG_OBJECT:
-        return createLongObjectFromString(eDataType, initialValue);
-      case XMLTypePackage.NAME:
-        return createNameFromString(eDataType, initialValue);
-      case XMLTypePackage.NC_NAME:
-        return createNCNameFromString(eDataType, initialValue);
-      case XMLTypePackage.NEGATIVE_INTEGER:
-        return createNegativeIntegerFromString(eDataType, initialValue);
-      case XMLTypePackage.NMTOKEN:
-        return createNMTOKENFromString(eDataType, initialValue);
-      case XMLTypePackage.NMTOKENS:
-        return createNMTOKENSFromString(eDataType, initialValue);
-      case XMLTypePackage.NMTOKENS_BASE:
-        return createNMTOKENSBaseFromString(eDataType, initialValue);
-      case XMLTypePackage.NON_NEGATIVE_INTEGER:
-        return createNonNegativeIntegerFromString(eDataType, initialValue);
-      case XMLTypePackage.NON_POSITIVE_INTEGER:
-        return createNonPositiveIntegerFromString(eDataType, initialValue);
-      case XMLTypePackage.NORMALIZED_STRING:
-        return createNormalizedStringFromString(eDataType, initialValue);
-      case XMLTypePackage.NOTATION:
-        return createNOTATIONFromString(eDataType, initialValue);
-      case XMLTypePackage.POSITIVE_INTEGER:
-        return createPositiveIntegerFromString(eDataType, initialValue);
-      case XMLTypePackage.QNAME:
-        return createQNameFromString(eDataType, initialValue);
-      case XMLTypePackage.SHORT:
-        return createShortFromString(eDataType, initialValue);
-      case XMLTypePackage.SHORT_OBJECT:
-        return createShortObjectFromString(eDataType, initialValue);
-      case XMLTypePackage.STRING:
-        return createStringFromString(eDataType, initialValue);
-      case XMLTypePackage.TIME:
-        return createTimeFromString(eDataType, initialValue);
-      case XMLTypePackage.TOKEN:
-        return createTokenFromString(eDataType, initialValue);
-      case XMLTypePackage.UNSIGNED_BYTE:
-        return createUnsignedByteFromString(eDataType, initialValue);
-      case XMLTypePackage.UNSIGNED_BYTE_OBJECT:
-        return createUnsignedByteObjectFromString(eDataType, initialValue);
-      case XMLTypePackage.UNSIGNED_INT:
-        return createUnsignedIntFromString(eDataType, initialValue);
-      case XMLTypePackage.UNSIGNED_INT_OBJECT:
-        return createUnsignedIntObjectFromString(eDataType, initialValue);
-      case XMLTypePackage.UNSIGNED_LONG:
-        return createUnsignedLongFromString(eDataType, initialValue);
-      case XMLTypePackage.UNSIGNED_SHORT:
-        return createUnsignedShortFromString(eDataType, initialValue);
-      case XMLTypePackage.UNSIGNED_SHORT_OBJECT:
-        return createUnsignedShortObjectFromString(eDataType, initialValue);
-      default:
-        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    case XMLTypePackage.ANY_SIMPLE_TYPE:
+      return createAnySimpleTypeFromString(eDataType, initialValue);
+    case XMLTypePackage.ANY_URI:
+      return createAnyURIFromString(eDataType, initialValue);
+    case XMLTypePackage.BASE64_BINARY:
+      return createBase64BinaryFromString(eDataType, initialValue);
+    case XMLTypePackage.BOOLEAN:
+      return createBooleanFromString(eDataType, initialValue);
+    case XMLTypePackage.BOOLEAN_OBJECT:
+      return createBooleanObjectFromString(eDataType, initialValue);
+    case XMLTypePackage.BYTE:
+      return createByteFromString(eDataType, initialValue);
+    case XMLTypePackage.BYTE_OBJECT:
+      return createByteObjectFromString(eDataType, initialValue);
+    case XMLTypePackage.DATE:
+      return createDateFromString(eDataType, initialValue);
+    case XMLTypePackage.DATE_TIME:
+      return createDateTimeFromString(eDataType, initialValue);
+    case XMLTypePackage.DECIMAL:
+      return createDecimalFromString(eDataType, initialValue);
+    case XMLTypePackage.DOUBLE:
+      return createDoubleFromString(eDataType, initialValue);
+    case XMLTypePackage.DOUBLE_OBJECT:
+      return createDoubleObjectFromString(eDataType, initialValue);
+    case XMLTypePackage.DURATION:
+      return createDurationFromString(eDataType, initialValue);
+    case XMLTypePackage.ENTITIES:
+      return createENTITIESFromString(eDataType, initialValue);
+    case XMLTypePackage.ENTITIES_BASE:
+      return createENTITIESBaseFromString(eDataType, initialValue);
+    case XMLTypePackage.ENTITY:
+      return createENTITYFromString(eDataType, initialValue);
+    case XMLTypePackage.FLOAT:
+      return createFloatFromString(eDataType, initialValue);
+    case XMLTypePackage.FLOAT_OBJECT:
+      return createFloatObjectFromString(eDataType, initialValue);
+    case XMLTypePackage.GDAY:
+      return createGDayFromString(eDataType, initialValue);
+    case XMLTypePackage.GMONTH:
+      return createGMonthFromString(eDataType, initialValue);
+    case XMLTypePackage.GMONTH_DAY:
+      return createGMonthDayFromString(eDataType, initialValue);
+    case XMLTypePackage.GYEAR:
+      return createGYearFromString(eDataType, initialValue);
+    case XMLTypePackage.GYEAR_MONTH:
+      return createGYearMonthFromString(eDataType, initialValue);
+    case XMLTypePackage.HEX_BINARY:
+      return createHexBinaryFromString(eDataType, initialValue);
+    case XMLTypePackage.ID:
+      return createIDFromString(eDataType, initialValue);
+    case XMLTypePackage.IDREF:
+      return createIDREFFromString(eDataType, initialValue);
+    case XMLTypePackage.IDREFS:
+      return createIDREFSFromString(eDataType, initialValue);
+    case XMLTypePackage.IDREFS_BASE:
+      return createIDREFSBaseFromString(eDataType, initialValue);
+    case XMLTypePackage.INT:
+      return createIntFromString(eDataType, initialValue);
+    case XMLTypePackage.INTEGER:
+      return createIntegerFromString(eDataType, initialValue);
+    case XMLTypePackage.INT_OBJECT:
+      return createIntObjectFromString(eDataType, initialValue);
+    case XMLTypePackage.LANGUAGE:
+      return createLanguageFromString(eDataType, initialValue);
+    case XMLTypePackage.LONG:
+      return createLongFromString(eDataType, initialValue);
+    case XMLTypePackage.LONG_OBJECT:
+      return createLongObjectFromString(eDataType, initialValue);
+    case XMLTypePackage.NAME:
+      return createNameFromString(eDataType, initialValue);
+    case XMLTypePackage.NC_NAME:
+      return createNCNameFromString(eDataType, initialValue);
+    case XMLTypePackage.NEGATIVE_INTEGER:
+      return createNegativeIntegerFromString(eDataType, initialValue);
+    case XMLTypePackage.NMTOKEN:
+      return createNMTOKENFromString(eDataType, initialValue);
+    case XMLTypePackage.NMTOKENS:
+      return createNMTOKENSFromString(eDataType, initialValue);
+    case XMLTypePackage.NMTOKENS_BASE:
+      return createNMTOKENSBaseFromString(eDataType, initialValue);
+    case XMLTypePackage.NON_NEGATIVE_INTEGER:
+      return createNonNegativeIntegerFromString(eDataType, initialValue);
+    case XMLTypePackage.NON_POSITIVE_INTEGER:
+      return createNonPositiveIntegerFromString(eDataType, initialValue);
+    case XMLTypePackage.NORMALIZED_STRING:
+      return createNormalizedStringFromString(eDataType, initialValue);
+    case XMLTypePackage.NOTATION:
+      return createNOTATIONFromString(eDataType, initialValue);
+    case XMLTypePackage.POSITIVE_INTEGER:
+      return createPositiveIntegerFromString(eDataType, initialValue);
+    case XMLTypePackage.QNAME:
+      return createQNameFromString(eDataType, initialValue);
+    case XMLTypePackage.SHORT:
+      return createShortFromString(eDataType, initialValue);
+    case XMLTypePackage.SHORT_OBJECT:
+      return createShortObjectFromString(eDataType, initialValue);
+    case XMLTypePackage.STRING:
+      return createStringFromString(eDataType, initialValue);
+    case XMLTypePackage.TIME:
+      return createTimeFromString(eDataType, initialValue);
+    case XMLTypePackage.TOKEN:
+      return createTokenFromString(eDataType, initialValue);
+    case XMLTypePackage.UNSIGNED_BYTE:
+      return createUnsignedByteFromString(eDataType, initialValue);
+    case XMLTypePackage.UNSIGNED_BYTE_OBJECT:
+      return createUnsignedByteObjectFromString(eDataType, initialValue);
+    case XMLTypePackage.UNSIGNED_INT:
+      return createUnsignedIntFromString(eDataType, initialValue);
+    case XMLTypePackage.UNSIGNED_INT_OBJECT:
+      return createUnsignedIntObjectFromString(eDataType, initialValue);
+    case XMLTypePackage.UNSIGNED_LONG:
+      return createUnsignedLongFromString(eDataType, initialValue);
+    case XMLTypePackage.UNSIGNED_SHORT:
+      return createUnsignedShortFromString(eDataType, initialValue);
+    case XMLTypePackage.UNSIGNED_SHORT_OBJECT:
+      return createUnsignedShortObjectFromString(eDataType, initialValue);
+    default:
+      throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -1814,130 +1818,130 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   {
     switch (eDataType.getClassifierID())
     {
-      case XMLTypePackage.ANY_SIMPLE_TYPE:
-        return convertAnySimpleTypeToString(eDataType, instanceValue);
-      case XMLTypePackage.ANY_URI:
-        return convertAnyURIToString(eDataType, instanceValue);
-      case XMLTypePackage.BASE64_BINARY:
-        return convertBase64BinaryToString(eDataType, instanceValue);
-      case XMLTypePackage.BOOLEAN:
-        return convertBooleanToString(eDataType, instanceValue);
-      case XMLTypePackage.BOOLEAN_OBJECT:
-        return convertBooleanObjectToString(eDataType, instanceValue);
-      case XMLTypePackage.BYTE:
-        return convertByteToString(eDataType, instanceValue);
-      case XMLTypePackage.BYTE_OBJECT:
-        return convertByteObjectToString(eDataType, instanceValue);
-      case XMLTypePackage.DATE:
-        return convertDateToString(eDataType, instanceValue);
-      case XMLTypePackage.DATE_TIME:
-        return convertDateTimeToString(eDataType, instanceValue);
-      case XMLTypePackage.DECIMAL:
-        return convertDecimalToString(eDataType, instanceValue);
-      case XMLTypePackage.DOUBLE:
-        return convertDoubleToString(eDataType, instanceValue);
-      case XMLTypePackage.DOUBLE_OBJECT:
-        return convertDoubleObjectToString(eDataType, instanceValue);
-      case XMLTypePackage.DURATION:
-        return convertDurationToString(eDataType, instanceValue);
-      case XMLTypePackage.ENTITIES:
-        return convertENTITIESToString(eDataType, instanceValue);
-      case XMLTypePackage.ENTITIES_BASE:
-        return convertENTITIESBaseToString(eDataType, instanceValue);
-      case XMLTypePackage.ENTITY:
-        return convertENTITYToString(eDataType, instanceValue);
-      case XMLTypePackage.FLOAT:
-        return convertFloatToString(eDataType, instanceValue);
-      case XMLTypePackage.FLOAT_OBJECT:
-        return convertFloatObjectToString(eDataType, instanceValue);
-      case XMLTypePackage.GDAY:
-        return convertGDayToString(eDataType, instanceValue);
-      case XMLTypePackage.GMONTH:
-        return convertGMonthToString(eDataType, instanceValue);
-      case XMLTypePackage.GMONTH_DAY:
-        return convertGMonthDayToString(eDataType, instanceValue);
-      case XMLTypePackage.GYEAR:
-        return convertGYearToString(eDataType, instanceValue);
-      case XMLTypePackage.GYEAR_MONTH:
-        return convertGYearMonthToString(eDataType, instanceValue);
-      case XMLTypePackage.HEX_BINARY:
-        return convertHexBinaryToString(eDataType, instanceValue);
-      case XMLTypePackage.ID:
-        return convertIDToString(eDataType, instanceValue);
-      case XMLTypePackage.IDREF:
-        return convertIDREFToString(eDataType, instanceValue);
-      case XMLTypePackage.IDREFS:
-        return convertIDREFSToString(eDataType, instanceValue);
-      case XMLTypePackage.IDREFS_BASE:
-        return convertIDREFSBaseToString(eDataType, instanceValue);
-      case XMLTypePackage.INT:
-        return convertIntToString(eDataType, instanceValue);
-      case XMLTypePackage.INTEGER:
-        return convertIntegerToString(eDataType, instanceValue);
-      case XMLTypePackage.INT_OBJECT:
-        return convertIntObjectToString(eDataType, instanceValue);
-      case XMLTypePackage.LANGUAGE:
-        return convertLanguageToString(eDataType, instanceValue);
-      case XMLTypePackage.LONG:
-        return convertLongToString(eDataType, instanceValue);
-      case XMLTypePackage.LONG_OBJECT:
-        return convertLongObjectToString(eDataType, instanceValue);
-      case XMLTypePackage.NAME:
-        return convertNameToString(eDataType, instanceValue);
-      case XMLTypePackage.NC_NAME:
-        return convertNCNameToString(eDataType, instanceValue);
-      case XMLTypePackage.NEGATIVE_INTEGER:
-        return convertNegativeIntegerToString(eDataType, instanceValue);
-      case XMLTypePackage.NMTOKEN:
-        return convertNMTOKENToString(eDataType, instanceValue);
-      case XMLTypePackage.NMTOKENS:
-        return convertNMTOKENSToString(eDataType, instanceValue);
-      case XMLTypePackage.NMTOKENS_BASE:
-        return convertNMTOKENSBaseToString(eDataType, instanceValue);
-      case XMLTypePackage.NON_NEGATIVE_INTEGER:
-        return convertNonNegativeIntegerToString(eDataType, instanceValue);
-      case XMLTypePackage.NON_POSITIVE_INTEGER:
-        return convertNonPositiveIntegerToString(eDataType, instanceValue);
-      case XMLTypePackage.NORMALIZED_STRING:
-        return convertNormalizedStringToString(eDataType, instanceValue);
-      case XMLTypePackage.NOTATION:
-        return convertNOTATIONToString(eDataType, instanceValue);
-      case XMLTypePackage.POSITIVE_INTEGER:
-        return convertPositiveIntegerToString(eDataType, instanceValue);
-      case XMLTypePackage.QNAME:
-        return convertQNameToString(eDataType, instanceValue);
-      case XMLTypePackage.SHORT:
-        return convertShortToString(eDataType, instanceValue);
-      case XMLTypePackage.SHORT_OBJECT:
-        return convertShortObjectToString(eDataType, instanceValue);
-      case XMLTypePackage.STRING:
-        return convertStringToString(eDataType, instanceValue);
-      case XMLTypePackage.TIME:
-        return convertTimeToString(eDataType, instanceValue);
-      case XMLTypePackage.TOKEN:
-        return convertTokenToString(eDataType, instanceValue);
-      case XMLTypePackage.UNSIGNED_BYTE:
-        return convertUnsignedByteToString(eDataType, instanceValue);
-      case XMLTypePackage.UNSIGNED_BYTE_OBJECT:
-        return convertUnsignedByteObjectToString(eDataType, instanceValue);
-      case XMLTypePackage.UNSIGNED_INT:
-        return convertUnsignedIntToString(eDataType, instanceValue);
-      case XMLTypePackage.UNSIGNED_INT_OBJECT:
-        return convertUnsignedIntObjectToString(eDataType, instanceValue);
-      case XMLTypePackage.UNSIGNED_LONG:
-        return convertUnsignedLongToString(eDataType, instanceValue);
-      case XMLTypePackage.UNSIGNED_SHORT:
-        return convertUnsignedShortToString(eDataType, instanceValue);
-      case XMLTypePackage.UNSIGNED_SHORT_OBJECT:
-        return convertUnsignedShortObjectToString(eDataType, instanceValue);
-      default:
-        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    case XMLTypePackage.ANY_SIMPLE_TYPE:
+      return convertAnySimpleTypeToString(eDataType, instanceValue);
+    case XMLTypePackage.ANY_URI:
+      return convertAnyURIToString(eDataType, instanceValue);
+    case XMLTypePackage.BASE64_BINARY:
+      return convertBase64BinaryToString(eDataType, instanceValue);
+    case XMLTypePackage.BOOLEAN:
+      return convertBooleanToString(eDataType, instanceValue);
+    case XMLTypePackage.BOOLEAN_OBJECT:
+      return convertBooleanObjectToString(eDataType, instanceValue);
+    case XMLTypePackage.BYTE:
+      return convertByteToString(eDataType, instanceValue);
+    case XMLTypePackage.BYTE_OBJECT:
+      return convertByteObjectToString(eDataType, instanceValue);
+    case XMLTypePackage.DATE:
+      return convertDateToString(eDataType, instanceValue);
+    case XMLTypePackage.DATE_TIME:
+      return convertDateTimeToString(eDataType, instanceValue);
+    case XMLTypePackage.DECIMAL:
+      return convertDecimalToString(eDataType, instanceValue);
+    case XMLTypePackage.DOUBLE:
+      return convertDoubleToString(eDataType, instanceValue);
+    case XMLTypePackage.DOUBLE_OBJECT:
+      return convertDoubleObjectToString(eDataType, instanceValue);
+    case XMLTypePackage.DURATION:
+      return convertDurationToString(eDataType, instanceValue);
+    case XMLTypePackage.ENTITIES:
+      return convertENTITIESToString(eDataType, instanceValue);
+    case XMLTypePackage.ENTITIES_BASE:
+      return convertENTITIESBaseToString(eDataType, instanceValue);
+    case XMLTypePackage.ENTITY:
+      return convertENTITYToString(eDataType, instanceValue);
+    case XMLTypePackage.FLOAT:
+      return convertFloatToString(eDataType, instanceValue);
+    case XMLTypePackage.FLOAT_OBJECT:
+      return convertFloatObjectToString(eDataType, instanceValue);
+    case XMLTypePackage.GDAY:
+      return convertGDayToString(eDataType, instanceValue);
+    case XMLTypePackage.GMONTH:
+      return convertGMonthToString(eDataType, instanceValue);
+    case XMLTypePackage.GMONTH_DAY:
+      return convertGMonthDayToString(eDataType, instanceValue);
+    case XMLTypePackage.GYEAR:
+      return convertGYearToString(eDataType, instanceValue);
+    case XMLTypePackage.GYEAR_MONTH:
+      return convertGYearMonthToString(eDataType, instanceValue);
+    case XMLTypePackage.HEX_BINARY:
+      return convertHexBinaryToString(eDataType, instanceValue);
+    case XMLTypePackage.ID:
+      return convertIDToString(eDataType, instanceValue);
+    case XMLTypePackage.IDREF:
+      return convertIDREFToString(eDataType, instanceValue);
+    case XMLTypePackage.IDREFS:
+      return convertIDREFSToString(eDataType, instanceValue);
+    case XMLTypePackage.IDREFS_BASE:
+      return convertIDREFSBaseToString(eDataType, instanceValue);
+    case XMLTypePackage.INT:
+      return convertIntToString(eDataType, instanceValue);
+    case XMLTypePackage.INTEGER:
+      return convertIntegerToString(eDataType, instanceValue);
+    case XMLTypePackage.INT_OBJECT:
+      return convertIntObjectToString(eDataType, instanceValue);
+    case XMLTypePackage.LANGUAGE:
+      return convertLanguageToString(eDataType, instanceValue);
+    case XMLTypePackage.LONG:
+      return convertLongToString(eDataType, instanceValue);
+    case XMLTypePackage.LONG_OBJECT:
+      return convertLongObjectToString(eDataType, instanceValue);
+    case XMLTypePackage.NAME:
+      return convertNameToString(eDataType, instanceValue);
+    case XMLTypePackage.NC_NAME:
+      return convertNCNameToString(eDataType, instanceValue);
+    case XMLTypePackage.NEGATIVE_INTEGER:
+      return convertNegativeIntegerToString(eDataType, instanceValue);
+    case XMLTypePackage.NMTOKEN:
+      return convertNMTOKENToString(eDataType, instanceValue);
+    case XMLTypePackage.NMTOKENS:
+      return convertNMTOKENSToString(eDataType, instanceValue);
+    case XMLTypePackage.NMTOKENS_BASE:
+      return convertNMTOKENSBaseToString(eDataType, instanceValue);
+    case XMLTypePackage.NON_NEGATIVE_INTEGER:
+      return convertNonNegativeIntegerToString(eDataType, instanceValue);
+    case XMLTypePackage.NON_POSITIVE_INTEGER:
+      return convertNonPositiveIntegerToString(eDataType, instanceValue);
+    case XMLTypePackage.NORMALIZED_STRING:
+      return convertNormalizedStringToString(eDataType, instanceValue);
+    case XMLTypePackage.NOTATION:
+      return convertNOTATIONToString(eDataType, instanceValue);
+    case XMLTypePackage.POSITIVE_INTEGER:
+      return convertPositiveIntegerToString(eDataType, instanceValue);
+    case XMLTypePackage.QNAME:
+      return convertQNameToString(eDataType, instanceValue);
+    case XMLTypePackage.SHORT:
+      return convertShortToString(eDataType, instanceValue);
+    case XMLTypePackage.SHORT_OBJECT:
+      return convertShortObjectToString(eDataType, instanceValue);
+    case XMLTypePackage.STRING:
+      return convertStringToString(eDataType, instanceValue);
+    case XMLTypePackage.TIME:
+      return convertTimeToString(eDataType, instanceValue);
+    case XMLTypePackage.TOKEN:
+      return convertTokenToString(eDataType, instanceValue);
+    case XMLTypePackage.UNSIGNED_BYTE:
+      return convertUnsignedByteToString(eDataType, instanceValue);
+    case XMLTypePackage.UNSIGNED_BYTE_OBJECT:
+      return convertUnsignedByteObjectToString(eDataType, instanceValue);
+    case XMLTypePackage.UNSIGNED_INT:
+      return convertUnsignedIntToString(eDataType, instanceValue);
+    case XMLTypePackage.UNSIGNED_INT_OBJECT:
+      return convertUnsignedIntObjectToString(eDataType, instanceValue);
+    case XMLTypePackage.UNSIGNED_LONG:
+      return convertUnsignedLongToString(eDataType, instanceValue);
+    case XMLTypePackage.UNSIGNED_SHORT:
+      return convertUnsignedShortToString(eDataType, instanceValue);
+    case XMLTypePackage.UNSIGNED_SHORT_OBJECT:
+      return convertUnsignedShortObjectToString(eDataType, instanceValue);
+    default:
+      throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public AnyType createAnyType()
@@ -1947,8 +1951,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ProcessingInstruction createProcessingInstruction()
@@ -1958,8 +1962,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public SimpleAnyType createSimpleAnyType()
@@ -1969,8 +1973,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public XMLTypeDocumentRoot createXMLTypeDocumentRoot()
@@ -1980,8 +1984,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Object createAnySimpleTypeFromString(EDataType eDataType, String initialValue)
@@ -1990,8 +1994,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertAnySimpleTypeToString(EDataType eDataType, Object instanceValue)
@@ -2000,8 +2004,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String createAnyURIFromString(EDataType eDataType, String initialValue)
@@ -2010,8 +2014,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertAnyURIToString(EDataType eDataType, Object instanceValue)
@@ -2020,8 +2024,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public byte[] createBase64BinaryFromString(EDataType eDataType, String initialValue)
@@ -2030,8 +2034,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertBase64BinaryToString(EDataType eDataType, Object instanceValue)
@@ -2040,8 +2044,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Boolean createBooleanFromString(EDataType eDataType, String initialValue)
@@ -2050,8 +2054,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertBooleanToString(EDataType eDataType, Object instanceValue)
@@ -2060,8 +2064,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Boolean createBooleanObjectFromString(EDataType eDataType, String initialValue)
@@ -2070,8 +2074,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertBooleanObjectToString(EDataType eDataType, Object instanceValue)
@@ -2080,8 +2084,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public BigDecimal createDecimalFromString(EDataType eDataType, String initialValue)
@@ -2090,8 +2094,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertDecimalToString(EDataType eDataType, Object instanceValue)
@@ -2100,8 +2104,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public BigInteger createIntegerFromString(EDataType eDataType, String initialValue)
@@ -2110,8 +2114,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertIntegerToString(EDataType eDataType, Object instanceValue)
@@ -2120,8 +2124,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Integer createIntObjectFromString(EDataType eDataType, String initialValue)
@@ -2130,8 +2134,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertIntObjectToString(EDataType eDataType, Object instanceValue)
@@ -2140,8 +2144,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Long createLongFromString(EDataType eDataType, String initialValue)
@@ -2150,8 +2154,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertLongToString(EDataType eDataType, Object instanceValue)
@@ -2160,8 +2164,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Long createLongObjectFromString(EDataType eDataType, String initialValue)
@@ -2170,8 +2174,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertLongObjectToString(EDataType eDataType, Object instanceValue)
@@ -2180,8 +2184,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Integer createIntFromString(EDataType eDataType, String initialValue)
@@ -2190,8 +2194,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertIntToString(EDataType eDataType, Object instanceValue)
@@ -2200,8 +2204,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Short createShortFromString(EDataType eDataType, String initialValue)
@@ -2210,8 +2214,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertShortToString(EDataType eDataType, Object instanceValue)
@@ -2220,8 +2224,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Short createShortObjectFromString(EDataType eDataType, String initialValue)
@@ -2230,8 +2234,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertShortObjectToString(EDataType eDataType, Object instanceValue)
@@ -2240,8 +2244,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Byte createByteFromString(EDataType eDataType, String initialValue)
@@ -2250,8 +2254,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertByteToString(EDataType eDataType, Object instanceValue)
@@ -2260,8 +2264,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Byte createByteObjectFromString(EDataType eDataType, String initialValue)
@@ -2270,8 +2274,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertByteObjectToString(EDataType eDataType, Object instanceValue)
@@ -2280,8 +2284,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Object createDateFromString(EDataType eDataType, String initialValue)
@@ -2290,8 +2294,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertDateToString(EDataType eDataType, Object instanceValue)
@@ -2300,8 +2304,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Object createDateTimeFromString(EDataType eDataType, String initialValue)
@@ -2310,8 +2314,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertDateTimeToString(EDataType eDataType, Object instanceValue)
@@ -2320,8 +2324,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String createStringFromString(EDataType eDataType, String initialValue)
@@ -2330,8 +2334,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertStringToString(EDataType eDataType, Object instanceValue)
@@ -2340,8 +2344,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Double createDoubleFromString(EDataType eDataType, String initialValue)
@@ -2350,8 +2354,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertDoubleToString(EDataType eDataType, Object instanceValue)
@@ -2360,8 +2364,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Double createDoubleObjectFromString(EDataType eDataType, String initialValue)
@@ -2370,8 +2374,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertDoubleObjectToString(EDataType eDataType, Object instanceValue)
@@ -2380,8 +2384,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Object createDurationFromString(EDataType eDataType, String initialValue)
@@ -2390,8 +2394,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertDurationToString(EDataType eDataType, Object instanceValue)
@@ -2400,8 +2404,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String createNormalizedStringFromString(EDataType eDataType, String initialValue)
@@ -2410,18 +2414,18 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertNormalizedStringToString(EDataType eDataType, Object instanceValue)
-  {    
+  {
     return (String)instanceValue;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String createTokenFromString(EDataType eDataType, String initialValue)
@@ -2430,8 +2434,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertTokenToString(EDataType eDataType, Object instanceValue)
@@ -2440,8 +2444,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String createNameFromString(EDataType eDataType, String initialValue)
@@ -2451,8 +2455,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertNameToString(EDataType eDataType, Object instanceValue)
@@ -2461,8 +2465,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String createNCNameFromString(EDataType eDataType, String initialValue)
@@ -2472,8 +2476,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertNCNameToString(EDataType eDataType, Object instanceValue)
@@ -2482,8 +2486,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String createENTITYFromString(EDataType eDataType, String initialValue)
@@ -2492,8 +2496,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertENTITYToString(EDataType eDataType, Object instanceValue)
@@ -2502,8 +2506,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Float createFloatFromString(EDataType eDataType, String initialValue)
@@ -2512,8 +2516,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertFloatToString(EDataType eDataType, Object instanceValue)
@@ -2522,8 +2526,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Float createFloatObjectFromString(EDataType eDataType, String initialValue)
@@ -2532,8 +2536,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertFloatObjectToString(EDataType eDataType, Object instanceValue)
@@ -2542,8 +2546,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Object createGDayFromString(EDataType eDataType, String initialValue)
@@ -2552,8 +2556,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertGDayToString(EDataType eDataType, Object instanceValue)
@@ -2562,8 +2566,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Object createGMonthFromString(EDataType eDataType, String initialValue)
@@ -2572,8 +2576,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertGMonthToString(EDataType eDataType, Object instanceValue)
@@ -2582,8 +2586,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Object createGMonthDayFromString(EDataType eDataType, String initialValue)
@@ -2592,8 +2596,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertGMonthDayToString(EDataType eDataType, Object instanceValue)
@@ -2602,8 +2606,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Object createGYearFromString(EDataType eDataType, String initialValue)
@@ -2612,8 +2616,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertGYearToString(EDataType eDataType, Object instanceValue)
@@ -2622,8 +2626,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Object createGYearMonthFromString(EDataType eDataType, String initialValue)
@@ -2632,8 +2636,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertGYearMonthToString(EDataType eDataType, Object instanceValue)
@@ -2642,8 +2646,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public byte[] createHexBinaryFromString(EDataType eDataType, String initialValue)
@@ -2652,8 +2656,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertHexBinaryToString(EDataType eDataType, Object instanceValue)
@@ -2662,8 +2666,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertIDToString(EDataType eDataType, Object instanceValue)
@@ -2672,8 +2676,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertIDREFToString(EDataType eDataType, Object instanceValue)
@@ -2682,8 +2686,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String createLanguageFromString(EDataType eDataType, String initialValue)
@@ -2692,8 +2696,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertLanguageToString(EDataType eDataType, Object instanceValue)
@@ -2702,8 +2706,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public BigInteger createNonPositiveIntegerFromString(EDataType eDataType, String initialValue)
@@ -2712,8 +2716,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertNonPositiveIntegerToString(EDataType eDataType, Object instanceValue)
@@ -2722,8 +2726,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String createNMTOKENFromString(EDataType eDataType, String initialValue)
@@ -2732,8 +2736,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertNMTOKENToString(EDataType eDataType, Object instanceValue)
@@ -2742,8 +2746,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public BigInteger createNonNegativeIntegerFromString(EDataType eDataType, String initialValue)
@@ -2752,8 +2756,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertNonNegativeIntegerToString(EDataType eDataType, Object instanceValue)
@@ -2762,8 +2766,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Object createNOTATIONFromString(EDataType eDataType, String initialValue)
@@ -2772,8 +2776,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertNOTATIONToString(EDataType eDataType, Object instanceValue)
@@ -2782,8 +2786,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Object createQNameFromString(EDataType eDataType, String initialValue)
@@ -2792,8 +2796,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertQNameToString(EDataType eDataType, Object instanceValue)
@@ -2802,8 +2806,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Object createTimeFromString(EDataType eDataType, String initialValue)
@@ -2812,8 +2816,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertTimeToString(EDataType eDataType, Object instanceValue)
@@ -2822,8 +2826,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Long createUnsignedIntFromString(EDataType eDataType, String initialValue)
@@ -2832,8 +2836,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertUnsignedIntToString(EDataType eDataType, Object instanceValue)
@@ -2842,8 +2846,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Long createUnsignedIntObjectFromString(EDataType eDataType, String initialValue)
@@ -2852,8 +2856,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertUnsignedIntObjectToString(EDataType eDataType, Object instanceValue)
@@ -2862,8 +2866,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Integer createUnsignedShortFromString(EDataType eDataType, String initialValue)
@@ -2872,8 +2876,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertUnsignedShortToString(EDataType eDataType, Object instanceValue)
@@ -2882,8 +2886,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Integer createUnsignedShortObjectFromString(EDataType eDataType, String initialValue)
@@ -2892,8 +2896,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertUnsignedShortObjectToString(EDataType eDataType, Object instanceValue)
@@ -2902,8 +2906,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Short createUnsignedByteFromString(EDataType eDataType, String initialValue)
@@ -2912,8 +2916,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertUnsignedByteToString(EDataType eDataType, Object instanceValue)
@@ -2922,8 +2926,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Short createUnsignedByteObjectFromString(EDataType eDataType, String initialValue)
@@ -2932,8 +2936,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertUnsignedByteObjectToString(EDataType eDataType, Object instanceValue)
@@ -2942,8 +2946,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public XMLTypePackage getXMLTypePackage()
@@ -2952,8 +2956,8 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @deprecated
    * @generated
    */
@@ -2976,7 +2980,7 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
     }
     throw new InvalidDatatypeValueException("Invalid boolean value: '" + initialValue + "'");
   }
-  
+
   protected boolean primitiveBooleanValueOf(String initialValue)
   {
     initialValue = collapseWhiteSpace(initialValue);
@@ -3015,4 +3019,4 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
     }
   }
 
-} //XMLTypeFactoryImpl
+} // XMLTypeFactoryImpl

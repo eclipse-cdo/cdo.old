@@ -16,9 +16,7 @@
  */
 package org.eclipse.emf.ecore.util;
 
-
 import org.eclipse.emf.ecore.InternalEObject;
-
 
 public class EDataTypeUniqueEList<E> extends EDataTypeEList<E>
 {

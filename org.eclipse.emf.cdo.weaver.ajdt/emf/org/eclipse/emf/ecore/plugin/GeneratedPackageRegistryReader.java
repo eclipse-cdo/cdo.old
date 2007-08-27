@@ -16,7 +16,6 @@
  */
 package org.eclipse.emf.ecore.plugin;
 
-
 import java.util.Map;
 
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -27,26 +26,27 @@ import org.eclipse.emf.ecore.EPackage;
 
 /**
  * A plugin extension reader that populates the
- * {@link org.eclipse.emf.ecore.EPackage.Registry#INSTANCE global} package registry.
- * Clients are not expected to use this class directly.
+ * {@link org.eclipse.emf.ecore.EPackage.Registry#INSTANCE global} package
+ * registry. Clients are not expected to use this class directly.
  */
 class GeneratedPackageRegistryReader extends RegistryReader
 {
   static final String TAG_PACKAGE = "package";
+
   static final String ATT_URI = "uri";
+
   static final String ATT_CLASS = "class";
+
   static final String ATT_GEN_MODEL = "genModel";
-  
+
   protected Map<String, URI> ePackageNsURIToGenModelLocationMap;
-  
+
   public GeneratedPackageRegistryReader()
   {
-    super
-      (Platform.getExtensionRegistry(),
-       EcorePlugin.getPlugin().getBundle().getSymbolicName(), 
-       EcorePlugin.GENERATED_PACKAGE_PPID);
+    super(Platform.getExtensionRegistry(), EcorePlugin.getPlugin().getBundle().getSymbolicName(),
+        EcorePlugin.GENERATED_PACKAGE_PPID);
   }
-  
+
   public GeneratedPackageRegistryReader(Map<String, URI> ePackageNsURIToGenModelLocationMap)
   {
     this();
@@ -73,10 +73,10 @@ class GeneratedPackageRegistryReader extends RegistryReader
         if (previous instanceof PluginClassDescriptor)
         {
           PluginClassDescriptor descriptor = (PluginClassDescriptor)previous;
-          EcorePlugin.INSTANCE.log
-            ("Both '" + descriptor.element.getContributor().getName() + "' and '" + element.getContributor().getName() + "' register a package for '" + packageURI + "'");
+          EcorePlugin.INSTANCE.log("Both '" + descriptor.element.getContributor().getName() + "' and '"
+              + element.getContributor().getName() + "' register a package for '" + packageURI + "'");
         }
-        
+
         if (ePackageNsURIToGenModelLocationMap != null)
         {
           String genModel = element.getAttribute(ATT_GEN_MODEL);
@@ -85,7 +85,8 @@ class GeneratedPackageRegistryReader extends RegistryReader
             URI genModelURI = URI.createURI(genModel);
             if (genModelURI.isRelative())
             {
-              genModelURI = URI.createPlatformPluginURI(element.getDeclaringExtension().getContributor().getName() + "/" + genModel, true);
+              genModelURI = URI.createPlatformPluginURI(element.getDeclaringExtension().getContributor().getName()
+                  + "/" + genModel, true);
             }
             ePackageNsURIToGenModelLocationMap.put(packageURI, genModelURI);
           }

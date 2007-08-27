@@ -16,7 +16,6 @@
  */
 package org.eclipse.emf.ecore.impl;
 
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -26,25 +25,24 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 
-
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>EObject</b></em>'.
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EObject</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated NOT
  */
-public class EObjectImpl extends BasicEObjectImpl implements EObject 
+public class EObjectImpl extends BasicEObjectImpl implements EObject
 {
   /**
    * The bit of {@link #eFlags} that is used to represent {@link #eDeliver}.
    */
   protected static final int EDELIVER = 0x0001;
-  
+
   /**
-   * The bit of {@link #eFlags} that is used to represent whether there is a dynamic EClass.
+   * The bit of {@link #eFlags} that is used to represent whether there is a
+   * dynamic EClass.
    */
   protected static final int EDYNAMIC_CLASS = 0x0002;
 
@@ -54,24 +52,27 @@ public class EObjectImpl extends BasicEObjectImpl implements EObject
   protected static final int EPROXY = 0x004;
 
   /**
-   * The last bit used by this class; derived classes may use bit values higher than this.
+   * The last bit used by this class; derived classes may use bit values higher
+   * than this.
    */
   protected static final int ELAST_NOTIFIER_FLAG = EPROXY;
 
   /**
-   * The last bit used by this class; derived classes may use bit values higher than this.
+   * The last bit used by this class; derived classes may use bit values higher
+   * than this.
    */
   public static final int ELAST_EOBJECT_FLAG = ELAST_NOTIFIER_FLAG;
 
   /**
-   * An extensible set of bit flags;
-   * the first bit is used for {@link #EDELIVER} to implement {@link #eDeliver}
-   * and the second bit is used for {@link #EPROXY} to implement {@link #eIsProxy}.
+   * An extensible set of bit flags; the first bit is used for {@link #EDELIVER}
+   * to implement {@link #eDeliver} and the second bit is used for
+   * {@link #EPROXY} to implement {@link #eIsProxy}.
    */
   protected int eFlags = EDELIVER;
 
   /**
-   * The list of {@link org.eclipse.emf.common.notify.Adapter}s associated with the notifier.
+   * The list of {@link org.eclipse.emf.common.notify.Adapter}s associated with
+   * the notifier.
    */
   protected BasicEList<Adapter> eAdapters;
 
@@ -82,7 +83,8 @@ public class EObjectImpl extends BasicEObjectImpl implements EObject
 
   /**
    * The feature ID of this object's container holding feature, if there is one,
-   * or {@link #EOPPOSITE_FEATURE_BASE EOPPOSITE_FEATURE_BASE} minus the feature ID of the container's feature that contains this object.
+   * or {@link #EOPPOSITE_FEATURE_BASE EOPPOSITE_FEATURE_BASE} minus the feature
+   * ID of the container's feature that contains this object.
    */
   protected int eContainerFeatureID;
 
@@ -90,21 +92,20 @@ public class EObjectImpl extends BasicEObjectImpl implements EObject
    * Additional less frequently used fields.
    */
   protected EPropertiesHolder eProperties;
-  
+
   /**
-   * <!-- begin-user-doc -->
-   * Creates an EObject.
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> Creates an EObject. <!-- end-user-doc -->
+   * 
    * @generated
    */
-  protected EObjectImpl() 
+  protected EObjectImpl()
   {
     super();
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -121,7 +122,7 @@ public class EObjectImpl extends BasicEObjectImpl implements EObject
   {
     if (eAdapters == null)
     {
-      eAdapters =  new EAdapterList<Adapter>(this);
+      eAdapters = new EAdapterList<Adapter>(this);
     }
     return eAdapters;
   }
@@ -157,7 +158,7 @@ public class EObjectImpl extends BasicEObjectImpl implements EObject
     }
   }
 
-  /* 
+  /*
    * @see org.eclipse.emf.ecore.EObject#eIsProxy()
    */
   @Override
@@ -165,8 +166,8 @@ public class EObjectImpl extends BasicEObjectImpl implements EObject
   {
     return (eFlags & EPROXY) != 0;
   }
-  
-  /* 
+
+  /*
    * @see org.eclipse.emf.ecore.InternalEObject#eSetProxyURI(org.eclipse.emf.common.util.URI)
    */
   @Override
@@ -182,7 +183,7 @@ public class EObjectImpl extends BasicEObjectImpl implements EObject
       eFlags &= ~EPROXY;
     }
   }
-  
+
   @Override
   protected EPropertiesHolder eProperties()
   {

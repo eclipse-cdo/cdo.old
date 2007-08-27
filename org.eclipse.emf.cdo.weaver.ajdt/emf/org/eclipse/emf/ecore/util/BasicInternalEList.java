@@ -16,7 +16,6 @@
  */
 package org.eclipse.emf.ecore.util;
 
-
 import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Iterator;
@@ -26,13 +25,12 @@ import java.util.ListIterator;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 
-
 public class BasicInternalEList<E> extends BasicEList<E> implements InternalEList<E>
 {
   private static final long serialVersionUID = 1L;
 
   protected final Class<? extends E> dataClass;
-  
+
   public BasicInternalEList(Class<? extends E> dataClass)
   {
     super();
@@ -58,9 +56,9 @@ public class BasicInternalEList<E> extends BasicEList<E> implements InternalELis
   }
 
   @Override
-  protected Object [] newData(int capacity)
+  protected Object[] newData(int capacity)
   {
-    return (Object [])Array.newInstance(dataClass, capacity);
+    return (Object[])Array.newInstance(dataClass, capacity);
   }
 
   public NotificationChain basicRemove(Object object, NotificationChain notifications)

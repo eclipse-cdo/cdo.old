@@ -16,11 +16,9 @@
  */
 package org.eclipse.emf.ecore;
 
-
 import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
-
 
 /**
  * A validity checker.
@@ -33,43 +31,53 @@ public interface EValidator
   String MARKER = "org.eclipse.emf.ecore.diagnostic";
 
   /**
-   * This is the name of the marker attribute to hold the String representation of the 
-   * {@link org.eclipse.emf.ecore.util.EcoreUtil#getURI URI} of the object that is the target of the marker.
+   * This is the name of the marker attribute to hold the String representation
+   * of the {@link org.eclipse.emf.ecore.util.EcoreUtil#getURI URI} of the
+   * object that is the target of the marker.
+   * 
    * @see org.eclipse.emf.ecore.util.EcoreUtil#getURI
    */
   String URI_ATTRIBUTE = "uri";
 
   /**
-   * This is the name of the marker attribute to hold a space separated sequence 
-   * of {@link org.eclipse.emf.common.util.URI#encodeFragment(String, boolean) encoded} Strings 
-   * where each string is the {@link org.eclipse.emf.ecore.util.EcoreUtil#getURI URI} of an object related to the target of the marker.
-   * The vale of this attribute should be processed as follows:
-   *<pre>
-   *  for (String relatedURI : relatedURIs.split(" "))
-   *  {
-   *    URI uri = URI.createURI(URI.decode(relatedURI));
-   *    // ...
-   *  }
-   *</pre>
+   * This is the name of the marker attribute to hold a space separated sequence
+   * of
+   * {@link org.eclipse.emf.common.util.URI#encodeFragment(String, boolean) encoded}
+   * Strings where each string is the
+   * {@link org.eclipse.emf.ecore.util.EcoreUtil#getURI URI} of an object
+   * related to the target of the marker. The vale of this attribute should be
+   * processed as follows:
+   * 
+   * <pre>
+   * for (String relatedURI : relatedURIs.split(&quot; &quot;))
+   * {
+   *   URI uri = URI.createURI(URI.decode(relatedURI));
+   *   // ...
+   * }
+   * </pre>
+   * 
    * @see org.eclipse.emf.ecore.util.EcoreUtil#getURI
    * @see org.eclipse.emf.common.util.URI#decode(String)
    */
   String RELATED_URIS_ATTRIBUTE = "relatedURIs";
 
   /**
-   * An <code>EValidator</code> wrapper that is used by the {@link EValidator.Registry}.
+   * An <code>EValidator</code> wrapper that is used by the
+   * {@link EValidator.Registry}.
    */
   public interface Descriptor
   {
     /**
      * Returns the validator.
+     * 
      * @return the validator.
      */
     EValidator getEValidator();
   }
 
   /**
-   * A map from {@link org.eclipse.emf.ecore.EPackage EPackage} to {@link EValidator}.
+   * A map from {@link org.eclipse.emf.ecore.EPackage EPackage} to
+   * {@link EValidator}.
    */
   interface Registry extends Map<EPackage, Object>
   {
@@ -117,9 +125,15 @@ public interface EValidator
   }
 
   /**
-   * Validates the object in the given context, optionally producing diagnostics.
-   * @param diagnostics a place to accumulate diagnostics; if it's <code>null</code>, no diagnostics should be produced.
-   * @param context a place to cache information, if it's <code>null</code>, no cache is supported.
+   * Validates the object in the given context, optionally producing
+   * diagnostics.
+   * 
+   * @param diagnostics
+   *          a place to accumulate diagnostics; if it's <code>null</code>,
+   *          no diagnostics should be produced.
+   * @param context
+   *          a place to cache information, if it's <code>null</code>, no
+   *          cache is supported.
    * @return whether the object is valid.
    */
   boolean validate(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context);

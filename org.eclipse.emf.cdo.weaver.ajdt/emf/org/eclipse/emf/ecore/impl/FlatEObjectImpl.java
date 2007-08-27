@@ -16,33 +16,34 @@
  */
 package org.eclipse.emf.ecore.impl;
 
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.ECrossReferenceEList;
 
-
 /**
- * An implementation of the model object '<em><b>EObject</b></em>'.
- * This implementation flattens the fields for storing 
- * the {@link #eProxyURI}, the {@link #eContents}, and the {@link #eCrossReferences},
- * which in {@link EObjectImpl} are stored in the properties holder.
- * This reduces the likelihood of needing to allocate a properties holder and speeds up the access to these fields.
+ * An implementation of the model object '<em><b>EObject</b></em>'. This
+ * implementation flattens the fields for storing the {@link #eProxyURI}, the
+ * {@link #eContents}, and the {@link #eCrossReferences}, which in
+ * {@link EObjectImpl} are stored in the properties holder. This reduces the
+ * likelihood of needing to allocate a properties holder and speeds up the
+ * access to these fields.
  */
 public class FlatEObjectImpl extends EObjectImpl
 {
   protected URI eProxyURI;
+
   protected EList<EObject> eContents;
+
   protected EList<EObject> eCrossReferences;
 
   /**
-   * Creates an EObject that is faster and more space efficient 
-   * for the case where {@link #eSetProxyURI(URI)}, {@link #eContents()}, {@link #eCrossReferences()}
-   * are expected to be frequently used.
+   * Creates an EObject that is faster and more space efficient for the case
+   * where {@link #eSetProxyURI(URI)}, {@link #eContents()},
+   * {@link #eCrossReferences()} are expected to be frequently used.
    */
-  protected FlatEObjectImpl() 
+  protected FlatEObjectImpl()
   {
     super();
   }
@@ -62,7 +63,7 @@ public class FlatEObjectImpl extends EObjectImpl
   {
     return eProxyURI != null;
   }
-  
+
   @Override
   public URI eProxyURI()
   {

@@ -16,10 +16,8 @@
  */
 package org.eclipse.emf.ecore.util;
 
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.InternalEObject;
-
 
 public class EObjectWithInverseEList<E> extends EObjectEList<E>
 {
@@ -99,8 +97,7 @@ public class EObjectWithInverseEList<E> extends EObjectEList<E>
 
   protected final int inverseFeatureID;
 
-  public EObjectWithInverseEList
-    (Class<?> dataClass, InternalEObject owner, int featureID, int inverseFeatureID)
+  public EObjectWithInverseEList(Class<?> dataClass, InternalEObject owner, int featureID, int inverseFeatureID)
   {
     super(dataClass, owner, featureID);
     this.inverseFeatureID = inverseFeatureID;
@@ -123,7 +120,7 @@ public class EObjectWithInverseEList<E> extends EObjectEList<E>
   {
     return inverseFeatureID;
   }
-  
+
   @Override
   public Class<?> getInverseFeatureClass()
   {

@@ -16,11 +16,9 @@
  */
 package org.eclipse.emf.ecore.util;
 
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 
 public class EObjectContainmentWithInverseEList<E> extends EObjectContainmentEList<E>
 {
@@ -64,7 +62,7 @@ public class EObjectContainmentWithInverseEList<E> extends EObjectContainmentELi
         isSet = false;
       }
     }
-    
+
     public static class Resolving<E> extends EObjectContainmentWithInverseEList.Unsettable<E>
     {
       private static final long serialVersionUID = 1L;
@@ -73,13 +71,13 @@ public class EObjectContainmentWithInverseEList<E> extends EObjectContainmentELi
       {
         super(dataClass, owner, featureID, inverseFeatureID);
       }
-      
+
       @Override
       protected boolean hasProxies()
       {
-        return true; 
+        return true;
       }
-      
+
       @SuppressWarnings("unchecked")
       @Override
       protected E resolve(int index, E object)
@@ -88,7 +86,7 @@ public class EObjectContainmentWithInverseEList<E> extends EObjectContainmentELi
       }
     }
   }
-  
+
   public static class Resolving<E> extends EObjectContainmentWithInverseEList<E>
   {
     private static final long serialVersionUID = 1L;
@@ -97,13 +95,13 @@ public class EObjectContainmentWithInverseEList<E> extends EObjectContainmentELi
     {
       super(dataClass, owner, featureID, inverseFeatureID);
     }
-      
+
     @Override
     protected boolean hasProxies()
     {
-      return true; 
+      return true;
     }
-      
+
     @SuppressWarnings("unchecked")
     @Override
     protected E resolve(int index, E object)
@@ -114,8 +112,8 @@ public class EObjectContainmentWithInverseEList<E> extends EObjectContainmentELi
 
   protected final int inverseFeatureID;
 
-  public EObjectContainmentWithInverseEList
-    (Class<?> dataClass, InternalEObject owner, int featureID, int inverseFeatureID)
+  public EObjectContainmentWithInverseEList(Class<?> dataClass, InternalEObject owner, int featureID,
+      int inverseFeatureID)
   {
     super(dataClass, owner, featureID);
     this.inverseFeatureID = inverseFeatureID;
@@ -132,7 +130,7 @@ public class EObjectContainmentWithInverseEList<E> extends EObjectContainmentELi
   {
     return inverseFeatureID;
   }
-  
+
   @Override
   public Class<?> getInverseFeatureClass()
   {

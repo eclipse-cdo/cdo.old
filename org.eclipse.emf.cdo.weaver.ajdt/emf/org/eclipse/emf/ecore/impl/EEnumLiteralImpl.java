@@ -16,7 +16,6 @@
  */
 package org.eclipse.emf.ecore.impl;
 
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -30,29 +29,27 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>EEnum Literal</b></em>'.
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EEnum Literal</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.ecore.impl.EEnumLiteralImpl#getValue <em>Value</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EEnumLiteralImpl#getInstance <em>Instance</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EEnumLiteralImpl#getLiteral <em>Literal</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.impl.EEnumLiteralImpl#getEEnum <em>EEnum</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.impl.EEnumLiteralImpl#getValue <em>Value</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.impl.EEnumLiteralImpl#getInstance <em>Instance</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.impl.EEnumLiteralImpl#getLiteral <em>Literal</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.impl.EEnumLiteralImpl#getEEnum <em>EEnum</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
 {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getValue()
    * @generated
    * @ordered
@@ -61,8 +58,8 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
 
   /**
    * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getValue()
    * @generated
    * @ordered
@@ -70,9 +67,9 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   protected int value = VALUE_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getInstance() <em>Instance</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The default value of the '{@link #getInstance() <em>Instance</em>}'
+   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getInstance()
    * @generated
    * @ordered
@@ -80,9 +77,9 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   protected static final Enumerator INSTANCE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getInstance() <em>Instance</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getInstance() <em>Instance</em>}'
+   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getInstance()
    * @generated
    * @ordered
@@ -90,9 +87,9 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   protected Enumerator instance = INSTANCE_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getLiteral() <em>Literal</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The default value of the '{@link #getLiteral() <em>Literal</em>}'
+   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getLiteral()
    * @generated
    * @ordered
@@ -100,9 +97,9 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   protected static final String LITERAL_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getLiteral() <em>Literal</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getLiteral() <em>Literal</em>}'
+   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getLiteral()
    * @generated
    * @ordered
@@ -110,8 +107,8 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   protected String literal = LITERAL_EDEFAULT;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   protected EEnumLiteralImpl()
@@ -121,8 +118,8 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -132,8 +129,8 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public int getValue()
@@ -142,8 +139,8 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setValue(int newValue)
@@ -155,8 +152,8 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Enumerator getInstance()
@@ -165,8 +162,8 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setInstanceGen(Enumerator newInstance)
@@ -196,8 +193,8 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String getLiteralGen()
@@ -210,10 +207,10 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
     String result = getLiteralGen();
     return result == null ? getName() : result;
   }
-  
+
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setLiteral(String newLiteral)
@@ -225,8 +222,8 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated modifiable
    */
   public EEnum getEEnum()
@@ -235,8 +232,8 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -245,19 +242,18 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   {
     switch (featureID)
     {
-      case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
-        return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
-      case EcorePackage.EENUM_LITERAL__EENUM:
-        if (eInternalContainer() != null)
-          msgs = eBasicRemoveFromContainer(msgs);
-        return eBasicSetContainer(otherEnd, EcorePackage.EENUM_LITERAL__EENUM, msgs);
+    case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
+      return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
+    case EcorePackage.EENUM_LITERAL__EENUM:
+      if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+      return eBasicSetContainer(otherEnd, EcorePackage.EENUM_LITERAL__EENUM, msgs);
     }
     return eDynamicInverseAdd(otherEnd, featureID, msgs);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -265,17 +261,17 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   {
     switch (featureID)
     {
-      case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
-        return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
-      case EcorePackage.EENUM_LITERAL__EENUM:
-        return eBasicSetContainer(null, EcorePackage.EENUM_LITERAL__EENUM, msgs);
+    case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
+      return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
+    case EcorePackage.EENUM_LITERAL__EENUM:
+      return eBasicSetContainer(null, EcorePackage.EENUM_LITERAL__EENUM, msgs);
     }
     return eDynamicInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -283,15 +279,15 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   {
     switch (eContainerFeatureID)
     {
-      case EcorePackage.EENUM_LITERAL__EENUM:
-        return eInternalContainer().eInverseRemove(this, EcorePackage.EENUM__ELITERALS, EEnum.class, msgs);
+    case EcorePackage.EENUM_LITERAL__EENUM:
+      return eInternalContainer().eInverseRemove(this, EcorePackage.EENUM__ELITERALS, EEnum.class, msgs);
     }
     return eDynamicBasicRemoveFromContainer(msgs);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -299,25 +295,25 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   {
     switch (featureID)
     {
-      case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
-        return getEAnnotations();
-      case EcorePackage.EENUM_LITERAL__NAME:
-        return getName();
-      case EcorePackage.EENUM_LITERAL__VALUE:
-        return new Integer(getValue());
-      case EcorePackage.EENUM_LITERAL__INSTANCE:
-        return getInstance();
-      case EcorePackage.EENUM_LITERAL__LITERAL:
-        return getLiteral();
-      case EcorePackage.EENUM_LITERAL__EENUM:
-        return getEEnum();
+    case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
+      return getEAnnotations();
+    case EcorePackage.EENUM_LITERAL__NAME:
+      return getName();
+    case EcorePackage.EENUM_LITERAL__VALUE:
+      return new Integer(getValue());
+    case EcorePackage.EENUM_LITERAL__INSTANCE:
+      return getInstance();
+    case EcorePackage.EENUM_LITERAL__LITERAL:
+      return getLiteral();
+    case EcorePackage.EENUM_LITERAL__EENUM:
+      return getEEnum();
     }
     return eDynamicGet(featureID, resolve, coreType);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -326,29 +322,29 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   {
     switch (featureID)
     {
-      case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
-        getEAnnotations().clear();
-        getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
-        return;
-      case EcorePackage.EENUM_LITERAL__NAME:
-        setName((String)newValue);
-        return;
-      case EcorePackage.EENUM_LITERAL__VALUE:
-        setValue(((Integer)newValue).intValue());
-        return;
-      case EcorePackage.EENUM_LITERAL__INSTANCE:
-        setInstance((Enumerator)newValue);
-        return;
-      case EcorePackage.EENUM_LITERAL__LITERAL:
-        setLiteral((String)newValue);
-        return;
+    case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
+      getEAnnotations().clear();
+      getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
+      return;
+    case EcorePackage.EENUM_LITERAL__NAME:
+      setName((String)newValue);
+      return;
+    case EcorePackage.EENUM_LITERAL__VALUE:
+      setValue(((Integer)newValue).intValue());
+      return;
+    case EcorePackage.EENUM_LITERAL__INSTANCE:
+      setInstance((Enumerator)newValue);
+      return;
+    case EcorePackage.EENUM_LITERAL__LITERAL:
+      setLiteral((String)newValue);
+      return;
     }
     eDynamicSet(featureID, newValue);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -356,28 +352,28 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   {
     switch (featureID)
     {
-      case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
-        getEAnnotations().clear();
-        return;
-      case EcorePackage.EENUM_LITERAL__NAME:
-        setName(NAME_EDEFAULT);
-        return;
-      case EcorePackage.EENUM_LITERAL__VALUE:
-        setValue(VALUE_EDEFAULT);
-        return;
-      case EcorePackage.EENUM_LITERAL__INSTANCE:
-        setInstance(INSTANCE_EDEFAULT);
-        return;
-      case EcorePackage.EENUM_LITERAL__LITERAL:
-        setLiteral(LITERAL_EDEFAULT);
-        return;
+    case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
+      getEAnnotations().clear();
+      return;
+    case EcorePackage.EENUM_LITERAL__NAME:
+      setName(NAME_EDEFAULT);
+      return;
+    case EcorePackage.EENUM_LITERAL__VALUE:
+      setValue(VALUE_EDEFAULT);
+      return;
+    case EcorePackage.EENUM_LITERAL__INSTANCE:
+      setInstance(INSTANCE_EDEFAULT);
+      return;
+    case EcorePackage.EENUM_LITERAL__LITERAL:
+      setLiteral(LITERAL_EDEFAULT);
+      return;
     }
     eDynamicUnset(featureID);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -385,18 +381,18 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   {
     switch (featureID)
     {
-      case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
-        return eAnnotations != null && !eAnnotations.isEmpty();
-      case EcorePackage.EENUM_LITERAL__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case EcorePackage.EENUM_LITERAL__VALUE:
-        return value != VALUE_EDEFAULT;
-      case EcorePackage.EENUM_LITERAL__INSTANCE:
-        return INSTANCE_EDEFAULT == null ? instance != null : !INSTANCE_EDEFAULT.equals(instance);
-      case EcorePackage.EENUM_LITERAL__LITERAL:
-        return LITERAL_EDEFAULT == null ? literal != null : !LITERAL_EDEFAULT.equals(literal);
-      case EcorePackage.EENUM_LITERAL__EENUM:
-        return getEEnum() != null;
+    case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
+      return eAnnotations != null && !eAnnotations.isEmpty();
+    case EcorePackage.EENUM_LITERAL__NAME:
+      return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+    case EcorePackage.EENUM_LITERAL__VALUE:
+      return value != VALUE_EDEFAULT;
+    case EcorePackage.EENUM_LITERAL__INSTANCE:
+      return INSTANCE_EDEFAULT == null ? instance != null : !INSTANCE_EDEFAULT.equals(instance);
+    case EcorePackage.EENUM_LITERAL__LITERAL:
+      return LITERAL_EDEFAULT == null ? literal != null : !LITERAL_EDEFAULT.equals(literal);
+    case EcorePackage.EENUM_LITERAL__EENUM:
+      return getEEnum() != null;
     }
     return eDynamicIsSet(featureID);
   }
@@ -408,8 +404,8 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String toStringGen()

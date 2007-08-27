@@ -16,10 +16,8 @@
  */
 package org.eclipse.emf.ecore.util;
 
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.InternalEObject;
-
 
 public class EObjectEList<E> extends EcoreEList<E>
 {

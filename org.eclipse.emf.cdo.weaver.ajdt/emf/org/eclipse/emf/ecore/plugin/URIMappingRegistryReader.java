@@ -16,7 +16,6 @@
  */
 package org.eclipse.emf.ecore.plugin;
 
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,30 +25,29 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.URIConverter;
 
-
 /**
  * A plugin extension reader that populates the
- * {@link org.eclipse.emf.ecore.resource.URIConverter#URI_MAP global} mapping registry.
- * Clients are not expected to use this class directly.
+ * {@link org.eclipse.emf.ecore.resource.URIConverter#URI_MAP global} mapping
+ * registry. Clients are not expected to use this class directly.
  */
-class URIMappingRegistryReader extends RegistryReader 
+class URIMappingRegistryReader extends RegistryReader
 {
-  static final String TAG_MAPPING  = "mapping";
-  static final String ATT_SOURCE   = "source";
-  static final String ATT_TARGET   = "target";
-   
+  static final String TAG_MAPPING = "mapping";
+
+  static final String ATT_SOURCE = "source";
+
+  static final String ATT_TARGET = "target";
+
   protected Map<URI, IConfigurationElement> map = new HashMap<URI, IConfigurationElement>();
 
-  public URIMappingRegistryReader() 
+  public URIMappingRegistryReader()
   {
-    super
-      (Platform.getExtensionRegistry(),
-       EcorePlugin.getPlugin().getBundle().getSymbolicName(),
-       EcorePlugin.URI_MAPPING_PPID);
+    super(Platform.getExtensionRegistry(), EcorePlugin.getPlugin().getBundle().getSymbolicName(),
+        EcorePlugin.URI_MAPPING_PPID);
   }
 
   @Override
-  protected boolean readElement(IConfigurationElement element, boolean add) 
+  protected boolean readElement(IConfigurationElement element, boolean add)
   {
     if (element.getName().equals(TAG_MAPPING))
     {
@@ -71,17 +69,15 @@ class URIMappingRegistryReader extends RegistryReader
           URI targetURI = URI.createURI(targetURIValue);
           if (targetURI.isRelative() && targetURI.hasRelativePath())
           {
-            targetURI = 
-              targetURI.resolve
-                (URI.createURI
-                  (Platform.getBundle(element.getDeclaringExtension().getContributor().getName()).getEntry("/").toString()));
+            targetURI = targetURI.resolve(URI.createURI(Platform.getBundle(
+                element.getDeclaringExtension().getContributor().getName()).getEntry("/").toString()));
           }
           URIConverter.URI_MAP.put(sourceURI, targetURI);
           IConfigurationElement previous = map.put(sourceURI, element);
           if (previous != null)
           {
-            EcorePlugin.INSTANCE.log
-              ("Both '" + previous.getContributor().getName() + "' and '" + element.getContributor().getName() + "' register a URI mapping for '" + sourceURI + "'");
+            EcorePlugin.INSTANCE.log("Both '" + previous.getContributor().getName() + "' and '"
+                + element.getContributor().getName() + "' register a URI mapping for '" + sourceURI + "'");
           }
           return true;
         }

@@ -16,7 +16,6 @@
  */
 package org.eclipse.emf.ecore.xml.type.util;
 
-
 import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.Duration;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -27,37 +26,40 @@ import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.xml.type.internal.DataValue;
 import org.eclipse.emf.ecore.xml.type.internal.RegEx;
 
-
 /**
- * This class contains convenient static methods for working with XML-related information.
+ * This class contains convenient static methods for working with XML-related
+ * information.
  */
 public final class XMLTypeUtil
 {
   public static final int EQUALS = 0;
+
   public static final int LESS_THAN = -1;
+
   public static final int GREATER_THAN = 1;
+
   public static final int INDETERMINATE = 2;
 
   public static int compareCalendar(Object calendar1, Object calendar2)
   {
     switch (((XMLGregorianCalendar)calendar1).compare((XMLGregorianCalendar)calendar2))
     {
-      case DatatypeConstants.EQUAL:
-      {
-        return EQUALS;
-      }
-      case DatatypeConstants.LESSER:
-      {
-        return LESS_THAN;
-      }
-      case DatatypeConstants.GREATER:
-      {
-        return GREATER_THAN;
-      }
-      default:
-      {
-        return INDETERMINATE;
-      }
+    case DatatypeConstants.EQUAL:
+    {
+      return EQUALS;
+    }
+    case DatatypeConstants.LESSER:
+    {
+      return LESS_THAN;
+    }
+    case DatatypeConstants.GREATER:
+    {
+      return GREATER_THAN;
+    }
+    default:
+    {
+      return INDETERMINATE;
+    }
     }
   }
 
@@ -65,22 +67,22 @@ public final class XMLTypeUtil
   {
     switch (((Duration)duration1).compare((Duration)duration2))
     {
-      case DatatypeConstants.EQUAL:
-      {
-        return EQUALS;
-      }
-      case DatatypeConstants.LESSER:
-      {
-        return LESS_THAN;
-      }
-      case DatatypeConstants.GREATER:
-      {
-        return GREATER_THAN;
-      }
-      default:
-      {
-        return INDETERMINATE;
-      }
+    case DatatypeConstants.EQUAL:
+    {
+      return EQUALS;
+    }
+    case DatatypeConstants.LESSER:
+    {
+      return LESS_THAN;
+    }
+    case DatatypeConstants.GREATER:
+    {
+      return GREATER_THAN;
+    }
+    default:
+    {
+      return INDETERMINATE;
+    }
     }
   }
 
@@ -95,12 +97,13 @@ public final class XMLTypeUtil
   private static class CharArrayThreadLocal extends ThreadLocal<char[]>
   {
     private Thread cachedThread;
-    private char [] cachedResult;
 
-    public final char [] get(int capacity)
+    private char[] cachedResult;
+
+    public final char[] get(int capacity)
     {
       Thread currentThread = Thread.currentThread();
-      char [] result = cachedResult;
+      char[] result = cachedResult;
       if (cachedThread != currentThread)
       {
         cachedThread = currentThread;
@@ -108,22 +111,22 @@ public final class XMLTypeUtil
       }
       if (result.length < capacity)
       {
-        result = new char [capacity];
+        result = new char[capacity];
         set(result);
       }
       return cachedResult = result;
     }
 
     @Override
-    protected char [] initialValue()
+    protected char[] initialValue()
     {
-      return new char [20];
+      return new char[20];
     }
   }
 
   private static final CharArrayThreadLocal VALUE = new CharArrayThreadLocal();
 
-  public static String normalize(String value, boolean collapse) 
+  public static String normalize(String value, boolean collapse)
   {
     if (value == null)
     {
@@ -136,14 +139,14 @@ public final class XMLTypeUtil
       return "";
     }
 
-    char [] valueArray = VALUE.get(length);
+    char[] valueArray = VALUE.get(length);
     value.getChars(0, length, valueArray, 0);
     StringBuffer buffer = null;
     boolean skipSpace = collapse;
-    for (int i = 0, offset = 0; i < length; i++) 
+    for (int i = 0, offset = 0; i < length; i++)
     {
       char c = valueArray[i];
-      if (isSpace(c)) 
+      if (isSpace(c))
       {
         if (skipSpace)
         {
@@ -153,7 +156,7 @@ public final class XMLTypeUtil
           }
           buffer.deleteCharAt(i - offset++);
         }
-        else 
+        else
         {
           skipSpace = collapse;
           if (c != ' ')
@@ -166,19 +169,19 @@ public final class XMLTypeUtil
           }
         }
       }
-      else 
+      else
       {
         skipSpace = false;
       }
     }
 
-    if (skipSpace) 
+    if (skipSpace)
     {
       if (buffer == null)
       {
         return value.substring(0, length - 1);
       }
-      else 
+      else
       {
         length = buffer.length();
         if (length > 0)
@@ -208,25 +211,32 @@ public final class XMLTypeUtil
   {
     return new PatternMatcherImpl(pattern);
   }
-  
-  
+
   /**
    * Creates a new QName object with the specified values
-   * @param namespaceUri namespace uri value or null
-   * @param localPart localPart (not null)
-   * @param prefix prefix value or null
+   * 
+   * @param namespaceUri
+   *          namespace uri value or null
+   * @param localPart
+   *          localPart (not null)
+   * @param prefix
+   *          prefix value or null
    * @return The newly created QName object
    */
   public static Object createQName(String namespaceUri, String localPart, String prefix)
   {
     return new org.eclipse.emf.ecore.xml.type.internal.QName(namespaceUri, localPart, prefix);
   }
-  
+
   /**
    * Sets the QName object values to the specified once
-   * @param namespaceUri namespace uri value or null
-   * @param localPart localPart (not null)
-   * @param prefix prefix value or null
+   * 
+   * @param namespaceUri
+   *          namespace uri value or null
+   * @param localPart
+   *          localPart (not null)
+   * @param prefix
+   *          prefix value or null
    */
   @Deprecated
   public static void setQNameValues(Object qName, String namespaceUri, String localPart, String prefix)
@@ -248,11 +258,16 @@ public final class XMLTypeUtil
   }
 
   /**
-   * Updates the QName's prefix, if possible, and returns either the updated result, 
-   * or a newly created QName with the new prefix, if the QName could not be directly updated.
-   * @param qName the QName to be updated.
-   * @param prefix the new prefix.
-   * @return a QName with the same namespace URI and local part as the argument, but with the new prefix.
+   * Updates the QName's prefix, if possible, and returns either the updated
+   * result, or a newly created QName with the new prefix, if the QName could
+   * not be directly updated.
+   * 
+   * @param qName
+   *          the QName to be updated.
+   * @param prefix
+   *          the new prefix.
+   * @return a QName with the same namespace URI and local part as the argument,
+   *         but with the new prefix.
    */
   public static QName setPrefix(QName qName, String prefix)
   {
@@ -275,6 +290,7 @@ public final class XMLTypeUtil
   {
     return ((QName)qName).getNamespaceURI();
   }
+
   /**
    * Returns the localPart of a QName.
    */
@@ -282,7 +298,7 @@ public final class XMLTypeUtil
   {
     return ((QName)qName).getLocalPart();
   }
-  
+
   /**
    * Returns the prefix of a QName.
    */
@@ -297,7 +313,7 @@ public final class XMLTypeUtil
 
     public PatternMatcherImpl(String pattern)
     {
-      regularExpression =  new RegEx.RegularExpression(pattern, "X");
+      regularExpression = new RegEx.RegularExpression(pattern, "X");
     }
 
     public boolean matches(String value)

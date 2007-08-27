@@ -16,7 +16,6 @@
  */
 package org.eclipse.emf.ecore.plugin;
 
-
 import java.lang.reflect.Field;
 
 import org.eclipse.core.runtime.CoreException;
@@ -34,14 +33,16 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 
-
 public abstract class RegistryReader
 {
   protected static final String TAG_DESCRIPTION = "description";
 
   protected IExtensionRegistry pluginRegistry;
+
   String pluginID;
+
   String extensionPointID;
+
   String qualifiedExtensionPointID;
 
   public RegistryReader(IExtensionRegistry pluginRegistry, String pluginID, String extensionPointID)
@@ -54,10 +55,10 @@ public abstract class RegistryReader
   }
 
   /**
-   * Implement this method to read element attributes. 
-   * If this element has subelements, the reader will recursively cycle through them 
-   * and will call this method, so don't do it here.
-   * If you want to support removing entries, override {@link #readElement(IConfigurationElement, boolean)} instead.
+   * Implement this method to read element attributes. If this element has
+   * subelements, the reader will recursively cycle through them and will call
+   * this method, so don't do it here. If you want to support removing entries,
+   * override {@link #readElement(IConfigurationElement, boolean)} instead.
    */
   protected boolean readElement(IConfigurationElement element)
   {
@@ -65,9 +66,10 @@ public abstract class RegistryReader
   }
 
   /**
-   * Implement this method to read element attributes for the purpose of adding or removing their registrations. 
-   * If this element has subelements, the reader will recursively cycle through them 
-   * and will call this method, so don't do it here.
+   * Implement this method to read element attributes for the purpose of adding
+   * or removing their registrations. If this element has subelements, the
+   * reader will recursively cycle through them and will call this method, so
+   * don't do it here.
    */
   protected boolean readElement(IConfigurationElement element, boolean add)
   {
@@ -89,28 +91,27 @@ public abstract class RegistryReader
       }
     }
 
-    pluginRegistry.addRegistryChangeListener
-      (new IRegistryChangeListener()
-       {
-         public void registryChanged(IRegistryChangeEvent event)
-         {
-           IExtensionDelta[] deltas = event.getExtensionDeltas();
-           for (int i = 0; i < deltas.length; ++i) 
-           {
-             IExtensionDelta delta = deltas[i];
-             if (delta.getExtensionPoint().getUniqueIdentifier().equals(qualifiedExtensionPointID))
-             {
-               boolean add = delta.getKind() == IExtensionDelta.ADDED;
-               IExtension extension = delta.getExtension();
-               IConfigurationElement[] configurationElement = extension.getConfigurationElements();
-               for (int j = 0; j < configurationElement.length; ++j) 
-               {
-                 internalReadElement(configurationElement[j], add);
-               }
-             }
-           }
-         }
-       });
+    pluginRegistry.addRegistryChangeListener(new IRegistryChangeListener()
+    {
+      public void registryChanged(IRegistryChangeEvent event)
+      {
+        IExtensionDelta[] deltas = event.getExtensionDeltas();
+        for (int i = 0; i < deltas.length; ++i)
+        {
+          IExtensionDelta delta = deltas[i];
+          if (delta.getExtensionPoint().getUniqueIdentifier().equals(qualifiedExtensionPointID))
+          {
+            boolean add = delta.getKind() == IExtensionDelta.ADDED;
+            IExtension extension = delta.getExtension();
+            IConfigurationElement[] configurationElement = extension.getConfigurationElements();
+            for (int j = 0; j < configurationElement.length; ++j)
+            {
+              internalReadElement(configurationElement[j], add);
+            }
+          }
+        }
+      }
+    });
   }
 
   private void internalReadElement(IConfigurationElement element, boolean add)
@@ -131,13 +132,14 @@ public abstract class RegistryReader
   }
 
   /**
-   * Logs the error in the desktop log using the provided
-   * text and the information in the configuration element.
+   * Logs the error in the desktop log using the provided text and the
+   * information in the configuration element.
    */
   protected void logError(IConfigurationElement element, String text)
   {
     IExtension extension = element.getDeclaringExtension();
-    System.err.println("Plugin " + extension.getContributor().getName() + ", extension " + extension.getExtensionPointUniqueIdentifier());
+    System.err.println("Plugin " + extension.getContributor().getName() + ", extension "
+        + extension.getExtensionPointUniqueIdentifier());
     System.err.println(text);
   }
 
@@ -149,9 +151,10 @@ public abstract class RegistryReader
     logError(element, "The required attribute '" + attributeName + "' not defined");
   }
 
-  public static class PluginClassDescriptor 
+  public static class PluginClassDescriptor
   {
     protected IConfigurationElement element;
+
     protected String attributeName;
 
     public PluginClassDescriptor(IConfigurationElement element, String attributeName)
@@ -201,11 +204,12 @@ public abstract class RegistryReader
 
     public EPackage getEPackage()
     {
-      // First try to see if this class has an eInstance 
+      // First try to see if this class has an eInstance
       //
       try
       {
-        Class<?> javaClass = Platform.getBundle(element.getDeclaringExtension().getContributor().getName()).loadClass(element.getAttribute(attributeName));
+        Class<?> javaClass = Platform.getBundle(element.getDeclaringExtension().getContributor().getName()).loadClass(
+            element.getAttribute(attributeName));
         Field field = javaClass.getField("eINSTANCE");
         Object result = field.get(null);
         return (EPackage)result;
@@ -223,18 +227,19 @@ public abstract class RegistryReader
         throw new WrappedException(e);
       }
     }
-    
+
     public EFactory getEFactory()
     {
       return null;
     }
   }
-  
+
   static class EFactoryDescriptor extends PluginClassDescriptor implements EPackage.Descriptor
   {
     protected EPackage.Descriptor overridenDescriptor;
-    
-    public EFactoryDescriptor(IConfigurationElement element, String attributeName, EPackage.Descriptor overridenDescriptor)
+
+    public EFactoryDescriptor(IConfigurationElement element, String attributeName,
+        EPackage.Descriptor overridenDescriptor)
     {
       super(element, attributeName);
       this.overridenDescriptor = overridenDescriptor;
@@ -244,14 +249,15 @@ public abstract class RegistryReader
     {
       return overridenDescriptor.getEPackage();
     }
-    
+
     public EFactory getEFactory()
     {
-      // First try to see if this class has an eInstance 
+      // First try to see if this class has an eInstance
       //
       try
       {
-        Class<?> javaClass = Platform.getBundle(element.getDeclaringExtension().getContributor().getName()).loadClass(element.getAttribute(attributeName));
+        Class<?> javaClass = Platform.getBundle(element.getDeclaringExtension().getContributor().getName()).loadClass(
+            element.getAttribute(attributeName));
         return (EFactory)javaClass.newInstance();
       }
       catch (ClassNotFoundException e)

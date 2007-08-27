@@ -16,11 +16,9 @@
  */
 package org.eclipse.emf.ecore.util;
 
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 
 public class EObjectContainmentEList<E> extends EObjectEList<E>
 {
@@ -64,7 +62,7 @@ public class EObjectContainmentEList<E> extends EObjectEList<E>
         isSet = false;
       }
     }
-    
+
     public static class Resolving<E> extends EObjectContainmentEList.Unsettable<E>
     {
       private static final long serialVersionUID = 1L;
@@ -73,13 +71,13 @@ public class EObjectContainmentEList<E> extends EObjectEList<E>
       {
         super(dataClass, owner, featureID);
       }
-      
+
       @Override
       protected boolean hasProxies()
       {
-        return true; 
+        return true;
       }
-      
+
       @SuppressWarnings("unchecked")
       @Override
       protected E resolve(int index, E object)
@@ -88,7 +86,7 @@ public class EObjectContainmentEList<E> extends EObjectEList<E>
       }
     }
   }
-  
+
   public static class Resolving<E> extends EObjectContainmentEList<E>
   {
     private static final long serialVersionUID = 1L;
@@ -97,13 +95,13 @@ public class EObjectContainmentEList<E> extends EObjectEList<E>
     {
       super(dataClass, owner, featureID);
     }
-    
+
     @Override
     protected boolean hasProxies()
     {
-      return true; 
+      return true;
     }
-    
+
     @SuppressWarnings("unchecked")
     @Override
     protected E resolve(int index, E object)

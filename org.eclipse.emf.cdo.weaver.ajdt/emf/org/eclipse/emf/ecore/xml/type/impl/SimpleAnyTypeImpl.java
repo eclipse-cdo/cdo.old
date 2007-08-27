@@ -26,26 +26,25 @@ import org.eclipse.emf.ecore.xml.type.SimpleAnyType;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Simple Any Type</b></em>'.
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Simple Any Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.ecore.xml.type.impl.SimpleAnyTypeImpl#getRawValue <em>Raw Value</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.xml.type.impl.SimpleAnyTypeImpl#getValue <em>Value</em>}</li>
- *   <li>{@link org.eclipse.emf.ecore.xml.type.impl.SimpleAnyTypeImpl#getInstanceType <em>Instance Type</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.xml.type.impl.SimpleAnyTypeImpl#getRawValue <em>Raw Value</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.xml.type.impl.SimpleAnyTypeImpl#getValue <em>Value</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.xml.type.impl.SimpleAnyTypeImpl#getInstanceType <em>Instance Type</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class SimpleAnyTypeImpl extends AnyTypeImpl implements SimpleAnyType
 {
   /**
-   * The default value of the '{@link #getRawValue() <em>Raw Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The default value of the '{@link #getRawValue() <em>Raw Value</em>}'
+   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getRawValue()
    * @generated
    * @ordered
@@ -54,8 +53,8 @@ public class SimpleAnyTypeImpl extends AnyTypeImpl implements SimpleAnyType
 
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getValue()
    * @generated
    * @ordered
@@ -63,9 +62,9 @@ public class SimpleAnyTypeImpl extends AnyTypeImpl implements SimpleAnyType
   protected static final Object VALUE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getInstanceType() <em>Instance Type</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getInstanceType() <em>Instance Type</em>}'
+   * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getInstanceType()
    * @generated
    * @ordered
@@ -73,8 +72,8 @@ public class SimpleAnyTypeImpl extends AnyTypeImpl implements SimpleAnyType
   protected EDataType instanceType;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected SimpleAnyTypeImpl()
@@ -83,8 +82,8 @@ public class SimpleAnyTypeImpl extends AnyTypeImpl implements SimpleAnyType
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -94,8 +93,8 @@ public class SimpleAnyTypeImpl extends AnyTypeImpl implements SimpleAnyType
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String getRawValue()
@@ -112,8 +111,8 @@ public class SimpleAnyTypeImpl extends AnyTypeImpl implements SimpleAnyType
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public void setRawValue(String newRawValue)
@@ -126,8 +125,8 @@ public class SimpleAnyTypeImpl extends AnyTypeImpl implements SimpleAnyType
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Object getValue()
@@ -136,8 +135,8 @@ public class SimpleAnyTypeImpl extends AnyTypeImpl implements SimpleAnyType
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public void setValue(Object newValue)
@@ -146,8 +145,8 @@ public class SimpleAnyTypeImpl extends AnyTypeImpl implements SimpleAnyType
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EDataType getInstanceType()
@@ -156,8 +155,8 @@ public class SimpleAnyTypeImpl extends AnyTypeImpl implements SimpleAnyType
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setInstanceType(EDataType newInstanceType)
@@ -165,12 +164,13 @@ public class SimpleAnyTypeImpl extends AnyTypeImpl implements SimpleAnyType
     EDataType oldInstanceType = instanceType;
     instanceType = newInstanceType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, XMLTypePackage.SIMPLE_ANY_TYPE__INSTANCE_TYPE, oldInstanceType, instanceType));
+      eNotify(new ENotificationImpl(this, Notification.SET, XMLTypePackage.SIMPLE_ANY_TYPE__INSTANCE_TYPE,
+          oldInstanceType, instanceType));
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -178,28 +178,28 @@ public class SimpleAnyTypeImpl extends AnyTypeImpl implements SimpleAnyType
   {
     switch (featureID)
     {
-      case XMLTypePackage.SIMPLE_ANY_TYPE__MIXED:
-        if (coreType) return getMixed();
-        return ((FeatureMap.Internal)getMixed()).getWrapper();
-      case XMLTypePackage.SIMPLE_ANY_TYPE__ANY:
-        if (coreType) return getAny();
-        return ((FeatureMap.Internal)getAny()).getWrapper();
-      case XMLTypePackage.SIMPLE_ANY_TYPE__ANY_ATTRIBUTE:
-        if (coreType) return getAnyAttribute();
-        return ((FeatureMap.Internal)getAnyAttribute()).getWrapper();
-      case XMLTypePackage.SIMPLE_ANY_TYPE__RAW_VALUE:
-        return getRawValue();
-      case XMLTypePackage.SIMPLE_ANY_TYPE__VALUE:
-        return getValue();
-      case XMLTypePackage.SIMPLE_ANY_TYPE__INSTANCE_TYPE:
-        return getInstanceType();
+    case XMLTypePackage.SIMPLE_ANY_TYPE__MIXED:
+      if (coreType) return getMixed();
+      return ((FeatureMap.Internal)getMixed()).getWrapper();
+    case XMLTypePackage.SIMPLE_ANY_TYPE__ANY:
+      if (coreType) return getAny();
+      return ((FeatureMap.Internal)getAny()).getWrapper();
+    case XMLTypePackage.SIMPLE_ANY_TYPE__ANY_ATTRIBUTE:
+      if (coreType) return getAnyAttribute();
+      return ((FeatureMap.Internal)getAnyAttribute()).getWrapper();
+    case XMLTypePackage.SIMPLE_ANY_TYPE__RAW_VALUE:
+      return getRawValue();
+    case XMLTypePackage.SIMPLE_ANY_TYPE__VALUE:
+      return getValue();
+    case XMLTypePackage.SIMPLE_ANY_TYPE__INSTANCE_TYPE:
+      return getInstanceType();
     }
     return eDynamicGet(featureID, resolve, coreType);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -207,31 +207,31 @@ public class SimpleAnyTypeImpl extends AnyTypeImpl implements SimpleAnyType
   {
     switch (featureID)
     {
-      case XMLTypePackage.SIMPLE_ANY_TYPE__MIXED:
-        ((FeatureMap.Internal)getMixed()).set(newValue);
-        return;
-      case XMLTypePackage.SIMPLE_ANY_TYPE__ANY:
-        ((FeatureMap.Internal)getAny()).set(newValue);
-        return;
-      case XMLTypePackage.SIMPLE_ANY_TYPE__ANY_ATTRIBUTE:
-        ((FeatureMap.Internal)getAnyAttribute()).set(newValue);
-        return;
-      case XMLTypePackage.SIMPLE_ANY_TYPE__RAW_VALUE:
-        setRawValue((String)newValue);
-        return;
-      case XMLTypePackage.SIMPLE_ANY_TYPE__VALUE:
-        setValue(newValue);
-        return;
-      case XMLTypePackage.SIMPLE_ANY_TYPE__INSTANCE_TYPE:
-        setInstanceType((EDataType)newValue);
-        return;
+    case XMLTypePackage.SIMPLE_ANY_TYPE__MIXED:
+      ((FeatureMap.Internal)getMixed()).set(newValue);
+      return;
+    case XMLTypePackage.SIMPLE_ANY_TYPE__ANY:
+      ((FeatureMap.Internal)getAny()).set(newValue);
+      return;
+    case XMLTypePackage.SIMPLE_ANY_TYPE__ANY_ATTRIBUTE:
+      ((FeatureMap.Internal)getAnyAttribute()).set(newValue);
+      return;
+    case XMLTypePackage.SIMPLE_ANY_TYPE__RAW_VALUE:
+      setRawValue((String)newValue);
+      return;
+    case XMLTypePackage.SIMPLE_ANY_TYPE__VALUE:
+      setValue(newValue);
+      return;
+    case XMLTypePackage.SIMPLE_ANY_TYPE__INSTANCE_TYPE:
+      setInstanceType((EDataType)newValue);
+      return;
     }
     eDynamicSet(featureID, newValue);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -239,31 +239,31 @@ public class SimpleAnyTypeImpl extends AnyTypeImpl implements SimpleAnyType
   {
     switch (featureID)
     {
-      case XMLTypePackage.SIMPLE_ANY_TYPE__MIXED:
-        getMixed().clear();
-        return;
-      case XMLTypePackage.SIMPLE_ANY_TYPE__ANY:
-        getAny().clear();
-        return;
-      case XMLTypePackage.SIMPLE_ANY_TYPE__ANY_ATTRIBUTE:
-        getAnyAttribute().clear();
-        return;
-      case XMLTypePackage.SIMPLE_ANY_TYPE__RAW_VALUE:
-        setRawValue(RAW_VALUE_EDEFAULT);
-        return;
-      case XMLTypePackage.SIMPLE_ANY_TYPE__VALUE:
-        setValue(VALUE_EDEFAULT);
-        return;
-      case XMLTypePackage.SIMPLE_ANY_TYPE__INSTANCE_TYPE:
-        setInstanceType((EDataType)null);
-        return;
+    case XMLTypePackage.SIMPLE_ANY_TYPE__MIXED:
+      getMixed().clear();
+      return;
+    case XMLTypePackage.SIMPLE_ANY_TYPE__ANY:
+      getAny().clear();
+      return;
+    case XMLTypePackage.SIMPLE_ANY_TYPE__ANY_ATTRIBUTE:
+      getAnyAttribute().clear();
+      return;
+    case XMLTypePackage.SIMPLE_ANY_TYPE__RAW_VALUE:
+      setRawValue(RAW_VALUE_EDEFAULT);
+      return;
+    case XMLTypePackage.SIMPLE_ANY_TYPE__VALUE:
+      setValue(VALUE_EDEFAULT);
+      return;
+    case XMLTypePackage.SIMPLE_ANY_TYPE__INSTANCE_TYPE:
+      setInstanceType((EDataType)null);
+      return;
     }
     eDynamicUnset(featureID);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -271,20 +271,20 @@ public class SimpleAnyTypeImpl extends AnyTypeImpl implements SimpleAnyType
   {
     switch (featureID)
     {
-      case XMLTypePackage.SIMPLE_ANY_TYPE__MIXED:
-        return mixed != null && !mixed.isEmpty();
-      case XMLTypePackage.SIMPLE_ANY_TYPE__ANY:
-        return !getAny().isEmpty();
-      case XMLTypePackage.SIMPLE_ANY_TYPE__ANY_ATTRIBUTE:
-        return anyAttribute != null && !anyAttribute.isEmpty();
-      case XMLTypePackage.SIMPLE_ANY_TYPE__RAW_VALUE:
-        return RAW_VALUE_EDEFAULT == null ? getRawValue() != null : !RAW_VALUE_EDEFAULT.equals(getRawValue());
-      case XMLTypePackage.SIMPLE_ANY_TYPE__VALUE:
-        return VALUE_EDEFAULT == null ? getValue() != null : !VALUE_EDEFAULT.equals(getValue());
-      case XMLTypePackage.SIMPLE_ANY_TYPE__INSTANCE_TYPE:
-        return instanceType != null;
+    case XMLTypePackage.SIMPLE_ANY_TYPE__MIXED:
+      return mixed != null && !mixed.isEmpty();
+    case XMLTypePackage.SIMPLE_ANY_TYPE__ANY:
+      return !getAny().isEmpty();
+    case XMLTypePackage.SIMPLE_ANY_TYPE__ANY_ATTRIBUTE:
+      return anyAttribute != null && !anyAttribute.isEmpty();
+    case XMLTypePackage.SIMPLE_ANY_TYPE__RAW_VALUE:
+      return RAW_VALUE_EDEFAULT == null ? getRawValue() != null : !RAW_VALUE_EDEFAULT.equals(getRawValue());
+    case XMLTypePackage.SIMPLE_ANY_TYPE__VALUE:
+      return VALUE_EDEFAULT == null ? getValue() != null : !VALUE_EDEFAULT.equals(getValue());
+    case XMLTypePackage.SIMPLE_ANY_TYPE__INSTANCE_TYPE:
+      return instanceType != null;
     }
     return eDynamicIsSet(featureID);
   }
 
-} //SimpleAnyTypeImpl
+} // SimpleAnyTypeImpl
