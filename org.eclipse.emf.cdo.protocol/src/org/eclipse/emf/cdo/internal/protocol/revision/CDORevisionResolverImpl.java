@@ -38,12 +38,14 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
 
   public CDOClass getObjectType(CDOID id)
   {
+    // Synchronization not needed
     TimeLine timeLine = revisions.get(id);
     if (timeLine == null || timeLine.isEmpty())
     {
       return null;
     }
 
+    // Synchronization not needed
     CDORevisionImpl revision = timeLine.getFirst();
     return revision.getCDOClass();
   }
@@ -77,6 +79,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     timeLine.add(revision);
   }
 
+  @Deprecated
   public void removeRevision(CDORevisionImpl revision)
   {
     if (!revision.isCurrent())
@@ -111,14 +114,17 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       throw new IllegalArgumentException("id.isTemporary()");
     }
 
-    TimeLine timeLine = revisions.get(id);
-    if (timeLine == null)
+    synchronized (revisions)
     {
-      timeLine = new TimeLine(id);
-      revisions.put(id, timeLine);
-    }
+      TimeLine timeLine = revisions.get(id);
+      if (timeLine == null)
+      {
+        timeLine = new TimeLine(id);
+        revisions.put(id, timeLine);
+      }
 
-    return timeLine;
+      return timeLine;
+    }
   }
 
   protected CDORevisionImpl verifyRevision(CDORevisionImpl revision)
@@ -154,7 +160,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       return id;
     }
 
-    public CDORevisionImpl getRevision(int referenceChunk)
+    public synchronized CDORevisionImpl getRevision(int referenceChunk)
     {
       CDORevisionImpl revision = isEmpty() ? null : getFirst();
       if (revision == null || !revision.isCurrent())
@@ -168,14 +174,14 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
         revision = verifyRevision(oldRevision);
         if (revision != oldRevision)
         {
-          set(0, revision);
+          addFirst(revision);
         }
       }
 
       return revision;
     }
 
-    public CDORevisionImpl getRevision(int referenceChunk, long timeStamp)
+    public synchronized CDORevisionImpl getRevision(int referenceChunk, long timeStamp)
     {
       // TODO Binary search? (LinkedList -> ArrayList)
       ListIterator<CDORevisionImpl> it = listIterator();
@@ -202,7 +208,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     }
 
     @Override
-    public boolean add(CDORevisionImpl revision)
+    public synchronized boolean add(CDORevisionImpl revision)
     {
       CDORevisionImpl previousRevision = isEmpty() ? null : getFirst();
       if (previousRevision != null && previousRevision.isCurrent())
@@ -213,5 +219,12 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       addFirst(revision);
       return true;
     }
+
+    @Override
+    public synchronized boolean remove(Object o)
+    {
+      return super.remove(o);
+    }
+
   }
 }
