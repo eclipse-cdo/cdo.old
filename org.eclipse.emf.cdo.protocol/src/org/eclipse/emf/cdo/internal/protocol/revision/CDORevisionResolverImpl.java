@@ -18,8 +18,11 @@ import org.eclipse.emf.cdo.protocol.revision.CDORevisionResolver;
 import org.eclipse.net4j.internal.util.lifecycle.Lifecycle;
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 
@@ -162,11 +165,11 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
 
     public synchronized CDORevisionImpl getRevision(int referenceChunk)
     {
-      CDORevisionImpl revision = isEmpty() ? null : getFirst();
+      CDORevisionImpl revision = isEmpty() ? null : super.getFirst();
       if (revision == null || !revision.isCurrent())
       {
         revision = loadRevision(id, referenceChunk);
-        addFirst(revision);
+        super.addFirst(revision);
       }
       else
       {
@@ -174,7 +177,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
         revision = verifyRevision(oldRevision);
         if (revision != oldRevision)
         {
-          addFirst(revision);
+          super.addFirst(revision);
         }
       }
 
@@ -184,7 +187,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     public synchronized CDORevisionImpl getRevision(int referenceChunk, long timeStamp)
     {
       // TODO Binary search? (LinkedList -> ArrayList)
-      ListIterator<CDORevisionImpl> it = listIterator();
+      ListIterator<CDORevisionImpl> it = super.listIterator();
       while (it.hasNext())
       {
         CDORevisionImpl revision = it.next();
@@ -210,13 +213,13 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     @Override
     public synchronized boolean add(CDORevisionImpl revision)
     {
-      CDORevisionImpl previousRevision = isEmpty() ? null : getFirst();
+      CDORevisionImpl previousRevision = isEmpty() ? null : super.getFirst();
       if (previousRevision != null && previousRevision.isCurrent())
       {
         previousRevision.setRevised(revision.getCreated() - 1);
       }
 
-      addFirst(revision);
+      super.addFirst(revision);
       return true;
     }
 
@@ -226,5 +229,235 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       return super.remove(o);
     }
 
+    @Override
+    @Deprecated
+    public void addFirst(CDORevisionImpl o)
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public CDORevisionImpl getFirst()
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public void add(int index, CDORevisionImpl element)
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public boolean addAll(Collection<? extends CDORevisionImpl> c)
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public boolean addAll(int index, Collection<? extends CDORevisionImpl> c)
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public void addLast(CDORevisionImpl o)
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public void clear()
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public Object clone()
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public boolean contains(Object o)
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public boolean containsAll(Collection<?> c)
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public CDORevisionImpl element()
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public boolean equals(Object o)
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public CDORevisionImpl get(int index)
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public CDORevisionImpl getLast()
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public int hashCode()
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public int indexOf(Object o)
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public Iterator<CDORevisionImpl> iterator()
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public int lastIndexOf(Object o)
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public ListIterator<CDORevisionImpl> listIterator()
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public ListIterator<CDORevisionImpl> listIterator(int index)
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public boolean offer(CDORevisionImpl o)
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public CDORevisionImpl peek()
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public CDORevisionImpl poll()
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public CDORevisionImpl remove()
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public CDORevisionImpl remove(int index)
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public boolean removeAll(Collection<?> c)
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public CDORevisionImpl removeFirst()
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public CDORevisionImpl removeLast()
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public boolean retainAll(Collection<?> c)
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public CDORevisionImpl set(int index, CDORevisionImpl element)
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public List<CDORevisionImpl> subList(int fromIndex, int toIndex)
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public Object[] toArray()
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public <T> T[] toArray(T[] a)
+    {
+      throw new UnsupportedOperationException();
+    }
   }
 }
