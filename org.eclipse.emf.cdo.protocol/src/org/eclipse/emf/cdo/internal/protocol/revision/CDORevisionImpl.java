@@ -271,6 +271,11 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     this.containingFeatureID = containingFeatureID;
   }
 
+  public int hashCode(CDOFeature feature)
+  {
+    return getValue(feature).hashCode();
+  }
+
   public Object get(CDOFeature feature, int index)
   {
     if (feature.isMany())
@@ -284,11 +289,6 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
   public boolean contains(CDOFeature feature, Object value)
   {
     return getList(feature).contains(value);
-  }
-
-  public int hashCode(CDOFeature feature)
-  {
-    return getList(feature).hashCode();
   }
 
   public int indexOf(CDOFeature feature, Object value)
