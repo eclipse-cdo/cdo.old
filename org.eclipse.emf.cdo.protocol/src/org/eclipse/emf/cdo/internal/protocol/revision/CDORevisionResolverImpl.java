@@ -177,7 +177,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
 
     public CDORevisionImpl getRevision(int referenceChunk, long timeStamp)
     {
-      // TODO Binary search?
+      // TODO Binary search? (LinkedList -> ArrayList)
       ListIterator<CDORevisionImpl> it = listIterator();
       while (it.hasNext())
       {
