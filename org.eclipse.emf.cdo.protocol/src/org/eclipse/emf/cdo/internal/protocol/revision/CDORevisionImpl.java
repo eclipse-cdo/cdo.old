@@ -504,7 +504,10 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
         for (int j = referenceChunk; j < size; j++)
         {
-          list.add(null);
+          // TODO Implement method CDORevisionImpl.readValues()
+          throw new UnsupportedOperationException("Not yet implemented");
+
+          // list.add(???);
         }
 
         values[i] = list;
