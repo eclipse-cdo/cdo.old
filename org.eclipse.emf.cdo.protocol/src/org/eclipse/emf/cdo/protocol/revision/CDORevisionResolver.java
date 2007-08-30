@@ -24,7 +24,7 @@ public interface CDORevisionResolver
    */
   public CDOClass getObjectType(CDOID id);
 
-  public CDORevision getRevision(CDOID id);
+  public CDORevision getRevision(CDOID id, int referenceChunk);
 
-  public CDORevision getRevision(CDOID id, long timeStamp);
+  public CDORevision getRevision(CDOID id, int referenceChunk, long timeStamp);
 }

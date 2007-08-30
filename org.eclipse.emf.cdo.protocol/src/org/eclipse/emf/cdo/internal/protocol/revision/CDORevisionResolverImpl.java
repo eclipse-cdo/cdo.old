@@ -48,16 +48,16 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     return revision.getCDOClass();
   }
 
-  public CDORevisionImpl getRevision(CDOID id)
+  public CDORevisionImpl getRevision(CDOID id, int referenceChunk)
   {
     TimeLine timeLine = getTimeLine(id);
-    return timeLine.getRevision();
+    return timeLine.getRevision(referenceChunk);
   }
 
-  public CDORevisionImpl getRevision(CDOID id, long timeStamp)
+  public CDORevisionImpl getRevision(CDOID id, int referenceChunk, long timeStamp)
   {
     TimeLine timeLine = getTimeLine(id);
-    return timeLine.getRevision(timeStamp);
+    return timeLine.getRevision(referenceChunk, timeStamp);
   }
 
   public void addRevision(CDORevisionImpl revision)
@@ -126,9 +126,9 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     return revision;
   }
 
-  protected abstract CDORevisionImpl loadRevision(CDOID id);
+  protected abstract CDORevisionImpl loadRevision(CDOID id, int referenceChunk);
 
-  protected abstract CDORevisionImpl loadRevision(CDOID id, long timeStamp);
+  protected abstract CDORevisionImpl loadRevision(CDOID id, int referenceChunk, long timeStamp);
 
   /**
    * @author Eike Stepper
@@ -154,12 +154,12 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       return id;
     }
 
-    public CDORevisionImpl getRevision()
+    public CDORevisionImpl getRevision(int referenceChunk)
     {
       CDORevisionImpl revision = isEmpty() ? null : getFirst();
       if (revision == null || !revision.isCurrent())
       {
-        revision = loadRevision(id);
+        revision = loadRevision(id, referenceChunk);
         addFirst(revision);
       }
       else
@@ -175,7 +175,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       return revision;
     }
 
-    public CDORevisionImpl getRevision(long timeStamp)
+    public CDORevisionImpl getRevision(int referenceChunk, long timeStamp)
     {
       // TODO Binary search?
       ListIterator<CDORevisionImpl> it = listIterator();
@@ -196,7 +196,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
         }
       }
 
-      CDORevisionImpl revision = loadRevision(id, timeStamp);
+      CDORevisionImpl revision = loadRevision(id, referenceChunk, timeStamp);
       it.add(revision);
       return revision;
     }

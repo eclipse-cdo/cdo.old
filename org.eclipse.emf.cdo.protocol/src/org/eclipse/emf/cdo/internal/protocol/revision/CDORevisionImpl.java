@@ -37,6 +37,8 @@ import java.util.Map;
  */
 public class CDORevisionImpl implements CDORevision, CDORevisionData
 {
+  public static final int COMPLETE_REFERENCES = Integer.MAX_VALUE;
+
   public static final ContextTracer TRACER = new ContextTracer(OM.DEBUG_REVISION, CDORevisionImpl.class);
 
   private CDOClassImpl cdoClass;
@@ -107,7 +109,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     readValues(in);
   }
 
-  public void write(ExtendedDataOutput out, CDOIDProvider idProvider) throws IOException
+  public void write(ExtendedDataOutput out, CDOIDProvider idProvider, int referenceChunk) throws IOException
   {
     CDOClassRefImpl classRef = cdoClass.createClassRef();
     if (TRACER.isEnabled())
@@ -123,7 +125,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     CDOIDImpl.write(out, resourceID);
     CDOIDImpl.write(out, containerID);
     out.writeInt(containingFeatureID);
-    writeValues(out, idProvider);
+    writeValues(out, idProvider, referenceChunk);
   }
 
   public CDOClassImpl getCDOClass()
@@ -481,11 +483,28 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
       CDOTypeImpl type = feature.getType();
       if (feature.isMany())
       {
+        int referenceChunk;
         int size = in.readInt();
+        if (size < 0)
+        {
+          size = -size;
+          referenceChunk = in.readInt();
+
+        }
+        else
+        {
+          referenceChunk = size;
+        }
+
         List list = new MoveableList(size);
-        for (int j = 0; j < size; j++)
+        for (int j = 0; j < referenceChunk; j++)
         {
           list.add(type.readValue(in));
+        }
+
+        for (int j = referenceChunk; j < size; j++)
+        {
+          list.add(null);
         }
 
         values[i] = list;
@@ -497,7 +516,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     }
   }
 
-  private void writeValues(ExtendedDataOutput out, CDOIDProvider idProvider) throws IOException
+  private void writeValues(ExtendedDataOutput out, CDOIDProvider idProvider, int referenceChunk) throws IOException
   {
     CDOFeatureImpl[] features = cdoClass.getAllFeatures();
     for (int i = 0; i < features.length; i++)
@@ -507,7 +526,16 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
       {
         List list = (List)values[i];
         int size = list == null ? 0 : list.size();
-        out.writeInt(size);
+        if (size > referenceChunk)
+        {
+          out.writeInt(-size);
+          out.writeInt(referenceChunk);
+        }
+        else
+        {
+          out.writeInt(size);
+        }
+
         for (int j = 0; j < size; j++)
         {
           Object value = list.get(j);
