@@ -38,7 +38,7 @@
    </url>
 
    <requires>
-      <import feature="org.eclipse.net4j" version="0.7.0" match="compatible"/>
+      <import feature="org.eclipse.net4j" version="0.8.0" match="compatible"/>
    </requires>
 
    <plugin
