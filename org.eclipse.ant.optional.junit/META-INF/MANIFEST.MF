@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: DUMMY FRAGMENT
+Bundle-SymbolicName: org.eclipse.ant.optional.junit
+Bundle-Version: 1.0.0
+Bundle-Vendor: Eclipse.org
+Fragment-Host: org.eclipse.ant.core;bundle-version="3.1.200"
