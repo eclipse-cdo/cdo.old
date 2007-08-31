@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?eclipse version="3.3"?>
 <!--
 	<copyright>
 	
@@ -14,7 +13,6 @@
 	
 	</copyright>
 -->
-
 <feature
       id="org.eclipse.emf.cdo.tests"
       label="%featureName"
@@ -40,7 +38,7 @@
    <requires>
       <import feature="org.eclipse.emf" version="2.2.0" match="compatible"/>
       <import feature="org.eclipse.net4j" version="0.8.0" match="compatible"/>
-      <import feature="org.eclipse.emf.cdo.client" version="0.8.0" match="compatible"/>
+      <import feature="org.eclipse.emf.cdo" version="0.8.0" match="compatible"/>
       <import feature="org.eclipse.emf.cdo.server" version="0.8.0" match="compatible"/>
    </requires>
 
@@ -61,6 +59,28 @@
          id="org.eclipse.emf.cdo.tests"
          download-size="0"
          install-size="0"
-         version="0.0.0"/>
+         version="0.0.0"
+         unpack="true"/>
+
+   <plugin
+         id="org.eclipse.emf.cdo.tests.model1"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.cdo.tests.model1.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.cdo.tests.model1.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>

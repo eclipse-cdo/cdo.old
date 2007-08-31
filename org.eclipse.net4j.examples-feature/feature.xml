@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?eclipse version="3.3"?>
 <!--
 	<copyright>
 	
@@ -14,7 +13,6 @@
 	
 	</copyright>
 -->
-
 <feature
       id="org.eclipse.net4j.examples"
       label="%featureName"
@@ -42,77 +40,34 @@
    </requires>
 
    <plugin
-         id="org.eclipse.net4j.examples.client"
+         id="org.eclipse.net4j.jms"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.net4j.examples.client.ui"
+         id="org.eclipse.net4j.jms.admin"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.net4j.examples.mvc"
+         id="org.eclipse.net4j.jms.api"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.net4j.jms.server"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.net4j.examples.mvc.swt"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.net4j.examples.prov"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.net4j.examples.prov.server"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.net4j.examples.prov.client"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.net4j.examples.prov.client.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.net4j.examples.prov.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.net4j.examples.prov.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.net4j.examples.server"
+         id="org.eclipse.net4j.jms.server.jdbc"
          download-size="0"
          install-size="0"
          version="0.0.0"
