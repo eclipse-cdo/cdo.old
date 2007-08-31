@@ -16,7 +16,7 @@
 -->
 
 <feature
-      id="org.eclipse.emf.cdo"
+      id="org.eclipse.net4j.db"
       label="%featureName"
       version="0.8.0.qualifier"
       provider-name="%providerName">
@@ -39,49 +39,21 @@
 
    <requires>
       <import feature="org.eclipse.net4j" version="0.8.0" match="compatible"/>
-      <import feature="org.eclipse.net4j.ui" version="0.8.0" match="compatible"/>
    </requires>
 
    <plugin
-         id="org.eclipse.emf.cdo"
+         id="org.eclipse.net4j.db"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.emf.cdo.edit"
+         id="org.eclipse.net4j.db.derby"
          download-size="0"
          install-size="0"
          version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.emf.cdo.protocol"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.emf.cdo.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.emf.cdo.weaver"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.emf.cdo.weaver.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
+         fragment="true"
          unpack="false"/>
 
 </feature>

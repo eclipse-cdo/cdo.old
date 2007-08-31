@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.3"?>
 <!--
 	<copyright>
 	
@@ -13,6 +14,7 @@
 	
 	</copyright>
 -->
+
 <feature
       id="org.eclipse.net4j.examples"
       label="%featureName"

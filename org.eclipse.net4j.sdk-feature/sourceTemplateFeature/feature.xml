@@ -28,5 +28,5 @@
 	<url>
 		<update label="%updateSiteName" url="http://download.eclipse.org/technology/emft/updates/"/>
 	</url>
-	<plugin    fragment="false"  download-size="0" install-size="0" id="org.eclipse.net4j.source" version="0.8.0.qualifier"/>
+	<plugin    fragment="false"  download-size="0" install-size="0" id="org.eclipse.net4j.source" version="0.8.0" match="compatible"/>
 </feature>
