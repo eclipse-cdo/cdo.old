@@ -7,8 +7,9 @@ Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.emf.cdo.tests.model1.provider.Model1EditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.3.0,4.0.0)",
+ org.eclipse.emf.edit;bundle-version="[2.3.0,3.0.0)";visibility:=reexport,
+ org.eclipse.emf.cdo.tests.model1;bundle-version="[0.8.0,0.9.0)";visibility:=reexport
 Export-Package: org.eclipse.emf.cdo.tests.model1.provider
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.cdo.tests.model1;visibility:=reexport,
- org.eclipse.emf.edit;visibility:=reexport
 Eclipse-LazyStart: true
