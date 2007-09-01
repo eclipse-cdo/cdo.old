@@ -82,7 +82,6 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     timeLine.add(revision);
   }
 
-  @Deprecated
   public void removeRevision(CDORevisionImpl revision)
   {
     if (!revision.isCurrent())
