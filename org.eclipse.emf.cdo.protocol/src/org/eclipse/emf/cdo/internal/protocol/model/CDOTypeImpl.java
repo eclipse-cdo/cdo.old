@@ -27,7 +27,7 @@ import java.util.List;
  */
 public abstract class CDOTypeImpl implements CDOType
 {
-  private static List<CDOTypeImpl> index = new ArrayList();
+  private static List<CDOTypeImpl> index = new ArrayList<CDOTypeImpl>();
 
   private static final byte BOOLEAN_DEFAULT_PRIMITIVE = 0;
 

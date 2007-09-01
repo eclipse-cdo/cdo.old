@@ -31,7 +31,7 @@ public abstract class CDOPackageManagerImpl extends Container<CDOPackage> implem
 {
   private static final ContextTracer TRACER = new ContextTracer(OM.DEBUG_MODEL, CDOPackageManagerImpl.class);
 
-  private ConcurrentMap<String, CDOPackageImpl> packages = new ConcurrentHashMap();
+  private ConcurrentMap<String, CDOPackageImpl> packages = new ConcurrentHashMap<String, CDOPackageImpl>();
 
   private CDOCorePackageImpl cdoCorePackage;
 
@@ -86,7 +86,7 @@ public abstract class CDOPackageManagerImpl extends Container<CDOPackage> implem
 
   public List<CDOPackageImpl> getTransientPackages()
   {
-    List<CDOPackageImpl> result = new ArrayList();
+    List<CDOPackageImpl> result = new ArrayList<CDOPackageImpl>();
     for (CDOPackageImpl cdoPackage : packages.values())
     {
       if (!cdoPackage.isPersistent())

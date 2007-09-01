@@ -391,7 +391,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
       {
         if (feature.isMany())
         {
-          List list = (List)values[i];
+          List<Object> list = (List<Object>)values[i];
           int size = list == null ? 0 : list.size();
           for (int j = 0; j < size; j++)
           {
@@ -457,7 +457,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
         if (sourceList != null)
         {
           int size = sourceList.size();
-          List list = new MoveableList(size);
+          List<Object> list = new MoveableList(size);
           for (int j = 0; j < size; j++)
           {
             list.add(type.copyValue(sourceList.get(j)));
@@ -496,7 +496,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
           referenceChunk = size;
         }
 
-        List list = new MoveableList(size);
+        List<Object> list = new MoveableList(size);
         for (int j = 0; j < referenceChunk; j++)
         {
           list.add(type.readValue(in));
@@ -527,7 +527,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
       CDOFeatureImpl feature = features[i];
       if (feature.isMany())
       {
-        List list = (List)values[i];
+        List<Object> list = (List<Object>)values[i];
         int size = list == null ? 0 : list.size();
         if (size > referenceChunk)
         {

@@ -39,9 +39,9 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
 
   private boolean isAbstract;
 
-  private List<CDOClassProxy> superTypes = new ArrayList(0);
+  private List<CDOClassProxy> superTypes = new ArrayList<CDOClassProxy>(0);
 
-  private List<CDOFeatureImpl> features = new ArrayList(0);
+  private List<CDOFeatureImpl> features = new ArrayList<CDOFeatureImpl>(0);
 
   private transient List<Integer> indices;
 
@@ -179,7 +179,7 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
   {
     if (allSuperTypes == null)
     {
-      List<CDOClassImpl> result = new ArrayList(0);
+      List<CDOClassImpl> result = new ArrayList<CDOClassImpl>(0);
       for (CDOClassImpl superType : getSuperTypes())
       {
         CDOClassImpl[] higherSupers = superType.getAllSuperTypes();
@@ -202,7 +202,7 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     if (indices == null)
     {
       CDOFeatureImpl[] features = getAllFeatures();
-      indices = new ArrayList(features.length);
+      indices = new ArrayList<Integer>(features.length);
       int index = 0;
       for (CDOFeatureImpl feature : features)
       {
@@ -219,7 +219,7 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
   {
     if (allFeatures == null)
     {
-      List<CDOFeatureImpl> result = new ArrayList(0);
+      List<CDOFeatureImpl> result = new ArrayList<CDOFeatureImpl>(0);
       for (CDOClassImpl superType : getSuperTypes())
       {
         CDOFeatureImpl[] features = superType.getAllFeatures();
@@ -357,6 +357,7 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     }
   }
 
+  @SuppressWarnings("unchecked")
   private static void addUnique(Object object, List result)
   {
     if (!result.contains(object))

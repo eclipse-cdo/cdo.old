@@ -72,9 +72,9 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
 
   private Map<String, BundleInfo> bundleMap;
 
-  private Set<String> skippedBundles = new HashSet();
+  private Set<String> skippedBundles = new HashSet<String>();
 
-  private Set<String> ignoredBundles = new HashSet();
+  private Set<String> ignoredBundles = new HashSet<String>();
 
   public ConfirmWeaveDialog(Map<String, BundleInfo> bundleMap)
   {
@@ -130,7 +130,7 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
   {
     OM.setIgnoredBundles(ignoredBundles);
 
-    final List<BundleInfo> bundleInfos = new ArrayList();
+    final List<BundleInfo> bundleInfos = new ArrayList<BundleInfo>();
     for (BundleInfo bundleInfo : bundleMap.values())
     {
       String name = bundleInfo.getName();
@@ -245,9 +245,9 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
 
   private List<String> getSelectedBundles()
   {
-    List<String> selectedBundles = new ArrayList();
+    List<String> selectedBundles = new ArrayList<String>();
     IStructuredSelection selection = (IStructuredSelection)getCurrentViewer().getSelection();
-    for (Iterator it = selection.iterator(); it.hasNext();)
+    for (Iterator<Object> it = selection.iterator(); it.hasNext();)
     {
       Object element = it.next();
       if (element instanceof BundleInfo)
@@ -285,7 +285,7 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
     {
       if (parentElement == bundleMap)
       {
-        List<BundleInfo> list = new ArrayList();
+        List<BundleInfo> list = new ArrayList<BundleInfo>();
         for (BundleInfo bundleInfo : bundleMap.values())
         {
           if (OM.PREF_SHOW_IGNORED_BUNDLES.getValue() || !ignoredBundles.contains(bundleInfo.getName()))

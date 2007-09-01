@@ -182,7 +182,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
   public CDOClassImpl[] getConcreteClasses()
   {
     resolve();
-    List<CDOClassImpl> result = new ArrayList(0);
+    List<CDOClassImpl> result = new ArrayList<CDOClassImpl>(0);
     for (CDOClassImpl cdoClass : classes)
     {
       if (!cdoClass.isAbstract())
@@ -307,7 +307,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
 
   private void createLists()
   {
-    classes = new ArrayList(0);
-    index = new ArrayList(0);
+    classes = new ArrayList<CDOClassImpl>(0);
+    index = new ArrayList<CDOClassImpl>(0);
   }
 }

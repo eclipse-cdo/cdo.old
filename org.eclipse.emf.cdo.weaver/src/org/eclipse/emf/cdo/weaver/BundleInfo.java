@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * @author Eike Stepper
  */
-public final class BundleInfo implements Comparable
+public final class BundleInfo implements Comparable<BundleInfo>
 {
   private String name;
 
@@ -28,7 +28,7 @@ public final class BundleInfo implements Comparable
 
   private File location;
 
-  private List<String> packageURIs = new ArrayList();
+  private List<String> packageURIs = new ArrayList<String>();
 
   public BundleInfo(String name, String version, File location)
   {
@@ -77,9 +77,9 @@ public final class BundleInfo implements Comparable
     return !isArchive();
   }
 
-  public int compareTo(Object obj)
+  public int compareTo(BundleInfo obj)
   {
-    return StringUtil.compare(name, ((BundleInfo)obj).name);
+    return StringUtil.compare(name, obj.name);
   }
 
   @Override

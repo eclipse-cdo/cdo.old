@@ -397,7 +397,7 @@ public class CDOWeaver implements ICDOWeaver
 
   private List<File> getSourceLocations(Collection<BundleInfo> bundleInfos)
   {
-    List<File> folders = new ArrayList();
+    List<File> folders = new ArrayList<File>();
     IExtensionRegistry registry = Platform.getExtensionRegistry();
     for (IConfigurationElement element : registry.getConfigurationElementsFor("org.eclipse.pde.core", "source"))
     {
@@ -453,7 +453,7 @@ public class CDOWeaver implements ICDOWeaver
 
   private URL[] getClassURLs(Collection<BundleInfo> bundleInfos)
   {
-    List<URL> urls = new ArrayList(basicClassURLs.length + bundleInfos.size());
+    List<URL> urls = new ArrayList<URL>(basicClassURLs.length + bundleInfos.size());
     for (URL url : basicClassURLs)
     {
       urls.add(url);

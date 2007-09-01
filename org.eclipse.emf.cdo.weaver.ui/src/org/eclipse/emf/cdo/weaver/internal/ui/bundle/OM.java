@@ -75,7 +75,7 @@ public abstract class OM
 
   public static Set<String> getIgnoredBundles()
   {
-    return new HashSet(Arrays.asList(PREF_IGNORED_BUNDLES.getValue()));
+    return new HashSet<String>(Arrays.asList(PREF_IGNORED_BUNDLES.getValue()));
   }
 
   public static void setIgnoredBundles(Set<String> ignoredBundles)
@@ -92,7 +92,7 @@ public abstract class OM
   {
     File[] siteLocations = null;
     Map<String, CDOPackageType> packageTypes = CDOUtil.getPackageTypes();
-    Map<String, BundleInfo> bundleMap = new TreeMap();
+    Map<String, BundleInfo> bundleMap = new TreeMap<String, BundleInfo>();
 
     IExtensionRegistry registry = Platform.getExtensionRegistry();
     for (IConfigurationElement element : registry.getConfigurationElementsFor(ICDOWeaver.ECORE_NAME,
@@ -211,7 +211,7 @@ public abstract class OM
     }
 
     final Map<String, BundleInfo> bundleMap = getUnwovenBundles();
-    HashSet copy = new HashSet(bundleMap.keySet());
+    HashSet<String> copy = new HashSet<String>(bundleMap.keySet());
     copy.removeAll(getIgnoredBundles());
     if (copy.isEmpty())
     {

@@ -33,7 +33,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
 {
   private static final ContextTracer TRACER = new ContextTracer(OM.DEBUG_REVISION, CDORevisionResolverImpl.class);
 
-  private Map<CDOID, TimeLine> revisions = new HashMap();
+  private Map<CDOID, TimeLine> revisions = new HashMap<CDOID, TimeLine>();
 
   public CDORevisionResolverImpl()
   {
