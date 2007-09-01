@@ -11,35 +11,18 @@
 package org.eclipse.emf.cdo.protocol.revision;
 
 import org.eclipse.emf.cdo.protocol.CDOID;
-import org.eclipse.emf.cdo.protocol.model.CDOClass;
+import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 
 /**
  * @author Eike Stepper
  */
-public interface CDORevision
+public interface CDOReferenceProxy
 {
-  public static final long UNSPECIFIED_DATE = 0;
+  public CDORevision getRevision();
 
-  public CDORevisionResolver getRevisionResolver();
+  public CDOFeature getFeature();
 
-  public CDOClass getCDOClass();
+  public int getIndex();
 
-  public CDOID getID();
-
-  public int getVersion();
-
-  public long getCreated();
-
-  public long getRevised();
-
-  public boolean isCurrent();
-
-  public boolean isValid(long timeStamp);
-
-  public boolean isResource();
-
-  public CDORevisionData getData();
-
-  @Deprecated
-  public CDORevisionDelta createDelta(CDORevision origin);
+  public CDOID resolve();
 }

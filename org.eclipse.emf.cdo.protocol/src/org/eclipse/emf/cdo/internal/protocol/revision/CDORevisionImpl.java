@@ -21,6 +21,7 @@ import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionData;
+import org.eclipse.emf.cdo.protocol.revision.CDORevisionResolver;
 
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.ImplementationError;
@@ -41,6 +42,8 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   public static final ContextTracer TRACER = new ContextTracer(OM.DEBUG_REVISION, CDORevisionImpl.class);
 
+  private CDORevisionResolver revisionResolver;
+
   private CDOClassImpl cdoClass;
 
   private CDOID id;
@@ -59,8 +62,9 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   private Object[] values;
 
-  public CDORevisionImpl(CDOClassImpl cdoClass, CDOID id)
+  public CDORevisionImpl(CDORevisionResolver revisionResolver, CDOClassImpl cdoClass, CDOID id)
   {
+    this.revisionResolver = revisionResolver;
     this.cdoClass = cdoClass;
     this.id = id;
     version = 0;
@@ -74,6 +78,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   public CDORevisionImpl(CDORevisionImpl source)
   {
+    revisionResolver = source.revisionResolver;
     cdoClass = source.cdoClass;
     id = source.id;
     version = source.version;
@@ -85,8 +90,11 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     copyValues(source.values);
   }
 
-  public CDORevisionImpl(ExtendedDataInput in, CDOPackageManager packageManager) throws IOException
+  public CDORevisionImpl(ExtendedDataInput in, CDORevisionResolver revisionResolver, CDOPackageManager packageManager)
+      throws IOException
   {
+    this.revisionResolver = revisionResolver;
+
     CDOClassRefImpl classRef = new CDOClassRefImpl(in, null);
     cdoClass = classRef.resolve(packageManager);
     if (cdoClass == null)
@@ -126,6 +134,11 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     CDOIDImpl.write(out, containerID);
     out.writeInt(containingFeatureID);
     writeValues(out, idProvider, referenceChunk);
+  }
+
+  public CDORevisionResolver getRevisionResolver()
+  {
+    return revisionResolver;
   }
 
   public CDOClassImpl getCDOClass()
@@ -504,10 +517,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
         for (int j = referenceChunk; j < size; j++)
         {
-          // TODO Implement method CDORevisionImpl.readValues()
-          throw new UnsupportedOperationException("Not yet implemented");
-
-          // list.add(???);
+          list.add(new CDOReferenceProxyImpl(this, feature, j));
         }
 
         values[i] = list;

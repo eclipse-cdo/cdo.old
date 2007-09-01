@@ -29,9 +29,11 @@ public interface CDOProtocolConstants
 
   public static final short SIGNAL_LOAD_REVISION = 6;
 
-  public static final short SIGNAL_COMMIT_TRANSACTION = 7;
+  public static final short SIGNAL_LOAD_CHUNK = 7;
 
-  public static final short SIGNAL_INVALIDATION = 8;
+  public static final short SIGNAL_COMMIT_TRANSACTION = 8;
+
+  public static final short SIGNAL_INVALIDATION = 9;
 
   public static final int ERROR_REPOSITORY_NOT_FOUND = -1;
 

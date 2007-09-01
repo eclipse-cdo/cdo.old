@@ -27,4 +27,6 @@ public interface CDORevisionResolver
   public CDORevision getRevision(CDOID id, int referenceChunk);
 
   public CDORevision getRevision(CDOID id, int referenceChunk, long timeStamp);
+
+  public CDOID resolveReferenceProxy(CDOReferenceProxy referenceProxy);
 }
