@@ -19,6 +19,7 @@ import org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
+import org.eclipse.emf.cdo.protocol.revision.CDOReferenceProxy;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionData;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionResolver;
@@ -473,7 +474,15 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
           List<Object> list = new MoveableList(size);
           for (int j = 0; j < size; j++)
           {
-            list.add(type.copyValue(sourceList.get(j)));
+            Object value = sourceList.get(j);
+            if (value instanceof CDOReferenceProxy)
+            {
+              list.add(new CDOReferenceProxyImpl(this, feature, ((CDOReferenceProxy)value).getIndex()));
+            }
+            else
+            {
+              list.add(type.copyValue(value));
+            }
           }
 
           values[i] = list;
@@ -502,17 +511,23 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
         {
           size = -size;
           referenceChunk = in.readInt();
-
+          if (TRACER.isEnabled())
+          {
+            TRACER.format("Read feature {0}: size={1}, referenceChunk={2}", feature, size, referenceChunk);
+          }
         }
         else
         {
           referenceChunk = size;
+          if (TRACER.isEnabled()) TRACER.format("Read feature {0}: size={1}", feature, size);
         }
 
         List<Object> list = new MoveableList(size);
         for (int j = 0; j < referenceChunk; j++)
         {
-          list.add(type.readValue(in));
+          Object value = type.readValue(in);
+          list.add(value);
+          if (TRACER.isEnabled()) TRACER.trace("    " + value);
         }
 
         for (int j = referenceChunk; j < size; j++)
@@ -525,6 +540,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
       else
       {
         values[i] = type.readValue(in);
+        if (TRACER.isEnabled()) TRACER.format("Read feature {0}: {1}", feature, values[i]);
       }
     }
   }
@@ -541,24 +557,39 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
         int size = list == null ? 0 : list.size();
         if (size > referenceChunk)
         {
+          if (TRACER.isEnabled())
+          {
+            TRACER.format("Writing feature {0}: size={1}, referenceChunk={2}", feature, size, referenceChunk);
+          }
+
           out.writeInt(-size);
           out.writeInt(referenceChunk);
         }
         else
         {
+          if (TRACER.isEnabled()) TRACER.format("Writing feature {0}: size={1}", feature, size);
           out.writeInt(size);
         }
 
         for (int j = 0; j < size; j++)
         {
           Object value = list.get(j);
-          if (value != null && feature.isReference())
+          if (value instanceof CDOReferenceProxy)
           {
-            value = idProvider.provideCDOID(value);
-            list.set(j, value);
+            // TODO Implement method CDORevisionImpl.writeValues()
+            throw new UnsupportedOperationException("Not yet implemented");
           }
+          else
+          {
+            if (value != null && feature.isReference())
+            {
+              value = idProvider.provideCDOID(value);
+              list.set(j, value);
+            }
 
-          feature.getType().writeValue(out, value);
+            if (TRACER.isEnabled()) TRACER.trace("    " + value);
+            feature.getType().writeValue(out, value);
+          }
         }
       }
       else
@@ -568,6 +599,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
           values[i] = idProvider.provideCDOID(values[i]);
         }
 
+        if (TRACER.isEnabled()) TRACER.format("Writing feature {0}: {1}", feature, values[i]);
         feature.getType().writeValue(out, values[i]);
       }
     }

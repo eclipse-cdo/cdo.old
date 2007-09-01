@@ -16,6 +16,8 @@ import org.eclipse.emf.cdo.protocol.revision.CDOReferenceProxy;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionResolver;
 
+import java.text.MessageFormat;
+
 /**
  * @author Eike Stepper
  */
@@ -53,5 +55,11 @@ public class CDOReferenceProxyImpl implements CDOReferenceProxy
   {
     CDORevisionResolver revisionResolver = revision.getRevisionResolver();
     return revisionResolver.resolveReferenceProxy(this);
+  }
+
+  @Override
+  public String toString()
+  {
+    return MessageFormat.format("CDOReferenceProxy[{0}, {1}, {2}", revision, feature, index);
   }
 }
