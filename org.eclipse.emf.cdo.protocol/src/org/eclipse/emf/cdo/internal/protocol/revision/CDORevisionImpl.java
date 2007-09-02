@@ -39,7 +39,7 @@ import java.util.Map;
  */
 public class CDORevisionImpl implements CDORevision, CDORevisionData
 {
-  public static final int COMPLETE_REFERENCES = Integer.MAX_VALUE;
+  public static final int UNCHUNKED = -1;
 
   public static final ContextTracer TRACER = new ContextTracer(OM.DEBUG_REVISION, CDORevisionImpl.class);
 
@@ -555,7 +555,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
       {
         List<Object> list = (List<Object>)values[i];
         int size = list == null ? 0 : list.size();
-        if (size > referenceChunk)
+        if (referenceChunk != UNCHUNKED && referenceChunk < size)
         {
           if (TRACER.isEnabled())
           {
@@ -564,6 +564,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
           out.writeInt(-size);
           out.writeInt(referenceChunk);
+          size = referenceChunk;
         }
         else
         {
