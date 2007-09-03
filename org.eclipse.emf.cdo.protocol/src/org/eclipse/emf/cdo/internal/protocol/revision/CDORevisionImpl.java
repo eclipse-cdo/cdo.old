@@ -39,8 +39,6 @@ import java.util.Map;
  */
 public class CDORevisionImpl implements CDORevision, CDORevisionData
 {
-  public static final int UNCHUNKED = -1;
-
   public static final ContextTracer TRACER = new ContextTracer(OM.DEBUG_REVISION, CDORevisionImpl.class);
 
   private CDORevisionResolver revisionResolver;
@@ -546,7 +544,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
               {
                 if (baseRevision == null)
                 {
-                  baseRevision = (CDORevisionImpl)revisionResolver.getRevisionByVersion(id, UNCHUNKED, version - 1);
+                  baseRevision = (CDORevisionImpl)revisionResolver.getRevisionByVersion(id, CDORevision.UNCHUNKED, version - 1);
                 }
 
                 MoveableList baseList = baseRevision.getList(feature);
@@ -596,7 +594,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
       {
         List<Object> list = (List<Object>)values[i];
         int size = list == null ? 0 : list.size();
-        if (referenceChunk != UNCHUNKED && referenceChunk < size)
+        if (referenceChunk != CDORevision.UNCHUNKED && referenceChunk < size)
         {
           // This happens only on server-side
           if (TRACER.isEnabled())
