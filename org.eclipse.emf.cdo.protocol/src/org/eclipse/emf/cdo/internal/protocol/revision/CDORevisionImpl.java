@@ -39,7 +39,9 @@ import java.util.Map;
  */
 public class CDORevisionImpl implements CDORevision, CDORevisionData
 {
-  public static final ContextTracer TRACER = new ContextTracer(OM.DEBUG_REVISION, CDORevisionImpl.class);
+  public static final Object UNINITIALIZED = new Uninitialized();
+
+  private static final ContextTracer TRACER = new ContextTracer(OM.DEBUG_REVISION, CDORevisionImpl.class);
 
   private CDORevisionResolver revisionResolver;
 
@@ -444,15 +446,29 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   public MoveableList getList(CDOFeature feature)
   {
+    return getList(feature, 0);
+  }
+
+  public MoveableList getList(CDOFeature feature, int size)
+  {
     int i = feature.getFeatureIndex();
-    MoveableList result = (MoveableList)values[i];
-    if (result == null)
+    MoveableList list = (MoveableList)values[i];
+    if (list == null)
     {
-      result = new MoveableList(0);
-      values[i] = result;
+      list = new MoveableList(size);
+      values[i] = list;
     }
 
-    return result;
+    return list;
+  }
+
+  public void setListSize(CDOFeature feature, int size)
+  {
+    MoveableList list = getList(feature, size);
+    for (int j = list.size(); j < size; j++)
+    {
+      list.add(UNINITIALIZED);
+    }
   }
 
   private void copyValues(Object[] sourceValues)
@@ -704,6 +720,22 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     }
 
     return value;
+  }
+
+  /**
+   * @author Eike Stepper
+   */
+  private static final class Uninitialized
+  {
+    public Uninitialized()
+    {
+    }
+
+    @Override
+    public String toString()
+    {
+      return "UNINITIALIZED";
+    }
   }
 
   /**
