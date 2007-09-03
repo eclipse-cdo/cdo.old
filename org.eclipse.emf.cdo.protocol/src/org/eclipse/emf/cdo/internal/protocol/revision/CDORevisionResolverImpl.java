@@ -59,10 +59,16 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     return timeLine.getRevision(referenceChunk);
   }
 
-  public CDORevisionImpl getRevision(CDOID id, int referenceChunk, long timeStamp)
+  public CDORevisionImpl getRevisionByTime(CDOID id, int referenceChunk, long timeStamp)
   {
     TimeLine timeLine = getTimeLine(id);
-    return timeLine.getRevision(referenceChunk, timeStamp);
+    return timeLine.getRevisionByTime(referenceChunk, timeStamp);
+  }
+
+  public CDORevisionImpl getRevisionByVersion(CDOID id, int referenceChunk, int version)
+  {
+    TimeLine timeLine = getTimeLine(id);
+    return timeLine.getRevisionByVersion(referenceChunk, version);
   }
 
   public void addRevision(CDORevisionImpl revision)
@@ -136,7 +142,9 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
 
   protected abstract CDORevisionImpl loadRevision(CDOID id, int referenceChunk);
 
-  protected abstract CDORevisionImpl loadRevision(CDOID id, int referenceChunk, long timeStamp);
+  protected abstract CDORevisionImpl loadRevisionByTime(CDOID id, int referenceChunk, long timeStamp);
+
+  protected abstract CDORevisionImpl loadRevisionByVersion(CDOID id, int referenceChunk, int version);
 
   /**
    * @author Eike Stepper
@@ -183,10 +191,10 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       return revision;
     }
 
-    public synchronized CDORevisionImpl getRevision(int referenceChunk, long timeStamp)
+    public synchronized CDORevisionImpl getRevisionByTime(int referenceChunk, long timeStamp)
     {
       // TODO Binary search? (LinkedList -> ArrayList)
-      ListIterator<CDORevisionImpl> it = super.listIterator();
+      ListIterator<CDORevisionImpl> it = super.listIterator(0);
       while (it.hasNext())
       {
         CDORevisionImpl revision = it.next();
@@ -204,7 +212,31 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
         }
       }
 
-      CDORevisionImpl revision = loadRevision(id, referenceChunk, timeStamp);
+      CDORevisionImpl revision = loadRevisionByTime(id, referenceChunk, timeStamp);
+      it.add(revision);
+      return revision;
+    }
+
+    public synchronized CDORevisionImpl getRevisionByVersion(int referenceChunk, int version)
+    {
+      // TODO Binary search? (LinkedList -> ArrayList)
+      ListIterator<CDORevisionImpl> it = super.listIterator(0);
+      while (it.hasNext())
+      {
+        CDORevisionImpl revision = it.next();
+        int v = revision.getVersion();
+        if (v == version)
+        {
+          return revision;
+        }
+
+        if (v < version)
+        {
+          break;
+        }
+      }
+
+      CDORevisionImpl revision = loadRevisionByTime(id, referenceChunk, version);
       it.add(revision);
       return revision;
     }

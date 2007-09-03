@@ -522,20 +522,61 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
           if (TRACER.isEnabled()) TRACER.format("Read feature {0}: size={1}", feature, size);
         }
 
-        List<Object> list = new MoveableList(size);
-        for (int j = 0; j < referenceChunk; j++)
+        if (size != 0)
         {
-          Object value = type.readValue(in);
-          list.add(value);
-          if (TRACER.isEnabled()) TRACER.trace("    " + value);
-        }
+          CDORevisionImpl baseRevision = null;
+          List<Object> list = new MoveableList(size);
+          int ranges = in.readInt();
+          if (ranges != 0)
+          {
+            // This happens only on server side
+            while (ranges-- > 0)
+            {
+              int range = in.readInt();
+              if (range > 0)
+              {
+                while (range-- > 0)
+                {
+                  Object value = type.readValue(in);
+                  list.add(value);
+                  if (TRACER.isEnabled()) TRACER.trace("    " + value);
+                }
+              }
+              else
+              {
+                if (baseRevision == null)
+                {
+                  baseRevision = (CDORevisionImpl)revisionResolver.getRevisionByVersion(id, UNCHUNKED, version - 1);
+                }
 
-        for (int j = referenceChunk; j < size; j++)
-        {
-          list.add(new CDOReferenceProxyImpl(this, feature, j));
-        }
+                MoveableList baseList = baseRevision.getList(feature);
+                int index = in.readInt();
+                while (range++ < 0)
+                {
+                  Object value = baseList.get(index++);
+                  list.add(value);
+                  if (TRACER.isEnabled()) TRACER.trace("    " + value);
+                }
+              }
+            }
+          }
+          else
+          {
+            for (int j = 0; j < referenceChunk; j++)
+            {
+              Object value = type.readValue(in);
+              list.add(value);
+              if (TRACER.isEnabled()) TRACER.trace("    " + value);
+            }
 
-        values[i] = list;
+            for (int j = referenceChunk; j < size; j++)
+            {
+              list.add(new CDOReferenceProxyImpl(this, feature, j));
+            }
+
+            values[i] = list;
+          }
+        }
       }
       else
       {
@@ -557,6 +598,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
         int size = list == null ? 0 : list.size();
         if (referenceChunk != UNCHUNKED && referenceChunk < size)
         {
+          // This happens only on server-side
           if (TRACER.isEnabled())
           {
             TRACER.format("Writing feature {0}: size={1}, referenceChunk={2}", feature, size, referenceChunk);
@@ -572,24 +614,58 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
           out.writeInt(size);
         }
 
-        for (int j = 0; j < size; j++)
+        if (size != 0)
         {
-          Object value = list.get(j);
-          if (value instanceof CDOReferenceProxy)
+          List<Integer> ranges = revisionResolver.analyzeReferenceRanges(list);
+          if (ranges != null)
           {
-            // TODO Implement method CDORevisionImpl.writeValues()
-            throw new UnsupportedOperationException("Not yet implemented");
+            // This happens only on client-side
+            out.writeInt(ranges.size());
+            int j = 0;
+            for (int range : ranges)
+            {
+              out.writeInt(range);
+              if (range > 0)
+              {
+                // This is an id range
+                while (range-- > 0)
+                {
+                  Object value = list.get(j);
+                  if (value != null && feature.isReference())
+                  {
+                    value = idProvider.provideCDOID(value);
+                    list.set(j, value);
+                  }
+
+                  if (TRACER.isEnabled()) TRACER.trace("    " + value);
+                  feature.getType().writeValue(out, value);
+                  ++j;
+                }
+              }
+              else
+              {
+                // This is a proxy range
+                CDOReferenceProxy proxy = (CDOReferenceProxy)list.get(j);
+                out.writeInt(proxy.getIndex());
+                j -= range; // Increase j to next range start
+              }
+            }
           }
           else
           {
-            if (value != null && feature.isReference())
+            out.writeInt(0); // No ranges -> no ref proxies
+            for (int j = 0; j < size; j++)
             {
-              value = idProvider.provideCDOID(value);
-              list.set(j, value);
-            }
+              Object value = list.get(j);
+              if (value != null && feature.isReference())
+              {
+                value = idProvider.provideCDOID(value);
+                list.set(j, value);
+              }
 
-            if (TRACER.isEnabled()) TRACER.trace("    " + value);
-            feature.getType().writeValue(out, value);
+              if (TRACER.isEnabled()) TRACER.trace("    " + value);
+              feature.getType().writeValue(out, value);
+            }
           }
         }
       }
