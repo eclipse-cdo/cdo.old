@@ -544,7 +544,8 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
               {
                 if (baseRevision == null)
                 {
-                  baseRevision = (CDORevisionImpl)revisionResolver.getRevisionByVersion(id, CDORevision.UNCHUNKED, version - 1);
+                  baseRevision = (CDORevisionImpl)revisionResolver.getRevisionByVersion(id, CDORevision.UNCHUNKED,
+                      version - 1);
                 }
 
                 MoveableList baseList = baseRevision.getList(feature);
@@ -705,6 +706,11 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     return value;
   }
 
+  /**
+   * A list with O(1) effort for random access.
+   * 
+   * @author Eike Stepper
+   */
   public static final class MoveableList extends ArrayList<Object>
   {
     private static final long serialVersionUID = 1L;
