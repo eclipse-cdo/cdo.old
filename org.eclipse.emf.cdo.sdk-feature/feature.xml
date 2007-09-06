@@ -50,10 +50,6 @@
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.emf.cdo.utilities"
-         version="0.0.0"/>
-
-   <includes
          id="org.eclipse.emf.cdo.examples"
          version="0.0.0"/>
 
