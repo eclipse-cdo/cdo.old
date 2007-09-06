@@ -10,9 +10,11 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.revision;
 
+import org.eclipse.emf.cdo.internal.protocol.revision.CDORevisionImpl;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -26,11 +28,19 @@ public interface CDORevisionResolver
    */
   public CDOClass getObjectType(CDOID id);
 
+  public boolean containsRevision(CDOID id);
+
+  public boolean containsRevisionByTime(CDOID id, long timeStamp);
+
   public CDORevision getRevision(CDOID id, int referenceChunk);
 
   public CDORevision getRevisionByTime(CDOID id, int referenceChunk, long timeStamp);
 
   public CDORevision getRevisionByVersion(CDOID id, int referenceChunk, int version);
+
+  public List<CDORevisionImpl> getRevisions(Collection<CDOID> ids, int referenceChunk);
+
+  public List<CDORevisionImpl> getRevisionsByTime(Collection<CDOID> ids, int referenceChunk, long timeStamp);
 
   public CDOID resolveReferenceProxy(CDOReferenceProxy referenceProxy);
 

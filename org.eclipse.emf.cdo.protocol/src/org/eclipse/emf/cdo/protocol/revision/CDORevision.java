@@ -19,6 +19,7 @@ import org.eclipse.emf.cdo.protocol.model.CDOClass;
 public interface CDORevision
 {
   public static final long UNSPECIFIED_DATE = 0;
+
   public static final int UNCHUNKED = -1;
 
   public CDORevisionResolver getRevisionResolver();

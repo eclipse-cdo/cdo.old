@@ -18,6 +18,7 @@ import org.eclipse.emf.cdo.protocol.revision.CDORevisionResolver;
 import org.eclipse.net4j.internal.util.lifecycle.Lifecycle;
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -49,20 +50,42 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     }
 
     // Synchronization not needed
-    CDORevisionImpl revision = timeLine.getFirst();
+    CDORevisionImpl revision = timeLine.getFirstUnsynchronized();
     return revision.getCDOClass();
+  }
+
+  public boolean containsRevision(CDOID id)
+  {
+    TimeLine timeLine = revisions.get(id);
+    if (timeLine == null)
+    {
+      return false;
+    }
+
+    return timeLine.getRevision(0, false) != null;
+  }
+
+  public boolean containsRevisionByTime(CDOID id, long timeStamp)
+  {
+    TimeLine timeLine = revisions.get(id);
+    if (timeLine == null)
+    {
+      return false;
+    }
+
+    return timeLine.getRevisionByTime(0, timeStamp, false) != null;
   }
 
   public CDORevisionImpl getRevision(CDOID id, int referenceChunk)
   {
     TimeLine timeLine = getTimeLine(id);
-    return timeLine.getRevision(referenceChunk);
+    return timeLine.getRevision(referenceChunk, true);
   }
 
   public CDORevisionImpl getRevisionByTime(CDOID id, int referenceChunk, long timeStamp)
   {
     TimeLine timeLine = getTimeLine(id);
-    return timeLine.getRevisionByTime(referenceChunk, timeStamp);
+    return timeLine.getRevisionByTime(referenceChunk, timeStamp, true);
   }
 
   public CDORevisionImpl getRevisionByVersion(CDOID id, int referenceChunk, int version)
@@ -71,13 +94,86 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     return timeLine.getRevisionByVersion(referenceChunk, version);
   }
 
-  public void addRevision(CDORevisionImpl revision)
+  public List<CDORevisionImpl> getRevisions(Collection<CDOID> ids, int referenceChunk)
   {
-    if (!revision.isCurrent())
+    List<CDOID> missingIDs = new ArrayList<CDOID>(0);
+    List<TimeLine> missingTimeLines = new ArrayList<TimeLine>(0);
+    List<CDORevisionImpl> revisions = new ArrayList<CDORevisionImpl>(ids.size());
+    for (CDOID id : ids)
     {
-      throw new IllegalArgumentException("!revision.isCurrent()");
+      TimeLine timeLine = getTimeLine(id);
+      CDORevisionImpl revision = timeLine.getRevision(referenceChunk, false);
+      revisions.add(revision);
+      if (revision == null)
+      {
+        missingIDs.add(id);
+        missingTimeLines.add(timeLine);
+      }
     }
 
+    if (!missingIDs.isEmpty())
+    {
+      List<CDORevisionImpl> missingRevisions = loadRevisions(missingIDs, referenceChunk);
+      Iterator<CDORevisionImpl> missingRevisionsIt = missingRevisions.iterator();
+      Iterator<TimeLine> missingTimeLinesIt = missingTimeLines.iterator();
+      for (int i = 0; i < revisions.size(); i++)
+      {
+        CDORevisionImpl revision = revisions.get(i);
+        if (revision == null)
+        {
+          CDORevisionImpl missingRevision = missingRevisionsIt.next();
+          revisions.set(i, missingRevision);
+
+          TimeLine missingTimeLine = missingTimeLinesIt.next();
+          missingTimeLine.add(missingRevision);
+        }
+      }
+    }
+
+    return revisions;
+  }
+
+  public List<CDORevisionImpl> getRevisionsByTime(Collection<CDOID> ids, int referenceChunk, long timeStamp)
+  {
+    List<CDOID> missingIDs = new ArrayList<CDOID>(0);
+    List<TimeLine> missingTimeLines = new ArrayList<TimeLine>(0);
+    List<CDORevisionImpl> revisions = new ArrayList<CDORevisionImpl>(ids.size());
+    for (CDOID id : ids)
+    {
+      TimeLine timeLine = getTimeLine(id);
+      CDORevisionImpl revision = timeLine.getRevisionByTime(referenceChunk, timeStamp, false);
+      revisions.add(revision);
+      if (revision == null)
+      {
+        missingIDs.add(id);
+        missingTimeLines.add(timeLine);
+      }
+    }
+
+    if (!missingIDs.isEmpty())
+    {
+      List<CDORevisionImpl> missingRevisions = loadRevisionsByTime(missingIDs, referenceChunk, timeStamp);
+      Iterator<CDORevisionImpl> missingRevisionsIt = missingRevisions.iterator();
+      Iterator<TimeLine> missingTimeLinesIt = missingTimeLines.iterator();
+      for (int i = 0; i < revisions.size(); i++)
+      {
+        CDORevisionImpl revision = revisions.get(i);
+        if (revision == null)
+        {
+          CDORevisionImpl missingRevision = missingRevisionsIt.next();
+          revisions.set(i, missingRevision);
+
+          TimeLine missingTimeLine = missingTimeLinesIt.next();
+          missingTimeLine.add(missingRevision);
+        }
+      }
+    }
+
+    return revisions;
+  }
+
+  public void addRevision(CDORevisionImpl revision)
+  {
     if (TRACER.isEnabled())
     {
       TRACER.format("Adding revision: {0}, created={1,date} {1,time}, revised={2,date} {2,time}, current={3}",
@@ -146,6 +242,10 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
 
   protected abstract CDORevisionImpl loadRevisionByVersion(CDOID id, int referenceChunk, int version);
 
+  protected abstract List<CDORevisionImpl> loadRevisions(Collection<CDOID> ids, int referenceChunk);
+
+  protected abstract List<CDORevisionImpl> loadRevisionsByTime(Collection<CDOID> ids, int referenceChunk, long timeStamp);
+
   /**
    * @author Eike Stepper
    */
@@ -170,13 +270,20 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       return id;
     }
 
-    public synchronized CDORevisionImpl getRevision(int referenceChunk)
+    public synchronized CDORevisionImpl getRevision(int referenceChunk, boolean loadOnDemand)
     {
-      CDORevisionImpl revision = isEmpty() ? null : super.getFirst();
+      CDORevisionImpl revision = super.isEmpty() ? null : super.getFirst();
       if (revision == null || !revision.isCurrent())
       {
-        revision = loadRevision(id, referenceChunk);
-        super.addFirst(revision);
+        if (loadOnDemand)
+        {
+          revision = loadRevision(id, referenceChunk);
+          super.addFirst(revision);
+        }
+        else
+        {
+          revision = null;
+        }
       }
       else
       {
@@ -191,9 +298,8 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       return revision;
     }
 
-    public synchronized CDORevisionImpl getRevisionByTime(int referenceChunk, long timeStamp)
+    public synchronized CDORevisionImpl getRevisionByTime(int referenceChunk, long timeStamp, boolean loadOnDemand)
     {
-      // TODO Binary search? (LinkedList -> ArrayList)
       ListIterator<CDORevisionImpl> it = super.listIterator(0);
       while (it.hasNext())
       {
@@ -212,22 +318,26 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
         }
       }
 
-      CDORevisionImpl revision = loadRevisionByTime(id, referenceChunk, timeStamp);
-      it.add(revision);
-      return revision;
+      if (loadOnDemand)
+      {
+        CDORevisionImpl revision = loadRevisionByTime(id, referenceChunk, timeStamp);
+        it.add(revision);
+        return revision;
+      }
+
+      return null;
     }
 
     public synchronized CDORevisionImpl getRevisionByVersion(int referenceChunk, int version)
     {
-      // TODO Binary search? (LinkedList -> ArrayList)
       ListIterator<CDORevisionImpl> it = super.listIterator(0);
       while (it.hasNext())
       {
-        CDORevisionImpl revision = it.next();
-        int v = revision.getVersion();
+        CDORevisionImpl r = it.next();
+        int v = r.getVersion();
         if (v == version)
         {
-          return revision;
+          return r;
         }
 
         if (v < version)
@@ -244,13 +354,25 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     @Override
     public synchronized boolean add(CDORevisionImpl revision)
     {
-      CDORevisionImpl previousRevision = isEmpty() ? null : super.getFirst();
-      if (previousRevision != null && previousRevision.isCurrent())
+      int version = revision.getVersion();
+      ListIterator<CDORevisionImpl> it = super.listIterator(0);
+      while (it.hasNext())
       {
-        previousRevision.setRevised(revision.getCreated() - 1);
+        CDORevisionImpl r = it.next();
+        int v = r.getVersion();
+        if (v == version)
+        {
+          throw new IllegalStateException("Duplicate revision");
+        }
+
+        if (v < version)
+        {
+          it.previous();
+          break;
+        }
       }
 
-      super.addFirst(revision);
+      it.add(revision);
       return true;
     }
 
@@ -260,16 +382,21 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       return super.remove(o);
     }
 
+    public CDORevisionImpl getFirstUnsynchronized()
+    {
+      return super.getFirst();
+    }
+
     @Override
     @Deprecated
-    public void addFirst(CDORevisionImpl o)
+    public CDORevisionImpl getFirst()
     {
       throw new UnsupportedOperationException();
     }
 
     @Override
     @Deprecated
-    public CDORevisionImpl getFirst()
+    public void addFirst(CDORevisionImpl o)
     {
       throw new UnsupportedOperationException();
     }
