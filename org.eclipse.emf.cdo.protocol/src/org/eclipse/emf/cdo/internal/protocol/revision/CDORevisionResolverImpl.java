@@ -231,7 +231,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     }
   }
 
-  protected CDORevisionImpl verifyRevision(CDORevisionImpl revision)
+  protected CDORevisionImpl verifyRevision(CDORevisionImpl revision, int referenceChunk)
   {
     return revision;
   }
@@ -288,7 +288,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       else
       {
         CDORevisionImpl oldRevision = revision;
-        revision = verifyRevision(oldRevision);
+        revision = verifyRevision(oldRevision, referenceChunk);
         if (revision != oldRevision)
         {
           super.addFirst(revision);
@@ -320,8 +320,13 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
 
       if (loadOnDemand)
       {
-        CDORevisionImpl revision = loadRevisionByTime(id, referenceChunk, timeStamp);
-        it.add(revision);
+        CDORevisionImpl oldRevision = loadRevisionByTime(id, referenceChunk, timeStamp);
+        CDORevisionImpl revision = verifyRevision(oldRevision, referenceChunk);
+        if (revision != oldRevision)
+        {
+          it.add(revision);
+        }
+
         return revision;
       }
 
