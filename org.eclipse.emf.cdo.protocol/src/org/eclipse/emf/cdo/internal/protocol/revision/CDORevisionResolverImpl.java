@@ -367,7 +367,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
         int v = r.getVersion();
         if (v == version)
         {
-          throw new IllegalStateException("Duplicate revision");
+          return false;
         }
 
         if (v < version)
