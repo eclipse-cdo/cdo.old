@@ -15,7 +15,13 @@
 	</copyright>
 -->
 
-<feature primary="false"  provider-name="%providerName"    label="%featureName"  image="eclipse_update_120.jpg" id="org.eclipse.emf.cdo.source"  version="0.8.0.qualifier">
+<feature 
+	provider-name="%providerName"    
+	label="%featureName"  
+	image="eclipse_update_120.jpg" 
+	id="org.eclipse.emf.cdo.source"  
+	version="0.8.0.qualifier">
+	
 	<description >
 		%description
 	</description>
@@ -28,5 +34,4 @@
 	<url>
 		<update label="%updateSiteName" url="http://download.eclipse.org/modeling/emft/updates/"/>
 	</url>
-	<plugin    fragment="false"  download-size="0" install-size="0" id="org.eclipse.emf.cdo.source" version="0.8.0" match="compatible"/>
 </feature>
