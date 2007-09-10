@@ -20,8 +20,8 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.util.FeatureMap;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>EStructural Feature</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>EStructural Feature</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are supported:
  * <ul>
@@ -37,15 +37,13 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  * </p>
  * 
  * @see org.eclipse.emf.ecore.EcorePackage#getEStructuralFeature()
- * @model abstract="true" annotation="http://www.eclipse.org/emf/2002/Ecore
- *        constraints='ValidDefaultValueLiteral'"
+ * @model abstract="true" annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ValidDefaultValueLiteral'"
  * @generated
  */
 public interface EStructuralFeature extends ETypedElement
 {
   /**
-   * Returns the value of the '<em><b>Transient</b></em>' attribute. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns the value of the '<em><b>Transient</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the value of the '<em>Transient</em>' attribute.
    * @see #setTransient(boolean)
@@ -67,8 +65,7 @@ public interface EStructuralFeature extends ETypedElement
   void setTransient(boolean value);
 
   /**
-   * Returns the value of the '<em><b>Volatile</b></em>' attribute. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns the value of the '<em><b>Volatile</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the value of the '<em>Volatile</em>' attribute.
    * @see #setVolatile(boolean)
@@ -79,8 +76,8 @@ public interface EStructuralFeature extends ETypedElement
   boolean isVolatile();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.ecore.EStructuralFeature#isVolatile <em>Volatile</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.EStructuralFeature#isVolatile <em>Volatile</em>}' attribute.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param value
    *          the new value of the '<em>Volatile</em>' attribute.
@@ -90,9 +87,8 @@ public interface EStructuralFeature extends ETypedElement
   void setVolatile(boolean value);
 
   /**
-   * Returns the value of the '<em><b>Changeable</b></em>' attribute. The
-   * default value is <code>"true"</code>. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * Returns the value of the '<em><b>Changeable</b></em>' attribute. The default value is <code>"true"</code>.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the value of the '<em>Changeable</em>' attribute.
    * @see #setChangeable(boolean)
@@ -114,8 +110,7 @@ public interface EStructuralFeature extends ETypedElement
   void setChangeable(boolean value);
 
   /**
-   * Returns the value of the '<em><b>Default Value Literal</b></em>'
-   * attribute. <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Default Value Literal</b></em>' attribute. <!-- begin-user-doc -->
    * <p>
    * It represents the serialized form of the default value.
    * </p>
@@ -134,26 +129,21 @@ public interface EStructuralFeature extends ETypedElement
    * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param value
-   *          the new value of the '<em>Default Value Literal</em>'
-   *          attribute.
+   *          the new value of the '<em>Default Value Literal</em>' attribute.
    * @see #getDefaultValueLiteral()
    * @generated
    */
   void setDefaultValueLiteral(String value);
 
   /**
-   * Returns the value of the '<em><b>Default Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Default Value</b></em>' attribute. <!-- begin-user-doc -->
    * <p>
-   * It represents the default value that feature must take on when an explicit
-   * value has not been set. Specifically, it may be non-null if the feature has
-   * an {@link ETypedElement#getEType eType}. If the
-   * {@link #getDefaultValueLiteral defaultValueLiteral} is null, it is simply
-   * the <code>eType</code>'s intrinsic {@link EClassifier#getDefaultValue
-   * default value}. Otherwise, if the <code>eType</code> is an
-   * {@link EDataType} and the <code>defaultValueLiteral</code> is non-null,
-   * it is the object created by the factory's {@link EFactory#createFromString}
-   * method when invoked with those two objects as parameters.
+   * It represents the default value that feature must take on when an explicit value has not been set. Specifically, it
+   * may be non-null if the feature has an {@link ETypedElement#getEType eType}. If the
+   * {@link #getDefaultValueLiteral defaultValueLiteral} is null, it is simply the <code>eType</code>'s intrinsic
+   * {@link EClassifier#getDefaultValue default value}. Otherwise, if the <code>eType</code> is an {@link EDataType}
+   * and the <code>defaultValueLiteral</code> is non-null, it is the object created by the factory's
+   * {@link EFactory#createFromString} method when invoked with those two objects as parameters.
    * </p>
    * <!-- end-user-doc -->
    * 
@@ -165,12 +155,10 @@ public interface EStructuralFeature extends ETypedElement
   Object getDefaultValue();
 
   /**
-   * A convenience method for setting the '<em><b>Default Value Literal</b></em>'
-   * attribute.
+   * A convenience method for setting the '<em><b>Default Value Literal</b></em>' attribute.
    * <p>
-   * If the feature has an {@link ETypedElement#getEType eType} that is an
-   * {@link EDataType}, the specified <code>value</code> is converted to a
-   * string using the factory's {@link EFactory#convertToString} method, and the
+   * If the feature has an {@link ETypedElement#getEType eType} that is an {@link EDataType}, the specified
+   * <code>value</code> is converted to a string using the factory's {@link EFactory#convertToString} method, and the
    * {@link #getDefaultValueLiteral defaultValueLiteral} is set to the result.
    * </p>
    * 
@@ -179,17 +167,13 @@ public interface EStructuralFeature extends ETypedElement
   void setDefaultValue(Object value);
 
   /**
-   * Returns the value of the '<em><b>Unsettable</b></em>' attribute. <!--
-   * begin-user-doc -->
+   * Returns the value of the '<em><b>Unsettable</b></em>' attribute. <!-- begin-user-doc -->
    * <p>
-   * An unsettable feature explicitly models the state of being set verses being
-   * unset and so provides a direct implementation for the reflective
-   * {@link EObject#eIsSet eIsSet}. It is only applicable
-   * {@link ETypedElement#isMany single-valued} features. One effect of this
-   * setting is that, in addition to generating the methods <code>getXyz</code>
-   * and <code>setXyz</code> (if the feature is
-   * {@link #isChangeable changeable}), a reflective generator will generate
-   * the methods <code>isSetXyz</code> and <code>unsetXyz</code>.
+   * An unsettable feature explicitly models the state of being set verses being unset and so provides a direct
+   * implementation for the reflective {@link EObject#eIsSet eIsSet}. It is only applicable
+   * {@link ETypedElement#isMany single-valued} features. One effect of this setting is that, in addition to generating
+   * the methods <code>getXyz</code> and <code>setXyz</code> (if the feature is {@link #isChangeable changeable}),
+   * a reflective generator will generate the methods <code>isSetXyz</code> and <code>unsetXyz</code>.
    * </p>
    * <!-- end-user-doc -->
    * 
@@ -213,14 +197,12 @@ public interface EStructuralFeature extends ETypedElement
   void setUnsettable(boolean value);
 
   /**
-   * Returns the value of the '<em><b>Derived</b></em>' attribute. <!--
-   * begin-user-doc -->
+   * Returns the value of the '<em><b>Derived</b></em>' attribute. <!-- begin-user-doc -->
    * <p>
-   * A derived feature typically computes its value from those of other
-   * features. It will typically be {@link #isTransient transient} and will
-   * often be {@link #isVolatile volatile} and not
-   * {@link #isChangeable changeable}. The default
-   * {@link org.eclipse.emf.ecore.util.EcoreUtil.Copier copier} won't copy it.
+   * A derived feature typically computes its value from those of other features. It will typically be
+   * {@link #isTransient transient} and will often be {@link #isVolatile volatile} and not
+   * {@link #isChangeable changeable}. The default {@link org.eclipse.emf.ecore.util.EcoreUtil.Copier copier} won't
+   * copy it.
    * </p>
    * <!-- end-user-doc -->
    * 
@@ -233,8 +215,8 @@ public interface EStructuralFeature extends ETypedElement
   boolean isDerived();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.ecore.EStructuralFeature#isDerived <em>Derived</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.EStructuralFeature#isDerived <em>Derived</em>}' attribute.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param value
    *          the new value of the '<em>Derived</em>' attribute.
@@ -244,27 +226,24 @@ public interface EStructuralFeature extends ETypedElement
   void setDerived(boolean value);
 
   /**
-   * Returns the value of the '<em><b>EContaining Class</b></em>' container
-   * reference. It is bidirectional and its opposite is '{@link org.eclipse.emf.ecore.EClass#getEStructuralFeatures <em>EStructural Features</em>}'.
-   * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>EContaining Class</b></em>' container reference. It is bidirectional and its
+   * opposite is '{@link org.eclipse.emf.ecore.EClass#getEStructuralFeatures <em>EStructural Features</em>}'. <!--
+   * begin-user-doc -->
    * <p>
    * It represents the containing class of this feature.
    * </p>
    * <!-- end-user-doc -->
    * 
-   * @return the value of the '<em>EContaining Class</em>' container
-   *         reference.
+   * @return the value of the '<em>EContaining Class</em>' container reference.
    * @see org.eclipse.emf.ecore.EcorePackage#getEStructuralFeature_EContainingClass()
    * @see org.eclipse.emf.ecore.EClass#getEStructuralFeatures
-   * @model opposite="eStructuralFeatures" resolveProxies="false"
-   *        changeable="false"
+   * @model opposite="eStructuralFeatures" resolveProxies="false" changeable="false"
    * @generated
    */
   EClass getEContainingClass();
 
   /**
-   * <!-- begin-user-doc --> Returns the ID relative to the
-   * {@link #getEContainingClass containing} class.
+   * <!-- begin-user-doc --> Returns the ID relative to the {@link #getEContainingClass containing} class.
    * 
    * @return the relative ID. <!-- end-user-doc -->
    * @model kind="operation"
@@ -273,8 +252,7 @@ public interface EStructuralFeature extends ETypedElement
   int getFeatureID();
 
   /**
-   * <!-- begin-user-doc --> Returns the
-   * {@link EClassifier#getInstanceClass instance class} of the
+   * <!-- begin-user-doc --> Returns the {@link EClassifier#getInstanceClass instance class} of the
    * {@link #getEContainingClass containing} class.
    * 
    * @return the instance class of the containing class. <!-- end-user-doc -->
@@ -284,10 +262,9 @@ public interface EStructuralFeature extends ETypedElement
   Class<?> getContainerClass();
 
   /**
-   * A representation of a value held by a feature of an object. In the case of
-   * a {@link org.eclipse.emf.ecore.InternalEObject#eSetClass dynamic} instance,
-   * a setting will be the only actual representation of the
-   * object-feature-value association.
+   * A representation of a value held by a feature of an object. In the case of a
+   * {@link org.eclipse.emf.ecore.InternalEObject#eSetClass dynamic} instance, a setting will be the only actual
+   * representation of the object-feature-value association.
    */
   interface Setting
   {
@@ -307,8 +284,7 @@ public interface EStructuralFeature extends ETypedElement
 
     /**
      * Returns the value held by the feature of the object; it optionally
-     * {@link org.eclipse.emf.ecore.util.EcoreUtil#resolve(EObject, EObject) resolves}
-     * the value.
+     * {@link org.eclipse.emf.ecore.util.EcoreUtil#resolve(EObject, EObject) resolves} the value.
      * 
      * @param resolve
      *          whether to resolve.
@@ -318,10 +294,9 @@ public interface EStructuralFeature extends ETypedElement
     Object get(boolean resolve);
 
     /**
-     * Set the value held by the feature of the object. If the new value is this
-     * setting itself, or is modified as a side effect of modifying this setting
-     * (i.e., if it is a view on the setting), the behavior is undefined and
-     * will likely result in simply clearing the list.
+     * Set the value held by the feature of the object. If the new value is this setting itself, or is modified as a
+     * side effect of modifying this setting (i.e., if it is a view on the setting), the behavior is undefined and will
+     * likely result in simply clearing the list.
      * 
      * @param newValue
      *          the newValue.
@@ -356,8 +331,8 @@ public interface EStructuralFeature extends ETypedElement
     interface DynamicValueHolder
     {
       /**
-       * An object use to represent being set to null <code>null</code> as
-       * opposed to having no value and hence being in the default state.
+       * An object use to represent being set to null <code>null</code> as opposed to having no value and hence being
+       * in the default state.
        */
       Object NIL = new Object();
 
@@ -470,8 +445,8 @@ public interface EStructuralFeature extends ETypedElement
       void dynamicUnset(InternalEObject owner, DynamicValueHolder settings, int dynamicFeatureID);
 
       /**
-       * Adds the object at the other end of a bidirectional reference to the
-       * appropriate feature and returns accumulated notifications.
+       * Adds the object at the other end of a bidirectional reference to the appropriate feature and returns
+       * accumulated notifications.
        * 
        * @param owner
        *          the owner of the feature.
@@ -490,8 +465,8 @@ public interface EStructuralFeature extends ETypedElement
           InternalEObject otherEnd, NotificationChain notifications);
 
       /**
-       * Removes the object at the other end of a bidirectional reference from
-       * the appropriate feature and returns accumulated notifications.
+       * Removes the object at the other end of a bidirectional reference from the appropriate feature and returns
+       * accumulated notifications.
        * 
        * @param owner
        *          the owner of the feature.
@@ -511,8 +486,8 @@ public interface EStructuralFeature extends ETypedElement
     }
 
     /**
-     * Returns the delegate for this feature. A default delegate implementation
-     * should always be available, so this should never return <code>null</code>.
+     * Returns the delegate for this feature. A default delegate implementation should always be available, so this
+     * should never return <code>null</code>.
      * 
      * @return the delegate for this feature.
      */
@@ -549,8 +524,7 @@ public interface EStructuralFeature extends ETypedElement
     void setFeatureMapEntryPrototype(FeatureMap.Entry.Internal prototype);
 
     /**
-     * Returns whether this is an {@link EAttribute attribute} that is an
-     * {@link EAttribute#isID() ID}.
+     * Returns whether this is an {@link EAttribute attribute} that is an {@link EAttribute#isID() ID}.
      * 
      * @return whether this is an attribute that is an ID.
      */
@@ -565,24 +539,21 @@ public interface EStructuralFeature extends ETypedElement
     public boolean isResolveProxies();
 
     /**
-     * Returns whether this is a {@link EReference reference} that is a
-     * {@link EReference#isContainer() container}.
+     * Returns whether this is a {@link EReference reference} that is a {@link EReference#isContainer() container}.
      * 
      * @return whether this is a reference that is a container.
      */
     public boolean isContainer();
 
     /**
-     * Returns whether this is a {@link EReference reference} that is a
-     * {@link EReference#isContainment() containment}.
+     * Returns whether this is a {@link EReference reference} that is a {@link EReference#isContainment() containment}.
      * 
      * @return whether this is a reference that is a containment.
      */
     public boolean isContainment();
 
     /**
-     * Returns the {@link EReference#getEOpposite() opposite} if this is
-     * {@link EReference reference} that has one.
+     * Returns the {@link EReference#getEOpposite() opposite} if this is {@link EReference reference} that has one.
      * 
      * @return the opposite if this is reference that has one.
      */

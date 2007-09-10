@@ -25,8 +25,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 
 /**
- * A plugin extension reader that populates the
- * {@link org.eclipse.emf.ecore.EPackage.Registry#INSTANCE global} package
+ * A plugin extension reader that populates the {@link org.eclipse.emf.ecore.EPackage.Registry#INSTANCE global} package
  * registry. Clients are not expected to use this class directly.
  */
 class GeneratedPackageRegistryReader extends RegistryReader

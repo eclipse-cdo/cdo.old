@@ -287,13 +287,11 @@ public final class RegEx
       return -1;
     }
     /*
-     * public static void main(String[] argv) { try { int[] shiftTable = new
-     * int[256]; initializeBoyerMoore(argv[0], shiftTable, true); int o = -1;
-     * CharacterIterator ite = new java.text.StringCharacterIterator(argv[1]);
-     * long start = System.currentTimeMillis(); //for (int i = 0; i < 10000; i
-     * ++) o = searchIgnoreCasesWithBoyerMoore(ite, 0, argv[0], shiftTable);
-     * start = System.currentTimeMillis()-start; System.out.println("Result:
-     * "+o+", Elapsed: "+start); } catch (Exception ex) { ex.printStackTrace(); } }
+     * public static void main(String[] argv) { try { int[] shiftTable = new int[256]; initializeBoyerMoore(argv[0],
+     * shiftTable, true); int o = -1; CharacterIterator ite = new java.text.StringCharacterIterator(argv[1]); long start =
+     * System.currentTimeMillis(); //for (int i = 0; i < 10000; i ++) o = searchIgnoreCasesWithBoyerMoore(ite, 0,
+     * argv[0], shiftTable); start = System.currentTimeMillis()-start; System.out.println("Result: "+o+", Elapsed:
+     * "+start); } catch (Exception ex) { ex.printStackTrace(); } }
      */
   }
 
@@ -406,8 +404,8 @@ public final class RegEx
     }
 
     /**
-     * Return the number of regular expression groups. This method returns 1
-     * when the regular expression has no capturing-parenthesis.
+     * Return the number of regular expression groups. This method returns 1 when the regular expression has no
+     * capturing-parenthesis.
      */
     public int getNumberOfGroups()
     {
@@ -416,8 +414,7 @@ public final class RegEx
     }
 
     /**
-     * Return a start position in the target text matched to specified regular
-     * expression group.
+     * Return a start position in the target text matched to specified regular expression group.
      * 
      * @param index
      *          Less than <code>getNumberOfGroups()</code>.
@@ -431,8 +428,7 @@ public final class RegEx
     }
 
     /**
-     * Return an end position in the target text matched to specified regular
-     * expression group.
+     * Return an end position in the target text matched to specified regular expression group.
      * 
      * @param index
      *          Less than <code>getNumberOfGroups()</code>.
@@ -446,8 +442,7 @@ public final class RegEx
     }
 
     /**
-     * Return an substring of the target text matched to specified regular
-     * expression group.
+     * Return an substring of the target text matched to specified regular expression group.
      * 
      * @param index
      *          Less than <code>getNumberOfGroups()</code>.
@@ -635,8 +630,7 @@ public final class RegEx
     // ================================================================
 
     /**
-     * Sample entry. <div>Usage: <KBD>org.apache.xerces.utils.regex.REUtil
-     * &lt;regex&gt; &lt;string&gt;</KBD></div>
+     * Sample entry. <div>Usage: <KBD>org.apache.xerces.utils.regex.REUtil &lt;regex&gt; &lt;string&gt;</KBD></div>
      */
     public static void main(String[] argv)
     {
@@ -741,8 +735,7 @@ public final class RegEx
     static final RegularExpression[] regexCache = new RegularExpression[CACHESIZE];
 
     /**
-     * Creates a RegularExpression instance. This method caches created
-     * instances.
+     * Creates a RegularExpression instance. This method caches created instances.
      * 
      * @see RegularExpression#RegularExpression(String, String)
      */
@@ -842,9 +835,8 @@ public final class RegEx
   }
 
   /**
-   * A regular expression matching engine using Non-deterministic Finite
-   * Automaton (NFA). This engine does not conform to the POSIX regular
-   * expression.
+   * A regular expression matching engine using Non-deterministic Finite Automaton (NFA). This engine does not conform
+   * to the POSIX regular expression.
    * <hr width="50%">
    * <h3>How to use</h3>
    * <dl>
@@ -881,8 +873,7 @@ public final class RegEx
    * 
    * <h4>Options</h4>
    * <p>
-   * You can specify options to <a href="#RegularExpression(java.lang.String,
-   * java.lang.String)"><code>RegularExpression(</code><var>regex</var><code>, </code><var>options</var><code>)</code></a>
+   * You can specify options to <a href="#RegularExpression(java.lang.String, java.lang.String)"><code>RegularExpression(</code><var>regex</var><code>, </code><var>options</var><code>)</code></a>
    * or <a href="#setPattern(java.lang.String, java.lang.String)"><code>setPattern(</code><var>regex</var><code>, </code><var>options</var><code>)</code></a>.
    * This <var>options</var> parameter consists of the following characters.
    * </p>
@@ -890,28 +881,23 @@ public final class RegEx
    * <dt><a name="I_OPTION"><code>"i"</code></a>
    * <dd>This option indicates case-insensitive matching.
    * <dt><a name="M_OPTION"><code>"m"</code></a>
-   * <dd class="REGEX"><kbd>^</kbd> and <kbd>$</kbd> consider the EOL
-   * characters within the text.
+   * <dd class="REGEX"><kbd>^</kbd> and <kbd>$</kbd> consider the EOL characters within the text.
    * <dt><a name="S_OPTION"><code>"s"</code></a>
    * <dd class="REGEX"><kbd>.</kbd> matches any one character.
    * <dt><a name="U_OPTION"><code>"u"</code></a>
-   * <dd class="REGEX">Redefines <Kbd>\d \D \w \W \s \S \b \B \&lt; \></kbd>
-   * as becoming to Unicode.
+   * <dd class="REGEX">Redefines <Kbd>\d \D \w \W \s \S \b \B \&lt; \></kbd> as becoming to Unicode.
    * <dt><a name="W_OPTION"><code>"w"</code></a>
-   * <dd class="REGEX">By this option, <kbd>\b \B \&lt; \></kbd> are processed
-   * with the method of 'Unicode Regular Expression Guidelines' Revision 4. When
-   * "w" and "u" are specified at the same time, <kbd>\b \B \&lt; \></kbd> are
+   * <dd class="REGEX">By this option, <kbd>\b \B \&lt; \></kbd> are processed with the method of 'Unicode Regular
+   * Expression Guidelines' Revision 4. When "w" and "u" are specified at the same time, <kbd>\b \B \&lt; \></kbd> are
    * processed for the "w" option.
    * <dt><a name="COMMA_OPTION"><code>","</code></a>
-   * <dd>The parser treats a comma in a character class as a range separator.
-   * <kbd class="REGEX">[a,b]</kbd> matches <kbd>a</kbd> or <kbd>,</kbd> or
-   * <kbd>b</kbd> without this option. <kbd class="REGEX">[a,b]</kbd> matches
-   * <kbd>a</kbd> or <kbd>b</kbd> with this option.
+   * <dd>The parser treats a comma in a character class as a range separator. <kbd class="REGEX">[a,b]</kbd> matches
+   * <kbd>a</kbd> or <kbd>,</kbd> or <kbd>b</kbd> without this option. <kbd class="REGEX">[a,b]</kbd> matches <kbd>a</kbd>
+   * or <kbd>b</kbd> with this option.
    * <dt><a name="X_OPTION"><code>"X"</code></a>
    * <dd class="REGEX"> By this option, the engine confoms to <a
-   * href="http://www.w3.org/TR/2000/WD-xmlschema-2-20000407/#regexs">XML
-   * Schema: Regular Expression</a>. The <code>match()</code> method does not
-   * do subsring matching but entire string matching.
+   * href="http://www.w3.org/TR/2000/WD-xmlschema-2-20000407/#regexs">XML Schema: Regular Expression</a>. The
+   * <code>match()</code> method does not do subsring matching but entire string matching.
    * </dl>
    * <hr width="50%">
    * <h3>Syntax</h3>
@@ -921,11 +907,9 @@ public final class RegEx
    * <h4>Differences from the Perl 5 regular expression</h4>
    * <ul>
    * <li>There is 6-digit hexadecimal character representation (<kbd>\u005cv</kbd><var>HHHHHH</var>.)
-   * <li>Supports subtraction, union, and intersection operations for character
-   * classes.
-   * <li>Not supported: <kbd>\</kbd><var>ooo</var> (Octal character
-   * representations), <Kbd>\G</kbd>, <kbd>\C</kbd>, <kbd>\l</kbd><var>c</var>,
-   * <kbd>\u005c u</kbd><var>c</var>, <kbd>\L</kbd>, <kbd>\U</kbd>, <kbd>\E</kbd>,
+   * <li>Supports subtraction, union, and intersection operations for character classes.
+   * <li>Not supported: <kbd>\</kbd><var>ooo</var> (Octal character representations), <Kbd>\G</kbd>, <kbd>\C</kbd>,
+   * <kbd>\l</kbd><var>c</var>, <kbd>\u005c u</kbd><var>c</var>, <kbd>\L</kbd>, <kbd>\U</kbd>, <kbd>\E</kbd>,
    * <kbd>\Q</kbd>, <kbd>\N{</kbd><var>name</var><kbd>}</kbd>, <Kbd>(?{<kbd><var>code</var><kbd>})</kbd>,
    * <Kbd>(??{<kbd><var>code</var><kbd>})</kbd>
    * </ul>
@@ -940,43 +924,37 @@ public final class RegEx
    * <dl>
    * <dt class="REGEX"><kbd>.</kbd> (A period)
    * <dd>Matches any one character except the following characters.
-   * <dd>LINE FEED (U+000A), CARRIAGE RETURN (U+000D), PARAGRAPH SEPARATOR
-   * (U+2029), LINE SEPARATOR (U+2028)
-   * <dd>This expression matches one code point in Unicode. It can match a pair
-   * of surrogates.
-   * <dd>When <a href="#S_OPTION">the "s" option</a> is specified, it matches
-   * any character including the above four characters.
+   * <dd>LINE FEED (U+000A), CARRIAGE RETURN (U+000D), PARAGRAPH SEPARATOR (U+2029), LINE SEPARATOR (U+2028)
+   * <dd>This expression matches one code point in Unicode. It can match a pair of surrogates.
+   * <dd>When <a href="#S_OPTION">the "s" option</a> is specified, it matches any character including the above four
+   * characters.
    * <dt class="REGEX"><Kbd>\e \f \n \r \t</kbd>
-   * <dd>Matches ESCAPE (U+001B), FORM FEED (U+000C), LINE FEED (U+000A),
-   * CARRIAGE RETURN (U+000D), HORIZONTAL TABULATION (U+0009)
+   * <dd>Matches ESCAPE (U+001B), FORM FEED (U+000C), LINE FEED (U+000A), CARRIAGE RETURN (U+000D), HORIZONTAL
+   * TABULATION (U+0009)
    * <dt class="REGEX"><kbd>\c</kbd><var>C</var>
    * <dd>Matches a control character. The <var>C</var> must be one of '<kbd>@</kbd>', '<kbd>A</kbd>'-'<kbd>Z</kbd>', '<kbd>[</kbd>', '<kbd>\u005c</kbd>', '<kbd>]</kbd>', '<kbd>^</kbd>', '<kbd>_</kbd>'.
-   * It matches a control character of which the character code is less than the
-   * character code of the <var>C</var> by 0x0040.
-   * <dd class="REGEX">For example, a <kbd>\cJ</kbd> matches a LINE FEED
-   * (U+000A), and a <kbd>\c[</kbd> matches an ESCAPE (U+001B).
+   * It matches a control character of which the character code is less than the character code of the <var>C</var> by
+   * 0x0040.
+   * <dd class="REGEX">For example, a <kbd>\cJ</kbd> matches a LINE FEED (U+000A), and a <kbd>\c[</kbd> matches an
+   * ESCAPE (U+001B).
    * <dt class="REGEX">a non-meta character
    * <dd>Matches the character.
    * <dt class="REGEX"><KBD>\</KBD> + a meta character
    * <dd>Matches the meta character.
    * <dt class="REGEX"><kbd>\u005cx</kbd><var>HH</var> <kbd>\u005cx{</kbd><var>HHHH</var><kbd>}</kbd>
-   * <dd>Matches a character of which code point is <var>HH</var>
-   * (Hexadecimal) in Unicode. You can write just 2 digits for <kbd>\u005cx</kbd><var>HH</var>,
-   * and variable length digits for <kbd>\u005cx{</kbd><var>HHHH</var><kbd>}</kbd>.
+   * <dd>Matches a character of which code point is <var>HH</var> (Hexadecimal) in Unicode. You can write just 2
+   * digits for <kbd>\u005cx</kbd><var>HH</var>, and variable length digits for <kbd>\u005cx{</kbd><var>HHHH</var><kbd>}</kbd>.
    * <!--
    * <dt class="REGEX"><kbd>\u005c u</kbd><var>HHHH</var>
-   * <dd>Matches a character of which code point is <var>HHHH</var>
-   * (Hexadecimal) in Unicode. -->
+   * <dd>Matches a character of which code point is <var>HHHH</var> (Hexadecimal) in Unicode. -->
    * <dt class="REGEX"><kbd>\u005cv</kbd><var>HHHHHH</var>
-   * <dd>Matches a character of which code point is <var>HHHHHH</var>
-   * (Hexadecimal) in Unicode.
+   * <dd>Matches a character of which code point is <var>HHHHHH</var> (Hexadecimal) in Unicode.
    * <dt class="REGEX"><kbd>\g</kbd>
    * <dd>Matches a grapheme.
    * <dd class="REGEX">It is equivalent to
    * <kbd>(?[\p{ASSIGNED}]-[\p{M}\p{C}])?(?:\p{M}|[\x{094D}\x{09CD}\x{0A4D}\x{0ACD}\x{0B3D}\x{0BCD}\x{0C4D}\x{0CCD}\x{0D4D}\x{0E3A}\x{0F84}]\p{L}|[\x{1160}-\x{11A7}]|[\x{11A8}-\x{11FF}]|[\x{FF9E}\x{FF9F}])*</kbd>
    * <dt class="REGEX"><kbd>\X</kbd>
-   * <dd class="REGEX">Matches a combining character sequence. It is equivalent
-   * to <kbd>(?:\PM\pM*)</kbd>
+   * <dd class="REGEX">Matches a combining character sequence. It is equivalent to <kbd>(?:\PM\pM*)</kbd>
    * </dl>
    * </li>
    * <li>Character class
@@ -988,116 +966,92 @@ public final class RegEx
    * <dd>Positive character class. It matches a character in ranges.
    * <dd><var>R<sub>n</sub></var>:
    * <ul>
-   * <li class="REGEX">A character (including <Kbd>\e \f \n \r \t</kbd>
-   * <kbd>\u005cx</kbd><var>HH</var> <kbd>\u005cx{</kbd><var>HHHH</var><kbd>}</kbd>
-   * <!--kbd>\u005c u</kbd><var>HHHH</var--> <kbd>\u005cv</kbd><var>HHHHHH</var>)
+   * <li class="REGEX">A character (including <Kbd>\e \f \n \r \t</kbd> <kbd>\u005cx</kbd><var>HH</var>
+   * <kbd>\u005cx{</kbd><var>HHHH</var><kbd>}</kbd> <!--kbd>\u005c u</kbd><var>HHHH</var--> <kbd>\u005cv</kbd><var>HHHHHH</var>)
    * <p>
    * This range matches the character.
    * <li class="REGEX"><var>C<sub>1</sub></var><kbd>-</kbd><var>C<sub>2</sub></var>
    * <p>
-   * This range matches a character which has a code point that is >= <var>C<sub>1</sub></var>'s
-   * code point and &lt;= <var>C<sub>2</sub></var>'s code point. + *
-   * <li class="REGEX">A POSIX character class: <Kbd>[:alpha:] [:alnum:]
-   * [:ascii:] [:cntrl:] [:digit:] [:graph:] [:lower:] [:print:] [:punct:]
-   * [:space:] [:upper:] [:xdigit:]</kbd>, + * and negative POSIX character
-   * classes in Perl like <kbd>[:^alpha:]</kbd>
+   * This range matches a character which has a code point that is >= <var>C<sub>1</sub></var>'s code point and &lt;=
+   * <var>C<sub>2</sub></var>'s code point. + *
+   * <li class="REGEX">A POSIX character class: <Kbd>[:alpha:] [:alnum:] [:ascii:] [:cntrl:] [:digit:] [:graph:]
+   * [:lower:] [:print:] [:punct:] [:space:] [:upper:] [:xdigit:]</kbd>, + * and negative POSIX character classes in
+   * Perl like <kbd>[:^alpha:]</kbd>
    * <p>
    * ...
-   * <li class="REGEX"><kbd>\d \D \s \S \w \W \p{</kbd><var>name</var><kbd>}
-   * \P{</kbd><var>name</var><kbd>}</kbd>
+   * <li class="REGEX"><kbd>\d \D \s \S \w \W \p{</kbd><var>name</var><kbd>} \P{</kbd><var>name</var><kbd>}</kbd>
    * <p>
    * These expressions specifies the same ranges as the following expressions.
    * </ul>
    * <p class="REGEX">
-   * Enumerated ranges are merged (union operation). <kbd>[a-ec-z]</kbd> is
-   * equivalent to <kbd>[a-z]</kbd>
+   * Enumerated ranges are merged (union operation). <kbd>[a-ec-z]</kbd> is equivalent to <kbd>[a-z]</kbd>
    * <dt class="REGEX"><kbd>[^</kbd><var>R<sub>1</sub></var><var>R<sub>2</sub></var><var>...</var><var>R<sub>n</sub></var><kbd>]</kbd>
    * (without a <a href="#COMMA_OPTION">"," option</a>)
    * <dt class="REGEX"><kbd>[^</kbd><var>R<sub>1</sub></var><kbd>,</kbd><var>R<sub>2</sub></var><kbd>,</kbd><var>...</var><kbd>,</kbd><var>R<sub>n</sub></var><kbd>]</kbd>
    * (with a <a href="#COMMA_OPTION">"," option</a>)
    * <dd>Negative character class. It matches a character not in ranges.
    * <dt class="REGEX"><kbd>(?[</kbd><var>ranges</var><kbd>]</kbd><var>op</var><kbd>[</kbd><var>ranges</var><kbd>]</kbd><var>op</var><kbd>[</kbd><var>ranges</var><kbd>]</kbd>
-   * ... <Kbd>)</kbd> (<var>op</var> is <kbd>-</kbd> or <kbd>+</kbd> or
-   * <kbd>&</kbd>.)
+   * ... <Kbd>)</kbd> (<var>op</var> is <kbd>-</kbd> or <kbd>+</kbd> or <kbd>&</kbd>.)
    * <dd>Subtraction or union or intersection for character classes.
-   * <dd class="REGEX">For exmaple, <kbd>(?[A-Z]-[CF])</kbd> is equivalent to
-   * <kbd>[A-BD-EG-Z]</kbd>, and <kbd>(?[0x00-0x7f]-[K]&[\p{Lu}])</kbd> is
-   * equivalent to <kbd>[A-JL-Z]</kbd>.
-   * <dd>The result of this operations is a <u>positive character class</u>
-   * even if an expression includes any negative character classes. You have to
-   * take care on this in case-insensitive matching. For instance, <kbd>(?[^b])</kbd>
-   * is equivalent to <kbd>[\x00-ac-\x{10ffff}]</kbd>, which is equivalent to
-   * <kbd>[^b]</kbd> in case-sensitive matching. But, in case-insensitive
-   * matching, <kbd>(?[^b])</kbd> matches any character because it includes '<kbd>B</kbd>'
-   * and '<kbd>B</kbd>' matches '<kbd>b</kbd>' though <kbd>[^b]</kbd> is
-   * processed as <kbd>[^Bb]</kbd>.
+   * <dd class="REGEX">For exmaple, <kbd>(?[A-Z]-[CF])</kbd> is equivalent to <kbd>[A-BD-EG-Z]</kbd>, and
+   * <kbd>(?[0x00-0x7f]-[K]&[\p{Lu}])</kbd> is equivalent to <kbd>[A-JL-Z]</kbd>.
+   * <dd>The result of this operations is a <u>positive character class</u> even if an expression includes any
+   * negative character classes. You have to take care on this in case-insensitive matching. For instance, <kbd>(?[^b])</kbd>
+   * is equivalent to <kbd>[\x00-ac-\x{10ffff}]</kbd>, which is equivalent to <kbd>[^b]</kbd> in case-sensitive
+   * matching. But, in case-insensitive matching, <kbd>(?[^b])</kbd> matches any character because it includes '<kbd>B</kbd>'
+   * and '<kbd>B</kbd>' matches '<kbd>b</kbd>' though <kbd>[^b]</kbd> is processed as <kbd>[^Bb]</kbd>.
    * <dt class="REGEX"><kbd>[</kbd><var>R<sub>1</sub>R<sub>2</sub>...</var><kbd>-[</kbd><var>R<sub>n</sub>R<sub>n+1</sub>...</var><kbd>]]</kbd>
    * (with an <a href="#X_OPTION">"X" option</a>)</dt>
-   * <dd>Character class subtraction for the XML Schema. You can use this
-   * syntax when you specify an <a href="#X_OPTION">"X" option</a>.
+   * <dd>Character class subtraction for the XML Schema. You can use this syntax when you specify an <a
+   * href="#X_OPTION">"X" option</a>.
    * <dt class="REGEX"><kbd>\d</kbd>
    * <dd class="REGEX">Equivalent to <kbd>[0-9]</kbd>.
-   * <dd>When <a href="#U_OPTION">a "u" option</a> is set, it is equivalent to
-   * <span class="REGEX"><kbd>\p{Nd}</kbd></span>.
+   * <dd>When <a href="#U_OPTION">a "u" option</a> is set, it is equivalent to <span class="REGEX"><kbd>\p{Nd}</kbd></span>.
    * <dt class="REGEX"><kbd>\D</kbd>
    * <dd class="REGEX">Equivalent to <kbd>[^0-9]</kbd>
-   * <dd>When <a href="#U_OPTION">a "u" option</a> is set, it is equivalent to
-   * <span class="REGEX"><kbd>\P{Nd}</kbd></span>.
+   * <dd>When <a href="#U_OPTION">a "u" option</a> is set, it is equivalent to <span class="REGEX"><kbd>\P{Nd}</kbd></span>.
    * <dt class="REGEX"><kbd>\s</kbd>
    * <dd class="REGEX">Equivalent to <kbd>[ \f\n\r\t]</kbd>
-   * <dd>When <a href="#U_OPTION">a "u" option</a> is set, it is equivalent to
-   * <span class="REGEX"><kbd>[ \f\n\r\t\p{Z}]</kbd></span>.
+   * <dd>When <a href="#U_OPTION">a "u" option</a> is set, it is equivalent to <span class="REGEX"><kbd>[
+   * \f\n\r\t\p{Z}]</kbd></span>.
    * <dt class="REGEX"><kbd>\S</kbd>
    * <dd class="REGEX">Equivalent to <kbd>[^ \f\n\r\t]</kbd>
-   * <dd>When <a href="#U_OPTION">a "u" option</a> is set, it is equivalent to
-   * <span class="REGEX"><kbd>[^ \f\n\r\t\p{Z}]</kbd></span>.
+   * <dd>When <a href="#U_OPTION">a "u" option</a> is set, it is equivalent to <span class="REGEX"><kbd>[^
+   * \f\n\r\t\p{Z}]</kbd></span>.
    * <dt class="REGEX"><kbd>\w</kbd>
    * <dd class="REGEX">Equivalent to <kbd>[a-zA-Z0-9_]</kbd>
-   * <dd>When <a href="#U_OPTION">a "u" option</a> is set, it is equivalent to
-   * <span class="REGEX"><kbd>[\p{Lu}\p{Ll}\p{Lo}\p{Nd}_]</kbd></span>.
+   * <dd>When <a href="#U_OPTION">a "u" option</a> is set, it is equivalent to <span class="REGEX"><kbd>[\p{Lu}\p{Ll}\p{Lo}\p{Nd}_]</kbd></span>.
    * <dt class="REGEX"><kbd>\W</kbd>
    * <dd class="REGEX">Equivalent to <kbd>[^a-zA-Z0-9_]</kbd>
-   * <dd>When <a href="#U_OPTION">a "u" option</a> is set, it is equivalent to
-   * <span class="REGEX"><kbd>[^\p{Lu}\p{Ll}\p{Lo}\p{Nd}_]</kbd></span>.
+   * <dd>When <a href="#U_OPTION">a "u" option</a> is set, it is equivalent to <span class="REGEX"><kbd>[^\p{Lu}\p{Ll}\p{Lo}\p{Nd}_]</kbd></span>.
    * <dt class="REGEX"><kbd>\p{</kbd><var>name</var><kbd>}</kbd>
-   * <dd>Matches one character in the specified General Category (the second
-   * field in <a href="ftp://ftp.unicode.org/Public/UNIDATA/UnicodeData.txt"><kbd>UnicodeData.txt</kbd></a>)
-   * or the specified <a
-   * href="ftp://ftp.unicode.org/Public/UNIDATA/Blocks.txt">Block</a>. The
-   * following names are available:
+   * <dd>Matches one character in the specified General Category (the second field in <a
+   * href="ftp://ftp.unicode.org/Public/UNIDATA/UnicodeData.txt"><kbd>UnicodeData.txt</kbd></a>) or the specified <a
+   * href="ftp://ftp.unicode.org/Public/UNIDATA/Blocks.txt">Block</a>. The following names are available:
    * <dl>
    * <dt>Unicode General Categories:
-   * <dd><kbd> L, M, N, Z, C, P, S, Lu, Ll, Lt, Lm, Lo, Mn, Me, Mc, Nd, Nl, No,
-   * Zs, Zl, Zp, Cc, Cf, Cn, Co, Cs, Pd, Ps, Pe, Pc, Po, Sm, Sc, Sk, So, </kbd>
+   * <dd><kbd> L, M, N, Z, C, P, S, Lu, Ll, Lt, Lm, Lo, Mn, Me, Mc, Nd, Nl, No, Zs, Zl, Zp, Cc, Cf, Cn, Co, Cs, Pd, Ps,
+   * Pe, Pc, Po, Sm, Sc, Sk, So, </kbd>
    * <dd>(Currently the Cn category includes U+10000-U+10FFFF characters)
    * <dt>Unicode Blocks:
-   * <dd><kbd> Basic Latin, Latin-1 Supplement, Latin Extended-A, Latin
-   * Extended-B, IPA Extensions, Spacing Modifier Letters, Combining Diacritical
-   * Marks, Greek, Cyrillic, Armenian, Hebrew, Arabic, Devanagari, Bengali,
-   * Gurmukhi, Gujarati, Oriya, Tamil, Telugu, Kannada, Malayalam, Thai, Lao,
-   * Tibetan, Georgian, Hangul Jamo, Latin Extended Additional, Greek Extended,
-   * General Punctuation, Superscripts and Subscripts, Currency Symbols,
-   * Combining Marks for Symbols, Letterlike Symbols, Number Forms, Arrows,
-   * Mathematical Operators, Miscellaneous Technical, Control Pictures, Optical
-   * Character Recognition, Enclosed Alphanumerics, Box Drawing, Block Elements,
-   * Geometric Shapes, Miscellaneous Symbols, Dingbats, CJK Symbols and
-   * Punctuation, Hiragana, Katakana, Bopomofo, Hangul Compatibility Jamo,
-   * Kanbun, Enclosed CJK Letters and Months, CJK Compatibility, CJK Unified
-   * Ideographs, Hangul Syllables, High Surrogates, High Private Use Surrogates,
-   * Low Surrogates, Private Use, CJK Compatibility Ideographs, Alphabetic
-   * Presentation Forms, Arabic Presentation Forms-A, Combining Half Marks, CJK
-   * Compatibility Forms, Small Form Variants, Arabic Presentation Forms-B,
-   * Specials, Halfwidth and Fullwidth Forms </kbd>
+   * <dd><kbd> Basic Latin, Latin-1 Supplement, Latin Extended-A, Latin Extended-B, IPA Extensions, Spacing Modifier
+   * Letters, Combining Diacritical Marks, Greek, Cyrillic, Armenian, Hebrew, Arabic, Devanagari, Bengali, Gurmukhi,
+   * Gujarati, Oriya, Tamil, Telugu, Kannada, Malayalam, Thai, Lao, Tibetan, Georgian, Hangul Jamo, Latin Extended
+   * Additional, Greek Extended, General Punctuation, Superscripts and Subscripts, Currency Symbols, Combining Marks for
+   * Symbols, Letterlike Symbols, Number Forms, Arrows, Mathematical Operators, Miscellaneous Technical, Control
+   * Pictures, Optical Character Recognition, Enclosed Alphanumerics, Box Drawing, Block Elements, Geometric Shapes,
+   * Miscellaneous Symbols, Dingbats, CJK Symbols and Punctuation, Hiragana, Katakana, Bopomofo, Hangul Compatibility
+   * Jamo, Kanbun, Enclosed CJK Letters and Months, CJK Compatibility, CJK Unified Ideographs, Hangul Syllables, High
+   * Surrogates, High Private Use Surrogates, Low Surrogates, Private Use, CJK Compatibility Ideographs, Alphabetic
+   * Presentation Forms, Arabic Presentation Forms-A, Combining Half Marks, CJK Compatibility Forms, Small Form
+   * Variants, Arabic Presentation Forms-B, Specials, Halfwidth and Fullwidth Forms </kbd>
    * <dt>Others:
    * <dd><kbd>ALL</kbd> (Equivalent to <kbd>[\u005cu0000-\u005cv10FFFF]</kbd>)
-   * <dd><kbd>ASSGINED</kbd> (<kbd>\p{ASSIGNED}</kbd> is equivalent to
-   * <kbd>\P{Cn}</kbd>)
-   * <dd><kbd>UNASSGINED</kbd> (<kbd>\p{UNASSIGNED}</kbd> is equivalent to
-   * <kbd>\p{Cn}</kbd>)
+   * <dd><kbd>ASSGINED</kbd> (<kbd>\p{ASSIGNED}</kbd> is equivalent to <kbd>\P{Cn}</kbd>)
+   * <dd><kbd>UNASSGINED</kbd> (<kbd>\p{UNASSIGNED}</kbd> is equivalent to <kbd>\p{Cn}</kbd>)
    * </dl>
    * <dt class="REGEX"><kbd>\P{</kbd><var>name</var><kbd>}</kbd>
-   * <dd>Matches one character not in the specified General Category or the
-   * specified Block.
+   * <dd>Matches one character not in the specified General Category or the specified Block.
    * </dl>
    * </li>
    * <li>Selection and Quantifier
@@ -1127,25 +1081,20 @@ public final class RegEx
    * <li>Grouping, Capturing, and Back-reference
    * <dl>
    * <dt class="REGEX"><KBD>(?:</kbd><VAR>X</VAR><kbd>)</KBD>
-   * <dd>Grouping. "<KBD>foo+</KBD>" matches "<KBD>foo</KBD>" or "<KBD>foooo</KBD>".
-   * If you want it matches "<KBD>foofoo</KBD>" or "<KBD>foofoofoo</KBD>",
-   * you have to write "<KBD>(?:foo)+</KBD>".
+   * <dd>Grouping. "<KBD>foo+</KBD>" matches "<KBD>foo</KBD>" or "<KBD>foooo</KBD>". If you want it matches "<KBD>foofoo</KBD>"
+   * or "<KBD>foofoofoo</KBD>", you have to write "<KBD>(?:foo)+</KBD>".
    * <dt class="REGEX"><KBD>(</kbd><VAR>X</VAR><kbd>)</KBD>
-   * <dd>Grouping with capturing. It make a group and applications can know
-   * where in target text a group matched with methods of a <code>Match</code>
-   * instance after
+   * <dd>Grouping with capturing. It make a group and applications can know where in target text a group matched with
+   * methods of a <code>Match</code> instance after
    * <code><a href="#matches(java.lang.String, org.apache.xerces.utils.regex.Match)">matches(String,Match)</a></code>.
-   * The 0th group means whole of this regular expression. The <VAR>N</VAR>th
-   * gorup is the inside of the <VAR>N</VAR>th left parenthesis.
+   * The 0th group means whole of this regular expression. The <VAR>N</VAR>th gorup is the inside of the <VAR>N</VAR>th
+   * left parenthesis.
    * <p>
-   * For instance, a regular expression is "<FONT color=blue><KBD>
-   * *([^&lt;:]*) +&lt;([^&gt;]*)&gt; *</KBD></FONT>" and target text is "<FONT
-   * color=red><KBD>From: TAMURA Kent &lt;kent@trl.ibm.co.jp&gt;</KBD></FONT>":
+   * For instance, a regular expression is "<FONT color=blue><KBD> *([^&lt;:]*) +&lt;([^&gt;]*)&gt; *</KBD></FONT>"
+   * and target text is "<FONT color=red><KBD>From: TAMURA Kent &lt;kent@trl.ibm.co.jp&gt;</KBD></FONT>":
    * <ul>
-   * <li><code>Match.getCapturedText(0)</code>: "<FONT color=red><KBD>
-   * TAMURA Kent &lt;kent@trl.ibm.co.jp&gt;</KBD></FONT>"
-   * <li><code>Match.getCapturedText(1)</code>: "<FONT color=red><KBD>TAMURA
-   * Kent</KBD></FONT>"
+   * <li><code>Match.getCapturedText(0)</code>: "<FONT color=red><KBD> TAMURA Kent &lt;kent@trl.ibm.co.jp&gt;</KBD></FONT>"
+   * <li><code>Match.getCapturedText(1)</code>: "<FONT color=red><KBD>TAMURA Kent</KBD></FONT>"
    * <li><code>Match.getCapturedText(2)</code>: "<FONT color=red><KBD>kent@trl.ibm.co.jp</KBD></FONT>"
    * </ul>
    * <dt class="REGEX"><kbd>\1 \2 \3 \4 \5 \6 \7 \8 \9</kbd>
@@ -1155,8 +1104,8 @@ public final class RegEx
    * <dt class="REGEX"><kbd>(?</kbd><var>options</var><kbd>:</kbd><var>X</var><kbd>)</kbd>
    * <dt class="REGEX"><kbd>(?</kbd><var>options</var><kbd>-</kbd><var>options2</var><kbd>:</kbd><var>X</var><kbd>)</kbd>
    * <dd>............................
-   * <dd>The <var>options</var> or the <var>options2</var> consists of 'i'
-   * 'm' 's' 'w'. Note that it can not contain 'u'.
+   * <dd>The <var>options</var> or the <var>options2</var> consists of 'i' 'm' 's' 'w'. Note that it can not contain
+   * 'u'.
    * <dt class="REGEX"><kbd>(?</kbd><var>options</var><kbd>)</kbd>
    * <dt class="REGEX"><kbd>(?</kbd><var>options</var><kbd>-</kbd><var>options2</var><kbd>)</kbd>
    * <dd>......
@@ -1168,22 +1117,18 @@ public final class RegEx
    * <dt class="REGEX"><kbd>\A</kbd>
    * <dd>Matches the beginnig of the text.
    * <dt class="REGEX"><kbd>\Z</kbd>
-   * <dd>Matches the end of the text, or before an EOL character at the end of
-   * the text, or CARRIAGE RETURN + LINE FEED at the end of the text.
+   * <dd>Matches the end of the text, or before an EOL character at the end of the text, or CARRIAGE RETURN + LINE FEED
+   * at the end of the text.
    * <dt class="REGEX"><kbd>\z</kbd>
    * <dd>Matches the end of the text.
    * <dt class="REGEX"><kbd>^</kbd>
-   * <dd>Matches the beginning of the text. It is equivalent to <span
-   * class="REGEX"><Kbd>\A</kbd></span>.
-   * <dd>When <a href="#M_OPTION">a "m" option</a> is set, it matches the
-   * beginning of the text, or after one of EOL characters ( LINE FEED (U+000A),
-   * CARRIAGE RETURN (U+000D), LINE SEPARATOR (U+2028), PARAGRAPH SEPARATOR
-   * (U+2029).)
+   * <dd>Matches the beginning of the text. It is equivalent to <span class="REGEX"><Kbd>\A</kbd></span>.
+   * <dd>When <a href="#M_OPTION">a "m" option</a> is set, it matches the beginning of the text, or after one of EOL
+   * characters ( LINE FEED (U+000A), CARRIAGE RETURN (U+000D), LINE SEPARATOR (U+2028), PARAGRAPH SEPARATOR (U+2029).)
    * <dt class="REGEX"><kbd>$</kbd>
-   * <dd>Matches the end of the text, or before an EOL character at the end of
-   * the text, or CARRIAGE RETURN + LINE FEED at the end of the text.
-   * <dd>When <a href="#M_OPTION">a "m" option</a> is set, it matches the end
-   * of the text, or before an EOL character.
+   * <dd>Matches the end of the text, or before an EOL character at the end of the text, or CARRIAGE RETURN + LINE FEED
+   * at the end of the text.
+   * <dd>When <a href="#M_OPTION">a "m" option</a> is set, it matches the end of the text, or before an EOL character.
    * <dt class="REGEX"><kbd>\b</kbd>
    * <dd>Matches word boundary. (See <a href="#W_OPTION">a "w" option</a>)
    * <dt class="REGEX"><kbd>\B</kbd>
@@ -1213,8 +1158,8 @@ public final class RegEx
    * <dt class="REGEX"><kbd>(?(</kbd><var>condition</var><kbd>)</kbd><var>yes-pattern</var><kbd>)</kbd>
    * <dd>......
    * <dt class="REGEX"><kbd>(?#</kbd><var>comment</var><kbd>)</kbd>
-   * <dd>Comment. A comment string consists of characters except '<kbd>)</kbd>'.
-   * You can not write comments in character classes and before quantifiers.
+   * <dd>Comment. A comment string consists of characters except '<kbd>)</kbd>'. You can not write comments in
+   * character classes and before quantifiers.
    * </dl>
    * </li>
    * </ul>
@@ -1266,8 +1211,7 @@ public final class RegEx
    * <hr width="50%">
    * <h3>to do</h3>
    * <ul>
-   * <li><a href="http://www.unicode.org/unicode/reports/tr18/">Unicode Regular
-   * Expression Guidelines</a>
+   * <li><a href="http://www.unicode.org/unicode/reports/tr18/">Unicode Regular Expression Guidelines</a>
    * <ul>
    * <li>2.4 Canonical Equivalents
    * <li>Level 3
@@ -1478,8 +1422,7 @@ public final class RegEx
     // Public
 
     /**
-     * Checks whether the <var>target</var> text <strong>contains</strong>
-     * this pattern or not.
+     * Checks whether the <var>target</var> text <strong>contains</strong> this pattern or not.
      * 
      * @return true if the target is matched to this regular expression.
      */
@@ -1489,8 +1432,7 @@ public final class RegEx
     }
 
     /**
-     * Checks whether the <var>target</var> text <strong>contains</strong>
-     * this pattern in specified range or not.
+     * Checks whether the <var>target</var> text <strong>contains</strong> this pattern in specified range or not.
      * 
      * @param start
      *          Start offset of the range.
@@ -1504,13 +1446,11 @@ public final class RegEx
     }
 
     /**
-     * Checks whether the <var>target</var> text <strong>contains</strong>
-     * this pattern or not.
+     * Checks whether the <var>target</var> text <strong>contains</strong> this pattern or not.
      * 
      * @param match
      *          A Match instance for storing matching result.
-     * @return Offset of the start position in <VAR>target</VAR>; or -1 if not
-     *         match.
+     * @return Offset of the start position in <VAR>target</VAR>; or -1 if not match.
      */
     public boolean matches(char[] target, Match match)
     {
@@ -1518,8 +1458,7 @@ public final class RegEx
     }
 
     /**
-     * Checks whether the <var>target</var> text <strong>contains</strong>
-     * this pattern in specified range or not.
+     * Checks whether the <var>target</var> text <strong>contains</strong> this pattern in specified range or not.
      * 
      * @param start
      *          Start offset of the range.
@@ -1527,8 +1466,7 @@ public final class RegEx
      *          End offset +1 of the range.
      * @param match
      *          A Match instance for storing matching result.
-     * @return Offset of the start position in <VAR>target</VAR>; or -1 if not
-     *         match.
+     * @return Offset of the start position in <VAR>target</VAR>; or -1 if not match.
      */
     public boolean matches(char[] target, int start, int end, Match match)
     {
@@ -1597,9 +1535,8 @@ public final class RegEx
       }
 
       /*
-       * The pattern contains a fixed string. The engine checks with Boyer-Moore
-       * whether the text contains the fixed string or not. If not, it return
-       * with false.
+       * The pattern contains a fixed string. The engine checks with Boyer-Moore whether the text contains the fixed
+       * string or not. If not, it return with false.
        */
       if (this.fixedString != null)
       {
@@ -1720,8 +1657,7 @@ public final class RegEx
     }
 
     /**
-     * @return -1 when not match; offset of the end of matched string when
-     *         match.
+     * @return -1 when not match; offset of the end of matched string when match.
      */
     private int matchCharArray(Context con, Op op, int offset, int dx, int opts)
     {
@@ -2242,8 +2178,7 @@ public final class RegEx
     }
 
     /**
-     * Checks whether the <var>target</var> text <strong>contains</strong>
-     * this pattern or not.
+     * Checks whether the <var>target</var> text <strong>contains</strong> this pattern or not.
      * 
      * @return true if the target is matched to this regular expression.
      */
@@ -2253,8 +2188,7 @@ public final class RegEx
     }
 
     /**
-     * Checks whether the <var>target</var> text <strong>contains</strong>
-     * this pattern in specified range or not.
+     * Checks whether the <var>target</var> text <strong>contains</strong> this pattern in specified range or not.
      * 
      * @param start
      *          Start offset of the range.
@@ -2268,13 +2202,11 @@ public final class RegEx
     }
 
     /**
-     * Checks whether the <var>target</var> text <strong>contains</strong>
-     * this pattern or not.
+     * Checks whether the <var>target</var> text <strong>contains</strong> this pattern or not.
      * 
      * @param match
      *          A Match instance for storing matching result.
-     * @return Offset of the start position in <VAR>target</VAR>; or -1 if not
-     *         match.
+     * @return Offset of the start position in <VAR>target</VAR>; or -1 if not match.
      */
     public boolean matches(String target, Match match)
     {
@@ -2282,8 +2214,7 @@ public final class RegEx
     }
 
     /**
-     * Checks whether the <var>target</var> text <strong>contains</strong>
-     * this pattern in specified range or not.
+     * Checks whether the <var>target</var> text <strong>contains</strong> this pattern in specified range or not.
      * 
      * @param start
      *          Start offset of the range.
@@ -2291,8 +2222,7 @@ public final class RegEx
      *          End offset +1 of the range.
      * @param match
      *          A Match instance for storing matching result.
-     * @return Offset of the start position in <VAR>target</VAR>; or -1 if not
-     *         match.
+     * @return Offset of the start position in <VAR>target</VAR>; or -1 if not match.
      */
     public boolean matches(String target, int start, int end, Match match)
     {
@@ -2369,9 +2299,8 @@ public final class RegEx
       }
 
       /*
-       * The pattern contains a fixed string. The engine checks with Boyer-Moore
-       * whether the text contains the fixed string or not. If not, it return
-       * with false.
+       * The pattern contains a fixed string. The engine checks with Boyer-Moore whether the text contains the fixed
+       * string or not. If not, it return with false.
        */
       if (this.fixedString != null)
       {
@@ -2492,8 +2421,7 @@ public final class RegEx
     }
 
     /**
-     * @return -1 when not match; offset of the end of matched string when
-     *         match.
+     * @return -1 when not match; offset of the end of matched string when match.
      */
     private int matchString(Context con, Op op, int offset, int dx, int opts)
     {
@@ -2973,8 +2901,7 @@ public final class RegEx
     }
 
     /**
-     * Checks whether the <var>target</var> text <strong>contains</strong>
-     * this pattern or not.
+     * Checks whether the <var>target</var> text <strong>contains</strong> this pattern or not.
      * 
      * @return true if the target is matched to this regular expression.
      */
@@ -2984,13 +2911,11 @@ public final class RegEx
     }
 
     /**
-     * Checks whether the <var>target</var> text <strong>contains</strong>
-     * this pattern or not.
+     * Checks whether the <var>target</var> text <strong>contains</strong> this pattern or not.
      * 
      * @param match
      *          A Match instance for storing matching result.
-     * @return Offset of the start position in <VAR>target</VAR>; or -1 if not
-     *         match.
+     * @return Offset of the start position in <VAR>target</VAR>; or -1 if not match.
      */
     public boolean matches(CharacterIterator target, Match match)
     {
@@ -3061,9 +2986,8 @@ public final class RegEx
       }
 
       /*
-       * The pattern contains a fixed string. The engine checks with Boyer-Moore
-       * whether the text contains the fixed string or not. If not, it return
-       * with false.
+       * The pattern contains a fixed string. The engine checks with Boyer-Moore whether the text contains the fixed
+       * string or not. If not, it return with false.
        */
       if (this.fixedString != null)
       {
@@ -3187,8 +3111,7 @@ public final class RegEx
     }
 
     /**
-     * @return -1 when not match; offset of the end of matched string when
-     *         match.
+     * @return -1 when not match; offset of the end of matched string when match.
      */
     private int matchCharacterIterator(Context con, Op op, int offset, int dx, int opts)
     {
@@ -3821,18 +3744,16 @@ public final class RegEx
     }
 
     /**
-     * Prepares for matching. This method is called just before starting
-     * matching.
+     * Prepares for matching. This method is called just before starting matching.
      */
     void prepare()
     {
       if (Op.COUNT) Op.nofinstances = 0;
       this.compile(this.tokentree);
       /*
-       * if (this.operations.type == Op.CLOSURE &&
-       * this.operations.getChild().type == Op.DOT) { // .* Op anchor =
-       * Op.createAnchor(isSet(this.options, SINGLE_LINE) ? 'A' : '@');
-       * anchor.next = this.operations; this.operations = anchor; }
+       * if (this.operations.type == Op.CLOSURE && this.operations.getChild().type == Op.DOT) { // .* Op anchor =
+       * Op.createAnchor(isSet(this.options, SINGLE_LINE) ? 'A' : '@'); anchor.next = this.operations; this.operations =
+       * anchor; }
        */
       if (Op.COUNT) System.err.println("DEBUG: The number of operations: " + Op.nofinstances);
 
@@ -3895,8 +3816,8 @@ public final class RegEx
 
     /**
      * An option. If you specify this option, <span class="REGEX"><kbd>(</kbd><var>X</var><kbd>)</kbd></span>
-     * captures matched text, and <span class="REGEX"><kbd>(:?</kbd><var>X</var><kbd>)</kbd></span>
-     * does not capture.
+     * captures matched text, and <span class="REGEX"><kbd>(:?</kbd><var>X</var><kbd>)</kbd></span> does not
+     * capture.
      * 
      * @see #RegularExpression(java.lang.String,int)
      * @see #setPattern(java.lang.String,int) static final int MARK_PARENS = 1<<0;
@@ -3932,15 +3853,13 @@ public final class RegEx
     static final int USE_UNICODE_CATEGORY = 1 << 5; // "u"
 
     /**
-     * An option. This enables to process locale-independent word boundary for
-     * <span class="REGEX"><kbd>\b \B \&lt; \></kbd></span>.
+     * An option. This enables to process locale-independent word boundary for <span class="REGEX"><kbd>\b \B \&lt; \></kbd></span>.
      * <p>
-     * By default, the engine considers a position between a word character (<span
-     * class="REGEX"><Kbd>\w</kbd></span>) and a non word character is a word
-     * boundary.
+     * By default, the engine considers a position between a word character (<span class="REGEX"><Kbd>\w</kbd></span>)
+     * and a non word character is a word boundary.
      * <p>
-     * By this option, the engine checks word boundaries with the method of
-     * 'Unicode Regular Expression Guidelines' Revision 4.
+     * By this option, the engine checks word boundaries with the method of 'Unicode Regular Expression Guidelines'
+     * Revision 4.
      * 
      * @see RegEx#RegEx()
      * @see #setPattern(java.lang.String,int)
@@ -4057,8 +3976,8 @@ public final class RegEx
     }
 
     /**
-     * Returns a option string. The order of letters in it may be different from
-     * a string specified in a constructor or <code>setPattern()</code>.
+     * Returns a option string. The order of letters in it may be different from a string specified in a constructor or
+     * <code>setPattern()</code>.
      * 
      * @see #RegularExpression(String, String)
      * @see #setPattern(java.lang.String,java.lang.String)
@@ -4095,8 +4014,8 @@ public final class RegEx
     }
 
     /**
-     * Return the number of regular expression groups. This method returns 1
-     * when the regular expression has no capturing-parenthesis.
+     * Return the number of regular expression groups. This method returns 1 when the regular expression has no
+     * capturing-parenthesis.
      */
     public int getNumberOfGroups()
     {
@@ -5012,8 +4931,7 @@ public final class RegEx
     }
 
     /**
-     * for RANGE: Creates complement. for NRANGE: Creates the same meaning
-     * RANGE.
+     * for RANGE: Creates complement. for NRANGE: Creates the same meaning RANGE.
      */
     static Token complementRanges(Token token)
     {
@@ -5326,7 +5244,8 @@ public final class RegEx
     static final int T_CONDITION = 23; // '(?('
 
     static final int T_XMLSCHEMA_CC_SUBTRACTION = 24; // '-[' in a character
-                                                      // class
+
+    // class
 
     static class ReferencePosition
     {
@@ -5421,9 +5340,8 @@ public final class RegEx
     }
 
     /*
-     * public RegularExpression createRegex(String regex, int options) throws
-     * ParseException { Token tok = this.parse(regex, options); return new
-     * RegularExpression(regex, tok, this.parennumber, this.hasBackReferences,
+     * public RegularExpression createRegex(String regex, int options) throws ParseException { Token tok =
+     * this.parse(regex, options); return new RegularExpression(regex, tok, this.parennumber, this.hasBackReferences,
      * options); }
      */
 
@@ -5602,12 +5520,10 @@ public final class RegEx
     }
 
     /**
-     * regex ::= term (`|` term)* term ::= factor+ factor ::= ('^' | '$' | '\A' |
-     * '\Z' | '\z' | '\b' | '\B' | '\<' | '\>' | atom (('*' | '+' | '?' |
-     * minmax ) '?'? )?) | '(?=' regex ')' | '(?!' regex ')' | '(?&lt;=' regex
-     * ')' | '(?&lt;!' regex ')' atom ::= char | '.' | range | '(' regex ')' |
-     * '(?:' regex ')' | '\' [0-9] | '\w' | '\W' | '\d' | '\D' | '\s' | '\S' |
-     * category-block
+     * regex ::= term (`|` term)* term ::= factor+ factor ::= ('^' | '$' | '\A' | '\Z' | '\z' | '\b' | '\B' | '\<' |
+     * '\>' | atom (('*' | '+' | '?' | minmax ) '?'? )?) | '(?=' regex ')' | '(?!' regex ')' | '(?&lt;=' regex ')' |
+     * '(?&lt;!' regex ')' atom ::= char | '.' | range | '(' regex ')' | '(?:' regex ')' | '\' [0-9] | '\w' | '\W' |
+     * '\d' | '\D' | '\s' | '\S' | category-block
      */
     Token parseRegex() throws ParseException
     {
@@ -5977,10 +5893,9 @@ public final class RegEx
     // ----------------------------------------------------------------
 
     /**
-     * factor ::= ('^' | '$' | '\A' | '\Z' | '\z' | '\b' | '\B' | '\<' | '\>' |
-     * atom (('*' | '+' | '?' | minmax ) '?'? )?) | '(?=' regex ')' | '(?!'
-     * regex ')' | '(?&lt;=' regex ')' | '(?&lt;!' regex ')' | '(?#' [^)]* ')'
-     * minmax ::= '{' min (',' max?)? '}' min ::= [0-9]+ max ::= [0-9]+
+     * factor ::= ('^' | '$' | '\A' | '\Z' | '\z' | '\b' | '\B' | '\<' | '\>' | atom (('*' | '+' | '?' | minmax ) '?'?
+     * )?) | '(?=' regex ')' | '(?!' regex ')' | '(?&lt;=' regex ')' | '(?&lt;!' regex ')' | '(?#' [^)]* ')' minmax ::=
+     * '{' min (',' max?)? '}' min ::= [0-9]+ max ::= [0-9]+
      */
     Token parseFactor() throws ParseException
     {
@@ -6106,9 +6021,8 @@ public final class RegEx
     }
 
     /**
-     * atom ::= char | '.' | char-class | '(' regex ')' | '(?:' regex ')' | '\'
-     * [0-9] | '\w' | '\W' | '\d' | '\D' | '\s' | '\S' | category-block | '(?>'
-     * regex ')' char ::= '\\' | '\' [efnrt] | bmp-code | character-1
+     * atom ::= char | '.' | char-class | '(' regex ')' | '(?:' regex ')' | '\' [0-9] | '\w' | '\W' | '\d' | '\D' | '\s' |
+     * '\S' | category-block | '(?>' regex ')' char ::= '\\' | '\' [efnrt] | bmp-code | character-1
      */
     Token parseAtom() throws ParseException
     {
@@ -6132,9 +6046,8 @@ public final class RegEx
         break;
 
       /**
-       * char-class ::= '[' ( '^'? range ','?)+ ']' range ::= '\d' | '\w' | '\s' |
-       * category-block | range-char | range-char '-' range-char range-char ::=
-       * '\[' | '\]' | '\\' | '\' [,-efnrtv] | bmp-code | character-2 bmp-char
+       * char-class ::= '[' ( '^'? range ','?)+ ']' range ::= '\d' | '\w' | '\s' | category-block | range-char |
+       * range-char '-' range-char range-char ::= '\[' | '\]' | '\\' | '\' [,-efnrtv] | bmp-code | character-2 bmp-char
        * ::= '\' 'u' [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F]
        */
       case T_LBRACKET:
@@ -6259,10 +6172,9 @@ public final class RegEx
     }
 
     /**
-     * char-class ::= '[' ( '^'? range ','?)+ ']' range ::= '\d' | '\w' | '\s' |
-     * category-block | range-char | range-char '-' range-char range-char ::=
-     * '\[' | '\]' | '\\' | '\' [,-efnrtv] | bmp-code | character-2 bmp-code ::=
-     * '\' 'u' [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F]
+     * char-class ::= '[' ( '^'? range ','?)+ ']' range ::= '\d' | '\w' | '\s' | category-block | range-char |
+     * range-char '-' range-char range-char ::= '\[' | '\]' | '\\' | '\' [,-efnrtv] | bmp-code | character-2 bmp-code
+     * ::= '\' 'u' [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F]
      */
     protected RangeToken parseCharacterClass(boolean useNrange) throws ParseException
     {
@@ -6388,8 +6300,7 @@ public final class RegEx
       tok.compactRanges();
       // tok.dumpRanges();
       /*
-       * if (this.isSet(RegularExpression.IGNORE_CASE)) tok =
-       * RangeToken.createCaseInsensitiveToken(tok);
+       * if (this.isSet(RegularExpression.IGNORE_CASE)) tok = RangeToken.createCaseInsensitiveToken(tok);
        */
       this.setContext(S_NORMAL);
       this.next(); // Skips ']'
@@ -7113,13 +7024,10 @@ public final class RegEx
         {
           return FC_CONTINUE;
           /*
-           * result.addRange(0, RegularExpression.LINE_FEED-1);
-           * result.addRange(RegularExpression.LINE_FEED+1,
-           * RegularExpression.CARRIAGE_RETURN-1);
-           * result.addRange(RegularExpression.CARRIAGE_RETURN+1,
-           * RegularExpression.LINE_SEPARATOR-1);
-           * result.addRange(RegularExpression.PARAGRAPH_SEPARATOR+1,
-           * UTF16_MAX); return 1;
+           * result.addRange(0, RegularExpression.LINE_FEED-1); result.addRange(RegularExpression.LINE_FEED+1,
+           * RegularExpression.CARRIAGE_RETURN-1); result.addRange(RegularExpression.CARRIAGE_RETURN+1,
+           * RegularExpression.LINE_SEPARATOR-1); result.addRange(RegularExpression.PARAGRAPH_SEPARATOR+1, UTF16_MAX);
+           * return 1;
            */
         }
 
@@ -7188,14 +7096,11 @@ public final class RegEx
     {
       if (tok == null) return false;
       /*
-       * int mylength; if (this.type == STRING) mylength =
-       * this.getString().length(); else if (this.type == CHAR) mylength =
-       * this.getChar() >= 0x10000 ? 2 : 1; else throw new
-       * RuntimeException("Internal Error: Illegal type: "+this.type); int
-       * otherlength; if (tok.type == STRING) otherlength =
-       * tok.getString().length(); else if (tok.type == CHAR) otherlength =
-       * tok.getChar() >= 0x10000 ? 2 : 1; else throw new
-       * RuntimeException("Internal Error: Illegal type: "+tok.type);
+       * int mylength; if (this.type == STRING) mylength = this.getString().length(); else if (this.type == CHAR)
+       * mylength = this.getChar() >= 0x10000 ? 2 : 1; else throw new RuntimeException("Internal Error: Illegal type:
+       * "+this.type); int otherlength; if (tok.type == STRING) otherlength = tok.getString().length(); else if
+       * (tok.type == CHAR) otherlength = tok.getChar() >= 0x10000 ? 2 : 1; else throw new RuntimeException("Internal
+       * Error: Illegal type: "+tok.type);
        */
       int mylength;
       if (this.type == STRING)
@@ -7701,8 +7606,7 @@ public final class RegEx
     static Hashtable<String, String> nonxs = null;
 
     /**
-     * This method is called by only getRange(). So this method need not
-     * MT-safe.
+     * This method is called by only getRange(). So this method need not MT-safe.
      */
     static protected void registerNonXS(String name)
     {
@@ -7737,7 +7641,7 @@ public final class RegEx
     // ------------------------------------------------------
 
     static final String viramaString = "\u094D"// ;DEVANAGARI SIGN
-                                                // VIRAMA;Mn;9;ON;;;;;N;;;;;
+        // VIRAMA;Mn;9;ON;;;;;N;;;;;
         + "\u09CD"// ;BENGALI SIGN VIRAMA;Mn;9;ON;;;;;N;;;;;
         + "\u0A4D"// ;GURMUKHI SIGN VIRAMA;Mn;9;ON;;;;;N;;;;;
         + "\u0ACD"// ;GUJARATI SIGN VIRAMA;Mn;9;ON;;;;;N;;;;;
@@ -7747,7 +7651,7 @@ public final class RegEx
         + "\u0CCD"// ;KANNADA SIGN VIRAMA;Mn;9;ON;;;;;N;;;;;
         + "\u0D4D"// ;MALAYALAM SIGN VIRAMA;Mn;9;ON;;;;;N;;;;;
         + "\u0E3A"// ;THAI CHARACTER PHINTHU;Mn;9;ON;;;;;N;THAI VOWEL SIGN
-                  // PHINTHU;;;;
+        // PHINTHU;;;;
         + "\u0F84";// ;TIBETAN MARK HALANTA;Mn;9;ON;;;;;N;TIBETAN VIRAMA;;;;
 
     static private Token token_grapheme = null;
@@ -7770,7 +7674,7 @@ public final class RegEx
       Token combiner_wo_virama = Token.createRange();
       combiner_wo_virama.mergeRanges(Token.getRange("M", true));
       combiner_wo_virama.addRange(0x1160, 0x11ff); // hangul_medial and
-                                                    // hangul_final
+      // hangul_final
       combiner_wo_virama.addRange(0xff9e, 0xff9f); // extras
 
       Token left = Token.createUnion(); // base_char?
@@ -8655,15 +8559,12 @@ public final class RegEx
     }
 
     /**
-     * Parses a character-class-expression, not a character-class-escape.
-     * c-c-expression ::= '[' c-group ']' c-group ::= positive-c-group |
-     * negative-c-group | c-c-subtraction positive-c-group ::= (c-range |
-     * c-c-escape)+ negative-c-group ::= '^' positive-c-group c-c-subtraction
-     * ::= (positive-c-group | negative-c-group) subtraction subtraction ::= '-'
-     * c-c-expression c-range ::= single-range | from-to-range single-range ::=
-     * multi-c-escape | category-c-escape | block-c-escape | <any XML char>
-     * cc-normal-c ::= <any character except [, ], \> from-to-range ::=
-     * cc-normal-c '-' cc-normal-c
+     * Parses a character-class-expression, not a character-class-escape. c-c-expression ::= '[' c-group ']' c-group ::=
+     * positive-c-group | negative-c-group | c-c-subtraction positive-c-group ::= (c-range | c-c-escape)+
+     * negative-c-group ::= '^' positive-c-group c-c-subtraction ::= (positive-c-group | negative-c-group) subtraction
+     * subtraction ::= '-' c-c-expression c-range ::= single-range | from-to-range single-range ::= multi-c-escape |
+     * category-c-escape | block-c-escape | <any XML char> cc-normal-c ::= <any character except [, ], \> from-to-range
+     * ::= cc-normal-c '-' cc-normal-c
      * 
      * @param useNrange
      *          Ignored.

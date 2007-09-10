@@ -32,32 +32,24 @@ import org.eclipse.emf.ecore.resource.impl.ResourceFactoryRegistryImpl;
 /**
  * A persistent document.
  * <p>
- * A resource of an appropriate type is {@link Factory#createResource created}
- * by a resource factory; a resource set indirectly
- * {@link ResourceSet#createResource creates} a resource using such a factory. A
- * resource is typically {@link #getResourceSet contained} by a resource set,
- * along with related resources. It has a {@link #getURI URI} representing it's
- * identity and that URI is
- * {@link org.eclipse.emf.ecore.resource.URIConverter used} to determine where
- * to {@link #save(Map) save} and {@link #load(Map) load}. It provides modeled
- * {@link #getContents contents}, in fact, it provides even the
- * {@link #getAllContents tree} of modeled contents, as well as
- * {@link Diagnostic diagnostics} for {@link #getErrors errors} and
- * {@link #getWarnings other} problems. It may be {@link #unload unloaded} to
- * discard the contents and the load state can be {@link #isLoaded queried}.
- * {@link #isModified Modification} can be
- * {@link #isTrackingModification tracked}, but it's expensive. The resource
- * will be informed as objects are {@link Resource.Internal#attached attached}
- * and {@link Resource.Internal#detached detached}; if needed, it will be able
- * to maintain a map to support {@link #getEObject getEObject}. Structured URI
- * {@link #getURIFragment fragments} are used rather than IDs, since they are a
- * more general alternative. Clients must extend the default
- * {@link org.eclipse.emf.ecore.resource.impl.ResourceImpl implementation}, or
- * one of its derived classes, since methods can and will be added to this API.
+ * A resource of an appropriate type is {@link Factory#createResource created} by a resource factory; a resource set
+ * indirectly {@link ResourceSet#createResource creates} a resource using such a factory. A resource is typically
+ * {@link #getResourceSet contained} by a resource set, along with related resources. It has a {@link #getURI URI}
+ * representing it's identity and that URI is {@link org.eclipse.emf.ecore.resource.URIConverter used} to determine
+ * where to {@link #save(Map) save} and {@link #load(Map) load}. It provides modeled {@link #getContents contents}, in
+ * fact, it provides even the {@link #getAllContents tree} of modeled contents, as well as
+ * {@link Diagnostic diagnostics} for {@link #getErrors errors} and {@link #getWarnings other} problems. It may be
+ * {@link #unload unloaded} to discard the contents and the load state can be {@link #isLoaded queried}.
+ * {@link #isModified Modification} can be {@link #isTrackingModification tracked}, but it's expensive. The resource
+ * will be informed as objects are {@link Resource.Internal#attached attached} and
+ * {@link Resource.Internal#detached detached}; if needed, it will be able to maintain a map to support
+ * {@link #getEObject getEObject}. Structured URI {@link #getURIFragment fragments} are used rather than IDs, since
+ * they are a more general alternative. Clients must extend the default
+ * {@link org.eclipse.emf.ecore.resource.impl.ResourceImpl implementation}, or one of its derived classes, since
+ * methods can and will be added to this API.
  * </p>
  * <p>
- * A resource produces notification for changes to the value of each of these
- * features:
+ * A resource produces notification for changes to the value of each of these features:
  * <ul>
  * <li>{@link #getResourceSet}</li>
  * <li>{@link #getURI}</li>
@@ -79,101 +71,85 @@ import org.eclipse.emf.ecore.resource.impl.ResourceFactoryRegistryImpl;
 public interface Resource extends Notifier
 {
   /**
-   * The {@link #getResourceSet} feature
-   * {@link org.eclipse.emf.common.notify.Notification#getFeatureID ID}.
+   * The {@link #getResourceSet} feature {@link org.eclipse.emf.common.notify.Notification#getFeatureID ID}.
    */
   int RESOURCE__RESOURCE_SET = 0;
 
   /**
-   * The {@link #getURI} feature
-   * {@link org.eclipse.emf.common.notify.Notification#getFeatureID ID}.
+   * The {@link #getURI} feature {@link org.eclipse.emf.common.notify.Notification#getFeatureID ID}.
    */
   int RESOURCE__URI = 1;
 
   /**
-   * The {@link #getContents} feature
-   * {@link org.eclipse.emf.common.notify.Notification#getFeatureID ID}.
+   * The {@link #getContents} feature {@link org.eclipse.emf.common.notify.Notification#getFeatureID ID}.
    */
   int RESOURCE__CONTENTS = 2;
 
   /**
-   * The {@link #isModified} feature
-   * {@link org.eclipse.emf.common.notify.Notification#getFeatureID ID}.
+   * The {@link #isModified} feature {@link org.eclipse.emf.common.notify.Notification#getFeatureID ID}.
    */
   int RESOURCE__IS_MODIFIED = 3;
 
   /**
-   * The {@link #isLoaded} feature
-   * {@link org.eclipse.emf.common.notify.Notification#getFeatureID ID}.
+   * The {@link #isLoaded} feature {@link org.eclipse.emf.common.notify.Notification#getFeatureID ID}.
    */
   int RESOURCE__IS_LOADED = 4;
 
   /**
-   * The {@link #isTrackingModification} feature
-   * {@link org.eclipse.emf.common.notify.Notification#getFeatureID ID}.
+   * The {@link #isTrackingModification} feature {@link org.eclipse.emf.common.notify.Notification#getFeatureID ID}.
    */
   int RESOURCE__IS_TRACKING_MODIFICATION = 5;
 
   /**
-   * The {@link #getErrors} feature
-   * {@link org.eclipse.emf.common.notify.Notification#getFeatureID ID}.
+   * The {@link #getErrors} feature {@link org.eclipse.emf.common.notify.Notification#getFeatureID ID}.
    */
   int RESOURCE__ERRORS = 6;
 
   /**
-   * The {@link #getWarnings} feature
-   * {@link org.eclipse.emf.common.notify.Notification#getFeatureID ID}.
+   * The {@link #getWarnings} feature {@link org.eclipse.emf.common.notify.Notification#getFeatureID ID}.
    */
   int RESOURCE__WARNINGS = 7;
 
   /**
-   * Specify a {@link URIConverter.Cipher} to encrypt and decrypt the resource
-   * content.
+   * Specify a {@link URIConverter.Cipher} to encrypt and decrypt the resource content.
    */
   String OPTION_CIPHER = "CIPHER";
 
   /**
-   * Specify whether the content of the resource should be zipped during save
-   * and unzip during load. The default value is <tt>Boolean.FALSE</tt>
+   * Specify whether the content of the resource should be zipped during save and unzip during load. The default value
+   * is <tt>Boolean.FALSE</tt>
    */
   String OPTION_ZIP = "ZIP";
 
   /**
-   * A save option that can be used only with {@link #save(Map)} to specify that
-   * the resource is to be saved only if the new contents are different from
-   * actual contents; this compares the bytes in the backing store against the
-   * new bytes that would be saved. The value on this option can be either
-   * <code>null</code>, {@link #OPTION_SAVE_ONLY_IF_CHANGED_FILE_BUFFER}, or
-   * {@link #OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER}.
+   * A save option that can be used only with {@link #save(Map)} to specify that the resource is to be saved only if the
+   * new contents are different from actual contents; this compares the bytes in the backing store against the new bytes
+   * that would be saved. The value on this option can be either <code>null</code>,
+   * {@link #OPTION_SAVE_ONLY_IF_CHANGED_FILE_BUFFER}, or {@link #OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER}.
    */
   String OPTION_SAVE_ONLY_IF_CHANGED = "SAVE_ONLY_IF_CHANGED";
 
   /**
-   * A value for {@link #OPTION_SAVE_ONLY_IF_CHANGED} to specify that an
-   * in-memory buffer should be used to compare the new contents with the actual
-   * contents. This will be faster than
-   * {@link #OPTION_SAVE_ONLY_IF_CHANGED_FILE_BUFFER} but will use up more
-   * memory.
+   * A value for {@link #OPTION_SAVE_ONLY_IF_CHANGED} to specify that an in-memory buffer should be used to compare the
+   * new contents with the actual contents. This will be faster than {@link #OPTION_SAVE_ONLY_IF_CHANGED_FILE_BUFFER}
+   * but will use up more memory.
    */
   String OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER = "MEMORY_BUFFER";
 
   /**
-   * A value for {@link #OPTION_SAVE_ONLY_IF_CHANGED} to specify that a file
-   * buffer should be used to compare the new contents with the actual contents.
-   * This will be slower than {@link #OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER}
-   * but will use up less memory.
+   * A value for {@link #OPTION_SAVE_ONLY_IF_CHANGED} to specify that a file buffer should be used to compare the new
+   * contents with the actual contents. This will be slower than {@link #OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER} but
+   * will use up less memory.
    */
   String OPTION_SAVE_ONLY_IF_CHANGED_FILE_BUFFER = "FILE_BUFFER";
 
   /**
-   * Returns the containing resource set. A resource is contained by a resource
-   * set if it appears in the {@link ResourceSet#getResources resources}, i.e.,
-   * the contents, of that resource set. This reference can only be modified by
-   * altering the contents of the resource set directly.
+   * Returns the containing resource set. A resource is contained by a resource set if it appears in the
+   * {@link ResourceSet#getResources resources}, i.e., the contents, of that resource set. This reference can only be
+   * modified by altering the contents of the resource set directly.
    * </p>
    * 
-   * @return the containing resource set, or <code>null</code> if there isn't
-   *         one.
+   * @return the containing resource set, or <code>null</code> if there isn't one.
    * @see EObject#eContainer
    * @see EObject#eResource
    * @see ResourceSet#getResources
@@ -181,13 +157,11 @@ public interface Resource extends Notifier
   ResourceSet getResourceSet();
 
   /**
-   * Returns the URI of this resource. The URI is normally expected to be
-   * {@link URI#isRelative absolute} and {@link URI#isHierarchical hierarchical};
-   * document-relative references will not be serialized and will not be
+   * Returns the URI of this resource. The URI is normally expected to be {@link URI#isRelative absolute} and
+   * {@link URI#isHierarchical hierarchical}; document-relative references will not be serialized and will not be
    * {@link URI#resolve(URI) resolved}, if this is not the case.
    * 
-   * @return the URI of this resource, or <code>null</code> if there isn't
-   *         one.
+   * @return the URI of this resource, or <code>null</code> if there isn't one.
    * @see #setURI(URI)
    * @see URI#isRelative
    * @see URI#isHierarchical
@@ -204,15 +178,12 @@ public interface Resource extends Notifier
   void setURI(URI uri);
 
   /**
-   * Returns the list of the direct content objects; each is of type
-   * {@link EObject}.
+   * Returns the list of the direct content objects; each is of type {@link EObject}.
    * <p>
-   * The contents may be directly modified. Removing an object will have the
-   * same effect as
-   * {@link org.eclipse.emf.ecore.util.EcoreUtil#remove(EObject) EcoreUtil.remove(EObject)}.
-   * Adding an object will remove it from the previous container; it's
-   * {@link EObject#eContainer container} will be <code>null</code> and it's
-   * {@link EObject#eResource resource} will the <code>this</code>.
+   * The contents may be directly modified. Removing an object will have the same effect as
+   * {@link org.eclipse.emf.ecore.util.EcoreUtil#remove(EObject) EcoreUtil.remove(EObject)}. Adding an object will
+   * remove it from the previous container; it's {@link EObject#eContainer container} will be <code>null</code> and
+   * it's {@link EObject#eResource resource} will the <code>this</code>.
    * </p>
    * 
    * @return the direct content objects.
@@ -220,9 +191,8 @@ public interface Resource extends Notifier
   EList<EObject> getContents();
 
   /**
-   * Returns a tree iterator that iterates over all the
-   * {@link #getContents direct contents} and indirect contents of this
-   * resource.
+   * Returns a tree iterator that iterates over all the {@link #getContents direct contents} and indirect contents of
+   * this resource.
    * 
    * @return a tree iterator that iterates over all contents.
    * @see EObject#eAllContents
@@ -232,19 +202,17 @@ public interface Resource extends Notifier
   TreeIterator<EObject> getAllContents();
 
   /**
-   * Returns the URI {@link URI#fragment fragment} that, when passed to
-   * {@link #getEObject getEObject} will return the given object.
+   * Returns the URI {@link URI#fragment fragment} that, when passed to {@link #getEObject getEObject} will return the
+   * given object.
    * <p>
-   * In other words, the following is <code>true</code> for any object
-   * contained by a resource:
+   * In other words, the following is <code>true</code> for any object contained by a resource:
    * 
    * <pre>
    *   Resource resource = eObject.eResource();
    *   eObject == resource.getEObject(resource.getURIFragment(eObject))
    * </pre>
    * 
-   * An implementation may choose to use IDs or to use structured URI fragments,
-   * as supported by
+   * An implementation may choose to use IDs or to use structured URI fragments, as supported by
    * {@link org.eclipse.emf.ecore.InternalEObject#eURIFragmentSegment eURIFragmentSegment}.
    * </p>
    * 
@@ -252,22 +220,19 @@ public interface Resource extends Notifier
    *          the object to identify.
    * @return the URI {@link URI#fragment fragment} for the object.
    * @see #getEObject(String)
-   * @see org.eclipse.emf.ecore.InternalEObject#eURIFragmentSegment(org.eclipse.emf.ecore.EStructuralFeature,
-   *      EObject)
+   * @see org.eclipse.emf.ecore.InternalEObject#eURIFragmentSegment(org.eclipse.emf.ecore.EStructuralFeature, EObject)
    */
   String getURIFragment(EObject eObject);
 
   /**
    * Returns the resolved object for the given URI {@link URI#fragment fragment}.
    * <p>
-   * The fragment encoding will typically be that produced by
-   * {@link #getURIFragment getURIFragment}.
+   * The fragment encoding will typically be that produced by {@link #getURIFragment getURIFragment}.
    * </p>
    * 
    * @param uriFragment
    *          the fragment to resolve.
-   * @return the resolved object for the given fragment, or <code>null</code>
-   *         if it can't be resolved.
+   * @return the resolved object for the given fragment, or <code>null</code> if it can't be resolved.
    * @see #getURIFragment(EObject)
    * @see ResourceSet#getEObject(URI, boolean)
    * @see org.eclipse.emf.ecore.util.EcoreUtil#resolve(EObject, ResourceSet)
@@ -280,16 +245,13 @@ public interface Resource extends Notifier
   /**
    * Saves the resource using the specified options.
    * <p>
-   * Options are handled generically as feature-to-setting entries; the resource
-   * will ignore options it doesn't recognize. The options could even include
-   * things like an Eclipse progress monitor...
+   * Options are handled generically as feature-to-setting entries; the resource will ignore options it doesn't
+   * recognize. The options could even include things like an Eclipse progress monitor...
    * </p>
    * <p>
-   * An implementation typically uses the
-   * {@link ResourceSet#getURIConverter URI converter} of the
-   * {@link #getResourceSet containing} resource set to
-   * {@link URIConverter#createOutputStream create} an output stream, and then
-   * delegates to {@link #save(OutputStream, Map) save(OutputStream, Map)}.
+   * An implementation typically uses the {@link ResourceSet#getURIConverter URI converter} of the
+   * {@link #getResourceSet containing} resource set to {@link URIConverter#createOutputStream create} an output stream,
+   * and then delegates to {@link #save(OutputStream, Map) save(OutputStream, Map)}.
    * </p>
    * 
    * @param options
@@ -301,22 +263,18 @@ public interface Resource extends Notifier
   /**
    * Loads the resource using the specified options.
    * <p>
-   * Options are handled generically as feature-to-setting entries; the resource
-   * will ignore options it doesn't recognize. The options could even include
-   * things like an Eclipse progress monitor...
+   * Options are handled generically as feature-to-setting entries; the resource will ignore options it doesn't
+   * recognize. The options could even include things like an Eclipse progress monitor...
    * </p>
    * <p>
-   * An implementation typically uses the
-   * {@link ResourceSet#getURIConverter URI converter} of the
-   * {@link #getResourceSet containing} resource set to
-   * {@link URIConverter#createInputStream create} an input stream, and then
-   * delegates to {@link #load(InputStream, Map) load(InputStream, Map)}.
+   * An implementation typically uses the {@link ResourceSet#getURIConverter URI converter} of the
+   * {@link #getResourceSet containing} resource set to {@link URIConverter#createInputStream create} an input stream,
+   * and then delegates to {@link #load(InputStream, Map) load(InputStream, Map)}.
    * </p>
    * <p>
-   * When the load completes, the {@link #getErrors errors} and
-   * {@link #getWarnings warnings} can be consulted. An implementation will
-   * typically deserialize as much of a document as possible while producing
-   * diagnostics for any problems that are encountered.
+   * When the load completes, the {@link #getErrors errors} and {@link #getWarnings warnings} can be consulted. An
+   * implementation will typically deserialize as much of a document as possible while producing diagnostics for any
+   * problems that are encountered.
    * </p>
    * 
    * @param options
@@ -358,11 +316,10 @@ public interface Resource extends Notifier
   /**
    * Returns whether modification tracking is enabled.
    * <p>
-   * If modification tracking is enabled, each object of the resource must be
-   * adapted in order to listen for changes. This will make the processing of
-   * {@link Resource.Internal#attached attached} and
-   * {@link Resource.Internal#detached detached } significantly more expensive.
-   * as well as all model editing, in general.
+   * If modification tracking is enabled, each object of the resource must be adapted in order to listen for changes.
+   * This will make the processing of {@link Resource.Internal#attached attached} and
+   * {@link Resource.Internal#detached detached } significantly more expensive. as well as all model editing, in
+   * general.
    * </p>
    * 
    * @return whether modification tracking is enabled.
@@ -372,8 +329,8 @@ public interface Resource extends Notifier
   /**
    * Sets whether modification tracking is enabled.
    * <p>
-   * Calling this method is expensive because it walks the content
-   * {@link #getAllContents tree} to add or remove adapters.
+   * Calling this method is expensive because it walks the content {@link #getAllContents tree} to add or remove
+   * adapters.
    * </p>
    * 
    * @param isTrackingModification
@@ -384,11 +341,9 @@ public interface Resource extends Notifier
   /**
    * Returns whether this resource has been modified.
    * <p>
-   * A resource is set to be unmodified after it is loaded or saved.
-   * {@link #isTrackingModification Automatic} modification tracking is
-   * supported, but it is expensive. Moreover, it is a poor fit for a model that
-   * supports undoable commands, since an undo looks like a change when it's
-   * really exactly the opposite.
+   * A resource is set to be unmodified after it is loaded or saved. {@link #isTrackingModification Automatic}
+   * modification tracking is supported, but it is expensive. Moreover, it is a poor fit for a model that supports
+   * undoable commands, since an undo looks like a change when it's really exactly the opposite.
    * </p>
    * 
    * @return whether this resource has been modified.
@@ -399,9 +354,8 @@ public interface Resource extends Notifier
   /**
    * Sets whether this resource has been modified.
    * <p>
-   * A resource is automatically set to be unmodified after it is loaded or
-   * saved. {@link #isTrackingModification Automatic} modification tracking
-   * typically calls this directly.
+   * A resource is automatically set to be unmodified after it is loaded or saved.
+   * {@link #isTrackingModification Automatic} modification tracking typically calls this directly.
    * </p>
    * 
    * @param isModified
@@ -413,16 +367,12 @@ public interface Resource extends Notifier
   /**
    * Returns whether the resource is loaded.
    * <p>
-   * This will be <code>false</code> when the resource is first
-   * {@link ResourceSet#createResource created} and will be set to
-   * <code>false</code>, when the resource is {@link #unload unloaded}. It
-   * will be set to <code>true</code> when the resource is
-   * {@link #load(Map) loaded} and when {@link #getContents contents} are first
-   * added to a resource that isn't loaded. Calling
-   * {@link org.eclipse.emf.common.util.BasicEList#clear clear} for the
-   * {@link #getContents contents} of a resource that isn't loaded, will set the
-   * resource to be loaded; this is the simplest way to create an empty resource
-   * that's considered loaded.
+   * This will be <code>false</code> when the resource is first {@link ResourceSet#createResource created} and will be
+   * set to <code>false</code>, when the resource is {@link #unload unloaded}. It will be set to <code>true</code>
+   * when the resource is {@link #load(Map) loaded} and when {@link #getContents contents} are first added to a resource
+   * that isn't loaded. Calling {@link org.eclipse.emf.common.util.BasicEList#clear clear} for the
+   * {@link #getContents contents} of a resource that isn't loaded, will set the resource to be loaded; this is the
+   * simplest way to create an empty resource that's considered loaded.
    * </p>
    * 
    * @return whether the resource is loaded.
@@ -430,14 +380,12 @@ public interface Resource extends Notifier
   boolean isLoaded();
 
   /**
-   * Clears the {@link #getContents contents}, {@link #getErrors errors}, and
-   * {@link #getWarnings warnings} of the resource and {@link #isLoaded marks}
-   * it as unloaded.
+   * Clears the {@link #getContents contents}, {@link #getErrors errors}, and {@link #getWarnings warnings} of the
+   * resource and {@link #isLoaded marks} it as unloaded.
    * <p>
    * It walks the content {@link #getAllContents tree}, and
-   * {@link org.eclipse.emf.ecore.InternalEObject#eSetProxyURI sets} each
-   * content object to be a proxy. The resource will remain in the
-   * {@link #getResourceSet resource set}, and can be subsequently reloaded.
+   * {@link org.eclipse.emf.ecore.InternalEObject#eSetProxyURI sets} each content object to be a proxy. The resource
+   * will remain in the {@link #getResourceSet resource set}, and can be subsequently reloaded.
    * </p>
    */
   void unload();
@@ -446,8 +394,7 @@ public interface Resource extends Notifier
    * Returns a list of the errors in the resource; each error will be of type
    * {@link org.eclipse.emf.ecore.resource.Resource.Diagnostic}.
    * <p>
-   * These will typically be produced as the resource is
-   * {@link #load(Map) loaded}.
+   * These will typically be produced as the resource is {@link #load(Map) loaded}.
    * </p>
    * 
    * @return a list of the errors in the resource.
@@ -456,12 +403,10 @@ public interface Resource extends Notifier
   EList<Diagnostic> getErrors();
 
   /**
-   * Returns a list of the warnings and informational messages in the resource;
-   * each warning will be of type
+   * Returns a list of the warnings and informational messages in the resource; each warning will be of type
    * {@link org.eclipse.emf.ecore.resource.Resource.Diagnostic}.
    * <p>
-   * These will typically be produced as the resource is
-   * {@link #load(Map) loaded}.
+   * These will typically be produced as the resource is {@link #load(Map) loaded}.
    * </p>
    * 
    * @return a list of the warnings in the resource.
@@ -482,25 +427,22 @@ public interface Resource extends Notifier
     String getMessage();
 
     /**
-     * Returns the source location of the issue. This will typically be just the
-     * {@link Resource#getURI URI} of the resource containing this diagnostic.
+     * Returns the source location of the issue. This will typically be just the {@link Resource#getURI URI} of the
+     * resource containing this diagnostic.
      * 
-     * @return the location of the issue, or <code>null</code> if it's
-     *         unknown.
+     * @return the location of the issue, or <code>null</code> if it's unknown.
      */
     String getLocation();
 
     /**
-     * Returns the line location of the issue within the source. Line
-     * <code>1</code> is the first line.
+     * Returns the line location of the issue within the source. Line <code>1</code> is the first line.
      * 
      * @return the line location of the issue.
      */
     int getLine();
 
     /**
-     * Returns the column location of the issue within the source. Column
-     * <code>1</code> is the first column.
+     * Returns the column location of the issue within the source. Column <code>1</code> is the first column.
      * 
      * @return the column location of the issue.
      */
@@ -510,9 +452,8 @@ public interface Resource extends Notifier
   /**
    * A factory for creating resources.
    * <p>
-   * A factory is implemented to {@link #createResource create} a specialized
-   * type of resource and is typically registered in
-   * {@link Resource.Factory.Registry registry}.
+   * A factory is implemented to {@link #createResource create} a specialized type of resource and is typically
+   * registered in {@link Resource.Factory.Registry registry}.
    * </p>
    * 
    * @see ResourceSet#createResource(URI)
@@ -522,8 +463,8 @@ public interface Resource extends Notifier
     /**
      * Creates a resource with the given URI and returns it.
      * <p>
-     * Clients will typically not call this directly themselves; it's called by
-     * the resource set to {@link ResourceSet#createResource create} a resource.
+     * Clients will typically not call this directly themselves; it's called by the resource set to
+     * {@link ResourceSet#createResource create} a resource.
      * </p>
      * 
      * @param uri
@@ -534,11 +475,10 @@ public interface Resource extends Notifier
     Resource createResource(URI uri);
 
     /**
-     * A descriptor used by a resource factory registry to defer factory
-     * creation.
+     * A descriptor used by a resource factory registry to defer factory creation.
      * <p>
-     * The creation is deferred until the factory is
-     * {@link Resource.Factory.Registry#getFactory fetched} for the first time.
+     * The creation is deferred until the factory is {@link Resource.Factory.Registry#getFactory fetched} for the first
+     * time.
      * </p>
      * 
      * @see Resource.Factory.Registry#getFactory(URI)
@@ -548,8 +488,7 @@ public interface Resource extends Notifier
       /**
        * Creates a factory and returns it.
        * <p>
-       * An implementation may and usually does choose to create only one
-       * instance, which it returns for each call.
+       * An implementation may and usually does choose to create only one instance, which it returns for each call.
        * </p>
        * 
        * @return a factory.
@@ -560,8 +499,7 @@ public interface Resource extends Notifier
     /**
      * A registry of resource factories.
      * <p>
-     * A registry implementation will typically delegate to the global instance,
-     * which can be used as follows
+     * A registry implementation will typically delegate to the global instance, which can be used as follows
      * 
      * <pre>
      *  Resource.Factory.Registry.{@link Resource.Factory.Registry#INSTANCE INSTANCE}.getProtocolToFactoryMap().
@@ -570,16 +508,15 @@ public interface Resource extends Notifier
      *    put(&quot;xyz&quot;, resourceFactoryForURIWithXyzFileExtension);
      * </pre>
      * 
-     * A {@link Resource.Factory.Descriptor descriptor} can be used in place of
-     * an actual {@link Resource.Factory factory} as a value in the map. It is
-     * used for factories registered via
-     * {@link org.eclipse.emf.ecore.plugin.EcorePlugin.Implementation#startup() plugin registration}
-     * to ensure delayed plugin load.
+     * A {@link Resource.Factory.Descriptor descriptor} can be used in place of an actual
+     * {@link Resource.Factory factory} as a value in the map. It is used for factories registered via
+     * {@link org.eclipse.emf.ecore.plugin.EcorePlugin.Implementation#startup() plugin registration} to ensure delayed
+     * plugin load.
      * </p>
      * <p>
      * Clients must extend the default
-     * {@link org.eclipse.emf.ecore.resource.impl.ResourceFactoryRegistryImpl implementation},
-     * since methods can and will be added to this API.
+     * {@link org.eclipse.emf.ecore.resource.impl.ResourceFactoryRegistryImpl implementation}, since methods can and
+     * will be added to this API.
      * </p>
      * 
      * @see ResourceSet#getResourceFactoryRegistry()
@@ -589,28 +526,23 @@ public interface Resource extends Notifier
       /**
        * Returns the resource factory appropriate for the given URI.
        * <p>
-       * An implementation will (typically) use the URI's
-       * {@link URI#scheme scheme} to search the
-       * {@link #getProtocolToFactoryMap protocol} map and the URI's
-       * {@link URI#fileExtension file extension} to search
+       * An implementation will (typically) use the URI's {@link URI#scheme scheme} to search the
+       * {@link #getProtocolToFactoryMap protocol} map and the URI's {@link URI#fileExtension file extension} to search
        * {@link #getExtensionToFactoryMap extension} map. It will
-       * {@link org.eclipse.emf.ecore.resource.Resource.Factory.Descriptor#createFactory convert}
-       * a resulting descriptor into a factory. It may choose to provide
-       * additional mechanisms and algorithms to determine a factory appropriate
-       * for the given URI.
+       * {@link org.eclipse.emf.ecore.resource.Resource.Factory.Descriptor#createFactory convert} a resulting descriptor
+       * into a factory. It may choose to provide additional mechanisms and algorithms to determine a factory
+       * appropriate for the given URI.
        * </p>
        * 
        * @param uri
        *          the URI.
-       * @return the resource factory appropriate for the given URI, or
-       *         <code>null</code> if there isn't one.
+       * @return the resource factory appropriate for the given URI, or <code>null</code> if there isn't one.
        * @see ResourceSet#createResource(URI)
        */
       Factory getFactory(URI uri);
 
       /**
-       * Returns a map from {@link URI#scheme protocol} to
-       * {@link org.eclipse.emf.ecore.resource.Resource.Factory} or
+       * Returns a map from {@link URI#scheme protocol} to {@link org.eclipse.emf.ecore.resource.Resource.Factory} or
        * {@link org.eclipse.emf.ecore.resource.Resource.Factory.Descriptor}.
        * 
        * @return the protocol map.
@@ -629,12 +561,10 @@ public interface Resource extends Notifier
        * {@link org.eclipse.emf.ecore.resource.Resource.Factory} or
        * {@link org.eclipse.emf.ecore.resource.Resource.Factory.Descriptor}.
        * <p>
-       * The {@link #DEFAULT_EXTENSION default} file extension <code>"*"</code>
-       * can be registered as a default that matches any file extension. This is
-       * typically reserved for a default factory that supports XMI
-       * serialization; clients are strongly discouraged from using this feature
-       * in the global registry, particularly those that must function
-       * effectively within an Eclipse environment.
+       * The {@link #DEFAULT_EXTENSION default} file extension <code>"*"</code> can be registered as a default that
+       * matches any file extension. This is typically reserved for a default factory that supports XMI serialization;
+       * clients are strongly discouraged from using this feature in the global registry, particularly those that must
+       * function effectively within an Eclipse environment.
        * </p>
        * 
        * @return the file extension map.
@@ -643,9 +573,8 @@ public interface Resource extends Notifier
       Map<String, Object> getExtensionToFactoryMap();
 
       /**
-       * The global static resource factory registry. Registrations made in this
-       * instance will (typically) be available for
-       * {@link ResourceSet#createResource use} by any resource set.
+       * The global static resource factory registry. Registrations made in this instance will (typically) be available
+       * for {@link ResourceSet#createResource use} by any resource set.
        * 
        * @see ResourceSet#createResource(URI)
        * @see ResourceSet#getResourceFactoryRegistry()
@@ -657,9 +586,8 @@ public interface Resource extends Notifier
   /**
    * An IO exception that wraps another exception.
    * <p>
-   * Since save and load throw an IO Exception, it may be convenient for an
-   * implementation to wrap another exception in order to throw it as an IO
-   * exception.
+   * Since save and load throw an IO Exception, it may be convenient for an implementation to wrap another exception in
+   * order to throw it as an IO exception.
    * </p>
    */
   class IOWrappedException extends IOException
@@ -694,32 +622,27 @@ public interface Resource extends Notifier
   /**
    * An internal interface implemented by all resources.
    * <p>
-   * It is used to maintain the referential integrity of the containment
-   * relation between a resource set and a resource. Clients must extend the
-   * default
-   * {@link org.eclipse.emf.ecore.resource.impl.ResourceFactoryRegistryImpl implementation},
-   * since methods can and will be added to this API.
+   * It is used to maintain the referential integrity of the containment relation between a resource set and a resource.
+   * Clients must extend the default
+   * {@link org.eclipse.emf.ecore.resource.impl.ResourceFactoryRegistryImpl implementation}, since methods can and will
+   * be added to this API.
    * </p>
    * 
    * @see Resource#getResourceSet
    * @see ResourceSet#getResources
-   * @see org.eclipse.emf.ecore.InternalEObject#eBasicSetContainer(org.eclipse.emf.ecore.InternalEObject,
-   *      int, NotificationChain)
-   *      InternalEObject.eBasicSetContainer(InternalEObject, int,
-   *      NotificationChain)
+   * @see org.eclipse.emf.ecore.InternalEObject#eBasicSetContainer(org.eclipse.emf.ecore.InternalEObject, int,
+   *      NotificationChain) InternalEObject.eBasicSetContainer(InternalEObject, int, NotificationChain)
    */
   interface Internal extends Resource
   {
     /**
-     * Called when the object is attached to this resource, i.e., when it's
-     * {@link EObject#eResource eResource} changes to be this one.
+     * Called when the object is attached to this resource, i.e., when it's {@link EObject#eResource eResource} changes
+     * to be this one.
      * <p>
-     * An implementation that {@link Resource#getEObject resolves} based on IDs
-     * will need to walk the {@link EObject#eAllContents tree} of this object in
-     * order to tabulate an index. An implementation that needs to
-     * {@link Resource#isTrackingModification track modification} will also need
-     * to walk the tree in order to add the necessary adapter. In either of
-     * these cases, editing of containment relations will be significantly more
+     * An implementation that {@link Resource#getEObject resolves} based on IDs will need to walk the
+     * {@link EObject#eAllContents tree} of this object in order to tabulate an index. An implementation that needs to
+     * {@link Resource#isTrackingModification track modification} will also need to walk the tree in order to add the
+     * necessary adapter. In either of these cases, editing of containment relations will be significantly more
      * expensive.
      * </p>
      * 
@@ -730,16 +653,13 @@ public interface Resource extends Notifier
     void attached(EObject eObject);
 
     /**
-     * Called when the object is detached from this resource, i.e., when it's
-     * {@link EObject#eResource eResource} changes to no longer be this one.
+     * Called when the object is detached from this resource, i.e., when it's {@link EObject#eResource eResource}
+     * changes to no longer be this one.
      * <p>
-     * An implementation that {@link Resource#getEObject resolves} based on IDs
-     * will need to walk the {@link EObject#eAllContents tree} of this object in
-     * order clean up it's index. An implementation that needs to
-     * {@link Resource#isTrackingModification track modification} will also need
-     * to walk the tree in order to remove the added adapter. In either of these
-     * cases, editing of containment relations will be significantly more
-     * expensive.
+     * An implementation that {@link Resource#getEObject resolves} based on IDs will need to walk the
+     * {@link EObject#eAllContents tree} of this object in order clean up it's index. An implementation that needs to
+     * {@link Resource#isTrackingModification track modification} will also need to walk the tree in order to remove the
+     * added adapter. In either of these cases, editing of containment relations will be significantly more expensive.
      * </p>
      * 
      * @param eObject
@@ -749,23 +669,19 @@ public interface Resource extends Notifier
     void detached(EObject eObject);
 
     /**
-     * Sets the resource to be contained by the given resource set, and returns
-     * the notifications this produces.
+     * Sets the resource to be contained by the given resource set, and returns the notifications this produces.
      * <p>
-     * If it was previously contained by a resource set, it will have been
-     * removed.
+     * If it was previously contained by a resource set, it will have been removed.
      * </p>
      * 
-     * @return the notifications produced, or <code>null</code> if there
-     *         aren't any.
+     * @return the notifications produced, or <code>null</code> if there aren't any.
      */
     NotificationChain basicSetResourceSet(ResourceSet resourceSet, NotificationChain notifications);
 
     /**
      * Indicates whether the resource is currently being loaded.
      * <p>
-     * This will be <code>true</code> during a call to
-     * {@link #load(InputStream, Map) load(InputStream, Map)}, before
+     * This will be <code>true</code> during a call to {@link #load(InputStream, Map) load(InputStream, Map)}, before
      * notifications are dispatched.
      * </p>
      * 

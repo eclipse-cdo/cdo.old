@@ -51,8 +51,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
 
 /**
- * A collection of platform-neutral static utilities as well as Eclipse support
- * utilities.
+ * A collection of platform-neutral static utilities as well as Eclipse support utilities.
  */
 public class EcorePlugin extends EMFPlugin
 {
@@ -78,17 +77,13 @@ public class EcorePlugin extends EMFPlugin
   /**
    * Returns the platform resource map.
    * <p>
-   * This map is from {@link String} to {@link URI}. It is the logical
-   * equivalent of the map implied by an {@link IWorkspaceRoot}: I.e., each
-   * entry in the map corresponds to an
-   * {@link org.eclipse.core.resources.IProject} that has a
-   * {@link org.eclipse.core.resources.IResource#getName name} and a location
-   * {@link org.eclipse.core.resources.IResource#getLocation location}; the
-   * name is the key and the location, interpreted as a
-   * {@link URI#createFileURI file URI}, is the value. This map is used to
-   * {@link #resolvePlatformResourcePath resolve} a platform resource path, and
-   * thereby supports relocatable projects in a manner that is transparently the
-   * same as an Eclipse workspace.
+   * This map is from {@link String} to {@link URI}. It is the logical equivalent of the map implied by an
+   * {@link IWorkspaceRoot}: I.e., each entry in the map corresponds to an {@link org.eclipse.core.resources.IProject}
+   * that has a {@link org.eclipse.core.resources.IResource#getName name} and a location
+   * {@link org.eclipse.core.resources.IResource#getLocation location}; the name is the key and the location,
+   * interpreted as a {@link URI#createFileURI file URI}, is the value. This map is used to
+   * {@link #resolvePlatformResourcePath resolve} a platform resource path, and thereby supports relocatable projects in
+   * a manner that is transparently the same as an Eclipse workspace.
    * </p>
    * 
    * @return the platform resource map.
@@ -104,14 +99,12 @@ public class EcorePlugin extends EMFPlugin
   }
 
   /**
-   * Resolves a platform resource path of the form <code>"/project/path"</code>
-   * against the platform resource map.
+   * Resolves a platform resource path of the form <code>"/project/path"</code> against the platform resource map.
    * <p>
-   * The first segment of the path, i.e., the <em>project name</em>, is used
-   * to get a URI from the {@link #getPlatformResourceMap() map}. If a URI
-   * results, the remaining segments are {@link URI#resolve(URI) resolved}
-   * against it and that is the result. Otherwise, the result is
-   * <code>null</code>. For example, given this mapping
+   * The first segment of the path, i.e., the <em>project name</em>, is used to get a URI from the
+   * {@link #getPlatformResourceMap() map}. If a URI results, the remaining segments are
+   * {@link URI#resolve(URI) resolved} against it and that is the result. Otherwise, the result is <code>null</code>.
+   * For example, given this mapping
    * 
    * <pre>
    * EcoreUtil.getPlatformResourceMap().put(&quot;project&quot;, URI.createURI(&quot;file:///C:/location/&quot;));
@@ -146,8 +139,7 @@ public class EcorePlugin extends EMFPlugin
   }
 
   /**
-   * Handles recognized platform resource arguments and returns the stripped
-   * result.
+   * Handles recognized platform resource arguments and returns the stripped result.
    * <p>
    * Recognized arguments are of this form:
    * 
@@ -172,8 +164,7 @@ public class EcorePlugin extends EMFPlugin
    * 
    * @param arguments
    *          an array of "command line" options.
-   * @return the arguments stripped of those recognized as platform resource
-   *         options.
+   * @return the arguments stripped of those recognized as platform resource options.
    */
   public static String[] handlePlatformResourceOptions(String[] arguments)
   {
@@ -228,9 +219,8 @@ public class EcorePlugin extends EMFPlugin
   }
 
   /**
-   * Returns a map from {@link EPackage#getNsURI() package namespace URI}
-   * (represented as a String) to the location of the GenModel containing a
-   * GenPackage for the package (represented as a {@link URI URI}).
+   * Returns a map from {@link EPackage#getNsURI() package namespace URI} (represented as a String) to the location of
+   * the GenModel containing a GenPackage for the package (represented as a {@link URI URI}).
    * 
    * @return a map from package namespace to GenModel location.
    */
@@ -244,14 +234,11 @@ public class EcorePlugin extends EMFPlugin
   }
 
   /**
-   * Computes a map from <code>platform:/resource/&lt;plugin-location>/</code>
-   * {@link URI} to <code>platform:/plugin/&lt;plugin-id>/</code> URI for each
-   * URI in the collection of the form
-   * <code>platform:/plugin/&lt;plugin-id>/...</code>. This allows each
-   * plugin to be
-   * {@link org.eclipse.emf.ecore.resource.URIConverter#getURIMap() treated} as
-   * if it were a project in the workspace. If the workspace already contains a
-   * project for the plugin location, no mapping is produced.
+   * Computes a map from <code>platform:/resource/&lt;plugin-location>/</code> {@link URI} to
+   * <code>platform:/plugin/&lt;plugin-id>/</code> URI for each URI in the collection of the form
+   * <code>platform:/plugin/&lt;plugin-id>/...</code>. This allows each plugin to be
+   * {@link org.eclipse.emf.ecore.resource.URIConverter#getURIMap() treated} as if it were a project in the workspace.
+   * If the workspace already contains a project for the plugin location, no mapping is produced.
    * 
    * @param uris
    *          a collections of {@link URI}s.
@@ -284,12 +271,10 @@ public class EcorePlugin extends EMFPlugin
   private static byte[] NO_BYTES = new byte[0];
 
   /**
-   * Computes a map from <code>platform:/plugin/&lt;plugin-id>/</code>
-   * {@link URI} to <code>platform:/resource/&lt;plugin-location>/</code> URI
-   * for each plugin project in the workspace. This allows each plugin from the
-   * runtime to be
-   * {@link org.eclipse.emf.ecore.resource.URIConverter#getURIMap() redirected}
-   * to its active version in the workspace.
+   * Computes a map from <code>platform:/plugin/&lt;plugin-id>/</code> {@link URI} to
+   * <code>platform:/resource/&lt;plugin-location>/</code> URI for each plugin project in the workspace. This allows
+   * each plugin from the runtime to be {@link org.eclipse.emf.ecore.resource.URIConverter#getURIMap() redirected} to
+   * its active version in the workspace.
    * 
    * @return a map from plugin URIs to resource URIs.
    * @see org.eclipse.emf.ecore.resource.URIConverter#getURIMap()
@@ -412,9 +397,8 @@ public class EcorePlugin extends EMFPlugin
   }
 
   /**
-   * Computes a map so that plugins in the workspace will override those in the
-   * environment and so that plugins with Ecore and GenModels will look like
-   * projects in the workspace. It's implemented like this:
+   * Computes a map so that plugins in the workspace will override those in the environment and so that plugins with
+   * Ecore and GenModels will look like projects in the workspace. It's implemented like this:
    * 
    * <pre>
    * Map result = new HashMap();
@@ -424,9 +408,8 @@ public class EcorePlugin extends EMFPlugin
    * return result;
    * </pre>
    * 
-   * @return computes a map so that plugins in the workspace will override those
-   *         in the environment and so that plugins with Ecore and GenModels
-   *         will look like projects in the workspace.
+   * @return computes a map so that plugins in the workspace will override those in the environment and so that plugins
+   *         with Ecore and GenModels will look like projects in the workspace.
    * @see org.eclipse.emf.ecore.resource.URIConverter#getURIMap()
    * @see URI
    * @see #computePlatformPluginToPlatformResourceMap()
@@ -449,8 +432,7 @@ public class EcorePlugin extends EMFPlugin
   private static Map<String, URI> platformResourceMap;
 
   /**
-   * The map from package namespace URIs to the location of the GenModel for
-   * that package.
+   * The map from package namespace URIs to the location of the GenModel for that package.
    * 
    * @see #getPlatformResourceMap
    */
@@ -473,11 +455,10 @@ public class EcorePlugin extends EMFPlugin
     }
 
     /**
-     * Starts up this plugin by reading some extensions and populating the
-     * relevant registries.
+     * Starts up this plugin by reading some extensions and populating the relevant registries.
      * <p>
-     * The {@link org.eclipse.emf.ecore.EPackage.Registry#INSTANCE global}
-     * package registry is populated by plugin registration of the form:
+     * The {@link org.eclipse.emf.ecore.EPackage.Registry#INSTANCE global} package registry is populated by plugin
+     * registration of the form:
      * 
      * <pre>
      *  &lt;extension point=&quot;org.eclipse.emf.ecore.generated_package&quot; &gt;
@@ -486,14 +467,12 @@ public class EcorePlugin extends EMFPlugin
      * </pre>
      * 
      * </p>
-     * The URI is arbitrary but an absolute URI is recommended. Provision for
-     * access to the serialized model via <code>"http:"</code> is encouraged.
+     * The URI is arbitrary but an absolute URI is recommended. Provision for access to the serialized model via
+     * <code>"http:"</code> is encouraged.
      * <p>
-     * The
-     * {@link org.eclipse.emf.ecore.resource.Resource.Factory.Registry#INSTANCE global}
-     * resource factory registry's
-     * {@link org.eclipse.emf.ecore.resource.Resource.Factory.Registry#getExtensionToFactoryMap() extension}
-     * map is populated by plugin registration of the form:
+     * The {@link org.eclipse.emf.ecore.resource.Resource.Factory.Registry#INSTANCE global} resource factory registry's
+     * {@link org.eclipse.emf.ecore.resource.Resource.Factory.Registry#getExtensionToFactoryMap() extension} map is
+     * populated by plugin registration of the form:
      * 
      * <pre>
      *  &lt;extension point=&quot;org.eclipse.emf.ecore.extension_parser&quot;&gt;
@@ -503,11 +482,9 @@ public class EcorePlugin extends EMFPlugin
      * 
      * </p>
      * <p>
-     * The
-     * {@link org.eclipse.emf.ecore.resource.Resource.Factory.Registry#INSTANCE global}
-     * resource factory registry's
-     * {@link org.eclipse.emf.ecore.resource.Resource.Factory.Registry#getProtocolToFactoryMap() protocol}
-     * map is populated by plugin registration of the form:
+     * The {@link org.eclipse.emf.ecore.resource.Resource.Factory.Registry#INSTANCE global} resource factory registry's
+     * {@link org.eclipse.emf.ecore.resource.Resource.Factory.Registry#getProtocolToFactoryMap() protocol} map is
+     * populated by plugin registration of the form:
      * 
      * <pre>
      *  &lt;extension point=&quot;org.eclipse.emf.ecore.protocol_parser&quot; &gt;
@@ -517,8 +494,8 @@ public class EcorePlugin extends EMFPlugin
      * 
      * </p>
      * <p>
-     * The {@link org.eclipse.emf.ecore.resource.URIConverter#URI_MAP global}
-     * URI map is populated by plugin registration of the form:
+     * The {@link org.eclipse.emf.ecore.resource.URIConverter#URI_MAP global} URI map is populated by plugin
+     * registration of the form:
      * 
      * <pre>
      *  &lt;extension point=&quot;org.eclipse.emf.ecore.uri_mapping&quot; &gt;
@@ -526,8 +503,8 @@ public class EcorePlugin extends EMFPlugin
      *  &lt;extension&gt;
      * </pre>
      * 
-     * If the target is relative, it is resolved against the plugin's installed
-     * location, resulting in a URI of the form:
+     * If the target is relative, it is resolved against the plugin's installed location, resulting in a URI of the
+     * form:
      * 
      * <pre>
      *  platform:/plugin/plugin-name_1.2.3/...
@@ -653,8 +630,7 @@ public class EcorePlugin extends EMFPlugin
   private static IWorkspaceRoot workspaceRoot;
 
   /**
-   * Returns the workspace root, or <code>null</code>, if the runtime
-   * environment is stand-alone.
+   * Returns the workspace root, or <code>null</code>, if the runtime environment is stand-alone.
    * 
    * @return the workspace root, or <code>null</code>.
    */

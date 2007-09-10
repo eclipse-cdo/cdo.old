@@ -31,8 +31,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>ETyped Element</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>ETyped Element</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -52,8 +52,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public abstract class ETypedElementImpl extends ENamedElementImpl implements ETypedElement
 {
   /**
-   * The default value of the '{@link #isOrdered() <em>Ordered</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #isOrdered() <em>Ordered</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #isOrdered()
    * @generated
@@ -62,8 +62,8 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
   protected static final boolean ORDERED_EDEFAULT = true;
 
   /**
-   * The flag representing the value of the '{@link #isOrdered() <em>Ordered</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The flag representing the value of the '{@link #isOrdered() <em>Ordered</em>}' attribute. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @see #isOrdered()
    * @generated
@@ -72,8 +72,8 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
   protected static final int ORDERED_EFLAG = 1 << 8;
 
   /**
-   * The default value of the '{@link #isUnique() <em>Unique</em>}' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #isUnique() <em>Unique</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #isUnique()
    * @generated
@@ -82,8 +82,8 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
   protected static final boolean UNIQUE_EDEFAULT = true;
 
   /**
-   * The flag representing the value of the '{@link #isUnique() <em>Unique</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The flag representing the value of the '{@link #isUnique() <em>Unique</em>}' attribute. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @see #isUnique()
    * @generated
@@ -92,8 +92,8 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
   protected static final int UNIQUE_EFLAG = 1 << 9;
 
   /**
-   * The default value of the '{@link #getLowerBound() <em>Lower Bound</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #getLowerBound() <em>Lower Bound</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getLowerBound()
    * @generated
@@ -102,8 +102,8 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
   protected static final int LOWER_BOUND_EDEFAULT = 0;
 
   /**
-   * The cached value of the '{@link #getLowerBound() <em>Lower Bound</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getLowerBound() <em>Lower Bound</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getLowerBound()
    * @generated
@@ -112,8 +112,8 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
   protected int lowerBound = LOWER_BOUND_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getUpperBound() <em>Upper Bound</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #getUpperBound() <em>Upper Bound</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getUpperBound()
    * @generated
@@ -122,8 +122,8 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
   protected static final int UPPER_BOUND_EDEFAULT = 1;
 
   /**
-   * The cached value of the '{@link #getUpperBound() <em>Upper Bound</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getUpperBound() <em>Upper Bound</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getUpperBound()
    * @generated
@@ -132,8 +132,8 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
   protected int upperBound = UPPER_BOUND_EDEFAULT;
 
   /**
-   * The default value of the '{@link #isMany() <em>Many</em>}' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #isMany() <em>Many</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @see #isMany()
    * @generated
@@ -142,8 +142,8 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
   protected static final boolean MANY_EDEFAULT = false;
 
   /**
-   * The default value of the '{@link #isRequired() <em>Required</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #isRequired() <em>Required</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #isRequired()
    * @generated
@@ -152,8 +152,8 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
   protected static final boolean REQUIRED_EDEFAULT = false;
 
   /**
-   * The cached value of the '{@link #getEType() <em>EType</em>}' reference.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getEType() <em>EType</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @see #getEType()
    * @generated NOT
@@ -162,8 +162,8 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
   protected EClassifier eType;
 
   /**
-   * The cached value of the '{@link #getEGenericType() <em>EGeneric Type</em>}'
-   * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getEGenericType() <em>EGeneric Type</em>}' containment reference. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getEGenericType()
    * @generated NOT

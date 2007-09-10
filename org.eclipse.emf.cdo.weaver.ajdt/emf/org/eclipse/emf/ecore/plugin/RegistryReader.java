@@ -55,9 +55,8 @@ public abstract class RegistryReader
   }
 
   /**
-   * Implement this method to read element attributes. If this element has
-   * subelements, the reader will recursively cycle through them and will call
-   * this method, so don't do it here. If you want to support removing entries,
+   * Implement this method to read element attributes. If this element has subelements, the reader will recursively
+   * cycle through them and will call this method, so don't do it here. If you want to support removing entries,
    * override {@link #readElement(IConfigurationElement, boolean)} instead.
    */
   protected boolean readElement(IConfigurationElement element)
@@ -66,10 +65,9 @@ public abstract class RegistryReader
   }
 
   /**
-   * Implement this method to read element attributes for the purpose of adding
-   * or removing their registrations. If this element has subelements, the
-   * reader will recursively cycle through them and will call this method, so
-   * don't do it here.
+   * Implement this method to read element attributes for the purpose of adding or removing their registrations. If this
+   * element has subelements, the reader will recursively cycle through them and will call this method, so don't do it
+   * here.
    */
   protected boolean readElement(IConfigurationElement element, boolean add)
   {
@@ -132,8 +130,7 @@ public abstract class RegistryReader
   }
 
   /**
-   * Logs the error in the desktop log using the provided text and the
-   * information in the configuration element.
+   * Logs the error in the desktop log using the provided text and the information in the configuration element.
    */
   protected void logError(IConfigurationElement element, String text)
   {

@@ -40,12 +40,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.DelegatingEcoreEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList; // import
-                                                                      // org.eclipse.emf.ecore.util.EObjectResolvingEList;
+// org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>EOperation</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EOperation</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -62,8 +62,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class EOperationImpl extends ETypedElementImpl implements EOperation
 {
   /**
-   * The cached value of the '{@link #getETypeParameters() <em>EType Parameters</em>}'
-   * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getETypeParameters() <em>EType Parameters</em>}' containment reference list.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getETypeParameters()
    * @generated
@@ -72,8 +72,8 @@ public class EOperationImpl extends ETypedElementImpl implements EOperation
   protected EList<ETypeParameter> eTypeParameters;
 
   /**
-   * The cached value of the '{@link #getEParameters() <em>EParameters</em>}'
-   * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getEParameters() <em>EParameters</em>}' containment reference list. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getEParameters()
    * @generated
@@ -82,8 +82,8 @@ public class EOperationImpl extends ETypedElementImpl implements EOperation
   protected EList<EParameter> eParameters;
 
   /**
-   * The cached value of the '{@link #getEExceptions() <em>EExceptions</em>}'
-   * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getEExceptions() <em>EExceptions</em>}' reference list. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @see #getEExceptions()
    * @generated
@@ -92,8 +92,8 @@ public class EOperationImpl extends ETypedElementImpl implements EOperation
   protected EList<EClassifier> eExceptions;
 
   /**
-   * The cached value of the '{@link #getEGenericExceptions() <em>EGeneric Exceptions</em>}'
-   * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getEGenericExceptions() <em>EGeneric Exceptions</em>}' containment reference
+   * list. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getEGenericExceptions()
    * @generated

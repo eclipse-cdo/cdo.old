@@ -32,8 +32,7 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 
 /**
  * <p>
- * EMF implementation for the {@link URIConverter.Cipher} interface using the
- * DES encryption algorithm.
+ * EMF implementation for the {@link URIConverter.Cipher} interface using the DES encryption algorithm.
  * </p>
  * <p>
  * This shows how this class can be used:

@@ -28,8 +28,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 /**
- * A list of entries where each entry consists of a feature and a single value
- * of that feature's type.
+ * A list of entries where each entry consists of a feature and a single value of that feature's type.
  */
 public interface FeatureMap extends EList<FeatureMap.Entry>
 {

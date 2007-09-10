@@ -19,8 +19,8 @@ package org.eclipse.emf.ecore;
 import org.eclipse.emf.common.util.EList;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>EModel Element</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>EModel Element</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are supported:
  * <ul>
@@ -35,16 +35,13 @@ import org.eclipse.emf.common.util.EList;
 public interface EModelElement extends EObject
 {
   /**
-   * Returns the value of the '<em><b>EAnnotations</b></em>' containment
-   * reference list. The list contents are of type
-   * {@link org.eclipse.emf.ecore.EAnnotation}. It is bidirectional and its
-   * opposite is '{@link org.eclipse.emf.ecore.EAnnotation#getEModelElement <em>EModel Element</em>}'.
+   * Returns the value of the '<em><b>EAnnotations</b></em>' containment reference list. The list contents are of
+   * type {@link org.eclipse.emf.ecore.EAnnotation}. It is bidirectional and its opposite is '{@link org.eclipse.emf.ecore.EAnnotation#getEModelElement <em>EModel Element</em>}'.
    * <!-- begin-user-doc --> It represents additional associated information
    * 
    * @see #getEAnnotation(String)
    * @ignore <!-- end-user-doc -->
-   * @return the value of the '<em>EAnnotations</em>' containment reference
-   *         list.
+   * @return the value of the '<em>EAnnotations</em>' containment reference list.
    * @see org.eclipse.emf.ecore.EcorePackage#getEModelElement_EAnnotations()
    * @see org.eclipse.emf.ecore.EAnnotation#getEModelElement
    * @model opposite="eModelElement" containment="true"

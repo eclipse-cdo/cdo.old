@@ -39,18 +39,16 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
- * An adapter that maintains itself as an adapter for all contained objects. It
- * can be installed for an {@link EObject}, a {@link Resource}, or a
- * {@link ResourceSet}.
+ * An adapter that maintains itself as an adapter for all contained objects. It can be installed for an {@link EObject},
+ * a {@link Resource}, or a {@link ResourceSet}.
  * 
  * @since 2.2
  */
 public class ECrossReferenceAdapter implements Adapter.Internal
 {
   /**
-   * Returns the first {@link ECrossReferenceAdapter} in the notifier's
-   * {@link Notifier#eAdapters() adapter list}, or <code>null</code>, if
-   * there isn't one.
+   * Returns the first {@link ECrossReferenceAdapter} in the notifier's {@link Notifier#eAdapters() adapter list}, or
+   * <code>null</code>, if there isn't one.
    * 
    * @param notifier
    *          the object to search.
@@ -427,8 +425,7 @@ public class ECrossReferenceAdapter implements Adapter.Internal
   }
 
   /**
-   * Handles a notification by calling
-   * {@link #handleContainment handleContainment} for any containment-based
+   * Handles a notification by calling {@link #handleContainment handleContainment} for any containment-based
    * notification.
    */
   protected void selfAdapt(Notification notification)
@@ -490,8 +487,7 @@ public class ECrossReferenceAdapter implements Adapter.Internal
   }
 
   /**
-   * Handles a containment change by adding and removing the adapter as
-   * appropriate.
+   * Handles a containment change by adding and removing the adapter as appropriate.
    */
   protected void handleContainment(Notification notification)
   {
@@ -544,8 +540,7 @@ public class ECrossReferenceAdapter implements Adapter.Internal
   }
 
   /**
-   * Handles a cross reference change by adding and removing the adapter as
-   * appropriate.
+   * Handles a cross reference change by adding and removing the adapter as appropriate.
    */
   protected void handleCrossReference(EReference reference, Notification notification)
   {
@@ -613,8 +608,7 @@ public class ECrossReferenceAdapter implements Adapter.Internal
   }
 
   /**
-   * Handles installation of the adapter by adding the adapter to each of the
-   * directly contained objects.
+   * Handles installation of the adapter by adding the adapter to each of the directly contained objects.
    */
   public void setTarget(Notifier target)
   {
@@ -633,8 +627,7 @@ public class ECrossReferenceAdapter implements Adapter.Internal
   }
 
   /**
-   * Handles installation of the adapter on an EObject by adding the adapter to
-   * each of the directly contained objects.
+   * Handles installation of the adapter on an EObject by adding the adapter to each of the directly contained objects.
    */
   protected void setTarget(EObject target)
   {
@@ -649,8 +642,7 @@ public class ECrossReferenceAdapter implements Adapter.Internal
   }
 
   /**
-   * Handles installation of the adapter on a Resource by adding the adapter to
-   * each of the directly contained objects.
+   * Handles installation of the adapter on a Resource by adding the adapter to each of the directly contained objects.
    */
   protected void setTarget(Resource target)
   {
@@ -667,8 +659,8 @@ public class ECrossReferenceAdapter implements Adapter.Internal
   }
 
   /**
-   * Handles installation of the adapter on a ResourceSet by adding the adapter
-   * to each of the directly contained objects.
+   * Handles installation of the adapter on a ResourceSet by adding the adapter to each of the directly contained
+   * objects.
    */
   protected void setTarget(ResourceSet target)
   {
@@ -681,8 +673,7 @@ public class ECrossReferenceAdapter implements Adapter.Internal
   }
 
   /**
-   * Handles undoing the installation of the adapter by removing the adapter to
-   * each of the directly contained objects.
+   * Handles undoing the installation of the adapter by removing the adapter to each of the directly contained objects.
    */
   public void unsetTarget(Notifier target)
   {
@@ -701,8 +692,8 @@ public class ECrossReferenceAdapter implements Adapter.Internal
   }
 
   /**
-   * Handles undoing the installation of the adapter from an EObject by removing
-   * the adapter to each of the directly contained objects.
+   * Handles undoing the installation of the adapter from an EObject by removing the adapter to each of the directly
+   * contained objects.
    */
   protected void unsetTarget(EObject target)
   {
@@ -731,8 +722,8 @@ public class ECrossReferenceAdapter implements Adapter.Internal
   }
 
   /**
-   * Handles undoing the installation of the adapter from a Resource by removing
-   * the adapter to each of the directly contained objects.
+   * Handles undoing the installation of the adapter from a Resource by removing the adapter to each of the directly
+   * contained objects.
    */
   protected void unsetTarget(Resource target)
   {
@@ -745,8 +736,8 @@ public class ECrossReferenceAdapter implements Adapter.Internal
   }
 
   /**
-   * Handles undoing the installation of the adapter from a ResourceSet by
-   * removing the adapter to each of the directly contained objects.
+   * Handles undoing the installation of the adapter from a ResourceSet by removing the adapter to each of the directly
+   * contained objects.
    */
   protected void unsetTarget(ResourceSet target)
   {

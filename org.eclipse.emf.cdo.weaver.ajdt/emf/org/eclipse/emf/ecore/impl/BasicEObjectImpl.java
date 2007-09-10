@@ -962,12 +962,9 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     int dynamicFeatureID = featureID - eStaticFeatureCount();
 
     return dynamicFeatureID < 0 ? eGet(eFeature, resolve) /*
-                                                           * backward
-                                                           * compatibility with
-                                                           * old generated
-                                                           * overrides
+                                                           * backward compatibility with old generated overrides
                                                            */
-        : eSettingDelegate(eFeature).dynamicGet(this, eSettings(), dynamicFeatureID, resolve, coreType);
+    : eSettingDelegate(eFeature).dynamicGet(this, eSettings(), dynamicFeatureID, resolve, coreType);
   }
 
   public Object eDynamicGet(EStructuralFeature eFeature, boolean resolve)
@@ -1034,8 +1031,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
       else
       {
         eSet(eFeature, newValue); /*
-                                   * backward compatibility with old generated
-                                   * overrides
+                                   * backward compatibility with old generated overrides
                                    */
       }
     }
@@ -1190,11 +1186,9 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     int dynamicFeatureID = featureID - eStaticFeatureCount();
 
     return dynamicFeatureID < 0 ? eIsSet(eFeature) /*
-                                                     * backward compatibility
-                                                     * with old generated
-                                                     * overrides
+                                                     * backward compatibility with old generated overrides
                                                      */
-        : eSettingDelegate(eFeature).dynamicIsSet(this, eSettings(), dynamicFeatureID);
+    : eSettingDelegate(eFeature).dynamicIsSet(this, eSettings(), dynamicFeatureID);
   }
 
   public boolean eDynamicIsSet(EStructuralFeature eFeature)
@@ -1548,10 +1542,8 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   }
 
   /**
-   * Returns the number of bits that are on in the two's complement bit pattern.
-   * This is used to maintain the bit set representing which feature IDs
-   * currently have and index allocated in the
-   * {@link #eVirtualValues() virtual values}.
+   * Returns the number of bits that are on in the two's complement bit pattern. This is used to maintain the bit set
+   * representing which feature IDs currently have and index allocated in the {@link #eVirtualValues() virtual values}.
    * 
    * @param value
    *          a two's complement bit pattern.
@@ -1568,9 +1560,8 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   }
 
   /**
-   * Returns the bit pattern at the given offset within the sequence of bit
-   * patterns representing which features are assigned an index in the
-   * {@link #eVirtualValues() virtual values}.
+   * Returns the bit pattern at the given offset within the sequence of bit patterns representing which features are
+   * assigned an index in the {@link #eVirtualValues() virtual values}.
    * 
    * @param offset
    *          the offset within the bit sequence of bit patterns.
@@ -1583,9 +1574,8 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   }
 
   /**
-   * Sets the bit pattern at the given offset within the sequence of bit
-   * patterns representing which features are assigned an index in the
-   * {@link #eVirtualValues() virtual values}.
+   * Sets the bit pattern at the given offset within the sequence of bit patterns representing which features are
+   * assigned an index in the {@link #eVirtualValues() virtual values}.
    * 
    * @param offset
    *          the offset within the bit sequence of bit patterns.
@@ -1599,36 +1589,34 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   }
 
   /**
-   * An action code indicating that an {@link #eVirtualIndex(int, int) index}
-   * needs to be computed to perform a {@link #eVirtualSet(int, Object)} set.
+   * An action code indicating that an {@link #eVirtualIndex(int, int) index} needs to be computed to perform a
+   * {@link #eVirtualSet(int, Object)} set.
    */
   protected static final int EVIRTUAL_SET = 0;
 
   /**
-   * An action code indicating that an {@link #eVirtualIndex(int, int)} index
-   * needs to be computed to perform an {@link #eVirtualUnset(int) unset}.
+   * An action code indicating that an {@link #eVirtualIndex(int, int)} index needs to be computed to perform an
+   * {@link #eVirtualUnset(int) unset}.
    */
   protected static final int EVIRTUAL_UNSET = 1;
 
   /**
-   * An action code indicating that an {@link #eVirtualIndex(int, int) index}
-   * needs to be computed to perform a {@link #eVirtualGet(int) get}.
+   * An action code indicating that an {@link #eVirtualIndex(int, int) index} needs to be computed to perform a
+   * {@link #eVirtualGet(int) get}.
    */
   protected static final int EVIRTUAL_GET = 2;
 
   /**
-   * An action code indicating that an {@link #eVirtualIndex(int, int) index}
-   * needs to be computed to perform an {@link #eVirtualIsSet(int) isSet}.
+   * An action code indicating that an {@link #eVirtualIndex(int, int) index} needs to be computed to perform an
+   * {@link #eVirtualIsSet(int) isSet}.
    */
   protected static final int EVIRTUAL_IS_SET = 3;
 
   /**
-   * Returns the index in the {@link #eVirtualValues() virtual values} for the
-   * feature ID, with the side effect of toggling the necessary bits to suit the
-   * action code. A result of less than zero indicates that the feature ID is
-   * not assigned an index. In the case of a set action, when the value was not
-   * previously set, the result will be the complement of the assigned index,
-   * which can be corrected by <code>~index</code>.
+   * Returns the index in the {@link #eVirtualValues() virtual values} for the feature ID, with the side effect of
+   * toggling the necessary bits to suit the action code. A result of less than zero indicates that the feature ID is
+   * not assigned an index. In the case of a set action, when the value was not previously set, the result will be the
+   * complement of the assigned index, which can be corrected by <code>~index</code>.
    * 
    * @param eDerivedStructuralFeatureID
    *          the ID of a feature of the class.
@@ -1731,8 +1719,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
    * Returns the value at the index.
    * 
    * @param index
-   *          the {@link #eVirtualIndex(int, int) index} in the
-   *          {@link #eVirtualValues() virtual values}.
+   *          the {@link #eVirtualIndex(int, int) index} in the {@link #eVirtualValues() virtual values}.
    * @return the value at the index.
    */
   protected Object eVirtualValue(int index)
@@ -1744,8 +1731,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
    * Sets the value at the index.
    * 
    * @param index
-   *          the {@link #eVirtualIndex(int, int) index} in the
-   *          {@link #eVirtualValues() virtual values}.
+   *          the {@link #eVirtualIndex(int, int) index} in the {@link #eVirtualValues() virtual values}.
    * @return the previous value at the index.
    */
   protected Object eSetVirtualValue(int index, Object value)
@@ -1757,15 +1743,13 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   }
 
   /**
-   * This method controls the growth of the
-   * {@link #eVirtualValues() virtual values} by returning the new capacity that
-   * should be allocated for the given minimum required capacity. Subclasses can
-   * override this to be more or less liberal in growth.
+   * This method controls the growth of the {@link #eVirtualValues() virtual values} by returning the new capacity that
+   * should be allocated for the given minimum required capacity. Subclasses can override this to be more or less
+   * liberal in growth.
    * 
    * @param minimumCapacity
    *          the minimum number of virtual value entries required.
-   * @return the actual number of entries to allocate space for, including a
-   *         growth factor.
+   * @return the actual number of entries to allocate space for, including a growth factor.
    */
   protected int eComputeVirtualValuesCapacity(int minimumCapacity)
   {
@@ -1777,8 +1761,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
    * Adds the value at the index.
    * 
    * @param index
-   *          the {@link #eVirtualIndex(int, int) index} in the
-   *          {@link #eVirtualValues() virtual values}.
+   *          the {@link #eVirtualIndex(int, int) index} in the {@link #eVirtualValues() virtual values}.
    */
   protected void eAddVirtualValue(int index, Object value)
   {
@@ -1836,8 +1819,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
    * Removes the value at the index.
    * 
    * @param index
-   *          the {@link #eVirtualIndex(int, int) index} in the
-   *          {@link #eVirtualValues() virtual values}.
+   *          the {@link #eVirtualIndex(int, int) index} in the {@link #eVirtualValues() virtual values}.
    * @return the value at the index.
    */
   protected Object eRemoveVirtualValue(int index)
@@ -1861,8 +1843,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   }
 
   /**
-   * Returns the value for the feature ID, or <code>null</code>, if there
-   * isn't one.
+   * Returns the value for the feature ID, or <code>null</code>, if there isn't one.
    * 
    * @param eDerivedStructuralFeatureID
    *          the feature ID to fetch.
@@ -1874,8 +1855,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   }
 
   /**
-   * Returns the value for the feature ID, or the default value, if there isn't
-   * one.
+   * Returns the value for the feature ID, or the default value, if there isn't one.
    * 
    * @param eDerivedStructuralFeatureID
    *          the feature ID to fetch.

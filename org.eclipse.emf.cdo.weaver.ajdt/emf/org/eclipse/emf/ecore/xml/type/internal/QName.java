@@ -21,9 +21,8 @@ import org.eclipse.emf.ecore.xml.type.InvalidDatatypeValueException;
 import org.eclipse.emf.ecore.xml.type.internal.DataValue.XMLChar;
 
 /**
- * An internal extension of Java's QName that allows the prefix to be updated.
- * If not specified, the prefix is set to empty string (""). If not specified,
- * the namespace uri is set to empty string ("");
+ * An internal extension of Java's QName that allows the prefix to be updated. If not specified, the prefix is set to
+ * empty string (""). If not specified, the namespace uri is set to empty string ("");
  * <p>
  * NOTE: this class is for internal use only.
  */
@@ -37,8 +36,8 @@ public final class QName extends javax.xml.namespace.QName
    * Constructs a QName.
    * 
    * @param qname
-   *          a <a href="http://www.w3.org/TR/REC-xml-names/#dt-qname">qualified
-   *          name</a> Throws Exception if value is not legal qualified name
+   *          a <a href="http://www.w3.org/TR/REC-xml-names/#dt-qname">qualified name</a> Throws Exception if value is
+   *          not legal qualified name
    */
   public QName(String qname)
   {

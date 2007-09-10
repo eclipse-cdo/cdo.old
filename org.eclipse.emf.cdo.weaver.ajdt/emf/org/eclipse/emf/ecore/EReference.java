@@ -19,8 +19,7 @@ package org.eclipse.emf.ecore;
 import org.eclipse.emf.common.util.EList;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>EReference</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>EReference</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are supported:
  * <ul>
@@ -34,16 +33,15 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * 
  * @see org.eclipse.emf.ecore.EcorePackage#getEReference()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore
- *        constraints='ConsistentOpposite SingleContainer ConsistentKeys'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ConsistentOpposite SingleContainer
+ *        ConsistentKeys'"
  * @generated
  */
 public interface EReference extends EStructuralFeature
 {
   /**
-   * Returns the value of the '<em><b>Containment</b></em>' attribute. <!--
-   * begin-user-doc --> A reference is a containment if it represents by-value
-   * content. <!-- end-user-doc -->
+   * Returns the value of the '<em><b>Containment</b></em>' attribute. <!-- begin-user-doc --> A reference is a
+   * containment if it represents by-value content. <!-- end-user-doc -->
    * 
    * @return the value of the '<em>Containment</em>' attribute.
    * @see #setContainment(boolean)
@@ -54,8 +52,8 @@ public interface EReference extends EStructuralFeature
   boolean isContainment();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.ecore.EReference#isContainment <em>Containment</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.EReference#isContainment <em>Containment</em>}' attribute.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param value
    *          the new value of the '<em>Containment</em>' attribute.
@@ -65,11 +63,9 @@ public interface EReference extends EStructuralFeature
   void setContainment(boolean value);
 
   /**
-   * Returns the value of the '<em><b>Container</b></em>' attribute. <!--
-   * begin-user-doc -->
+   * Returns the value of the '<em><b>Container</b></em>' attribute. <!-- begin-user-doc -->
    * <p>
-   * A reference is a container if it has an {@link #getEOpposite opposite} that
-   * is a {@link #isContainment containment}.
+   * A reference is a container if it has an {@link #getEOpposite opposite} that is a {@link #isContainment containment}.
    * </p>
    * <!-- end-user-doc -->
    * 
@@ -81,11 +77,10 @@ public interface EReference extends EStructuralFeature
   boolean isContainer();
 
   /**
-   * Returns the value of the '<em><b>Resolve Proxies</b></em>' attribute.
-   * The default value is <code>"true"</code>. <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Resolve Proxies</b></em>' attribute. The default value is <code>"true"</code>.
+   * <!-- begin-user-doc -->
    * <p>
-   * It represents whether {@link EObject#eIsProxy proxies} will be
-   * automatically resolved.
+   * It represents whether {@link EObject#eIsProxy proxies} will be automatically resolved.
    * </p>
    * <!-- end-user-doc -->
    * 
@@ -109,8 +104,7 @@ public interface EReference extends EStructuralFeature
   void setResolveProxies(boolean value);
 
   /**
-   * Returns the value of the '<em><b>EOpposite</b></em>' reference. <!--
-   * begin-user-doc -->
+   * Returns the value of the '<em><b>EOpposite</b></em>' reference. <!-- begin-user-doc -->
    * <p>
    * It represent the other end of a bidirectional relation.
    * </p>
@@ -125,8 +119,8 @@ public interface EReference extends EStructuralFeature
   EReference getEOpposite();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.ecore.EReference#getEOpposite <em>EOpposite</em>}'
-   * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.EReference#getEOpposite <em>EOpposite</em>}' reference. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param value
    *          the new value of the '<em>EOpposite</em>' reference.
@@ -136,29 +130,25 @@ public interface EReference extends EStructuralFeature
   void setEOpposite(EReference value);
 
   /**
-   * Returns the value of the '<em><b>EReference Type</b></em>' reference.
-   * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>EReference Type</b></em>' reference. <!-- begin-user-doc -->
    * <p>
-   * The {@link #getEType() type} of a reference must always be a class; this
-   * method provides access to it.
+   * The {@link #getEType() type} of a reference must always be a class; this method provides access to it.
    * </p>
    * <!-- end-user-doc -->
    * 
    * @return the value of the '<em>EReference Type</em>' reference.
    * @see org.eclipse.emf.ecore.EcorePackage#getEReference_EReferenceType()
-   * @model required="true" transient="true" changeable="false" volatile="true"
-   *        derived="true"
+   * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
    * @generated
    */
   EClass getEReferenceType();
 
   /**
-   * Returns the value of the '<em><b>EKeys</b></em>' reference list. The
-   * list contents are of type {@link org.eclipse.emf.ecore.EAttribute}. <!--
-   * begin-user-doc -->
+   * Returns the value of the '<em><b>EKeys</b></em>' reference list. The list contents are of type
+   * {@link org.eclipse.emf.ecore.EAttribute}. <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>EKeys</em>' reference list isn't clear,
-   * there really should be more of a description here...
+   * If the meaning of the '<em>EKeys</em>' reference list isn't clear, there really should be more of a description
+   * here...
    * </p>
    * <!-- end-user-doc -->
    * 

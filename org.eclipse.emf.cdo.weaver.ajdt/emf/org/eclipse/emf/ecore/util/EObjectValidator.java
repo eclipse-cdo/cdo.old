@@ -167,15 +167,12 @@ public class EObjectValidator implements EValidator
   }
 
   /**
-   * Validates the object in the given context, optionally producing
-   * diagnostics.
+   * Validates the object in the given context, optionally producing diagnostics.
    * 
    * @param diagnostics
-   *          a place to accumulate diagnostics; if it's <code>null</code>,
-   *          no diagnostics should be produced.
+   *          a place to accumulate diagnostics; if it's <code>null</code>, no diagnostics should be produced.
    * @param context
-   *          a place to cache information, if it's <code>null</code>, no
-   *          cache is supported.
+   *          a place to cache information, if it's <code>null</code>, no cache is supported.
    * @return whether the object is valid.
    */
   public boolean validate(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context)

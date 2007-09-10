@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.FeatureMap;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Document Root</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Document Root</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are supported:
  * <ul>
@@ -43,56 +43,50 @@ import org.eclipse.emf.ecore.util.FeatureMap;
 public interface XMLNamespaceDocumentRoot extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Mixed</b></em>' attribute list. The
-   * list contents are of type
-   * {@link org.eclipse.emf.ecore.util.FeatureMap.Entry}. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns the value of the '<em><b>Mixed</b></em>' attribute list. The list contents are of type
+   * {@link org.eclipse.emf.ecore.util.FeatureMap.Entry}. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the value of the '<em>Mixed</em>' attribute list.
    * @see org.eclipse.emf.ecore.xml.namespace.XMLNamespacePackage#getXMLNamespaceDocumentRoot_Mixed()
-   * @model unique="false" dataType="org.eclipse.emf.ecore.EFeatureMapEntry"
-   *        many="true" extendedMetaData="kind='elementWildcard' name=':mixed'"
+   * @model unique="false" dataType="org.eclipse.emf.ecore.EFeatureMapEntry" many="true"
+   *        extendedMetaData="kind='elementWildcard' name=':mixed'"
    * @generated
    */
   FeatureMap getMixed();
 
   /**
-   * Returns the value of the '<em><b>XMLNS Prefix Map</b></em>' map. The
-   * key is of type {@link java.lang.String}, and the value is of type
-   * {@link java.lang.String}, <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the value of the '<em><b>XMLNS Prefix Map</b></em>' map. The key is of type {@link java.lang.String},
+   * and the value is of type {@link java.lang.String}, <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the value of the '<em>XMLNS Prefix Map</em>' map.
    * @see org.eclipse.emf.ecore.xml.namespace.XMLNamespacePackage#getXMLNamespaceDocumentRoot_XMLNSPrefixMap()
    * @model mapType="org.eclipse.emf.ecore.EStringToStringMapEntry<org.eclipse.emf.ecore.EString,
-   *        org.eclipse.emf.ecore.EString>" transient="true"
-   *        extendedMetaData="kind='attribute' name='xmlns:prefix'"
+   *        org.eclipse.emf.ecore.EString>" transient="true" extendedMetaData="kind='attribute' name='xmlns:prefix'"
    * @generated
    */
   EMap<String, String> getXMLNSPrefixMap();
 
   /**
-   * Returns the value of the '<em><b>XSI Schema Location</b></em>' map.
-   * The key is of type {@link java.lang.String}, and the value is of type
-   * {@link java.lang.String}, <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the value of the '<em><b>XSI Schema Location</b></em>' map. The key is of type
+   * {@link java.lang.String}, and the value is of type {@link java.lang.String}, <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @return the value of the '<em>XSI Schema Location</em>' map.
    * @see org.eclipse.emf.ecore.xml.namespace.XMLNamespacePackage#getXMLNamespaceDocumentRoot_XSISchemaLocation()
    * @model mapType="org.eclipse.emf.ecore.EStringToStringMapEntry<org.eclipse.emf.ecore.EString,
-   *        org.eclipse.emf.ecore.EString>" transient="true"
-   *        extendedMetaData="kind='attribute' name='xsi:schemaLocation'"
+   *        org.eclipse.emf.ecore.EString>" transient="true" extendedMetaData="kind='attribute'
+   *        name='xsi:schemaLocation'"
    * @generated
    */
   EMap<String, String> getXSISchemaLocation();
 
   /**
-   * Returns the value of the '<em><b>Base</b></em>' attribute. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns the value of the '<em><b>Base</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the value of the '<em>Base</em>' attribute.
    * @see #setBase(String)
    * @see org.eclipse.emf.ecore.xml.namespace.XMLNamespacePackage#getXMLNamespaceDocumentRoot_Base()
-   * @model dataType="org.eclipse.emf.ecore.xml.type.AnyURI"
-   *        extendedMetaData="kind='attribute' name='base'
+   * @model dataType="org.eclipse.emf.ecore.xml.type.AnyURI" extendedMetaData="kind='attribute' name='base'
    *        namespace='##targetNamespace'"
    * @generated
    */
@@ -110,14 +104,12 @@ public interface XMLNamespaceDocumentRoot extends EObject
   void setBase(String value);
 
   /**
-   * Returns the value of the '<em><b>Id</b></em>' attribute. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns the value of the '<em><b>Id</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the value of the '<em>Id</em>' attribute.
    * @see #setId(String)
    * @see org.eclipse.emf.ecore.xml.namespace.XMLNamespacePackage#getXMLNamespaceDocumentRoot_Id()
-   * @model id="true" dataType="org.eclipse.emf.ecore.xml.type.ID"
-   *        extendedMetaData="kind='attribute' name='id'
+   * @model id="true" dataType="org.eclipse.emf.ecore.xml.type.ID" extendedMetaData="kind='attribute' name='id'
    *        namespace='##targetNamespace'"
    * @generated
    */
@@ -135,14 +127,12 @@ public interface XMLNamespaceDocumentRoot extends EObject
   void setId(String value);
 
   /**
-   * Returns the value of the '<em><b>Lang</b></em>' attribute. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns the value of the '<em><b>Lang</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the value of the '<em>Lang</em>' attribute.
    * @see #setLang(String)
    * @see org.eclipse.emf.ecore.xml.namespace.XMLNamespacePackage#getXMLNamespaceDocumentRoot_Lang()
-   * @model dataType="org.eclipse.emf.ecore.xml.namespace.LangType"
-   *        extendedMetaData="kind='attribute' name='lang'
+   * @model dataType="org.eclipse.emf.ecore.xml.namespace.LangType" extendedMetaData="kind='attribute' name='lang'
    *        namespace='##targetNamespace'"
    * @generated
    */
@@ -160,10 +150,9 @@ public interface XMLNamespaceDocumentRoot extends EObject
   void setLang(String value);
 
   /**
-   * Returns the value of the '<em><b>Space</b></em>' attribute. The
-   * default value is <code>"preserve"</code>. The literals are from the
-   * enumeration {@link org.eclipse.emf.ecore.xml.namespace.SpaceType}. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns the value of the '<em><b>Space</b></em>' attribute. The default value is <code>"preserve"</code>.
+   * The literals are from the enumeration {@link org.eclipse.emf.ecore.xml.namespace.SpaceType}. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @return the value of the '<em>Space</em>' attribute.
    * @see org.eclipse.emf.ecore.xml.namespace.SpaceType
@@ -171,8 +160,7 @@ public interface XMLNamespaceDocumentRoot extends EObject
    * @see #unsetSpace()
    * @see #setSpace(SpaceType)
    * @see org.eclipse.emf.ecore.xml.namespace.XMLNamespacePackage#getXMLNamespaceDocumentRoot_Space()
-   * @model default="preserve" unsettable="true"
-   *        extendedMetaData="kind='attribute' name='space'
+   * @model default="preserve" unsettable="true" extendedMetaData="kind='attribute' name='space'
    *        namespace='##targetNamespace'"
    * @generated
    */

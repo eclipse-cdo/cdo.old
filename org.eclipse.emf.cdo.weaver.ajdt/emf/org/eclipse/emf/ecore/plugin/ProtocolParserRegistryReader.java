@@ -23,10 +23,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 /**
  * A plugin extension reader that populates the
- * {@link org.eclipse.emf.ecore.resource.Resource.Factory.Registry#INSTANCE global}
- * resource factory's
- * {@link org.eclipse.emf.ecore.resource.Resource.Factory.Registry#getProtocolToFactoryMap() protocol}
- * map. Clients are not expected to use this class directly.
+ * {@link org.eclipse.emf.ecore.resource.Resource.Factory.Registry#INSTANCE global} resource factory's
+ * {@link org.eclipse.emf.ecore.resource.Resource.Factory.Registry#getProtocolToFactoryMap() protocol} map. Clients are
+ * not expected to use this class directly.
  */
 class ProtocolParserRegistryReader extends RegistryReader
 {

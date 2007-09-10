@@ -36,8 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>EMeta Object</b></em>'.
  * 
- * @extends BasicExtendedMetaData.EClassifierExtendedMetaData.Holder <!--
- *          end-user-doc -->
+ * @extends BasicExtendedMetaData.EClassifierExtendedMetaData.Holder <!-- end-user-doc -->
  *          <p>
  *          The following features are implemented:
  *          <ul>
@@ -218,8 +217,8 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
   }
 
   /**
-   * The default value of the '{@link #getInstanceClassName() <em>Instance Class Name</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #getInstanceClassName() <em>Instance Class Name</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getInstanceClassName()
    * @generated NOT
@@ -228,8 +227,8 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
   protected static final String INSTANCE_CLASS_NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getInstanceClassName() <em>Instance Class Name</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getInstanceClassName() <em>Instance Class Name</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getInstanceClassName()
    * @generated NOT
@@ -330,16 +329,15 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
   }
 
   /**
-   * The default value of the '{@link #getInstanceClass() <em>Instance Class</em>}'
-   * attribute.
+   * The default value of the '{@link #getInstanceClass() <em>Instance Class</em>}' attribute.
    * 
    * @see #getInstanceClass()
    */
   protected static final Class<?> INSTANCE_CLASS_EDEFAULT = null;
 
   /**
-   * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @see #getDefaultValue()
    * @generated
@@ -348,8 +346,8 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
   protected static final Object DEFAULT_VALUE_EDEFAULT = null;
 
   /**
-   * The default value of the '{@link #getInstanceTypeName() <em>Instance Type Name</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #getInstanceTypeName() <em>Instance Type Name</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getInstanceTypeName()
    * @generated NOT
@@ -359,8 +357,8 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
   private static final String INSTANCE_TYPE_NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getInstanceTypeName() <em>Instance Type Name</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getInstanceTypeName() <em>Instance Type Name</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getInstanceTypeName()
    * @generated NOT
@@ -369,8 +367,8 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
   protected String instanceTypeName;
 
   /**
-   * The cached value of the '{@link #getETypeParameters() <em>EType Parameters</em>}'
-   * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getETypeParameters() <em>EType Parameters</em>}' containment reference list.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getETypeParameters()
    * @generated
@@ -379,8 +377,7 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
   protected EList<ETypeParameter> eTypeParameters;
 
   /**
-   * The cached value of the '{@link #getInstanceClass() <em>Instance Class</em>}'
-   * attribute.
+   * The cached value of the '{@link #getInstanceClass() <em>Instance Class</em>}' attribute.
    * 
    * @see #getInstanceClass()
    */
@@ -407,12 +404,10 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
   }
 
   /**
-   * Returns the <code>Class</code> object associated with the class or
-   * interface with the given name, as from a {@link
-   * java.lang.Class#forName(String)} call; however, if this classifier belongs
-   * to a package, that package's class loader is used. Since the package may be
-   * model-specific code in another plug-in, its class loader may be able to see
-   * classes that Ecore's can't.
+   * Returns the <code>Class</code> object associated with the class or interface with the given name, as from a
+   * {@link java.lang.Class#forName(String)} call; however, if this classifier belongs to a package, that package's
+   * class loader is used. Since the package may be model-specific code in another plug-in, its class loader may be able
+   * to see classes that Ecore's can't.
    */
   protected Class<?> getClassForName(String name) throws ClassNotFoundException
   {

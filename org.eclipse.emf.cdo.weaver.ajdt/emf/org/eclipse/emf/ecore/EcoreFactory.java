@@ -17,8 +17,8 @@
 package org.eclipse.emf.ecore;
 
 /**
- * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a
- * create method for each non-abstract class of the model. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a create method for each non-abstract class of
+ * the model. <!-- end-user-doc -->
  * 
  * @see org.eclipse.emf.ecore.EcorePackage
  * @generated
@@ -33,8 +33,7 @@ public interface EcoreFactory extends EFactory
   EcoreFactory eINSTANCE = org.eclipse.emf.ecore.impl.EcoreFactoryImpl.init();
 
   /**
-   * Returns a new object of class '<em>EObject</em>'. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns a new object of class '<em>EObject</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return a new object of class '<em>EObject</em>'.
    * @generated
@@ -42,8 +41,7 @@ public interface EcoreFactory extends EFactory
   EObject createEObject();
 
   /**
-   * Returns a new object of class '<em>EAttribute</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns a new object of class '<em>EAttribute</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return a new object of class '<em>EAttribute</em>'.
    * @generated
@@ -51,8 +49,7 @@ public interface EcoreFactory extends EFactory
   EAttribute createEAttribute();
 
   /**
-   * Returns a new object of class '<em>EAnnotation</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns a new object of class '<em>EAnnotation</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return a new object of class '<em>EAnnotation</em>'.
    * @generated
@@ -60,8 +57,7 @@ public interface EcoreFactory extends EFactory
   EAnnotation createEAnnotation();
 
   /**
-   * Returns a new object of class '<em>EClass</em>'. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns a new object of class '<em>EClass</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return a new object of class '<em>EClass</em>'.
    * @generated
@@ -69,8 +65,7 @@ public interface EcoreFactory extends EFactory
   EClass createEClass();
 
   /**
-   * Returns a new object of class '<em>EData Type</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns a new object of class '<em>EData Type</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return a new object of class '<em>EData Type</em>'.
    * @generated
@@ -78,8 +73,7 @@ public interface EcoreFactory extends EFactory
   EDataType createEDataType();
 
   /**
-   * Returns a new object of class '<em>EParameter</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns a new object of class '<em>EParameter</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return a new object of class '<em>EParameter</em>'.
    * @generated
@@ -87,8 +81,7 @@ public interface EcoreFactory extends EFactory
   EParameter createEParameter();
 
   /**
-   * Returns a new object of class '<em>EOperation</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns a new object of class '<em>EOperation</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return a new object of class '<em>EOperation</em>'.
    * @generated
@@ -96,8 +89,7 @@ public interface EcoreFactory extends EFactory
   EOperation createEOperation();
 
   /**
-   * Returns a new object of class '<em>EPackage</em>'. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns a new object of class '<em>EPackage</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return a new object of class '<em>EPackage</em>'.
    * @generated
@@ -105,8 +97,7 @@ public interface EcoreFactory extends EFactory
   EPackage createEPackage();
 
   /**
-   * Returns a new object of class '<em>EFactory</em>'. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns a new object of class '<em>EFactory</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return a new object of class '<em>EFactory</em>'.
    * @generated
@@ -114,8 +105,7 @@ public interface EcoreFactory extends EFactory
   EFactory createEFactory();
 
   /**
-   * Returns a new object of class '<em>EEnum Literal</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns a new object of class '<em>EEnum Literal</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return a new object of class '<em>EEnum Literal</em>'.
    * @generated
@@ -123,8 +113,7 @@ public interface EcoreFactory extends EFactory
   EEnumLiteral createEEnumLiteral();
 
   /**
-   * Returns a new object of class '<em>EEnum</em>'. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns a new object of class '<em>EEnum</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return a new object of class '<em>EEnum</em>'.
    * @generated
@@ -132,8 +121,7 @@ public interface EcoreFactory extends EFactory
   EEnum createEEnum();
 
   /**
-   * Returns a new object of class '<em>EReference</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns a new object of class '<em>EReference</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return a new object of class '<em>EReference</em>'.
    * @generated
@@ -141,8 +129,7 @@ public interface EcoreFactory extends EFactory
   EReference createEReference();
 
   /**
-   * Returns a new object of class '<em>EGeneric Type</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns a new object of class '<em>EGeneric Type</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return a new object of class '<em>EGeneric Type</em>'.
    * @generated
@@ -150,8 +137,7 @@ public interface EcoreFactory extends EFactory
   EGenericType createEGenericType();
 
   /**
-   * Returns a new object of class '<em>EType Parameter</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns a new object of class '<em>EType Parameter</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return a new object of class '<em>EType Parameter</em>'.
    * @generated
@@ -159,8 +145,7 @@ public interface EcoreFactory extends EFactory
   ETypeParameter createETypeParameter();
 
   /**
-   * Returns the package supported by this factory. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * Returns the package supported by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the package supported by this factory.
    * @generated

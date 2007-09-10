@@ -30,8 +30,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>EEnum Literal</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EEnum Literal</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -47,8 +47,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
 {
   /**
-   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getValue()
    * @generated
@@ -57,8 +57,8 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   protected static final int VALUE_EDEFAULT = 0;
 
   /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @see #getValue()
    * @generated
@@ -67,8 +67,8 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   protected int value = VALUE_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getInstance() <em>Instance</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #getInstance() <em>Instance</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getInstance()
    * @generated
@@ -77,8 +77,8 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   protected static final Enumerator INSTANCE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getInstance() <em>Instance</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getInstance() <em>Instance</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getInstance()
    * @generated
@@ -87,8 +87,8 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   protected Enumerator instance = INSTANCE_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getLiteral() <em>Literal</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #getLiteral() <em>Literal</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getLiteral()
    * @generated
@@ -97,8 +97,8 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   protected static final String LITERAL_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getLiteral() <em>Literal</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getLiteral() <em>Literal</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getLiteral()
    * @generated

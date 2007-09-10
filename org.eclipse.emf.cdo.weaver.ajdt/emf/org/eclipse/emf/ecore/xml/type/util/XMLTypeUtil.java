@@ -27,8 +27,7 @@ import org.eclipse.emf.ecore.xml.type.internal.DataValue;
 import org.eclipse.emf.ecore.xml.type.internal.RegEx;
 
 /**
- * This class contains convenient static methods for working with XML-related
- * information.
+ * This class contains convenient static methods for working with XML-related information.
  */
 public final class XMLTypeUtil
 {
@@ -258,16 +257,14 @@ public final class XMLTypeUtil
   }
 
   /**
-   * Updates the QName's prefix, if possible, and returns either the updated
-   * result, or a newly created QName with the new prefix, if the QName could
-   * not be directly updated.
+   * Updates the QName's prefix, if possible, and returns either the updated result, or a newly created QName with the
+   * new prefix, if the QName could not be directly updated.
    * 
    * @param qName
    *          the QName to be updated.
    * @param prefix
    *          the new prefix.
-   * @return a QName with the same namespace URI and local part as the argument,
-   *         but with the new prefix.
+   * @return a QName with the same namespace URI and local part as the argument, but with the new prefix.
    */
   public static QName setPrefix(QName qName, String prefix)
   {

@@ -84,8 +84,7 @@ import org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil;
 
 /**
  * An internal extension of Java's Duration to represent the <a
- * href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/">W3C XML Schema 1.0</a>
- * duration data type.
+ * href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/">W3C XML Schema 1.0</a> duration data type.
  * <p>
  * NOTE: this class is for internal use only.
  */

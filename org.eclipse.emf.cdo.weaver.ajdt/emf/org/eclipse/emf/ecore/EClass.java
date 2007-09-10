@@ -19,8 +19,7 @@ package org.eclipse.emf.ecore;
 import org.eclipse.emf.common.util.EList;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>EClass</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>EClass</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are supported:
  * <ul>
@@ -44,21 +43,18 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * 
  * @see org.eclipse.emf.ecore.EcorePackage#getEClass()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore
- *        constraints='InterfaceIsAbstract AtMostOneID UniqueFeatureNames
- *        UniqueOperationSignatures NoCircularSuperTypes WellFormedMapEntryClass
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='InterfaceIsAbstract AtMostOneID
+ *        UniqueFeatureNames UniqueOperationSignatures NoCircularSuperTypes WellFormedMapEntryClass
  *        ConsistentSuperTypes'"
  * @generated
  */
 public interface EClass extends EClassifier
 {
   /**
-   * Returns the value of the '<em><b>Abstract</b></em>' attribute. <!--
-   * begin-user-doc -->
+   * Returns the value of the '<em><b>Abstract</b></em>' attribute. <!-- begin-user-doc -->
    * <p>
-   * It represents whether the class is abstract in the Java sense. For an
-   * abstract class, the generated implementation class will be abstract, and
-   * the generated factory will not provide support for creating an instance.
+   * It represents whether the class is abstract in the Java sense. For an abstract class, the generated implementation
+   * class will be abstract, and the generated factory will not provide support for creating an instance.
    * </p>
    * <!-- end-user-doc -->
    * 
@@ -71,8 +67,8 @@ public interface EClass extends EClassifier
   boolean isAbstract();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.ecore.EClass#isAbstract <em>Abstract</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.EClass#isAbstract <em>Abstract</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param value
    *          the new value of the '<em>Abstract</em>' attribute.
@@ -82,11 +78,10 @@ public interface EClass extends EClassifier
   void setAbstract(boolean value);
 
   /**
-   * Returns the value of the '<em><b>Interface</b></em>' attribute. <!--
-   * begin-user-doc -->
+   * Returns the value of the '<em><b>Interface</b></em>' attribute. <!-- begin-user-doc -->
    * <p>
-   * It represents whether the class is an interface in the Java sense. For an
-   * interface class, there will be no generated implementation class.
+   * It represents whether the class is an interface in the Java sense. For an interface class, there will be no
+   * generated implementation class.
    * </p>
    * <!-- end-user-doc -->
    * 
@@ -99,8 +94,8 @@ public interface EClass extends EClassifier
   boolean isInterface();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.ecore.EClass#isInterface <em>Interface</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.EClass#isInterface <em>Interface</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param value
    *          the new value of the '<em>Interface</em>' attribute.
@@ -110,13 +105,11 @@ public interface EClass extends EClassifier
   void setInterface(boolean value);
 
   /**
-   * Returns the value of the '<em><b>ESuper Types</b></em>' reference
-   * list. The list contents are of type {@link org.eclipse.emf.ecore.EClass}.
-   * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>ESuper Types</b></em>' reference list. The list contents are of type
+   * {@link org.eclipse.emf.ecore.EClass}. <!-- begin-user-doc -->
    * <p>
-   * It represents the super types in the Java sense, i.e., the super class and
-   * the direct implemented interfaces, and is derived from the
-   * {@link #getEGenericSuperTypes() generic super types}.
+   * It represents the super types in the Java sense, i.e., the super class and the direct implemented interfaces, and
+   * is derived from the {@link #getEGenericSuperTypes() generic super types}.
    * </p>
    * 
    * @see #getEGenericSuperTypes()
@@ -124,19 +117,16 @@ public interface EClass extends EClassifier
    * @ignore <!-- end-user-doc -->
    * @return the value of the '<em>ESuper Types</em>' reference list.
    * @see org.eclipse.emf.ecore.EcorePackage#getEClass_ESuperTypes()
-   * @model unsettable="true" suppressedIsSetVisibility="true"
-   *        suppressedUnsetVisibility="true"
+   * @model unsettable="true" suppressedIsSetVisibility="true" suppressedUnsetVisibility="true"
    * @generated
    */
   EList<EClass> getESuperTypes();
 
   /**
-   * Returns the value of the '<em><b>EAll Super Types</b></em>' reference
-   * list. The list contents are of type {@link org.eclipse.emf.ecore.EClass}.
-   * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>EAll Super Types</b></em>' reference list. The list contents are of type
+   * {@link org.eclipse.emf.ecore.EClass}. <!-- begin-user-doc -->
    * <p>
-   * It represents the closure of all inherited
-   * {@link #getESuperTypes() super types} and is derived from the
+   * It represents the closure of all inherited {@link #getESuperTypes() super types} and is derived from the
    * {@link #getEAllGenericSuperTypes() generic super types}.
    * </p>
    * 
@@ -150,8 +140,7 @@ public interface EClass extends EClassifier
   EList<EClass> getEAllSuperTypes();
 
   /**
-   * Returns the value of the '<em><b>EID Attribute</b></em>' reference.
-   * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>EID Attribute</b></em>' reference. <!-- begin-user-doc -->
    * <p>
    * It represents the attribute that will be used as the ID of an instance.
    * 
@@ -161,25 +150,21 @@ public interface EClass extends EClassifier
    *      <!-- end-user-doc -->
    * @return the value of the '<em>EID Attribute</em>' reference.
    * @see org.eclipse.emf.ecore.EcorePackage#getEClass_EIDAttribute()
-   * @model resolveProxies="false" transient="true" changeable="false"
-   *        volatile="true" derived="true"
+   * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true"
    * @generated
    */
   EAttribute getEIDAttribute();
 
   /**
-   * Returns the value of the '<em><b>EStructural Features</b></em>'
-   * containment reference list. The list contents are of type
-   * {@link org.eclipse.emf.ecore.EStructuralFeature}. It is bidirectional and
-   * its opposite is '{@link org.eclipse.emf.ecore.EStructuralFeature#getEContainingClass <em>EContaining Class</em>}'.
+   * Returns the value of the '<em><b>EStructural Features</b></em>' containment reference list. The list contents
+   * are of type {@link org.eclipse.emf.ecore.EStructuralFeature}. It is bidirectional and its opposite is '{@link org.eclipse.emf.ecore.EStructuralFeature#getEContainingClass <em>EContaining Class</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * It represents the modeled features local to this class.
    * </p>
    * <!-- end-user-doc -->
    * 
-   * @return the value of the '<em>EStructural Features</em>' containment
-   *         reference list.
+   * @return the value of the '<em>EStructural Features</em>' containment reference list.
    * @see org.eclipse.emf.ecore.EcorePackage#getEClass_EStructuralFeatures()
    * @see org.eclipse.emf.ecore.EStructuralFeature#getEContainingClass
    * @model opposite="eContainingClass" containment="true"
@@ -188,45 +173,36 @@ public interface EClass extends EClassifier
   EList<EStructuralFeature> getEStructuralFeatures();
 
   /**
-   * Returns the value of the '<em><b>EGeneric Super Types</b></em>'
-   * containment reference list. The list contents are of type
-   * {@link org.eclipse.emf.ecore.EGenericType}. <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>EGeneric Super Types</b></em>' containment reference list. The list contents
+   * are of type {@link org.eclipse.emf.ecore.EGenericType}. <!-- begin-user-doc -->
    * <p>
-   * It represents the generic super types in the Java sense, i.e., the super
-   * class and the direct implemented interfaces. The
-   * {@link #getESuperTypes() super types} list is derived from this one, i.e.,
-   * it represents the {@link EGenericType#getERawType() erasure} of each
-   * generic super type.
+   * It represents the generic super types in the Java sense, i.e., the super class and the direct implemented
+   * interfaces. The {@link #getESuperTypes() super types} list is derived from this one, i.e., it represents the
+   * {@link EGenericType#getERawType() erasure} of each generic super type.
    * </p>
    * 
    * @see #getESuperTypes()
    * @since 2.3 <!-- end-user-doc -->
-   * @return the value of the '<em>EGeneric Super Types</em>' containment
-   *         reference list.
+   * @return the value of the '<em>EGeneric Super Types</em>' containment reference list.
    * @see org.eclipse.emf.ecore.EcorePackage#getEClass_EGenericSuperTypes()
-   * @model containment="true" unsettable="true"
-   *        suppressedIsSetVisibility="true" suppressedUnsetVisibility="true"
+   * @model containment="true" unsettable="true" suppressedIsSetVisibility="true" suppressedUnsetVisibility="true"
    * @generated
    */
   EList<EGenericType> getEGenericSuperTypes();
 
   /**
-   * Returns the value of the '<em><b>EAll Generic Super Types</b></em>'
-   * reference list. The list contents are of type
-   * {@link org.eclipse.emf.ecore.EGenericType}. <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>EAll Generic Super Types</b></em>' reference list. The list contents are of
+   * type {@link org.eclipse.emf.ecore.EGenericType}. <!-- begin-user-doc -->
    * <p>
-   * It represents the closure of all inherited
-   * {@link #getEGenericSuperTypes() generic super types}. The
-   * {@link #getEAllSuperTypes() all super types} list is derived from this one,
-   * i.e., it represents the {@link EGenericType#getERawType() erasure} of each
-   * generic super type.
+   * It represents the closure of all inherited {@link #getEGenericSuperTypes() generic super types}. The
+   * {@link #getEAllSuperTypes() all super types} list is derived from this one, i.e., it represents the
+   * {@link EGenericType#getERawType() erasure} of each generic super type.
    * </p>
    * 
    * @see #getEGenericSuperTypes()
    * @see #getEAllSuperTypes()
    * @since 2.3 <!-- end-user-doc -->
-   * @return the value of the '<em>EAll Generic Super Types</em>' reference
-   *         list.
+   * @return the value of the '<em>EAll Generic Super Types</em>' reference list.
    * @see org.eclipse.emf.ecore.EcorePackage#getEClass_EAllGenericSuperTypes()
    * @model transient="true" changeable="false" volatile="true" derived="true"
    * @generated
@@ -234,9 +210,8 @@ public interface EClass extends EClassifier
   EList<EGenericType> getEAllGenericSuperTypes();
 
   /**
-   * Returns the value of the '<em><b>EAttributes</b></em>' reference list.
-   * The list contents are of type {@link org.eclipse.emf.ecore.EAttribute}.
-   * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>EAttributes</b></em>' reference list. The list contents are of type
+   * {@link org.eclipse.emf.ecore.EAttribute}. <!-- begin-user-doc -->
    * <p>
    * It represents the modeled attributes local to this class.
    * </p>
@@ -250,8 +225,7 @@ public interface EClass extends EClassifier
   EList<EAttribute> getEAttributes();
 
   /**
-   * Returns the value of the '<em><b>EAll Attributes</b></em>' reference
-   * list. The list contents are of type
+   * Returns the value of the '<em><b>EAll Attributes</b></em>' reference list. The list contents are of type
    * {@link org.eclipse.emf.ecore.EAttribute}. <!-- begin-user-doc -->
    * <p>
    * It represents the closure of all attributes, inherited and local.
@@ -266,9 +240,8 @@ public interface EClass extends EClassifier
   EList<EAttribute> getEAllAttributes();
 
   /**
-   * Returns the value of the '<em><b>EReferences</b></em>' reference list.
-   * The list contents are of type {@link org.eclipse.emf.ecore.EReference}.
-   * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>EReferences</b></em>' reference list. The list contents are of type
+   * {@link org.eclipse.emf.ecore.EReference}. <!-- begin-user-doc -->
    * <p>
    * It represents the modeled references local to this class.
    * </p>
@@ -282,8 +255,7 @@ public interface EClass extends EClassifier
   EList<EReference> getEReferences();
 
   /**
-   * Returns the value of the '<em><b>EAll References</b></em>' reference
-   * list. The list contents are of type
+   * Returns the value of the '<em><b>EAll References</b></em>' reference list. The list contents are of type
    * {@link org.eclipse.emf.ecore.EReference}. <!-- begin-user-doc -->
    * <p>
    * It represents the closure of all references, inherited and local.
@@ -298,13 +270,12 @@ public interface EClass extends EClassifier
   EList<EReference> getEAllReferences();
 
   /**
-   * Returns the value of the '<em><b>EAll Containments</b></em>' reference
-   * list. The list contents are of type
+   * Returns the value of the '<em><b>EAll Containments</b></em>' reference list. The list contents are of type
    * {@link org.eclipse.emf.ecore.EReference}. <!-- begin-user-doc -->
    * <p>
    * It represents the closure of all references, inherited and local, that are
-   * {@link EReference#isContainment containments}. These features will
-   * determine the {@link EObject#eContents} of an instance.
+   * {@link EReference#isContainment containments}. These features will determine the {@link EObject#eContents} of an
+   * instance.
    * </p>
    * <!-- end-user-doc -->
    * 
@@ -316,17 +287,14 @@ public interface EClass extends EClassifier
   EList<EReference> getEAllContainments();
 
   /**
-   * Returns the value of the '<em><b>EAll Structural Features</b></em>'
-   * reference list. The list contents are of type
-   * {@link org.eclipse.emf.ecore.EStructuralFeature}. <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>EAll Structural Features</b></em>' reference list. The list contents are of
+   * type {@link org.eclipse.emf.ecore.EStructuralFeature}. <!-- begin-user-doc -->
    * <p>
-   * It represents the closure of all attributes and references, inherited and
-   * local.
+   * It represents the closure of all attributes and references, inherited and local.
    * </p>
    * <!-- end-user-doc -->
    * 
-   * @return the value of the '<em>EAll Structural Features</em>' reference
-   *         list.
+   * @return the value of the '<em>EAll Structural Features</em>' reference list.
    * @see org.eclipse.emf.ecore.EcorePackage#getEClass_EAllStructuralFeatures()
    * @model transient="true" changeable="false" volatile="true" derived="true"
    * @generated
@@ -334,18 +302,15 @@ public interface EClass extends EClassifier
   EList<EStructuralFeature> getEAllStructuralFeatures();
 
   /**
-   * Returns the value of the '<em><b>EOperations</b></em>' containment
-   * reference list. The list contents are of type
-   * {@link org.eclipse.emf.ecore.EOperation}. It is bidirectional and its
-   * opposite is '{@link org.eclipse.emf.ecore.EOperation#getEContainingClass <em>EContaining Class</em>}'.
+   * Returns the value of the '<em><b>EOperations</b></em>' containment reference list. The list contents are of
+   * type {@link org.eclipse.emf.ecore.EOperation}. It is bidirectional and its opposite is '{@link org.eclipse.emf.ecore.EOperation#getEContainingClass <em>EContaining Class</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * It represents the modeled operations local to this class.
    * </p>
    * <!-- end-user-doc -->
    * 
-   * @return the value of the '<em>EOperations</em>' containment reference
-   *         list.
+   * @return the value of the '<em>EOperations</em>' containment reference list.
    * @see org.eclipse.emf.ecore.EcorePackage#getEClass_EOperations()
    * @see org.eclipse.emf.ecore.EOperation#getEContainingClass
    * @model opposite="eContainingClass" containment="true"
@@ -354,8 +319,7 @@ public interface EClass extends EClassifier
   EList<EOperation> getEOperations();
 
   /**
-   * Returns the value of the '<em><b>EAll Operations</b></em>' reference
-   * list. The list contents are of type
+   * Returns the value of the '<em><b>EAll Operations</b></em>' reference list. The list contents are of type
    * {@link org.eclipse.emf.ecore.EOperation}. <!-- begin-user-doc -->
    * <p>
    * It represents the closure of all operations, inherited and local.
@@ -370,13 +334,11 @@ public interface EClass extends EClassifier
   EList<EOperation> getEAllOperations();
 
   /**
-   * <!-- begin-user-doc --> Returns whether this class is the same as, or a
-   * super type of, some other class.
+   * <!-- begin-user-doc --> Returns whether this class is the same as, or a super type of, some other class.
    * 
    * @param someClass
    *          some other class.
-   * @return whether this class is the same as, or a super type of, some other
-   *         class.
+   * @return whether this class is the same as, or a super type of, some other class.
    * @see Class#isAssignableFrom
    * @ignore <!-- end-user-doc -->
    * @model
@@ -412,11 +374,11 @@ public interface EClass extends EClassifier
   EStructuralFeature getEStructuralFeature(String featureName);
 
   /**
-   * <!-- begin-user-doc --> Returns the ID of the feature relative to this
-   * class, or -1 if the feature is not in this class.
+   * <!-- begin-user-doc --> Returns the ID of the feature relative to this class, or -1 if the feature is not in this
+   * class.
    * 
-   * @return the ID of the feature relative to this class, or -1 if the feature
-   *         is not in this class. <!-- end-user-doc -->
+   * @return the ID of the feature relative to this class, or -1 if the feature is not in this class. <!-- end-user-doc
+   *         -->
    * @model
    * @generated
    */

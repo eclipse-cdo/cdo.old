@@ -43,9 +43,8 @@ import org.eclipse.emf.ecore.EcorePackage;
 import java.util.Map;
 
 /**
- * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It
- * provides an adapter <code>createXXX</code> method for each class of the
- * model. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter <code>createXXX</code>
+ * method for each class of the model. <!-- end-user-doc -->
  * 
  * @see org.eclipse.emf.ecore.EcorePackage
  * @generated
@@ -60,8 +59,7 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl
   protected static EcorePackage modelPackage;
 
   /**
-   * Creates an instance of the adapter factory. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * Creates an instance of the adapter factory. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -74,10 +72,9 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Returns whether this factory is applicable for the type of the object. <!--
-   * begin-user-doc --> This implementation returns <code>true</code> if the
-   * object is either the model's package or is an instance object of the model.
-   * <!-- end-user-doc -->
+   * Returns whether this factory is applicable for the type of the object. <!-- begin-user-doc --> This implementation
+   * returns <code>true</code> if the object is either the model's package or is an instance object of the model. <!--
+   * end-user-doc -->
    * 
    * @return whether this factory is applicable for the type of the object.
    * @generated
@@ -97,8 +94,7 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * The switch the delegates to the <code>createXXX</code> methods. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * The switch the delegates to the <code>createXXX</code> methods. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -226,8 +222,7 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl
   };
 
   /**
-   * Creates an adapter for the <code>target</code>. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Creates an adapter for the <code>target</code>. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param target
    *          the object to adapt.
@@ -242,9 +237,8 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl
 
   /**
    * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EModelElement <em>EModel Element</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we
-   * can easily ignore cases; it's useful to ignore a case when inheritance will
-   * catch all the cases anyway. <!-- end-user-doc -->
+   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
    * 
    * @return the new adapter.
    * @see org.eclipse.emf.ecore.EModelElement
@@ -257,9 +251,8 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl
 
   /**
    * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EStructuralFeature <em>EStructural Feature</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we
-   * can easily ignore cases; it's useful to ignore a case when inheritance will
-   * catch all the cases anyway. <!-- end-user-doc -->
+   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
    * 
    * @return the new adapter.
    * @see org.eclipse.emf.ecore.EStructuralFeature
@@ -272,9 +265,8 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl
 
   /**
    * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EAnnotation <em>EAnnotation</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we
-   * can easily ignore cases; it's useful to ignore a case when inheritance will
-   * catch all the cases anyway. <!-- end-user-doc -->
+   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
    * 
    * @return the new adapter.
    * @see org.eclipse.emf.ecore.EAnnotation
@@ -286,10 +278,9 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EAttribute <em>EAttribute</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we
-   * can easily ignore cases; it's useful to ignore a case when inheritance will
-   * catch all the cases anyway. <!-- end-user-doc -->
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EAttribute <em>EAttribute</em>}'. <!--
+   * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
    * 
    * @return the new adapter.
    * @see org.eclipse.emf.ecore.EAttribute
@@ -301,10 +292,9 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EClass <em>EClass</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we
-   * can easily ignore cases; it's useful to ignore a case when inheritance will
-   * catch all the cases anyway. <!-- end-user-doc -->
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EClass <em>EClass</em>}'. <!--
+   * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
    * 
    * @return the new adapter.
    * @see org.eclipse.emf.ecore.EClass
@@ -316,10 +306,9 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EDataType <em>EData Type</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we
-   * can easily ignore cases; it's useful to ignore a case when inheritance will
-   * catch all the cases anyway. <!-- end-user-doc -->
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EDataType <em>EData Type</em>}'. <!--
+   * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
    * 
    * @return the new adapter.
    * @see org.eclipse.emf.ecore.EDataType
@@ -332,9 +321,8 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl
 
   /**
    * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EClassifier <em>EClassifier</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we
-   * can easily ignore cases; it's useful to ignore a case when inheritance will
-   * catch all the cases anyway. <!-- end-user-doc -->
+   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
    * 
    * @return the new adapter.
    * @see org.eclipse.emf.ecore.EClassifier
@@ -347,9 +335,8 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl
 
   /**
    * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.ENamedElement <em>ENamed Element</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we
-   * can easily ignore cases; it's useful to ignore a case when inheritance will
-   * catch all the cases anyway. <!-- end-user-doc -->
+   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
    * 
    * @return the new adapter.
    * @see org.eclipse.emf.ecore.ENamedElement
@@ -362,9 +349,8 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl
 
   /**
    * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.ETypedElement <em>ETyped Element</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we
-   * can easily ignore cases; it's useful to ignore a case when inheritance will
-   * catch all the cases anyway. <!-- end-user-doc -->
+   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
    * 
    * @return the new adapter.
    * @see org.eclipse.emf.ecore.ETypedElement
@@ -376,10 +362,9 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EParameter <em>EParameter</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we
-   * can easily ignore cases; it's useful to ignore a case when inheritance will
-   * catch all the cases anyway. <!-- end-user-doc -->
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EParameter <em>EParameter</em>}'. <!--
+   * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
    * 
    * @return the new adapter.
    * @see org.eclipse.emf.ecore.EParameter
@@ -391,10 +376,9 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EOperation <em>EOperation</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we
-   * can easily ignore cases; it's useful to ignore a case when inheritance will
-   * catch all the cases anyway. <!-- end-user-doc -->
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EOperation <em>EOperation</em>}'. <!--
+   * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
    * 
    * @return the new adapter.
    * @see org.eclipse.emf.ecore.EOperation
@@ -406,10 +390,9 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EPackage <em>EPackage</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we
-   * can easily ignore cases; it's useful to ignore a case when inheritance will
-   * catch all the cases anyway. <!-- end-user-doc -->
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EPackage <em>EPackage</em>}'. <!--
+   * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
    * 
    * @return the new adapter.
    * @see org.eclipse.emf.ecore.EPackage
@@ -421,10 +404,9 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EFactory <em>EFactory</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we
-   * can easily ignore cases; it's useful to ignore a case when inheritance will
-   * catch all the cases anyway. <!-- end-user-doc -->
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EFactory <em>EFactory</em>}'. <!--
+   * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
    * 
    * @return the new adapter.
    * @see org.eclipse.emf.ecore.EFactory
@@ -437,9 +419,8 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl
 
   /**
    * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EEnumLiteral <em>EEnum Literal</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we
-   * can easily ignore cases; it's useful to ignore a case when inheritance will
-   * catch all the cases anyway. <!-- end-user-doc -->
+   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
    * 
    * @return the new adapter.
    * @see org.eclipse.emf.ecore.EEnumLiteral
@@ -451,10 +432,9 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EEnum <em>EEnum</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we
-   * can easily ignore cases; it's useful to ignore a case when inheritance will
-   * catch all the cases anyway. <!-- end-user-doc -->
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EEnum <em>EEnum</em>}'. <!--
+   * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
    * 
    * @return the new adapter.
    * @see org.eclipse.emf.ecore.EEnum
@@ -466,10 +446,9 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EReference <em>EReference</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we
-   * can easily ignore cases; it's useful to ignore a case when inheritance will
-   * catch all the cases anyway. <!-- end-user-doc -->
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EReference <em>EReference</em>}'. <!--
+   * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
    * 
    * @return the new adapter.
    * @see org.eclipse.emf.ecore.EReference
@@ -482,9 +461,8 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl
 
   /**
    * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>EString To String Map Entry</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we
-   * can easily ignore cases; it's useful to ignore a case when inheritance will
-   * catch all the cases anyway. <!-- end-user-doc -->
+   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
    * 
    * @return the new adapter.
    * @see java.util.Map.Entry
@@ -497,9 +475,8 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl
 
   /**
    * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EGenericType <em>EGeneric Type</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we
-   * can easily ignore cases; it's useful to ignore a case when inheritance will
-   * catch all the cases anyway. <!-- end-user-doc -->
+   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
    * 
    * @return the new adapter.
    * @see org.eclipse.emf.ecore.EGenericType
@@ -512,9 +489,8 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl
 
   /**
    * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.ETypeParameter <em>EType Parameter</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we
-   * can easily ignore cases; it's useful to ignore a case when inheritance will
-   * catch all the cases anyway. <!-- end-user-doc -->
+   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+   * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
    * 
    * @return the new adapter.
    * @see org.eclipse.emf.ecore.ETypeParameter
@@ -526,8 +502,8 @@ public class EcoreAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for the default case. <!-- begin-user-doc --> This
-   * default implementation returns null. <!-- end-user-doc -->
+   * Creates a new adapter for the default case. <!-- begin-user-doc --> This default implementation returns null. <!--
+   * end-user-doc -->
    * 
    * @return the new adapter.
    * @generated

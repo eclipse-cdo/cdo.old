@@ -877,8 +877,7 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
   }
 
   /*
-   * public List subList(EStructuralFeature feature, int from, int to) { return
-   * null; }
+   * public List subList(EStructuralFeature feature, int from, int to) { return null; }
    */
 
   @SuppressWarnings("unchecked")

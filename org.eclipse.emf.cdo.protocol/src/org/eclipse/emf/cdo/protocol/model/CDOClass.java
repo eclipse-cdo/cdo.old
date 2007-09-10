@@ -30,8 +30,7 @@ public interface CDOClass extends CDOModelElement
   public CDOClass[] getSuperTypes();
 
   /**
-   * @return An array of all super types. The array is not a copy and must not
-   *         be modified!
+   * @return An array of all super types. The array is not a copy and must not be modified!
    */
   public CDOClass[] getAllSuperTypes();
 
@@ -42,8 +41,7 @@ public interface CDOClass extends CDOModelElement
   public CDOFeature[] getFeatures();
 
   /**
-   * @return An array of all features. The array is not a copy and must not be
-   *         modified!
+   * @return An array of all features. The array is not a copy and must not be modified!
    */
   public CDOFeature[] getAllFeatures();
 

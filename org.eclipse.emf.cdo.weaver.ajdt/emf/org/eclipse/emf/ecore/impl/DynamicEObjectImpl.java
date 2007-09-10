@@ -25,8 +25,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 
 /**
- * An implementation of the model object '<em><b>EObject</b></em>' that's
- * tuned for dynamic use.
+ * An implementation of the model object '<em><b>EObject</b></em>' that's tuned for dynamic use.
  */
 public class DynamicEObjectImpl extends EObjectImpl implements EStructuralFeature.Internal.DynamicValueHolder
 {
@@ -289,8 +288,7 @@ public class DynamicEObjectImpl extends EObjectImpl implements EStructuralFeatur
   }
 
   /*
-   * public String toString() { String result = super.toString(); int index =
-   * result.indexOf("DynamicEObjectImpl"); return index == -1 ? result :
-   * result.substring(0, index) + result.substring(index + 7); }
+   * public String toString() { String result = super.toString(); int index = result.indexOf("DynamicEObjectImpl");
+   * return index == -1 ? result : result.substring(0, index) + result.substring(index + 7); }
    */
 }

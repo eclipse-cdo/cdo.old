@@ -52,8 +52,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
  * 
  * @generated
  */
@@ -95,14 +94,11 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
     // values -- EL
 
     /*
-     * initialValue = collapseWhiteSpace(initialValue); if (initialValue !=
-     * null) { //encode special characters using XLink 5.4 algorithm
-     * initialValue = URI.encode(initialValue); // Support for relative URLs //
-     * According to Java 1.1: URLs may also be specified with a // String and
-     * the URL object that it is related to. try { new URI(URI.BASE_URI,
-     * initialValue); } catch (URI.MalformedURIException e) { throw new
-     * InvalidDatatypeValueException("Invalid anyURI value: '"+initialValue+"'
-     * :"+e.toString()); } }
+     * initialValue = collapseWhiteSpace(initialValue); if (initialValue != null) { //encode special characters using
+     * XLink 5.4 algorithm initialValue = URI.encode(initialValue); // Support for relative URLs // According to Java
+     * 1.1: URLs may also be specified with a // String and the URL object that it is related to. try { new
+     * URI(URI.BASE_URI, initialValue); } catch (URI.MalformedURIException e) { throw new
+     * InvalidDatatypeValueException("Invalid anyURI value: '"+initialValue+"' :"+e.toString()); } }
      */
     return literal;
   }
@@ -1617,8 +1613,7 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
   }
 
   /**
-   * Creates the default factory implementation. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1644,8 +1639,7 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
       new SafeSimpleDateFormat("yyyy-MM-ddZ") };
 
   /**
-   * Creates an instance of the factory. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */

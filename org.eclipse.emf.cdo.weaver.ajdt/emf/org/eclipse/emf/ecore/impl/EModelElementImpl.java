@@ -34,8 +34,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>EModel Element</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EModel Element</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -48,8 +48,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public abstract class EModelElementImpl extends FlatEObjectImpl implements EModelElement
 {
   /**
-   * The cached value of the '{@link #getEAnnotations() <em>EAnnotations</em>}'
-   * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getEAnnotations() <em>EAnnotations</em>}' containment reference list. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getEAnnotations()
    * @generated
@@ -68,14 +68,12 @@ public abstract class EModelElementImpl extends FlatEObjectImpl implements EMode
   }
 
   /**
-   * The bit of {@link #eFlags} that is used to represent being
-   * {@link #freeze() frozen}.
+   * The bit of {@link #eFlags} that is used to represent being {@link #freeze() frozen}.
    */
   protected static final int EFROZEN = ELAST_EOBJECT_FLAG << 1;
 
   /**
-   * The last bit used by this class; derived classes may use bit values higher
-   * than this.
+   * The last bit used by this class; derived classes may use bit values higher than this.
    */
   protected static final int ELAST_EMODEL_ELEMENT_FLAG = EFROZEN;
 

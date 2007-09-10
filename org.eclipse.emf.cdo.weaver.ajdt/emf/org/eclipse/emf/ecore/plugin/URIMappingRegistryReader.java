@@ -26,9 +26,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.URIConverter;
 
 /**
- * A plugin extension reader that populates the
- * {@link org.eclipse.emf.ecore.resource.URIConverter#URI_MAP global} mapping
- * registry. Clients are not expected to use this class directly.
+ * A plugin extension reader that populates the {@link org.eclipse.emf.ecore.resource.URIConverter#URI_MAP global}
+ * mapping registry. Clients are not expected to use this class directly.
  */
 class URIMappingRegistryReader extends RegistryReader
 {

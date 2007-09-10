@@ -1304,8 +1304,8 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   }
 
   /**
-   * The default value of the '{@link #isAbstract() <em>Abstract</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #isAbstract()
    * @generated
@@ -1314,8 +1314,8 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   protected static final boolean ABSTRACT_EDEFAULT = false;
 
   /**
-   * The flag representing the value of the '{@link #isAbstract() <em>Abstract</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The flag representing the value of the '{@link #isAbstract() <em>Abstract</em>}' attribute. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @see #isAbstract()
    * @generated
@@ -1324,8 +1324,8 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   protected static final int ABSTRACT_EFLAG = 1 << 8;
 
   /**
-   * The default value of the '{@link #isInterface() <em>Interface</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #isInterface() <em>Interface</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #isInterface()
    * @generated
@@ -1334,8 +1334,8 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   protected static final boolean INTERFACE_EDEFAULT = false;
 
   /**
-   * The flag representing the value of the '{@link #isInterface() <em>Interface</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The flag representing the value of the '{@link #isInterface() <em>Interface</em>}' attribute. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @see #isInterface()
    * @generated
@@ -1344,8 +1344,8 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   protected static final int INTERFACE_EFLAG = 1 << 9;
 
   /**
-   * The cached value of the '{@link #getESuperTypes() <em>ESuper Types</em>}'
-   * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getESuperTypes() <em>ESuper Types</em>}' reference list. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @see #getESuperTypes()
    * @generated
@@ -1354,8 +1354,8 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   protected EList<EClass> eSuperTypes;
 
   /**
-   * The cached value of the '{@link #getEOperations() <em>EOperations</em>}'
-   * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getEOperations() <em>EOperations</em>}' containment reference list. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getEOperations()
    * @generated
@@ -1364,8 +1364,8 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   protected EList<EOperation> eOperations;
 
   /**
-   * The cached value of the '{@link #getEReferences() <em>EReferences</em>}'
-   * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getEReferences() <em>EReferences</em>}' containment reference list. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getEReferences()
    * @generated NOT
@@ -1374,8 +1374,8 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   protected BasicEList<EReference> eReferences = null;
 
   /**
-   * The cached value of the '{@link #getEAttributes() <em>EAttributes</em>}'
-   * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getEAttributes() <em>EAttributes</em>}' containment reference list. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getEAttributes()
    * @generated NOT
@@ -1384,8 +1384,8 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   protected BasicEList<EAttribute> eAttributes = null;
 
   /**
-   * The cached value of the '{@link #getEStructuralFeatures() <em>EStructural Features</em>}'
-   * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getEStructuralFeatures() <em>EStructural Features</em>}' containment reference
+   * list. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getEStructuralFeatures()
    * @generated
@@ -1394,8 +1394,8 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   protected EList<EStructuralFeature> eStructuralFeatures;
 
   /**
-   * The cached value of the '{@link #getEGenericSuperTypes() <em>EGeneric Super Types</em>}'
-   * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getEGenericSuperTypes() <em>EGeneric Super Types</em>}' containment reference
+   * list. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getEGenericSuperTypes()
    * @generated
@@ -1889,10 +1889,9 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   }
 
   /**
-   * Determines if the class or interface represented by this Class object is
-   * either the same as, or is a super class or super interface of, the class or
-   * interface represented by the specified someClass parameter. Semantics are
-   * the same as java.lang.Class#isAssignableFrom
+   * Determines if the class or interface represented by this Class object is either the same as, or is a super class or
+   * super interface of, the class or interface represented by the specified someClass parameter. Semantics are the same
+   * as java.lang.Class#isAssignableFrom
    */
   public boolean isSuperTypeOf(EClass someClass)
   {

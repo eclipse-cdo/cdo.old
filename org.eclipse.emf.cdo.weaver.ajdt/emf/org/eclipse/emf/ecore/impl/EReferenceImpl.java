@@ -31,8 +31,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>EReference</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EReference</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -50,8 +50,8 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
 {
   /**
-   * The default value of the '{@link #isContainment() <em>Containment</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #isContainment() <em>Containment</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #isContainment()
    * @generated
@@ -60,8 +60,8 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   protected static final boolean CONTAINMENT_EDEFAULT = false;
 
   /**
-   * The flag representing the value of the '{@link #isContainment() <em>Containment</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The flag representing the value of the '{@link #isContainment() <em>Containment</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #isContainment()
    * @generated
@@ -70,8 +70,8 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   protected static final int CONTAINMENT_EFLAG = 1 << 15;
 
   /**
-   * The default value of the '{@link #isContainer() <em>Container</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #isContainer() <em>Container</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #isContainer()
    * @generated
@@ -80,8 +80,8 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   protected static final boolean CONTAINER_EDEFAULT = false;
 
   /**
-   * The default value of the '{@link #isResolveProxies() <em>Resolve Proxies</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #isResolveProxies() <em>Resolve Proxies</em>}' attribute. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @see #isResolveProxies()
    * @generated
@@ -90,8 +90,8 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   protected static final boolean RESOLVE_PROXIES_EDEFAULT = true;
 
   /**
-   * The flag representing the value of the '{@link #isResolveProxies() <em>Resolve Proxies</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The flag representing the value of the '{@link #isResolveProxies() <em>Resolve Proxies</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #isResolveProxies()
    * @generated
@@ -100,8 +100,8 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   protected static final int RESOLVE_PROXIES_EFLAG = 1 << 16;
 
   /**
-   * The cached value of the '{@link #getEOpposite() <em>EOpposite</em>}'
-   * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getEOpposite() <em>EOpposite</em>}' reference. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getEOpposite()
    * @generated
@@ -110,8 +110,8 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   protected EReference eOpposite;
 
   /**
-   * The cached value of the '{@link #getEKeys() <em>EKeys</em>}' reference
-   * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getEKeys() <em>EKeys</em>}' reference list. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getEKeys()
    * @generated

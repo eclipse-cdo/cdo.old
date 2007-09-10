@@ -32,8 +32,8 @@ import org.eclipse.emf.ecore.util.FeatureMapUtil;
 // import org.eclipse.emf.ecore.InternalEObject;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>EAttribute</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EAttribute</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -47,8 +47,7 @@ import org.eclipse.emf.ecore.util.FeatureMapUtil;
 public class EAttributeImpl extends EStructuralFeatureImpl implements EAttribute
 {
   /**
-   * The default value of the '{@link #isID() <em>ID</em>}' attribute. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #isID() <em>ID</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #isID()
    * @generated
@@ -57,8 +56,8 @@ public class EAttributeImpl extends EStructuralFeatureImpl implements EAttribute
   protected static final boolean ID_EDEFAULT = false;
 
   /**
-   * The flag representing the value of the '{@link #isID() <em>ID</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The flag representing the value of the '{@link #isID() <em>ID</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #isID()
    * @generated

@@ -23,8 +23,8 @@ import java.util.List;
 public interface CDORevisionResolver
 {
   /**
-   * @return The type of an object if a revision for that object is in the
-   *         revision cache, <code>null</code> otherwise.
+   * @return The type of an object if a revision for that object is in the revision cache, <code>null</code>
+   *         otherwise.
    */
   public CDOClass getObjectType(CDOID id);
 
@@ -45,18 +45,15 @@ public interface CDORevisionResolver
   public CDOID resolveReferenceProxy(CDOReferenceProxy referenceProxy);
 
   /**
-   * Analyzing a list of values with respect to consecutive sequences of
-   * {@link CDOReferenceProxy} instances. A sequence of reference proxies is
-   * considered consecutive if and only if the
-   * {@link CDOReferenceProxy#getIndex() index} of each proxy is the index of
-   * its predecessor increased by one.
+   * Analyzing a list of values with respect to consecutive sequences of {@link CDOReferenceProxy} instances. A sequence
+   * of reference proxies is considered consecutive if and only if the {@link CDOReferenceProxy#getIndex() index} of
+   * each proxy is the index of its predecessor increased by one.
    * <p>
-   * Implementation note: The implementation of this method should try to
-   * determine and deliver the longest possible consecutive sequences.
+   * Implementation note: The implementation of this method should try to determine and deliver the longest possible
+   * consecutive sequences.
    * 
-   * @return An integer list of the range <b>sizes</b>. A positive integer
-   *         denotes a range of non-proxies. A negative integer denotes a range
-   *         of proxies. Ranges of zero size are not possible by definition.
+   * @return An integer list of the range <b>sizes</b>. A positive integer denotes a range of non-proxies. A negative
+   *         integer denotes a range of proxies. Ranges of zero size are not possible by definition.
    */
   public List<Integer> analyzeReferenceRanges(List<Object> list);
 }

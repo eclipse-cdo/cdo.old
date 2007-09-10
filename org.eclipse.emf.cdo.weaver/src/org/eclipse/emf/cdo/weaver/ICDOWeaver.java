@@ -33,10 +33,8 @@ public interface ICDOWeaver
 
   /**
    * @param bundleLocations
-   *          The locations bundle of the bundles in the file system. Each
-   *          location must either point to a jar bundle or a folder bundle. In
-   *          both cases the bundle must contain its classes in the bundle root
-   *          directory.
+   *          The locations bundle of the bundles in the file system. Each location must either point to a jar bundle or
+   *          a folder bundle. In both cases the bundle must contain its classes in the bundle root directory.
    */
   public void weave(Collection<BundleInfo> bundleInfos) throws IORuntimeException;
 }

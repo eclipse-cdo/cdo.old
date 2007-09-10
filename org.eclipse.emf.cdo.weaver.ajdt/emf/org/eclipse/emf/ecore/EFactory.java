@@ -19,9 +19,8 @@ package org.eclipse.emf.ecore;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>EFactory</b></em>'.
  * <p>
- * A factory is responsible for {@link #create creating} class instances, and
- * for converting data type instances {@link #convertToString to} and
- * {@link #createFromString from} <code>String</code>.
+ * A factory is responsible for {@link #create creating} class instances, and for converting data type instances
+ * {@link #convertToString to} and {@link #createFromString from} <code>String</code>.
  * <p>
  * <!-- end-user-doc -->
  * <p>
@@ -38,8 +37,7 @@ package org.eclipse.emf.ecore;
 public interface EFactory extends EModelElement
 {
   /**
-   * Returns the value of the '<em><b>EPackage</b></em>' reference. It is
-   * bidirectional and its opposite is '{@link org.eclipse.emf.ecore.EPackage#getEFactoryInstance <em>EFactory Instance</em>}'.
+   * Returns the value of the '<em><b>EPackage</b></em>' reference. It is bidirectional and its opposite is '{@link org.eclipse.emf.ecore.EPackage#getEFactoryInstance <em>EFactory Instance</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * It represent the package of this factory.
@@ -50,15 +48,14 @@ public interface EFactory extends EModelElement
    * @see #setEPackage(EPackage)
    * @see org.eclipse.emf.ecore.EcorePackage#getEFactory_EPackage()
    * @see org.eclipse.emf.ecore.EPackage#getEFactoryInstance
-   * @model opposite="eFactoryInstance" resolveProxies="false" required="true"
-   *        transient="true"
+   * @model opposite="eFactoryInstance" resolveProxies="false" required="true" transient="true"
    * @generated
    */
   EPackage getEPackage();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.ecore.EFactory#getEPackage <em>EPackage</em>}'
-   * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.EFactory#getEPackage <em>EPackage</em>}' reference. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param value
    *          the new value of the '<em>EPackage</em>' reference.
@@ -79,8 +76,7 @@ public interface EFactory extends EModelElement
   EObject create(EClass eClass);
 
   /**
-   * <!-- begin-user-doc --> Creates an instance of the data type from the
-   * literal value.
+   * <!-- begin-user-doc --> Creates an instance of the data type from the literal value.
    * 
    * @param literalValue
    *          literal value of the instance.

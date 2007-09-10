@@ -125,8 +125,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * This is an example of a Model1 model editor. <!-- begin-user-doc --> <!--
- * end-user-doc -->
+ * This is an example of a Model1 model editor. <!-- begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
@@ -134,24 +133,23 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
     IMenuListener, IViewerProvider, IGotoMarker
 {
   /**
-   * This keeps track of the editing domain that is used to track all changes to
-   * the model. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This keeps track of the editing domain that is used to track all changes to the model. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @generated
    */
   protected AdapterFactoryEditingDomain editingDomain;
 
   /**
-   * This is the one adapter factory used for providing views of the model. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * This is the one adapter factory used for providing views of the model. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @generated
    */
   protected ComposedAdapterFactory adapterFactory;
 
   /**
-   * This is the content outline page. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
+   * This is the content outline page. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -165,124 +163,112 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   protected IStatusLineManager contentOutlineStatusLineManager;
 
   /**
-   * This is the content outline page's viewer. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * This is the content outline page's viewer. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected TreeViewer contentOutlineViewer;
 
   /**
-   * This is the property sheet page. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
+   * This is the property sheet page. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected PropertySheetPage propertySheetPage;
 
   /**
-   * This is the viewer that shadows the selection in the content outline. The
-   * parent relation must be correctly defined for this to work. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * This is the viewer that shadows the selection in the content outline. The parent relation must be correctly defined
+   * for this to work. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected TreeViewer selectionViewer;
 
   /**
-   * This inverts the roll of parent and child in the content provider and show
-   * parents as a tree. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This inverts the roll of parent and child in the content provider and show parents as a tree. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected TreeViewer parentViewer;
 
   /**
-   * This shows how a tree view works. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
+   * This shows how a tree view works. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected TreeViewer treeViewer;
 
   /**
-   * This shows how a list view works. A list viewer doesn't support icons. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * This shows how a list view works. A list viewer doesn't support icons. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @generated
    */
   protected ListViewer listViewer;
 
   /**
-   * This shows how a table view works. A table can be used as a list with
-   * icons. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This shows how a table view works. A table can be used as a list with icons. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @generated
    */
   protected TableViewer tableViewer;
 
   /**
-   * This shows how a tree view with columns works. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * This shows how a tree view with columns works. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected TreeViewer treeViewerWithColumns;
 
   /**
-   * This keeps track of the active viewer pane, in the book. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * This keeps track of the active viewer pane, in the book. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected ViewerPane currentViewerPane;
 
   /**
-   * This keeps track of the active content viewer, which may be either one of
-   * the viewers in the pages or the content outline viewer. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * This keeps track of the active content viewer, which may be either one of the viewers in the pages or the content
+   * outline viewer. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected Viewer currentViewer;
 
   /**
-   * This listens to which ever viewer is active. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * This listens to which ever viewer is active. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected ISelectionChangedListener selectionChangedListener;
 
   /**
-   * This keeps track of all the
-   * {@link org.eclipse.jface.viewers.ISelectionChangedListener}s that are
-   * listening to this editor. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This keeps track of all the {@link org.eclipse.jface.viewers.ISelectionChangedListener}s that are listening to
+   * this editor. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected Collection<ISelectionChangedListener> selectionChangedListeners = new ArrayList<ISelectionChangedListener>();
 
   /**
-   * This keeps track of the selection of the editor as a whole. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * This keeps track of the selection of the editor as a whole. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected ISelection editorSelection = StructuredSelection.EMPTY;
 
   /**
-   * The MarkerHelper is responsible for creating workspace resource markers
-   * presented in Eclipse's Problems View. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * The MarkerHelper is responsible for creating workspace resource markers presented in Eclipse's Problems View. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected MarkerHelper markerHelper = new EditUIMarkerHelper();
 
   /**
-   * This listens for when the outline becomes active <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This listens for when the outline becomes active <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -335,48 +321,43 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   };
 
   /**
-   * Resources that have been removed since last activation. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Resources that have been removed since last activation. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected Collection<Resource> removedResources = new ArrayList<Resource>();
 
   /**
-   * Resources that have been changed since last activation. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Resources that have been changed since last activation. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected Collection<Resource> changedResources = new ArrayList<Resource>();
 
   /**
-   * Resources that have been saved. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
+   * Resources that have been saved. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected Collection<Resource> savedResources = new ArrayList<Resource>();
 
   /**
-   * Map to store the diagnostic associated with a resource. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Map to store the diagnostic associated with a resource. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 
   /**
-   * Controls whether the problem indication should be updated. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Controls whether the problem indication should be updated. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected boolean updateProblemIndication = true;
 
   /**
-   * Adapter used to update the problem indication when resources are demanded
-   * loaded. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Adapter used to update the problem indication when resources are demanded loaded. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @generated
    */
@@ -438,8 +419,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   };
 
   /**
-   * This listens for workspace changes. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * This listens for workspace changes. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -539,8 +519,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   };
 
   /**
-   * Handles activation of the editor or it's associated views. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Handles activation of the editor or it's associated views. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -581,8 +560,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * Handles what to do with changed resources on activation. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Handles what to do with changed resources on activation. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -617,8 +595,8 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * Updates the problems indication with the information described in the
-   * specified diagnostic. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Updates the problems indication with the information described in the specified diagnostic. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -682,8 +660,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * Shows a dialog that asks if conflicting changes should be discarded. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Shows a dialog that asks if conflicting changes should be discarded. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -705,8 +682,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This sets up the editing domain for the model editor. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * This sets up the editing domain for the model editor. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -760,8 +736,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This is here for the listener to be able to call it. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * This is here for the listener to be able to call it. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -772,8 +747,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This sets the selection into whichever viewer is active. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * This sets the selection into whichever viewer is active. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -808,11 +782,9 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This returns the editing domain as required by the
-   * {@link IEditingDomainProvider} interface. This is important for
-   * implementing the static methods of {@link AdapterFactoryEditingDomain} and
-   * for supporting {@link org.eclipse.emf.edit.ui.action.CommandAction}. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * This returns the editing domain as required by the {@link IEditingDomainProvider} interface. This is important for
+   * implementing the static methods of {@link AdapterFactoryEditingDomain} and for supporting
+   * {@link org.eclipse.emf.edit.ui.action.CommandAction}. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -905,9 +877,8 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This makes sure that one content viewer, either for the current page or the
-   * outline view, if it has focus, is the current one. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * This makes sure that one content viewer, either for the current page or the outline view, if it has focus, is the
+   * current one. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -957,8 +928,8 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This returns the viewer as required by the {@link IViewerProvider}
-   * interface. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This returns the viewer as required by the {@link IViewerProvider} interface. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @generated
    */
@@ -968,9 +939,8 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This creates a context menu for the viewer and adds a listener as well
-   * registering the menu for extension. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * This creates a context menu for the viewer and adds a listener as well registering the menu for extension. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -991,9 +961,8 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This is the method called to load a resource into the editing domain's
-   * resource set based on the editor's input. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * This is the method called to load a resource into the editing domain's resource set based on the editor's input.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1023,9 +992,8 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * Returns a diagnostic describing the errors and warnings listed in the
-   * resource and the specified exception (if any). <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * Returns a diagnostic describing the errors and warnings listed in the resource and the specified exception (if
+   * any). <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1051,8 +1019,8 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This is the method used by the framework to install your own controls. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * This is the method used by the framework to install your own controls. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @generated
    */
@@ -1326,8 +1294,8 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * If there is just one page in the multi-page editor part, this hides the
-   * single tab at the bottom. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * If there is just one page in the multi-page editor part, this hides the single tab at the bottom. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1346,8 +1314,8 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * If there is more than one page in the multi-page editor part, this shows
-   * the tabs at the bottom. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * If there is more than one page in the multi-page editor part, this shows the tabs at the bottom. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1366,8 +1334,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This is used to track the active viewer. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * This is used to track the active viewer. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1383,8 +1350,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This is how the framework determines which interfaces we implement. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * This is how the framework determines which interfaces we implement. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1411,8 +1377,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This accesses a cached version of the content outliner. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * This accesses a cached version of the content outliner. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1485,8 +1450,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This accesses a cached version of the property sheet. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * This accesses a cached version of the property sheet. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1517,8 +1481,8 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This deals with how we want selection in the outliner to affect the other
-   * views. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This deals with how we want selection in the outliner to affect the other views. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @generated
    */
@@ -1564,8 +1528,8 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This is for implementing {@link IEditorPart} and simply tests the command
-   * stack. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This is for implementing {@link IEditorPart} and simply tests the command stack. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @generated
    */
@@ -1576,8 +1540,8 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This is for implementing {@link IEditorPart} and simply saves the model
-   * file. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This is for implementing {@link IEditorPart} and simply saves the model file. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @generated
    */
@@ -1645,10 +1609,9 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This returns whether something has been persisted to the URI of the
-   * specified resource. The implementation uses the URI converter from the
-   * editor's resource set to try to open an input stream. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * This returns whether something has been persisted to the URI of the specified resource. The implementation uses the
+   * URI converter from the editor's resource set to try to open an input stream. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @generated
    */
@@ -1672,8 +1635,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This always returns true because it is not currently supported. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * This always returns true because it is not currently supported. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1684,8 +1646,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This also changes the editor's input. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * This also changes the editor's input. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1750,8 +1711,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This is called during startup. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
+   * This is called during startup. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1785,8 +1745,8 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This implements {@link org.eclipse.jface.viewers.ISelectionProvider}. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * This implements {@link org.eclipse.jface.viewers.ISelectionProvider}. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @generated
    */
@@ -1796,8 +1756,8 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This implements {@link org.eclipse.jface.viewers.ISelectionProvider}. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * This implements {@link org.eclipse.jface.viewers.ISelectionProvider}. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @generated
    */
@@ -1807,9 +1767,8 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to
-   * return this editor's overall selection. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to return this editor's overall selection.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1819,9 +1778,8 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to set
-   * this editor's overall selection. Calling this result will notify the
-   * listeners. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to set this editor's overall selection.
+   * Calling this result will notify the listeners. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1879,8 +1837,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This looks up a string in the plugin's plugin.properties file. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * This looks up a string in the plugin's plugin.properties file. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1890,8 +1847,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This looks up a string in plugin.properties, making a substitution. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * This looks up a string in plugin.properties, making a substitution. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1901,9 +1857,8 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * This implements {@link org.eclipse.jface.action.IMenuListener} to help fill
-   * the context menus with contributions from the Edit menu. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * This implements {@link org.eclipse.jface.action.IMenuListener} to help fill the context menus with contributions
+   * from the Edit menu. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1977,8 +1932,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
   }
 
   /**
-   * Returns whether the outline view should be presented to the user. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns whether the outline view should be presented to the user. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */

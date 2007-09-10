@@ -38,8 +38,7 @@ import org.eclipse.emf.common.util.Enumerator;
 public interface EEnumLiteral extends ENamedElement, Enumerator
 {
   /**
-   * Returns the value of the '<em><b>Value</b></em>' attribute. <!--
-   * begin-user-doc -->
+   * Returns the value of the '<em><b>Value</b></em>' attribute. <!-- begin-user-doc -->
    * <p>
    * It represents the <code>int</code> value of an enumerator.
    * </p>
@@ -54,8 +53,8 @@ public interface EEnumLiteral extends ENamedElement, Enumerator
   int getValue();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.ecore.EEnumLiteral#getValue <em>Value</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.EEnumLiteral#getValue <em>Value</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param value
    *          the new value of the '<em>Value</em>' attribute.
@@ -65,8 +64,7 @@ public interface EEnumLiteral extends ENamedElement, Enumerator
   void setValue(int value);
 
   /**
-   * Returns the value of the '<em><b>Instance</b></em>' attribute. <!--
-   * begin-user-doc -->
+   * Returns the value of the '<em><b>Instance</b></em>' attribute. <!-- begin-user-doc -->
    * <p>
    * It represents the actual Java instance value.
    * </p>
@@ -81,8 +79,8 @@ public interface EEnumLiteral extends ENamedElement, Enumerator
   Enumerator getInstance();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.ecore.EEnumLiteral#getInstance <em>Instance</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.EEnumLiteral#getInstance <em>Instance</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param value
    *          the new value of the '<em>Instance</em>' attribute.
@@ -92,12 +90,10 @@ public interface EEnumLiteral extends ENamedElement, Enumerator
   void setInstance(Enumerator value);
 
   /**
-   * Returns the value of the '<em><b>Literal</b></em>' attribute. <!--
-   * begin-user-doc -->
+   * Returns the value of the '<em><b>Literal</b></em>' attribute. <!-- begin-user-doc -->
    * <p>
-   * This is the literal, string value that represents this enumerator value.
-   * This is used in persisting instances of enumerated type. If set to
-   * <code>null<code>, it will return the {@link ENamedElement#getName name}, instead.
+   * This is the literal, string value that represents this enumerator value. This is used in persisting instances of
+   * enumerated type. If set to <code>null<code>, it will return the {@link ENamedElement#getName name}, instead.
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Literal</em>' attribute.
@@ -109,8 +105,8 @@ public interface EEnumLiteral extends ENamedElement, Enumerator
   String getLiteral();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.ecore.EEnumLiteral#getLiteral <em>Literal</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.EEnumLiteral#getLiteral <em>Literal</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param value
    *          the new value of the '<em>Literal</em>' attribute.
@@ -120,8 +116,7 @@ public interface EEnumLiteral extends ENamedElement, Enumerator
   void setLiteral(String value);
 
   /**
-   * Returns the value of the '<em><b>EEnum</b></em>' container reference.
-   * It is bidirectional and its opposite is '{@link org.eclipse.emf.ecore.EEnum#getELiterals <em>ELiterals</em>}'.
+   * Returns the value of the '<em><b>EEnum</b></em>' container reference. It is bidirectional and its opposite is '{@link org.eclipse.emf.ecore.EEnum#getELiterals <em>ELiterals</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * It represents the contain enumeration.

@@ -95,13 +95,11 @@ public final class DataValue
   }
 
   /*
-   * This class provides encode/decode for RFC 2045 Base64 as defined by RFC
-   * 2045, N. Freed and N. Borenstein. RFC 2045: Multipurpose Internet Mail
-   * Extensions (MIME) Part One: Format of Internet Message Bodies. Reference
-   * 1996 Available at: http://www.ietf.org/rfc/rfc2045.txt This class is used
-   * by XML Schema binary format validation This implementation does not
-   * encode/decode streaming data. You need the data that you will encode/decode
-   * already on a byte array. @author Jeffrey Rodriguez @author Sandy Gao
+   * This class provides encode/decode for RFC 2045 Base64 as defined by RFC 2045, N. Freed and N. Borenstein. RFC 2045:
+   * Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies. Reference 1996 Available
+   * at: http://www.ietf.org/rfc/rfc2045.txt This class is used by XML Schema binary format validation This
+   * implementation does not encode/decode streaming data. You need the data that you will encode/decode already on a
+   * byte array. @author Jeffrey Rodriguez @author Sandy Gao
    */
   public static final class Base64
   {
@@ -419,8 +417,7 @@ public final class DataValue
   }
 
   /*
-   * format validation This class encodes/decodes hexadecimal data @author
-   * Jeffrey Rodriguez
+   * format validation This class encodes/decodes hexadecimal data @author Jeffrey Rodriguez
    */
   public static final class HexBin
   {
@@ -511,114 +508,78 @@ public final class DataValue
   }
 
   /*
-   * EncodingMap is a convenience class which handles conversions between IANA
-   * encoding names and Java encoding names, and vice versa. The encoding names
-   * used in XML instance documents <strong>must</strong> be the IANA encoding
-   * names specified or one of the aliases for those names which IANA defines.
-   * <p> <TABLE BORDER="0" WIDTH="100%"> <TR> <TD WIDTH="33%">
-   * <P ALIGN="CENTER"><B>Common Name</B> </TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER"><B>Use this name in XML files</B> </TD>
-   * <TD WIDTH="12%"> <P ALIGN="CENTER"><B>Name Type</B> </TD>
-   * <TD WIDTH="31%"> <P ALIGN="CENTER"><B>Xerces converts to this Java Encoder
-   * Name</B> </TD> </TR> <TR> <TD WIDTH="33%">8 bit Unicode</TD>
-   * <TD WIDTH="15%"> <P ALIGN="CENTER">UTF-8 </TD> <TD WIDTH="12%">
-   * <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">UTF8
-   * </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin 1</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ISO-8859-1 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME
-   * </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">ISO-8859-1 </TD> </TR> <TR>
-   * <TD WIDTH="33%">ISO Latin 2</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ISO-8859-2
-   * </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">ISO-8859-2 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin 3</TD>
-   * <TD WIDTH="15%"> <P ALIGN="CENTER">ISO-8859-3 </TD> <TD WIDTH="12%">
-   * <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">ISO-8859-3
-   * </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin 4</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ISO-8859-4 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME
-   * </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">ISO-8859-4 </TD> </TR> <TR>
-   * <TD WIDTH="33%">ISO Latin Cyrillic</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ISO-8859-5 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME
-   * </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">ISO-8859-5 </TD> </TR> <TR>
-   * <TD WIDTH="33%">ISO Latin Arabic</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ISO-8859-6
-   * </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">ISO-8859-6 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin
-   * Greek</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ISO-8859-7 </TD>
-   * <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">ISO-8859-7 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin
-   * Hebrew</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ISO-8859-8 </TD>
-   * <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">ISO-8859-8 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin 5</TD>
-   * <TD WIDTH="15%"> <P ALIGN="CENTER">ISO-8859-9 </TD> <TD WIDTH="12%">
-   * <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">ISO-8859-9
-   * </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: US</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ebcdic-cp-us </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA
-   * </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp037 </TD> </TR> <TR>
-   * <TD WIDTH="33%">EBCDIC: Canada</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-ca
-   * </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">cp037 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC:
-   * Netherlands</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-nl </TD>
-   * <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">cp037 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Denmark</TD>
-   * <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-dk </TD> <TD WIDTH="12%">
-   * <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp277
-   * </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Norway</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ebcdic-cp-no </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA
-   * </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp277 </TD> </TR> <TR>
-   * <TD WIDTH="33%">EBCDIC: Finland</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-fi
-   * </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">cp278 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Sweden</TD>
-   * <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-se </TD> <TD WIDTH="12%">
-   * <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp278
-   * </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Italy</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ebcdic-cp-it </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA
-   * </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp280 </TD> </TR> <TR>
-   * <TD WIDTH="33%">EBCDIC: Spain, Latin America</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ebcdic-cp-es </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA
-   * </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp284 </TD> </TR> <TR>
-   * <TD WIDTH="33%">EBCDIC: Great Britain</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ebcdic-cp-gb </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA
-   * </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp285 </TD> </TR> <TR>
-   * <TD WIDTH="33%">EBCDIC: France</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-fr
-   * </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">cp297 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Arabic</TD>
-   * <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-ar1 </TD> <TD WIDTH="12%">
-   * <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp420
-   * </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Hebrew</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ebcdic-cp-he </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA
-   * </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp424 </TD> </TR> <TR>
-   * <TD WIDTH="33%">EBCDIC: Switzerland</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ebcdic-cp-ch </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA
-   * </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp500 </TD> </TR> <TR>
-   * <TD WIDTH="33%">EBCDIC: Roece</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-roece
-   * </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">cp870 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC:
-   * Yugoslavia</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-yu </TD>
-   * <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">cp870 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Iceland</TD>
-   * <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-is </TD> <TD WIDTH="12%">
-   * <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp871
-   * </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Urdu</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ebcdic-cp-ar2 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA
-   * </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp918 </TD> </TR> <TR>
-   * <TD WIDTH="33%">Chinese for PRC, mixed 1/2 byte</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">gb2312 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME
-   * </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">GB2312 </TD> </TR> <TR>
-   * <TD WIDTH="33%">Extended Unix Code, packed for Japanese</TD>
-   * <TD WIDTH="15%"> <P ALIGN="CENTER">euc-jp </TD> <TD WIDTH="12%">
-   * <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">eucjis
-   * </TD> </TR> <TR> <TD WIDTH="33%">Japanese: iso-2022-jp</TD>
-   * <TD WIDTH="15%"> <P ALIGN="CENTER">iso-2020-jp </TD> <TD WIDTH="12%">
-   * <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">JIS </TD>
-   * </TR> <TR> <TD WIDTH="33%">Japanese: Shift JIS</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">Shift_JIS </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME
-   * </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">SJIS </TD> </TR> <TR>
-   * <TD WIDTH="33%">Chinese: Big5</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">Big5
-   * </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">Big5 </TD> </TR> <TR> <TD WIDTH="33%">Extended Unix
-   * Code, packed for Korean</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">euc-kr
-   * </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">iso2022kr </TD> </TR> <TR> <TD WIDTH="33%">Cyrillic</TD>
-   * <TD WIDTH="15%"> <P ALIGN="CENTER">koi8-r </TD> <TD WIDTH="12%">
-   * <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">koi8-r
-   * </TD> </TR> </TABLE> @author TAMURA Kent, IBM @author Andy Clark, IBM
+   * EncodingMap is a convenience class which handles conversions between IANA encoding names and Java encoding names,
+   * and vice versa. The encoding names used in XML instance documents <strong>must</strong> be the IANA encoding names
+   * specified or one of the aliases for those names which IANA defines. <p> <TABLE BORDER="0" WIDTH="100%"> <TR>
+   * <TD WIDTH="33%"> <P ALIGN="CENTER"><B>Common Name</B> </TD> <TD WIDTH="15%"> <P ALIGN="CENTER"><B>Use this name
+   * in XML files</B> </TD> <TD WIDTH="12%"> <P ALIGN="CENTER"><B>Name Type</B> </TD> <TD WIDTH="31%">
+   * <P ALIGN="CENTER"><B>Xerces converts to this Java Encoder Name</B> </TD> </TR> <TR> <TD WIDTH="33%">8 bit
+   * Unicode</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">UTF-8 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD>
+   * <TD WIDTH="31%"> <P ALIGN="CENTER">UTF8 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin 1</TD> <TD WIDTH="15%">
+   * <P ALIGN="CENTER">ISO-8859-1 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%">
+   * <P ALIGN="CENTER">ISO-8859-1 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin 2</TD> <TD WIDTH="15%">
+   * <P ALIGN="CENTER">ISO-8859-2 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%">
+   * <P ALIGN="CENTER">ISO-8859-2 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin 3</TD> <TD WIDTH="15%">
+   * <P ALIGN="CENTER">ISO-8859-3 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%">
+   * <P ALIGN="CENTER">ISO-8859-3 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin 4</TD> <TD WIDTH="15%">
+   * <P ALIGN="CENTER">ISO-8859-4 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%">
+   * <P ALIGN="CENTER">ISO-8859-4 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin Cyrillic</TD> <TD WIDTH="15%">
+   * <P ALIGN="CENTER">ISO-8859-5 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%">
+   * <P ALIGN="CENTER">ISO-8859-5 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin Arabic</TD> <TD WIDTH="15%">
+   * <P ALIGN="CENTER">ISO-8859-6 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%">
+   * <P ALIGN="CENTER">ISO-8859-6 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin Greek</TD> <TD WIDTH="15%">
+   * <P ALIGN="CENTER">ISO-8859-7 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%">
+   * <P ALIGN="CENTER">ISO-8859-7 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin Hebrew</TD> <TD WIDTH="15%">
+   * <P ALIGN="CENTER">ISO-8859-8 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%">
+   * <P ALIGN="CENTER">ISO-8859-8 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin 5</TD> <TD WIDTH="15%">
+   * <P ALIGN="CENTER">ISO-8859-9 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%">
+   * <P ALIGN="CENTER">ISO-8859-9 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: US</TD> <TD WIDTH="15%">
+   * <P ALIGN="CENTER">ebcdic-cp-us </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%">
+   * <P ALIGN="CENTER">cp037 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Canada</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-ca
+   * </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp037 </TD> </TR> <TR>
+   * <TD WIDTH="33%">EBCDIC: Netherlands</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-nl </TD> <TD WIDTH="12%">
+   * <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp037 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC:
+   * Denmark</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-dk </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD>
+   * <TD WIDTH="31%"> <P ALIGN="CENTER">cp277 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Norway</TD> <TD WIDTH="15%">
+   * <P ALIGN="CENTER">ebcdic-cp-no </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%">
+   * <P ALIGN="CENTER">cp277 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Finland</TD> <TD WIDTH="15%">
+   * <P ALIGN="CENTER">ebcdic-cp-fi </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%">
+   * <P ALIGN="CENTER">cp278 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Sweden</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-se
+   * </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp278 </TD> </TR> <TR>
+   * <TD WIDTH="33%">EBCDIC: Italy</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-it </TD> <TD WIDTH="12%">
+   * <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp280 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC:
+   * Spain, Latin America</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-es </TD> <TD WIDTH="12%">
+   * <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp284 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC:
+   * Great Britain</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-gb </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA
+   * </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp285 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: France</TD>
+   * <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-fr </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD>
+   * <TD WIDTH="31%"> <P ALIGN="CENTER">cp297 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Arabic</TD> <TD WIDTH="15%">
+   * <P ALIGN="CENTER">ebcdic-cp-ar1 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%">
+   * <P ALIGN="CENTER">cp420 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Hebrew</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-he
+   * </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp424 </TD> </TR> <TR>
+   * <TD WIDTH="33%">EBCDIC: Switzerland</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-ch </TD> <TD WIDTH="12%">
+   * <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp500 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC:
+   * Roece</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-roece </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA
+   * </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp870 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Yugoslavia</TD>
+   * <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-yu </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD>
+   * <TD WIDTH="31%"> <P ALIGN="CENTER">cp870 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Iceland</TD> <TD WIDTH="15%">
+   * <P ALIGN="CENTER">ebcdic-cp-is </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%">
+   * <P ALIGN="CENTER">cp871 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Urdu</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-ar2
+   * </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp918 </TD> </TR> <TR>
+   * <TD WIDTH="33%">Chinese for PRC, mixed 1/2 byte</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">gb2312 </TD>
+   * <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">GB2312 </TD> </TR> <TR>
+   * <TD WIDTH="33%">Extended Unix Code, packed for Japanese</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">euc-jp </TD>
+   * <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">eucjis </TD> </TR> <TR>
+   * <TD WIDTH="33%">Japanese: iso-2022-jp</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">iso-2020-jp </TD> <TD WIDTH="12%">
+   * <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">JIS </TD> </TR> <TR> <TD WIDTH="33%">Japanese:
+   * Shift JIS</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">Shift_JIS </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD>
+   * <TD WIDTH="31%"> <P ALIGN="CENTER">SJIS </TD> </TR> <TR> <TD WIDTH="33%">Chinese: Big5</TD> <TD WIDTH="15%">
+   * <P ALIGN="CENTER">Big5 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">Big5
+   * </TD> </TR> <TR> <TD WIDTH="33%">Extended Unix Code, packed for Korean</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">euc-kr
+   * </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">iso2022kr </TD> </TR> <TR>
+   * <TD WIDTH="33%">Cyrillic</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">koi8-r </TD> <TD WIDTH="12%">
+   * <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">koi8-r </TD> </TR> </TABLE> @author TAMURA Kent,
+   * IBM @author Andy Clark, IBM
    */
   public static class EncodingMap
   {
@@ -1159,68 +1120,59 @@ public final class DataValue
 
   } // class EncodingMap
 
-  /*****************************************************************************
-   * A class to represent a Uniform Resource Identifier (URI). This class is
-   * designed to handle the parsing of URIs and provide access to the various
-   * components (scheme, host, port, userinfo, path, query string and fragment)
-   * that may constitute a URI.
+  /*********************************************************************************************************************
+   * A class to represent a Uniform Resource Identifier (URI). This class is designed to handle the parsing of URIs and
+   * provide access to the various components (scheme, host, port, userinfo, path, query string and fragment) that may
+   * constitute a URI.
    * <p>
-   * Parsing of a URI specification is done according to the URI syntax
-   * described in <a href="http://www.ietf.org/rfc/rfc2396.txt?number=2396">RFC
-   * 2396</a>, and amended by <a
+   * Parsing of a URI specification is done according to the URI syntax described in <a
+   * href="http://www.ietf.org/rfc/rfc2396.txt?number=2396">RFC 2396</a>, and amended by <a
    * href="http://www.ietf.org/rfc/rfc2732.txt?number=2732">RFC 2732</a>.
    * <p>
-   * Every absolute URI consists of a scheme, followed by a colon (':'),
-   * followed by a scheme-specific part. For URIs that follow the "generic URI"
-   * syntax, the scheme-specific part begins with two slashes ("//") and may be
-   * followed by an authority segment (comprised of user information, host, and
-   * port), path segment, query segment and fragment. Note that RFC 2396 no
-   * longer specifies the use of the parameters segment and excludes the
-   * "user:password" syntax as part of the authority segment. If "user:password"
-   * appears in a URI, the entire user/password string is stored as userinfo.
+   * Every absolute URI consists of a scheme, followed by a colon (':'), followed by a scheme-specific part. For URIs
+   * that follow the "generic URI" syntax, the scheme-specific part begins with two slashes ("//") and may be followed
+   * by an authority segment (comprised of user information, host, and port), path segment, query segment and fragment.
+   * Note that RFC 2396 no longer specifies the use of the parameters segment and excludes the "user:password" syntax as
+   * part of the authority segment. If "user:password" appears in a URI, the entire user/password string is stored as
+   * userinfo.
    * <p>
-   * For URIs that do not follow the "generic URI" syntax (e.g. mailto), the
-   * entire scheme-specific part is treated as the "path" portion of the URI.
+   * For URIs that do not follow the "generic URI" syntax (e.g. mailto), the entire scheme-specific part is treated as
+   * the "path" portion of the URI.
    * <p>
-   * Note that, unlike the java.net.URL class, this class does not provide any
-   * built-in network access functionality nor does it provide any
-   * scheme-specific functionality (for example, it does not know a default port
-   * for a specific scheme). Rather, it only knows the grammar and basic set of
-   * operations that can be applied to a URI.
+   * Note that, unlike the java.net.URL class, this class does not provide any built-in network access functionality nor
+   * does it provide any scheme-specific functionality (for example, it does not know a default port for a specific
+   * scheme). Rather, it only knows the grammar and basic set of operations that can be applied to a URI.
    * 
    * @version $Id$
-   ****************************************************************************/
+   ********************************************************************************************************************/
   public static final class URI implements Serializable
   {
 
     private static final long serialVersionUID = 1L;
 
-    /***************************************************************************
-     * MalformedURIExceptions are thrown in the process of building a URI or
-     * setting fields on a URI when an operation would result in an invalid URI
-     * specification.
-     **************************************************************************/
+    /*******************************************************************************************************************
+     * MalformedURIExceptions are thrown in the process of building a URI or setting fields on a URI when an operation
+     * would result in an invalid URI specification.
+     ******************************************************************************************************************/
     public static class MalformedURIException extends IOException
     {
 
       private static final long serialVersionUID = 1L;
 
-      /*************************************************************************
-       * Constructs a <code>MalformedURIException</code> with no specified
-       * detail message.
-       ************************************************************************/
+      /*****************************************************************************************************************
+       * Constructs a <code>MalformedURIException</code> with no specified detail message.
+       ****************************************************************************************************************/
       public MalformedURIException()
       {
         super();
       }
 
-      /*************************************************************************
-       * Constructs a <code>MalformedURIException</code> with the specified
-       * detail message.
+      /*****************************************************************************************************************
+       * Constructs a <code>MalformedURIException</code> with the specified detail message.
        * 
        * @param p_msg
        *          the detail message.
-       ************************************************************************/
+       ****************************************************************************************************************/
       public MalformedURIException(String p_msg)
       {
         super(p_msg);
@@ -1238,8 +1190,8 @@ public final class DataValue
     private static final int RESERVED_CHARACTERS = 0x01;
 
     /**
-     * URI punctuation mark characters: -_.!~*'() - these, combined with
-     * alphanumerics, constitute the "unreserved" characters
+     * URI punctuation mark characters: -_.!~*'() - these, combined with alphanumerics, constitute the "unreserved"
+     * characters
      */
     private static final int MARK_CHARACTERS = 0x02;
 
@@ -1247,8 +1199,7 @@ public final class DataValue
     private static final int SCHEME_CHARACTERS = 0x04;
 
     /**
-     * userinfo can be composed of unreserved, escaped and these characters:
-     * ;:&=+$,
+     * userinfo can be composed of unreserved, escaped and these characters: ;:&=+$,
      */
     private static final int USERINFO_CHARACTERS = 0x08;
 
@@ -1383,8 +1334,7 @@ public final class DataValue
     private int m_port = -1;
 
     /**
-     * If specified, stores the registry based authority for this URI; otherwise
-     * -1
+     * If specified, stores the registry based authority for this URI; otherwise -1
      */
     private String m_regAuthority = null;
 
@@ -1408,8 +1358,7 @@ public final class DataValue
     }
 
     /**
-     * Construct a new URI from another URI. All fields for this URI are set
-     * equal to the fields of the URI passed in.
+     * Construct a new URI from another URI. All fields for this URI are set equal to the fields of the URI passed in.
      * 
      * @param p_other
      *          the URI to copy (cannot be null)
@@ -1420,13 +1369,10 @@ public final class DataValue
     }
 
     /**
-     * Construct a new URI from a URI specification string. If the specification
-     * follows the "generic URI" syntax, (two slashes following the first
-     * colon), the specification will be parsed accordingly - setting the
-     * scheme, userinfo, host,port, path, query string and fragment fields as
-     * necessary. If the specification does not follow the "generic URI" syntax,
-     * the specification is parsed into a scheme and scheme-specific part
-     * (stored as the path) only.
+     * Construct a new URI from a URI specification string. If the specification follows the "generic URI" syntax, (two
+     * slashes following the first colon), the specification will be parsed accordingly - setting the scheme, userinfo,
+     * host,port, path, query string and fragment fields as necessary. If the specification does not follow the "generic
+     * URI" syntax, the specification is parsed into a scheme and scheme-specific part (stored as the path) only.
      * 
      * @param p_uriSpec
      *          the URI specification string (cannot be null or empty)
@@ -1439,14 +1385,13 @@ public final class DataValue
     }
 
     /**
-     * Construct a new URI from a base URI and a URI specification string. The
-     * URI specification string may be a relative URI.
+     * Construct a new URI from a base URI and a URI specification string. The URI specification string may be a
+     * relative URI.
      * 
      * @param p_base
      *          the base URI (cannot be null if p_uriSpec is null or empty)
      * @param p_uriSpec
-     *          the URI specification string (cannot be null or empty if p_base
-     *          is null)
+     *          the URI specification string (cannot be null or empty if p_base is null)
      * @exception MalformedURIException
      *              if p_uriSpec violates any syntax rules
      */
@@ -1456,8 +1401,8 @@ public final class DataValue
     }
 
     /**
-     * Construct a new URI that does not follow the generic URI syntax. Only the
-     * scheme and scheme-specific part (stored as the path) are initialized.
+     * Construct a new URI that does not follow the generic URI syntax. Only the scheme and scheme-specific part (stored
+     * as the path) are initialized.
      * 
      * @param p_scheme
      *          the URI scheme (cannot be null or empty)
@@ -1481,27 +1426,23 @@ public final class DataValue
     }
 
     /**
-     * Construct a new URI that follows the generic URI syntax from its
-     * component parts. Each component is validated for syntax and some basic
-     * semantic checks are performed as well. See the individual setter methods
-     * for specifics.
+     * Construct a new URI that follows the generic URI syntax from its component parts. Each component is validated for
+     * syntax and some basic semantic checks are performed as well. See the individual setter methods for specifics.
      * 
      * @param p_scheme
      *          the URI scheme (cannot be null or empty)
      * @param p_host
      *          the hostname, IPv4 address or IPv6 reference for the URI
      * @param p_path
-     *          the URI path - if the path contains '?' or '#', then the query
-     *          string and/or fragment will be set from the path; however, if
-     *          the query and fragment are specified both in the path and as
-     *          separate parameters, an exception is thrown
+     *          the URI path - if the path contains '?' or '#', then the query string and/or fragment will be set from
+     *          the path; however, if the query and fragment are specified both in the path and as separate parameters,
+     *          an exception is thrown
      * @param p_queryString
      *          the URI query string (cannot be specified if path is null)
      * @param p_fragment
      *          the URI fragment (cannot be specified if path is null)
      * @exception MalformedURIException
-     *              if any of the parameters violates syntax rules or semantic
-     *              rules
+     *              if any of the parameters violates syntax rules or semantic rules
      */
     public URI(String p_scheme, String p_host, String p_path, String p_queryString, String p_fragment)
         throws MalformedURIException
@@ -1510,10 +1451,8 @@ public final class DataValue
     }
 
     /**
-     * Construct a new URI that follows the generic URI syntax from its
-     * component parts. Each component is validated for syntax and some basic
-     * semantic checks are performed as well. See the individual setter methods
-     * for specifics.
+     * Construct a new URI that follows the generic URI syntax from its component parts. Each component is validated for
+     * syntax and some basic semantic checks are performed as well. See the individual setter methods for specifics.
      * 
      * @param p_scheme
      *          the URI scheme (cannot be null or empty)
@@ -1522,20 +1461,17 @@ public final class DataValue
      * @param p_host
      *          the hostname, IPv4 address or IPv6 reference for the URI
      * @param p_port
-     *          the URI port (may be -1 for "unspecified"; cannot be specified
-     *          if host is null)
+     *          the URI port (may be -1 for "unspecified"; cannot be specified if host is null)
      * @param p_path
-     *          the URI path - if the path contains '?' or '#', then the query
-     *          string and/or fragment will be set from the path; however, if
-     *          the query and fragment are specified both in the path and as
-     *          separate parameters, an exception is thrown
+     *          the URI path - if the path contains '?' or '#', then the query string and/or fragment will be set from
+     *          the path; however, if the query and fragment are specified both in the path and as separate parameters,
+     *          an exception is thrown
      * @param p_queryString
      *          the URI query string (cannot be specified if path is null)
      * @param p_fragment
      *          the URI fragment (cannot be specified if path is null)
      * @exception MalformedURIException
-     *              if any of the parameters violates syntax rules or semantic
-     *              rules
+     *              if any of the parameters violates syntax rules or semantic rules
      */
     public URI(String p_scheme, String p_userinfo, String p_host, int p_port, String p_path, String p_queryString,
         String p_fragment) throws MalformedURIException
@@ -1598,19 +1534,16 @@ public final class DataValue
     }
 
     /**
-     * Initializes this URI from a base URI and a URI specification string. See
-     * RFC 2396 Section 4 and Appendix B for specifications on parsing the URI
-     * and Section 5 for specifications on resolving relative URIs and relative
-     * paths.
+     * Initializes this URI from a base URI and a URI specification string. See RFC 2396 Section 4 and Appendix B for
+     * specifications on parsing the URI and Section 5 for specifications on resolving relative URIs and relative paths.
      * 
      * @param p_base
      *          the base URI (may be null if p_uriSpec is an absolute URI)
      * @param p_uriSpec
-     *          the URI spec string which may be an absolute or relative URI
-     *          (can only be null/empty if p_base is not null)
+     *          the URI spec string which may be an absolute or relative URI (can only be null/empty if p_base is not
+     *          null)
      * @exception MalformedURIException
-     *              if p_base is null and p_uriSpec is not an absolute URI or if
-     *              p_uriSpec violates syntax rules
+     *              if p_base is null and p_uriSpec is not an absolute URI or if p_uriSpec violates syntax rules
      */
     private void initialize(URI p_base, String p_uriSpec) throws MalformedURIException
     {
@@ -1893,13 +1826,11 @@ public final class DataValue
     }
 
     /**
-     * Initialize the authority (either server or registry based) for this URI
-     * from a URI string spec.
+     * Initialize the authority (either server or registry based) for this URI from a URI string spec.
      * 
      * @param p_uriSpec
      *          the URI specification (cannot be null)
-     * @return true if the given string matched server or registry based
-     *         authority
+     * @return true if the given string matched server or registry based authority
      */
     private boolean initializeAuthority(String p_uriSpec)
     {
@@ -1972,11 +1903,10 @@ public final class DataValue
           if (portStr.length() > 0)
           {
             // REVISIT: Remove this code.
-            /*******************************************************************
-             * for (int i = 0; i < portStr.length(); i++) { if
-             * (!isDigit(portStr.charAt(i))) { throw new MalformedURIException(
-             * portStr + " is invalid. Port should only contain digits!"); } }
-             ******************************************************************/
+            /***********************************************************************************************************
+             * for (int i = 0; i < portStr.length(); i++) { if (!isDigit(portStr.charAt(i))) { throw new
+             * MalformedURIException( portStr + " is invalid. Port should only contain digits!"); } }
+             **********************************************************************************************************/
             // REVISIT: Remove this code.
             // Store port value as string instead of integer.
             try
@@ -2012,8 +1942,7 @@ public final class DataValue
     }
 
     /**
-     * Determines whether the components host, port, and user info are valid as
-     * a server authority.
+     * Determines whether the components host, port, and user info are valid as a server authority.
      * 
      * @param host
      *          the host component of authority
@@ -2021,8 +1950,7 @@ public final class DataValue
      *          the port number component of authority
      * @param userinfo
      *          the user info component of authority
-     * @return true if the given host, port, and userinfo compose a valid server
-     *         authority
+     * @return true if the given host, port, and userinfo compose a valid server authority
      */
     private boolean isValidServerBasedAuthority(String host, int port, String userinfo)
     {
@@ -2271,8 +2199,8 @@ public final class DataValue
     }
 
     /**
-     * Get the scheme-specific part for this URI (everything following the
-     * scheme and the first colon). See RFC 2396 Section 5.2 for spec.
+     * Get the scheme-specific part for this URI (everything following the scheme and the first colon). See RFC 2396
+     * Section 5.2 for spec.
      * 
      * @return the scheme-specific part for this URI
      */
@@ -2370,17 +2298,13 @@ public final class DataValue
     }
 
     /**
-     * Get the path for this URI (optionally with the query string and
-     * fragment).
+     * Get the path for this URI (optionally with the query string and fragment).
      * 
      * @param p_includeQueryString
-     *          if true (and query string is not null), then a "?" followed by
-     *          the query string will be appended
+     *          if true (and query string is not null), then a "?" followed by the query string will be appended
      * @param p_includeFragment
-     *          if true (and fragment is not null), then a "#" followed by the
-     *          fragment will be appended
-     * @return the path for this URI possibly including the query string and
-     *         fragment
+     *          if true (and fragment is not null), then a "#" followed by the fragment will be appended
+     * @return the path for this URI possibly including the query string and fragment
      */
     public String getPath(boolean p_includeQueryString, boolean p_includeFragment)
     {
@@ -2401,8 +2325,8 @@ public final class DataValue
     }
 
     /**
-     * Get the path for this URI. Note that the value returned is the path only
-     * and does not include the query string or fragment.
+     * Get the path for this URI. Note that the value returned is the path only and does not include the query string or
+     * fragment.
      * 
      * @return the path for this URI.
      */
@@ -2414,9 +2338,8 @@ public final class DataValue
     /**
      * Get the query string for this URI.
      * 
-     * @return the query string for this URI. Null is returned if there was no
-     *         "?" in the URI spec, empty string if there was a "?" but no query
-     *         string following it.
+     * @return the query string for this URI. Null is returned if there was no "?" in the URI spec, empty string if
+     *         there was a "?" but no query string following it.
      */
     public String getQueryString()
     {
@@ -2426,9 +2349,8 @@ public final class DataValue
     /**
      * Get the fragment for this URI.
      * 
-     * @return the fragment for this URI. Null is returned if there was no "#"
-     *         in the URI spec, empty string if there was a "#" but no fragment
-     *         following it.
+     * @return the fragment for this URI. Null is returned if there was no "#" in the URI spec, empty string if there
+     *         was a "#" but no fragment following it.
      */
     public String getFragment()
     {
@@ -2436,8 +2358,7 @@ public final class DataValue
     }
 
     /**
-     * Set the scheme for this URI. The scheme is converted to lowercase before
-     * it is set.
+     * Set the scheme for this URI. The scheme is converted to lowercase before it is set.
      * 
      * @param p_scheme
      *          the scheme for this URI (cannot be null)
@@ -2459,8 +2380,8 @@ public final class DataValue
     }
 
     /**
-     * Set the userinfo for this URI. If a non-null value is passed in and the
-     * host value is null, then an exception is thrown.
+     * Set the userinfo for this URI. If a non-null value is passed in and the host value is null, then an exception is
+     * thrown.
      * 
      * @param p_userinfo
      *          the userinfo for this URI
@@ -2508,12 +2429,11 @@ public final class DataValue
 
     /**
      * <p>
-     * Set the host for this URI. If null is passed in, the userinfo field is
-     * also set to null and the port is set to -1.
+     * Set the host for this URI. If null is passed in, the userinfo field is also set to null and the port is set to
+     * -1.
      * </p>
      * <p>
-     * Note: This method overwrites registry based authority if it previously
-     * existed in this URI.
+     * Note: This method overwrites registry based authority if it previously existed in this URI.
      * </p>
      * 
      * @param p_host
@@ -2543,10 +2463,8 @@ public final class DataValue
     }
 
     /**
-     * Set the port for this URI. -1 is used to indicate that the port is not
-     * specified, otherwise valid port numbers are between 0 and 65535. If a
-     * valid port number is passed in and the host field is null, an exception
-     * is thrown.
+     * Set the port for this URI. -1 is used to indicate that the port is not specified, otherwise valid port numbers
+     * are between 0 and 65535. If a valid port number is passed in and the host field is null, an exception is thrown.
      * 
      * @param p_port
      *          the port number for this URI
@@ -2574,8 +2492,7 @@ public final class DataValue
      * Sets the registry based authority for this URI.
      * </p>
      * <p>
-     * Note: This method overwrites server based authority if it previously
-     * existed in this URI.
+     * Note: This method overwrites server based authority if it previously existed in this URI.
      * </p>
      * 
      * @param authority
@@ -2604,12 +2521,10 @@ public final class DataValue
     }
 
     /**
-     * Set the path for this URI. If the supplied path is null, then the query
-     * string and fragment are set to null as well. If the supplied path
-     * includes a query string and/or fragment, these fields will be parsed and
-     * set as well. Note that, for URIs following the "generic URI" syntax, the
-     * path specified should start with a slash. For URIs that do not follow the
-     * generic URI syntax, this method sets the scheme-specific part.
+     * Set the path for this URI. If the supplied path is null, then the query string and fragment are set to null as
+     * well. If the supplied path includes a query string and/or fragment, these fields will be parsed and set as well.
+     * Note that, for URIs following the "generic URI" syntax, the path specified should start with a slash. For URIs
+     * that do not follow the generic URI syntax, this method sets the scheme-specific part.
      * 
      * @param p_path
      *          the path for this URI (may be null)
@@ -2631,12 +2546,10 @@ public final class DataValue
     }
 
     /**
-     * Append to the end of the path of this URI. If the current path does not
-     * end in a slash and the path to be appended does not begin with a slash, a
-     * slash will be appended to the current path before the new segment is
-     * added. Also, if the current path ends in a slash and the new segment
-     * begins with a slash, the extra slash will be removed before the new
-     * segment is appended.
+     * Append to the end of the path of this URI. If the current path does not end in a slash and the path to be
+     * appended does not begin with a slash, a slash will be appended to the current path before the new segment is
+     * added. Also, if the current path ends in a slash and the new segment begins with a slash, the extra slash will be
+     * removed before the new segment is appended.
      * 
      * @param p_addToPath
      *          the new segment to be added to the current path
@@ -2691,15 +2604,14 @@ public final class DataValue
     }
 
     /**
-     * Set the query string for this URI. A non-null value is valid only if this
-     * is an URI conforming to the generic URI syntax and the path value is not
-     * null.
+     * Set the query string for this URI. A non-null value is valid only if this is an URI conforming to the generic URI
+     * syntax and the path value is not null.
      * 
      * @param p_queryString
      *          the query string for this URI
      * @exception MalformedURIException
-     *              if p_queryString is not null and this URI does not conform
-     *              to the generic URI syntax or if the path is null
+     *              if p_queryString is not null and this URI does not conform to the generic URI syntax or if the path
+     *              is null
      */
     public void setQueryString(String p_queryString) throws MalformedURIException
     {
@@ -2726,15 +2638,14 @@ public final class DataValue
     }
 
     /**
-     * Set the fragment for this URI. A non-null value is valid only if this is
-     * a URI conforming to the generic URI syntax and the path value is not
-     * null.
+     * Set the fragment for this URI. A non-null value is valid only if this is a URI conforming to the generic URI
+     * syntax and the path value is not null.
      * 
      * @param p_fragment
      *          the fragment for this URI
      * @exception MalformedURIException
-     *              if p_fragment is not null and this URI does not conform to
-     *              the generic URI syntax or if the path is null
+     *              if p_fragment is not null and this URI does not conform to the generic URI syntax or if the path is
+     *              null
      */
     public void setFragment(String p_fragment) throws MalformedURIException
     {
@@ -2765,8 +2676,7 @@ public final class DataValue
      * 
      * @param p_test
      *          the Object to test for equality.
-     * @return true if p_test is a URI with all values equal to this URI, false
-     *         otherwise
+     * @return true if p_test is a URI with all values equal to this URI, false otherwise
      */
     @Override
     public boolean equals(Object p_test)
@@ -2826,9 +2736,8 @@ public final class DataValue
     }
 
     /**
-     * Determine whether a scheme conforms to the rules for a scheme name. A
-     * scheme is conformant if it starts with an alphanumeric, and contains only
-     * alphanumerics, '+','-' and '.'.
+     * Determine whether a scheme conforms to the rules for a scheme name. A scheme is conformant if it starts with an
+     * alphanumeric, and contains only alphanumerics, '+','-' and '.'.
      * 
      * @return true if the scheme is conformant, false otherwise
      */
@@ -2859,17 +2768,13 @@ public final class DataValue
     }
 
     /**
-     * Determine whether a string is syntactically capable of representing a
-     * valid IPv4 address, IPv6 reference or the domain name of a network host.
-     * A valid IPv4 address consists of four decimal digit groups separated by a
-     * '.'. Each group must consist of one to three digits. See RFC 2732 Section
-     * 3, and RFC 2373 Section 2.2, for the definition of IPv6 references. A
-     * hostname consists of domain labels (each of which must begin and end with
-     * an alphanumeric but may contain '-') separated & by a '.'. See RFC 2396
-     * Section 3.2.2.
+     * Determine whether a string is syntactically capable of representing a valid IPv4 address, IPv6 reference or the
+     * domain name of a network host. A valid IPv4 address consists of four decimal digit groups separated by a '.'.
+     * Each group must consist of one to three digits. See RFC 2732 Section 3, and RFC 2373 Section 2.2, for the
+     * definition of IPv6 references. A hostname consists of domain labels (each of which must begin and end with an
+     * alphanumeric but may contain '-') separated & by a '.'. See RFC 2396 Section 3.2.2.
      * 
-     * @return true if the string is a syntactically valid IPv4 address, IPv6
-     *         reference or hostname
+     * @return true if the string is a syntactically valid IPv4 address, IPv6 reference or hostname
      */
     public static boolean isWellFormedAddress(String address)
     {
@@ -2959,11 +2864,9 @@ public final class DataValue
 
     /**
      * <p>
-     * Determines whether a string is an IPv4 address as defined by RFC 2373,
-     * and under the further constraint that it must be a 32-bit address. Though
-     * not expressed in the grammar, in order to satisfy the 32-bit address
-     * constraint, each segment of the address cannot be greater than 255 (8
-     * bits of information).
+     * Determines whether a string is an IPv4 address as defined by RFC 2373, and under the further constraint that it
+     * must be a 32-bit address. Though not expressed in the grammar, in order to satisfy the 32-bit address constraint,
+     * each segment of the address cannot be greater than 255 (8 bits of information).
      * </p>
      * <p>
      * <code>IPv4address = 1*3DIGIT "." 1*3DIGIT "." 1*3DIGIT "." 1*3DIGIT</code>
@@ -3030,18 +2933,16 @@ public final class DataValue
 
     /**
      * <p>
-     * Determines whether a string is an IPv6 reference as defined by RFC 2732,
-     * where IPv6address is defined in RFC 2373. The IPv6 address is parsed
-     * according to Section 2.2 of RFC 2373, with the additional constraint that
-     * the address be composed of 128 bits of information.
+     * Determines whether a string is an IPv6 reference as defined by RFC 2732, where IPv6address is defined in RFC
+     * 2373. The IPv6 address is parsed according to Section 2.2 of RFC 2373, with the additional constraint that the
+     * address be composed of 128 bits of information.
      * </p>
      * <p>
      * <code>IPv6reference = "[" IPv6address "]"</code>
      * </p>
      * <p>
-     * Note: The BNF expressed in RFC 2373 Appendix B does not accurately
-     * describe section 2.2, and was in fact removed from RFC 3513, the
-     * successor of RFC 2373.
+     * Note: The BNF expressed in RFC 2373 Appendix B does not accurately describe section 2.2, and was in fact removed
+     * from RFC 3513, the successor of RFC 2373.
      * </p>
      * 
      * @return true if the string is a syntactically valid IPv6 reference
@@ -3115,9 +3016,8 @@ public final class DataValue
     }
 
     /**
-     * Helper method for isWellFormedIPv6Reference which scans the hex sequences
-     * of an IPv6 address. It returns the index of the next character to scan in
-     * the address, or -1 if the string cannot match a valid IPv6 address.
+     * Helper method for isWellFormedIPv6Reference which scans the hex sequences of an IPv6 address. It returns the
+     * index of the next character to scan in the address, or -1 if the string cannot match a valid IPv6 address.
      * 
      * @param address
      *          the string to be scanned
@@ -3127,8 +3027,7 @@ public final class DataValue
      *          the ending index (exclusive)
      * @param counter
      *          a counter for the number of 16-bit sections read in the address
-     * @return the index of the next character to scan, or -1 if the string
-     *         cannot match a valid IPv6 address
+     * @return the index of the next character to scan, or -1 if the string cannot match a valid IPv6 address
      */
     private static int scanHexSequence(String address, int index, int end, int[] counter)
     {
@@ -3191,8 +3090,7 @@ public final class DataValue
     /**
      * Determine whether a character is a hexadecimal character.
      * 
-     * @return true if the char is betweeen '0' and '9', 'a' and 'f' or 'A' and
-     *         'F', false otherwise
+     * @return true if the char is betweeen '0' and '9', 'a' and 'f' or 'A' and 'F', false otherwise
      */
     private static boolean isHex(char p_char)
     {
@@ -3220,8 +3118,7 @@ public final class DataValue
     }
 
     /**
-     * Determine whether a char is a URI character (reserved or unreserved, not
-     * including '%' for escaped octets).
+     * Determine whether a char is a URI character (reserved or unreserved, not including '%' for escaped octets).
      * 
      * @return true if the char is a URI character, false otherwise
      */
@@ -3261,9 +3158,8 @@ public final class DataValue
     }
 
     /**
-     * Determine whether a given string contains only URI characters (also
-     * called "uric" in RFC 2396). uric consist of all reserved characters,
-     * unreserved characters and escaped characters.
+     * Determine whether a given string contains only URI characters (also called "uric" in RFC 2396). uric consist of
+     * all reserved characters, unreserved characters and escaped characters.
      * 
      * @return true if the string is comprised of uric, false otherwise
      */
@@ -3420,17 +3316,14 @@ public final class DataValue
   }
 
   /**
-   * This class defines the basic XML character properties. The data in this
-   * class can be used to verify that a character is a valid XML character or if
-   * the character is a space, name start, or name character.
+   * This class defines the basic XML character properties. The data in this class can be used to verify that a
+   * character is a valid XML character or if the character is a space, name start, or name character.
    * <p>
-   * A series of convenience methods are supplied to ease the burden of the
-   * developer. Because inlining the checks can improve per character
-   * performance, the tables of character properties are public. Using the
-   * character as an index into the <code>CHARS</code> array and applying the
-   * appropriate mask flag (e.g. <code>MASK_VALID</code>), yields the same
-   * results as calling the convenience methods. There is one exception: check
-   * the comments for the <code>isValid</code> method for details.
+   * A series of convenience methods are supplied to ease the burden of the developer. Because inlining the checks can
+   * improve per character performance, the tables of character properties are public. Using the character as an index
+   * into the <code>CHARS</code> array and applying the appropriate mask flag (e.g. <code>MASK_VALID</code>),
+   * yields the same results as calling the convenience methods. There is one exception: check the comments for the
+   * <code>isValid</code> method for details.
    * 
    * @author Glenn Marcy, IBM
    * @author Andy Clark, IBM
@@ -3466,10 +3359,9 @@ public final class DataValue
     public static final int MASK_PUBID = 0x10;
 
     /**
-     * Content character mask. Special characters are those that can be
-     * considered the start of markup, such as '&lt;' and '&amp;'. The various
-     * newline characters are considered special as well. All other valid XML
-     * characters can be considered content.
+     * Content character mask. Special characters are those that can be considered the start of markup, such as '&lt;'
+     * and '&amp;'. The various newline characters are considered special as well. All other valid XML characters can be
+     * considered content.
      * <p>
      * This is an optimization for the inner loop of character scanning.
      */
@@ -4145,8 +4037,7 @@ public final class DataValue
     }
 
     /**
-     * Returns true the supplemental character corresponding to the given
-     * surrogates.
+     * Returns true the supplemental character corresponding to the given surrogates.
      * 
      * @param h
      *          The high surrogate.
@@ -4203,12 +4094,11 @@ public final class DataValue
     }
 
     /**
-     * Returns true if the specified character is valid. This method also checks
-     * the surrogate character range from 0x10000 to 0x10FFFF.
+     * Returns true if the specified character is valid. This method also checks the surrogate character range from
+     * 0x10000 to 0x10FFFF.
      * <p>
-     * If the program chooses to apply the mask directly to the
-     * <code>CHARS</code> array, then they are responsible for checking the
-     * surrogate character range.
+     * If the program chooses to apply the mask directly to the <code>CHARS</code> array, then they are responsible
+     * for checking the surrogate character range.
      * 
      * @param c
      *          The character to check.
@@ -4241,8 +4131,8 @@ public final class DataValue
     } // isContent(int):boolean
 
     /**
-     * Returns true if the specified character can be considered markup. Markup
-     * characters include '&lt;', '&amp;', and '%'.
+     * Returns true if the specified character can be considered markup. Markup characters include '&lt;', '&amp;', and
+     * '%'.
      * 
      * @param c
      *          The character to check.
@@ -4253,8 +4143,8 @@ public final class DataValue
     } // isMarkup(int):boolean
 
     /**
-     * Returns true if the specified character is a space character as defined
-     * by production [3] in the XML 1.0 specification.
+     * Returns true if the specified character is a space character as defined by production [3] in the XML 1.0
+     * specification.
      * 
      * @param c
      *          The character to check.
@@ -4265,8 +4155,8 @@ public final class DataValue
     } // isSpace(int):boolean
 
     /**
-     * Returns true if the specified character is a valid name start character
-     * as defined by production [5] in the XML 1.0 specification.
+     * Returns true if the specified character is a valid name start character as defined by production [5] in the XML
+     * 1.0 specification.
      * 
      * @param c
      *          The character to check.
@@ -4277,8 +4167,8 @@ public final class DataValue
     } // isNameStart(int):boolean
 
     /**
-     * Returns true if the specified character is a valid name character as
-     * defined by production [4] in the XML 1.0 specification.
+     * Returns true if the specified character is a valid name character as defined by production [4] in the XML 1.0
+     * specification.
      * 
      * @param c
      *          The character to check.
@@ -4289,8 +4179,8 @@ public final class DataValue
     } // isName(int):boolean
 
     /**
-     * Returns true if the specified character is a valid NCName start character
-     * as defined by production [4] in Namespaces in XML recommendation.
+     * Returns true if the specified character is a valid NCName start character as defined by production [4] in
+     * Namespaces in XML recommendation.
      * 
      * @param c
      *          The character to check.
@@ -4301,8 +4191,8 @@ public final class DataValue
     } // isNCNameStart(int):boolean
 
     /**
-     * Returns true if the specified character is a valid NCName character as
-     * defined by production [5] in Namespaces in XML recommendation.
+     * Returns true if the specified character is a valid NCName character as defined by production [5] in Namespaces in
+     * XML recommendation.
      * 
      * @param c
      *          The character to check.
@@ -4313,8 +4203,8 @@ public final class DataValue
     } // isNCName(int):boolean
 
     /**
-     * Returns true if the specified character is a valid Pubid character as
-     * defined by production [13] in the XML 1.0 specification.
+     * Returns true if the specified character is a valid Pubid character as defined by production [13] in the XML 1.0
+     * specification.
      * 
      * @param c
      *          The character to check.
@@ -4328,8 +4218,7 @@ public final class DataValue
      * [5] Name ::= (Letter | '_' | ':') (NameChar)*
      */
     /**
-     * Check to see if a string is a valid Name according to [5] in the XML 1.0
-     * Recommendation
+     * Check to see if a string is a valid Name according to [5] in the XML 1.0 Recommendation
      * 
      * @param name
      *          string to check
@@ -4355,8 +4244,7 @@ public final class DataValue
      * from the namespace rec [4] NCName ::= (Letter | '_') (NCNameChar)*
      */
     /**
-     * Check to see if a string is a valid NCName according to [4] from the XML
-     * Namespaces 1.0 Recommendation
+     * Check to see if a string is a valid NCName according to [4] from the XML Namespaces 1.0 Recommendation
      * 
      * @param ncName
      *          string to check
@@ -4382,8 +4270,7 @@ public final class DataValue
      * [7] Nmtoken ::= (NameChar)+
      */
     /**
-     * Check to see if a string is a valid Nmtoken according to [7] in the XML
-     * 1.0 Recommendation
+     * Check to see if a string is a valid Nmtoken according to [7] in the XML 1.0 Recommendation
      * 
      * @param nmtoken
      *          string to check
@@ -4406,9 +4293,8 @@ public final class DataValue
     // encodings
 
     /**
-     * Returns true if the encoding name is a valid IANA encoding. This method
-     * does not verify that there is a decoder available for this encoding, only
-     * that the characters are valid for an IANA encoding name.
+     * Returns true if the encoding name is a valid IANA encoding. This method does not verify that there is a decoder
+     * available for this encoding, only that the characters are valid for an IANA encoding name.
      * 
      * @param ianaEncoding
      *          The IANA encoding name.
@@ -4440,9 +4326,8 @@ public final class DataValue
     } // isValidIANAEncoding(String):boolean
 
     /**
-     * Returns true if the encoding name is a valid Java encoding. This method
-     * does not verify that there is a decoder available for this encoding, only
-     * that the characters are valid for an Java encoding name.
+     * Returns true if the encoding name is a valid Java encoding. This method does not verify that there is a decoder
+     * available for this encoding, only that the characters are valid for an Java encoding name.
      * 
      * @param javaEncoding
      *          The Java encoding name.

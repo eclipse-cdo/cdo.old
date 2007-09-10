@@ -122,8 +122,7 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
   }
 
   /**
-   * Returns the map used to cache the resource
-   * {@link #getResource(URI, boolean) associated} with a specific URI.
+   * Returns the map used to cache the resource {@link #getResource(URI, boolean) associated} with a specific URI.
    * 
    * @return the map used to cache the resource associated with a specific URI.
    * @see #setURIResourceMap
@@ -134,12 +133,10 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
   }
 
   /**
-   * Sets the map used to cache the resource associated with a specific URI.
-   * This cache is only activated if the map is not <code>null</code>. The
-   * map will be lazily loaded by the
-   * {@link #getResource(URI, boolean) getResource} method. It is up to the
-   * client to clear the cache when it becomes invalid, e.g., when the URI of a
-   * previously mapped resource is changed.
+   * Sets the map used to cache the resource associated with a specific URI. This cache is only activated if the map is
+   * not <code>null</code>. The map will be lazily loaded by the {@link #getResource(URI, boolean) getResource}
+   * method. It is up to the client to clear the cache when it becomes invalid, e.g., when the URI of a previously
+   * mapped resource is changed.
    * 
    * @param uriResourceMap
    *          the new map or <code>null</code>.
@@ -236,10 +233,9 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
 
   /**
    * Creates a new resource appropriate for the URI. It is called by
-   * {@link #getResource(URI, boolean) getResource(URI, boolean)} when a URI
-   * that doesn't exist as a resource is demand loaded. This implementation
-   * simply calls {@link #createResource(URI) createResource(URI)}. Clients may
-   * extend this as appropriate.
+   * {@link #getResource(URI, boolean) getResource(URI, boolean)} when a URI that doesn't exist as a resource is demand
+   * loaded. This implementation simply calls {@link #createResource(URI) createResource(URI)}. Clients may extend this
+   * as appropriate.
    * 
    * @param uri
    *          the URI of the resource to create.
@@ -252,9 +248,8 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
   }
 
   /**
-   * Loads the given resource. It is called by
-   * {@link #demandLoadHelper(Resource) demandLoadHelper(Resource)} to perform a
-   * demand load. This implementation simply calls <code>resource.</code>{@link Resource#load(Map) load}({@link #getLoadOptions() getLoadOptions}()).
+   * Loads the given resource. It is called by {@link #demandLoadHelper(Resource) demandLoadHelper(Resource)} to perform
+   * a demand load. This implementation simply calls <code>resource.</code>{@link Resource#load(Map) load}({@link #getLoadOptions() getLoadOptions}()).
    * Clients may extend this as appropriate.
    * 
    * @param resource
@@ -270,11 +265,9 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
   }
 
   /**
-   * Demand loads the given resource using {@link #demandLoad(Resource)} and
-   * {@link WrappedException wraps} any {@link IOException} as a runtime
-   * exception. It is called by
-   * {@link #getResource(URI, boolean) getResource(URI, boolean)} to perform a
-   * demand load.
+   * Demand loads the given resource using {@link #demandLoad(Resource)} and {@link WrappedException wraps} any
+   * {@link IOException} as a runtime exception. It is called by
+   * {@link #getResource(URI, boolean) getResource(URI, boolean)} to perform a demand load.
    * 
    * @param resource
    *          a resource that isn't loaded.
@@ -293,8 +286,8 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
   }
 
   /**
-   * Handles the exception thrown during demand load by recording it as an error
-   * diagnostic and throwing a wrapping runtime exception.
+   * Handles the exception thrown during demand load by recording it as an error diagnostic and throwing a wrapping
+   * runtime exception.
    * 
    * @param resource
    *          the resource that threw an exception while loading.
@@ -343,12 +336,10 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
   }
 
   /**
-   * Returns a resolved resource available outside of the resource set. It is
-   * called by {@link #getResource(URI, boolean) getResource(URI, boolean)}
-   * after it has determined that the URI cannot be resolved based on the
-   * existing contents of the resource set. This implementation looks up the URI
-   * in the {#getPackageRegistry() local} package registry. Clients may extend
-   * this as appropriate.
+   * Returns a resolved resource available outside of the resource set. It is called by
+   * {@link #getResource(URI, boolean) getResource(URI, boolean)} after it has determined that the URI cannot be
+   * resolved based on the existing contents of the resource set. This implementation looks up the URI in the
+   * {#getPackageRegistry() local} package registry. Clients may extend this as appropriate.
    * 
    * @param uri
    *          the URI
@@ -516,8 +507,7 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
   }
 
   /**
-   * A notifying list implementation for supporting
-   * {@link ResourceSet#getResources}.
+   * A notifying list implementation for supporting {@link ResourceSet#getResources}.
    */
   protected class ResourcesEList<E extends Object & Resource> extends NotifyingListImpl<E> implements InternalEList<E>
   {

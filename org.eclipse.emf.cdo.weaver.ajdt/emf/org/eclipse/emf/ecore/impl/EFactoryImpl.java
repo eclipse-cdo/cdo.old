@@ -51,8 +51,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>EFactory</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EFactory</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -65,8 +64,8 @@ import org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil;
 public class EFactoryImpl extends EModelElementImpl implements EFactory
 {
   /**
-   * The cached value of the '{@link #getEPackage() <em>EPackage</em>}'
-   * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getEPackage() <em>EPackage</em>}' reference. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getEPackage()
    * @generated

@@ -19,8 +19,8 @@ package org.eclipse.emf.ecore.xml.type;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Processing Instruction Type</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Processing Instruction Type</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are supported:
  * <ul>
@@ -36,19 +36,16 @@ import org.eclipse.emf.ecore.EObject;
 public interface ProcessingInstruction extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Data</b></em>' attribute. <!--
-   * begin-user-doc -->
+   * Returns the value of the '<em><b>Data</b></em>' attribute. <!-- begin-user-doc -->
    * <p>
-   * It represents all the data that follows the target of the processing
-   * instruction.
+   * It represents all the data that follows the target of the processing instruction.
    * </p>
    * <!-- end-user-doc -->
    * 
    * @return the value of the '<em>Data</em>' attribute.
    * @see #setData(String)
    * @see org.eclipse.emf.ecore.xml.type.XMLTypePackage#getProcessingInstruction_Data()
-   * @model dataType="org.eclipse.emf.ecore.xml.type.String"
-   *        extendedMetaData="kind='attribute' name='data'"
+   * @model dataType="org.eclipse.emf.ecore.xml.type.String" extendedMetaData="kind='attribute' name='data'"
    * @generated
    */
   String getData();
@@ -65,19 +62,17 @@ public interface ProcessingInstruction extends EObject
   void setData(String value);
 
   /**
-   * Returns the value of the '<em><b>Target</b></em>' attribute. <!--
-   * begin-user-doc -->
+   * Returns the value of the '<em><b>Target</b></em>' attribute. <!-- begin-user-doc -->
    * <p>
-   * It represents the specific target name at the start of the processing
-   * instruction.
+   * It represents the specific target name at the start of the processing instruction.
    * </p>
    * <!-- end-user-doc -->
    * 
    * @return the value of the '<em>Target</em>' attribute.
    * @see #setTarget(String)
    * @see org.eclipse.emf.ecore.xml.type.XMLTypePackage#getProcessingInstruction_Target()
-   * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
-   *        extendedMetaData="kind='attribute' name='target'"
+   * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true" extendedMetaData="kind='attribute'
+   *        name='target'"
    * @generated
    */
   String getTarget();

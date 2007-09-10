@@ -40,8 +40,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>EGeneric Type</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EGeneric Type</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -59,8 +59,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class EGenericTypeImpl extends EObjectImpl implements EGenericType
 {
   /**
-   * The cached value of the '{@link #getEUpperBound() <em>EUpper Bound</em>}'
-   * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getEUpperBound() <em>EUpper Bound</em>}' containment reference. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getEUpperBound()
    * @generated
@@ -69,8 +69,8 @@ public class EGenericTypeImpl extends EObjectImpl implements EGenericType
   protected EGenericType eUpperBound;
 
   /**
-   * The cached value of the '{@link #getETypeArguments() <em>EType Arguments</em>}'
-   * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getETypeArguments() <em>EType Arguments</em>}' containment reference list. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getETypeArguments()
    * @generated
@@ -79,11 +79,9 @@ public class EGenericTypeImpl extends EObjectImpl implements EGenericType
   protected EList<EGenericType> eTypeArguments;
 
   /**
-   * The cached default value for the {@link #eRawType eRawType} field. It needs
-   * to be set to
-   * {@link org.eclipse.emf.ecore.EcorePackage.Literals#EJAVA_OBJECT} but due to
-   * bootstrap delays initializing that field, it needs to be set after the
-   * Ecore package has been initialized.
+   * The cached default value for the {@link #eRawType eRawType} field. It needs to be set to
+   * {@link org.eclipse.emf.ecore.EcorePackage.Literals#EJAVA_OBJECT} but due to bootstrap delays initializing that
+   * field, it needs to be set after the Ecore package has been initialized.
    * 
    * @see org.eclipse.emf.ecore.impl.EcorePackageImpl#internalBootstrap()
    * @see #eRawType
@@ -91,8 +89,8 @@ public class EGenericTypeImpl extends EObjectImpl implements EGenericType
   static EDataType eJavaObject;
 
   /**
-   * The cached value of the '{@link #getERawType() <em>ERaw Type</em>}'
-   * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getERawType() <em>ERaw Type</em>}' reference. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getERawType()
    * @generated NOT
@@ -101,8 +99,8 @@ public class EGenericTypeImpl extends EObjectImpl implements EGenericType
   protected EClassifier eRawType = eJavaObject;
 
   /**
-   * The cached value of the '{@link #getELowerBound() <em>ELower Bound</em>}'
-   * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getELowerBound() <em>ELower Bound</em>}' containment reference. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getELowerBound()
    * @generated
@@ -111,8 +109,8 @@ public class EGenericTypeImpl extends EObjectImpl implements EGenericType
   protected EGenericType eLowerBound;
 
   /**
-   * The cached value of the '{@link #getETypeParameter() <em>EType Parameter</em>}'
-   * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getETypeParameter() <em>EType Parameter</em>}' reference. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @see #getETypeParameter()
    * @generated
@@ -121,8 +119,8 @@ public class EGenericTypeImpl extends EObjectImpl implements EGenericType
   protected ETypeParameter eTypeParameter;
 
   /**
-   * The cached value of the '{@link #getEClassifier() <em>EClassifier</em>}'
-   * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getEClassifier() <em>EClassifier</em>}' reference. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getEClassifier()
    * @generated

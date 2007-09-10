@@ -19,8 +19,8 @@ package org.eclipse.emf.ecore.xml.type;
 import org.eclipse.emf.ecore.EDataType;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Simple Any Type</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Simple Any Type</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are supported:
  * <ul>
@@ -37,15 +37,13 @@ import org.eclipse.emf.ecore.EDataType;
 public interface SimpleAnyType extends AnyType
 {
   /**
-   * Returns the value of the '<em><b>Raw Value</b></em>' attribute. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns the value of the '<em><b>Raw Value</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the value of the '<em>Raw Value</em>' attribute.
    * @see #setRawValue(String)
    * @see org.eclipse.emf.ecore.xml.type.XMLTypePackage#getSimpleAnyType_RawValue()
-   * @model dataType="org.eclipse.emf.ecore.xml.type.String" transient="true"
-   *        volatile="true" derived="true" extendedMetaData="name=':3'
-   *        kind='simple'"
+   * @model dataType="org.eclipse.emf.ecore.xml.type.String" transient="true" volatile="true" derived="true"
+   *        extendedMetaData="name=':3' kind='simple'"
    * @generated
    */
   String getRawValue();
@@ -62,22 +60,20 @@ public interface SimpleAnyType extends AnyType
   void setRawValue(String value);
 
   /**
-   * Returns the value of the '<em><b>Value</b></em>' attribute. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns the value of the '<em><b>Value</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the value of the '<em>Value</em>' attribute.
    * @see #setValue(Object)
    * @see org.eclipse.emf.ecore.xml.type.XMLTypePackage#getSimpleAnyType_Value()
-   * @model dataType="org.eclipse.emf.ecore.xml.type.AnySimpleType"
-   *        transient="true" volatile="true" derived="true"
+   * @model dataType="org.eclipse.emf.ecore.xml.type.AnySimpleType" transient="true" volatile="true" derived="true"
    *        extendedMetaData="name=':4' kind='simple'"
    * @generated
    */
   Object getValue();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.ecore.xml.type.SimpleAnyType#getValue <em>Value</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.xml.type.SimpleAnyType#getValue <em>Value</em>}' attribute.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param value
    *          the new value of the '<em>Value</em>' attribute.
@@ -87,14 +83,13 @@ public interface SimpleAnyType extends AnyType
   void setValue(Object value);
 
   /**
-   * Returns the value of the '<em><b>Instance Type</b></em>' reference.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the value of the '<em><b>Instance Type</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @return the value of the '<em>Instance Type</em>' reference.
    * @see #setInstanceType(EDataType)
    * @see org.eclipse.emf.ecore.xml.type.XMLTypePackage#getSimpleAnyType_InstanceType()
-   * @model resolveProxies="false" required="true" extendedMetaData="name=':5'
-   *        kind='simple'"
+   * @model resolveProxies="false" required="true" extendedMetaData="name=':5' kind='simple'"
    * @generated
    */
   EDataType getInstanceType();

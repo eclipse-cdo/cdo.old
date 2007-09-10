@@ -61,8 +61,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <!-- begin-user-doc --> The <b>Validator</b> for the model. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Validator</b> for the model. <!-- end-user-doc -->
  * 
  * @see org.eclipse.emf.ecore.EcorePackage
  * @generated
@@ -77,10 +76,9 @@ public class EcoreValidator extends EObjectValidator
   public static final EcoreValidator INSTANCE = new EcoreValidator();
 
   /**
-   * A constant for the
-   * {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of
-   * diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes}
-   * from this package. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic
+   * {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see org.eclipse.emf.common.util.Diagnostic#getSource()
    * @see org.eclipse.emf.common.util.Diagnostic#getCode()
@@ -89,9 +87,8 @@ public class EcoreValidator extends EObjectValidator
   public static final String DIAGNOSTIC_SOURCE = "org.eclipse.emf.ecore.model";
 
   /**
-   * A constant with a fixed name that can be used as the base value for
-   * additional hand written constants. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * A constant with a fixed name that can be used as the base value for additional hand written constants. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -103,50 +100,42 @@ public class EcoreValidator extends EObjectValidator
   public static final int AT_MOST_ONE_ID = GENERATED_DIAGNOSTIC_CODE_COUNT + 1;
 
   /**
-   * @see #validateEGenericType_ConsistentArguments(EGenericType,
-   *      DiagnosticChain, Map)
+   * @see #validateEGenericType_ConsistentArguments(EGenericType, DiagnosticChain, Map)
    */
   public static final int CONSISTENT_ARGUMENTS_INCORRECT_NUMBER = 2;
 
   /**
-   * @see #validateEGenericType_ConsistentArguments(EGenericType,
-   *      DiagnosticChain, Map)
+   * @see #validateEGenericType_ConsistentArguments(EGenericType, DiagnosticChain, Map)
    */
   public static final int CONSISTENT_ARGUMENTS_INVALID_SUBSTITUTION = 3;
 
   /**
-   * @see #validateEGenericType_ConsistentArguments(EGenericType,
-   *      DiagnosticChain, Map)
+   * @see #validateEGenericType_ConsistentArguments(EGenericType, DiagnosticChain, Map)
    */
   public static final int CONSISTENT_ARGUMENTS_NONE = 4;
 
   /**
-   * @see #validateEGenericType_ConsistentArguments(EGenericType,
-   *      DiagnosticChain, Map)
+   * @see #validateEGenericType_ConsistentArguments(EGenericType, DiagnosticChain, Map)
    */
   public static final int CONSISTENT_ARGUMENTS_NONE_ALLOWED = 5;
 
   /**
-   * @see #validateETypedElement_ConsistentBounds(ETypedElement,
-   *      DiagnosticChain, Map)
+   * @see #validateETypedElement_ConsistentBounds(ETypedElement, DiagnosticChain, Map)
    */
   public static final int CONSISTENT_BOUNDS = 6;
 
   /**
-   * @see #validateEGenericType_ConsistentBounds(EGenericType, DiagnosticChain,
-   *      Map)
+   * @see #validateEGenericType_ConsistentBounds(EGenericType, DiagnosticChain, Map)
    */
   public static final int CONSISTENT_BOUNDS_NOT_ALLOWED = 7;
 
   /**
-   * @see #validateEGenericType_ConsistentBounds(EGenericType, DiagnosticChain,
-   *      Map)
+   * @see #validateEGenericType_ConsistentBounds(EGenericType, DiagnosticChain, Map)
    */
   public static final int CONSISTENT_BOUNDS_NO_BOUNDS_WITH_TYPE_PARAMETER_OR_CLASSIFIER = 8;
 
   /**
-   * @see #validateEGenericType_ConsistentBounds(EGenericType, DiagnosticChain,
-   *      Map)
+   * @see #validateEGenericType_ConsistentBounds(EGenericType, DiagnosticChain, Map)
    */
   public static final int CONSISTENT_BOUNDS_NO_LOWER_AND_UPPER = 9;
 
@@ -156,26 +145,22 @@ public class EcoreValidator extends EObjectValidator
   public static final int CONSISTENT_KEYS = 10;
 
   /**
-   * @see #validateEReference_ConsistentOpposite(EReference, DiagnosticChain,
-   *      Map)
+   * @see #validateEReference_ConsistentOpposite(EReference, DiagnosticChain, Map)
    */
   public static final int CONSISTENT_OPPOSITE_BAD_TRANSIENT = 11;
 
   /**
-   * @see #validateEReference_ConsistentOpposite(EReference, DiagnosticChain,
-   *      Map)
+   * @see #validateEReference_ConsistentOpposite(EReference, DiagnosticChain, Map)
    */
   public static final int CONSISTENT_OPPOSITE_BOTH_CONTAINMENT = 12;
 
   /**
-   * @see #validateEReference_ConsistentOpposite(EReference, DiagnosticChain,
-   *      Map)
+   * @see #validateEReference_ConsistentOpposite(EReference, DiagnosticChain, Map)
    */
   public static final int CONSISTENT_OPPOSITE_NOT_FROM_TYPE = 13;
 
   /**
-   * @see #validateEReference_ConsistentOpposite(EReference, DiagnosticChain,
-   *      Map)
+   * @see #validateEReference_ConsistentOpposite(EReference, DiagnosticChain, Map)
    */
   public static final int CONSISTENT_OPPOSITE_NOT_MATCHING = 14;
 
@@ -190,50 +175,42 @@ public class EcoreValidator extends EObjectValidator
   public static final int CONSISTENT_SUPER_TYPES_DUPLICATE = 16;
 
   /**
-   * @see #validateEAttribute_ConsistentTransient(EAttribute, DiagnosticChain,
-   *      Map)
+   * @see #validateEAttribute_ConsistentTransient(EAttribute, DiagnosticChain, Map)
    */
   public static final int CONSISTENT_TRANSIENT = 17;
 
   /**
-   * @see #validateEGenericType_ConsistentType(EGenericType, DiagnosticChain,
-   *      Map)
+   * @see #validateEGenericType_ConsistentType(EGenericType, DiagnosticChain, Map)
    */
   public static final int CONSISTENT_TYPE_CLASS_REQUIRED = 18;
 
   /**
-   * @see #validateEGenericType_ConsistentType(EGenericType, DiagnosticChain,
-   *      Map)
+   * @see #validateEGenericType_ConsistentType(EGenericType, DiagnosticChain, Map)
    */
   public static final int CONSISTENT_TYPE_CLASS_NOT_PERMITTED = 19;
 
   /**
-   * @see #validateEGenericType_ConsistentType(EGenericType, DiagnosticChain,
-   *      Map)
+   * @see #validateEGenericType_ConsistentType(EGenericType, DiagnosticChain, Map)
    */
   public static final int CONSISTENT_TYPE_DATA_TYPE_NOT_PERMITTED = 20;
 
   /**
-   * @see #validateEGenericType_ConsistentType(EGenericType, DiagnosticChain,
-   *      Map)
+   * @see #validateEGenericType_ConsistentType(EGenericType, DiagnosticChain, Map)
    */
   public static final int CONSISTENT_TYPE_NO_TYPE_PARAMETER_AND_CLASSIFIER = 21;
 
   /**
-   * @see #validateEGenericType_ConsistentType(EGenericType, DiagnosticChain,
-   *      Map)
+   * @see #validateEGenericType_ConsistentType(EGenericType, DiagnosticChain, Map)
    */
   public static final int CONSISTENT_TYPE_PRIMITIVE_TYPE_NOT_PERMITTED = 22;
 
   /**
-   * @see #validateEGenericType_ConsistentType(EGenericType, DiagnosticChain,
-   *      Map)
+   * @see #validateEGenericType_ConsistentType(EGenericType, DiagnosticChain, Map)
    */
   public static final int CONSISTENT_TYPE_TYPE_PARAMETER_NOT_IN_SCOPE = 23;
 
   /**
-   * @see #validateEGenericType_ConsistentType(EGenericType, DiagnosticChain,
-   *      Map)
+   * @see #validateEGenericType_ConsistentType(EGenericType, DiagnosticChain, Map)
    */
   public static final int CONSISTENT_TYPE_WILDCARD_NOT_PERMITTED = 24;
 
@@ -258,8 +235,7 @@ public class EcoreValidator extends EObjectValidator
   public static final int SINGLE_CONTAINER = 28;
 
   /**
-   * @see #validateEPackage_UniqueClassifierNames(EPackage, DiagnosticChain,
-   *      Map)
+   * @see #validateEPackage_UniqueClassifierNames(EPackage, DiagnosticChain, Map)
    */
   public static final int UNIQUE_CLASSIFIER_NAMES = 29;
 
@@ -284,40 +260,33 @@ public class EcoreValidator extends EObjectValidator
   public static final int UNIQUE_NS_URIS = 33;
 
   /**
-   * @see #validateEClass_UniqueOperationSignatures(EClass, DiagnosticChain,
-   *      Map)
+   * @see #validateEClass_UniqueOperationSignatures(EClass, DiagnosticChain, Map)
    */
   public static final int UNIQUE_OPERATION_SIGNATURES = 34;
 
   /**
-   * @see #validateEOperation_UniqueParameterNames(EOperation, DiagnosticChain,
-   *      Map)
+   * @see #validateEOperation_UniqueParameterNames(EOperation, DiagnosticChain, Map)
    */
   public static final int UNIQUE_PARAMETER_NAMES = 35;
 
   /**
-   * @see #validateEPackage_UniqueSubpackageNames(EPackage, DiagnosticChain,
-   *      Map)
+   * @see #validateEPackage_UniqueSubpackageNames(EPackage, DiagnosticChain, Map)
    */
   public static final int UNIQUE_SUBPACKAGE_NAMES = 36;
 
   /**
-   * @see #validateEOperation_UniqueParameterNames(EOperation, DiagnosticChain,
-   *      Map)
-   * @see #validateEClassifier_UniqueTypeParameterNames(EClassifier,
-   *      DiagnosticChain, Map)
+   * @see #validateEOperation_UniqueParameterNames(EOperation, DiagnosticChain, Map)
+   * @see #validateEClassifier_UniqueTypeParameterNames(EClassifier, DiagnosticChain, Map)
    */
   public static final int UNIQUE_TYPE_PARAMETER_NAMES = 37;
 
   /**
-   * @see #validateEStructuralFeature_ValidDefaultValueLiteral(EStructuralFeature,
-   *      DiagnosticChain, Map)
+   * @see #validateEStructuralFeature_ValidDefaultValueLiteral(EStructuralFeature, DiagnosticChain, Map)
    */
   public static final int VALID_DEFAULT_VALUE_LITERAL = 38;
 
   /**
-   * @see #validateETypedElement_ValidLowerBound(ETypedElement, DiagnosticChain,
-   *      Map)
+   * @see #validateETypedElement_ValidLowerBound(ETypedElement, DiagnosticChain, Map)
    */
   public static final int VALID_LOWER_BOUND = 39;
 
@@ -327,14 +296,12 @@ public class EcoreValidator extends EObjectValidator
   public static final int VALID_TYPE = 40;
 
   /**
-   * @see #validateETypedElement_ValidUpperBound(ETypedElement, DiagnosticChain,
-   *      Map)
+   * @see #validateETypedElement_ValidUpperBound(ETypedElement, DiagnosticChain, Map)
    */
   public static final int VALID_UPPER_BOUND = 41;
 
   /**
-   * @see #validateEClassifier_WellFormedInstanceTypeName(EClassifier,
-   *      DiagnosticChain, Map)
+   * @see #validateEClassifier_WellFormedInstanceTypeName(EClassifier, DiagnosticChain, Map)
    */
   public static final int WELL_FORMED_INSTANCE_TYPE_NAME = 42;
 
@@ -359,31 +326,27 @@ public class EcoreValidator extends EObjectValidator
   public static final int WELL_FORMED_NS_URI = 46;
 
   /**
-   * @see #validateEAnnotation_WellFormedSourceURI(EAnnotation, DiagnosticChain,
-   *      Map)
+   * @see #validateEAnnotation_WellFormedSourceURI(EAnnotation, DiagnosticChain, Map)
    */
   public static final int WELL_FORMED_SOURCE_URI = 47;
 
   /**
-   * A constant with a fixed name that can be used as the base value for
-   * additional hand written constants in a derived class. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived
+   * class. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated NOT
    */
   protected static final int DIAGNOSTIC_CODE_COUNT = WELL_FORMED_SOURCE_URI;
 
   /**
-   * The cached base package validator. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * The cached base package validator. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected XMLTypeValidator xmlTypeValidator;
 
   /**
-   * Creates an instance of the switch. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * Creates an instance of the switch. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -394,8 +357,7 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Returns the package of this validator switch. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * Returns the package of this validator switch. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -406,8 +368,8 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Calls <code>validateXXX</code> for the corresponding classifier of the
-   * model. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Calls <code>validateXXX</code> for the corresponding classifier of the model. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @generated
    */
@@ -556,8 +518,8 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the ConsistentTransient constraint of '<em>EAttribute</em>'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Validates the ConsistentTransient constraint of '<em>EAttribute</em>'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @generated NOT
    */
@@ -615,10 +577,8 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the WellFormedSourceURI constraint of '<em>EAnnotation</em>'.
-   * <!-- begin-user-doc --> The source URI must either be either
-   * <code>null</code> or {@link #isWellFormedURI(String) well formed}. <!--
-   * end-user-doc -->
+   * Validates the WellFormedSourceURI constraint of '<em>EAnnotation</em>'. <!-- begin-user-doc --> The source URI
+   * must either be either <code>null</code> or {@link #isWellFormedURI(String) well formed}. <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -637,11 +597,9 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * A well formed URI string must have a non-zero length, and must encode any
-   * special characters such as the space character. As such, creating a
-   * {@link URI#createURI(String, boolean) URI}, ignoring the properly encoded
-   * characters, and converting that to a {@link URI#toString() string}, must
-   * yield this URI string itself.
+   * A well formed URI string must have a non-zero length, and must encode any special characters such as the space
+   * character. As such, creating a {@link URI#createURI(String, boolean) URI}, ignoring the properly encoded
+   * characters, and converting that to a {@link URI#toString() string}, must yield this URI string itself.
    * 
    * @param uri
    *          the URI string in question.
@@ -690,9 +648,8 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the InterfaceIsAbstract constraint of '<em>EClass</em>'. <!--
-   * begin-user-doc --> A class that is an interface must be abstract. <!--
-   * end-user-doc -->
+   * Validates the InterfaceIsAbstract constraint of '<em>EClass</em>'. <!-- begin-user-doc --> A class that is an
+   * interface must be abstract. <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -709,9 +666,8 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the AtMostOneID constraint of '<em>EClass</em>'. <!--
-   * begin-user-doc --> There can be at most one attribute that is an ID. <!--
-   * end-user-doc -->
+   * Validates the AtMostOneID constraint of '<em>EClass</em>'. <!-- begin-user-doc --> There can be at most one
+   * attribute that is an ID. <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -763,11 +719,10 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the UniqueFeatureNames constraint of '<em>EClass</em>'. <!--
-   * begin-user-doc --> No two features may have matching names. Feature names
-   * are matched ignoring their case and their underscore separators. It is an
-   * error to have two features with names that are equal but only a warning to
-   * have two features with names that match. <!-- end-user-doc -->
+   * Validates the UniqueFeatureNames constraint of '<em>EClass</em>'. <!-- begin-user-doc --> No two features may
+   * have matching names. Feature names are matched ignoring their case and their underscore separators. It is an error
+   * to have two features with names that are equal but only a warning to have two features with names that match. <!--
+   * end-user-doc -->
    * 
    * @generated NOT
    */
@@ -861,12 +816,10 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the UniqueOperationSignatures constraint of '<em>EClass</em>'.
-   * <!-- begin-user-doc --> No two operations defined in the same class may
-   * have matching signatures. The signature is determined by the name of the
-   * operation and the types of its parameters. If the name is the same and the
-   * types match, the signatures match. Types match if they are same classifier,
-   * or both classifiers have instance class names that are the same. <!--
+   * Validates the UniqueOperationSignatures constraint of '<em>EClass</em>'. <!-- begin-user-doc --> No two
+   * operations defined in the same class may have matching signatures. The signature is determined by the name of the
+   * operation and the types of its parameters. If the name is the same and the types match, the signatures match. Types
+   * match if they are same classifier, or both classifiers have instance class names that are the same. <!--
    * end-user-doc -->
    * 
    * @generated NOT
@@ -972,15 +925,12 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * There are other constraints we should check such as consistency of the
-   * return type, correctness of the signature with respect to type
-   * substitution, and so on... Validates the UniqueOperationSignatures
-   * constraint of '<em>EClass</em>'. <!-- begin-user-doc --> No two
-   * operation defined in the same class may have matching signatures. The
-   * signature is determined by the name of the operation and the types of its
-   * parameters. If the name is the same and the types match, the signatures
-   * match. Types match if they are same classifier, of both classifiers have
-   * instance class names that are the same. <!-- end-user-doc -->
+   * There are other constraints we should check such as consistency of the return type, correctness of the signature
+   * with respect to type substitution, and so on... Validates the UniqueOperationSignatures constraint of '<em>EClass</em>'.
+   * <!-- begin-user-doc --> No two operation defined in the same class may have matching signatures. The signature is
+   * determined by the name of the operation and the types of its parameters. If the name is the same and the types
+   * match, the signatures match. Types match if they are same classifier, of both classifiers have instance class names
+   * that are the same. <!-- end-user-doc -->
    * 
    * @generated NOT YET
    */
@@ -1087,9 +1037,8 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the NoCircularSuperTypes constraint of '<em>EClass</em>'.
-   * <!-- begin-user-doc --> A super type must not appear in its own list of all
-   * super types. <!-- end-user-doc -->
+   * Validates the NoCircularSuperTypes constraint of '<em>EClass</em>'. <!-- begin-user-doc --> A super type must
+   * not appear in its own list of all super types. <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -1106,9 +1055,8 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the WellFormedMapEntryClass constraint of '<em>EClass</em>'.
-   * <!-- begin-user-doc --> A map entry class must have features named 'key'
-   * and 'value'. <!-- end-user-doc -->
+   * Validates the WellFormedMapEntryClass constraint of '<em>EClass</em>'. <!-- begin-user-doc --> A map entry
+   * class must have features named 'key' and 'value'. <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -1153,11 +1101,9 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the ConsistentSuperTypes constraint of '<em>EClass</em>'.
-   * <!-- begin-user-doc --> The same class must not occur more than once among
-   * the generic super types nor among all the generic super types where
-   * occurrences in the latter represent conflicting instantiations of the same
-   * classifier. <!-- end-user-doc -->
+   * Validates the ConsistentSuperTypes constraint of '<em>EClass</em>'. <!-- begin-user-doc --> The same class must
+   * not occur more than once among the generic super types nor among all the generic super types where occurrences in
+   * the latter represent conflicting instantiations of the same classifier. <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -1257,11 +1203,9 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the WellFormedInstanceTypeName constraint of '<em>EClassifier</em>'.
-   * <!-- begin-user-doc --> The instance type name may be null only for a class
-   * or an enum and must be
-   * {@link EGenericTypeBuilder#parseInstanceTypeName(String) well formed} when
-   * not null. <!-- end-user-doc -->
+   * Validates the WellFormedInstanceTypeName constraint of '<em>EClassifier</em>'. <!-- begin-user-doc --> The
+   * instance type name may be null only for a class or an enum and must be
+   * {@link EGenericTypeBuilder#parseInstanceTypeName(String) well formed} when not null. <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -1315,8 +1259,8 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the UniqueTypeParameterNames constraint of '<em>EClassifier</em>'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Validates the UniqueTypeParameterNames constraint of '<em>EClassifier</em>'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @generated NOT
    */
@@ -1400,12 +1344,10 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the UniqueEnumeratorNames constraint of '<em>EEnum</em>'.
-   * <!-- begin-user-doc --> No two enum literals may have matching names.
-   * Literal names are matched ignoring their case and their underscore
-   * separators. It is an error to have two enum literals with names that are
-   * equal but only a warning to have two enum literals with names that match.
-   * <!-- end-user-doc -->
+   * Validates the UniqueEnumeratorNames constraint of '<em>EEnum</em>'. <!-- begin-user-doc --> No two enum
+   * literals may have matching names. Literal names are matched ignoring their case and their underscore separators. It
+   * is an error to have two enum literals with names that are equal but only a warning to have two enum literals with
+   * names that match. <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -1451,9 +1393,8 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the UniqueEnumeratorLiterals constraint of '<em>EEnum</em>'.
-   * <!-- begin-user-doc --> No two enum literals may have the same literal
-   * value. <!-- end-user-doc -->
+   * Validates the UniqueEnumeratorLiterals constraint of '<em>EEnum</em>'. <!-- begin-user-doc --> No two enum
+   * literals may have the same literal value. <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -1561,13 +1502,10 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the WellFormedName constraint of '<em>ENamed Element</em>'.
-   * <!-- begin-user-doc --> The name must be a valid Java identifier. I.e., it
-   * must start with a
-   * {@link Character#isJavaIdentifierStart(int) Java identifier start character},
-   * that is followed by zero or more
-   * {@link Character#isJavaIdentifierPart(int) Java identifier part characters}.
-   * <!-- end-user-doc -->
+   * Validates the WellFormedName constraint of '<em>ENamed Element</em>'. <!-- begin-user-doc --> The name must be
+   * a valid Java identifier. I.e., it must start with a
+   * {@link Character#isJavaIdentifierStart(int) Java identifier start character}, that is followed by zero or more
+   * {@link Character#isJavaIdentifierPart(int) Java identifier part characters}. <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -1645,9 +1583,8 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the UniqueParameterNames constraint of '<em>EOperation</em>'.
-   * <!-- begin-user-doc --> No two parameters may have the same name. <!--
-   * end-user-doc -->
+   * Validates the UniqueParameterNames constraint of '<em>EOperation</em>'. <!-- begin-user-doc --> No two
+   * parameters may have the same name. <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -1685,8 +1622,8 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the UniqueTypeParameterNames constraint of '<em>EOperation</em>'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Validates the UniqueTypeParameterNames constraint of '<em>EOperation</em>'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @generated NOT
    */
@@ -1724,9 +1661,8 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the NoRepeatingVoid constraint of '<em>EOperation</em>'. <!--
-   * begin-user-doc --> An operation without a type, which represents void, must
-   * have an upper bound of 1. <!-- end-user-doc -->
+   * Validates the NoRepeatingVoid constraint of '<em>EOperation</em>'. <!-- begin-user-doc --> An operation without
+   * a type, which represents void, must have an upper bound of 1. <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -1770,10 +1706,8 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the WellFormedNsURI constraint of '<em>EPackage</em>'. <!--
-   * begin-user-doc --> The namespace URI must be
-   * {@link #isWellFormedURI(String) well formed} and may not be
-   * <code>null</code>. <!-- end-user-doc -->
+   * Validates the WellFormedNsURI constraint of '<em>EPackage</em>'. <!-- begin-user-doc --> The namespace URI must
+   * be {@link #isWellFormedURI(String) well formed} and may not be <code>null</code>. <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -1791,12 +1725,10 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the WellFormedNsPrefix constraint of '<em>EPackage</em>'.
-   * <!-- begin-user-doc --> The namespace prefix must be either
-   * <code>null</code> or a
-   * {@link XMLTypeValidator#validateNCName(String, DiagnosticChain, Map) valid NCName}
-   * that does not start with the any case combination of the three letters <a
-   * href="http://www.w3.org/TR/REC-xml-names/#xmlReserved">"xml"</a>. <!--
+   * Validates the WellFormedNsPrefix constraint of '<em>EPackage</em>'. <!-- begin-user-doc --> The namespace
+   * prefix must be either <code>null</code> or a
+   * {@link XMLTypeValidator#validateNCName(String, DiagnosticChain, Map) valid NCName} that does not start with the any
+   * case combination of the three letters <a href="http://www.w3.org/TR/REC-xml-names/#xmlReserved">"xml"</a>. <!--
    * end-user-doc -->
    * 
    * @generated NOT
@@ -1818,9 +1750,8 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the UniqueSubpackageNames constraint of '<em>EPackage</em>'.
-   * <!-- begin-user-doc --> No two packages my have the same name. <!--
-   * end-user-doc -->
+   * Validates the UniqueSubpackageNames constraint of '<em>EPackage</em>'. <!-- begin-user-doc --> No two packages
+   * my have the same name. <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -1858,12 +1789,10 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the UniqueClassifierNames constraint of '<em>EPackage</em>'.
-   * <!-- begin-user-doc --> No two classifiers may have matching names.
-   * Classifier names are matched ignoring their case and their underscore
-   * separators. It is an error to have two classifier with names that are equal
-   * but only a warning to have two classifiers with names that match. <!--
-   * end-user-doc -->
+   * Validates the UniqueClassifierNames constraint of '<em>EPackage</em>'. <!-- begin-user-doc --> No two
+   * classifiers may have matching names. Classifier names are matched ignoring their case and their underscore
+   * separators. It is an error to have two classifier with names that are equal but only a warning to have two
+   * classifiers with names that match. <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -1909,8 +1838,7 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the UniqueNsURIs constraint of '<em>EPackage</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Validates the UniqueNsURIs constraint of '<em>EPackage</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -2016,15 +1944,12 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the ConsistentOpposite constraint of '<em>EReference</em>'.
-   * <!-- begin-user-doc --> An {@link EReference#getEOpposite() opposite} is
-   * optional but if one exists, it must be a feature of this references's
-   * {@link EReference#getEReferenceType() type}, it must have this reference
-   * as its opposite, and, if this feature is
-   * {@link EStructuralFeature#isTransient() transient}, then the opposite must
-   * also be transient, must not
-   * {@link EReference#isResolveProxies() resolve proxies}. or must be a
-   * {@link EReference#isContainment() containment}, <!-- end-user-doc -->
+   * Validates the ConsistentOpposite constraint of '<em>EReference</em>'. <!-- begin-user-doc --> An
+   * {@link EReference#getEOpposite() opposite} is optional but if one exists, it must be a feature of this references's
+   * {@link EReference#getEReferenceType() type}, it must have this reference as its opposite, and, if this feature is
+   * {@link EStructuralFeature#isTransient() transient}, then the opposite must also be transient, must not
+   * {@link EReference#isResolveProxies() resolve proxies}. or must be a {@link EReference#isContainment() containment},
+   * <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -2100,9 +2025,8 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the SingleContainer constraint of '<em>EReference</em>'. <!--
-   * begin-user-doc --> A {@link EReference#isContainer() container} reference
-   * must have a upper bound of 1. <!-- end-user-doc -->
+   * Validates the SingleContainer constraint of '<em>EReference</em>'. <!-- begin-user-doc --> A
+   * {@link EReference#isContainer() container} reference must have a upper bound of 1. <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -2120,10 +2044,9 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the ConsistentKeys constraint of '<em>EReference</em>'. <!--
-   * begin-user-doc --> The {@link EReference#getEKeys() keys} of a reference
-   * must be features of the reference's {@link ETypedElement#getEType()}. <!--
-   * end-user-doc -->
+   * Validates the ConsistentKeys constraint of '<em>EReference</em>'. <!-- begin-user-doc --> The
+   * {@link EReference#getEKeys() keys} of a reference must be features of the reference's
+   * {@link ETypedElement#getEType()}. <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -2193,8 +2116,8 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the ValidDefaultValueLiteral constraint of '<em>EStructural Feature</em>'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Validates the ValidDefaultValueLiteral constraint of '<em>EStructural Feature</em>'. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -2311,10 +2234,8 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the ValidLowerBound constraint of '<em>ETyped Element</em>'.
-   * <!-- begin-user-doc --> The
-   * {@link ETypedElement#getLowerBound() lower bound} must be greater or equal
-   * to 0 <!-- end-user-doc -->
+   * Validates the ValidLowerBound constraint of '<em>ETyped Element</em>'. <!-- begin-user-doc --> The
+   * {@link ETypedElement#getLowerBound() lower bound} must be greater or equal to 0 <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -2333,12 +2254,9 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the ValidUpperBound constraint of '<em>ETyped Element</em>'.
-   * <!-- begin-user-doc --> The
-   * {@link ETypedElement#getUpperBound() upper bound} must be either
-   * {@link ETypedElement#UNBOUNDED_MULTIPLICITY},
-   * {@link ETypedElement#UNSPECIFIED_MULTIPLICITY}, or greater than 0. <!--
-   * end-user-doc -->
+   * Validates the ValidUpperBound constraint of '<em>ETyped Element</em>'. <!-- begin-user-doc --> The
+   * {@link ETypedElement#getUpperBound() upper bound} must be either {@link ETypedElement#UNBOUNDED_MULTIPLICITY},
+   * {@link ETypedElement#UNSPECIFIED_MULTIPLICITY}, or greater than 0. <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -2358,13 +2276,11 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the ConsistentBounds constraint of '<em>ETyped Element</em>'.
-   * <!-- begin-user-doc --> The
-   * {@link ETypedElement#getLowerBound() lower bound} must be less than or
-   * equal to the {@link ETypedElement#getUpperBound() upper bound}, unless the
-   * upper bound is one of the two special values
-   * {@link ETypedElement#UNBOUNDED_MULTIPLICITY} or
-   * {@link ETypedElement#UNSPECIFIED_MULTIPLICITY}. <!-- end-user-doc -->
+   * Validates the ConsistentBounds constraint of '<em>ETyped Element</em>'. <!-- begin-user-doc --> The
+   * {@link ETypedElement#getLowerBound() lower bound} must be less than or equal to the
+   * {@link ETypedElement#getUpperBound() upper bound}, unless the upper bound is one of the two special values
+   * {@link ETypedElement#UNBOUNDED_MULTIPLICITY} or {@link ETypedElement#UNSPECIFIED_MULTIPLICITY}. <!-- end-user-doc
+   * -->
    * 
    * @generated NOT
    */
@@ -2384,10 +2300,9 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the ValidType constraint of '<em>ETyped Element</em>'. <!--
-   * begin-user-doc --> The {@link ETypedElement#getEGenericType() type} may be
-   * <code>null</code> only if this in an {@link EOperation operation}. <!--
-   * end-user-doc -->
+   * Validates the ValidType constraint of '<em>ETyped Element</em>'. <!-- begin-user-doc --> The
+   * {@link ETypedElement#getEGenericType() type} may be <code>null</code> only if this in an
+   * {@link EOperation operation}. <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -2445,25 +2360,18 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the ConsistentType constraint of '<em>EGeneric Type</em>'.
-   * <!-- begin-user-doc --> A generic type must not reference both a
-   * {@link EGenericType#getEClassifier() classifier} and a
-   * {@link EGenericType#getETypeParameter() type parameter}. The referenced
-   * type parameter must be in scope, i.e., its {@link EObject#eContainer()}
-   * must be an {@link EcoreUtil#isAncestor(EObject, EObject)} of this generic
-   * type. A generic type used as a
-   * {@link EClass#getEGenericSuperTypes() generic super type} must have a
-   * classifier that refers to a {@link EClass class}. A generic type used as a
-   * {@link EGenericType#getETypeArguments() type argument} of a generic type
-   * used as a generic super type must specify either a classifier or a type
-   * parameter, i.e., it can't be a wildcard. A generic type may omit both the
-   * classifier and the type argument to act as a wildcard only when used as a
-   * type argument of some generic type, with the above exception. If present,
-   * the classifier of generic type used as the
-   * {@link ETypedElement#getEType() type} of an {@link EAttribute attribute}
-   * must be a {@link EDataType data type}. If present, the classifier of
-   * generic type used as the type of a {@link EReference reference} must be a
-   * class. <!-- end-user-doc -->
+   * Validates the ConsistentType constraint of '<em>EGeneric Type</em>'. <!-- begin-user-doc --> A generic type
+   * must not reference both a {@link EGenericType#getEClassifier() classifier} and a
+   * {@link EGenericType#getETypeParameter() type parameter}. The referenced type parameter must be in scope, i.e., its
+   * {@link EObject#eContainer()} must be an {@link EcoreUtil#isAncestor(EObject, EObject)} of this generic type. A
+   * generic type used as a {@link EClass#getEGenericSuperTypes() generic super type} must have a classifier that refers
+   * to a {@link EClass class}. A generic type used as a {@link EGenericType#getETypeArguments() type argument} of a
+   * generic type used as a generic super type must specify either a classifier or a type parameter, i.e., it can't be a
+   * wildcard. A generic type may omit both the classifier and the type argument to act as a wildcard only when used as
+   * a type argument of some generic type, with the above exception. If present, the classifier of generic type used as
+   * the {@link ETypedElement#getEType() type} of an {@link EAttribute attribute} must be a {@link EDataType data type}.
+   * If present, the classifier of generic type used as the type of a {@link EReference reference} must be a class. <!--
+   * end-user-doc -->
    * 
    * @generated NOT
    */
@@ -2675,14 +2583,11 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the ConsistentBounds constraint of '<em>EGeneric Type</em>'.
-   * <!-- begin-user-doc --> A generic type may have bounds only when used as a
-   * {@link EGenericType#getETypeArguments() type argument}. A generic type may
-   * not have both a {@link EGenericType#getELowerBound() lower} and an
-   * {@link EGenericType#getEUpperBound() upper bound}. A generic type may not
-   * have bounds as well as a {@link EGenericType#getEClassifier() classifier}
-   * or a {@link EGenericType#getETypeParameter() type parameter}. <!--
-   * end-user-doc -->
+   * Validates the ConsistentBounds constraint of '<em>EGeneric Type</em>'. <!-- begin-user-doc --> A generic type
+   * may have bounds only when used as a {@link EGenericType#getETypeArguments() type argument}. A generic type may not
+   * have both a {@link EGenericType#getELowerBound() lower} and an {@link EGenericType#getEUpperBound() upper bound}.
+   * A generic type may not have bounds as well as a {@link EGenericType#getEClassifier() classifier} or a
+   * {@link EGenericType#getETypeParameter() type parameter}. <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -2754,14 +2659,11 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Validates the ConsistentArguments constraint of '<em>EGeneric Type</em>'.
-   * <!-- begin-user-doc --> A generic type can have
-   * {@link EGenericType#getETypeArguments() type arguments} only if it has a
-   * {@link EGenericType#getEClassifier() classifier} that specifies
-   * {@link EClassifier#getETypeParameters()}; the number of type arguments
-   * must match the number of type parameters. It is only a warning for there to
-   * be no arguments when there are parameters, but any other mismatch is an
-   * error. <!-- end-user-doc -->
+   * Validates the ConsistentArguments constraint of '<em>EGeneric Type</em>'. <!-- begin-user-doc --> A generic
+   * type can have {@link EGenericType#getETypeArguments() type arguments} only if it has a
+   * {@link EGenericType#getEClassifier() classifier} that specifies {@link EClassifier#getETypeParameters()}; the
+   * number of type arguments must match the number of type parameters. It is only a warning for there to be no
+   * arguments when there are parameters, but any other mismatch is an error. <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -2868,19 +2770,16 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Returns whether the generic type argument is a valid substitution for the
-   * type parameter. A generic type is a valid substitution if it is
-   * {@link #isBounded(EGenericType, EGenericType, Map) bounded} by every
-   * {@link ETypeParameter#getEBounds() bound} of the type parameter. It follows
-   * that for a type parameter without bounds, every type argument is a valid
-   * substitution.
+   * Returns whether the generic type argument is a valid substitution for the type parameter. A generic type is a valid
+   * substitution if it is {@link #isBounded(EGenericType, EGenericType, Map) bounded} by every
+   * {@link ETypeParameter#getEBounds() bound} of the type parameter. It follows that for a type parameter without
+   * bounds, every type argument is a valid substitution.
    * 
    * @param eTypeArgument
    *          the generic type argument to consider.
    * @param eTypeParameter
    *          the type parameter in question.
-   * @return whether the generic type argument is a valid substitution for the
-   *         type parameter.
+   * @return whether the generic type argument is a valid substitution for the type parameter.
    */
   protected boolean isValidSubstitution(EGenericType eTypeArgument, ETypeParameter eTypeParameter,
       Map<ETypeParameter, EGenericType> substitutions)
@@ -2905,30 +2804,21 @@ public class EcoreValidator extends EObjectValidator
   }
 
   /**
-   * Returns whether the first generic type is bounded by the second. If they
-   * both reference a classifier, then the classifier of the first must be
-   * bounded by the classifier of the second, and the type arguments must
-   * {@link #matchingTypeArguments(EList, EList, Map) match}. A classifier is
-   * bounded by another classifier, if they are the same classifier, if both are
-   * classes and the first is a {@link EClass#isSuperTypeOf(EClass)} the second,
-   * or if both have an non-null
-   * {@link EClassifier#getInstanceClass() instance class} for which the first
-   * is {@link Class#isAssignableFrom(Class) assignable from} the second, or,
-   * failing all these, if they have non-null
-   * {@link EClassifier#getInstanceTypeName()} that are equal. If the bound
-   * references a classifier, and the generic type argument references a type
-   * parameter, one of the {@link ETypeParameter#getEBounds() bounds} of that
-   * type parameter must be bounded by bound. If the bound has a
-   * {@link EGenericType#getELowerBound() lower bound}, the generic type
-   * argument must be bounded by that lower bound. If the bound has an
-   * {@link EGenericType#getEUpperBound() upper bound}, the generic type
-   * argument must be bounded by that upper bound. If the bound references a
-   * type parameter, the generic type argument must be bounded by every bound of
-   * that type parameter. If the bound has a lower bound, the generic type
-   * argument must be bounded by it. If the bound has an upper bound, the
-   * generic type argument must be bound that upper bound. Failing all these
-   * cases, the bound is a wildcard with no constraint, and the type argument is
-   * bounded.
+   * Returns whether the first generic type is bounded by the second. If they both reference a classifier, then the
+   * classifier of the first must be bounded by the classifier of the second, and the type arguments must
+   * {@link #matchingTypeArguments(EList, EList, Map) match}. A classifier is bounded by another classifier, if they
+   * are the same classifier, if both are classes and the first is a {@link EClass#isSuperTypeOf(EClass)} the second, or
+   * if both have an non-null {@link EClassifier#getInstanceClass() instance class} for which the first is
+   * {@link Class#isAssignableFrom(Class) assignable from} the second, or, failing all these, if they have non-null
+   * {@link EClassifier#getInstanceTypeName()} that are equal. If the bound references a classifier, and the generic
+   * type argument references a type parameter, one of the {@link ETypeParameter#getEBounds() bounds} of that type
+   * parameter must be bounded by bound. If the bound has a {@link EGenericType#getELowerBound() lower bound}, the
+   * generic type argument must be bounded by that lower bound. If the bound has an
+   * {@link EGenericType#getEUpperBound() upper bound}, the generic type argument must be bounded by that upper bound.
+   * If the bound references a type parameter, the generic type argument must be bounded by every bound of that type
+   * parameter. If the bound has a lower bound, the generic type argument must be bounded by it. If the bound has an
+   * upper bound, the generic type argument must be bound that upper bound. Failing all these cases, the bound is a
+   * wildcard with no constraint, and the type argument is bounded.
    * 
    * @param eGenericType
    *          the generic type in question.
@@ -3727,9 +3617,8 @@ public class EcoreValidator extends EObjectValidator
     public static final EGenericTypeBuilder INSTANCE = new EGenericTypeBuilder();
 
     /**
-     * Parses an instance type name and returns a diagnostic representing the
-     * result of the analysis. The {@link Diagnostic#getData() data} of the
-     * diagnostic will contain as the first object, the resulting
+     * Parses an instance type name and returns a diagnostic representing the result of the analysis. The
+     * {@link Diagnostic#getData() data} of the diagnostic will contain as the first object, the resulting
      * {@link EGenericType generic type}.
      * 
      * @param instanceTypeName
@@ -3754,14 +3643,12 @@ public class EcoreValidator extends EObjectValidator
     }
 
     /**
-     * Parses a list of type parameters and returns a diagnostic representing
-     * the result of the analysis. The {@link Diagnostic#getData() data} of the
-     * diagnostic will contain as the first object, the resulting list of
+     * Parses a list of type parameters and returns a diagnostic representing the result of the analysis. The
+     * {@link Diagnostic#getData() data} of the diagnostic will contain as the first object, the resulting list of
      * {@link ETypeParameter type parameters}.
      * 
      * @param typeParameterList
-     *          a comma separated list of type parameters delimited by '&lt;'
-     *          and '>'.
+     *          a comma separated list of type parameters delimited by '&lt;' and '>'.
      * @return the diagnostic result of the analysis.
      */
     public Diagnostic parseTypeParameterList(final String typeParameterList)
@@ -3782,14 +3669,12 @@ public class EcoreValidator extends EObjectValidator
     }
 
     /**
-     * Parses a type parameter and returns a diagnostic representing the result
-     * of the analysis. The {@link Diagnostic#getData() data} of the diagnostic
-     * will contain as the first object, the resulting
+     * Parses a type parameter and returns a diagnostic representing the result of the analysis. The
+     * {@link Diagnostic#getData() data} of the diagnostic will contain as the first object, the resulting
      * {@link ETypeParameter type parameter}.
      * 
      * @param typeParameter
-     *          comma separated list of type parameters delimited by '&lt;' and
-     *          '>'.
+     *          comma separated list of type parameters delimited by '&lt;' and '>'.
      * @return the diagnostic result of the analysis.
      */
     public Diagnostic parseTypeParameter(final String typeParameter)
@@ -3810,8 +3695,7 @@ public class EcoreValidator extends EObjectValidator
     }
 
     /**
-     * Finds or creates an {@link EClassifier classifier} with the given
-     * instance type name.
+     * Finds or creates an {@link EClassifier classifier} with the given instance type name.
      * 
      * @param instanceTypeName
      *          the instance type name for which a classifier is needed.
@@ -3844,18 +3728,14 @@ public class EcoreValidator extends EObjectValidator
     }
 
     /**
-     * A well formed instance type name must syntactically denote a valid Java
-     * type name; names denoting keywords are considered well formed. It must
-     * start with a qualified name consisting of one or more "." separated
-     * identifiers, where each identifier must start with a
-     * {@link Character#isJavaIdentifierStart(int) Java identifier start character},
-     * that is followed by zero or more
-     * {@link Character#isJavaIdentifierPart(int) Java identifier part characters}.
-     * The methods {@link #isIdentifierStart(int)} and
-     * {@link #isIdentifierPart(int)} are used so that this behavior can be
-     * specialized. This qualified name may optionally be followed by zero or
-     * more pairs of "[]" characters or by type arguments consisting of the pair
-     * of "&lt;>" characters with embedded
+     * A well formed instance type name must syntactically denote a valid Java type name; names denoting keywords are
+     * considered well formed. It must start with a qualified name consisting of one or more "." separated identifiers,
+     * where each identifier must start with a
+     * {@link Character#isJavaIdentifierStart(int) Java identifier start character}, that is followed by zero or more
+     * {@link Character#isJavaIdentifierPart(int) Java identifier part characters}. The methods
+     * {@link #isIdentifierStart(int)} and {@link #isIdentifierPart(int)} are used so that this behavior can be
+     * specialized. This qualified name may optionally be followed by zero or more pairs of "[]" characters or by type
+     * arguments consisting of the pair of "&lt;>" characters with embedded
      * {@link #handleTypeArguments(char[], int, int, DiagnosticChain) well formed type arguments}.
      * 
      * @param instanceTypeName
@@ -4051,8 +3931,8 @@ public class EcoreValidator extends EObjectValidator
     }
 
     /**
-     * Returns whether this code point is a valid part of an identifier, i.e.,
-     * whether it's valid after the first character.
+     * Returns whether this code point is a valid part of an identifier, i.e., whether it's valid after the first
+     * character.
      * 
      * @param codePoint
      *          the code point in question.
@@ -4064,10 +3944,9 @@ public class EcoreValidator extends EObjectValidator
     }
 
     /**
-     * Well formed type arguments must syntactically denote a comma separated
-     * sequence of
-     * {@link #handleTypeArgument(char[], int, int, DiagnosticChain) well formed type arguments}.
-     * Whitespace before or after arguments is ignored.
+     * Well formed type arguments must syntactically denote a comma separated sequence of
+     * {@link #handleTypeArgument(char[], int, int, DiagnosticChain) well formed type arguments}. Whitespace before or
+     * after arguments is ignored.
      * 
      * @param instanceTypeName
      *          the instance type name in question.
@@ -4124,13 +4003,11 @@ public class EcoreValidator extends EObjectValidator
     }
 
     /**
-     * A well formed type argument must denote a valid Java type argument. It
-     * may start with a "?" which may be optionally followed by the keyword
-     * "extends" or "super" which in turn, when present, must be followed by a
-     * {@link #handleInstanceTypeName(char[], int, int, DiagnosticChain) well formed type instance name}.
-     * White space before the keyword is optional but at least one space
-     * character is expected after the keyword. Otherwise, the whole string must
-     * be a well formed instance type name.
+     * A well formed type argument must denote a valid Java type argument. It may start with a "?" which may be
+     * optionally followed by the keyword "extends" or "super" which in turn, when present, must be followed by a
+     * {@link #handleInstanceTypeName(char[], int, int, DiagnosticChain) well formed type instance name}. White space
+     * before the keyword is optional but at least one space character is expected after the keyword. Otherwise, the
+     * whole string must be a well formed instance type name.
      * 
      * @param instanceTypeName
      *          the instance type name in question.
@@ -4247,10 +4124,9 @@ public class EcoreValidator extends EObjectValidator
     }
 
     /**
-     * Well formed type parameters must syntactically denote a comma separated
-     * sequence of
-     * {@link #handleTypeParameter(char[], int, int, DiagnosticChain) well formed type parameters}
-     * delimited by "&lt;>". Whitespace before or after parameters is ignored.
+     * Well formed type parameters must syntactically denote a comma separated sequence of
+     * {@link #handleTypeParameter(char[], int, int, DiagnosticChain) well formed type parameters} delimited by "&lt;>".
+     * Whitespace before or after parameters is ignored.
      * 
      * @param typeParameters
      *          the type parameters question.
@@ -4314,13 +4190,12 @@ public class EcoreValidator extends EObjectValidator
     }
 
     /**
-     * A well formed type parameter must denote a valid Java type parameter. It
-     * must start with a well formed java identifier which may be optionally
-     * followed by the keyword "extends" which in turn, when present, must be
+     * A well formed type parameter must denote a valid Java type parameter. It must start with a well formed java
+     * identifier which may be optionally followed by the keyword "extends" which in turn, when present, must be
      * followed by one or more '&amp;' separated
-     * {@link #handleTypeArgument(char[], int, int, DiagnosticChain) well formed type arguments}
-     * representing the bounds. White space before the keyword is optional but
-     * at least one space character is expected after the keyword.
+     * {@link #handleTypeArgument(char[], int, int, DiagnosticChain) well formed type arguments} representing the
+     * bounds. White space before the keyword is optional but at least one space character is expected after the
+     * keyword.
      * 
      * @param typeParameters
      *          the instance type name in question.

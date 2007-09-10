@@ -27,8 +27,7 @@ import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Any Type</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Any Type</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -43,8 +42,8 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 public class AnyTypeImpl extends EObjectImpl implements AnyType
 {
   /**
-   * The cached value of the '{@link #getMixed() <em>Mixed</em>}' attribute
-   * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getMixed() <em>Mixed</em>}' attribute list. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getMixed()
    * @generated
@@ -53,8 +52,8 @@ public class AnyTypeImpl extends EObjectImpl implements AnyType
   protected FeatureMap mixed;
 
   /**
-   * The cached value of the '{@link #getAnyAttribute() <em>Any Attribute</em>}'
-   * attribute list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getAnyAttribute() <em>Any Attribute</em>}' attribute list. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @see #getAnyAttribute()
    * @generated

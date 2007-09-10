@@ -40,8 +40,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <!-- begin-user-doc --> The <b>Validator</b> for the model. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Validator</b> for the model. <!-- end-user-doc -->
  * 
  * @see org.eclipse.emf.ecore.xml.type.XMLTypePackage
  * @generated
@@ -56,10 +55,9 @@ public class XMLTypeValidator extends EObjectValidator
   public static final XMLTypeValidator INSTANCE = new XMLTypeValidator();
 
   /**
-   * A constant for the
-   * {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of
-   * diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes}
-   * from this package. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic
+   * {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see org.eclipse.emf.common.util.Diagnostic#getSource()
    * @see org.eclipse.emf.common.util.Diagnostic#getCode()
@@ -68,9 +66,8 @@ public class XMLTypeValidator extends EObjectValidator
   public static final String DIAGNOSTIC_SOURCE = "org.eclipse.emf.ecore.xml.type";
 
   /**
-   * A constant with a fixed name that can be used as the base value for
-   * additional hand written constants. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * A constant with a fixed name that can be used as the base value for additional hand written constants. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -79,17 +76,15 @@ public class XMLTypeValidator extends EObjectValidator
   public static final int WELL_FORMED_XML_GREGORIAN_CALENDAR = GENERATED_DIAGNOSTIC_CODE_COUNT;
 
   /**
-   * A constant with a fixed name that can be used as the base value for
-   * additional hand written constants in a derived class. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived
+   * class. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated NOT
    */
   protected static final int DIAGNOSTIC_CODE_COUNT = WELL_FORMED_XML_GREGORIAN_CALENDAR;
 
   /**
-   * Creates an instance of the switch. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * Creates an instance of the switch. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -99,8 +94,7 @@ public class XMLTypeValidator extends EObjectValidator
   }
 
   /**
-   * Returns the package of this validator switch. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * Returns the package of this validator switch. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -111,8 +105,8 @@ public class XMLTypeValidator extends EObjectValidator
   }
 
   /**
-   * Calls <code>validateXXX</code> for the corresponding classifier of the
-   * model. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Calls <code>validateXXX</code> for the corresponding classifier of the model. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @generated
    */
@@ -465,8 +459,7 @@ public class XMLTypeValidator extends EObjectValidator
   }
 
   /**
-   * Validates the MinLength constraint of '<em>ENTITIES</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Validates the MinLength constraint of '<em>ENTITIES</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -491,8 +484,7 @@ public class XMLTypeValidator extends EObjectValidator
   }
 
   /**
-   * Validates the ItemType constraint of '<em>ENTITIES Base</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Validates the ItemType constraint of '<em>ENTITIES Base</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -699,8 +691,7 @@ public class XMLTypeValidator extends EObjectValidator
   }
 
   /**
-   * Validates the MinLength constraint of '<em>IDREFS</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Validates the MinLength constraint of '<em>IDREFS</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -725,8 +716,7 @@ public class XMLTypeValidator extends EObjectValidator
   }
 
   /**
-   * Validates the ItemType constraint of '<em>IDREFS Base</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Validates the ItemType constraint of '<em>IDREFS Base</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -801,8 +791,7 @@ public class XMLTypeValidator extends EObjectValidator
       .createPatternMatcher("[a-zA-Z]{1,8}(-[a-zA-Z0-9]{1,8})*") } };
 
   /**
-   * Validates the Pattern constraint of '<em>Language</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Validates the Pattern constraint of '<em>Language</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -852,8 +841,7 @@ public class XMLTypeValidator extends EObjectValidator
       .createPatternMatcher("\\i\\c*") } };
 
   /**
-   * Validates the Pattern constraint of '<em>Name</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Validates the Pattern constraint of '<em>Name</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -884,8 +872,7 @@ public class XMLTypeValidator extends EObjectValidator
       new PatternMatcher[] { XMLTypeUtil.createPatternMatcher("\\i\\c*") } };
 
   /**
-   * Validates the Pattern constraint of '<em>NC Name</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Validates the Pattern constraint of '<em>NC Name</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -915,8 +902,7 @@ public class XMLTypeValidator extends EObjectValidator
   public static final BigInteger NEGATIVE_INTEGER__MAX__VALUE = new BigInteger("-1");
 
   /**
-   * Validates the Max constraint of '<em>Negative Integer</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Validates the Max constraint of '<em>Negative Integer</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -951,8 +937,7 @@ public class XMLTypeValidator extends EObjectValidator
       .createPatternMatcher("\\c+") } };
 
   /**
-   * Validates the Pattern constraint of '<em>NMTOKEN</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Validates the Pattern constraint of '<em>NMTOKEN</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -974,8 +959,7 @@ public class XMLTypeValidator extends EObjectValidator
   }
 
   /**
-   * Validates the MinLength constraint of '<em>NMTOKENS</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Validates the MinLength constraint of '<em>NMTOKENS</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1000,8 +984,7 @@ public class XMLTypeValidator extends EObjectValidator
   }
 
   /**
-   * Validates the ItemType constraint of '<em>NMTOKENS Base</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Validates the ItemType constraint of '<em>NMTOKENS Base</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1046,8 +1029,7 @@ public class XMLTypeValidator extends EObjectValidator
   public static final BigInteger NON_NEGATIVE_INTEGER__MIN__VALUE = new BigInteger("0");
 
   /**
-   * Validates the Min constraint of '<em>Non Negative Integer</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Validates the Min constraint of '<em>Non Negative Integer</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1082,8 +1064,7 @@ public class XMLTypeValidator extends EObjectValidator
   public static final BigInteger NON_POSITIVE_INTEGER__MAX__VALUE = new BigInteger("0");
 
   /**
-   * Validates the Max constraint of '<em>Non Positive Integer</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Validates the Max constraint of '<em>Non Positive Integer</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1145,8 +1126,7 @@ public class XMLTypeValidator extends EObjectValidator
   public static final BigInteger POSITIVE_INTEGER__MIN__VALUE = new BigInteger("1");
 
   /**
-   * Validates the Min constraint of '<em>Positive Integer</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Validates the Min constraint of '<em>Positive Integer</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1258,8 +1238,7 @@ public class XMLTypeValidator extends EObjectValidator
   public static final short UNSIGNED_BYTE__MIN__VALUE = 0;
 
   /**
-   * Validates the Min constraint of '<em>Unsigned Byte</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Validates the Min constraint of '<em>Unsigned Byte</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1281,8 +1260,7 @@ public class XMLTypeValidator extends EObjectValidator
   public static final short UNSIGNED_BYTE__MAX__VALUE = 255;
 
   /**
-   * Validates the Max constraint of '<em>Unsigned Byte</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Validates the Max constraint of '<em>Unsigned Byte</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1330,8 +1308,7 @@ public class XMLTypeValidator extends EObjectValidator
   public static final long UNSIGNED_INT__MIN__VALUE = 0L;
 
   /**
-   * Validates the Min constraint of '<em>Unsigned Int</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Validates the Min constraint of '<em>Unsigned Int</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1353,8 +1330,7 @@ public class XMLTypeValidator extends EObjectValidator
   public static final long UNSIGNED_INT__MAX__VALUE = 4294967295L;
 
   /**
-   * Validates the Max constraint of '<em>Unsigned Int</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Validates the Max constraint of '<em>Unsigned Int</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1402,8 +1378,7 @@ public class XMLTypeValidator extends EObjectValidator
   public static final BigInteger UNSIGNED_LONG__MIN__VALUE = new BigInteger("0");
 
   /**
-   * Validates the Min constraint of '<em>Unsigned Long</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Validates the Min constraint of '<em>Unsigned Long</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1426,8 +1401,7 @@ public class XMLTypeValidator extends EObjectValidator
   public static final BigInteger UNSIGNED_LONG__MAX__VALUE = new BigInteger("18446744073709551615");
 
   /**
-   * Validates the Max constraint of '<em>Unsigned Long</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Validates the Max constraint of '<em>Unsigned Long</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1462,8 +1436,7 @@ public class XMLTypeValidator extends EObjectValidator
   public static final int UNSIGNED_SHORT__MIN__VALUE = 0;
 
   /**
-   * Validates the Min constraint of '<em>Unsigned Short</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Validates the Min constraint of '<em>Unsigned Short</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1485,8 +1458,7 @@ public class XMLTypeValidator extends EObjectValidator
   public static final int UNSIGNED_SHORT__MAX__VALUE = 65535;
 
   /**
-   * Validates the Max constraint of '<em>Unsigned Short</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Validates the Max constraint of '<em>Unsigned Short</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */

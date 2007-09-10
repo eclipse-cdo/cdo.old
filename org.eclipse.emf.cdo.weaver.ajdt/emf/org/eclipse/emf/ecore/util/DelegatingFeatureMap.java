@@ -59,8 +59,7 @@ public abstract class DelegatingFeatureMap extends DelegatingEcoreEList<FeatureM
   }
 
   /*
-   * List theList = new java.util.ArrayList(); protected List delegateList() {
-   * return theList; }
+   * List theList = new java.util.ArrayList(); protected List delegateList() { return theList; }
    */
 
   public Wrapper getWrapper()
@@ -878,8 +877,7 @@ public abstract class DelegatingFeatureMap extends DelegatingEcoreEList<FeatureM
   }
 
   /*
-   * public List subList(EStructuralFeature feature, int from, int to) { return
-   * null; }
+   * public List subList(EStructuralFeature feature, int from, int to) { return null; }
    */
 
   @SuppressWarnings("unchecked")

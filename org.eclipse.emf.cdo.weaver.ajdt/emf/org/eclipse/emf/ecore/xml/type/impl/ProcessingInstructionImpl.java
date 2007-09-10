@@ -42,8 +42,8 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 public class ProcessingInstructionImpl extends EObjectImpl implements ProcessingInstruction
 {
   /**
-   * The default value of the '{@link #getData() <em>Data</em>}' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #getData() <em>Data</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @see #getData()
    * @generated
@@ -52,8 +52,8 @@ public class ProcessingInstructionImpl extends EObjectImpl implements Processing
   protected static final String DATA_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getData() <em>Data</em>}' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getData() <em>Data</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @see #getData()
    * @generated
@@ -62,8 +62,8 @@ public class ProcessingInstructionImpl extends EObjectImpl implements Processing
   protected String data = DATA_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getTarget() <em>Target</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #getTarget() <em>Target</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getTarget()
    * @generated
@@ -72,8 +72,8 @@ public class ProcessingInstructionImpl extends EObjectImpl implements Processing
   protected static final String TARGET_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getTarget() <em>Target</em>}' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getTarget() <em>Target</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getTarget()
    * @generated

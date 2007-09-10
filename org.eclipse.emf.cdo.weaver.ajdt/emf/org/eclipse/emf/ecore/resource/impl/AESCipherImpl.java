@@ -38,8 +38,7 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 
 /**
  * <p>
- * EMF implementation for the {@link URIConverter.Cipher} interface using the
- * AES encryption algorithm.
+ * EMF implementation for the {@link URIConverter.Cipher} interface using the AES encryption algorithm.
  * </p>
  * <p>
  * This shows how this class can be used:
@@ -147,8 +146,8 @@ public class AESCipherImpl implements URIConverter.Cipher
 
   /**
    * <p>
-   * Sets the keysize to be used when creating the AES key. Using anything
-   * larger than 128 may make the data file non-portable.
+   * Sets the keysize to be used when creating the AES key. Using anything larger than 128 may make the data file
+   * non-portable.
    * </p>
    * <p>
    * The keysize cannot be changed after this Cipher is used.

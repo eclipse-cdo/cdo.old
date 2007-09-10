@@ -31,8 +31,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>EEnum</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EEnum</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -45,8 +44,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class EEnumImpl extends EDataTypeImpl implements EEnum
 {
   /**
-   * The cached value of the '{@link #getELiterals() <em>ELiterals</em>}'
-   * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getELiterals() <em>ELiterals</em>}' containment reference list. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getELiterals()
    * @generated

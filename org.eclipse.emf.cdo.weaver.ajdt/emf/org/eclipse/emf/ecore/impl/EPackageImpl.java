@@ -60,8 +60,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>EPackage</b></em>'.
  * 
- * @extends BasicExtendedMetaData.EPackageExtendedMetaData.Holder <!--
- *          end-user-doc -->
+ * @extends BasicExtendedMetaData.EPackageExtendedMetaData.Holder <!-- end-user-doc -->
  *          <p>
  *          The following features are implemented:
  *          <ul>
@@ -79,8 +78,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage,
     BasicExtendedMetaData.EPackageExtendedMetaData.Holder
 {
   /**
-   * The default value of the '{@link #getNsURI() <em>Ns URI</em>}' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #getNsURI() <em>Ns URI</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getNsURI()
    * @generated
@@ -135,9 +134,7 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage,
   }
 
   /**
-   * Creates a
-   * {@link org.eclipse.emf.ecore.EPackage.Registry#INSTANCE registered}
-   * instance that has a default factory.
+   * Creates a {@link org.eclipse.emf.ecore.EPackage.Registry#INSTANCE registered} instance that has a default factory.
    * 
    * @param packageURI
    *          the registered {@link #getNsURI namespace URI} of the new package.
@@ -148,9 +145,7 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage,
   }
 
   /**
-   * Creates a
-   * {@link org.eclipse.emf.ecore.EPackage.Registry#INSTANCE registered}
-   * instance with a factory.
+   * Creates a {@link org.eclipse.emf.ecore.EPackage.Registry#INSTANCE registered} instance with a factory.
    * 
    * @param packageURI
    *          the registered {@link #getNsURI namespace URI} of the new package.
@@ -237,8 +232,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage,
   }
 
   /**
-   * The cached value of the '{@link #getNsURI() <em>Ns URI</em>}' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getNsURI() <em>Ns URI</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getNsURI()
    * @generated
@@ -247,8 +242,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage,
   protected String nsURI = NS_URI_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getNsPrefix() <em>Ns Prefix</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #getNsPrefix() <em>Ns Prefix</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getNsPrefix()
    * @generated
@@ -257,8 +252,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage,
   protected static final String NS_PREFIX_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getNsPrefix() <em>Ns Prefix</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getNsPrefix() <em>Ns Prefix</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getNsPrefix()
    * @generated
@@ -267,8 +262,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage,
   protected String nsPrefix = NS_PREFIX_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getEFactoryInstance() <em>EFactory Instance</em>}'
-   * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getEFactoryInstance() <em>EFactory Instance</em>}' reference. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getEFactoryInstance()
    * @generated
@@ -277,8 +272,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage,
   protected EFactory eFactoryInstance;
 
   /**
-   * The cached value of the '{@link #getEClassifiers() <em>EClassifiers</em>}'
-   * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getEClassifiers() <em>EClassifiers</em>}' containment reference list. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getEClassifiers()
    * @generated
@@ -287,8 +282,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage,
   protected EList<EClassifier> eClassifiers;
 
   /**
-   * The cached value of the '{@link #getESubpackages() <em>ESubpackages</em>}'
-   * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getESubpackages() <em>ESubpackages</em>}' containment reference list. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getESubpackages()
    * @generated

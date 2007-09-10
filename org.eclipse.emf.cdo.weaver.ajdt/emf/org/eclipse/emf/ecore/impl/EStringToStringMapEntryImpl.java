@@ -43,8 +43,8 @@ import org.eclipse.emf.ecore.util.ECrossReferenceEList;
 public class EStringToStringMapEntryImpl extends EObjectImpl implements BasicEMap.Entry<String, String>
 {
   /**
-   * The default value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #getTypedKey() <em>Key</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getTypedKey()
    * @generated
@@ -53,8 +53,8 @@ public class EStringToStringMapEntryImpl extends EObjectImpl implements BasicEMa
   protected static final String KEY_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getTypedKey() <em>Key</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getTypedKey()
    * @generated
@@ -63,8 +63,8 @@ public class EStringToStringMapEntryImpl extends EObjectImpl implements BasicEMa
   protected String key = KEY_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getTypedValue() <em>Value</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #getTypedValue() <em>Value</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getTypedValue()
    * @generated
@@ -73,8 +73,8 @@ public class EStringToStringMapEntryImpl extends EObjectImpl implements BasicEMa
   protected static final String VALUE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getTypedValue() <em>Value</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getTypedValue() <em>Value</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getTypedValue()
    * @generated

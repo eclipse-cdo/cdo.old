@@ -97,8 +97,8 @@ import org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil;
 
 /**
  * An internal extension of Java's XMLGregorianCalendar to represent <a
- * href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/">W3C XML Schema 1.0</a>
- * dateTime, time, date, gYearMonth, gYear, gMonthDay, gDay, gMonth data types.
+ * href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/">W3C XML Schema 1.0</a> dateTime, time, date, gYearMonth,
+ * gYear, gMonthDay, gDay, gMonth data types.
  * <p>
  * NOTE: this class is for internal use only.
  */

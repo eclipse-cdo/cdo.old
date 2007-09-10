@@ -33,19 +33,16 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.common.util.URI;
 
 /**
- * A converter to normalize a URI or to produce an input or output stream for a
- * URI.
+ * A converter to normalize a URI or to produce an input or output stream for a URI.
  * <p>
- * A resource set provides {@link ResourceSet#getURIConverter one} of these for
- * use by it's {@link ResourceSet#getResources resources} when they are
- * {@link Resource#save(java.util.Map) serialized} and
- * {@link Resource#load(java.util.Map) deserialized}. A resource set also uses
- * this directly when it {@link ResourceSet#getResource looks up} a resource: a
- * resource is considered a match if {@link Resource#getURI it's URI}, and the
- * URI being looked up, {@link #normalize normalize} to
+ * A resource set provides {@link ResourceSet#getURIConverter one} of these for use by it's
+ * {@link ResourceSet#getResources resources} when they are {@link Resource#save(java.util.Map) serialized} and
+ * {@link Resource#load(java.util.Map) deserialized}. A resource set also uses this directly when it
+ * {@link ResourceSet#getResource looks up} a resource: a resource is considered a match if
+ * {@link Resource#getURI it's URI}, and the URI being looked up, {@link #normalize normalize} to
  * {@link URI#equals(Object) equal} URIs. Clients must extend the default
- * {@link org.eclipse.emf.ecore.resource.impl.URIConverterImpl implementation},
- * since methods can and will be added to this API.
+ * {@link org.eclipse.emf.ecore.resource.impl.URIConverterImpl implementation}, since methods can and will be added to
+ * this API.
  * </p>
  */
 public interface URIConverter
@@ -53,10 +50,9 @@ public interface URIConverter
   /**
    * Returns the normalized form of the URI.
    * <p>
-   * This may, in theory, do absolutely anything. Default behaviour includes
-   * applying URI {@link URIConverter#getURIMap mapping}, assuming
-   * <code>"file:"</code> protocol for a {@link URI#isRelative relative} URI
-   * with a {@link URI#hasRelativePath relative path}:
+   * This may, in theory, do absolutely anything. Default behaviour includes applying URI
+   * {@link URIConverter#getURIMap mapping}, assuming <code>"file:"</code> protocol for a
+   * {@link URI#isRelative relative} URI with a {@link URI#hasRelativePath relative path}:
    * 
    * <pre>
    *  ./WhateverDirectory/Whatever.file 
@@ -64,8 +60,8 @@ public interface URIConverter
    *  file:./WhateverDirectory/Whatever.file
    * </pre>
    * 
-   * and assuming <code>"platform:/resource"</code> protocol for a relative
-   * URI with an {@link URI#hasAbsolutePath absolute path}:
+   * and assuming <code>"platform:/resource"</code> protocol for a relative URI with an
+   * {@link URI#hasAbsolutePath absolute path}:
    * 
    * <pre>
    *  /WhateverRelocatableProject/Whatever.file 
@@ -75,9 +71,8 @@ public interface URIConverter
    * 
    * </p>
    * <p>
-   * It is important to emphasize that normalization can result it loss of
-   * information. The normalized URI should generally be used only for
-   * comparison and for access to input or output streams.
+   * It is important to emphasize that normalization can result it loss of information. The normalized URI should
+   * generally be used only for comparison and for access to input or output streams.
    * </p>
    * 
    * @param uri
@@ -88,20 +83,16 @@ public interface URIConverter
   URI normalize(URI uri);
 
   /**
-   * Returns the map used for remapping a logical URI to a physical URI when
-   * {@link #normalize normalizing}.
+   * Returns the map used for remapping a logical URI to a physical URI when {@link #normalize normalizing}.
    * <p>
-   * An implementation will typically also delegate to the
-   * {@link URIConverter#URI_MAP global} map, so registrations made in this map
-   * are <em>local</em> to this URI converter, i.e., they augment or override
-   * those of the global map.
+   * An implementation will typically also delegate to the {@link URIConverter#URI_MAP global} map, so registrations
+   * made in this map are <em>local</em> to this URI converter, i.e., they augment or override those of the global
+   * map.
    * </p>
    * <p>
-   * The map generally specifies instance to instance mapping, except for the
-   * case that both the key URI and the value URI end with "/", which specifies
-   * a folder to folder mapping. A folder mapping will remap any URI that has
-   * the key as its {@link URI#replacePrefix prefix}, e.g., if the map
-   * contains:
+   * The map generally specifies instance to instance mapping, except for the case that both the key URI and the value
+   * URI end with "/", which specifies a folder to folder mapping. A folder mapping will remap any URI that has the key
+   * as its {@link URI#replacePrefix prefix}, e.g., if the map contains:
    * 
    * <pre>
    *  http://www.example.com/ -&gt; platform:/resource/example/
@@ -119,9 +110,8 @@ public interface URIConverter
    *  platform:/resource/example/a/b/c.d
    * </pre>
    * 
-   * A matching instance mapping is considered first. If there isn't one, the
-   * folder mappings are considered starting with the
-   * {@link URI#segmentCount() longest} prefix.
+   * A matching instance mapping is considered first. If there isn't one, the folder mappings are considered starting
+   * with the {@link URI#segmentCount() longest} prefix.
    * </p>
    * 
    * @see #normalize(URI)
@@ -131,9 +121,8 @@ public interface URIConverter
   Map<URI, URI> getURIMap();
 
   /**
-   * The global static URI map. Registrations made in this instance will
-   * (typically) be available for {@link URIConverter#normalize use} by any URI
-   * converter. It is populated by URI mappings registered via
+   * The global static URI map. Registrations made in this instance will (typically) be available for
+   * {@link URIConverter#normalize use} by any URI converter. It is populated by URI mappings registered via
    * {@link org.eclipse.emf.ecore.plugin.EcorePlugin.Implementation#startup() plugin registration}.
    * 
    * @see #normalize(URI)
@@ -143,9 +132,8 @@ public interface URIConverter
   /**
    * Creates an input stream for the URI and returns it.
    * <p>
-   * It {@link #normalize normalizes} the URI and uses that as the basis for
-   * further processing. Special requirements, such as an Eclipse file refresh,
-   * are handled by the
+   * It {@link #normalize normalizes} the URI and uses that as the basis for further processing. Special requirements,
+   * such as an Eclipse file refresh, are handled by the
    * {@link org.eclipse.emf.ecore.resource.impl.URIConverterImpl default implementation}.
    * </p>
    * 
@@ -156,19 +144,17 @@ public interface URIConverter
   InputStream createInputStream(URI uri) throws IOException;
 
   /**
-   * An interface that is optionally implemented by the input streams returned
-   * from {@link URIConverter#createInputStream(URI)}.
+   * An interface that is optionally implemented by the input streams returned from
+   * {@link URIConverter#createInputStream(URI)}.
    * 
    * @see ReadableInputStream
    */
   interface Readable
   {
     /**
-     * Returns a reader that provides access to the same underlying data as the
-     * input stream itself.
+     * Returns a reader that provides access to the same underlying data as the input stream itself.
      * 
-     * @return a reader that provides access to the same underlying data as the
-     *         input stream itself.
+     * @return a reader that provides access to the same underlying data as the input stream itself.
      */
     Reader asReader();
 
@@ -181,8 +167,7 @@ public interface URIConverter
   }
 
   /**
-   * A wrapper around a reader that implements an input stream but can be
-   * unwrapped to access the reader directly.
+   * A wrapper around a reader that implements an input stream but can be unwrapped to access the reader directly.
    */
   public class ReadableInputStream extends InputStream implements Readable
   {
@@ -298,9 +283,8 @@ public interface URIConverter
   /**
    * Creates an output stream for the URI and returns it.
    * <p>
-   * It {@link #normalize normalizes} the URI and uses that as the basis for
-   * further processing. Special requirements, such as an Eclipse file refresh
-   * and automatic subdirectory creation, are handled by the
+   * It {@link #normalize normalizes} the URI and uses that as the basis for further processing. Special requirements,
+   * such as an Eclipse file refresh and automatic subdirectory creation, are handled by the
    * {@link org.eclipse.emf.ecore.resource.impl.URIConverterImpl default implementation}.
    * </p>
    * 
@@ -311,19 +295,17 @@ public interface URIConverter
   OutputStream createOutputStream(URI uri) throws IOException;
 
   /**
-   * An interface that is optionally implemented by the output streams returned
-   * from {@link URIConverter#createOutputStream(URI)}.
+   * An interface that is optionally implemented by the output streams returned from
+   * {@link URIConverter#createOutputStream(URI)}.
    * 
    * @see WriteableOutputStream
    */
   interface Writeable
   {
     /**
-     * Returns a writer that provides access to the same underlying data as the
-     * input stream itself.
+     * Returns a writer that provides access to the same underlying data as the input stream itself.
      * 
-     * @return a writer that provides access to the same underlying data as the
-     *         input stream itself.
+     * @return a writer that provides access to the same underlying data as the input stream itself.
      */
     Writer asWriter();
 
@@ -336,8 +318,7 @@ public interface URIConverter
   }
 
   /**
-   * A wrapper around a writer that implements an output stream but can be
-   * unwrapped to access the writer directly.
+   * A wrapper around a writer that implements an output stream but can be unwrapped to access the writer directly.
    */
   public static class WriteableOutputStream extends OutputStream implements Writeable
   {
@@ -455,9 +436,8 @@ public interface URIConverter
     OutputStream encrypt(OutputStream outputStream) throws Exception;
 
     /**
-     * This method is invoked after the encrypted output stream is used allowing
-     * the Cipher implementation to do any maintenance work required, such as
-     * flushing an internal cache.
+     * This method is invoked after the encrypted output stream is used allowing the Cipher implementation to do any
+     * maintenance work required, such as flushing an internal cache.
      * 
      * @param outputStream
      *          the encrypted stream returned by {@link #encrypt(OutputStream)}.
@@ -473,9 +453,8 @@ public interface URIConverter
     InputStream decrypt(InputStream inputStream) throws Exception;
 
     /**
-     * This method is invoked after the decrypted input stream is used allowing
-     * the Cipher implementation to do any maintenance work required, such as
-     * flushing internal cache.
+     * This method is invoked after the decrypted input stream is used allowing the Cipher implementation to do any
+     * maintenance work required, such as flushing internal cache.
      * 
      * @param inputStream
      *          the stream returned by {@link #decrypt(InputStream)}.

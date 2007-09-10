@@ -26,8 +26,8 @@ import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EcorePackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>EData Type</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EData Type</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -40,8 +40,8 @@ import org.eclipse.emf.ecore.EcorePackage;
 public class EDataTypeImpl extends EClassifierImpl implements EDataType
 {
   /**
-   * The default value of the '{@link #isSerializable() <em>Serializable</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #isSerializable() <em>Serializable</em>}' attribute. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @see #isSerializable()
    * @generated
@@ -50,8 +50,8 @@ public class EDataTypeImpl extends EClassifierImpl implements EDataType
   protected static final boolean SERIALIZABLE_EDEFAULT = true;
 
   /**
-   * The flag representing the value of the '{@link #isSerializable() <em>Serializable</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The flag representing the value of the '{@link #isSerializable() <em>Serializable</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #isSerializable()
    * @generated

@@ -17,8 +17,8 @@
 package org.eclipse.emf.ecore;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>ETyped Element</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>ETyped Element</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are supported:
  * <ul>
@@ -34,9 +34,8 @@ package org.eclipse.emf.ecore;
  * </p>
  * 
  * @see org.eclipse.emf.ecore.EcorePackage#getETypedElement()
- * @model abstract="true" annotation="http://www.eclipse.org/emf/2002/Ecore
- *        constraints='ValidLowerBound ValidUpperBound ConsistentBounds
- *        ValidType'"
+ * @model abstract="true" annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ValidLowerBound ValidUpperBound
+ *        ConsistentBounds ValidType'"
  * @generated
  */
 public interface ETypedElement extends ENamedElement
@@ -49,16 +48,15 @@ public interface ETypedElement extends ENamedElement
   int UNBOUNDED_MULTIPLICITY = -1;
 
   /**
-   * A value indicating that there is an unspecified
-   * {@link #getUpperBound upper bound}.
+   * A value indicating that there is an unspecified {@link #getUpperBound upper bound}.
    * 
    * @see #getUpperBound()
    */
   int UNSPECIFIED_MULTIPLICITY = -2;
 
   /**
-   * Returns the value of the '<em><b>Ordered</b></em>' attribute. The
-   * default value is <code>"true"</code>. <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Ordered</b></em>' attribute. The default value is <code>"true"</code>.
+   * <!-- begin-user-doc -->
    * <p>
    * It represents whether order is meaningful.
    * </p>
@@ -73,8 +71,8 @@ public interface ETypedElement extends ENamedElement
   boolean isOrdered();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.ecore.ETypedElement#isOrdered <em>Ordered</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.ETypedElement#isOrdered <em>Ordered</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param value
    *          the new value of the '<em>Ordered</em>' attribute.
@@ -84,8 +82,8 @@ public interface ETypedElement extends ENamedElement
   void setOrdered(boolean value);
 
   /**
-   * Returns the value of the '<em><b>Unique</b></em>' attribute. The
-   * default value is <code>"true"</code>. <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Unique</b></em>' attribute. The default value is <code>"true"</code>. <!--
+   * begin-user-doc -->
    * <p>
    * It represents whether values must be unique.
    * </p>
@@ -100,8 +98,8 @@ public interface ETypedElement extends ENamedElement
   boolean isUnique();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.ecore.ETypedElement#isUnique <em>Unique</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.ETypedElement#isUnique <em>Unique</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param value
    *          the new value of the '<em>Unique</em>' attribute.
@@ -111,11 +109,9 @@ public interface ETypedElement extends ENamedElement
   void setUnique(boolean value);
 
   /**
-   * Returns the value of the '<em><b>Lower Bound</b></em>' attribute. <!--
-   * begin-user-doc -->
+   * Returns the value of the '<em><b>Lower Bound</b></em>' attribute. <!-- begin-user-doc -->
    * <p>
-   * It represents the minimum number of values that must appear in a valid
-   * instance.
+   * It represents the minimum number of values that must appear in a valid instance.
    * </p>
    * <!-- end-user-doc -->
    * 
@@ -128,8 +124,8 @@ public interface ETypedElement extends ENamedElement
   int getLowerBound();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.ecore.ETypedElement#getLowerBound <em>Lower Bound</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.ETypedElement#getLowerBound <em>Lower Bound</em>}' attribute.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param value
    *          the new value of the '<em>Lower Bound</em>' attribute.
@@ -139,14 +135,12 @@ public interface ETypedElement extends ENamedElement
   void setLowerBound(int value);
 
   /**
-   * Returns the value of the '<em><b>Upper Bound</b></em>' attribute. The
-   * default value is <code>"1"</code>. <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Upper Bound</b></em>' attribute. The default value is <code>"1"</code>.
+   * <!-- begin-user-doc -->
    * <p>
-   * It represents the maximum number of values that must appear in a valid
-   * instance; the value <code>-1</code>, i.e., (@link
-   * #UNBOUNDED_MULTIPLICITY}}, represents unbounded, and the value
-   * <code>-2</code>, i.e., (@link #UNSPECIFIED_MULTIPLICITY}}, represents
-   * unspecified.
+   * It represents the maximum number of values that must appear in a valid instance; the value <code>-1</code>,
+   * i.e., (@link #UNBOUNDED_MULTIPLICITY}}, represents unbounded, and the value <code>-2</code>, i.e., (@link
+   * #UNSPECIFIED_MULTIPLICITY}}, represents unspecified.
    * </p>
    * <!-- end-user-doc -->
    * 
@@ -159,8 +153,8 @@ public interface ETypedElement extends ENamedElement
   int getUpperBound();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.ecore.ETypedElement#getUpperBound <em>Upper Bound</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.ETypedElement#getUpperBound <em>Upper Bound</em>}' attribute.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param value
    *          the new value of the '<em>Upper Bound</em>' attribute.
@@ -170,8 +164,7 @@ public interface ETypedElement extends ENamedElement
   void setUpperBound(int value);
 
   /**
-   * Returns the value of the '<em><b>Many</b></em>' attribute. <!--
-   * begin-user-doc -->
+   * Returns the value of the '<em><b>Many</b></em>' attribute. <!-- begin-user-doc -->
    * <p>
    * It represents whether more than one value may appear in a valid instance.
    * </p>
@@ -185,8 +178,7 @@ public interface ETypedElement extends ENamedElement
   boolean isMany();
 
   /**
-   * Returns the value of the '<em><b>Required</b></em>' attribute. <!--
-   * begin-user-doc -->
+   * Returns the value of the '<em><b>Required</b></em>' attribute. <!-- begin-user-doc -->
    * <p>
    * It represents whether at least one value is required for a valid instance.
    * </p>
@@ -200,26 +192,23 @@ public interface ETypedElement extends ENamedElement
   boolean isRequired();
 
   /**
-   * Returns the value of the '<em><b>EType</b></em>' reference. <!--
-   * begin-user-doc -->
+   * Returns the value of the '<em><b>EType</b></em>' reference. <!-- begin-user-doc -->
    * <p>
-   * It represents the type of the element and is derived from the
-   * {@link #getEType() generic type}.
+   * It represents the type of the element and is derived from the {@link #getEType() generic type}.
    * </p>
    * 
    * @see #getEGenericType() <!-- end-user-doc -->
    * @return the value of the '<em>EType</em>' reference.
    * @see #setEType(EClassifier)
    * @see org.eclipse.emf.ecore.EcorePackage#getETypedElement_EType()
-   * @model unsettable="true" volatile="true" suppressedIsSetVisibility="true"
-   *        suppressedUnsetVisibility="true"
+   * @model unsettable="true" volatile="true" suppressedIsSetVisibility="true" suppressedUnsetVisibility="true"
    * @generated
    */
   EClassifier getEType();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.ecore.ETypedElement#getEType <em>EType</em>}'
-   * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.ETypedElement#getEType <em>EType</em>}' reference. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param value
    *          the new value of the '<em>EType</em>' reference.
@@ -229,21 +218,18 @@ public interface ETypedElement extends ENamedElement
   void setEType(EClassifier value);
 
   /**
-   * Returns the value of the '<em><b>EGeneric Type</b></em>' containment
-   * reference. <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>EGeneric Type</b></em>' containment reference. <!-- begin-user-doc -->
    * <p>
-   * It represents the generic type of the element. The {@link #getEType() type}
-   * is derived from this, i.e., it represents the
-   * {@link EGenericType#getERawType() erasure} of the generic type.
+   * It represents the generic type of the element. The {@link #getEType() type} is derived from this, i.e., it
+   * represents the {@link EGenericType#getERawType() erasure} of the generic type.
    * </p>
    * <!-- end-user-doc -->
    * 
-   * @return the value of the '<em>EGeneric Type</em>' containment
-   *         reference.
+   * @return the value of the '<em>EGeneric Type</em>' containment reference.
    * @see #setEGenericType(EGenericType)
    * @see org.eclipse.emf.ecore.EcorePackage#getETypedElement_EGenericType()
-   * @model containment="true" unsettable="true" volatile="true"
-   *        suppressedIsSetVisibility="true" suppressedUnsetVisibility="true"
+   * @model containment="true" unsettable="true" volatile="true" suppressedIsSetVisibility="true"
+   *        suppressedUnsetVisibility="true"
    * @generated
    */
   EGenericType getEGenericType();
@@ -253,8 +239,7 @@ public interface ETypedElement extends ENamedElement
    * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param value
-   *          the new value of the '<em>EGeneric Type</em>' containment
-   *          reference.
+   *          the new value of the '<em>EGeneric Type</em>' containment reference.
    * @see #getEGenericType()
    * @generated
    */

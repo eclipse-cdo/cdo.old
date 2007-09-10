@@ -64,72 +64,64 @@ import java.util.StringTokenizer;
 import org.eclipse.emf.common.CommonPlugin;
 
 /**
- * This is a simple wizard for creating a new model file. <!-- begin-user-doc
- * --> <!-- end-user-doc -->
+ * This is a simple wizard for creating a new model file. <!-- begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
 public class Model1ModelWizard extends Wizard implements INewWizard
 {
   /**
-   * This caches an instance of the model package. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * This caches an instance of the model package. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected Model1Package model1Package = Model1Package.eINSTANCE;
 
   /**
-   * This caches an instance of the model factory. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * This caches an instance of the model factory. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected Model1Factory model1Factory = model1Package.getModel1Factory();
 
   /**
-   * This is the file creation page. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
+   * This is the file creation page. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected Model1ModelWizardNewFileCreationPage newFileCreationPage;
 
   /**
-   * This is the initial object creation page. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * This is the initial object creation page. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected Model1ModelWizardInitialObjectCreationPage initialObjectCreationPage;
 
   /**
-   * Remember the selection during initialization for populating the default
-   * container. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Remember the selection during initialization for populating the default container. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @generated
    */
   protected IStructuredSelection selection;
 
   /**
-   * Remember the workbench during initialization. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * Remember the workbench during initialization. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected IWorkbench workbench;
 
   /**
-   * Caches the names of the types that can be created as the root object. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Caches the names of the types that can be created as the root object. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected List<String> initialObjectNames;
 
   /**
-   * This just records the information. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * This just records the information. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -143,8 +135,8 @@ public class Model1ModelWizard extends Wizard implements INewWizard
   }
 
   /**
-   * Returns the names of the types that can be created as the root object. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns the names of the types that can be created as the root object. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @generated
    */
@@ -182,8 +174,7 @@ public class Model1ModelWizard extends Wizard implements INewWizard
   }
 
   /**
-   * Do the work after everything is specified. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * Do the work after everything is specified. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -285,8 +276,7 @@ public class Model1ModelWizard extends Wizard implements INewWizard
   }
 
   /**
-   * This is the one page of the wizard. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * This is the one page of the wizard. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -303,8 +293,7 @@ public class Model1ModelWizard extends Wizard implements INewWizard
     }
 
     /**
-     * The framework calls this to see if the file is correct. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
+     * The framework calls this to see if the file is correct. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @generated
      */
@@ -346,8 +335,7 @@ public class Model1ModelWizard extends Wizard implements INewWizard
   }
 
   /**
-   * This is the page where the type of object to create is selected. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * This is the page where the type of object to create is selected. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -536,8 +524,7 @@ public class Model1ModelWizard extends Wizard implements INewWizard
     }
 
     /**
-     * Returns the label for the specified type name. <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * Returns the label for the specified type name. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @generated
      */
@@ -575,8 +562,7 @@ public class Model1ModelWizard extends Wizard implements INewWizard
   }
 
   /**
-   * The framework calls this to create the contents of the wizard. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * The framework calls this to create the contents of the wizard. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */

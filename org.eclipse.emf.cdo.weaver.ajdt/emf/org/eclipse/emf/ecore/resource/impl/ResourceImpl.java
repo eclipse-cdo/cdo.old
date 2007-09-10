@@ -102,8 +102,7 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
   private static URIConverter defaultURIConverter;
 
   /**
-   * Returns the default URI converter that's used when there is no resource
-   * set.
+   * Returns the default URI converter that's used when there is no resource set.
    * 
    * @return the default URI converter.
    * @see #getURIConverter
@@ -118,8 +117,8 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
   }
 
   /**
-   * Merges 2 maps, without changing any of them. If map2 and map1 have the same
-   * key for an entry, map1's value will be the one in the merged map.
+   * Merges 2 maps, without changing any of them. If map2 and map1 have the same key for an entry, map1's value will be
+   * the one in the merged map.
    */
   protected static Map<?, ?> mergeMaps(Map<?, ?> map1, Map<?, ?> map2)
   {
@@ -206,9 +205,8 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
   protected boolean isLoading;
 
   /**
-   * A copy of the {@link #contents contents} list while the contents are being
-   * {@link #unload() unloaded}. I.e., if this is not <code>null</code>,
-   * then the resource is in the process of unloading.
+   * A copy of the {@link #contents contents} list while the contents are being {@link #unload() unloaded}. I.e., if
+   * this is not <code>null</code>, then the resource is in the process of unloading.
    * 
    * @see #unload()
    */
@@ -259,8 +257,8 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
   }
 
   /**
-   * Sets the new containing resource set, and removes the resource from a
-   * previous containing resource set, if necessary.
+   * Sets the new containing resource set, and removes the resource from a previous containing resource set, if
+   * necessary.
    * 
    * @param resourceSet
    *          the new containing resource set.
@@ -608,10 +606,9 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
   }
 
   /**
-   * Returns whether contents will be compressed. This implementation returns
-   * <code>false</code>. When this returns <code>true</code>,
-   * {@link #save(OutputStream, Map)} and {@link #load(InputStream, Map)} will
-   * zip compress and decompress contents.
+   * Returns whether contents will be compressed. This implementation returns <code>false</code>. When this returns
+   * <code>true</code>, {@link #save(OutputStream, Map)} and {@link #load(InputStream, Map)} will zip compress and
+   * decompress contents.
    * 
    * @return whether contents will be compressed.
    * @see #newContentZipEntry
@@ -623,13 +620,11 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
   }
 
   /**
-   * Returns the URI fragment root segment for reaching the given direct content
-   * object. This default implementation returns the position of the object, if
-   * there is more than one object, otherwise, the empty string. As a result,
-   * the URI fragment for a single root object will be <code>"/"</code>.
+   * Returns the URI fragment root segment for reaching the given direct content object. This default implementation
+   * returns the position of the object, if there is more than one object, otherwise, the empty string. As a result, the
+   * URI fragment for a single root object will be <code>"/"</code>.
    * 
-   * @return the URI fragment root segment for reaching the given direct content
-   *         object.
+   * @return the URI fragment root segment for reaching the given direct content object.
    */
   protected String getURIFragmentRootSegment(EObject eObject)
   {
@@ -690,9 +685,8 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
   }
 
   /**
-   * Returns the object associated with the URI fragment root segment. This
-   * default implementation uses the position of the object; an empty string is
-   * the same as <code>"0"</code>.
+   * Returns the object associated with the URI fragment root segment. This default implementation uses the position of
+   * the object; an empty string is the same as <code>"0"</code>.
    * 
    * @return the object associated with the URI fragment root segment.
    */
@@ -774,11 +768,10 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
   }
 
   /**
-   * Returns the map used to cache the EObject that is identified by the
-   * {@link #getEObjectByID(String) value} of its ID feature.
+   * Returns the map used to cache the EObject that is identified by the {@link #getEObjectByID(String) value} of its ID
+   * feature.
    * 
-   * @return the map used to cache the EObject that is identified by the value
-   *         of its ID feature.
+   * @return the map used to cache the EObject that is identified by the value of its ID feature.
    * @see #setIntrinsicIDToEObjectMap
    */
   public Map<String, EObject> getIntrinsicIDToEObjectMap()
@@ -787,12 +780,10 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
   }
 
   /**
-   * Sets the map used to cache the EObject identified by the value of its ID
-   * feature. This cache is only activated if the map is not <code>null</code>.
-   * The map will be lazily loaded by the
-   * {@link #getEObjectByID(String) getEObjectByID} method. It is up to the
-   * client to clear the cache when it becomes invalid, e.g., when the ID of a
-   * previously mapped EObject is changed.
+   * Sets the map used to cache the EObject identified by the value of its ID feature. This cache is only activated if
+   * the map is not <code>null</code>. The map will be lazily loaded by the
+   * {@link #getEObjectByID(String) getEObjectByID} method. It is up to the client to clear the cache when it becomes
+   * invalid, e.g., when the ID of a previously mapped EObject is changed.
    * 
    * @param intrinsicIDToEObjectMap
    *          the new map or <code>null</code>.
@@ -885,8 +876,7 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
    * @param eObject
    *          the object.
    * @see #attached(EObject)
-   * @deprecated since 2.1.0. This method is not invoked anymore. See
-   *             {@link #attachedHelper(EObject)}.
+   * @deprecated since 2.1.0. This method is not invoked anymore. See {@link #attachedHelper(EObject)}.
    */
   @Deprecated
   final protected void addModificationTrackingAdapters(EObject eObject)
@@ -930,8 +920,7 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
    * @param eObject
    *          the object.
    * @see #detached(EObject)
-   * @deprecated since 2.1.0. This method is not invoked anymore. See
-   *             {@link #attachedHelper(EObject)}.
+   * @deprecated since 2.1.0. This method is not invoked anymore. See {@link #attachedHelper(EObject)}.
    */
   @Deprecated
   final protected void removeModificationTrackingAdapters(EObject eObject)
@@ -940,10 +929,9 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
   }
 
   /**
-   * Returns the URI converter. This typically gets the
-   * {@link ResourceSet#getURIConverter converter} from the
-   * {@link #getResourceSet containing} resource set, but it calls
-   * {@link #getDefaultURIConverter} when there is no containing resource set.
+   * Returns the URI converter. This typically gets the {@link ResourceSet#getURIConverter converter} from the
+   * {@link #getResourceSet containing} resource set, but it calls {@link #getDefaultURIConverter} when there is no
+   * containing resource set.
    * 
    * @return the URI converter.
    */
@@ -1175,10 +1163,9 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
   }
 
   /**
-   * Returns a new zip entry for {@link #save(OutputStream, Map) saving} the
-   * resource contents. It is called by {@link #save(OutputStream, Map)} when
-   * writing {@link #useZip zipped} contents. This implementation creates an
-   * entry called <code>ResourceContents</code>.
+   * Returns a new zip entry for {@link #save(OutputStream, Map) saving} the resource contents. It is called by
+   * {@link #save(OutputStream, Map)} when writing {@link #useZip zipped} contents. This implementation creates an entry
+   * called <code>ResourceContents</code>.
    * 
    * @return a new zip entry.
    * @see #isContentZipEntry(ZipEntry)
@@ -1191,8 +1178,7 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
   /**
    * Saves the resource to the output stream using the specified options.
    * <p>
-   * This implementation is <code>final</code>; clients should override
-   * {@link #doSave doSave}.
+   * This implementation is <code>final</code>; clients should override {@link #doSave doSave}.
    * </p>
    * 
    * @param options
@@ -1287,8 +1273,7 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
   }
 
   /**
-   * Called to save the resource. This implementation throws an exception;
-   * clients must override it.
+   * Called to save the resource. This implementation throws an exception; clients must override it.
    * 
    * @param outputStream
    *          the stream
@@ -1302,9 +1287,8 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
   }
 
   /**
-   * Returns whether the given entry is the content entry for this resource. It
-   * is called by {@link #load(InputStream, Map)} when reading
-   * {@link #useZip zipped} contents. This implementation return
+   * Returns whether the given entry is the content entry for this resource. It is called by
+   * {@link #load(InputStream, Map)} when reading {@link #useZip zipped} contents. This implementation return
    * <code>true</code>; i.e., the first entry will be read.
    * 
    * @return whether the given entry is the content entry for this resource.
@@ -1395,8 +1379,7 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
   }
 
   /**
-   * Called to load the resource. This implementation throws an exception;
-   * clients must override it.
+   * Called to load the resource. This implementation throws an exception; clients must override it.
    * 
    * @param inputStream
    *          the stream
@@ -1426,9 +1409,8 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
   }
 
   /**
-   * Called when the object is unloaded. This implementation
-   * {@link InternalEObject#eSetProxyURI sets} the object to be a proxy and
-   * clears the {@link #eAdapters adapters}.
+   * Called when the object is unloaded. This implementation {@link InternalEObject#eSetProxyURI sets} the object to be
+   * a proxy and clears the {@link #eAdapters adapters}.
    */
   protected void unloaded(InternalEObject internalEObject)
   {
@@ -1438,9 +1420,8 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
 
   /**
    * Sets the load state as indicated, and returns a notification, if
-   * {@link org.eclipse.emf.common.notify.impl.BasicNotifierImpl#eNotificationRequired required}.
-   * Clients are <b>not</b> expected to call this directly; it is managed by
-   * the implementation.
+   * {@link org.eclipse.emf.common.notify.impl.BasicNotifierImpl#eNotificationRequired required}. Clients are <b>not</b>
+   * expected to call this directly; it is managed by the implementation.
    * 
    * @param isLoaded
    *          whether the resource is loaded.
@@ -1476,10 +1457,9 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
   }
 
   /**
-   * Does all the work of unloading the resource. It calls
-   * {@link #unloaded unloaded} for each object it the content
-   * {@link #getAllContents tree}, and clears the {@link #getContents contents},
-   * {@link #getErrors errors}, and {@link #getWarnings warnings}.
+   * Does all the work of unloading the resource. It calls {@link #unloaded unloaded} for each object it the content
+   * {@link #getAllContents tree}, and clears the {@link #getContents contents}, {@link #getErrors errors}, and
+   * {@link #getWarnings warnings}.
    */
   protected void doUnload()
   {
@@ -1620,8 +1600,7 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
 
   /**
    * Creates a modification tracking adapter. This implementation creates a
-   * {@link ResourceImpl.ModificationTrackingAdapter}. Clients may override
-   * this to any adapter.
+   * {@link ResourceImpl.ModificationTrackingAdapter}. Clients may override this to any adapter.
    * 
    * @see #modificationTrackingAdapter
    * @see #isTrackingModification
@@ -1667,9 +1646,8 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
   }
 
   /**
-   * If an implementation uses IDs and stores the IDs as part of the resource
-   * rather than as objects, this method should return a string representation
-   * of the ID to object mapping, which might be implemented as a Java Map.
+   * If an implementation uses IDs and stores the IDs as part of the resource rather than as objects, this method should
+   * return a string representation of the ID to object mapping, which might be implemented as a Java Map.
    * 
    * @return a string representation of the ID to object mapping
    */

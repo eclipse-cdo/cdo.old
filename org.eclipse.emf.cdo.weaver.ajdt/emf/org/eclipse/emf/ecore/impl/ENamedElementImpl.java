@@ -31,8 +31,8 @@ import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.ECrossReferenceEList;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>ENamed Element</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>ENamed Element</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -45,8 +45,8 @@ import org.eclipse.emf.ecore.util.ECrossReferenceEList;
 public abstract class ENamedElementImpl extends EModelElementImpl implements ENamedElement
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @see #getName()
    * @generated
@@ -55,8 +55,8 @@ public abstract class ENamedElementImpl extends EModelElementImpl implements ENa
   protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @see #getName()
    * @generated
@@ -92,9 +92,8 @@ public abstract class ENamedElementImpl extends EModelElementImpl implements ENa
   {
     return getNameGen();
     /*
-     * // if no default has been specified, use the id as the default. String
-     * defaultName = this.getNameGen(); if (defaultName != null) return
-     * defaultName; else return eID();
+     * // if no default has been specified, use the id as the default. String defaultName = this.getNameGen(); if
+     * (defaultName != null) return defaultName; else return eID();
      */
   }
 

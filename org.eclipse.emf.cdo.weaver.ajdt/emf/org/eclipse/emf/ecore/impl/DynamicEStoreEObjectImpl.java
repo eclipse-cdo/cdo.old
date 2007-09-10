@@ -206,7 +206,7 @@ public class DynamicEStoreEObjectImpl extends DynamicEObjectImpl
 
   /*
    * public String toString() { String result = super.toString(); int index =
-   * result.indexOf("DynamicEStoreEObjectImpl"); return index == -1 ? result :
-   * result.substring(0, index) + result.substring(index + 13); }
+   * result.indexOf("DynamicEStoreEObjectImpl"); return index == -1 ? result : result.substring(0, index) +
+   * result.substring(index + 13); }
    */
 }

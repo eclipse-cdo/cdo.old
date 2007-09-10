@@ -48,11 +48,9 @@ public class ResourceFactoryRegistryImpl implements Resource.Factory.Registry
   /**
    * Returns the resource factory appropriate for the given URI.
    * <p>
-   * This implementation does the
-   * {@link org.eclipse.emf.ecore.resource.Resource.Factory.Registry#getFactory typical}
-   * thing. It will delegate to {@link #delegatedGetFactory(URI)} in the case
-   * that the typical behaviour doesn't produce a result; clients are encouraged
-   * to override that method only.
+   * This implementation does the {@link org.eclipse.emf.ecore.resource.Resource.Factory.Registry#getFactory typical}
+   * thing. It will delegate to {@link #delegatedGetFactory(URI)} in the case that the typical behaviour doesn't produce
+   * a result; clients are encouraged to override that method only.
    * </p>
    * 
    * @param uri
@@ -83,11 +81,9 @@ public class ResourceFactoryRegistryImpl implements Resource.Factory.Registry
   }
 
   /**
-   * Returns the resource factory appropriate for the given URI, when standard
-   * alternatives fail.
+   * Returns the resource factory appropriate for the given URI, when standard alternatives fail.
    * <p>
-   * This implementation returns <code>null</code>; clients are encouraged to
-   * override it.
+   * This implementation returns <code>null</code>; clients are encouraged to override it.
    * </p>
    * 
    * @param uri

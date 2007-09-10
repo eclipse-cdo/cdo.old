@@ -56,8 +56,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>EStructural Feature</b></em>'.
  * 
- * @extends EStructuralFeature.Internal,
- *          BasicExtendedMetaData.EStructuralFeatureExtendedMetaData.Holder <!--
+ * @extends EStructuralFeature.Internal, BasicExtendedMetaData.EStructuralFeatureExtendedMetaData.Holder <!--
  *          end-user-doc -->
  *          <p>
  *          The following features are implemented:
@@ -248,8 +247,8 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
   }
 
   /**
-   * The default value of the '{@link #isChangeable() <em>Changeable</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #isChangeable() <em>Changeable</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #isChangeable()
    * @generated
@@ -258,8 +257,8 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
   protected static final boolean CHANGEABLE_EDEFAULT = true;
 
   /**
-   * The flag representing the value of the '{@link #isChangeable() <em>Changeable</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The flag representing the value of the '{@link #isChangeable() <em>Changeable</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #isChangeable()
    * @generated
@@ -268,8 +267,8 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
   protected static final int CHANGEABLE_EFLAG = 1 << 10;
 
   /**
-   * The default value of the '{@link #isVolatile() <em>Volatile</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #isVolatile() <em>Volatile</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #isVolatile()
    * @generated
@@ -278,8 +277,8 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
   protected static final boolean VOLATILE_EDEFAULT = false;
 
   /**
-   * The flag representing the value of the '{@link #isVolatile() <em>Volatile</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The flag representing the value of the '{@link #isVolatile() <em>Volatile</em>}' attribute. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @see #isVolatile()
    * @generated
@@ -288,8 +287,8 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
   protected static final int VOLATILE_EFLAG = 1 << 11;
 
   /**
-   * The default value of the '{@link #isTransient() <em>Transient</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #isTransient() <em>Transient</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #isTransient()
    * @generated
@@ -298,8 +297,8 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
   protected static final boolean TRANSIENT_EDEFAULT = false;
 
   /**
-   * The flag representing the value of the '{@link #isTransient() <em>Transient</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The flag representing the value of the '{@link #isTransient() <em>Transient</em>}' attribute. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @see #isTransient()
    * @generated
@@ -308,8 +307,8 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
   protected static final int TRANSIENT_EFLAG = 1 << 12;
 
   /**
-   * The default value of the '{@link #getDefaultValueLiteral() <em>Default Value Literal</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #getDefaultValueLiteral() <em>Default Value Literal</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getDefaultValueLiteral()
    * @generated
@@ -318,8 +317,8 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
   protected static final String DEFAULT_VALUE_LITERAL_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getDefaultValueLiteral() <em>Default Value Literal</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getDefaultValueLiteral() <em>Default Value Literal</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getDefaultValueLiteral()
    * @generated
@@ -328,8 +327,8 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
   protected String defaultValueLiteral = DEFAULT_VALUE_LITERAL_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @see #getDefaultValue()
    * @generated
@@ -338,8 +337,8 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
   protected static final Object DEFAULT_VALUE_EDEFAULT = null;
 
   /**
-   * The default value of the '{@link #isUnsettable() <em>Unsettable</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #isUnsettable() <em>Unsettable</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #isUnsettable()
    * @generated
@@ -348,8 +347,8 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
   protected static final boolean UNSETTABLE_EDEFAULT = false;
 
   /**
-   * The flag representing the value of the '{@link #isUnsettable() <em>Unsettable</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The flag representing the value of the '{@link #isUnsettable() <em>Unsettable</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #isUnsettable()
    * @generated
@@ -358,8 +357,8 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
   protected static final int UNSETTABLE_EFLAG = 1 << 13;
 
   /**
-   * The default value of the '{@link #isDerived() <em>Derived</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The default value of the '{@link #isDerived() <em>Derived</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #isDerived()
    * @generated
@@ -368,8 +367,8 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
   protected static final boolean DERIVED_EDEFAULT = false;
 
   /**
-   * The flag representing the value of the '{@link #isDerived() <em>Derived</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The flag representing the value of the '{@link #isDerived() <em>Derived</em>}' attribute. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @see #isDerived()
    * @generated

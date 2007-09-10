@@ -31,16 +31,14 @@ import org.eclipse.emf.ecore.xml.type.XMLTypeFactory;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
  * 
  * @generated
  */
 public class XMLNamespaceFactoryImpl extends EFactoryImpl implements XMLNamespaceFactory
 {
   /**
-   * Creates the default factory implementation. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -63,8 +61,7 @@ public class XMLNamespaceFactoryImpl extends EFactoryImpl implements XMLNamespac
   }
 
   /**
-   * Creates an instance of the factory. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */

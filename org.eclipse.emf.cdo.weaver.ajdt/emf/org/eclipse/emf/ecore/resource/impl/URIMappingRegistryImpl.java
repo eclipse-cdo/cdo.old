@@ -38,8 +38,7 @@ public class URIMappingRegistryImpl extends BasicEMap<URI, URI>
   public static final URIMappingRegistryImpl INSTANCE = new URIMappingRegistryImpl();
 
   /**
-   * A list of lists of prefix URIs; it is indexed by segment count to yield a
-   * list of prefixes of that length.
+   * A list of lists of prefix URIs; it is indexed by segment count to yield a list of prefixes of that length.
    */
   protected BasicEList<List<Entry<URI, URI>>> prefixMaps = new BasicEList<List<Entry<URI, URI>>>();
 
@@ -63,8 +62,7 @@ public class URIMappingRegistryImpl extends BasicEMap<URI, URI>
   }
 
   /**
-   * An extended implementation that maintains a bit indicating if the entry
-   * represents a folder to folder mapping.
+   * An extended implementation that maintains a bit indicating if the entry represents a folder to folder mapping.
    */
   protected class MappingEntryImpl extends EntryImpl
   {
@@ -92,9 +90,8 @@ public class URIMappingRegistryImpl extends BasicEMap<URI, URI>
   }
 
   /**
-   * Returns the remapped URI, or the URI itself. This implementation uses the
-   * map to find an exact match. Failing that, it matches the
-   * {@link #prefixMaps} prefixes in order. And failing that, it delegates to
+   * Returns the remapped URI, or the URI itself. This implementation uses the map to find an exact match. Failing that,
+   * it matches the {@link #prefixMaps} prefixes in order. And failing that, it delegates to
    * {@link #delegatedGetURI(URI) delegatedGetURI}.
    * 
    * @param uri
@@ -160,8 +157,8 @@ public class URIMappingRegistryImpl extends BasicEMap<URI, URI>
     }
 
     /**
-     * Returns the remapped URI, or the URI itself. This implementation
-     * delegates to the containing {@link URIMappingRegistryImpl}.
+     * Returns the remapped URI, or the URI itself. This implementation delegates to the containing
+     * {@link URIMappingRegistryImpl}.
      * 
      * @param uri
      *          the URI to remap.

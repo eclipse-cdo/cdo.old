@@ -28,22 +28,18 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
- * Interface for accessing and setting extended metadata on Ecore model
- * elements. Such metadata is primarily used to support structures defined in
- * XML schema and to retain additional information that a resource requires to
- * produce conforming serializations. However, non-schema-based models may use
- * this interface to support constructs such as mixed content, repeating model
- * groups, and wildcard features, as well as to customize model serialization.
+ * Interface for accessing and setting extended metadata on Ecore model elements. Such metadata is primarily used to
+ * support structures defined in XML schema and to retain additional information that a resource requires to produce
+ * conforming serializations. However, non-schema-based models may use this interface to support constructs such as
+ * mixed content, repeating model groups, and wildcard features, as well as to customize model serialization.
  * <p>
- * The extended metadata is stored on an Ecore model element as an annotation
- * with source {@link #ANNOTATION_URI}. Each piece of information is recorded
- * as a key-value pair of strings in its details map. This interface provides
- * the following utility methods to set and query those annotations:
+ * The extended metadata is stored on an Ecore model element as an annotation with source {@link #ANNOTATION_URI}. Each
+ * piece of information is recorded as a key-value pair of strings in its details map. This interface provides the
+ * following utility methods to set and query those annotations:
  * <ul>
  * <li>{@link #getNamespace(EPackage) getNamespace} (package)</li>
  * <li>{@link #isQualified isQualified}/{@link #setQualified setQualified}</li>
- * <li>{@link #getName(EClassifier) getName}/{@link #setName(EClassifier, String) setName}
- * (classifier)</li>
+ * <li>{@link #getName(EClassifier) getName}/{@link #setName(EClassifier, String) setName} (classifier)</li>
  * <li>{@link #getNamespace(EClassifier) getNamespace} (classifier)</li>
  * <li>{@link #getName(EStructuralFeature getName) getName}/{@link #setName(EStructuralFeature, String) setName}
  * (structural feature)</li>
@@ -73,16 +69,14 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * <p>
  * In additional, a number of convenience lookup methods are provided.
  * <p>
- * A single instance can be used to handle all related (or unrelated) metadata,
- * as its only state is the package registry from which to obtain metadata, and
- * the demand package registry, which stores demand-created metadata when
+ * A single instance can be used to handle all related (or unrelated) metadata, as its only state is the package
+ * registry from which to obtain metadata, and the demand package registry, which stores demand-created metadata when
  * processing data for which metadata has not already been defined.
  */
 public interface ExtendedMetaData
 {
   /**
-   * The URI used as the annotation source:
-   * "http:///org/eclipse/emf/ecore/util/ExtendedMetaData".
+   * The URI used as the annotation source: "http:///org/eclipse/emf/ecore/util/ExtendedMetaData".
    */
   String ANNOTATION_URI = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";
 
@@ -97,8 +91,7 @@ public interface ExtendedMetaData
   String XML_URI = "http://www.w3.org/XML/1998/namespace";
 
   /**
-   * The XML Schema instance namespace URI:
-   * "http://www.w3.org/2001/XMLSchema-instance".
+   * The XML Schema instance namespace URI: "http://www.w3.org/2001/XMLSchema-instance".
    */
   String XSI_URI = "http://www.w3.org/2001/XMLSchema-instance";
 
@@ -123,153 +116,136 @@ public interface ExtendedMetaData
   String XSI_PREFIX = "xsi";
 
   /**
-   * Retrieves the package with the specified namespace URI from the package
-   * registry associated with this instance.
+   * Retrieves the package with the specified namespace URI from the package registry associated with this instance.
    */
   EPackage getPackage(String namespace);
 
   /**
-   * Adds the package to the package registry associated with this instance,
-   * keyed by the given namespace URI.
+   * Adds the package to the package registry associated with this instance, keyed by the given namespace URI.
    */
   void putPackage(String namespace, EPackage ePackage);
 
   /**
-   * Returns the class corresponding to the document root in the given package.
-   * The document root class holds attributes and references corresponding to
-   * attributes and elements declared globally in a schema. It is identified by
-   * its XML name, an empty string.
+   * Returns the class corresponding to the document root in the given package. The document root class holds attributes
+   * and references corresponding to attributes and elements declared globally in a schema. It is identified by its XML
+   * name, an empty string.
    */
   EClass getDocumentRoot(EPackage ePackage);
 
   /**
-   * Sets the specified class to be a document root. The document root class
-   * holds attributes and references corresponding to attributes and elements
-   * declared globally in a schema. Its XML name is set to an empty string, and
+   * Sets the specified class to be a document root. The document root class holds attributes and references
+   * corresponding to attributes and elements declared globally in a schema. Its XML name is set to an empty string, and
    * its content kind to mixed content.
    */
   void setDocumentRoot(EClass eClass);
 
   /**
-   * If the given class has mixed content type, returns the "xmlns:prefix"
-   * feature, which is used to store namespace prefix-to-URI mappings.
+   * If the given class has mixed content type, returns the "xmlns:prefix" feature, which is used to store namespace
+   * prefix-to-URI mappings.
    */
   EReference getXMLNSPrefixMapFeature(EClass eClass);
 
   /**
-   * If the given class has mixed content type, returns the "xsi:schemaLocation"
-   * feature, which is used to store namespace URI-schema location pairs.
+   * If the given class has mixed content type, returns the "xsi:schemaLocation" feature, which is used to store
+   * namespace URI-schema location pairs.
    */
   EReference getXSISchemaLocationMapFeature(EClass eClass);
 
   /**
-   * Returns whether model instance serializations of the specified package
-   * should use namespace qualification.
+   * Returns whether model instance serializations of the specified package should use namespace qualification.
    * <p>
    * details key: "qualified"
    */
   boolean isQualified(EPackage ePackage);
 
   /**
-   * Sets whether model instance serializations of the specified package should
-   * use namespace qualification.
+   * Sets whether model instance serializations of the specified package should use namespace qualification.
    * <p>
    * details key: "qualified"
    */
   void setQualified(EPackage ePackage, boolean isQualified);
 
   /**
-   * Returns the namespace to use for model instance serializations of the
-   * specified package. If namespace qualification is being used, this is the
-   * package's namespace URI; if not, it is simply null.
+   * Returns the namespace to use for model instance serializations of the specified package. If namespace qualification
+   * is being used, this is the package's namespace URI; if not, it is simply null.
    * <p>
    * details key: "namespace"
    */
   String getNamespace(EPackage ePackage);
 
   /**
-   * Returns the namespace to use for instances of the given classifier, the
-   * same namespace as for the package that contains it.
+   * Returns the namespace to use for instances of the given classifier, the same namespace as for the package that
+   * contains it.
    */
   String getNamespace(EClassifier eClassifier);
 
   /**
-   * Returns the namespace associated with the specified structural feature.
-   * This allows features to be included in a class that correspond to elements
-   * and attributes defined in another schema (i.e. an attribute or element
+   * Returns the namespace associated with the specified structural feature. This allows features to be included in a
+   * class that correspond to elements and attributes defined in another schema (i.e. an attribute or element
    * reference).
    */
   String getNamespace(EStructuralFeature eStructuralFeature);
 
   /**
-   * Sets the namespace associated with the specified structural feature. This
-   * allows features to be included in a class that correspond to elements and
-   * attributes defined in another schema (i.e. an attribute or element
-   * reference).
+   * Sets the namespace associated with the specified structural feature. This allows features to be included in a class
+   * that correspond to elements and attributes defined in another schema (i.e. an attribute or element reference).
    */
   void setNamespace(EStructuralFeature eStructuralFeature, String namespace);
 
   /**
-   * Returns the XML name for a classifier. This is the original name specified
-   * for the type in the schema, which may be mapped into a valid and
-   * conventional Java class name for the Ecore class.
+   * Returns the XML name for a classifier. This is the original name specified for the type in the schema, which may be
+   * mapped into a valid and conventional Java class name for the Ecore class.
    * <p>
    * details key: "name"
    */
   String getName(EClassifier eClassifier);
 
   /**
-   * Sets the XML name for a classifier. This should be the original name
-   * specified for the type in the schema, which may be mapped into a valid and
-   * conventional Java class name for the Ecore class.
+   * Sets the XML name for a classifier. This should be the original name specified for the type in the schema, which
+   * may be mapped into a valid and conventional Java class name for the Ecore class.
    * <p>
    * details key: "name"
    */
   void setName(EClassifier eClassifier, String name);
 
   /**
-   * Returns whether the given classifier's XML name contains "_._", which is
-   * used to indicate an anonymous type declaration.
+   * Returns whether the given classifier's XML name contains "_._", which is used to indicate an anonymous type
+   * declaration.
    */
   boolean isAnonymous(EClassifier eClassifier);
 
   /**
-   * Returns the XML name for a structural feature. This is the original name
-   * specified for the element or attribute in the schema, which may be mapped
-   * into a valid and conventional Java field name for the Ecore structural
-   * feature. This is also the name which should be used for the element or
-   * attribute in instance documents.
+   * Returns the XML name for a structural feature. This is the original name specified for the element or attribute in
+   * the schema, which may be mapped into a valid and conventional Java field name for the Ecore structural feature.
+   * This is also the name which should be used for the element or attribute in instance documents.
    * <p>
    * details key: "name"
    */
   String getName(EStructuralFeature eStructuralFeature);
 
   /**
-   * Set the XML name for a structural feature. This should be the original name
-   * specified for the element or attribute in the schema, which may be mapped
-   * into a valid and conventional Java field name for the Ecore structural
-   * feature. This is also the name which should be used for the element or
-   * attribute in instance documents.
+   * Set the XML name for a structural feature. This should be the original name specified for the element or attribute
+   * in the schema, which may be mapped into a valid and conventional Java field name for the Ecore structural feature.
+   * This is also the name which should be used for the element or attribute in instance documents.
    * <p>
    * details key: "name"
    */
   void setName(EStructuralFeature eStructuralFeature, String name);
 
   /**
-   * Returns the classifier with the given XML name within the package with the
-   * given namespace.
+   * Returns the classifier with the given XML name within the package with the given namespace.
    */
   EClassifier getType(String namespace, String name);
 
   /**
-   * Returns the structural feature with the given XML name that corresponds to
-   * a global attribute within the package with the given namespace.
+   * Returns the structural feature with the given XML name that corresponds to a global attribute within the package
+   * with the given namespace.
    */
   EStructuralFeature getAttribute(String namespace, String name);
 
   /**
-   * Returns the structural feature with the given XML name that corresponds to
-   * a global element within the package with the given namespace.
+   * Returns the structural feature with the given XML name that corresponds to a global element within the package with
+   * the given namespace.
    */
   EStructuralFeature getElement(String namespace, String name);
 
@@ -279,33 +255,26 @@ public interface ExtendedMetaData
   EClassifier getType(EPackage ePackage, String name);
 
   /**
-   * Returns a structural feature within a class, corresponding to a local
-   * attribute with the given namespace and name, or, failing that, a document
-   * root feature corresponding to a global attribute with the given namespace
-   * and name that is
-   * {@link #getAffiliation(EClass, EStructuralFeature) affiliated} with a
-   * feature in the class.
+   * Returns a structural feature within a class, corresponding to a local attribute with the given namespace and name,
+   * or, failing that, a document root feature corresponding to a global attribute with the given namespace and name
+   * that is {@link #getAffiliation(EClass, EStructuralFeature) affiliated} with a feature in the class.
    */
   EStructuralFeature getAttribute(EClass eClass, String namespace, String name);
 
   /**
-   * Returns a structural feature within a class, corresponding to a local
-   * element with the given namespace and name, or, failing that, a document
-   * root feature corresponding to a global element with the given namespace and
-   * name that is {@link #getAffiliation(EClass, EStructuralFeature) affiliated}
-   * with a feature in the class.
+   * Returns a structural feature within a class, corresponding to a local element with the given namespace and name,
+   * or, failing that, a document root feature corresponding to a global element with the given namespace and name that
+   * is {@link #getAffiliation(EClass, EStructuralFeature) affiliated} with a feature in the class.
    */
   EStructuralFeature getElement(EClass eClass, String namespace, String name);
 
   /**
-   * If the given class represents simple content, returns the simple feature
-   * used to store its content.
+   * If the given class represents simple content, returns the simple feature used to store its content.
    */
   EStructuralFeature getSimpleFeature(EClass eClass);
 
   /**
-   * If the given class represents mixed content, returns the wildcard element
-   * feature used to store its content.
+   * If the given class represents mixed content, returns the wildcard element feature used to store its content.
    */
   EAttribute getMixedFeature(EClass eClass);
 
@@ -366,8 +335,7 @@ public interface ExtendedMetaData
   int GROUP_FEATURE = 6;
 
   /**
-   * The strings used to represent the various feature kinds in extended
-   * metadata annotations, indexed by kind ID.
+   * The strings used to represent the various feature kinds in extended metadata annotations, indexed by kind ID.
    * 
    * @see #getFeatureKind
    * @see #setFeatureKind
@@ -376,8 +344,7 @@ public interface ExtendedMetaData
       "group" };
 
   /**
-   * Returns the kind of XML structure that should be used to represent the
-   * given structural feature.
+   * Returns the kind of XML structure that should be used to represent the given structural feature.
    * <p>
    * details key: "kind"
    * 
@@ -392,8 +359,7 @@ public interface ExtendedMetaData
   int getFeatureKind(EStructuralFeature eStructuralFeature);
 
   /**
-   * Sets the kind of XML structure that should be used to represent the given
-   * structural feature.
+   * Sets the kind of XML structure that should be used to represent the given structural feature.
    * <p>
    * details key: "kind"
    * 
@@ -448,8 +414,7 @@ public interface ExtendedMetaData
   int ELEMENT_ONLY_CONTENT = 4;
 
   /**
-   * The strings used to represent the various content kinds in extended
-   * metadata annotations, indexed by kind ID.
+   * The strings used to represent the various content kinds in extended metadata annotations, indexed by kind ID.
    * 
    * @see #getContentKind
    * @see #setContentKind
@@ -457,8 +422,7 @@ public interface ExtendedMetaData
   String[] CONTENT_KINDS = { "unspecified", "empty", "simple", "mixed", "elementOnly" };
 
   /**
-   * Returns the kind of XML content of the type corresponding to the given
-   * class.
+   * Returns the kind of XML content of the type corresponding to the given class.
    * <p>
    * details key: "kind"
    * 
@@ -512,16 +476,14 @@ public interface ExtendedMetaData
   int UNION_DERIVATION = 3;
 
   /**
-   * The strings used to represent the various derivation kinds , indexed by
-   * kind ID.
+   * The strings used to represent the various derivation kinds , indexed by kind ID.
    * 
    * @see #getDerivationKind
    */
   String[] DERIVATION_KINDS = { "unspecified", "restriction", "list", "union" };
 
   /**
-   * Returns the derivation kind of the simple type corresponding to the given
-   * data type.
+   * Returns the derivation kind of the simple type corresponding to the given data type.
    * 
    * @see #UNSPECIFIED_DERIVATION
    * @see #RESTRICTION_DERIVATION
@@ -531,74 +493,68 @@ public interface ExtendedMetaData
   int getDerivationKind(EDataType eDataType);
 
   /**
-   * If a data type corresponds to simple type that derives from another by
-   * restriction, returns the data type corresponding to the base type.
+   * If a data type corresponds to simple type that derives from another by restriction, returns the data type
+   * corresponding to the base type.
    * <p>
    * details key: "baseType"
    */
   EDataType getBaseType(EDataType eDataType);
 
   /**
-   * Sets the base type for a data type, indicating that the data type
-   * corresponds to a simple type that derives from another by restriction.
+   * Sets the base type for a data type, indicating that the data type corresponds to a simple type that derives from
+   * another by restriction.
    * <p>
    * details key: "baseType"
    */
   void setBaseType(EDataType eDataType, EDataType baseType);
 
   /**
-   * If a data type corresponds to a list type, returns the data type
-   * corresponding to its item type.
+   * If a data type corresponds to a list type, returns the data type corresponding to its item type.
    * <p>
    * details key: "itemType"
    */
   EDataType getItemType(EDataType eDataType);
 
   /**
-   * Sets the item type for a data type, indicating that the data type
-   * corresponds to a list type.
+   * Sets the item type for a data type, indicating that the data type corresponds to a list type.
    * <p>
    * details key: "itemType"
    */
   void setItemType(EDataType eDataType, EDataType itemType);
 
   /**
-   * If a data type corresponds to a union type, returns the data types
-   * corresponding to its member types.
+   * If a data type corresponds to a union type, returns the data types corresponding to its member types.
    * <p>
    * details key: "memberTypes"
    */
   List<EDataType> getMemberTypes(EDataType eDataType);
 
   /**
-   * Sets the member types for a data type, indicating that the data type
-   * corresponds to a union type.
+   * Sets the member types for a data type, indicating that the data type corresponds to a union type.
    * <p>
    * details key: "memberTypes"
    */
   void setMemberTypes(EDataType eDataType, List<EDataType> memberTypes);
 
   /**
-   * Returns all the structural features of the given class, and its super
-   * classes, corresponding to XML attributes and attribute wildcards.
+   * Returns all the structural features of the given class, and its super classes, corresponding to XML attributes and
+   * attribute wildcards.
    */
   List<EStructuralFeature> getAllAttributes(EClass eClass);
 
   /**
-   * Returns all the structural features of the given class, and its super
-   * classes, corresponding to elements, element wildards, and model groups.
+   * Returns all the structural features of the given class, and its super classes, corresponding to elements, element
+   * wildards, and model groups.
    */
   List<EStructuralFeature> getAllElements(EClass eClass);
 
   /**
-   * Returns the structural features of the given class corresponding to XML
-   * attributes and attribute wildcards.
+   * Returns the structural features of the given class corresponding to XML attributes and attribute wildcards.
    */
   List<EStructuralFeature> getAttributes(EClass eClass);
 
   /**
-   * Returns the structural features of the given class corresponding to
-   * elements, element wildcards, and model groups.
+   * Returns the structural features of the given class corresponding to elements, element wildcards, and model groups.
    */
   List<EStructuralFeature> getElements(EClass eClass);
 
@@ -613,16 +569,14 @@ public interface ExtendedMetaData
   boolean matches(String wildcard, String namespace);
 
   /**
-   * Returns the allowable namespace patterns for a structural feature
-   * corresponding to an any or anyAttribute wildcard.
+   * Returns the allowable namespace patterns for a structural feature corresponding to an any or anyAttribute wildcard.
    * <p>
    * details key: "wildcards"
    */
   List<String> getWildcards(EStructuralFeature eStructuralFeature);
 
   /**
-   * Sets the allowable namespace patterns for a structural feature
-   * corresponding to an any or anyAttribute wildcard.
+   * Sets the allowable namespace patterns for a structural feature corresponding to an any or anyAttribute wildcard.
    * <p>
    * details key: "wildcards"
    */
@@ -637,8 +591,7 @@ public interface ExtendedMetaData
   int UNSPECIFIED_PROCESSING = 0;
 
   /**
-   * The processing kind ID for strict processing. This requires that metadata
-   * be available in order to parse content.
+   * The processing kind ID for strict processing. This requires that metadata be available in order to parse content.
    * 
    * @see #getProcessingKind
    * @see #setProcessingKind
@@ -662,8 +615,7 @@ public interface ExtendedMetaData
   int SKIP_PROCESSING = 3;
 
   /**
-   * The strings used to represent the various processing kinds in extended
-   * metadata annotations, indexed by kind ID.
+   * The strings used to represent the various processing kinds in extended metadata annotations, indexed by kind ID.
    * 
    * @see #getProcessingKind
    * @see #setProcessingKind
@@ -671,8 +623,7 @@ public interface ExtendedMetaData
   String[] PROCESSING_KINDS = { "unspecified", "strict", "lax", "skip" };
 
   /**
-   * Returns the kind of contents processing to be used for a structural feature
-   * corresponding to an any wildcard.
+   * Returns the kind of contents processing to be used for a structural feature corresponding to an any wildcard.
    * <p>
    * details key: "processing"
    * 
@@ -684,8 +635,7 @@ public interface ExtendedMetaData
   int getProcessingKind(EStructuralFeature eStructuralFeature);
 
   /**
-   * Sets the kind of contents processing to be used for a structural feature
-   * corresponding to an any wildcard.
+   * Sets the kind of contents processing to be used for a structural feature corresponding to an any wildcard.
    * <p>
    * details key: "processing"
    * 
@@ -697,64 +647,55 @@ public interface ExtendedMetaData
   void setProcessingKind(EStructuralFeature eStructuralFeature, int processingKind);
 
   /**
-   * Returns the substitution group affiliation for the given structural
-   * feature, that is, the feature corresponding to the head element of the
-   * substitution group to which the element corresponding to the given feature
-   * belongs.
+   * Returns the substitution group affiliation for the given structural feature, that is, the feature corresponding to
+   * the head element of the substitution group to which the element corresponding to the given feature belongs.
    * <p>
    * details key: "affiliation"
    */
   EStructuralFeature getAffiliation(EStructuralFeature eStructuralFeature);
 
   /**
-   * Sets the substitution group affiliation for the given structural feature.
-   * Both feature and its affiliation feature should be in a document root
-   * class, such that they correspond to global structural feature declarations.
+   * Sets the substitution group affiliation for the given structural feature. Both feature and its affiliation feature
+   * should be in a document root class, such that they correspond to global structural feature declarations.
    * <p>
    * details key: "affiliation"
    */
   void setAffiliation(EStructuralFeature eStructuralFeature, EStructuralFeature affiliation);
 
   /**
-   * Returns the feature respresenting the model group or subtitution group head
-   * feature to which the implementation of the given feature is delegated.
+   * Returns the feature respresenting the model group or subtitution group head feature to which the implementation of
+   * the given feature is delegated.
    * <p>
    * details key: "group"
    */
   EStructuralFeature getGroup(EStructuralFeature eStructuralFeature);
 
   /**
-   * Sets a group or substitution group head feature, to which the
-   * implementation of the given feature should be delegated.
+   * Sets a group or substitution group head feature, to which the implementation of the given feature should be
+   * delegated.
    * <p>
    * details key: "group"
    */
   void setGroup(EStructuralFeature eStructuralFeature, EStructuralFeature group);
 
   /**
-   * Returns a structural feature within the given class that is or is
-   * associated with the given structural feature. If the feature corresponds to
-   * an attribute, it will return the given feature itself, a feature matching
-   * the given one in the document root (corresponding to a reference to the
-   * global attribute), or a wildcard attribute feature appropriate for the
-   * namespace of the given feature. If it corresponds to an element, it will
-   * return the feature itself, a feature matching it in the document root or
-   * its affiliations (corresponding to a reference to the global element, or
-   * its head, or its head's head, etc.), the mixed content feature for an XML
-   * type (text, CDATA, or comment), or a wildcard element feature appropriate
-   * for the namespace of the given feature.
+   * Returns a structural feature within the given class that is or is associated with the given structural feature. If
+   * the feature corresponds to an attribute, it will return the given feature itself, a feature matching the given one
+   * in the document root (corresponding to a reference to the global attribute), or a wildcard attribute feature
+   * appropriate for the namespace of the given feature. If it corresponds to an element, it will return the feature
+   * itself, a feature matching it in the document root or its affiliations (corresponding to a reference to the global
+   * element, or its head, or its head's head, etc.), the mixed content feature for an XML type (text, CDATA, or
+   * comment), or a wildcard element feature appropriate for the namespace of the given feature.
    */
   EStructuralFeature getAffiliation(EClass eClass, EStructuralFeature eStructuralFeature);
 
   /**
-   * Returns a wildcard feature in the given class that allows allows attribute
-   * values from the given namespace.
+   * Returns a wildcard feature in the given class that allows allows attribute values from the given namespace.
    */
   EStructuralFeature getAttributeWildcardAffiliation(EClass eClass, String namespace, String name);
 
   /**
-   * Returns a wildcard feature in the given class that allows allows element
-   * values from the given namespace.
+   * Returns a wildcard feature in the given class that allows allows element values from the given namespace.
    */
   EStructuralFeature getElementWildcardAffiliation(EClass eClass, String namespace, String name);
 
@@ -775,8 +716,7 @@ public interface ExtendedMetaData
   int PRESERVE_WHITE_SPACE = 1;
 
   /**
-   * The white space kind ID for replace (each white space character by a
-   * space).
+   * The white space kind ID for replace (each white space character by a space).
    * 
    * @see #getWhiteSpaceFacet
    * @see #setWhiteSpaceFacet
@@ -784,8 +724,7 @@ public interface ExtendedMetaData
   int REPLACE_WHITE_SPACE = 2;
 
   /**
-   * The white space kind ID for collapse (all contiguous white space characters
-   * to a single space).
+   * The white space kind ID for collapse (all contiguous white space characters to a single space).
    * 
    * @see #getWhiteSpaceFacet
    * @see #setWhiteSpaceFacet
@@ -793,8 +732,7 @@ public interface ExtendedMetaData
   int COLLAPSE_WHITE_SPACE = 3;
 
   /**
-   * The strings used to represent the various white space kinds in extended
-   * metadata annotations, indexed by kind ID.
+   * The strings used to represent the various white space kinds in extended metadata annotations, indexed by kind ID.
    * 
    * @see #getWhiteSpaceFacet
    * @see #setWhiteSpaceFacet
@@ -980,29 +918,26 @@ public interface ExtendedMetaData
   void setMaxInclusiveFacet(EDataType eDataType, String literal);
 
   /**
-   * Returns a package from the demand package registry, creating it (with a
-   * document root class) if necessary.
+   * Returns a package from the demand package registry, creating it (with a document root class) if necessary.
    */
   EPackage demandPackage(String namespace);
 
   /**
-   * Returns a class from the namespace-specified package in the demand package
-   * registry, demand creating it, and the package, if necessary.
+   * Returns a class from the namespace-specified package in the demand package registry, demand creating it, and the
+   * package, if necessary.
    */
   EClassifier demandType(String namespace, String name);
 
   /**
-   * Returns a feature corresponding to a global element or attribute from the
-   * namespace-specified package in the demand package registry, creating it,
-   * and the package, if necessary. Elements are created as references and
-   * attributes as attributes.
+   * Returns a feature corresponding to a global element or attribute from the namespace-specified package in the demand
+   * package registry, creating it, and the package, if necessary. Elements are created as references and attributes as
+   * attributes.
    */
   EStructuralFeature demandFeature(String namespace, String name, boolean isElement);
 
   /**
-   * Returns a feature corresponding to a global element or attribute from the
-   * namespace-specified package in the demand package registry, creating it,
-   * and the package, if necessary.
+   * Returns a feature corresponding to a global element or attribute from the namespace-specified package in the demand
+   * package registry, creating it, and the package, if necessary.
    */
   EStructuralFeature demandFeature(String namespace, String name, boolean isElement, boolean isReference);
 
@@ -1012,10 +947,8 @@ public interface ExtendedMetaData
   Collection<EPackage> demandedPackages();
 
   /**
-   * The default ExtendedMetaData instance, which obtains packages from the
-   * global package registry, {@link
-   * org.eclipse.emf.ecore.EPackage.Registry#INSTANCE
-   * EPackage.Registry.INSTANCE}.
+   * The default ExtendedMetaData instance, which obtains packages from the global package registry, {@link
+   * org.eclipse.emf.ecore.EPackage.Registry#INSTANCE EPackage.Registry.INSTANCE}.
    */
   ExtendedMetaData INSTANCE = new BasicExtendedMetaData();
 }

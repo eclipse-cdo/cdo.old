@@ -84,9 +84,8 @@ public class EcoreUtil
   }
 
   /**
-   * Returns the specified eObject's adapter of the specified type. If none
-   * exists, create and add a new adapter using a registered adapter factory if
-   * one exists for the specified type.
+   * Returns the specified eObject's adapter of the specified type. If none exists, create and add a new adapter using a
+   * registered adapter factory if one exists for the specified type.
    * 
    * @param eObject
    *          the adapted object.
@@ -117,9 +116,8 @@ public class EcoreUtil
   }
 
   /**
-   * Returns the specified resource's adapter of the specified type. If none
-   * exists, create and add a new adapter using a registered adapter factory if
-   * one exists for the specified type.
+   * Returns the specified resource's adapter of the specified type. If none exists, create and add a new adapter using
+   * a registered adapter factory if one exists for the specified type.
    * 
    * @param resource
    *          the adapted resource.
@@ -190,11 +188,9 @@ public class EcoreUtil
   }
 
   /**
-   * Returns the resolved object represented by proxy. Proxy chains are
-   * followed. If resourceSet is null, the global package registry is consulted
-   * to obtain a package registered against the proxy URI, less its fragment, in
-   * the same manner as the default resource set implementation's fall-back
-   * behaviour.
+   * Returns the resolved object represented by proxy. Proxy chains are followed. If resourceSet is null, the global
+   * package registry is consulted to obtain a package registered against the proxy URI, less its fragment, in the same
+   * manner as the default resource set implementation's fall-back behaviour.
    * 
    * @param proxy
    *          the proxy to be resolved.
@@ -249,11 +245,9 @@ public class EcoreUtil
   }
 
   /**
-   * Returns the resolved object represented by proxy. Proxy chains are
-   * followed. If resourceContext is null or not in a resource set, the global
-   * package registry is consulted to obtain a package registered against the
-   * proxy URI, less its fragment, in the same manner as the default resource
-   * set implementation's fall-back behaviour.
+   * Returns the resolved object represented by proxy. Proxy chains are followed. If resourceContext is null or not in a
+   * resource set, the global package registry is consulted to obtain a package registered against the proxy URI, less
+   * its fragment, in the same manner as the default resource set implementation's fall-back behaviour.
    * 
    * @param proxy
    *          the proxy to be resolved.
@@ -267,11 +261,10 @@ public class EcoreUtil
   }
 
   /**
-   * Returns the resolved object represented by proxy. Proxy chains are
-   * followed. If objectContext is null or not in a resource that is in a
-   * resource set, the global package registry is consulted to obtain a package
-   * registered against the proxy URI, less its fragment, in the same manner as
-   * the default resource set implementation's fall-back behaviour.
+   * Returns the resolved object represented by proxy. Proxy chains are followed. If objectContext is null or not in a
+   * resource that is in a resource set, the global package registry is consulted to obtain a package registered against
+   * the proxy URI, less its fragment, in the same manner as the default resource set implementation's fall-back
+   * behaviour.
    * 
    * @param proxy
    *          the proxy to be resolved.
@@ -316,8 +309,7 @@ public class EcoreUtil
   }
 
   /**
-   * Visits all proxies referenced by the object or recursively any of it's
-   * contained object.
+   * Visits all proxies referenced by the object or recursively any of it's contained object.
    * 
    * @param eObject
    *          the object to visit.
@@ -341,8 +333,7 @@ public class EcoreUtil
   }
 
   /**
-   * Returns the first collection member that
-   * {@link EClassifier#isInstance is an instance} of the type.
+   * Returns the first collection member that {@link EClassifier#isInstance is an instance} of the type.
    * 
    * @param objects
    *          a collection of objects to check.
@@ -363,8 +354,8 @@ public class EcoreUtil
   }
 
   /**
-   * Returns a collection containing each collection member that
-   * {@link EClassifier#isInstance is an instance} of the type.
+   * Returns a collection containing each collection member that {@link EClassifier#isInstance is an instance} of the
+   * type.
    * 
    * @param objects
    *          a collection of objects to check.
@@ -404,8 +395,7 @@ public class EcoreUtil
   }
 
   /**
-   * Returns a collection of the self-contained copies of each {@link EObject}
-   * in eObjects.
+   * Returns a collection of the self-contained copies of each {@link EObject} in eObjects.
    * 
    * @param eObjects
    *          the collection of objects to copy.
@@ -421,16 +411,12 @@ public class EcoreUtil
   }
 
   /**
-   * A mapping building traverser of a collection of
-   * {@link EObject#eAllContents content trees}; the map is from
-   * {@link EObject} to <code>EObject</code>, i.e., from original to copy;
-   * use {@link EcoreUtil#copy EcoreUtil.copy} or
-   * {@link EcoreUtil#copyAll EcoreUtil.copyAll} to do routine copies. Since
-   * this implementation extends a Map implementation, it acts as the result of
-   * the over all copy. The client can call {@link #copy copy} and
-   * {@link #copyAll copyAll} repeatedly. When all the objects have been copied,
-   * the client should call {@link #copyReferences copyReferences} to copy the
-   * {@link #copyReference appropriate}
+   * A mapping building traverser of a collection of {@link EObject#eAllContents content trees}; the map is from
+   * {@link EObject} to <code>EObject</code>, i.e., from original to copy; use {@link EcoreUtil#copy EcoreUtil.copy}
+   * or {@link EcoreUtil#copyAll EcoreUtil.copyAll} to do routine copies. Since this implementation extends a Map
+   * implementation, it acts as the result of the over all copy. The client can call {@link #copy copy} and
+   * {@link #copyAll copyAll} repeatedly. When all the objects have been copied, the client should call
+   * {@link #copyReferences copyReferences} to copy the {@link #copyReference appropriate}
    * {@link EObject#eCrossReferences cross references}.
    * 
    * <pre>
@@ -440,10 +426,9 @@ public class EcoreUtil
    * copier.copyReferences();
    * </pre>
    * 
-   * The copier delegates to {@link #copyContainment copyContainment},
-   * {@link #copyAttribute copyAttribute} during the copy phase and to
-   * {@link #copyReference copyReference}, during the cross reference phase.
-   * This allows tailored handling through derivation.
+   * The copier delegates to {@link #copyContainment copyContainment}, {@link #copyAttribute copyAttribute} during the
+   * copy phase and to {@link #copyReference copyReference}, during the cross reference phase. This allows tailored
+   * handling through derivation.
    */
   public static class Copier extends HashMap<EObject, EObject>
   {
@@ -479,8 +464,7 @@ public class EcoreUtil
     }
 
     /**
-     * Creates an instance that resolves proxies or not and uses non-copied
-     * references or not as specified.
+     * Creates an instance that resolves proxies or not and uses non-copied references or not as specified.
      * 
      * @param resolveProxies
      *          whether proxies should be resolved while copying.
@@ -494,8 +478,7 @@ public class EcoreUtil
     }
 
     /**
-     * Returns a collection containing a copy of each EObject in the given
-     * collection.
+     * Returns a collection containing a copy of each EObject in the given collection.
      * 
      * @param eObjects
      *          the collection of objects to copy.
@@ -581,8 +564,7 @@ public class EcoreUtil
     }
 
     /**
-     * Returns the target class used to create a copy instance for objects of
-     * the given source class.
+     * Returns the target class used to create a copy instance for objects of the given source class.
      * 
      * @param eClass
      *          the source class.
@@ -595,8 +577,7 @@ public class EcoreUtil
     }
 
     /**
-     * Returns the target feature used to populate a copy instance from the
-     * given source feature.
+     * Returns the target feature used to populate a copy instance from the given source feature.
      * 
      * @param eStructuralFeature
      *          the source feature.
@@ -609,8 +590,8 @@ public class EcoreUtil
     }
 
     /**
-     * Called to handle the copying of a containment feature; this adds a list
-     * of copies or sets a single copy as appropriate for the multiplicity.
+     * Called to handle the copying of a containment feature; this adds a list of copies or sets a single copy as
+     * appropriate for the multiplicity.
      * 
      * @param eReference
      *          the feature to copy.
@@ -647,8 +628,8 @@ public class EcoreUtil
     }
 
     /**
-     * Called to handle the copying of an attribute; this adds a list of values
-     * or sets a single value as appropriate for the multiplicity.
+     * Called to handle the copying of an attribute; this adds a list of values or sets a single value as appropriate
+     * for the multiplicity.
      * 
      * @param eAttribute
      *          the attribute to copy.
@@ -699,8 +680,7 @@ public class EcoreUtil
     }
 
     /**
-     * Hooks up cross references; it delegates to
-     * {@link #copyReference copyReference}.
+     * Hooks up cross references; it delegates to {@link #copyReference copyReference}.
      */
     public void copyReferences()
     {
@@ -772,9 +752,8 @@ public class EcoreUtil
     }
 
     /**
-     * Called to handle the copying of a cross reference; this adds values or
-     * sets a single value as appropriate for the multiplicity while omitting
-     * any bidirectional reference that isn't in the copy map.
+     * Called to handle the copying of a cross reference; this adds values or sets a single value as appropriate for the
+     * multiplicity while omitting any bidirectional reference that isn't in the copy map.
      * 
      * @param eReference
      *          the reference to copy.
@@ -864,12 +843,11 @@ public class EcoreUtil
   }
 
   /**
-   * Returns the root container; it may be this object itself and it will have a
-   * <code>null</code> {@link EObject#eContainer container}.
+   * Returns the root container; it may be this object itself and it will have a <code>null</code>
+   * {@link EObject#eContainer container}.
    * <p>
-   * The root container must be {@link Resource#getContents directly contained}
-   * in a resource for its {@link EObject#eAllContents tree} to be
-   * {@link Resource#save(java.util.Map) serializable}.
+   * The root container must be {@link Resource#getContents directly contained} in a resource for its
+   * {@link EObject#eAllContents tree} to be {@link Resource#save(java.util.Map) serializable}.
    * </p>
    * 
    * @param eObject
@@ -902,13 +880,11 @@ public class EcoreUtil
   }
 
   /**
-   * Returns the root container; it may be this object itself and it will have a
-   * <code>null</code> {@link EObject#eContainer container}. Container
-   * proxies are resolved or not as specified
+   * Returns the root container; it may be this object itself and it will have a <code>null</code>
+   * {@link EObject#eContainer container}. Container proxies are resolved or not as specified
    * <p>
-   * The root container must be {@link Resource#getContents directly contained}
-   * in a resource for its {@link EObject#eAllContents tree} to be
-   * {@link Resource#save(java.util.Map) serializable}.
+   * The root container must be {@link Resource#getContents directly contained} in a resource for its
+   * {@link EObject#eAllContents tree} to be {@link Resource#save(java.util.Map) serializable}.
    * </p>
    * 
    * @param eObject
@@ -951,10 +927,8 @@ public class EcoreUtil
   }
 
   /**
-   * Returns whether the second object is directly or indirectly contained by
-   * the first object, i.e., whether the second object is in the
-   * {@link EObject#eContents content tree} of the first. Container proxies are
-   * not resolved.
+   * Returns whether the second object is directly or indirectly contained by the first object, i.e., whether the second
+   * object is in the {@link EObject#eContents content tree} of the first. Container proxies are not resolved.
    * 
    * @param ancestorEObject
    *          the ancestor object in question.
@@ -990,8 +964,8 @@ public class EcoreUtil
   }
 
   /**
-   * Returns whether the given resource is that of the object, i.e., whether the
-   * object is in the {@link Resource#getContents content tree} of the resource.
+   * Returns whether the given resource is that of the object, i.e., whether the object is in the
+   * {@link Resource#getContents content tree} of the resource.
    * 
    * @param ancestorResource
    *          the ancestor resource in question.
@@ -1014,9 +988,8 @@ public class EcoreUtil
   }
 
   /**
-   * Returns whether the given resource set is that of the object, i.e., whether
-   * the object is in the {@link Resource#getContents content tree} of the
-   * resource set.
+   * Returns whether the given resource set is that of the object, i.e., whether the object is in the
+   * {@link Resource#getContents content tree} of the resource set.
    * 
    * @param ancestorResourceSet
    *          the ancestor resource set in question.
@@ -1041,8 +1014,7 @@ public class EcoreUtil
   }
 
   /**
-   * Returns whether any EObject, Resource, or ResourceSet in the collection is
-   * an ancestor of the EObject.
+   * Returns whether any EObject, Resource, or ResourceSet in the collection is an ancestor of the EObject.
    * 
    * @param ancestorEMFObjects
    *          the collection of ancestor objects in question.
@@ -1069,12 +1041,10 @@ public class EcoreUtil
   }
 
   /**
-   * Returns a tree iterator over the content trees recursively defined by
-   * {@link ResourceSet#getResources()}, {@link Resource#getContents()}, and
-   * {@link EObject#eContents()}. It uses a special iterator for
-   * ResourceSet.getResources that is tolerant of growth in the underlying
-   * collection which result from demand loaded resources; the iterator will
-   * walk these additional resources.
+   * Returns a tree iterator over the content trees recursively defined by {@link ResourceSet#getResources()},
+   * {@link Resource#getContents()}, and {@link EObject#eContents()}. It uses a special iterator for
+   * ResourceSet.getResources that is tolerant of growth in the underlying collection which result from demand loaded
+   * resources; the iterator will walk these additional resources.
    * 
    * @param emfObjects
    *          the collection of objects to iterate over.
@@ -1087,13 +1057,10 @@ public class EcoreUtil
   }
 
   /**
-   * Returns a tree iterator over the content trees recursively defined by
-   * {@link ResourceSet#getResources()}, {@link Resource#getContents()}, and
-   * {@link EObject#eContents()}. It uses a special iterator for
-   * ResourceSet.getResources that is tolerant of growth in the underlying
-   * collection which result from demand loaded resources; the iterator will
-   * walk these additional resources. Contained proxies are resolved or not as
-   * specified.
+   * Returns a tree iterator over the content trees recursively defined by {@link ResourceSet#getResources()},
+   * {@link Resource#getContents()}, and {@link EObject#eContents()}. It uses a special iterator for
+   * ResourceSet.getResources that is tolerant of growth in the underlying collection which result from demand loaded
+   * resources; the iterator will walk these additional resources. Contained proxies are resolved or not as specified.
    * 
    * @param emfObjects
    *          the collection of objects to iterate over.
@@ -1108,9 +1075,8 @@ public class EcoreUtil
   }
 
   /**
-   * Returns a tree iterator that iterates over all the
-   * {@link EObject#eContents direct contents} and indirect contents of the
-   * object.
+   * Returns a tree iterator that iterates over all the {@link EObject#eContents direct contents} and indirect contents
+   * of the object.
    * 
    * @param eObject
    *          the object to iterate over.
@@ -1136,9 +1102,8 @@ public class EcoreUtil
   }
 
   /**
-   * Returns a tree iterator that iterates over all the
-   * {@link Resource#getContents direct contents} and indirect contents of the
-   * resource.
+   * Returns a tree iterator that iterates over all the {@link Resource#getContents direct contents} and indirect
+   * contents of the resource.
    * 
    * @param resource
    *          the resource to iterate over.
@@ -1165,9 +1130,8 @@ public class EcoreUtil
   }
 
   /**
-   * Returns a tree iterator that iterates over all the
-   * {@link ResourceSet#getResources direct resources} in the resource set and
-   * over the content {@link Resource#getAllContents tree} of each.
+   * Returns a tree iterator that iterates over all the {@link ResourceSet#getResources direct resources} in the
+   * resource set and over the content {@link Resource#getAllContents tree} of each.
    * 
    * @param resourceSet
    *          the resource set to iterate over.
@@ -1176,8 +1140,7 @@ public class EcoreUtil
    * @return a tree iterator that iterates over all contents.
    * @see EObject#eAllContents
    * @see Resource#getAllContents
-   * @see org.eclipse.emf.ecore.util.EcoreUtil#getAllProperContents(Resource,
-   *      boolean)
+   * @see org.eclipse.emf.ecore.util.EcoreUtil#getAllProperContents(Resource, boolean)
    */
   public static <T> TreeIterator<T> getAllContents(ResourceSet resourceSet, boolean resolve)
   {
@@ -1185,14 +1148,11 @@ public class EcoreUtil
   }
 
   /**
-   * Returns a tree iterator over the content trees recursively defined by
-   * {@link ResourceSet#getResources()}, {@link Resource#getContents()}, and
-   * {@link EObject#eContents()}, skipping over any child object that's in a
-   * different resource from its parent. It uses a special iterator for
-   * ResourceSet.getResources that is tolerant of growth in the underlying
-   * collection which result from demand loaded resources; the iterator will
-   * walk these additional resources. Contained proxies are resolved or not as
-   * specified.
+   * Returns a tree iterator over the content trees recursively defined by {@link ResourceSet#getResources()},
+   * {@link Resource#getContents()}, and {@link EObject#eContents()}, skipping over any child object that's in a
+   * different resource from its parent. It uses a special iterator for ResourceSet.getResources that is tolerant of
+   * growth in the underlying collection which result from demand loaded resources; the iterator will walk these
+   * additional resources. Contained proxies are resolved or not as specified.
    * 
    * @param emfObjects
    *          the collection of objects to iterate over.
@@ -1216,10 +1176,8 @@ public class EcoreUtil
   }
 
   /**
-   * Returns a tree iterator that iterates over all the
-   * {@link EObject#eContents direct contents} and indirect contents of the
-   * object, skipping over any child object that's in a different resource from
-   * its parent.
+   * Returns a tree iterator that iterates over all the {@link EObject#eContents direct contents} and indirect contents
+   * of the object, skipping over any child object that's in a different resource from its parent.
    * 
    * @param eObject
    *          the object to iterate over.
@@ -1244,10 +1202,8 @@ public class EcoreUtil
   }
 
   /**
-   * Returns a tree iterator that iterates over all the
-   * {@link Resource#getContents direct contents} and indirect contents of the
-   * resource, skipping over any child object that's in a different resource
-   * from its parent.
+   * Returns a tree iterator that iterates over all the {@link Resource#getContents direct contents} and indirect
+   * contents of the resource, skipping over any child object that's in a different resource from its parent.
    * 
    * @param resource
    *          the resource to iterate over.
@@ -1281,10 +1237,9 @@ public class EcoreUtil
   }
 
   /**
-   * Returns a tree iterator that iterates over all the
-   * {@link ResourceSet#getResources direct resources} in the resource set and
-   * over the content {@link Resource#getAllContents tree} of each, skipping
-   * over any child object that's in a different resource from its parent.
+   * Returns a tree iterator that iterates over all the {@link ResourceSet#getResources direct resources} in the
+   * resource set and over the content {@link Resource#getAllContents tree} of each, skipping over any child object
+   * that's in a different resource from its parent.
    * 
    * @param resourceSet
    *          the resource set to iterate over.
@@ -1293,8 +1248,7 @@ public class EcoreUtil
    * @return a tree iterator that iterates over all contents.
    * @see EObject#eAllContents
    * @see Resource#getAllContents
-   * @see org.eclipse.emf.ecore.util.EcoreUtil#getAllContents(ResourceSet,
-   *      boolean)
+   * @see org.eclipse.emf.ecore.util.EcoreUtil#getAllContents(ResourceSet, boolean)
    */
   public static <T> TreeIterator<T> getAllProperContents(ResourceSet resourceSet, boolean resolve)
   {
@@ -1379,11 +1333,9 @@ public class EcoreUtil
   }
 
   /**
-   * An iterator over the tree contents of a collection of EObjects, Resources,
-   * and ResourceSets. It provides a special iterator for
-   * ResourceSet.getResources that is tolerant of growth in the underlying
-   * collection which result from demand loaded resources; the iterator will
-   * walk these additional resources.
+   * An iterator over the tree contents of a collection of EObjects, Resources, and ResourceSets. It provides a special
+   * iterator for ResourceSet.getResources that is tolerant of growth in the underlying collection which result from
+   * demand loaded resources; the iterator will walk these additional resources.
    * 
    * @see EcoreUtil#getAllContents(EObject, boolean)
    * @see EcoreUtil#getAllContents(Resource, boolean)
@@ -1399,10 +1351,9 @@ public class EcoreUtil
     protected boolean isResolveProxies;
 
     /**
-     * The most recently created iterator over a resource set's resources. This
-     * iterator needs special handling because it returns <code>true</code>
-     * for <code>hasNext()</code> even when the list is exhausted. This
-     * ensures that any growth in the resources list will not be overlooked.
+     * The most recently created iterator over a resource set's resources. This iterator needs special handling because
+     * it returns <code>true</code> for <code>hasNext()</code> even when the list is exhausted. This ensures that
+     * any growth in the resources list will not be overlooked.
      */
     protected ResourcesIterator resourceSetIterator;
 
@@ -1465,8 +1416,7 @@ public class EcoreUtil
     }
 
     /**
-     * Returns an iterator over the {@link EObject#eContents() children} of the
-     * given parent EObject.
+     * Returns an iterator over the {@link EObject#eContents() children} of the given parent EObject.
      * 
      * @param eObject
      *          the parent object.
@@ -1489,8 +1439,7 @@ public class EcoreUtil
     }
 
     /**
-     * Returns an iterator over the {@link Resource#getContents() children} of
-     * the given parent resource.
+     * Returns an iterator over the {@link Resource#getContents() children} of the given parent resource.
      * 
      * @param resource
      *          the parent resource.
@@ -1502,9 +1451,8 @@ public class EcoreUtil
     }
 
     /**
-     * Returns the next object and advances the iterator. This override handles
-     * the {@link #resourceSetIterator} in a special way, i.e., it skips the
-     * null object that iterator yields as the last fake item of the list.
+     * Returns the next object and advances the iterator. This override handles the {@link #resourceSetIterator} in a
+     * special way, i.e., it skips the null object that iterator yields as the last fake item of the list.
      * 
      * @return the next object.
      */
@@ -1556,9 +1504,8 @@ public class EcoreUtil
     }
 
     /**
-     * A special iterator that's tolerant of growth in the list of resources
-     * which can result from demand loading when traversing the tree of
-     * contents.
+     * A special iterator that's tolerant of growth in the list of resources which can result from demand loading when
+     * traversing the tree of contents.
      */
     protected static class ResourcesIterator implements Iterator<Resource>
     {
@@ -1594,14 +1541,11 @@ public class EcoreUtil
       }
 
       /**
-       * Returns whether there might be resources left by the time we next
-       * check. This returns <code>true</code> when the index is equal to the
-       * size, because the tree iterator will still be set to yield the last of
-       * the contents of the resource, and accessing that may cause another
-       * resource to be loaded.
+       * Returns whether there might be resources left by the time we next check. This returns <code>true</code> when
+       * the index is equal to the size, because the tree iterator will still be set to yield the last of the contents
+       * of the resource, and accessing that may cause another resource to be loaded.
        * 
-       * @return whether there might be resources left by the time we next
-       *         check.
+       * @return whether there might be resources left by the time we next check.
        */
       public boolean hasNext()
       {
@@ -1637,9 +1581,8 @@ public class EcoreUtil
     }
 
     /**
-     * Returns an iterator over the {@link ResourceSet#getResources() children}
-     * of the given parent resource set. It also records the result in
-     * {@link #resourceSetIterator} for special handling in {@link #hasNext()}.
+     * Returns an iterator over the {@link ResourceSet#getResources() children} of the given parent resource set. It
+     * also records the result in {@link #resourceSetIterator} for special handling in {@link #hasNext()}.
      * 
      * @param resourceSet
      *          the parent resource set.
@@ -1664,15 +1607,11 @@ public class EcoreUtil
   }
 
   /**
-   * A mapping building traverser of a collection of
-   * {@link ContentTreeIterator content trees}; the map is from target
-   * {@link EObject object} to a collection of
-   * {@link org.eclipse.emf.ecore.EStructuralFeature.Setting}. Since this
-   * implementation extends a Map implementation, it can yield itself as the
-   * result for most operations. The traverser considers each EObject in the
-   * {@link EObject#eCrossReferences} of each EObject in the content tree, and
-   * creates a setting for each positive match. This default implementation
-   * {@link #find creates} a map of all cross references.
+   * A mapping building traverser of a collection of {@link ContentTreeIterator content trees}; the map is from target
+   * {@link EObject object} to a collection of {@link org.eclipse.emf.ecore.EStructuralFeature.Setting}. Since this
+   * implementation extends a Map implementation, it can yield itself as the result for most operations. The traverser
+   * considers each EObject in the {@link EObject#eCrossReferences} of each EObject in the content tree, and creates a
+   * setting for each positive match. This default implementation {@link #find creates} a map of all cross references.
    */
   public static class CrossReferencer extends HashMap<EObject, Collection<EStructuralFeature.Setting>>
   {
@@ -1728,13 +1667,11 @@ public class EcoreUtil
     }
 
     /**
-     * Return true if the cross referencer should include references from
-     * children of the specified object.
+     * Return true if the cross referencer should include references from children of the specified object.
      * 
      * @param eObject
      *          an object in the cross referencer's content tree.
-     * @return if the cross referencer should include references from children
-     *         of the object.
+     * @return if the cross referencer should include references from children of the object.
      */
     protected boolean containment(EObject eObject)
     {
@@ -1742,9 +1679,8 @@ public class EcoreUtil
     }
 
     /**
-     * Return true if the specified eReference from eObject to
-     * crossReferencedEObject should be considered a cross reference by this
-     * cross referencer.
+     * Return true if the specified eReference from eObject to crossReferencedEObject should be considered a cross
+     * reference by this cross referencer.
      * 
      * @param eObject
      *          an object in the cross referencer's content tree.
@@ -1752,8 +1688,7 @@ public class EcoreUtil
      *          a reference from the object.
      * @param crossReferencedEObject
      *          the target of the specified reference.
-     * @return if the cross referencer should consider the specified reference a
-     *         cross reference.
+     * @return if the cross referencer should consider the specified reference a cross reference.
      */
     protected boolean crossReference(EObject eObject, EReference eReference, EObject crossReferencedEObject)
     {
@@ -1771,8 +1706,7 @@ public class EcoreUtil
     }
 
     /**
-     * Return a collection to use for storing
-     * {@link org.eclipse.emf.ecore.EStructuralFeature.Setting settings}.
+     * Return a collection to use for storing {@link org.eclipse.emf.ecore.EStructuralFeature.Setting settings}.
      * 
      * @return a collection for settings.
      */
@@ -1782,9 +1716,8 @@ public class EcoreUtil
     }
 
     /**
-     * Return the collection of cross reference
-     * {@link org.eclipse.emf.ecore.EStructuralFeature.Setting settings} for the
-     * specified key (target object).
+     * Return the collection of cross reference {@link org.eclipse.emf.ecore.EStructuralFeature.Setting settings} for
+     * the specified key (target object).
      * 
      * @param key
      *          the key for the cross referencer's map.
@@ -1801,8 +1734,7 @@ public class EcoreUtil
     }
 
     /**
-     * Return a tree iterator over the content trees of this cross referencer's
-     * objects.
+     * Return a tree iterator over the content trees of this cross referencer's objects.
      * 
      * @return a tree iterator over content trees.
      */
@@ -1875,8 +1807,7 @@ public class EcoreUtil
      * Returns a map of all cross references in the content tree.
      * 
      * @param emfObjects
-     *          a collection of objects whose combined content trees should be
-     *          considered.
+     *          a collection of objects whose combined content trees should be considered.
      * @return a map of cross references.
      */
     public static Map<EObject, Collection<EStructuralFeature.Setting>> find(Collection<?> emfObjects)
@@ -1970,8 +1901,7 @@ public class EcoreUtil
     }
 
     /**
-     * Print the specified collection of
-     * {@link org.eclipse.emf.ecore.EStructuralFeature.Setting settings} to the
+     * Print the specified collection of {@link org.eclipse.emf.ecore.EStructuralFeature.Setting settings} to the
      * specified stream.
      * 
      * @param out
@@ -2007,8 +1937,7 @@ public class EcoreUtil
   }
 
   /**
-   * A cross referencer that finds all references that are not contained within
-   * the content trees.
+   * A cross referencer that finds all references that are not contained within the content trees.
    */
   public static class ExternalCrossReferencer extends CrossReferencer
   {
@@ -2059,9 +1988,8 @@ public class EcoreUtil
     }
 
     /**
-     * Return true if the specified eReference from eObject to
-     * crossReferencedEObject should be considered a cross reference by this
-     * cross referencer.
+     * Return true if the specified eReference from eObject to crossReferencedEObject should be considered a cross
+     * reference by this cross referencer.
      * 
      * @param eObject
      *          an object in the cross referencer's content tree.
@@ -2069,8 +1997,7 @@ public class EcoreUtil
      *          a reference from the object.
      * @param crossReferencedEObject
      *          the target of the specified reference.
-     * @return if the cross referencer should consider the specified reference a
-     *         cross reference.
+     * @return if the cross referencer should consider the specified reference a cross reference.
      */
     @Override
     protected boolean crossReference(EObject eObject, EReference eReference, EObject crossReferencedEObject)
@@ -2091,8 +2018,7 @@ public class EcoreUtil
     }
 
     /**
-     * Returns a map of all external cross references from the specified content
-     * tree.
+     * Returns a map of all external cross references from the specified content tree.
      * 
      * @param eObject
      *          an object whose content trees should be considered.
@@ -2104,8 +2030,7 @@ public class EcoreUtil
     }
 
     /**
-     * Returns a map of all external cross references from the specified content
-     * tree.
+     * Returns a map of all external cross references from the specified content tree.
      * 
      * @param resource
      *          a resource whose content tree should be considered.
@@ -2117,8 +2042,7 @@ public class EcoreUtil
     }
 
     /**
-     * Returns a map of all external cross references from the specified content
-     * tree.
+     * Returns a map of all external cross references from the specified content tree.
      * 
      * @param resourceSet
      *          a resourceSet whose content tree should be considered.
@@ -2130,12 +2054,11 @@ public class EcoreUtil
     }
 
     /**
-     * Returns a map of all external cross references from the combined content
-     * trees of the specified collection of objects.
+     * Returns a map of all external cross references from the combined content trees of the specified collection of
+     * objects.
      * 
      * @param emfObjectsToSearch
-     *          a collection of objects whose combined content trees should be
-     *          considered.
+     *          a collection of objects whose combined content trees should be considered.
      * @return a map of cross references.
      */
     public static Map<EObject, Collection<EStructuralFeature.Setting>> find(Collection<?> emfObjectsToSearch)
@@ -2145,12 +2068,10 @@ public class EcoreUtil
   }
 
   /**
-   * An iterator over {@link EStructuralFeature.Setting settings} that filters
-   * out the ones that aren't of interest. If an {@link EReference} is
-   * specified, the iterator will only yield settings with that as their
-   * {@link EStructuralFeature.Setting#getEStructuralFeature() feature}. If an
-   * {@link EClass} is specified, the iterator will only yield settings with an
-   * {@link EStructuralFeature.Setting#getEObject() object} of that type.
+   * An iterator over {@link EStructuralFeature.Setting settings} that filters out the ones that aren't of interest. If
+   * an {@link EReference} is specified, the iterator will only yield settings with that as their
+   * {@link EStructuralFeature.Setting#getEStructuralFeature() feature}. If an {@link EClass} is specified, the
+   * iterator will only yield settings with an {@link EStructuralFeature.Setting#getEObject() object} of that type.
    */
   public static class FilteredSettingsIterator implements Iterator<EStructuralFeature.Setting>
   {
@@ -2281,12 +2202,10 @@ public class EcoreUtil
   }
 
   /**
-   * Returns <code>true</code> if <code>eObject1</code> and
-   * <code>eObject2</code> are {@link EqualityHelper equal},
+   * Returns <code>true</code> if <code>eObject1</code> and <code>eObject2</code> are {@link EqualityHelper equal},
    * <code>false</code> otherwise.
    * 
-   * @return whether <code>eObject1</code> and <code>eObject2</code> are
-   *         equal.
+   * @return whether <code>eObject1</code> and <code>eObject2</code> are equal.
    * @see EqualityHelper
    * @since 2.1.0
    */
@@ -2298,46 +2217,33 @@ public class EcoreUtil
 
   /**
    * <p>
-   * A helper for determining whether two {@link EObject}s are
-   * <em>structurally equal</em>. Two EObjects, <code>eObject1</code> and
-   * <code>eObject2</code>, are structurally equal if their
-   * {@link EObject#eClass() classes} are the same, and if, for each
-   * {@link EStructuralFeature#isDerived non-derived}
-   * {@link EStructuralFeature feature} of the class, the
-   * {@link EObject#eIsSet(EStructuralFeature) isSet} states are the same and
-   * the corresponding {@link EObject#eGet(EStructuralFeature) values} are
-   * structurally equal as appropriate for the type of feature. For
-   * {@link FeatureMapUtil#isFeatureMap(EStructuralFeature) feature map}
-   * features, the {@link FeatureMap.Entry entries} at corresponding positions
-   * must have the same
-   * {@link FeatureMap.Entry#getEStructuralFeature() entry feature}s and must
-   * have structurally equal {@link FeatureMap.Entry#getValue() value}s as
-   * appropriate for the type of entry's feature. For
-   * {@link EReference reference} features, the corresponding values must
-   * recursively be structurally equal according to this definition. For
-   * {@link EAttribute attribute} features, the corresponding values must be
-   * equal according to Java equality. Note that container references are
-   * derived and hence are ignored.
+   * A helper for determining whether two {@link EObject}s are <em>structurally equal</em>. Two EObjects,
+   * <code>eObject1</code> and <code>eObject2</code>, are structurally equal if their
+   * {@link EObject#eClass() classes} are the same, and if, for each {@link EStructuralFeature#isDerived non-derived}
+   * {@link EStructuralFeature feature} of the class, the {@link EObject#eIsSet(EStructuralFeature) isSet} states are
+   * the same and the corresponding {@link EObject#eGet(EStructuralFeature) values} are structurally equal as
+   * appropriate for the type of feature. For {@link FeatureMapUtil#isFeatureMap(EStructuralFeature) feature map}
+   * features, the {@link FeatureMap.Entry entries} at corresponding positions must have the same
+   * {@link FeatureMap.Entry#getEStructuralFeature() entry feature}s and must have structurally equal
+   * {@link FeatureMap.Entry#getValue() value}s as appropriate for the type of entry's feature. For
+   * {@link EReference reference} features, the corresponding values must recursively be structurally equal according to
+   * this definition. For {@link EAttribute attribute} features, the corresponding values must be equal according to
+   * Java equality. Note that container references are derived and hence are ignored.
    * </p>
    * <p>
-   * During the recursive process of determining
-   * {@link EcoreUtil#equals(EObject,EObject) equality}, the helper instance is
-   * populated as a two way map such that a given <code>eObject1</code> is
-   * considered to be equal to at most one other <code>eObject2</code>, i.e.,
-   * <code>get(eObject1) == eObject2 && get(eObject2) == eObject1</code>.
-   * While their features are being compared, the two objects are assumed to be
-   * equal:
+   * During the recursive process of determining {@link EcoreUtil#equals(EObject,EObject) equality}, the helper
+   * instance is populated as a two way map such that a given <code>eObject1</code> is considered to be equal to at
+   * most one other <code>eObject2</code>, i.e., <code>get(eObject1) == eObject2 && get(eObject2) == eObject1</code>.
+   * While their features are being compared, the two objects are assumed to be equal:
    * 
    * <pre>
    * put(eObject1, eObject2);
    * put(eObject2, eObject1);
    * </pre>
    * 
-   * Once that correspondence is established, an <code>eObject1</code>
-   * considered equal to a different <code>eObject2</code> will not even be
-   * considered equal to itself. This ensures that two objects are structurally
-   * equal only if the graphs formed by all their referenced objects have the
-   * same topology.
+   * Once that correspondence is established, an <code>eObject1</code> considered equal to a different
+   * <code>eObject2</code> will not even be considered equal to itself. This ensures that two objects are structurally
+   * equal only if the graphs formed by all their referenced objects have the same topology.
    * </p>
    * 
    * @see EcoreUtil#equals(EObject, EObject)
@@ -2348,11 +2254,10 @@ public class EcoreUtil
     private static final long serialVersionUID = 1L;
 
     /**
-     * Returns whether <code>eObject1</code> and <code>eObject2</code> are
-     * {@link EqualityHelper equal} in the context of this helper instance.
+     * Returns whether <code>eObject1</code> and <code>eObject2</code> are {@link EqualityHelper equal} in the
+     * context of this helper instance.
      * 
-     * @return whether <code>eObject1</code> and <code>eObject2</code> are
-     *         equal.
+     * @return whether <code>eObject1</code> and <code>eObject2</code> are equal.
      * @since 2.1.0
      */
     public boolean equals(EObject eObject1, EObject eObject2)
@@ -2441,12 +2346,10 @@ public class EcoreUtil
     }
 
     /**
-     * Returns whether <code>list1</code> and <code>list2</code> contain
-     * {@link #equals(EObject, EObject) equal} {@link EObject}s at the same
-     * index. It is assumed that list1 and list2 only contain EObjects.
+     * Returns whether <code>list1</code> and <code>list2</code> contain {@link #equals(EObject, EObject) equal}
+     * {@link EObject}s at the same index. It is assumed that list1 and list2 only contain EObjects.
      * 
-     * @return whether <code>list1</code> and <code>list2</code> contain
-     *         equal objects.
+     * @return whether <code>list1</code> and <code>list2</code> contain equal objects.
      * @since 2.1.0
      */
     public boolean equals(List<EObject> list1, List<EObject> list2)
@@ -2472,11 +2375,10 @@ public class EcoreUtil
 
     /**
      * Returns whether the two objects have {@link EqualityHelper equal}
-     * {@link EObject#eIsSet(EStructuralFeature) isSet} states and
-     * {@link EObject#eGet(EStructuralFeature) value}s for the feature.
+     * {@link EObject#eIsSet(EStructuralFeature) isSet} states and {@link EObject#eGet(EStructuralFeature) value}s for
+     * the feature.
      * 
-     * @return whether the two objects have equal isSet states and values for
-     *         the feature.
+     * @return whether the two objects have equal isSet states and values for the feature.
      * @since 2.2.0
      * @see #equals(EObject, EObject)
      * @see #equals(List, List)
@@ -2492,8 +2394,8 @@ public class EcoreUtil
     }
 
     /**
-     * Returns whether the two objects have {@link EqualityHelper equal}
-     * {@link EObject#eGet(EStructuralFeature) value}s for the reference.
+     * Returns whether the two objects have {@link EqualityHelper equal} {@link EObject#eGet(EStructuralFeature) value}s
+     * for the reference.
      * 
      * @return whether the two objects have equal values for the reference.
      * @since 2.1.0
@@ -2511,8 +2413,8 @@ public class EcoreUtil
     }
 
     /**
-     * Returns whether the two objects have {@link EqualityHelper equal}
-     * {@link EObject#eGet(EStructuralFeature) value}s for the attribute.
+     * Returns whether the two objects have {@link EqualityHelper equal} {@link EObject#eGet(EStructuralFeature) value}s
+     * for the attribute.
      * 
      * @return whether the two objects have equal values for the attribute.
      * @since 2.1.0
@@ -2600,8 +2502,7 @@ public class EcoreUtil
     }
 
     /**
-     * Returns whether the two values of a feature map are
-     * {@link EqualityHelper equal}.
+     * Returns whether the two values of a feature map are {@link EqualityHelper equal}.
      * 
      * @return whether the two values of a feature map are equal.
      * @since 2.2.0
@@ -2626,8 +2527,7 @@ public class EcoreUtil
   } // EqualityHelper
 
   /**
-   * A cross referencer that finds each usage of an EObject or collection of
-   * EObjects.
+   * A cross referencer that finds each usage of an EObject or collection of EObjects.
    */
   public static class UsageCrossReferencer extends CrossReferencer
   {
@@ -2683,9 +2583,8 @@ public class EcoreUtil
     }
 
     /**
-     * Return true if the specified eReference from eObject to
-     * crossReferencedEObject should be considered a cross reference by this
-     * cross referencer.
+     * Return true if the specified eReference from eObject to crossReferencedEObject should be considered a cross
+     * reference by this cross referencer.
      * 
      * @param eObject
      *          an object in the cross referencer's content tree.
@@ -2693,8 +2592,7 @@ public class EcoreUtil
      *          a reference from the object.
      * @param crossReferencedEObject
      *          the target of the specified reference.
-     * @return if the cross referencer should consider the specified reference a
-     *         cross reference.
+     * @return if the cross referencer should consider the specified reference a cross reference.
      */
     @Override
     protected boolean crossReference(EObject eObject, EReference eReference, EObject crossReferencedEObject)
@@ -2719,8 +2617,7 @@ public class EcoreUtil
     }
 
     /**
-     * Returns the map of usage references to objects in the specified
-     * collection.
+     * Returns the map of usage references to objects in the specified collection.
      * 
      * @param eObjectsOfInterest
      *          a collection of usage targets.
@@ -2778,14 +2675,12 @@ public class EcoreUtil
     }
 
     /**
-     * Returns a collection of usage references from the combined content trees
-     * of the specified collection of objects.
+     * Returns a collection of usage references from the combined content trees of the specified collection of objects.
      * 
      * @param eObjectOfInterest
      *          the usage target.
      * @param emfObjectsToSearch
-     *          a collection of objects whose combined content trees should be
-     *          considered.
+     *          a collection of objects whose combined content trees should be considered.
      * @return a collection of cross references.
      */
     public static Collection<EStructuralFeature.Setting> find(EObject eObjectOfInterest,
@@ -2840,14 +2735,12 @@ public class EcoreUtil
     }
 
     /**
-     * Returns a map of usage references from the combined content trees of the
-     * specified collection of objects.
+     * Returns a map of usage references from the combined content trees of the specified collection of objects.
      * 
      * @param eObjectsOfInterest
      *          a collection of usage targets.
      * @param emfObjectsToSearch
-     *          a collection of objects whose combined content trees should be
-     *          considered.
+     *          a collection of objects whose combined content trees should be considered.
      * @return a map of cross references.
      */
     public static Map<EObject, Collection<EStructuralFeature.Setting>> findAll(Collection<?> eObjectsOfInterest,
@@ -2858,8 +2751,7 @@ public class EcoreUtil
   }
 
   /**
-   * A cross referencer that finds proxies; the cross referencer will not cause
-   * proxies to be resolved.
+   * A cross referencer that finds proxies; the cross referencer will not cause proxies to be resolved.
    */
   public static class ProxyCrossReferencer extends CrossReferencer
   {
@@ -2910,8 +2802,7 @@ public class EcoreUtil
     }
 
     /**
-     * Return true if potential cross references that are proxies should be
-     * resolved.
+     * Return true if potential cross references that are proxies should be resolved.
      * 
      * @return if the cross referencer should resolve proxies.
      */
@@ -2922,9 +2813,8 @@ public class EcoreUtil
     }
 
     /**
-     * Return true if the specified eReference from eObject to
-     * crossReferencedEObject should be considered a cross reference by this
-     * cross referencer.
+     * Return true if the specified eReference from eObject to crossReferencedEObject should be considered a cross
+     * reference by this cross referencer.
      * 
      * @param eObject
      *          an object in the cross referencer's content tree.
@@ -2932,8 +2822,7 @@ public class EcoreUtil
      *          a reference from the object.
      * @param crossReferencedEObject
      *          the target of the specified reference.
-     * @return if the cross referencer should consider the specified reference a
-     *         cross reference.
+     * @return if the cross referencer should consider the specified reference a cross reference.
      */
     @Override
     protected boolean crossReference(EObject eObject, EReference eReference, EObject crossReferencedEObject)
@@ -2993,8 +2882,7 @@ public class EcoreUtil
      * Returns a map of all proxy references from the specified content tree.
      * 
      * @param emfObjects
-     *          a collection of objects whose combined content trees should be
-     *          considered.
+     *          a collection of objects whose combined content trees should be considered.
      * @return a map of cross references.
      */
     public static Map<EObject, Collection<EStructuralFeature.Setting>> find(Collection<?> emfObjects)
@@ -3055,9 +2943,8 @@ public class EcoreUtil
     }
 
     /**
-     * Return true if the specified eReference from eObject to
-     * crossReferencedEObject should be considiered a cross reference by this
-     * cross referencer.
+     * Return true if the specified eReference from eObject to crossReferencedEObject should be considiered a cross
+     * reference by this cross referencer.
      * 
      * @param eObject
      *          an object in the cross referencer's content tree.
@@ -3065,8 +2952,7 @@ public class EcoreUtil
      *          a reference from the object.
      * @param crossReferencedEObject
      *          the target of the specified reference.
-     * @return if the cross referencer should consider the specified reference a
-     *         cross reference.
+     * @return if the cross referencer should consider the specified reference a cross reference.
      */
     @Override
     protected boolean crossReference(EObject eObject, EReference eReference, EObject crossReferencedEObject)
@@ -3087,8 +2973,7 @@ public class EcoreUtil
     }
 
     /**
-     * Returns a map of all unresolvable proxies from the specified content
-     * tree.
+     * Returns a map of all unresolvable proxies from the specified content tree.
      * 
      * @param eObject
      *          an object whose content trees should be considered.
@@ -3100,8 +2985,7 @@ public class EcoreUtil
     }
 
     /**
-     * Returns a map of all unresolvable proxies from the specified content
-     * tree.
+     * Returns a map of all unresolvable proxies from the specified content tree.
      * 
      * @param resource
      *          a resource whose content tree should be considered.
@@ -3113,8 +2997,7 @@ public class EcoreUtil
     }
 
     /**
-     * Returns a map of all unresolvable proxies from the specified content
-     * tree.
+     * Returns a map of all unresolvable proxies from the specified content tree.
      * 
      * @param resourceSet
      *          a resourceSet whose content tree should be considered.
@@ -3126,12 +3009,10 @@ public class EcoreUtil
     }
 
     /**
-     * Returns a map of all unresolvable proxies from the specified content
-     * tree.
+     * Returns a map of all unresolvable proxies from the specified content tree.
      * 
      * @param emfObjects
-     *          a collection of objects whose combined content trees should be
-     *          considered.
+     *          a collection of objects whose combined content trees should be considered.
      * @return a map of cross references.
      */
     public static Map<EObject, Collection<EStructuralFeature.Setting>> find(Collection<?> emfObjects)
@@ -3141,8 +3022,7 @@ public class EcoreUtil
   }
 
   /**
-   * Returns a unique string identification of the eObject; it is structured as
-   * follows:
+   * Returns a unique string identification of the eObject; it is structured as follows:
    * 
    * <pre>
    *  &lt;java-class-name&gt;[/&lt;dynamic-eClass-name&gt;]@&lt;java-hex-hash-code&gt;{&lt;uri-of-eObject&gt;}
@@ -3174,10 +3054,9 @@ public class EcoreUtil
   }
 
   /**
-   * Returns a URI for the eObject, i.e., either the eProxyURI, the URI of the
-   * eResource with the fragment produced by the eResource, or the URI
-   * consisting of just the fragment that would be produced by a default
-   * Resource with the eObject as its only contents.
+   * Returns a URI for the eObject, i.e., either the eProxyURI, the URI of the eResource with the fragment produced by
+   * the eResource, or the URI consisting of just the fragment that would be produced by a default Resource with the
+   * eObject as its only contents.
    * 
    * @param eObject
    *          the object for which to get the URI.
@@ -3233,9 +3112,8 @@ public class EcoreUtil
   }
 
   /**
-   * Searches for the first occurrence of the given argument in list starting
-   * from a specified index. The equality is tested using the operator
-   * <tt>==<tt> and
+   * Searches for the first occurrence of the given argument in list starting from a specified index. The equality is
+   * tested using the operator <tt>==<tt> and
    * the <tt>equals</tt> method. 
    * @param list
    * @param o an object (can be null)
@@ -3252,13 +3130,10 @@ public class EcoreUtil
   }
 
   /**
-   * Sets the <code>eList</code>'s contents and order to be exactly that of
-   * the <code>prototype</code> collection. This implementation minimizes the
-   * number of notifications the operation will produce. Objects already in the
-   * list will be moved, missing objects will be added, and extra objects will
-   * be removed. If <code>eList</code>'s contents and order are already
-   * exactly that of the <code>prototype</code> collection, no change will be
-   * made.
+   * Sets the <code>eList</code>'s contents and order to be exactly that of the <code>prototype</code> collection.
+   * This implementation minimizes the number of notifications the operation will produce. Objects already in the list
+   * will be moved, missing objects will be added, and extra objects will be removed. If <code>eList</code>'s
+   * contents and order are already exactly that of the <code>prototype</code> collection, no change will be made.
    * 
    * @param eList
    *          the list to set.
@@ -3273,12 +3148,10 @@ public class EcoreUtil
   }
 
   /**
-   * Sets the <code>eList</code>'s contents and order to be exactly that of
-   * the <code>prototype</code> list. This implementation minimizes the number
-   * of notifications the operation will produce. Objects already in the list
-   * will be moved, missing objects will be added, and extra objects will be
-   * removed. If <code>eList</code>'s contents and order are already exactly
-   * that of the <code>prototype</code> list, no change will be made.
+   * Sets the <code>eList</code>'s contents and order to be exactly that of the <code>prototype</code> list. This
+   * implementation minimizes the number of notifications the operation will produce. Objects already in the list will
+   * be moved, missing objects will be added, and extra objects will be removed. If <code>eList</code>'s contents and
+   * order are already exactly that of the <code>prototype</code> list, no change will be made.
    * 
    * @param eList
    *          the list to set.
@@ -3385,8 +3258,8 @@ public class EcoreUtil
   }
 
   /**
-   * Removes the object from its {@link EObject#eResource containing} resource
-   * and/or its {@link EObject#eContainer containing} object.
+   * Removes the object from its {@link EObject#eResource containing} resource and/or its
+   * {@link EObject#eContainer containing} object.
    * 
    * @param eObject
    *          the object to remove.
@@ -3416,9 +3289,8 @@ public class EcoreUtil
   }
 
   /**
-   * Replace the object in its {@link EObject#eResource containing} resource
-   * and/or its {@link EObject#eContainer containing} object, with the
-   * replacement object.
+   * Replace the object in its {@link EObject#eResource containing} resource and/or its
+   * {@link EObject#eContainer containing} object, with the replacement object.
    * 
    * @param eObject
    *          the object to replace.
@@ -3453,10 +3325,9 @@ public class EcoreUtil
   }
 
   /**
-   * Deletes the object from its {@link EObject#eResource containing} resource
-   * and/or its {@link EObject#eContainer containing} object as well as from any
-   * other feature that references it within the enclosing resource set,
-   * resource, or root object.
+   * Deletes the object from its {@link EObject#eResource containing} resource and/or its
+   * {@link EObject#eContainer containing} object as well as from any other feature that references it within the
+   * enclosing resource set, resource, or root object.
    * 
    * @param eObject
    *          the object to delete.
@@ -3539,9 +3410,8 @@ public class EcoreUtil
   }
 
   /**
-   * Returns the value of the object's ID attribute as a String. If the object
-   * has no ID attribute or the ID attribute is not set, it returns
-   * <code>null</code>.
+   * Returns the value of the object's ID attribute as a String. If the object has no ID attribute or the ID attribute
+   * is not set, it returns <code>null</code>.
    * 
    * @param eObject
    *          the object in question.
@@ -3559,9 +3429,8 @@ public class EcoreUtil
   }
 
   /**
-   * Sets the value of the object's ID attribute according to the value
-   * represented by the String. A <code>null</code> ID will unset the
-   * attribute rather than setting it to <code>null</code>.
+   * Sets the value of the object's ID attribute according to the value represented by the String. A <code>null</code>
+   * ID will unset the attribute rather than setting it to <code>null</code>.
    * 
    * @param eObject
    *          the object in question.
@@ -3592,8 +3461,7 @@ public class EcoreUtil
   }
 
   /**
-   * Returns the wrapper class for the primitive class, or the original class,
-   * if it's not a primitive class.
+   * Returns the wrapper class for the primitive class, or the original class, if it's not a primitive class.
    * 
    * @param javaClass
    */
@@ -3790,14 +3658,13 @@ public class EcoreUtil
   static final String TRUE = "true";
 
   /**
-   * Tests whether the given structural feature has been annotated to prevent
-   * generation of accessor methods in its interface.
+   * Tests whether the given structural feature has been annotated to prevent generation of accessor methods in its
+   * interface.
    * 
    * @param eStructuralFeature
    *          the structural feature
    * @param accessor
-   *          the type of accessor method, one of {@link #GET}, {@link #SET},
-   *          {@link #IS_SET}, or {@link #UNSET}
+   *          the type of accessor method, one of {@link #GET}, {@link #SET}, {@link #IS_SET}, or {@link #UNSET}
    * @return whether the specified accessor's visibility is suppressed
    * @since 2.1
    */
@@ -3811,14 +3678,13 @@ public class EcoreUtil
   }
 
   /**
-   * Sets or removes annotations on the given structural feature to prevent
-   * generation of accessor methods in its interface.
+   * Sets or removes annotations on the given structural feature to prevent generation of accessor methods in its
+   * interface.
    * 
    * @param eStructuralFeature
    *          the structural feature
    * @param accessor
-   *          the type of accessor method, one of {@link #GET}, {@link #SET},
-   *          {@link #IS_SET}, or {@link #UNSET}
+   *          the type of accessor method, one of {@link #GET}, {@link #SET}, {@link #IS_SET}, or {@link #UNSET}
    * @param suppress
    *          whether the specified accessor's visibility should be suppressed
    * @since 2.1
@@ -3850,11 +3716,9 @@ public class EcoreUtil
 
   /**
    * Generates a universally unique identifier, i.e., a <a
-   * href="ftp://ietf.org/internet-drafts/draft-mealling-uuid-urn-02.txt">UUID</a>.
-   * It encodes the 128 bit UUID in <a
-   * href="http://www.ietf.org/rfc/rfc2045.txt">base 64</a>, but rather than
-   * padding the encoding with two "=" characters, it prefixes the encoding with
-   * a single "_" character, to ensure that the result is a valid <a
+   * href="ftp://ietf.org/internet-drafts/draft-mealling-uuid-urn-02.txt">UUID</a>. It encodes the 128 bit UUID in <a
+   * href="http://www.ietf.org/rfc/rfc2045.txt">base 64</a>, but rather than padding the encoding with two "="
+   * characters, it prefixes the encoding with a single "_" character, to ensure that the result is a valid <a
    * href="http://www.w3.org/TR/xmlschema-2/#ID">ID</a>, i.e., an <a
    * href="http://www.w3.org/TR/1999/REC-xml-names-19990114/#NT-NCName">NCName</a>
    * 
@@ -3867,9 +3731,8 @@ public class EcoreUtil
 
   /**
    * Generates a universally unique identifier, i.e., a <a
-   * href="ftp://ietf.org/internet-drafts/draft-mealling-uuid-urn-02.txt">UUID</a>.
-   * The argument is filled in with the 128 bit UUID and hence must be at least
-   * 16 bytes in length.
+   * href="ftp://ietf.org/internet-drafts/draft-mealling-uuid-urn-02.txt">UUID</a>. The argument is filled in with the
+   * 128 bit UUID and hence must be at least 16 bytes in length.
    * 
    * @param uuid
    *          the value to receive the result.
@@ -3925,8 +3788,8 @@ public class EcoreUtil
         '6', '7', '8', '9', '-', '_' };
 
     /**
-     * An adjustment to convert the Java epoch of Jan 1, 1970 00:00:00 to the
-     * epoch required by the IETF specification, Oct 15, 1582 00:00:00.
+     * An adjustment to convert the Java epoch of Jan 1, 1970 00:00:00 to the epoch required by the IETF specification,
+     * Oct 15, 1582 00:00:00.
      */
     private static final long EPOCH_ADJUSTMENT = new GregorianCalendar(1970, 0, 1, 0, 0, 0).getTime().getTime()
         - new GregorianCalendar(1582, 9, 15, 0, 0, 0).getTime().getTime();
@@ -3940,8 +3803,8 @@ public class EcoreUtil
     private static int sleepTime = 1;
 
     /**
-     * A cached array of bytes representing the UUID. The second 8 bytes will be
-     * kept the same unless the clock sequence has changed.
+     * A cached array of bytes representing the UUID. The second 8 bytes will be kept the same unless the clock sequence
+     * has changed.
      */
     private static final byte[] uuid = new byte[16];
 
@@ -3979,10 +3842,9 @@ public class EcoreUtil
     }
 
     /**
-     * Updates the clock sequence portion of the UUID. The clock sequence
-     * portion may seem odd, but in the specification, the high order byte comes
-     * before the low order byte. The variant is multiplexed into the high order
-     * octet of clockseq_hi.
+     * Updates the clock sequence portion of the UUID. The clock sequence portion may seem odd, but in the
+     * specification, the high order byte comes before the low order byte. The variant is multiplexed into the high
+     * order octet of clockseq_hi.
      */
     private static void updateClockSequence()
     {
@@ -3993,10 +3855,9 @@ public class EcoreUtil
     }
 
     /**
-     * Updates the UUID with the current time, compensating for the fact that
-     * the clock resolution may be less than 100 ns. The byte array will have
-     * its first eight bytes populated with the time in the correct sequence of
-     * bytes, as per the specification.
+     * Updates the UUID with the current time, compensating for the fact that the clock resolution may be less than 100
+     * ns. The byte array will have its first eight bytes populated with the time in the correct sequence of bytes, as
+     * per the specification.
      */
     private static void updateCurrentTime()
     {
@@ -4101,9 +3962,8 @@ public class EcoreUtil
   }
 
   /**
-   * Marks the package to indicate that it and everything it contains or that
-   * its contents depend on can no longer be changed. This helps to improve the
-   * performance of the model but has no other effect.
+   * Marks the package to indicate that it and everything it contains or that its contents depend on can no longer be
+   * changed. This helps to improve the performance of the model but has no other effect.
    */
   public static void freeze(EPackage ePackage)
   {
@@ -4118,8 +3978,7 @@ public class EcoreUtil
   }
 
   /**
-   * Computes a {@link Diagnostic} from the errors and warnings stored in the
-   * specified resource.
+   * Computes a {@link Diagnostic} from the errors and warnings stored in the specified resource.
    * 
    * @param resource
    * @param includeWarnings
@@ -4184,8 +4043,7 @@ public class EcoreUtil
   }
 
   /**
-   * A utility class that traverses a generic type to convert it to a string
-   * representation.
+   * A utility class that traverses a generic type to convert it to a string representation.
    */
   public static class EGenericTypeConverter
   {
@@ -4277,8 +4135,7 @@ public class EcoreUtil
     }
 
     /**
-     * Returns the appropriate fully qualified java instance type name for the
-     * given classifier.
+     * Returns the appropriate fully qualified java instance type name for the given classifier.
      * 
      * @param eClassifier
      *          the classifier in question.
@@ -4291,62 +4148,41 @@ public class EcoreUtil
   }
 
   /*
-   * static { System.err.println("UUID"); for (int loop = 0; loop < 5; ++loop) {
-   * long before = System.currentTimeMillis(); long count = 500000; for (int i =
-   * 0; i < count; ++i) { generateUUID(); } long after =
-   * System.currentTimeMillis(); System.err.println("Elapsed " + (after -
-   * before)); System.err.println("Time " + 1000 * ((float)(after -
-   * before))/((float)count)); } final EPackage ecorePackage =
-   * EPackage.Registry.INSTANCE.getEPackage("ecore.xmi"); final Resource
-   * ecorePackageResource = ecorePackage.eResource(); final EPackage
-   * genModelPackage = EPackage.Registry.INSTANCE.getEPackage("genmodel.xmi");
-   * final Resource genModelPackageResource = genModelPackage.eResource(); //
-   * Proxy finder. // { // Create a proxy and stuff it into the eSuperTypes. //
-   * This is a really very nasty thing to do. // EClass eClass =
+   * static { System.err.println("UUID"); for (int loop = 0; loop < 5; ++loop) { long before =
+   * System.currentTimeMillis(); long count = 500000; for (int i = 0; i < count; ++i) { generateUUID(); } long after =
+   * System.currentTimeMillis(); System.err.println("Elapsed " + (after - before)); System.err.println("Time " + 1000 *
+   * ((float)(after - before))/((float)count)); } final EPackage ecorePackage =
+   * EPackage.Registry.INSTANCE.getEPackage("ecore.xmi"); final Resource ecorePackageResource =
+   * ecorePackage.eResource(); final EPackage genModelPackage = EPackage.Registry.INSTANCE.getEPackage("genmodel.xmi");
+   * final Resource genModelPackageResource = genModelPackage.eResource(); // Proxy finder. // { // Create a proxy and
+   * stuff it into the eSuperTypes. // This is a really very nasty thing to do. // EClass eClass =
    * org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEClass();
    * ((InternalEObject)eClass).eSetProxyURI(URI.createURI("Yes!"));
    * ((EClass)genModelPackage.getEClassifier("GenClass")).getESuperTypes().add(eClass);
-   * System.err.println("=========================================");
-   * System.err.println("All proxy references in the GenModel EPackage"); Map
-   * proxyCrossReferences = ProxyCrossReferencer.find(genModelPackage);
-   * CrossReferencer.print(System.err, proxyCrossReferences); // Clean up the
-   * proxy. //
-   * ((EClass)genModelPackage.getEClassifier("GenClass")).getESuperTypes().remove(eClass); } //
-   * External cross reference finder. // {
-   * System.err.println("=========================================");
-   * System.err.println("All cross document references in the GenModel
-   * EPackage"); Map externalCrossReferences =
-   * ExternalCrossReferencer.find(genModelPackage);
-   * CrossReferencer.print(System.err, externalCrossReferences); } { // Find
-   * uses for object of interest. // EObject objectOfInterest =
-   * ecorePackage.getEClassifier("EDataType");
-   * System.err.println("=========================================");
-   * System.err.println("Uses of: " + getIdentification(objectOfInterest)); //
-   * Put the models in a resource set temporarily. // ResourceSet resourceSet =
-   * new org.eclipse.emf.ecore.resource.impl.ResourceSetImpl();
-   * resourceSet.getResources().add(ecorePackageResource);
-   * resourceSet.getResources().add(genModelPackageResource); // Search the
-   * whole resource set. // Collection result = new
-   * UsageCrossReferencer(resourceSet).findUsage(objectOfInterest); for
-   * (Iterator i = result.iterator(); i.hasNext(); ) { // Show the settings that
-   * reference the objectOfInterest. // EStructuralFeature.Setting setting =
-   * (EStructuralFeature.Setting)i.next(); EObject eObject =
-   * setting.getEObject(); EStructuralFeature eStructuralFeature =
+   * System.err.println("========================================="); System.err.println("All proxy references in the
+   * GenModel EPackage"); Map proxyCrossReferences = ProxyCrossReferencer.find(genModelPackage);
+   * CrossReferencer.print(System.err, proxyCrossReferences); // Clean up the proxy. //
+   * ((EClass)genModelPackage.getEClassifier("GenClass")).getESuperTypes().remove(eClass); } // External cross reference
+   * finder. // { System.err.println("========================================="); System.err.println("All cross
+   * document references in the GenModel EPackage"); Map externalCrossReferences =
+   * ExternalCrossReferencer.find(genModelPackage); CrossReferencer.print(System.err, externalCrossReferences); } { //
+   * Find uses for object of interest. // EObject objectOfInterest = ecorePackage.getEClassifier("EDataType");
+   * System.err.println("========================================="); System.err.println("Uses of: " +
+   * getIdentification(objectOfInterest)); // Put the models in a resource set temporarily. // ResourceSet resourceSet =
+   * new org.eclipse.emf.ecore.resource.impl.ResourceSetImpl(); resourceSet.getResources().add(ecorePackageResource);
+   * resourceSet.getResources().add(genModelPackageResource); // Search the whole resource set. // Collection result =
+   * new UsageCrossReferencer(resourceSet).findUsage(objectOfInterest); for (Iterator i = result.iterator();
+   * i.hasNext(); ) { // Show the settings that reference the objectOfInterest. // EStructuralFeature.Setting setting =
+   * (EStructuralFeature.Setting)i.next(); EObject eObject = setting.getEObject(); EStructuralFeature eStructuralFeature =
    * (EStructuralFeature)setting.getEStructuralFeature(); System.err.println ("> " +
-   * eStructuralFeature.getEContainingClass().getName() + "." +
-   * eStructuralFeature.getName() + " <- " + getIdentification(eObject)); } //
-   * Cleanup. // resourceSet.getResources().clear(); } List list =
-   * org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEReference().getEAllStructuralFeatures(); {
-   * Object object =
-   * org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEReference_EReferenceType();
-   * for (int i = 0; i < 100; ++i) { list.indexOf(object); } long before =
-   * System.currentTimeMillis(); for (int i = 0; i < 500000; ++i) {
-   * list.indexOf(object); } long after = System.currentTimeMillis();
-   * System.err.println("Elapsed " + (after - before)); } { Object object =
-   * org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getENamedElement_Name(); for
-   * (int i = 0; i < 100; ++i) { list.indexOf(object); } long before =
-   * System.currentTimeMillis(); for (int i = 0; i < 500000; ++i) {
-   * list.indexOf(object); } long after = System.currentTimeMillis();
-   * System.err.println("Elapsed " + (after - before)); } }
+   * eStructuralFeature.getEContainingClass().getName() + "." + eStructuralFeature.getName() + " <- " +
+   * getIdentification(eObject)); } // Cleanup. // resourceSet.getResources().clear(); } List list =
+   * org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEReference().getEAllStructuralFeatures(); { Object object =
+   * org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEReference_EReferenceType(); for (int i = 0; i < 100; ++i) {
+   * list.indexOf(object); } long before = System.currentTimeMillis(); for (int i = 0; i < 500000; ++i) {
+   * list.indexOf(object); } long after = System.currentTimeMillis(); System.err.println("Elapsed " + (after - before)); } {
+   * Object object = org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getENamedElement_Name(); for (int i = 0; i < 100; ++i) {
+   * list.indexOf(object); } long before = System.currentTimeMillis(); for (int i = 0; i < 500000; ++i) {
+   * list.indexOf(object); } long after = System.currentTimeMillis(); System.err.println("Elapsed " + (after - before)); } }
    */
 }

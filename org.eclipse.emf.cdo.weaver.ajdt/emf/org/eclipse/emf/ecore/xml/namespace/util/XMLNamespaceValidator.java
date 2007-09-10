@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.xml.type.util.XMLTypeValidator;
 import java.util.Map;
 
 /**
- * <!-- begin-user-doc --> The <b>Validator</b> for the model. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Validator</b> for the model. <!-- end-user-doc -->
  * 
  * @see org.eclipse.emf.ecore.xml.namespace.XMLNamespacePackage
  * @generated
@@ -46,10 +45,9 @@ public class XMLNamespaceValidator extends EObjectValidator
   public static final XMLNamespaceValidator INSTANCE = new XMLNamespaceValidator();
 
   /**
-   * A constant for the
-   * {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of
-   * diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes}
-   * from this package. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic
+   * {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see org.eclipse.emf.common.util.Diagnostic#getSource()
    * @see org.eclipse.emf.common.util.Diagnostic#getCode()
@@ -58,34 +56,30 @@ public class XMLNamespaceValidator extends EObjectValidator
   public static final String DIAGNOSTIC_SOURCE = "org.eclipse.emf.ecore.xml.namespace";
 
   /**
-   * A constant with a fixed name that can be used as the base value for
-   * additional hand written constants. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * A constant with a fixed name that can be used as the base value for additional hand written constants. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
 
   /**
-   * A constant with a fixed name that can be used as the base value for
-   * additional hand written constants in a derived class. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived
+   * class. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
 
   /**
-   * The cached base package validator. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * The cached base package validator. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected XMLTypeValidator xmlTypeValidator;
 
   /**
-   * Creates an instance of the switch. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * Creates an instance of the switch. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -96,8 +90,7 @@ public class XMLNamespaceValidator extends EObjectValidator
   }
 
   /**
-   * Returns the package of this validator switch. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * Returns the package of this validator switch. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -108,8 +101,8 @@ public class XMLNamespaceValidator extends EObjectValidator
   }
 
   /**
-   * Calls <code>validateXXX</code> for the corresponding classifier of the
-   * model. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Calls <code>validateXXX</code> for the corresponding classifier of the model. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @generated
    */
@@ -166,8 +159,7 @@ public class XMLNamespaceValidator extends EObjectValidator
   }
 
   /**
-   * Validates the MemberTypes constraint of '<em>Lang Type</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Validates the MemberTypes constraint of '<em>Lang Type</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */

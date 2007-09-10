@@ -78,14 +78,12 @@ public class Diagnostician implements EValidator.SubstitutionLabelProvider, EVal
   }
 
   /**
-   * Validates the object in the given context, optionally producing
-   * diagnostics.
+   * Validates the object in the given context, optionally producing diagnostics.
    * 
    * @param eObject
    *          the object to validate.
    * @param diagnostics
-   *          a place to accumulate diagnostics; if it's <code>null</code>,
-   *          no diagnostics should be produced.
+   *          a place to accumulate diagnostics; if it's <code>null</code>, no diagnostics should be produced.
    * @return whether the object is valid.
    */
   public boolean validate(EObject eObject, DiagnosticChain diagnostics)

@@ -22,8 +22,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EPackage;
 
 /**
- * A plugin extension reader that populates the
- * {@link org.eclipse.emf.ecore.EPackage.Registry#INSTANCE global} package
+ * A plugin extension reader that populates the {@link org.eclipse.emf.ecore.EPackage.Registry#INSTANCE global} package
  * registry. Clients are not expected to use this class directly.
  */
 class FactoryOverrideRegistryReader extends RegistryReader

@@ -277,10 +277,9 @@ public final class FeatureMapUtil
           .getName())
           + "=" + value;
       /*
-       * StringBuffer result = new StringBuffer(super.toString());
-       * result.append(" (feature: ");
-       * result.append(eStructuralFeature.getName()); result.append(", value:
-       * "); result.append(value); result.append(")"); return result.toString();
+       * StringBuffer result = new StringBuffer(super.toString()); result.append(" (feature: ");
+       * result.append(eStructuralFeature.getName()); result.append(", value: "); result.append(value);
+       * result.append(")"); return result.toString();
        */
     }
   }
@@ -353,12 +352,10 @@ public final class FeatureMapUtil
     protected abstract boolean scanNext();
 
     /*
-     * { FeatureMap.Entry [] entries = (FeatureMap.Entry [])featureMap.data;
-     * while (entryCursor < size) { FeatureMap.Entry entry =
-     * entries[entryCursor]; if (entry.getEStructuralFeature() ==
-     * eStructuralFeature) { preparedResult = entry.getValue(); prepared = 2;
-     * return true; } ++entryCursor; } prepared = 1; lastCursor = -1; return
-     * false; }
+     * { FeatureMap.Entry [] entries = (FeatureMap.Entry [])featureMap.data; while (entryCursor < size) {
+     * FeatureMap.Entry entry = entries[entryCursor]; if (entry.getEStructuralFeature() == eStructuralFeature) {
+     * preparedResult = entry.getValue(); prepared = 2; return true; } ++entryCursor; } prepared = 1; lastCursor = -1;
+     * return false; }
      */
 
     public E next()
@@ -418,11 +415,9 @@ public final class FeatureMapUtil
     protected abstract boolean scanPrevious();
 
     /*
-     * { FeatureMap.Entry [] entries = (FeatureMap.Entry [])featureMap.data;
-     * while (--entryCursor >= 0) { FeatureMap.Entry entry =
-     * entries[entryCursor]; if (entry.getEStructuralFeature() ==
-     * eStructuralFeature) { preparedResult = entry.getValue(); prepared = -2;
-     * return true; } } prepared = -1; lastCursor = -1; return false; }
+     * { FeatureMap.Entry [] entries = (FeatureMap.Entry [])featureMap.data; while (--entryCursor >= 0) {
+     * FeatureMap.Entry entry = entries[entryCursor]; if (entry.getEStructuralFeature() == eStructuralFeature) {
+     * preparedResult = entry.getValue(); prepared = -2; return true; } } prepared = -1; lastCursor = -1; return false; }
      */
 
     public E previous()
@@ -466,9 +461,8 @@ public final class FeatureMapUtil
         expectedModCount = featureMap.getModCount();
         next();
         /*
-         * featureMap.add(eStructuralFeature, cursor++, o); expectedModCount =
-         * featureMap.getModCount(); ++entryCursor; ++lastCursor; // lastCursor =
-         * -1; // prepared = 0;
+         * featureMap.add(eStructuralFeature, cursor++, o); expectedModCount = featureMap.getModCount(); ++entryCursor;
+         * ++lastCursor; // lastCursor = -1; // prepared = 0;
          */
       }
       catch (IndexOutOfBoundsException exception)
@@ -642,8 +636,7 @@ public final class FeatureMapUtil
     }
 
     /*
-     * public List subList(int from, int to) { return
-     * featureMap.subList(getEStructuralFeature(), from, to); }
+     * public List subList(int from, int to) { return featureMap.subList(getEStructuralFeature(), from, to); }
      */
 
     @SuppressWarnings("unchecked")
@@ -1071,13 +1064,11 @@ public final class FeatureMapUtil
     }
 
     /*
-     * public boolean add(EStructuralFeature feature, Object object) { return
-     * featureMap.add(feature, object); } public void add(EStructuralFeature
-     * feature, int index, Object object) { featureMap.add(feature, index,
-     * object); } public boolean addAll(EStructuralFeature feature, Collection
-     * collection) { return featureMap.addAll(feature, collection); } boolean
-     * addAll(EStructuralFeature feature, int index, Collection collection) {
-     * return featureMap.addAll(feature, index, collection); }
+     * public boolean add(EStructuralFeature feature, Object object) { return featureMap.add(feature, object); } public
+     * void add(EStructuralFeature feature, int index, Object object) { featureMap.add(feature, index, object); } public
+     * boolean addAll(EStructuralFeature feature, Collection collection) { return featureMap.addAll(feature,
+     * collection); } boolean addAll(EStructuralFeature feature, int index, Collection collection) { return
+     * featureMap.addAll(feature, index, collection); }
      */
 
     public void addUnique(EStructuralFeature feature, Object object)

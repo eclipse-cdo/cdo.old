@@ -29,16 +29,14 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
- * An implementation of a package registry that can delegate failed lookup to
- * another registry.
+ * An implementation of a package registry that can delegate failed lookup to another registry.
  */
 public class EPackageRegistryImpl extends HashMap<String, Object> implements EPackage.Registry
 {
   private static final long serialVersionUID = 1L;
 
   /**
-   * Creates the {@link EPackage.Registry#INSTANCE instance} of the global
-   * registry.
+   * Creates the {@link EPackage.Registry#INSTANCE instance} of the global registry.
    */
   public static EPackage.Registry createGlobalRegistry()
   {
@@ -191,9 +189,8 @@ public class EPackageRegistryImpl extends HashMap<String, Object> implements EPa
   }
 
   /**
-   * Returns whether this map or the delegate map contains this key. Note that
-   * if there is a delegate map, the result of this method may
-   * <em><b>not</b></em> be the same as <code>keySet().contains(key)</code>.
+   * Returns whether this map or the delegate map contains this key. Note that if there is a delegate map, the result of
+   * this method may <em><b>not</b></em> be the same as <code>keySet().contains(key)</code>.
    * 
    * @param key
    *          the key whose presence in this map is to be tested.
@@ -232,8 +229,7 @@ public class EPackageRegistryImpl extends HashMap<String, Object> implements EPa
   }
 
   /**
-   * A package registry implementation that delegates to a class loader specific
-   * registry.
+   * A package registry implementation that delegates to a class loader specific registry.
    */
   public static class Delegator implements EPackage.Registry
   {

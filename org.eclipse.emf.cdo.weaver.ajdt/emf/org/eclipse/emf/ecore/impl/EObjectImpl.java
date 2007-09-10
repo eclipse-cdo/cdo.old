@@ -26,8 +26,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>EObject</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EObject</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
  * 
@@ -41,8 +40,7 @@ public class EObjectImpl extends BasicEObjectImpl implements EObject
   protected static final int EDELIVER = 0x0001;
 
   /**
-   * The bit of {@link #eFlags} that is used to represent whether there is a
-   * dynamic EClass.
+   * The bit of {@link #eFlags} that is used to represent whether there is a dynamic EClass.
    */
   protected static final int EDYNAMIC_CLASS = 0x0002;
 
@@ -52,27 +50,23 @@ public class EObjectImpl extends BasicEObjectImpl implements EObject
   protected static final int EPROXY = 0x004;
 
   /**
-   * The last bit used by this class; derived classes may use bit values higher
-   * than this.
+   * The last bit used by this class; derived classes may use bit values higher than this.
    */
   protected static final int ELAST_NOTIFIER_FLAG = EPROXY;
 
   /**
-   * The last bit used by this class; derived classes may use bit values higher
-   * than this.
+   * The last bit used by this class; derived classes may use bit values higher than this.
    */
   public static final int ELAST_EOBJECT_FLAG = ELAST_NOTIFIER_FLAG;
 
   /**
-   * An extensible set of bit flags; the first bit is used for {@link #EDELIVER}
-   * to implement {@link #eDeliver} and the second bit is used for
-   * {@link #EPROXY} to implement {@link #eIsProxy}.
+   * An extensible set of bit flags; the first bit is used for {@link #EDELIVER} to implement {@link #eDeliver} and the
+   * second bit is used for {@link #EPROXY} to implement {@link #eIsProxy}.
    */
   protected int eFlags = EDELIVER;
 
   /**
-   * The list of {@link org.eclipse.emf.common.notify.Adapter}s associated with
-   * the notifier.
+   * The list of {@link org.eclipse.emf.common.notify.Adapter}s associated with the notifier.
    */
   protected BasicEList<Adapter> eAdapters;
 
@@ -82,9 +76,9 @@ public class EObjectImpl extends BasicEObjectImpl implements EObject
   protected InternalEObject eContainer;
 
   /**
-   * The feature ID of this object's container holding feature, if there is one,
-   * or {@link #EOPPOSITE_FEATURE_BASE EOPPOSITE_FEATURE_BASE} minus the feature
-   * ID of the container's feature that contains this object.
+   * The feature ID of this object's container holding feature, if there is one, or
+   * {@link #EOPPOSITE_FEATURE_BASE EOPPOSITE_FEATURE_BASE} minus the feature ID of the container's feature that
+   * contains this object.
    */
   protected int eContainerFeatureID;
 

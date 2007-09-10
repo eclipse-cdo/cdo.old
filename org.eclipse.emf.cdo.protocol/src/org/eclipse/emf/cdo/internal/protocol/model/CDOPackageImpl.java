@@ -176,8 +176,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
   }
 
   /**
-   * @return All classes with <code>isAbstract() == false</code> and
-   *         <code>isSystem() == false</code>.
+   * @return All classes with <code>isAbstract() == false</code> and <code>isSystem() == false</code>.
    */
   public CDOClassImpl[] getConcreteClasses()
   {

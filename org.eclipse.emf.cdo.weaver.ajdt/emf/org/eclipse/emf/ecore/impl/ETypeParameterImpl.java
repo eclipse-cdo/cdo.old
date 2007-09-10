@@ -38,8 +38,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>EType Parameter</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EType Parameter</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -52,8 +52,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class ETypeParameterImpl extends ENamedElementImpl implements ETypeParameter
 {
   /**
-   * The cached value of the '{@link #getEBounds() <em>EBounds</em>}'
-   * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getEBounds() <em>EBounds</em>}' containment reference list. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @see #getEBounds()
    * @generated
@@ -62,10 +62,8 @@ public class ETypeParameterImpl extends ENamedElementImpl implements ETypeParame
   protected EList<EGenericType> eBounds;
 
   /**
-   * The cached set of all generic types that reference this type parameter. It
-   * is populated as the type parameter is
-   * {@link EGenericType#setETypeParameter(ETypeParameter) set} on the generic
-   * type.
+   * The cached set of all generic types that reference this type parameter. It is populated as the type parameter is
+   * {@link EGenericType#setETypeParameter(ETypeParameter) set} on the generic type.
    * 
    * @see EGenericTypeImpl#setETypeParameter(ETypeParameter)
    */

@@ -130,8 +130,8 @@ public abstract class CDOPackageManagerImpl extends Container<CDOPackage> implem
 
   /**
    * @param cdoPackage
-   *          is a proxy CDO package. The implementer of this method must only
-   *          use the package URI of the cdoPackage passed in.
+   *          is a proxy CDO package. The implementer of this method must only use the package URI of the cdoPackage
+   *          passed in.
    */
   protected abstract void resolve(CDOPackageImpl cdoPackage);
 
