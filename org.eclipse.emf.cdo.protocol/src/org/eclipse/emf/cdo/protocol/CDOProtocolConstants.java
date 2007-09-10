@@ -35,9 +35,11 @@ public interface CDOProtocolConstants
 
   public static final short SIGNAL_LOAD_CHUNK = 9;
 
-  public static final short SIGNAL_COMMIT_TRANSACTION = 10;
+  public static final short SIGNAL_QUERY_OBJECT_TYPES = 10;
 
-  public static final short SIGNAL_INVALIDATION = 11;
+  public static final short SIGNAL_COMMIT_TRANSACTION = 11;
+
+  public static final short SIGNAL_INVALIDATION = 12;
 
   public static final int ERROR_REPOSITORY_NOT_FOUND = -1;
 

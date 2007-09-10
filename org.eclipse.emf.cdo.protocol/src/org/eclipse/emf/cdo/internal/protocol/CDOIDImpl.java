@@ -129,12 +129,20 @@ public class CDOIDImpl implements CDOID
 
   public static CDOID read(ExtendedDataInput in) throws IOException
   {
+    return read(in, false);
+  }
+
+  public static CDOID read(ExtendedDataInput in, boolean withType) throws IOException
+  {
     long value = in.readLong();
-    boolean typed = in.readBoolean();
-    if (typed)
+    if (withType)
     {
-      CDOClassRefImpl type = new CDOClassRefImpl(in, null);
-      return create(value, type);
+      boolean typed = in.readBoolean();
+      if (typed)
+      {
+        CDOClassRefImpl type = new CDOClassRefImpl(in, null);
+        return create(value, type);
+      }
     }
 
     return create(value);
@@ -142,18 +150,26 @@ public class CDOIDImpl implements CDOID
 
   public static void write(ExtendedDataOutput out, CDOID id) throws IOException
   {
-    out.writeLong(id == null ? 0L : id.getValue());
-    if (id instanceof CDOIDTyped)
-    {
-      CDOIDTyped typed = (CDOIDTyped)id;
-      out.writeBoolean(true);
+    write(out, id, false);
+  }
 
-      CDOClassRefImpl type = (CDOClassRefImpl)typed.getType();
-      type.write(out, null);
-    }
-    else
+  public static void write(ExtendedDataOutput out, CDOID id, boolean withType) throws IOException
+  {
+    out.writeLong(id == null ? 0L : id.getValue());
+    if (withType)
     {
-      out.writeBoolean(false);
+      if (id instanceof CDOIDTyped)
+      {
+        CDOIDTyped typed = (CDOIDTyped)id;
+        out.writeBoolean(true);
+
+        CDOClassRefImpl type = (CDOClassRefImpl)typed.getType();
+        type.write(out, null);
+      }
+      else
+      {
+        out.writeBoolean(false);
+      }
     }
   }
 
