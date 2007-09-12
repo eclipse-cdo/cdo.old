@@ -9,7 +9,7 @@
  *    Simon McDuff - initial API and implementation
  *    Eike Stepper - maintenance
  **************************************************************************/
-package org.eclipse.emf.cdo.internal.protocol.analyzer;
+package org.eclipse.emf.cdo.protocol.analyzer;
 
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassRefImpl;
@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * @author Eike Stepper
  */
-public class CDOFetchRule
+public final class CDOFetchRule
 {
   private CDOClass cdoClass;
 
