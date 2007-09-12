@@ -13,6 +13,7 @@ package org.eclipse.emf.cdo.internal.protocol.revision;
 import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
+import org.eclipse.emf.cdo.protocol.revision.CDORevision;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionResolver;
 
 import org.eclipse.net4j.internal.util.lifecycle.Lifecycle;
@@ -305,14 +306,12 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       {
         CDORevisionImpl revision = it.next();
         long revised = revision.getRevised();
-        if (revised != 0 && revised < timeStamp)
+        if (revised != CDORevision.UNSPECIFIED_DATE && revised < timeStamp)
         {
           break;
         }
 
-        long created = revision.getCreated();
-        // TODO Replace by revision.isValid()
-        if ((revised == 0 || revised >= timeStamp) && timeStamp >= created)
+        if (revision.isValid(timeStamp))
         {
           return revision;
         }

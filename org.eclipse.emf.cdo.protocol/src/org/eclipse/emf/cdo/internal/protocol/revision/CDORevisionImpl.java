@@ -224,7 +224,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   public boolean isValid(long timeStamp)
   {
-    return created <= timeStamp && revised == UNSPECIFIED_DATE;
+    return (revised == UNSPECIFIED_DATE || revised >= timeStamp) && timeStamp >= created;
   }
 
   public boolean isResource()
