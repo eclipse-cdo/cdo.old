@@ -186,11 +186,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     {
       if (!cdoClass.isAbstract())
       {
-        CDOPackage cdoPackage = cdoClass.getContainingPackage();
-        if (!cdoPackage.isSystem())
-        {
-          result.add(cdoClass);
-        }
+        result.add(cdoClass);
       }
     }
 
