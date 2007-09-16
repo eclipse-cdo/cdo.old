@@ -334,6 +334,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
 
     public synchronized CDORevisionImpl getRevisionByVersion(int referenceChunk, int version)
     {
+      // System.out.println("getRevisionByVersion(" + id + "v" + version + "): " + internalToString());
       ListIterator<CDORevisionImpl> it = super.listIterator(0);
       while (it.hasNext())
       {
@@ -350,9 +351,26 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
         }
       }
 
-      CDORevisionImpl revision = loadRevisionByTime(id, referenceChunk, version);
+      CDORevisionImpl revision = loadRevisionByVersion(id, referenceChunk, version);
       it.add(revision);
       return revision;
+    }
+
+    public String internalToString()
+    {
+      StringBuffer buf = new StringBuffer("[");
+      Iterator<CDORevisionImpl> i = super.listIterator(0);
+      boolean hasNext = i.hasNext();
+      while (hasNext)
+      {
+        CDORevisionImpl o = i.next();
+        buf.append(String.valueOf(o));
+        hasNext = i.hasNext();
+        if (hasNext) buf.append(", ");
+      }
+
+      buf.append("]");
+      return buf.toString();
     }
 
     @Override
@@ -618,6 +636,13 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     @Override
     @Deprecated
     public <T> T[] toArray(T[] a)
+    {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    @Deprecated
+    public String toString()
     {
       throw new UnsupportedOperationException();
     }
