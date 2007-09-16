@@ -38,6 +38,8 @@ public interface CDORevision
 
   public boolean isValid(long timeStamp);
 
+  public boolean isTransactional();
+
   public boolean isResource();
 
   public CDORevisionData getData();

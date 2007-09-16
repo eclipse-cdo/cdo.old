@@ -154,37 +154,26 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   public void setID(CDOID id)
   {
-    if (TRACER.isEnabled())
-    {
-      TRACER.format("Setting ID: {0}", id);
-    }
-
+    if (TRACER.isEnabled()) TRACER.format("Setting ID: {0}", id);
     this.id = id;
   }
 
   public int getVersion()
   {
-    return version;
+    return version < 0 ? -version : version;
   }
 
   public void setVersion(int version)
   {
-    if (TRACER.isEnabled())
-    {
-      TRACER.format("Setting version: {0}", version);
-    }
-
+    if (TRACER.isEnabled()) TRACER.format("Setting version: {0} -> {1}", this.version, version);
     this.version = version;
   }
 
   public int increaseVersion()
   {
-    if (TRACER.isEnabled())
-    {
-      TRACER.format("Increasing version: {0}", version + 1);
-    }
-
-    return ++version;
+    if (TRACER.isEnabled()) TRACER.format("Increasing version: {0} -> {1}", version, -(version + 1));
+    version = -(version + 1);
+    return version;
   }
 
   public long getCreated()
@@ -194,11 +183,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   public void setCreated(long created)
   {
-    if (TRACER.isEnabled())
-    {
-      TRACER.format("Setting created: {0,date} {0,time}", created);
-    }
-
+    if (TRACER.isEnabled()) TRACER.format("Setting created: {0,date} {0,time}", created);
     this.created = created;
   }
 
@@ -209,11 +194,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   public void setRevised(long revised)
   {
-    if (TRACER.isEnabled())
-    {
-      TRACER.format("Setting revised: {0} -> {1,date} {1,time}", this, revised);
-    }
-
+    if (TRACER.isEnabled()) TRACER.format("Setting revised: {0} -> {1,date} {1,time}", this, revised);
     this.revised = revised;
   }
 
@@ -225,6 +206,17 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
   public boolean isValid(long timeStamp)
   {
     return (revised == UNSPECIFIED_DATE || revised >= timeStamp) && timeStamp >= created;
+  }
+
+  public boolean isTransactional()
+  {
+    return version < 0;
+  }
+
+  public void setUntransactional()
+  {
+    if (TRACER.isEnabled()) TRACER.format("Setting untransactional: {0} -> {1}", version, Math.abs(version));
+    version = Math.abs(version);
   }
 
   public boolean isResource()
@@ -561,7 +553,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
                 if (baseRevision == null)
                 {
                   baseRevision = (CDORevisionImpl)revisionResolver.getRevisionByVersion(id, CDORevision.UNCHUNKED,
-                      version - 1);
+                      getVersion() - 1);
                 }
 
                 MoveableList baseList = baseRevision.getList(feature);
