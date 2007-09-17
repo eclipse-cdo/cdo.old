@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * @author Simon McDuff
  * @author Eike Stepper
  */
 public final class CDOFetchRule
