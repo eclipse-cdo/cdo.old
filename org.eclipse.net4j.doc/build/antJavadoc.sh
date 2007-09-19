@@ -74,8 +74,6 @@ if [ $debug -gt 0 ]; then
 	for pluginDir in $pluginDirs; do echo "[antJd]   "$pluginDir; done
 fi
 
-### TODO?: missing emf/sdo/xsd plugins in $eclipseDir - need to copy them over or reference source so that all classes/packages (and thus @links) can be resolved
-
 # All the jars in the plugins directory
 classpath="."`find $eclipseDir/plugins -name "*.jar" -printf ":%p"`; if [ $debug -gt 0 ]; then echo "[antJd] classpath: "$classpath; fi
 
