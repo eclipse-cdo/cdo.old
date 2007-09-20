@@ -13,7 +13,6 @@
 	
 	</copyright>
 -->
-
 <feature
       id="org.eclipse.emf.cdo.sdk"
       label="%featureName"
@@ -51,10 +50,5 @@
    <includes
          id="org.eclipse.emf.cdo.examples"
          version="0.0.0"/>
-
-   <requires>
-      <import feature="org.eclipse.emf" version="2.2.0" match="compatible"/>
-      <import feature="org.eclipse.net4j" version="0.8.0" match="compatible"/>
-   </requires>
 
 </feature>

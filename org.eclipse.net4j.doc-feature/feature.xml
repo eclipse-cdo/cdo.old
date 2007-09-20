@@ -13,7 +13,6 @@
 	
 	</copyright>
 -->
-
 <feature
       id="org.eclipse.net4j.doc"
       label="%featureName"
@@ -35,6 +34,10 @@
    <url>
       <update label="%updateSiteName" url="http://download.eclipse.org/modeling/emft/updates/"/>
    </url>
+
+   <requires>
+      <import plugin="org.eclipse.help" version="3.3.0" match="compatible"/>
+   </requires>
 
    <plugin
          id="org.eclipse.net4j.doc"
