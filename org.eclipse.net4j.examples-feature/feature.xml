@@ -42,6 +42,12 @@
    </requires>
 
    <plugin
+         id="org.eclipse.net4j.jms.api"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
          id="org.eclipse.net4j.jms"
          download-size="0"
          install-size="0"
@@ -56,23 +62,17 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.net4j.jms.api"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
-
-   <plugin
          id="org.eclipse.net4j.jms.server"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-<!--
+
    <plugin
          id="org.eclipse.net4j.jms.server.jdbc"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
--->
+
 </feature>

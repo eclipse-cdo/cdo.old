@@ -42,14 +42,14 @@
    </requires>
 
    <plugin
-         id="org.eclipse.net4j.ui"
+         id="org.eclipse.net4j.util.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.net4j.util.ui"
+         id="org.eclipse.net4j.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
