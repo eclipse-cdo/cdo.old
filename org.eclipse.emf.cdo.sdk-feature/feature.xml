@@ -40,11 +40,11 @@
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.emf.cdo.doc"
+         id="org.eclipse.emf.cdo.source"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.emf.cdo.source"
+         id="org.eclipse.emf.cdo.doc"
          version="0.0.0"/>
 
    <includes
