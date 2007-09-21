@@ -35,4 +35,37 @@
       <update label="%updateSiteName" url="http://download.eclipse.org/modeling/emft/updates/"/>
    </url>
 
+   <requires>
+      <import plugin="org.eclipse.core.runtime" version="3.3.0" match="compatible"/>
+      <import plugin="org.eclipse.emf.cdo" version="0.8.0" match="equivalent"/>
+      <import plugin="org.eclipse.emf.edit" version="2.3.0" match="compatible"/>
+      <import plugin="org.eclipse.emf.cdo.tests.model1" version="0.8.0" match="equivalent"/>
+      <import plugin="org.eclipse.core.resources" version="3.3.0" match="compatible"/>
+      <import plugin="org.eclipse.ui.ide" version="3.3.0" match="compatible"/>
+      <import plugin="org.eclipse.emf.ecore.xmi" version="2.3.0" match="compatible"/>
+      <import plugin="org.eclipse.emf.edit.ui" version="2.3.0" match="compatible"/>
+      <import plugin="org.eclipse.emf.cdo.tests.model1.edit" version="0.8.0" match="equivalent"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.emf.cdo.tests.model1"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.cdo.tests.model1.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.cdo.tests.model1.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>
