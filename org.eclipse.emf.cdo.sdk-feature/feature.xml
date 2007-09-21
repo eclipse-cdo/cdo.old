@@ -40,6 +40,10 @@
          version="0.0.0"/>
 
    <includes
+         id="org.eclipse.emf.cdo.server"
+         version="0.0.0"/>
+
+   <includes
          id="org.eclipse.emf.cdo.source"
          version="0.0.0"/>
 
