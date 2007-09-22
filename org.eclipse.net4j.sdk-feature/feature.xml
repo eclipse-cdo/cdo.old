@@ -64,11 +64,11 @@
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.net4j.source.db"
+         id="org.eclipse.net4j.db.source"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.net4j.source.ui"
+         id="org.eclipse.net4j.ui.source"
          version="0.0.0"/>
 
 </feature>
