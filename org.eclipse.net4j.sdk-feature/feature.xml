@@ -56,11 +56,11 @@
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.net4j.source"
+         id="org.eclipse.net4j.examples"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.net4j.examples"
+         id="org.eclipse.net4j.source"
          version="0.0.0"/>
 
 </feature>
