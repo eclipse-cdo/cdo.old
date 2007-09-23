@@ -44,15 +44,19 @@
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.emf.cdo.source"
-         version="0.0.0"/>
-
-   <includes
          id="org.eclipse.emf.cdo.doc"
          version="0.0.0"/>
 
    <includes
          id="org.eclipse.emf.cdo.examples"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.emf.cdo.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.emf.cdo.server.source"
          version="0.0.0"/>
 
 </feature>
