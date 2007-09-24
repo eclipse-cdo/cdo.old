@@ -1,0 +1,36 @@
+<project name="copy-mixin-to-weaver" basedir="." default="main">
+
+	<property name="cdo.project" value="../org.eclipse.emf.cdo"/>
+	<property name="weaver.project" value="../org.eclipse.emf.cdo.weaver"/>
+
+	<target name="clean">
+		<delete>
+			<fileset dir="${cdo.project}/mixin">
+				<include name="**/*.java" />
+			</fileset>
+			<fileset dir="${weaver.project}/mixin">
+				<include name="**/*.class" />
+			</fileset>
+			<fileset dir="${weaver.project}/emf">
+				<include name="**/*.class" />
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="copy">
+		<copy todir="${cdo.project}/mixin">
+			<fileset dir="src">
+				<include name="**/*.java" />
+			</fileset>
+		</copy>
+		<copy todir="${weaver.project}/mixin">
+			<fileset dir="bin">
+				<include name="**/*.class" />
+			</fileset>
+		</copy>
+		<copy todir="${weaver.project}/emf" file="EcoreEList.class"/>
+	</target>
+
+	<target name="main" depends="clean, copy" />
+
+</project>
