@@ -22,3 +22,4 @@ Export-Package: org.eclipse.emf.cdo.internal.protocol;version="0.8.0",
  org.eclipse.emf.cdo.protocol.model.resource;version="0.8.0",
  org.eclipse.emf.cdo.protocol.revision;version="0.8.0",
  org.eclipse.emf.cdo.protocol.util;version="0.8.0"
+Eclipse-LazyStart: true
