@@ -766,30 +766,30 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
       if (targetIndex < sourceIndex)
       {
-        moveDown(targetIndex, targetIndex + 1, sourceIndex - targetIndex);
+        moveUp1(targetIndex, sourceIndex - targetIndex);
       }
       else
       {
-        moveUp(sourceIndex + 1, sourceIndex, targetIndex - sourceIndex);
+        moveDown1(targetIndex, targetIndex - sourceIndex);
       }
 
       set(targetIndex, object);
       return object;
     }
 
-    private void moveDown(int sourceIndex, int targetIndex, int count)
+    private void moveUp1(int index, int count)
     {
-      for (int i = 0; i < count; i++)
+      for (int i = count; i > 0; i--)
       {
-        set(targetIndex + i, get(sourceIndex + i));
+        set(index + i, get(index + i - 1));
       }
     }
 
-    private void moveUp(int sourceIndex, int targetIndex, int count)
+    private void moveDown1(int index, int count)
     {
-      for (int i = count - 1; i >= 0; i--)
+      for (int i = count; i > 0; i--)
       {
-        set(targetIndex + i, get(sourceIndex + i));
+        set(index - i, get(index - i + 1));
       }
     }
   }
