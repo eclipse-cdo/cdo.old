@@ -129,12 +129,13 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
       TRACER
           .format(
               "Writing revision: ID={0}, classRef={1}, className={2}, version={3}, created={4}, revised={5}, resource={6}, container={7}, feature={8}",
-              id, classRef, cdoClass.getName(), version, created, revised, resourceID, containerID, containingFeatureID);
+              id, classRef, cdoClass.getName(), getVersion(), created, revised, resourceID, containerID,
+              containingFeatureID);
     }
 
     classRef.write(out, null);
     CDOIDImpl.write(out, id);
-    out.writeInt(version);
+    out.writeInt(getVersion());
     out.writeLong(created);
     out.writeLong(revised);
     CDOIDImpl.write(out, resourceID);
