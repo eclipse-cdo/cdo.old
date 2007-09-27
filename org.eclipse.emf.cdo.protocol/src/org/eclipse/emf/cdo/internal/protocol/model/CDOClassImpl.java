@@ -253,6 +253,11 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     features.add(cdoFeature);
   }
 
+  public int compareTo(CDOClass that)
+  {
+    return getName().compareTo(that.getName());
+  }
+
   @Override
   public String toString()
   {
