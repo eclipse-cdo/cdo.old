@@ -13,7 +13,7 @@ package org.eclipse.emf.cdo.protocol.model;
 /**
  * @author Eike Stepper
  */
-public interface CDOClass extends CDOModelElement
+public interface CDOClass extends CDOModelElement, Comparable<CDOClass>
 {
   public int getClassifierID();
 

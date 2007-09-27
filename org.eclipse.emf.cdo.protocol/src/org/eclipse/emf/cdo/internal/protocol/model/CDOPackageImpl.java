@@ -265,6 +265,11 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     classes.add(cdoClass);
   }
 
+  public int compareTo(CDOPackage that)
+  {
+    return getPackageURI().compareTo(that.getPackageURI());
+  }
+
   @Override
   public String toString()
   {

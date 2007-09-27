@@ -15,7 +15,7 @@ import org.eclipse.emf.cdo.protocol.CDOIDRange;
 /**
  * @author Eike Stepper
  */
-public interface CDOPackage extends CDOModelElement
+public interface CDOPackage extends CDOModelElement, Comparable<CDOPackage>
 {
   public CDOPackageManager getPackageManager();
 
