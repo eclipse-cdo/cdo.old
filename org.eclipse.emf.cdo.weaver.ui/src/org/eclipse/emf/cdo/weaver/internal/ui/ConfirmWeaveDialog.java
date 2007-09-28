@@ -109,9 +109,9 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
   protected void createButtonsForButtonBar(Composite parent)
   {
     super.createButtonsForButtonBar(parent);
-    final PreferenceButton showIgnored = new PreferenceButton(parent, SWT.CHECK, OM.PREF_SHOW_IGNORED_BUNDLES);
-    showIgnored.setText("Show ignored bundles");
-    showIgnored.addSelectionListener(new SelectionAdapter()
+    final PreferenceButton showIgnored = new PreferenceButton(parent, SWT.CHECK, "Show ignored bundles",
+        OM.PREF_SHOW_IGNORED_BUNDLES);
+    showIgnored.getButton().addSelectionListener(new SelectionAdapter()
     {
       @Override
       public void widgetSelected(SelectionEvent e)
@@ -121,8 +121,7 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
       }
     });
 
-    PreferenceButton startup = new PreferenceButton(parent, SWT.CHECK, OM.PREF_CHECK_DURING_STARTUP);
-    startup.setText("Check during startup");
+    new PreferenceButton(parent, SWT.CHECK, "Check during startup", OM.PREF_CHECK_DURING_STARTUP);
   }
 
   @Override
