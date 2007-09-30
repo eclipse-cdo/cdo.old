@@ -30,9 +30,9 @@ public class RevisionHolder
 
   private RevisionHolder next;
 
-  private CDORevisionImpl revision;
+  private CDORevision revision;
 
-  public RevisionHolder(CDORevisionImpl revision)
+  public RevisionHolder(CDORevision revision)
   {
     setRevision(revision);
   }
@@ -107,7 +107,7 @@ public class RevisionHolder
     return revision != null;
   }
 
-  public CDORevisionImpl getRevision(boolean loadOnDemand)
+  public CDORevision getRevision(boolean loadOnDemand)
   {
     if (revision == null && loadOnDemand)
     {
@@ -117,7 +117,7 @@ public class RevisionHolder
     return revision;
   }
 
-  public void setRevision(CDORevisionImpl revision)
+  public void setRevision(CDORevision revision)
   {
     this.revision = revision;
     id = revision.getID();

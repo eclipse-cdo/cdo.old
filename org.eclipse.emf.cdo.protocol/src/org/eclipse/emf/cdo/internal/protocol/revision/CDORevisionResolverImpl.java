@@ -34,6 +34,14 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
 
   private ConcurrentMap<CDOID, RevisionHolder> revisions = new ConcurrentHashMap<CDOID, RevisionHolder>();
 
+  private int currentLRUCapacity;
+
+  private int revisedLRUCapacity;
+
+  private LRURevisionList currentLRU;
+
+  private LRURevisionList revisedLRU;
+
   public CDORevisionResolverImpl()
   {
   }
@@ -46,7 +54,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       return null;
     }
 
-    CDORevisionImpl revision = holder.getRevision(true);
+    CDORevisionImpl revision = (CDORevisionImpl)holder.getRevision(true);
     return revision.getCDOClass();
   }
 
@@ -63,7 +71,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
   protected CDORevisionImpl getRevision(CDOID id, int referenceChunk, boolean loadOnDemand)
   {
     RevisionHolder holder = revisions.get(id);
-    CDORevisionImpl revision = holder == null ? null : holder.getRevision(true);
+    CDORevisionImpl revision = holder == null ? null : (CDORevisionImpl)holder.getRevision(true);
     if (revision == null || !revision.isCurrent())
     {
       if (loadOnDemand)
@@ -119,7 +127,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       else if (indicator == 0)
       {
         // timeStamp is within holder timeSpan
-        CDORevisionImpl oldRevision = holder.getRevision(true);
+        CDORevisionImpl oldRevision = (CDORevisionImpl)holder.getRevision(true);
         CDORevisionImpl revision = verifyRevision(oldRevision, referenceChunk);
         if (revision != oldRevision)
         {
@@ -164,7 +172,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       }
       else if (holderVersion == version)
       {
-        return holder.getRevision(true);
+        return (CDORevisionImpl)holder.getRevision(true);
       }
       else
       {
@@ -281,11 +289,6 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     addRevisionBetween(revision, lastHolder, holder);
   }
 
-  protected RevisionHolder createRevisionHolder(CDORevisionImpl revision)
-  {
-    return new RevisionHolder(revision);
-  }
-
   protected void addRevisionFirst(CDORevisionImpl revision)
   {
     RevisionHolder newHolder = createRevisionHolder(revision);
@@ -294,6 +297,12 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     {
       oldHolder.setPrev(newHolder);
       newHolder.setNext(oldHolder);
+    }
+
+    LRURevisionList list = revision.isCurrent() ? currentLRU : revisedLRU;
+    if (list != null)
+    {
+      list.add((DLRevisionHolder)newHolder);
     }
   }
 
@@ -327,20 +336,44 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     }
   }
 
-  public void removeRevision(CDORevisionImpl revision)
-  {
-    if (TRACER.isEnabled())
-    {
-      TRACER.format("Removing revision: {0}, created={1,date} {1,time}, revised={2,date} {2,time}, current={3}",
-          revision, revision.getCreated(), revision.getRevised(), revision.isCurrent());
-    }
-
-    // TODO Implement method CDORevisionResolverImpl.removeRevision()
-    throw new UnsupportedOperationException("Not yet implemented");
-  }
-
   protected CDORevisionImpl verifyRevision(CDORevisionImpl revision, int referenceChunk)
   {
     return revision;
+  }
+
+  protected RevisionHolder createRevisionHolder(CDORevisionImpl revision)
+  {
+    LRURevisionList list = revision.isCurrent() ? currentLRU : revisedLRU;
+    if (list != null)
+    {
+      return new LRURevisionHolder(list, revision);
+    }
+    else
+    {
+      return new RevisionHolder(revision);
+    }
+  }
+
+  @Override
+  protected void doActivate() throws Exception
+  {
+    super.doActivate();
+    if (currentLRUCapacity > 0)
+    {
+      currentLRU = new LRURevisionList(currentLRUCapacity);
+    }
+
+    if (revisedLRUCapacity > 0)
+    {
+      revisedLRU = new LRURevisionList(revisedLRUCapacity);
+    }
+  }
+
+  @Override
+  protected void doDeactivate() throws Exception
+  {
+    currentLRU = null;
+    revisedLRU = null;
+    super.doDeactivate();
   }
 }
