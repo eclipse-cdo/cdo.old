@@ -20,10 +20,10 @@ import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
+import java.util.Map;
 
 /**
  * @author Eike Stepper
@@ -32,15 +32,15 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
 {
   private static final ContextTracer TRACER = new ContextTracer(OM.DEBUG_REVISION, CDORevisionResolverImpl.class);
 
-  private ConcurrentMap<CDOID, RevisionHolder> revisions = new ConcurrentHashMap<CDOID, RevisionHolder>();
+  private Map<CDOID, RevisionHolder> revisions = new HashMap<CDOID, RevisionHolder>();
 
   private int currentLRUCapacity;
 
   private int revisedLRUCapacity;
 
-  private LRURevisionList currentLRU;
+  private LRU currentLRU;
 
-  private LRURevisionList revisedLRU;
+  private LRU revisedLRU;
 
   public CDORevisionResolverImpl()
   {
@@ -299,7 +299,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       newHolder.setNext(oldHolder);
     }
 
-    LRURevisionList list = revision.isCurrent() ? currentLRU : revisedLRU;
+    LRU list = revision.isCurrent() ? currentLRU : revisedLRU;
     if (list != null)
     {
       list.add((DLRevisionHolder)newHolder);
@@ -336,6 +336,51 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     }
   }
 
+  protected synchronized void removeRevision(CDOID id, int version)
+  {
+    RevisionHolder holder = revisions.get(id);
+    while (holder != null)
+    {
+      int holderVersion = holder.getVersion();
+      if (holderVersion > version)
+      {
+        holder = holder.getNext();
+      }
+      else if (holderVersion == version)
+      {
+        RevisionHolder prev = holder.getPrev();
+        RevisionHolder next = holder.getNext();
+        if (next != null)
+        {
+          next.setPrev(prev);
+        }
+
+        if (prev != null)
+        {
+          prev.setNext(next);
+        }
+        else
+        {
+          if (next != null)
+          {
+            revisions.put(id, next);
+          }
+          else
+          {
+            revisions.remove(id);
+          }
+        }
+
+        holder.setPrev(null);
+        holder.setNext(null);
+      }
+      else
+      {
+        break;
+      }
+    }
+  }
+
   protected CDORevisionImpl verifyRevision(CDORevisionImpl revision, int referenceChunk)
   {
     return revision;
@@ -360,12 +405,12 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     super.doActivate();
     if (currentLRUCapacity > 0)
     {
-      currentLRU = new LRURevisionList(currentLRUCapacity);
+      currentLRU = new LRU(currentLRUCapacity);
     }
 
     if (revisedLRUCapacity > 0)
     {
-      revisedLRU = new LRURevisionList(revisedLRUCapacity);
+      revisedLRU = new LRU(revisedLRUCapacity);
     }
   }
 
@@ -375,5 +420,23 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     currentLRU = null;
     revisedLRU = null;
     super.doDeactivate();
+  }
+
+  /**
+   * @author Eike Stepper
+   */
+  private final class LRU extends LRURevisionList
+  {
+    public LRU(int capacity)
+    {
+      super(capacity);
+    }
+
+    @Override
+    protected void evict(LRURevisionHolder holder)
+    {
+      super.evict(holder);
+      removeRevision(holder.getID(), holder.getVersion());
+    }
   }
 }
