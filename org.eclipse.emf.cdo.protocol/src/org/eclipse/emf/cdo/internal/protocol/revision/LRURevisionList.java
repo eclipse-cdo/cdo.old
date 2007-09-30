@@ -42,9 +42,12 @@ public class LRURevisionList extends DLRevisionList
 
   protected void eviction()
   {
-    while (size() > capacity)
+    if (capacity != 0)
     {
-      evict((LRURevisionHolder)getDLTail());
+      while (size() > capacity)
+      {
+        evict((LRURevisionHolder)getDLTail());
+      }
     }
   }
 

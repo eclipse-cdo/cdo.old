@@ -46,6 +46,34 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
   {
   }
 
+  public int getCurrentLRUCapacity()
+  {
+    return currentLRUCapacity;
+  }
+
+  public void setCurrentLRUCapacity(int capacity)
+  {
+    currentLRUCapacity = capacity;
+    if (currentLRU != null)
+    {
+      currentLRU.capacity(capacity);
+    }
+  }
+
+  public int getRevisedLRUCapacity()
+  {
+    return revisedLRUCapacity;
+  }
+
+  public void setRevisedLRUCapacity(int capacity)
+  {
+    revisedLRUCapacity = capacity;
+    if (revisedLRU != null)
+    {
+      revisedLRU.capacity(capacity);
+    }
+  }
+
   public CDOClass getObjectType(CDOID id)
   {
     RevisionHolder holder = revisions.get(id);
@@ -292,23 +320,23 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
   protected void addRevisionFirst(CDORevisionImpl revision)
   {
     RevisionHolder newHolder = createRevisionHolder(revision);
+    LRU list = revision.isCurrent() ? currentLRU : revisedLRU;
+    list.add((DLRevisionHolder)newHolder);
+
     RevisionHolder oldHolder = revisions.put(revision.getID(), newHolder);
     if (oldHolder != null)
     {
       oldHolder.setPrev(newHolder);
       newHolder.setNext(oldHolder);
     }
-
-    LRU list = revision.isCurrent() ? currentLRU : revisedLRU;
-    if (list != null)
-    {
-      list.add((DLRevisionHolder)newHolder);
-    }
   }
 
   protected void addRevisionBetween(CDORevisionImpl revision, RevisionHolder prevHolder, RevisionHolder nextHolder)
   {
     RevisionHolder holder = createRevisionHolder(revision);
+    LRU list = revision.isCurrent() ? currentLRU : revisedLRU;
+    list.add((DLRevisionHolder)holder);
+
     if (prevHolder != null)
     {
       if (nextHolder == null)
@@ -389,29 +417,15 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
   protected RevisionHolder createRevisionHolder(CDORevisionImpl revision)
   {
     LRURevisionList list = revision.isCurrent() ? currentLRU : revisedLRU;
-    if (list != null)
-    {
-      return new LRURevisionHolder(list, revision);
-    }
-    else
-    {
-      return new RevisionHolder(revision);
-    }
+    return new LRURevisionHolder(list, revision);
   }
 
   @Override
   protected void doActivate() throws Exception
   {
     super.doActivate();
-    if (currentLRUCapacity > 0)
-    {
-      currentLRU = new LRU(currentLRUCapacity);
-    }
-
-    if (revisedLRUCapacity > 0)
-    {
-      revisedLRU = new LRU(revisedLRUCapacity);
-    }
+    currentLRU = new LRU(currentLRUCapacity);
+    revisedLRU = new LRU(revisedLRUCapacity);
   }
 
   @Override

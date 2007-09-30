@@ -108,6 +108,7 @@ public class DLRevisionList extends DLRevisionHolder
     --size;
     DLRevisionHolder prev = holder.getDLPrev();
     DLRevisionHolder next = holder.getDLNext();
+
     prev.setDLNext(next);
     holder.setDLPrev(null);
     holder.setDLNext(null);
