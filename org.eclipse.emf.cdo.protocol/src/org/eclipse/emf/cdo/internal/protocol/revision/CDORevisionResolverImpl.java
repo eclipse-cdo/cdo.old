@@ -450,8 +450,15 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     @Override
     protected void evict(LRURevisionHolder holder)
     {
+      CDOID id = holder.getID();
+      int version = holder.getVersion();
+      if (TRACER.isEnabled())
+      {
+        TRACER.format("Evicting revision {0}v{1}", id, version);
+      }
+
       super.evict(holder);
-      removeRevision(holder.getID(), holder.getVersion());
+      removeRevision(id, version);
     }
   }
 }
