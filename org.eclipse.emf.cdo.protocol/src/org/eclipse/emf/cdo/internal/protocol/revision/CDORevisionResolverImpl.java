@@ -401,6 +401,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
 
         holder.setPrev(null);
         holder.setNext(null);
+        break;
       }
       else
       {
