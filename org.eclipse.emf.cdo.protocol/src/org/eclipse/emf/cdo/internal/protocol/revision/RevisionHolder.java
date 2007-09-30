@@ -18,13 +18,13 @@ import org.eclipse.emf.cdo.protocol.revision.CDORevision;
  */
 public class RevisionHolder
 {
-  private CDOID id;
-
-  private int version;
-
-  private long created;
-
-  private long revised;
+  // private CDOID id;
+  //
+  // private int version;
+  //
+  // private long created;
+  //
+  // private long revised;
 
   private RevisionHolder prev;
 
@@ -39,42 +39,42 @@ public class RevisionHolder
 
   public CDOID getID()
   {
-    return id;
+    return revision.getID();
   }
 
   public int getVersion()
   {
-    return version;
+    return revision.getVersion();
   }
 
   public long getCreated()
   {
-    return created;
+    return revision.getCreated();
   }
 
   public long getRevised()
   {
-    return revised;
+    return revision.getRevised();
   }
 
   public boolean isCurrent()
   {
-    return revised == CDORevision.UNSPECIFIED_DATE;
+    return getRevised() == CDORevision.UNSPECIFIED_DATE;
   }
 
   public boolean isValid(long timeStamp)
   {
-    return (revised == CDORevision.UNSPECIFIED_DATE || revised >= timeStamp) && timeStamp >= created;
+    return (getRevised() == CDORevision.UNSPECIFIED_DATE || getRevised() >= timeStamp) && timeStamp >= getCreated();
   }
 
   public int compareTo(long timeStamp)
   {
-    if (timeStamp < created)
+    if (timeStamp < getCreated())
     {
       return -1;
     }
 
-    if (revised != CDORevision.UNSPECIFIED_DATE && timeStamp > revised)
+    if (getRevised() != CDORevision.UNSPECIFIED_DATE && timeStamp > getRevised())
     {
       return 1;
     }
@@ -120,10 +120,10 @@ public class RevisionHolder
   public void setRevision(CDORevision revision)
   {
     this.revision = revision;
-    id = revision.getID();
-    version = revision.getVersion();
-    created = revision.getCreated();
-    revised = revision.getRevised();
+    // id = revision.getID();
+    // version = revision.getVersion();
+    // created = revision.getCreated();
+    // revised = revision.getRevised();
   }
 
   protected CDORevisionImpl loadRevision()
