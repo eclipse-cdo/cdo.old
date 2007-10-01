@@ -326,7 +326,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
 
     RevisionHolder oldHolder = revisions.put(revision.getID(), newHolder);
     newHolder.setNext(oldHolder);
-    reviseOldRevision(revision, newHolder, oldHolder);
+    revise(newHolder, oldHolder);
   }
 
   protected void addRevisionBetween(CDORevisionImpl revision, RevisionHolder prevHolder, RevisionHolder nextHolder)
@@ -352,18 +352,24 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       revisions.put(revision.getID(), holder);
     }
 
-    reviseOldRevision(revision, holder, nextHolder);
+    revise(holder, nextHolder);
   }
 
-  protected void reviseOldRevision(CDORevisionImpl revision, RevisionHolder holder, RevisionHolder nextHolder)
+  protected void revise(RevisionHolder holder, RevisionHolder nextHolder)
   {
     if (nextHolder != null)
     {
       nextHolder.setPrev(holder);
-      if (revision.isCurrent())
+      if (holder.isCurrent() && nextHolder.isCurrent())
       {
+        currentLRU.remove((DLRevisionHolder)nextHolder);
+        revisedLRU.add((DLRevisionHolder)nextHolder);
+
         CDORevisionImpl oldRevision = (CDORevisionImpl)nextHolder.getRevision(false);
-        oldRevision.setRevised(revision.getCreated() - 1);
+        if (oldRevision != null)
+        {
+          oldRevision.setRevised(holder.getCreated() - 1);
+        }
       }
     }
   }
