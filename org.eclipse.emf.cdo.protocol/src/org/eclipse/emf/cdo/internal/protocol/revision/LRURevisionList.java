@@ -10,6 +10,8 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.revision;
 
+import java.text.MessageFormat;
+
 /**
  * @author Eike Stepper
  */
@@ -38,6 +40,12 @@ public class LRURevisionList extends DLRevisionList
   {
     addHead(holder);
     eviction();
+  }
+
+  @Override
+  public String toString()
+  {
+    return MessageFormat.format("LRURevisionList[size={0}, capacity={1}]", size(), capacity);
   }
 
   protected void eviction()

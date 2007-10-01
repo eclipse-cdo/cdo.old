@@ -13,6 +13,8 @@ package org.eclipse.emf.cdo.internal.protocol.revision;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
 
+import java.text.MessageFormat;
+
 /**
  * @author Eike Stepper
  */
@@ -113,6 +115,12 @@ public class DLRevisionList extends DLRevisionHolder
     holder.setDLPrev(null);
     holder.setDLNext(null);
     next.setDLPrev(prev);
+  }
+
+  @Override
+  public String toString()
+  {
+    return MessageFormat.format("DLRevisionList[size={0}]", size);
   }
 
   @Override

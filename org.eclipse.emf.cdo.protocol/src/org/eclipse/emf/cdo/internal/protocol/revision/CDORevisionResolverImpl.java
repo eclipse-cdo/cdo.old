@@ -18,6 +18,7 @@ import org.eclipse.emf.cdo.protocol.revision.CDORevisionResolver;
 import org.eclipse.net4j.internal.util.lifecycle.Lifecycle;
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -324,11 +325,8 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     list.add((DLRevisionHolder)newHolder);
 
     RevisionHolder oldHolder = revisions.put(revision.getID(), newHolder);
-    if (oldHolder != null)
-    {
-      oldHolder.setPrev(newHolder);
-      newHolder.setNext(oldHolder);
-    }
+    newHolder.setNext(oldHolder);
+    reviseOldRevision(revision, newHolder, oldHolder);
   }
 
   protected void addRevisionBetween(CDORevisionImpl revision, RevisionHolder prevHolder, RevisionHolder nextHolder)
@@ -347,20 +345,26 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       holder.setPrev(prevHolder);
       holder.setNext(nextHolder);
       prevHolder.setNext(holder);
-      if (nextHolder != null)
-      {
-        nextHolder.setPrev(holder);
-      }
     }
     else
     {
       holder.setNext(nextHolder);
-      if (nextHolder != null)
-      {
-        nextHolder.setPrev(holder);
-      }
-
       revisions.put(revision.getID(), holder);
+    }
+
+    reviseOldRevision(revision, holder, nextHolder);
+  }
+
+  protected void reviseOldRevision(CDORevisionImpl revision, RevisionHolder holder, RevisionHolder nextHolder)
+  {
+    if (nextHolder != null)
+    {
+      nextHolder.setPrev(holder);
+      if (revision.isCurrent())
+      {
+        CDORevisionImpl oldRevision = (CDORevisionImpl)nextHolder.getRevision(false);
+        oldRevision.setRevised(revision.getCreated() - 1);
+      }
     }
   }
 
@@ -445,6 +449,12 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     public LRU(int capacity)
     {
       super(capacity);
+    }
+
+    @Override
+    public String toString()
+    {
+      return MessageFormat.format("LRU[size={0}, capacity={1}]", size(), capacity());
     }
 
     @Override

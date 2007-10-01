@@ -13,6 +13,8 @@ package org.eclipse.emf.cdo.internal.protocol.revision;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
 
+import java.text.MessageFormat;
+
 /**
  * @author Eike Stepper
  */
@@ -124,6 +126,12 @@ public class RevisionHolder
     // version = revision.getVersion();
     // created = revision.getCreated();
     // revised = revision.getRevised();
+  }
+
+  @Override
+  public String toString()
+  {
+    return MessageFormat.format("RevisionHolder[{0}]", revision);
   }
 
   protected CDORevisionImpl loadRevision()
