@@ -23,6 +23,7 @@ import java.util.ListIterator;
 public aspect CDOAspectList
 {
 // declare parents: EcoreEList extends CDOEcoreEList;
+// TODO Look at DelegatingEcoreEList!!!
 
   pointcut writeAccess(): 
     execution(boolean add(Object)) ||
