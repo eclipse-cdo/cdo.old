@@ -25,6 +25,7 @@ import org.eclipse.net4j.util.om.pref.OMPreference;
 import org.eclipse.net4j.util.om.pref.OMPreferences;
 import org.eclipse.net4j.util.om.trace.OMTracer;
 import org.eclipse.net4j.util.ui.UIActivator;
+import org.eclipse.net4j.util.ui.UIUtil;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
@@ -218,7 +219,7 @@ public abstract class OM
       return;
     }
 
-    Display display = getDisplay();
+    Display display = UIUtil.getDisplay();
     display.asyncExec(new Runnable()
     {
       public void run()
@@ -234,25 +235,6 @@ public abstract class OM
         }
       }
     });
-  }
-
-  /**
-   * TODO Factor out
-   */
-  private static Display getDisplay()
-  {
-    Display display = Display.getCurrent();
-    if (display == null)
-    {
-      display = Display.getDefault();
-    }
-
-    if (display == null)
-    {
-      display = new Display();
-    }
-
-    return display;
   }
 
   /**
