@@ -1,4 +1,1 @@
 org.eclipse.net4j.buddies.protocol/debug = true
-org.eclipse.net4j.buddies.protocol/debug.protocol = true
-org.eclipse.net4j.buddies.protocol/debug.model = true
-org.eclipse.net4j.buddies.protocol/debug.revision= true
