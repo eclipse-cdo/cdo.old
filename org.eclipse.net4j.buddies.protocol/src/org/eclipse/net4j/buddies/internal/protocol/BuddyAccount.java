@@ -28,8 +28,6 @@ public class BuddyAccount implements IBuddyAccount, Serializable
 
   private String password;
 
-  private String nickName;
-
   private Map<String, String> properties = new HashMap<String, String>();
 
   private long timeStamp;
@@ -62,16 +60,6 @@ public class BuddyAccount implements IBuddyAccount, Serializable
   public boolean authenticate(String password)
   {
     return ObjectUtil.equals(password, this.password);
-  }
-
-  public String getNickName()
-  {
-    return nickName;
-  }
-
-  public void setNickName(String nickName)
-  {
-    this.nickName = nickName;
   }
 
   public Map<String, String> getProperties()

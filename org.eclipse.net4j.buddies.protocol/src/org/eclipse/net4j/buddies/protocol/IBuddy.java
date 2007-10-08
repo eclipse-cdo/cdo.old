@@ -10,22 +10,12 @@
  **************************************************************************/
 package org.eclipse.net4j.buddies.protocol;
 
-import java.util.Map;
-
 /**
  * @author Eike Stepper
  */
-public interface IBuddyAccount
+public interface IBuddy
 {
   public String getUserID();
 
-  public void setPassword(String password);
-
-  public boolean authenticate(String password);
-
-  public Map<String, String> getProperties();
-
-  public void touch();
-
-  public long getTimeStamp();
+  public IBuddyAccount getAccount();
 }
