@@ -28,4 +28,8 @@ public interface IBuddyAccount
   public void setNickName(String nickName);
 
   public Map<String, String> getProperties();
+
+  public void touch();
+
+  public long getTimeStamp();
 }

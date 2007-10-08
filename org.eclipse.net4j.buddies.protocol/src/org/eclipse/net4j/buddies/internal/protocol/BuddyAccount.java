@@ -32,6 +32,8 @@ public class BuddyAccount implements IBuddyAccount, Serializable
 
   private Map<String, String> properties = new HashMap<String, String>();
 
+  private long timeStamp;
+
   protected BuddyAccount()
   {
   }
@@ -75,5 +77,15 @@ public class BuddyAccount implements IBuddyAccount, Serializable
   public Map<String, String> getProperties()
   {
     return properties;
+  }
+
+  public void touch()
+  {
+    timeStamp = System.currentTimeMillis();
+  }
+
+  public long getTimeStamp()
+  {
+    return timeStamp;
   }
 }
