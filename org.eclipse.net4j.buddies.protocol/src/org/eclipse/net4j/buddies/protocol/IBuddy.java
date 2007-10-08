@@ -28,6 +28,6 @@ public interface IBuddy extends INotifier
    */
   public enum State
   {
-    AVAILABLE, AWAY, DO_NOT_DISTURB
+    AVAILABLE, LONESOME, AWAY, DO_NOT_DISTURB
   }
 }
