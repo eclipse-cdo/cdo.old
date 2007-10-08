@@ -10,24 +10,16 @@
  **************************************************************************/
 package org.eclipse.net4j.buddies.protocol;
 
-import org.eclipse.net4j.util.event.INotifier;
+import org.eclipse.net4j.util.event.IEvent;
 
 /**
  * @author Eike Stepper
  */
-public interface IBuddy extends INotifier
+public interface IBuddyStateChangedEvent extends IEvent
 {
-  public String getUserID();
+  public IBuddy getBuddy();
 
-  public State getState();
+  public IBuddy.State getOldState();
 
-  public IBuddyAccount getAccount();
-
-  /**
-   * @author Eike Stepper
-   */
-  public enum State
-  {
-    AVAILABLE, AWAY, DO_NOT_DISTURB
-  }
+  public IBuddy.State getNewState();
 }
