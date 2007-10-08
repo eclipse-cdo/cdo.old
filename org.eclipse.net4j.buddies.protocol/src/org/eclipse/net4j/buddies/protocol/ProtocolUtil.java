@@ -21,9 +21,9 @@ import java.io.ObjectOutputStream;
 /**
  * @author Eike Stepper
  */
-public final class AccountUtil
+public final class ProtocolUtil
 {
-  private AccountUtil()
+  private ProtocolUtil()
   {
   }
 
@@ -61,6 +61,46 @@ public final class AccountUtil
     catch (Exception ex)
     {
       throw WrappedException.wrap(ex);
+    }
+  }
+
+  public static void writeState(ExtendedDataOutputStream out, IBuddy.State state) throws IOException
+  {
+    switch (state)
+    {
+    case AVAILABLE:
+      out.writeByte(ProtocolConstants.STATE_AVAILABLE);
+      break;
+
+    case AWAY:
+      out.writeByte(ProtocolConstants.STATE_AWAY);
+      break;
+
+    case DO_NOT_DISTURB:
+      out.writeByte(ProtocolConstants.STATE_DO_NOT_DISTURB);
+      break;
+
+    default:
+      throw new IllegalArgumentException("Illegal state: " + state);
+    }
+  }
+
+  public static IBuddy.State readState(ExtendedDataInputStream in) throws IOException
+  {
+    byte state = in.readByte();
+    switch (state)
+    {
+    case ProtocolConstants.STATE_AVAILABLE:
+      return IBuddy.State.AVAILABLE;
+
+    case ProtocolConstants.STATE_AWAY:
+      return IBuddy.State.AWAY;
+
+    case ProtocolConstants.STATE_DO_NOT_DISTURB:
+      return IBuddy.State.DO_NOT_DISTURB;
+
+    default:
+      throw new IllegalArgumentException("Illegal state: " + state);
     }
   }
 }
