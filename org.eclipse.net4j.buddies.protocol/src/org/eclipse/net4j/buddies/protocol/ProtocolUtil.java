@@ -72,6 +72,10 @@ public final class ProtocolUtil
       out.writeByte(ProtocolConstants.STATE_AVAILABLE);
       break;
 
+    case LONESOME:
+      out.writeByte(ProtocolConstants.STATE_LONESOME);
+      break;
+
     case AWAY:
       out.writeByte(ProtocolConstants.STATE_AWAY);
       break;
@@ -92,6 +96,9 @@ public final class ProtocolUtil
     {
     case ProtocolConstants.STATE_AVAILABLE:
       return IBuddy.State.AVAILABLE;
+
+    case ProtocolConstants.STATE_LONESOME:
+      return IBuddy.State.LONESOME;
 
     case ProtocolConstants.STATE_AWAY:
       return IBuddy.State.AWAY;

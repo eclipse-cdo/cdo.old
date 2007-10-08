@@ -29,7 +29,9 @@ public interface ProtocolConstants
 
   public static final byte STATE_AVAILABLE = 1;
 
-  public static final byte STATE_AWAY = 2;
+  public static final byte STATE_LONESOME = 2;
 
-  public static final byte STATE_DO_NOT_DISTURB = 3;
+  public static final byte STATE_AWAY = 3;
+
+  public static final byte STATE_DO_NOT_DISTURB = 4;
 }
