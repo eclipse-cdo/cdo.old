@@ -19,7 +19,9 @@ public interface BuddiesProtocolConstants
 
   public static final short SIGNAL_OPEN_SESSION = 1;
 
-  public static final short SIGNAL_BUDDY_ADDED = 2;
+  public static final short SIGNAL_LOAD_ACCOUNT = 2;
 
-  public static final short SIGNAL_BUDDY_REMOVED = 3;
+  public static final short SIGNAL_BUDDY_ADDED = 3;
+
+  public static final short SIGNAL_BUDDY_REMOVED = 4;
 }

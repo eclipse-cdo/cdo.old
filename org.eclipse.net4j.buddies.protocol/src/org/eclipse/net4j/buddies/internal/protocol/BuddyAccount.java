@@ -26,7 +26,7 @@ public class BuddyAccount implements IBuddyAccount, Serializable
 
   private String userID;
 
-  private String password;
+  private transient String password;
 
   private Map<String, String> properties = new HashMap<String, String>();
 
