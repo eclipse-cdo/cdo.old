@@ -11,12 +11,10 @@
 package org.eclipse.net4j.buddies.internal.protocol;
 
 import org.eclipse.net4j.buddies.protocol.IBuddy;
-import org.eclipse.net4j.buddies.protocol.IMessage;
 import org.eclipse.net4j.buddies.protocol.IBuddyStateChangedEvent;
+import org.eclipse.net4j.buddies.protocol.IMessage;
 import org.eclipse.net4j.buddies.protocol.ISession;
 import org.eclipse.net4j.internal.util.event.Event;
-import org.eclipse.net4j.internal.util.event.Notifier;
-import org.eclipse.net4j.util.WrappedException;
 import org.eclipse.net4j.util.event.IEvent;
 
 import org.eclipse.core.runtime.Platform;
@@ -25,7 +23,7 @@ import org.eclipse.core.runtime.PlatformObject;
 /**
  * @author Eike Stepper
  */
-public abstract class Buddy extends Notifier implements IBuddy
+public abstract class Buddy extends CollaborationContainer implements IBuddy
 {
   private ISession session;
 
@@ -61,21 +59,10 @@ public abstract class Buddy extends Notifier implements IBuddy
     }
   }
 
-  public void sendMessage(IMessage message)
+  @Deprecated
+  public void notifyMessage(IMessage message)
   {
-    if (message instanceof Message)
-    {
-      ((Message)message).setSender(this);
-    }
-
-    try
-    {
-      new MessageNotification(session.getChannel(), message).send();
-    }
-    catch (Exception ex)
-    {
-      throw WrappedException.wrap(ex);
-    }
+    fireEvent(new MessageEvent(this, message));
   }
 
   /**

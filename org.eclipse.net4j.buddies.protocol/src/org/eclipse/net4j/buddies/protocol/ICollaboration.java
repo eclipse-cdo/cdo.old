@@ -10,14 +10,21 @@
  **************************************************************************/
 package org.eclipse.net4j.buddies.protocol;
 
-import org.eclipse.core.runtime.IAdaptable;
-
 /**
  * @author Eike Stepper
  */
-public interface IMessage extends IAdaptable
+public interface ICollaboration extends IBuddyContainer
 {
-  public String getCollaborationID();
+  public String getID();
 
-  public String getSenderID();
+  public Visibility getVisibility();
+
+  public boolean isPublic();
+
+  public void sendMessage(IMessage message);
+
+  public enum Visibility
+  {
+    PRIVATE, PUBLIC
+  }
 }

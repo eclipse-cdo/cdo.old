@@ -67,10 +67,7 @@ public class BuddyContainer extends Lifecycle implements IBuddyContainer, IListe
 
   public Map<String, IBuddy> getBuddies()
   {
-    synchronized (buddies)
-    {
-      return Collections.unmodifiableMap(buddies);
-    }
+    return Collections.unmodifiableMap(buddies);
   }
 
   public IBuddy[] getElements()

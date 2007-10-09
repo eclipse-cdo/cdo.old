@@ -10,14 +10,12 @@
  **************************************************************************/
 package org.eclipse.net4j.buddies.protocol;
 
-import org.eclipse.net4j.util.event.INotifier;
-
 import org.eclipse.core.runtime.IAdaptable;
 
 /**
  * @author Eike Stepper
  */
-public interface IBuddy extends INotifier, IAdaptable
+public interface IBuddy extends ICollaborationContainer, IAdaptable
 {
   public String getUserID();
 
@@ -26,8 +24,6 @@ public interface IBuddy extends INotifier, IAdaptable
   public IAccount getAccount();
 
   public ISession getSession();
-
-  public void sendMessage(IMessage message);
 
   // public ICollaboration join(int ID);
   //

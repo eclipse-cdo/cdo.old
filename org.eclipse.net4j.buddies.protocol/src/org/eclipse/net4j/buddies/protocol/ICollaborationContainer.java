@@ -10,14 +10,14 @@
  **************************************************************************/
 package org.eclipse.net4j.buddies.protocol;
 
-import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.net4j.util.container.IContainer;
+
+import java.util.Map;
 
 /**
  * @author Eike Stepper
  */
-public interface IMessage extends IAdaptable
+public interface ICollaborationContainer extends IContainer<ICollaboration>
 {
-  public String getCollaborationID();
-
-  public String getSenderID();
+  public Map<String, ICollaboration> getCollaborations();
 }

@@ -10,44 +10,40 @@
  **************************************************************************/
 package org.eclipse.net4j.buddies.internal.protocol;
 
+import org.eclipse.net4j.buddies.protocol.ICollaboration;
 import org.eclipse.net4j.buddies.protocol.IMessage;
-
-import org.eclipse.core.runtime.PlatformObject;
-
-import java.io.Serializable;
 
 /**
  * @author Eike Stepper
  */
-public class Message extends PlatformObject implements IMessage, Serializable
+public abstract class Collaboration extends BuddyContainer implements ICollaboration
 {
-  private static final long serialVersionUID = 1L;
+  private String id;
 
-  private String collaborationID;
+  private Visibility visibility;
 
-  private String senderID;
-
-  public Message()
+  public Collaboration(String id)
   {
+    this.id = id;
   }
 
-  public String getCollaborationID()
+  public String getID()
   {
-    return collaborationID;
+    return id;
   }
 
-  public void setCollaborationID(String collaborationID)
+  public Visibility getVisibility()
   {
-    this.collaborationID = collaborationID;
+    return visibility;
   }
 
-  public String getSenderID()
+  public boolean isPublic()
   {
-    return senderID;
+    return visibility == Visibility.PUBLIC;
   }
 
-  public void setSenderID(String senderID)
+  public void notifyMessage(IMessage message)
   {
-    this.senderID = senderID;
+    fireEvent(new MessageEvent(this, message));
   }
 }
