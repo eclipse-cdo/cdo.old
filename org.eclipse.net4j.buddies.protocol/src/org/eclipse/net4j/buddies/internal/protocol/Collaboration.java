@@ -17,6 +17,7 @@ import org.eclipse.net4j.buddies.protocol.IFacility;
 import org.eclipse.net4j.buddies.protocol.IMessage;
 import org.eclipse.net4j.util.ObjectUtil;
 
+import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -134,5 +135,11 @@ public class Collaboration extends BuddyContainer implements ICollaboration
     }
 
     fireEvent(new MessageEvent(this, message));
+  }
+
+  @Override
+  public String toString()
+  {
+    return MessageFormat.format("{0}[{1}]", getClass().getSimpleName(), getTitle());
   }
 }

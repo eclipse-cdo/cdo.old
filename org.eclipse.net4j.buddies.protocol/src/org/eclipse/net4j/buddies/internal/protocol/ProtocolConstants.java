@@ -35,6 +35,8 @@ public interface ProtocolConstants
 
   public static final short SIGNAL_MESSAGE = 9;
 
+  public static final long TIMEOUT = 5000L;
+
   public static final byte STATE_AVAILABLE = 1;
 
   public static final byte STATE_LONESOME = 2;
