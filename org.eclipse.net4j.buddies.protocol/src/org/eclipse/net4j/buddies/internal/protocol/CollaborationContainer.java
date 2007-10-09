@@ -14,9 +14,11 @@ import org.eclipse.net4j.buddies.protocol.ICollaboration;
 import org.eclipse.net4j.buddies.protocol.ICollaborationContainer;
 import org.eclipse.net4j.internal.util.container.SingleDeltaContainerEvent;
 import org.eclipse.net4j.internal.util.lifecycle.Lifecycle;
+import org.eclipse.net4j.internal.util.lifecycle.LifecycleEvent;
 import org.eclipse.net4j.util.container.IContainerDelta;
 import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
+import org.eclipse.net4j.util.lifecycle.ILifecycleEvent;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -48,12 +50,12 @@ public class CollaborationContainer extends Lifecycle implements ICollaborationC
     collaboration.addListener(this);
   }
 
-  public ICollaboration removeCollaboration(String userID)
+  public ICollaboration removeCollaboration(long id)
   {
     ICollaboration collaboration;
     synchronized (collaborations)
     {
-      collaboration = collaborations.remove(userID);
+      collaboration = collaborations.remove(id);
     }
 
     if (collaboration != null)
@@ -91,6 +93,14 @@ public class CollaborationContainer extends Lifecycle implements ICollaborationC
     if (event.getSource() instanceof ICollaboration)
     {
       notifyCollaborationEvent(event);
+      if (event instanceof LifecycleEvent)
+      {
+        LifecycleEvent e = (LifecycleEvent)event;
+        if (e.getKind() == ILifecycleEvent.Kind.DEACTIVATED)
+        {
+          removeCollaboration(((ICollaboration)e.getSource()).getID());
+        }
+      }
     }
   }
 

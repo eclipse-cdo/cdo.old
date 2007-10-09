@@ -14,9 +14,11 @@ import org.eclipse.net4j.buddies.protocol.IBuddy;
 import org.eclipse.net4j.buddies.protocol.IBuddyContainer;
 import org.eclipse.net4j.internal.util.container.SingleDeltaContainerEvent;
 import org.eclipse.net4j.internal.util.lifecycle.Lifecycle;
+import org.eclipse.net4j.internal.util.lifecycle.LifecycleEvent;
 import org.eclipse.net4j.util.container.IContainerDelta;
 import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
+import org.eclipse.net4j.util.lifecycle.ILifecycleEvent;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -103,6 +105,14 @@ public class BuddyContainer extends Lifecycle implements IBuddyContainer, IListe
     if (event.getSource() instanceof IBuddy)
     {
       notifyBuddyEvent(event);
+      if (event instanceof LifecycleEvent)
+      {
+        LifecycleEvent e = (LifecycleEvent)event;
+        if (e.getKind() == ILifecycleEvent.Kind.DEACTIVATED)
+        {
+          removeBuddy(((IBuddy)e.getSource()).getUserID());
+        }
+      }
     }
   }
 
