@@ -19,5 +19,5 @@ import java.util.Map;
  */
 public interface ICollaborationContainer extends IContainer<ICollaboration>
 {
-  public Map<String, ICollaboration> getCollaborations();
+  public Map<Long, ICollaboration> getCollaborations();
 }

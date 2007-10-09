@@ -24,7 +24,7 @@ import java.util.Map;
  */
 public abstract class Collaboration extends BuddyContainer implements ICollaboration
 {
-  private String id;
+  private long id;
 
   private String title;
 
@@ -34,19 +34,19 @@ public abstract class Collaboration extends BuddyContainer implements ICollabora
 
   private Map<String, IFacility> facilities = new HashMap<String, IFacility>();
 
-  public Collaboration(String id)
+  public Collaboration(long id)
   {
     this.id = id;
   }
 
-  public String getID()
+  public long getID()
   {
     return id;
   }
 
   public String getTitle()
   {
-    return title == null ? id : title;
+    return title == null ? String.valueOf(id) : title;
   }
 
   public String getDescription()

@@ -23,7 +23,7 @@ public class Message extends PlatformObject implements IMessage, Serializable
 {
   private static final long serialVersionUID = 1L;
 
-  private String collaborationID;
+  private long collaborationID;
 
   private String senderID;
 
@@ -31,12 +31,12 @@ public class Message extends PlatformObject implements IMessage, Serializable
   {
   }
 
-  public String getCollaborationID()
+  public long getCollaborationID()
   {
     return collaborationID;
   }
 
-  public void setCollaborationID(String collaborationID)
+  public void setCollaborationID(long collaborationID)
   {
     this.collaborationID = collaborationID;
   }

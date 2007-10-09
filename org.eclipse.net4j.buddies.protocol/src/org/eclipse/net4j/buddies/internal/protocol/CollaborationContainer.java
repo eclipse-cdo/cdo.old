@@ -27,7 +27,7 @@ import java.util.Map;
  */
 public class CollaborationContainer extends Lifecycle implements ICollaborationContainer, IListener
 {
-  private Map<String, ICollaboration> collaborations = new HashMap<String, ICollaboration>();
+  private Map<Long, ICollaboration> collaborations = new HashMap<Long, ICollaboration>();
 
   public CollaborationContainer()
   {
@@ -35,7 +35,7 @@ public class CollaborationContainer extends Lifecycle implements ICollaborationC
 
   public void addCollaboration(ICollaboration collaboration)
   {
-    String id = collaboration.getID();
+    long id = collaboration.getID();
     synchronized (collaborations)
     {
       if (!collaborations.containsKey(id))
@@ -65,7 +65,7 @@ public class CollaborationContainer extends Lifecycle implements ICollaborationC
     return collaboration;
   }
 
-  public Map<String, ICollaboration> getCollaborations()
+  public Map<Long, ICollaboration> getCollaborations()
   {
     return Collections.unmodifiableMap(collaborations);
   }

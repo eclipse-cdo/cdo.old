@@ -29,13 +29,9 @@ public interface IBuddy extends ICollaborationContainer, IAdaptable
 
   public Set<String> getFacilityTypes();
 
-  // public ICollaboration join(int ID);
-  //
-  // public IBuddy invite(ICollaboration collaboration, String userID);
-  //
-  // public void kick(ICollaboration collaboration, IBuddy buddy);
-  //
-  // public void leave(ICollaboration collaboration);
+  public ICollaboration initiate(IBuddy... buddies);
+
+  public ICollaboration join(String collaborationID);
 
   /**
    * @author Eike Stepper

@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public interface ICollaboration extends IBuddyContainer
 {
-  public String getID();
+  public long getID();
 
   public String getTitle();
 
