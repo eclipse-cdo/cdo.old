@@ -83,6 +83,14 @@ public abstract class Collaboration extends BuddyContainer implements ICollabora
     return Collections.unmodifiableMap(facilities);
   }
 
+  public void addFacility(IFacility facility)
+  {
+    synchronized (facilities)
+    {
+      facilities.put(facility.getType(), facility);
+    }
+  }
+
   public void notifyMessage(IMessage message)
   {
     IFacility[] handlers;

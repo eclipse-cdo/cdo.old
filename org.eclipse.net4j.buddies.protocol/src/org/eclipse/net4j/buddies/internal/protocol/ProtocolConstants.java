@@ -27,7 +27,9 @@ public interface ProtocolConstants
 
   public static final short SIGNAL_BUDDY_STATE = 5;
 
-  public static final short SIGNAL_MESSAGE = 6;
+  public static final short SIGNAL_INSTALL_FACILITY = 6;
+
+  public static final short SIGNAL_MESSAGE = 7;
 
   public static final byte STATE_AVAILABLE = 1;
 
