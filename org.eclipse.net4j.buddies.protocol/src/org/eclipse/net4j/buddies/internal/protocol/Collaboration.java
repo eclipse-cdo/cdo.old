@@ -20,6 +20,7 @@ import org.eclipse.net4j.util.ObjectUtil;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Eike Stepper
@@ -36,16 +37,10 @@ public class Collaboration extends BuddyContainer implements ICollaboration
 
   private Map<String, IFacility> facilities = new HashMap<String, IFacility>();
 
-  public Collaboration(long id, IBuddy[] buddies)
+  public Collaboration(long id, Set<IBuddy> buddies)
   {
+    super(buddies);
     this.id = id;
-    if (buddies != null)
-    {
-      for (IBuddy buddy : buddies)
-      {
-        addBuddy(buddy);
-      }
-    }
   }
 
   public long getID()

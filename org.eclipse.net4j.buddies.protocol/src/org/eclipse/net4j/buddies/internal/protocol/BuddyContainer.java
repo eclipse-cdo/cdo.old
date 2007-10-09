@@ -21,6 +21,7 @@ import org.eclipse.net4j.util.event.IListener;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Eike Stepper
@@ -28,6 +29,17 @@ import java.util.Map;
 public class BuddyContainer extends Lifecycle implements IBuddyContainer, IListener
 {
   private Map<String, IBuddy> buddies = new HashMap<String, IBuddy>();
+
+  public BuddyContainer(Set<IBuddy> buddies)
+  {
+    if (buddies != null)
+    {
+      for (IBuddy buddy : buddies)
+      {
+        this.buddies.put(buddy.getUserID(), buddy);
+      }
+    }
+  }
 
   public BuddyContainer()
   {
