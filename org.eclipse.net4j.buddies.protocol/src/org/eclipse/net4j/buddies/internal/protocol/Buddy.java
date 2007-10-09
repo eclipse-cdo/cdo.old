@@ -16,6 +16,7 @@ import org.eclipse.net4j.buddies.protocol.IBuddyStateChangedEvent;
 import org.eclipse.net4j.buddies.protocol.ISession;
 import org.eclipse.net4j.internal.util.event.Event;
 import org.eclipse.net4j.internal.util.event.Notifier;
+import org.eclipse.net4j.util.WrappedException;
 import org.eclipse.net4j.util.event.IEvent;
 
 import org.eclipse.core.runtime.Platform;
@@ -65,6 +66,15 @@ public abstract class Buddy extends Notifier implements IBuddy
     if (message instanceof Message)
     {
       ((Message)message).setSender(this);
+    }
+
+    try
+    {
+      new MessageNotification(session.getChannel(), message).send();
+    }
+    catch (Exception ex)
+    {
+      throw WrappedException.wrap(ex);
     }
   }
 

@@ -111,4 +111,27 @@ public final class ProtocolUtil
       throw new IllegalArgumentException("Illegal state: " + state);
     }
   }
+
+  public static void writeMessage(ExtendedDataOutputStream out, IMessage message) throws IOException
+  {
+    ObjectOutputStream oos = new ObjectOutputStream(out);
+    oos.writeObject(message);
+  }
+
+  public static IMessage readMessage(ExtendedDataInputStream in) throws IOException
+  {
+    try
+    {
+      ObjectInputStream ois = new ObjectInputStream(in);
+      return (IMessage)ois.readObject();
+    }
+    catch (IOException ex)
+    {
+      throw ex;
+    }
+    catch (Exception ex)
+    {
+      throw WrappedException.wrap(ex);
+    }
+  }
 }
