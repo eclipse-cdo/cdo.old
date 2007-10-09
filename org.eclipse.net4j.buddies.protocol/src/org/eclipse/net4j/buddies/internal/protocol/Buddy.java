@@ -30,8 +30,9 @@ public abstract class Buddy extends Notifier implements IBuddy
 
   private State state = State.AVAILABLE;
 
-  public Buddy()
+  public Buddy(ISession session)
   {
+    this.session = session;
   }
 
   public ISession getSession()
