@@ -11,9 +11,11 @@
 package org.eclipse.net4j.buddies.internal.protocol;
 
 import org.eclipse.net4j.buddies.internal.protocol.bundle.OM;
+import org.eclipse.net4j.buddies.protocol.IBuddy;
 import org.eclipse.net4j.buddies.protocol.ICollaboration;
 import org.eclipse.net4j.buddies.protocol.IFacility;
 import org.eclipse.net4j.buddies.protocol.IMessage;
+import org.eclipse.net4j.util.ObjectUtil;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -22,7 +24,7 @@ import java.util.Map;
 /**
  * @author Eike Stepper
  */
-public abstract class Collaboration extends BuddyContainer implements ICollaboration
+public class Collaboration extends BuddyContainer implements ICollaboration
 {
   private long id;
 
@@ -34,9 +36,16 @@ public abstract class Collaboration extends BuddyContainer implements ICollabora
 
   private Map<String, IFacility> facilities = new HashMap<String, IFacility>();
 
-  public Collaboration(long id)
+  public Collaboration(long id, IBuddy[] buddies)
   {
     this.id = id;
+    if (buddies != null)
+    {
+      for (IBuddy buddy : buddies)
+      {
+        addBuddy(buddy);
+      }
+    }
   }
 
   public long getID()
@@ -88,6 +97,24 @@ public abstract class Collaboration extends BuddyContainer implements ICollabora
     synchronized (facilities)
     {
       facilities.put(facility.getType(), facility);
+    }
+  }
+
+  public void sendMessage(IMessage message)
+  {
+    for (IBuddy receiver : getElements())
+    {
+      if (!ObjectUtil.equals(receiver.getUserID(), message.getSenderID()))
+      {
+        try
+        {
+          new MessageNotification(receiver.getSession().getChannel(), message).send();
+        }
+        catch (Exception ex)
+        {
+          OM.LOG.error(ex);
+        }
+      }
     }
   }
 
