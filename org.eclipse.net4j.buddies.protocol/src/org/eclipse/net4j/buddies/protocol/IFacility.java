@@ -10,33 +10,16 @@
  **************************************************************************/
 package org.eclipse.net4j.buddies.protocol;
 
-import java.util.Map;
+import org.eclipse.net4j.util.event.INotifier;
 
 /**
  * @author Eike Stepper
  */
-public interface ICollaboration extends IBuddyContainer
+public interface IFacility extends INotifier
 {
-  public String getID();
+  public String getType();
 
-  public String getTitle();
+  public ICollaboration getCollaboration();
 
-  public String getDescription();
-
-  public Visibility getVisibility();
-
-  public boolean isPublic();
-
-  public void setPublic(String title, String description);
-
-  public void setPrivate();
-
-  public Map<String, IFacility> getFacilities();
-
-  public void sendMessage(IMessage message);
-
-  public enum Visibility
-  {
-    PRIVATE, PUBLIC
-  }
+  public void handleMessage(IMessage message);
 }
