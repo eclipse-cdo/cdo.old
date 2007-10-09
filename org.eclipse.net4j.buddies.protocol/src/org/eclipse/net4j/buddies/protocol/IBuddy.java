@@ -31,7 +31,9 @@ public interface IBuddy extends ICollaborationContainer, IAdaptable
 
   public ICollaboration initiate(IBuddy... buddies);
 
-  public ICollaboration join(String collaborationID);
+  public ICollaboration join(long collaborationID);
+
+  public ICollaboration join(Object invitationToken);
 
   /**
    * @author Eike Stepper
