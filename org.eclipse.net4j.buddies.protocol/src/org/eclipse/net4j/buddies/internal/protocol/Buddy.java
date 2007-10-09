@@ -12,6 +12,7 @@ package org.eclipse.net4j.buddies.internal.protocol;
 
 import org.eclipse.net4j.buddies.protocol.IBuddy;
 import org.eclipse.net4j.buddies.protocol.IBuddyStateChangedEvent;
+import org.eclipse.net4j.buddies.protocol.ICollaboration;
 import org.eclipse.net4j.buddies.protocol.ISession;
 import org.eclipse.net4j.internal.util.event.Event;
 import org.eclipse.net4j.util.event.IEvent;
@@ -20,6 +21,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.PlatformObject;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -72,6 +74,18 @@ public abstract class Buddy extends CollaborationContainer implements IBuddy
     }
 
     return Collections.unmodifiableSet(facilityTypes);
+  }
+
+  public ICollaboration initiate()
+  {
+    return initiate((Set<IBuddy>)null);
+  }
+
+  public ICollaboration initiate(IBuddy buddy)
+  {
+    HashSet<IBuddy> buddies = new HashSet<IBuddy>();
+    buddies.add(buddy);
+    return initiate(buddies);
   }
 
   /**

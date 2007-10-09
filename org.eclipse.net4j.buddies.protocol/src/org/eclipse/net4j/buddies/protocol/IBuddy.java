@@ -29,6 +29,10 @@ public interface IBuddy extends ICollaborationContainer, IAdaptable
 
   public Set<String> getFacilityTypes();
 
+  public ICollaboration initiate();
+
+  public ICollaboration initiate(IBuddy buddy);
+
   public ICollaboration initiate(Set<IBuddy> buddies);
 
   public ICollaboration join(long collaborationID);
