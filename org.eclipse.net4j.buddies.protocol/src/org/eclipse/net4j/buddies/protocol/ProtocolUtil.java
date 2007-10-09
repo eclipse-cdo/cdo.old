@@ -28,7 +28,7 @@ public final class ProtocolUtil
   {
   }
 
-  public static void writeAccount(ExtendedDataOutputStream out, IBuddyAccount account) throws IOException
+  public static void writeAccount(ExtendedDataOutputStream out, IAccount account) throws IOException
   {
     if (account != null)
     {
@@ -42,7 +42,7 @@ public final class ProtocolUtil
     }
   }
 
-  public static IBuddyAccount readAccount(ExtendedDataInputStream in) throws IOException
+  public static IAccount readAccount(ExtendedDataInputStream in) throws IOException
   {
     boolean exists = in.readBoolean();
     if (!exists)
@@ -53,7 +53,7 @@ public final class ProtocolUtil
     try
     {
       ObjectInputStream ois = new ObjectInputStream(in);
-      return (IBuddyAccount)ois.readObject();
+      return (IAccount)ois.readObject();
     }
     catch (IOException ex)
     {

@@ -10,38 +10,12 @@
  **************************************************************************/
 package org.eclipse.net4j.buddies.protocol;
 
-import org.eclipse.net4j.util.event.INotifier;
-
 import org.eclipse.core.runtime.IAdaptable;
 
 /**
  * @author Eike Stepper
  */
-public interface IBuddy extends INotifier, IAdaptable
+public interface IMessage extends IAdaptable
 {
-  public String getUserID();
-
-  public State getState();
-
-  public IAccount getAccount();
-
-  public ISession getSession();
-
-  public void sendMessage(IMessage message);
-
-  // public ICollaboration join(int ID);
-  //
-  // public IBuddy invite(ICollaboration collaboration, String userID);
-  //
-  // public void kick(ICollaboration collaboration, IBuddy buddy);
-  //
-  // public void leave(ICollaboration collaboration);
-
-  /**
-   * @author Eike Stepper
-   */
-  public enum State
-  {
-    AVAILABLE, LONESOME, AWAY, DO_NOT_DISTURB
-  }
+  public IBuddy getSender();
 }

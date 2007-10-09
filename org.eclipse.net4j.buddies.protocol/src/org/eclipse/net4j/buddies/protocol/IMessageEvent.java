@@ -10,22 +10,12 @@
  **************************************************************************/
 package org.eclipse.net4j.buddies.protocol;
 
-import java.util.Map;
+import org.eclipse.net4j.util.event.IEvent;
 
 /**
  * @author Eike Stepper
  */
-public interface IBuddyAccount
+public interface IMessageEvent extends IEvent
 {
-  public String getUserID();
-
-  public void setPassword(String password);
-
-  public boolean authenticate(String password);
-
-  public Map<String, String> getProperties();
-
-  public void touch();
-
-  public long getTimeStamp();
+  public IMessage getMessage();
 }

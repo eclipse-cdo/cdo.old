@@ -11,7 +11,9 @@
 package org.eclipse.net4j.buddies.internal.protocol;
 
 import org.eclipse.net4j.buddies.protocol.IBuddy;
+import org.eclipse.net4j.buddies.protocol.IMessage;
 import org.eclipse.net4j.buddies.protocol.IBuddyStateChangedEvent;
+import org.eclipse.net4j.buddies.protocol.ISession;
 import org.eclipse.net4j.internal.util.event.Event;
 import org.eclipse.net4j.internal.util.event.Notifier;
 import org.eclipse.net4j.util.event.IEvent;
@@ -22,12 +24,24 @@ import org.eclipse.core.runtime.PlatformObject;
 /**
  * @author Eike Stepper
  */
-public abstract class AbstractBuddy extends Notifier implements IBuddy
+public abstract class Buddy extends Notifier implements IBuddy
 {
+  private ISession session;
+
   private State state = State.AVAILABLE;
 
-  public AbstractBuddy()
+  public Buddy()
   {
+  }
+
+  public ISession getSession()
+  {
+    return session;
+  }
+
+  public void setSession(ISession session)
+  {
+    this.session = session;
   }
 
   public State getState()
@@ -42,6 +56,14 @@ public abstract class AbstractBuddy extends Notifier implements IBuddy
       IEvent event = new StateChangedEvent(this.state, state);
       this.state = state;
       fireEvent(event);
+    }
+  }
+
+  public void sendMessage(IMessage message)
+  {
+    if (message instanceof Message)
+    {
+      ((Message)message).setSender(this);
     }
   }
 
@@ -67,14 +89,14 @@ public abstract class AbstractBuddy extends Notifier implements IBuddy
 
     public StateChangedEvent(State oldState, State newState)
     {
-      super(AbstractBuddy.this);
+      super(Buddy.this);
       this.oldState = oldState;
       this.newState = newState;
     }
 
     public IBuddy getBuddy()
     {
-      return AbstractBuddy.this;
+      return Buddy.this;
     }
 
     public State getOldState()

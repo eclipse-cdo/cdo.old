@@ -10,7 +10,7 @@
  **************************************************************************/
 package org.eclipse.net4j.buddies.internal.protocol;
 
-import org.eclipse.net4j.buddies.protocol.IBuddyAccount;
+import org.eclipse.net4j.buddies.protocol.IAccount;
 import org.eclipse.net4j.util.ObjectUtil;
 
 import java.io.Serializable;
@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * @author Eike Stepper
  */
-public class BuddyAccount implements IBuddyAccount, Serializable
+public class Account implements IAccount, Serializable
 {
   private static final long serialVersionUID = 1L;
 
@@ -32,11 +32,11 @@ public class BuddyAccount implements IBuddyAccount, Serializable
 
   private long timeStamp;
 
-  protected BuddyAccount()
+  protected Account()
   {
   }
 
-  public BuddyAccount(String userID, String password)
+  public Account(String userID, String password)
   {
     this.userID = userID;
     this.password = password;
