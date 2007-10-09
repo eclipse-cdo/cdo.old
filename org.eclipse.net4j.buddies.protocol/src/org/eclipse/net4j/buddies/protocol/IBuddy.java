@@ -23,6 +23,14 @@ public interface IBuddy extends INotifier
 
   public IBuddyAccount getAccount();
 
+  // public ICollaboration join(int ID);
+  //
+  // public IBuddy invite(ICollaboration collaboration, String userID);
+  //
+  // public void kick(ICollaboration collaboration, IBuddy buddy);
+  //
+  // public void leave(ICollaboration collaboration);
+
   /**
    * @author Eike Stepper
    */

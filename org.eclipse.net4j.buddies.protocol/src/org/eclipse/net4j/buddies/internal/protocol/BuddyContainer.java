@@ -15,6 +15,8 @@ import org.eclipse.net4j.buddies.protocol.IBuddyContainer;
 import org.eclipse.net4j.internal.util.container.SingleDeltaContainerEvent;
 import org.eclipse.net4j.internal.util.lifecycle.Lifecycle;
 import org.eclipse.net4j.util.container.IContainerDelta;
+import org.eclipse.net4j.util.event.IEvent;
+import org.eclipse.net4j.util.event.IListener;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -23,7 +25,7 @@ import java.util.Map;
 /**
  * @author Eike Stepper
  */
-public class BuddyContainer extends Lifecycle implements IBuddyContainer
+public class BuddyContainer extends Lifecycle implements IBuddyContainer, IListener
 {
   private Map<String, IBuddy> buddies = new HashMap<String, IBuddy>();
 
@@ -43,6 +45,7 @@ public class BuddyContainer extends Lifecycle implements IBuddyContainer
     }
 
     fireEvent(new SingleDeltaContainerEvent<IBuddy>(this, buddy, IContainerDelta.Kind.ADDED));
+    buddy.addListener(this);
   }
 
   public IBuddy removeBuddy(String userID)
@@ -55,6 +58,7 @@ public class BuddyContainer extends Lifecycle implements IBuddyContainer
 
     if (buddy != null)
     {
+      buddy.removeListener(this);
       fireEvent(new SingleDeltaContainerEvent<IBuddy>(this, buddy, IContainerDelta.Kind.REMOVED));
     }
 
@@ -83,5 +87,17 @@ public class BuddyContainer extends Lifecycle implements IBuddyContainer
     {
       return buddies.isEmpty();
     }
+  }
+
+  public void notifyEvent(IEvent event)
+  {
+    if (event.getSource() instanceof IBuddy)
+    {
+      notifyBuddyEvent(event);
+    }
+  }
+
+  protected void notifyBuddyEvent(IEvent event)
+  {
   }
 }

@@ -11,7 +11,6 @@
 package org.eclipse.net4j.buddies.internal.protocol;
 
 import org.eclipse.net4j.IChannel;
-import org.eclipse.net4j.buddies.protocol.ProtocolConstants;
 import org.eclipse.net4j.buddies.protocol.ProtocolUtil;
 import org.eclipse.net4j.buddies.protocol.IBuddy.State;
 import org.eclipse.net4j.signal.Request;
