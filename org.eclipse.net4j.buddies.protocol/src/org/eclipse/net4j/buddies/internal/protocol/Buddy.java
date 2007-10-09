@@ -20,6 +20,7 @@ import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.PlatformObject;
 
+import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -95,6 +96,12 @@ public abstract class Buddy extends CollaborationContainer implements IBuddy
   public Object getAdapter(Class adapter)
   {
     return Platform.getAdapterManager().getAdapter(this, adapter);
+  }
+
+  @Override
+  public String toString()
+  {
+    return MessageFormat.format("{0}[{1}]", getClass().getSimpleName(), getUserID());
   }
 
   protected Set<String> loadFacilityTypes()
