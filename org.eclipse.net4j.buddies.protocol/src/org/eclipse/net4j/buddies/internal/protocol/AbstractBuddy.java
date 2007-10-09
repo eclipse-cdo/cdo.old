@@ -16,6 +16,9 @@ import org.eclipse.net4j.internal.util.event.Event;
 import org.eclipse.net4j.internal.util.event.Notifier;
 import org.eclipse.net4j.util.event.IEvent;
 
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.PlatformObject;
+
 /**
  * @author Eike Stepper
  */
@@ -40,6 +43,15 @@ public abstract class AbstractBuddy extends Notifier implements IBuddy
       this.state = state;
       fireEvent(event);
     }
+  }
+
+  /**
+   * @see PlatformObject#getAdapter(Class)
+   */
+  @SuppressWarnings("unchecked")
+  public Object getAdapter(Class adapter)
+  {
+    return Platform.getAdapterManager().getAdapter(this, adapter);
   }
 
   /**
