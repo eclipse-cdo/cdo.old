@@ -12,6 +12,8 @@ package org.eclipse.net4j.buddies.protocol;
 
 import org.eclipse.core.runtime.IAdaptable;
 
+import java.util.Set;
+
 /**
  * @author Eike Stepper
  */
@@ -24,6 +26,8 @@ public interface IBuddy extends ICollaborationContainer, IAdaptable
   public IAccount getAccount();
 
   public ISession getSession();
+
+  public Set<String> getFacilityTypes();
 
   // public ICollaboration join(int ID);
   //

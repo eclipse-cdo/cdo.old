@@ -12,13 +12,15 @@ package org.eclipse.net4j.buddies.internal.protocol;
 
 import org.eclipse.net4j.buddies.protocol.IBuddy;
 import org.eclipse.net4j.buddies.protocol.IBuddyStateChangedEvent;
-import org.eclipse.net4j.buddies.protocol.IMessage;
 import org.eclipse.net4j.buddies.protocol.ISession;
 import org.eclipse.net4j.internal.util.event.Event;
 import org.eclipse.net4j.util.event.IEvent;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.PlatformObject;
+
+import java.util.Collections;
+import java.util.Set;
 
 /**
  * @author Eike Stepper
@@ -29,9 +31,12 @@ public abstract class Buddy extends CollaborationContainer implements IBuddy
 
   private State state = State.AVAILABLE;
 
-  public Buddy(ISession session)
+  private Set<String> facilityTypes;
+
+  public Buddy(ISession session, Set<String> facilityTypes)
   {
     this.session = session;
+    this.facilityTypes = facilityTypes;
   }
 
   public ISession getSession()
@@ -59,10 +64,14 @@ public abstract class Buddy extends CollaborationContainer implements IBuddy
     }
   }
 
-  @Deprecated
-  public void notifyMessage(IMessage message)
+  public Set<String> getFacilityTypes()
   {
-    fireEvent(new MessageEvent(this, message));
+    if (facilityTypes == null)
+    {
+      facilityTypes = loadFacilityTypes();
+    }
+
+    return Collections.unmodifiableSet(facilityTypes);
   }
 
   /**
@@ -72,6 +81,11 @@ public abstract class Buddy extends CollaborationContainer implements IBuddy
   public Object getAdapter(Class adapter)
   {
     return Platform.getAdapterManager().getAdapter(this, adapter);
+  }
+
+  protected Set<String> loadFacilityTypes()
+  {
+    throw new UnsupportedOperationException();
   }
 
   /**
