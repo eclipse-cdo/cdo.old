@@ -21,5 +21,8 @@ public interface IFacility extends INotifier
 
   public ICollaboration getCollaboration();
 
+  public void setCollaboration(ICollaboration collaboration);
+
   public void handleMessage(IMessage message);
+
 }

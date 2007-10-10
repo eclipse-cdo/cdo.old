@@ -10,29 +10,18 @@
  **************************************************************************/
 package org.eclipse.net4j.internal.chat;
 
-import org.eclipse.net4j.buddies.protocol.ICollaboration;
+import org.eclipse.net4j.buddies.internal.protocol.Facility;
 import org.eclipse.net4j.buddies.protocol.IMessage;
 import org.eclipse.net4j.chat.IChat;
-import org.eclipse.net4j.internal.util.lifecycle.Lifecycle;
 
 /**
  * @author Eike Stepper
  */
-public class Chat extends Lifecycle implements IChat
+public class Chat extends Facility implements IChat
 {
-
   public Chat()
   {
-  }
-
-  public ICollaboration getCollaboration()
-  {
-    return null;
-  }
-
-  public String getType()
-  {
-    return null;
+    super(ChatFactory.TYPE);
   }
 
   public void handleMessage(IMessage message)
