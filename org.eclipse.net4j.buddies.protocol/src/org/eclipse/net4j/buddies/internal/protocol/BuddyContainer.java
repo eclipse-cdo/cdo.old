@@ -39,6 +39,7 @@ public class BuddyContainer extends Lifecycle implements IBuddyContainer, IListe
       for (IBuddy buddy : buddies)
       {
         this.buddies.put(buddy.getUserID(), buddy);
+        buddy.addListener(this);
       }
     }
   }
