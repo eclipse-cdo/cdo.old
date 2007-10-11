@@ -33,7 +33,9 @@ public interface ProtocolConstants
 
   public static final short SIGNAL_INSTALL_FACILITY = 8;
 
-  public static final short SIGNAL_MESSAGE = 9;
+  public static final short SIGNAL_FACILITY_INSTALLED = 9;
+
+  public static final short SIGNAL_MESSAGE = 10;
 
   public static final long TIMEOUT = 5000000L;
 
