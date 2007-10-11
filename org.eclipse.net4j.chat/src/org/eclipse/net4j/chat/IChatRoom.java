@@ -10,12 +10,11 @@
  **************************************************************************/
 package org.eclipse.net4j.chat;
 
-import org.eclipse.net4j.buddies.protocol.IFacility;
 
 /**
  * @author Eike Stepper
  */
-public interface IChatRoom extends IFacility
+public interface IChatRoom extends IChat
 {
 
 }

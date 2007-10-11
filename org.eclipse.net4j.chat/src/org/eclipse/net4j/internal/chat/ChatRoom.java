@@ -10,16 +10,21 @@
  **************************************************************************/
 package org.eclipse.net4j.internal.chat;
 
-import org.eclipse.net4j.buddies.internal.protocol.ServerFacility;
+import org.eclipse.net4j.buddies.protocol.IMessage;
 import org.eclipse.net4j.chat.IChatRoom;
 
 /**
  * @author Eike Stepper
  */
-public class ChatRoom extends ServerFacility implements IChatRoom
+public class ChatRoom extends Chat implements IChatRoom
 {
   public ChatRoom()
   {
-    super(ChatRoomFactory.TYPE);
+  }
+
+  @Override
+  public void handleMessage(IMessage message)
+  {
+    sendMessage(message);
   }
 }

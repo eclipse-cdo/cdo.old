@@ -8,24 +8,14 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.net4j.buddies.protocol;
+package org.eclipse.net4j.chat;
 
-import org.eclipse.net4j.util.event.INotifier;
-
-import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.net4j.buddies.protocol.IMessage;
 
 /**
  * @author Eike Stepper
  */
-public interface IFacility extends INotifier, IAdaptable
+public interface ITextMessage extends IMessage
 {
-  public String getType();
-
-  public ICollaboration getCollaboration();
-
-  public void setCollaboration(ICollaboration collaboration);
-
-  public void sendMessage(IMessage message);
-
-  public void handleMessage(IMessage message);
+  public String getText();
 }

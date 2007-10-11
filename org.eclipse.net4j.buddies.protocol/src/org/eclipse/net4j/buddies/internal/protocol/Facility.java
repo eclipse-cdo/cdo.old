@@ -12,6 +12,7 @@ package org.eclipse.net4j.buddies.internal.protocol;
 
 import org.eclipse.net4j.buddies.protocol.ICollaboration;
 import org.eclipse.net4j.buddies.protocol.IFacility;
+import org.eclipse.net4j.buddies.protocol.IMessage;
 import org.eclipse.net4j.internal.util.lifecycle.Lifecycle;
 
 import org.eclipse.core.runtime.Platform;
@@ -44,6 +45,11 @@ public abstract class Facility extends Lifecycle implements IFacility
   public void setCollaboration(ICollaboration collaboration)
   {
     this.collaboration = collaboration;
+  }
+
+  public void sendMessage(IMessage message)
+  {
+    collaboration.sendMessage(message);
   }
 
   /**
