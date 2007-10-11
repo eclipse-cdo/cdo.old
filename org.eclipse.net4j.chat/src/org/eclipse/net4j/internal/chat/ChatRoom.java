@@ -10,23 +10,16 @@
  **************************************************************************/
 package org.eclipse.net4j.internal.chat;
 
-import org.eclipse.net4j.buddies.internal.protocol.ClientFacilityFactory;
-import org.eclipse.net4j.util.factory.ProductCreationException;
+import org.eclipse.net4j.buddies.internal.protocol.ServerFacility;
+import org.eclipse.net4j.chat.IChatRoom;
 
 /**
  * @author Eike Stepper
  */
-public class ChatFactory extends ClientFacilityFactory
+public class ChatRoom extends ServerFacility implements IChatRoom
 {
-  public static final String TYPE = "chat";
-
-  public ChatFactory()
+  public ChatRoom()
   {
-    super(TYPE);
-  }
-
-  public Chat create(String description) throws ProductCreationException
-  {
-    return new Chat();
+    super(ChatRoomFactory.TYPE);
   }
 }

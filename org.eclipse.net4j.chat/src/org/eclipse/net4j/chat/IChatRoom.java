@@ -8,25 +8,14 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.net4j.internal.chat;
+package org.eclipse.net4j.chat;
 
-import org.eclipse.net4j.buddies.internal.protocol.ClientFacilityFactory;
-import org.eclipse.net4j.util.factory.ProductCreationException;
+import org.eclipse.net4j.buddies.protocol.IFacility;
 
 /**
  * @author Eike Stepper
  */
-public class ChatFactory extends ClientFacilityFactory
+public interface IChatRoom extends IFacility
 {
-  public static final String TYPE = "chat";
 
-  public ChatFactory()
-  {
-    super(TYPE);
-  }
-
-  public Chat create(String description) throws ProductCreationException
-  {
-    return new Chat();
-  }
 }

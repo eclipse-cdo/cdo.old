@@ -8,25 +8,19 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.net4j.internal.chat;
+package org.eclipse.net4j.buddies.internal.protocol;
 
-import org.eclipse.net4j.buddies.internal.protocol.ClientFacilityFactory;
-import org.eclipse.net4j.util.factory.ProductCreationException;
+import org.eclipse.net4j.internal.util.factory.Factory;
 
 /**
  * @author Eike Stepper
  */
-public class ChatFactory extends ClientFacilityFactory
+public abstract class ServerFacilityFactory extends Factory
 {
-  public static final String TYPE = "chat";
+  public static final String PRODUCT_GROUP = "org.eclipse.net4j.buddies.serverFacilities";
 
-  public ChatFactory()
+  public ServerFacilityFactory(String type)
   {
-    super(TYPE);
-  }
-
-  public Chat create(String description) throws ProductCreationException
-  {
-    return new Chat();
+    super(PRODUCT_GROUP, type);
   }
 }
