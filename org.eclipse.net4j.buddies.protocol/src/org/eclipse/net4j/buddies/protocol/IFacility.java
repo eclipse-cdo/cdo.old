@@ -12,10 +12,12 @@ package org.eclipse.net4j.buddies.protocol;
 
 import org.eclipse.net4j.util.event.INotifier;
 
+import org.eclipse.core.runtime.IAdaptable;
+
 /**
  * @author Eike Stepper
  */
-public interface IFacility extends INotifier
+public interface IFacility extends INotifier, IAdaptable
 {
   public String getType();
 

@@ -24,8 +24,12 @@ public class Chat extends Facility implements IChat
     super(ChatFactory.TYPE);
   }
 
+  public String[] getMessages()
+  {
+    return null;
+  }
+
   public void handleMessage(IMessage message)
   {
   }
-
 }
