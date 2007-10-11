@@ -12,6 +12,7 @@ package org.eclipse.net4j.chat.internal.ui;
 
 import org.eclipse.net4j.buddies.BuddiesUtil;
 import org.eclipse.net4j.buddies.internal.ui.views.FacilityPane;
+import org.eclipse.net4j.util.ui.UIUtil;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -25,7 +26,10 @@ public class ChatPane extends FacilityPane
   public ChatPane(Composite parent, int style)
   {
     super(parent, style);
+    setLayout(UIUtil.createGridLayout(1));
+
     List list = new List(this, SWT.NONE);
+    list.setLayoutData(UIUtil.createGridData());
     for (String facilityType : BuddiesUtil.getFacilityTypes())
     {
       list.add(facilityType);
