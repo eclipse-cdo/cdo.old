@@ -10,9 +10,12 @@
  **************************************************************************/
 package org.eclipse.net4j.chat.internal.ui;
 
+import org.eclipse.net4j.buddies.BuddiesUtil;
 import org.eclipse.net4j.buddies.internal.ui.views.FacilityPane;
 
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.List;
 
 /**
  * @author Eike Stepper
@@ -22,5 +25,10 @@ public class ChatPane extends FacilityPane
   public ChatPane(Composite parent, int style)
   {
     super(parent, style);
+    List list = new List(this, SWT.NONE);
+    for (String facilityType : BuddiesUtil.getFacilityTypes())
+    {
+      list.add(facilityType);
+    }
   }
 }
