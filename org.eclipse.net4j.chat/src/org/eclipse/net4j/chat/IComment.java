@@ -10,15 +10,11 @@
  **************************************************************************/
 package org.eclipse.net4j.chat;
 
-import org.eclipse.net4j.util.event.IEvent;
-
 /**
  * @author Eike Stepper
  */
-public interface ITextEvent extends IEvent
+public interface IComment
 {
-  public IChat getChat();
-
   public long getReceiveTime();
 
   public String getSenderID();

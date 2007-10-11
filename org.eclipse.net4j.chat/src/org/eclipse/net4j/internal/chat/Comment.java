@@ -10,14 +10,14 @@
  **************************************************************************/
 package org.eclipse.net4j.internal.chat;
 
-import org.eclipse.net4j.chat.IChat;
-import org.eclipse.net4j.chat.ITextEvent;
-import org.eclipse.net4j.internal.util.event.Event;
+import org.eclipse.net4j.chat.IComment;
+
+import java.io.Serializable;
 
 /**
  * @author Eike Stepper
  */
-public class TextEvent extends Event implements ITextEvent
+public class Comment implements IComment, Serializable
 {
   private static final long serialVersionUID = 1L;
 
@@ -27,17 +27,11 @@ public class TextEvent extends Event implements ITextEvent
 
   private String text;
 
-  public TextEvent(IChat chat, long receiveTime, String senderID, String text)
+  public Comment(long receiveTime, String senderID, String text)
   {
-    super(chat);
     this.receiveTime = receiveTime;
     this.senderID = senderID;
     this.text = text;
-  }
-
-  public IChat getChat()
-  {
-    return (IChat)getSource();
   }
 
   public long getReceiveTime()

@@ -17,7 +17,7 @@ import org.eclipse.net4j.buddies.protocol.IFacility;
  */
 public interface IChat extends IFacility
 {
-  public String[] getMessages();
+  public IComment[] getComments();
 
-  public void sendMessage(String text);
+  public void sendComment(String text);
 }

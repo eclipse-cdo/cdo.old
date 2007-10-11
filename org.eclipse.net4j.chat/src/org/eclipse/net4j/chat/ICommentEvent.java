@@ -10,12 +10,14 @@
  **************************************************************************/
 package org.eclipse.net4j.chat;
 
-import org.eclipse.net4j.buddies.protocol.IMessage;
+import org.eclipse.net4j.util.event.IEvent;
 
 /**
  * @author Eike Stepper
  */
-public interface ITextMessage extends IMessage
+public interface ICommentEvent extends IEvent
 {
-  public String getText();
+  public IChat getChat();
+
+  public IComment getComment();
 }

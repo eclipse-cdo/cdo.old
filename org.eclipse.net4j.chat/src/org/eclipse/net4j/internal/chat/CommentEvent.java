@@ -10,28 +10,33 @@
  **************************************************************************/
 package org.eclipse.net4j.internal.chat;
 
-import org.eclipse.net4j.buddies.internal.protocol.Message;
+import org.eclipse.net4j.chat.IChat;
+import org.eclipse.net4j.chat.IComment;
+import org.eclipse.net4j.chat.ICommentEvent;
+import org.eclipse.net4j.internal.util.event.Event;
 
 /**
  * @author Eike Stepper
  */
-public class TextMessage extends Message
+public class CommentEvent extends Event implements ICommentEvent
 {
   private static final long serialVersionUID = 1L;
 
-  private String text;
+  private IComment comment;
 
-  public TextMessage(String text)
+  public CommentEvent(IChat chat, IComment comment)
   {
-    this.text = text;
+    super(chat);
+    this.comment = comment;
   }
 
-  protected TextMessage()
+  public IChat getChat()
   {
+    return (IChat)getSource();
   }
 
-  public String getText()
+  public IComment getComment()
   {
-    return text;
+    return comment;
   }
 }

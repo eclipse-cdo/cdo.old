@@ -13,7 +13,7 @@ package org.eclipse.net4j.internal.chat;
 import org.eclipse.net4j.buddies.internal.protocol.Facility;
 import org.eclipse.net4j.buddies.protocol.IMessage;
 import org.eclipse.net4j.chat.IChat;
-import org.eclipse.net4j.chat.ITextMessage;
+import org.eclipse.net4j.chat.IComment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,31 +23,44 @@ import java.util.List;
  */
 public class Chat extends Facility implements IChat
 {
-  private List<String> messages = new ArrayList<String>();
+  private List<IComment> comments = new ArrayList<IComment>();
 
   public Chat()
   {
     super(ChatFactory.TYPE);
   }
 
-  public String[] getMessages()
+  public IComment[] getComments()
   {
-    synchronized (messages)
+    synchronized (comments)
     {
-      return messages.toArray(new String[messages.size()]);
+      return comments.toArray(new IComment[comments.size()]);
     }
   }
 
-  public void sendMessage(String text)
+  public void sendComment(String text)
   {
-    sendMessage(new TextMessage(text));
+    TextMessage message = new TextMessage(text);
+    sendMessage(message);
+    addComment(message.getSenderID(), text);
   }
 
   public void handleMessage(IMessage message)
   {
-    if (message instanceof ITextMessage)
+    if (message instanceof TextMessage)
     {
-
+      addComment(message.getSenderID(), ((TextMessage)message).getText());
     }
+  }
+
+  protected void addComment(String senderID, String text)
+  {
+    Comment comment = new Comment(System.currentTimeMillis(), senderID, text);
+    synchronized (comments)
+    {
+      comments.add(comment);
+    }
+
+    fireEvent(new CommentEvent(this, comment));
   }
 }

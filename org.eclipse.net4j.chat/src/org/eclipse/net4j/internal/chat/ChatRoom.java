@@ -23,6 +23,12 @@ public class ChatRoom extends Chat implements IChatRoom
   }
 
   @Override
+  public void sendComment(String text)
+  {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public void handleMessage(IMessage message)
   {
     sendMessage(message);
