@@ -228,5 +228,12 @@ public class Collaboration extends BuddyContainer implements ICollaboration
     {
       return remote;
     }
+
+    @Override
+    public String toString()
+    {
+      return MessageFormat.format("FacilityInstalledEvent[source={0}, facility={1}, remote={2}]", getSource(),
+          facility, remote);
+    }
   }
 }
