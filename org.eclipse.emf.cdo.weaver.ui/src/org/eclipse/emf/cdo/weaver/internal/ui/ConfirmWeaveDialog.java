@@ -15,14 +15,15 @@ import org.eclipse.emf.cdo.weaver.BundleInfo;
 import org.eclipse.emf.cdo.weaver.ICDOWeaver;
 import org.eclipse.emf.cdo.weaver.internal.ui.bundle.OM;
 
-import org.eclipse.net4j.util.StringUtil;
-import org.eclipse.net4j.util.ui.widgets.BaseDialog;
-import org.eclipse.net4j.util.ui.widgets.MonitorDialog;
-import org.eclipse.net4j.util.ui.widgets.PreferenceButton;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
+import org.eclipse.net4j.util.StringUtil;
+import org.eclipse.net4j.util.ui.UIUtil;
+import org.eclipse.net4j.util.ui.widgets.BaseDialog;
+import org.eclipse.net4j.util.ui.widgets.MonitorDialog;
+import org.eclipse.net4j.util.ui.widgets.PreferenceButton;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
@@ -39,7 +40,6 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Display;
@@ -91,7 +91,7 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
   protected void createUI(Composite parent)
   {
     Tree tree = new Tree(parent, SWT.MULTI);
-    tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+    tree.setLayoutData(UIUtil.createGridData());
     tree.setHeaderVisible(true);
     tree.setLinesVisible(true);
     addColumn(tree, "Bundle", 300, SWT.LEFT);
