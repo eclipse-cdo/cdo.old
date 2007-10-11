@@ -14,7 +14,9 @@ import org.eclipse.net4j.buddies.internal.protocol.bundle.OM;
 import org.eclipse.net4j.buddies.protocol.IBuddy;
 import org.eclipse.net4j.buddies.protocol.ICollaboration;
 import org.eclipse.net4j.buddies.protocol.IFacility;
+import org.eclipse.net4j.buddies.protocol.IFacilityInstalledEvent;
 import org.eclipse.net4j.buddies.protocol.IMessage;
+import org.eclipse.net4j.internal.util.event.Event;
 import org.eclipse.net4j.util.ObjectUtil;
 
 import java.text.MessageFormat;
@@ -88,12 +90,20 @@ public class Collaboration extends BuddyContainer implements ICollaboration
     return Collections.unmodifiableMap(facilities);
   }
 
-  public void addFacility(IFacility facility)
+  public boolean addFacility(IFacility facility)
   {
+    String type = facility.getType();
     synchronized (facilities)
     {
-      facilities.put(facility.getType(), facility);
+      if (!facilities.containsKey(type))
+      {
+        facilities.put(type, facility);
+        fireEvent(new FacilityInstalledEvent(facility));
+        return true;
+      }
     }
+
+    return false;
   }
 
   public void sendMessage(IMessage message)
@@ -141,5 +151,31 @@ public class Collaboration extends BuddyContainer implements ICollaboration
   public String toString()
   {
     return MessageFormat.format("{0}[{1}]", getClass().getSimpleName(), getTitle());
+  }
+
+  /**
+   * @author Eike Stepper
+   */
+  private final class FacilityInstalledEvent extends Event implements IFacilityInstalledEvent
+  {
+    private static final long serialVersionUID = 1L;
+
+    private IFacility facility;
+
+    public FacilityInstalledEvent(IFacility facility)
+    {
+      super(Collaboration.this);
+      this.facility = facility;
+    }
+
+    public ICollaboration getCollaboration()
+    {
+      return Collaboration.this;
+    }
+
+    public IFacility getFacility()
+    {
+      return facility;
+    }
   }
 }
