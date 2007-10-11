@@ -66,11 +66,6 @@ public class CollaborationContainer extends Lifecycle implements ICollaborationC
     return collaboration;
   }
 
-  // public Map<Long, ICollaboration> getCollaborations()
-  // {
-  // return Collections.unmodifiableMap(collaborations);
-  // }
-
   public ICollaboration[] getCollaborations()
   {
     synchronized (collaborations)

@@ -12,12 +12,12 @@ package org.eclipse.net4j.buddies.protocol;
 
 import org.eclipse.net4j.util.container.IContainer;
 
-import java.util.Map;
-
 /**
  * @author Eike Stepper
  */
 public interface IBuddyContainer extends IContainer<IBuddy>
 {
-  public Map<String, IBuddy> getBuddies();
+  public IBuddy[] getBuddies();
+
+  public IBuddy getBuddy(String userID);
 }

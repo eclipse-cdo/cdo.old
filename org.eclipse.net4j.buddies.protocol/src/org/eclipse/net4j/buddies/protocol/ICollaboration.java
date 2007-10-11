@@ -10,7 +10,6 @@
  **************************************************************************/
 package org.eclipse.net4j.buddies.protocol;
 
-import java.util.Map;
 
 /**
  * @author Eike Stepper
@@ -31,7 +30,9 @@ public interface ICollaboration extends IBuddyContainer
 
   public void setPrivate();
 
-  public Map<String, IFacility> getFacilities();
+  public IFacility[] getFacilities();
+
+  public IFacility getFacility(String type);
 
   public void sendMessage(IMessage message);
 

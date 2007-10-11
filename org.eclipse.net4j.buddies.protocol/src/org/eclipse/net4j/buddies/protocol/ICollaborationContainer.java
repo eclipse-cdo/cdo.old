@@ -12,12 +12,12 @@ package org.eclipse.net4j.buddies.protocol;
 
 import org.eclipse.net4j.util.container.IContainer;
 
-import java.util.Map;
-
 /**
  * @author Eike Stepper
  */
 public interface ICollaborationContainer extends IContainer<ICollaboration>
 {
-  public Map<Long, ICollaboration> getCollaborations();
+  public ICollaboration[] getCollaborations();
+
+  public ICollaboration getCollaboration(long id);
 }
