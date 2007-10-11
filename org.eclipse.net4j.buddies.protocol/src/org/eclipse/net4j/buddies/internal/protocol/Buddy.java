@@ -11,7 +11,7 @@
 package org.eclipse.net4j.buddies.internal.protocol;
 
 import org.eclipse.net4j.buddies.protocol.IBuddy;
-import org.eclipse.net4j.buddies.protocol.IBuddyStateChangedEvent;
+import org.eclipse.net4j.buddies.protocol.IBuddyStateEvent;
 import org.eclipse.net4j.buddies.protocol.ICollaboration;
 import org.eclipse.net4j.buddies.protocol.ISession;
 import org.eclipse.net4j.internal.util.event.Event;
@@ -61,7 +61,7 @@ public abstract class Buddy extends CollaborationContainer implements IBuddy
   {
     if (this.state != state)
     {
-      IEvent event = new StateChangedEvent(this.state, state);
+      IEvent event = new BuddyStateEvent(this.state, state);
       this.state = state;
       fireEvent(event);
     }
@@ -112,7 +112,7 @@ public abstract class Buddy extends CollaborationContainer implements IBuddy
   /**
    * @author Eike Stepper
    */
-  private final class StateChangedEvent extends Event implements IBuddyStateChangedEvent
+  private final class BuddyStateEvent extends Event implements IBuddyStateEvent
   {
     private static final long serialVersionUID = 1L;
 
@@ -120,7 +120,7 @@ public abstract class Buddy extends CollaborationContainer implements IBuddy
 
     private State newState;
 
-    public StateChangedEvent(State oldState, State newState)
+    public BuddyStateEvent(State oldState, State newState)
     {
       super(Buddy.this);
       this.oldState = oldState;
@@ -140,6 +140,13 @@ public abstract class Buddy extends CollaborationContainer implements IBuddy
     public State getNewState()
     {
       return newState;
+    }
+
+    @Override
+    public String toString()
+    {
+      return MessageFormat.format("BuddyStateEvent[source={0}, oldState={1}, newState={2}]", getSource(),
+          getOldState(), getNewState());
     }
   }
 }

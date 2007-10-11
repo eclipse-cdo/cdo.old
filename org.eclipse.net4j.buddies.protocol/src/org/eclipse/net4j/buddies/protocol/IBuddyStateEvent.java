@@ -15,7 +15,7 @@ import org.eclipse.net4j.util.event.IEvent;
 /**
  * @author Eike Stepper
  */
-public interface IBuddyStateChangedEvent extends IEvent
+public interface IBuddyStateEvent extends IEvent
 {
   public IBuddy getBuddy();
 
