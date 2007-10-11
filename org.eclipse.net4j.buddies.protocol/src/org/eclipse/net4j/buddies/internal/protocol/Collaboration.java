@@ -107,7 +107,7 @@ public class Collaboration extends BuddyContainer implements ICollaboration
     }
   }
 
-  public boolean addFacility(IFacility facility)
+  public boolean addFacility(IFacility facility, boolean remote)
   {
     String type = facility.getType();
     synchronized (facilities)
@@ -115,7 +115,7 @@ public class Collaboration extends BuddyContainer implements ICollaboration
       if (!facilities.containsKey(type))
       {
         facilities.put(type, facility);
-        fireEvent(new FacilityInstalledEvent(facility));
+        fireEvent(new FacilityInstalledEvent(facility, remote));
         facility.addListener(this);
         return true;
       }
@@ -205,10 +205,13 @@ public class Collaboration extends BuddyContainer implements ICollaboration
 
     private IFacility facility;
 
-    public FacilityInstalledEvent(IFacility facility)
+    private boolean remote;
+
+    public FacilityInstalledEvent(IFacility facility, boolean remote)
     {
       super(Collaboration.this);
       this.facility = facility;
+      this.remote = remote;
     }
 
     public ICollaboration getCollaboration()
@@ -219,6 +222,11 @@ public class Collaboration extends BuddyContainer implements ICollaboration
     public IFacility getFacility()
     {
       return facility;
+    }
+
+    public boolean fromRemote()
+    {
+      return remote;
     }
   }
 }

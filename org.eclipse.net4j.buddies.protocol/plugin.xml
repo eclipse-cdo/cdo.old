@@ -20,27 +20,27 @@
 	<extension
     	point="org.eclipse.net4j.util.factories">
       	<factory
-        	class="org.eclipse.net4j.buddies.internal.protocol.Test1Facility"
+        	class="org.eclipse.net4j.buddies.internal.protocol.Test1Facility$ClientFactory"
             productGroup="org.eclipse.net4j.buddies.clientFacilities"
             type="Test1Facility"/>
       	<factory
-        	class="org.eclipse.net4j.buddies.internal.protocol.Test1Facility"
+        	class="org.eclipse.net4j.buddies.internal.protocol.Test1Facility$ServerFactory"
             productGroup="org.eclipse.net4j.buddies.serverFacilities"
             type="Test1Facility"/>
       	<factory
-        	class="org.eclipse.net4j.buddies.internal.protocol.Test2Facility"
+        	class="org.eclipse.net4j.buddies.internal.protocol.Test2Facility$ClientFactory"
             productGroup="org.eclipse.net4j.buddies.clientFacilities"
             type="Test2Facility"/>
       	<factory
-        	class="org.eclipse.net4j.buddies.internal.protocol.Test2Facility"
+        	class="org.eclipse.net4j.buddies.internal.protocol.Test2Facility$ServerFactory"
             productGroup="org.eclipse.net4j.buddies.serverFacilities"
             type="Test2Facility"/>
       	<factory
-        	class="org.eclipse.net4j.buddies.internal.protocol.Test3Facility"
+        	class="org.eclipse.net4j.buddies.internal.protocol.Test3Facility$ClientFactory"
             productGroup="org.eclipse.net4j.buddies.clientFacilities"
             type="Test3Facility"/>
       	<factory
-        	class="org.eclipse.net4j.buddies.internal.protocol.Test3Facility"
+        	class="org.eclipse.net4j.buddies.internal.protocol.Test3Facility$ServerFactory"
             productGroup="org.eclipse.net4j.buddies.serverFacilities"
             type="Test3Facility"/>
 	</extension>

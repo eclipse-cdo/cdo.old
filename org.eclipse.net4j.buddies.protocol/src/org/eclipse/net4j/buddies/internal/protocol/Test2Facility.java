@@ -11,19 +11,52 @@
 package org.eclipse.net4j.buddies.internal.protocol;
 
 import org.eclipse.net4j.buddies.protocol.IMessage;
+import org.eclipse.net4j.util.factory.ProductCreationException;
 
 /**
  * @author Eike Stepper
  */
 public class Test2Facility extends Facility
 {
-  public Test2Facility()
+  public Test2Facility(String type)
   {
-    super(Test2Facility.class.getSimpleName());
+    super(type);
   }
 
   public void handleMessage(IMessage message)
   {
     throw new UnsupportedOperationException();
+  }
+
+  /**
+   * @author Eike Stepper
+   */
+  public static final class ClientFactory extends ClientFacilityFactory
+  {
+    public ClientFactory()
+    {
+      super(Test2Facility.class.getSimpleName());
+    }
+
+    public Object create(String description) throws ProductCreationException
+    {
+      return new Test2Facility(getType());
+    }
+  }
+
+  /**
+   * @author Eike Stepper
+   */
+  public static final class ServerFactory extends ServerFacilityFactory
+  {
+    public ServerFactory()
+    {
+      super(Test2Facility.class.getSimpleName());
+    }
+
+    public Object create(String description) throws ProductCreationException
+    {
+      return new Test2Facility(getType());
+    }
   }
 }

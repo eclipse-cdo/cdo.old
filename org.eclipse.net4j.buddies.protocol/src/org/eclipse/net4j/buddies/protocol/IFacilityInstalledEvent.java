@@ -20,4 +20,6 @@ public interface IFacilityInstalledEvent extends IEvent
   public ICollaboration getCollaboration();
 
   public IFacility getFacility();
+
+  public boolean fromRemote();
 }
