@@ -18,9 +18,10 @@ import org.eclipse.net4j.buddies.protocol.IFacilityInstalledEvent;
 import org.eclipse.net4j.buddies.protocol.IMessage;
 import org.eclipse.net4j.internal.util.event.Event;
 import org.eclipse.net4j.util.ObjectUtil;
+import org.eclipse.net4j.util.event.IEvent;
+import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
 
 import java.text.MessageFormat;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -85,9 +86,25 @@ public class Collaboration extends BuddyContainer implements ICollaboration
     description = null;
   }
 
-  public Map<String, IFacility> getFacilities()
+  // public Map<String, IFacility> getFacilities()
+  // {
+  // return Collections.unmodifiableMap(facilities);
+  // }
+
+  public IFacility[] getFacilities()
   {
-    return Collections.unmodifiableMap(facilities);
+    synchronized (facilities)
+    {
+      return facilities.values().toArray(new IFacility[facilities.size()]);
+    }
+  }
+
+  public IFacility getFacility(String type)
+  {
+    synchronized (facilities)
+    {
+      return facilities.get(type);
+    }
   }
 
   public boolean addFacility(IFacility facility)
@@ -99,6 +116,7 @@ public class Collaboration extends BuddyContainer implements ICollaboration
       {
         facilities.put(type, facility);
         fireEvent(new FacilityInstalledEvent(facility));
+        facility.addListener(this);
         return true;
       }
     }
@@ -151,6 +169,31 @@ public class Collaboration extends BuddyContainer implements ICollaboration
   public String toString()
   {
     return MessageFormat.format("{0}[{1}]", getClass().getSimpleName(), getTitle());
+  }
+
+  @Override
+  public void notifyEvent(IEvent event)
+  {
+    if (event.getSource() instanceof IFacility)
+    {
+      notifyFacilityEvent(event);
+    }
+  }
+
+  protected void notifyFacilityEvent(IEvent event)
+  {
+  }
+
+  @Override
+  protected void doDeactivate() throws Exception
+  {
+    for (IFacility facility : getFacilities())
+    {
+      facility.removeListener(this);
+      LifecycleUtil.deactivate(facility);
+    }
+
+    super.doDeactivate();
   }
 
   /**

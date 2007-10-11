@@ -20,7 +20,6 @@ import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.net4j.util.lifecycle.ILifecycleEvent;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -48,7 +47,7 @@ public class BuddyContainer extends Lifecycle implements IBuddyContainer, IListe
   {
   }
 
-  public void addBuddy(IBuddy buddy)
+  public boolean addBuddy(IBuddy buddy)
   {
     String userID = buddy.getUserID();
     synchronized (buddies)
@@ -56,11 +55,13 @@ public class BuddyContainer extends Lifecycle implements IBuddyContainer, IListe
       if (!buddies.containsKey(userID))
       {
         buddies.put(userID, buddy);
+        fireEvent(new SingleDeltaContainerEvent<IBuddy>(this, buddy, IContainerDelta.Kind.ADDED));
+        buddy.addListener(this);
+        return true;
       }
     }
 
-    fireEvent(new SingleDeltaContainerEvent<IBuddy>(this, buddy, IContainerDelta.Kind.ADDED));
-    buddy.addListener(this);
+    return false;
   }
 
   public IBuddy removeBuddy(String userID)
@@ -80,17 +81,25 @@ public class BuddyContainer extends Lifecycle implements IBuddyContainer, IListe
     return buddy;
   }
 
-  public Map<String, IBuddy> getBuddies()
-  {
-    return Collections.unmodifiableMap(buddies);
-  }
-
-  public IBuddy[] getElements()
+  public IBuddy[] getBuddies()
   {
     synchronized (buddies)
     {
       return buddies.values().toArray(new IBuddy[buddies.size()]);
     }
+  }
+
+  public IBuddy getBuddy(String userID)
+  {
+    synchronized (buddies)
+    {
+      return buddies.get(userID);
+    }
+  }
+
+  public IBuddy[] getElements()
+  {
+    return getBuddies();
   }
 
   public boolean isEmpty()
@@ -119,5 +128,16 @@ public class BuddyContainer extends Lifecycle implements IBuddyContainer, IListe
 
   protected void notifyBuddyEvent(IEvent event)
   {
+  }
+
+  @Override
+  protected void doDeactivate() throws Exception
+  {
+    for (IBuddy buddy : getBuddies())
+    {
+      buddy.removeListener(this);
+    }
+
+    super.doDeactivate();
   }
 }

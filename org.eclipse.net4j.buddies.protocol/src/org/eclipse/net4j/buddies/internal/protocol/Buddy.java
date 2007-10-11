@@ -39,7 +39,7 @@ public abstract class Buddy extends CollaborationContainer implements IBuddy
   public Buddy(ISession session, Set<String> facilityTypes)
   {
     this.session = session;
-    this.facilityTypes = facilityTypes;
+    this.facilityTypes = Collections.unmodifiableSet(facilityTypes);
   }
 
   public ISession getSession()
@@ -71,10 +71,10 @@ public abstract class Buddy extends CollaborationContainer implements IBuddy
   {
     if (facilityTypes == null)
     {
-      facilityTypes = loadFacilityTypes();
+      facilityTypes = Collections.unmodifiableSet(loadFacilityTypes());
     }
 
-    return Collections.unmodifiableSet(facilityTypes);
+    return facilityTypes;
   }
 
   public ICollaboration initiate()

@@ -20,7 +20,6 @@ import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.net4j.util.lifecycle.ILifecycleEvent;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -67,17 +66,30 @@ public class CollaborationContainer extends Lifecycle implements ICollaborationC
     return collaboration;
   }
 
-  public Map<Long, ICollaboration> getCollaborations()
-  {
-    return Collections.unmodifiableMap(collaborations);
-  }
+  // public Map<Long, ICollaboration> getCollaborations()
+  // {
+  // return Collections.unmodifiableMap(collaborations);
+  // }
 
-  public ICollaboration[] getElements()
+  public ICollaboration[] getCollaborations()
   {
     synchronized (collaborations)
     {
       return collaborations.values().toArray(new ICollaboration[collaborations.size()]);
     }
+  }
+
+  public ICollaboration getCollaboration(long id)
+  {
+    synchronized (collaborations)
+    {
+      return collaborations.get(id);
+    }
+  }
+
+  public ICollaboration[] getElements()
+  {
+    return getCollaborations();
   }
 
   public boolean isEmpty()
@@ -106,5 +118,16 @@ public class CollaborationContainer extends Lifecycle implements ICollaborationC
 
   protected void notifyCollaborationEvent(IEvent event)
   {
+  }
+
+  @Override
+  protected void doDeactivate() throws Exception
+  {
+    for (ICollaboration collaboration : getCollaborations())
+    {
+      collaboration.removeListener(this);
+    }
+
+    super.doDeactivate();
   }
 }
