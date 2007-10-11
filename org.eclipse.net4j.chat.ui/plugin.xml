@@ -16,5 +16,12 @@
 -->
 
 <plugin>
+   <extension
+         point="org.eclipse.net4j.buddies.ui.facilityPaneCreators">
+      <facilityPaneCreator
+            class="org.eclipse.net4j.chat.internal.ui.ChatPaneCreator"
+            type="chat">
+      </facilityPaneCreator>
+   </extension>
 
 </plugin>
