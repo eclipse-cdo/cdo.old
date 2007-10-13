@@ -13,7 +13,9 @@ package org.eclipse.net4j.chat.internal.ui;
 import org.eclipse.net4j.buddies.BuddiesUtil;
 import org.eclipse.net4j.buddies.internal.ui.views.FacilityPane;
 import org.eclipse.net4j.util.ui.UIUtil;
+import org.eclipse.net4j.util.ui.actions.SafeAction;
 
+import org.eclipse.jface.action.IContributionManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -42,5 +44,17 @@ public class ChatPane extends FacilityPane
     }
 
     return list;
+  }
+
+  @Override
+  protected void fillCoolBar(IContributionManager manager)
+  {
+    manager.add(new SafeAction("Test")
+    {
+      @Override
+      protected void safeRun() throws Exception
+      {
+      }
+    });
   }
 }
