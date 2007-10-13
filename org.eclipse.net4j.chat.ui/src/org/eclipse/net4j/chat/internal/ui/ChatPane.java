@@ -16,6 +16,7 @@ import org.eclipse.net4j.util.ui.UIUtil;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.List;
 
 /**
@@ -34,5 +35,11 @@ public class ChatPane extends FacilityPane
     {
       list.add(facilityType);
     }
+  }
+
+  @Override
+  protected Control createUI(Composite parent)
+  {
+    return null;
   }
 }
