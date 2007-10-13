@@ -14,6 +14,7 @@ import org.eclipse.net4j.buddies.internal.ui.views.FacilityPane;
 import org.eclipse.net4j.buddies.ui.IFacilityPaneCreator;
 import org.eclipse.net4j.internal.chat.ChatFactory;
 
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -27,12 +28,17 @@ public class ChatPaneCreator implements IFacilityPaneCreator
   {
   }
 
-  public String getFacilityType()
+  public String getType()
   {
     return TYPE;
   }
 
-  public FacilityPane createFacilityPane(Composite parent, int style)
+  public ImageDescriptor getImageDescriptor()
+  {
+    return SharedIcons.getDescriptor(SharedIcons.OBJ_CHAT);
+  }
+
+  public FacilityPane createPane(Composite parent, int style)
   {
     return new ChatPane(parent, style);
   }
