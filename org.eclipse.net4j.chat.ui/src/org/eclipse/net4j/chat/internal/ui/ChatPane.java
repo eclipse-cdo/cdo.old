@@ -35,7 +35,7 @@ public class ChatPane extends FacilityPane
   protected Control createUI(Composite parent)
   {
     parent.setLayout(UIUtil.createGridLayout(1));
-    List list = new List(this, SWT.NONE);
+    List list = new List(parent, SWT.NONE);
     list.setLayoutData(UIUtil.createGridData());
 
     for (String facilityType : BuddiesUtil.getFacilityTypes())
