@@ -10,16 +10,15 @@
  **************************************************************************/
 package org.eclipse.net4j.chat.internal.ui;
 
-import org.eclipse.net4j.buddies.BuddiesUtil;
 import org.eclipse.net4j.buddies.internal.ui.views.FacilityPane;
-import org.eclipse.net4j.util.ui.UIUtil;
 import org.eclipse.net4j.util.ui.actions.SafeAction;
+import org.eclipse.net4j.util.ui.widgets.SashComposite;
 
 import org.eclipse.jface.action.IContributionManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.List;
+import org.eclipse.swt.widgets.Text;
 
 /**
  * @author Eike Stepper
@@ -34,22 +33,32 @@ public class ChatPane extends FacilityPane
   @Override
   protected Control createUI(Composite parent)
   {
-    parent.setLayout(UIUtil.createGridLayout(1));
-    List list = new List(parent, SWT.NONE);
-    list.setLayoutData(UIUtil.createGridData());
-
-    for (String facilityType : BuddiesUtil.getFacilityTypes())
+    int height = parent.getFont().getFontData()[0].getHeight();
+    Composite composite = new SashComposite(parent, SWT.NONE, height, 80, false)
     {
-      list.add(facilityType);
-    }
+      @Override
+      protected Control createControl1(Composite parent)
+      {
+        return new Text(parent, SWT.NONE);
+      }
 
-    return list;
+      @Override
+      protected Control createControl2(Composite parent)
+      {
+        Text text = new Text(parent, SWT.NONE);
+        int height = text.getClientArea().height;
+        System.out.println(height);
+        return text;
+      }
+    };
+
+    return composite;
   }
 
   @Override
   protected void fillCoolBar(IContributionManager manager)
   {
-    manager.add(new SafeAction("Test")
+    manager.add(new SafeAction("Test", SharedIcons.getDescriptor(SharedIcons.OBJ_CHAT))
     {
       @Override
       protected void safeRun() throws Exception
