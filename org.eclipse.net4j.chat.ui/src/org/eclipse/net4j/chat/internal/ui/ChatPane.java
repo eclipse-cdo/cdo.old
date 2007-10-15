@@ -25,6 +25,8 @@ import org.eclipse.swt.widgets.Text;
  */
 public class ChatPane extends FacilityPane
 {
+  private SashComposite sashComposite;
+
   public ChatPane(Composite parent, int style)
   {
     super(parent, style);
@@ -33,8 +35,7 @@ public class ChatPane extends FacilityPane
   @Override
   protected Control createUI(Composite parent)
   {
-    int height = parent.getFont().getFontData()[0].getHeight();
-    Composite composite = new SashComposite(parent, SWT.NONE, height, 80, false)
+    sashComposite = new SashComposite(parent, SWT.NONE, 16, 80, false)
     {
       @Override
       protected Control createControl1(Composite parent)
@@ -45,24 +46,33 @@ public class ChatPane extends FacilityPane
       @Override
       protected Control createControl2(Composite parent)
       {
-        Text text = new Text(parent, SWT.NONE);
-        int height = text.getClientArea().height;
-        System.out.println(height);
-        return text;
+        return new Text(parent, SWT.NONE);
       }
     };
 
-    return composite;
+    return sashComposite;
   }
 
   @Override
   protected void fillCoolBar(IContributionManager manager)
   {
-    manager.add(new SafeAction("Test", SharedIcons.getDescriptor(SharedIcons.OBJ_CHAT))
+    manager.add(new SafeAction("Horizontal Layout", "Horizontal Layout", SharedIcons
+        .getDescriptor(SharedIcons.ETOOL_HORIZONTAL))
     {
       @Override
       protected void safeRun() throws Exception
       {
+        sashComposite.setVertical(false);
+      }
+    });
+
+    manager.add(new SafeAction("Vertical Layout", "Vertical Layout", SharedIcons
+        .getDescriptor(SharedIcons.ETOOL_VERTICAL))
+    {
+      @Override
+      protected void safeRun() throws Exception
+      {
+        sashComposite.setVertical(true);
       }
     });
   }

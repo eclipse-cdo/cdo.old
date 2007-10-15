@@ -39,6 +39,10 @@ public class SharedIcons
 
   public static final String OBJ_CHAT = OBJ + "chat";
 
+  public static final String ETOOL_HORIZONTAL = ETOOL + "horizontal_layout";
+
+  public static final String ETOOL_VERTICAL = ETOOL + "vertical_layout";
+
   public static Image getImage(String key)
   {
     key = mangleKey(key);
