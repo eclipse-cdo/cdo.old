@@ -11,11 +11,17 @@
 package org.eclipse.net4j.chat.internal.ui;
 
 import org.eclipse.net4j.buddies.internal.ui.views.FacilityPane;
+import org.eclipse.net4j.chat.IChat;
+import org.eclipse.net4j.chat.IComment;
+import org.eclipse.net4j.internal.chat.CommentEvent;
+import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.ui.actions.SafeAction;
 import org.eclipse.net4j.util.ui.widgets.SashComposite;
 
 import org.eclipse.jface.action.IContributionManager;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
@@ -27,9 +33,23 @@ public class ChatPane extends FacilityPane
 {
   private SashComposite sashComposite;
 
+  private Text input;
+
+  private Text output;
+
   public ChatPane(Composite parent, int style)
   {
     super(parent, style);
+  }
+
+  public void notifyEvent(IEvent event)
+  {
+    if (event instanceof CommentEvent)
+    {
+      CommentEvent e = (CommentEvent)event;
+      IComment comment = e.getComment();
+      output.append(comment.getSenderID() + ": " + comment.getText() + "\n");
+    }
   }
 
   @Override
@@ -37,16 +57,34 @@ public class ChatPane extends FacilityPane
   {
     sashComposite = new SashComposite(parent, SWT.NONE, 16, 80, false)
     {
+
       @Override
       protected Control createControl1(Composite parent)
       {
-        return new Text(parent, SWT.NONE);
+        output = new Text(parent, SWT.NONE);
+        return output;
       }
 
       @Override
       protected Control createControl2(Composite parent)
       {
-        return new Text(parent, SWT.NONE);
+        input = new Text(parent, SWT.NONE);
+        input.addKeyListener(new KeyListener()
+        {
+          public void keyPressed(KeyEvent e)
+          {
+            if (e.character == SWT.CR)
+            {
+              ((IChat)getFacility()).sendComment(input.getText());
+            }
+          }
+
+          public void keyReleased(KeyEvent e)
+          {
+          }
+        });
+
+        return input;
       }
     };
 
@@ -62,7 +100,7 @@ public class ChatPane extends FacilityPane
       @Override
       protected void safeRun() throws Exception
       {
-        sashComposite.setVertical(false);
+        sashComposite.setVertical(true);
       }
     });
 
@@ -72,7 +110,7 @@ public class ChatPane extends FacilityPane
       @Override
       protected void safeRun() throws Exception
       {
-        sashComposite.setVertical(true);
+        sashComposite.setVertical(false);
       }
     });
   }
