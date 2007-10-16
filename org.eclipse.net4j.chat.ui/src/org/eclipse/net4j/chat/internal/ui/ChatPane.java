@@ -14,6 +14,7 @@ import org.eclipse.net4j.buddies.internal.ui.views.FacilityPane;
 import org.eclipse.net4j.chat.IChat;
 import org.eclipse.net4j.chat.IComment;
 import org.eclipse.net4j.internal.chat.CommentEvent;
+import org.eclipse.net4j.util.StringUtil;
 import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.ui.actions.SafeAction;
 import org.eclipse.net4j.util.ui.widgets.SashComposite;
@@ -50,7 +51,7 @@ public class ChatPane extends FacilityPane
       CommentEvent e = (CommentEvent)event;
       IComment comment = e.getComment();
       String text = comment.getText();
-      output.append(comment.getSenderID() + ": " + text + "\n");
+      output.append(comment.getSenderID() + ": " + text + StringUtil.NL);
     }
   }
 
