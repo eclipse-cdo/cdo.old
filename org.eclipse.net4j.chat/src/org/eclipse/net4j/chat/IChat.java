@@ -17,6 +17,8 @@ import org.eclipse.net4j.buddies.protocol.IFacility;
  */
 public interface IChat extends IFacility
 {
+  public static final String TYPE = "chat";
+
   public IComment[] getComments();
 
   public void sendComment(String text);

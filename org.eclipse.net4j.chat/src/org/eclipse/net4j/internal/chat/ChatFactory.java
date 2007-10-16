@@ -11,6 +11,7 @@
 package org.eclipse.net4j.internal.chat;
 
 import org.eclipse.net4j.buddies.internal.protocol.ClientFacilityFactory;
+import org.eclipse.net4j.chat.IChat;
 import org.eclipse.net4j.util.factory.ProductCreationException;
 
 /**
@@ -18,11 +19,9 @@ import org.eclipse.net4j.util.factory.ProductCreationException;
  */
 public class ChatFactory extends ClientFacilityFactory
 {
-  public static final String TYPE = "chat";
-
   public ChatFactory()
   {
-    super(TYPE);
+    super(IChat.TYPE);
   }
 
   public Chat create(String description) throws ProductCreationException

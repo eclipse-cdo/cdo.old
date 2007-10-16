@@ -27,7 +27,7 @@ public class Chat extends Facility implements IChat
 
   public Chat()
   {
-    super(ChatFactory.TYPE);
+    super(TYPE);
   }
 
   public IComment[] getComments()

@@ -12,7 +12,7 @@ package org.eclipse.net4j.chat.internal.ui;
 
 import org.eclipse.net4j.buddies.internal.ui.views.FacilityPane;
 import org.eclipse.net4j.buddies.ui.IFacilityPaneCreator;
-import org.eclipse.net4j.internal.chat.ChatFactory;
+import org.eclipse.net4j.chat.IChat;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.widgets.Composite;
@@ -22,15 +22,13 @@ import org.eclipse.swt.widgets.Composite;
  */
 public class ChatPaneCreator implements IFacilityPaneCreator
 {
-  public static final String TYPE = ChatFactory.TYPE;
-
   public ChatPaneCreator()
   {
   }
 
   public String getType()
   {
-    return TYPE;
+    return IChat.TYPE;
   }
 
   public ImageDescriptor getImageDescriptor()

@@ -95,16 +95,6 @@ public class ChatPane extends FacilityPane
   @Override
   protected void fillCoolBar(IContributionManager manager)
   {
-    manager.add(new SafeAction("Horizontal Layout", "Horizontal Layout", SharedIcons
-        .getDescriptor(SharedIcons.ETOOL_HORIZONTAL))
-    {
-      @Override
-      protected void safeRun() throws Exception
-      {
-        sashComposite.setVertical(true);
-      }
-    });
-
     manager.add(new SafeAction("Vertical Layout", "Vertical Layout", SharedIcons
         .getDescriptor(SharedIcons.ETOOL_VERTICAL))
     {
@@ -112,6 +102,16 @@ public class ChatPane extends FacilityPane
       protected void safeRun() throws Exception
       {
         sashComposite.setVertical(false);
+      }
+    });
+
+    manager.add(new SafeAction("Horizontal Layout", "Horizontal Layout", SharedIcons
+        .getDescriptor(SharedIcons.ETOOL_HORIZONTAL))
+    {
+      @Override
+      protected void safeRun() throws Exception
+      {
+        sashComposite.setVertical(true);
       }
     });
   }
