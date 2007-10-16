@@ -31,11 +31,15 @@ public interface ProtocolConstants
 
   public static final short SIGNAL_COLLABORATION_INITIATED = 7;
 
-  public static final short SIGNAL_INSTALL_FACILITY = 8;
+  public static final short SIGNAL_COLLABORATION_LEFT = 8;
 
-  public static final short SIGNAL_FACILITY_INSTALLED = 9;
+  public static final short SIGNAL_COLLABORATION_INVITATION = 9;
 
-  public static final short SIGNAL_MESSAGE = 10;
+  public static final short SIGNAL_INSTALL_FACILITY = 10;
+
+  public static final short SIGNAL_FACILITY_INSTALLED = 11;
+
+  public static final short SIGNAL_MESSAGE = 12;
 
   public static final long TIMEOUT = 5000000L;
 

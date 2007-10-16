@@ -10,10 +10,7 @@
  **************************************************************************/
 package org.eclipse.net4j.buddies.internal.protocol;
 
-import org.eclipse.net4j.buddies.protocol.ICollaboration;
 import org.eclipse.net4j.buddies.protocol.ICollaborationContainer;
-import org.eclipse.net4j.buddies.protocol.IMessage;
-import org.eclipse.net4j.buddies.protocol.ProtocolUtil;
 import org.eclipse.net4j.signal.Indication;
 import org.eclipse.net4j.util.io.ExtendedDataInputStream;
 
@@ -22,11 +19,11 @@ import java.io.IOException;
 /**
  * @author Eike Stepper
  */
-public class MessageIndication extends Indication
+public class CollaborationLeftIndication extends Indication
 {
   private ICollaborationContainer collaborationContainer;
 
-  public MessageIndication(ICollaborationContainer collaborationContainer)
+  public CollaborationLeftIndication(ICollaborationContainer collaborationContainer)
   {
     this.collaborationContainer = collaborationContainer;
   }
@@ -34,23 +31,19 @@ public class MessageIndication extends Indication
   @Override
   protected short getSignalID()
   {
-    return ProtocolConstants.SIGNAL_MESSAGE;
+    return ProtocolConstants.SIGNAL_COLLABORATION_LEFT;
   }
 
   @Override
   protected void indicating(ExtendedDataInputStream in) throws IOException
   {
     long collaborationID = in.readLong();
-    String facilityType = in.readString();
-    Facility facility = getFacility(collaborationID, facilityType);
+    String userID = in.readString();
 
-    IMessage message = ProtocolUtil.readMessage(in, facility.getClass().getClassLoader());
-    facility.handleMessage(message);
-  }
-
-  private Facility getFacility(long collaborationID, String facilityType)
-  {
-    ICollaboration collaboration = collaborationContainer.getCollaboration(collaborationID);
-    return (Facility)collaboration.getFacility(facilityType);
+    Collaboration collaboration = (Collaboration)collaborationContainer.getCollaboration(collaborationID);
+    if (collaboration != null)
+    {
+      collaboration.removeBuddy(userID);
+    }
   }
 }
