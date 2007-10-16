@@ -59,8 +59,8 @@ public class CollaborationContainer extends Lifecycle implements ICollaborationC
 
     if (collaboration != null)
     {
-      fireEvent(new SingleDeltaContainerEvent<ICollaboration>(this, collaboration, IContainerDelta.Kind.REMOVED));
       collaboration.removeListener(this);
+      fireEvent(new SingleDeltaContainerEvent<ICollaboration>(this, collaboration, IContainerDelta.Kind.REMOVED));
     }
 
     return collaboration;

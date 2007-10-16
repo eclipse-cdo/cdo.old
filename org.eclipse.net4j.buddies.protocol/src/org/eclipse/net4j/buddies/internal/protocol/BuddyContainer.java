@@ -74,8 +74,8 @@ public class BuddyContainer extends Lifecycle implements IBuddyContainer, IListe
 
     if (buddy != null)
     {
-      fireEvent(new SingleDeltaContainerEvent<IBuddy>(this, buddy, IContainerDelta.Kind.REMOVED));
       buddy.removeListener(this);
+      fireEvent(new SingleDeltaContainerEvent<IBuddy>(this, buddy, IContainerDelta.Kind.REMOVED));
     }
 
     return buddy;
