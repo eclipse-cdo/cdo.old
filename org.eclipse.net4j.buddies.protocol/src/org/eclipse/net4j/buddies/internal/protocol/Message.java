@@ -11,6 +11,7 @@
 package org.eclipse.net4j.buddies.internal.protocol;
 
 import org.eclipse.net4j.buddies.protocol.IMessage;
+import org.eclipse.net4j.util.StringUtil;
 
 import org.eclipse.core.runtime.PlatformObject;
 
@@ -35,5 +36,15 @@ public abstract class Message extends PlatformObject implements IMessage, Serial
   public void setSenderID(String senderID)
   {
     this.senderID = senderID;
+  }
+
+  protected String encode(String text)
+  {
+    return text.replaceAll(StringUtil.NL, "\n");
+  }
+
+  protected String decode(String text)
+  {
+    return text.replaceAll("\n", StringUtil.NL);
   }
 }

@@ -23,7 +23,7 @@ public class TextMessage extends Message
 
   public TextMessage(String text)
   {
-    this.text = text;
+    this.text = encode(text);
   }
 
   protected TextMessage()
@@ -32,6 +32,6 @@ public class TextMessage extends Message
 
   public String getText()
   {
-    return text;
+    return decode(text);
   }
 }

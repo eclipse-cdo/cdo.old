@@ -49,7 +49,8 @@ public class ChatPane extends FacilityPane
     {
       CommentEvent e = (CommentEvent)event;
       IComment comment = e.getComment();
-      output.append(comment.getSenderID() + ": " + comment.getText() + "\n");
+      String text = comment.getText();
+      output.append(comment.getSenderID() + ": " + text + "\n");
     }
   }
 
@@ -74,7 +75,7 @@ public class ChatPane extends FacilityPane
           @Override
           public void keyPressed(KeyEvent e)
           {
-            if (e.character == SWT.CR)
+            if ((e.character == SWT.CR || e.character == SWT.LF) && e.stateMask == 0)
             {
               ((IChat)getFacility()).sendComment(input.getText());
               input.setText("");
