@@ -28,6 +28,11 @@ public class CollaborationLeftIndication extends Indication
     this.collaborationContainer = collaborationContainer;
   }
 
+  public ICollaborationContainer getCollaborationContainer()
+  {
+    return collaborationContainer;
+  }
+
   @Override
   protected short getSignalID()
   {
