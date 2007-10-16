@@ -43,7 +43,12 @@ public class CollaborationLeftIndication extends Indication
     Collaboration collaboration = (Collaboration)collaborationContainer.getCollaboration(collaborationID);
     if (collaboration != null)
     {
-      collaboration.removeBuddy(userID);
+      collaborationLeft(collaboration, userID);
     }
+  }
+
+  protected void collaborationLeft(Collaboration collaboration, String userID)
+  {
+    collaboration.removeBuddy(userID);
   }
 }
