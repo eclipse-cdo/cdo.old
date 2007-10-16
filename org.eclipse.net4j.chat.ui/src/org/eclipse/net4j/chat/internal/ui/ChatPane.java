@@ -20,8 +20,8 @@ import org.eclipse.net4j.util.ui.widgets.SashComposite;
 
 import org.eclipse.jface.action.IContributionManager;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
@@ -61,26 +61,25 @@ public class ChatPane extends FacilityPane
       @Override
       protected Control createControl1(Composite parent)
       {
-        output = new Text(parent, SWT.NONE);
+        output = new Text(parent, SWT.MULTI);
         return output;
       }
 
       @Override
       protected Control createControl2(Composite parent)
       {
-        input = new Text(parent, SWT.NONE);
-        input.addKeyListener(new KeyListener()
+        input = new Text(parent, SWT.MULTI);
+        input.addKeyListener(new KeyAdapter()
         {
+          @Override
           public void keyPressed(KeyEvent e)
           {
             if (e.character == SWT.CR)
             {
               ((IChat)getFacility()).sendComment(input.getText());
+              input.setText("");
+              e.doit = false;
             }
-          }
-
-          public void keyReleased(KeyEvent e)
-          {
           }
         });
 
