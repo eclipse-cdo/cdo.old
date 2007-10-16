@@ -42,7 +42,8 @@ public class ChatPane extends FacilityPane
     super(parent, style);
   }
 
-  public void notifyEvent(IEvent event)
+  @Override
+  protected void handleEvent(IEvent event) throws Exception
   {
     if (event instanceof CommentEvent)
     {
@@ -57,7 +58,6 @@ public class ChatPane extends FacilityPane
   {
     sashComposite = new SashComposite(parent, SWT.NONE, 16, 80, false)
     {
-
       @Override
       protected Control createControl1(Composite parent)
       {

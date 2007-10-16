@@ -10,7 +10,6 @@
  **************************************************************************/
 package org.eclipse.net4j.buddies.protocol;
 
-
 /**
  * @author Eike Stepper
  */
@@ -33,8 +32,6 @@ public interface ICollaboration extends IBuddyContainer
   public IFacility[] getFacilities();
 
   public IFacility getFacility(String type);
-
-  public void sendMessage(IMessage message);
 
   public enum Visibility
   {

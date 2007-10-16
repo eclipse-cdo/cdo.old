@@ -19,26 +19,12 @@ import java.io.Serializable;
 /**
  * @author Eike Stepper
  */
-public class Message extends PlatformObject implements IMessage, Serializable
+public abstract class Message extends PlatformObject implements IMessage, Serializable
 {
-  private static final long serialVersionUID = 1L;
-
-  private long collaborationID;
-
   private String senderID;
 
-  public Message()
+  protected Message()
   {
-  }
-
-  public long getCollaborationID()
-  {
-    return collaborationID;
-  }
-
-  public void setCollaborationID(long collaborationID)
-  {
-    this.collaborationID = collaborationID;
   }
 
   public String getSenderID()

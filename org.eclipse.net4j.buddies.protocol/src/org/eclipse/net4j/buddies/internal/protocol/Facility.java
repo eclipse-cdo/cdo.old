@@ -25,7 +25,7 @@ public abstract class Facility extends Lifecycle implements IFacility
 {
   private String type;
 
-  private ICollaboration collaboration;
+  private Collaboration collaboration;
 
   public Facility(String type)
   {
@@ -37,19 +37,14 @@ public abstract class Facility extends Lifecycle implements IFacility
     return type;
   }
 
-  public ICollaboration getCollaboration()
+  public Collaboration getCollaboration()
   {
     return collaboration;
   }
 
   public void setCollaboration(ICollaboration collaboration)
   {
-    this.collaboration = collaboration;
-  }
-
-  public void sendMessage(IMessage message)
-  {
-    collaboration.sendMessage(message);
+    this.collaboration = (Collaboration)collaboration;
   }
 
   /**
@@ -60,4 +55,11 @@ public abstract class Facility extends Lifecycle implements IFacility
   {
     return Platform.getAdapterManager().getAdapter(this, adapter);
   }
+
+  public void sendMessage(IMessage message)
+  {
+    collaboration.sendMessage(collaboration.getID(), type, message);
+  }
+
+  protected abstract void handleMessage(IMessage message);
 }

@@ -124,7 +124,7 @@ public class Collaboration extends BuddyContainer implements ICollaboration
     return false;
   }
 
-  public void sendMessage(IMessage message)
+  public void sendMessage(long collaborationID, String facilityType, IMessage message)
   {
     for (IBuddy receiver : getElements())
     {
@@ -132,7 +132,7 @@ public class Collaboration extends BuddyContainer implements ICollaboration
       {
         try
         {
-          new MessageNotification(receiver.getSession().getChannel(), message).send();
+          new MessageNotification(receiver.getSession().getChannel(), collaborationID, facilityType, message).send();
         }
         catch (Exception ex)
         {
@@ -140,29 +140,6 @@ public class Collaboration extends BuddyContainer implements ICollaboration
         }
       }
     }
-  }
-
-  public void notifyMessage(IMessage message)
-  {
-    IFacility[] handlers;
-    synchronized (facilities)
-    {
-      handlers = facilities.values().toArray(new IFacility[facilities.size()]);
-    }
-
-    for (IFacility facility : handlers)
-    {
-      try
-      {
-        facility.handleMessage(message);
-      }
-      catch (RuntimeException ex)
-      {
-        OM.LOG.error(ex);
-      }
-    }
-
-    fireEvent(new MessageEvent(this, message));
   }
 
   @Override

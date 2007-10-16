@@ -17,7 +17,5 @@ import org.eclipse.core.runtime.IAdaptable;
  */
 public interface IMessage extends IAdaptable
 {
-  public long getCollaborationID();
-
   public String getSenderID();
 }

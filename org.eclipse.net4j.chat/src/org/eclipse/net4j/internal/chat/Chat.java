@@ -45,7 +45,8 @@ public class Chat extends Facility implements IChat
     addComment(message.getSenderID(), text);
   }
 
-  public void handleMessage(IMessage message)
+  @Override
+  protected void handleMessage(IMessage message)
   {
     if (message instanceof TextMessage)
     {

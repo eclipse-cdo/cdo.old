@@ -26,6 +26,4 @@ public interface IFacility extends INotifier, IAdaptable
   public void setCollaboration(ICollaboration collaboration);
 
   public void sendMessage(IMessage message);
-
-  public void handleMessage(IMessage message);
 }

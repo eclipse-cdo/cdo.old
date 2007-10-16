@@ -10,6 +10,8 @@
  **************************************************************************/
 package org.eclipse.net4j.buddies.internal.protocol;
 
+import org.eclipse.net4j.buddies.protocol.ICollaboration;
+import org.eclipse.net4j.buddies.protocol.ICollaborationContainer;
 import org.eclipse.net4j.buddies.protocol.IMessage;
 import org.eclipse.net4j.buddies.protocol.ProtocolUtil;
 import org.eclipse.net4j.signal.Indication;
@@ -20,10 +22,13 @@ import java.io.IOException;
 /**
  * @author Eike Stepper
  */
-public abstract class MessageIndication extends Indication
+public class MessageIndication extends Indication
 {
-  public MessageIndication()
+  private ICollaborationContainer collaborationContainer;
+
+  public MessageIndication(ICollaborationContainer collaborationContainer)
   {
+    this.collaborationContainer = collaborationContainer;
   }
 
   @Override
@@ -35,9 +40,30 @@ public abstract class MessageIndication extends Indication
   @Override
   protected void indicating(ExtendedDataInputStream in) throws IOException
   {
-    IMessage message = ProtocolUtil.readMessage(in);
-    messageReceived(message);
+    long collaborationID = in.readLong();
+    String facilityType = in.readString();
+    Facility facility = getFacility(collaborationID, facilityType);
+
+    IMessage message = ProtocolUtil.readMessage(in, facility.getClass().getClassLoader());
+    facility.handleMessage(message);
+
+    // ClassLoader oldClassLoader = Thread.currentThread().getContextClassLoader();
+    //
+    // try
+    // {
+    // Thread.currentThread().setContextClassLoader(facility.getClass().getClassLoader());
+    // IMessage message = ProtocolUtil.readMessage(in);
+    // facility.handleMessage(message);
+    // }
+    // finally
+    // {
+    // Thread.currentThread().setContextClassLoader(oldClassLoader);
+    // }
   }
 
-  protected abstract void messageReceived(IMessage message);
+  private Facility getFacility(long collaborationID, String facilityType)
+  {
+    ICollaboration collaboration = collaborationContainer.getCollaboration(collaborationID);
+    return (Facility)collaboration.getFacility(facilityType);
+  }
 }

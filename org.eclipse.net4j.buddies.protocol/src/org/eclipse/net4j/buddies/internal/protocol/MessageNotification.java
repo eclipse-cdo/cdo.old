@@ -23,11 +23,17 @@ import java.io.IOException;
  */
 public class MessageNotification extends Request
 {
+  private long collaborationID;
+
+  private String facilityType;
+
   private IMessage message;
 
-  public MessageNotification(IChannel channel, IMessage message)
+  public MessageNotification(IChannel channel, long collaborationID, String facilityType, IMessage message)
   {
     super(channel);
+    this.collaborationID = collaborationID;
+    this.facilityType = facilityType;
     this.message = message;
   }
 
@@ -40,6 +46,8 @@ public class MessageNotification extends Request
   @Override
   protected void requesting(ExtendedDataOutputStream out) throws IOException
   {
+    out.writeLong(collaborationID);
+    out.writeString(facilityType);
     ProtocolUtil.writeMessage(out, message);
   }
 }

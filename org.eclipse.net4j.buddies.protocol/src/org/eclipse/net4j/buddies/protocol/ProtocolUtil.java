@@ -18,6 +18,7 @@ import org.eclipse.net4j.util.io.ExtendedDataOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.ObjectStreamClass;
 
 /**
  * @author Eike Stepper
@@ -118,11 +119,20 @@ public final class ProtocolUtil
     oos.writeObject(message);
   }
 
-  public static IMessage readMessage(ExtendedDataInputStream in) throws IOException
+  public static IMessage readMessage(ExtendedDataInputStream in, final ClassLoader classLoader) throws IOException
   {
     try
     {
-      ObjectInputStream ois = new ObjectInputStream(in);
+      ObjectInputStream ois = new ObjectInputStream(in)
+      {
+        @Override
+        protected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException
+        {
+          String className = desc.getName();
+          return classLoader.loadClass(className);
+        }
+      };
+
       return (IMessage)ois.readObject();
     }
     catch (IOException ex)
