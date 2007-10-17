@@ -22,6 +22,8 @@ import java.io.Serializable;
  */
 public abstract class Message extends PlatformObject implements IMessage, Serializable
 {
+  private static final long serialVersionUID = 1L;
+
   private String senderID;
 
   protected Message()
