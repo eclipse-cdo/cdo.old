@@ -226,7 +226,8 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
   @Override
   public String toString()
   {
-    return MessageFormat.format("CDOFeature(ID={0}, name={1}, type={2})", featureID, getName(), getType());
+    return MessageFormat.format("CDOFeature(ID={0}, name={1}, type={2}, referenceType={3})", featureID, getName(),
+        getType(), getReferenceType());
   }
 
   @Override
