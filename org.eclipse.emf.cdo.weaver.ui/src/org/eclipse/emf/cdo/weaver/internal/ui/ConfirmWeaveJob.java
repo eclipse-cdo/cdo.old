@@ -18,6 +18,7 @@ import org.eclipse.net4j.util.concurrent.Sleeper;
 import org.eclipse.net4j.util.om.monitor.MonitoredJob;
 import org.eclipse.net4j.util.ui.UIUtil;
 
+import org.eclipse.swt.events.ShellAdapter;
 import org.eclipse.swt.events.ShellEvent;
 import org.eclipse.swt.events.ShellListener;
 import org.eclipse.swt.widgets.Display;
@@ -33,28 +34,13 @@ public class ConfirmWeaveJob extends MonitoredJob
 {
   private ConfirmWeavePopup popup;
 
-  private ShellListener shellListener = new ShellListener()
+  private ShellListener shellListener = new ShellAdapter()
   {
+    @Override
     public void shellDeactivated(ShellEvent e)
     {
       closePopup();
       cancel();
-    }
-
-    public void shellActivated(ShellEvent e)
-    {
-    }
-
-    public void shellDeiconified(ShellEvent e)
-    {
-    }
-
-    public void shellIconified(ShellEvent e)
-    {
-    }
-
-    public void shellClosed(ShellEvent e)
-    {
     }
   };
 
