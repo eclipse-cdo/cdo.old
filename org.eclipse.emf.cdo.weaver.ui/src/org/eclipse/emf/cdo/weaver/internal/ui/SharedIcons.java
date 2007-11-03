@@ -27,6 +27,8 @@ public class SharedIcons
 
   private static final String ETOOL = "etool16/";
 
+  private static final String EVIEW = "eview16/";
+
   private static final String OBJ = "obj16/";
 
   public static final String ETOOL_CONVERT = ETOOL + "convert";
@@ -34,6 +36,8 @@ public class SharedIcons
   public static final String ETOOL_BROWSE_ARCHIVES = OBJ + "archive";
 
   public static final String ETOOL_BROWSE_FOLDERS = OBJ + "folder";
+
+  public static final String EVIEW_CLOSE = EVIEW + "close";
 
   public static final String OBJ_ERROR = OBJ + "error";
 

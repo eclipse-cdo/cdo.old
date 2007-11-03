@@ -14,7 +14,9 @@ import org.eclipse.emf.cdo.util.CDOPackageType;
 import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.cdo.weaver.BundleInfo;
 import org.eclipse.emf.cdo.weaver.ICDOWeaver;
-import org.eclipse.emf.cdo.weaver.internal.ui.ConfirmWeaveDialog;
+import org.eclipse.emf.cdo.weaver.internal.ui.ConfirmWeaveJob;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.eclipse.net4j.util.StringUtil;
 import org.eclipse.net4j.util.WrappedException;
@@ -25,16 +27,11 @@ import org.eclipse.net4j.util.om.pref.OMPreference;
 import org.eclipse.net4j.util.om.pref.OMPreferences;
 import org.eclipse.net4j.util.om.trace.OMTracer;
 import org.eclipse.net4j.util.ui.UIActivator;
-import org.eclipse.net4j.util.ui.UIUtil;
-
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.update.configuration.IConfiguredSite;
 import org.eclipse.update.configuration.IInstallConfiguration;
 import org.eclipse.update.configuration.ILocalSite;
@@ -130,26 +127,10 @@ public abstract class OM
       }
     }
 
-    // String symbolicName = "org.eclipse.emf.common";
-    // Bundle bundle = Platform.getBundle(symbolicName);
-    // String version =
-    // (String)bundle.getHeaders().get(Constants.BUNDLE_VERSION);
-    // if (!isAlreadyWoven(bundle, version))
-    // {
-    // if (siteLocations == null)
-    // {
-    // siteLocations = getSiteLocations();
-    // }
-    //
-    // File location = getLocation(symbolicName + "_" + version, siteLocations);
-    // BundleInfo bundleInfo = new BundleInfo(symbolicName, version, location);
-    // bundleMap.put(symbolicName, bundleInfo);
-    // }
-
     return bundleMap;
   }
 
-  private static File[] getSiteLocations()
+  public static File[] getSiteLocations()
   {
     try
     {
@@ -204,38 +185,42 @@ public abstract class OM
     return null;
   }
 
-  private static void confirmWeave()
-  {
-    if (!PREF_CHECK_DURING_STARTUP.getValue())
-    {
-      return;
-    }
-
-    final Map<String, BundleInfo> bundleMap = getUnwovenBundles();
-    HashSet<String> copy = new HashSet<String>(bundleMap.keySet());
-    copy.removeAll(getIgnoredBundles());
-    if (copy.isEmpty())
-    {
-      return;
-    }
-
-    Display display = UIUtil.getDisplay();
-    display.asyncExec(new Runnable()
-    {
-      public void run()
-      {
-        try
-        {
-          Dialog dialog = new ConfirmWeaveDialog(bundleMap);
-          dialog.open();
-        }
-        catch (RuntimeException ex)
-        {
-          LOG.error(ex);
-        }
-      }
-    });
-  }
+  // private static void confirmWeave()
+  // {
+  // if (PREF_CHECK_DURING_STARTUP.getValue())
+  // {
+  // job = new ConfirmWeaveJob();
+  // job.schedule();
+  // }
+  //
+  // final Map<String, BundleInfo> bundleMap = getUnwovenBundles();
+  // HashSet<String> copy = new HashSet<String>(bundleMap.keySet());
+  // copy.removeAll(getIgnoredBundles());
+  // if (copy.isEmpty())
+  // {
+  // return;
+  // }
+  //
+  // Display display = UIUtil.getDisplay();
+  // display.asyncExec(new Runnable()
+  // {
+  // public void run()
+  // {
+  // try
+  // {
+  // job = new ConfirmWeaveJob();
+  // job.startNotification(NOTIFICATION_DELAY);
+  //
+  // // Dialog dialog = new ConfirmWeaveDialog(bundleMap);
+  // // dialog.open();
+  // }
+  // catch (RuntimeException ex)
+  // {
+  // LOG.error(ex);
+  // }
+  // }
+  // });
+  // }
 
   /**
    * @author Eike Stepper
@@ -243,6 +228,8 @@ public abstract class OM
   public static final class Activator extends UIActivator
   {
     public static Activator INSTANCE;
+
+    private ConfirmWeaveJob job;
 
     public Activator()
     {
@@ -254,15 +241,23 @@ public abstract class OM
     public void start(BundleContext context) throws Exception
     {
       super.start(context);
+      if (PREF_CHECK_DURING_STARTUP.getValue())
+      {
+        job = new ConfirmWeaveJob();
+        job.schedule();
+      }
+    }
 
-      try
+    @Override
+    public void stop(BundleContext context) throws Exception
+    {
+      if (job != null)
       {
-        confirmWeave();
+        job.cancel();
+        job = null;
       }
-      catch (RuntimeException ex)
-      {
-        LOG.error(ex);
-      }
+
+      super.stop(context);
     }
   }
 }

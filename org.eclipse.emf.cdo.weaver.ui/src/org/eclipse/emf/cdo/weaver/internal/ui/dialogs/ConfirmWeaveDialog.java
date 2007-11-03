@@ -8,11 +8,12 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.weaver.internal.ui;
+package org.eclipse.emf.cdo.weaver.internal.ui.dialogs;
 
 import org.eclipse.emf.cdo.util.EMFUtil;
 import org.eclipse.emf.cdo.weaver.BundleInfo;
 import org.eclipse.emf.cdo.weaver.ICDOWeaver;
+import org.eclipse.emf.cdo.weaver.internal.ui.SharedIcons;
 import org.eclipse.emf.cdo.weaver.internal.ui.bundle.OM;
 
 import org.eclipse.emf.ecore.EClass;
