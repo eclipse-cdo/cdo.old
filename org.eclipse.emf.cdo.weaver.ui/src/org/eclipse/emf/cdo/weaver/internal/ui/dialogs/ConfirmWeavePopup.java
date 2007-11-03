@@ -91,7 +91,6 @@ public class ConfirmWeavePopup extends PopupDialog
     toolkit.createLabel(sectionClient, "Bundles with unwoven models:");
     for (String bundleName : unignoredBundles)
     {
-      // BundleInfo bundleInfo = bundleMap.get(bundleName);
       toolkit.createLabel(sectionClient, "- " + bundleName);
     }
 
