@@ -100,7 +100,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     cdoClass = classRef.resolve(packageManager);
     if (cdoClass == null)
     {
-      throw new ImplementationError("ClassRef unresolveable: " + classRef);
+      throw new IllegalStateException("ClassRef unresolveable: " + classRef);
     }
 
     id = CDOIDImpl.read(in);
