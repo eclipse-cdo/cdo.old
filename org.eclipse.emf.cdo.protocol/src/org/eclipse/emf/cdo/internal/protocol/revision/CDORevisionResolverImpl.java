@@ -119,7 +119,6 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       revision = verifyRevision(oldRevision, referenceChunk);
       if (revision != oldRevision)
       {
-        // TODO Discard or adjust old revision
         addRevisionFirst(revision);
       }
     }
