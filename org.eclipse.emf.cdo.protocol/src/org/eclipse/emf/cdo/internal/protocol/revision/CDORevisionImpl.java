@@ -172,13 +172,13 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   public void setVersion(int version)
   {
-    if (TRACER.isEnabled()) TRACER.format("Setting version: {0} -> {1}", this.version, version);
+    if (TRACER.isEnabled()) TRACER.format("Setting version: v{0} -> v{1}", this.version, version);
     this.version = version;
   }
 
   public int increaseVersion()
   {
-    if (TRACER.isEnabled()) TRACER.format("Increasing version: {0} -> {1}", version, -(version + 1));
+    if (TRACER.isEnabled()) TRACER.format("Increasing version: v{0} -> v{1}", version, -(version + 1));
     version = -(version + 1);
     return version;
   }
@@ -222,7 +222,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   public void setUntransactional()
   {
-    if (TRACER.isEnabled()) TRACER.format("Setting untransactional: {0} -> {1}", version, Math.abs(version));
+    if (TRACER.isEnabled()) TRACER.format("Setting untransactional: v{0} -> v{1}", version, Math.abs(version));
     version = Math.abs(version);
   }
 
