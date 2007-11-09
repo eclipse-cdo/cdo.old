@@ -34,6 +34,8 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.dialogs.EditorSelectionDialog;
+import org.eclipse.ui.ide.IDE;
 
 /**
  * @author Eike Stepper
@@ -73,6 +75,8 @@ public class SharedFilePane extends FacilityPane
         }
 
         String name = list.getSelection()[0];
+        ISharedFileFacility facility = (ISharedFileFacility)getFacility();
+        ISharedFile sharedFile = facility.getSharedFile(name);
 
         IWorkbenchPart view = getCollaborationsPane().getCollaborationsView();
         IWorkbenchPage page = view.getSite().getPage();
@@ -80,10 +84,20 @@ public class SharedFilePane extends FacilityPane
 
         IEditorRegistry editorRegistry = workbench.getEditorRegistry();
         IEditorDescriptor descriptor = editorRegistry.getDefaultEditor(name);
+        if (descriptor == null)
+        {
+          EditorSelectionDialog dialog = new EditorSelectionDialog(getShell());
+          dialog.open();
+          descriptor = dialog.getSelectedEditor();
+          if (descriptor == null)
+          {
+            return;
+          }
+        }
 
         try
         {
-          page.openEditor(null, descriptor.getId(), true);
+          IDE.openEditor(page, sharedFile.getFile().toURI(), descriptor.getId(), true);
         }
         catch (PartInitException ex)
         {

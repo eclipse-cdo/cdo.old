@@ -44,6 +44,22 @@ public class SharedFileFacility extends Facility implements ISharedFileFacility
     }
   }
 
+  public ISharedFile getSharedFile(String name)
+  {
+    synchronized (sharedFiles)
+    {
+      for (ISharedFile sharedFile : sharedFiles)
+      {
+        if (sharedFile.getName().equals(name))
+        {
+          return sharedFile;
+        }
+      }
+    }
+
+    return null;
+  }
+
   public ISharedFile addSharedFile(String path)
   {
     File file = new File(path);

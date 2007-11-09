@@ -21,5 +21,7 @@ public interface ISharedFileFacility extends IFacility
 
   public ISharedFile[] getSharedFiles();
 
+  public ISharedFile getSharedFile(String name);
+
   public ISharedFile addSharedFile(String path);
 }
