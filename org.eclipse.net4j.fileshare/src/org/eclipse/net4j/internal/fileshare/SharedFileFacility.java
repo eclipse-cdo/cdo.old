@@ -14,10 +14,13 @@ import org.eclipse.net4j.buddies.internal.protocol.Facility;
 import org.eclipse.net4j.buddies.protocol.IMessage;
 import org.eclipse.net4j.fileshare.ISharedFile;
 import org.eclipse.net4j.fileshare.ISharedFileFacility;
+import org.eclipse.net4j.internal.fileshare.bundle.OM;
 import org.eclipse.net4j.util.io.IORuntimeException;
 import org.eclipse.net4j.util.io.IOUtil;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,7 +78,8 @@ public class SharedFileFacility extends Facility implements ISharedFileFacility
 
   protected SharedFile addSharedFile(String senderID, byte[] content, String name)
   {
-    SharedFile sharedFile = new SharedFile(System.currentTimeMillis(), senderID, content, name);
+    File file = createFile(content, name);
+    SharedFile sharedFile = new SharedFile(System.currentTimeMillis(), senderID, file);
     synchronized (sharedFiles)
     {
       sharedFiles.add(sharedFile);
@@ -83,5 +87,22 @@ public class SharedFileFacility extends Facility implements ISharedFileFacility
 
     fireEvent(new SharedFileEvent(this, sharedFile));
     return sharedFile;
+  }
+
+  protected File createFile(byte[] content, String name)
+  {
+    File folder = new File(OM.BUNDLE.getStateLocation(), "coll" + getCollaboration().getID());
+    IOUtil.mkdirs(folder);
+
+    File file = new File(folder, name);
+    if (file.exists())
+    {
+      throw new IORuntimeException("File already exists: " + file.getAbsolutePath());
+    }
+
+    ByteArrayInputStream bais = new ByteArrayInputStream(content);
+    FileOutputStream fos = IOUtil.openOutputStream(file);
+    IOUtil.copy(bais, fos);
+    return file;
   }
 }

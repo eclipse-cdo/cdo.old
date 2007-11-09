@@ -11,7 +11,9 @@
 package org.eclipse.net4j.internal.fileshare;
 
 import org.eclipse.net4j.fileshare.ISharedFile;
+import org.eclipse.net4j.util.io.IOUtil;
 
+import java.io.File;
 import java.io.Serializable;
 
 /**
@@ -25,16 +27,13 @@ public class SharedFile implements ISharedFile, Serializable
 
   private String creatorID;
 
-  private byte[] content;
+  private File file;
 
-  private String name;
-
-  public SharedFile(long creationTime, String creatorID, byte[] content, String name)
+  public SharedFile(long creationTime, String creatorID, File file)
   {
     this.creationTime = creationTime;
     this.creatorID = creatorID;
-    this.content = content;
-    this.name = name;
+    this.file = file;
   }
 
   public long getCreationTime()
@@ -47,13 +46,18 @@ public class SharedFile implements ISharedFile, Serializable
     return creatorID;
   }
 
+  public File getFile()
+  {
+    return file;
+  }
+
   public byte[] getContent()
   {
-    return content;
+    return IOUtil.readFile(file);
   }
 
   public String getName()
   {
-    return name;
+    return file.getName();
   }
 }

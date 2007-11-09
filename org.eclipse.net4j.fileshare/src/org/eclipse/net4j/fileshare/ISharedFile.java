@@ -10,6 +10,8 @@
  **************************************************************************/
 package org.eclipse.net4j.fileshare;
 
+import java.io.File;
+
 /**
  * @author Eike Stepper
  */
@@ -18,6 +20,8 @@ public interface ISharedFile
   public long getCreationTime();
 
   public String getCreatorID();
+
+  public File getFile();
 
   public byte[] getContent();
 
