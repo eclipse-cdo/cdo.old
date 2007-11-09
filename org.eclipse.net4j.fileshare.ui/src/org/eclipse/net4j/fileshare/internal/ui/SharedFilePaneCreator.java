@@ -10,12 +10,12 @@
  **************************************************************************/
 package org.eclipse.net4j.fileshare.internal.ui;
 
+import org.eclipse.net4j.buddies.internal.ui.views.CollaborationsPane;
 import org.eclipse.net4j.buddies.internal.ui.views.FacilityPane;
 import org.eclipse.net4j.buddies.ui.IFacilityPaneCreator;
 import org.eclipse.net4j.fileshare.ISharedFileFacility;
 
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.swt.widgets.Composite;
 
 /**
  * @author Eike Stepper
@@ -36,8 +36,8 @@ public class SharedFilePaneCreator implements IFacilityPaneCreator
     return SharedIcons.getDescriptor(SharedIcons.OBJ_FILESHARE);
   }
 
-  public FacilityPane createPane(Composite parent, int style)
+  public FacilityPane createPane(CollaborationsPane collaborationsPane, int style)
   {
-    return new SharedFilePane(parent, style);
+    return new SharedFilePane(collaborationsPane, style);
   }
 }

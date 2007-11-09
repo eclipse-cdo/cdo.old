@@ -10,6 +10,7 @@
  **************************************************************************/
 package org.eclipse.net4j.chat.internal.ui;
 
+import org.eclipse.net4j.buddies.internal.ui.views.CollaborationsPane;
 import org.eclipse.net4j.buddies.internal.ui.views.FacilityPane;
 import org.eclipse.net4j.chat.IChat;
 import org.eclipse.net4j.chat.IComment;
@@ -38,9 +39,9 @@ public class ChatPane extends FacilityPane
 
   private Text output;
 
-  public ChatPane(Composite parent, int style)
+  public ChatPane(CollaborationsPane collaborationsPane, int style)
   {
-    super(parent, style);
+    super(collaborationsPane, style);
   }
 
   @Override

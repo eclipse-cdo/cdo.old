@@ -10,12 +10,12 @@
  **************************************************************************/
 package org.eclipse.net4j.chat.internal.ui;
 
+import org.eclipse.net4j.buddies.internal.ui.views.CollaborationsPane;
 import org.eclipse.net4j.buddies.internal.ui.views.FacilityPane;
 import org.eclipse.net4j.buddies.ui.IFacilityPaneCreator;
 import org.eclipse.net4j.chat.IChat;
 
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.swt.widgets.Composite;
 
 /**
  * @author Eike Stepper
@@ -36,8 +36,8 @@ public class ChatPaneCreator implements IFacilityPaneCreator
     return SharedIcons.getDescriptor(SharedIcons.OBJ_CHAT);
   }
 
-  public FacilityPane createPane(Composite parent, int style)
+  public FacilityPane createPane(CollaborationsPane collaborationsPane, int style)
   {
-    return new ChatPane(parent, style);
+    return new ChatPane(collaborationsPane, style);
   }
 }

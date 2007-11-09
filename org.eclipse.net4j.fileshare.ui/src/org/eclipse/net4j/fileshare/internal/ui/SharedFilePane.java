@@ -10,17 +10,30 @@
  **************************************************************************/
 package org.eclipse.net4j.fileshare.internal.ui;
 
+import org.eclipse.net4j.buddies.internal.ui.views.CollaborationsPane;
 import org.eclipse.net4j.buddies.internal.ui.views.FacilityPane;
 import org.eclipse.net4j.fileshare.ISharedFile;
+import org.eclipse.net4j.fileshare.ISharedFileFacility;
+import org.eclipse.net4j.fileshare.internal.ui.bundle.OM;
 import org.eclipse.net4j.internal.fileshare.SharedFileEvent;
 import org.eclipse.net4j.util.StringUtil;
 import org.eclipse.net4j.util.event.IEvent;
+import org.eclipse.net4j.util.ui.actions.LongRunningAction;
 
 import org.eclipse.jface.action.IContributionManager;
+import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.List;
+import org.eclipse.ui.IEditorDescriptor;
+import org.eclipse.ui.IEditorRegistry;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PartInitException;
 
 /**
  * @author Eike Stepper
@@ -29,9 +42,9 @@ public class SharedFilePane extends FacilityPane
 {
   private List list;
 
-  public SharedFilePane(Composite parent, int style)
+  public SharedFilePane(CollaborationsPane collaborationsPane, int style)
   {
-    super(parent, style);
+    super(collaborationsPane, style);
   }
 
   @Override
@@ -41,38 +54,72 @@ public class SharedFilePane extends FacilityPane
     {
       SharedFileEvent e = (SharedFileEvent)event;
       ISharedFile sharedFile = e.getSharedFile();
-      String text = sharedFile.getName();
-      list.add(sharedFile.getCreatorID() + ": " + text + StringUtil.NL);
+      list.add(sharedFile.getName());
     }
   }
 
   @Override
   protected Control createUI(Composite parent)
   {
-    return list = new List(parent, SWT.NONE);
+    list = new List(parent, SWT.NONE);
+    list.addMouseListener(new MouseAdapter()
+    {
+      @Override
+      public void mouseDoubleClick(MouseEvent e)
+      {
+        if (list.getSelectionCount() != 1)
+        {
+          return;
+        }
+
+        String name = list.getSelection()[0];
+
+        IWorkbenchPart view = getCollaborationsPane().getCollaborationsView();
+        IWorkbenchPage page = view.getSite().getPage();
+        IWorkbench workbench = page.getWorkbenchWindow().getWorkbench();
+
+        IEditorRegistry editorRegistry = workbench.getEditorRegistry();
+        IEditorDescriptor descriptor = editorRegistry.getDefaultEditor(name);
+
+        try
+        {
+          page.openEditor(null, descriptor.getId(), true);
+        }
+        catch (PartInitException ex)
+        {
+          OM.LOG.error(ex);
+        }
+      }
+    });
+
+    return list;
   }
 
   @Override
   protected void fillCoolBar(IContributionManager manager)
   {
-    // manager.add(new SafeAction("Vertical Layout", "Vertical Layout", SharedIcons
-    // .getDescriptor(SharedIcons.ETOOL_VERTICAL))
-    // {
-    // @Override
-    // protected void safeRun() throws Exception
-    // {
-    // sashComposite.setVertical(false);
-    // }
-    // });
-    //
-    // manager.add(new SafeAction("Horizontal Layout", "Horizontal Layout", SharedIcons
-    // .getDescriptor(SharedIcons.ETOOL_HORIZONTAL))
-    // {
-    // @Override
-    // protected void safeRun() throws Exception
-    // {
-    // sashComposite.setVertical(true);
-    // }
-    // });
+    manager.add(new LongRunningAction("Add File", "Add File", SharedIcons.getDescriptor(SharedIcons.OBJ_FILESHARE))
+    {
+      private String path;
+
+      @Override
+      protected void preRun() throws Exception
+      {
+        InputDialog dialog = new InputDialog(getShell(), "Add File", "Absolute path:", null, null);
+        dialog.open();
+        path = dialog.getValue();
+        if (StringUtil.isEmpty(path))
+        {
+          cancel();
+        }
+      }
+
+      @Override
+      protected void doRun() throws Exception
+      {
+        ISharedFileFacility facility = (ISharedFileFacility)getFacility();
+        facility.addSharedFile(path);
+      }
+    });
   }
 }
