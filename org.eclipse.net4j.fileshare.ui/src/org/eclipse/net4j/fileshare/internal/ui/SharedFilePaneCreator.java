@@ -1,0 +1,43 @@
+/***************************************************************************
+ * Copyright (c) 2004 - 2007 Eike Stepper, Germany.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Eike Stepper - initial API and implementation
+ **************************************************************************/
+package org.eclipse.net4j.fileshare.internal.ui;
+
+import org.eclipse.net4j.buddies.internal.ui.views.FacilityPane;
+import org.eclipse.net4j.buddies.ui.IFacilityPaneCreator;
+import org.eclipse.net4j.fileshare.ISharedFileFacility;
+
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.widgets.Composite;
+
+/**
+ * @author Eike Stepper
+ */
+public class SharedFilePaneCreator implements IFacilityPaneCreator
+{
+  public SharedFilePaneCreator()
+  {
+  }
+
+  public String getType()
+  {
+    return ISharedFileFacility.TYPE;
+  }
+
+  public ImageDescriptor getImageDescriptor()
+  {
+    return SharedIcons.getDescriptor(SharedIcons.OBJ_FILESHARE);
+  }
+
+  public FacilityPane createPane(Composite parent, int style)
+  {
+    return new SharedFilePane(parent, style);
+  }
+}

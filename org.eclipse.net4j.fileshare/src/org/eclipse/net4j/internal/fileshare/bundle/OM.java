@@ -8,20 +8,20 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.net4j.chat.internal.ui.bundle;
+package org.eclipse.net4j.internal.fileshare.bundle;
 
 import org.eclipse.net4j.util.om.OMBundle;
 import org.eclipse.net4j.util.om.OMPlatform;
+import org.eclipse.net4j.util.om.OSGiActivator;
 import org.eclipse.net4j.util.om.log.OMLogger;
 import org.eclipse.net4j.util.om.trace.OMTracer;
-import org.eclipse.net4j.util.ui.UIActivator;
 
 /**
  * @author Eike Stepper
  */
 public abstract class OM
 {
-  public static final String BUNDLE_ID = "org.eclipse.net4j.chat.ui"; //$NON-NLS-1$
+  public static final String BUNDLE_ID = "org.eclipse.net4j.fileshare"; //$NON-NLS-1$
 
   public static final OMBundle BUNDLE = OMPlatform.INSTANCE.bundle(BUNDLE_ID, OM.class);
 
@@ -32,14 +32,11 @@ public abstract class OM
   /**
    * @author Eike Stepper
    */
-  public static final class Activator extends UIActivator
+  public static final class Activator extends OSGiActivator
   {
-    public static Activator INSTANCE;
-
     public Activator()
     {
       super(BUNDLE);
-      INSTANCE = this;
     }
   }
 }

@@ -8,7 +8,7 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.net4j.chat.internal.ui.bundle;
+package org.eclipse.net4j.fileshare.internal.ui.bundle;
 
 import org.eclipse.net4j.util.om.OMBundle;
 import org.eclipse.net4j.util.om.OMPlatform;
@@ -21,7 +21,7 @@ import org.eclipse.net4j.util.ui.UIActivator;
  */
 public abstract class OM
 {
-  public static final String BUNDLE_ID = "org.eclipse.net4j.chat.ui"; //$NON-NLS-1$
+  public static final String BUNDLE_ID = "org.eclipse.net4j.fileshare.ui"; //$NON-NLS-1$
 
   public static final OMBundle BUNDLE = OMPlatform.INSTANCE.bundle(BUNDLE_ID, OM.class);
 
