@@ -22,9 +22,9 @@ import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
 
 import java.text.MessageFormat;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * @author Eike Stepper
@@ -39,7 +39,7 @@ public class Collaboration extends BuddyContainer implements ICollaboration
 
   private Visibility visibility = Visibility.PRIVATE;
 
-  private Map<String, IFacility> facilities = new HashMap<String, IFacility>();
+  private ConcurrentMap<String, IFacility> facilities = new ConcurrentHashMap<String, IFacility>();
 
   public Collaboration(long id, Set<IBuddy> buddies)
   {
@@ -86,39 +86,25 @@ public class Collaboration extends BuddyContainer implements ICollaboration
     description = null;
   }
 
-  // public Map<String, IFacility> getFacilities()
-  // {
-  // return Collections.unmodifiableMap(facilities);
-  // }
-
   public IFacility[] getFacilities()
   {
-    synchronized (facilities)
-    {
-      return facilities.values().toArray(new IFacility[facilities.size()]);
-    }
+    return facilities.values().toArray(new IFacility[facilities.size()]);
   }
 
   public IFacility getFacility(String type)
   {
-    synchronized (facilities)
-    {
-      return facilities.get(type);
-    }
+    return facilities.get(type);
   }
 
   public boolean addFacility(IFacility facility, boolean remote)
   {
     String type = facility.getType();
-    synchronized (facilities)
+    if (!facilities.containsKey(type))
     {
-      if (!facilities.containsKey(type))
-      {
-        facilities.put(type, facility);
-        fireEvent(new FacilityInstalledEvent(facility, remote));
-        facility.addListener(this);
-        return true;
-      }
+      facilities.put(type, facility);
+      fireEvent(new FacilityInstalledEvent(facility, remote));
+      facility.addListener(this);
+      return true;
     }
 
     return false;

@@ -33,15 +33,17 @@ public interface ProtocolConstants
 
   public static final short SIGNAL_COLLABORATION_LEFT = 8;
 
-  public static final short SIGNAL_COLLABORATION_INVITATION = 9;
+  public static final short SIGNAL_INVITE_BUDDIES = 9;
 
-  public static final short SIGNAL_INSTALL_FACILITY = 10;
+  public static final short SIGNAL_BUDDIES_INVITED = 10;
 
-  public static final short SIGNAL_FACILITY_INSTALLED = 11;
+  public static final short SIGNAL_INSTALL_FACILITY = 11;
 
-  public static final short SIGNAL_MESSAGE = 12;
+  public static final short SIGNAL_FACILITY_INSTALLED = 12;
 
-  public static final long TIMEOUT = 5000000L;
+  public static final short SIGNAL_MESSAGE = 13;
+
+  public static final long TIMEOUT = 5000L;
 
   public static final byte STATE_AVAILABLE = 1;
 

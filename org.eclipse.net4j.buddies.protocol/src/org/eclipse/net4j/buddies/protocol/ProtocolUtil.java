@@ -19,6 +19,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.ObjectStreamClass;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Eike Stepper
@@ -27,6 +30,50 @@ public final class ProtocolUtil
 {
   private ProtocolUtil()
   {
+  }
+
+  public static void writeBuddies(ExtendedDataOutputStream out, Collection<IBuddy> buddies) throws IOException
+  {
+    if (buddies == null)
+    {
+      out.writeInt(0);
+    }
+    else
+    {
+      out.writeInt(buddies.size());
+      for (IBuddy buddy : buddies)
+      {
+        out.writeString(buddy.getUserID());
+      }
+    }
+  }
+
+  public static Set<IBuddy> readBuddies(ExtendedDataInputStream in, IBuddyContainer buddyContainer) throws IOException
+  {
+    int size = in.readInt();
+    Set<IBuddy> buddies = new HashSet<IBuddy>();
+    for (int i = 0; i < size; i++)
+    {
+      String userID = in.readString();
+      IBuddy buddy = buddyContainer.getBuddy(userID);
+      if (buddy != null)
+      {
+        buddies.add(buddy);
+      }
+    }
+    return buddies;
+  }
+
+  public static String[] readUserIDs(ExtendedDataInputStream in) throws IOException
+  {
+    int size = in.readInt();
+    String[] userIDs = new String[size];
+    for (int i = 0; i < size; i++)
+    {
+      userIDs[i] = in.readString();
+    }
+
+    return userIDs;
   }
 
   public static void writeAccount(ExtendedDataOutputStream out, IAccount account) throws IOException
