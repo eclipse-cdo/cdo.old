@@ -31,6 +31,8 @@ public interface ICollaboration extends IMembershipContainer, IBuddyProvider, IA
 
   public void setPrivate();
 
+  public String[] getFacilityTypes();
+
   public IFacility[] getFacilities();
 
   public IFacility getFacility(String type);

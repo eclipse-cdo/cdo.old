@@ -126,6 +126,11 @@ public class Collaboration extends MembershipContainer implements ICollaboration
     return buddies.toArray(new IBuddy[buddies.size()]);
   }
 
+  public String[] getFacilityTypes()
+  {
+    return facilities.keySet().toArray(new String[facilities.size()]);
+  }
+
   public IFacility[] getFacilities()
   {
     return facilities.values().toArray(new IFacility[facilities.size()]);

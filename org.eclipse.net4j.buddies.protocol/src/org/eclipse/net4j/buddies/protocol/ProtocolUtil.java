@@ -160,6 +160,34 @@ public final class ProtocolUtil
     }
   }
 
+  public static void writeFacilityTypes(ExtendedDataOutputStream out, String[] facilityTypes) throws IOException
+  {
+    if (facilityTypes == null)
+    {
+      out.writeInt(0);
+    }
+    else
+    {
+      out.writeInt(facilityTypes.length);
+      for (String facilityType : facilityTypes)
+      {
+        out.writeString(facilityType);
+      }
+    }
+  }
+
+  public static String[] readFacilityTypes(ExtendedDataInputStream in) throws IOException
+  {
+    int size = in.readInt();
+    String[] facilityTypes = new String[size];
+    for (int i = 0; i < size; i++)
+    {
+      facilityTypes[i] = in.readString();
+    }
+
+    return facilityTypes;
+  }
+
   public static void writeMessage(ExtendedDataOutputStream out, IMessage message) throws IOException
   {
     ObjectOutputStream oos = new ObjectOutputStream(out);
