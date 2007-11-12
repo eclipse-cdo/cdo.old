@@ -43,14 +43,21 @@ public class MessageIndication extends Indication
     long collaborationID = in.readLong();
     String facilityType = in.readString();
     Facility facility = getFacility(collaborationID, facilityType);
-
-    IMessage message = ProtocolUtil.readMessage(in, facility.getClass().getClassLoader());
-    facility.handleMessage(message);
+    if (facility != null)
+    {
+      IMessage message = ProtocolUtil.readMessage(in, facility.getClass().getClassLoader());
+      facility.handleMessage(message);
+    }
   }
 
   private Facility getFacility(long collaborationID, String facilityType)
   {
     ICollaboration collaboration = collaborationProvider.getCollaboration(collaborationID);
+    if (collaboration == null)
+    {
+      return null;
+    }
+
     return (Facility)collaboration.getFacility(facilityType);
   }
 }
