@@ -10,10 +10,12 @@
  **************************************************************************/
 package org.eclipse.net4j.buddies.protocol;
 
+import org.eclipse.core.runtime.IAdaptable;
+
 /**
  * @author Eike Stepper
  */
-public interface ICollaboration extends IBuddyContainer
+public interface ICollaboration extends IMembershipContainer, IBuddyProvider, IAdaptable
 {
   public long getID();
 

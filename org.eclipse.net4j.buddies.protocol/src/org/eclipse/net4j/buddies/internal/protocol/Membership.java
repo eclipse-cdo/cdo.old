@@ -14,6 +14,7 @@ import org.eclipse.net4j.buddies.protocol.IBuddy;
 import org.eclipse.net4j.buddies.protocol.ICollaboration;
 import org.eclipse.net4j.buddies.protocol.IMembership;
 import org.eclipse.net4j.internal.util.event.Notifier;
+import org.eclipse.net4j.util.ObjectUtil;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.PlatformObject;
@@ -23,32 +24,47 @@ import org.eclipse.core.runtime.PlatformObject;
  */
 public class Membership extends Notifier implements IMembership
 {
-  private IBuddy buddy;
-
-  private ICollaboration collaboration;
+  private MembershipKey key;
 
   private long startTime;
 
-  public Membership(IBuddy buddy, ICollaboration collaboration)
+  private transient Object[] elements;
+
+  private Membership(IBuddy buddy, ICollaboration collaboration)
   {
-    this.buddy = buddy;
-    this.collaboration = collaboration;
+    key = new MembershipKey(buddy, collaboration);
+    elements = new Object[] { buddy, collaboration };
     startTime = System.currentTimeMillis();
   }
 
   public IBuddy getBuddy()
   {
-    return buddy;
+    return key.getBuddy();
   }
 
   public ICollaboration getCollaboration()
   {
-    return collaboration;
+    return key.getCollaboration();
   }
 
   public long getStartTime()
   {
     return startTime;
+  }
+
+  public Object[] getElements()
+  {
+    return elements;
+  }
+
+  public boolean isEmpty()
+  {
+    return false;
+  }
+
+  public MembershipKey getKey()
+  {
+    return key;
   }
 
   /**
@@ -58,5 +74,37 @@ public class Membership extends Notifier implements IMembership
   public Object getAdapter(Class adapter)
   {
     return Platform.getAdapterManager().getAdapter(this, adapter);
+  }
+
+  @Override
+  public boolean equals(Object obj)
+  {
+    if (obj instanceof Membership)
+    {
+      Membership membership = (Membership)obj;
+      return ObjectUtil.equals(key, membership.key);
+    }
+
+    return false;
+  }
+
+  @Override
+  public int hashCode()
+  {
+    return key.hashCode();
+  }
+
+  @Override
+  public String toString()
+  {
+    return key.toString();
+  }
+
+  public static IMembership create(IBuddy buddy, ICollaboration collaboration)
+  {
+    Membership membership = new Membership(buddy, collaboration);
+    ((Buddy)buddy).addMembership(membership);
+    ((Collaboration)collaboration).addMembership(membership);
+    return membership;
   }
 }

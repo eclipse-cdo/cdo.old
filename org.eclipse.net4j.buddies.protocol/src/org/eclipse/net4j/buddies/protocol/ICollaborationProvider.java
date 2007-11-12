@@ -10,11 +10,12 @@
  **************************************************************************/
 package org.eclipse.net4j.buddies.protocol;
 
-import org.eclipse.net4j.util.container.IContainer;
-
 /**
  * @author Eike Stepper
  */
-public interface ICollaborationContainer extends ICollaborationProvider, IContainer<ICollaboration>
+public interface ICollaborationProvider
 {
+  public ICollaboration[] getCollaborations();
+
+  public ICollaboration getCollaboration(long id);
 }

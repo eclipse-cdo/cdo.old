@@ -15,9 +15,6 @@ import org.eclipse.net4j.util.container.IContainer;
 /**
  * @author Eike Stepper
  */
-public interface IBuddyContainer extends IContainer<IBuddy>
+public interface IBuddyContainer extends IBuddyProvider, IContainer<IBuddy>
 {
-  public IBuddy[] getBuddies();
-
-  public IBuddy getBuddy(String userID);
 }

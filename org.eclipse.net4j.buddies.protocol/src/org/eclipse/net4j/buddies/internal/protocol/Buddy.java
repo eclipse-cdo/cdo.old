@@ -13,22 +13,26 @@ package org.eclipse.net4j.buddies.internal.protocol;
 import org.eclipse.net4j.buddies.protocol.IBuddy;
 import org.eclipse.net4j.buddies.protocol.IBuddyStateEvent;
 import org.eclipse.net4j.buddies.protocol.ICollaboration;
+import org.eclipse.net4j.buddies.protocol.IMembership;
 import org.eclipse.net4j.buddies.protocol.ISession;
 import org.eclipse.net4j.internal.util.event.Event;
+import org.eclipse.net4j.util.ObjectUtil;
 import org.eclipse.net4j.util.event.IEvent;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.PlatformObject;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
  * @author Eike Stepper
  */
-public abstract class Buddy extends CollaborationContainer implements IBuddy
+public abstract class Buddy extends MembershipContainer implements IBuddy
 {
   private ISession session;
 
@@ -77,16 +81,57 @@ public abstract class Buddy extends CollaborationContainer implements IBuddy
     return facilityTypes;
   }
 
-  public ICollaboration initiate()
+  public IMembership getMembership(Collaboration collaboration)
   {
-    return initiate((Set<IBuddy>)null);
+    return getMembership(this, collaboration);
   }
 
-  public ICollaboration initiate(IBuddy buddy)
+  public IMembership removeMembership(Collaboration collaboration)
+  {
+    return removeMembership(this, collaboration);
+  }
+
+  public ICollaboration getCollaboration(long collaborationID)
+  {
+    for (IMembership membership : getMemberships())
+    {
+      ICollaboration collaboration = membership.getCollaboration();
+      if (collaboration.getID() == collaborationID)
+      {
+        return collaboration;
+      }
+    }
+
+    return null;
+  }
+
+  public ICollaboration[] getCollaborations()
+  {
+    List<ICollaboration> collaborations = new ArrayList<ICollaboration>();
+    for (IMembership membership : getMemberships())
+    {
+      ICollaboration collaboration = membership.getCollaboration();
+      collaborations.add(collaboration);
+    }
+
+    return collaborations.toArray(new ICollaboration[collaborations.size()]);
+  }
+
+  public IMembership initiate()
+  {
+    return initiate((IBuddy)null);
+  }
+
+  public IMembership initiate(IBuddy buddy)
   {
     HashSet<IBuddy> buddies = new HashSet<IBuddy>();
-    buddies.add(buddy);
-    return initiate(buddies);
+    if (buddy != null)
+    {
+      buddies.add(buddy);
+    }
+
+    IMembership[] memberships = initiate(buddies);
+    return memberships.length == 0 ? null : memberships[0];
   }
 
   /**
@@ -96,6 +141,24 @@ public abstract class Buddy extends CollaborationContainer implements IBuddy
   public Object getAdapter(Class adapter)
   {
     return Platform.getAdapterManager().getAdapter(this, adapter);
+  }
+
+  @Override
+  public boolean equals(Object obj)
+  {
+    if (obj instanceof Buddy)
+    {
+      Buddy buddy = (Buddy)obj;
+      return ObjectUtil.equals(getUserID(), buddy.getUserID());
+    }
+
+    return false;
+  }
+
+  @Override
+  public int hashCode()
+  {
+    return ObjectUtil.hashCode(getUserID());
   }
 
   @Override

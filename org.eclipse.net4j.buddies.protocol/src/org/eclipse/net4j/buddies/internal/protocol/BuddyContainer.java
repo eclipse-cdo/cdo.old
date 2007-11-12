@@ -20,9 +20,9 @@ import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.net4j.util.lifecycle.ILifecycleEvent;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * @author Eike Stepper
@@ -31,7 +31,7 @@ public class BuddyContainer extends Lifecycle implements IBuddyContainer, IListe
 {
   private Map<String, IBuddy> buddies = new HashMap<String, IBuddy>();
 
-  public BuddyContainer(Set<IBuddy> buddies)
+  public BuddyContainer(Collection<IBuddy> buddies)
   {
     if (buddies != null)
     {

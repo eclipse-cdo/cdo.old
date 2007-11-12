@@ -15,11 +15,6 @@ import org.eclipse.net4j.util.container.IContainer;
 /**
  * @author Eike Stepper
  */
-public interface IMembershipContainer extends IContainer<IMembership>
+public interface IMembershipContainer extends IMembershipProvider, IContainer<IMembership>
 {
-  public IMembership[] getMemberships();
-
-  public IMembership getMembership(IBuddy buddy);
-
-  public IMembership getMembership(ICollaboration collaboration);
 }

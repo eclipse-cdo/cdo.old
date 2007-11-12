@@ -20,6 +20,7 @@ import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.net4j.util.lifecycle.ILifecycleEvent;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,6 +30,18 @@ import java.util.Map;
 public class CollaborationContainer extends Lifecycle implements ICollaborationContainer, IListener
 {
   private Map<Long, ICollaboration> collaborations = new HashMap<Long, ICollaboration>();
+
+  public CollaborationContainer(Collection<ICollaboration> collaborations)
+  {
+    if (collaborations != null)
+    {
+      for (ICollaboration collaboration : collaborations)
+      {
+        this.collaborations.put(collaboration.getID(), collaboration);
+        collaboration.addListener(this);
+      }
+    }
+  }
 
   public CollaborationContainer()
   {

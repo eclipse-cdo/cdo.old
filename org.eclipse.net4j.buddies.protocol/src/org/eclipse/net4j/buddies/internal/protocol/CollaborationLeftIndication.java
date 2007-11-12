@@ -10,7 +10,8 @@
  **************************************************************************/
 package org.eclipse.net4j.buddies.internal.protocol;
 
-import org.eclipse.net4j.buddies.protocol.ICollaborationContainer;
+import org.eclipse.net4j.buddies.protocol.IBuddyProvider;
+import org.eclipse.net4j.buddies.protocol.ICollaborationProvider;
 import org.eclipse.net4j.signal.Indication;
 import org.eclipse.net4j.util.io.ExtendedDataInputStream;
 
@@ -21,16 +22,14 @@ import java.io.IOException;
  */
 public class CollaborationLeftIndication extends Indication
 {
-  private ICollaborationContainer collaborationContainer;
+  private IBuddyProvider buddyProvider;
 
-  public CollaborationLeftIndication(ICollaborationContainer collaborationContainer)
-  {
-    this.collaborationContainer = collaborationContainer;
-  }
+  private ICollaborationProvider collaborationProvider;
 
-  public ICollaborationContainer getCollaborationContainer()
+  public CollaborationLeftIndication(IBuddyProvider buddyProvider, ICollaborationProvider collaborationProvider)
   {
-    return collaborationContainer;
+    this.buddyProvider = buddyProvider;
+    this.collaborationProvider = collaborationProvider;
   }
 
   @Override
@@ -45,15 +44,26 @@ public class CollaborationLeftIndication extends Indication
     long collaborationID = in.readLong();
     String userID = in.readString();
 
-    Collaboration collaboration = (Collaboration)collaborationContainer.getCollaboration(collaborationID);
+    Collaboration collaboration = getCollaboration(collaborationID);
     if (collaboration != null)
     {
-      collaborationLeft(collaboration, userID);
+      Buddy buddy = getBuddy(userID);
+      collaborationLeft(buddy, collaboration);
     }
   }
 
-  protected void collaborationLeft(Collaboration collaboration, String userID)
+  protected void collaborationLeft(Buddy buddy, Collaboration collaboration)
   {
-    collaboration.removeBuddy(userID);
+    collaboration.removeMembership(buddy);
+  }
+
+  protected Collaboration getCollaboration(long collaborationID)
+  {
+    return (Collaboration)collaborationProvider.getCollaboration(collaborationID);
+  }
+
+  protected Buddy getBuddy(String userID)
+  {
+    return (Buddy)buddyProvider.getBuddy(userID);
   }
 }

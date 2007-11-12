@@ -10,18 +10,16 @@
  **************************************************************************/
 package org.eclipse.net4j.buddies.protocol;
 
-import org.eclipse.net4j.util.event.INotifier;
+import org.eclipse.net4j.util.container.IContainer;
 
 import org.eclipse.core.runtime.IAdaptable;
 
 /**
  * @author Eike Stepper
  */
-public interface IMembership extends INotifier, IAdaptable
+public interface IMembership extends IMembershipKey, IContainer<Object>, IAdaptable
 {
-  public IBuddy getBuddy();
-
-  public ICollaboration getCollaboration();
+  public IMembershipKey getKey();
 
   public long getStartTime();
 }

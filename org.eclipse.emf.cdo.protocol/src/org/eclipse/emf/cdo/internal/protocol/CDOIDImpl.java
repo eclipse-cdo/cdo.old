@@ -5,6 +5,7 @@ import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.CDOIDTyped;
 import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 
+import org.eclipse.net4j.util.ObjectUtil;
 import org.eclipse.net4j.util.io.ExtendedDataInput;
 import org.eclipse.net4j.util.io.ExtendedDataOutput;
 
@@ -82,7 +83,7 @@ public class CDOIDImpl implements CDOID
   @Override
   public int hashCode()
   {
-    return (int)(value ^ value >>> 32);
+    return ObjectUtil.hashCode(value);
   }
 
   @Override

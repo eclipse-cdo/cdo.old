@@ -11,7 +11,7 @@
 package org.eclipse.net4j.buddies.internal.protocol;
 
 import org.eclipse.net4j.buddies.protocol.ICollaboration;
-import org.eclipse.net4j.buddies.protocol.ICollaborationContainer;
+import org.eclipse.net4j.buddies.protocol.ICollaborationProvider;
 import org.eclipse.net4j.buddies.protocol.IMessage;
 import org.eclipse.net4j.buddies.protocol.ProtocolUtil;
 import org.eclipse.net4j.signal.Indication;
@@ -24,11 +24,11 @@ import java.io.IOException;
  */
 public class MessageIndication extends Indication
 {
-  private ICollaborationContainer collaborationContainer;
+  private ICollaborationProvider collaborationProvider;
 
-  public MessageIndication(ICollaborationContainer collaborationContainer)
+  public MessageIndication(ICollaborationProvider collaborationProvider)
   {
-    this.collaborationContainer = collaborationContainer;
+    this.collaborationProvider = collaborationProvider;
   }
 
   @Override
@@ -50,7 +50,7 @@ public class MessageIndication extends Indication
 
   private Facility getFacility(long collaborationID, String facilityType)
   {
-    ICollaboration collaboration = collaborationContainer.getCollaboration(collaborationID);
+    ICollaboration collaboration = collaborationProvider.getCollaboration(collaborationID);
     return (Facility)collaboration.getFacility(facilityType);
   }
 }

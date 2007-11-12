@@ -12,12 +12,13 @@ package org.eclipse.net4j.buddies.protocol;
 
 import org.eclipse.core.runtime.IAdaptable;
 
+import java.util.Collection;
 import java.util.Set;
 
 /**
  * @author Eike Stepper
  */
-public interface IBuddy extends ICollaborationContainer, IAdaptable
+public interface IBuddy extends IMembershipContainer, ICollaborationProvider, IAdaptable
 {
   public String getUserID();
 
@@ -29,15 +30,15 @@ public interface IBuddy extends ICollaborationContainer, IAdaptable
 
   public Set<String> getFacilityTypes();
 
-  public ICollaboration initiate();
+  public IMembership initiate();
 
-  public ICollaboration initiate(IBuddy buddy);
+  public IMembership initiate(IBuddy buddy);
 
-  public ICollaboration initiate(Set<IBuddy> buddies);
+  public IMembership[] initiate(Collection<IBuddy> buddies);
 
-  public ICollaboration join(long collaborationID);
+  public IMembership join(long collaborationID);
 
-  public ICollaboration join(Object invitationToken);
+  public IMembership join(Object invitationToken);
 
   /**
    * @author Eike Stepper

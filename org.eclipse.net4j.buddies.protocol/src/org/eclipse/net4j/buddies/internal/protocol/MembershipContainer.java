@@ -14,6 +14,7 @@ import org.eclipse.net4j.buddies.protocol.IBuddy;
 import org.eclipse.net4j.buddies.protocol.ICollaboration;
 import org.eclipse.net4j.buddies.protocol.IMembership;
 import org.eclipse.net4j.buddies.protocol.IMembershipContainer;
+import org.eclipse.net4j.buddies.protocol.IMembershipKey;
 import org.eclipse.net4j.internal.util.container.SingleDeltaContainerEvent;
 import org.eclipse.net4j.internal.util.lifecycle.Lifecycle;
 import org.eclipse.net4j.internal.util.lifecycle.LifecycleEvent;
@@ -30,9 +31,7 @@ import java.util.concurrent.ConcurrentMap;
  */
 public class MembershipContainer extends Lifecycle implements IMembershipContainer, IListener
 {
-  private ConcurrentMap<IBuddy, IMembership> buddies = new ConcurrentHashMap<IBuddy, IMembership>();
-
-  private ConcurrentMap<ICollaboration, IMembership> collaborations = new ConcurrentHashMap<ICollaboration, IMembership>();
+  private ConcurrentMap<IMembershipKey, IMembership> memberships = new ConcurrentHashMap<IMembershipKey, IMembership>();
 
   public MembershipContainer()
   {
@@ -40,43 +39,23 @@ public class MembershipContainer extends Lifecycle implements IMembershipContain
 
   public void addMembership(IMembership membership)
   {
-    if (buddies.putIfAbsent(membership.getBuddy(), membership) == null)
+    if (memberships.putIfAbsent(membership.getKey(), membership) == null)
     {
-      collaborations.put(membership.getCollaboration(), membership);
       fireEvent(new SingleDeltaContainerEvent<IMembership>(this, membership, IContainerDelta.Kind.ADDED));
       membership.addListener(this);
     }
   }
 
-  public void removeMembership(IMembership membership)
+  public IMembership removeMembership(IBuddy buddy, ICollaboration collaboration)
   {
-    if (buddies.remove(membership.getBuddy()) != null)
-    {
-      collaborations.remove(membership.getCollaboration());
-      membership.removeListener(this);
-      fireEvent(new SingleDeltaContainerEvent<IMembership>(this, membership, IContainerDelta.Kind.REMOVED));
-    }
+    return removeMembership(new MembershipKey(buddy, collaboration));
   }
 
-  public IMembership removeMembership(IBuddy buddy)
+  public IMembership removeMembership(IMembershipKey key)
   {
-    IMembership membership = buddies.remove(buddy);
+    IMembership membership = memberships.remove(key);
     if (membership != null)
     {
-      collaborations.remove(membership.getCollaboration());
-      membership.removeListener(this);
-      fireEvent(new SingleDeltaContainerEvent<IMembership>(this, membership, IContainerDelta.Kind.REMOVED));
-    }
-
-    return membership;
-  }
-
-  public IMembership removeMembership(ICollaboration collaboration)
-  {
-    IMembership membership = collaborations.remove(collaboration);
-    if (membership != null)
-    {
-      buddies.remove(membership.getBuddy());
       membership.removeListener(this);
       fireEvent(new SingleDeltaContainerEvent<IMembership>(this, membership, IContainerDelta.Kind.REMOVED));
     }
@@ -86,17 +65,12 @@ public class MembershipContainer extends Lifecycle implements IMembershipContain
 
   public IMembership[] getMemberships()
   {
-    return collaborations.values().toArray(new IMembership[collaborations.size()]);
+    return memberships.values().toArray(new IMembership[memberships.size()]);
   }
 
-  public IMembership getMembership(IBuddy buddy)
+  public IMembership getMembership(IBuddy buddy, ICollaboration collaboration)
   {
-    return buddies.get(buddy);
-  }
-
-  public IMembership getMembership(ICollaboration collaboration)
-  {
-    return collaborations.get(collaboration);
+    return memberships.get(new MembershipKey(buddy, collaboration));
   }
 
   public IMembership[] getElements()
@@ -106,7 +80,7 @@ public class MembershipContainer extends Lifecycle implements IMembershipContain
 
   public boolean isEmpty()
   {
-    return collaborations.isEmpty();
+    return memberships.isEmpty();
   }
 
   public void notifyEvent(IEvent event)

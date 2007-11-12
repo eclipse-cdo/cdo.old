@@ -15,21 +15,26 @@ import org.eclipse.net4j.buddies.protocol.IBuddy;
 import org.eclipse.net4j.buddies.protocol.ICollaboration;
 import org.eclipse.net4j.buddies.protocol.IFacility;
 import org.eclipse.net4j.buddies.protocol.IFacilityInstalledEvent;
+import org.eclipse.net4j.buddies.protocol.IMembership;
 import org.eclipse.net4j.buddies.protocol.IMessage;
 import org.eclipse.net4j.internal.util.event.Event;
 import org.eclipse.net4j.util.ObjectUtil;
 import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
 
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.PlatformObject;
+
 import java.text.MessageFormat;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
  * @author Eike Stepper
  */
-public class Collaboration extends BuddyContainer implements ICollaboration
+public class Collaboration extends MembershipContainer implements ICollaboration
 {
   private long id;
 
@@ -41,9 +46,8 @@ public class Collaboration extends BuddyContainer implements ICollaboration
 
   private ConcurrentMap<String, IFacility> facilities = new ConcurrentHashMap<String, IFacility>();
 
-  public Collaboration(long id, Set<IBuddy> buddies)
+  public Collaboration(long id)
   {
-    super(buddies);
     this.id = id;
   }
 
@@ -86,6 +90,42 @@ public class Collaboration extends BuddyContainer implements ICollaboration
     description = null;
   }
 
+  public IMembership getMembership(IBuddy buddy)
+  {
+    return getMembership(buddy, this);
+  }
+
+  public IMembership removeMembership(IBuddy buddy)
+  {
+    return removeMembership(buddy, this);
+  }
+
+  public IBuddy getBuddy(String userID)
+  {
+    for (IMembership membership : getMemberships())
+    {
+      IBuddy buddy = membership.getBuddy();
+      if (ObjectUtil.equals(buddy.getUserID(), userID))
+      {
+        return buddy;
+      }
+    }
+
+    return null;
+  }
+
+  public IBuddy[] getBuddies()
+  {
+    List<IBuddy> buddies = new ArrayList<IBuddy>();
+    for (IMembership membership : getMemberships())
+    {
+      IBuddy buddy = membership.getBuddy();
+      buddies.add(buddy);
+    }
+
+    return buddies.toArray(new IBuddy[buddies.size()]);
+  }
+
   public IFacility[] getFacilities()
   {
     return facilities.values().toArray(new IFacility[facilities.size()]);
@@ -112,8 +152,10 @@ public class Collaboration extends BuddyContainer implements ICollaboration
 
   public void sendMessage(long collaborationID, String facilityType, IMessage message)
   {
-    for (IBuddy receiver : getElements())
+    IMembership[] elements = getElements();
+    for (IMembership membership : elements)
     {
+      IBuddy receiver = membership.getBuddy();
       if (!ObjectUtil.equals(receiver.getUserID(), message.getSenderID()))
       {
         try
@@ -126,6 +168,33 @@ public class Collaboration extends BuddyContainer implements ICollaboration
         }
       }
     }
+  }
+
+  /**
+   * @see PlatformObject#getAdapter(Class)
+   */
+  @SuppressWarnings("unchecked")
+  public Object getAdapter(Class adapter)
+  {
+    return Platform.getAdapterManager().getAdapter(this, adapter);
+  }
+
+  @Override
+  public boolean equals(Object obj)
+  {
+    if (obj instanceof Collaboration)
+    {
+      Collaboration collaboration = (Collaboration)obj;
+      return id == collaboration.id;
+    }
+
+    return false;
+  }
+
+  @Override
+  public int hashCode()
+  {
+    return ObjectUtil.hashCode(id);
   }
 
   @Override
