@@ -49,11 +49,6 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
   public CDOFeatureImpl(CDOClassImpl containingClass, int featureID, String name, CDOTypeImpl type, boolean many)
   {
     super(name);
-    // if (featureID < 0)
-    // {
-    // System.out.println(featureID);
-    // }
-
     if (type == CDOTypeImpl.OBJECT)
     {
       throw new IllegalArgumentException("type == OBJECT");
