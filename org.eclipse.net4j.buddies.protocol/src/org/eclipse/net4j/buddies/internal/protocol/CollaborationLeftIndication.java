@@ -48,7 +48,10 @@ public class CollaborationLeftIndication extends Indication
     if (collaboration != null)
     {
       Buddy buddy = getBuddy(userID);
-      collaborationLeft(buddy, collaboration);
+      if (buddy != null)
+      {
+        collaborationLeft(buddy, collaboration);
+      }
     }
   }
 

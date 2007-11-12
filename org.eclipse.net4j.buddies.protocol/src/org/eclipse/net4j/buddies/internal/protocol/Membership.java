@@ -13,8 +13,9 @@ package org.eclipse.net4j.buddies.internal.protocol;
 import org.eclipse.net4j.buddies.protocol.IBuddy;
 import org.eclipse.net4j.buddies.protocol.ICollaboration;
 import org.eclipse.net4j.buddies.protocol.IMembership;
-import org.eclipse.net4j.internal.util.event.Notifier;
+import org.eclipse.net4j.internal.util.lifecycle.Lifecycle;
 import org.eclipse.net4j.util.ObjectUtil;
+import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.PlatformObject;
@@ -22,7 +23,7 @@ import org.eclipse.core.runtime.PlatformObject;
 /**
  * @author Eike Stepper
  */
-public class Membership extends Notifier implements IMembership
+public class Membership extends Lifecycle implements IMembership
 {
   private MembershipKey key;
 
@@ -35,6 +36,7 @@ public class Membership extends Notifier implements IMembership
     key = new MembershipKey(buddy, collaboration);
     elements = new Object[] { buddy, collaboration };
     startTime = System.currentTimeMillis();
+    LifecycleUtil.activate(this);
   }
 
   public IBuddy getBuddy()

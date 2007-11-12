@@ -17,7 +17,6 @@ import org.eclipse.net4j.buddies.protocol.IMembershipContainer;
 import org.eclipse.net4j.buddies.protocol.IMembershipKey;
 import org.eclipse.net4j.internal.util.container.SingleDeltaContainerEvent;
 import org.eclipse.net4j.internal.util.lifecycle.Lifecycle;
-import org.eclipse.net4j.internal.util.lifecycle.LifecycleEvent;
 import org.eclipse.net4j.util.container.IContainerDelta;
 import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
@@ -39,7 +38,7 @@ public class MembershipContainer extends Lifecycle implements IMembershipContain
 
   public void addMembership(IMembership membership)
   {
-    if (memberships.putIfAbsent(membership.getKey(), membership) == null)
+    if (memberships.putIfAbsent(membership, membership) == null)
     {
       fireEvent(new SingleDeltaContainerEvent<IMembership>(this, membership, IContainerDelta.Kind.ADDED));
       membership.addListener(this);
@@ -89,9 +88,9 @@ public class MembershipContainer extends Lifecycle implements IMembershipContain
     {
       IMembership membership = (IMembership)event.getSource();
       notifyMembershipEvent(event);
-      if (event instanceof LifecycleEvent)
+      if (event instanceof ILifecycleEvent)
       {
-        LifecycleEvent e = (LifecycleEvent)event;
+        ILifecycleEvent e = (ILifecycleEvent)event;
         if (e.getKind() == ILifecycleEvent.Kind.DEACTIVATED)
         {
           removeMembership(membership);

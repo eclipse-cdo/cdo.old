@@ -19,7 +19,5 @@ import org.eclipse.core.runtime.IAdaptable;
  */
 public interface IMembership extends IMembershipKey, IContainer<Object>, IAdaptable
 {
-  public IMembershipKey getKey();
-
   public long getStartTime();
 }

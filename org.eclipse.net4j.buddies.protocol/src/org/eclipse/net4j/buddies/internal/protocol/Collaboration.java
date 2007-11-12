@@ -211,6 +211,7 @@ public class Collaboration extends MembershipContainer implements ICollaboration
   @Override
   public void notifyEvent(IEvent event)
   {
+    super.notifyEvent(event);
     if (event.getSource() instanceof IFacility)
     {
       notifyFacilityEvent(event);
@@ -228,6 +229,11 @@ public class Collaboration extends MembershipContainer implements ICollaboration
     {
       facility.removeListener(this);
       LifecycleUtil.deactivate(facility);
+    }
+
+    for (IMembership membership : getMemberships())
+    {
+      LifecycleUtil.deactivate(membership);
     }
 
     super.doDeactivate();
