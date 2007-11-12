@@ -13,6 +13,7 @@ package org.eclipse.net4j.buddies.internal.protocol;
 import org.eclipse.net4j.buddies.protocol.IBuddy;
 import org.eclipse.net4j.buddies.protocol.ICollaboration;
 import org.eclipse.net4j.buddies.protocol.IMembership;
+import org.eclipse.net4j.buddies.protocol.IMembershipKey;
 import org.eclipse.net4j.internal.util.lifecycle.Lifecycle;
 import org.eclipse.net4j.util.ObjectUtil;
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
@@ -81,10 +82,11 @@ public class Membership extends Lifecycle implements IMembership
   @Override
   public boolean equals(Object obj)
   {
-    if (obj instanceof Membership)
+    if (obj instanceof IMembershipKey)
     {
-      Membership membership = (Membership)obj;
-      return ObjectUtil.equals(key, membership.key);
+      IMembershipKey key = (IMembershipKey)obj;
+      return ObjectUtil.equals(getBuddy(), key.getBuddy())
+          && ObjectUtil.equals(getCollaboration(), key.getCollaboration());
     }
 
     return false;

@@ -43,10 +43,11 @@ public class MembershipKey implements IMembershipKey
   @Override
   public boolean equals(Object obj)
   {
-    if (obj instanceof MembershipKey)
+    if (obj instanceof IMembershipKey)
     {
-      MembershipKey key = (MembershipKey)obj;
-      return ObjectUtil.equals(buddy, key.buddy) && ObjectUtil.equals(collaboration, key.collaboration);
+      IMembershipKey key = (IMembershipKey)obj;
+      return ObjectUtil.equals(getBuddy(), key.getBuddy())
+          && ObjectUtil.equals(getCollaboration(), key.getCollaboration());
     }
 
     return false;

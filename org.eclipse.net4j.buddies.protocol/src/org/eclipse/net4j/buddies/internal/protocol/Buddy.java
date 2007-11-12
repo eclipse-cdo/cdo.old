@@ -146,9 +146,9 @@ public abstract class Buddy extends MembershipContainer implements IBuddy
   @Override
   public boolean equals(Object obj)
   {
-    if (obj instanceof Buddy)
+    if (obj instanceof IBuddy)
     {
-      Buddy buddy = (Buddy)obj;
+      IBuddy buddy = (IBuddy)obj;
       return ObjectUtil.equals(getUserID(), buddy.getUserID());
     }
 

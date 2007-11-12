@@ -52,6 +52,11 @@ public class MembershipContainer extends Lifecycle implements IMembershipContain
 
   public IMembership removeMembership(IMembershipKey key)
   {
+    // for (IMembership membership : memberships.values())
+    // {
+    //
+    // }
+    //
     IMembership membership = memberships.remove(key);
     if (membership != null)
     {

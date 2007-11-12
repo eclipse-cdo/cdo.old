@@ -58,6 +58,7 @@ public class CollaborationLeftIndication extends Indication
   protected void collaborationLeft(Buddy buddy, Collaboration collaboration)
   {
     collaboration.removeMembership(buddy);
+    buddy.removeMembership(collaboration);
   }
 
   protected Collaboration getCollaboration(long collaborationID)
