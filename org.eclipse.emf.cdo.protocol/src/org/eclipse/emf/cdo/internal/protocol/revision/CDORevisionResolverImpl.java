@@ -13,6 +13,7 @@ package org.eclipse.emf.cdo.internal.protocol.revision;
 import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
+import org.eclipse.emf.cdo.protocol.revision.CDODuplicateRevisionException;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionResolver;
 
 import org.eclipse.net4j.internal.util.lifecycle.Lifecycle;
@@ -285,7 +286,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
 
   protected abstract List<CDORevisionImpl> loadRevisionsByTime(Collection<CDOID> ids, int referenceChunk, long timeStamp);
 
-  public void addRevision(CDORevisionImpl revision)
+  public void addRevision(CDORevisionImpl revision) throws CDODuplicateRevisionException
   {
     if (TRACER.isEnabled())
     {
@@ -306,7 +307,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       }
       else if (holderVersion == version)
       {
-        throw new IllegalStateException("Duplicate version: " + revision);
+        throw new CDODuplicateRevisionException(revision);
       }
       else
       {
