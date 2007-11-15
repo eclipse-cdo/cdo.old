@@ -146,6 +146,11 @@ public abstract class Buddy extends MembershipContainer implements IBuddy
   @Override
   public boolean equals(Object obj)
   {
+    if (obj == this)
+    {
+      return true;
+    }
+
     if (obj instanceof IBuddy)
     {
       IBuddy buddy = (IBuddy)obj;

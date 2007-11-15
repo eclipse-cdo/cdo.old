@@ -68,6 +68,11 @@ public class CDOIDImpl implements CDOID
   @Override
   public boolean equals(Object obj)
   {
+    if (obj == this)
+    {
+      return true;
+    }
+
     if (obj instanceof CDOIDImpl)
     {
       CDOIDImpl that = (CDOIDImpl)obj;

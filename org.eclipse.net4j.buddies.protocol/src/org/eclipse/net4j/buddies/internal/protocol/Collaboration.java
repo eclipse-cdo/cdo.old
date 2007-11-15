@@ -187,6 +187,11 @@ public class Collaboration extends MembershipContainer implements ICollaboration
   @Override
   public boolean equals(Object obj)
   {
+    if (obj == this)
+    {
+      return true;
+    }
+
     if (obj instanceof ICollaboration)
     {
       ICollaboration collaboration = (ICollaboration)obj;

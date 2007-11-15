@@ -82,6 +82,11 @@ public class Membership extends Lifecycle implements IMembership
   @Override
   public boolean equals(Object obj)
   {
+    if (obj == this)
+    {
+      return true;
+    }
+
     if (obj instanceof IMembershipKey)
     {
       IMembershipKey key = (IMembershipKey)obj;
