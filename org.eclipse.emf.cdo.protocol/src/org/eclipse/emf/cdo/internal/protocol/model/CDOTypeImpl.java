@@ -53,13 +53,6 @@ public abstract class CDOTypeImpl implements CDOType
 
   public static final CDOTypeImpl BOOLEAN = new CDOTypeImpl("BOOLEAN", 22, false, BOOLEAN_DEFAULT)
   {
-    @SuppressWarnings("cast")
-    @Override
-    public Object copyValue(Object value)
-    {
-      return value == null ? getDefaultValue() : (Boolean)value;
-    }
-
     @Override
     public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
@@ -75,13 +68,6 @@ public abstract class CDOTypeImpl implements CDOType
 
   public static final CDOTypeImpl BYTE = new CDOTypeImpl("BYTE", 24, false, BYTE_DEFAULT)
   {
-    @SuppressWarnings("cast")
-    @Override
-    public Object copyValue(Object value)
-    {
-      return value == null ? getDefaultValue() : (Byte)value;
-    }
-
     @Override
     public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
@@ -97,13 +83,6 @@ public abstract class CDOTypeImpl implements CDOType
 
   public static final CDOTypeImpl CHAR = new CDOTypeImpl("CHAR", 27, false, CHARACTER_DEFAULT)
   {
-    @SuppressWarnings("cast")
-    @Override
-    public Object copyValue(Object value)
-    {
-      return value == null ? getDefaultValue() : (Character)value;
-    }
-
     @Override
     public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
@@ -119,13 +98,6 @@ public abstract class CDOTypeImpl implements CDOType
 
   public static final CDOTypeImpl DOUBLE = new CDOTypeImpl("DOUBLE", 31, false, DOUBLE_DEFAULT)
   {
-    @SuppressWarnings("cast")
-    @Override
-    public Object copyValue(Object value)
-    {
-      return value == null ? getDefaultValue() : (Double)value;
-    }
-
     @Override
     public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
@@ -141,13 +113,6 @@ public abstract class CDOTypeImpl implements CDOType
 
   public static final CDOTypeImpl FLOAT = new CDOTypeImpl("FLOAT", 37, false, FLOAT_DEFAULT)
   {
-    @SuppressWarnings("cast")
-    @Override
-    public Object copyValue(Object value)
-    {
-      return value == null ? getDefaultValue() : (Float)value;
-    }
-
     @Override
     public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
@@ -163,13 +128,6 @@ public abstract class CDOTypeImpl implements CDOType
 
   public static final CDOTypeImpl INT = new CDOTypeImpl("INT", 39, false, INTEGER_DEFAULT)
   {
-    @SuppressWarnings("cast")
-    @Override
-    public Object copyValue(Object value)
-    {
-      return value == null ? getDefaultValue() : (Integer)value;
-    }
-
     @Override
     public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
@@ -185,13 +143,6 @@ public abstract class CDOTypeImpl implements CDOType
 
   public static final CDOTypeImpl LONG = new CDOTypeImpl("LONG", 43, false, LONG_DEFAULT)
   {
-    @SuppressWarnings("cast")
-    @Override
-    public Object copyValue(Object value)
-    {
-      return value == null ? getDefaultValue() : (Long)value;
-    }
-
     @Override
     public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
@@ -207,13 +158,6 @@ public abstract class CDOTypeImpl implements CDOType
 
   public static final CDOTypeImpl SHORT = new CDOTypeImpl("SHORT", 48, false, SHORT_DEFAULT)
   {
-    @SuppressWarnings("cast")
-    @Override
-    public Object copyValue(Object value)
-    {
-      return value == null ? getDefaultValue() : (Short)value;
-    }
-
     @Override
     public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
@@ -229,13 +173,6 @@ public abstract class CDOTypeImpl implements CDOType
 
   public static final CDOTypeImpl OBJECT = new CDOTypeImpl("OBJECT", 10, true, CDOID.NULL)
   {
-    @SuppressWarnings("cast")
-    @Override
-    public Object copyValue(Object value)
-    {
-      return value;
-    }
-
     @Override
     public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
@@ -249,207 +186,138 @@ public abstract class CDOTypeImpl implements CDOType
     }
   };
 
-  public static final CDOTypeImpl BOOLEAN_OBJECT = new CDOTypeImpl("BOOLEAN_OBJECT", 23, true)
+  public static final CDOTypeImpl BOOLEAN_OBJECT = new ObjectType("BOOLEAN_OBJECT", 23)
   {
     @Override
-    public Object copyValue(Object value)
+    protected void doWriteValue(ExtendedDataOutput out, Object value) throws IOException
     {
-      throw new UnsupportedOperationException("Not yet implemented");
+      out.writeBoolean((Boolean)value);
     }
 
     @Override
-    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
+    protected Object doReadValue(ExtendedDataInput in) throws IOException
     {
-      throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    @Override
-    public Object readValue(ExtendedDataInput in) throws IOException
-    {
-      throw new UnsupportedOperationException("Not yet implemented");
+      return in.readBoolean();
     }
   };
 
-  public static final CDOTypeImpl BYTE_OBJECT = new CDOTypeImpl("BYTE_OBJECT", 26, true)
+  public static final CDOTypeImpl BYTE_OBJECT = new ObjectType("BYTE_OBJECT", 26)
   {
     @Override
-    public Object copyValue(Object value)
+    protected void doWriteValue(ExtendedDataOutput out, Object value) throws IOException
     {
-      throw new UnsupportedOperationException("Not yet implemented");
+      out.writeByte((Byte)value);
     }
 
     @Override
-    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
+    protected Object doReadValue(ExtendedDataInput in) throws IOException
     {
-      throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    @Override
-    public Object readValue(ExtendedDataInput in) throws IOException
-    {
-      throw new UnsupportedOperationException("Not yet implemented");
+      return in.readByte();
     }
   };
 
-  public static final CDOTypeImpl CHARACTER_OBJECT = new CDOTypeImpl("CHARACTER_OBJECT", 28, true)
+  public static final CDOTypeImpl CHARACTER_OBJECT = new ObjectType("CHARACTER_OBJECT", 28)
   {
     @Override
-    public Object copyValue(Object value)
+    protected void doWriteValue(ExtendedDataOutput out, Object value) throws IOException
     {
-      throw new UnsupportedOperationException("Not yet implemented");
+      out.writeChar((Character)value);
     }
 
     @Override
-    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
+    protected Object doReadValue(ExtendedDataInput in) throws IOException
     {
-      throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    @Override
-    public Object readValue(ExtendedDataInput in) throws IOException
-    {
-      throw new UnsupportedOperationException("Not yet implemented");
+      return in.readChar();
     }
   };
 
-  public static final CDOTypeImpl DATE = new CDOTypeImpl("DATE", 29, true)
+  public static final CDOTypeImpl DATE = new ObjectType("DATE", 29)
   {
     @Override
-    public Object copyValue(Object value)
+    protected void doWriteValue(ExtendedDataOutput out, Object value) throws IOException
     {
-      return value == null ? null : new Date(((Date)value).getTime());
+      out.writeLong(((Date)value).getTime());
     }
 
     @Override
-    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
+    protected Object doReadValue(ExtendedDataInput in) throws IOException
     {
-      if (value != null)
-      {
-        out.writeBoolean(true);
-        out.writeLong(((Date)value).getTime());
-      }
-      else
-      {
-        out.writeBoolean(false);
-      }
-    }
-
-    @Override
-    public Object readValue(ExtendedDataInput in) throws IOException
-    {
-      if (in.readBoolean())
-      {
-        return new Date(in.readLong());
-      }
-      else
-      {
-        return null;
-      }
+      return new Date(in.readLong());
     }
   };
 
-  public static final CDOTypeImpl DOUBLE_OBJECT = new CDOTypeImpl("DOUBLE_OBJECT", 32, true)
+  public static final CDOTypeImpl DOUBLE_OBJECT = new ObjectType("DOUBLE_OBJECT", 32)
   {
     @Override
-    public Object copyValue(Object value)
+    protected void doWriteValue(ExtendedDataOutput out, Object value) throws IOException
     {
-      throw new UnsupportedOperationException("Not yet implemented");
+      out.writeDouble((Double)value);
     }
 
     @Override
-    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
+    protected Object doReadValue(ExtendedDataInput in) throws IOException
     {
-      throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    @Override
-    public Object readValue(ExtendedDataInput in) throws IOException
-    {
-      throw new UnsupportedOperationException("Not yet implemented");
+      return in.readDouble();
     }
   };
 
-  public static final CDOTypeImpl FLOAT_OBJECT = new CDOTypeImpl("FLOAT_OBJECT", 38, true)
+  public static final CDOTypeImpl FLOAT_OBJECT = new ObjectType("FLOAT_OBJECT", 38)
   {
     @Override
-    public Object copyValue(Object value)
+    protected void doWriteValue(ExtendedDataOutput out, Object value) throws IOException
     {
-      throw new UnsupportedOperationException("Not yet implemented");
+      out.writeFloat((Float)value);
     }
 
     @Override
-    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
+    protected Object doReadValue(ExtendedDataInput in) throws IOException
     {
-      throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    @Override
-    public Object readValue(ExtendedDataInput in) throws IOException
-    {
-      throw new UnsupportedOperationException("Not yet implemented");
+      return in.readFloat();
     }
   };
 
-  public static final CDOTypeImpl INTEGER_OBJECT = new CDOTypeImpl("INTEGER_OBJECT", 40, true)
+  public static final CDOTypeImpl INTEGER_OBJECT = new ObjectType("INTEGER_OBJECT", 40)
   {
     @Override
-    public Object copyValue(Object value)
+    protected void doWriteValue(ExtendedDataOutput out, Object value) throws IOException
     {
-      throw new UnsupportedOperationException("Not yet implemented");
+      out.writeInt((Integer)value);
     }
 
     @Override
-    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
+    protected Object doReadValue(ExtendedDataInput in) throws IOException
     {
-      throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    @Override
-    public Object readValue(ExtendedDataInput in) throws IOException
-    {
-      throw new UnsupportedOperationException("Not yet implemented");
+      return in.readInt();
     }
   };
 
-  public static final CDOTypeImpl LONG_OBJECT = new CDOTypeImpl("LONG_OBJECT", 44, true)
+  public static final CDOTypeImpl LONG_OBJECT = new ObjectType("LONG_OBJECT", 44)
   {
     @Override
-    public Object copyValue(Object value)
+    protected void doWriteValue(ExtendedDataOutput out, Object value) throws IOException
     {
-      throw new UnsupportedOperationException("Not yet implemented");
+      out.writeLong((Long)value);
     }
 
     @Override
-    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
+    protected Object doReadValue(ExtendedDataInput in) throws IOException
     {
-      throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    @Override
-    public Object readValue(ExtendedDataInput in) throws IOException
-    {
-      throw new UnsupportedOperationException("Not yet implemented");
+      return in.readLong();
     }
   };
 
-  public static final CDOTypeImpl SHORT_OBJECT = new CDOTypeImpl("SHORT_OBJECT", 49, true)
+  public static final CDOTypeImpl SHORT_OBJECT = new ObjectType("SHORT_OBJECT", 49)
   {
     @Override
-    public Object copyValue(Object value)
+    protected void doWriteValue(ExtendedDataOutput out, Object value) throws IOException
     {
-      throw new UnsupportedOperationException("Not yet implemented");
+      out.writeShort((Short)value);
     }
 
     @Override
-    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
+    protected Object doReadValue(ExtendedDataInput in) throws IOException
     {
-      throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    @Override
-    public Object readValue(ExtendedDataInput in) throws IOException
-    {
-      throw new UnsupportedOperationException("Not yet implemented");
+      return in.readShort();
     }
   };
 
@@ -523,7 +391,10 @@ public abstract class CDOTypeImpl implements CDOType
     return name;
   }
 
-  public abstract Object copyValue(Object value);
+  public Object copyValue(Object value)
+  {
+    return value == null ? getDefaultValue() : value;
+  }
 
   public abstract void writeValue(ExtendedDataOutput out, Object value) throws IOException;
 
@@ -553,5 +424,46 @@ public abstract class CDOTypeImpl implements CDOType
     }
 
     index.set(typeID, this);
+  }
+
+  /**
+   * @author Eike Stepper
+   */
+  private static abstract class ObjectType extends CDOTypeImpl
+  {
+    public ObjectType(String name, int typeID)
+    {
+      super(name, typeID, true);
+    }
+
+    @Override
+    public final void writeValue(ExtendedDataOutput out, Object value) throws IOException
+    {
+      if (value == null)
+      {
+        out.writeBoolean(false);
+      }
+      else
+      {
+        out.writeBoolean(true);
+        doWriteValue(out, value);
+      }
+    }
+
+    protected abstract void doWriteValue(ExtendedDataOutput out, Object value) throws IOException;
+
+    @Override
+    public final Object readValue(ExtendedDataInput in) throws IOException
+    {
+      boolean notNull = in.readBoolean();
+      if (notNull)
+      {
+        return doReadValue(in);
+      }
+
+      return null;
+    }
+
+    protected abstract Object doReadValue(ExtendedDataInput in) throws IOException;
   }
 }
