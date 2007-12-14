@@ -539,6 +539,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
         {
           CDORevisionImpl baseRevision = null;
           List<Object> list = new MoveableList(size);
+          values[i] = list;
           int ranges = in.readInt();
           if (ranges != 0)
           {
@@ -587,8 +588,6 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
             {
               list.add(new CDOReferenceProxyImpl(this, feature, j));
             }
-
-            values[i] = list;
           }
         }
       }
