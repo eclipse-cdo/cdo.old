@@ -7,6 +7,7 @@
  * 
  * Contributors:
  *    Eike Stepper - initial API and implementation
+ *    Simon McDuff - bug 212958
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.revision;
 
