@@ -33,6 +33,14 @@ public abstract class OM
 
   public static final OMTracer DEBUG_REVISION = DEBUG.tracer("revision"); //$NON-NLS-1$
 
+  public static final OMTracer PERF = BUNDLE.tracer("perf"); //$NON-NLS-1$
+
+  public static final OMTracer PERF_REVISION = PERF.tracer("revision"); //$NON-NLS-1$
+
+  public static final OMTracer PERF_REVISION_READING = PERF_REVISION.tracer("reading"); //$NON-NLS-1$
+
+  public static final OMTracer PERF_REVISION_WRITING = PERF_REVISION.tracer("writing"); //$NON-NLS-1$
+
   public static final OMLogger LOG = BUNDLE.logger();
 
   /**

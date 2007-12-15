@@ -26,6 +26,7 @@ import org.eclipse.emf.cdo.protocol.revision.CDORevisionData;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionResolver;
 
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
+import org.eclipse.net4j.internal.util.om.trace.PerfTracer;
 import org.eclipse.net4j.util.ImplementationError;
 import org.eclipse.net4j.util.io.ExtendedDataInput;
 import org.eclipse.net4j.util.io.ExtendedDataOutput;
@@ -43,6 +44,10 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
   public static final Object UNINITIALIZED = new Uninitialized();
 
   private static final ContextTracer TRACER = new ContextTracer(OM.DEBUG_REVISION, CDORevisionImpl.class);
+
+  private static final PerfTracer READING = new PerfTracer(OM.PERF_REVISION_READING, CDORevisionImpl.class);
+
+  private static final PerfTracer WRITING = new PerfTracer(OM.PERF_REVISION_WRITING, CDORevisionImpl.class);
 
   private CDORevisionResolver revisionResolver;
 
@@ -97,6 +102,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
   {
     this.revisionResolver = revisionResolver;
 
+    READING.start(this);
     CDOClassRefImpl classRef = new CDOClassRefImpl(in, null);
     cdoClass = classRef.resolve(packageManager);
     if (cdoClass == null)
@@ -120,6 +126,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     }
 
     readValues(in);
+    READING.stop(this);
   }
 
   public void write(ExtendedDataOutput out, CDOIDProvider idProvider, int referenceChunk) throws IOException
@@ -134,6 +141,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
               containingFeatureID);
     }
 
+    WRITING.start(this);
     classRef.write(out, null);
     CDOIDImpl.write(out, id);
     out.writeInt(getVersion());
@@ -143,6 +151,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     CDOIDImpl.write(out, containerID);
     out.writeInt(containingFeatureID);
     writeValues(out, idProvider, referenceChunk);
+    WRITING.stop(this);
   }
 
   public CDORevisionResolver getRevisionResolver()
