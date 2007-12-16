@@ -16,14 +16,14 @@
  */
 package org.eclipse.emf.ecore.util;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
+
 import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.BasicEList;
 
 public class BasicInternalEList<E> extends BasicEList<E> implements InternalEList<E>
 {

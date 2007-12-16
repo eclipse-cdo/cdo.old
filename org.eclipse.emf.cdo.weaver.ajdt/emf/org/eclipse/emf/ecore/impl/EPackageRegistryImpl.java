@@ -16,17 +16,16 @@
  */
 package org.eclipse.emf.ecore.impl;
 
+import org.eclipse.emf.common.EMFPlugin;
+import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.WeakHashMap;
-
-import org.eclipse.emf.common.EMFPlugin;
-import org.eclipse.emf.ecore.EFactory;
-import org.eclipse.emf.ecore.EPackage;
-
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
  * An implementation of a package registry that can delegate failed lookup to another registry.

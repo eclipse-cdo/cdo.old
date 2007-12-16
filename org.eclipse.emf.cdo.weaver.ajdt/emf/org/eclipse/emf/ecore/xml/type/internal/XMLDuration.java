@@ -73,14 +73,14 @@
  */
 package org.eclipse.emf.ecore.xml.type.internal;
 
-import java.math.BigDecimal;
-import java.util.Calendar;
+import org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil;
 
 import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.Duration;
 import javax.xml.datatype.DatatypeConstants.Field;
 
-import org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil;
+import java.math.BigDecimal;
+import java.util.Calendar;
 
 /**
  * An internal extension of Java's Duration to represent the <a

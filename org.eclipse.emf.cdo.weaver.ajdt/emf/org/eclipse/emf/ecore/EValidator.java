@@ -16,9 +16,9 @@
  */
 package org.eclipse.emf.ecore;
 
-import java.util.Map;
-
 import org.eclipse.emf.common.util.DiagnosticChain;
+
+import java.util.Map;
 
 /**
  * A validity checker.

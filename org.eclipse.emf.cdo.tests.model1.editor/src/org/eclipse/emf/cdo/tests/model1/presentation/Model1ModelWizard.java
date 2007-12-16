@@ -10,6 +10,7 @@ import org.eclipse.emf.cdo.tests.model1.Model1Factory;
 import org.eclipse.emf.cdo.tests.model1.Model1Package;
 import org.eclipse.emf.cdo.tests.model1.provider.Model1EditPlugin;
 
+import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -61,7 +62,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.StringTokenizer;
-import org.eclipse.emf.common.CommonPlugin;
 
 /**
  * This is a simple wizard for creating a new model file. <!-- begin-user-doc --> <!-- end-user-doc -->

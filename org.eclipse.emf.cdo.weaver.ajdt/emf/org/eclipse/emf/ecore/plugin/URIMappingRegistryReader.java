@@ -16,14 +16,14 @@
  */
 package org.eclipse.emf.ecore.plugin;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.URIConverter;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.URIConverter;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A plugin extension reader that populates the {@link org.eclipse.emf.ecore.resource.URIConverter#URI_MAP global}

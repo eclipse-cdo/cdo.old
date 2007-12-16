@@ -16,11 +16,11 @@
  */
 package org.eclipse.emf.ecore.resource.impl;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * An extensible implementation of a resource factory registry.

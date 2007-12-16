@@ -16,14 +16,9 @@
  */
 package org.eclipse.emf.ecore.impl;
 
-import java.util.Collection;
-import java.util.Set;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -35,9 +30,11 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import java.util.Collection;
+import java.util.Set;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>EGeneric Type</b></em>'. <!-- end-user-doc

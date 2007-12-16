@@ -16,15 +16,14 @@
  */
 package org.eclipse.emf.ecore.xml.type.util;
 
-import javax.xml.datatype.DatatypeConstants;
-import javax.xml.datatype.Duration;
-import javax.xml.datatype.XMLGregorianCalendar;
-
-import javax.xml.namespace.QName;
-
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.xml.type.internal.DataValue;
 import org.eclipse.emf.ecore.xml.type.internal.RegEx;
+
+import javax.xml.datatype.DatatypeConstants;
+import javax.xml.datatype.Duration;
+import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.namespace.QName;
 
 /**
  * This class contains convenient static methods for working with XML-related information.

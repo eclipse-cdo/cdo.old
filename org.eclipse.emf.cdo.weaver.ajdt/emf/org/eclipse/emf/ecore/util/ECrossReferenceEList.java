@@ -16,13 +16,13 @@
  */
 package org.eclipse.emf.ecore.util;
 
-import java.util.List;
-import java.util.ListIterator;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.EClassImpl;
+
+import java.util.List;
+import java.util.ListIterator;
 
 /**
  * A virtual list of all the cross references of an EObject.

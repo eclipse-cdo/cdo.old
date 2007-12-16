@@ -16,16 +16,15 @@
  */
 package org.eclipse.emf.ecore.xml.type;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-
-import java.util.List;
+import org.eclipse.emf.ecore.EFactory;
 
 import javax.xml.datatype.Duration;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.namespace.QName;
 
-import org.eclipse.emf.ecore.EFactory;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.List;
 
 /**
  * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a create method for each non-abstract class of

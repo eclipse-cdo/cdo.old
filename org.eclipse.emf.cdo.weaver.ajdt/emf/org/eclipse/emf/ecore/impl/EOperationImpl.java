@@ -16,13 +16,6 @@
  */
 package org.eclipse.emf.ecore.impl;
 
-import java.lang.reflect.Array;
-import java.util.AbstractSequentialList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.notify.impl.NotificationImpl;
@@ -39,9 +32,15 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.DelegatingEcoreEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList; // import
-// org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import java.lang.reflect.Array;
+import java.util.AbstractSequentialList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>EOperation</b></em>'. <!-- end-user-doc

@@ -16,10 +16,10 @@
  */
 package org.eclipse.emf.ecore.plugin;
 
+import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
-
-import org.eclipse.emf.ecore.EPackage;
 
 /**
  * A plugin extension reader that populates the {@link org.eclipse.emf.ecore.EPackage.Registry#INSTANCE global} package

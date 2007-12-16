@@ -16,12 +16,12 @@
  */
 package org.eclipse.emf.ecore.util;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 
 public interface InternalEList<E> extends EList<E>
 {

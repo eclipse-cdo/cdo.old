@@ -16,15 +16,15 @@
  */
 package org.eclipse.emf.ecore.impl;
 
-import java.util.Collection;
-import java.util.Iterator;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EcorePackage;
+
+import java.util.Collection;
+import java.util.Iterator;
 
 /**
  * An adapter implementation for maintaining {@link EClass}es

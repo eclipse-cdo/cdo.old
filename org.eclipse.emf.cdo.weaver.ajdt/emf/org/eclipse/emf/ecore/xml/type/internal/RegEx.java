@@ -74,13 +74,13 @@
 
 package org.eclipse.emf.ecore.xml.type.internal;
 
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
 import java.text.CharacterIterator;
 import java.util.Hashtable;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Vector;
-
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
  * NOTE: this class is for internal use only.

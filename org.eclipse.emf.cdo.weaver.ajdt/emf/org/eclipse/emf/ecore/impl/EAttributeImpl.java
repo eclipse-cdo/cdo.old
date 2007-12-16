@@ -16,8 +16,6 @@
  */
 package org.eclipse.emf.ecore.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -28,6 +26,8 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.FeatureMapUtil;
+
+import java.util.Collection;
 
 // import org.eclipse.emf.ecore.InternalEObject;
 

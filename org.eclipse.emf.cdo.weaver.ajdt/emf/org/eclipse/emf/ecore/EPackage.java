@@ -16,9 +16,9 @@
  */
 package org.eclipse.emf.ecore;
 
-import java.util.Map;
-
 import org.eclipse.emf.common.util.EList;
+
+import java.util.Map;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>EPackage</b></em>'. <!-- end-user-doc -->

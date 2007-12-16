@@ -16,9 +16,6 @@
  */
 package org.eclipse.emf.ecore.impl;
 
-import java.util.Collection;
-import java.util.ListIterator;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -29,6 +26,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.ECrossReferenceEList;
+
+import java.util.Collection;
+import java.util.ListIterator;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>ENamed Element</b></em>'. <!--

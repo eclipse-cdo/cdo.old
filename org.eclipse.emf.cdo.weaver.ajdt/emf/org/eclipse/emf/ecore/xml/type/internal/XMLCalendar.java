@@ -74,6 +74,17 @@
 
 package org.eclipse.emf.ecore.xml.type.internal;
 
+import org.eclipse.emf.common.util.WrappedException;
+import org.eclipse.emf.ecore.xml.type.InvalidDatatypeValueException;
+import org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil;
+
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeConstants;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.Duration;
+import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.namespace.QName;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.DateFormat;
@@ -83,17 +94,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
-
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeConstants;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.Duration;
-import javax.xml.datatype.XMLGregorianCalendar;
-import javax.xml.namespace.QName;
-
-import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.emf.ecore.xml.type.InvalidDatatypeValueException;
-import org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil;
 
 /**
  * An internal extension of Java's XMLGregorianCalendar to represent <a

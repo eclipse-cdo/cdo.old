@@ -16,7 +16,6 @@
  */
 package org.eclipse.emf.ecore.xml.type.impl;
 
-import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
@@ -33,6 +32,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.xml.type.ProcessingInstruction;
 import org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
+
+import java.util.Collection;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Document Root</b></em>'. <!-- end-user-doc

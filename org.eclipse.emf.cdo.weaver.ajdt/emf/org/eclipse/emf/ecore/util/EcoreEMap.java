@@ -16,12 +16,6 @@
  */
 package org.eclipse.emf.ecore.util;
 
-import java.lang.reflect.Array;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Map;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -31,6 +25,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+
+import java.lang.reflect.Array;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
 
 public class EcoreEMap<K, V> extends BasicEMap<K, V> implements InternalEList.Unsettable<Map.Entry<K, V>>,
     EStructuralFeature.Setting

@@ -16,9 +16,6 @@
  */
 package org.eclipse.emf.ecore.util;
 
-import java.util.Collection;
-import java.util.List;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -26,6 +23,9 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Interface for accessing and setting extended metadata on Ecore model elements. Such metadata is primarily used to

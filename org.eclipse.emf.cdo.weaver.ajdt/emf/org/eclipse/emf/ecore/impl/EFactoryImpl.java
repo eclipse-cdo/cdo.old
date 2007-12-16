@@ -16,6 +16,22 @@
  */
 package org.eclipse.emf.ecore.impl;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.ExtendedMetaData;
+import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -33,22 +49,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.StringTokenizer;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EFactory;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.ExtendedMetaData;
-import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>EFactory</b></em>'. <!-- end-user-doc -->

@@ -16,6 +16,28 @@
  */
 package org.eclipse.emf.ecore.util;
 
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -23,34 +45,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
-
-import java.math.BigDecimal;
-
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.EValidator;
-
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-
-import org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil;
 
 /**
  * A validity checker for basic EObject constraints.

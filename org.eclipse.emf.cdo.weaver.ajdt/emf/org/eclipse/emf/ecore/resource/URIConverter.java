@@ -16,6 +16,8 @@
  */
 package org.eclipse.emf.ecore.resource;
 
+import org.eclipse.emf.common.util.URI;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -29,8 +31,6 @@ import java.io.Writer;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.eclipse.emf.common.util.URI;
 
 /**
  * A converter to normalize a URI or to produce an input or output stream for a URI.

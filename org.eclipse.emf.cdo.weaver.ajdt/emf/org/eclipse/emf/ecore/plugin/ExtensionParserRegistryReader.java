@@ -16,10 +16,10 @@
  */
 package org.eclipse.emf.ecore.plugin;
 
+import org.eclipse.emf.ecore.resource.Resource;
+
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
-
-import org.eclipse.emf.ecore.resource.Resource;
 
 /**
  * A plugin extension reader that populates the

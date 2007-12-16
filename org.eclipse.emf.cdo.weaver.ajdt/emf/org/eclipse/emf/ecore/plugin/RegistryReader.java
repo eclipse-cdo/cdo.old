@@ -16,7 +16,10 @@
  */
 package org.eclipse.emf.ecore.plugin;
 
-import java.lang.reflect.Field;
+import org.eclipse.emf.common.util.WrappedException;
+import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -28,10 +31,7 @@ import org.eclipse.core.runtime.IRegistryChangeEvent;
 import org.eclipse.core.runtime.IRegistryChangeListener;
 import org.eclipse.core.runtime.Platform;
 
-import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.emf.ecore.EFactory;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.Resource;
+import java.lang.reflect.Field;
 
 public abstract class RegistryReader
 {

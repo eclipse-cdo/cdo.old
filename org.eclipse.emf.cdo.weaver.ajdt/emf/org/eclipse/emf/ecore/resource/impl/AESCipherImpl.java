@@ -16,12 +16,7 @@
  */
 package org.eclipse.emf.ecore.resource.impl;
 
-import java.io.FilterOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.security.Key;
-import java.security.SecureRandom;
+import org.eclipse.emf.ecore.resource.URIConverter;
 
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
@@ -34,7 +29,12 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.eclipse.emf.ecore.resource.URIConverter;
+import java.io.FilterOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.security.Key;
+import java.security.SecureRandom;
 
 /**
  * <p>

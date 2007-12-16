@@ -16,12 +16,12 @@
  */
 package org.eclipse.emf.ecore.resource.impl;
 
-import java.util.List;
-import java.util.Map;
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.URI;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * An extensible implementation of a URI mapping registry.

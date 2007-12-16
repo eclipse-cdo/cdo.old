@@ -16,6 +16,13 @@
  */
 package org.eclipse.emf.ecore.util;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.impl.EClassImpl;
+
 import java.util.AbstractSequentialList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -23,13 +30,6 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 import java.util.RandomAccess;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.impl.EClassImpl;
 
 public class EContentsEList<E> extends AbstractSequentialList<E> implements EList<E>, InternalEList<E>
 {
