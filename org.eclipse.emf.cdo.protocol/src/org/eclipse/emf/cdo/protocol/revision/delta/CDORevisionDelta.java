@@ -7,25 +7,26 @@
  * 
  * Contributors:
  *    Eike Stepper - initial API and implementation
+ *    Simon McDuff - https://bugs.eclipse.org/bugs/show_bug.cgi?id=201266
  **************************************************************************/
-package org.eclipse.emf.cdo.protocol;
+package org.eclipse.emf.cdo.protocol.revision.delta;
 
-import org.eclipse.emf.cdo.internal.protocol.CDOIDNull;
+import org.eclipse.emf.cdo.protocol.CDOID;
+
+import java.util.List;
 
 /**
  * @author Eike Stepper
  */
-public interface CDOID extends Comparable<CDOID>
+public interface CDORevisionDelta
 {
-  public static final CDOID NULL = new CDOIDNull();
+  public int getOriginVersion();
 
-  public long getValue();
+  public int getDirtyVersion();
 
-  public boolean isNull();
+  public CDOID getId();
 
-  public boolean isTemporary();
+  public List<CDOFeatureDelta> getFeatureDeltas();
 
-  public boolean isMeta();
-
-  public CDOID getNext();
+  public void accept(CDOFeatureDeltaVisitor visitor);
 }

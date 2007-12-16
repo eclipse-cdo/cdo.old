@@ -7,6 +7,7 @@
  * 
  * Contributors:
  *    Eike Stepper - initial API and implementation
+ *    Simon McDuff - https://bugs.eclipse.org/bugs/show_bug.cgi?id=201266
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.revision;
 
@@ -187,7 +188,18 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
 
   protected abstract CDORevisionImpl loadRevisionByTime(CDOID id, int referenceChunk, long timeStamp);
 
+  public boolean containsRevisionByVersion(CDOID id, int version)
+  {
+    return getRevisionByVersion(id, 0, version, false) != null;
+  }
+
   public synchronized CDORevisionImpl getRevisionByVersion(CDOID id, int referenceChunk, int version)
+  {
+    return getRevisionByVersion(id, referenceChunk, version, true);
+  }
+
+  public synchronized CDORevisionImpl getRevisionByVersion(CDOID id, int referenceChunk, int version,
+      boolean loadOnDemand)
   {
     RevisionHolder lastHolder = null;
     RevisionHolder holder = revisions.get(id);
@@ -209,11 +221,14 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       }
     }
 
-    CDORevisionImpl revision = loadRevisionByVersion(id, referenceChunk, version);
-    if (revision != null)
+    if (loadOnDemand)
     {
-      addRevisionBetween(revision, lastHolder, holder);
-      return revision;
+      CDORevisionImpl revision = loadRevisionByVersion(id, referenceChunk, version);
+      if (revision != null)
+      {
+        addRevisionBetween(revision, lastHolder, holder);
+        return revision;
+      }
     }
 
     return null;

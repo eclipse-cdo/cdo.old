@@ -6,26 +6,19 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *    Eike Stepper - initial API and implementation
+ *    Simon McDuff - initial API and implementation
+ *    Eike Stepper - maintenance
  **************************************************************************/
-package org.eclipse.emf.cdo.protocol;
+package org.eclipse.emf.cdo.protocol.revision.delta;
 
-import org.eclipse.emf.cdo.internal.protocol.CDOIDNull;
+import org.eclipse.emf.cdo.protocol.CDOID;
 
 /**
- * @author Eike Stepper
+ * @author Simon McDuff
  */
-public interface CDOID extends Comparable<CDOID>
+public interface CDOContainerFeatureDelta extends CDOFeatureDelta
 {
-  public static final CDOID NULL = new CDOIDNull();
+  public CDOID getContainerID();
 
-  public long getValue();
-
-  public boolean isNull();
-
-  public boolean isTemporary();
-
-  public boolean isMeta();
-
-  public CDOID getNext();
+  public int getContainerFeatureID();
 }

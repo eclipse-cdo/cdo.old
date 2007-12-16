@@ -12,6 +12,7 @@ package org.eclipse.emf.cdo.protocol.revision;
 
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
+import org.eclipse.emf.cdo.protocol.revision.delta.CDORevisionDelta;
 
 /**
  * @author Eike Stepper
@@ -44,6 +45,5 @@ public interface CDORevision
 
   public CDORevisionData getData();
 
-  @Deprecated
   public CDORevisionDelta createDelta(CDORevision origin);
 }

@@ -7,7 +7,8 @@
  * 
  * Contributors:
  *    Eike Stepper - initial API and implementation
- *    Simon McDuff - bug 212958
+ *    Simon McDuff - https://bugs.eclipse.org/bugs/show_bug.cgi?id=201266
+ *    Simon McDuff - https://bugs.eclipse.org/bugs/show_bug.cgi?id=212958
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.revision;
 
@@ -17,6 +18,7 @@ import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassRefImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl;
+import org.eclipse.emf.cdo.internal.protocol.revision.delta.CDORevisionDeltaImpl;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
@@ -248,7 +250,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   public CDORevisionDeltaImpl createDelta(CDORevision origin)
   {
-    return new CDORevisionDeltaImpl((CDORevisionImpl)origin, this);
+    return new CDORevisionDeltaImpl(origin, this);
   }
 
   public CDOID getResourceID()
@@ -705,7 +707,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     }
   }
 
-  private static Object remapID(Object value, Map<CDOID, CDOID> idMappings)
+  public static Object remapID(Object value, Map<CDOID, CDOID> idMappings)
   {
     if (value instanceof CDOID)
     {
