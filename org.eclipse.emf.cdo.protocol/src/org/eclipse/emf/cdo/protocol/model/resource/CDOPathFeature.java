@@ -17,7 +17,7 @@ import org.eclipse.emf.cdo.protocol.model.CDOFeature;
  */
 public interface CDOPathFeature extends CDOFeature
 {
-  public static final int FEATURE_ID = 8;
+  public static final int FEATURE_ID = 9;
 
   public static final String NAME = "path";
 }
