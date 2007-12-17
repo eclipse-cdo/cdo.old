@@ -312,15 +312,11 @@ public class Model1ModelWizard extends Wizard implements INewWizard
               .getString("_WARN_FilenameExtension", new Object[] { requiredExt }));
           return false;
         }
-        else
-        {
-          return true;
-        }
+
+        return true;
       }
-      else
-      {
-        return false;
-      }
+
+      return false;
     }
 
     /**

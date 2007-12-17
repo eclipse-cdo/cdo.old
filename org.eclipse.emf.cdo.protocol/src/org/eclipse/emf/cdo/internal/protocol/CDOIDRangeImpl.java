@@ -91,10 +91,8 @@ public final class CDOIDRangeImpl extends Pair<CDOID, CDOID> implements CDOIDRan
     {
       return upperBound <= value && value <= lowerBound;
     }
-    else
-    {
-      return lowerBound <= value && value <= upperBound;
-    }
+
+    return lowerBound <= value && value <= upperBound;
   }
 
   @Override
