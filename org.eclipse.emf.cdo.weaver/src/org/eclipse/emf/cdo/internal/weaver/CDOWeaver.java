@@ -231,6 +231,7 @@ public class CDOWeaver implements ICDOWeaver
     }
   }
 
+  @SuppressWarnings("unchecked")
   private void weaveFile(BundleInfo bundleInfo, File source, File target, String path, WeavingAdaptor weavingAdaptor,
       OMMonitor monitor)
   {
