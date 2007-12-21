@@ -25,10 +25,8 @@ public class SharedIcons
 {
   private static final ImageRegistry REGISTRY = new ImageRegistry(getDisplay());
 
-  @SuppressWarnings("unused")
   private static final String ETOOL = "etool16/";
 
-  @SuppressWarnings("unused")
   private static final String OBJ = "obj16/";
 
   @SuppressWarnings("unused")
