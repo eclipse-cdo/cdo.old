@@ -416,7 +416,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
       {
         if (feature.isMany())
         {
-          List<Object> list = (List<Object>)values[i];
+          List<Object> list = getValueAsList(i);
           int size = list == null ? 0 : list.size();
           for (int j = 0; j < size; j++)
           {
@@ -435,6 +435,11 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
       }
     }
   }
+
+@SuppressWarnings("unchecked")
+private List<Object> getValueAsList(int i) {
+	return (List<Object>)values[i];
+}
 
   @Override
   public String toString()
@@ -619,7 +624,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
       CDOFeatureImpl feature = features[i];
       if (feature.isMany())
       {
-        List<Object> list = (List<Object>)values[i];
+        List<Object> list = getValueAsList(i);
         int size = list == null ? 0 : list.size();
         if (referenceChunk != CDORevision.UNCHUNKED && referenceChunk < size)
         {
