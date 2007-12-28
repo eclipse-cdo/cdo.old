@@ -12,9 +12,9 @@ package org.eclipse.emf.cdo.weaver;
 
 import org.eclipse.emf.cdo.internal.weaver.CDOWeaver;
 
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
 import org.eclipse.net4j.util.io.IORuntimeException;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import java.util.Collection;
 

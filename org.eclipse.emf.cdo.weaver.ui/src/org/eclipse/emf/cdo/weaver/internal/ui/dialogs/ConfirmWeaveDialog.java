@@ -16,15 +16,15 @@ import org.eclipse.emf.cdo.weaver.ICDOWeaver;
 import org.eclipse.emf.cdo.weaver.internal.ui.SharedIcons;
 import org.eclipse.emf.cdo.weaver.internal.ui.bundle.OM;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.net4j.util.StringUtil;
 import org.eclipse.net4j.util.ui.UIUtil;
 import org.eclipse.net4j.util.ui.widgets.BaseDialog;
 import org.eclipse.net4j.util.ui.widgets.MonitorDialog;
 import org.eclipse.net4j.util.ui.widgets.PreferenceButton;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;

@@ -10,7 +10,6 @@
  **************************************************************************/
 package org.eclipse.net4j.buddies.protocol;
 
-
 /**
  * @author Eike Stepper
  */

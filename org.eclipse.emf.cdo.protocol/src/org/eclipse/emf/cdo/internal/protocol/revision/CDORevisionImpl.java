@@ -436,10 +436,11 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     }
   }
 
-@SuppressWarnings("unchecked")
-private List<Object> getValueAsList(int i) {
-	return (List<Object>)values[i];
-}
+  @SuppressWarnings("unchecked")
+  private List<Object> getValueAsList(int i)
+  {
+    return (List<Object>)values[i];
+  }
 
   @Override
   public String toString()
