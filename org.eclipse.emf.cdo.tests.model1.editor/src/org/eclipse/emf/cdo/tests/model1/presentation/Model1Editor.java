@@ -1034,7 +1034,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
     // Only creates the other pages if there is something that can be edited
     //
     if (!getEditingDomain().getResourceSet().getResources().isEmpty()
-        && !(getEditingDomain().getResourceSet().getResources().get(0)).getContents().isEmpty())
+        && !getEditingDomain().getResourceSet().getResources().get(0).getContents().isEmpty())
     {
       // Create a page for the selection tree view.
       //
@@ -1673,7 +1673,7 @@ public class Model1Editor extends MultiPageEditorPart implements IEditingDomainP
    */
   protected void doSaveAs(URI uri, IEditorInput editorInput)
   {
-    (editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
+    editingDomain.getResourceSet().getResources().get(0).setURI(uri);
     setInputWithNotify(editorInput);
     setPartName(editorInput.getName());
     IProgressMonitor progressMonitor = getActionBars().getStatusLineManager() != null ? getActionBars()

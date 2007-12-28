@@ -379,7 +379,7 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
     if (isFactoryForType(type))
     {
       Object adapter = super.adapt(object, type);
-      if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter)))
+      if (!(type instanceof Class) || ((Class<?>)type).isInstance(adapter))
       {
         return adapter;
       }
@@ -431,16 +431,46 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
    */
   public void dispose()
   {
-    if (addressItemProvider != null) addressItemProvider.dispose();
-    if (companyItemProvider != null) companyItemProvider.dispose();
-    if (supplierItemProvider != null) supplierItemProvider.dispose();
-    if (customerItemProvider != null) customerItemProvider.dispose();
-    if (orderItemProvider != null) orderItemProvider.dispose();
-    if (orderDetailItemProvider != null) orderDetailItemProvider.dispose();
-    if (purchaseOrderItemProvider != null) purchaseOrderItemProvider.dispose();
-    if (salesOrderItemProvider != null) salesOrderItemProvider.dispose();
-    if (categoryItemProvider != null) categoryItemProvider.dispose();
-    if (productItemProvider != null) productItemProvider.dispose();
+    if (addressItemProvider != null)
+    {
+      addressItemProvider.dispose();
+    }
+    if (companyItemProvider != null)
+    {
+      companyItemProvider.dispose();
+    }
+    if (supplierItemProvider != null)
+    {
+      supplierItemProvider.dispose();
+    }
+    if (customerItemProvider != null)
+    {
+      customerItemProvider.dispose();
+    }
+    if (orderItemProvider != null)
+    {
+      orderItemProvider.dispose();
+    }
+    if (orderDetailItemProvider != null)
+    {
+      orderDetailItemProvider.dispose();
+    }
+    if (purchaseOrderItemProvider != null)
+    {
+      purchaseOrderItemProvider.dispose();
+    }
+    if (salesOrderItemProvider != null)
+    {
+      salesOrderItemProvider.dispose();
+    }
+    if (categoryItemProvider != null)
+    {
+      categoryItemProvider.dispose();
+    }
+    if (productItemProvider != null)
+    {
+      productItemProvider.dispose();
+    }
   }
 
 }
