@@ -10,7 +10,7 @@
  **************************************************************************/
 package org.eclipse.net4j.buddies.internal.protocol;
 
-import org.eclipse.net4j.IChannel;
+import org.eclipse.net4j.channel.IChannel;
 import org.eclipse.net4j.signal.Request;
 import org.eclipse.net4j.util.io.ExtendedDataOutputStream;
 
