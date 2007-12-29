@@ -12,7 +12,7 @@ package org.eclipse.emf.cdo.protocol.util;
 
 import org.eclipse.emf.cdo.protocol.CDOProtocolConstants;
 
-import org.eclipse.net4j.signal.XORStreamWrapperInjector;
+import org.eclipse.net4j.signal.wrapping.XORStreamWrapperInjector;
 
 /**
  * @author Eike Stepper
