@@ -247,7 +247,7 @@ public class ConfirmWeaveDialog extends BaseDialog<TreeViewer>
   {
     List<String> selectedBundles = new ArrayList<String>();
     IStructuredSelection selection = (IStructuredSelection)getCurrentViewer().getSelection();
-    for (Iterator<Object> it = selection.iterator(); it.hasNext();)
+    for (Iterator<?> it = selection.iterator(); it.hasNext();)
     {
       Object element = it.next();
       if (element instanceof BundleInfo)
