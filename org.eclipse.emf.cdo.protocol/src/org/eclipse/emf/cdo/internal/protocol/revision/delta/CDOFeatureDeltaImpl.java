@@ -58,29 +58,47 @@ public abstract class CDOFeatureDeltaImpl implements CDOFeatureDelta
 
   public static CDOFeatureDeltaImpl readFeature(ExtendedDataInput in, CDOClass cdoCLass) throws IOException
   {
-    CDOFeatureDeltaImpl featureChange = null;
+    CDOFeatureDeltaImpl featureDelta = null;
     int classType = in.readInt();
     CDOFeatureDeltaEnumType featureType = CDOFeatureDeltaEnumType.values()[classType];
 
     if (featureType == CDOFeatureDeltaEnumType.ADD)
-      featureChange = new CDOAddFeatureDeltaImpl(in, cdoCLass);
+    {
+      featureDelta = new CDOAddFeatureDeltaImpl(in, cdoCLass);
+    }
     else if (featureType == CDOFeatureDeltaEnumType.SET)
-      featureChange = new CDOSetFeatureDeltaImpl(in, cdoCLass);
+    {
+      featureDelta = new CDOSetFeatureDeltaImpl(in, cdoCLass);
+    }
     else if (featureType == CDOFeatureDeltaEnumType.LIST)
-      featureChange = new CDOListFeatureDeltaImpl(in, cdoCLass);
+    {
+      featureDelta = new CDOListFeatureDeltaImpl(in, cdoCLass);
+    }
     else if (featureType == CDOFeatureDeltaEnumType.MOVE)
-      featureChange = new CDOMoveFeatureDeltaImpl(in, cdoCLass);
+    {
+      featureDelta = new CDOMoveFeatureDeltaImpl(in, cdoCLass);
+    }
     else if (featureType == CDOFeatureDeltaEnumType.CLEAR)
-      featureChange = new CDOClearFeatureDeltaImpl(in, cdoCLass);
+    {
+      featureDelta = new CDOClearFeatureDeltaImpl(in, cdoCLass);
+    }
     else if (featureType == CDOFeatureDeltaEnumType.REMOVE)
-      featureChange = new CDORemoveFeatureDeltaImpl(in, cdoCLass);
+    {
+      featureDelta = new CDORemoveFeatureDeltaImpl(in, cdoCLass);
+    }
     else if (featureType == CDOFeatureDeltaEnumType.CONTAINER)
-      featureChange = new CDOContainerFeatureDeltaImpl(in, cdoCLass);
+    {
+      featureDelta = new CDOContainerFeatureDeltaImpl(in, cdoCLass);
+    }
     else if (featureType == CDOFeatureDeltaEnumType.UNSET)
-      featureChange = new CDOUnsetFeatureDeltaImpl(in, cdoCLass);
+    {
+      featureDelta = new CDOUnsetFeatureDeltaImpl(in, cdoCLass);
+    }
     else
+    {
       throw new UnsupportedOperationException("Number of classed " + classType + " is undefined");
+    }
 
-    return featureChange;
+    return featureDelta;
   }
 }

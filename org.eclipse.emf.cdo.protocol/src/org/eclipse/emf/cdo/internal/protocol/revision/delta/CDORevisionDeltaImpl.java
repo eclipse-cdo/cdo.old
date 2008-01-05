@@ -110,9 +110,9 @@ public class CDORevisionDeltaImpl implements CDORevisionDelta
   public void applyChanges(CDORevisionImpl revision)
   {
     revision.setVersion(dirtyVersion < 0 ? -dirtyVersion : dirtyVersion);
-    for (CDOFeatureDelta featureChange : featureDeltas.values())
+    for (CDOFeatureDelta featureDelta : featureDeltas.values())
     {
-      CDOFeatureDeltaImpl changeImpl = (CDOFeatureDeltaImpl)featureChange;
+      CDOFeatureDeltaImpl changeImpl = (CDOFeatureDeltaImpl)featureDelta;
       changeImpl.apply(revision);
     }
   }
@@ -127,8 +127,8 @@ public class CDORevisionDeltaImpl implements CDORevisionDelta
     int size = in.readInt();
     for (int i = 0; i < size; i++)
     {
-      CDOFeatureDelta featureChange = CDOFeatureDeltaImpl.readFeature(in, cdoClass);
-      featureDeltas.put(featureChange.getFeature(), featureChange);
+      CDOFeatureDelta featureDelta = CDOFeatureDeltaImpl.readFeature(in, cdoClass);
+      featureDeltas.put(featureDelta.getFeature(), featureDelta);
     }
   }
 
@@ -142,9 +142,9 @@ public class CDORevisionDeltaImpl implements CDORevisionDelta
     out.writeInt(dirtyVersion);
 
     out.writeInt(featureDeltas.size());
-    for (CDOFeatureDelta featureChange : featureDeltas.values())
+    for (CDOFeatureDelta featureDelta : featureDeltas.values())
     {
-      ((CDOFeatureDeltaImpl)featureChange).write(out, idProvider);
+      ((CDOFeatureDeltaImpl)featureDelta).write(out, idProvider);
     }
   }
 
@@ -169,17 +169,17 @@ public class CDORevisionDeltaImpl implements CDORevisionDelta
 
   public void adjustReferences(Map<CDOID, CDOID> idMappings)
   {
-    for (CDOFeatureDelta featureChange : featureDeltas.values())
+    for (CDOFeatureDelta featureDelta : featureDeltas.values())
     {
-      ((CDOFeatureDeltaImpl)featureChange).adjustReferences(idMappings);
+      ((CDOFeatureDeltaImpl)featureDelta).adjustReferences(idMappings);
     }
   }
 
   public void accept(CDOFeatureDeltaVisitor visitor)
   {
-    for (CDOFeatureDelta featureChange : featureDeltas.values())
+    for (CDOFeatureDelta featureDelta : featureDeltas.values())
     {
-      ((CDOFeatureDeltaImpl)featureChange).accept(visitor);
+      ((CDOFeatureDeltaImpl)featureDelta).accept(visitor);
     }
   }
 
