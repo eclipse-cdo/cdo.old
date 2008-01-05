@@ -29,7 +29,8 @@ import java.util.Map;
 /**
  * @author Simon McDuff
  */
-public class CDORemoveFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDORemoveFeatureDelta
+public class CDORemoveFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDORemoveFeatureDelta,
+    IListIndexAffecting
 {
   private int index;
 
@@ -70,6 +71,27 @@ public class CDORemoveFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CD
   {
     super.write(out, idProvider);
     out.writeInt(index);
+  }
+
+  public void affectIndices(int[] indices)
+  {
+    int index = getIndex();
+    for (int i = 1; i <= indices[0]; i++)
+    {
+      if (indices[i] > index)
+      {
+        --indices[i];
+      }
+      else if (indices[i] == index)
+      {
+        int rest = indices[0]-- - i;
+        if (rest > 0)
+        {
+          System.arraycopy(indices, i + 1, indices, i, rest);
+          --i;
+        }
+      }
+    }
   }
 
   @Override

@@ -25,7 +25,8 @@ import java.io.IOException;
 /**
  * @author Simon McDuff
  */
-public class CDOAddFeatureDeltaImpl extends CDOSingleValueFeatureDeltaImpl implements CDOAddFeatureDelta
+public class CDOAddFeatureDeltaImpl extends CDOSingleValueFeatureDeltaImpl implements CDOAddFeatureDelta,
+    IListIndexAffecting, IListTargetAdding
 {
   public CDOAddFeatureDeltaImpl(CDOFeatureImpl feature, int index, Object value)
   {
@@ -50,5 +51,22 @@ public class CDOAddFeatureDeltaImpl extends CDOSingleValueFeatureDeltaImpl imple
   public void accept(CDOFeatureDeltaVisitor visitor)
   {
     visitor.visit(this);
+  }
+
+  public void affectIndices(int[] indices)
+  {
+    int index = getIndex();
+    if (index == NO_INDEX)
+    {
+      return;
+    }
+
+    for (int i = 1; i <= indices[0]; i++)
+    {
+      if (indices[i] >= index)
+      {
+        ++indices[i];
+      }
+    }
   }
 }

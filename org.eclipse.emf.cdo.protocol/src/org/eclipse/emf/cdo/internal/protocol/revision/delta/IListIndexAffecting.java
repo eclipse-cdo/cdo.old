@@ -10,11 +10,13 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.revision.delta;
 
-
 /**
  * @author Eike Stepper
  */
 public interface IListIndexAffecting
 {
-  public void reconstruct(int[] indices);
+  /**
+   * Expects the number of indices in the first element of the indices array.
+   */
+  public void affectIndices(int[] indices);
 }

@@ -25,7 +25,8 @@ import java.io.IOException;
 /**
  * @author Simon McDuff
  */
-public class CDOSetFeatureDeltaImpl extends CDOSingleValueFeatureDeltaImpl implements CDOSetFeatureDelta
+public class CDOSetFeatureDeltaImpl extends CDOSingleValueFeatureDeltaImpl implements CDOSetFeatureDelta,
+    IListTargetAdding
 {
   public CDOSetFeatureDeltaImpl(CDOFeatureImpl feature, int index, Object value)
   {

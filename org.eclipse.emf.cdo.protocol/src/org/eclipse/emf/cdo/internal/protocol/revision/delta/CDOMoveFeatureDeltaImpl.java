@@ -29,7 +29,7 @@ import java.util.Map;
 /**
  * @author Simon McDuff
  */
-public class CDOMoveFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDOMoveFeatureDelta
+public class CDOMoveFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDOMoveFeatureDelta, IListIndexAffecting
 {
   private int oldPosition;
 
@@ -75,6 +75,38 @@ public class CDOMoveFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDOM
     super.write(out, idProvider);
     out.writeInt(newPosition);
     out.writeInt(oldPosition);
+  }
+
+  public void affectIndices(int[] indices)
+  {
+    if (oldPosition < newPosition)
+    {
+      for (int i = 1; i <= indices[0]; i++)
+      {
+        if (oldPosition < indices[i] && indices[i] <= newPosition)
+        {
+          --indices[i];
+        }
+        else if (indices[i] == oldPosition)
+        {
+          indices[i] = newPosition;
+        }
+      }
+    }
+    else if (newPosition < oldPosition)
+    {
+      for (int i = 1; i <= indices[0]; i++)
+      {
+        if (newPosition <= indices[i] && indices[i] < oldPosition)
+        {
+          ++indices[i];
+        }
+        else if (indices[i] == oldPosition)
+        {
+          indices[i] = newPosition;
+        }
+      }
+    }
   }
 
   public void accept(CDOFeatureDeltaVisitor visitor)

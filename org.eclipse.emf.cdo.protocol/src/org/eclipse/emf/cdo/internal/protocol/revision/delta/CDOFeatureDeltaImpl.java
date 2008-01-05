@@ -28,6 +28,8 @@ import java.util.Map;
  */
 public abstract class CDOFeatureDeltaImpl implements CDOFeatureDelta
 {
+  public static final int NO_INDEX = -1;
+
   private CDOFeature feature;
 
   protected CDOFeatureDeltaImpl(CDOFeature feature)
@@ -54,50 +56,31 @@ public abstract class CDOFeatureDeltaImpl implements CDOFeatureDelta
     out.writeInt(feature.getFeatureID());
   }
 
-  public static CDOFeatureDeltaImpl readFeature(ExtendedDataInput in, CDOClass cdoCLass) throws IOException
+  public static CDOFeatureDeltaImpl read(ExtendedDataInput in, CDOClass cdoClass) throws IOException
   {
-    CDOFeatureDeltaImpl featureDelta = null;
-    int classType = in.readInt();
-    Type featureType = Type.values()[classType];
-
-    if (featureType == Type.ADD)
+    int typeOrdinal = in.readInt();
+    Type type = Type.values()[typeOrdinal];
+    switch (type)
     {
-      featureDelta = new CDOAddFeatureDeltaImpl(in, cdoCLass);
-    }
-    else if (featureType == Type.SET)
-    {
-      featureDelta = new CDOSetFeatureDeltaImpl(in, cdoCLass);
-    }
-    else if (featureType == Type.LIST)
-    {
-      featureDelta = new CDOListFeatureDeltaImpl(in, cdoCLass);
-    }
-    else if (featureType == Type.MOVE)
-    {
-      featureDelta = new CDOMoveFeatureDeltaImpl(in, cdoCLass);
-    }
-    else if (featureType == Type.CLEAR)
-    {
-      featureDelta = new CDOClearFeatureDeltaImpl(in, cdoCLass);
-    }
-    else if (featureType == Type.REMOVE)
-    {
-      featureDelta = new CDORemoveFeatureDeltaImpl(in, cdoCLass);
-    }
-    else if (featureType == Type.CONTAINER)
-    {
-      featureDelta = new CDOContainerFeatureDeltaImpl(in, cdoCLass);
-    }
-    else if (featureType == Type.UNSET)
-    {
-      featureDelta = new CDOUnsetFeatureDeltaImpl(in, cdoCLass);
-    }
-    else
-    {
+    case ADD:
+      return new CDOAddFeatureDeltaImpl(in, cdoClass);
+    case SET:
+      return new CDOSetFeatureDeltaImpl(in, cdoClass);
+    case LIST:
+      return new CDOListFeatureDeltaImpl(in, cdoClass);
+    case MOVE:
+      return new CDOMoveFeatureDeltaImpl(in, cdoClass);
+    case CLEAR:
+      return new CDOClearFeatureDeltaImpl(in, cdoClass);
+    case REMOVE:
+      return new CDORemoveFeatureDeltaImpl(in, cdoClass);
+    case CONTAINER:
+      return new CDOContainerFeatureDeltaImpl(in, cdoClass);
+    case UNSET:
+      return new CDOUnsetFeatureDeltaImpl(in, cdoClass);
+    default:
       // TODO Find better exception for signalling errors
-      throw new UnsupportedOperationException("Number of classed " + classType + " is undefined");
+      throw new UnsupportedOperationException("Invalid type " + typeOrdinal);
     }
-
-    return featureDelta;
   }
 }

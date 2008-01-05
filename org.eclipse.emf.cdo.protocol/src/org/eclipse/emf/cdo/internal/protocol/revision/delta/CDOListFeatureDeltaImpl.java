@@ -17,11 +17,13 @@ import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOFeatureDelta;
+import org.eclipse.emf.cdo.protocol.revision.delta.CDOFeatureDeltaHandler;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOFeatureDeltaVisitor;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOListFeatureDelta;
 
 import org.eclipse.net4j.util.io.ExtendedDataInput;
 import org.eclipse.net4j.util.io.ExtendedDataOutput;
+import org.eclipse.net4j.util.io.IORuntimeException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,7 +48,7 @@ public class CDOListFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDOL
     int size = in.readInt();
     for (int i = 0; i < size; i++)
     {
-      featureDeltas.add(CDOFeatureDeltaImpl.readFeature(in, packageManager));
+      featureDeltas.add(CDOFeatureDeltaImpl.read(in, packageManager));
     }
   }
 
@@ -56,13 +58,40 @@ public class CDOListFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDOL
   }
 
   @Override
-  public void write(ExtendedDataOutput out, CDOIDProvider idProvider) throws IOException
+  public void write(final ExtendedDataOutput out, final CDOIDProvider idProvider) throws IOException
   {
     super.write(out, idProvider);
     out.writeInt(featureDeltas.size());
-    for (CDOFeatureDelta featureDelta : featureDeltas)
+    CDOFeatureDeltaHandler preHandler = new CDOFeatureDeltaHandler()
     {
-      ((CDOFeatureDeltaImpl)featureDelta).write(out, idProvider);
+      public void handleFeatureDelta(CDOFeatureDelta featureDelta)
+      {
+        try
+        {
+          ((CDOFeatureDeltaImpl)featureDelta).write(out, idProvider);
+        }
+        catch (IOException ex)
+        {
+          throw new IORuntimeException(ex);
+        }
+      }
+    };
+
+    try
+    {
+      int[] indices = reconstructAddedIndices(preHandler);
+      if (indices[0] != 0)
+      {
+        // Use indices and idProvider here to adjust references in revision
+        for (int i = 1; i <= indices[0]; i++)
+        {
+          // How do we get the revision? Pass CDOID down from CDORevisionDeltaImpl.write()??
+        }
+      }
+    }
+    catch (IORuntimeException ex)
+    {
+      ex.unwrapIOException();
     }
   }
 
@@ -96,5 +125,35 @@ public class CDOListFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDOL
   public void accept(CDOFeatureDeltaVisitor visitor)
   {
     visitor.visit(this);
+  }
+
+  /**
+   * Returns the number of indices as the first element of the array.
+   * 
+   * @return never <code>null</code>.
+   */
+  public int[] reconstructAddedIndices(CDOFeatureDeltaHandler preHandler)
+  {
+    int[] indices = new int[1 + featureDeltas.size()];
+    for (CDOFeatureDelta featureDelta : featureDeltas)
+    {
+      if (preHandler != null)
+      {
+        preHandler.handleFeatureDelta(featureDelta);
+      }
+
+      if (featureDelta instanceof IListIndexAffecting)
+      {
+        IListIndexAffecting affecting = (IListIndexAffecting)featureDelta;
+        affecting.affectIndices(indices);
+      }
+
+      if (featureDelta instanceof IListTargetAdding)
+      {
+        indices[++indices[0]] = ((IListTargetAdding)featureDelta).getIndex();
+      }
+    }
+
+    return indices;
   }
 }
