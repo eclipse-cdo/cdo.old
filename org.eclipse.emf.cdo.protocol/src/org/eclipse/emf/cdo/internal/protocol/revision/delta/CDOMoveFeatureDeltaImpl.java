@@ -59,10 +59,9 @@ public class CDOMoveFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDOM
     return oldPosition;
   }
 
-  @Override
-  public CDOFeatureDeltaEnumType getShortType()
+  public Type getType()
   {
-    return CDOFeatureDeltaEnumType.MOVE;
+    return Type.MOVE;
   }
 
   public void apply(CDORevision revision)

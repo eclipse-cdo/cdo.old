@@ -33,7 +33,7 @@ import java.util.Map;
  */
 public class CDOListFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDOListFeatureDelta
 {
-  private ArrayList<CDOFeatureDelta> featureDeltas = new ArrayList<CDOFeatureDelta>();
+  private List<CDOFeatureDelta> featureDeltas = new ArrayList<CDOFeatureDelta>();
 
   public CDOListFeatureDeltaImpl(CDOFeature feature)
   {
@@ -66,10 +66,9 @@ public class CDOListFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDOL
     }
   }
 
-  @Override
-  public CDOFeatureDeltaEnumType getShortType()
+  public Type getType()
   {
-    return CDOFeatureDeltaEnumType.LIST;
+    return Type.LIST;
   }
 
   public void add(CDOFeatureDelta featureDelta)

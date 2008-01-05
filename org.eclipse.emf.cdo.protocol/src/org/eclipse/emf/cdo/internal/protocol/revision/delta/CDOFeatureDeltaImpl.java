@@ -48,11 +48,9 @@ public abstract class CDOFeatureDeltaImpl implements CDOFeatureDelta
 
   public abstract void adjustReferences(Map<CDOID, CDOID> idMappings);
 
-  public abstract CDOFeatureDeltaEnumType getShortType();
-
   public void write(ExtendedDataOutput out, CDOIDProvider idProvider) throws IOException
   {
-    out.writeInt(getShortType().ordinal());
+    out.writeInt(getType().ordinal());
     out.writeInt(feature.getFeatureID());
   }
 
@@ -60,37 +58,37 @@ public abstract class CDOFeatureDeltaImpl implements CDOFeatureDelta
   {
     CDOFeatureDeltaImpl featureDelta = null;
     int classType = in.readInt();
-    CDOFeatureDeltaEnumType featureType = CDOFeatureDeltaEnumType.values()[classType];
+    Type featureType = Type.values()[classType];
 
-    if (featureType == CDOFeatureDeltaEnumType.ADD)
+    if (featureType == Type.ADD)
     {
       featureDelta = new CDOAddFeatureDeltaImpl(in, cdoCLass);
     }
-    else if (featureType == CDOFeatureDeltaEnumType.SET)
+    else if (featureType == Type.SET)
     {
       featureDelta = new CDOSetFeatureDeltaImpl(in, cdoCLass);
     }
-    else if (featureType == CDOFeatureDeltaEnumType.LIST)
+    else if (featureType == Type.LIST)
     {
       featureDelta = new CDOListFeatureDeltaImpl(in, cdoCLass);
     }
-    else if (featureType == CDOFeatureDeltaEnumType.MOVE)
+    else if (featureType == Type.MOVE)
     {
       featureDelta = new CDOMoveFeatureDeltaImpl(in, cdoCLass);
     }
-    else if (featureType == CDOFeatureDeltaEnumType.CLEAR)
+    else if (featureType == Type.CLEAR)
     {
       featureDelta = new CDOClearFeatureDeltaImpl(in, cdoCLass);
     }
-    else if (featureType == CDOFeatureDeltaEnumType.REMOVE)
+    else if (featureType == Type.REMOVE)
     {
       featureDelta = new CDORemoveFeatureDeltaImpl(in, cdoCLass);
     }
-    else if (featureType == CDOFeatureDeltaEnumType.CONTAINER)
+    else if (featureType == Type.CONTAINER)
     {
       featureDelta = new CDOContainerFeatureDeltaImpl(in, cdoCLass);
     }
-    else if (featureType == CDOFeatureDeltaEnumType.UNSET)
+    else if (featureType == Type.UNSET)
     {
       featureDelta = new CDOUnsetFeatureDeltaImpl(in, cdoCLass);
     }

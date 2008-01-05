@@ -50,10 +50,9 @@ public class CDORemoveFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CD
     return index;
   }
 
-  @Override
-  public CDOFeatureDeltaEnumType getShortType()
+  public Type getType()
   {
-    return CDOFeatureDeltaEnumType.REMOVE;
+    return Type.REMOVE;
   }
 
   public void apply(CDORevision revision)

@@ -19,9 +19,19 @@ import org.eclipse.emf.cdo.protocol.revision.CDORevision;
  */
 public interface CDOFeatureDelta
 {
+  public Type getType();
+
   public CDOFeature getFeature();
 
   public void apply(CDORevision revision);
 
   public void accept(CDOFeatureDeltaVisitor visitor);
+
+  /**
+   * @author Simon McDuff
+   */
+  public enum Type
+  {
+    ADD, REMOVE, CLEAR, MOVE, SET, UNSET, LIST, CONTAINER
+  }
 }

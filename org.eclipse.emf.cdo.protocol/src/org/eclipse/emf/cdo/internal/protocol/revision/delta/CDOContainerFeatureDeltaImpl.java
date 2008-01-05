@@ -65,10 +65,9 @@ public class CDOContainerFeatureDeltaImpl extends CDOFeatureDeltaImpl implements
     return this.newContainerID;
   }
 
-  @Override
-  public CDOFeatureDeltaEnumType getShortType()
+  public Type getType()
   {
-    return CDOFeatureDeltaEnumType.CONTAINER;
+    return Type.CONTAINER;
   }
 
   public void apply(CDORevision revision)
@@ -86,7 +85,7 @@ public class CDOContainerFeatureDeltaImpl extends CDOFeatureDeltaImpl implements
   @Override
   public void write(ExtendedDataOutput out, CDOIDProvider idProvider) throws IOException
   {
-    out.writeInt(getShortType().ordinal());
+    out.writeInt(getType().ordinal());
     out.writeInt(newContainerFeatureID);
     CDOIDImpl.write(out, newContainerID);
   }

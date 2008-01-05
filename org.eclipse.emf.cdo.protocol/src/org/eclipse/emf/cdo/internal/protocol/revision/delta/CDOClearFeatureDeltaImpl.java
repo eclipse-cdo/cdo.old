@@ -39,10 +39,9 @@ public class CDOClearFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDO
     super(in, packageManager);
   }
 
-  @Override
-  public CDOFeatureDeltaEnumType getShortType()
+  public Type getType()
   {
-    return CDOFeatureDeltaEnumType.CLEAR;
+    return Type.CLEAR;
   }
 
   public void apply(CDORevision revision)

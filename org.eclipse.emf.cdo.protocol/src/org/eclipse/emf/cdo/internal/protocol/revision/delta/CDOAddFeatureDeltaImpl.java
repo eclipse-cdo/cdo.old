@@ -37,10 +37,9 @@ public class CDOAddFeatureDeltaImpl extends CDOSingleValueFeatureDeltaImpl imple
     super(in, packageManager);
   }
 
-  @Override
-  public CDOFeatureDeltaEnumType getShortType()
+  public Type getType()
   {
-    return CDOFeatureDeltaEnumType.ADD;
+    return Type.ADD;
   }
 
   public void apply(CDORevision revision)
