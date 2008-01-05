@@ -96,6 +96,7 @@ public abstract class CDOFeatureDeltaImpl implements CDOFeatureDelta
     }
     else
     {
+      // TODO Find better exception for signalling errors
       throw new UnsupportedOperationException("Number of classed " + classType + " is undefined");
     }
 

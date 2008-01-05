@@ -33,7 +33,7 @@ import java.util.Map;
  */
 public class CDOListFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDOListFeatureDelta
 {
-  private ArrayList<CDOFeatureDelta> featureChanges = new ArrayList<CDOFeatureDelta>();
+  private ArrayList<CDOFeatureDelta> featureDeltas = new ArrayList<CDOFeatureDelta>();
 
   public CDOListFeatureDeltaImpl(CDOFeature feature)
   {
@@ -46,13 +46,13 @@ public class CDOListFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDOL
     int size = in.readInt();
     for (int i = 0; i < size; i++)
     {
-      featureChanges.add(CDOFeatureDeltaImpl.readFeature(in, packageManager));
+      featureDeltas.add(CDOFeatureDeltaImpl.readFeature(in, packageManager));
     }
   }
 
   public List<CDOFeatureDelta> getListChanges()
   {
-    return featureChanges;
+    return featureDeltas;
   }
 
   @Override
@@ -60,11 +60,11 @@ public class CDOListFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDOL
   {
     super.write(out, idProvider);
 
-    out.writeInt(featureChanges.size());
+    out.writeInt(featureDeltas.size());
 
-    for (CDOFeatureDelta featureChange : featureChanges)
+    for (CDOFeatureDelta featureDelta : featureDeltas)
     {
-      ((CDOFeatureDeltaImpl)featureChange).write(out, idProvider);
+      ((CDOFeatureDeltaImpl)featureDelta).write(out, idProvider);
     }
   }
 
@@ -74,25 +74,25 @@ public class CDOListFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDOL
     return CDOFeatureDeltaEnumType.LIST;
   }
 
-  public void add(CDOFeatureDelta featureChange)
+  public void add(CDOFeatureDelta featureDelta)
   {
-    featureChanges.add(featureChange);
+    featureDeltas.add(featureDelta);
   }
 
   public void apply(CDORevision revision)
   {
-    for (CDOFeatureDelta featureChange : featureChanges)
+    for (CDOFeatureDelta featureDelta : featureDeltas)
     {
-      ((CDOFeatureDeltaImpl)featureChange).apply(revision);
+      ((CDOFeatureDeltaImpl)featureDelta).apply(revision);
     }
   }
 
   @Override
   public void adjustReferences(Map<CDOID, CDOID> idMappings)
   {
-    for (CDOFeatureDelta featureChange : featureChanges)
+    for (CDOFeatureDelta featureDelta : featureDeltas)
     {
-      ((CDOFeatureDeltaImpl)featureChange).adjustReferences(idMappings);
+      ((CDOFeatureDeltaImpl)featureDelta).adjustReferences(idMappings);
     }
   }
 
