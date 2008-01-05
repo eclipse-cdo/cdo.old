@@ -52,6 +52,11 @@ public class CDOListFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDOL
     }
   }
 
+  public Type getType()
+  {
+    return Type.LIST;
+  }
+
   public List<CDOFeatureDelta> getListChanges()
   {
     return featureDeltas;
@@ -95,38 +100,6 @@ public class CDOListFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDOL
     }
   }
 
-  public Type getType()
-  {
-    return Type.LIST;
-  }
-
-  public void add(CDOFeatureDelta featureDelta)
-  {
-    featureDeltas.add(featureDelta);
-  }
-
-  public void apply(CDORevision revision)
-  {
-    for (CDOFeatureDelta featureDelta : featureDeltas)
-    {
-      ((CDOFeatureDeltaImpl)featureDelta).apply(revision);
-    }
-  }
-
-  @Override
-  public void adjustReferences(Map<CDOID, CDOID> idMappings)
-  {
-    for (CDOFeatureDelta featureDelta : featureDeltas)
-    {
-      ((CDOFeatureDeltaImpl)featureDelta).adjustReferences(idMappings);
-    }
-  }
-
-  public void accept(CDOFeatureDeltaVisitor visitor)
-  {
-    visitor.visit(this);
-  }
-
   /**
    * Returns the number of indices as the first element of the array.
    * 
@@ -155,5 +128,32 @@ public class CDOListFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDOL
     }
 
     return indices;
+  }
+
+  public void add(CDOFeatureDelta featureDelta)
+  {
+    featureDeltas.add(featureDelta);
+  }
+
+  public void apply(CDORevision revision)
+  {
+    for (CDOFeatureDelta featureDelta : featureDeltas)
+    {
+      ((CDOFeatureDeltaImpl)featureDelta).apply(revision);
+    }
+  }
+
+  @Override
+  public void adjustReferences(Map<CDOID, CDOID> idMappings)
+  {
+    for (CDOFeatureDelta featureDelta : featureDeltas)
+    {
+      ((CDOFeatureDeltaImpl)featureDelta).adjustReferences(idMappings);
+    }
+  }
+
+  public void accept(CDOFeatureDeltaVisitor visitor)
+  {
+    visitor.visit(this);
   }
 }
