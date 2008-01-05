@@ -127,7 +127,7 @@ public class CDORevisionDeltaImpl implements CDORevisionDelta
     int size = in.readInt();
     for (int i = 0; i < size; i++)
     {
-      CDOFeatureDelta featureDelta = CDOFeatureDeltaImpl.readFeature(in, cdoClass);
+      CDOFeatureDelta featureDelta = CDOFeatureDeltaImpl.read(in, cdoClass);
       featureDeltas.put(featureDelta.getFeature(), featureDelta);
     }
   }
