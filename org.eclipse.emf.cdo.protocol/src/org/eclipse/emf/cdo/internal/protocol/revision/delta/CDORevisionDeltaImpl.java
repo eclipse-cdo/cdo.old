@@ -87,7 +87,7 @@ public class CDORevisionDeltaImpl implements CDORevisionDelta
     read(in, packageManager);
   }
 
-  public CDOID getId()
+  public CDOID getID()
   {
     return cdoID;
   }

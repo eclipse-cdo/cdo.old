@@ -24,7 +24,7 @@ public interface CDORevisionDelta
 
   public int getDirtyVersion();
 
-  public CDOID getId();
+  public CDOID getID();
 
   public List<CDOFeatureDelta> getFeatureDeltas();
 
