@@ -59,9 +59,7 @@ public class CDOListFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDOL
   public void write(ExtendedDataOutput out, CDOIDProvider idProvider) throws IOException
   {
     super.write(out, idProvider);
-
     out.writeInt(featureDeltas.size());
-
     for (CDOFeatureDelta featureDelta : featureDeltas)
     {
       ((CDOFeatureDeltaImpl)featureDelta).write(out, idProvider);

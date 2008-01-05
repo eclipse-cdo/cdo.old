@@ -150,12 +150,13 @@ public class CDORevisionDeltaImpl implements CDORevisionDelta
 
   public void addFeatureDelta(CDOFeatureDelta delta)
   {
-    if (delta.getFeature().isMany())
+    CDOFeature feature = delta.getFeature();
+    if (feature.isMany())
     {
-      CDOListFeatureDeltaImpl lookupDelta = (CDOListFeatureDeltaImpl)featureDeltas.get(delta.getFeature());
+      CDOListFeatureDeltaImpl lookupDelta = (CDOListFeatureDeltaImpl)featureDeltas.get(feature);
       if (lookupDelta == null)
       {
-        lookupDelta = new CDOListFeatureDeltaImpl(delta.getFeature());
+        lookupDelta = new CDOListFeatureDeltaImpl(feature);
         featureDeltas.put(lookupDelta.getFeature(), lookupDelta);
       }
 
@@ -163,7 +164,7 @@ public class CDORevisionDeltaImpl implements CDORevisionDelta
     }
     else
     {
-      featureDeltas.put(delta.getFeature(), delta);
+      featureDeltas.put(feature, delta);
     }
   }
 
