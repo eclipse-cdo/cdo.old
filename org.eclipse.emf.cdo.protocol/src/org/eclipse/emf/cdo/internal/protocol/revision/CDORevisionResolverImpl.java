@@ -108,7 +108,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       if (loadOnDemand)
       {
         revision = loadRevision(id, referenceChunk);
-        addRevisionFirst(revision);
+        addRevision(revision);
       }
       else
       {
@@ -121,7 +121,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       revision = verifyRevision(oldRevision, referenceChunk);
       if (revision != oldRevision)
       {
-        addRevisionFirst(revision);
+        addRevision(revision);
       }
     }
 
@@ -143,7 +143,6 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
   protected synchronized CDORevisionImpl getRevisionByTime(CDOID id, int referenceChunk, long timeStamp,
       boolean loadOnDemand)
   {
-    RevisionHolder lastHolder = null;
     RevisionHolder holder = revisions.get(id);
     while (holder != null)
     {
@@ -151,7 +150,6 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       if (indicator == 1)
       {
         // timeStamp is after holder timeSpan
-        lastHolder = holder;
         holder = holder.getNext();
       }
       else if (indicator == 0)
@@ -161,7 +159,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
         CDORevisionImpl revision = verifyRevision(oldRevision, referenceChunk);
         if (revision != oldRevision)
         {
-          addRevisionBetween(revision, lastHolder, holder);
+          addRevision(revision);
         }
 
         return revision;
@@ -178,7 +176,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       CDORevisionImpl revision = loadRevisionByTime(id, referenceChunk, timeStamp);
       if (revision != null)
       {
-        addRevisionBetween(revision, lastHolder, holder);
+        addRevision(revision);
         return revision;
       }
     }
@@ -201,14 +199,12 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
   public synchronized CDORevisionImpl getRevisionByVersion(CDOID id, int referenceChunk, int version,
       boolean loadOnDemand)
   {
-    RevisionHolder lastHolder = null;
     RevisionHolder holder = revisions.get(id);
     while (holder != null)
     {
       int holderVersion = holder.getVersion();
       if (holderVersion > version)
       {
-        lastHolder = holder;
         holder = holder.getNext();
       }
       else if (holderVersion == version)
@@ -226,7 +222,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       CDORevisionImpl revision = loadRevisionByVersion(id, referenceChunk, version);
       if (revision != null)
       {
-        addRevisionBetween(revision, lastHolder, holder);
+        addRevision(revision);
         return revision;
       }
     }
@@ -309,6 +305,11 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
           revision, revision.getCreated(), revision.getRevised(), revision.isCurrent());
     }
 
+    RevisionHolder newHolder = createRevisionHolder(revision);
+
+    LRU list = revision.isCurrent() ? currentLRU : revisedLRU;
+    list.add((DLRevisionHolder)newHolder);
+
     int version = revision.getVersion();
     RevisionHolder lastHolder = null;
     RevisionHolder holder = revisions.get(revision.getID());
@@ -330,26 +331,12 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       }
     }
 
-    addRevisionBetween(revision, lastHolder, holder);
+    adjustHolder(revision, newHolder, lastHolder, holder);
   }
 
-  protected void addRevisionFirst(CDORevisionImpl revision)
+  protected void adjustHolder(CDORevisionImpl revision, RevisionHolder holder, RevisionHolder prevHolder,
+      RevisionHolder nextHolder)
   {
-    RevisionHolder newHolder = createRevisionHolder(revision);
-    LRU list = revision.isCurrent() ? currentLRU : revisedLRU;
-    list.add((DLRevisionHolder)newHolder);
-
-    RevisionHolder oldHolder = revisions.put(revision.getID(), newHolder);
-    newHolder.setNext(oldHolder);
-    revise(newHolder, oldHolder);
-  }
-
-  protected void addRevisionBetween(CDORevisionImpl revision, RevisionHolder prevHolder, RevisionHolder nextHolder)
-  {
-    RevisionHolder holder = createRevisionHolder(revision);
-    LRU list = revision.isCurrent() ? currentLRU : revisedLRU;
-    list.add((DLRevisionHolder)holder);
-
     if (prevHolder != null)
     {
       if (nextHolder == null)
@@ -401,31 +388,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       }
       else if (holderVersion == version)
       {
-        RevisionHolder prev = holder.getPrev();
-        RevisionHolder next = holder.getNext();
-        if (next != null)
-        {
-          next.setPrev(prev);
-        }
-
-        if (prev != null)
-        {
-          prev.setNext(next);
-        }
-        else
-        {
-          if (next != null)
-          {
-            revisions.put(id, next);
-          }
-          else
-          {
-            revisions.remove(id);
-          }
-        }
-
-        holder.setPrev(null);
-        holder.setNext(null);
+        removeRevision(holder);
         break;
       }
       else
@@ -433,6 +396,36 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
         break;
       }
     }
+  }
+
+  private synchronized void removeRevision(RevisionHolder holder)
+  {
+    CDOID id = holder.getID();
+    RevisionHolder prev = holder.getPrev();
+    RevisionHolder next = holder.getNext();
+    if (next != null)
+    {
+      next.setPrev(prev);
+    }
+
+    if (prev != null)
+    {
+      prev.setNext(next);
+    }
+    else
+    {
+      if (next != null)
+      {
+        revisions.put(id, next);
+      }
+      else
+      {
+        revisions.remove(id);
+      }
+    }
+
+    holder.setPrev(null);
+    holder.setNext(null);
   }
 
   protected CDORevisionImpl verifyRevision(CDORevisionImpl revision, int referenceChunk)
@@ -481,15 +474,13 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     @Override
     protected void evict(LRURevisionHolder holder)
     {
-      CDOID id = holder.getID();
-      int version = holder.getVersion();
       if (TRACER.isEnabled())
       {
-        TRACER.format("Evicting revision {0}v{1}", id, version);
+        TRACER.format("Evicting revision {0}v{1}", holder.getID(), holder.getVersion());
       }
 
       super.evict(holder);
-      removeRevision(id, version);
+      removeRevision(holder);
     }
   }
 }
