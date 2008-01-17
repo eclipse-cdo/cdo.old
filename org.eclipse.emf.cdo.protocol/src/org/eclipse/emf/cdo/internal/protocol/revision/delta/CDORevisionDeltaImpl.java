@@ -22,6 +22,7 @@ import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
+import org.eclipse.emf.cdo.protocol.revision.delta.CDOClearFeatureDelta;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOFeatureDelta;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOFeatureDeltaVisitor;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDORevisionDelta;
@@ -158,6 +159,12 @@ public class CDORevisionDeltaImpl implements CDORevisionDelta
       {
         lookupDelta = new CDOListFeatureDeltaImpl(feature);
         featureDeltas.put(lookupDelta.getFeature(), lookupDelta);
+      }
+
+      // Remove all previous changes
+      if (delta instanceof CDOClearFeatureDelta)
+      {
+        lookupDelta.getListChanges().clear();
       }
 
       lookupDelta.add(delta);
