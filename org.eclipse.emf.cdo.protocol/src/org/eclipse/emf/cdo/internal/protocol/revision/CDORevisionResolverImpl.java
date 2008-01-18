@@ -94,9 +94,146 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     return revisions.containsKey(id);
   }
 
+  public boolean containsRevisionByTime(CDOID id, long timeStamp)
+  {
+    return getRevisionByTime(id, 0, timeStamp, false) != null;
+  }
+
+  public boolean containsRevisionByVersion(CDOID id, int version)
+  {
+    return getRevisionByVersion(id, 0, version, false) != null;
+  }
+
   public CDORevisionImpl getRevision(CDOID id, int referenceChunk)
   {
     return getRevision(id, referenceChunk, true);
+  }
+
+  public CDORevisionImpl getRevisionByTime(CDOID id, int referenceChunk, long timeStamp)
+  {
+    return getRevisionByTime(id, referenceChunk, timeStamp, true);
+  }
+
+  public synchronized CDORevisionImpl getRevisionByVersion(CDOID id, int referenceChunk, int version)
+  {
+    return getRevisionByVersion(id, referenceChunk, version, true);
+  }
+
+  public synchronized CDORevisionImpl getRevisionByVersion(CDOID id, int referenceChunk, int version,
+      boolean loadOnDemand)
+  {
+    RevisionHolder holder = revisions.get(id);
+    while (holder != null)
+    {
+      int holderVersion = holder.getVersion();
+      if (holderVersion > version)
+      {
+        holder = holder.getNext();
+      }
+      else if (holderVersion == version)
+      {
+        return (CDORevisionImpl)holder.getRevision(true);
+      }
+      else
+      {
+        break;
+      }
+    }
+
+    if (loadOnDemand)
+    {
+      CDORevisionImpl revision = loadRevisionByVersion(id, referenceChunk, version);
+      if (revision != null)
+      {
+        addRevision(revision);
+        return revision;
+      }
+    }
+
+    return null;
+  }
+
+  public List<CDORevisionImpl> getRevisions(Collection<CDOID> ids, int referenceChunk)
+  {
+    List<CDOID> missingIDs = new ArrayList<CDOID>(0);
+    List<CDORevisionImpl> revisions = new ArrayList<CDORevisionImpl>(ids.size());
+    for (CDOID id : ids)
+    {
+      CDORevisionImpl revision = getRevision(id, referenceChunk, false);
+      revisions.add(revision);
+      if (revision == null)
+      {
+        missingIDs.add(id);
+      }
+    }
+
+    if (!missingIDs.isEmpty())
+    {
+      List<CDORevisionImpl> missingRevisions = loadRevisions(missingIDs, referenceChunk);
+      handleMissingRevisions(revisions, missingRevisions);
+    }
+
+    return revisions;
+  }
+
+  public List<CDORevisionImpl> getRevisionsByTime(Collection<CDOID> ids, int referenceChunk, long timeStamp)
+  {
+    List<CDOID> missingIDs = new ArrayList<CDOID>(0);
+    List<CDORevisionImpl> revisions = new ArrayList<CDORevisionImpl>(ids.size());
+    for (CDOID id : ids)
+    {
+      CDORevisionImpl revision = getRevisionByTime(id, referenceChunk, timeStamp, false);
+      revisions.add(revision);
+      if (revision == null)
+      {
+        missingIDs.add(id);
+      }
+    }
+
+    if (!missingIDs.isEmpty())
+    {
+      List<CDORevisionImpl> missingRevisions = loadRevisions(missingIDs, referenceChunk);
+      handleMissingRevisions(revisions, missingRevisions);
+    }
+
+    return revisions;
+  }
+
+  public void addRevision(CDORevisionImpl revision) throws CDODuplicateRevisionException
+  {
+    if (TRACER.isEnabled())
+    {
+      TRACER.format("Adding revision: {0}, created={1,date} {1,time}, revised={2,date} {2,time}, current={3}",
+          revision, revision.getCreated(), revision.getRevised(), revision.isCurrent());
+    }
+
+    RevisionHolder newHolder = createHolder(revision);
+
+    LRU list = revision.isCurrent() ? currentLRU : revisedLRU;
+    list.add((DLRevisionHolder)newHolder);
+
+    int version = revision.getVersion();
+    RevisionHolder lastHolder = null;
+    RevisionHolder holder = revisions.get(revision.getID());
+    while (holder != null)
+    {
+      int holderVersion = holder.getVersion();
+      if (holderVersion > version)
+      {
+        lastHolder = holder;
+        holder = holder.getNext();
+      }
+      else if (holderVersion == version)
+      {
+        throw new CDODuplicateRevisionException(revision);
+      }
+      else
+      {
+        break;
+      }
+    }
+
+    adjustHolder(revision, newHolder, lastHolder, holder);
   }
 
   protected CDORevisionImpl getRevision(CDOID id, int referenceChunk, boolean loadOnDemand)
@@ -126,18 +263,6 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     }
 
     return revision;
-  }
-
-  protected abstract CDORevisionImpl loadRevision(CDOID id, int referenceChunk);
-
-  public boolean containsRevisionByTime(CDOID id, long timeStamp)
-  {
-    return getRevisionByTime(id, 0, timeStamp, false) != null;
-  }
-
-  public CDORevisionImpl getRevisionByTime(CDOID id, int referenceChunk, long timeStamp)
-  {
-    return getRevisionByTime(id, referenceChunk, timeStamp, true);
   }
 
   protected synchronized CDORevisionImpl getRevisionByTime(CDOID id, int referenceChunk, long timeStamp,
@@ -184,101 +309,15 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     return null;
   }
 
+  protected abstract CDORevisionImpl loadRevision(CDOID id, int referenceChunk);
+
   protected abstract CDORevisionImpl loadRevisionByTime(CDOID id, int referenceChunk, long timeStamp);
-
-  public boolean containsRevisionByVersion(CDOID id, int version)
-  {
-    return getRevisionByVersion(id, 0, version, false) != null;
-  }
-
-  public synchronized CDORevisionImpl getRevisionByVersion(CDOID id, int referenceChunk, int version)
-  {
-    return getRevisionByVersion(id, referenceChunk, version, true);
-  }
-
-  public synchronized CDORevisionImpl getRevisionByVersion(CDOID id, int referenceChunk, int version,
-      boolean loadOnDemand)
-  {
-    RevisionHolder holder = revisions.get(id);
-    while (holder != null)
-    {
-      int holderVersion = holder.getVersion();
-      if (holderVersion > version)
-      {
-        holder = holder.getNext();
-      }
-      else if (holderVersion == version)
-      {
-        return (CDORevisionImpl)holder.getRevision(true);
-      }
-      else
-      {
-        break;
-      }
-    }
-
-    if (loadOnDemand)
-    {
-      CDORevisionImpl revision = loadRevisionByVersion(id, referenceChunk, version);
-      if (revision != null)
-      {
-        addRevision(revision);
-        return revision;
-      }
-    }
-
-    return null;
-  }
 
   protected abstract CDORevisionImpl loadRevisionByVersion(CDOID id, int referenceChunk, int version);
 
-  public List<CDORevisionImpl> getRevisions(Collection<CDOID> ids, int referenceChunk)
-  {
-    List<CDOID> missingIDs = new ArrayList<CDOID>(0);
-    List<CDORevisionImpl> revisions = new ArrayList<CDORevisionImpl>(ids.size());
-    for (CDOID id : ids)
-    {
-      CDORevisionImpl revision = getRevision(id, referenceChunk, false);
-      revisions.add(revision);
-      if (revision == null)
-      {
-        missingIDs.add(id);
-      }
-    }
-
-    if (!missingIDs.isEmpty())
-    {
-      List<CDORevisionImpl> missingRevisions = loadRevisions(missingIDs, referenceChunk);
-      handleMissingRevisions(revisions, missingRevisions);
-    }
-
-    return revisions;
-  }
-
   protected abstract List<CDORevisionImpl> loadRevisions(Collection<CDOID> ids, int referenceChunk);
 
-  public List<CDORevisionImpl> getRevisionsByTime(Collection<CDOID> ids, int referenceChunk, long timeStamp)
-  {
-    List<CDOID> missingIDs = new ArrayList<CDOID>(0);
-    List<CDORevisionImpl> revisions = new ArrayList<CDORevisionImpl>(ids.size());
-    for (CDOID id : ids)
-    {
-      CDORevisionImpl revision = getRevisionByTime(id, referenceChunk, timeStamp, false);
-      revisions.add(revision);
-      if (revision == null)
-      {
-        missingIDs.add(id);
-      }
-    }
-
-    if (!missingIDs.isEmpty())
-    {
-      List<CDORevisionImpl> missingRevisions = loadRevisions(missingIDs, referenceChunk);
-      handleMissingRevisions(revisions, missingRevisions);
-    }
-
-    return revisions;
-  }
+  protected abstract List<CDORevisionImpl> loadRevisionsByTime(Collection<CDOID> ids, int referenceChunk, long timeStamp);
 
   protected void handleMissingRevisions(List<CDORevisionImpl> revisions, List<CDORevisionImpl> missingRevisions)
   {
@@ -295,43 +334,47 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     }
   }
 
-  protected abstract List<CDORevisionImpl> loadRevisionsByTime(Collection<CDOID> ids, int referenceChunk, long timeStamp);
-
-  public void addRevision(CDORevisionImpl revision) throws CDODuplicateRevisionException
+  protected synchronized void removeRevision(CDOID id, int version)
   {
-    if (TRACER.isEnabled())
-    {
-      TRACER.format("Adding revision: {0}, created={1,date} {1,time}, revised={2,date} {2,time}, current={3}",
-          revision, revision.getCreated(), revision.getRevised(), revision.isCurrent());
-    }
-
-    RevisionHolder newHolder = createRevisionHolder(revision);
-
-    LRU list = revision.isCurrent() ? currentLRU : revisedLRU;
-    list.add((DLRevisionHolder)newHolder);
-
-    int version = revision.getVersion();
-    RevisionHolder lastHolder = null;
-    RevisionHolder holder = revisions.get(revision.getID());
+    RevisionHolder holder = revisions.get(id);
     while (holder != null)
     {
       int holderVersion = holder.getVersion();
       if (holderVersion > version)
       {
-        lastHolder = holder;
         holder = holder.getNext();
       }
       else if (holderVersion == version)
       {
-        throw new CDODuplicateRevisionException(revision);
+        removeHolder(holder);
+        break;
       }
       else
       {
         break;
       }
     }
+  }
 
-    adjustHolder(revision, newHolder, lastHolder, holder);
+  protected CDORevisionImpl verifyRevision(CDORevisionImpl revision, int referenceChunk)
+  {
+    return revision;
+  }
+
+  @Override
+  protected void doActivate() throws Exception
+  {
+    super.doActivate();
+    currentLRU = new LRU(currentLRUCapacity);
+    revisedLRU = new LRU(revisedLRUCapacity);
+  }
+
+  @Override
+  protected void doDeactivate() throws Exception
+  {
+    currentLRU = null;
+    revisedLRU = null;
+    super.doDeactivate();
   }
 
   private void adjustHolder(CDORevisionImpl revision, RevisionHolder holder, RevisionHolder prevHolder,
@@ -376,28 +419,6 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     }
   }
 
-  protected synchronized void removeRevision(CDOID id, int version)
-  {
-    RevisionHolder holder = revisions.get(id);
-    while (holder != null)
-    {
-      int holderVersion = holder.getVersion();
-      if (holderVersion > version)
-      {
-        holder = holder.getNext();
-      }
-      else if (holderVersion == version)
-      {
-        removeHolder(holder);
-        break;
-      }
-      else
-      {
-        break;
-      }
-    }
-  }
-
   private synchronized void removeHolder(RevisionHolder holder)
   {
     CDOID id = holder.getID();
@@ -428,31 +449,10 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     holder.setNext(null);
   }
 
-  protected CDORevisionImpl verifyRevision(CDORevisionImpl revision, int referenceChunk)
-  {
-    return revision;
-  }
-
-  protected RevisionHolder createRevisionHolder(CDORevisionImpl revision)
+  private RevisionHolder createHolder(CDORevisionImpl revision)
   {
     LRURevisionList list = revision.isCurrent() ? currentLRU : revisedLRU;
     return new LRURevisionHolder(list, revision);
-  }
-
-  @Override
-  protected void doActivate() throws Exception
-  {
-    super.doActivate();
-    currentLRU = new LRU(currentLRUCapacity);
-    revisedLRU = new LRU(revisedLRUCapacity);
-  }
-
-  @Override
-  protected void doDeactivate() throws Exception
-  {
-    currentLRU = null;
-    revisedLRU = null;
-    super.doDeactivate();
   }
 
   /**
