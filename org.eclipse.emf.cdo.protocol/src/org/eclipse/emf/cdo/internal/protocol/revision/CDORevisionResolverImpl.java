@@ -334,7 +334,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     adjustHolder(revision, newHolder, lastHolder, holder);
   }
 
-  protected void adjustHolder(CDORevisionImpl revision, RevisionHolder holder, RevisionHolder prevHolder,
+  private void adjustHolder(CDORevisionImpl revision, RevisionHolder holder, RevisionHolder prevHolder,
       RevisionHolder nextHolder)
   {
     if (prevHolder != null)
@@ -354,10 +354,10 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       revisions.put(revision.getID(), holder);
     }
 
-    revise(holder, nextHolder);
+    reviseHolder(holder, nextHolder);
   }
 
-  protected void revise(RevisionHolder holder, RevisionHolder nextHolder)
+  private void reviseHolder(RevisionHolder holder, RevisionHolder nextHolder)
   {
     if (nextHolder != null)
     {
@@ -388,7 +388,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       }
       else if (holderVersion == version)
       {
-        removeRevision(holder);
+        removeHolder(holder);
         break;
       }
       else
@@ -398,7 +398,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     }
   }
 
-  private synchronized void removeRevision(RevisionHolder holder)
+  private synchronized void removeHolder(RevisionHolder holder)
   {
     CDOID id = holder.getID();
     RevisionHolder prev = holder.getPrev();
@@ -480,7 +480,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       }
 
       super.evict(holder);
-      removeRevision(holder);
+      removeHolder(holder);
     }
   }
 }
