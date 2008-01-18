@@ -109,9 +109,55 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     return getRevision(id, referenceChunk, true);
   }
 
+  public List<CDORevisionImpl> getRevisions(Collection<CDOID> ids, int referenceChunk)
+  {
+    List<CDOID> missingIDs = new ArrayList<CDOID>(0);
+    List<CDORevisionImpl> revisions = new ArrayList<CDORevisionImpl>(ids.size());
+    for (CDOID id : ids)
+    {
+      CDORevisionImpl revision = getRevision(id, referenceChunk, false);
+      revisions.add(revision);
+      if (revision == null)
+      {
+        missingIDs.add(id);
+      }
+    }
+  
+    if (!missingIDs.isEmpty())
+    {
+      List<CDORevisionImpl> missingRevisions = loadRevisions(missingIDs, referenceChunk);
+      handleMissingRevisions(revisions, missingRevisions);
+    }
+  
+    return revisions;
+  }
+
   public CDORevisionImpl getRevisionByTime(CDOID id, int referenceChunk, long timeStamp)
   {
     return getRevisionByTime(id, referenceChunk, timeStamp, true);
+  }
+
+  public List<CDORevisionImpl> getRevisionsByTime(Collection<CDOID> ids, int referenceChunk, long timeStamp)
+  {
+    List<CDOID> missingIDs = new ArrayList<CDOID>(0);
+    List<CDORevisionImpl> revisions = new ArrayList<CDORevisionImpl>(ids.size());
+    for (CDOID id : ids)
+    {
+      CDORevisionImpl revision = getRevisionByTime(id, referenceChunk, timeStamp, false);
+      revisions.add(revision);
+      if (revision == null)
+      {
+        missingIDs.add(id);
+      }
+    }
+  
+    if (!missingIDs.isEmpty())
+    {
+      List<CDORevisionImpl> missingRevisions = loadRevisions(missingIDs, referenceChunk);
+      handleMissingRevisions(revisions, missingRevisions);
+    }
+  
+    return revisions;
   }
 
   public synchronized CDORevisionImpl getRevisionByVersion(CDOID id, int referenceChunk, int version)
@@ -151,52 +197,6 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     }
 
     return null;
-  }
-
-  public List<CDORevisionImpl> getRevisions(Collection<CDOID> ids, int referenceChunk)
-  {
-    List<CDOID> missingIDs = new ArrayList<CDOID>(0);
-    List<CDORevisionImpl> revisions = new ArrayList<CDORevisionImpl>(ids.size());
-    for (CDOID id : ids)
-    {
-      CDORevisionImpl revision = getRevision(id, referenceChunk, false);
-      revisions.add(revision);
-      if (revision == null)
-      {
-        missingIDs.add(id);
-      }
-    }
-
-    if (!missingIDs.isEmpty())
-    {
-      List<CDORevisionImpl> missingRevisions = loadRevisions(missingIDs, referenceChunk);
-      handleMissingRevisions(revisions, missingRevisions);
-    }
-
-    return revisions;
-  }
-
-  public List<CDORevisionImpl> getRevisionsByTime(Collection<CDOID> ids, int referenceChunk, long timeStamp)
-  {
-    List<CDOID> missingIDs = new ArrayList<CDOID>(0);
-    List<CDORevisionImpl> revisions = new ArrayList<CDORevisionImpl>(ids.size());
-    for (CDOID id : ids)
-    {
-      CDORevisionImpl revision = getRevisionByTime(id, referenceChunk, timeStamp, false);
-      revisions.add(revision);
-      if (revision == null)
-      {
-        missingIDs.add(id);
-      }
-    }
-
-    if (!missingIDs.isEmpty())
-    {
-      List<CDORevisionImpl> missingRevisions = loadRevisions(missingIDs, referenceChunk);
-      handleMissingRevisions(revisions, missingRevisions);
-    }
-
-    return revisions;
   }
 
   public void addRevision(CDORevisionImpl revision) throws CDODuplicateRevisionException
