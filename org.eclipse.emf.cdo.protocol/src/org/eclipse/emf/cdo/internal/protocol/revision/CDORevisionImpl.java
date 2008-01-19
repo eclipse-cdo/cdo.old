@@ -18,8 +18,8 @@ import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassRefImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl;
-import org.eclipse.emf.cdo.internal.protocol.revision.delta.CDORevisionMerger;
 import org.eclipse.emf.cdo.internal.protocol.revision.delta.CDORevisionDeltaImpl;
+import org.eclipse.emf.cdo.internal.protocol.revision.delta.CDORevisionMerger;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
@@ -192,21 +192,36 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
   {
     if (TRACER.isEnabled())
     {
-      TRACER.format("Setting version: v{0} -> v{1}", this.version, version);
+      TRACER.format("Setting version for {0}: v{1}", this, version);
     }
 
     this.version = version;
   }
 
-  public int increaseVersion()
+  public boolean isTransactional()
+  {
+    return version < 0;
+  }
+
+  public int setTransactional()
   {
     if (TRACER.isEnabled())
     {
-      TRACER.format("Increasing version: v{0} -> v{1}", version, -(version + 1));
+      TRACER.format("Setting transactional {0}: v{1}", this, -(version + 1));
     }
 
     version = -(version + 1);
     return version;
+  }
+
+  public void setUntransactional()
+  {
+    if (TRACER.isEnabled())
+    {
+      TRACER.format("Setting untransactional {0}: v{1}", this, Math.abs(version));
+    }
+
+    version = Math.abs(version);
   }
 
   public long getCreated()
@@ -218,7 +233,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
   {
     if (TRACER.isEnabled())
     {
-      TRACER.format("Setting created: {0,date} {0,time}", created);
+      TRACER.format("Setting created {0}: {1,date} {1,time}", this, created);
     }
 
     this.created = created;
@@ -233,7 +248,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
   {
     if (TRACER.isEnabled())
     {
-      TRACER.format("Setting revised: {0} -> {1,date} {1,time}", this, revised);
+      TRACER.format("Setting revised {0}: {1,date} {1,time}", this, revised);
     }
 
     this.revised = revised;
@@ -247,21 +262,6 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
   public boolean isValid(long timeStamp)
   {
     return (revised == UNSPECIFIED_DATE || revised >= timeStamp) && timeStamp >= created;
-  }
-
-  public boolean isTransactional()
-  {
-    return version < 0;
-  }
-
-  public void setUntransactional()
-  {
-    if (TRACER.isEnabled())
-    {
-      TRACER.format("Setting untransactional: v{0} -> v{1}", version, Math.abs(version));
-    }
-
-    version = Math.abs(version);
   }
 
   public boolean isResource()
@@ -294,7 +294,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
   {
     if (TRACER.isEnabled())
     {
-      TRACER.format("Setting resourceID: {0}", resourceID);
+      TRACER.format("Setting resourceID {0}: {1}", this, resourceID);
     }
 
     this.resourceID = resourceID;
@@ -309,7 +309,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
   {
     if (TRACER.isEnabled())
     {
-      TRACER.format("Setting containerID: {0}", containerID);
+      TRACER.format("Setting containerID {0}: {1}", this, containerID);
     }
 
     this.containerID = containerID;
@@ -324,7 +324,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
   {
     if (TRACER.isEnabled())
     {
-      TRACER.format("Setting containingFeatureID: {0}", containingFeatureID);
+      TRACER.format("Setting containingFeatureID {0}: {1}", this, containingFeatureID);
     }
 
     this.containingFeatureID = containingFeatureID;

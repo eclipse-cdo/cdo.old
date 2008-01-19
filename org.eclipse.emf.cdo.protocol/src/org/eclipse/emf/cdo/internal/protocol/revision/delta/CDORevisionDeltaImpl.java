@@ -56,7 +56,7 @@ public class CDORevisionDeltaImpl implements CDORevisionDelta
     cdoClass = cdoRevision.getCDOClass();
     cdoID = cdoRevision.getID();
     dirtyVersion = cdoRevision.getVersion();
-    originVersion = cdoRevision.getVersion() - 1;
+    originVersion = dirtyVersion - 1;
   }
 
   public CDORevisionDeltaImpl(CDORevision originRevision, CDORevision dirtyRevision)
@@ -68,14 +68,13 @@ public class CDORevisionDeltaImpl implements CDORevisionDelta
 
     cdoClass = originRevision.getCDOClass();
     cdoID = originRevision.getID();
-    dirtyVersion = originRevision.getVersion();
-    originVersion = dirtyRevision.getVersion();
+    dirtyVersion = dirtyRevision.getVersion();
+    originVersion = originRevision.getVersion();
 
-    this.compare(originRevision, dirtyRevision);
+    compare(originRevision, dirtyRevision);
 
-    if (!this.compare(originRevision.getData().getContainerID(), dirtyRevision.getData().getContainerID())
-        || !this.compare(originRevision.getData().getContainingFeatureID(), dirtyRevision.getData()
-            .getContainingFeatureID()))
+    if (!compare(originRevision.getData().getContainerID(), dirtyRevision.getData().getContainerID())
+        || !compare(originRevision.getData().getContainingFeatureID(), dirtyRevision.getData().getContainingFeatureID()))
     {
       addFeatureDelta(new CDOContainerFeatureDeltaImpl(dirtyRevision.getData().getContainerID(), dirtyRevision
           .getData().getContainingFeatureID()));
@@ -110,11 +109,10 @@ public class CDORevisionDeltaImpl implements CDORevisionDelta
 
   public void apply(CDORevisionImpl revision)
   {
-    revision.setVersion(dirtyVersion < 0 ? -dirtyVersion : dirtyVersion);
+    revision.setVersion(dirtyVersion);
     for (CDOFeatureDelta featureDelta : featureDeltas.values())
     {
-      CDOFeatureDeltaImpl changeImpl = (CDOFeatureDeltaImpl)featureDelta;
-      changeImpl.apply(revision);
+      ((CDOFeatureDeltaImpl)featureDelta).apply(revision);
     }
   }
 
@@ -138,10 +136,8 @@ public class CDORevisionDeltaImpl implements CDORevisionDelta
     CDOClassRefImpl classRef = (CDOClassRefImpl)cdoClass.createClassRef();
     classRef.write(out, null);
     CDOIDImpl.write(out, cdoID);
-
     out.writeInt(originVersion);
     out.writeInt(dirtyVersion);
-
     out.writeInt(featureDeltas.size());
     for (CDOFeatureDelta featureDelta : featureDeltas.values())
     {

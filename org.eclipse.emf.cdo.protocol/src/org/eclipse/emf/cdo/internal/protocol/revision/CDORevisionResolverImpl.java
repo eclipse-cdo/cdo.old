@@ -14,7 +14,6 @@ package org.eclipse.emf.cdo.internal.protocol.revision;
 import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
-import org.eclipse.emf.cdo.protocol.revision.CDODuplicateRevisionException;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionResolver;
 
 import org.eclipse.net4j.internal.util.lifecycle.Lifecycle;
@@ -23,10 +22,13 @@ import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * @author Eike Stepper
@@ -35,7 +37,41 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
 {
   private static final ContextTracer TRACER = new ContextTracer(OM.DEBUG_REVISION, CDORevisionResolverImpl.class);
 
-  private Map<CDOID, RevisionHolder> revisions = new HashMap<CDOID, RevisionHolder>();
+  private Map<CDOID, RevisionHolder> revisions = new HashMap<CDOID, RevisionHolder>()
+  {
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    public String toString()
+    {
+      List<Entry<CDOID, RevisionHolder>> entries = new ArrayList<Entry<CDOID, RevisionHolder>>(entrySet());
+      Collections.sort(entries, new Comparator<Entry<CDOID, RevisionHolder>>()
+      {
+        public int compare(Entry<CDOID, RevisionHolder> o1, Entry<CDOID, RevisionHolder> o2)
+        {
+          return o1.getKey().compareTo(o2.getKey());
+        }
+      });
+
+      StringBuilder builder = new StringBuilder();
+      for (Entry<CDOID, RevisionHolder> entry : entries)
+      {
+        builder.append(entry.getKey());
+        builder.append(" -->");
+        RevisionHolder holder = entry.getValue();
+        while (holder != null)
+        {
+          builder.append(" ");
+          builder.append(holder.getRevision(false));
+          holder = holder.getNext();
+        }
+
+        builder.append("\n");
+      }
+
+      return builder.toString();
+    }
+  };
 
   private int currentLRUCapacity;
 
@@ -122,13 +158,13 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
         missingIDs.add(id);
       }
     }
-  
+
     if (!missingIDs.isEmpty())
     {
       List<CDORevisionImpl> missingRevisions = loadRevisions(missingIDs, referenceChunk);
       handleMissingRevisions(revisions, missingRevisions);
     }
-  
+
     return revisions;
   }
 
@@ -150,13 +186,13 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
         missingIDs.add(id);
       }
     }
-  
+
     if (!missingIDs.isEmpty())
     {
       List<CDORevisionImpl> missingRevisions = loadRevisions(missingIDs, referenceChunk);
       handleMissingRevisions(revisions, missingRevisions);
     }
-  
+
     return revisions;
   }
 
@@ -199,7 +235,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     return null;
   }
 
-  public void addRevision(CDORevisionImpl revision) throws CDODuplicateRevisionException
+  public boolean addRevision(CDORevisionImpl revision)
   {
     if (TRACER.isEnabled())
     {
@@ -208,7 +244,6 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     }
 
     RevisionHolder newHolder = createHolder(revision);
-
     LRU list = revision.isCurrent() ? currentLRU : revisedLRU;
     list.add((DLRevisionHolder)newHolder);
 
@@ -225,7 +260,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       }
       else if (holderVersion == version)
       {
-        throw new CDODuplicateRevisionException(revision);
+        return false;
       }
       else
       {
@@ -234,6 +269,7 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
     }
 
     adjustHolder(revision, newHolder, lastHolder, holder);
+    return true;
   }
 
   protected CDORevisionImpl getRevision(CDOID id, int referenceChunk, boolean loadOnDemand)
@@ -344,14 +380,14 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       {
         holder = holder.getNext();
       }
-      else if (holderVersion == version)
-      {
-        removeHolder(holder);
-        break;
-      }
       else
       {
-        break;
+        if (holderVersion == version)
+        {
+          removeHolder(holder);
+        }
+
+        holder = null;
       }
     }
   }
