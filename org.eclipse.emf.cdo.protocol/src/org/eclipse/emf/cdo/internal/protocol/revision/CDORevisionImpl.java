@@ -18,6 +18,7 @@ import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassRefImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl;
+import org.eclipse.emf.cdo.internal.protocol.revision.delta.CDORevisionDeltaApplier;
 import org.eclipse.emf.cdo.internal.protocol.revision.delta.CDORevisionDeltaImpl;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
@@ -26,6 +27,7 @@ import org.eclipse.emf.cdo.protocol.revision.CDOReferenceProxy;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionData;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionResolver;
+import org.eclipse.emf.cdo.protocol.revision.delta.CDORevisionDelta;
 
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 import org.eclipse.net4j.internal.util.om.trace.PerfTracer;
@@ -173,7 +175,11 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   public void setID(CDOID id)
   {
-    if (TRACER.isEnabled()) TRACER.format("Setting ID: {0}", id);
+    if (TRACER.isEnabled())
+    {
+      TRACER.format("Setting ID: {0}", id);
+    }
+
     this.id = id;
   }
 
@@ -184,13 +190,21 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   public void setVersion(int version)
   {
-    if (TRACER.isEnabled()) TRACER.format("Setting version: v{0} -> v{1}", this.version, version);
+    if (TRACER.isEnabled())
+    {
+      TRACER.format("Setting version: v{0} -> v{1}", this.version, version);
+    }
+
     this.version = version;
   }
 
   public int increaseVersion()
   {
-    if (TRACER.isEnabled()) TRACER.format("Increasing version: v{0} -> v{1}", version, -(version + 1));
+    if (TRACER.isEnabled())
+    {
+      TRACER.format("Increasing version: v{0} -> v{1}", version, -(version + 1));
+    }
+
     version = -(version + 1);
     return version;
   }
@@ -202,7 +216,11 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   public void setCreated(long created)
   {
-    if (TRACER.isEnabled()) TRACER.format("Setting created: {0,date} {0,time}", created);
+    if (TRACER.isEnabled())
+    {
+      TRACER.format("Setting created: {0,date} {0,time}", created);
+    }
+
     this.created = created;
   }
 
@@ -213,7 +231,11 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   public void setRevised(long revised)
   {
-    if (TRACER.isEnabled()) TRACER.format("Setting revised: {0} -> {1,date} {1,time}", this, revised);
+    if (TRACER.isEnabled())
+    {
+      TRACER.format("Setting revised: {0} -> {1,date} {1,time}", this, revised);
+    }
+
     this.revised = revised;
   }
 
@@ -234,7 +256,11 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   public void setUntransactional()
   {
-    if (TRACER.isEnabled()) TRACER.format("Setting untransactional: v{0} -> v{1}", version, Math.abs(version));
+    if (TRACER.isEnabled())
+    {
+      TRACER.format("Setting untransactional: v{0} -> v{1}", version, Math.abs(version));
+    }
+
     version = Math.abs(version);
   }
 
@@ -251,6 +277,12 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
   public CDORevisionDeltaImpl createDelta(CDORevision origin)
   {
     return new CDORevisionDeltaImpl(origin, this);
+  }
+
+  public void applyDelta(CDORevisionDelta delta)
+  {
+    CDORevisionDeltaApplier applier = new CDORevisionDeltaApplier();
+    applier.apply(this, delta);
   }
 
   public CDOID getResourceID()
@@ -288,7 +320,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     return containingFeatureID;
   }
 
-  public void setContainingFeature(int containingFeatureID)
+  public void setContainingFeatureID(int containingFeatureID)
   {
     if (TRACER.isEnabled())
     {
@@ -550,7 +582,10 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
         else
         {
           referenceChunk = size;
-          if (TRACER.isEnabled()) TRACER.format("Read feature {0}: size={1}", feature, size);
+          if (TRACER.isEnabled())
+          {
+            TRACER.format("Read feature {0}: size={1}", feature, size);
+          }
         }
 
         if (size != 0)
@@ -571,7 +606,10 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
                 {
                   Object value = type.readValue(in);
                   list.add(value);
-                  if (TRACER.isEnabled()) TRACER.trace("    " + value);
+                  if (TRACER.isEnabled())
+                  {
+                    TRACER.trace("    " + value);
+                  }
                 }
               }
               else
@@ -588,7 +626,10 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
                 {
                   Object value = baseList.get(index++);
                   list.add(value);
-                  if (TRACER.isEnabled()) TRACER.trace("    " + value);
+                  if (TRACER.isEnabled())
+                  {
+                    TRACER.trace("    " + value);
+                  }
                 }
               }
             }
@@ -599,7 +640,10 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
             {
               Object value = type.readValue(in);
               list.add(value);
-              if (TRACER.isEnabled()) TRACER.trace("    " + value);
+              if (TRACER.isEnabled())
+              {
+                TRACER.trace("    " + value);
+              }
             }
 
             for (int j = referenceChunk; j < size; j++)
@@ -612,7 +656,10 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
       else
       {
         values[i] = type.readValue(in);
-        if (TRACER.isEnabled()) TRACER.format("Read feature {0}: {1}", feature, values[i]);
+        if (TRACER.isEnabled())
+        {
+          TRACER.format("Read feature {0}: {1}", feature, values[i]);
+        }
       }
     }
   }
@@ -641,7 +688,11 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
         }
         else
         {
-          if (TRACER.isEnabled()) TRACER.format("Writing feature {0}: size={1}", feature, size);
+          if (TRACER.isEnabled())
+          {
+            TRACER.format("Writing feature {0}: size={1}", feature, size);
+          }
+
           out.writeInt(size);
         }
 
@@ -668,7 +719,11 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
                     list.set(j, value);
                   }
 
-                  if (TRACER.isEnabled()) TRACER.trace("    " + value);
+                  if (TRACER.isEnabled())
+                  {
+                    TRACER.trace("    " + value);
+                  }
+
                   feature.getType().writeValue(out, value);
                   ++j;
                 }
@@ -694,7 +749,11 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
                 list.set(j, value);
               }
 
-              if (TRACER.isEnabled()) TRACER.trace("    " + value);
+              if (TRACER.isEnabled())
+              {
+                TRACER.trace("    " + value);
+              }
+
               feature.getType().writeValue(out, value);
             }
           }
@@ -707,7 +766,11 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
           values[i] = idProvider.provideCDOID(values[i]);
         }
 
-        if (TRACER.isEnabled()) TRACER.format("Writing feature {0}: {1}", feature, values[i]);
+        if (TRACER.isEnabled())
+        {
+          TRACER.format("Writing feature {0}: {1}", feature, values[i]);
+        }
+
         feature.getType().writeValue(out, values[i]);
       }
     }

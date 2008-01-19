@@ -7,6 +7,7 @@
  * 
  * Contributors:
  *    Eike Stepper - initial API and implementation
+ *    Simon McDuff - delta support
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.revision;
 
@@ -46,4 +47,6 @@ public interface CDORevision
   public CDORevisionData getData();
 
   public CDORevisionDelta createDelta(CDORevision origin);
+
+  public void applyDelta(CDORevisionDelta delta);
 }

@@ -14,6 +14,7 @@ package org.eclipse.emf.cdo.internal.protocol.revision.delta;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOAddFeatureDelta;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOClearFeatureDelta;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOContainerFeatureDelta;
+import org.eclipse.emf.cdo.protocol.revision.delta.CDOFeatureDelta;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOFeatureDeltaVisitor;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOListFeatureDelta;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOMoveFeatureDelta;
@@ -42,8 +43,12 @@ public class CDOFeatureDeltaVisitorImpl implements CDOFeatureDeltaVisitor
   {
   }
 
-  public void visit(CDOListFeatureDelta delta)
+  public void visit(CDOListFeatureDelta deltas)
   {
+    for (CDOFeatureDelta delta : deltas.getListChanges())
+    {
+      delta.accept(this);
+    }
   }
 
   public void visit(CDOMoveFeatureDelta delta)
