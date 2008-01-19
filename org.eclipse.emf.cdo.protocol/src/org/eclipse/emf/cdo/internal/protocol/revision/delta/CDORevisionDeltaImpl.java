@@ -108,7 +108,7 @@ public class CDORevisionDeltaImpl implements CDORevisionDelta
     return new ArrayList<CDOFeatureDelta>(featureDeltas.values());
   }
 
-  public void applyChanges(CDORevisionImpl revision)
+  public void apply(CDORevisionImpl revision)
   {
     revision.setVersion(dirtyVersion < 0 ? -dirtyVersion : dirtyVersion);
     for (CDOFeatureDelta featureDelta : featureDeltas.values())
