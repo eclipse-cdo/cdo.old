@@ -18,7 +18,7 @@ import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassRefImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl;
-import org.eclipse.emf.cdo.internal.protocol.revision.delta.CDORevisionDeltaApplier;
+import org.eclipse.emf.cdo.internal.protocol.revision.delta.CDORevisionMerger;
 import org.eclipse.emf.cdo.internal.protocol.revision.delta.CDORevisionDeltaImpl;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
@@ -274,15 +274,15 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     return this;
   }
 
-  public CDORevisionDeltaImpl createDelta(CDORevision origin)
+  public CDORevisionDeltaImpl compare(CDORevision origin)
   {
     return new CDORevisionDeltaImpl(origin, this);
   }
 
-  public void applyDelta(CDORevisionDelta delta)
+  public void merge(CDORevisionDelta delta)
   {
-    CDORevisionDeltaApplier applier = new CDORevisionDeltaApplier();
-    applier.apply(this, delta);
+    CDORevisionMerger applier = new CDORevisionMerger();
+    applier.merge(this, delta);
   }
 
   public CDOID getResourceID()

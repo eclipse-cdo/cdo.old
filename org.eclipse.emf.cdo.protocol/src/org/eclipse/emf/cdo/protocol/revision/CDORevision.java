@@ -46,7 +46,7 @@ public interface CDORevision
 
   public CDORevisionData getData();
 
-  public CDORevisionDelta createDelta(CDORevision origin);
+  public CDORevisionDelta compare(CDORevision origin);
 
-  public void applyDelta(CDORevisionDelta delta);
+  public void merge(CDORevisionDelta delta);
 }

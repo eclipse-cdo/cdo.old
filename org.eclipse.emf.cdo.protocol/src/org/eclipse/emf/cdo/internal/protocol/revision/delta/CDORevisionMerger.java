@@ -24,15 +24,15 @@ import org.eclipse.emf.cdo.protocol.revision.delta.CDOUnsetFeatureDelta;
 /**
  * @author Simon McDuff
  */
-public class CDORevisionDeltaApplier extends CDOFeatureDeltaVisitorImpl
+public class CDORevisionMerger extends CDOFeatureDeltaVisitorImpl
 {
   private CDORevisionImpl revision;
 
-  public CDORevisionDeltaApplier()
+  public CDORevisionMerger()
   {
   }
 
-  public void apply(CDORevisionImpl revision, CDORevisionDelta delta)
+  public void merge(CDORevisionImpl revision, CDORevisionDelta delta)
   {
     this.revision = revision;
     delta.accept(this);

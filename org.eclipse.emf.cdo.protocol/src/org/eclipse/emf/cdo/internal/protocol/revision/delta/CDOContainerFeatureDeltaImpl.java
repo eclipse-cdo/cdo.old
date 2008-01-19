@@ -73,7 +73,7 @@ public class CDOContainerFeatureDeltaImpl extends CDOFeatureDeltaImpl implements
   public void apply(CDORevision revision)
   {
     ((CDORevisionImpl)revision).setContainerID(newContainerID);
-    ((CDORevisionImpl)revision).setContainingFeature(newContainerFeatureID);
+    ((CDORevisionImpl)revision).setContainingFeatureID(newContainerFeatureID);
   }
 
   @Override

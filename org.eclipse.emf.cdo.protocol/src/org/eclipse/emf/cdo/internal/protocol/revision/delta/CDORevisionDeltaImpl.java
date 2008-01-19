@@ -66,10 +66,10 @@ public class CDORevisionDeltaImpl implements CDORevisionDelta
       throw new IllegalArgumentException();
     }
 
-    this.cdoClass = originRevision.getCDOClass();
-    this.cdoID = originRevision.getID();
-    this.dirtyVersion = originRevision.getVersion();
-    this.originVersion = dirtyRevision.getVersion();
+    cdoClass = originRevision.getCDOClass();
+    cdoID = originRevision.getID();
+    dirtyVersion = originRevision.getVersion();
+    originVersion = dirtyRevision.getVersion();
 
     this.compare(originRevision, dirtyRevision);
 
@@ -166,7 +166,6 @@ public class CDORevisionDeltaImpl implements CDORevisionDelta
       {
         lookupDelta.getListChanges().clear();
       }
-
       lookupDelta.add(delta);
     }
     else
