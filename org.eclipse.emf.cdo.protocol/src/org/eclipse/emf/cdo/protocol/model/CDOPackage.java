@@ -29,6 +29,8 @@ public interface CDOPackage extends CDOModelElement, Comparable<CDOPackage>
 
   public CDOClass lookupClass(int classifierID);
 
+  public String getEcore();
+
   public boolean isSystem();
 
   public boolean isDynamic();
