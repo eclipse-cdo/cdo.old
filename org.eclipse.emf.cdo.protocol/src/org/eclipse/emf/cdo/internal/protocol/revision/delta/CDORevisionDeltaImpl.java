@@ -15,7 +15,7 @@ import org.eclipse.emf.cdo.internal.protocol.CDOIDImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassRefImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
 import org.eclipse.emf.cdo.internal.protocol.revision.CDOIDProvider;
-import org.eclipse.emf.cdo.internal.protocol.revision.CDORevisionImpl;
+import org.eclipse.emf.cdo.internal.protocol.revision.InternalCDORevision;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
@@ -107,7 +107,7 @@ public class CDORevisionDeltaImpl implements CDORevisionDelta
     return new ArrayList<CDOFeatureDelta>(featureDeltas.values());
   }
 
-  public void apply(CDORevisionImpl revision)
+  public void apply(InternalCDORevision revision)
   {
     revision.setVersion(dirtyVersion);
     for (CDOFeatureDelta featureDelta : featureDeltas.values())

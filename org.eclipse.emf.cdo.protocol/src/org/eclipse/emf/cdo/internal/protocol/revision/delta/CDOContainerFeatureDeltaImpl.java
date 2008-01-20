@@ -13,7 +13,7 @@ package org.eclipse.emf.cdo.internal.protocol.revision.delta;
 
 import org.eclipse.emf.cdo.internal.protocol.CDOIDImpl;
 import org.eclipse.emf.cdo.internal.protocol.revision.CDOIDProvider;
-import org.eclipse.emf.cdo.internal.protocol.revision.CDORevisionImpl;
+import org.eclipse.emf.cdo.internal.protocol.revision.InternalCDORevision;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
@@ -21,6 +21,7 @@ import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 import org.eclipse.emf.cdo.protocol.model.CDOType;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
+import org.eclipse.emf.cdo.protocol.revision.CDORevisionUtil;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOContainerFeatureDelta;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOFeatureDeltaVisitor;
 
@@ -57,12 +58,12 @@ public class CDOContainerFeatureDeltaImpl extends CDOFeatureDeltaImpl implements
 
   public int getContainerFeatureID()
   {
-    return this.newContainerFeatureID;
+    return newContainerFeatureID;
   }
 
   public CDOID getContainerID()
   {
-    return this.newContainerID;
+    return newContainerID;
   }
 
   public Type getType()
@@ -72,14 +73,14 @@ public class CDOContainerFeatureDeltaImpl extends CDOFeatureDeltaImpl implements
 
   public void apply(CDORevision revision)
   {
-    ((CDORevisionImpl)revision).setContainerID(newContainerID);
-    ((CDORevisionImpl)revision).setContainingFeatureID(newContainerFeatureID);
+    ((InternalCDORevision)revision).setContainerID(newContainerID);
+    ((InternalCDORevision)revision).setContainingFeatureID(newContainerFeatureID);
   }
 
   @Override
   public void adjustReferences(Map<CDOID, CDOID> idMappings)
   {
-    newContainerID = (CDOID)CDORevisionImpl.remapID(newContainerID, idMappings);
+    newContainerID = (CDOID)CDORevisionUtil.remapID(newContainerID, idMappings);
   }
 
   @Override

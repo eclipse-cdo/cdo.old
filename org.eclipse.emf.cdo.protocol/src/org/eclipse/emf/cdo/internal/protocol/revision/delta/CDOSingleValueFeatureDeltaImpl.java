@@ -14,9 +14,9 @@ package org.eclipse.emf.cdo.internal.protocol.revision.delta;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl;
 import org.eclipse.emf.cdo.internal.protocol.revision.CDOIDProvider;
-import org.eclipse.emf.cdo.internal.protocol.revision.CDORevisionImpl;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
+import org.eclipse.emf.cdo.protocol.revision.CDORevisionUtil;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOFeatureDelta;
 
 import org.eclipse.net4j.util.io.ExtendedDataInput;
@@ -38,7 +38,7 @@ public abstract class CDOSingleValueFeatureDeltaImpl extends CDOFeatureDeltaImpl
   {
     super(feature);
     this.index = index;
-    this.newValue = value;
+    newValue = value;
   }
 
   public CDOSingleValueFeatureDeltaImpl(ExtendedDataInput in, CDOClass packageManager) throws IOException
@@ -63,7 +63,7 @@ public abstract class CDOSingleValueFeatureDeltaImpl extends CDOFeatureDeltaImpl
   {
     super.write(out, idProvider);
     out.writeInt(index);
-    if (newValue != null && this.getFeature().isReference())
+    if (newValue != null && getFeature().isReference())
     {
       newValue = idProvider.provideCDOID(newValue);
     }
@@ -76,7 +76,7 @@ public abstract class CDOSingleValueFeatureDeltaImpl extends CDOFeatureDeltaImpl
   {
     if (newValue instanceof CDOID)
     {
-      newValue = CDORevisionImpl.remapID(newValue, idMappings);
+      newValue = CDORevisionUtil.remapID(newValue, idMappings);
     }
   }
 }

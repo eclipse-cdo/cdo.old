@@ -134,7 +134,7 @@ public class RevisionHolder
     return MessageFormat.format("RevisionHolder[{0}]", revision);
   }
 
-  protected CDORevisionImpl loadRevision()
+  protected InternalCDORevision loadRevision()
   {
     throw new UnsupportedOperationException();
   }

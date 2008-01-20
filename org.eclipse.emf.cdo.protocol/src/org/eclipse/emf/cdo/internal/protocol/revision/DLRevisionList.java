@@ -196,7 +196,7 @@ public class DLRevisionList extends DLRevisionHolder
   }
 
   @Override
-  protected CDORevisionImpl loadRevision()
+  protected InternalCDORevision loadRevision()
   {
     throw new UnsupportedOperationException();
   }

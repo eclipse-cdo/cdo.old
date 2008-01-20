@@ -12,7 +12,7 @@
 package org.eclipse.emf.cdo.internal.protocol.revision.delta;
 
 import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
-import org.eclipse.emf.cdo.internal.protocol.revision.CDORevisionImpl;
+import org.eclipse.emf.cdo.internal.protocol.revision.InternalCDORevision;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
@@ -46,7 +46,7 @@ public class CDOUnsetFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDO
 
   public void apply(CDORevision revision)
   {
-    ((CDORevisionImpl)revision).unset(getFeature());
+    ((InternalCDORevision)revision).unset(getFeature());
   }
 
   public void accept(CDOFeatureDeltaVisitor visitor)

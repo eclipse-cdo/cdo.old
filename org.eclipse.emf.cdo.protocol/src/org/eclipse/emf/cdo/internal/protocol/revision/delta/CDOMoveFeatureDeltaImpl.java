@@ -13,7 +13,7 @@ package org.eclipse.emf.cdo.internal.protocol.revision.delta;
 
 import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
 import org.eclipse.emf.cdo.internal.protocol.revision.CDOIDProvider;
-import org.eclipse.emf.cdo.internal.protocol.revision.CDORevisionImpl;
+import org.eclipse.emf.cdo.internal.protocol.revision.InternalCDORevision;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
@@ -66,7 +66,7 @@ public class CDOMoveFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDOM
 
   public void apply(CDORevision revision)
   {
-    ((CDORevisionImpl)revision).getList(getFeature()).move(newPosition, oldPosition);
+    ((InternalCDORevision)revision).getList(getFeature()).move(newPosition, oldPosition);
   }
 
   @Override

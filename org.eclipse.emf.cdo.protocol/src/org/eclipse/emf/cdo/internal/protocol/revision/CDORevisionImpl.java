@@ -29,24 +29,23 @@ import org.eclipse.emf.cdo.protocol.revision.CDORevisionData;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionResolver;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDORevisionDelta;
 
+import org.eclipse.net4j.internal.util.collection.MoveableArrayList;
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 import org.eclipse.net4j.internal.util.om.trace.PerfTracer;
 import org.eclipse.net4j.util.ImplementationError;
+import org.eclipse.net4j.util.collection.MoveableList;
 import org.eclipse.net4j.util.io.ExtendedDataInput;
 import org.eclipse.net4j.util.io.ExtendedDataOutput;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 /**
  * @author Eike Stepper
  */
-public class CDORevisionImpl implements CDORevision, CDORevisionData
+public class CDORevisionImpl implements InternalCDORevision
 {
-  public static final Object UNINITIALIZED = new Uninitialized();
-
   private static final ContextTracer TRACER = new ContextTracer(OM.DEBUG_REVISION, CDORevisionImpl.class);
 
   private static final PerfTracer READING = new PerfTracer(OM.PERF_REVISION_READING, CDORevisionImpl.class);
@@ -274,6 +273,11 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     return this;
   }
 
+  public CDORevision getRevision()
+  {
+    return this;
+  }
+
   public CDORevisionDeltaImpl compare(CDORevision origin)
   {
     return new CDORevisionDeltaImpl(origin, this);
@@ -493,18 +497,19 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     return old;
   }
 
-  public MoveableList getList(CDOFeature feature)
+  public MoveableList<Object> getList(CDOFeature feature)
   {
     return getList(feature, 0);
   }
 
-  public MoveableList getList(CDOFeature feature, int size)
+  @SuppressWarnings("unchecked")
+  public MoveableList<Object> getList(CDOFeature feature, int size)
   {
     int i = feature.getFeatureIndex();
-    MoveableList list = (MoveableList)values[i];
+    MoveableList<Object> list = (MoveableList<Object>)values[i];
     if (list == null)
     {
-      list = new MoveableList(size);
+      list = new MoveableArrayList<Object>(size);
       values[i] = list;
     }
 
@@ -513,13 +518,14 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
 
   public void setListSize(CDOFeature feature, int size)
   {
-    MoveableList list = getList(feature, size);
+    MoveableList<Object> list = getList(feature, size);
     for (int j = list.size(); j < size; j++)
     {
-      list.add(UNINITIALIZED);
+      list.add(InternalCDORevision.UNINITIALIZED);
     }
   }
 
+  @SuppressWarnings("unchecked")
   private void copyValues(Object[] sourceValues)
   {
     CDOFeatureImpl[] features = cdoClass.getAllFeatures();
@@ -530,11 +536,11 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
       CDOTypeImpl type = feature.getType();
       if (feature.isMany())
       {
-        MoveableList sourceList = (MoveableList)sourceValues[i];
+        MoveableList<Object> sourceList = (MoveableList<Object>)sourceValues[i];
         if (sourceList != null)
         {
           int size = sourceList.size();
-          List<Object> list = new MoveableList(size);
+          MoveableList<Object> list = new MoveableArrayList<Object>(size);
           for (int j = 0; j < size; j++)
           {
             Object value = sourceList.get(j);
@@ -591,7 +597,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
         if (size != 0)
         {
           CDORevisionImpl baseRevision = null;
-          List<Object> list = new MoveableList(size);
+          MoveableList<Object> list = new MoveableArrayList<Object>(size);
           values[i] = list;
           int ranges = in.readInt();
           if (ranges != 0)
@@ -620,7 +626,7 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
                       getVersion() - 1);
                 }
 
-                MoveableList baseList = baseRevision.getList(feature);
+                MoveableList<Object> baseList = baseRevision.getList(feature);
                 int index = in.readInt();
                 while (range++ < 0)
                 {
@@ -799,85 +805,5 @@ public class CDORevisionImpl implements CDORevision, CDORevisionData
     }
 
     return value;
-  }
-
-  /**
-   * @author Eike Stepper
-   */
-  private static final class Uninitialized
-  {
-    public Uninitialized()
-    {
-    }
-
-    @Override
-    public String toString()
-    {
-      return "UNINITIALIZED";
-    }
-  }
-
-  /**
-   * A list with O(1) effort for random access.
-   * 
-   * @author Eike Stepper
-   */
-  public static final class MoveableList extends ArrayList<Object>
-  {
-    private static final long serialVersionUID = 1L;
-
-    public MoveableList(int initialCapacity)
-    {
-      super(initialCapacity);
-
-    }
-
-    public Object move(int targetIndex, int sourceIndex)
-    {
-      int size = size();
-      if (sourceIndex >= size)
-      {
-        throw new IndexOutOfBoundsException("sourceIndex=" + sourceIndex + ", size=" + size);
-      }
-
-      if (targetIndex >= size)
-      {
-        throw new IndexOutOfBoundsException("targetIndex=" + targetIndex + ", size=" + size);
-      }
-
-      Object object = get(sourceIndex);
-      if (targetIndex == sourceIndex)
-      {
-        return object;
-      }
-
-      if (targetIndex < sourceIndex)
-      {
-        moveUp1(targetIndex, sourceIndex - targetIndex);
-      }
-      else
-      {
-        moveDown1(targetIndex, targetIndex - sourceIndex);
-      }
-
-      set(targetIndex, object);
-      return object;
-    }
-
-    private void moveUp1(int index, int count)
-    {
-      for (int i = count; i > 0; i--)
-      {
-        set(index + i, get(index + i - 1));
-      }
-    }
-
-    private void moveDown1(int index, int count)
-    {
-      for (int i = count; i > 0; i--)
-      {
-        set(index - i, get(index - i + 1));
-      }
-    }
   }
 }

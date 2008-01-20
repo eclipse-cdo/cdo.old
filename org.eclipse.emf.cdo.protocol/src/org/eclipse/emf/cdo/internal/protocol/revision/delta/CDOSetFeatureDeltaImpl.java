@@ -12,7 +12,7 @@
 package org.eclipse.emf.cdo.internal.protocol.revision.delta;
 
 import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
-import org.eclipse.emf.cdo.internal.protocol.revision.CDORevisionImpl;
+import org.eclipse.emf.cdo.internal.protocol.revision.InternalCDORevision;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOFeatureDeltaVisitor;
@@ -45,7 +45,7 @@ public class CDOSetFeatureDeltaImpl extends CDOSingleValueFeatureDeltaImpl imple
 
   public void apply(CDORevision revision)
   {
-    ((CDORevisionImpl)revision).set(getFeature(), getIndex(), getValue());
+    ((InternalCDORevision)revision).set(getFeature(), getIndex(), getValue());
   }
 
   public void accept(CDOFeatureDeltaVisitor visitor)

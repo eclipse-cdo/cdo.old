@@ -11,7 +11,7 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.revision.delta;
 
-import org.eclipse.emf.cdo.internal.protocol.revision.CDORevisionImpl;
+import org.eclipse.emf.cdo.internal.protocol.revision.InternalCDORevision;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOAddFeatureDelta;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOClearFeatureDelta;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOContainerFeatureDelta;
@@ -26,13 +26,13 @@ import org.eclipse.emf.cdo.protocol.revision.delta.CDOUnsetFeatureDelta;
  */
 public class CDORevisionMerger extends CDOFeatureDeltaVisitorImpl
 {
-  private CDORevisionImpl revision;
+  private InternalCDORevision revision;
 
   public CDORevisionMerger()
   {
   }
 
-  public void merge(CDORevisionImpl revision, CDORevisionDelta delta)
+  public void merge(InternalCDORevision revision, CDORevisionDelta delta)
   {
     this.revision = revision;
     delta.accept(this);
