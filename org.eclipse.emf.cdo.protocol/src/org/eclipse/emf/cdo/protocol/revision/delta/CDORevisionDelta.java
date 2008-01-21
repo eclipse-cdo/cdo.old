@@ -12,7 +12,12 @@
 package org.eclipse.emf.cdo.protocol.revision.delta;
 
 import org.eclipse.emf.cdo.protocol.CDOID;
+import org.eclipse.emf.cdo.protocol.CDOIDProvider;
+import org.eclipse.emf.cdo.protocol.revision.CDORevision;
 
+import org.eclipse.net4j.util.io.ExtendedDataOutput;
+
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -20,13 +25,17 @@ import java.util.List;
  */
 public interface CDORevisionDelta
 {
+  public CDOID getID();
+
   public int getOriginVersion();
 
   public int getDirtyVersion();
 
-  public CDOID getID();
-
   public List<CDOFeatureDelta> getFeatureDeltas();
 
+  public void apply(CDORevision revision);
+
   public void accept(CDOFeatureDeltaVisitor visitor);
+
+  public void write(ExtendedDataOutput out, CDOIDProvider idProvider) throws IOException;
 }

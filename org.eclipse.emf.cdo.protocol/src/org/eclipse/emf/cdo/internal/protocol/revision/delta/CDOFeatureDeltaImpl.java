@@ -11,8 +11,8 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.revision.delta;
 
-import org.eclipse.emf.cdo.internal.protocol.revision.CDOIDProvider;
 import org.eclipse.emf.cdo.protocol.CDOID;
+import org.eclipse.emf.cdo.protocol.CDOIDProvider;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOFeatureDelta;

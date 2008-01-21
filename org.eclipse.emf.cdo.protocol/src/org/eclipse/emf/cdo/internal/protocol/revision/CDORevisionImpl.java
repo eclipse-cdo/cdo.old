@@ -12,15 +12,16 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.revision;
 
-import org.eclipse.emf.cdo.internal.protocol.CDOIDImpl;
 import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassRefImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl;
-import org.eclipse.emf.cdo.internal.protocol.revision.delta.CDORevisionDeltaImpl;
 import org.eclipse.emf.cdo.internal.protocol.revision.delta.CDORevisionMerger;
+import org.eclipse.emf.cdo.internal.protocol.revision.delta.InternalCDORevisionDelta;
 import org.eclipse.emf.cdo.protocol.CDOID;
+import org.eclipse.emf.cdo.protocol.CDOIDProvider;
+import org.eclipse.emf.cdo.protocol.CDOIDUtil;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 import org.eclipse.emf.cdo.protocol.revision.CDOReferenceProxy;
@@ -28,6 +29,7 @@ import org.eclipse.emf.cdo.protocol.revision.CDORevision;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionData;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionResolver;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDORevisionDelta;
+import org.eclipse.emf.cdo.protocol.revision.delta.CDORevisionDeltaUtil;
 
 import org.eclipse.net4j.internal.util.collection.MoveableArrayList;
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
@@ -113,12 +115,12 @@ public class CDORevisionImpl implements InternalCDORevision
       throw new IllegalStateException("ClassRef unresolveable: " + classRef);
     }
 
-    id = CDOIDImpl.read(in);
+    id = CDOIDUtil.read(in);
     version = in.readInt();
     created = in.readLong();
     revised = in.readLong();
-    resourceID = CDOIDImpl.read(in);
-    containerID = CDOIDImpl.read(in);
+    resourceID = CDOIDUtil.read(in);
+    containerID = CDOIDUtil.read(in);
     containingFeatureID = in.readInt();
     if (TRACER.isEnabled())
     {
@@ -146,12 +148,12 @@ public class CDORevisionImpl implements InternalCDORevision
 
     WRITING.start(this);
     classRef.write(out, null);
-    CDOIDImpl.write(out, id);
+    CDOIDUtil.write(out, id);
     out.writeInt(getVersion());
     out.writeLong(created);
     out.writeLong(revised);
-    CDOIDImpl.write(out, resourceID);
-    CDOIDImpl.write(out, containerID);
+    CDOIDUtil.write(out, resourceID);
+    CDOIDUtil.write(out, containerID);
     out.writeInt(containingFeatureID);
     writeValues(out, idProvider, referenceChunk);
     WRITING.stop(this);
@@ -278,9 +280,9 @@ public class CDORevisionImpl implements InternalCDORevision
     return this;
   }
 
-  public CDORevisionDeltaImpl compare(CDORevision origin)
+  public InternalCDORevisionDelta compare(CDORevision origin)
   {
-    return new CDORevisionDeltaImpl(origin, this);
+    return (InternalCDORevisionDelta)CDORevisionDeltaUtil.create(origin, this);
   }
 
   public void merge(CDORevisionDelta delta)

@@ -10,16 +10,12 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol;
 
-import org.eclipse.emf.cdo.internal.protocol.model.CDOClassRefImpl;
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.CDOIDTyped;
+import org.eclipse.emf.cdo.protocol.CDOIDUtil;
 import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 
 import org.eclipse.net4j.util.ObjectUtil;
-import org.eclipse.net4j.util.io.ExtendedDataInput;
-import org.eclipse.net4j.util.io.ExtendedDataOutput;
-
-import java.io.IOException;
 
 /**
  * @author Eike Stepper
@@ -30,7 +26,7 @@ public class CDOIDImpl implements CDOID
 
   private long value;
 
-  CDOIDImpl(long value)
+  public CDOIDImpl(long value)
   {
     this.value = value;
   }
@@ -57,7 +53,7 @@ public class CDOIDImpl implements CDOID
 
   public CDOID getNext()
   {
-    return CDOIDImpl.create(value < 0 ? value - 2 : value + 2);
+    return CDOIDUtil.create(value < 0 ? value - 2 : value + 2);
   }
 
   public int compareTo(CDOID that)
@@ -86,7 +82,7 @@ public class CDOIDImpl implements CDOID
     if (obj instanceof CDOIDImpl)
     {
       CDOIDImpl that = (CDOIDImpl)obj;
-      return this.value == that.value;
+      return value == that.value;
     }
 
     return false;
@@ -107,88 +103,6 @@ public class CDOIDImpl implements CDOID
     return Long.toString(value);
   }
 
-  public static CDOID create(long value)
-  {
-    if (value == 0)
-    {
-      return NULL;
-    }
-
-    return new CDOIDImpl(value);
-  }
-
-  public static CDOIDTyped create(long value, CDOClassRef type)
-  {
-    if (value == 0)
-    {
-      throw new IllegalArgumentException("value == 0");
-    }
-
-    if (type == null)
-    {
-      throw new IllegalArgumentException("type == null");
-    }
-
-    return new Typed(value, type);
-  }
-
-  public static CDOID copy(CDOID source)
-  {
-    return source;
-  }
-
-  public static CDOID parse(String s) throws NumberFormatException
-  {
-    long value = Long.parseLong(s);
-    return create(value);
-  }
-
-  public static CDOID read(ExtendedDataInput in) throws IOException
-  {
-    return read(in, false);
-  }
-
-  public static CDOID read(ExtendedDataInput in, boolean withType) throws IOException
-  {
-    long value = in.readLong();
-    if (withType)
-    {
-      boolean typed = in.readBoolean();
-      if (typed)
-      {
-        CDOClassRefImpl type = new CDOClassRefImpl(in, null);
-        return create(value, type);
-      }
-    }
-
-    return create(value);
-  }
-
-  public static void write(ExtendedDataOutput out, CDOID id) throws IOException
-  {
-    write(out, id, false);
-  }
-
-  public static void write(ExtendedDataOutput out, CDOID id, boolean withType) throws IOException
-  {
-    out.writeLong(id == null ? 0L : id.getValue());
-    if (withType)
-    {
-      if (id instanceof CDOIDTyped)
-      {
-        CDOIDTyped typed = (CDOIDTyped)id;
-        out.writeBoolean(true);
-
-        CDOClassRefImpl type = (CDOClassRefImpl)typed.getType();
-        type.write(out, null);
-      }
-      else
-      {
-        out.writeBoolean(false);
-      }
-    }
-  }
-
   /**
    * @author Eike Stepper
    */
@@ -196,7 +110,7 @@ public class CDOIDImpl implements CDOID
   {
     private CDOClassRef type;
 
-    Typed(long value, CDOClassRef type)
+    public Typed(long value, CDOClassRef type)
     {
       super(value);
       this.type = type;

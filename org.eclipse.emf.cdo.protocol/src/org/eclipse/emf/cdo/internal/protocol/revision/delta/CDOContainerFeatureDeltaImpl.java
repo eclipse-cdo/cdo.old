@@ -11,10 +11,10 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.revision.delta;
 
-import org.eclipse.emf.cdo.internal.protocol.CDOIDImpl;
-import org.eclipse.emf.cdo.internal.protocol.revision.CDOIDProvider;
 import org.eclipse.emf.cdo.internal.protocol.revision.InternalCDORevision;
 import org.eclipse.emf.cdo.protocol.CDOID;
+import org.eclipse.emf.cdo.protocol.CDOIDProvider;
+import org.eclipse.emf.cdo.protocol.CDOIDUtil;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
@@ -53,7 +53,7 @@ public class CDOContainerFeatureDeltaImpl extends CDOFeatureDeltaImpl implements
   {
     super(CONTAINER_FEATURE);
     newContainerFeatureID = in.readInt();
-    newContainerID = CDOIDImpl.read(in);
+    newContainerID = CDOIDUtil.read(in);
   }
 
   public int getContainerFeatureID()
@@ -88,7 +88,7 @@ public class CDOContainerFeatureDeltaImpl extends CDOFeatureDeltaImpl implements
   {
     out.writeInt(getType().ordinal());
     out.writeInt(newContainerFeatureID);
-    CDOIDImpl.write(out, newContainerID);
+    CDOIDUtil.write(out, newContainerID);
   }
 
   public void accept(CDOFeatureDeltaVisitor visitor)

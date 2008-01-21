@@ -10,8 +10,8 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.model;
 
-import org.eclipse.emf.cdo.internal.protocol.CDOIDImpl;
 import org.eclipse.emf.cdo.protocol.CDOID;
+import org.eclipse.emf.cdo.protocol.CDOIDUtil;
 import org.eclipse.emf.cdo.protocol.model.CDOType;
 
 import org.eclipse.net4j.util.io.ExtendedDataInput;
@@ -176,13 +176,13 @@ public abstract class CDOTypeImpl implements CDOType
     @Override
     public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
-      CDOIDImpl.write(out, (CDOID)value);
+      CDOIDUtil.write(out, (CDOID)value);
     }
 
     @Override
     public Object readValue(ExtendedDataInput in) throws IOException
     {
-      return CDOIDImpl.read(in);
+      return CDOIDUtil.read(in);
     }
   };
 

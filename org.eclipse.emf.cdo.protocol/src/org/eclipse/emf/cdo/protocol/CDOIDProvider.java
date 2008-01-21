@@ -8,9 +8,8 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.internal.protocol.revision;
+package org.eclipse.emf.cdo.protocol;
 
-import org.eclipse.emf.cdo.protocol.CDOID;
 
 /**
  * @author Eike Stepper

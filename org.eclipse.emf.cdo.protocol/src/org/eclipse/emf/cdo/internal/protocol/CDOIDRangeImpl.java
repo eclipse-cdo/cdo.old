@@ -12,6 +12,7 @@ package org.eclipse.emf.cdo.internal.protocol;
 
 import org.eclipse.emf.cdo.protocol.CDOID;
 import org.eclipse.emf.cdo.protocol.CDOIDRange;
+import org.eclipse.emf.cdo.protocol.CDOIDUtil;
 
 import org.eclipse.net4j.util.collection.Pair;
 import org.eclipse.net4j.util.io.ExtendedDataInput;
@@ -36,7 +37,7 @@ public final class CDOIDRangeImpl extends Pair<CDOID, CDOID> implements CDOIDRan
 
   CDOIDRangeImpl(long id1, long id2)
   {
-    this(CDOIDImpl.create(id1), CDOIDImpl.create(id2));
+    this(CDOIDUtil.create(id1), CDOIDUtil.create(id2));
   }
 
   public boolean isMeta()
@@ -73,7 +74,7 @@ public final class CDOIDRangeImpl extends Pair<CDOID, CDOID> implements CDOIDRan
       index = -index;
     }
 
-    return CDOIDImpl.create(lowerBound.getValue() + index);
+    return CDOIDUtil.create(lowerBound.getValue() + index);
   }
 
   public long getCount()
@@ -108,12 +109,12 @@ public final class CDOIDRangeImpl extends Pair<CDOID, CDOID> implements CDOIDRan
 
   public static CDOIDRange read(ExtendedDataInput in) throws IOException
   {
-    return new CDOIDRangeImpl(CDOIDImpl.read(in), CDOIDImpl.read(in));
+    return new CDOIDRangeImpl(CDOIDUtil.read(in), CDOIDUtil.read(in));
   }
 
   public static void write(ExtendedDataOutput out, CDOIDRange idRange) throws IOException
   {
-    CDOIDImpl.write(out, idRange.getLowerBound());
-    CDOIDImpl.write(out, idRange.getUpperBound());
+    CDOIDUtil.write(out, idRange.getLowerBound());
+    CDOIDUtil.write(out, idRange.getUpperBound());
   }
 }

@@ -17,9 +17,7 @@ import org.eclipse.emf.cdo.protocol.revision.CDORevisionData;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionUtil;
 
 import org.eclipse.net4j.util.collection.MoveableList;
-import org.eclipse.net4j.util.io.ExtendedDataOutput;
 
-import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -28,8 +26,6 @@ import java.util.Map;
 public interface InternalCDORevision extends CDORevision, CDORevisionData
 {
   public static final Object UNINITIALIZED = CDORevisionUtil.UNINITIALIZED;
-
-  public void write(ExtendedDataOutput out, CDOIDProvider idProvider, int referenceChunk) throws IOException;
 
   public void setID(CDOID id);
 
