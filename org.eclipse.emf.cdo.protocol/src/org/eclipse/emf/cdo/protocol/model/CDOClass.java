@@ -38,6 +38,8 @@ public interface CDOClass extends CDOModelElement, Comparable<CDOClass>
 
   public CDOFeature lookupFeature(int featureID);
 
+  public CDOFeature lookupFeature(String name);
+
   public CDOFeature[] getFeatures();
 
   /**

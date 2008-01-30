@@ -12,9 +12,11 @@ package org.eclipse.emf.cdo.internal.protocol.model;
 
 import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
+import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
+import org.eclipse.net4j.util.ObjectUtil;
 import org.eclipse.net4j.util.io.ExtendedDataInput;
 import org.eclipse.net4j.util.io.ExtendedDataOutput;
 
@@ -168,6 +170,19 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
   {
     int i = getIndex(featureID);
     return getAllFeatures()[i];
+  }
+
+  public CDOFeature lookupFeature(String name)
+  {
+    for (CDOFeature feature : getAllFeatures())
+    {
+      if (ObjectUtil.equals(feature.getName(), name))
+      {
+        return feature;
+      }
+    }
+
+    return null;
   }
 
   public CDOClassRefImpl createClassRef()
