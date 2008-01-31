@@ -11,7 +11,6 @@
 package org.eclipse.emf.cdo.internal.protocol.id;
 
 import org.eclipse.emf.cdo.protocol.id.CDOID;
-import org.eclipse.emf.cdo.protocol.id.CDOIDTyped;
 import org.eclipse.emf.cdo.protocol.id.CDOIDUtil;
 import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 
@@ -20,7 +19,7 @@ import org.eclipse.net4j.util.ObjectUtil;
 /**
  * @author Eike Stepper
  */
-public class CDOIDImpl implements CDOID
+public class CDOIDImpl implements CDOID, Comparable<CDOID>
 {
   private static final byte BYTE_ONE = 1;
 
@@ -51,6 +50,12 @@ public class CDOIDImpl implements CDOID
     return (value & BYTE_ONE) != 0;
   }
 
+  public CDOClassRef getType()
+  {
+    return null;
+  }
+
+  @Deprecated
   public CDOID getNext()
   {
     return CDOIDUtil.create(value < 0 ? value - 2 : value + 2);
@@ -106,7 +111,7 @@ public class CDOIDImpl implements CDOID
   /**
    * @author Eike Stepper
    */
-  public static class Typed extends CDOIDImpl implements CDOIDTyped
+  public static class Typed extends CDOIDImpl
   {
     private CDOClassRef type;
 
@@ -116,6 +121,7 @@ public class CDOIDImpl implements CDOID
       this.type = type;
     }
 
+    @Override
     public CDOClassRef getType()
     {
       return type;

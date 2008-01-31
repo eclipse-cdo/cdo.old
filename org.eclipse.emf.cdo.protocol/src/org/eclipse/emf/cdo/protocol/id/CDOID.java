@@ -11,11 +11,12 @@
 package org.eclipse.emf.cdo.protocol.id;
 
 import org.eclipse.emf.cdo.internal.protocol.id.CDOIDNull;
+import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 
 /**
  * @author Eike Stepper
  */
-public interface CDOID extends Comparable<CDOID>
+public interface CDOID
 {
   public static final CDOID NULL = new CDOIDNull();
 
@@ -27,5 +28,5 @@ public interface CDOID extends Comparable<CDOID>
 
   public boolean isMeta();
 
-  public CDOID getNext();
+  public CDOClassRef getType();
 }

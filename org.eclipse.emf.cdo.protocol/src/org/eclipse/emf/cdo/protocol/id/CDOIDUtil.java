@@ -39,7 +39,7 @@ public final class CDOIDUtil
     return new CDOIDImpl(value);
   }
 
-  public static CDOIDTyped create(long value, CDOClassRef type)
+  public static CDOID create(long value, CDOClassRef type)
   {
     if (value == 0)
     {
@@ -96,12 +96,10 @@ public final class CDOIDUtil
     out.writeLong(id == null ? 0L : id.getValue());
     if (withType)
     {
-      if (id instanceof CDOIDTyped)
+      CDOClassRefImpl type = (CDOClassRefImpl)id.getType();
+      if (type != null)
       {
-        CDOIDTyped typed = (CDOIDTyped)id;
         out.writeBoolean(true);
-
-        CDOClassRefImpl type = (CDOClassRefImpl)typed.getType();
         type.write(out, null);
       }
       else

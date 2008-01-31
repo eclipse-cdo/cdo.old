@@ -23,13 +23,10 @@ import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 /**
  * @author Eike Stepper
@@ -38,41 +35,42 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
 {
   private static final ContextTracer TRACER = new ContextTracer(OM.DEBUG_REVISION, CDORevisionResolverImpl.class);
 
-  private Map<CDOID, RevisionHolder> revisions = new HashMap<CDOID, RevisionHolder>()
-  {
-    private static final long serialVersionUID = 1L;
+  private Map<CDOID, RevisionHolder> revisions = new HashMap<CDOID, RevisionHolder>();
 
-    @Override
-    public String toString()
-    {
-      List<Entry<CDOID, RevisionHolder>> entries = new ArrayList<Entry<CDOID, RevisionHolder>>(entrySet());
-      Collections.sort(entries, new Comparator<Entry<CDOID, RevisionHolder>>()
-      {
-        public int compare(Entry<CDOID, RevisionHolder> o1, Entry<CDOID, RevisionHolder> o2)
-        {
-          return o1.getKey().compareTo(o2.getKey());
-        }
-      });
-
-      StringBuilder builder = new StringBuilder();
-      for (Entry<CDOID, RevisionHolder> entry : entries)
-      {
-        builder.append(entry.getKey());
-        builder.append(" -->");
-        RevisionHolder holder = entry.getValue();
-        while (holder != null)
-        {
-          builder.append(" ");
-          builder.append(holder.getRevision(false));
-          holder = holder.getNext();
-        }
-
-        builder.append("\n");
-      }
-
-      return builder.toString();
-    }
-  };
+  // {
+  // private static final long serialVersionUID = 1L;
+  //
+  // @Override
+  // public String toString()
+  // {
+  // List<Entry<CDOID, RevisionHolder>> entries = new ArrayList<Entry<CDOID, RevisionHolder>>(entrySet());
+  // Collections.sort(entries, new Comparator<Entry<CDOID, RevisionHolder>>()
+  // {
+  // public int compare(Entry<CDOID, RevisionHolder> o1, Entry<CDOID, RevisionHolder> o2)
+  // {
+  // return o1.getKey().compareTo(o2.getKey());
+  // }
+  // });
+  //
+  // StringBuilder builder = new StringBuilder();
+  // for (Entry<CDOID, RevisionHolder> entry : entries)
+  // {
+  // builder.append(entry.getKey());
+  // builder.append(" -->");
+  // RevisionHolder holder = entry.getValue();
+  // while (holder != null)
+  // {
+  // builder.append(" ");
+  // builder.append(holder.getRevision(false));
+  // holder = holder.getNext();
+  // }
+  //
+  // builder.append("\n");
+  // }
+  //
+  // return builder.toString();
+  // }
+  // };
 
   private int currentLRUCapacity;
 
