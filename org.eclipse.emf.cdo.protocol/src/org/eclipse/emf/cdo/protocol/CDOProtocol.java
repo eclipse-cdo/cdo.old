@@ -17,5 +17,5 @@ import org.eclipse.net4j.protocol.IProtocol;
  */
 public interface CDOProtocol extends IProtocol
 {
-
+  public CDOProtocolSession getSession();
 }
