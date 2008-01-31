@@ -10,47 +10,29 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol;
 
-import org.eclipse.emf.cdo.protocol.CDOID;
+import org.eclipse.emf.cdo.protocol.CDOProtocol;
+import org.eclipse.emf.cdo.protocol.CDOProtocolConstants;
+import org.eclipse.emf.cdo.protocol.CDOProtocolSession;
 
-import org.eclipse.net4j.util.ImplementationError;
+import org.eclipse.net4j.signal.SignalProtocol;
 
 /**
  * @author Eike Stepper
  */
-public final class CDOIDNull extends CDOIDImpl
+public abstract class CDOProtocolImpl extends SignalProtocol implements CDOProtocol
 {
-  private static final long VALUE = 0L;
-
-  public CDOIDNull()
+  public CDOProtocolImpl()
   {
-    super(VALUE);
-    if (CDOID.NULL != null)
-    {
-      throw new ImplementationError("NULL is already created");
-    }
   }
 
   @Override
-  public boolean isNull()
+  public String getType()
   {
-    return true;
+    return CDOProtocolConstants.PROTOCOL_NAME;
   }
 
-  @Override
-  public boolean equals(Object obj)
+  public CDOProtocolSession getSession()
   {
-    return CDOID.NULL == obj;
-  }
-
-  @Override
-  public int hashCode()
-  {
-    return 0;
-  }
-
-  @Override
-  public String toString()
-  {
-    return "NULL";
+    return (CDOProtocolSession)getInfraStructure();
   }
 }
