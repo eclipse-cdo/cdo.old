@@ -10,7 +10,7 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.revision;
 
-import org.eclipse.emf.cdo.protocol.CDOID;
+import org.eclipse.emf.cdo.protocol.id.CDOID;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 
 /**

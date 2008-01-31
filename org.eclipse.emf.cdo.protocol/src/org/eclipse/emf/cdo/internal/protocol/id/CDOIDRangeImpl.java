@@ -8,17 +8,14 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.internal.protocol;
+package org.eclipse.emf.cdo.internal.protocol.id;
 
-import org.eclipse.emf.cdo.protocol.CDOID;
-import org.eclipse.emf.cdo.protocol.CDOIDRange;
-import org.eclipse.emf.cdo.protocol.CDOIDUtil;
+import org.eclipse.emf.cdo.protocol.id.CDOID;
+import org.eclipse.emf.cdo.protocol.id.CDOIDRange;
+import org.eclipse.emf.cdo.protocol.id.CDOIDUtil;
 
 import org.eclipse.net4j.util.collection.Pair;
-import org.eclipse.net4j.util.io.ExtendedDataInput;
-import org.eclipse.net4j.util.io.ExtendedDataOutput;
 
-import java.io.IOException;
 import java.text.MessageFormat;
 
 /**
@@ -26,7 +23,7 @@ import java.text.MessageFormat;
  */
 public final class CDOIDRangeImpl extends Pair<CDOID, CDOID> implements CDOIDRange
 {
-  CDOIDRangeImpl(CDOID id1, CDOID id2)
+  public CDOIDRangeImpl(CDOID id1, CDOID id2)
   {
     super(id1, id2);
     if (id1.isMeta() != id2.isMeta())
@@ -35,7 +32,7 @@ public final class CDOIDRangeImpl extends Pair<CDOID, CDOID> implements CDOIDRan
     }
   }
 
-  CDOIDRangeImpl(long id1, long id2)
+  public CDOIDRangeImpl(long id1, long id2)
   {
     this(CDOIDUtil.create(id1), CDOIDUtil.create(id2));
   }
@@ -100,21 +97,5 @@ public final class CDOIDRangeImpl extends Pair<CDOID, CDOID> implements CDOIDRan
   public String toString()
   {
     return MessageFormat.format("[{0}:{1}]", getLowerBound(), getUpperBound());
-  }
-
-  public static CDOIDRange create(long lowerBound, long upperBound)
-  {
-    return new CDOIDRangeImpl(lowerBound, upperBound);
-  }
-
-  public static CDOIDRange read(ExtendedDataInput in) throws IOException
-  {
-    return new CDOIDRangeImpl(CDOIDUtil.read(in), CDOIDUtil.read(in));
-  }
-
-  public static void write(ExtendedDataOutput out, CDOIDRange idRange) throws IOException
-  {
-    CDOIDUtil.write(out, idRange.getLowerBound());
-    CDOIDUtil.write(out, idRange.getUpperBound());
   }
 }

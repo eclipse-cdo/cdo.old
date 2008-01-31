@@ -8,24 +8,14 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.protocol;
+package org.eclipse.emf.cdo.protocol.id;
+
+import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 
 /**
  * @author Eike Stepper
  */
-public interface CDOIDRange
+public interface CDOIDTyped extends CDOID
 {
-  public boolean isMeta();
-
-  public boolean isTemporary();
-
-  public CDOID getLowerBound();
-
-  public CDOID getUpperBound();
-
-  public CDOID get(long index);
-
-  public long getCount();
-
-  public boolean contains(CDOID id);
+  public CDOClassRef getType();
 }

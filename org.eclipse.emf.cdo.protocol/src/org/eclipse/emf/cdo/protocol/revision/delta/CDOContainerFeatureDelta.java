@@ -11,7 +11,7 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.revision.delta;
 
-import org.eclipse.emf.cdo.protocol.CDOID;
+import org.eclipse.emf.cdo.protocol.id.CDOID;
 
 /**
  * @author Simon McDuff

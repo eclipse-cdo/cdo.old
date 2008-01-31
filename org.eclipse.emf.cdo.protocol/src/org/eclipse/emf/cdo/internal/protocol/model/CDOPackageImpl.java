@@ -10,9 +10,9 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.model;
 
-import org.eclipse.emf.cdo.internal.protocol.CDOIDRangeImpl;
 import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
-import org.eclipse.emf.cdo.protocol.CDOIDRange;
+import org.eclipse.emf.cdo.protocol.id.CDOIDRange;
+import org.eclipse.emf.cdo.protocol.id.CDOIDUtil;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
@@ -99,7 +99,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     packageURI = in.readString();
     dynamic = in.readBoolean();
     ecore = in.readString();
-    metaIDRange = CDOIDRangeImpl.read(in);
+    metaIDRange = CDOIDUtil.readRange(in);
     if (PROTOCOL.isEnabled())
     {
       PROTOCOL.format("Read package: URI={0}, name={1}, dynamic={2}, metaIDRange={3}", packageURI, getName(), dynamic,
@@ -133,7 +133,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     out.writeString(packageURI);
     out.writeBoolean(dynamic);
     out.writeString(ecore);
-    CDOIDRangeImpl.write(out, metaIDRange);
+    CDOIDUtil.writeRange(out, metaIDRange);
 
     int size = classes.size();
     if (PROTOCOL.isEnabled())

@@ -8,14 +8,13 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.protocol;
+package org.eclipse.emf.cdo.protocol.id;
 
-import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 
 /**
  * @author Eike Stepper
  */
-public interface CDOIDTyped extends CDOID
+public interface CDOIDProvider
 {
-  public CDOClassRef getType();
+  public CDOID provideCDOID(Object idOrObject);
 }

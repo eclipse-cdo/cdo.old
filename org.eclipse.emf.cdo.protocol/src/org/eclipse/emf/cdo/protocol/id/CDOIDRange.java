@@ -8,24 +8,24 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.protocol;
-
-import org.eclipse.emf.cdo.internal.protocol.CDOIDNull;
+package org.eclipse.emf.cdo.protocol.id;
 
 /**
  * @author Eike Stepper
  */
-public interface CDOID extends Comparable<CDOID>
+public interface CDOIDRange
 {
-  public static final CDOID NULL = new CDOIDNull();
-
-  public long getValue();
-
-  public boolean isNull();
+  public boolean isMeta();
 
   public boolean isTemporary();
 
-  public boolean isMeta();
+  public CDOID getLowerBound();
 
-  public CDOID getNext();
+  public CDOID getUpperBound();
+
+  public CDOID get(long index);
+
+  public long getCount();
+
+  public boolean contains(CDOID id);
 }

@@ -11,8 +11,8 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.revision.delta;
 
-import org.eclipse.emf.cdo.protocol.CDOID;
-import org.eclipse.emf.cdo.protocol.CDOIDProvider;
+import org.eclipse.emf.cdo.protocol.id.CDOID;
+import org.eclipse.emf.cdo.protocol.id.CDOIDProvider;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
 
 import org.eclipse.net4j.util.io.ExtendedDataOutput;

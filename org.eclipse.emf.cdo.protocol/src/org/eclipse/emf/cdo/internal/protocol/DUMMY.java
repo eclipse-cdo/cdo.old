@@ -8,20 +8,12 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.internal.protocol.revision.delta;
-
-import org.eclipse.emf.cdo.protocol.id.CDOID;
-import org.eclipse.emf.cdo.protocol.revision.delta.CDOFeatureDelta;
-import org.eclipse.emf.cdo.protocol.revision.delta.CDORevisionDelta;
-
-import java.util.Map;
+package org.eclipse.emf.cdo.internal.protocol;
 
 /**
  * @author Eike Stepper
  */
-public interface InternalCDORevisionDelta extends CDORevisionDelta
+public class DUMMY
 {
-  public void addFeatureDelta(CDOFeatureDelta delta);
 
-  public void adjustReferences(Map<CDOID, CDOID> idMappings);
 }
