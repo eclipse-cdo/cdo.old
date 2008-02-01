@@ -53,7 +53,7 @@ public class CDOIDObjectImpl extends AbstractCDOIDLong implements CDOIDObject
   /**
    * @author Eike Stepper
    */
-  public static class Legacy extends CDOIDObjectImpl
+  public static final class Legacy extends CDOIDObjectImpl
   {
     private static final long serialVersionUID = 1L;
 
