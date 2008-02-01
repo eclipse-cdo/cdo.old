@@ -8,32 +8,30 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.protocol.model;
+package org.eclipse.emf.cdo.internal.protocol.id;
 
-import org.eclipse.emf.cdo.internal.protocol.model.CDOClassProxy;
+import org.eclipse.emf.cdo.protocol.id.CDOIDObject;
+import org.eclipse.emf.cdo.protocol.id.CDOIDObjectFactory;
+
 
 /**
  * @author Eike Stepper
  */
-public interface CDOFeature extends CDOModelElement
+public class CDOIDObjectFactoryImpl implements CDOIDObjectFactory
 {
-  public int getFeatureID();
+  private static final Class<?>[] CLASSES = { CDOIDObjectImpl.class, CDOIDObjectImpl.Legacy.class };
 
-  public int getFeatureIndex();
+  public CDOIDObjectFactoryImpl()
+  {
+  }
 
-  public CDOType getType();
+  public Class<?>[] getCDOIDObjectClasses()
+  {
+    return CLASSES;
+  }
 
-  public boolean isMany();
-
-  public boolean isReference();
-
-  public boolean isContainment();
-
-  public CDOClass getReferenceType();
-
-  public CDOClassProxy getReferenceTypeProxy();
-
-  public CDOClass getContainingClass();
-
-  public CDOPackage getContainingPackage();
+  public CDOIDObject createCDOIDObject()
+  {
+    return new CDOIDObjectImpl();
+  }
 }

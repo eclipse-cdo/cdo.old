@@ -11,10 +11,10 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.analyzer;
 
-import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
-import org.eclipse.emf.cdo.internal.protocol.model.CDOClassRefImpl;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
+import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
+import org.eclipse.emf.cdo.protocol.model.CDOModelUtil;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
 import org.eclipse.net4j.util.io.ExtendedDataInput;
@@ -40,7 +40,7 @@ public final class CDOFetchRule
 
   public CDOFetchRule(ExtendedDataInput in, CDOPackageManager packageManager) throws IOException
   {
-    CDOClassRefImpl classRef = new CDOClassRefImpl(in, null);
+    CDOClassRef classRef = CDOModelUtil.readClassRef(in);
     cdoClass = classRef.resolve(packageManager);
     int size = in.readInt();
     for (int i = 0; i < size; i++)
@@ -53,7 +53,7 @@ public final class CDOFetchRule
 
   public void write(ExtendedDataOutput out) throws IOException
   {
-    ((CDOClassImpl)cdoClass).createClassRef().write(out, null);
+    CDOModelUtil.writeClassRef(out, cdoClass.createClassRef());
     out.writeInt(features.size());
     for (CDOFeature feature : features)
     {

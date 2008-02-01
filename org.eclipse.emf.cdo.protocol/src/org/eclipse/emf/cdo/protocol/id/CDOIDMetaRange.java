@@ -8,32 +8,32 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.protocol.model;
+package org.eclipse.emf.cdo.protocol.id;
 
-import org.eclipse.emf.cdo.internal.protocol.model.CDOClassProxy;
+import org.eclipse.emf.cdo.protocol.id.CDOID.Type;
+
+import java.io.Serializable;
 
 /**
  * @author Eike Stepper
  */
-public interface CDOFeature extends CDOModelElement
+public interface CDOIDMetaRange extends Serializable
 {
-  public int getFeatureID();
+  public CDOID getLowerBound();
 
-  public int getFeatureIndex();
+  public CDOID getUpperBound();
 
-  public CDOType getType();
+  public CDOID get(int index);
 
-  public boolean isMany();
+  public int size();
 
-  public boolean isReference();
+  public boolean isEmpty();
 
-  public boolean isContainment();
+  public boolean contains(CDOID id);
 
-  public CDOClass getReferenceType();
+  public CDOIDMetaRange increase();
 
-  public CDOClassProxy getReferenceTypeProxy();
+  public Type getType();
 
-  public CDOClass getContainingClass();
-
-  public CDOPackage getContainingPackage();
+  public boolean isTemporary();
 }

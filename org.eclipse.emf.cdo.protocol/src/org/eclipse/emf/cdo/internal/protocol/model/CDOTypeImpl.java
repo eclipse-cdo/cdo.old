@@ -11,6 +11,7 @@
 package org.eclipse.emf.cdo.internal.protocol.model;
 
 import org.eclipse.emf.cdo.protocol.id.CDOID;
+import org.eclipse.emf.cdo.protocol.id.CDOIDObjectFactory;
 import org.eclipse.emf.cdo.protocol.id.CDOIDUtil;
 import org.eclipse.emf.cdo.protocol.model.CDOType;
 
@@ -27,7 +28,7 @@ import java.util.List;
  */
 public abstract class CDOTypeImpl implements CDOType
 {
-  private static List<CDOTypeImpl> index = new ArrayList<CDOTypeImpl>();
+  public static List<CDOTypeImpl> index = new ArrayList<CDOTypeImpl>();
 
   private static final byte BOOLEAN_DEFAULT_PRIMITIVE = 0;
 
@@ -51,142 +52,124 @@ public abstract class CDOTypeImpl implements CDOType
 
   public static final Short SHORT_DEFAULT = new Short(SHORT_DEFAULT_PRIMITIVE);
 
-  public static final CDOTypeImpl BOOLEAN = new CDOTypeImpl("BOOLEAN", 22, false, BOOLEAN_DEFAULT)
+  public static final CDOType BOOLEAN = new CDOTypeImpl("BOOLEAN", 22, false, BOOLEAN_DEFAULT)
   {
-    @Override
     public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       out.writeBoolean((Boolean)(value == null ? getDefaultValue() : value));
     }
 
-    @Override
-    public Object readValue(ExtendedDataInput in) throws IOException
+    public Object readValue(ExtendedDataInput in, CDOIDObjectFactory factory) throws IOException
     {
       return new Boolean(in.readBoolean());
     }
   };
 
-  public static final CDOTypeImpl BYTE = new CDOTypeImpl("BYTE", 24, false, BYTE_DEFAULT)
+  public static final CDOType BYTE = new CDOTypeImpl("BYTE", 24, false, BYTE_DEFAULT)
   {
-    @Override
     public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       out.writeByte((Byte)(value == null ? getDefaultValue() : value));
     }
 
-    @Override
-    public Object readValue(ExtendedDataInput in) throws IOException
+    public Object readValue(ExtendedDataInput in, CDOIDObjectFactory factory) throws IOException
     {
       return new Byte(in.readByte());
     }
   };
 
-  public static final CDOTypeImpl CHAR = new CDOTypeImpl("CHAR", 27, false, CHARACTER_DEFAULT)
+  public static final CDOType CHAR = new CDOTypeImpl("CHAR", 27, false, CHARACTER_DEFAULT)
   {
-    @Override
     public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       out.writeChar(((Character)(value == null ? getDefaultValue() : value)).charValue());
     }
 
-    @Override
-    public Object readValue(ExtendedDataInput in) throws IOException
+    public Object readValue(ExtendedDataInput in, CDOIDObjectFactory factory) throws IOException
     {
       return new Character(in.readChar());
     }
   };
 
-  public static final CDOTypeImpl DOUBLE = new CDOTypeImpl("DOUBLE", 31, false, DOUBLE_DEFAULT)
+  public static final CDOType DOUBLE = new CDOTypeImpl("DOUBLE", 31, false, DOUBLE_DEFAULT)
   {
-    @Override
     public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       out.writeDouble((Double)(value == null ? getDefaultValue() : value));
     }
 
-    @Override
-    public Object readValue(ExtendedDataInput in) throws IOException
+    public Object readValue(ExtendedDataInput in, CDOIDObjectFactory factory) throws IOException
     {
       return new Double(in.readDouble());
     }
   };
 
-  public static final CDOTypeImpl FLOAT = new CDOTypeImpl("FLOAT", 37, false, FLOAT_DEFAULT)
+  public static final CDOType FLOAT = new CDOTypeImpl("FLOAT", 37, false, FLOAT_DEFAULT)
   {
-    @Override
     public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       out.writeFloat((Float)(value == null ? getDefaultValue() : value));
     }
 
-    @Override
-    public Object readValue(ExtendedDataInput in) throws IOException
+    public Object readValue(ExtendedDataInput in, CDOIDObjectFactory factory) throws IOException
     {
       return new Float(in.readFloat());
     }
   };
 
-  public static final CDOTypeImpl INT = new CDOTypeImpl("INT", 39, false, INTEGER_DEFAULT)
+  public static final CDOType INT = new CDOTypeImpl("INT", 39, false, INTEGER_DEFAULT)
   {
-    @Override
     public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       out.writeInt((Integer)(value == null ? getDefaultValue() : value));
     }
 
-    @Override
-    public Object readValue(ExtendedDataInput in) throws IOException
+    public Object readValue(ExtendedDataInput in, CDOIDObjectFactory factory) throws IOException
     {
       return new Integer(in.readInt());
     }
   };
 
-  public static final CDOTypeImpl LONG = new CDOTypeImpl("LONG", 43, false, LONG_DEFAULT)
+  public static final CDOType LONG = new CDOTypeImpl("LONG", 43, false, LONG_DEFAULT)
   {
-    @Override
     public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       out.writeLong((Long)(value == null ? getDefaultValue() : value));
     }
 
-    @Override
-    public Object readValue(ExtendedDataInput in) throws IOException
+    public Object readValue(ExtendedDataInput in, CDOIDObjectFactory factory) throws IOException
     {
       return new Long(in.readLong());
     }
   };
 
-  public static final CDOTypeImpl SHORT = new CDOTypeImpl("SHORT", 48, false, SHORT_DEFAULT)
+  public static final CDOType SHORT = new CDOTypeImpl("SHORT", 48, false, SHORT_DEFAULT)
   {
-    @Override
     public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       out.writeShort((Short)(value == null ? getDefaultValue() : value));
     }
 
-    @Override
-    public Object readValue(ExtendedDataInput in) throws IOException
+    public Object readValue(ExtendedDataInput in, CDOIDObjectFactory factory) throws IOException
     {
       return new Short(in.readShort());
     }
   };
 
-  public static final CDOTypeImpl OBJECT = new CDOTypeImpl("OBJECT", 10, true, CDOID.NULL)
+  public static final CDOType OBJECT = new CDOTypeImpl("OBJECT", 10, true, CDOID.NULL)
   {
-    @Override
     public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       CDOIDUtil.write(out, (CDOID)value);
     }
 
-    @Override
-    public Object readValue(ExtendedDataInput in) throws IOException
+    public Object readValue(ExtendedDataInput in, CDOIDObjectFactory factory) throws IOException
     {
-      return CDOIDUtil.read(in);
+      return CDOIDUtil.read(in, factory);
     }
   };
 
-  public static final CDOTypeImpl BOOLEAN_OBJECT = new ObjectType("BOOLEAN_OBJECT", 23)
+  public static final CDOType BOOLEAN_OBJECT = new ObjectType("BOOLEAN_OBJECT", 23)
   {
     @Override
     protected void doWriteValue(ExtendedDataOutput out, Object value) throws IOException
@@ -201,7 +184,7 @@ public abstract class CDOTypeImpl implements CDOType
     }
   };
 
-  public static final CDOTypeImpl BYTE_OBJECT = new ObjectType("BYTE_OBJECT", 26)
+  public static final CDOType BYTE_OBJECT = new ObjectType("BYTE_OBJECT", 26)
   {
     @Override
     protected void doWriteValue(ExtendedDataOutput out, Object value) throws IOException
@@ -216,7 +199,7 @@ public abstract class CDOTypeImpl implements CDOType
     }
   };
 
-  public static final CDOTypeImpl CHARACTER_OBJECT = new ObjectType("CHARACTER_OBJECT", 28)
+  public static final CDOType CHARACTER_OBJECT = new ObjectType("CHARACTER_OBJECT", 28)
   {
     @Override
     protected void doWriteValue(ExtendedDataOutput out, Object value) throws IOException
@@ -231,7 +214,7 @@ public abstract class CDOTypeImpl implements CDOType
     }
   };
 
-  public static final CDOTypeImpl DATE = new ObjectType("DATE", 29)
+  public static final CDOType DATE = new ObjectType("DATE", 29)
   {
     @Override
     protected void doWriteValue(ExtendedDataOutput out, Object value) throws IOException
@@ -246,7 +229,7 @@ public abstract class CDOTypeImpl implements CDOType
     }
   };
 
-  public static final CDOTypeImpl DOUBLE_OBJECT = new ObjectType("DOUBLE_OBJECT", 32)
+  public static final CDOType DOUBLE_OBJECT = new ObjectType("DOUBLE_OBJECT", 32)
   {
     @Override
     protected void doWriteValue(ExtendedDataOutput out, Object value) throws IOException
@@ -261,7 +244,7 @@ public abstract class CDOTypeImpl implements CDOType
     }
   };
 
-  public static final CDOTypeImpl FLOAT_OBJECT = new ObjectType("FLOAT_OBJECT", 38)
+  public static final CDOType FLOAT_OBJECT = new ObjectType("FLOAT_OBJECT", 38)
   {
     @Override
     protected void doWriteValue(ExtendedDataOutput out, Object value) throws IOException
@@ -276,7 +259,7 @@ public abstract class CDOTypeImpl implements CDOType
     }
   };
 
-  public static final CDOTypeImpl INTEGER_OBJECT = new ObjectType("INTEGER_OBJECT", 40)
+  public static final CDOType INTEGER_OBJECT = new ObjectType("INTEGER_OBJECT", 40)
   {
     @Override
     protected void doWriteValue(ExtendedDataOutput out, Object value) throws IOException
@@ -291,7 +274,7 @@ public abstract class CDOTypeImpl implements CDOType
     }
   };
 
-  public static final CDOTypeImpl LONG_OBJECT = new ObjectType("LONG_OBJECT", 44)
+  public static final CDOType LONG_OBJECT = new ObjectType("LONG_OBJECT", 44)
   {
     @Override
     protected void doWriteValue(ExtendedDataOutput out, Object value) throws IOException
@@ -306,7 +289,7 @@ public abstract class CDOTypeImpl implements CDOType
     }
   };
 
-  public static final CDOTypeImpl SHORT_OBJECT = new ObjectType("SHORT_OBJECT", 49)
+  public static final CDOType SHORT_OBJECT = new ObjectType("SHORT_OBJECT", 49)
   {
     @Override
     protected void doWriteValue(ExtendedDataOutput out, Object value) throws IOException
@@ -321,7 +304,7 @@ public abstract class CDOTypeImpl implements CDOType
     }
   };
 
-  public static final CDOTypeImpl STRING = new CDOTypeImpl("STRING", 50, true)
+  public static final CDOType STRING = new CDOTypeImpl("STRING", 50, true)
   {
     @SuppressWarnings("cast")
     @Override
@@ -330,14 +313,12 @@ public abstract class CDOTypeImpl implements CDOType
       return (String)value;
     }
 
-    @Override
     public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       out.writeString((String)value);
     }
 
-    @Override
-    public Object readValue(ExtendedDataInput in) throws IOException
+    public Object readValue(ExtendedDataInput in, CDOIDObjectFactory factory) throws IOException
     {
       return in.readString();
     }
@@ -396,24 +377,9 @@ public abstract class CDOTypeImpl implements CDOType
     return value == null ? getDefaultValue() : value;
   }
 
-  public abstract void writeValue(ExtendedDataOutput out, Object value) throws IOException;
-
-  public abstract Object readValue(ExtendedDataInput in) throws IOException;
-
   public void write(ExtendedDataOutput out) throws IOException
   {
     out.writeByte(typeID);
-  }
-
-  public static CDOTypeImpl read(ExtendedDataInput in) throws IOException
-  {
-    byte typeID = in.readByte();
-    return getType(typeID);
-  }
-
-  public static CDOTypeImpl getType(int typeID)
-  {
-    return index.get(typeID);
   }
 
   private void setIndex()
@@ -436,7 +402,6 @@ public abstract class CDOTypeImpl implements CDOType
       super(name, typeID, true);
     }
 
-    @Override
     public final void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
       if (value == null)
@@ -452,8 +417,7 @@ public abstract class CDOTypeImpl implements CDOType
 
     protected abstract void doWriteValue(ExtendedDataOutput out, Object value) throws IOException;
 
-    @Override
-    public final Object readValue(ExtendedDataInput in) throws IOException
+    public final Object readValue(ExtendedDataInput in, CDOIDObjectFactory factory) throws IOException
     {
       boolean notNull = in.readBoolean();
       if (notNull)

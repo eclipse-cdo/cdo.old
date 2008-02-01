@@ -14,16 +14,16 @@ package org.eclipse.emf.cdo.internal.protocol.revision;
 
 import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
-import org.eclipse.emf.cdo.internal.protocol.model.CDOClassRefImpl;
-import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
-import org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl;
 import org.eclipse.emf.cdo.internal.protocol.revision.delta.CDORevisionMerger;
 import org.eclipse.emf.cdo.internal.protocol.revision.delta.InternalCDORevisionDelta;
 import org.eclipse.emf.cdo.protocol.id.CDOID;
 import org.eclipse.emf.cdo.protocol.id.CDOIDProvider;
 import org.eclipse.emf.cdo.protocol.id.CDOIDUtil;
+import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
+import org.eclipse.emf.cdo.protocol.model.CDOModelUtil;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
+import org.eclipse.emf.cdo.protocol.model.CDOType;
 import org.eclipse.emf.cdo.protocol.revision.CDOReferenceProxy;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionData;
@@ -108,19 +108,19 @@ public class CDORevisionImpl implements InternalCDORevision
     this.revisionResolver = revisionResolver;
 
     READING.start(this);
-    CDOClassRefImpl classRef = new CDOClassRefImpl(in, null);
-    cdoClass = classRef.resolve(packageManager);
+    CDOClassRef classRef = CDOModelUtil.readClassRef(in);
+    cdoClass = (CDOClassImpl)classRef.resolve(packageManager);
     if (cdoClass == null)
     {
       throw new IllegalStateException("ClassRef unresolveable: " + classRef);
     }
 
-    id = CDOIDUtil.read(in);
+    id = CDOIDUtil.read(in, revisionResolver.getCDOIDObjectFactory());
     version = in.readInt();
     created = in.readLong();
     revised = in.readLong();
-    resourceID = CDOIDUtil.read(in);
-    containerID = CDOIDUtil.read(in);
+    resourceID = CDOIDUtil.read(in, revisionResolver.getCDOIDObjectFactory());
+    containerID = CDOIDUtil.read(in, revisionResolver.getCDOIDObjectFactory());
     containingFeatureID = in.readInt();
     if (TRACER.isEnabled())
     {
@@ -136,7 +136,7 @@ public class CDORevisionImpl implements InternalCDORevision
 
   public void write(ExtendedDataOutput out, CDOIDProvider idProvider, int referenceChunk) throws IOException
   {
-    CDOClassRefImpl classRef = cdoClass.createClassRef();
+    CDOClassRef classRef = cdoClass.createClassRef();
     if (TRACER.isEnabled())
     {
       TRACER
@@ -147,7 +147,7 @@ public class CDORevisionImpl implements InternalCDORevision
     }
 
     WRITING.start(this);
-    classRef.write(out, null);
+    CDOModelUtil.writeClassRef(out, classRef);
     CDOIDUtil.write(out, id);
     out.writeInt(getVersion());
     out.writeLong(created);
@@ -446,10 +446,10 @@ public class CDORevisionImpl implements InternalCDORevision
     resourceID = (CDOID)remapID(resourceID, idMappings);
     containerID = (CDOID)remapID(containerID, idMappings);
 
-    CDOFeatureImpl[] features = cdoClass.getAllFeatures();
+    CDOFeature[] features = cdoClass.getAllFeatures();
     for (int i = 0; i < features.length; i++)
     {
-      CDOFeatureImpl feature = features[i];
+      CDOFeature feature = features[i];
       if (feature.isReference())
       {
         if (feature.isMany())
@@ -530,12 +530,12 @@ public class CDORevisionImpl implements InternalCDORevision
   @SuppressWarnings("unchecked")
   private void copyValues(Object[] sourceValues)
   {
-    CDOFeatureImpl[] features = cdoClass.getAllFeatures();
+    CDOFeature[] features = cdoClass.getAllFeatures();
     values = new Object[features.length];
     for (int i = 0; i < features.length; i++)
     {
-      CDOFeatureImpl feature = features[i];
-      CDOTypeImpl type = feature.getType();
+      CDOFeature feature = features[i];
+      CDOType type = feature.getType();
       if (feature.isMany())
       {
         MoveableList<Object> sourceList = (MoveableList<Object>)sourceValues[i];
@@ -568,12 +568,12 @@ public class CDORevisionImpl implements InternalCDORevision
 
   private void readValues(ExtendedDataInput in) throws IOException
   {
-    CDOFeatureImpl[] features = cdoClass.getAllFeatures();
+    CDOFeature[] features = cdoClass.getAllFeatures();
     values = new Object[features.length];
     for (int i = 0; i < features.length; i++)
     {
-      CDOFeatureImpl feature = features[i];
-      CDOTypeImpl type = feature.getType();
+      CDOFeature feature = features[i];
+      CDOType type = feature.getType();
       if (feature.isMany())
       {
         int referenceChunk;
@@ -612,7 +612,7 @@ public class CDORevisionImpl implements InternalCDORevision
               {
                 while (range-- > 0)
                 {
-                  Object value = type.readValue(in);
+                  Object value = type.readValue(in, revisionResolver.getCDOIDObjectFactory());
                   list.add(value);
                   if (TRACER.isEnabled())
                   {
@@ -646,7 +646,7 @@ public class CDORevisionImpl implements InternalCDORevision
           {
             for (int j = 0; j < referenceChunk; j++)
             {
-              Object value = type.readValue(in);
+              Object value = type.readValue(in, revisionResolver.getCDOIDObjectFactory());
               list.add(value);
               if (TRACER.isEnabled())
               {
@@ -663,7 +663,7 @@ public class CDORevisionImpl implements InternalCDORevision
       }
       else
       {
-        values[i] = type.readValue(in);
+        values[i] = type.readValue(in, revisionResolver.getCDOIDObjectFactory());
         if (TRACER.isEnabled())
         {
           TRACER.format("Read feature {0}: {1}", feature, values[i]);
@@ -674,10 +674,10 @@ public class CDORevisionImpl implements InternalCDORevision
 
   private void writeValues(ExtendedDataOutput out, CDOIDProvider idProvider, int referenceChunk) throws IOException
   {
-    CDOFeatureImpl[] features = cdoClass.getAllFeatures();
+    CDOFeature[] features = cdoClass.getAllFeatures();
     for (int i = 0; i < features.length; i++)
     {
-      CDOFeatureImpl feature = features[i];
+      CDOFeature feature = features[i];
       if (feature.isMany())
       {
         List<Object> list = getValueAsList(i);

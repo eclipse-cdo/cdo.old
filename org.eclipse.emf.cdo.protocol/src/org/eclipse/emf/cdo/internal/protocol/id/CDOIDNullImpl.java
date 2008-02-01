@@ -8,42 +8,56 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.protocol.id;
+package org.eclipse.emf.cdo.internal.protocol.id;
 
 import org.eclipse.net4j.util.io.ExtendedDataInput;
 import org.eclipse.net4j.util.io.ExtendedDataOutput;
 
 import java.io.IOException;
-import java.io.Serializable;
 
 /**
  * @author Eike Stepper
  */
-public interface CDOID extends Serializable
+public final class CDOIDNullImpl extends AbstractCDOID
 {
-  public static final CDOID NULL = org.eclipse.emf.cdo.internal.protocol.id.CDOIDNullImpl.INSTANCE;
+  public static final CDOIDNullImpl INSTANCE = new CDOIDNullImpl();
 
-  public Type getType();
+  private static final long serialVersionUID = 1L;
 
-  public boolean isNull();
-
-  public boolean isObject();
-
-  public boolean isLegacy();
-
-  public boolean isMeta();
-
-  public boolean isTemporary();
-
-  public void read(ExtendedDataInput in) throws IOException;
-
-  public void write(ExtendedDataOutput out) throws IOException;
-
-  /**
-   * @author Eike Stepper
-   */
-  public enum Type
+  private CDOIDNullImpl()
   {
-    NULL, OBJECT, LEGACY_OBJECT, TEMP_OBJECT, META, TEMP_META
+  }
+
+  public Type getType()
+  {
+    return Type.NULL;
+  }
+
+  public void read(ExtendedDataInput in) throws IOException
+  {
+    // Do nothing
+  }
+
+  public void write(ExtendedDataOutput out) throws IOException
+  {
+    // Do nothing
+  }
+
+  @Override
+  public boolean equals(Object obj)
+  {
+    return obj == INSTANCE;
+  }
+
+  @Override
+  public int hashCode()
+  {
+    return 0;
+  }
+
+  @Override
+  public String toString()
+  {
+    return "NULL";
   }
 }

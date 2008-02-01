@@ -10,22 +10,14 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.id;
 
+import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
+
 /**
  * @author Eike Stepper
  */
-public interface CDOIDRange
+public interface CDOIDObject extends CDOID
 {
-  public boolean isMeta();
+  public CDOClassRef getClassRef();
 
-  public boolean isTemporary();
-
-  public CDOID getLowerBound();
-
-  public CDOID getUpperBound();
-
-  public CDOID get(long index);
-
-  public long getCount();
-
-  public boolean contains(CDOID id);
+  public CDOIDObject asLegacy(CDOClassRef classRef);
 }

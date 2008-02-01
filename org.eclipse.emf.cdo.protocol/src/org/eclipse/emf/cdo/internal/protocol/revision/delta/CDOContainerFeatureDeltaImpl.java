@@ -11,6 +11,7 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.revision.delta;
 
+import org.eclipse.emf.cdo.internal.protocol.model.CDOClassProxy;
 import org.eclipse.emf.cdo.internal.protocol.revision.InternalCDORevision;
 import org.eclipse.emf.cdo.protocol.id.CDOID;
 import org.eclipse.emf.cdo.protocol.id.CDOIDProvider;
@@ -36,6 +37,9 @@ import java.util.Map;
  */
 public class CDOContainerFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDOContainerFeatureDelta
 {
+  /**
+   * TODO Move to CDOObjectContainerFeature
+   */
   private static CDOFeature CONTAINER_FEATURE = new ContainerFeature();
 
   private CDOID newContainerID;
@@ -49,11 +53,11 @@ public class CDOContainerFeatureDeltaImpl extends CDOFeatureDeltaImpl implements
     this.newContainerFeatureID = newContainerFeatureID;
   }
 
-  public CDOContainerFeatureDeltaImpl(ExtendedDataInput in, CDOClass packageManager) throws IOException
+  public CDOContainerFeatureDeltaImpl(ExtendedDataInput in, CDOClass cdoClass) throws IOException
   {
     super(CONTAINER_FEATURE);
     newContainerFeatureID = in.readInt();
-    newContainerID = CDOIDUtil.read(in);
+    newContainerID = CDOIDUtil.read(in, cdoClass.getPackageManager().getCDOIDObjectFactory());
   }
 
   public int getContainerFeatureID()
@@ -122,6 +126,11 @@ public class CDOContainerFeatureDeltaImpl extends CDOFeatureDeltaImpl implements
     }
 
     public CDOClass getReferenceType()
+    {
+      return null;
+    }
+
+    public CDOClassProxy getReferenceTypeProxy()
     {
       return null;
     }

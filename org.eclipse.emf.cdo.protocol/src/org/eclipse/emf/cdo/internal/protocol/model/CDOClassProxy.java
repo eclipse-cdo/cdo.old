@@ -10,6 +10,8 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.model;
 
+import org.eclipse.emf.cdo.protocol.model.CDOClass;
+import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
 /**
@@ -19,17 +21,17 @@ public final class CDOClassProxy
 {
   private CDOPackageManager packageManager;
 
-  private CDOClassRefImpl classRef;
+  private CDOClassRef classRef;
 
-  private CDOClassImpl cdoClass;
+  private CDOClass cdoClass;
 
-  public CDOClassProxy(CDOClassRefImpl classRef, CDOPackageManager packageManager)
+  public CDOClassProxy(CDOClassRef classRef, CDOPackageManager packageManager)
   {
     this.classRef = classRef;
     this.packageManager = packageManager;
   }
 
-  public CDOClassProxy(CDOClassImpl cdoClass)
+  public CDOClassProxy(CDOClass cdoClass)
   {
     this.cdoClass = cdoClass;
   }
@@ -54,7 +56,7 @@ public final class CDOClassProxy
     return cdoClass.getClassifierID();
   }
 
-  public CDOClassImpl getCDOClass()
+  public CDOClass getCDOClass()
   {
     if (cdoClass == null)
     {
@@ -68,7 +70,7 @@ public final class CDOClassProxy
     return cdoClass;
   }
 
-  public CDOClassRefImpl getClassRef()
+  public CDOClassRef getClassRef()
   {
     if (classRef == null)
     {

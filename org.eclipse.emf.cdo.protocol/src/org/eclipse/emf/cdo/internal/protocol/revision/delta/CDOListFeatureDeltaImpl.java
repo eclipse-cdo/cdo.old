@@ -40,13 +40,13 @@ public class CDOListFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDOL
     super(feature);
   }
 
-  public CDOListFeatureDeltaImpl(ExtendedDataInput in, CDOClass packageManager) throws IOException
+  public CDOListFeatureDeltaImpl(ExtendedDataInput in, CDOClass cdoClass) throws IOException
   {
-    super(in, packageManager);
+    super(in, cdoClass);
     int size = in.readInt();
     for (int i = 0; i < size; i++)
     {
-      featureDeltas.add(CDOFeatureDeltaImpl.read(in, packageManager));
+      featureDeltas.add(CDOFeatureDeltaImpl.read(in, cdoClass));
     }
   }
 

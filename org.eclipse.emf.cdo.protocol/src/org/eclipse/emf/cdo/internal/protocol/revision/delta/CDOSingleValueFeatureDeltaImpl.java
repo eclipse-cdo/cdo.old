@@ -11,11 +11,10 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.revision.delta;
 
-import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
-import org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl;
 import org.eclipse.emf.cdo.protocol.id.CDOID;
 import org.eclipse.emf.cdo.protocol.id.CDOIDProvider;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
+import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionUtil;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOFeatureDelta;
 
@@ -34,18 +33,18 @@ public abstract class CDOSingleValueFeatureDeltaImpl extends CDOFeatureDeltaImpl
 
   private Object newValue;
 
-  public CDOSingleValueFeatureDeltaImpl(CDOFeatureImpl feature, int index, Object value)
+  public CDOSingleValueFeatureDeltaImpl(CDOFeature feature, int index, Object value)
   {
     super(feature);
     this.index = index;
     newValue = value;
   }
 
-  public CDOSingleValueFeatureDeltaImpl(ExtendedDataInput in, CDOClass packageManager) throws IOException
+  public CDOSingleValueFeatureDeltaImpl(ExtendedDataInput in, CDOClass cdoClass) throws IOException
   {
-    super(in, packageManager);
+    super(in, cdoClass);
     index = in.readInt();
-    newValue = ((CDOTypeImpl)getFeature().getType()).readValue(in);
+    newValue = getFeature().getType().readValue(in, cdoClass.getPackageManager().getCDOIDObjectFactory());
   }
 
   public int getIndex()
@@ -68,7 +67,7 @@ public abstract class CDOSingleValueFeatureDeltaImpl extends CDOFeatureDeltaImpl
       newValue = idProvider.provideCDOID(newValue);
     }
 
-    ((CDOTypeImpl)getFeature().getType()).writeValue(out, newValue);
+    getFeature().getType().writeValue(out, newValue);
   }
 
   @Override

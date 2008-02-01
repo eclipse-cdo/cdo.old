@@ -11,6 +11,7 @@
 package org.eclipse.emf.cdo.protocol.revision;
 
 import org.eclipse.emf.cdo.protocol.id.CDOID;
+import org.eclipse.emf.cdo.protocol.id.CDOIDObjectFactory;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
 
 import java.util.Collection;
@@ -21,6 +22,8 @@ import java.util.List;
  */
 public interface CDORevisionResolver
 {
+  public CDOIDObjectFactory getCDOIDObjectFactory();
+
   /**
    * @return The type of an object if a revision for that object is in the revision cache, <code>null</code>
    *         otherwise.

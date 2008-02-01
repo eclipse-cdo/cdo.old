@@ -10,50 +10,55 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.model;
 
-import org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl;
+import org.eclipse.emf.cdo.protocol.id.CDOIDObjectFactory;
+
+import org.eclipse.net4j.util.io.ExtendedDataInput;
+import org.eclipse.net4j.util.io.ExtendedDataOutput;
+
+import java.io.IOException;
 
 /**
  * @author Eike Stepper
  */
 public interface CDOType
 {
-  public static final CDOType OBJECT = CDOTypeImpl.OBJECT;
+  public static final CDOType OBJECT = org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl.OBJECT;
 
-  public static final CDOType BOOLEAN = CDOTypeImpl.BOOLEAN;
+  public static final CDOType BOOLEAN = org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl.BOOLEAN;
 
-  public static final CDOType BOOLEAN_OBJECT = CDOTypeImpl.BOOLEAN_OBJECT;
+  public static final CDOType BOOLEAN_OBJECT = org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl.BOOLEAN_OBJECT;
 
-  public static final CDOType BYTE = CDOTypeImpl.BYTE;
+  public static final CDOType BYTE = org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl.BYTE;
 
-  public static final CDOType BYTE_OBJECT = CDOTypeImpl.BYTE_OBJECT;
+  public static final CDOType BYTE_OBJECT = org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl.BYTE_OBJECT;
 
-  public static final CDOType CHAR = CDOTypeImpl.CHAR;
+  public static final CDOType CHAR = org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl.CHAR;
 
-  public static final CDOType CHARACTER_OBJECT = CDOTypeImpl.CHARACTER_OBJECT;
+  public static final CDOType CHARACTER_OBJECT = org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl.CHARACTER_OBJECT;
 
-  public static final CDOType DATE = CDOTypeImpl.DATE;
+  public static final CDOType DATE = org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl.DATE;
 
-  public static final CDOType DOUBLE = CDOTypeImpl.DOUBLE;
+  public static final CDOType DOUBLE = org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl.DOUBLE;
 
-  public static final CDOType DOUBLE_OBJECT = CDOTypeImpl.DOUBLE_OBJECT;
+  public static final CDOType DOUBLE_OBJECT = org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl.DOUBLE_OBJECT;
 
-  public static final CDOType FLOAT = CDOTypeImpl.FLOAT;
+  public static final CDOType FLOAT = org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl.FLOAT;
 
-  public static final CDOType FLOAT_OBJECT = CDOTypeImpl.FLOAT_OBJECT;
+  public static final CDOType FLOAT_OBJECT = org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl.FLOAT_OBJECT;
 
-  public static final CDOType INT = CDOTypeImpl.INT;
+  public static final CDOType INT = org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl.INT;
 
-  public static final CDOType INTEGER_OBJECT = CDOTypeImpl.INTEGER_OBJECT;
+  public static final CDOType INTEGER_OBJECT = org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl.INTEGER_OBJECT;
 
-  public static final CDOType LONG = CDOTypeImpl.LONG;
+  public static final CDOType LONG = org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl.LONG;
 
-  public static final CDOType LONG_OBJECT = CDOTypeImpl.LONG_OBJECT;
+  public static final CDOType LONG_OBJECT = org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl.LONG_OBJECT;
 
-  public static final CDOType SHORT = CDOTypeImpl.SHORT;
+  public static final CDOType SHORT = org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl.SHORT;
 
-  public static final CDOType SHORT_OBJECT = CDOTypeImpl.SHORT_OBJECT;
+  public static final CDOType SHORT_OBJECT = org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl.SHORT_OBJECT;
 
-  public static final CDOType STRING = CDOTypeImpl.STRING;
+  public static final CDOType STRING = org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl.STRING;
 
   public String getName();
 
@@ -62,4 +67,10 @@ public interface CDOType
   public boolean canBeNull();
 
   public Object getDefaultValue();
+
+  public Object copyValue(Object value);
+
+  public Object readValue(ExtendedDataInput in, CDOIDObjectFactory factory) throws IOException;
+
+  public void writeValue(ExtendedDataOutput out, Object value) throws IOException;
 }

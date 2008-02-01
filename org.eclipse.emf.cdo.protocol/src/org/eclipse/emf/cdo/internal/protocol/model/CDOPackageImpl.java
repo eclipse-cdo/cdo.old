@@ -11,8 +11,10 @@
 package org.eclipse.emf.cdo.internal.protocol.model;
 
 import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
-import org.eclipse.emf.cdo.protocol.id.CDOIDRange;
+import org.eclipse.emf.cdo.protocol.id.CDOIDMetaRange;
 import org.eclipse.emf.cdo.protocol.id.CDOIDUtil;
+import org.eclipse.emf.cdo.protocol.model.CDOClass;
+import org.eclipse.emf.cdo.protocol.model.CDOModelUtil;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
@@ -38,15 +40,15 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
 
   private String packageURI;
 
-  private List<CDOClassImpl> classes;
+  private List<CDOClass> classes;
 
-  private List<CDOClassImpl> index;
+  private List<CDOClass> index;
 
   private String ecore;
 
   private boolean dynamic;
 
-  private CDOIDRange metaIDRange;
+  private CDOIDMetaRange metaIDRange;
 
   /**
    * TODO If this is only needed by the client then put it into server info
@@ -54,7 +56,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
   private boolean persistent = true;
 
   public CDOPackageImpl(CDOPackageManager packageManager, String packageURI, String name, String ecore,
-      boolean dynamic, CDOIDRange metaIDRange)
+      boolean dynamic, CDOIDMetaRange metaIDRange)
   {
     super(name);
     this.packageManager = packageManager;
@@ -80,7 +82,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
   /**
    * Creates a proxy CDO package
    */
-  public CDOPackageImpl(CDOPackageManager packageManager, String packageURI, boolean dynamic, CDOIDRange metaIDRange)
+  public CDOPackageImpl(CDOPackageManager packageManager, String packageURI, boolean dynamic, CDOIDMetaRange metaIDRange)
   {
     this.packageManager = packageManager;
     this.packageURI = packageURI;
@@ -99,7 +101,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     packageURI = in.readString();
     dynamic = in.readBoolean();
     ecore = in.readString();
-    metaIDRange = CDOIDUtil.readRange(in);
+    metaIDRange = CDOIDUtil.readMetaRange(in);
     if (PROTOCOL.isEnabled())
     {
       PROTOCOL.format("Read package: URI={0}, name={1}, dynamic={2}, metaIDRange={3}", packageURI, getName(), dynamic,
@@ -114,7 +116,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
 
     for (int i = 0; i < size; i++)
     {
-      CDOClassImpl cdoClass = new CDOClassImpl(this, in);
+      CDOClass cdoClass = CDOModelUtil.readClass(this, in);
       addClass(cdoClass);
     }
   }
@@ -133,7 +135,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     out.writeString(packageURI);
     out.writeBoolean(dynamic);
     out.writeString(ecore);
-    CDOIDUtil.writeRange(out, metaIDRange);
+    CDOIDUtil.writeMetaRange(out, metaIDRange);
 
     int size = classes.size();
     if (PROTOCOL.isEnabled())
@@ -142,9 +144,9 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     }
 
     out.writeInt(size);
-    for (CDOClassImpl cdoClass : classes)
+    for (CDOClass cdoClass : classes)
     {
-      cdoClass.write(out);
+      CDOModelUtil.writeClass(out, cdoClass);
     }
   }
 
@@ -178,11 +180,11 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
   /**
    * @return All classes with <code>isAbstract() == false</code> and <code>isSystem() == false</code>.
    */
-  public CDOClassImpl[] getConcreteClasses()
+  public CDOClass[] getConcreteClasses()
   {
     resolve();
-    List<CDOClassImpl> result = new ArrayList<CDOClassImpl>(0);
-    for (CDOClassImpl cdoClass : classes)
+    List<CDOClass> result = new ArrayList<CDOClass>(0);
+    for (CDOClass cdoClass : classes)
     {
       if (!cdoClass.isAbstract())
       {
@@ -190,10 +192,10 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
       }
     }
 
-    return result.toArray(new CDOClassImpl[result.size()]);
+    return result.toArray(new CDOClass[result.size()]);
   }
 
-  public CDOClassImpl lookupClass(int classifierID)
+  public CDOClass lookupClass(int classifierID)
   {
     resolve();
     return index.get(classifierID);
@@ -218,12 +220,12 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     this.ecore = ecore;
   }
 
-  public CDOIDRange getMetaIDRange()
+  public CDOIDMetaRange getMetaIDRange()
   {
     return metaIDRange;
   }
 
-  public void setMetaIDRange(CDOIDRange metaIDRange)
+  public void setMetaIDRange(CDOIDMetaRange metaIDRange)
   {
     this.metaIDRange = metaIDRange;
   }
@@ -253,7 +255,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     this.persistent = persistent;
   }
 
-  public void addClass(CDOClassImpl cdoClass)
+  public void addClass(CDOClass cdoClass)
   {
     int classifierID = cdoClass.getClassifierID();
     if (MODEL.isEnabled())
@@ -280,13 +282,13 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
   @Override
   protected void onInitialize()
   {
-    for (CDOClassImpl cdoClass : classes)
+    for (CDOClass cdoClass : classes)
     {
-      cdoClass.initialize();
+      ((CDOClassImpl)cdoClass).initialize();
     }
   }
 
-  private void setIndex(int classifierID, CDOClassImpl cdoClass)
+  private void setIndex(int classifierID, CDOClass cdoClass)
   {
     while (classifierID >= index.size())
     {
@@ -307,7 +309,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
 
   private void createLists()
   {
-    classes = new ArrayList<CDOClassImpl>(0);
-    index = new ArrayList<CDOClassImpl>(0);
+    classes = new ArrayList<CDOClass>(0);
+    index = new ArrayList<CDOClass>(0);
   }
 }

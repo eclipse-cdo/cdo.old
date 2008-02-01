@@ -11,10 +11,10 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.revision.delta;
 
-import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
 import org.eclipse.emf.cdo.internal.protocol.revision.InternalCDORevision;
 import org.eclipse.emf.cdo.protocol.id.CDOID;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
+import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOClearFeatureDelta;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOFeatureDeltaVisitor;
@@ -29,14 +29,14 @@ import java.util.Map;
  */
 public class CDOClearFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDOClearFeatureDelta
 {
-  public CDOClearFeatureDeltaImpl(CDOFeatureImpl feature)
+  public CDOClearFeatureDeltaImpl(CDOFeature feature)
   {
     super(feature);
   }
 
-  public CDOClearFeatureDeltaImpl(ExtendedDataInput in, CDOClass packageManager) throws IOException
+  public CDOClearFeatureDeltaImpl(ExtendedDataInput in, CDOClass cdoClass) throws IOException
   {
-    super(in, packageManager);
+    super(in, cdoClass);
   }
 
   public Type getType()

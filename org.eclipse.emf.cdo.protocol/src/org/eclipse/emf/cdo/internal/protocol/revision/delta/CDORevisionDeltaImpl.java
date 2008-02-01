@@ -11,8 +11,6 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.revision.delta;
 
-import org.eclipse.emf.cdo.internal.protocol.model.CDOClassRefImpl;
-import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
 import org.eclipse.emf.cdo.internal.protocol.revision.InternalCDORevision;
 import org.eclipse.emf.cdo.protocol.id.CDOID;
 import org.eclipse.emf.cdo.protocol.id.CDOIDProvider;
@@ -20,6 +18,7 @@ import org.eclipse.emf.cdo.protocol.id.CDOIDUtil;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
+import org.eclipse.emf.cdo.protocol.model.CDOModelUtil;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionData;
@@ -85,9 +84,9 @@ public class CDORevisionDeltaImpl implements InternalCDORevisionDelta
 
   public CDORevisionDeltaImpl(ExtendedDataInput in, CDOPackageManager packageManager) throws IOException
   {
-    CDOClassRef classRef = new CDOClassRefImpl(in, null);
+    CDOClassRef classRef = CDOModelUtil.readClassRef(in);
     cdoClass = classRef.resolve(packageManager);
-    cdoID = CDOIDUtil.read(in);
+    cdoID = CDOIDUtil.read(in, packageManager.getCDOIDObjectFactory());
     originVersion = in.readInt();
     dirtyVersion = in.readInt();
     int size = in.readInt();
@@ -100,8 +99,8 @@ public class CDORevisionDeltaImpl implements InternalCDORevisionDelta
 
   public void write(ExtendedDataOutput out, CDOIDProvider idProvider) throws IOException
   {
-    CDOClassRefImpl classRef = (CDOClassRefImpl)cdoClass.createClassRef();
-    classRef.write(out, null);
+    CDOClassRef classRef = cdoClass.createClassRef();
+    CDOModelUtil.writeClassRef(out, classRef);
     CDOIDUtil.write(out, cdoID);
     out.writeInt(originVersion);
     out.writeInt(dirtyVersion);
@@ -188,7 +187,7 @@ public class CDORevisionDeltaImpl implements InternalCDORevisionDelta
     int count = cdoClass.getFeatureCount();
     for (int i = 0; i < count; i++)
     {
-      CDOFeatureImpl feature = (CDOFeatureImpl)features[i];
+      CDOFeature feature = features[i];
       if (feature.isMany())
       {
         int originSize = originRevision.getData().size(feature);

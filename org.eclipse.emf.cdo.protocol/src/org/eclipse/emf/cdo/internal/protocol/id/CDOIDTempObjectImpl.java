@@ -8,32 +8,30 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  **************************************************************************/
-package org.eclipse.emf.cdo.protocol.model;
+package org.eclipse.emf.cdo.internal.protocol.id;
 
-import org.eclipse.emf.cdo.internal.protocol.model.CDOClassProxy;
+import org.eclipse.emf.cdo.protocol.id.CDOIDTemp;
 
 /**
  * @author Eike Stepper
  */
-public interface CDOFeature extends CDOModelElement
+public class CDOIDTempObjectImpl extends AbstractCDOIDInteger implements CDOIDTemp
 {
-  public int getFeatureID();
+  private static final long serialVersionUID = 1L;
 
-  public int getFeatureIndex();
+  public CDOIDTempObjectImpl(int value)
+  {
+    super(value);
+  }
 
-  public CDOType getType();
+  public Type getType()
+  {
+    return Type.TEMP_OBJECT;
+  }
 
-  public boolean isMany();
-
-  public boolean isReference();
-
-  public boolean isContainment();
-
-  public CDOClass getReferenceType();
-
-  public CDOClassProxy getReferenceTypeProxy();
-
-  public CDOClass getContainingClass();
-
-  public CDOPackage getContainingPackage();
+  @Override
+  public String toString()
+  {
+    return "oid" + getValue();
+  }
 }

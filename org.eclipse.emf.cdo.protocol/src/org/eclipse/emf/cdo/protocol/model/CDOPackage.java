@@ -10,7 +10,7 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.model;
 
-import org.eclipse.emf.cdo.protocol.id.CDOIDRange;
+import org.eclipse.emf.cdo.protocol.id.CDOIDMetaRange;
 
 /**
  * @author Eike Stepper
@@ -39,5 +39,5 @@ public interface CDOPackage extends CDOModelElement, Comparable<CDOPackage>
 
   public boolean isPersistent();
 
-  public CDOIDRange getMetaIDRange();
+  public CDOIDMetaRange getMetaIDRange();
 }

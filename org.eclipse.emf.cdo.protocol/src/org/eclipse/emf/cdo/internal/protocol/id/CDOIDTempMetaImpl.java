@@ -10,47 +10,28 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.id;
 
-import org.eclipse.emf.cdo.protocol.id.CDOID;
-
-import org.eclipse.net4j.util.ImplementationError;
+import org.eclipse.emf.cdo.protocol.id.CDOIDTemp;
 
 /**
  * @author Eike Stepper
  */
-public final class CDOIDNull extends CDOIDImpl
+public class CDOIDTempMetaImpl extends AbstractCDOIDInteger implements CDOIDTemp
 {
-  private static final long VALUE = 0L;
+  private static final long serialVersionUID = 1L;
 
-  public CDOIDNull()
+  public CDOIDTempMetaImpl(int value)
   {
-    super(VALUE);
-    if (CDOID.NULL != null)
-    {
-      throw new ImplementationError("NULL is already created");
-    }
+    super(value);
   }
 
-  @Override
-  public boolean isNull()
+  public Type getType()
   {
-    return true;
-  }
-
-  @Override
-  public boolean equals(Object obj)
-  {
-    return CDOID.NULL == obj;
-  }
-
-  @Override
-  public int hashCode()
-  {
-    return 0;
+    return Type.TEMP_META;
   }
 
   @Override
   public String toString()
   {
-    return "NULL";
+    return "mid" + getValue();
   }
 }

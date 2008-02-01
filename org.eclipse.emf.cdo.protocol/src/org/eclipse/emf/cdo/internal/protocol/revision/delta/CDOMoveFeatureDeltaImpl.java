@@ -11,11 +11,11 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.revision.delta;
 
-import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
 import org.eclipse.emf.cdo.internal.protocol.revision.InternalCDORevision;
 import org.eclipse.emf.cdo.protocol.id.CDOID;
 import org.eclipse.emf.cdo.protocol.id.CDOIDProvider;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
+import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOFeatureDeltaVisitor;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOMoveFeatureDelta;
@@ -35,18 +35,18 @@ public class CDOMoveFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDOM
 
   private int newPosition;
 
-  public CDOMoveFeatureDeltaImpl(CDOFeatureImpl feature, int newPosition, int oldPosition)
+  public CDOMoveFeatureDeltaImpl(CDOFeature feature, int newPosition, int oldPosition)
   {
     super(feature);
     this.newPosition = newPosition;
     this.oldPosition = oldPosition;
   }
 
-  public CDOMoveFeatureDeltaImpl(ExtendedDataInput in, CDOClass packageManager) throws IOException
+  public CDOMoveFeatureDeltaImpl(ExtendedDataInput in, CDOClass cdoClass) throws IOException
   {
-    super(in, packageManager);
-    this.newPosition = in.readInt();
-    this.oldPosition = in.readInt();
+    super(in, cdoClass);
+    newPosition = in.readInt();
+    oldPosition = in.readInt();
   }
 
   public int getNewPosition()

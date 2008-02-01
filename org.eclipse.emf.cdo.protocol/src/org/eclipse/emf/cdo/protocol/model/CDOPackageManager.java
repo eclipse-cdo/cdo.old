@@ -10,6 +10,7 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.model;
 
+import org.eclipse.emf.cdo.protocol.id.CDOIDObjectFactory;
 import org.eclipse.emf.cdo.protocol.model.core.CDOCorePackage;
 import org.eclipse.emf.cdo.protocol.model.resource.CDOResourcePackage;
 
@@ -20,6 +21,8 @@ import org.eclipse.net4j.util.container.IContainer;
  */
 public interface CDOPackageManager extends IContainer<CDOPackage>
 {
+  public CDOIDObjectFactory getCDOIDObjectFactory();
+
   public int getPackageCount();
 
   public CDOPackage[] getPackages();

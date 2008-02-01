@@ -10,7 +10,6 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.id;
 
-
 /**
  * @author Eike Stepper
  */

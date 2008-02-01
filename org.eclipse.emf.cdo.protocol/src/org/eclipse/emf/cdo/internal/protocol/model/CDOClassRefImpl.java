@@ -10,7 +10,9 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.model;
 
+import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
+import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
 import org.eclipse.net4j.util.io.ExtendedDataInput;
@@ -20,7 +22,7 @@ import java.io.IOException;
 import java.text.MessageFormat;
 
 /**
- * TODO Optimize transfer of {@link CDOClassRefImpl} instances
+ * TODO Optimize transfer of CDOClassRef instances
  * 
  * @author Eike Stepper
  */
@@ -65,9 +67,9 @@ public final class CDOClassRefImpl implements CDOClassRef
     return classifierID;
   }
 
-  public CDOClassImpl resolve(CDOPackageManager packageManager)
+  public CDOClass resolve(CDOPackageManager packageManager)
   {
-    CDOPackageImpl cdoPackage = (CDOPackageImpl)packageManager.lookupPackage(packageURI);
+    CDOPackage cdoPackage = packageManager.lookupPackage(packageURI);
     if (cdoPackage != null)
     {
       return cdoPackage.lookupClass(classifierID);

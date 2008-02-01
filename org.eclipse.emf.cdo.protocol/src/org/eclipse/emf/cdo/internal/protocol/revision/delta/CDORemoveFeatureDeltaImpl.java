@@ -11,11 +11,11 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.revision.delta;
 
-import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
 import org.eclipse.emf.cdo.internal.protocol.revision.InternalCDORevision;
 import org.eclipse.emf.cdo.protocol.id.CDOID;
 import org.eclipse.emf.cdo.protocol.id.CDOIDProvider;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
+import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOFeatureDeltaVisitor;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDORemoveFeatureDelta;
@@ -34,15 +34,15 @@ public class CDORemoveFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CD
 {
   private int index;
 
-  public CDORemoveFeatureDeltaImpl(CDOFeatureImpl feature, int index)
+  public CDORemoveFeatureDeltaImpl(CDOFeature feature, int index)
   {
     super(feature);
     this.index = index;
   }
 
-  public CDORemoveFeatureDeltaImpl(ExtendedDataInput in, CDOClass packageManager) throws IOException
+  public CDORemoveFeatureDeltaImpl(ExtendedDataInput in, CDOClass cdoClass) throws IOException
   {
-    super(in, packageManager);
+    super(in, cdoClass);
     index = in.readInt();
   }
 

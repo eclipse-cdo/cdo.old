@@ -10,7 +10,7 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.model;
 
-import org.eclipse.emf.cdo.protocol.id.CDOIDRange;
+import org.eclipse.emf.cdo.protocol.id.CDOIDMetaRange;
 
 /**
  * TODO Add read(), write(), ...
@@ -23,9 +23,9 @@ public final class CDOPackageInfo
 
   private boolean dynamic;
 
-  private CDOIDRange metaIDRange;
+  private CDOIDMetaRange metaIDRange;
 
-  public CDOPackageInfo(String packageURI, boolean dynamic, CDOIDRange metaIDRange)
+  public CDOPackageInfo(String packageURI, boolean dynamic, CDOIDMetaRange metaIDRange)
   {
     this.packageURI = packageURI;
     this.dynamic = dynamic;
@@ -42,7 +42,7 @@ public final class CDOPackageInfo
     return dynamic;
   }
 
-  public CDOIDRange getMetaIDRange()
+  public CDOIDMetaRange getMetaIDRange()
   {
     return metaIDRange;
   }

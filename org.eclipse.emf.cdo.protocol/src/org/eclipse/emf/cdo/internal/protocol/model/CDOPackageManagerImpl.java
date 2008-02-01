@@ -15,6 +15,8 @@ import org.eclipse.emf.cdo.internal.protocol.model.core.CDOCorePackageImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.resource.CDOResourcePackageImpl;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
+import org.eclipse.emf.cdo.protocol.model.core.CDOCorePackage;
+import org.eclipse.emf.cdo.protocol.model.resource.CDOResourcePackage;
 
 import org.eclipse.net4j.internal.util.container.Container;
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
@@ -31,11 +33,11 @@ public abstract class CDOPackageManagerImpl extends Container<CDOPackage> implem
 {
   private static final ContextTracer TRACER = new ContextTracer(OM.DEBUG_MODEL, CDOPackageManagerImpl.class);
 
-  private ConcurrentMap<String, CDOPackageImpl> packages = new ConcurrentHashMap<String, CDOPackageImpl>();
+  private ConcurrentMap<String, CDOPackage> packages = new ConcurrentHashMap<String, CDOPackage>();
 
-  private CDOCorePackageImpl cdoCorePackage;
+  private CDOCorePackage cdoCorePackage;
 
-  private CDOResourcePackageImpl cdoResourcePackage;
+  private CDOResourcePackage cdoResourcePackage;
 
   public CDOPackageManagerImpl()
   {
@@ -43,7 +45,7 @@ public abstract class CDOPackageManagerImpl extends Container<CDOPackage> implem
     addPackage(cdoResourcePackage = new CDOResourcePackageImpl(this));
   }
 
-  public CDOPackageImpl lookupPackage(String uri)
+  public CDOPackage lookupPackage(String uri)
   {
     if (uri == null)
     {
@@ -58,9 +60,9 @@ public abstract class CDOPackageManagerImpl extends Container<CDOPackage> implem
     return packages.size();
   }
 
-  public CDOPackageImpl[] getPackages()
+  public CDOPackage[] getPackages()
   {
-    return packages.values().toArray(new CDOPackageImpl[packages.size()]);
+    return packages.values().toArray(new CDOPackage[packages.size()]);
   }
 
   public CDOPackage[] getElements()
@@ -74,20 +76,20 @@ public abstract class CDOPackageManagerImpl extends Container<CDOPackage> implem
     return packages.isEmpty();
   }
 
-  public CDOCorePackageImpl getCDOCorePackage()
+  public CDOCorePackage getCDOCorePackage()
   {
     return cdoCorePackage;
   }
 
-  public CDOResourcePackageImpl getCDOResourcePackage()
+  public CDOResourcePackage getCDOResourcePackage()
   {
     return cdoResourcePackage;
   }
 
-  public List<CDOPackageImpl> getTransientPackages()
+  public List<CDOPackage> getTransientPackages()
   {
-    List<CDOPackageImpl> result = new ArrayList<CDOPackageImpl>();
-    for (CDOPackageImpl cdoPackage : packages.values())
+    List<CDOPackage> result = new ArrayList<CDOPackage>();
+    for (CDOPackage cdoPackage : packages.values())
     {
       if (!cdoPackage.isPersistent())
       {
@@ -98,7 +100,7 @@ public abstract class CDOPackageManagerImpl extends Container<CDOPackage> implem
     return result;
   }
 
-  public void addPackage(CDOPackageImpl cdoPackage)
+  public void addPackage(CDOPackage cdoPackage)
   {
     String uri = cdoPackage.getPackageURI();
     if (uri == null)

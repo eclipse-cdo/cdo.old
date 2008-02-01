@@ -10,11 +10,16 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.id;
 
-import org.eclipse.emf.cdo.internal.protocol.id.CDOIDImpl;
-import org.eclipse.emf.cdo.internal.protocol.id.CDOIDRangeImpl;
-import org.eclipse.emf.cdo.internal.protocol.model.CDOClassRefImpl;
+import org.eclipse.emf.cdo.internal.protocol.id.CDOIDMetaImpl;
+import org.eclipse.emf.cdo.internal.protocol.id.CDOIDMetaRangeImpl;
+import org.eclipse.emf.cdo.internal.protocol.id.CDOIDObjectImpl;
+import org.eclipse.emf.cdo.internal.protocol.id.CDOIDTempMetaImpl;
+import org.eclipse.emf.cdo.internal.protocol.id.CDOIDTempObjectImpl;
+import org.eclipse.emf.cdo.protocol.id.CDOID.Type;
 import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
+import org.eclipse.emf.cdo.protocol.model.CDOModelUtil;
 
+import org.eclipse.net4j.util.ImplementationError;
 import org.eclipse.net4j.util.io.ExtendedDataInput;
 import org.eclipse.net4j.util.io.ExtendedDataOutput;
 
@@ -29,61 +34,103 @@ public final class CDOIDUtil
   {
   }
 
-  public static CDOID create(long value)
+  public static long getLong(CDOID id)
   {
-    if (value == 0)
+    switch (id.getType())
+    {
+    case NULL:
+      return 0L;
+    case OBJECT:
+    case LEGACY_OBJECT:
+      if (id instanceof CDOIDObjectImpl)
+      {
+        return ((CDOIDObjectImpl)id).getValue();
+      }
+
+      throw new IllegalArgumentException("Unknown CDOIDObject implementation: " + id.getClass().getName());
+
+    case META:
+      return ((CDOIDMeta)id).getValue();
+    case TEMP_META:
+    case TEMP_OBJECT:
+      throw new IllegalArgumentException("id instanceof CDOIDTemp");
+    default:
+      throw new ImplementationError();
+    }
+  }
+
+  public static CDOIDTemp createCDOIDTempObject(int value)
+  {
+    return new CDOIDTempObjectImpl(value);
+  }
+
+  public static CDOID createCDOID(long value)
+  {
+    if (value == 0L)
     {
       return CDOID.NULL;
     }
 
-    return new CDOIDImpl(value);
+    return new CDOIDObjectImpl(value);
   }
 
-  public static CDOID create(long value, CDOClassRef type)
+  public static CDOID read(ExtendedDataInput in, CDOIDObjectFactory factory) throws IOException
   {
-    if (value == 0)
+    return read(in, factory, false);
+  }
+
+  public static CDOID read(ExtendedDataInput in, CDOIDObjectFactory factory, boolean asLegacy) throws IOException
+  {
+    Type type = Type.values()[in.readByte()];
+    if (asLegacy)
     {
-      throw new IllegalArgumentException("value == 0");
-    }
-
-    if (type == null)
-    {
-      throw new IllegalArgumentException("type == null");
-    }
-
-    return new CDOIDImpl.Typed(value, type);
-  }
-
-  public static CDOID copy(CDOID source)
-  {
-    return source;
-  }
-
-  public static CDOID parse(String s) throws NumberFormatException
-  {
-    long value = Long.parseLong(s);
-    return create(value);
-  }
-
-  public static CDOID read(ExtendedDataInput in) throws IOException
-  {
-    return read(in, false);
-  }
-
-  public static CDOID read(ExtendedDataInput in, boolean withType) throws IOException
-  {
-    long value = in.readLong();
-    if (withType)
-    {
-      boolean typed = in.readBoolean();
-      if (typed)
+      switch (type)
       {
-        CDOClassRefImpl type = new CDOClassRefImpl(in, null);
-        return create(value, type);
+      case NULL:
+      case TEMP_OBJECT:
+      case TEMP_META:
+      case META:
+      case OBJECT:
+        throw new IllegalStateException("Missing classRef");
+
+      case LEGACY_OBJECT:
+        CDOIDObject id = factory.createCDOIDObject();
+        id.read(in);
+        CDOClassRef classRef = CDOModelUtil.readClassRef(in);
+        return id.asLegacy(classRef);
+
+      default:
+        throw new ImplementationError();
       }
     }
 
-    return create(value);
+    // Not asLegacy
+    switch (type)
+    {
+    case NULL:
+      return CDOID.NULL;
+
+    case TEMP_OBJECT:
+      return new CDOIDTempObjectImpl(in.readInt());
+
+    case TEMP_META:
+      return new CDOIDTempMetaImpl(in.readInt());
+
+    case META:
+      return new CDOIDMetaImpl(in.readLong());
+
+    case OBJECT:
+      return new CDOIDObjectImpl(in.readLong());
+
+    case LEGACY_OBJECT:
+      CDOIDObject id = factory.createCDOIDObject();
+      id.read(in);
+      CDOModelUtil.readClassRef(in); // Discard classRef from stream
+      return id;
+
+    default:
+      throw new ImplementationError();
+    }
   }
 
   public static void write(ExtendedDataOutput out, CDOID id) throws IOException
@@ -91,37 +138,55 @@ public final class CDOIDUtil
     write(out, id, false);
   }
 
-  public static void write(ExtendedDataOutput out, CDOID id, boolean withType) throws IOException
+  public static void write(ExtendedDataOutput out, CDOID id, boolean asLegacy) throws IOException
   {
-    out.writeLong(id == null ? 0L : id.getValue());
-    if (withType)
+    if (id == null)
     {
-      CDOClassRefImpl type = (CDOClassRefImpl)id.getType();
-      if (type != null)
+      out.writeByte(Type.NULL.ordinal());
+      return;
+    }
+
+    Type type = id.getType();
+    out.writeByte(type.ordinal());
+    if (asLegacy)
+    {
+      switch (type)
       {
-        out.writeBoolean(true);
-        type.write(out, null);
-      }
-      else
-      {
-        out.writeBoolean(false);
+      case NULL:
+      case TEMP_OBJECT:
+      case TEMP_META:
+      case META:
+      case OBJECT:
+        throw new IllegalStateException("Missing classRef");
+
+      case LEGACY_OBJECT:
+        CDOIDObject legacy = (CDOIDObject)id;
+        legacy.write(out);
+        CDOModelUtil.writeClassRef(out, legacy.getClassRef());
+        return;
+
+      default:
+        throw new ImplementationError();
       }
     }
+
+    // Not asLegacy
+    id.write(out);
   }
 
-  public static CDOIDRange createRange(long lowerBound, long upperBound)
+  public static CDOIDMetaRange createMetaRange(CDOID lowerBound, int count)
   {
-    return new CDOIDRangeImpl(lowerBound, upperBound);
+    return new CDOIDMetaRangeImpl(lowerBound, count);
   }
 
-  public static CDOIDRange readRange(ExtendedDataInput in) throws IOException
+  public static CDOIDMetaRange readMetaRange(ExtendedDataInput in) throws IOException
   {
-    return new CDOIDRangeImpl(read(in), read(in));
+    return new CDOIDMetaRangeImpl(read(in, null), in.readInt());
   }
 
-  public static void writeRange(ExtendedDataOutput out, CDOIDRange idRange) throws IOException
+  public static void writeMetaRange(ExtendedDataOutput out, CDOIDMetaRange idRange) throws IOException
   {
     write(out, idRange.getLowerBound());
-    write(out, idRange.getUpperBound());
+    out.writeInt(idRange.size());
   }
 }
