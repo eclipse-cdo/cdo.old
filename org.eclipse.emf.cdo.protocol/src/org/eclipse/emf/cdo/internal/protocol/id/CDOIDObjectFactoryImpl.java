@@ -13,6 +13,7 @@ package org.eclipse.emf.cdo.internal.protocol.id;
 import org.eclipse.emf.cdo.protocol.id.CDOIDObject;
 import org.eclipse.emf.cdo.protocol.id.CDOIDObjectFactory;
 
+import org.eclipse.net4j.util.io.ExtendedDataInput;
 
 /**
  * @author Eike Stepper
@@ -30,7 +31,7 @@ public class CDOIDObjectFactoryImpl implements CDOIDObjectFactory
     return CLASSES;
   }
 
-  public CDOIDObject createCDOIDObject()
+  public CDOIDObject createCDOIDObject(ExtendedDataInput in)
   {
     return new CDOIDObjectImpl();
   }

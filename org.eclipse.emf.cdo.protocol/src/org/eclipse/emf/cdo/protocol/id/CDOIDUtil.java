@@ -94,7 +94,7 @@ public final class CDOIDUtil
         throw new IllegalStateException("Missing classRef");
 
       case LEGACY_OBJECT:
-        CDOIDObject id = factory.createCDOIDObject();
+        CDOIDObject id = factory.createCDOIDObject(in);
         id.read(in);
         CDOClassRef classRef = CDOModelUtil.readClassRef(in);
         return id.asLegacy(classRef);
@@ -123,7 +123,7 @@ public final class CDOIDUtil
       return new CDOIDObjectImpl(in.readLong());
 
     case LEGACY_OBJECT:
-      CDOIDObject id = factory.createCDOIDObject();
+      CDOIDObject id = factory.createCDOIDObject(in);
       id.read(in);
       CDOModelUtil.readClassRef(in); // Discard classRef from stream
       return id;

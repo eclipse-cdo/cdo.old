@@ -10,6 +10,7 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.id;
 
+import org.eclipse.net4j.util.io.ExtendedDataInput;
 
 /**
  * @author Eike Stepper
@@ -18,5 +19,5 @@ public interface CDOIDObjectFactory
 {
   public Class<?>[] getCDOIDObjectClasses();
 
-  public CDOIDObject createCDOIDObject();
+  public CDOIDObject createCDOIDObject(ExtendedDataInput in);
 }
