@@ -51,6 +51,10 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
 
   private CDOClassProxy referenceType;
 
+  public CDOFeatureImpl()
+  {
+  }
+
   public CDOFeatureImpl(CDOClass containingClass, int featureID, String name, CDOType type, boolean many)
   {
     super(name);
@@ -165,9 +169,19 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
     return containingClass;
   }
 
+  public void setContainingClass(CDOClass containingClass)
+  {
+    this.containingClass = containingClass;
+  }
+
   public int getFeatureID()
   {
     return featureID;
+  }
+
+  public void setFeatureID(int featureID)
+  {
+    this.featureID = featureID;
   }
 
   public int getFeatureIndex()
@@ -180,14 +194,29 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
     return featureIndex;
   }
 
+  public void setFeatureIndex(int featureIndex)
+  {
+    this.featureIndex = featureIndex;
+  }
+
   public CDOType getType()
   {
     return type;
   }
 
+  public void setType(CDOType type)
+  {
+    this.type = type;
+  }
+
   public boolean isMany()
   {
     return many;
+  }
+
+  public void setMany(boolean many)
+  {
+    this.many = many;
   }
 
   public boolean isReference()
@@ -198,6 +227,11 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
   public boolean isContainment()
   {
     return containment;
+  }
+
+  public void setContainment(boolean containment)
+  {
+    this.containment = containment;
   }
 
   /**
@@ -218,9 +252,14 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
     return referenceType;
   }
 
-  public void setFeatureIndex(int featureIndex)
+  public CDOClass getReferenceCDOClass()
   {
-    this.featureIndex = featureIndex;
+    return referenceType.getCDOClass();
+  }
+
+  public void setReferenceCDOClass(CDOClass cdoClass)
+  {
+    referenceType = new CDOClassProxy(cdoClass);
   }
 
   @Override

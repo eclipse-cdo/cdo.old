@@ -54,6 +54,10 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
 
   private transient CDOFeature[] allFeatures;
 
+  public CDOClassImpl()
+  {
+  }
+
   public CDOClassImpl(CDOPackage containingPackage, int classifierID, String name, boolean isAbstract)
   {
     super(name);
@@ -112,14 +116,29 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     return containingPackage;
   }
 
+  public void setContainingPackage(CDOPackage containingPackage)
+  {
+    this.containingPackage = containingPackage;
+  }
+
   public int getClassifierID()
   {
     return classifierID;
   }
 
+  public void setClassifierID(int classifierID)
+  {
+    this.classifierID = classifierID;
+  }
+
   public boolean isAbstract()
   {
     return isAbstract;
+  }
+
+  public void setAbstract(boolean isAbstract)
+  {
+    this.isAbstract = isAbstract;
   }
 
   public boolean isResource()
@@ -149,6 +168,11 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     return result;
   }
 
+  public void setSuperTypes(List<CDOClassProxy> superTypes)
+  {
+    this.superTypes = superTypes;
+  }
+
   public CDOClass getSuperType(int index)
   {
     return superTypes.get(index).getCDOClass();
@@ -167,6 +191,11 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
   public CDOFeature[] getFeatures()
   {
     return features.toArray(new CDOFeature[features.size()]);
+  }
+
+  public void setFeatures(List<CDOFeature> features)
+  {
+    this.features = features;
   }
 
   public CDOFeature lookupFeature(int featureID)

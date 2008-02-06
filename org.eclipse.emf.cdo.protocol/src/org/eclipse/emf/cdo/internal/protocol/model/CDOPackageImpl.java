@@ -55,6 +55,10 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
    */
   private boolean persistent = true;
 
+  public CDOPackageImpl()
+  {
+  }
+
   public CDOPackageImpl(CDOPackageManager packageManager, String packageURI, String name, String ecore,
       boolean dynamic, CDOIDMetaRange metaIDRange)
   {
@@ -165,6 +169,11 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     return packageURI;
   }
 
+  public void setPackageURI(String packageURI)
+  {
+    this.packageURI = packageURI;
+  }
+
   public int getClassCount()
   {
     resolve();
@@ -175,6 +184,15 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
   {
     resolve();
     return classes.toArray(new CDOClassImpl[classes.size()]);
+  }
+
+  public void setClasses(List<CDOClass> classes)
+  {
+    this.classes = classes;
+    for (CDOClass cdoClass : classes)
+    {
+      setIndex(cdoClass.getClassifierID(), cdoClass);
+    }
   }
 
   /**
@@ -233,6 +251,11 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
   public boolean isDynamic()
   {
     return dynamic;
+  }
+
+  public void setDynamic(boolean dynamic)
+  {
+    this.dynamic = dynamic;
   }
 
   public boolean isSystem()
