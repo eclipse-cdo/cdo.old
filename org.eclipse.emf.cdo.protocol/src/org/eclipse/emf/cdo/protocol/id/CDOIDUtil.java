@@ -44,13 +44,13 @@ public final class CDOIDUtil
     case LEGACY_OBJECT:
       if (id instanceof CDOIDObjectImpl)
       {
-        return ((CDOIDObjectImpl)id).getValue();
+        return ((CDOIDObjectImpl)id).getLongValue();
       }
 
       throw new IllegalArgumentException("Unknown CDOIDObject implementation: " + id.getClass().getName());
 
     case META:
-      return ((CDOIDMeta)id).getValue();
+      return ((CDOIDMeta)id).getLongValue();
     case TEMP_META:
     case TEMP_OBJECT:
       throw new IllegalArgumentException("id instanceof CDOIDTemp");

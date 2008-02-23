@@ -15,5 +15,5 @@ package org.eclipse.emf.cdo.protocol.id;
  */
 public interface CDOIDMeta extends CDOID
 {
-  public long getValue();
+  public long getLongValue();
 }

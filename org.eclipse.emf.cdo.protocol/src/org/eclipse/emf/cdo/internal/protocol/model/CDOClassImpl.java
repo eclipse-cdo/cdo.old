@@ -175,7 +175,7 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
 
   public CDOClass getSuperType(int index)
   {
-    return superTypes.get(index).getCDOClass();
+    return superTypes.get(index).getCdoClass();
   }
 
   public List<CDOClassProxy> getSuperTypeProxies()
@@ -196,6 +196,10 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
   public void setFeatures(List<CDOFeature> features)
   {
     this.features = features;
+    for (CDOFeature feature : features)
+    {
+      ((CDOFeatureImpl)feature).setContainingClass(this);
+    }
   }
 
   public CDOFeature lookupFeature(int featureID)

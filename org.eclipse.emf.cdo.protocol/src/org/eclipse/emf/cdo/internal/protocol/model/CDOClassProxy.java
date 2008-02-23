@@ -25,6 +25,10 @@ public final class CDOClassProxy
 
   private CDOClass cdoClass;
 
+  public CDOClassProxy()
+  {
+  }
+
   public CDOClassProxy(CDOClassRef classRef, CDOPackageManager packageManager)
   {
     this.classRef = classRef;
@@ -56,7 +60,8 @@ public final class CDOClassProxy
     return cdoClass.getClassifierID();
   }
 
-  public CDOClass getCDOClass()
+  // TODO Clarify camel case
+  public CDOClass getCdoClass()
   {
     if (cdoClass == null)
     {
@@ -68,6 +73,12 @@ public final class CDOClassProxy
     }
 
     return cdoClass;
+  }
+
+  // TODO Clarify camel case
+  public void setCdoClass(CDOClass cdoClass)
+  {
+    this.cdoClass = cdoClass;
   }
 
   public CDOClassRef getClassRef()

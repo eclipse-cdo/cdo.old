@@ -11,6 +11,7 @@
 package org.eclipse.emf.cdo.internal.protocol.revision.delta;
 
 import org.eclipse.emf.cdo.protocol.id.CDOID;
+import org.eclipse.emf.cdo.protocol.id.CDOIDTemp;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOFeatureDelta;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDORevisionDelta;
 
@@ -23,5 +24,5 @@ public interface InternalCDORevisionDelta extends CDORevisionDelta
 {
   public void addFeatureDelta(CDOFeatureDelta delta);
 
-  public void adjustReferences(Map<CDOID, CDOID> idMappings);
+  public void adjustReferences(Map<CDOIDTemp, CDOID> idMappings);
 }

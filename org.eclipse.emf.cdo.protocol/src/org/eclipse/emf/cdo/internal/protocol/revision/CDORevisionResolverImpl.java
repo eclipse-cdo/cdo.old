@@ -280,6 +280,11 @@ public abstract class CDORevisionResolverImpl extends Lifecycle implements CDORe
       if (loadOnDemand)
       {
         revision = loadRevision(id, referenceChunk);
+        if (revision == null)
+        {
+          throw new IllegalStateException("Could not load revision for " + id);
+        }
+
         addRevision(revision);
       }
       else

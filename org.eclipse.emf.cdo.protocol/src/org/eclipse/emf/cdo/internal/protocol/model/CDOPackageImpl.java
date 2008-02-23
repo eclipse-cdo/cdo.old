@@ -191,6 +191,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     this.classes = classes;
     for (CDOClass cdoClass : classes)
     {
+      ((CDOClassImpl)cdoClass).setContainingPackage(this);
       setIndex(cdoClass.getClassifierID(), cdoClass);
     }
   }

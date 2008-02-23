@@ -38,7 +38,7 @@ public abstract class AbstractCDOIDInteger extends AbstractCDOID implements Comp
     this.value = value;
   }
 
-  public int getValue()
+  public int getIntValue()
   {
     return value;
   }

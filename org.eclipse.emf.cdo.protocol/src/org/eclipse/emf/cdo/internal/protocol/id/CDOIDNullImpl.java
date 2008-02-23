@@ -10,6 +10,11 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.internal.protocol.id;
 
+import org.eclipse.emf.cdo.protocol.id.CDOIDMeta;
+import org.eclipse.emf.cdo.protocol.id.CDOIDObject;
+import org.eclipse.emf.cdo.protocol.id.CDOIDTemp;
+import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
+
 import org.eclipse.net4j.util.io.ExtendedDataInput;
 import org.eclipse.net4j.util.io.ExtendedDataOutput;
 
@@ -18,7 +23,7 @@ import java.io.IOException;
 /**
  * @author Eike Stepper
  */
-public final class CDOIDNullImpl extends AbstractCDOID
+public final class CDOIDNullImpl extends AbstractCDOID implements CDOIDMeta, CDOIDTemp, CDOIDObject
 {
   public static final CDOIDNullImpl INSTANCE = new CDOIDNullImpl();
 
@@ -31,6 +36,26 @@ public final class CDOIDNullImpl extends AbstractCDOID
   public Type getType()
   {
     return Type.NULL;
+  }
+
+  public int getIntValue()
+  {
+    return 0;
+  }
+
+  public long getLongValue()
+  {
+    return 0L;
+  }
+
+  public CDOIDObject asLegacy(CDOClassRef classRef)
+  {
+    return this;
+  }
+
+  public CDOClassRef getClassRef()
+  {
+    return null;
   }
 
   public void read(ExtendedDataInput in) throws IOException

@@ -34,11 +34,15 @@ public interface CDORevisionResolver
 
   public boolean containsRevisionByTime(CDOID id, long timeStamp);
 
+  public boolean containsRevisionByVersion(CDOID id, int version);
+
   public CDORevision getRevision(CDOID id, int referenceChunk);
 
   public CDORevision getRevisionByTime(CDOID id, int referenceChunk, long timeStamp);
 
   public CDORevision getRevisionByVersion(CDOID id, int referenceChunk, int version);
+
+  public CDORevision getRevisionByVersion(CDOID id, int referenceChunk, int version, boolean loadOnDemand);
 
   public List<CDORevision> getRevisions(Collection<CDOID> ids, int referenceChunk);
 

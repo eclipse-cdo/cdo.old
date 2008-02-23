@@ -13,6 +13,7 @@ package org.eclipse.emf.cdo.protocol.revision;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
 import org.eclipse.emf.cdo.internal.protocol.revision.CDORevisionImpl;
 import org.eclipse.emf.cdo.protocol.id.CDOID;
+import org.eclipse.emf.cdo.protocol.id.CDOIDTemp;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
@@ -48,7 +49,7 @@ public final class CDORevisionUtil
     return new CDORevisionImpl(in, revisionResolver, packageManager);
   }
 
-  public static Object remapID(Object value, Map<CDOID, CDOID> idMappings)
+  public static Object remapID(Object value, Map<CDOIDTemp, CDOID> idMappings)
   {
     return CDORevisionImpl.remapID(value, idMappings);
   }

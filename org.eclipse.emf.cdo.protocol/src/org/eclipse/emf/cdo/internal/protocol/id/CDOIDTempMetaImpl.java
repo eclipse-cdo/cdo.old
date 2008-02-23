@@ -32,6 +32,6 @@ public class CDOIDTempMetaImpl extends AbstractCDOIDInteger implements CDOIDTemp
   @Override
   public String toString()
   {
-    return "mid" + getValue();
+    return "mid" + getIntValue();
   }
 }

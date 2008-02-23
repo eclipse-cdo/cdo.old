@@ -15,5 +15,5 @@ package org.eclipse.emf.cdo.protocol.id;
  */
 public interface CDOIDTemp extends CDOID
 {
-  public int getValue();
+  public int getIntValue();
 }

@@ -41,13 +41,13 @@ public class CDOIDObjectImpl extends AbstractCDOIDLong implements CDOIDObject
 
   public Legacy asLegacy(CDOClassRef classRef)
   {
-    return new Legacy(getValue(), classRef);
+    return new Legacy(getLongValue(), classRef);
   }
 
   @Override
   public String toString()
   {
-    return "OID" + getValue();
+    return "OID" + getLongValue();
   }
 
   /**

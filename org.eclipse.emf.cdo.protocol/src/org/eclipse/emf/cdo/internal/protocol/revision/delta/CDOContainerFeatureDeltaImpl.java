@@ -15,6 +15,7 @@ import org.eclipse.emf.cdo.internal.protocol.model.CDOClassProxy;
 import org.eclipse.emf.cdo.internal.protocol.revision.InternalCDORevision;
 import org.eclipse.emf.cdo.protocol.id.CDOID;
 import org.eclipse.emf.cdo.protocol.id.CDOIDProvider;
+import org.eclipse.emf.cdo.protocol.id.CDOIDTemp;
 import org.eclipse.emf.cdo.protocol.id.CDOIDUtil;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
@@ -82,7 +83,7 @@ public class CDOContainerFeatureDeltaImpl extends CDOFeatureDeltaImpl implements
   }
 
   @Override
-  public void adjustReferences(Map<CDOID, CDOID> idMappings)
+  public void adjustReferences(Map<CDOIDTemp, CDOID> idMappings)
   {
     newContainerID = (CDOID)CDORevisionUtil.remapID(newContainerID, idMappings);
   }
@@ -108,6 +109,10 @@ public class CDOContainerFeatureDeltaImpl extends CDOFeatureDeltaImpl implements
     public CDOClass getContainingClass()
     {
       return null;
+    }
+
+    public void setContainingClass(CDOClass cdoClass)
+    {
     }
 
     public CDOPackage getContainingPackage()

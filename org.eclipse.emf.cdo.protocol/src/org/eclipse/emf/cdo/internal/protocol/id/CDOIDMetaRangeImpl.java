@@ -57,10 +57,10 @@ public final class CDOIDMetaRangeImpl implements CDOIDMetaRange
 
     if (isTemporary())
     {
-      return new CDOIDTempMetaImpl(((CDOIDTempMetaImpl)lowerBound).getValue() + index);
+      return new CDOIDTempMetaImpl(((CDOIDTempMetaImpl)lowerBound).getIntValue() + index);
     }
 
-    return new CDOIDMetaImpl(((CDOIDMetaImpl)lowerBound).getValue() + index);
+    return new CDOIDMetaImpl(((CDOIDMetaImpl)lowerBound).getLongValue() + index);
   }
 
   public int size()
@@ -82,7 +82,7 @@ public final class CDOIDMetaRangeImpl implements CDOIDMetaRange
         throw new IllegalArgumentException("id.getType() != Type.TEMP_META");
       }
 
-      int index = ((CDOIDTempMetaImpl)id).getValue() - ((CDOIDTempMetaImpl)lowerBound).getValue();
+      int index = ((CDOIDTempMetaImpl)id).getIntValue() - ((CDOIDTempMetaImpl)lowerBound).getIntValue();
       return 0 <= index && index < size;
     }
 
@@ -91,7 +91,7 @@ public final class CDOIDMetaRangeImpl implements CDOIDMetaRange
       throw new IllegalArgumentException("id.getType() != Type.META");
     }
 
-    long index = ((CDOIDMetaImpl)id).getValue() - ((CDOIDMetaImpl)lowerBound).getValue();
+    long index = ((CDOIDMetaImpl)id).getLongValue() - ((CDOIDMetaImpl)lowerBound).getLongValue();
     return 0L <= index && index < size;
   }
 

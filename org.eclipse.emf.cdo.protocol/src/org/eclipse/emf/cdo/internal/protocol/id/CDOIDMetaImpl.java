@@ -32,6 +32,6 @@ public class CDOIDMetaImpl extends AbstractCDOIDLong implements CDOIDMeta
   @Override
   public String toString()
   {
-    return "MID" + getValue();
+    return "MID" + getLongValue();
   }
 }

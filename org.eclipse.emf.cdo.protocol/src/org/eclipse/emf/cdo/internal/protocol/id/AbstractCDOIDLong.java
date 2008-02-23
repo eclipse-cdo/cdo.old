@@ -39,7 +39,7 @@ public abstract class AbstractCDOIDLong extends AbstractCDOID implements Compara
     this.value = value;
   }
 
-  public long getValue()
+  public long getLongValue()
   {
     return value;
   }
@@ -56,12 +56,12 @@ public abstract class AbstractCDOIDLong extends AbstractCDOID implements Compara
 
   public int compareTo(AbstractCDOIDLong that)
   {
-    if (value < that.getValue())
+    if (value < that.value)
     {
       return -1;
     }
 
-    if (value > that.getValue())
+    if (value > that.value)
     {
       return 1;
     }

@@ -11,6 +11,7 @@
 package org.eclipse.emf.cdo.internal.protocol.revision;
 
 import org.eclipse.emf.cdo.protocol.id.CDOID;
+import org.eclipse.emf.cdo.protocol.id.CDOIDTemp;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
 import org.eclipse.emf.cdo.protocol.revision.CDORevisionData;
@@ -57,7 +58,7 @@ public interface InternalCDORevision extends CDORevision, CDORevisionData
 
   public void unset(CDOFeature feature);
 
-  public void adjustReferences(Map<CDOID, CDOID> idMappings);
+  public void adjustReferences(Map<CDOIDTemp, CDOID> idMappings);
 
   public Object getValue(CDOFeature feature);
 

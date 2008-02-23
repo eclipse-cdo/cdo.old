@@ -13,6 +13,7 @@ package org.eclipse.emf.cdo.internal.protocol.revision.delta;
 
 import org.eclipse.emf.cdo.protocol.id.CDOID;
 import org.eclipse.emf.cdo.protocol.id.CDOIDProvider;
+import org.eclipse.emf.cdo.protocol.id.CDOIDTemp;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.revision.delta.CDOFeatureDelta;
@@ -48,7 +49,7 @@ public abstract class CDOFeatureDeltaImpl implements CDOFeatureDelta
     return feature;
   }
 
-  public abstract void adjustReferences(Map<CDOID, CDOID> idMappings);
+  public abstract void adjustReferences(Map<CDOIDTemp, CDOID> idMappings);
 
   public void write(ExtendedDataOutput out, CDOIDProvider idProvider) throws IOException
   {

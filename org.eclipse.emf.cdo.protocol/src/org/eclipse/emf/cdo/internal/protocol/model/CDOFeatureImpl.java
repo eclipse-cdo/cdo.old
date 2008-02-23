@@ -234,27 +234,19 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
     this.containment = containment;
   }
 
-  /**
-   * TODO Never called
-   */
   public CDOClass getReferenceType()
   {
-    if (isReference())
+    if (referenceType == null)
     {
-      return referenceType.getCDOClass();
+      return null;
     }
 
-    return null;
+    return referenceType.getCdoClass();
   }
 
   public CDOClassProxy getReferenceTypeProxy()
   {
     return referenceType;
-  }
-
-  public CDOClass getReferenceCDOClass()
-  {
-    return referenceType.getCDOClass();
   }
 
   public void setReferenceCDOClass(CDOClass cdoClass)

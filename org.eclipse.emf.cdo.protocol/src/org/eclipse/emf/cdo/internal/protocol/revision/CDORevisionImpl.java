@@ -18,6 +18,7 @@ import org.eclipse.emf.cdo.internal.protocol.revision.delta.CDORevisionMerger;
 import org.eclipse.emf.cdo.internal.protocol.revision.delta.InternalCDORevisionDelta;
 import org.eclipse.emf.cdo.protocol.id.CDOID;
 import org.eclipse.emf.cdo.protocol.id.CDOIDProvider;
+import org.eclipse.emf.cdo.protocol.id.CDOIDTemp;
 import org.eclipse.emf.cdo.protocol.id.CDOIDUtil;
 import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
@@ -436,7 +437,7 @@ public class CDORevisionImpl implements InternalCDORevision
     setValue(feature, null);
   }
 
-  public void adjustReferences(Map<CDOID, CDOID> idMappings)
+  public void adjustReferences(Map<CDOIDTemp, CDOID> idMappings)
   {
     if (TRACER.isEnabled())
     {
@@ -784,17 +785,17 @@ public class CDORevisionImpl implements InternalCDORevision
     }
   }
 
-  public static Object remapID(Object value, Map<CDOID, CDOID> idMappings)
+  public static Object remapID(Object value, Map<CDOIDTemp, CDOID> idMappings)
   {
-    if (value instanceof CDOID)
+    if (value instanceof CDOIDTemp)
     {
-      CDOID oldID = (CDOID)value;
-      if (oldID.isTemporary())
+      CDOIDTemp oldID = (CDOIDTemp)value;
+      if (!oldID.isNull())
       {
         CDOID newID = idMappings.get(oldID);
         if (newID == null)
         {
-          throw new ImplementationError("Missing mapping for " + oldID);
+          throw new ImplementationError("Missing ID mapping for " + oldID);
         }
 
         if (TRACER.isEnabled())

@@ -14,6 +14,7 @@ package org.eclipse.emf.cdo.internal.protocol.revision.delta;
 import org.eclipse.emf.cdo.internal.protocol.revision.InternalCDORevision;
 import org.eclipse.emf.cdo.protocol.id.CDOID;
 import org.eclipse.emf.cdo.protocol.id.CDOIDProvider;
+import org.eclipse.emf.cdo.protocol.id.CDOIDTemp;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.revision.CDORevision;
@@ -95,7 +96,7 @@ public class CDORemoveFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CD
   }
 
   @Override
-  public void adjustReferences(Map<CDOID, CDOID> idMappings)
+  public void adjustReferences(Map<CDOIDTemp, CDOID> idMappings)
   {
     // do Nothing
   }
