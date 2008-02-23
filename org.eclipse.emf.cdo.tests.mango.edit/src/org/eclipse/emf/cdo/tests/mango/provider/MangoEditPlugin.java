@@ -2,42 +2,37 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MangoEditPlugin.java,v 1.1 2008-01-30 08:58:25 estepper Exp $
+ * $Id: MangoEditPlugin.java,v 1.2 2008-02-23 10:00:38 estepper Exp $
  */
 package org.eclipse.emf.cdo.tests.mango.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 
 /**
- * This is the central singleton for the Mango edit plugin.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * This is the central singleton for the Mango edit plugin. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public final class MangoEditPlugin extends EMFPlugin
 {
   /**
-   * Keep track of the singleton.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public static final MangoEditPlugin INSTANCE = new MangoEditPlugin();
 
   /**
-   * Keep track of the singleton.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private static Implementation plugin;
 
   /**
-   * Create the instance.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Create the instance. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public MangoEditPlugin()
@@ -46,9 +41,8 @@ public final class MangoEditPlugin extends EMFPlugin
   }
 
   /**
-   * Returns the singleton instance of the Eclipse plugin.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @return the singleton instance.
    * @generated
    */
@@ -59,9 +53,8 @@ public final class MangoEditPlugin extends EMFPlugin
   }
 
   /**
-   * Returns the singleton instance of the Eclipse plugin.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @return the singleton instance.
    * @generated
    */
@@ -71,17 +64,15 @@ public final class MangoEditPlugin extends EMFPlugin
   }
 
   /**
-   * The actual implementation of the Eclipse <b>Plugin</b>.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The actual implementation of the Eclipse <b>Plugin</b>. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public static class Implementation extends EclipsePlugin
   {
     /**
-     * Creates an instance.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * Creates an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     public Implementation()
