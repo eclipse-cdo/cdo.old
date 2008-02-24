@@ -244,14 +244,14 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
     return referenceType.getCdoClass();
   }
 
+  public void setReferenceType(CDOClass cdoClass)
+  {
+    referenceType = new CDOClassProxy(cdoClass);
+  }
+
   public CDOClassProxy getReferenceTypeProxy()
   {
     return referenceType;
-  }
-
-  public void setReferenceCDOClass(CDOClass cdoClass)
-  {
-    referenceType = new CDOClassProxy(cdoClass);
   }
 
   @Override
