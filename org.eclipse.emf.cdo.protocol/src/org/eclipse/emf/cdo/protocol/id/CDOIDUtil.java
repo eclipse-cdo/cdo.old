@@ -10,6 +10,7 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.id;
 
+import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
 import org.eclipse.emf.cdo.internal.protocol.id.CDOIDMetaImpl;
 import org.eclipse.emf.cdo.internal.protocol.id.CDOIDMetaRangeImpl;
 import org.eclipse.emf.cdo.internal.protocol.id.CDOIDObjectImpl;
@@ -19,6 +20,7 @@ import org.eclipse.emf.cdo.protocol.id.CDOID.Type;
 import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 import org.eclipse.emf.cdo.protocol.model.CDOModelUtil;
 
+import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.ImplementationError;
 import org.eclipse.net4j.util.io.ExtendedDataInput;
 import org.eclipse.net4j.util.io.ExtendedDataOutput;
@@ -30,6 +32,8 @@ import java.io.IOException;
  */
 public final class CDOIDUtil
 {
+  private static final ContextTracer TRACER = new ContextTracer(OM.DEBUG_MODEL, CDOIDUtil.class);
+
   private CDOIDUtil()
   {
   }
@@ -81,7 +85,23 @@ public final class CDOIDUtil
 
   public static CDOID read(ExtendedDataInput in, CDOIDObjectFactory factory, boolean asLegacy) throws IOException
   {
-    Type type = Type.values()[in.readByte()];
+    byte ordinal = in.readByte();
+    if (TRACER.isEnabled())
+    {
+      String type;
+      try
+      {
+        type = Type.values()[ordinal].toString();
+      }
+      catch (RuntimeException ex)
+      {
+        type = ex.getMessage();
+      }
+
+      TRACER.format("Reading CDOID of type {0} ({1})", ordinal, type);
+    }
+
+    Type type = Type.values()[ordinal];
     if (asLegacy)
     {
       switch (type)
@@ -94,10 +114,12 @@ public final class CDOIDUtil
         throw new IllegalStateException("Missing classRef");
 
       case LEGACY_OBJECT:
+      {
         CDOIDObject id = factory.createCDOIDObject(in);
         id.read(in);
         CDOClassRef classRef = CDOModelUtil.readClassRef(in);
         return id.asLegacy(classRef);
+      }
 
       default:
         throw new ImplementationError();
@@ -120,13 +142,19 @@ public final class CDOIDUtil
       return new CDOIDMetaImpl(in.readLong());
 
     case OBJECT:
-      return new CDOIDObjectImpl(in.readLong());
+    {
+      CDOIDObject id = factory.createCDOIDObject(in);
+      id.read(in);
+      return id;// new CDOIDObjectImpl(in.readLong());
+    }
 
     case LEGACY_OBJECT:
+    {
       CDOIDObject id = factory.createCDOIDObject(in);
       id.read(in);
       CDOModelUtil.readClassRef(in); // Discard classRef from stream
       return id;
+    }
 
     default:
       throw new ImplementationError();
@@ -142,12 +170,17 @@ public final class CDOIDUtil
   {
     if (id == null)
     {
-      out.writeByte(Type.NULL.ordinal());
-      return;
+      id = CDOID.NULL;
     }
 
     Type type = id.getType();
-    out.writeByte(type.ordinal());
+    int ordinal = type.ordinal();
+    if (TRACER.isEnabled())
+    {
+      TRACER.format("Writing CDOID of type {0} ({1})", ordinal, type);
+    }
+
+    out.writeByte(ordinal);
     if (asLegacy)
     {
       switch (type)
