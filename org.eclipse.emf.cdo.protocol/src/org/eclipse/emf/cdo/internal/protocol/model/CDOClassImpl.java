@@ -168,9 +168,13 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     return result;
   }
 
-  public void setSuperTypes(List<CDOClassProxy> superTypes)
+  public void setSuperTypes(List<CDOClass> superTypes)
   {
-    this.superTypes = superTypes;
+    this.superTypes = new ArrayList<CDOClassProxy>(superTypes.size());
+    for (CDOClass cdoClass : superTypes)
+    {
+      this.superTypes.add(new CDOClassProxy(cdoClass));
+    }
   }
 
   public CDOClass getSuperType(int index)
