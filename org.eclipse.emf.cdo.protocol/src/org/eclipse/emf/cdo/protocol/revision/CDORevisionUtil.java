@@ -10,7 +10,6 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.revision;
 
-import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
 import org.eclipse.emf.cdo.internal.protocol.revision.CDORevisionImpl;
 import org.eclipse.emf.cdo.protocol.id.CDOID;
 import org.eclipse.emf.cdo.protocol.id.CDOIDTemp;
@@ -35,7 +34,7 @@ public final class CDORevisionUtil
 
   public static CDORevision create(CDORevisionResolver revisionResolver, CDOClass cdoClass, CDOID id)
   {
-    return new CDORevisionImpl(revisionResolver, (CDOClassImpl)cdoClass, id);
+    return new CDORevisionImpl(revisionResolver, cdoClass, id);
   }
 
   public static CDORevision copy(CDORevision source)

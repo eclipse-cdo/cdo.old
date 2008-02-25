@@ -15,9 +15,6 @@ import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 
-import org.eclipse.net4j.util.io.ExtendedDataOutput;
-
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -34,6 +31,4 @@ public interface InternalCDOClass extends CDOClass, InternalCDOModelElement
   public int getFeatureIndex(int featureID);
 
   public List<CDOClassProxy> getSuperTypeProxies();
-
-  public void write(ExtendedDataOutput out) throws IOException;
 }

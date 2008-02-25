@@ -13,13 +13,13 @@
 package org.eclipse.emf.cdo.internal.protocol.revision;
 
 import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
-import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
 import org.eclipse.emf.cdo.internal.protocol.revision.delta.CDORevisionMerger;
 import org.eclipse.emf.cdo.internal.protocol.revision.delta.InternalCDORevisionDelta;
 import org.eclipse.emf.cdo.protocol.id.CDOID;
 import org.eclipse.emf.cdo.protocol.id.CDOIDProvider;
 import org.eclipse.emf.cdo.protocol.id.CDOIDTemp;
 import org.eclipse.emf.cdo.protocol.id.CDOIDUtil;
+import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.model.CDOModelUtil;
@@ -57,7 +57,7 @@ public class CDORevisionImpl implements InternalCDORevision
 
   private CDORevisionResolver revisionResolver;
 
-  private CDOClassImpl cdoClass;
+  private CDOClass cdoClass;
 
   private CDOID id;
 
@@ -75,7 +75,7 @@ public class CDORevisionImpl implements InternalCDORevision
 
   private Object[] values;
 
-  public CDORevisionImpl(CDORevisionResolver revisionResolver, CDOClassImpl cdoClass, CDOID id)
+  public CDORevisionImpl(CDORevisionResolver revisionResolver, CDOClass cdoClass, CDOID id)
   {
     this.revisionResolver = revisionResolver;
     this.cdoClass = cdoClass;
@@ -110,7 +110,7 @@ public class CDORevisionImpl implements InternalCDORevision
 
     READING.start(this);
     CDOClassRef classRef = CDOModelUtil.readClassRef(in);
-    cdoClass = (CDOClassImpl)classRef.resolve(packageManager);
+    cdoClass = classRef.resolve(packageManager);
     if (cdoClass == null)
     {
       throw new IllegalStateException("ClassRef unresolveable: " + classRef);
@@ -165,7 +165,7 @@ public class CDORevisionImpl implements InternalCDORevision
     return revisionResolver;
   }
 
-  public CDOClassImpl getCDOClass()
+  public CDOClass getCDOClass()
   {
     return cdoClass;
   }

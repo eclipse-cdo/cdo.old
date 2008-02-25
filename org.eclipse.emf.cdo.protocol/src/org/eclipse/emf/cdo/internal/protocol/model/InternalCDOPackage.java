@@ -15,11 +15,6 @@ import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
-import org.eclipse.net4j.util.io.ExtendedDataInput;
-import org.eclipse.net4j.util.io.ExtendedDataOutput;
-
-import java.io.IOException;
-
 /**
  * @author Eike Stepper
  */
@@ -34,8 +29,4 @@ public interface InternalCDOPackage extends CDOPackage, InternalCDOModelElement
   public void setEcore(String ecore);
 
   public void addClass(CDOClass cdoClass);
-
-  public void read(ExtendedDataInput in) throws IOException;
-
-  public void write(ExtendedDataOutput out) throws IOException;
 }

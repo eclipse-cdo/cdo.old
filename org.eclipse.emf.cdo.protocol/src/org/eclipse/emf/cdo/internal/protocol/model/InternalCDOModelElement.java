@@ -12,6 +12,11 @@ package org.eclipse.emf.cdo.internal.protocol.model;
 
 import org.eclipse.emf.cdo.protocol.model.CDOModelElement;
 
+import org.eclipse.net4j.util.io.ExtendedDataInput;
+import org.eclipse.net4j.util.io.ExtendedDataOutput;
+
+import java.io.IOException;
+
 /**
  * @author Eike Stepper
  */
@@ -24,4 +29,8 @@ public interface InternalCDOModelElement extends CDOModelElement
   public void setServerInfo(Object serverInfo);
 
   public void initialize();
+
+  public void read(ExtendedDataInput in) throws IOException;
+
+  public void write(ExtendedDataOutput out) throws IOException;
 }

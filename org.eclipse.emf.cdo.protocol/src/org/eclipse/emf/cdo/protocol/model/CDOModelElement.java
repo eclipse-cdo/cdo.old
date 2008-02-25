@@ -21,11 +21,5 @@ public interface CDOModelElement
 
   public Object getClientInfo();
 
-  // TODO Refactor to InternalCDOModelElement
-  public void setClientInfo(Object clientInfo);
-
   public Object getServerInfo();
-
-  // TODO Refactor to InternalCDOModelElement
-  public void setServerInfo(Object serverInfo);
 }

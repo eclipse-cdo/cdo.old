@@ -11,8 +11,8 @@
 package org.eclipse.emf.cdo.internal.protocol.model.resource;
 
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
-import org.eclipse.emf.cdo.internal.protocol.model.CDOPackageImpl;
-import org.eclipse.emf.cdo.internal.protocol.model.CDOPackageManagerImpl;
+import org.eclipse.emf.cdo.protocol.model.CDOPackage;
+import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 import org.eclipse.emf.cdo.protocol.model.resource.CDOResourceClass;
 
 /**
@@ -24,7 +24,7 @@ public class CDOResourceClassImpl extends CDOClassImpl implements CDOResourceCla
 
   private CDOContentsFeatureImpl cdoContentsFeature;
 
-  public CDOResourceClassImpl(CDOPackageImpl containingPackage, CDOPackageManagerImpl packageManager)
+  public CDOResourceClassImpl(CDOPackage containingPackage, CDOPackageManager packageManager)
   {
     super(containingPackage, CLASSIFIER_ID, NAME, false);
     addFeature(cdoPathFeature = new CDOPathFeatureImpl(this));

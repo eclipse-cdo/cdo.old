@@ -16,6 +16,8 @@ import org.eclipse.emf.cdo.internal.protocol.model.CDOClassRefImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOFeatureImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOPackageImpl;
 import org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl;
+import org.eclipse.emf.cdo.internal.protocol.model.InternalCDOClass;
+import org.eclipse.emf.cdo.internal.protocol.model.InternalCDOFeature;
 import org.eclipse.emf.cdo.protocol.id.CDOIDMetaRange;
 
 import org.eclipse.net4j.util.io.ExtendedDataInput;
@@ -88,7 +90,7 @@ public final class CDOModelUtil
 
   public static void writeClass(ExtendedDataOutput out, CDOClass cdoClass) throws IOException
   {
-    ((CDOClassImpl)cdoClass).write(out);
+    ((InternalCDOClass)cdoClass).write(out);
   }
 
   // ///////////////////////////////////////////////
@@ -112,7 +114,7 @@ public final class CDOModelUtil
 
   public static void writeFeature(ExtendedDataOutput out, CDOFeature cdoFeature) throws IOException
   {
-    ((CDOFeatureImpl)cdoFeature).write(out);
+    ((InternalCDOFeature)cdoFeature).write(out);
   }
 
   // ///////////////////////////////////////////////

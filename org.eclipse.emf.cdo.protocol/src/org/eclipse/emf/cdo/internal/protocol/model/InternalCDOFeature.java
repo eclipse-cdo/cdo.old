@@ -13,10 +13,6 @@ package org.eclipse.emf.cdo.internal.protocol.model;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 
-import org.eclipse.net4j.util.io.ExtendedDataOutput;
-
-import java.io.IOException;
-
 /**
  * @author Eike Stepper
  */
@@ -25,6 +21,4 @@ public interface InternalCDOFeature extends CDOFeature, InternalCDOModelElement
   public void setContainingClass(CDOClass containingClass);
 
   public void setFeatureIndex(int featureIndex);
-
-  public void write(ExtendedDataOutput out) throws IOException;
 }

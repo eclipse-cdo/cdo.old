@@ -11,7 +11,7 @@
 package org.eclipse.emf.cdo.internal.protocol.model.core;
 
 import org.eclipse.emf.cdo.internal.protocol.model.CDOClassImpl;
-import org.eclipse.emf.cdo.internal.protocol.model.CDOPackageImpl;
+import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 import org.eclipse.emf.cdo.protocol.model.core.CDOObjectClass;
 
 /**
@@ -19,7 +19,7 @@ import org.eclipse.emf.cdo.protocol.model.core.CDOObjectClass;
  */
 public class CDOObjectClassImpl extends CDOClassImpl implements CDOObjectClass
 {
-  public CDOObjectClassImpl(CDOPackageImpl containingPackage)
+  public CDOObjectClassImpl(CDOPackage containingPackage)
   {
     super(containingPackage, CLASSIFIER_ID, NAME, false);
   }
