@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * @author Eike Stepper
  */
-public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
+public class CDOPackageImpl extends CDOModelElementImpl implements InternalCDOPackage
 {
   private static final ContextTracer MODEL = new ContextTracer(OM.DEBUG_MODEL, CDOPackageImpl.class);
 
@@ -180,10 +180,10 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     return classes.size();
   }
 
-  public CDOClassImpl[] getClasses()
+  public CDOClass[] getClasses()
   {
     resolve();
-    return classes.toArray(new CDOClassImpl[classes.size()]);
+    return classes.toArray(new CDOClass[classes.size()]);
   }
 
   public void setClasses(List<CDOClass> classes)
@@ -191,7 +191,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
     this.classes = classes;
     for (CDOClass cdoClass : classes)
     {
-      ((CDOClassImpl)cdoClass).setContainingPackage(this);
+      ((InternalCDOClass)cdoClass).setContainingPackage(this);
       setIndex(cdoClass.getClassifierID(), cdoClass);
     }
   }
@@ -308,7 +308,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements CDOPackage
   {
     for (CDOClass cdoClass : classes)
     {
-      ((CDOClassImpl)cdoClass).initialize();
+      ((InternalCDOClass)cdoClass).initialize();
     }
   }
 

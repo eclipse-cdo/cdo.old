@@ -32,7 +32,7 @@ import java.util.List;
 /**
  * @author Eike Stepper
  */
-public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
+public class CDOClassImpl extends CDOModelElementImpl implements InternalCDOClass
 {
   private static final ContextTracer MODEL = new ContextTracer(OM.DEBUG_MODEL, CDOClassImpl.class);
 
@@ -202,13 +202,13 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     this.features = features;
     for (CDOFeature feature : features)
     {
-      ((CDOFeatureImpl)feature).setContainingClass(this);
+      ((InternalCDOFeature)feature).setContainingClass(this);
     }
   }
 
   public CDOFeature lookupFeature(int featureID)
   {
-    int i = getIndex(featureID);
+    int i = getFeatureIndex(featureID);
     return getAllFeatures()[i];
   }
 
@@ -252,7 +252,7 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
     return allSuperTypes;
   }
 
-  public int getIndex(int featureID)
+  public int getFeatureIndex(int featureID)
   {
     if (indices == null)
     {
@@ -261,7 +261,7 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
       int index = 0;
       for (CDOFeature feature : features)
       {
-        ((CDOFeatureImpl)feature).setFeatureIndex(index);
+        ((InternalCDOFeature)feature).setFeatureIndex(index);
         setIndex(feature.getFeatureID(), index);
         index++;
       }
@@ -324,7 +324,7 @@ public class CDOClassImpl extends CDOModelElementImpl implements CDOClass
   {
     for (CDOFeature cdoFeature : features)
     {
-      ((CDOFeatureImpl)cdoFeature).initialize();
+      ((InternalCDOFeature)cdoFeature).initialize();
     }
   }
 

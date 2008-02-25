@@ -13,7 +13,6 @@ package org.eclipse.emf.cdo.internal.protocol.model;
 import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
 import org.eclipse.emf.cdo.protocol.model.CDOClass;
 import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
-import org.eclipse.emf.cdo.protocol.model.CDOFeature;
 import org.eclipse.emf.cdo.protocol.model.CDOModelUtil;
 import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
@@ -29,7 +28,7 @@ import java.text.MessageFormat;
 /**
  * @author Eike Stepper
  */
-public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
+public class CDOFeatureImpl extends CDOModelElementImpl implements InternalCDOFeature
 {
   private static final int UNKNOWN_FEATURE_INDEX = Integer.MIN_VALUE;
 
@@ -188,7 +187,7 @@ public class CDOFeatureImpl extends CDOModelElementImpl implements CDOFeature
   {
     if (featureIndex == UNKNOWN_FEATURE_INDEX)
     {
-      featureIndex = ((CDOClassImpl)containingClass).getIndex(featureID);
+      featureIndex = ((InternalCDOClass)containingClass).getFeatureIndex(featureID);
     }
 
     return featureIndex;

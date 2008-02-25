@@ -11,7 +11,6 @@
 package org.eclipse.emf.cdo.internal.protocol.model;
 
 import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
-import org.eclipse.emf.cdo.protocol.model.CDOModelElement;
 
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.ImplementationError;
@@ -23,7 +22,7 @@ import java.io.IOException;
 /**
  * @author Eike Stepper
  */
-public abstract class CDOModelElementImpl implements CDOModelElement
+public abstract class CDOModelElementImpl implements InternalCDOModelElement
 {
   private static final ContextTracer MODEL = new ContextTracer(OM.DEBUG_MODEL, CDOModelElementImpl.class);
 

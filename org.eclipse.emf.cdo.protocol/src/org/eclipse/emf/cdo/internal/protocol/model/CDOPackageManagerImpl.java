@@ -124,7 +124,7 @@ public abstract class CDOPackageManagerImpl extends Container<CDOPackage> implem
     }
   }
 
-  public void removePackage(CDOPackageImpl cdoPackage)
+  public void removePackage(CDOPackage cdoPackage)
   {
     packages.remove(cdoPackage.getPackageURI());
     fireElementRemovedEvent(cdoPackage);
@@ -135,10 +135,10 @@ public abstract class CDOPackageManagerImpl extends Container<CDOPackage> implem
    *          is a proxy CDO package. The implementer of this method must only use the package URI of the cdoPackage
    *          passed in.
    */
-  protected abstract void resolve(CDOPackageImpl cdoPackage);
+  protected abstract void resolve(CDOPackage cdoPackage);
 
   /**
    * Only called on clients for generated models
    */
-  protected abstract String provideEcore(CDOPackageImpl cdoPackage);
+  protected abstract String provideEcore(CDOPackage cdoPackage);
 }
