@@ -52,8 +52,8 @@ public interface CDORevisionResolver
 
   /**
    * Analyzing a list of values with respect to consecutive sequences of {@link CDOReferenceProxy} instances. A sequence
-   * of reference proxies is considered consecutive if and only if the {@link CDOReferenceProxy#getIndex() index} of
-   * each proxy is the index of its predecessor increased by one.
+   * of reference proxies is considered consecutive if and only if the {@link CDOReferenceProxy#getIndex() ids} of
+   * each proxy is the ids of its predecessor increased by one.
    * <p>
    * Implementation note: The implementation of this method should try to determine and deliver the longest possible
    * consecutive sequences.

@@ -52,7 +52,7 @@ public final class CDOIDMetaRangeImpl implements CDOIDMetaRange
   {
     if (index < 0 || index >= size)
     {
-      throw new IllegalArgumentException("index < 0 || index >= size");
+      throw new IllegalArgumentException("ids < 0 || ids >= size");
     }
 
     if (isTemporary())
