@@ -19,16 +19,16 @@ import org.eclipse.net4j.util.io.ExtendedDataInput;
 import org.eclipse.net4j.util.io.ExtendedDataOutput;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Eike Stepper
  */
 public abstract class CDOTypeImpl implements CDOType
 {
-  public static List<CDOTypeImpl> index = new ArrayList<CDOTypeImpl>();
+  public static Map<Integer, CDOTypeImpl> ids = new HashMap<Integer, CDOTypeImpl>();
 
   private static final byte BOOLEAN_DEFAULT_PRIMITIVE = 0;
 
@@ -324,6 +324,26 @@ public abstract class CDOTypeImpl implements CDOType
     }
   };
 
+  public static final CDOType CUSTOM = new CDOTypeImpl("CUSTOM", 999, true)
+  {
+    @SuppressWarnings("cast")
+    @Override
+    public Object copyValue(Object value)
+    {
+      return (String)value;
+    }
+
+    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
+    {
+      out.writeString((String)value);
+    }
+
+    public Object readValue(ExtendedDataInput in, CDOIDObjectFactory factory) throws IOException
+    {
+      return in.readString();
+    }
+  };
+
   private String name;
 
   private int typeID;
@@ -338,7 +358,7 @@ public abstract class CDOTypeImpl implements CDOType
     this.typeID = typeID;
     this.canBeNull = canBeNull;
     this.defaultValue = defaultValue;
-    setIndex();
+    ids.put(typeID, this);
   }
 
   private CDOTypeImpl(String name, int typeID, boolean canBeNull)
@@ -379,17 +399,7 @@ public abstract class CDOTypeImpl implements CDOType
 
   public void write(ExtendedDataOutput out) throws IOException
   {
-    out.writeByte(typeID);
-  }
-
-  private void setIndex()
-  {
-    while (index.size() <= typeID)
-    {
-      index.add(null);
-    }
-
-    index.set(typeID, this);
+    out.writeInt(typeID);
   }
 
   /**

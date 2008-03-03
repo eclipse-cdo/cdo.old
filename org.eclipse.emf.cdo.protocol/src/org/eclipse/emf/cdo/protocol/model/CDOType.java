@@ -60,6 +60,8 @@ public interface CDOType
 
   public static final CDOType STRING = org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl.STRING;
 
+  public static final CDOType CUSTOM = org.eclipse.emf.cdo.internal.protocol.model.CDOTypeImpl.CUSTOM;
+
   public String getName();
 
   public int getTypeID();

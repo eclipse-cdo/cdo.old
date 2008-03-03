@@ -13,11 +13,6 @@ package org.eclipse.emf.cdo.tests.hibernate;
 
 import org.eclipse.emf.cdo.CDOSession;
 import org.eclipse.emf.cdo.CDOTransaction;
-import org.eclipse.emf.cdo.server.CDOServerUtil;
-import org.eclipse.emf.cdo.server.IRepository;
-import org.eclipse.emf.cdo.server.IStore;
-import org.eclipse.emf.cdo.server.IRepository.Props;
-import org.eclipse.emf.cdo.server.internal.hibernate.HibernateStore;
 import org.eclipse.emf.cdo.tests.model1.Category;
 import org.eclipse.emf.cdo.tests.model1.Customer;
 import org.eclipse.emf.cdo.tests.model1.Model1Factory;
@@ -34,8 +29,7 @@ import org.eclipse.net4j.Net4jUtil;
 import org.eclipse.net4j.connector.IConnector;
 import org.eclipse.net4j.internal.util.om.log.PrintLogHandler;
 import org.eclipse.net4j.internal.util.om.trace.PrintTraceHandler;
-import org.eclipse.net4j.jvm.JVMUtil;
-import org.eclipse.net4j.tests.AbstractOMTest;
+import org.eclipse.net4j.tcp.TCPUtil;
 import org.eclipse.net4j.util.container.ContainerUtil;
 import org.eclipse.net4j.util.container.IManagedContainer;
 import org.eclipse.net4j.util.io.IOUtil;
@@ -44,24 +38,18 @@ import org.eclipse.net4j.util.om.OMPlatform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
-import org.hibernate.cfg.Environment;
-import org.hibernate.dialect.MySQLInnoDBDialect;
-
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.sql.Driver;
-import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import junit.framework.TestCase;
 
 /**
  * @author Eike Stepper
  */
-public class HibernateTest extends AbstractOMTest
+public class HibernateTest extends TestCase
 {
   private static final String REPOSITORY_NAME = "repo1";
 
@@ -84,9 +72,7 @@ public class HibernateTest extends AbstractOMTest
     try
     {
       IManagedContainer container = initContainer();
-      JVMUtil.getAcceptor(container, "default"); // Start the JVM transport
-      CDOServerUtil.addRepository(container, createRepository()); // Start a CDO respository
-      IConnector connector = JVMUtil.getConnector(container, "default"); // Open a JVM connection
+      IConnector connector = TCPUtil.getConnector(container, "localhost:2036"); // Open a TCP connection
 
       CDOSession session = CDOUtil.openSession(connector, REPOSITORY_NAME, true);// Open a CDO session
       session.getPackageRegistry().putEPackage(Model1Package.eINSTANCE);// Not needed after first commit!!!
@@ -166,56 +152,17 @@ public class HibernateTest extends AbstractOMTest
       OMPlatform.INSTANCE.addTraceHandler(new PrintTraceHandler(traceStream));
     }
 
-    if (!TRACE_TO_CONSOLE)
+    if (TRACE_TO_CONSOLE)
     {
-      OMPlatform.INSTANCE.removeTraceHandler(PrintTraceHandler.CONSOLE);
+      OMPlatform.INSTANCE.addTraceHandler(PrintTraceHandler.CONSOLE);
     }
 
     // Prepare the standalone infra structure (not needed when running inside Eclipse)
     IManagedContainer container = ContainerUtil.createContainer(); // Create a wiring container
     Net4jUtil.prepareContainer(container); // Prepare the Net4j kernel
-    JVMUtil.prepareContainer(container); // Prepare the JVM transport
-    CDOServerUtil.prepareContainer(container); // Prepare the CDO server
+    TCPUtil.prepareContainer(container); // Prepare the JVM transport
     CDOUtil.prepareContainer(container, false); // Prepare the CDO client
     return container;
-  }
-
-  private static IRepository createRepository() throws Exception
-  {
-    Map<String, String> props = new HashMap<String, String>();
-    props.put(Props.PROP_SUPPORTING_AUDITS, "false");
-    props.put(Props.PROP_SUPPORTING_REVISION_DELTAS, "false");
-    props.put(Props.PROP_VERIFYING_REVISIONS, "false");
-    props.put(Props.PROP_CURRENT_LRU_CAPACITY, "10000");
-    props.put(Props.PROP_REVISED_LRU_CAPACITY, "10000");
-
-    addHibernateTeneoProperties(props);
-
-    return CDOServerUtil.createRepository(REPOSITORY_NAME, createStore(), props);
-  }
-
-  private static void addHibernateTeneoProperties(Map<String, String> props) throws Exception
-  {
-    DriverManager.setLogWriter(new PrintWriter(System.out));
-    Driver driver = new com.mysql.jdbc.Driver();
-    DriverManager.registerDriver(driver);
-    String driverName = driver.getClass().getName();
-    String dialectName = MySQLInnoDBDialect.class.getName();
-
-    props.put(Environment.DRIVER, driverName);
-    props.put(Environment.URL, "jdbc:mysql://localhost/cdohibernate");
-    props.put(Environment.USER, "cdo");
-    // props.setProperty(Environment.PASS, "root");
-    props.put(Environment.DIALECT, dialectName);
-    props.put(Environment.SHOW_SQL, "true");
-    props.put("hibernate.hbm2ddl.auto", "create-drop");
-  }
-
-  private static IStore createStore() throws Exception
-  {
-    // IHibernateMappingProvider mappingProvider = new TeneoHibernateMappingProvider();
-    // return new HibernateStore(props, mappingProvider);
-    return new HibernateStore(null);
   }
 
   private static EObject getInputModel()

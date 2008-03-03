@@ -38,12 +38,18 @@ public final class CDOModelUtil
 
   public static CDOType getType(int typeID)
   {
-    return CDOTypeImpl.index.get(typeID);
+    CDOTypeImpl type = CDOTypeImpl.ids.get(typeID);
+    if (type == null)
+    {
+      throw new IllegalStateException("No type for id " + typeID);
+    }
+
+    return type;
   }
 
   public static CDOType readType(ExtendedDataInput in) throws IOException
   {
-    byte typeID = in.readByte();
+    int typeID = in.readInt();
     return getType(typeID);
   }
 
