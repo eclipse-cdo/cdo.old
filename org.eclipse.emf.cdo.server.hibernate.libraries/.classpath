@@ -7,13 +7,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/commons-collections-2.1.1.jar" sourcepath="org.eclipse.emf.cdo.server.hibernate.librariessrc.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons-logging-1.0.4.jar" sourcepath="org.eclipse.emf.cdo.server.hibernate.librariessrc.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/dom4j-1.6.1.jar" sourcepath="org.eclipse.emf.cdo.server.hibernate.librariessrc.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/ejb3-persistence.jar" sourcepath="org.eclipse.emf.cdo.server.hibernate.librariessrc.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/hibernate3.jar" sourcepath="org.eclipse.emf.cdo.server.hibernate.librariessrc.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/hibernate-annotations.jar" sourcepath="org.eclipse.emf.cdo.server.hibernate.librariessrc.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/hibernate-commons-annotations.jar" sourcepath="org.eclipse.emf.cdo.server.hibernate.librariessrc.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/hibernate-entitymanager.jar" sourcepath="org.eclipse.emf.cdo.server.hibernate.librariessrc.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/hibernate-search.jar" sourcepath="org.eclipse.emf.cdo.server.hibernate.librariessrc.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/hibernate-validator.jar" sourcepath="org.eclipse.emf.cdo.server.hibernate.librariessrc.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/jta.jar" sourcepath="org.eclipse.emf.cdo.server.hibernate.librariessrc.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/mysql-connector-java-5.1.5-bin.jar" sourcepath="org.eclipse.emf.cdo.server.hibernate.librariessrc.zip"/>
 	<classpathentry kind="output" path="bin"/>
