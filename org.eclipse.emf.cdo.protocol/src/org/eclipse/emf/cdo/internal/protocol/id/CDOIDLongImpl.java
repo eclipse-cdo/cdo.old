@@ -16,15 +16,15 @@ import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
 /**
  * @author Eike Stepper
  */
-public class CDOIDObjectImpl extends AbstractCDOIDLong implements CDOIDObject
+public class CDOIDLongImpl extends AbstractCDOIDLong implements CDOIDObject
 {
   private static final long serialVersionUID = 1L;
 
-  public CDOIDObjectImpl()
+  public CDOIDLongImpl()
   {
   }
 
-  public CDOIDObjectImpl(long value)
+  public CDOIDLongImpl(long value)
   {
     super(value);
   }
@@ -53,7 +53,7 @@ public class CDOIDObjectImpl extends AbstractCDOIDLong implements CDOIDObject
   /**
    * @author Eike Stepper
    */
-  public static final class Legacy extends CDOIDObjectImpl
+  public static final class Legacy extends CDOIDLongImpl
   {
     private static final long serialVersionUID = 1L;
 

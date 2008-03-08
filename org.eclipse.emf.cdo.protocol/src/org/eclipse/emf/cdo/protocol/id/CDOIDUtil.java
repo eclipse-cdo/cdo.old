@@ -11,9 +11,10 @@
 package org.eclipse.emf.cdo.protocol.id;
 
 import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
+import org.eclipse.emf.cdo.internal.protocol.id.CDOIDLibraryDescriptorImpl;
 import org.eclipse.emf.cdo.internal.protocol.id.CDOIDMetaImpl;
 import org.eclipse.emf.cdo.internal.protocol.id.CDOIDMetaRangeImpl;
-import org.eclipse.emf.cdo.internal.protocol.id.CDOIDObjectImpl;
+import org.eclipse.emf.cdo.internal.protocol.id.CDOIDLongImpl;
 import org.eclipse.emf.cdo.internal.protocol.id.CDOIDTempMetaImpl;
 import org.eclipse.emf.cdo.internal.protocol.id.CDOIDTempObjectImpl;
 import org.eclipse.emf.cdo.protocol.id.CDOID.Type;
@@ -46,9 +47,9 @@ public final class CDOIDUtil
       return 0L;
     case OBJECT:
     case LEGACY_OBJECT:
-      if (id instanceof CDOIDObjectImpl)
+      if (id instanceof CDOIDLongImpl)
       {
-        return ((CDOIDObjectImpl)id).getLongValue();
+        return ((CDOIDLongImpl)id).getLongValue();
       }
 
       throw new IllegalArgumentException("Unknown CDOIDObject implementation: " + id.getClass().getName());
@@ -75,7 +76,7 @@ public final class CDOIDUtil
       return CDOID.NULL;
     }
 
-    return new CDOIDObjectImpl(value);
+    return new CDOIDLongImpl(value);
   }
 
   public static CDOID read(ExtendedDataInput in, CDOIDObjectFactory factory) throws IOException
@@ -145,7 +146,7 @@ public final class CDOIDUtil
     {
       CDOIDObject id = factory.createCDOIDObject(in);
       id.read(in);
-      return id;// new CDOIDObjectImpl(in.readLong());
+      return id;// new CDOIDLongImpl(in.readLong());
     }
 
     case LEGACY_OBJECT:
@@ -221,5 +222,10 @@ public final class CDOIDUtil
   {
     write(out, idRange.getLowerBound());
     out.writeInt(idRange.size());
+  }
+
+  public static CDOIDLibraryDescriptor readLibraryDescriptor(ExtendedDataInput in) throws IOException
+  {
+    return new CDOIDLibraryDescriptorImpl(in);
   }
 }

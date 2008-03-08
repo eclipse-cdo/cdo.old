@@ -10,18 +10,18 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.protocol.id;
 
-import org.eclipse.net4j.util.io.ExtendedDataInput;
+import org.eclipse.net4j.util.io.ExtendedDataOutput;
+
+import java.io.IOException;
 
 /**
  * @author Eike Stepper
  */
-public interface CDOIDObjectFactory
+public interface CDOIDLibraryDescriptor
 {
-  /**
-   * Returns a new instance of CDOIDObject. The implementor of this method may use (read from) the given data input to
-   * determine which class to instantiate. The data input must not be used to fill the state of the new instance, this
-   * has to be done in the implementation of the {@link CDOID#read(ExtendedDataInput) read()} method of the new
-   * instance.
-   */
-  public CDOIDObject createCDOIDObject(ExtendedDataInput in);
+  public String getFactoryName();
+
+  public String[] getLibraryNames();
+
+  public void write(ExtendedDataOutput out) throws IOException;
 }

@@ -19,29 +19,31 @@ public interface CDOProtocolConstants
 
   public static final short SIGNAL_OPEN_SESSION = 1;
 
-  public static final short SIGNAL_VIEWS_CHANGED = 2;
+  public static final short SIGNAL_LOAD_LIBRARIES = 2;
 
-  public static final short SIGNAL_RESOURCE_ID = 3;
+  public static final short SIGNAL_VIEWS_CHANGED = 3;
 
-  public static final short SIGNAL_RESOURCE_PATH = 4;
+  public static final short SIGNAL_RESOURCE_ID = 4;
 
-  public static final short SIGNAL_LOAD_PACKAGE = 5;
+  public static final short SIGNAL_RESOURCE_PATH = 5;
 
-  public static final short SIGNAL_LOAD_REVISION = 6;
+  public static final short SIGNAL_LOAD_PACKAGE = 6;
 
-  public static final short SIGNAL_LOAD_REVISION_BY_TIME = 7;
+  public static final short SIGNAL_LOAD_REVISION = 7;
 
-  public static final short SIGNAL_LOAD_REVISION_BY_VERSION = 8;
+  public static final short SIGNAL_LOAD_REVISION_BY_TIME = 8;
 
-  public static final short SIGNAL_LOAD_CHUNK = 9;
+  public static final short SIGNAL_LOAD_REVISION_BY_VERSION = 9;
 
-  public static final short SIGNAL_VERIFY_REVISION = 10;
+  public static final short SIGNAL_LOAD_CHUNK = 10;
 
-  public static final short SIGNAL_QUERY_OBJECT_TYPES = 11;
+  public static final short SIGNAL_VERIFY_REVISION = 11;
 
-  public static final short SIGNAL_COMMIT_TRANSACTION = 12;
+  public static final short SIGNAL_QUERY_OBJECT_TYPES = 12;
 
-  public static final short SIGNAL_INVALIDATION = 13;
+  public static final short SIGNAL_COMMIT_TRANSACTION = 13;
+
+  public static final short SIGNAL_INVALIDATION = 14;
 
   public static final int ERROR_REPOSITORY_NOT_FOUND = -1;
 
