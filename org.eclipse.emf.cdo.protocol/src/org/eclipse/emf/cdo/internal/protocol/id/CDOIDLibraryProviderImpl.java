@@ -66,7 +66,18 @@ public class CDOIDLibraryProviderImpl implements CDOIDLibraryProvider
     }
 
     URL url = bundle.getBaseURL();
-    return null;
+    File file = new File(url.getFile());
+    if (file.exists() && file.isDirectory())
+    {
+      file = new File(file, libraryName);
+    }
+
+    if (file.exists() && file.isFile() && file.getName().endsWith(".jar"))
+    {
+      return file;
+    }
+
+    throw new IllegalStateException("Not a JAR: " + file.getAbsolutePath());
   }
 
   private File getTempFolder()
