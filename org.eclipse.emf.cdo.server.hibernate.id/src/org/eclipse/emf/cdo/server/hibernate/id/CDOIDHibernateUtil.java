@@ -11,7 +11,6 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.server.hibernate.id;
 
-import org.eclipse.emf.cdo.server.hibernate.internal.id.CDOIDHibernateImpl;
 
 /**
  * @author Eike Stepper
@@ -22,8 +21,4 @@ public final class CDOIDHibernateUtil
   {
   }
 
-  public static CDOIDHibernate createID()
-  {
-    return new CDOIDHibernateImpl();
-  }
 }

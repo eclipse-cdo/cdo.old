@@ -29,9 +29,4 @@ public interface CDOIDHibernate extends CDOIDObject
   public String getEntityName();
 
   public void setEntityName(String entityName);
-
-  public void setContent(byte[] content);
-
-  public byte[] getContent();
-
 }

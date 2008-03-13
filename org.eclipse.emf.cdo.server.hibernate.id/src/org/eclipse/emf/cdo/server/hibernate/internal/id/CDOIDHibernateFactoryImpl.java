@@ -12,20 +12,77 @@ package org.eclipse.emf.cdo.server.hibernate.internal.id;
 
 import org.eclipse.emf.cdo.protocol.id.CDOIDObject;
 import org.eclipse.emf.cdo.protocol.id.CDOIDObjectFactory;
+import org.eclipse.emf.cdo.server.hibernate.id.CDOIDHibernate;
 
+import org.eclipse.net4j.util.WrappedException;
 import org.eclipse.net4j.util.io.ExtendedDataInput;
+
+import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * @author Eike Stepper
  */
 public class CDOIDHibernateFactoryImpl implements CDOIDObjectFactory
 {
+  private static CDOIDHibernateFactoryImpl instance = new CDOIDHibernateFactoryImpl();
+
+  public static CDOIDHibernateFactoryImpl getInstance()
+  {
+    return instance;
+  }
+
+  public static void setInstance(CDOIDHibernateFactoryImpl instance)
+  {
+    CDOIDHibernateFactoryImpl.instance = instance;
+  }
+
   public CDOIDHibernateFactoryImpl()
   {
   }
 
   public CDOIDObject createCDOIDObject(ExtendedDataInput in)
   {
-    return new CDOIDHibernateImpl();
+    try
+    {
+      final int idType = in.readInt();
+      switch (idType)
+      {
+      case CDOIDHibernateImpl.HB_ID_TYPE_SERIALIZABLE:
+        return new CDOIDHibernateImpl();
+      case CDOIDHibernateImpl.HB_ID_TYPE_LONG:
+        return new CDOIDHibernateLongImpl();
+      case CDOIDHibernateImpl.HB_ID_TYPE_STRING:
+        return new CDOIDHibernateStringImpl();
+      default:
+        throw new IllegalArgumentException("IDTYPE " + idType + " not supported");
+      }
+    }
+    catch (IOException e)
+    {
+      throw WrappedException.wrap(e);
+    }
+
   }
+
+  public CDOIDHibernate createCDOID(Serializable id, String entityName)
+  {
+    final CDOIDHibernate cdoID;
+    if (id instanceof Long)
+    {
+      cdoID = new CDOIDHibernateLongImpl();
+    }
+    else if (id instanceof Long)
+    {
+      cdoID = new CDOIDHibernateStringImpl();
+    }
+    else
+    {
+      cdoID = new CDOIDHibernateImpl();
+    }
+    cdoID.setId(id);
+    cdoID.setEntityName(entityName);
+    return cdoID;
+  }
+
 }

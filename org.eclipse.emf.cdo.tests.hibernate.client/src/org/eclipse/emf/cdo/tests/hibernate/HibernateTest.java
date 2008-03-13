@@ -144,7 +144,7 @@ public class HibernateTest extends TestCase
   private static IManagedContainer initContainer() throws FileNotFoundException
   {
     // Turn on tracing
-    OMPlatform.INSTANCE.setDebugging(true);
+    OMPlatform.INSTANCE.setDebugging(false);
     OMPlatform.INSTANCE.addLogHandler(PrintLogHandler.CONSOLE);
     if (TRACE_TO_FILE)
     {

@@ -18,17 +18,11 @@ import org.eclipse.emf.cdo.server.hibernate.id.CDOIDHibernate;
 
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.ObjectUtil;
-import org.eclipse.net4j.util.WrappedException;
 import org.eclipse.net4j.util.io.ExtendedDataInput;
 import org.eclipse.net4j.util.io.ExtendedDataOutput;
-import org.eclipse.net4j.util.io.IOUtil;
 import org.eclipse.net4j.util.om.trace.OMTracer;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.text.MessageFormat;
 
@@ -38,6 +32,13 @@ import java.text.MessageFormat;
  */
 public class CDOIDHibernateImpl extends AbstractCDOID implements CDOIDHibernate
 {
+  // TODO: make this more dynamic
+  public static final int HB_ID_TYPE_SERIALIZABLE = 0;
+
+  public static final int HB_ID_TYPE_LONG = 1;
+
+  public static final int HB_ID_TYPE_STRING = 2;
+
   private ContextTracer tracer;
 
   private static final long serialVersionUID = 1L;
@@ -58,6 +59,11 @@ public class CDOIDHibernateImpl extends AbstractCDOID implements CDOIDHibernate
   public void setTracer(OMTracer tracer)
   {
     this.tracer = new ContextTracer(tracer, CDOIDHibernateImpl.class);
+  }
+
+  protected int getIDType()
+  {
+    return HB_ID_TYPE_SERIALIZABLE;
   }
 
   /**
@@ -111,7 +117,10 @@ public class CDOIDHibernateImpl extends AbstractCDOID implements CDOIDHibernate
 
   public void read(ExtendedDataInput in) throws IOException
   {
-    id = (Serializable)in.readObject();
+    // the idtype is read by the id factory!
+
+    readId(in);
+
     if (tracer != null && tracer.isEnabled())
     {
       tracer.format("Read id={0}", id);
@@ -122,84 +131,40 @@ public class CDOIDHibernateImpl extends AbstractCDOID implements CDOIDHibernate
     {
       tracer.format("Read entityName={0}", entityName);
     }
-
-    // final byte[] content = in.readByteArray();
-    // if (TRACER.isEnabled())
-    // {
-    // TRACER.format("Read content={0}", HexUtil.bytesToHex(content));
-    // }
-    //
-    // setContent(content);
   }
 
   public void write(ExtendedDataOutput out) throws IOException
   {
+
+    if (tracer != null && tracer.isEnabled())
+    {
+      tracer.format("Writing id type={0}", getIDType());
+    }
+    out.writeInt(getIDType());
+
     if (tracer != null && tracer.isEnabled())
     {
       tracer.format("Writing id={0}", id);
     }
 
-    out.writeObject(id);
+    writeId(out);
+
     if (tracer != null && tracer.isEnabled())
     {
       tracer.format("Writing entityName={0}", entityName);
     }
 
     out.writeString(entityName);
-
-    // byte[] content = getContent();
-    // if (TRACER.isEnabled())
-    // {
-    // TRACER.format("Writing content={0}", HexUtil.bytesToHex(content));
-    // }
-    //
-    // out.writeByteArray(content);
   }
 
-  public byte[] getContent()
+  protected void readId(ExtendedDataInput in) throws IOException
   {
-    ObjectOutputStream oos = null;
-
-    try
-    {
-      final ByteArrayOutputStream bos = new ByteArrayOutputStream();
-      oos = new ObjectOutputStream(bos);
-      SerializableContent content = null;
-      content = new SerializableContent();
-      content.setId(getId());
-      content.setEntityName(getEntityName());
-      oos.writeObject(content);
-      return bos.toByteArray();
-    }
-    catch (Exception ex)
-    {
-      throw WrappedException.wrap(ex);
-    }
-    finally
-    {
-      IOUtil.close(oos);
-    }
+    id = (Serializable)in.readObject();
   }
 
-  public void setContent(byte[] content)
+  protected void writeId(ExtendedDataOutput out) throws IOException
   {
-    ObjectInputStream ois = null;
-
-    try
-    {
-      ois = new ObjectInputStream(new ByteArrayInputStream(content));
-      final SerializableContent contentObject = (SerializableContent)ois.readObject();
-      setId(contentObject.getId());
-      setEntityName(contentObject.getEntityName());
-    }
-    catch (Exception ex)
-    {
-      throw WrappedException.wrap(ex);
-    }
-    finally
-    {
-      IOUtil.close(ois);
-    }
+    out.writeObject(id);
   }
 
   @Override
@@ -222,62 +187,13 @@ public class CDOIDHibernateImpl extends AbstractCDOID implements CDOIDHibernate
   @Override
   public int hashCode()
   {
-    // TODO What about entityName?
-    return id.hashCode();
+    return id.hashCode() + entityName.hashCode();
   }
 
   @Override
   public String toString()
   {
     return MessageFormat.format("HBM-{0}-{1}", entityName, id);
-  }
-
-  /**
-   * Used for serialization
-   * 
-   * @author Martin Taal
-   */
-  private static class SerializableContent implements Serializable
-  {
-    private static final long serialVersionUID = 1L;
-
-    private Serializable id;
-
-    private String entityName;
-
-    /**
-     * @return the id
-     */
-    public Serializable getId()
-    {
-      return id;
-    }
-
-    /**
-     * @param id
-     *          the id to set
-     */
-    public void setId(Serializable id)
-    {
-      this.id = id;
-    }
-
-    /**
-     * @return the entityName
-     */
-    public String getEntityName()
-    {
-      return entityName;
-    }
-
-    /**
-     * @param entityName
-     *          the entityName to set
-     */
-    public void setEntityName(String entityName)
-    {
-      this.entityName = entityName;
-    }
   }
 
   /**
