@@ -5,7 +5,6 @@ import org.eclipse.emf.cdo.protocol.id.CDOIDLibraryProvider;
 
 import org.eclipse.net4j.util.io.ExtendedDataInput;
 import org.eclipse.net4j.util.io.IOUtil;
-import org.eclipse.net4j.util.io.TMPUtil;
 import org.eclipse.net4j.util.om.OMBundle;
 
 import java.io.File;
@@ -22,8 +21,6 @@ import java.util.Set;
 public class CDOIDLibraryProviderImpl implements CDOIDLibraryProvider
 {
   private Map<String, OMBundle> bundles = new HashMap<String, OMBundle>();
-
-  private File tmpFolder;
 
   public CDOIDLibraryProviderImpl()
   {
@@ -78,16 +75,6 @@ public class CDOIDLibraryProviderImpl implements CDOIDLibraryProvider
     }
 
     throw new IllegalStateException("Not a JAR: " + file.getAbsolutePath());
-  }
-
-  private File getTempFolder()
-  {
-    if (tmpFolder == null)
-    {
-      tmpFolder = TMPUtil.createTempFolder();
-    }
-
-    return tmpFolder;
   }
 
   /**
