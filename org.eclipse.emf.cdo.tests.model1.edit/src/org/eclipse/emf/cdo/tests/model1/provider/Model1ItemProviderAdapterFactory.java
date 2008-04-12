@@ -215,6 +215,31 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.tests.model1.OrderAddress} instances.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected OrderAddressItemProvider orderAddressItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.OrderAddress}. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public Adapter createOrderAddressAdapter()
+  {
+    if (orderAddressItemProvider == null)
+    {
+      orderAddressItemProvider = new OrderAddressItemProvider(this);
+    }
+
+    return orderAddressItemProvider;
+  }
+
+  /**
    * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.tests.model1.Category} instances. <!--
    * begin-user-doc --> <!-- end-user-doc -->
    * 
@@ -485,6 +510,7 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
     if (salesOrderItemProvider != null) salesOrderItemProvider.dispose();
     if (categoryItemProvider != null) categoryItemProvider.dispose();
     if (productItemProvider != null) productItemProvider.dispose();
+    if (orderAddressItemProvider != null) orderAddressItemProvider.dispose();
   }
 
 }

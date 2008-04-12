@@ -2,38 +2,37 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+ * $Id: OrderAddressItemProvider.java,v 1.1 2008-04-12 10:05:39 estepper Exp $
  */
 package org.eclipse.emf.cdo.tests.model1.provider;
 
-import org.eclipse.emf.cdo.edit.CDOItemProviderAdapter;
 import org.eclipse.emf.cdo.tests.model1.Model1Factory;
 import org.eclipse.emf.cdo.tests.model1.Model1Package;
-import org.eclipse.emf.cdo.tests.model1.Order;
+import org.eclipse.emf.cdo.tests.model1.OrderAddress;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.IChildCreationExtender;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import java.util.Collection;
 import java.util.List;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.cdo.tests.model1.Order} object. <!-- begin-user-doc
- * --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.emf.cdo.tests.model1.OrderAddress} object. <!--
+ * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
-public class OrderItemProvider extends CDOItemProviderAdapter implements IEditingDomainItemProvider,
+public class OrderAddressItemProvider extends AddressItemProvider implements IEditingDomainItemProvider,
     IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
   /**
@@ -41,7 +40,7 @@ public class OrderItemProvider extends CDOItemProviderAdapter implements IEditin
    * 
    * @generated
    */
-  public OrderItemProvider(AdapterFactory adapterFactory)
+  public OrderAddressItemProvider(AdapterFactory adapterFactory)
   {
     super(adapterFactory);
   }
@@ -58,8 +57,52 @@ public class OrderItemProvider extends CDOItemProviderAdapter implements IEditin
     {
       super.getPropertyDescriptors(object);
 
+      addProductPropertyDescriptor(object);
+      addPricePropertyDescriptor(object);
+      addTestAttributePropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
+  }
+
+  /**
+   * This adds a property descriptor for the Product feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected void addProductPropertyDescriptor(Object object)
+  {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
+        .getRootAdapterFactory(), getResourceLocator(), getString("_UI_OrderDetail_product_feature"), getString(
+        "_UI_PropertyDescriptor_description", "_UI_OrderDetail_product_feature", "_UI_OrderDetail_type"),
+        Model1Package.Literals.ORDER_DETAIL__PRODUCT, true, false, true, null, null, null));
+  }
+
+  /**
+   * This adds a property descriptor for the Price feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected void addPricePropertyDescriptor(Object object)
+  {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
+        .getRootAdapterFactory(), getResourceLocator(), getString("_UI_OrderDetail_price_feature"), getString(
+        "_UI_PropertyDescriptor_description", "_UI_OrderDetail_price_feature", "_UI_OrderDetail_type"),
+        Model1Package.Literals.ORDER_DETAIL__PRICE, true, false, false, ItemPropertyDescriptor.REAL_VALUE_IMAGE, null,
+        null));
+  }
+
+  /**
+   * This adds a property descriptor for the Test Attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected void addTestAttributePropertyDescriptor(Object object)
+  {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
+        .getRootAdapterFactory(), getResourceLocator(), getString("_UI_OrderAddress_testAttribute_feature"), getString(
+        "_UI_PropertyDescriptor_description", "_UI_OrderAddress_testAttribute_feature", "_UI_OrderAddress_type"),
+        Model1Package.Literals.ORDER_ADDRESS__TEST_ATTRIBUTE, true, false, false,
+        ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -96,14 +139,14 @@ public class OrderItemProvider extends CDOItemProviderAdapter implements IEditin
   }
 
   /**
-   * This returns Order.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This returns OrderAddress.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   @Override
   public Object getImage(Object object)
   {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/Order"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/OrderAddress"));
   }
 
   /**
@@ -114,7 +157,9 @@ public class OrderItemProvider extends CDOItemProviderAdapter implements IEditin
   @Override
   public String getText(Object object)
   {
-    return getString("_UI_Order_type");
+    String label = ((OrderAddress)object).getName();
+    return label == null || label.length() == 0 ? getString("_UI_OrderAddress_type")
+        : getString("_UI_OrderAddress_type") + " " + label;
   }
 
   /**
@@ -128,9 +173,13 @@ public class OrderItemProvider extends CDOItemProviderAdapter implements IEditin
   {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(Order.class))
+    switch (notification.getFeatureID(OrderAddress.class))
     {
-    case Model1Package.ORDER__ORDER_DETAILS:
+    case Model1Package.ORDER_ADDRESS__PRICE:
+    case Model1Package.ORDER_ADDRESS__TEST_ATTRIBUTE:
+      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+      return;
+    case Model1Package.ORDER_ADDRESS__ORDER_DETAILS:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
       return;
     }
@@ -153,17 +202,6 @@ public class OrderItemProvider extends CDOItemProviderAdapter implements IEditin
 
     newChildDescriptors.add(createChildParameter(Model1Package.Literals.ORDER__ORDER_DETAILS, Model1Factory.eINSTANCE
         .createOrderAddress()));
-  }
-
-  /**
-   * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public ResourceLocator getResourceLocator()
-  {
-    return ((IChildCreationExtender)adapterFactory).getResourceLocator();
   }
 
 }
