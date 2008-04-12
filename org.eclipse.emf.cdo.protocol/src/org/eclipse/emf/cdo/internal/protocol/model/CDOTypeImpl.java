@@ -56,12 +56,14 @@ public abstract class CDOTypeImpl implements CDOType
   {
     public void writeValue(ExtendedDataOutput out, Object value) throws IOException
     {
-      out.writeBoolean((Boolean)(value == null ? getDefaultValue() : value));
+      boolean v = (Boolean)(value == null ? getDefaultValue() : value);
+      out.writeBoolean(v);
     }
 
     public Object readValue(ExtendedDataInput in, CDOIDObjectFactory factory) throws IOException
     {
-      return new Boolean(in.readBoolean());
+      boolean v = in.readBoolean();
+      return new Boolean(v);
     }
   };
 
