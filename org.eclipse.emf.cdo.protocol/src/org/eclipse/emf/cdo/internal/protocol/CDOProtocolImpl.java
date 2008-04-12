@@ -25,7 +25,6 @@ public abstract class CDOProtocolImpl extends SignalProtocol implements CDOProto
   {
   }
 
-  @Override
   public String getType()
   {
     return CDOProtocolConstants.PROTOCOL_NAME;
