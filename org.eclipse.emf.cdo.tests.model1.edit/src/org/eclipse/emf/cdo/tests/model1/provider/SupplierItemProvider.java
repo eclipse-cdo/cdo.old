@@ -18,6 +18,8 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import java.util.Collection;
 import java.util.List;
@@ -54,6 +56,7 @@ public class SupplierItemProvider extends AddressItemProvider implements IEditin
       super.getPropertyDescriptors(object);
 
       addPurchaseOrdersPropertyDescriptor(object);
+      addPreferredPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
@@ -69,6 +72,20 @@ public class SupplierItemProvider extends AddressItemProvider implements IEditin
         .getRootAdapterFactory(), getResourceLocator(), getString("_UI_Supplier_purchaseOrders_feature"), getString(
         "_UI_PropertyDescriptor_description", "_UI_Supplier_purchaseOrders_feature", "_UI_Supplier_type"),
         Model1Package.Literals.SUPPLIER__PURCHASE_ORDERS, true, false, true, null, null, null));
+  }
+
+  /**
+   * This adds a property descriptor for the Preferred feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected void addPreferredPropertyDescriptor(Object object)
+  {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
+        .getRootAdapterFactory(), getResourceLocator(), getString("_UI_Supplier_preferred_feature"), getString(
+        "_UI_PropertyDescriptor_description", "_UI_Supplier_preferred_feature", "_UI_Supplier_type"),
+        Model1Package.Literals.SUPPLIER__PREFERRED, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+        null, null));
   }
 
   /**
@@ -105,6 +122,13 @@ public class SupplierItemProvider extends AddressItemProvider implements IEditin
   public void notifyChanged(Notification notification)
   {
     updateChildren(notification);
+
+    switch (notification.getFeatureID(Supplier.class))
+    {
+    case Model1Package.SUPPLIER__PREFERRED:
+      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+      return;
+    }
     super.notifyChanged(notification);
   }
 
