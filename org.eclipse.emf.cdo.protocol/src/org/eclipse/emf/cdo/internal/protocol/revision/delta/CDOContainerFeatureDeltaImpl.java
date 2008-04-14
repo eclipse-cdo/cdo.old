@@ -89,7 +89,7 @@ public class CDOContainerFeatureDeltaImpl extends CDOFeatureDeltaImpl implements
   }
 
   @Override
-  public void write(ExtendedDataOutput out, CDOIDProvider idProvider) throws IOException
+  public void write(ExtendedDataOutput out, CDOClass cdoClass, CDOIDProvider idProvider) throws IOException
   {
     out.writeInt(getType().ordinal());
     out.writeInt(newContainerFeatureID);

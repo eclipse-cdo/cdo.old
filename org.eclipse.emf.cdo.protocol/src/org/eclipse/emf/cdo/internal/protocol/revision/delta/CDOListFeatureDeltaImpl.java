@@ -62,13 +62,13 @@ public class CDOListFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDOL
   }
 
   @Override
-  public void write(final ExtendedDataOutput out, final CDOIDProvider idProvider) throws IOException
+  public void write(final ExtendedDataOutput out, CDOClass cdoClass, final CDOIDProvider idProvider) throws IOException
   {
-    super.write(out, idProvider);
+    super.write(out, cdoClass, idProvider);
     out.writeInt(featureDeltas.size());
     for (CDOFeatureDelta featureDelta : featureDeltas)
     {
-      ((CDOFeatureDeltaImpl)featureDelta).write(out, idProvider);
+      ((CDOFeatureDeltaImpl)featureDelta).write(out, cdoClass, idProvider);
     }
   }
 

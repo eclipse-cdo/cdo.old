@@ -489,12 +489,13 @@ public class CDORevisionImpl implements InternalCDORevision
 
   public Object getValue(CDOFeature feature)
   {
-    return values[feature.getFeatureIndex()];
+    int i = cdoClass.getFeatureID(feature);
+    return values[i];
   }
 
   public Object setValue(CDOFeature feature, Object value)
   {
-    int i = feature.getFeatureIndex();
+    int i = cdoClass.getFeatureID(feature);
     Object old = values[i];
     values[i] = value;
     return old;
@@ -508,7 +509,7 @@ public class CDORevisionImpl implements InternalCDORevision
   @SuppressWarnings("unchecked")
   public MoveableList<Object> getList(CDOFeature feature, int size)
   {
-    int i = feature.getFeatureIndex();
+    int i = cdoClass.getFeatureID(feature);
     MoveableList<Object> list = (MoveableList<Object>)values[i];
     if (list == null)
     {

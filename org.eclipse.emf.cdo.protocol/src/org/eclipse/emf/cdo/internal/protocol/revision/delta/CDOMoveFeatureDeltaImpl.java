@@ -71,9 +71,9 @@ public class CDOMoveFeatureDeltaImpl extends CDOFeatureDeltaImpl implements CDOM
   }
 
   @Override
-  public void write(ExtendedDataOutput out, CDOIDProvider idProvider) throws IOException
+  public void write(ExtendedDataOutput out, CDOClass cdoClass, CDOIDProvider idProvider) throws IOException
   {
-    super.write(out, idProvider);
+    super.write(out, cdoClass, idProvider);
     out.writeInt(newPosition);
     out.writeInt(oldPosition);
   }

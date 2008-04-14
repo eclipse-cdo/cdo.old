@@ -106,6 +106,26 @@ public class CDOClassImpl extends CDOModelElementImpl implements InternalCDOClas
     writeFeatures(out);
   }
 
+  public int getFeatureID(CDOFeature feature)
+  {
+    int index = feature.getFeatureIndex();
+    if (index != -1)
+    {
+      CDOFeature[] features = getAllFeatures();
+      while (index < features.length)
+      {
+        if (features[index] == feature)
+        {
+          return index;
+        }
+
+        ++index;
+      }
+    }
+
+    return -1;
+  }
+
   public CDOPackageManager getPackageManager()
   {
     return containingPackage.getPackageManager();
@@ -261,7 +281,11 @@ public class CDOClassImpl extends CDOModelElementImpl implements InternalCDOClas
       int index = 0;
       for (CDOFeature feature : features)
       {
-        ((InternalCDOFeature)feature).setFeatureIndex(index);
+        if (feature.getContainingClass() == this)
+        {
+          ((InternalCDOFeature)feature).setFeatureIndex(index);
+        }
+
         setIndex(feature.getFeatureID(), index);
         index++;
       }

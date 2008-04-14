@@ -59,9 +59,9 @@ public abstract class CDOSingleValueFeatureDeltaImpl extends CDOFeatureDeltaImpl
   }
 
   @Override
-  public void write(ExtendedDataOutput out, CDOIDProvider idProvider) throws IOException
+  public void write(ExtendedDataOutput out, CDOClass cdoClass, CDOIDProvider idProvider) throws IOException
   {
-    super.write(out, idProvider);
+    super.write(out, cdoClass, idProvider);
     out.writeInt(index);
     if (newValue != null && getFeature().isReference())
     {

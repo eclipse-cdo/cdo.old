@@ -41,6 +41,8 @@ public interface CDOClass extends CDOModelElement, Comparable<CDOClass>
   public CDOFeature lookupFeature(String name);
 
   public CDOFeature[] getFeatures();
+  
+  public int getFeatureID(CDOFeature feature);
 
   /**
    * @return An array of all features. The array is not a copy and must not be modified!

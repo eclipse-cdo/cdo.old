@@ -32,7 +32,7 @@ public abstract class CDOFeatureDeltaImpl implements CDOFeatureDelta
   public static final int NO_INDEX = -1;
 
   private CDOFeature feature;
-
+  
   protected CDOFeatureDeltaImpl(CDOFeature feature)
   {
     this.feature = feature;
@@ -41,7 +41,7 @@ public abstract class CDOFeatureDeltaImpl implements CDOFeatureDelta
   public CDOFeatureDeltaImpl(ExtendedDataInput in, CDOClass cdoClass) throws IOException
   {
     int featureID = in.readInt();
-    feature = cdoClass.lookupFeature(featureID);
+    feature = cdoClass.getAllFeatures()[featureID];
   }
 
   public CDOFeature getFeature()
@@ -51,10 +51,10 @@ public abstract class CDOFeatureDeltaImpl implements CDOFeatureDelta
 
   public abstract void adjustReferences(Map<CDOIDTemp, CDOID> idMappings);
 
-  public void write(ExtendedDataOutput out, CDOIDProvider idProvider) throws IOException
+  public void write(ExtendedDataOutput out, CDOClass cdoClass, CDOIDProvider idProvider) throws IOException
   {
     out.writeInt(getType().ordinal());
-    out.writeInt(feature.getFeatureID());
+    out.writeInt(cdoClass.getFeatureID(feature));
   }
 
   public static CDOFeatureDeltaImpl read(ExtendedDataInput in, CDOClass cdoClass) throws IOException
