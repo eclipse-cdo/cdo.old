@@ -61,15 +61,15 @@ public final class CDOModelUtil
   // ///////////////////////////////////////////////
 
   public static CDOPackage createPackage(CDOPackageManager packageManager, String packageURI, String name,
-      String ecore, boolean dynamic, CDOIDMetaRange metaIDRange)
+      String ecore, boolean dynamic, CDOIDMetaRange metaIDRange, String parentURI)
   {
-    return new CDOPackageImpl(packageManager, packageURI, name, ecore, dynamic, metaIDRange);
+    return new CDOPackageImpl(packageManager, packageURI, name, ecore, dynamic, metaIDRange, parentURI);
   }
 
   public static CDOPackage createProxyPackage(CDOPackageManager packageManager, String packageURI, boolean dynamic,
-      CDOIDMetaRange metaIDRange)
+      CDOIDMetaRange metaIDRange, String parentURI)
   {
-    return new CDOPackageImpl(packageManager, packageURI, dynamic, metaIDRange);
+    return new CDOPackageImpl(packageManager, packageURI, dynamic, metaIDRange, parentURI);
   }
 
   public static CDOPackage readPackage(CDOPackageManager packageManager, ExtendedDataInput in) throws IOException

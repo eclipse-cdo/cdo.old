@@ -50,17 +50,19 @@ public class CDOPackageImpl extends CDOModelElementImpl implements InternalCDOPa
 
   private CDOIDMetaRange metaIDRange;
 
+  private String parentURI;
+
   /**
    * TODO If this is only needed by the client then put it into server info
    */
-  private boolean persistent = true;
+  private transient boolean persistent = true;
 
   public CDOPackageImpl()
   {
   }
 
   public CDOPackageImpl(CDOPackageManager packageManager, String packageURI, String name, String ecore,
-      boolean dynamic, CDOIDMetaRange metaIDRange)
+      boolean dynamic, CDOIDMetaRange metaIDRange, String parentURI)
   {
     super(name);
     this.packageManager = packageManager;
@@ -68,6 +70,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements InternalCDOPa
     this.ecore = ecore;
     this.dynamic = dynamic;
     this.metaIDRange = metaIDRange;
+    this.parentURI = parentURI;
     if (MODEL.isEnabled())
     {
       MODEL.format("Created {0}", this);
@@ -86,15 +89,18 @@ public class CDOPackageImpl extends CDOModelElementImpl implements InternalCDOPa
   /**
    * Creates a proxy CDO package
    */
-  public CDOPackageImpl(CDOPackageManager packageManager, String packageURI, boolean dynamic, CDOIDMetaRange metaIDRange)
+  public CDOPackageImpl(CDOPackageManager packageManager, String packageURI, boolean dynamic,
+      CDOIDMetaRange metaIDRange, String parentURI)
   {
     this.packageManager = packageManager;
     this.packageURI = packageURI;
     this.dynamic = dynamic;
     this.metaIDRange = metaIDRange;
+    this.parentURI = parentURI;
     if (MODEL.isEnabled())
     {
-      MODEL.format("Created proxy package {0}, dynamic={1}, metaIDRange={2}", packageURI, dynamic, metaIDRange);
+      MODEL.format("Created proxy package {0}, dynamic={1}, metaIDRange={2}, parentURI={3}", packageURI, dynamic,
+          metaIDRange, packageURI);
     }
   }
 
@@ -106,10 +112,11 @@ public class CDOPackageImpl extends CDOModelElementImpl implements InternalCDOPa
     dynamic = in.readBoolean();
     ecore = in.readString();
     metaIDRange = CDOIDUtil.readMetaRange(in);
+    parentURI = in.readString();
     if (PROTOCOL.isEnabled())
     {
-      PROTOCOL.format("Read package: URI={0}, name={1}, dynamic={2}, metaIDRange={3}", packageURI, getName(), dynamic,
-          metaIDRange);
+      PROTOCOL.format("Read package: URI={0}, name={1}, dynamic={2}, metaIDRange={3}, parentURI={4}", packageURI,
+          getName(), dynamic, metaIDRange, parentURI);
     }
 
     int size = in.readInt();
@@ -131,8 +138,8 @@ public class CDOPackageImpl extends CDOModelElementImpl implements InternalCDOPa
     resolve();
     if (PROTOCOL.isEnabled())
     {
-      PROTOCOL.format("Writing package: URI={0}, name={1}, dynamic={2}, metaIDRange={3}", packageURI, getName(),
-          dynamic, metaIDRange);
+      PROTOCOL.format("Writing package: URI={0}, name={1}, dynamic={2}, metaIDRange={3}, parentURI={4}", packageURI,
+          getName(), dynamic, metaIDRange, parentURI);
     }
 
     super.write(out);
@@ -140,6 +147,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements InternalCDOPa
     out.writeBoolean(dynamic);
     out.writeString(ecore);
     CDOIDUtil.writeMetaRange(out, metaIDRange);
+    out.writeString(parentURI);
 
     int size = classes.size();
     if (PROTOCOL.isEnabled())
@@ -162,6 +170,21 @@ public class CDOPackageImpl extends CDOModelElementImpl implements InternalCDOPa
   public CDOPackageManager getPackageManager()
   {
     return packageManager;
+  }
+
+  public String getParentURI()
+  {
+    return parentURI;
+  }
+
+  public void setParentURI(String parentURI)
+  {
+    this.parentURI = parentURI;
+  }
+
+  public CDOPackage getParentPackage()
+  {
+    return packageManager.lookupPackage(parentURI);
   }
 
   public String getPackageURI()
@@ -222,7 +245,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements InternalCDOPa
 
   public String getEcore()
   {
-    if (ecore == null && packageManager instanceof CDOPackageManagerImpl)
+    if (ecore == null && packageManager instanceof CDOPackageManagerImpl && parentURI != null)
     {
       // TODO Can ecore be null?
       ecore = ((CDOPackageManagerImpl)packageManager).provideEcore(this);

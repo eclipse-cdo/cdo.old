@@ -40,4 +40,8 @@ public interface CDOPackage extends CDOModelElement, Comparable<CDOPackage>
   public boolean isPersistent();
 
   public CDOIDMetaRange getMetaIDRange();
+
+  public String getParentURI();
+
+  public CDOPackage getParentPackage();
 }

@@ -25,11 +25,14 @@ public final class CDOPackageInfo
 
   private CDOIDMetaRange metaIDRange;
 
-  public CDOPackageInfo(String packageURI, boolean dynamic, CDOIDMetaRange metaIDRange)
+  private String parentURI;
+
+  public CDOPackageInfo(String packageURI, boolean dynamic, CDOIDMetaRange metaIDRange, String parentURI)
   {
     this.packageURI = packageURI;
     this.dynamic = dynamic;
     this.metaIDRange = metaIDRange;
+    this.parentURI = parentURI;
   }
 
   public String getPackageURI()
@@ -45,5 +48,10 @@ public final class CDOPackageInfo
   public CDOIDMetaRange getMetaIDRange()
   {
     return metaIDRange;
+  }
+
+  public String getParentURI()
+  {
+    return parentURI;
   }
 }
