@@ -2,16 +2,19 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SpecialPurchaseOrderItemProvider.java,v 1.2 2008-04-07 08:28:26 estepper Exp $
+ * $Id: SpecialPurchaseOrderItemProvider.java,v 1.3 2008-04-20 08:22:22 estepper Exp $
  */
 package org.eclipse.emf.cdo.tests.model2.provider;
 
+import org.eclipse.emf.cdo.tests.model1.Model1Factory;
+import org.eclipse.emf.cdo.tests.model1.Model1Package;
 import org.eclipse.emf.cdo.tests.model1.provider.PurchaseOrderItemProvider;
 import org.eclipse.emf.cdo.tests.model2.Model2Package;
 import org.eclipse.emf.cdo.tests.model2.SpecialPurchaseOrder;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -77,6 +80,39 @@ public class SpecialPurchaseOrderItemProvider extends PurchaseOrderItemProvider 
   }
 
   /**
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object)
+  {
+    if (childrenFeatures == null)
+    {
+      super.getChildrenFeatures(object);
+      childrenFeatures.add(Model2Package.Literals.SPECIAL_PURCHASE_ORDER__SHIPPING_ADDRESS);
+    }
+    return childrenFeatures;
+  }
+
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  protected EStructuralFeature getChildFeature(Object object, Object child)
+  {
+    // Check the type of the specified child object and return the proper feature to use for
+    // adding (see {@link AddCommand}) it as a child.
+
+    return super.getChildFeature(object, child);
+  }
+
+  /**
    * This returns SpecialPurchaseOrder.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
@@ -117,6 +153,9 @@ public class SpecialPurchaseOrderItemProvider extends PurchaseOrderItemProvider 
     case Model2Package.SPECIAL_PURCHASE_ORDER__DISCOUNT_CODE:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
       return;
+    case Model2Package.SPECIAL_PURCHASE_ORDER__SHIPPING_ADDRESS:
+      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+      return;
     }
     super.notifyChanged(notification);
   }
@@ -131,6 +170,44 @@ public class SpecialPurchaseOrderItemProvider extends PurchaseOrderItemProvider 
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
   {
     super.collectNewChildDescriptors(newChildDescriptors, object);
+
+    newChildDescriptors.add(createChildParameter(Model2Package.Literals.SPECIAL_PURCHASE_ORDER__SHIPPING_ADDRESS,
+        Model1Factory.eINSTANCE.createAddress()));
+
+    newChildDescriptors.add(createChildParameter(Model2Package.Literals.SPECIAL_PURCHASE_ORDER__SHIPPING_ADDRESS,
+        Model1Factory.eINSTANCE.createCompany()));
+
+    newChildDescriptors.add(createChildParameter(Model2Package.Literals.SPECIAL_PURCHASE_ORDER__SHIPPING_ADDRESS,
+        Model1Factory.eINSTANCE.createSupplier()));
+
+    newChildDescriptors.add(createChildParameter(Model2Package.Literals.SPECIAL_PURCHASE_ORDER__SHIPPING_ADDRESS,
+        Model1Factory.eINSTANCE.createCustomer()));
+
+    newChildDescriptors.add(createChildParameter(Model2Package.Literals.SPECIAL_PURCHASE_ORDER__SHIPPING_ADDRESS,
+        Model1Factory.eINSTANCE.createOrderAddress()));
+  }
+
+  /**
+   * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection)
+  {
+    Object childFeature = feature;
+    Object childObject = child;
+
+    boolean qualify = childFeature == Model1Package.Literals.ORDER__ORDER_DETAILS
+        || childFeature == Model2Package.Literals.SPECIAL_PURCHASE_ORDER__SHIPPING_ADDRESS;
+
+    if (qualify)
+    {
+      return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject), getFeatureText(childFeature),
+          getTypeText(owner) });
+    }
+    return super.getCreateChildText(owner, feature, child, selection);
   }
 
 }
