@@ -182,6 +182,12 @@ public class CDOPackageImpl extends CDOModelElementImpl implements InternalCDOPa
     this.parentURI = parentURI;
   }
 
+  public CDOPackage getTopLevelPackage()
+  {
+    CDOPackage parentPackage = getParentPackage();
+    return parentPackage == null ? this : parentPackage.getTopLevelPackage();
+  }
+
   public CDOPackage getParentPackage()
   {
     return packageManager.lookupPackage(parentURI);
@@ -245,7 +251,7 @@ public class CDOPackageImpl extends CDOModelElementImpl implements InternalCDOPa
 
   public String getEcore()
   {
-    if (ecore == null && packageManager instanceof CDOPackageManagerImpl && parentURI != null)
+    if (ecore == null && packageManager instanceof CDOPackageManagerImpl && parentURI == null)
     {
       // TODO Can ecore be null?
       ecore = ((CDOPackageManagerImpl)packageManager).provideEcore(this);

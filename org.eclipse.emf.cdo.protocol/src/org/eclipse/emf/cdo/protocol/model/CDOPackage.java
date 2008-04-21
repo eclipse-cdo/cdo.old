@@ -44,4 +44,6 @@ public interface CDOPackage extends CDOModelElement, Comparable<CDOPackage>
   public String getParentURI();
 
   public CDOPackage getParentPackage();
+
+  public CDOPackage getTopLevelPackage();
 }
