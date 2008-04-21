@@ -19,6 +19,7 @@ import org.eclipse.emf.cdo.protocol.model.CDOPackage;
 import org.eclipse.emf.cdo.protocol.model.CDOPackageManager;
 
 import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
+import org.eclipse.net4j.util.ObjectUtil;
 import org.eclipse.net4j.util.io.ExtendedDataInput;
 import org.eclipse.net4j.util.io.ExtendedDataOutput;
 
@@ -193,6 +194,30 @@ public class CDOPackageImpl extends CDOModelElementImpl implements InternalCDOPa
     return packageManager.lookupPackage(parentURI);
   }
 
+  public CDOPackage[] getSubPackages(boolean recursive)
+  {
+    List<CDOPackage> result = new ArrayList<CDOPackage>();
+    CDOPackage[] allPackages = packageManager.getPackages();
+    getSubPackages(this, allPackages, result, recursive);
+    return result.toArray(new CDOPackage[result.size()]);
+  }
+
+  private void getSubPackages(CDOPackage parentPackage, CDOPackage[] allPackages, List<CDOPackage> result,
+      boolean recursive)
+  {
+    for (CDOPackage cdoPackage : allPackages)
+    {
+      if (ObjectUtil.equals(cdoPackage.getParentURI(), parentPackage.getPackageURI()))
+      {
+        result.add(cdoPackage);
+        if (recursive)
+        {
+          getSubPackages(cdoPackage, allPackages, result, true);
+        }
+      }
+    }
+  }
+
   public String getPackageURI()
   {
     return packageURI;
@@ -328,8 +353,8 @@ public class CDOPackageImpl extends CDOModelElementImpl implements InternalCDOPa
   @Override
   public String toString()
   {
-    return MessageFormat.format("CDOPackage(URI={0}, name={1}, dynamic={2}, metaIDRange={3})", packageURI, getName(),
-        dynamic, metaIDRange);
+    return MessageFormat.format("CDOPackage(URI={0}, name={1}, dynamic={2}, metaIDRange={3}, parentURI={4})",
+        packageURI, getName(), dynamic, metaIDRange, parentURI);
   }
 
   @Override

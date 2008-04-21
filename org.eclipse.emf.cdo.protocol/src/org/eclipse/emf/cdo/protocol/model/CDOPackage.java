@@ -46,4 +46,6 @@ public interface CDOPackage extends CDOModelElement, Comparable<CDOPackage>
   public CDOPackage getParentPackage();
 
   public CDOPackage getTopLevelPackage();
+
+  public CDOPackage[] getSubPackages(boolean recursive);
 }

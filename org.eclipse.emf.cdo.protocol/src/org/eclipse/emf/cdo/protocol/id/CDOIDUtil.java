@@ -12,9 +12,9 @@ package org.eclipse.emf.cdo.protocol.id;
 
 import org.eclipse.emf.cdo.internal.protocol.bundle.OM;
 import org.eclipse.emf.cdo.internal.protocol.id.CDOIDLibraryDescriptorImpl;
+import org.eclipse.emf.cdo.internal.protocol.id.CDOIDLongImpl;
 import org.eclipse.emf.cdo.internal.protocol.id.CDOIDMetaImpl;
 import org.eclipse.emf.cdo.internal.protocol.id.CDOIDMetaRangeImpl;
-import org.eclipse.emf.cdo.internal.protocol.id.CDOIDLongImpl;
 import org.eclipse.emf.cdo.internal.protocol.id.CDOIDTempMetaImpl;
 import org.eclipse.emf.cdo.internal.protocol.id.CDOIDTempObjectImpl;
 import org.eclipse.emf.cdo.protocol.id.CDOID.Type;
@@ -215,13 +215,27 @@ public final class CDOIDUtil
 
   public static CDOIDMetaRange readMetaRange(ExtendedDataInput in) throws IOException
   {
-    return new CDOIDMetaRangeImpl(read(in, null), in.readInt());
+    boolean exist = in.readBoolean();
+    if (exist)
+    {
+      return new CDOIDMetaRangeImpl(read(in, null), in.readInt());
+    }
+
+    return null;
   }
 
   public static void writeMetaRange(ExtendedDataOutput out, CDOIDMetaRange idRange) throws IOException
   {
-    write(out, idRange.getLowerBound());
-    out.writeInt(idRange.size());
+    if (idRange == null)
+    {
+      out.writeBoolean(false);
+    }
+    else
+    {
+      out.writeBoolean(true);
+      write(out, idRange.getLowerBound());
+      out.writeInt(idRange.size());
+    }
   }
 
   public static CDOIDLibraryDescriptor readLibraryDescriptor(ExtendedDataInput in) throws IOException
