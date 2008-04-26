@@ -20,7 +20,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  * @author Eike Stepper
  */
-public class Main
+public class CDOServer
 {
   private static final String[] CONFIG_FILES = { "net4j.xml", "cdo.xml" };
 
