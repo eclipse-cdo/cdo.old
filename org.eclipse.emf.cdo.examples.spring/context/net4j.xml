@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="daemonFactory" class="org.springframework.scheduling.concurrent.CustomizableThreadFactory">
+		<property name="threadGroupName" value="net4j"/>
+		<property name="daemon" value="true"/>
+	</bean>
+	
+	<bean id="threadPool" class="java.util.concurrent.Executors" factory-method="newCachedThreadPool">
+		<constructor-arg ref="daemonFactory"/>
+	</bean>
+	
+	<bean id="bufferFactory" class="org.eclipse.internal.net4j.buffer.BufferFactory" init-method="activate" destroy-method="deactivate">
+		<constructor-arg type="short" value="4096"/>
+	</bean>
+	
+	<bean id="bufferPool" class="org.eclipse.internal.net4j.buffer.BufferPool" init-method="activate" destroy-method="deactivate">
+		<constructor-arg ref="bufferFactory"/>
+	</bean>
+	
+	<bean id="protocolFactoryRegistry" class="org.eclipse.net4j.internal.util.registry.HashMapRegistry"/>
+	
+	<bean id="serverProtocolFactoryRegistrar" class="org.eclipse.emf.cdo.examples.spring.util.FactoryRegistrar">
+		<property name="registry" ref="protocolFactoryRegistry"/>
+		<property name="productGroup" value="org.eclipse.net4j.serverProtocols"/>
+	</bean>
+
+	<bean id="selector" class="org.eclipse.net4j.internal.tcp.TCPSelector" init-method="activate" destroy-method="deactivate"/>
+
+	<bean id="acceptor" class="org.eclipse.net4j.internal.tcp.TCPAcceptor" init-method="activate" destroy-method="deactivate">
+		<property name="bufferProvider" ref="bufferPool"/>
+		<property name="receiveExecutor" ref="threadPool"/>
+		<property name="protocolFactoryRegistry" ref="protocolFactoryRegistry"/>
+		<property name="selector" ref="selector"/>
+	</bean>
+	
+</beans>

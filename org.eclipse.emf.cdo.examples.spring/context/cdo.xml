@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean class="org.eclipse.emf.cdo.internal.server.protocol.CDOServerProtocolFactory">
+		<constructor-arg>
+			<bean class="org.eclipse.emf.cdo.examples.spring.util.ContextRepositoryProvider"/>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="derbyAdapter" class="org.eclipse.net4j.db.internal.derby.EmbeddedDerbyAdapter"/>
+	
+	<bean id="dataSource" class="org.apache.derby.jdbc.EmbeddedDataSource">
+		<property name="databaseName" value="/temp/cdodb1"/>
+		<property name="createDatabase" value="create"/>
+	</bean>
+	
+	<bean id="repo1" class="org.eclipse.emf.cdo.internal.server.Repository" init-method="activate" destroy-method="deactivate">
+		<property name="name" value="repo1"/>
+		<property name="properties">
+			<map>
+				<entry key="overrideUUID" value="1ff5d226-b1f0-40fb-aba2-0c31b38c764f"/>
+				<entry key="supportingAudits" value="true"/>
+				<entry key="verifyingRevisions" value="false"/>
+				<entry key="currentLRUCapacity" value="10000"/>
+				<entry key="revisedLRUCapacity" value="100"/>
+			</map>
+		</property>
+		<property name="store">
+			<bean class="org.eclipse.emf.cdo.server.internal.db.DBStore">
+				<property name="mappingStrategy">
+					<bean class="org.eclipse.emf.cdo.server.internal.db.HorizontalMappingStrategy">
+						<property name="properties">
+							<map>
+								<entry key="toManyReferences" value="ONE_TABLE_PER_REFERENCE"/>
+								<entry key="toOneReferences" value="LIKE_ATTRIBUTES"/>
+							</map>
+						</property>
+					</bean>
+				</property>
+				<property name="dbAdapter" ref="derbyAdapter"/>
+				<property name="dataSource" ref="dataSource"/>
+			</bean>
+		</property>
+	</bean>
+
+</beans>
