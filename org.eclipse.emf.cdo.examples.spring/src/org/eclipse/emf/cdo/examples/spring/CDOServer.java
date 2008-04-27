@@ -22,15 +22,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class CDOServer
 {
-  private static final String[] CONFIG_FILES = { "net4j.xml", "cdo.xml" };
-
   public static void main(String[] args) throws Exception
   {
     OMPlatform.INSTANCE.setDebugging(true);
     OMPlatform.INSTANCE.addLogHandler(PrintLogHandler.CONSOLE);
     OMPlatform.INSTANCE.addTraceHandler(PrintTraceHandler.CONSOLE);
 
-    ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(CONFIG_FILES);
+    ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("repo1.xml");
     while (System.in.available() == 0)
     {
       Thread.sleep(200);
