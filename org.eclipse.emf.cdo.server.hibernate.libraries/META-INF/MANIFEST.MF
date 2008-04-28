@@ -12,8 +12,7 @@ Bundle-ClassPath: lib/hibernate3.jar,
  lib/commons-collections-2.1.1.jar,
  lib/commons-logging-1.0.4.jar,
  lib/dom4j-1.6.1.jar,
- lib/jta.jar,
- lib/hsqldb.jar
+ lib/jta.jar
 Export-Package: javax.transaction,
  javax.transaction.xa,
  net.sf.cglib.beans,
