@@ -11,7 +11,7 @@
 package org.eclipse.emf.cdo.weaver.internal.ui.bundle;
 
 import org.eclipse.emf.cdo.util.CDOPackageType;
-import org.eclipse.emf.cdo.util.CDOUtil;
+import org.eclipse.emf.cdo.util.CDOPackageTypeRegistry;
 import org.eclipse.emf.cdo.weaver.BundleInfo;
 import org.eclipse.emf.cdo.weaver.ICDOWeaver;
 import org.eclipse.emf.cdo.weaver.internal.ui.ConfirmWeaveJob;
@@ -91,7 +91,6 @@ public abstract class OM
   public static Map<String, BundleInfo> getUnwovenBundles()
   {
     File[] siteLocations = null;
-    Map<String, CDOPackageType> packageTypes = CDOUtil.getPackageTypes();
     Map<String, BundleInfo> bundleMap = new TreeMap<String, BundleInfo>();
 
     IExtensionRegistry registry = Platform.getExtensionRegistry();
@@ -102,7 +101,7 @@ public abstract class OM
       String uri = element.getAttribute("uri");
       if (!StringUtil.isEmpty(uri))
       {
-        if (packageTypes.get(uri) != CDOPackageType.LEGACY)
+        if (CDOPackageTypeRegistry.INSTANCE.get(uri) != CDOPackageType.LEGACY)
         {
           continue;
         }
