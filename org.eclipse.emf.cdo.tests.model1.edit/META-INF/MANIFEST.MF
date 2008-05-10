@@ -10,7 +10,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.3.0,4.0.0)",
  org.eclipse.emf.edit;bundle-version="[2.3.0,3.0.0)";visibility:=reexport,
- org.eclipse.emf.cdo.edit;bundle-version="[0.8.0,0.9.0)";visibility:=reexport,
- org.eclipse.emf.cdo.tests.model1;bundle-version="[0.8.0,0.9.0)";visibility:=reexport
+ org.eclipse.emf.cdo.edit;visibility:=reexport,
+ org.eclipse.emf.cdo.tests.model1;visibility:=reexport
 Export-Package: org.eclipse.emf.cdo.tests.model1.provider
 Eclipse-LazyStart: true
