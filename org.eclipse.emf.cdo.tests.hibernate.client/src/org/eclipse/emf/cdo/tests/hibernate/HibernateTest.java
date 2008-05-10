@@ -12,6 +12,7 @@
 package org.eclipse.emf.cdo.tests.hibernate;
 
 import org.eclipse.emf.cdo.CDOSession;
+import org.eclipse.emf.cdo.CDOSessionConfiguration;
 import org.eclipse.emf.cdo.CDOTransaction;
 import org.eclipse.emf.cdo.tests.model1.Category;
 import org.eclipse.emf.cdo.tests.model1.Customer;
@@ -74,8 +75,9 @@ public class HibernateTest extends TestCase
       IManagedContainer container = initContainer();
       IConnector connector = TCPUtil.getConnector(container, "localhost:2036"); // Open a TCP connection
 
-      CDOSession session = CDOUtil.openSession(connector, REPOSITORY_NAME, true);// Open a CDO session
-      session.getPackageRegistry().putEPackage(Model1Package.eINSTANCE);// Not needed after first commit!!!
+      CDOSession session = openSession(connector);
+      session.getPackageRegistry().putEPackage(Model1Package.eINSTANCE);
+
       CDOTransaction transaction = session.openTransaction();
       Resource resource = transaction.createResource("/my/big/resource");
       resource.getContents().add(getInputModel());
@@ -116,7 +118,7 @@ public class HibernateTest extends TestCase
       transaction.commit();
       session.close();
 
-      CDOSession session2 = CDOUtil.openSession(connector, REPOSITORY_NAME, true);// Open a CDO session
+      CDOSession session2 = openSession(connector);
       CDOTransaction transaction2 = session2.openTransaction();
       Resource resource2 = transaction2.getResource("/my/big/resource");
       Category category = (Category)resource2.getContents().get(0);
@@ -139,6 +141,15 @@ public class HibernateTest extends TestCase
     {
       IOUtil.close(traceStream);
     }
+  }
+
+  protected CDOSession openSession(IConnector connector)
+  {
+    CDOSessionConfiguration configuration = CDOUtil.createSessionConfiguration();
+    configuration.setConnector(connector);
+    configuration.setRepositoryName(REPOSITORY_NAME);
+    configuration.setDisableLegacyObjects(true);
+    return configuration.openSession();
   }
 
   private static IManagedContainer initContainer() throws FileNotFoundException
