@@ -326,6 +326,28 @@ public abstract class CDOTypeImpl implements CDOType
     }
   };
 
+  public static final CDOType BYTE_ARRAY = new CDOTypeImpl("BYTE_ARRAY", 25, true)
+  {
+    @Override
+    public Object copyValue(Object value)
+    {
+      byte[] array = (byte[])value;
+      byte[] result = new byte[array.length];
+      System.arraycopy(value, 0, result, 0, array.length);
+      return result;
+    }
+
+    public void writeValue(ExtendedDataOutput out, Object value) throws IOException
+    {
+      out.writeByteArray((byte[])value);
+    }
+
+    public Object readValue(ExtendedDataInput in, CDOIDObjectFactory factory) throws IOException
+    {
+      return in.readByteArray();
+    }
+  };
+
   public static final CDOType CUSTOM = new CDOTypeImpl("CUSTOM", 999, true)
   {
     @SuppressWarnings("cast")
