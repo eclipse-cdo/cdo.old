@@ -331,6 +331,11 @@ public abstract class CDOTypeImpl implements CDOType
     @Override
     public Object copyValue(Object value)
     {
+      if (value == null)
+      {
+        return null;
+      }
+
       byte[] array = (byte[])value;
       byte[] result = new byte[array.length];
       System.arraycopy(value, 0, result, 0, array.length);
