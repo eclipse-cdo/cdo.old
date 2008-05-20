@@ -41,6 +41,11 @@ public final class CDOIDUtil
 
   public static long getLong(CDOID id)
   {
+    if (id == null)
+    {
+      return 0L;
+    }
+
     switch (id.getType())
     {
     case NULL:
