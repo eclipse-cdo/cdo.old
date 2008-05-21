@@ -4,6 +4,7 @@ Bundle-SymbolicName: org.eclipse.emf.cdo.server.hibernate.libraries
 Bundle-Version: 0.8.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
+Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: lib/hibernate3.jar,
@@ -12,6 +13,7 @@ Bundle-ClassPath: lib/hibernate3.jar,
  lib/commons-collections-2.1.1.jar,
  lib/dom4j-1.6.1.jar,
  lib/jta.jar
+Require-Bundle: org.apache.commons.logging;bundle-version="1.0.4";visibility:=reexport
 Export-Package: javax.transaction,
  javax.transaction.xa,
  net.sf.cglib.beans,
@@ -118,4 +120,3 @@ Export-Package: javax.transaction,
  org.hibernate.usertype,
  org.hibernate.util,
  org.objectweb.asm
-Require-Bundle: org.apache.commons.logging;bundle-version="1.0.4";visibility:=reexport
