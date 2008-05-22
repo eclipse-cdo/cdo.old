@@ -14,4 +14,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit;visibility:=reexport,
  org.eclipse.emf.cdo.tests.model1;visibility:=reexport,
  org.eclipse.emf.cdo.tests.model1.edit
-Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy

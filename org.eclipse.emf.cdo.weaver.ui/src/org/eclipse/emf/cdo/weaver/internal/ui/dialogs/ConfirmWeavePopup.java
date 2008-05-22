@@ -60,7 +60,7 @@ public class ConfirmWeavePopup extends PopupDialog
 
   public ConfirmWeavePopup(Shell parent, Map<String, BundleInfo> bundleMap, HashSet<String> unignoredBundles)
   {
-    super(parent, PopupDialog.INFOPOPUP_SHELLSTYLE | SWT.ON_TOP, false, false, false, false, null, null);
+    super(parent, PopupDialog.INFOPOPUP_SHELLSTYLE | SWT.ON_TOP, false, false, false, false, false, null, null);
     toolkit = new FormToolkit(parent.getDisplay());
     this.bundleMap = bundleMap;
     this.unignoredBundles = unignoredBundles;
