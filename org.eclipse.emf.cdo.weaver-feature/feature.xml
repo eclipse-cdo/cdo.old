@@ -35,16 +35,6 @@
       <update label="%updateSiteName" url="http://download.eclipse.org/modeling/emft/updates/"/>
    </url>
 
-   <requires>
-      <import plugin="org.eclipse.core.runtime" version="3.3.0" match="compatible"/>
-      <import plugin="org.eclipse.emf.cdo"/>
-      <import plugin="org.eclipse.update.core" version="3.2.100" match="compatible"/>
-      <import plugin="org.eclipse.update.configurator" version="3.2.100" match="compatible"/>
-      <import plugin="org.eclipse.ui.ide" version="3.3.0" match="compatible"/>
-      <import plugin="org.eclipse.ui.forms"/>
-      <import plugin="org.eclipse.net4j.util.ui"/>
-   </requires>
-
    <plugin
          id="org.eclipse.emf.cdo.weaver"
          download-size="0"
