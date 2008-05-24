@@ -13,10 +13,10 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.4.0,4.0.0)",
  org.eclipse.emf.cdo.server;bundle-version="[0.8.0,0.9.0)";visibility:=reexport,
  org.eclipse.emf.cdo.server.db;bundle-version="[0.8.0,0.9.0)";visibility:=reexport,
  org.eclipse.emf.cdo.server.hibernate;bundle-version="[0.8.0,0.9.0)";visibility:=reexport
-Import-Package: org.springframework.beans;version="[2.5.4,3.0.0)",
- org.springframework.beans.factory;version="[2.5.4,3.0.0)",
- org.springframework.beans.factory.config;version="[2.5.4,3.0.0)",
- org.springframework.context;version="[2.5.4,3.0.0)",
- org.springframework.context.support;version="[2.5.4,3.0.0)",
- org.springframework.core;version="[2.5.4,3.0.0)"
+Import-Package: org.springframework.beans,
+ org.springframework.beans.factory,
+ org.springframework.beans.factory.config,
+ org.springframework.context,
+ org.springframework.context.support,
+ org.springframework.core
 Export-Package: org.eclipse.emf.cdo.examples.spring;version="0.8.0"
