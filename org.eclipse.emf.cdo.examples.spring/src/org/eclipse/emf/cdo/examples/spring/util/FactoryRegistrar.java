@@ -48,7 +48,7 @@ public class FactoryRegistrar implements BeanPostProcessor
 
   public void setProductGroup(String productGroup)
   {
-    productGroup = productGroup;
+    this.productGroup = productGroup;
   }
 
   public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException
