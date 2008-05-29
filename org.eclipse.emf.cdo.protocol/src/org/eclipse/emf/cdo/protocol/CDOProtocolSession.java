@@ -23,5 +23,5 @@ public interface CDOProtocolSession
 
   public CDOProtocolView getView(int viewID);
 
-  public boolean isDisableLegacyObjects();
+  public boolean isLegacySupportEnabled();
 }
