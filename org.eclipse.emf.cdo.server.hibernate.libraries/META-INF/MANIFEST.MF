@@ -119,3 +119,4 @@ Export-Package: javax.transaction,
  org.hibernate.usertype;version="3.2.5",
  org.hibernate.util;version="3.2.5",
  org.objectweb.asm
+Eclipse-BuddyPolicy: dependent
