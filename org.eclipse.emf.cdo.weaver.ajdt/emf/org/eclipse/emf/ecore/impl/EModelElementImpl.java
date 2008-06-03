@@ -35,8 +35,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import java.util.Collection;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>EModel Element</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EModel Element</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>

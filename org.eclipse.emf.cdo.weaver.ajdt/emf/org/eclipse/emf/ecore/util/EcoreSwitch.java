@@ -72,8 +72,8 @@ public class EcoreSwitch<T>
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
-   * result. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
@@ -84,8 +84,8 @@ public class EcoreSwitch<T>
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
-   * result. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
@@ -104,8 +104,8 @@ public class EcoreSwitch<T>
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
-   * result. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
@@ -294,8 +294,8 @@ public class EcoreSwitch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>EModel Element</em>'. <!-- begin-user-doc
-   * --> This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+   * Returns the result of interpreting the object as an instance of '<em>EModel Element</em>'. <!-- begin-user-doc -->
+   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
    * 
    * @param object
    *          the target of the switch.
@@ -309,9 +309,8 @@ public class EcoreSwitch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>EStructural Feature</em>'. <!--
-   * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-   * end-user-doc -->
+   * Returns the result of interpreting the object as an instance of '<em>EStructural Feature</em>'. <!-- begin-user-doc
+   * --> This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
    * 
    * @param object
    *          the target of the switch.
@@ -340,8 +339,8 @@ public class EcoreSwitch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>EAttribute</em>'. <!-- begin-user-doc -->
-   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+   * Returns the result of interpreting the object as an instance of '<em>EAttribute</em>'. <!-- begin-user-doc --> This
+   * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
    * 
    * @param object
    *          the target of the switch.
@@ -370,8 +369,8 @@ public class EcoreSwitch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>EData Type</em>'. <!-- begin-user-doc -->
-   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+   * Returns the result of interpreting the object as an instance of '<em>EData Type</em>'. <!-- begin-user-doc --> This
+   * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
    * 
    * @param object
    *          the target of the switch.
@@ -400,8 +399,8 @@ public class EcoreSwitch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>ENamed Element</em>'. <!-- begin-user-doc
-   * --> This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+   * Returns the result of interpreting the object as an instance of '<em>ENamed Element</em>'. <!-- begin-user-doc -->
+   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
    * 
    * @param object
    *          the target of the switch.
@@ -415,8 +414,8 @@ public class EcoreSwitch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>EObject</em>'. <!-- begin-user-doc -->
-   * This implementation returns null; returning a non-null result will terminate the switch, but this is the last case
+   * Returns the result of interpreting the object as an instance of '<em>EObject</em>'. <!-- begin-user-doc --> This
+   * implementation returns null; returning a non-null result will terminate the switch, but this is the last case
    * anyway. <!-- end-user-doc -->
    * 
    * @param object
@@ -431,8 +430,8 @@ public class EcoreSwitch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>ETyped Element</em>'. <!-- begin-user-doc
-   * --> This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+   * Returns the result of interpreting the object as an instance of '<em>ETyped Element</em>'. <!-- begin-user-doc -->
+   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
    * 
    * @param object
    *          the target of the switch.
@@ -462,8 +461,8 @@ public class EcoreSwitch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>EGeneric Type</em>'. <!-- begin-user-doc
-   * --> This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+   * Returns the result of interpreting the object as an instance of '<em>EGeneric Type</em>'. <!-- begin-user-doc -->
+   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
    * 
    * @param object
    *          the target of the switch.
@@ -477,8 +476,8 @@ public class EcoreSwitch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>EType Parameter</em>'. <!-- begin-user-doc
-   * --> This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+   * Returns the result of interpreting the object as an instance of '<em>EType Parameter</em>'. <!-- begin-user-doc -->
+   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
    * 
    * @param object
    *          the target of the switch.
@@ -492,8 +491,8 @@ public class EcoreSwitch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>EParameter</em>'. <!-- begin-user-doc -->
-   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+   * Returns the result of interpreting the object as an instance of '<em>EParameter</em>'. <!-- begin-user-doc --> This
+   * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
    * 
    * @param object
    *          the target of the switch.
@@ -507,8 +506,8 @@ public class EcoreSwitch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>EOperation</em>'. <!-- begin-user-doc -->
-   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+   * Returns the result of interpreting the object as an instance of '<em>EOperation</em>'. <!-- begin-user-doc --> This
+   * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
    * 
    * @param object
    *          the target of the switch.
@@ -522,8 +521,8 @@ public class EcoreSwitch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>EPackage</em>'. <!-- begin-user-doc -->
-   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+   * Returns the result of interpreting the object as an instance of '<em>EPackage</em>'. <!-- begin-user-doc --> This
+   * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
    * 
    * @param object
    *          the target of the switch.
@@ -537,8 +536,8 @@ public class EcoreSwitch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>EFactory</em>'. <!-- begin-user-doc -->
-   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+   * Returns the result of interpreting the object as an instance of '<em>EFactory</em>'. <!-- begin-user-doc --> This
+   * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
    * 
    * @param object
    *          the target of the switch.
@@ -552,8 +551,8 @@ public class EcoreSwitch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>EEnum Literal</em>'. <!-- begin-user-doc
-   * --> This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+   * Returns the result of interpreting the object as an instance of '<em>EEnum Literal</em>'. <!-- begin-user-doc -->
+   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
    * 
    * @param object
    *          the target of the switch.
@@ -582,8 +581,8 @@ public class EcoreSwitch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>EReference</em>'. <!-- begin-user-doc -->
-   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+   * Returns the result of interpreting the object as an instance of '<em>EReference</em>'. <!-- begin-user-doc --> This
+   * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
    * 
    * @param object
    *          the target of the switch.

@@ -74,7 +74,8 @@ import java.util.Set;
  *         <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEAttributes <em>EAttributes</em>}</li>
  *         <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEAllContainments <em>EAll Containments</em>}</li>
  *         <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEAllOperations <em>EAll Operations</em>}</li>
- *         <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEAllStructuralFeatures <em>EAll Structural Features</em>}</li>
+ *         <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEAllStructuralFeatures <em>EAll Structural Features</em>}
+ *         </li>
  *         <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEAllSuperTypes <em>EAll Super Types</em>}</li>
  *         <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEIDAttribute <em>EID Attribute</em>}</li>
  *         <li>{@link org.eclipse.emf.ecore.impl.EClassImpl#getEStructuralFeatures <em>EStructural Features</em>}</li>
@@ -1314,8 +1315,8 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   protected static final boolean ABSTRACT_EDEFAULT = false;
 
   /**
-   * The flag representing the value of the '{@link #isAbstract() <em>Abstract</em>}' attribute. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * The flag representing the value of the '{@link #isAbstract() <em>Abstract</em>}' attribute. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @see #isAbstract()
    * @generated

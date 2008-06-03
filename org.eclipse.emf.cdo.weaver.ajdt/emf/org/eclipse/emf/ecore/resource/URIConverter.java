@@ -38,11 +38,10 @@ import java.util.regex.Pattern;
  * A resource set provides {@link ResourceSet#getURIConverter one} of these for use by it's
  * {@link ResourceSet#getResources resources} when they are {@link Resource#save(java.util.Map) serialized} and
  * {@link Resource#load(java.util.Map) deserialized}. A resource set also uses this directly when it
- * {@link ResourceSet#getResource looks up} a resource: a resource is considered a match if
- * {@link Resource#getURI it's URI}, and the URI being looked up, {@link #normalize normalize} to
- * {@link URI#equals(Object) equal} URIs. Clients must extend the default
- * {@link org.eclipse.emf.ecore.resource.impl.URIConverterImpl implementation}, since methods can and will be added to
- * this API.
+ * {@link ResourceSet#getResource looks up} a resource: a resource is considered a match if {@link Resource#getURI it's
+ * URI}, and the URI being looked up, {@link #normalize normalize} to {@link URI#equals(Object) equal} URIs. Clients
+ * must extend the default {@link org.eclipse.emf.ecore.resource.impl.URIConverterImpl implementation}, since methods
+ * can and will be added to this API.
  * </p>
  */
 public interface URIConverter
@@ -50,9 +49,9 @@ public interface URIConverter
   /**
    * Returns the normalized form of the URI.
    * <p>
-   * This may, in theory, do absolutely anything. Default behaviour includes applying URI
-   * {@link URIConverter#getURIMap mapping}, assuming <code>"file:"</code> protocol for a
-   * {@link URI#isRelative relative} URI with a {@link URI#hasRelativePath relative path}:
+   * This may, in theory, do absolutely anything. Default behaviour includes applying URI {@link URIConverter#getURIMap
+   * mapping}, assuming <code>"file:"</code> protocol for a {@link URI#isRelative relative} URI with a
+   * {@link URI#hasRelativePath relative path}:
    * 
    * <pre>
    *  ./WhateverDirectory/Whatever.file 
@@ -60,8 +59,8 @@ public interface URIConverter
    *  file:./WhateverDirectory/Whatever.file
    * </pre>
    * 
-   * and assuming <code>"platform:/resource"</code> protocol for a relative URI with an
-   * {@link URI#hasAbsolutePath absolute path}:
+   * and assuming <code>"platform:/resource"</code> protocol for a relative URI with an {@link URI#hasAbsolutePath
+   * absolute path}:
    * 
    * <pre>
    *  /WhateverRelocatableProject/Whatever.file 
@@ -86,8 +85,7 @@ public interface URIConverter
    * Returns the map used for remapping a logical URI to a physical URI when {@link #normalize normalizing}.
    * <p>
    * An implementation will typically also delegate to the {@link URIConverter#URI_MAP global} map, so registrations
-   * made in this map are <em>local</em> to this URI converter, i.e., they augment or override those of the global
-   * map.
+   * made in this map are <em>local</em> to this URI converter, i.e., they augment or override those of the global map.
    * </p>
    * <p>
    * The map generally specifies instance to instance mapping, except for the case that both the key URI and the value
@@ -133,8 +131,8 @@ public interface URIConverter
    * Creates an input stream for the URI and returns it.
    * <p>
    * It {@link #normalize normalizes} the URI and uses that as the basis for further processing. Special requirements,
-   * such as an Eclipse file refresh, are handled by the
-   * {@link org.eclipse.emf.ecore.resource.impl.URIConverterImpl default implementation}.
+   * such as an Eclipse file refresh, are handled by the {@link org.eclipse.emf.ecore.resource.impl.URIConverterImpl
+   * default implementation}.
    * </p>
    * 
    * @return an open input stream.

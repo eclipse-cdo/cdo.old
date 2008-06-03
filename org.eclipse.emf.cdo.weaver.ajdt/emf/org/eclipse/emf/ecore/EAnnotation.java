@@ -20,8 +20,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>EAnnotation</b></em>'. <!-- end-user-doc
- * -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>EAnnotation</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are supported:
  * <ul>
@@ -67,8 +66,8 @@ public interface EAnnotation extends EModelElement
   void setSource(String value);
 
   /**
-   * Returns the value of the '<em><b>Details</b></em>' map. The key is of type {@link java.lang.String}, and the
-   * value is of type {@link java.lang.String}, <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Details</b></em>' map. The key is of type {@link java.lang.String}, and the value
+   * is of type {@link java.lang.String}, <!-- begin-user-doc -->
    * <p>
    * This represents tagged values.
    * </p>
@@ -83,9 +82,9 @@ public interface EAnnotation extends EModelElement
   EMap<String, String> getDetails();
 
   /**
-   * Returns the value of the '<em><b>EModel Element</b></em>' container reference. It is bidirectional and its
-   * opposite is '{@link org.eclipse.emf.ecore.EModelElement#getEAnnotations <em>EAnnotations</em>}'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns the value of the '<em><b>EModel Element</b></em>' container reference. It is bidirectional and its opposite
+   * is '{@link org.eclipse.emf.ecore.EModelElement#getEAnnotations <em>EAnnotations</em>}'. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @return the value of the '<em>EModel Element</em>' container reference.
    * @see #setEModelElement(EModelElement)

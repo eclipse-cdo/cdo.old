@@ -46,8 +46,8 @@ public interface EGenericType extends EObject
   /**
    * Returns the value of the '<em><b>EUpper Bound</b></em>' containment reference. <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>EUpper Bound</em>' containment reference isn't clear, there really should be more of
-   * a description here...
+   * If the meaning of the '<em>EUpper Bound</em>' containment reference isn't clear, there really should be more of a
+   * description here...
    * </p>
    * <!-- end-user-doc -->
    * 
@@ -60,8 +60,8 @@ public interface EGenericType extends EObject
   EGenericType getEUpperBound();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.ecore.EGenericType#getEUpperBound <em>EUpper Bound</em>}'
-   * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.EGenericType#getEUpperBound <em>EUpper Bound</em>}' containment
+   * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param value
    *          the new value of the '<em>EUpper Bound</em>' containment reference.
@@ -71,8 +71,8 @@ public interface EGenericType extends EObject
   void setEUpperBound(EGenericType value);
 
   /**
-   * Returns the value of the '<em><b>EType Arguments</b></em>' containment reference list. The list contents are
-   * of type {@link org.eclipse.emf.ecore.EGenericType}. <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>EType Arguments</b></em>' containment reference list. The list contents are of
+   * type {@link org.eclipse.emf.ecore.EGenericType}. <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>EType Arguments</em>' containment reference list isn't clear, there really should be
    * more of a description here...
@@ -104,8 +104,8 @@ public interface EGenericType extends EObject
   /**
    * Returns the value of the '<em><b>ELower Bound</b></em>' containment reference. <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>ELower Bound</em>' containment reference isn't clear, there really should be more of
-   * a description here...
+   * If the meaning of the '<em>ELower Bound</em>' containment reference isn't clear, there really should be more of a
+   * description here...
    * </p>
    * <!-- end-user-doc -->
    * 
@@ -118,8 +118,8 @@ public interface EGenericType extends EObject
   EGenericType getELowerBound();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.ecore.EGenericType#getELowerBound <em>ELower Bound</em>}'
-   * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.EGenericType#getELowerBound <em>ELower Bound</em>}' containment
+   * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param value
    *          the new value of the '<em>ELower Bound</em>' containment reference.
@@ -158,8 +158,8 @@ public interface EGenericType extends EObject
   /**
    * Returns the value of the '<em><b>EClassifier</b></em>' reference. <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>EClassifier</em>' reference isn't clear, there really should be more of a
-   * description here...
+   * If the meaning of the '<em>EClassifier</em>' reference isn't clear, there really should be more of a description
+   * here...
    * </p>
    * <!-- end-user-doc -->
    * 

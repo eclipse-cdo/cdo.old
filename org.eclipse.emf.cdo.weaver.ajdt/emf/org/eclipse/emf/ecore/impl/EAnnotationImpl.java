@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import java.util.Collection;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>EAnnotation</b></em>'. <!-- end-user-doc
- * -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EAnnotation</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -65,8 +64,8 @@ public class EAnnotationImpl extends EModelElementImpl implements EAnnotation
   protected static final String SOURCE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getSource() <em>Source</em>}' attribute. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * The cached value of the '{@link #getSource() <em>Source</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @see #getSource()
    * @generated
@@ -75,8 +74,7 @@ public class EAnnotationImpl extends EModelElementImpl implements EAnnotation
   protected String source = SOURCE_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getDetails() <em>Details</em>}' map. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
+   * The cached value of the '{@link #getDetails() <em>Details</em>}' map. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getDetails()
    * @generated
@@ -85,8 +83,8 @@ public class EAnnotationImpl extends EModelElementImpl implements EAnnotation
   protected EMap<String, String> details;
 
   /**
-   * The cached value of the '{@link #getContents() <em>Contents</em>}' containment reference list. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getContents() <em>Contents</em>}' containment reference list. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @see #getContents()
    * @generated
@@ -95,8 +93,8 @@ public class EAnnotationImpl extends EModelElementImpl implements EAnnotation
   protected EList<EObject> contents;
 
   /**
-   * The cached value of the '{@link #getReferences() <em>References</em>}' reference list. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getReferences() <em>References</em>}' reference list. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getReferences()
    * @generated

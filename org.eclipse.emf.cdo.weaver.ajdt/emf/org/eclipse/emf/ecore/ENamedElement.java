@@ -17,8 +17,7 @@
 package org.eclipse.emf.ecore;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>ENamed Element</b></em>'. <!-- end-user-doc
- * -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>ENamed Element</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are supported:
  * <ul>

@@ -76,9 +76,8 @@ public class EObjectImpl extends BasicEObjectImpl implements EObject
   protected InternalEObject eContainer;
 
   /**
-   * The feature ID of this object's container holding feature, if there is one, or
-   * {@link #EOPPOSITE_FEATURE_BASE EOPPOSITE_FEATURE_BASE} minus the feature ID of the container's feature that
-   * contains this object.
+   * The feature ID of this object's container holding feature, if there is one, or {@link #EOPPOSITE_FEATURE_BASE
+   * EOPPOSITE_FEATURE_BASE} minus the feature ID of the container's feature that contains this object.
    */
   protected int eContainerFeatureID;
 

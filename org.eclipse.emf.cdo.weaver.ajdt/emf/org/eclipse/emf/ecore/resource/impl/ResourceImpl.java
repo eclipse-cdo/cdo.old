@@ -781,9 +781,9 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
 
   /**
    * Sets the map used to cache the EObject identified by the value of its ID feature. This cache is only activated if
-   * the map is not <code>null</code>. The map will be lazily loaded by the
-   * {@link #getEObjectByID(String) getEObjectByID} method. It is up to the client to clear the cache when it becomes
-   * invalid, e.g., when the ID of a previously mapped EObject is changed.
+   * the map is not <code>null</code>. The map will be lazily loaded by the {@link #getEObjectByID(String)
+   * getEObjectByID} method. It is up to the client to clear the cache when it becomes invalid, e.g., when the ID of a
+   * previously mapped EObject is changed.
    * 
    * @param intrinsicIDToEObjectMap
    *          the new map or <code>null</code>.

@@ -52,8 +52,8 @@ public class AnyTypeImpl extends EObjectImpl implements AnyType
   protected FeatureMap mixed;
 
   /**
-   * The cached value of the '{@link #getAnyAttribute() <em>Any Attribute</em>}' attribute list. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getAnyAttribute() <em>Any Attribute</em>}' attribute list. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @see #getAnyAttribute()
    * @generated

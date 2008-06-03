@@ -32,12 +32,12 @@ package org.eclipse.emf.ecore;
 public interface EDataType extends EClassifier
 {
   /**
-   * Returns the value of the '<em><b>Serializable</b></em>' attribute. The default value is <code>"true"</code>.
-   * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Serializable</b></em>' attribute. The default value is <code>"true"</code>. <!--
+   * begin-user-doc -->
    * <p>
    * It represents whether values of this type will be
-   * {@link org.eclipse.emf.ecore.resource.Resource#save(java.util.Map) serialized}. For a serializable data type,
-   * there will be factory methods of the form:
+   * {@link org.eclipse.emf.ecore.resource.Resource#save(java.util.Map) serialized}. For a serializable data type, there
+   * will be factory methods of the form:
    * 
    * <pre>
    *  String convertXyzToString(EDataType metaObject, Object instanceValue)

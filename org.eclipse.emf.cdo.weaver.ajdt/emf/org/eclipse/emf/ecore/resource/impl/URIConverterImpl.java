@@ -360,21 +360,20 @@ public class URIConverterImpl implements URIConverter
    *   C:/directory/file
    * </pre>
    * 
-   * and is delegated to {@link #createFileOutputStream createFileOutputStream}. An
-   * {@link #isArchiveScheme(String) archive-based} URI is delegated to
-   * {@link #createArchiveOutputStream createArchiveOutputStream}. A {@link URI#isPlatformResource() platform-based}
-   * URI is {@link URI#toPlatformString(boolean) converted} to a platform path by trimming the leading
-   * <code>platform:/resource</code>, e.g.,
+   * and is delegated to {@link #createFileOutputStream createFileOutputStream}. An {@link #isArchiveScheme(String)
+   * archive-based} URI is delegated to {@link #createArchiveOutputStream createArchiveOutputStream}. A
+   * {@link URI#isPlatformResource() platform-based} URI is {@link URI#toPlatformString(boolean) converted} to a
+   * platform path by trimming the leading <code>platform:/resource</code>, e.g.,
    * 
    * <pre>
    *  platform:/resource/project/directory/file 
    *    -&gt;
-   *  /project/directory/file 
+   *  /project/directory/file
    * </pre>
    * 
    * and is delegated to {@link #createPlatformResourceOutputStream createPlatformResourceOutputStream}. An
-   * {@link #isEFSScheme(String) EFS-based} URI is delegated to {@link #createEFSInputStream(URI) createEFSOutputStream}.
-   * And all other cases are handled as standard URLs by {@link #createURLOutputStream createURLOutputStream}.
+   * {@link #isEFSScheme(String) EFS-based} URI is delegated to {@link #createEFSInputStream(URI) createEFSOutputStream}
+   * . And all other cases are handled as standard URLs by {@link #createURLOutputStream createURLOutputStream}.
    * </p>
    * 
    * @return an open output stream.
@@ -434,8 +433,7 @@ public class URIConverterImpl implements URIConverter
   }
 
   /**
-   * Creates an output stream for the archive access.
-   * </p>
+   * Creates an output stream for the archive access. </p>
    * 
    * @return an open output stream.
    * @exception IOException
@@ -450,10 +448,10 @@ public class URIConverterImpl implements URIConverter
    * Creates an output stream for the platform resource path and returns it.
    * <p>
    * This implementation does one of two things, depending on the runtime environment. If there is an Eclipse workspace,
-   * it delegates to
-   * {@link WorkbenchHelper#createPlatformResourceOutputStream WorkbenchHelper.createPlatformResourceOutputStream},
-   * which gives the expected Eclipse behaviour. Otherwise, the {@link EcorePlugin#resolvePlatformResourcePath resolved}
-   * URI is delegated to {@link #createOutputStream createOutputStream} for recursive processing.
+   * it delegates to {@link WorkbenchHelper#createPlatformResourceOutputStream
+   * WorkbenchHelper.createPlatformResourceOutputStream}, which gives the expected Eclipse behaviour. Otherwise, the
+   * {@link EcorePlugin#resolvePlatformResourcePath resolved} URI is delegated to {@link #createOutputStream
+   * createOutputStream} for recursive processing.
    * 
    * @return an open output stream.
    * @exception IOException
@@ -541,16 +539,15 @@ public class URIConverterImpl implements URIConverter
    *   C:/directory/file
    * </pre>
    * 
-   * and is delegated to {@link #createFileInputStream createFileInputStream}. An
-   * {@link #isArchiveScheme(String) archive-based} URI is delegated to
-   * {@link #createArchiveInputStream createArchiveInputStream}. A {@link URI#isPlatformResource() platform-based} URI
-   * is {@link URI#toPlatformString(boolean) converted} to a platform path by trimming the leading
-   * <code>platform:/resource</code>, e.g.,
+   * and is delegated to {@link #createFileInputStream createFileInputStream}. An {@link #isArchiveScheme(String)
+   * archive-based} URI is delegated to {@link #createArchiveInputStream createArchiveInputStream}. A
+   * {@link URI#isPlatformResource() platform-based} URI is {@link URI#toPlatformString(boolean) converted} to a
+   * platform path by trimming the leading <code>platform:/resource</code>, e.g.,
    * 
    * <pre>
    *  platform:/resource/project/directory/file 
    *    -&gt;
-   *  /project/directory/file 
+   *  /project/directory/file
    * </pre>
    * 
    * and is delegated to {@link #createPlatformResourceInputStream createPlatformResourceInputStream}. An
@@ -666,10 +663,10 @@ public class URIConverterImpl implements URIConverter
    * Creates an input stream for the platform resource path and returns it.
    * <p>
    * This implementation does one of two things, depending on the runtime environment. If there is an Eclipse workspace,
-   * it delegates to
-   * {@link WorkbenchHelper#createPlatformResourceInputStream WorkbenchHelper.createPlatformResourceInputStream}, which
-   * gives the expected Eclipse behaviour. Otherwise, the {@link EcorePlugin#resolvePlatformResourcePath resolved} URI
-   * is delegated to {@link #createInputStream createInputStream} for recursive processing.
+   * it delegates to {@link WorkbenchHelper#createPlatformResourceInputStream
+   * WorkbenchHelper.createPlatformResourceInputStream}, which gives the expected Eclipse behaviour. Otherwise, the
+   * {@link EcorePlugin#resolvePlatformResourcePath resolved} URI is delegated to {@link #createInputStream
+   * createInputStream} for recursive processing.
    * 
    * @return an open input stream.
    * @exception IOException

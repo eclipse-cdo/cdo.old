@@ -32,8 +32,7 @@ import java.util.Collection;
 // import org.eclipse.emf.ecore.InternalEObject;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>EAttribute</b></em>'. <!-- end-user-doc
- * -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EAttribute</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>

@@ -17,8 +17,7 @@
 package org.eclipse.emf.ecore;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>ETyped Element</b></em>'. <!-- end-user-doc
- * -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>ETyped Element</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are supported:
  * <ul>
@@ -55,8 +54,8 @@ public interface ETypedElement extends ENamedElement
   int UNSPECIFIED_MULTIPLICITY = -2;
 
   /**
-   * Returns the value of the '<em><b>Ordered</b></em>' attribute. The default value is <code>"true"</code>.
-   * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Ordered</b></em>' attribute. The default value is <code>"true"</code>. <!--
+   * begin-user-doc -->
    * <p>
    * It represents whether order is meaningful.
    * </p>
@@ -135,11 +134,11 @@ public interface ETypedElement extends ENamedElement
   void setLowerBound(int value);
 
   /**
-   * Returns the value of the '<em><b>Upper Bound</b></em>' attribute. The default value is <code>"1"</code>.
-   * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Upper Bound</b></em>' attribute. The default value is <code>"1"</code>. <!--
+   * begin-user-doc -->
    * <p>
-   * It represents the maximum number of values that must appear in a valid instance; the value <code>-1</code>,
-   * i.e., (@link #UNBOUNDED_MULTIPLICITY}}, represents unbounded, and the value <code>-2</code>, i.e., (@link
+   * It represents the maximum number of values that must appear in a valid instance; the value <code>-1</code>, i.e.,
+   * (@link #UNBOUNDED_MULTIPLICITY}}, represents unbounded, and the value <code>-2</code>, i.e., (@link
    * #UNSPECIFIED_MULTIPLICITY}}, represents unspecified.
    * </p>
    * <!-- end-user-doc -->

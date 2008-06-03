@@ -26,8 +26,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import java.util.Collection;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>EData Type</b></em>'. <!-- end-user-doc
- * -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EData Type</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -40,8 +39,8 @@ import java.util.Collection;
 public class EDataTypeImpl extends EClassifierImpl implements EDataType
 {
   /**
-   * The default value of the '{@link #isSerializable() <em>Serializable</em>}' attribute. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The default value of the '{@link #isSerializable() <em>Serializable</em>}' attribute. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #isSerializable()
    * @generated

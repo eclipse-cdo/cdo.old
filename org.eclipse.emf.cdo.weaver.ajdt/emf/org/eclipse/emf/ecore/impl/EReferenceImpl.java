@@ -31,8 +31,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import java.util.Collection;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>EReference</b></em>'. <!-- end-user-doc
- * -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EReference</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -80,8 +79,8 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   protected static final boolean CONTAINER_EDEFAULT = false;
 
   /**
-   * The default value of the '{@link #isResolveProxies() <em>Resolve Proxies</em>}' attribute. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * The default value of the '{@link #isResolveProxies() <em>Resolve Proxies</em>}' attribute. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @see #isResolveProxies()
    * @generated

@@ -31,8 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import java.util.Collection;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>ETyped Element</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>ETyped Element</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -72,8 +71,8 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
   protected static final int ORDERED_EFLAG = 1 << 8;
 
   /**
-   * The default value of the '{@link #isUnique() <em>Unique</em>}' attribute. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * The default value of the '{@link #isUnique() <em>Unique</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @see #isUnique()
    * @generated
@@ -132,8 +131,7 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
   protected int upperBound = UPPER_BOUND_EDEFAULT;
 
   /**
-   * The default value of the '{@link #isMany() <em>Many</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
+   * The default value of the '{@link #isMany() <em>Many</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #isMany()
    * @generated

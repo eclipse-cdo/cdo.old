@@ -75,8 +75,8 @@ public interface XMLTypeFactory extends EFactory
   XMLTypeDocumentRoot createXMLTypeDocumentRoot();
 
   /**
-   * Returns an instance of data type '<em>Any Simple Type</em>' corresponding the given literal. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns an instance of data type '<em>Any Simple Type</em>' corresponding the given literal. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -86,8 +86,8 @@ public interface XMLTypeFactory extends EFactory
   Object createAnySimpleType(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>Any Simple Type</em>'. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>Any Simple Type</em>'. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.
@@ -97,8 +97,8 @@ public interface XMLTypeFactory extends EFactory
   String convertAnySimpleType(Object instanceValue);
 
   /**
-   * Returns an instance of data type '<em>Any URI</em>' corresponding the given literal. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns an instance of data type '<em>Any URI</em>' corresponding the given literal. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -119,8 +119,8 @@ public interface XMLTypeFactory extends EFactory
   String convertAnyURI(String instanceValue);
 
   /**
-   * Returns an instance of data type '<em>Base64 Binary</em>' corresponding the given literal. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns an instance of data type '<em>Base64 Binary</em>' corresponding the given literal. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -130,8 +130,8 @@ public interface XMLTypeFactory extends EFactory
   byte[] createBase64Binary(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>Base64 Binary</em>'. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>Base64 Binary</em>'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.
@@ -141,8 +141,8 @@ public interface XMLTypeFactory extends EFactory
   String convertBase64Binary(byte[] instanceValue);
 
   /**
-   * Returns an instance of data type '<em>Boolean</em>' corresponding the given literal. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns an instance of data type '<em>Boolean</em>' corresponding the given literal. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -163,8 +163,8 @@ public interface XMLTypeFactory extends EFactory
   String convertBoolean(boolean instanceValue);
 
   /**
-   * Returns an instance of data type '<em>Boolean Object</em>' corresponding the given literal. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns an instance of data type '<em>Boolean Object</em>' corresponding the given literal. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -207,8 +207,8 @@ public interface XMLTypeFactory extends EFactory
   String convertByte(byte instanceValue);
 
   /**
-   * Returns an instance of data type '<em>Byte Object</em>' corresponding the given literal. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns an instance of data type '<em>Byte Object</em>' corresponding the given literal. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -218,8 +218,8 @@ public interface XMLTypeFactory extends EFactory
   Byte createByteObject(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>Byte Object</em>'. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>Byte Object</em>'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.
@@ -254,8 +254,8 @@ public interface XMLTypeFactory extends EFactory
   String convertDate(Object instanceValue);
 
   /**
-   * Returns an instance of data type '<em>Date Time</em>' corresponding the given literal. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns an instance of data type '<em>Date Time</em>' corresponding the given literal. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -279,8 +279,8 @@ public interface XMLTypeFactory extends EFactory
   String convertDateTime(Object instanceValue);
 
   /**
-   * Returns an instance of data type '<em>Decimal</em>' corresponding the given literal. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns an instance of data type '<em>Decimal</em>' corresponding the given literal. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -301,8 +301,8 @@ public interface XMLTypeFactory extends EFactory
   String convertDecimal(BigDecimal instanceValue);
 
   /**
-   * Returns an instance of data type '<em>Double</em>' corresponding the given literal. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns an instance of data type '<em>Double</em>' corresponding the given literal. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -323,8 +323,8 @@ public interface XMLTypeFactory extends EFactory
   String convertDouble(double instanceValue);
 
   /**
-   * Returns an instance of data type '<em>Double Object</em>' corresponding the given literal. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns an instance of data type '<em>Double Object</em>' corresponding the given literal. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -334,8 +334,8 @@ public interface XMLTypeFactory extends EFactory
   Double createDoubleObject(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>Double Object</em>'. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>Double Object</em>'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.
@@ -345,8 +345,8 @@ public interface XMLTypeFactory extends EFactory
   String convertDoubleObject(Double instanceValue);
 
   /**
-   * Returns an instance of data type '<em>Duration</em>' corresponding the given literal. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns an instance of data type '<em>Duration</em>' corresponding the given literal. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -370,8 +370,8 @@ public interface XMLTypeFactory extends EFactory
   String convertDuration(Object instanceValue);
 
   /**
-   * Returns an instance of data type '<em>ENTITIES</em>' corresponding the given literal. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns an instance of data type '<em>ENTITIES</em>' corresponding the given literal. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -392,8 +392,8 @@ public interface XMLTypeFactory extends EFactory
   String convertENTITIES(List<? extends String> instanceValue);
 
   /**
-   * Returns an instance of data type '<em>ENTITIES Base</em>' corresponding the given literal. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns an instance of data type '<em>ENTITIES Base</em>' corresponding the given literal. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -403,8 +403,8 @@ public interface XMLTypeFactory extends EFactory
   List<String> createENTITIESBase(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>ENTITIES Base</em>'. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>ENTITIES Base</em>'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.
@@ -414,8 +414,8 @@ public interface XMLTypeFactory extends EFactory
   String convertENTITIESBase(List<? extends String> instanceValue);
 
   /**
-   * Returns an instance of data type '<em>ENTITY</em>' corresponding the given literal. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns an instance of data type '<em>ENTITY</em>' corresponding the given literal. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -458,8 +458,8 @@ public interface XMLTypeFactory extends EFactory
   String convertFloat(float instanceValue);
 
   /**
-   * Returns an instance of data type '<em>Float Object</em>' corresponding the given literal. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns an instance of data type '<em>Float Object</em>' corresponding the given literal. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -469,8 +469,8 @@ public interface XMLTypeFactory extends EFactory
   Float createFloatObject(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>Float Object</em>'. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>Float Object</em>'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.
@@ -505,8 +505,8 @@ public interface XMLTypeFactory extends EFactory
   String convertGDay(Object instanceValue);
 
   /**
-   * Returns an instance of data type '<em>GMonth</em>' corresponding the given literal. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns an instance of data type '<em>GMonth</em>' corresponding the given literal. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -541,8 +541,8 @@ public interface XMLTypeFactory extends EFactory
   XMLGregorianCalendar createGMonthDay(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>GMonth Day</em>'. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>GMonth Day</em>'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.
@@ -580,8 +580,8 @@ public interface XMLTypeFactory extends EFactory
   String convertGYear(Object instanceValue);
 
   /**
-   * Returns an instance of data type '<em>GYear Month</em>' corresponding the given literal. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns an instance of data type '<em>GYear Month</em>' corresponding the given literal. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -591,8 +591,8 @@ public interface XMLTypeFactory extends EFactory
   XMLGregorianCalendar createGYearMonth(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>GYear Month</em>'. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>GYear Month</em>'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.
@@ -616,8 +616,8 @@ public interface XMLTypeFactory extends EFactory
   byte[] createHexBinary(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>Hex Binary</em>'. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>Hex Binary</em>'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.
@@ -671,8 +671,8 @@ public interface XMLTypeFactory extends EFactory
   String convertIDREF(String instanceValue);
 
   /**
-   * Returns an instance of data type '<em>IDREFS</em>' corresponding the given literal. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns an instance of data type '<em>IDREFS</em>' corresponding the given literal. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -693,8 +693,8 @@ public interface XMLTypeFactory extends EFactory
   String convertIDREFS(List<? extends String> instanceValue);
 
   /**
-   * Returns an instance of data type '<em>IDREFS Base</em>' corresponding the given literal. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns an instance of data type '<em>IDREFS Base</em>' corresponding the given literal. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -704,8 +704,8 @@ public interface XMLTypeFactory extends EFactory
   List<String> createIDREFSBase(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>IDREFS Base</em>'. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>IDREFS Base</em>'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.
@@ -737,8 +737,8 @@ public interface XMLTypeFactory extends EFactory
   String convertInt(int instanceValue);
 
   /**
-   * Returns an instance of data type '<em>Integer</em>' corresponding the given literal. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns an instance of data type '<em>Integer</em>' corresponding the given literal. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -770,8 +770,8 @@ public interface XMLTypeFactory extends EFactory
   Integer createIntObject(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>Int Object</em>'. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>Int Object</em>'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.
@@ -781,8 +781,8 @@ public interface XMLTypeFactory extends EFactory
   String convertIntObject(Integer instanceValue);
 
   /**
-   * Returns an instance of data type '<em>Language</em>' corresponding the given literal. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns an instance of data type '<em>Language</em>' corresponding the given literal. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -825,8 +825,8 @@ public interface XMLTypeFactory extends EFactory
   String convertLong(long instanceValue);
 
   /**
-   * Returns an instance of data type '<em>Long Object</em>' corresponding the given literal. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns an instance of data type '<em>Long Object</em>' corresponding the given literal. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -836,8 +836,8 @@ public interface XMLTypeFactory extends EFactory
   Long createLongObject(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>Long Object</em>'. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>Long Object</em>'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.
@@ -869,8 +869,8 @@ public interface XMLTypeFactory extends EFactory
   String convertName(String instanceValue);
 
   /**
-   * Returns an instance of data type '<em>NC Name</em>' corresponding the given literal. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns an instance of data type '<em>NC Name</em>' corresponding the given literal. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -891,8 +891,8 @@ public interface XMLTypeFactory extends EFactory
   String convertNCName(String instanceValue);
 
   /**
-   * Returns an instance of data type '<em>Negative Integer</em>' corresponding the given literal. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns an instance of data type '<em>Negative Integer</em>' corresponding the given literal. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -902,8 +902,8 @@ public interface XMLTypeFactory extends EFactory
   BigInteger createNegativeInteger(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>Negative Integer</em>'. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>Negative Integer</em>'. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.
@@ -913,8 +913,8 @@ public interface XMLTypeFactory extends EFactory
   String convertNegativeInteger(BigInteger instanceValue);
 
   /**
-   * Returns an instance of data type '<em>NMTOKEN</em>' corresponding the given literal. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns an instance of data type '<em>NMTOKEN</em>' corresponding the given literal. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -935,8 +935,8 @@ public interface XMLTypeFactory extends EFactory
   String convertNMTOKEN(String instanceValue);
 
   /**
-   * Returns an instance of data type '<em>NMTOKENS</em>' corresponding the given literal. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns an instance of data type '<em>NMTOKENS</em>' corresponding the given literal. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -957,8 +957,8 @@ public interface XMLTypeFactory extends EFactory
   String convertNMTOKENS(List<? extends String> instanceValue);
 
   /**
-   * Returns an instance of data type '<em>NMTOKENS Base</em>' corresponding the given literal. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns an instance of data type '<em>NMTOKENS Base</em>' corresponding the given literal. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -968,8 +968,8 @@ public interface XMLTypeFactory extends EFactory
   List<String> createNMTOKENSBase(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>NMTOKENS Base</em>'. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>NMTOKENS Base</em>'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.
@@ -990,8 +990,8 @@ public interface XMLTypeFactory extends EFactory
   BigInteger createNonNegativeInteger(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>Non Negative Integer</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>Non Negative Integer</em>'. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.
@@ -1012,8 +1012,8 @@ public interface XMLTypeFactory extends EFactory
   BigInteger createNonPositiveInteger(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>Non Positive Integer</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>Non Positive Integer</em>'. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.
@@ -1023,8 +1023,8 @@ public interface XMLTypeFactory extends EFactory
   String convertNonPositiveInteger(BigInteger instanceValue);
 
   /**
-   * Returns an instance of data type '<em>Normalized String</em>' corresponding the given literal. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns an instance of data type '<em>Normalized String</em>' corresponding the given literal. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -1034,8 +1034,8 @@ public interface XMLTypeFactory extends EFactory
   String createNormalizedString(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>Normalized String</em>'. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>Normalized String</em>'. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.
@@ -1045,8 +1045,8 @@ public interface XMLTypeFactory extends EFactory
   String convertNormalizedString(String instanceValue);
 
   /**
-   * Returns an instance of data type '<em>NOTATION</em>' corresponding the given literal. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns an instance of data type '<em>NOTATION</em>' corresponding the given literal. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -1070,8 +1070,8 @@ public interface XMLTypeFactory extends EFactory
   String convertNOTATION(Object instanceValue);
 
   /**
-   * Returns an instance of data type '<em>Positive Integer</em>' corresponding the given literal. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns an instance of data type '<em>Positive Integer</em>' corresponding the given literal. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -1081,8 +1081,8 @@ public interface XMLTypeFactory extends EFactory
   BigInteger createPositiveInteger(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>Positive Integer</em>'. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>Positive Integer</em>'. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.
@@ -1117,8 +1117,7 @@ public interface XMLTypeFactory extends EFactory
   QName createQName(String namespaceURI, String localPart);
 
   /**
-   * Returns an instance of data type '<em>QName</em>' corresponding to the given namespace URI, local part, and
-   * prefix.
+   * Returns an instance of data type '<em>QName</em>' corresponding to the given namespace URI, local part, and prefix.
    * 
    * @param namespaceURI
    *          the namespace URI of the QName.
@@ -1167,8 +1166,8 @@ public interface XMLTypeFactory extends EFactory
   String convertShort(short instanceValue);
 
   /**
-   * Returns an instance of data type '<em>Short Object</em>' corresponding the given literal. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns an instance of data type '<em>Short Object</em>' corresponding the given literal. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -1178,8 +1177,8 @@ public interface XMLTypeFactory extends EFactory
   Short createShortObject(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>Short Object</em>'. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>Short Object</em>'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.
@@ -1189,8 +1188,8 @@ public interface XMLTypeFactory extends EFactory
   String convertShortObject(Short instanceValue);
 
   /**
-   * Returns an instance of data type '<em>String</em>' corresponding the given literal. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns an instance of data type '<em>String</em>' corresponding the given literal. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -1258,8 +1257,8 @@ public interface XMLTypeFactory extends EFactory
   String convertToken(String instanceValue);
 
   /**
-   * Returns an instance of data type '<em>Unsigned Byte</em>' corresponding the given literal. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns an instance of data type '<em>Unsigned Byte</em>' corresponding the given literal. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -1269,8 +1268,8 @@ public interface XMLTypeFactory extends EFactory
   short createUnsignedByte(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>Unsigned Byte</em>'. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>Unsigned Byte</em>'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.
@@ -1291,8 +1290,8 @@ public interface XMLTypeFactory extends EFactory
   Short createUnsignedByteObject(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>Unsigned Byte Object</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>Unsigned Byte Object</em>'. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.
@@ -1302,8 +1301,8 @@ public interface XMLTypeFactory extends EFactory
   String convertUnsignedByteObject(Short instanceValue);
 
   /**
-   * Returns an instance of data type '<em>Unsigned Int</em>' corresponding the given literal. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns an instance of data type '<em>Unsigned Int</em>' corresponding the given literal. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -1313,8 +1312,8 @@ public interface XMLTypeFactory extends EFactory
   long createUnsignedInt(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>Unsigned Int</em>'. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>Unsigned Int</em>'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.
@@ -1335,8 +1334,8 @@ public interface XMLTypeFactory extends EFactory
   Long createUnsignedIntObject(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>Unsigned Int Object</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>Unsigned Int Object</em>'. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.
@@ -1346,8 +1345,8 @@ public interface XMLTypeFactory extends EFactory
   String convertUnsignedIntObject(Long instanceValue);
 
   /**
-   * Returns an instance of data type '<em>Unsigned Long</em>' corresponding the given literal. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns an instance of data type '<em>Unsigned Long</em>' corresponding the given literal. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -1357,8 +1356,8 @@ public interface XMLTypeFactory extends EFactory
   BigInteger createUnsignedLong(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>Unsigned Long</em>'. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>Unsigned Long</em>'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.
@@ -1368,8 +1367,8 @@ public interface XMLTypeFactory extends EFactory
   String convertUnsignedLong(BigInteger instanceValue);
 
   /**
-   * Returns an instance of data type '<em>Unsigned Short</em>' corresponding the given literal. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns an instance of data type '<em>Unsigned Short</em>' corresponding the given literal. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @param literal
    *          a literal of the data type.
@@ -1401,8 +1400,8 @@ public interface XMLTypeFactory extends EFactory
   Integer createUnsignedShortObject(String literal);
 
   /**
-   * Returns a literal representation of an instance of data type '<em>Unsigned Short Object</em>'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns a literal representation of an instance of data type '<em>Unsigned Short Object</em>'. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @param instanceValue
    *          an instance value of the data type.

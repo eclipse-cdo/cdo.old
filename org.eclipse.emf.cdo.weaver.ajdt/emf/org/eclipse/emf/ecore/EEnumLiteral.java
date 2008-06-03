@@ -96,6 +96,7 @@ public interface EEnumLiteral extends ENamedElement, Enumerator
    * enumerated type. If set to <code>null<code>, it will return the {@link ENamedElement#getName name}, instead.
    * </p>
    * <!-- end-user-doc -->
+   * 
    * @return the value of the '<em>Literal</em>' attribute.
    * @see #setLiteral(String)
    * @see org.eclipse.emf.ecore.EcorePackage#getEEnumLiteral_Literal()
@@ -116,8 +117,8 @@ public interface EEnumLiteral extends ENamedElement, Enumerator
   void setLiteral(String value);
 
   /**
-   * Returns the value of the '<em><b>EEnum</b></em>' container reference. It is bidirectional and its opposite is '{@link org.eclipse.emf.ecore.EEnum#getELiterals <em>ELiterals</em>}'.
-   * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>EEnum</b></em>' container reference. It is bidirectional and its opposite is '
+   * {@link org.eclipse.emf.ecore.EEnum#getELiterals <em>ELiterals</em>}'. <!-- begin-user-doc -->
    * <p>
    * It represents the contain enumeration.
    * </p>

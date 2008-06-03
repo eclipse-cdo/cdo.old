@@ -11,15 +11,15 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.server.hibernate.internal.id;
 
-import org.eclipse.emf.cdo.internal.protocol.id.AbstractCDOID;
-import org.eclipse.emf.cdo.protocol.id.CDOIDObject;
-import org.eclipse.emf.cdo.protocol.model.CDOClassRef;
+import org.eclipse.emf.cdo.common.id.CDOIDObject;
+import org.eclipse.emf.cdo.common.model.CDOClassRef;
 import org.eclipse.emf.cdo.server.hibernate.id.CDOIDHibernate;
+import org.eclipse.emf.cdo.spi.common.AbstractCDOID;
 
-import org.eclipse.net4j.internal.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.ObjectUtil;
 import org.eclipse.net4j.util.io.ExtendedDataInput;
 import org.eclipse.net4j.util.io.ExtendedDataOutput;
+import org.eclipse.net4j.util.om.trace.ContextTracer;
 import org.eclipse.net4j.util.om.trace.OMTracer;
 
 import java.io.IOException;

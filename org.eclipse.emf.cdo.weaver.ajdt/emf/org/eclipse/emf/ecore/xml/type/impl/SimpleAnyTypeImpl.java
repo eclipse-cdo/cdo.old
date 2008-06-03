@@ -26,8 +26,8 @@ import org.eclipse.emf.ecore.xml.type.SimpleAnyType;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Simple Any Type</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Simple Any Type</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -52,8 +52,8 @@ public class SimpleAnyTypeImpl extends AnyTypeImpl implements SimpleAnyType
   protected static final String RAW_VALUE_EDEFAULT = null;
 
   /**
-   * The default value of the '{@link #getValue() <em>Value</em>}' attribute. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @see #getValue()
    * @generated
@@ -62,8 +62,8 @@ public class SimpleAnyTypeImpl extends AnyTypeImpl implements SimpleAnyType
   protected static final Object VALUE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getInstanceType() <em>Instance Type</em>}' reference. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getInstanceType() <em>Instance Type</em>}' reference. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getInstanceType()
    * @generated

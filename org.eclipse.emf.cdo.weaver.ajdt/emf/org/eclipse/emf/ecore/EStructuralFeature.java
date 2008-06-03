@@ -20,8 +20,8 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.util.FeatureMap;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>EStructural Feature</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>EStructural Feature</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are supported:
  * <ul>
@@ -54,8 +54,8 @@ public interface EStructuralFeature extends ETypedElement
   boolean isTransient();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.ecore.EStructuralFeature#isTransient <em>Transient</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.EStructuralFeature#isTransient <em>Transient</em>}' attribute.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param value
    *          the new value of the '<em>Transient</em>' attribute.
@@ -87,8 +87,8 @@ public interface EStructuralFeature extends ETypedElement
   void setVolatile(boolean value);
 
   /**
-   * Returns the value of the '<em><b>Changeable</b></em>' attribute. The default value is <code>"true"</code>.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the value of the '<em><b>Changeable</b></em>' attribute. The default value is <code>"true"</code>. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the value of the '<em>Changeable</em>' attribute.
    * @see #setChangeable(boolean)
@@ -125,8 +125,8 @@ public interface EStructuralFeature extends ETypedElement
   String getDefaultValueLiteral();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.ecore.EStructuralFeature#getDefaultValueLiteral <em>Default Value Literal</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.EStructuralFeature#getDefaultValueLiteral
+   * <em>Default Value Literal</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param value
    *          the new value of the '<em>Default Value Literal</em>' attribute.
@@ -139,10 +139,10 @@ public interface EStructuralFeature extends ETypedElement
    * Returns the value of the '<em><b>Default Value</b></em>' attribute. <!-- begin-user-doc -->
    * <p>
    * It represents the default value that feature must take on when an explicit value has not been set. Specifically, it
-   * may be non-null if the feature has an {@link ETypedElement#getEType eType}. If the
-   * {@link #getDefaultValueLiteral defaultValueLiteral} is null, it is simply the <code>eType</code>'s intrinsic
-   * {@link EClassifier#getDefaultValue default value}. Otherwise, if the <code>eType</code> is an {@link EDataType}
-   * and the <code>defaultValueLiteral</code> is non-null, it is the object created by the factory's
+   * may be non-null if the feature has an {@link ETypedElement#getEType eType}. If the {@link #getDefaultValueLiteral
+   * defaultValueLiteral} is null, it is simply the <code>eType</code>'s intrinsic {@link EClassifier#getDefaultValue
+   * default value}. Otherwise, if the <code>eType</code> is an {@link EDataType} and the
+   * <code>defaultValueLiteral</code> is non-null, it is the object created by the factory's
    * {@link EFactory#createFromString} method when invoked with those two objects as parameters.
    * </p>
    * <!-- end-user-doc -->
@@ -170,10 +170,10 @@ public interface EStructuralFeature extends ETypedElement
    * Returns the value of the '<em><b>Unsettable</b></em>' attribute. <!-- begin-user-doc -->
    * <p>
    * An unsettable feature explicitly models the state of being set verses being unset and so provides a direct
-   * implementation for the reflective {@link EObject#eIsSet eIsSet}. It is only applicable
-   * {@link ETypedElement#isMany single-valued} features. One effect of this setting is that, in addition to generating
-   * the methods <code>getXyz</code> and <code>setXyz</code> (if the feature is {@link #isChangeable changeable}),
-   * a reflective generator will generate the methods <code>isSetXyz</code> and <code>unsetXyz</code>.
+   * implementation for the reflective {@link EObject#eIsSet eIsSet}. It is only applicable {@link ETypedElement#isMany
+   * single-valued} features. One effect of this setting is that, in addition to generating the methods
+   * <code>getXyz</code> and <code>setXyz</code> (if the feature is {@link #isChangeable changeable}), a reflective
+   * generator will generate the methods <code>isSetXyz</code> and <code>unsetXyz</code>.
    * </p>
    * <!-- end-user-doc -->
    * 
@@ -200,9 +200,8 @@ public interface EStructuralFeature extends ETypedElement
    * Returns the value of the '<em><b>Derived</b></em>' attribute. <!-- begin-user-doc -->
    * <p>
    * A derived feature typically computes its value from those of other features. It will typically be
-   * {@link #isTransient transient} and will often be {@link #isVolatile volatile} and not
-   * {@link #isChangeable changeable}. The default {@link org.eclipse.emf.ecore.util.EcoreUtil.Copier copier} won't
-   * copy it.
+   * {@link #isTransient transient} and will often be {@link #isVolatile volatile} and not {@link #isChangeable
+   * changeable}. The default {@link org.eclipse.emf.ecore.util.EcoreUtil.Copier copier} won't copy it.
    * </p>
    * <!-- end-user-doc -->
    * 
@@ -215,8 +214,8 @@ public interface EStructuralFeature extends ETypedElement
   boolean isDerived();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.ecore.EStructuralFeature#isDerived <em>Derived</em>}' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.EStructuralFeature#isDerived <em>Derived</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param value
    *          the new value of the '<em>Derived</em>' attribute.
@@ -331,8 +330,8 @@ public interface EStructuralFeature extends ETypedElement
     interface DynamicValueHolder
     {
       /**
-       * An object use to represent being set to null <code>null</code> as opposed to having no value and hence being
-       * in the default state.
+       * An object use to represent being set to null <code>null</code> as opposed to having no value and hence being in
+       * the default state.
        */
       Object NIL = new Object();
 
@@ -531,8 +530,8 @@ public interface EStructuralFeature extends ETypedElement
     public boolean isID();
 
     /**
-     * Returns whether this is a {@link EReference reference} that
-     * {@link EReference#isResolveProxies() resolves proxies}.
+     * Returns whether this is a {@link EReference reference} that {@link EReference#isResolveProxies() resolves
+     * proxies}.
      * 
      * @return whether this is a reference that resolves proxies.
      */

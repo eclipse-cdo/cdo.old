@@ -113,8 +113,8 @@ public interface EPackage extends ENamedElement
   /**
    * Returns the value of the '<em><b>Ns Prefix</b></em>' attribute. <!-- begin-user-doc -->
    * <p>
-   * It represents the preferred XMLNS prefix to be used for this package's the {@link #getNsURI namespace URI}. It
-   * will be used in an XMI serialization.
+   * It represents the preferred XMLNS prefix to be used for this package's the {@link #getNsURI namespace URI}. It will
+   * be used in an XMI serialization.
    * </p>
    * <!-- end-user-doc -->
    * 
@@ -138,8 +138,8 @@ public interface EPackage extends ENamedElement
   void setNsPrefix(String value);
 
   /**
-   * Returns the value of the '<em><b>EFactory Instance</b></em>' reference. It is bidirectional and its opposite
-   * is '{@link org.eclipse.emf.ecore.EFactory#getEPackage <em>EPackage</em>}'. <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>EFactory Instance</b></em>' reference. It is bidirectional and its opposite is '
+   * {@link org.eclipse.emf.ecore.EFactory#getEPackage <em>EPackage</em>}'. <!-- begin-user-doc -->
    * <p>
    * It this package's factory for creating modeled object instances.
    * </p>
@@ -166,9 +166,9 @@ public interface EPackage extends ENamedElement
   void setEFactoryInstance(EFactory value);
 
   /**
-   * Returns the value of the '<em><b>EClassifiers</b></em>' containment reference list. The list contents are of
-   * type {@link org.eclipse.emf.ecore.EClassifier}. It is bidirectional and its opposite is '{@link org.eclipse.emf.ecore.EClassifier#getEPackage <em>EPackage</em>}'.
-   * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>EClassifiers</b></em>' containment reference list. The list contents are of type
+   * {@link org.eclipse.emf.ecore.EClassifier}. It is bidirectional and its opposite is '
+   * {@link org.eclipse.emf.ecore.EClassifier#getEPackage <em>EPackage</em>}'. <!-- begin-user-doc -->
    * <p>
    * It represents the meta objects, i.e., classes and data types, defined in this package.
    * </p>
@@ -183,9 +183,9 @@ public interface EPackage extends ENamedElement
   EList<EClassifier> getEClassifiers();
 
   /**
-   * Returns the value of the '<em><b>ESubpackages</b></em>' containment reference list. The list contents are of
-   * type {@link org.eclipse.emf.ecore.EPackage}. It is bidirectional and its opposite is '{@link org.eclipse.emf.ecore.EPackage#getESuperPackage <em>ESuper Package</em>}'.
-   * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>ESubpackages</b></em>' containment reference list. The list contents are of type
+   * {@link org.eclipse.emf.ecore.EPackage}. It is bidirectional and its opposite is '
+   * {@link org.eclipse.emf.ecore.EPackage#getESuperPackage <em>ESuper Package</em>}'. <!-- begin-user-doc -->
    * <p>
    * It represents the nested packages contained by this package.
    * </p>
@@ -200,9 +200,8 @@ public interface EPackage extends ENamedElement
   EList<EPackage> getESubpackages();
 
   /**
-   * Returns the value of the '<em><b>ESuper Package</b></em>' container reference. It is bidirectional and its
-   * opposite is '{@link org.eclipse.emf.ecore.EPackage#getESubpackages <em>ESubpackages</em>}'. <!-- begin-user-doc
-   * -->
+   * Returns the value of the '<em><b>ESuper Package</b></em>' container reference. It is bidirectional and its opposite
+   * is '{@link org.eclipse.emf.ecore.EPackage#getESubpackages <em>ESubpackages</em>}'. <!-- begin-user-doc -->
    * <p>
    * It represents the containing package of this package.
    * </p>

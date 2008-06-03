@@ -417,7 +417,8 @@ public final class FeatureMapUtil
     /*
      * { FeatureMap.Entry [] entries = (FeatureMap.Entry [])featureMap.data; while (--entryCursor >= 0) {
      * FeatureMap.Entry entry = entries[entryCursor]; if (entry.getEStructuralFeature() == eStructuralFeature) {
-     * preparedResult = entry.getValue(); prepared = -2; return true; } } prepared = -1; lastCursor = -1; return false; }
+     * preparedResult = entry.getValue(); prepared = -2; return true; } } prepared = -1; lastCursor = -1; return false;
+     * }
      */
 
     public E previous()

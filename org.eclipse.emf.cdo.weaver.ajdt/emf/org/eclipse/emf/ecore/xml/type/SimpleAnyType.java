@@ -19,8 +19,7 @@ package org.eclipse.emf.ecore.xml.type;
 import org.eclipse.emf.ecore.EDataType;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Simple Any Type</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Simple Any Type</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are supported:
  * <ul>
@@ -83,8 +82,7 @@ public interface SimpleAnyType extends AnyType
   void setValue(Object value);
 
   /**
-   * Returns the value of the '<em><b>Instance Type</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
+   * Returns the value of the '<em><b>Instance Type</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the value of the '<em>Instance Type</em>' reference.
    * @see #setInstanceType(EDataType)

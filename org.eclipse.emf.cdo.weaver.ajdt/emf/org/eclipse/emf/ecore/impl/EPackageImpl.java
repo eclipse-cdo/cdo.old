@@ -78,8 +78,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage,
     BasicExtendedMetaData.EPackageExtendedMetaData.Holder
 {
   /**
-   * The default value of the '{@link #getNsURI() <em>Ns URI</em>}' attribute. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * The default value of the '{@link #getNsURI() <em>Ns URI</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @see #getNsURI()
    * @generated
@@ -232,8 +232,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage,
   }
 
   /**
-   * The cached value of the '{@link #getNsURI() <em>Ns URI</em>}' attribute. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * The cached value of the '{@link #getNsURI() <em>Ns URI</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @see #getNsURI()
    * @generated
@@ -262,8 +262,8 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage,
   protected String nsPrefix = NS_PREFIX_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getEFactoryInstance() <em>EFactory Instance</em>}' reference. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getEFactoryInstance() <em>EFactory Instance</em>}' reference. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @see #getEFactoryInstance()
    * @generated

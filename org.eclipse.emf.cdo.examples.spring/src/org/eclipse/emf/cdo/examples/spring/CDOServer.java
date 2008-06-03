@@ -10,9 +10,9 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.examples.spring;
 
-import org.eclipse.net4j.internal.util.om.log.PrintLogHandler;
-import org.eclipse.net4j.internal.util.om.trace.PrintTraceHandler;
 import org.eclipse.net4j.util.om.OMPlatform;
+import org.eclipse.net4j.util.om.log.PrintLogHandler;
+import org.eclipse.net4j.util.om.trace.PrintTraceHandler;
 
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

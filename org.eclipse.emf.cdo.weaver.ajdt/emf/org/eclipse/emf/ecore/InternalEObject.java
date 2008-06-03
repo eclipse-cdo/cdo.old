@@ -43,9 +43,8 @@ public interface InternalEObject extends EObject
   boolean eNotificationRequired();
 
   /**
-   * Returns the fragment segment that, when passed to
-   * {@link #eObjectForURIFragmentSegment eObjectForURIFragmentSegment}, will resolve to the given object in this
-   * object's given feature.
+   * Returns the fragment segment that, when passed to {@link #eObjectForURIFragmentSegment
+   * eObjectForURIFragmentSegment}, will resolve to the given object in this object's given feature.
    * <p>
    * The feature argument may be <code>null</code> in which case it will be deduced, if possible. The default result
    * will be of the form:
@@ -69,8 +68,8 @@ public interface InternalEObject extends EObject
   /**
    * Returns the object resolved by the fragment segment.
    * <p>
-   * The fragment segment encoding will typically be of the form returned by
-   * {@link #eURIFragmentSegment eURIFragmentSegment}.
+   * The fragment segment encoding will typically be of the form returned by {@link #eURIFragmentSegment
+   * eURIFragmentSegment}.
    * 
    * @param uriFragmentSegment
    *          a fragment segment.
@@ -251,8 +250,8 @@ public interface InternalEObject extends EObject
   public interface EStore
   {
     /**
-     * A value indicating that no index is specified. It is used in the case of accessing
-     * {@link ETypedElement#isMany() single-valued} features where an index would be meaningless.
+     * A value indicating that no index is specified. It is used in the case of accessing {@link ETypedElement#isMany()
+     * single-valued} features where an index would be meaningless.
      */
     int NO_INDEX = -1;
 
@@ -497,11 +496,11 @@ public interface InternalEObject extends EObject
    * {@link org.eclipse.emf.ecore.util.EcoreUtil#resolve(EObject, EObject) resolved} before it is returned.
    * <p>
    * If the feature is {@link ETypedElement#isMany() many-valued}, the result will be an {@link EList} and each object
-   * in the list will be {@link EClassifier#isInstance an instance of} the feature's
-   * {@link ETypedElement#getEType() type}; the list's contents are <b>not</b> affected by <code>resolve</code>
-   * argument. Otherwise the result directly will be an instance of the feature's type; if it is a
-   * {@link EObject#eIsProxy() proxy}, it is resolved. The core type specifies whether to return the core reflective
-   * value, e.g., {@link org.eclipse.emf.common.util.EMap}, or the public API value, e.g., {@link java.util.Map}.
+   * in the list will be {@link EClassifier#isInstance an instance of} the feature's {@link ETypedElement#getEType()
+   * type}; the list's contents are <b>not</b> affected by <code>resolve</code> argument. Otherwise the result directly
+   * will be an instance of the feature's type; if it is a {@link EObject#eIsProxy() proxy}, it is resolved. The core
+   * type specifies whether to return the core reflective value, e.g., {@link org.eclipse.emf.common.util.EMap}, or the
+   * public API value, e.g., {@link java.util.Map}.
    * 
    * @param eFeature
    *          the feature of the value to fetch.

@@ -23,8 +23,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Space Type</b></em>', and
- * utility methods for working with them. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Space Type</b></em>', and utility
+ * methods for working with them. <!-- end-user-doc -->
  * 
  * @see org.eclipse.emf.ecore.xml.namespace.XMLNamespacePackage#getSpaceType()
  * @model extendedMetaData="name='space_._type'"
@@ -86,8 +86,8 @@ public enum SpaceType implements Enumerator
   public static final List<SpaceType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
   /**
-   * Returns the '<em><b>Space Type</b></em>' literal with the specified literal value. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the '<em><b>Space Type</b></em>' literal with the specified literal value. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @generated
    */
@@ -105,8 +105,8 @@ public enum SpaceType implements Enumerator
   }
 
   /**
-   * Returns the '<em><b>Space Type</b></em>' literal with the specified name. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * Returns the '<em><b>Space Type</b></em>' literal with the specified name. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @generated
    */
@@ -124,8 +124,8 @@ public enum SpaceType implements Enumerator
   }
 
   /**
-   * Returns the '<em><b>Space Type</b></em>' literal with the specified integer value. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the '<em><b>Space Type</b></em>' literal with the specified integer value. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @generated
    */

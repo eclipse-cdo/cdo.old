@@ -19,8 +19,7 @@ package org.eclipse.emf.ecore;
 import org.eclipse.emf.common.util.EList;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>EModel Element</b></em>'. <!-- end-user-doc
- * -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>EModel Element</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are supported:
  * <ul>
@@ -35,9 +34,10 @@ import org.eclipse.emf.common.util.EList;
 public interface EModelElement extends EObject
 {
   /**
-   * Returns the value of the '<em><b>EAnnotations</b></em>' containment reference list. The list contents are of
-   * type {@link org.eclipse.emf.ecore.EAnnotation}. It is bidirectional and its opposite is '{@link org.eclipse.emf.ecore.EAnnotation#getEModelElement <em>EModel Element</em>}'.
-   * <!-- begin-user-doc --> It represents additional associated information
+   * Returns the value of the '<em><b>EAnnotations</b></em>' containment reference list. The list contents are of type
+   * {@link org.eclipse.emf.ecore.EAnnotation}. It is bidirectional and its opposite is '
+   * {@link org.eclipse.emf.ecore.EAnnotation#getEModelElement <em>EModel Element</em>}'. <!-- begin-user-doc --> It
+   * represents additional associated information
    * 
    * @see #getEAnnotation(String)
    * @ignore <!-- end-user-doc -->
@@ -50,8 +50,8 @@ public interface EModelElement extends EObject
   EList<EAnnotation> getEAnnotations();
 
   /**
-   * <!-- begin-user-doc --> Return the annotation with a matching
-   * {@link org.eclipse.emf.ecore.EAnnotation#getSource() source} attribute.
+   * <!-- begin-user-doc --> Return the annotation with a matching {@link org.eclipse.emf.ecore.EAnnotation#getSource()
+   * source} attribute.
    * 
    * @return The annotation with a matching source attribute.
    * @see #getEAnnotations()

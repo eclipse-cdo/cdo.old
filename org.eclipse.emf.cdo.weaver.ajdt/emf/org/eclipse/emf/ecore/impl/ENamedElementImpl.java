@@ -31,8 +31,7 @@ import java.util.Collection;
 import java.util.ListIterator;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>ENamed Element</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>ENamed Element</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -55,8 +54,7 @@ public abstract class ENamedElementImpl extends EModelElementImpl implements ENa
   protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getName()
    * @generated

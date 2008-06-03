@@ -35,8 +35,8 @@ import java.util.Set;
 import java.util.WeakHashMap;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>EType Parameter</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EType Parameter</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * <ul>

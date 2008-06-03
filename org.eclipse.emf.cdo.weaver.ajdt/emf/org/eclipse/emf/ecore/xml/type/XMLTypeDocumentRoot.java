@@ -21,8 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.FeatureMap;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Document Root</b></em>'. <!-- end-user-doc
- * -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Document Root</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are supported:
  * <ul>
@@ -65,8 +64,8 @@ public interface XMLTypeDocumentRoot extends EObject
   FeatureMap getMixed();
 
   /**
-   * Returns the value of the '<em><b>XMLNS Prefix Map</b></em>' map. The key is of type {@link java.lang.String},
-   * and the value is of type {@link java.lang.String}, <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the value of the '<em><b>XMLNS Prefix Map</b></em>' map. The key is of type {@link java.lang.String}, and
+   * the value is of type {@link java.lang.String}, <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the value of the '<em>XMLNS Prefix Map</em>' map.
    * @see org.eclipse.emf.ecore.xml.type.XMLTypePackage#getXMLTypeDocumentRoot_XMLNSPrefixMap()
@@ -77,9 +76,8 @@ public interface XMLTypeDocumentRoot extends EObject
   EMap<String, String> getXMLNSPrefixMap();
 
   /**
-   * Returns the value of the '<em><b>XSI Schema Location</b></em>' map. The key is of type
-   * {@link java.lang.String}, and the value is of type {@link java.lang.String}, <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * Returns the value of the '<em><b>XSI Schema Location</b></em>' map. The key is of type {@link java.lang.String},
+   * and the value is of type {@link java.lang.String}, <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the value of the '<em>XSI Schema Location</em>' map.
    * @see org.eclipse.emf.ecore.xml.type.XMLTypePackage#getXMLTypeDocumentRoot_XSISchemaLocation()

@@ -102,9 +102,9 @@ public class EcorePlugin extends EMFPlugin
    * Resolves a platform resource path of the form <code>"/project/path"</code> against the platform resource map.
    * <p>
    * The first segment of the path, i.e., the <em>project name</em>, is used to get a URI from the
-   * {@link #getPlatformResourceMap() map}. If a URI results, the remaining segments are
-   * {@link URI#resolve(URI) resolved} against it and that is the result. Otherwise, the result is <code>null</code>.
-   * For example, given this mapping
+   * {@link #getPlatformResourceMap() map}. If a URI results, the remaining segments are {@link URI#resolve(URI)
+   * resolved} against it and that is the result. Otherwise, the result is <code>null</code>. For example, given this
+   * mapping
    * 
    * <pre>
    * EcoreUtil.getPlatformResourceMap().put(&quot;project&quot;, URI.createURI(&quot;file:///C:/location/&quot;));
@@ -513,7 +513,7 @@ public class EcorePlugin extends EMFPlugin
      * The above registration would map
      * 
      * <pre>
-     * //special/a/b.c
+     * // special/a/b.c
      * </pre>
      * 
      * to

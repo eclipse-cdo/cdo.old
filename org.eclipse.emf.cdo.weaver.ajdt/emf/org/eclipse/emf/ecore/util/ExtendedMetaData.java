@@ -43,7 +43,8 @@ import java.util.List;
  * <li>{@link #getNamespace(EClassifier) getNamespace} (classifier)</li>
  * <li>{@link #getName(EStructuralFeature getName) getName}/{@link #setName(EStructuralFeature, String) setName}
  * (structural feature)</li>
- * <li>{@link #getNamespace(EStructuralFeature) getNamespace}/{@link #setNamespace(EStructuralFeature, String) setNamespace}</li>
+ * <li>{@link #getNamespace(EStructuralFeature) getNamespace}/{@link #setNamespace(EStructuralFeature, String)
+ * setNamespace}</li>
  * <li>{@link #getFeatureKind getFeatureKind}/{@link #setFeatureKind setFeatureKind}</li>
  * <li>{@link #getContentKind getContentKind}/{@link #setContentKind setContentKind}</li>
  * <li>{@link #getBaseType getBaseType}/{@link #setBaseType setBaseType}</li>
@@ -947,8 +948,8 @@ public interface ExtendedMetaData
   Collection<EPackage> demandedPackages();
 
   /**
-   * The default ExtendedMetaData instance, which obtains packages from the global package registry, {@link
-   * org.eclipse.emf.ecore.EPackage.Registry#INSTANCE EPackage.Registry.INSTANCE}.
+   * The default ExtendedMetaData instance, which obtains packages from the global package registry,
+   * {@link org.eclipse.emf.ecore.EPackage.Registry#INSTANCE EPackage.Registry.INSTANCE}.
    */
   ExtendedMetaData INSTANCE = new BasicExtendedMetaData();
 }

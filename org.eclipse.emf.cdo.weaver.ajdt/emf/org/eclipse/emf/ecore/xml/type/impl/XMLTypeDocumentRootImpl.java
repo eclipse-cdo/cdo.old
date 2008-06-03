@@ -36,17 +36,18 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 import java.util.Collection;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Document Root</b></em>'. <!-- end-user-doc
- * -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Document Root</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
  * <li>{@link org.eclipse.emf.ecore.xml.type.impl.XMLTypeDocumentRootImpl#getMixed <em>Mixed</em>}</li>
  * <li>{@link org.eclipse.emf.ecore.xml.type.impl.XMLTypeDocumentRootImpl#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
- * <li>{@link org.eclipse.emf.ecore.xml.type.impl.XMLTypeDocumentRootImpl#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.xml.type.impl.XMLTypeDocumentRootImpl#getXSISchemaLocation <em>XSI Schema Location
+ * </em>}</li>
  * <li>{@link org.eclipse.emf.ecore.xml.type.impl.XMLTypeDocumentRootImpl#getCDATA <em>CDATA</em>}</li>
  * <li>{@link org.eclipse.emf.ecore.xml.type.impl.XMLTypeDocumentRootImpl#getComment <em>Comment</em>}</li>
- * <li>{@link org.eclipse.emf.ecore.xml.type.impl.XMLTypeDocumentRootImpl#getProcessingInstruction <em>Processing Instruction</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.xml.type.impl.XMLTypeDocumentRootImpl#getProcessingInstruction <em>Processing
+ * Instruction</em>}</li>
  * <li>{@link org.eclipse.emf.ecore.xml.type.impl.XMLTypeDocumentRootImpl#getText <em>Text</em>}</li>
  * </ul>
  * </p>
@@ -66,8 +67,8 @@ public class XMLTypeDocumentRootImpl extends EObjectImpl implements XMLTypeDocum
   protected FeatureMap mixed;
 
   /**
-   * The cached value of the '{@link #getXMLNSPrefixMap() <em>XMLNS Prefix Map</em>}' map. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getXMLNSPrefixMap() <em>XMLNS Prefix Map</em>}' map. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getXMLNSPrefixMap()
    * @generated
@@ -76,8 +77,8 @@ public class XMLTypeDocumentRootImpl extends EObjectImpl implements XMLTypeDocum
   protected EMap<String, String> xMLNSPrefixMap;
 
   /**
-   * The cached value of the '{@link #getXSISchemaLocation() <em>XSI Schema Location</em>}' map. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getXSISchemaLocation() <em>XSI Schema Location</em>}' map. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @see #getXSISchemaLocation()
    * @generated

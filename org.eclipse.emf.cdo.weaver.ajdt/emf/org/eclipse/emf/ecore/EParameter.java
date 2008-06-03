@@ -32,9 +32,8 @@ package org.eclipse.emf.ecore;
 public interface EParameter extends ETypedElement
 {
   /**
-   * Returns the value of the '<em><b>EOperation</b></em>' container reference. It is bidirectional and its
-   * opposite is '{@link org.eclipse.emf.ecore.EOperation#getEParameters <em>EParameters</em>}'. <!-- begin-user-doc
-   * -->
+   * Returns the value of the '<em><b>EOperation</b></em>' container reference. It is bidirectional and its opposite is
+   * '{@link org.eclipse.emf.ecore.EOperation#getEParameters <em>EParameters</em>}'. <!-- begin-user-doc -->
    * <p>
    * It represents the containing operation.
    * </p>

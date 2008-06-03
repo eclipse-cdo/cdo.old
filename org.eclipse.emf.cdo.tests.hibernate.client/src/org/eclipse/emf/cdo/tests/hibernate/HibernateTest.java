@@ -28,13 +28,13 @@ import org.eclipse.emf.cdo.util.CDOUtil;
 
 import org.eclipse.net4j.Net4jUtil;
 import org.eclipse.net4j.connector.IConnector;
-import org.eclipse.net4j.internal.util.om.log.PrintLogHandler;
-import org.eclipse.net4j.internal.util.om.trace.PrintTraceHandler;
 import org.eclipse.net4j.tcp.TCPUtil;
 import org.eclipse.net4j.util.container.ContainerUtil;
 import org.eclipse.net4j.util.container.IManagedContainer;
 import org.eclipse.net4j.util.io.IOUtil;
 import org.eclipse.net4j.util.om.OMPlatform;
+import org.eclipse.net4j.util.om.log.PrintLogHandler;
+import org.eclipse.net4j.util.om.trace.PrintTraceHandler;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;

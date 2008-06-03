@@ -10,8 +10,8 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.server.hibernate.internal.id;
 
-import org.eclipse.emf.cdo.protocol.id.CDOIDObject;
-import org.eclipse.emf.cdo.protocol.id.CDOIDObjectFactory;
+import org.eclipse.emf.cdo.common.id.CDOIDObject;
+import org.eclipse.emf.cdo.common.id.CDOIDObjectFactory;
 import org.eclipse.emf.cdo.server.hibernate.id.CDOIDHibernate;
 
 import org.eclipse.net4j.util.WrappedException;

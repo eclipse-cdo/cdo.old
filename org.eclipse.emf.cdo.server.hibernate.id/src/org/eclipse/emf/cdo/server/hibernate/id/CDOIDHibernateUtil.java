@@ -11,7 +11,6 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.server.hibernate.id;
 
-
 /**
  * @author Eike Stepper
  */

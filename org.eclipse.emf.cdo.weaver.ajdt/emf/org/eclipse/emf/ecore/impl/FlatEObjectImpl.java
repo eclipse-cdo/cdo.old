@@ -23,10 +23,10 @@ import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.ECrossReferenceEList;
 
 /**
- * An implementation of the model object '<em><b>EObject</b></em>'. This implementation flattens the fields for
- * storing the {@link #eProxyURI}, the {@link #eContents}, and the {@link #eCrossReferences}, which in
- * {@link EObjectImpl} are stored in the properties holder. This reduces the likelihood of needing to allocate a
- * properties holder and speeds up the access to these fields.
+ * An implementation of the model object '<em><b>EObject</b></em>'. This implementation flattens the fields for storing
+ * the {@link #eProxyURI}, the {@link #eContents}, and the {@link #eCrossReferences}, which in {@link EObjectImpl} are
+ * stored in the properties holder. This reduces the likelihood of needing to allocate a properties holder and speeds up
+ * the access to these fields.
  */
 public class FlatEObjectImpl extends EObjectImpl
 {

@@ -43,8 +43,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>EOperation</b></em>'. <!-- end-user-doc
- * -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EOperation</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -61,8 +60,8 @@ import java.util.ListIterator;
 public class EOperationImpl extends ETypedElementImpl implements EOperation
 {
   /**
-   * The cached value of the '{@link #getETypeParameters() <em>EType Parameters</em>}' containment reference list.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getETypeParameters() <em>EType Parameters</em>}' containment reference list. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getETypeParameters()
    * @generated
@@ -91,8 +90,8 @@ public class EOperationImpl extends ETypedElementImpl implements EOperation
   protected EList<EClassifier> eExceptions;
 
   /**
-   * The cached value of the '{@link #getEGenericExceptions() <em>EGeneric Exceptions</em>}' containment reference
-   * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getEGenericExceptions() <em>EGeneric Exceptions</em>}' containment reference list.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getEGenericExceptions()
    * @generated

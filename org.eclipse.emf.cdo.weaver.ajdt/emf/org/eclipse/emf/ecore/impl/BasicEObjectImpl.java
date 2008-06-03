@@ -1186,8 +1186,8 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
     int dynamicFeatureID = featureID - eStaticFeatureCount();
 
     return dynamicFeatureID < 0 ? eIsSet(eFeature) /*
-                                                     * backward compatibility with old generated overrides
-                                                     */
+                                                    * backward compatibility with old generated overrides
+                                                    */
     : eSettingDelegate(eFeature).dynamicIsSet(this, eSettings(), dynamicFeatureID);
   }
 

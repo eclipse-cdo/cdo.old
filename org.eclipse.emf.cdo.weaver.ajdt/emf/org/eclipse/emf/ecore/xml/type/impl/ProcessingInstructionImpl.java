@@ -24,8 +24,8 @@ import org.eclipse.emf.ecore.xml.type.ProcessingInstruction;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Processing Instruction Type</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Processing Instruction Type</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -49,8 +49,7 @@ public class ProcessingInstructionImpl extends EObjectImpl implements Processing
   protected static final String DATA_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getData() <em>Data</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
+   * The cached value of the '{@link #getData() <em>Data</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getData()
    * @generated
@@ -69,8 +68,8 @@ public class ProcessingInstructionImpl extends EObjectImpl implements Processing
   protected static final String TARGET_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getTarget() <em>Target</em>}' attribute. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * The cached value of the '{@link #getTarget() <em>Target</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @see #getTarget()
    * @generated

@@ -64,11 +64,13 @@ import java.util.Map;
  *          <li>{@link org.eclipse.emf.ecore.impl.EStructuralFeatureImpl#isChangeable <em>Changeable</em>}</li>
  *          <li>{@link org.eclipse.emf.ecore.impl.EStructuralFeatureImpl#isVolatile <em>Volatile</em>}</li>
  *          <li>{@link org.eclipse.emf.ecore.impl.EStructuralFeatureImpl#isTransient <em>Transient</em>}</li>
- *          <li>{@link org.eclipse.emf.ecore.impl.EStructuralFeatureImpl#getDefaultValueLiteral <em>Default Value Literal</em>}</li>
+ *          <li>{@link org.eclipse.emf.ecore.impl.EStructuralFeatureImpl#getDefaultValueLiteral <em>Default Value
+ *          Literal</em>}</li>
  *          <li>{@link org.eclipse.emf.ecore.impl.EStructuralFeatureImpl#getDefaultValue <em>Default Value</em>}</li>
  *          <li>{@link org.eclipse.emf.ecore.impl.EStructuralFeatureImpl#isUnsettable <em>Unsettable</em>}</li>
  *          <li>{@link org.eclipse.emf.ecore.impl.EStructuralFeatureImpl#isDerived <em>Derived</em>}</li>
- *          <li>{@link org.eclipse.emf.ecore.impl.EStructuralFeatureImpl#getEContainingClass <em>EContaining Class</em>}</li>
+ *          <li>{@link org.eclipse.emf.ecore.impl.EStructuralFeatureImpl#getEContainingClass <em>EContaining Class</em>}
+ *          </li>
  *          </ul>
  *          </p>
  * @generated
@@ -257,8 +259,8 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
   protected static final boolean CHANGEABLE_EDEFAULT = true;
 
   /**
-   * The flag representing the value of the '{@link #isChangeable() <em>Changeable</em>}' attribute. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * The flag representing the value of the '{@link #isChangeable() <em>Changeable</em>}' attribute. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @see #isChangeable()
    * @generated
@@ -277,8 +279,8 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
   protected static final boolean VOLATILE_EDEFAULT = false;
 
   /**
-   * The flag representing the value of the '{@link #isVolatile() <em>Volatile</em>}' attribute. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * The flag representing the value of the '{@link #isVolatile() <em>Volatile</em>}' attribute. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @see #isVolatile()
    * @generated
@@ -347,8 +349,8 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
   protected static final boolean UNSETTABLE_EDEFAULT = false;
 
   /**
-   * The flag representing the value of the '{@link #isUnsettable() <em>Unsettable</em>}' attribute. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * The flag representing the value of the '{@link #isUnsettable() <em>Unsettable</em>}' attribute. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @see #isUnsettable()
    * @generated

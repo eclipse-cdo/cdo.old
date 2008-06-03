@@ -35,14 +35,15 @@ import org.eclipse.emf.ecore.xml.namespace.XMLNamespaceDocumentRoot;
 import org.eclipse.emf.ecore.xml.namespace.XMLNamespacePackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Document Root</b></em>'. <!-- end-user-doc
- * -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Document Root</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
  * <li>{@link org.eclipse.emf.ecore.xml.namespace.impl.XMLNamespaceDocumentRootImpl#getMixed <em>Mixed</em>}</li>
- * <li>{@link org.eclipse.emf.ecore.xml.namespace.impl.XMLNamespaceDocumentRootImpl#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
- * <li>{@link org.eclipse.emf.ecore.xml.namespace.impl.XMLNamespaceDocumentRootImpl#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.xml.namespace.impl.XMLNamespaceDocumentRootImpl#getXMLNSPrefixMap <em>XMLNS Prefix
+ * Map</em>}</li>
+ * <li>{@link org.eclipse.emf.ecore.xml.namespace.impl.XMLNamespaceDocumentRootImpl#getXSISchemaLocation <em>XSI Schema
+ * Location</em>}</li>
  * <li>{@link org.eclipse.emf.ecore.xml.namespace.impl.XMLNamespaceDocumentRootImpl#getBase <em>Base</em>}</li>
  * <li>{@link org.eclipse.emf.ecore.xml.namespace.impl.XMLNamespaceDocumentRootImpl#getId <em>Id</em>}</li>
  * <li>{@link org.eclipse.emf.ecore.xml.namespace.impl.XMLNamespaceDocumentRootImpl#getLang <em>Lang</em>}</li>
@@ -65,8 +66,8 @@ public class XMLNamespaceDocumentRootImpl extends EObjectImpl implements XMLName
   protected FeatureMap mixed;
 
   /**
-   * The cached value of the '{@link #getXMLNSPrefixMap() <em>XMLNS Prefix Map</em>}' map. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getXMLNSPrefixMap() <em>XMLNS Prefix Map</em>}' map. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @see #getXMLNSPrefixMap()
    * @generated
@@ -75,8 +76,8 @@ public class XMLNamespaceDocumentRootImpl extends EObjectImpl implements XMLName
   protected EMap<String, String> xMLNSPrefixMap;
 
   /**
-   * The cached value of the '{@link #getXSISchemaLocation() <em>XSI Schema Location</em>}' map. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getXSISchemaLocation() <em>XSI Schema Location</em>}' map. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @see #getXSISchemaLocation()
    * @generated
@@ -95,8 +96,7 @@ public class XMLNamespaceDocumentRootImpl extends EObjectImpl implements XMLName
   protected static final String BASE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getBase() <em>Base</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
+   * The cached value of the '{@link #getBase() <em>Base</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getBase()
    * @generated
@@ -133,8 +133,7 @@ public class XMLNamespaceDocumentRootImpl extends EObjectImpl implements XMLName
   protected static final String LANG_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getLang() <em>Lang</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
+   * The cached value of the '{@link #getLang() <em>Lang</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getLang()
    * @generated
@@ -143,8 +142,8 @@ public class XMLNamespaceDocumentRootImpl extends EObjectImpl implements XMLName
   protected String lang = LANG_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getSpace() <em>Space</em>}' attribute. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * The default value of the '{@link #getSpace() <em>Space</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @see #getSpace()
    * @generated

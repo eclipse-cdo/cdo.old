@@ -288,8 +288,8 @@ public final class RegEx
     }
     /*
      * public static void main(String[] argv) { try { int[] shiftTable = new int[256]; initializeBoyerMoore(argv[0],
-     * shiftTable, true); int o = -1; CharacterIterator ite = new java.text.StringCharacterIterator(argv[1]); long start =
-     * System.currentTimeMillis(); //for (int i = 0; i < 10000; i ++) o = searchIgnoreCasesWithBoyerMoore(ite, 0,
+     * shiftTable, true); int o = -1; CharacterIterator ite = new java.text.StringCharacterIterator(argv[1]); long start
+     * = System.currentTimeMillis(); //for (int i = 0; i < 10000; i ++) o = searchIgnoreCasesWithBoyerMoore(ite, 0,
      * argv[0], shiftTable); start = System.currentTimeMillis()-start; System.out.println("Result: "+o+", Elapsed:
      * "+start); } catch (Exception ex) { ex.printStackTrace(); } }
      */
@@ -834,7 +834,7 @@ public final class RegEx
     }
   }
 
-  /**
+/**
    * A regular expression matching engine using Non-deterministic Finite Automaton (NFA). This engine does not conform
    * to the POSIX regular expression.
    * <hr width="50%">
@@ -3751,7 +3751,7 @@ public final class RegEx
       if (Op.COUNT) Op.nofinstances = 0;
       this.compile(this.tokentree);
       /*
-       * if (this.operations.type == Op.CLOSURE && this.operations.getChild().type == Op.DOT) { // .* Op anchor =
+       * if (this.operations.type == Op.CLOSURE && this.operations.getChild().type == Op.DOT) { // . Op anchor =
        * Op.createAnchor(isSet(this.options, SINGLE_LINE) ? 'A' : '@'); anchor.next = this.operations; this.operations =
        * anchor; }
        */
@@ -3805,7 +3805,7 @@ public final class RegEx
           this.fixedStringTable = new BMPattern(this.fixedString, 256, isSet(this.fixedStringOptions, IGNORE_CASE));
           if (DEBUG)
           {
-            System.err.println("DEBUG: The longest fixed string: " + this.fixedString.length() + "/" // +this.fixedString
+            System.err.println("DEBUG: The longest fixed string: " + this.fixedString.length() + "/" //+this.fixedString
                 + "/" + REUtil.createOptionString(this.fixedStringOptions));
             System.err.print("String: ");
             REUtil.dumpString(this.fixedString);
@@ -3815,9 +3815,8 @@ public final class RegEx
     }
 
     /**
-     * An option. If you specify this option, <span class="REGEX"><kbd>(</kbd><var>X</var><kbd>)</kbd></span>
-     * captures matched text, and <span class="REGEX"><kbd>(:?</kbd><var>X</var><kbd>)</kbd></span> does not
-     * capture.
+     * An option. If you specify this option, <span class="REGEX"><kbd>(</kbd><var>X</var><kbd>)</kbd></span> captures
+     * matched text, and <span class="REGEX"><kbd>(:?</kbd><var>X</var><kbd>)</kbd></span> does not capture.
      * 
      * @see #RegularExpression(java.lang.String,int)
      * @see #setPattern(java.lang.String,int) static final int MARK_PARENS = 1<<0;
@@ -3852,7 +3851,7 @@ public final class RegEx
      */
     static final int USE_UNICODE_CATEGORY = 1 << 5; // "u"
 
-    /**
+/**
      * An option. This enables to process locale-independent word boundary for <span class="REGEX"><kbd>\b \B \&lt; \></kbd></span>.
      * <p>
      * By default, the engine considers a position between a word character (<span class="REGEX"><Kbd>\w</kbd></span>)
@@ -3975,7 +3974,7 @@ public final class RegEx
       return this.tokentree.toString(this.options);
     }
 
-    /**
+/**
      * Returns a option string. The order of letters in it may be different from a string specified in a constructor or
      * <code>setPattern()</code>.
      * 
@@ -5519,7 +5518,7 @@ public final class RegEx
       this.nexttoken = ret;
     }
 
-    /**
+/**
      * regex ::= term (`|` term)* term ::= factor+ factor ::= ('^' | '$' | '\A' | '\Z' | '\z' | '\b' | '\B' | '\<' |
      * '\>' | atom (('*' | '+' | '?' | minmax ) '?'? )?) | '(?=' regex ')' | '(?!' regex ')' | '(?&lt;=' regex ')' |
      * '(?&lt;!' regex ')' atom ::= char | '.' | range | '(' regex ')' | '(?:' regex ')' | '\' [0-9] | '\w' | '\W' |
@@ -5892,7 +5891,7 @@ public final class RegEx
 
     // ----------------------------------------------------------------
 
-    /**
+/**
      * factor ::= ('^' | '$' | '\A' | '\Z' | '\z' | '\b' | '\B' | '\<' | '\>' | atom (('*' | '+' | '?' | minmax ) '?'?
      * )?) | '(?=' regex ')' | '(?!' regex ')' | '(?&lt;=' regex ')' | '(?&lt;!' regex ')' | '(?#' [^)]* ')' minmax ::=
      * '{' min (',' max?)? '}' min ::= [0-9]+ max ::= [0-9]+
@@ -6021,8 +6020,8 @@ public final class RegEx
     }
 
     /**
-     * atom ::= char | '.' | char-class | '(' regex ')' | '(?:' regex ')' | '\' [0-9] | '\w' | '\W' | '\d' | '\D' | '\s' |
-     * '\S' | category-block | '(?>' regex ')' char ::= '\\' | '\' [efnrt] | bmp-code | character-1
+     * atom ::= char | '.' | char-class | '(' regex ')' | '(?:' regex ')' | '\' [0-9] | '\w' | '\W' | '\d' | '\D' | '\s'
+     * | '\S' | category-block | '(?>' regex ')' char ::= '\\' | '\' [efnrt] | bmp-code | character-1
      */
     Token parseAtom() throws ParseException
     {

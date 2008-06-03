@@ -510,76 +510,78 @@ public final class DataValue
   /*
    * EncodingMap is a convenience class which handles conversions between IANA encoding names and Java encoding names,
    * and vice versa. The encoding names used in XML instance documents <strong>must</strong> be the IANA encoding names
-   * specified or one of the aliases for those names which IANA defines. <p> <TABLE BORDER="0" WIDTH="100%"> <TR>
-   * <TD WIDTH="33%"> <P ALIGN="CENTER"><B>Common Name</B> </TD> <TD WIDTH="15%"> <P ALIGN="CENTER"><B>Use this name
-   * in XML files</B> </TD> <TD WIDTH="12%"> <P ALIGN="CENTER"><B>Name Type</B> </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER"><B>Xerces converts to this Java Encoder Name</B> </TD> </TR> <TR> <TD WIDTH="33%">8 bit
-   * Unicode</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">UTF-8 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD>
-   * <TD WIDTH="31%"> <P ALIGN="CENTER">UTF8 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin 1</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ISO-8859-1 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">ISO-8859-1 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin 2</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ISO-8859-2 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">ISO-8859-2 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin 3</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ISO-8859-3 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">ISO-8859-3 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin 4</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ISO-8859-4 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">ISO-8859-4 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin Cyrillic</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ISO-8859-5 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">ISO-8859-5 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin Arabic</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ISO-8859-6 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">ISO-8859-6 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin Greek</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ISO-8859-7 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">ISO-8859-7 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin Hebrew</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ISO-8859-8 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">ISO-8859-8 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin 5</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ISO-8859-9 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">ISO-8859-9 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: US</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ebcdic-cp-us </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">cp037 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Canada</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-ca
-   * </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp037 </TD> </TR> <TR>
-   * <TD WIDTH="33%">EBCDIC: Netherlands</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-nl </TD> <TD WIDTH="12%">
-   * <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp037 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC:
-   * Denmark</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-dk </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD>
-   * <TD WIDTH="31%"> <P ALIGN="CENTER">cp277 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Norway</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ebcdic-cp-no </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">cp277 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Finland</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ebcdic-cp-fi </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">cp278 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Sweden</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-se
-   * </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp278 </TD> </TR> <TR>
-   * <TD WIDTH="33%">EBCDIC: Italy</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-it </TD> <TD WIDTH="12%">
-   * <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp280 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC:
-   * Spain, Latin America</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-es </TD> <TD WIDTH="12%">
-   * <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp284 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC:
-   * Great Britain</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-gb </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA
-   * </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp285 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: France</TD>
-   * <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-fr </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD>
-   * <TD WIDTH="31%"> <P ALIGN="CENTER">cp297 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Arabic</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ebcdic-cp-ar1 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">cp420 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Hebrew</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-he
-   * </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp424 </TD> </TR> <TR>
-   * <TD WIDTH="33%">EBCDIC: Switzerland</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-ch </TD> <TD WIDTH="12%">
-   * <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp500 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC:
-   * Roece</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-roece </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA
-   * </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp870 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Yugoslavia</TD>
-   * <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-yu </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD>
-   * <TD WIDTH="31%"> <P ALIGN="CENTER">cp870 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Iceland</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">ebcdic-cp-is </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%">
-   * <P ALIGN="CENTER">cp871 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Urdu</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ebcdic-cp-ar2
-   * </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">cp918 </TD> </TR> <TR>
-   * <TD WIDTH="33%">Chinese for PRC, mixed 1/2 byte</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">gb2312 </TD>
-   * <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">GB2312 </TD> </TR> <TR>
-   * <TD WIDTH="33%">Extended Unix Code, packed for Japanese</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">euc-jp </TD>
-   * <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">eucjis </TD> </TR> <TR>
-   * <TD WIDTH="33%">Japanese: iso-2022-jp</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">iso-2020-jp </TD> <TD WIDTH="12%">
-   * <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">JIS </TD> </TR> <TR> <TD WIDTH="33%">Japanese:
-   * Shift JIS</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">Shift_JIS </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD>
-   * <TD WIDTH="31%"> <P ALIGN="CENTER">SJIS </TD> </TR> <TR> <TD WIDTH="33%">Chinese: Big5</TD> <TD WIDTH="15%">
-   * <P ALIGN="CENTER">Big5 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">Big5
-   * </TD> </TR> <TR> <TD WIDTH="33%">Extended Unix Code, packed for Korean</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">euc-kr
-   * </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">iso2022kr </TD> </TR> <TR>
-   * <TD WIDTH="33%">Cyrillic</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">koi8-r </TD> <TD WIDTH="12%">
-   * <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">koi8-r </TD> </TR> </TABLE> @author TAMURA Kent,
-   * IBM @author Andy Clark, IBM
+   * specified or one of the aliases for those names which IANA defines. <p> <TABLE BORDER="0" WIDTH="100%"> <TR> <TD
+   * WIDTH="33%"> <P ALIGN="CENTER"><B>Common Name</B> </TD> <TD WIDTH="15%"> <P ALIGN="CENTER"><B>Use this name in XML
+   * files</B> </TD> <TD WIDTH="12%"> <P ALIGN="CENTER"><B>Name Type</B> </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER"><B>Xerces converts to this Java Encoder Name</B> </TD> </TR> <TR> <TD WIDTH="33%">8 bit Unicode</TD>
+   * <TD WIDTH="15%"> <P ALIGN="CENTER">UTF-8 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">UTF8 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin 1</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ISO-8859-1
+   * </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">ISO-8859-1 </TD> </TR> <TR>
+   * <TD WIDTH="33%">ISO Latin 2</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ISO-8859-2 </TD> <TD WIDTH="12%"> <P
+   * ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">ISO-8859-2 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin
+   * 3</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">ISO-8859-3 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD
+   * WIDTH="31%"> <P ALIGN="CENTER">ISO-8859-3 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin 4</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">ISO-8859-4 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">ISO-8859-4 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin Cyrillic</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">ISO-8859-5 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">ISO-8859-5 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin Arabic</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">ISO-8859-6 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">ISO-8859-6 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin Greek</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">ISO-8859-7 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">ISO-8859-7 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin Hebrew</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">ISO-8859-8 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">ISO-8859-8 </TD> </TR> <TR> <TD WIDTH="33%">ISO Latin 5</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">ISO-8859-9 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">ISO-8859-9 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: US</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">ebcdic-cp-us </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">cp037 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Canada</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">ebcdic-cp-ca </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">cp037 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Netherlands</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">ebcdic-cp-nl </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">cp037 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Denmark</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">ebcdic-cp-dk </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">cp277 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Norway</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">ebcdic-cp-no </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">cp277 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Finland</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">ebcdic-cp-fi </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">cp278 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Sweden</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">ebcdic-cp-se </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">cp278 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Italy</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">ebcdic-cp-it </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">cp280 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Spain, Latin America</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">ebcdic-cp-es </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">cp284 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Great Britain</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">ebcdic-cp-gb </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">cp285 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: France</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">ebcdic-cp-fr </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">cp297 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Arabic</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">ebcdic-cp-ar1 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">cp420 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Hebrew</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">ebcdic-cp-he </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">cp424 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Switzerland</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">ebcdic-cp-ch </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">cp500 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Roece</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">ebcdic-cp-roece </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">cp870 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Yugoslavia</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">ebcdic-cp-yu </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">cp870 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Iceland</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">ebcdic-cp-is </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">cp871 </TD> </TR> <TR> <TD WIDTH="33%">EBCDIC: Urdu</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">ebcdic-cp-ar2 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">IANA </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">cp918 </TD> </TR> <TR> <TD WIDTH="33%">Chinese for PRC, mixed 1/2 byte</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">gb2312 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">GB2312
+   * </TD> </TR> <TR> <TD WIDTH="33%">Extended Unix Code, packed for Japanese</TD> <TD WIDTH="15%"> <P
+   * ALIGN="CENTER">euc-jp </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">eucjis
+   * </TD> </TR> <TR> <TD WIDTH="33%">Japanese: iso-2022-jp</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">iso-2020-jp </TD>
+   * <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">JIS </TD> </TR> <TR> <TD
+   * WIDTH="33%">Japanese: Shift JIS</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">Shift_JIS </TD> <TD WIDTH="12%"> <P
+   * ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">SJIS </TD> </TR> <TR> <TD WIDTH="33%">Chinese:
+   * Big5</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">Big5 </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD
+   * WIDTH="31%"> <P ALIGN="CENTER">Big5 </TD> </TR> <TR> <TD WIDTH="33%">Extended Unix Code, packed for Korean</TD> <TD
+   * WIDTH="15%"> <P ALIGN="CENTER">euc-kr </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P
+   * ALIGN="CENTER">iso2022kr </TD> </TR> <TR> <TD WIDTH="33%">Cyrillic</TD> <TD WIDTH="15%"> <P ALIGN="CENTER">koi8-r
+   * </TD> <TD WIDTH="12%"> <P ALIGN="CENTER">MIME </TD> <TD WIDTH="31%"> <P ALIGN="CENTER">koi8-r </TD> </TR> </TABLE>
+   * @author TAMURA Kent, IBM @author Andy Clark, IBM
    */
   public static class EncodingMap
   {
@@ -3321,8 +3323,8 @@ public final class DataValue
    * <p>
    * A series of convenience methods are supplied to ease the burden of the developer. Because inlining the checks can
    * improve per character performance, the tables of character properties are public. Using the character as an index
-   * into the <code>CHARS</code> array and applying the appropriate mask flag (e.g. <code>MASK_VALID</code>),
-   * yields the same results as calling the convenience methods. There is one exception: check the comments for the
+   * into the <code>CHARS</code> array and applying the appropriate mask flag (e.g. <code>MASK_VALID</code>), yields the
+   * same results as calling the convenience methods. There is one exception: check the comments for the
    * <code>isValid</code> method for details.
    * 
    * @author Glenn Marcy, IBM
@@ -4097,8 +4099,8 @@ public final class DataValue
      * Returns true if the specified character is valid. This method also checks the surrogate character range from
      * 0x10000 to 0x10FFFF.
      * <p>
-     * If the program chooses to apply the mask directly to the <code>CHARS</code> array, then they are responsible
-     * for checking the surrogate character range.
+     * If the program chooses to apply the mask directly to the <code>CHARS</code> array, then they are responsible for
+     * checking the surrogate character range.
      * 
      * @param c
      *          The character to check.
@@ -4215,7 +4217,7 @@ public final class DataValue
     } // isPubid(int):boolean
 
     /*
-     * [5] Name ::= (Letter | '_' | ':') (NameChar)*
+     * [5] Name ::= (Letter | '_' | ':') (NameChar)
      */
     /**
      * Check to see if a string is a valid Name according to [5] in the XML 1.0 Recommendation
@@ -4241,7 +4243,7 @@ public final class DataValue
     } // isValidName(String):boolean
 
     /*
-     * from the namespace rec [4] NCName ::= (Letter | '_') (NCNameChar)*
+     * from the namespace rec [4] NCName ::= (Letter | '_') (NCNameChar)
      */
     /**
      * Check to see if a string is a valid NCName according to [4] from the XML Namespaces 1.0 Recommendation

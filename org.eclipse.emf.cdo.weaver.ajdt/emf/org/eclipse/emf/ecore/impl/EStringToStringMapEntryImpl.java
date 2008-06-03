@@ -28,8 +28,8 @@ import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.ECrossReferenceEList;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>EString To String Map Entry</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EString To String Map Entry</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -43,8 +43,8 @@ import org.eclipse.emf.ecore.util.ECrossReferenceEList;
 public class EStringToStringMapEntryImpl extends EObjectImpl implements BasicEMap.Entry<String, String>
 {
   /**
-   * The default value of the '{@link #getTypedKey() <em>Key</em>}' attribute. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * The default value of the '{@link #getTypedKey() <em>Key</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @see #getTypedKey()
    * @generated
@@ -53,8 +53,8 @@ public class EStringToStringMapEntryImpl extends EObjectImpl implements BasicEMa
   protected static final String KEY_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getTypedKey() <em>Key</em>}' attribute. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * The cached value of the '{@link #getTypedKey() <em>Key</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @see #getTypedKey()
    * @generated

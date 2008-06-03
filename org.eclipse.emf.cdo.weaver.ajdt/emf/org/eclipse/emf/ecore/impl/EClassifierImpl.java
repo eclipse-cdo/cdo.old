@@ -357,8 +357,8 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
   private static final String INSTANCE_TYPE_NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getInstanceTypeName() <em>Instance Type Name</em>}' attribute. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getInstanceTypeName() <em>Instance Type Name</em>}' attribute. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @see #getInstanceTypeName()
    * @generated NOT
@@ -367,8 +367,8 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
   protected String instanceTypeName;
 
   /**
-   * The cached value of the '{@link #getETypeParameters() <em>EType Parameters</em>}' containment reference list.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getETypeParameters() <em>EType Parameters</em>}' containment reference list. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see #getETypeParameters()
    * @generated

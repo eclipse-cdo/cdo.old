@@ -37,8 +37,7 @@ import java.util.Collection;
 import java.util.Set;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>EGeneric Type</b></em>'. <!-- end-user-doc
- * -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EGeneric Type</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -106,8 +105,8 @@ public class EGenericTypeImpl extends EObjectImpl implements EGenericType
   protected EGenericType eLowerBound;
 
   /**
-   * The cached value of the '{@link #getETypeParameter() <em>EType Parameter</em>}' reference. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * The cached value of the '{@link #getETypeParameter() <em>EType Parameter</em>}' reference. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @see #getETypeParameter()
    * @generated

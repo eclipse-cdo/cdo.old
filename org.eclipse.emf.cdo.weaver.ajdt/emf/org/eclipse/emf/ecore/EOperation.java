@@ -55,9 +55,9 @@ public interface EOperation extends ETypedElement
   EClass getEContainingClass();
 
   /**
-   * Returns the value of the '<em><b>EParameters</b></em>' containment reference list. The list contents are of
-   * type {@link org.eclipse.emf.ecore.EParameter}. It is bidirectional and its opposite is '{@link org.eclipse.emf.ecore.EParameter#getEOperation <em>EOperation</em>}'.
-   * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>EParameters</b></em>' containment reference list. The list contents are of type
+   * {@link org.eclipse.emf.ecore.EParameter}. It is bidirectional and its opposite is '
+   * {@link org.eclipse.emf.ecore.EParameter#getEOperation <em>EOperation</em>}'. <!-- begin-user-doc -->
    * <p>
    * It represents the valid arguments for this operation.
    * </p>
@@ -75,8 +75,8 @@ public interface EOperation extends ETypedElement
    * Returns the value of the '<em><b>EExceptions</b></em>' reference list. The list contents are of type
    * {@link org.eclipse.emf.ecore.EClassifier}. <!-- begin-user-doc -->
    * <p>
-   * It represents the exceptions thrown by this operation and is derived from the
-   * {@link #getEGenericExceptions() generic exceptions}.
+   * It represents the exceptions thrown by this operation and is derived from the {@link #getEGenericExceptions()
+   * generic exceptions}.
    * </p>
    * 
    * @see #getEGenericExceptions() <!-- end-user-doc -->
@@ -88,8 +88,8 @@ public interface EOperation extends ETypedElement
   EList<EClassifier> getEExceptions();
 
   /**
-   * Returns the value of the '<em><b>EGeneric Exceptions</b></em>' containment reference list. The list contents
-   * are of type {@link org.eclipse.emf.ecore.EGenericType}. <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>EGeneric Exceptions</b></em>' containment reference list. The list contents are of
+   * type {@link org.eclipse.emf.ecore.EGenericType}. <!-- begin-user-doc -->
    * <p>
    * It represents the generic exceptions thrown by this operation. The {@link #getEExceptions() exceptions} list is
    * derived from this one, i.e., it represents the {@link EGenericType#getERawType() erasure} of each generic
@@ -106,8 +106,8 @@ public interface EOperation extends ETypedElement
   EList<EGenericType> getEGenericExceptions();
 
   /**
-   * Returns the value of the '<em><b>EType Parameters</b></em>' containment reference list. The list contents are
-   * of type {@link org.eclipse.emf.ecore.ETypeParameter}. <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>EType Parameters</b></em>' containment reference list. The list contents are of
+   * type {@link org.eclipse.emf.ecore.ETypeParameter}. <!-- begin-user-doc -->
    * <p>
    * An operation can optionally introduce type parameters.
    * </p>

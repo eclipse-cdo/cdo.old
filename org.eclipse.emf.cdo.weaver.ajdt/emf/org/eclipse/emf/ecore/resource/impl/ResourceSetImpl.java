@@ -134,9 +134,9 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
 
   /**
    * Sets the map used to cache the resource associated with a specific URI. This cache is only activated if the map is
-   * not <code>null</code>. The map will be lazily loaded by the {@link #getResource(URI, boolean) getResource}
-   * method. It is up to the client to clear the cache when it becomes invalid, e.g., when the URI of a previously
-   * mapped resource is changed.
+   * not <code>null</code>. The map will be lazily loaded by the {@link #getResource(URI, boolean) getResource} method.
+   * It is up to the client to clear the cache when it becomes invalid, e.g., when the URI of a previously mapped
+   * resource is changed.
    * 
    * @param uriResourceMap
    *          the new map or <code>null</code>.
@@ -232,10 +232,9 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
   }
 
   /**
-   * Creates a new resource appropriate for the URI. It is called by
-   * {@link #getResource(URI, boolean) getResource(URI, boolean)} when a URI that doesn't exist as a resource is demand
-   * loaded. This implementation simply calls {@link #createResource(URI) createResource(URI)}. Clients may extend this
-   * as appropriate.
+   * Creates a new resource appropriate for the URI. It is called by {@link #getResource(URI, boolean) getResource(URI,
+   * boolean)} when a URI that doesn't exist as a resource is demand loaded. This implementation simply calls
+   * {@link #createResource(URI) createResource(URI)}. Clients may extend this as appropriate.
    * 
    * @param uri
    *          the URI of the resource to create.
@@ -249,8 +248,8 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
 
   /**
    * Loads the given resource. It is called by {@link #demandLoadHelper(Resource) demandLoadHelper(Resource)} to perform
-   * a demand load. This implementation simply calls <code>resource.</code>{@link Resource#load(Map) load}({@link #getLoadOptions() getLoadOptions}()).
-   * Clients may extend this as appropriate.
+   * a demand load. This implementation simply calls <code>resource.</code>{@link Resource#load(Map) load}(
+   * {@link #getLoadOptions() getLoadOptions}()). Clients may extend this as appropriate.
    * 
    * @param resource
    *          a resource that isn't loaded.
@@ -266,8 +265,8 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
 
   /**
    * Demand loads the given resource using {@link #demandLoad(Resource)} and {@link WrappedException wraps} any
-   * {@link IOException} as a runtime exception. It is called by
-   * {@link #getResource(URI, boolean) getResource(URI, boolean)} to perform a demand load.
+   * {@link IOException} as a runtime exception. It is called by {@link #getResource(URI, boolean) getResource(URI,
+   * boolean)} to perform a demand load.
    * 
    * @param resource
    *          a resource that isn't loaded.

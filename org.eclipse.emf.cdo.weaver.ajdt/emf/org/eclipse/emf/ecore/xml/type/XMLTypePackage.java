@@ -67,8 +67,8 @@ public interface XMLTypePackage extends EPackage
   XMLTypePackage eINSTANCE = org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl.init();
 
   /**
-   * The meta object id for the '{@link org.eclipse.emf.ecore.xml.type.impl.AnyTypeImpl <em>Any Type</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The meta object id for the '{@link org.eclipse.emf.ecore.xml.type.impl.AnyTypeImpl <em>Any Type</em>}' class. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see org.eclipse.emf.ecore.xml.type.impl.AnyTypeImpl
    * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getAnyType()
@@ -93,8 +93,8 @@ public interface XMLTypePackage extends EPackage
   int ANY_TYPE__ANY = 1;
 
   /**
-   * The feature id for the '<em><b>Any Attribute</b></em>' attribute list. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * The feature id for the '<em><b>Any Attribute</b></em>' attribute list. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @generated
    * @ordered
@@ -102,8 +102,7 @@ public interface XMLTypePackage extends EPackage
   int ANY_TYPE__ANY_ATTRIBUTE = 2;
 
   /**
-   * The number of structural features of the '<em>Any Type</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
+   * The number of structural features of the '<em>Any Type</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    * @ordered
@@ -111,8 +110,8 @@ public interface XMLTypePackage extends EPackage
   int ANY_TYPE_FEATURE_COUNT = 3;
 
   /**
-   * The meta object id for the '{@link org.eclipse.emf.ecore.xml.type.impl.ProcessingInstructionImpl <em>Processing Instruction</em>}'
-   * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The meta object id for the '{@link org.eclipse.emf.ecore.xml.type.impl.ProcessingInstructionImpl
+   * <em>Processing Instruction</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see org.eclipse.emf.ecore.xml.type.impl.ProcessingInstructionImpl
    * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getProcessingInstruction()
@@ -172,8 +171,8 @@ public interface XMLTypePackage extends EPackage
   int SIMPLE_ANY_TYPE__ANY = ANY_TYPE__ANY;
 
   /**
-   * The feature id for the '<em><b>Any Attribute</b></em>' attribute list. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * The feature id for the '<em><b>Any Attribute</b></em>' attribute list. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @generated
    * @ordered
@@ -197,8 +196,7 @@ public interface XMLTypePackage extends EPackage
   int SIMPLE_ANY_TYPE__VALUE = ANY_TYPE_FEATURE_COUNT + 1;
 
   /**
-   * The feature id for the '<em><b>Instance Type</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
+   * The feature id for the '<em><b>Instance Type</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    * @ordered
@@ -215,8 +213,8 @@ public interface XMLTypePackage extends EPackage
   int SIMPLE_ANY_TYPE_FEATURE_COUNT = ANY_TYPE_FEATURE_COUNT + 3;
 
   /**
-   * The meta object id for the '{@link org.eclipse.emf.ecore.xml.type.impl.XMLTypeDocumentRootImpl <em>Document Root</em>}'
-   * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The meta object id for the '{@link org.eclipse.emf.ecore.xml.type.impl.XMLTypeDocumentRootImpl
+   * <em>Document Root</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypeDocumentRootImpl
    * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getXMLTypeDocumentRoot()
@@ -241,8 +239,7 @@ public interface XMLTypePackage extends EPackage
   int XML_TYPE_DOCUMENT_ROOT__XMLNS_PREFIX_MAP = 1;
 
   /**
-   * The feature id for the '<em><b>XSI Schema Location</b></em>' map. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
+   * The feature id for the '<em><b>XSI Schema Location</b></em>' map. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    * @ordered
@@ -266,8 +263,8 @@ public interface XMLTypePackage extends EPackage
   int XML_TYPE_DOCUMENT_ROOT__COMMENT = 4;
 
   /**
-   * The feature id for the '<em><b>Processing Instruction</b></em>' containment reference. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The feature id for the '<em><b>Processing Instruction</b></em>' containment reference. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @generated
    * @ordered
@@ -283,8 +280,8 @@ public interface XMLTypePackage extends EPackage
   int XML_TYPE_DOCUMENT_ROOT__TEXT = 6;
 
   /**
-   * The number of structural features of the '<em>Document Root</em>' class. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * The number of structural features of the '<em>Document Root</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @generated
    * @ordered
@@ -483,8 +480,7 @@ public interface XMLTypePackage extends EPackage
   int ENTITIES_BASE = 18;
 
   /**
-   * The meta object id for the '<em>Normalized String</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
+   * The meta object id for the '<em>Normalized String</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see java.lang.String
    * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getNormalizedString()
@@ -653,8 +649,7 @@ public interface XMLTypePackage extends EPackage
   int LANGUAGE = 35;
 
   /**
-   * The meta object id for the '<em>Non Positive Integer</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
+   * The meta object id for the '<em>Non Positive Integer</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see java.math.BigInteger
    * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getNonPositiveInteger()
@@ -699,8 +694,7 @@ public interface XMLTypePackage extends EPackage
   int NMTOKENS = 42;
 
   /**
-   * The meta object id for the '<em>Non Negative Integer</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
+   * The meta object id for the '<em>Non Negative Integer</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see java.math.BigInteger
    * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getNonNegativeInteger()
@@ -762,8 +756,7 @@ public interface XMLTypePackage extends EPackage
   int UNSIGNED_INT = 57;
 
   /**
-   * The meta object id for the '<em>Unsigned Int Object</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
+   * The meta object id for the '<em>Unsigned Int Object</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see java.lang.Long
    * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getUnsignedIntObject()
@@ -780,8 +773,8 @@ public interface XMLTypePackage extends EPackage
   int UNSIGNED_SHORT = 60;
 
   /**
-   * The meta object id for the '<em>Unsigned Short Object</em>' data type. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * The meta object id for the '<em>Unsigned Short Object</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @see java.lang.Integer
    * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getUnsignedShortObject()
@@ -798,8 +791,7 @@ public interface XMLTypePackage extends EPackage
   int UNSIGNED_BYTE = 55;
 
   /**
-   * The meta object id for the '<em>Unsigned Byte Object</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
+   * The meta object id for the '<em>Unsigned Byte Object</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @see java.lang.Short
    * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getUnsignedByteObject()
@@ -818,8 +810,8 @@ public interface XMLTypePackage extends EPackage
   EClass getAnyType();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.eclipse.emf.ecore.xml.type.AnyType#getMixed <em>Mixed</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the meta object for the attribute list '{@link org.eclipse.emf.ecore.xml.type.AnyType#getMixed
+   * <em>Mixed</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the meta object for the attribute list '<em>Mixed</em>'.
    * @see org.eclipse.emf.ecore.xml.type.AnyType#getMixed()
@@ -829,8 +821,8 @@ public interface XMLTypePackage extends EPackage
   EAttribute getAnyType_Mixed();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.eclipse.emf.ecore.xml.type.AnyType#getAny <em>Any</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the meta object for the attribute list '{@link org.eclipse.emf.ecore.xml.type.AnyType#getAny <em>Any</em>}
+   * '. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the meta object for the attribute list '<em>Any</em>'.
    * @see org.eclipse.emf.ecore.xml.type.AnyType#getAny()
@@ -840,8 +832,8 @@ public interface XMLTypePackage extends EPackage
   EAttribute getAnyType_Any();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.eclipse.emf.ecore.xml.type.AnyType#getAnyAttribute <em>Any Attribute</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the meta object for the attribute list '{@link org.eclipse.emf.ecore.xml.type.AnyType#getAnyAttribute
+   * <em>Any Attribute</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the meta object for the attribute list '<em>Any Attribute</em>'.
    * @see org.eclipse.emf.ecore.xml.type.AnyType#getAnyAttribute()
@@ -851,8 +843,8 @@ public interface XMLTypePackage extends EPackage
   EAttribute getAnyType_AnyAttribute();
 
   /**
-   * Returns the meta object for class '{@link org.eclipse.emf.ecore.xml.type.ProcessingInstruction <em>Processing Instruction</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the meta object for class '{@link org.eclipse.emf.ecore.xml.type.ProcessingInstruction
+   * <em>Processing Instruction</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the meta object for class '<em>Processing Instruction</em>'.
    * @see org.eclipse.emf.ecore.xml.type.ProcessingInstruction
@@ -861,8 +853,8 @@ public interface XMLTypePackage extends EPackage
   EClass getProcessingInstruction();
 
   /**
-   * Returns the meta object for the attribute '{@link org.eclipse.emf.ecore.xml.type.ProcessingInstruction#getData <em>Data</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the meta object for the attribute '{@link org.eclipse.emf.ecore.xml.type.ProcessingInstruction#getData
+   * <em>Data</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the meta object for the attribute '<em>Data</em>'.
    * @see org.eclipse.emf.ecore.xml.type.ProcessingInstruction#getData()
@@ -872,8 +864,8 @@ public interface XMLTypePackage extends EPackage
   EAttribute getProcessingInstruction_Data();
 
   /**
-   * Returns the meta object for the attribute '{@link org.eclipse.emf.ecore.xml.type.ProcessingInstruction#getTarget <em>Target</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the meta object for the attribute '{@link org.eclipse.emf.ecore.xml.type.ProcessingInstruction#getTarget
+   * <em>Target</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the meta object for the attribute '<em>Target</em>'.
    * @see org.eclipse.emf.ecore.xml.type.ProcessingInstruction#getTarget()
@@ -893,8 +885,8 @@ public interface XMLTypePackage extends EPackage
   EClass getSimpleAnyType();
 
   /**
-   * Returns the meta object for the attribute '{@link org.eclipse.emf.ecore.xml.type.SimpleAnyType#getRawValue <em>Raw Value</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the meta object for the attribute '{@link org.eclipse.emf.ecore.xml.type.SimpleAnyType#getRawValue
+   * <em>Raw Value</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the meta object for the attribute '<em>Raw Value</em>'.
    * @see org.eclipse.emf.ecore.xml.type.SimpleAnyType#getRawValue()
@@ -904,8 +896,8 @@ public interface XMLTypePackage extends EPackage
   EAttribute getSimpleAnyType_RawValue();
 
   /**
-   * Returns the meta object for the attribute '{@link org.eclipse.emf.ecore.xml.type.SimpleAnyType#getValue <em>Value</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the meta object for the attribute '{@link org.eclipse.emf.ecore.xml.type.SimpleAnyType#getValue
+   * <em>Value</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the meta object for the attribute '<em>Value</em>'.
    * @see org.eclipse.emf.ecore.xml.type.SimpleAnyType#getValue()
@@ -915,8 +907,8 @@ public interface XMLTypePackage extends EPackage
   EAttribute getSimpleAnyType_Value();
 
   /**
-   * Returns the meta object for the reference '{@link org.eclipse.emf.ecore.xml.type.SimpleAnyType#getInstanceType <em>Instance Type</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the meta object for the reference '{@link org.eclipse.emf.ecore.xml.type.SimpleAnyType#getInstanceType
+   * <em>Instance Type</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the meta object for the reference '<em>Instance Type</em>'.
    * @see org.eclipse.emf.ecore.xml.type.SimpleAnyType#getInstanceType()
@@ -926,8 +918,8 @@ public interface XMLTypePackage extends EPackage
   EReference getSimpleAnyType_InstanceType();
 
   /**
-   * Returns the meta object for class '{@link org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot <em>Document Root</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the meta object for class '{@link org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot
+   * <em>Document Root</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the meta object for class '<em>Document Root</em>'.
    * @see org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot
@@ -936,8 +928,8 @@ public interface XMLTypePackage extends EPackage
   EClass getXMLTypeDocumentRoot();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot#getMixed <em>Mixed</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the meta object for the attribute list '{@link org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot#getMixed
+   * <em>Mixed</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the meta object for the attribute list '<em>Mixed</em>'.
    * @see org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot#getMixed()
@@ -947,8 +939,8 @@ public interface XMLTypePackage extends EPackage
   EAttribute getXMLTypeDocumentRoot_Mixed();
 
   /**
-   * Returns the meta object for the map '{@link org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the meta object for the map '{@link org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot#getXMLNSPrefixMap
+   * <em>XMLNS Prefix Map</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the meta object for the map '<em>XMLNS Prefix Map</em>'.
    * @see org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot#getXMLNSPrefixMap()
@@ -958,8 +950,9 @@ public interface XMLTypePackage extends EPackage
   EReference getXMLTypeDocumentRoot_XMLNSPrefixMap();
 
   /**
-   * Returns the meta object for the map '{@link org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot#getXSISchemaLocation <em>XSI Schema Location</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the meta object for the map '
+   * {@link org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot#getXSISchemaLocation <em>XSI Schema Location</em>}'. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the meta object for the map '<em>XSI Schema Location</em>'.
    * @see org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot#getXSISchemaLocation()
@@ -969,8 +962,8 @@ public interface XMLTypePackage extends EPackage
   EReference getXMLTypeDocumentRoot_XSISchemaLocation();
 
   /**
-   * Returns the meta object for the attribute '{@link org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot <em>CDATA</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the meta object for the attribute '{@link org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot
+   * <em>CDATA</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the meta object for the attribute '<em>CDATA</em>'.
    * @see org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot
@@ -980,8 +973,8 @@ public interface XMLTypePackage extends EPackage
   EAttribute getXMLTypeDocumentRoot_CDATA();
 
   /**
-   * Returns the meta object for the attribute '{@link org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot <em>Comment</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the meta object for the attribute '{@link org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot
+   * <em>Comment</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the meta object for the attribute '<em>Comment</em>'.
    * @see org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot
@@ -991,8 +984,8 @@ public interface XMLTypePackage extends EPackage
   EAttribute getXMLTypeDocumentRoot_Comment();
 
   /**
-   * Returns the meta object for the attribute '{@link org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot <em>Text</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the meta object for the attribute '{@link org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot <em>Text</em>}
+   * '. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the meta object for the attribute '<em>Text</em>'.
    * @see org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot
@@ -1002,8 +995,8 @@ public interface XMLTypePackage extends EPackage
   EAttribute getXMLTypeDocumentRoot_Text();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot <em>Processing Instruction</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the meta object for the containment reference '{@link org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot
+   * <em>Processing Instruction</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the meta object for the containment reference '<em>Processing Instruction</em>'.
    * @see org.eclipse.emf.ecore.xml.type.XMLTypeDocumentRoot
@@ -1013,8 +1006,8 @@ public interface XMLTypePackage extends EPackage
   EReference getXMLTypeDocumentRoot_ProcessingInstruction();
 
   /**
-   * Returns the meta object for data type '{@link java.lang.Object <em>Any Simple Type</em>}'. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns the meta object for data type '{@link java.lang.Object <em>Any Simple Type</em>}'. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @return the meta object for data type '<em>Any Simple Type</em>'.
    * @see java.lang.Object
@@ -1053,8 +1046,8 @@ public interface XMLTypePackage extends EPackage
   EDataType getBoolean();
 
   /**
-   * Returns the meta object for data type '{@link java.lang.Boolean <em>Boolean Object</em>}'. <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * Returns the meta object for data type '{@link java.lang.Boolean <em>Boolean Object</em>}'. <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @return the meta object for data type '<em>Boolean Object</em>'.
    * @see java.lang.Boolean
@@ -1064,8 +1057,8 @@ public interface XMLTypePackage extends EPackage
   EDataType getBooleanObject();
 
   /**
-   * Returns the meta object for data type '{@link java.math.BigDecimal <em>Decimal</em>}'. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the meta object for data type '{@link java.math.BigDecimal <em>Decimal</em>}'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @return the meta object for data type '<em>Decimal</em>'.
    * @see java.math.BigDecimal
@@ -1075,8 +1068,8 @@ public interface XMLTypePackage extends EPackage
   EDataType getDecimal();
 
   /**
-   * Returns the meta object for data type '{@link java.math.BigInteger <em>Integer</em>}'. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the meta object for data type '{@link java.math.BigInteger <em>Integer</em>}'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @return the meta object for data type '<em>Integer</em>'.
    * @see java.math.BigInteger
@@ -1086,8 +1079,8 @@ public interface XMLTypePackage extends EPackage
   EDataType getInteger();
 
   /**
-   * Returns the meta object for data type '{@link java.lang.Integer <em>Int Object</em>}'. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the meta object for data type '{@link java.lang.Integer <em>Int Object</em>}'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @return the meta object for data type '<em>Int Object</em>'.
    * @see java.lang.Integer
@@ -1135,8 +1128,8 @@ public interface XMLTypePackage extends EPackage
   EDataType getShort();
 
   /**
-   * Returns the meta object for data type '{@link java.lang.Short <em>Short Object</em>}'. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the meta object for data type '{@link java.lang.Short <em>Short Object</em>}'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @return the meta object for data type '<em>Short Object</em>'.
    * @see java.lang.Short
@@ -1220,8 +1213,8 @@ public interface XMLTypePackage extends EPackage
   EDataType getDoubleObject();
 
   /**
-   * Returns the meta object for data type '{@link javax.xml.datatype.Duration <em>Duration</em>}'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns the meta object for data type '{@link javax.xml.datatype.Duration <em>Duration</em>}'. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @return the meta object for data type '<em>Duration</em>'.
    * @see javax.xml.datatype.Duration
@@ -1231,8 +1224,8 @@ public interface XMLTypePackage extends EPackage
   EDataType getDuration();
 
   /**
-   * Returns the meta object for data type '{@link java.util.List <em>ENTITIES Base</em>}'. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the meta object for data type '{@link java.util.List <em>ENTITIES Base</em>}'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @return the meta object for data type '<em>ENTITIES Base</em>'.
    * @see java.util.List
@@ -1320,8 +1313,8 @@ public interface XMLTypePackage extends EPackage
   EDataType getFloat();
 
   /**
-   * Returns the meta object for data type '{@link java.lang.Float <em>Float Object</em>}'. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the meta object for data type '{@link java.lang.Float <em>Float Object</em>}'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @return the meta object for data type '<em>Float Object</em>'.
    * @see java.lang.Float
@@ -1378,8 +1371,8 @@ public interface XMLTypePackage extends EPackage
   EDataType getGYear();
 
   /**
-   * Returns the meta object for data type '{@link javax.xml.datatype.XMLGregorianCalendar <em>GYear Month</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the meta object for data type '{@link javax.xml.datatype.XMLGregorianCalendar <em>GYear Month</em>}'. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @return the meta object for data type '<em>GYear Month</em>'.
    * @see javax.xml.datatype.XMLGregorianCalendar
@@ -1467,8 +1460,8 @@ public interface XMLTypePackage extends EPackage
   EDataType getNonPositiveInteger();
 
   /**
-   * Returns the meta object for data type '{@link java.math.BigInteger <em>Negative Integer</em>}'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns the meta object for data type '{@link java.math.BigInteger <em>Negative Integer</em>}'. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @return the meta object for data type '<em>Negative Integer</em>'.
    * @see java.math.BigInteger
@@ -1490,8 +1483,8 @@ public interface XMLTypePackage extends EPackage
   EDataType getNMTOKEN();
 
   /**
-   * Returns the meta object for data type '{@link java.util.List <em>NMTOKENS Base</em>}'. <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * Returns the meta object for data type '{@link java.util.List <em>NMTOKENS Base</em>}'. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * 
    * @return the meta object for data type '<em>NMTOKENS Base</em>'.
    * @see java.util.List
@@ -1535,8 +1528,8 @@ public interface XMLTypePackage extends EPackage
   EDataType getNOTATION();
 
   /**
-   * Returns the meta object for data type '{@link java.math.BigInteger <em>Positive Integer</em>}'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns the meta object for data type '{@link java.math.BigInteger <em>Positive Integer</em>}'. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @return the meta object for data type '<em>Positive Integer</em>'.
    * @see java.math.BigInteger
@@ -1630,8 +1623,8 @@ public interface XMLTypePackage extends EPackage
   EDataType getUnsignedByte();
 
   /**
-   * Returns the meta object for data type '{@link java.lang.Short <em>Unsigned Byte Object</em>}'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
+   * Returns the meta object for data type '{@link java.lang.Short <em>Unsigned Byte Object</em>}'. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * 
    * @return the meta object for data type '<em>Unsigned Byte Object</em>'.
    * @see java.lang.Short
@@ -1689,16 +1682,16 @@ public interface XMLTypePackage extends EPackage
     EAttribute ANY_TYPE__ANY = eINSTANCE.getAnyType_Any();
 
     /**
-     * The meta object literal for the '<em><b>Any Attribute</b></em>' attribute list feature. <!-- begin-user-doc
-     * --> <!-- end-user-doc -->
+     * The meta object literal for the '<em><b>Any Attribute</b></em>' attribute list feature. <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * 
      * @generated
      */
     EAttribute ANY_TYPE__ANY_ATTRIBUTE = eINSTANCE.getAnyType_AnyAttribute();
 
     /**
-     * The meta object literal for the '{@link org.eclipse.emf.ecore.xml.type.impl.ProcessingInstructionImpl <em>Processing Instruction</em>}'
-     * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * The meta object literal for the '{@link org.eclipse.emf.ecore.xml.type.impl.ProcessingInstructionImpl
+     * <em>Processing Instruction</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @see org.eclipse.emf.ecore.xml.type.impl.ProcessingInstructionImpl
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getProcessingInstruction()
@@ -1723,8 +1716,8 @@ public interface XMLTypePackage extends EPackage
     EAttribute PROCESSING_INSTRUCTION__TARGET = eINSTANCE.getProcessingInstruction_Target();
 
     /**
-     * The meta object literal for the '{@link org.eclipse.emf.ecore.xml.type.impl.SimpleAnyTypeImpl <em>Simple Any Type</em>}'
-     * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * The meta object literal for the '{@link org.eclipse.emf.ecore.xml.type.impl.SimpleAnyTypeImpl
+     * <em>Simple Any Type</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @see org.eclipse.emf.ecore.xml.type.impl.SimpleAnyTypeImpl
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getSimpleAnyType()
@@ -1749,16 +1742,16 @@ public interface XMLTypePackage extends EPackage
     EAttribute SIMPLE_ANY_TYPE__VALUE = eINSTANCE.getSimpleAnyType_Value();
 
     /**
-     * The meta object literal for the '<em><b>Instance Type</b></em>' reference feature. <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * The meta object literal for the '<em><b>Instance Type</b></em>' reference feature. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
      * 
      * @generated
      */
     EReference SIMPLE_ANY_TYPE__INSTANCE_TYPE = eINSTANCE.getSimpleAnyType_InstanceType();
 
     /**
-     * The meta object literal for the '{@link org.eclipse.emf.ecore.xml.type.impl.XMLTypeDocumentRootImpl <em>Document Root</em>}'
-     * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * The meta object literal for the '{@link org.eclipse.emf.ecore.xml.type.impl.XMLTypeDocumentRootImpl
+     * <em>Document Root</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypeDocumentRootImpl
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getXMLTypeDocumentRoot()
@@ -1783,8 +1776,8 @@ public interface XMLTypePackage extends EPackage
     EReference XML_TYPE_DOCUMENT_ROOT__XMLNS_PREFIX_MAP = eINSTANCE.getXMLTypeDocumentRoot_XMLNSPrefixMap();
 
     /**
-     * The meta object literal for the '<em><b>XSI Schema Location</b></em>' map feature. <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * The meta object literal for the '<em><b>XSI Schema Location</b></em>' map feature. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
      * 
      * @generated
      */
@@ -1824,8 +1817,8 @@ public interface XMLTypePackage extends EPackage
         .getXMLTypeDocumentRoot_ProcessingInstruction();
 
     /**
-     * The meta object literal for the '<em>Any Simple Type</em>' data type. <!-- begin-user-doc --> <!--
-     * end-user-doc -->
+     * The meta object literal for the '<em>Any Simple Type</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
+     * -->
      * 
      * @see java.lang.Object
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getAnySimpleType()
@@ -1843,8 +1836,7 @@ public interface XMLTypePackage extends EPackage
     EDataType ANY_URI = eINSTANCE.getAnyURI();
 
     /**
-     * The meta object literal for the '<em>Base64 Binary</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
+     * The meta object literal for the '<em>Base64 Binary</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getBase64Binary()
      * @generated
@@ -1860,8 +1852,8 @@ public interface XMLTypePackage extends EPackage
     EDataType BOOLEAN = eINSTANCE.getBoolean();
 
     /**
-     * The meta object literal for the '<em>Boolean Object</em>' data type. <!-- begin-user-doc --> <!--
-     * end-user-doc -->
+     * The meta object literal for the '<em>Boolean Object</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
+     * -->
      * 
      * @see java.lang.Boolean
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getBooleanObject()
@@ -1878,8 +1870,7 @@ public interface XMLTypePackage extends EPackage
     EDataType BYTE = eINSTANCE.getByte();
 
     /**
-     * The meta object literal for the '<em>Byte Object</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
+     * The meta object literal for the '<em>Byte Object</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @see java.lang.Byte
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getByteObject()
@@ -1923,8 +1914,7 @@ public interface XMLTypePackage extends EPackage
     EDataType DOUBLE = eINSTANCE.getDouble();
 
     /**
-     * The meta object literal for the '<em>Double Object</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
+     * The meta object literal for the '<em>Double Object</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @see java.lang.Double
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getDoubleObject()
@@ -1951,8 +1941,7 @@ public interface XMLTypePackage extends EPackage
     EDataType ENTITIES = eINSTANCE.getENTITIES();
 
     /**
-     * The meta object literal for the '<em>ENTITIES Base</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
+     * The meta object literal for the '<em>ENTITIES Base</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @see java.util.List
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getENTITIESBase()
@@ -1978,8 +1967,7 @@ public interface XMLTypePackage extends EPackage
     EDataType FLOAT = eINSTANCE.getFloat();
 
     /**
-     * The meta object literal for the '<em>Float Object</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
+     * The meta object literal for the '<em>Float Object</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @see java.lang.Float
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getFloatObject()
@@ -2006,8 +1994,7 @@ public interface XMLTypePackage extends EPackage
     EDataType GMONTH = eINSTANCE.getGMonth();
 
     /**
-     * The meta object literal for the '<em>GMonth Day</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
+     * The meta object literal for the '<em>GMonth Day</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @see javax.xml.datatype.XMLGregorianCalendar
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getGMonthDay()
@@ -2025,8 +2012,7 @@ public interface XMLTypePackage extends EPackage
     EDataType GYEAR = eINSTANCE.getGYear();
 
     /**
-     * The meta object literal for the '<em>GYear Month</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
+     * The meta object literal for the '<em>GYear Month</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @see javax.xml.datatype.XMLGregorianCalendar
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getGYearMonth()
@@ -2035,8 +2021,7 @@ public interface XMLTypePackage extends EPackage
     EDataType GYEAR_MONTH = eINSTANCE.getGYearMonth();
 
     /**
-     * The meta object literal for the '<em>Hex Binary</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
+     * The meta object literal for the '<em>Hex Binary</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getHexBinary()
      * @generated
@@ -2071,8 +2056,7 @@ public interface XMLTypePackage extends EPackage
     EDataType IDREFS = eINSTANCE.getIDREFS();
 
     /**
-     * The meta object literal for the '<em>IDREFS Base</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
+     * The meta object literal for the '<em>IDREFS Base</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @see java.util.List
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getIDREFSBase()
@@ -2098,8 +2082,7 @@ public interface XMLTypePackage extends EPackage
     EDataType INTEGER = eINSTANCE.getInteger();
 
     /**
-     * The meta object literal for the '<em>Int Object</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
+     * The meta object literal for the '<em>Int Object</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @see java.lang.Integer
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getIntObject()
@@ -2125,8 +2108,7 @@ public interface XMLTypePackage extends EPackage
     EDataType LONG = eINSTANCE.getLong();
 
     /**
-     * The meta object literal for the '<em>Long Object</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
+     * The meta object literal for the '<em>Long Object</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @see java.lang.Long
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getLongObject()
@@ -2153,8 +2135,8 @@ public interface XMLTypePackage extends EPackage
     EDataType NC_NAME = eINSTANCE.getNCName();
 
     /**
-     * The meta object literal for the '<em>Negative Integer</em>' data type. <!-- begin-user-doc --> <!--
-     * end-user-doc -->
+     * The meta object literal for the '<em>Negative Integer</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
+     * -->
      * 
      * @see java.math.BigInteger
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getNegativeInteger()
@@ -2181,8 +2163,7 @@ public interface XMLTypePackage extends EPackage
     EDataType NMTOKENS = eINSTANCE.getNMTOKENS();
 
     /**
-     * The meta object literal for the '<em>NMTOKENS Base</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
+     * The meta object literal for the '<em>NMTOKENS Base</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @see java.util.List
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getNMTOKENSBase()
@@ -2211,8 +2192,8 @@ public interface XMLTypePackage extends EPackage
     EDataType NON_POSITIVE_INTEGER = eINSTANCE.getNonPositiveInteger();
 
     /**
-     * The meta object literal for the '<em>Normalized String</em>' data type. <!-- begin-user-doc --> <!--
-     * end-user-doc -->
+     * The meta object literal for the '<em>Normalized String</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
+     * -->
      * 
      * @see java.lang.String
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getNormalizedString()
@@ -2230,8 +2211,8 @@ public interface XMLTypePackage extends EPackage
     EDataType NOTATION = eINSTANCE.getNOTATION();
 
     /**
-     * The meta object literal for the '<em>Positive Integer</em>' data type. <!-- begin-user-doc --> <!--
-     * end-user-doc -->
+     * The meta object literal for the '<em>Positive Integer</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
+     * -->
      * 
      * @see java.math.BigInteger
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getPositiveInteger()
@@ -2257,8 +2238,7 @@ public interface XMLTypePackage extends EPackage
     EDataType SHORT = eINSTANCE.getShort();
 
     /**
-     * The meta object literal for the '<em>Short Object</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
+     * The meta object literal for the '<em>Short Object</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @see java.lang.Short
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getShortObject()
@@ -2294,8 +2274,7 @@ public interface XMLTypePackage extends EPackage
     EDataType TOKEN = eINSTANCE.getToken();
 
     /**
-     * The meta object literal for the '<em>Unsigned Byte</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
+     * The meta object literal for the '<em>Unsigned Byte</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getUnsignedByte()
      * @generated
@@ -2313,8 +2292,7 @@ public interface XMLTypePackage extends EPackage
     EDataType UNSIGNED_BYTE_OBJECT = eINSTANCE.getUnsignedByteObject();
 
     /**
-     * The meta object literal for the '<em>Unsigned Int</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
+     * The meta object literal for the '<em>Unsigned Int</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getUnsignedInt()
      * @generated
@@ -2332,8 +2310,7 @@ public interface XMLTypePackage extends EPackage
     EDataType UNSIGNED_INT_OBJECT = eINSTANCE.getUnsignedIntObject();
 
     /**
-     * The meta object literal for the '<em>Unsigned Long</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
+     * The meta object literal for the '<em>Unsigned Long</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @see java.math.BigInteger
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getUnsignedLong()
@@ -2342,8 +2319,8 @@ public interface XMLTypePackage extends EPackage
     EDataType UNSIGNED_LONG = eINSTANCE.getUnsignedLong();
 
     /**
-     * The meta object literal for the '<em>Unsigned Short</em>' data type. <!-- begin-user-doc --> <!--
-     * end-user-doc -->
+     * The meta object literal for the '<em>Unsigned Short</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
+     * -->
      * 
      * @see org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl#getUnsignedShort()
      * @generated

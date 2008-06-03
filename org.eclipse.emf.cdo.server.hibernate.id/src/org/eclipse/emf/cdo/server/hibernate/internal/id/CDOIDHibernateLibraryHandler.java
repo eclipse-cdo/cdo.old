@@ -1,7 +1,7 @@
 package org.eclipse.emf.cdo.server.hibernate.internal.id;
 
-import org.eclipse.emf.cdo.internal.protocol.id.CDOIDLibraryDescriptorImpl;
-import org.eclipse.emf.cdo.protocol.id.CDOIDLibraryProvider;
+import org.eclipse.emf.cdo.common.id.CDOIDLibraryProvider;
+import org.eclipse.emf.cdo.spi.common.CDOIDLibraryDescriptorImpl;
 
 import org.eclipse.net4j.util.io.IOUtil;
 

@@ -30,8 +30,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import java.util.Collection;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>EEnum Literal</b></em>'. <!-- end-user-doc
- * -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>EEnum Literal</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -47,8 +46,8 @@ import java.util.Collection;
 public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
 {
   /**
-   * The default value of the '{@link #getValue() <em>Value</em>}' attribute. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
    * 
    * @see #getValue()
    * @generated

@@ -412,8 +412,8 @@ public class EcoreUtil
 
   /**
    * A mapping building traverser of a collection of {@link EObject#eAllContents content trees}; the map is from
-   * {@link EObject} to <code>EObject</code>, i.e., from original to copy; use {@link EcoreUtil#copy EcoreUtil.copy}
-   * or {@link EcoreUtil#copyAll EcoreUtil.copyAll} to do routine copies. Since this implementation extends a Map
+   * {@link EObject} to <code>EObject</code>, i.e., from original to copy; use {@link EcoreUtil#copy EcoreUtil.copy} or
+   * {@link EcoreUtil#copyAll EcoreUtil.copyAll} to do routine copies. Since this implementation extends a Map
    * implementation, it acts as the result of the over all copy. The client can call {@link #copy copy} and
    * {@link #copyAll copyAll} repeatedly. When all the objects have been copied, the client should call
    * {@link #copyReferences copyReferences} to copy the {@link #copyReference appropriate}
@@ -1352,8 +1352,8 @@ public class EcoreUtil
 
     /**
      * The most recently created iterator over a resource set's resources. This iterator needs special handling because
-     * it returns <code>true</code> for <code>hasNext()</code> even when the list is exhausted. This ensures that
-     * any growth in the resources list will not be overlooked.
+     * it returns <code>true</code> for <code>hasNext()</code> even when the list is exhausted. This ensures that any
+     * growth in the resources list will not be overlooked.
      */
     protected ResourcesIterator resourceSetIterator;
 
@@ -2070,8 +2070,8 @@ public class EcoreUtil
   /**
    * An iterator over {@link EStructuralFeature.Setting settings} that filters out the ones that aren't of interest. If
    * an {@link EReference} is specified, the iterator will only yield settings with that as their
-   * {@link EStructuralFeature.Setting#getEStructuralFeature() feature}. If an {@link EClass} is specified, the
-   * iterator will only yield settings with an {@link EStructuralFeature.Setting#getEObject() object} of that type.
+   * {@link EStructuralFeature.Setting#getEStructuralFeature() feature}. If an {@link EClass} is specified, the iterator
+   * will only yield settings with an {@link EStructuralFeature.Setting#getEObject() object} of that type.
    */
   public static class FilteredSettingsIterator implements Iterator<EStructuralFeature.Setting>
   {
@@ -2218,23 +2218,22 @@ public class EcoreUtil
   /**
    * <p>
    * A helper for determining whether two {@link EObject}s are <em>structurally equal</em>. Two EObjects,
-   * <code>eObject1</code> and <code>eObject2</code>, are structurally equal if their
-   * {@link EObject#eClass() classes} are the same, and if, for each {@link EStructuralFeature#isDerived non-derived}
-   * {@link EStructuralFeature feature} of the class, the {@link EObject#eIsSet(EStructuralFeature) isSet} states are
-   * the same and the corresponding {@link EObject#eGet(EStructuralFeature) values} are structurally equal as
-   * appropriate for the type of feature. For {@link FeatureMapUtil#isFeatureMap(EStructuralFeature) feature map}
-   * features, the {@link FeatureMap.Entry entries} at corresponding positions must have the same
-   * {@link FeatureMap.Entry#getEStructuralFeature() entry feature}s and must have structurally equal
-   * {@link FeatureMap.Entry#getValue() value}s as appropriate for the type of entry's feature. For
-   * {@link EReference reference} features, the corresponding values must recursively be structurally equal according to
-   * this definition. For {@link EAttribute attribute} features, the corresponding values must be equal according to
-   * Java equality. Note that container references are derived and hence are ignored.
+   * <code>eObject1</code> and <code>eObject2</code>, are structurally equal if their {@link EObject#eClass() classes}
+   * are the same, and if, for each {@link EStructuralFeature#isDerived non-derived} {@link EStructuralFeature feature}
+   * of the class, the {@link EObject#eIsSet(EStructuralFeature) isSet} states are the same and the corresponding
+   * {@link EObject#eGet(EStructuralFeature) values} are structurally equal as appropriate for the type of feature. For
+   * {@link FeatureMapUtil#isFeatureMap(EStructuralFeature) feature map} features, the {@link FeatureMap.Entry entries}
+   * at corresponding positions must have the same {@link FeatureMap.Entry#getEStructuralFeature() entry feature}s and
+   * must have structurally equal {@link FeatureMap.Entry#getValue() value}s as appropriate for the type of entry's
+   * feature. For {@link EReference reference} features, the corresponding values must recursively be structurally equal
+   * according to this definition. For {@link EAttribute attribute} features, the corresponding values must be equal
+   * according to Java equality. Note that container references are derived and hence are ignored.
    * </p>
    * <p>
-   * During the recursive process of determining {@link EcoreUtil#equals(EObject,EObject) equality}, the helper
-   * instance is populated as a two way map such that a given <code>eObject1</code> is considered to be equal to at
-   * most one other <code>eObject2</code>, i.e., <code>get(eObject1) == eObject2 && get(eObject2) == eObject1</code>.
-   * While their features are being compared, the two objects are assumed to be equal:
+   * During the recursive process of determining {@link EcoreUtil#equals(EObject,EObject) equality}, the helper instance
+   * is populated as a two way map such that a given <code>eObject1</code> is considered to be equal to at most one
+   * other <code>eObject2</code>, i.e., <code>get(eObject1) == eObject2 && get(eObject2) == eObject1</code>. While their
+   * features are being compared, the two objects are assumed to be equal:
    * 
    * <pre>
    * put(eObject1, eObject2);
@@ -2254,8 +2253,8 @@ public class EcoreUtil
     private static final long serialVersionUID = 1L;
 
     /**
-     * Returns whether <code>eObject1</code> and <code>eObject2</code> are {@link EqualityHelper equal} in the
-     * context of this helper instance.
+     * Returns whether <code>eObject1</code> and <code>eObject2</code> are {@link EqualityHelper equal} in the context
+     * of this helper instance.
      * 
      * @return whether <code>eObject1</code> and <code>eObject2</code> are equal.
      * @since 2.1.0
@@ -2374,9 +2373,8 @@ public class EcoreUtil
     }
 
     /**
-     * Returns whether the two objects have {@link EqualityHelper equal}
-     * {@link EObject#eIsSet(EStructuralFeature) isSet} states and {@link EObject#eGet(EStructuralFeature) value}s for
-     * the feature.
+     * Returns whether the two objects have {@link EqualityHelper equal} {@link EObject#eIsSet(EStructuralFeature)
+     * isSet} states and {@link EObject#eGet(EStructuralFeature) value}s for the feature.
      * 
      * @return whether the two objects have equal isSet states and values for the feature.
      * @since 2.2.0
@@ -3114,13 +3112,14 @@ public class EcoreUtil
   /**
    * Searches for the first occurrence of the given argument in list starting from a specified index. The equality is
    * tested using the operator <tt>==<tt> and
-   * the <tt>equals</tt> method. 
+   * the <tt>equals</tt> method.
+   * 
    * @param list
-   * @param o an object (can be null)
-   * @param fromIndex 
-   * @return the index of the first occurrence of the argument in this
-   *         list (where index>=fromIndex); returns <tt>-1</tt> if the 
-   * 				 object is not found.
+   * @param o
+   *          an object (can be null)
+   * @param fromIndex
+   * @return the index of the first occurrence of the argument in this list (where index>=fromIndex); returns
+   *         <tt>-1</tt> if the object is not found.
    * @deprecated replaced by {@link ECollections#indexOf(List, Object, int)} in 2.1.0
    */
   @Deprecated
@@ -3130,10 +3129,10 @@ public class EcoreUtil
   }
 
   /**
-   * Sets the <code>eList</code>'s contents and order to be exactly that of the <code>prototype</code> collection.
-   * This implementation minimizes the number of notifications the operation will produce. Objects already in the list
-   * will be moved, missing objects will be added, and extra objects will be removed. If <code>eList</code>'s
-   * contents and order are already exactly that of the <code>prototype</code> collection, no change will be made.
+   * Sets the <code>eList</code>'s contents and order to be exactly that of the <code>prototype</code> collection. This
+   * implementation minimizes the number of notifications the operation will produce. Objects already in the list will
+   * be moved, missing objects will be added, and extra objects will be removed. If <code>eList</code>'s contents and
+   * order are already exactly that of the <code>prototype</code> collection, no change will be made.
    * 
    * @param eList
    *          the list to set.
@@ -3258,8 +3257,8 @@ public class EcoreUtil
   }
 
   /**
-   * Removes the object from its {@link EObject#eResource containing} resource and/or its
-   * {@link EObject#eContainer containing} object.
+   * Removes the object from its {@link EObject#eResource containing} resource and/or its {@link EObject#eContainer
+   * containing} object.
    * 
    * @param eObject
    *          the object to remove.
@@ -3289,8 +3288,8 @@ public class EcoreUtil
   }
 
   /**
-   * Replace the object in its {@link EObject#eResource containing} resource and/or its
-   * {@link EObject#eContainer containing} object, with the replacement object.
+   * Replace the object in its {@link EObject#eResource containing} resource and/or its {@link EObject#eContainer
+   * containing} object, with the replacement object.
    * 
    * @param eObject
    *          the object to replace.
@@ -3325,9 +3324,9 @@ public class EcoreUtil
   }
 
   /**
-   * Deletes the object from its {@link EObject#eResource containing} resource and/or its
-   * {@link EObject#eContainer containing} object as well as from any other feature that references it within the
-   * enclosing resource set, resource, or root object.
+   * Deletes the object from its {@link EObject#eResource containing} resource and/or its {@link EObject#eContainer
+   * containing} object as well as from any other feature that references it within the enclosing resource set,
+   * resource, or root object.
    * 
    * @param eObject
    *          the object to delete.
@@ -4150,7 +4149,7 @@ public class EcoreUtil
   /*
    * static { System.err.println("UUID"); for (int loop = 0; loop < 5; ++loop) { long before =
    * System.currentTimeMillis(); long count = 500000; for (int i = 0; i < count; ++i) { generateUUID(); } long after =
-   * System.currentTimeMillis(); System.err.println("Elapsed " + (after - before)); System.err.println("Time " + 1000 *
+   * System.currentTimeMillis(); System.err.println("Elapsed " + (after - before)); System.err.println("Time " + 1000
    * ((float)(after - before))/((float)count)); } final EPackage ecorePackage =
    * EPackage.Registry.INSTANCE.getEPackage("ecore.xmi"); final Resource ecorePackageResource =
    * ecorePackage.eResource(); final EPackage genModelPackage = EPackage.Registry.INSTANCE.getEPackage("genmodel.xmi");
@@ -4173,16 +4172,17 @@ public class EcoreUtil
    * resourceSet.getResources().add(genModelPackageResource); // Search the whole resource set. // Collection result =
    * new UsageCrossReferencer(resourceSet).findUsage(objectOfInterest); for (Iterator i = result.iterator();
    * i.hasNext(); ) { // Show the settings that reference the objectOfInterest. // EStructuralFeature.Setting setting =
-   * (EStructuralFeature.Setting)i.next(); EObject eObject = setting.getEObject(); EStructuralFeature eStructuralFeature =
-   * (EStructuralFeature)setting.getEStructuralFeature(); System.err.println ("> " +
+   * (EStructuralFeature.Setting)i.next(); EObject eObject = setting.getEObject(); EStructuralFeature eStructuralFeature
+   * = (EStructuralFeature)setting.getEStructuralFeature(); System.err.println ("> " +
    * eStructuralFeature.getEContainingClass().getName() + "." + eStructuralFeature.getName() + " <- " +
    * getIdentification(eObject)); } // Cleanup. // resourceSet.getResources().clear(); } List list =
    * org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEReference().getEAllStructuralFeatures(); { Object object =
    * org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEReference_EReferenceType(); for (int i = 0; i < 100; ++i) {
    * list.indexOf(object); } long before = System.currentTimeMillis(); for (int i = 0; i < 500000; ++i) {
-   * list.indexOf(object); } long after = System.currentTimeMillis(); System.err.println("Elapsed " + (after - before)); } {
-   * Object object = org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getENamedElement_Name(); for (int i = 0; i < 100; ++i) {
-   * list.indexOf(object); } long before = System.currentTimeMillis(); for (int i = 0; i < 500000; ++i) {
-   * list.indexOf(object); } long after = System.currentTimeMillis(); System.err.println("Elapsed " + (after - before)); } }
+   * list.indexOf(object); } long after = System.currentTimeMillis(); System.err.println("Elapsed " + (after - before));
+   * } { Object object = org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getENamedElement_Name(); for (int i = 0; i < 100;
+   * ++i) { list.indexOf(object); } long before = System.currentTimeMillis(); for (int i = 0; i < 500000; ++i) {
+   * list.indexOf(object); } long after = System.currentTimeMillis(); System.err.println("Elapsed " + (after - before));
+   * } }
    */
 }

@@ -37,16 +37,15 @@ import java.util.Map;
  * {@link #getResourceSet contained} by a resource set, along with related resources. It has a {@link #getURI URI}
  * representing it's identity and that URI is {@link org.eclipse.emf.ecore.resource.URIConverter used} to determine
  * where to {@link #save(Map) save} and {@link #load(Map) load}. It provides modeled {@link #getContents contents}, in
- * fact, it provides even the {@link #getAllContents tree} of modeled contents, as well as
- * {@link Diagnostic diagnostics} for {@link #getErrors errors} and {@link #getWarnings other} problems. It may be
- * {@link #unload unloaded} to discard the contents and the load state can be {@link #isLoaded queried}.
- * {@link #isModified Modification} can be {@link #isTrackingModification tracked}, but it's expensive. The resource
- * will be informed as objects are {@link Resource.Internal#attached attached} and
- * {@link Resource.Internal#detached detached}; if needed, it will be able to maintain a map to support
- * {@link #getEObject getEObject}. Structured URI {@link #getURIFragment fragments} are used rather than IDs, since
- * they are a more general alternative. Clients must extend the default
- * {@link org.eclipse.emf.ecore.resource.impl.ResourceImpl implementation}, or one of its derived classes, since
- * methods can and will be added to this API.
+ * fact, it provides even the {@link #getAllContents tree} of modeled contents, as well as {@link Diagnostic
+ * diagnostics} for {@link #getErrors errors} and {@link #getWarnings other} problems. It may be {@link #unload
+ * unloaded} to discard the contents and the load state can be {@link #isLoaded queried}. {@link #isModified
+ * Modification} can be {@link #isTrackingModification tracked}, but it's expensive. The resource will be informed as
+ * objects are {@link Resource.Internal#attached attached} and {@link Resource.Internal#detached detached}; if needed,
+ * it will be able to maintain a map to support {@link #getEObject getEObject}. Structured URI {@link #getURIFragment
+ * fragments} are used rather than IDs, since they are a more general alternative. Clients must extend the default
+ * {@link org.eclipse.emf.ecore.resource.impl.ResourceImpl implementation}, or one of its derived classes, since methods
+ * can and will be added to this API.
  * </p>
  * <p>
  * A resource produces notification for changes to the value of each of these features:
@@ -146,8 +145,7 @@ public interface Resource extends Notifier
   /**
    * Returns the containing resource set. A resource is contained by a resource set if it appears in the
    * {@link ResourceSet#getResources resources}, i.e., the contents, of that resource set. This reference can only be
-   * modified by altering the contents of the resource set directly.
-   * </p>
+   * modified by altering the contents of the resource set directly. </p>
    * 
    * @return the containing resource set, or <code>null</code> if there isn't one.
    * @see EObject#eContainer
@@ -182,8 +180,8 @@ public interface Resource extends Notifier
    * <p>
    * The contents may be directly modified. Removing an object will have the same effect as
    * {@link org.eclipse.emf.ecore.util.EcoreUtil#remove(EObject) EcoreUtil.remove(EObject)}. Adding an object will
-   * remove it from the previous container; it's {@link EObject#eContainer container} will be <code>null</code> and
-   * it's {@link EObject#eResource resource} will the <code>this</code>.
+   * remove it from the previous container; it's {@link EObject#eContainer container} will be <code>null</code> and it's
+   * {@link EObject#eResource resource} will the <code>this</code>.
    * </p>
    * 
    * @return the direct content objects.
@@ -317,9 +315,8 @@ public interface Resource extends Notifier
    * Returns whether modification tracking is enabled.
    * <p>
    * If modification tracking is enabled, each object of the resource must be adapted in order to listen for changes.
-   * This will make the processing of {@link Resource.Internal#attached attached} and
-   * {@link Resource.Internal#detached detached } significantly more expensive. as well as all model editing, in
-   * general.
+   * This will make the processing of {@link Resource.Internal#attached attached} and {@link Resource.Internal#detached
+   * detached } significantly more expensive. as well as all model editing, in general.
    * </p>
    * 
    * @return whether modification tracking is enabled.
@@ -354,8 +351,8 @@ public interface Resource extends Notifier
   /**
    * Sets whether this resource has been modified.
    * <p>
-   * A resource is automatically set to be unmodified after it is loaded or saved.
-   * {@link #isTrackingModification Automatic} modification tracking typically calls this directly.
+   * A resource is automatically set to be unmodified after it is loaded or saved. {@link #isTrackingModification
+   * Automatic} modification tracking typically calls this directly.
    * </p>
    * 
    * @param isModified
@@ -368,11 +365,11 @@ public interface Resource extends Notifier
    * Returns whether the resource is loaded.
    * <p>
    * This will be <code>false</code> when the resource is first {@link ResourceSet#createResource created} and will be
-   * set to <code>false</code>, when the resource is {@link #unload unloaded}. It will be set to <code>true</code>
-   * when the resource is {@link #load(Map) loaded} and when {@link #getContents contents} are first added to a resource
-   * that isn't loaded. Calling {@link org.eclipse.emf.common.util.BasicEList#clear clear} for the
-   * {@link #getContents contents} of a resource that isn't loaded, will set the resource to be loaded; this is the
-   * simplest way to create an empty resource that's considered loaded.
+   * set to <code>false</code>, when the resource is {@link #unload unloaded}. It will be set to <code>true</code> when
+   * the resource is {@link #load(Map) loaded} and when {@link #getContents contents} are first added to a resource that
+   * isn't loaded. Calling {@link org.eclipse.emf.common.util.BasicEList#clear clear} for the {@link #getContents
+   * contents} of a resource that isn't loaded, will set the resource to be loaded; this is the simplest way to create
+   * an empty resource that's considered loaded.
    * </p>
    * 
    * @return whether the resource is loaded.
@@ -383,9 +380,9 @@ public interface Resource extends Notifier
    * Clears the {@link #getContents contents}, {@link #getErrors errors}, and {@link #getWarnings warnings} of the
    * resource and {@link #isLoaded marks} it as unloaded.
    * <p>
-   * It walks the content {@link #getAllContents tree}, and
-   * {@link org.eclipse.emf.ecore.InternalEObject#eSetProxyURI sets} each content object to be a proxy. The resource
-   * will remain in the {@link #getResourceSet resource set}, and can be subsequently reloaded.
+   * It walks the content {@link #getAllContents tree}, and {@link org.eclipse.emf.ecore.InternalEObject#eSetProxyURI
+   * sets} each content object to be a proxy. The resource will remain in the {@link #getResourceSet resource set}, and
+   * can be subsequently reloaded.
    * </p>
    */
   void unload();
@@ -508,15 +505,14 @@ public interface Resource extends Notifier
      *    put(&quot;xyz&quot;, resourceFactoryForURIWithXyzFileExtension);
      * </pre>
      * 
-     * A {@link Resource.Factory.Descriptor descriptor} can be used in place of an actual
-     * {@link Resource.Factory factory} as a value in the map. It is used for factories registered via
+     * A {@link Resource.Factory.Descriptor descriptor} can be used in place of an actual {@link Resource.Factory
+     * factory} as a value in the map. It is used for factories registered via
      * {@link org.eclipse.emf.ecore.plugin.EcorePlugin.Implementation#startup() plugin registration} to ensure delayed
      * plugin load.
      * </p>
      * <p>
-     * Clients must extend the default
-     * {@link org.eclipse.emf.ecore.resource.impl.ResourceFactoryRegistryImpl implementation}, since methods can and
-     * will be added to this API.
+     * Clients must extend the default {@link org.eclipse.emf.ecore.resource.impl.ResourceFactoryRegistryImpl
+     * implementation}, since methods can and will be added to this API.
      * </p>
      * 
      * @see ResourceSet#getResourceFactoryRegistry()
@@ -623,9 +619,8 @@ public interface Resource extends Notifier
    * An internal interface implemented by all resources.
    * <p>
    * It is used to maintain the referential integrity of the containment relation between a resource set and a resource.
-   * Clients must extend the default
-   * {@link org.eclipse.emf.ecore.resource.impl.ResourceFactoryRegistryImpl implementation}, since methods can and will
-   * be added to this API.
+   * Clients must extend the default {@link org.eclipse.emf.ecore.resource.impl.ResourceFactoryRegistryImpl
+   * implementation}, since methods can and will be added to this API.
    * </p>
    * 
    * @see Resource#getResourceSet

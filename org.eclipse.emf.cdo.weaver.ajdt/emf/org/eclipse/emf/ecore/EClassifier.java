@@ -19,8 +19,7 @@ package org.eclipse.emf.ecore;
 import org.eclipse.emf.common.util.EList;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>EClassifier</b></em>'. <!-- end-user-doc
- * -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>EClassifier</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are supported:
  * <ul>
@@ -135,8 +134,8 @@ public interface EClassifier extends ENamedElement
   void setInstanceTypeName(String value);
 
   /**
-   * Returns the value of the '<em><b>EPackage</b></em>' container reference. It is bidirectional and its opposite
-   * is '{@link org.eclipse.emf.ecore.EPackage#getEClassifiers <em>EClassifiers</em>}'. <!-- begin-user-doc --> <!--
+   * Returns the value of the '<em><b>EPackage</b></em>' container reference. It is bidirectional and its opposite is '
+   * {@link org.eclipse.emf.ecore.EPackage#getEClassifiers <em>EClassifiers</em>}'. <!-- begin-user-doc --> <!--
    * end-user-doc -->
    * 
    * @return the value of the '<em>EPackage</em>' container reference.
@@ -148,8 +147,8 @@ public interface EClassifier extends ENamedElement
   EPackage getEPackage();
 
   /**
-   * Returns the value of the '<em><b>EType Parameters</b></em>' containment reference list. The list contents are
-   * of type {@link org.eclipse.emf.ecore.ETypeParameter}. <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>EType Parameters</b></em>' containment reference list. The list contents are of
+   * type {@link org.eclipse.emf.ecore.ETypeParameter}. <!-- begin-user-doc -->
    * <p>
    * A classifier can optionally introduce type parameters.
    * </p>

@@ -24,9 +24,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>EObject</b></em>'.
  * <p>
- * <code>EObject</code> is the root of all modeled objects so all the method names start with "e" to distinguish the
- * EMF methods from the client methods. It provides support for the behaviors and features common to all modeled
- * objects:
+ * <code>EObject</code> is the root of all modeled objects so all the method names start with "e" to distinguish the EMF
+ * methods from the client methods. It provides support for the behaviors and features common to all modeled objects:
  * <ul>
  * <li><b>Content</b></li>
  * <ul>
@@ -51,16 +50,14 @@ import org.eclipse.emf.ecore.resource.Resource;
  * <ul>
  * <li>{@link #eIsProxy}
  * </ul>
- * </ul>
- * It is a full participant of the common notification framework: {@link org.eclipse.emf.common.notify}. Any
- * <code>EObject</code> is assumed to also implement {@link InternalEObject}, which provides lower-level access that
- * is not necessarily suitable for general consumption but is required for maintaining the EMF support mechanisms.
+ * </ul> It is a full participant of the common notification framework: {@link org.eclipse.emf.common.notify}. Any
+ * <code>EObject</code> is assumed to also implement {@link InternalEObject}, which provides lower-level access that is
+ * not necessarily suitable for general consumption but is required for maintaining the EMF support mechanisms.
  * Implementations of EObject should extend {@link org.eclipse.emf.ecore.impl.BasicEObjectImpl BasicEObjectImpl} or one
  * of its derived classes because methods can and will be added to this API. The framework also assumes that
- * implementations will not specialize {@link #equals(Object)} (nor {@link #hashCode()}) so that "<code>==</code>"
- * can be always used for equality testing;
- * {@link org.eclipse.emf.ecore.util.EcoreUtil#equals(EObject, EObject) EcoreUtil.equals} should be used for doing
- * structural equality testing.
+ * implementations will not specialize {@link #equals(Object)} (nor {@link #hashCode()}) so that "<code>==</code>" can
+ * be always used for equality testing; {@link org.eclipse.emf.ecore.util.EcoreUtil#equals(EObject, EObject)
+ * EcoreUtil.equals} should be used for doing structural equality testing.
  * </p>
  * 
  * @extends Notifier <!-- end-user-doc -->
@@ -202,8 +199,8 @@ public interface EObject extends Notifier
   /**
    * <!-- begin-user-doc --> Indicates whether this object is a proxy.
    * <p>
-   * A proxy is an object that is defined in a <code>Resource</code> that has not been loaded. An object may be a
-   * proxy either because proxy resolution was disabled when the object was accessed (see
+   * A proxy is an object that is defined in a <code>Resource</code> that has not been loaded. An object may be a proxy
+   * either because proxy resolution was disabled when the object was accessed (see
    * {@link #eGet(EStructuralFeature,boolean)}) or because proxy
    * {@link org.eclipse.emf.ecore.util.EcoreUtil#resolve(EObject, EObject) resolution} failed.
    * </p>
@@ -221,12 +218,11 @@ public interface EObject extends Notifier
    * <!-- begin-user-doc --> Returns a list view of the cross referenced objects; it is unmodifiable.
    * <p>
    * This will be the list of {@link EObject}s determined by the {@link #eGet(EStructuralFeature) contents} of the
-   * {@link EClass#getEAllReferences reference features} of this object's {@link #eClass meta class},
-   * <em>excluding</em> {@link EClass#getEAllContainments containment features} and their
-   * {@link EReference#getEOpposite opposites}. The cross reference list's iterator will be of type
-   * {@link org.eclipse.emf.ecore.util.EContentsEList.FeatureIterator}, for efficient determination of the
-   * {@link org.eclipse.emf.ecore.util.EContentsEList.FeatureIterator#feature feature} of each cross reference in the
-   * list, e.g.,
+   * {@link EClass#getEAllReferences reference features} of this object's {@link #eClass meta class}, <em>excluding</em>
+   * {@link EClass#getEAllContainments containment features} and their {@link EReference#getEOpposite opposites}. The
+   * cross reference list's iterator will be of type {@link org.eclipse.emf.ecore.util.EContentsEList.FeatureIterator},
+   * for efficient determination of the {@link org.eclipse.emf.ecore.util.EContentsEList.FeatureIterator#feature
+   * feature} of each cross reference in the list, e.g.,
    * 
    * <pre>
    *  for (EContentEList.FeatureIterator featureIterator = 
@@ -276,10 +272,9 @@ public interface EObject extends Notifier
    * {@link org.eclipse.emf.ecore.util.EcoreUtil#resolve(EObject, EObject) resolved} before it is returned.
    * <p>
    * If the feature is {@link ETypedElement#isMany() many-valued}, the result will be an {@link EList} and each object
-   * in the list will be {@link EClassifier#isInstance an instance of} the feature's
-   * {@link ETypedElement#getEType() type}; the list's contents are <b>not</b> affected by <code>resolve</code>
-   * argument. Otherwise the result directly will be an instance of the feature's type; if it is a
-   * {@link #eIsProxy proxy}, it is resolved.
+   * in the list will be {@link EClassifier#isInstance an instance of} the feature's {@link ETypedElement#getEType()
+   * type}; the list's contents are <b>not</b> affected by <code>resolve</code> argument. Otherwise the result directly
+   * will be an instance of the feature's type; if it is a {@link #eIsProxy proxy}, it is resolved.
    * 
    * @param feature
    *          the feature of the value to fetch.
@@ -287,8 +282,8 @@ public interface EObject extends Notifier
    *          whether to resolve.
    * @return the value of the given feature of the object.
    * @exception IllegalArgumentException
-   *              if the feature is not one the {@link #eClass meta class}'s
-   *              {@link EClass#getEAllStructuralFeatures features}.
+   *              if the feature is not one the {@link #eClass meta class}'s {@link EClass#getEAllStructuralFeatures
+   *              features}.
    * @see org.eclipse.emf.ecore.util.InternalEList#basicIterator
    * @see org.eclipse.emf.ecore.util.InternalEList#basicList
    * @see org.eclipse.emf.ecore.util.EcoreUtil#resolve(EObject, org.eclipse.emf.ecore.resource.ResourceSet)
@@ -319,9 +314,8 @@ public interface EObject extends Notifier
    * @param feature
    *          the feature of the value to set.
    * @exception IllegalArgumentException
-   *              if the feature is not one the {@link #eClass meta class}'s
-   *              {@link EClass#getEAllStructuralFeatures features}, or it isn't
-   *              {@link EStructuralFeature#isChangeable changeable}.
+   *              if the feature is not one the {@link #eClass meta class}'s {@link EClass#getEAllStructuralFeatures
+   *              features}, or it isn't {@link EStructuralFeature#isChangeable changeable}.
    * @exception ClassCastException
    *              if there is a type conflict.
    * @exception ArrayStoreException
@@ -338,11 +332,11 @@ public interface EObject extends Notifier
   /**
    * <!-- begin-user-doc --> Returns whether the feature of the object is considered to be set.
    * <p>
-   * If the feature is {@link ETypedElement#isMany() many-valued}, the value must be an {@link EList} and the feature
-   * is considered set if the list is not empty. If the feature is {@link EStructuralFeature#isUnsettable unsettable},
-   * the modeled state is directly available and is used. Otherwise, the
-   * {@link #eGet(EStructuralFeature, boolean) unresolved value} of the feature of the object is compared against the
-   * feature's {@link EStructuralFeature#getDefaultValue() default value} or the {@link #eClass meta class}'s
+   * If the feature is {@link ETypedElement#isMany() many-valued}, the value must be an {@link EList} and the feature is
+   * considered set if the list is not empty. If the feature is {@link EStructuralFeature#isUnsettable unsettable}, the
+   * modeled state is directly available and is used. Otherwise, the {@link #eGet(EStructuralFeature, boolean)
+   * unresolved value} of the feature of the object is compared against the feature's
+   * {@link EStructuralFeature#getDefaultValue() default value} or the {@link #eClass meta class}'s
    * {@link EStructuralFeature#getDefaultValue() default value}, as appropriate; the feature is considered set if it's
    * not the same as the default.
    * </p>
@@ -353,8 +347,8 @@ public interface EObject extends Notifier
    * @param feature
    *          the feature in question.
    * @exception IllegalArgumentException
-   *              if the feature is not one the {@link #eClass meta class}'s
-   *              {@link EClass#getEAllStructuralFeatures features}.
+   *              if the feature is not one the {@link #eClass meta class}'s {@link EClass#getEAllStructuralFeatures
+   *              features}.
    * @return whether the feature of the object is set.
    * @see #eSet(EStructuralFeature, Object)
    * @see #eUnset(EStructuralFeature)
@@ -379,9 +373,8 @@ public interface EObject extends Notifier
    * @param feature
    *          the feature in question.
    * @exception IllegalArgumentException
-   *              if the feature is not one the {@link #eClass meta class}'s
-   *              {@link EClass#getEAllStructuralFeatures features}, or it isn't
-   *              {@link EStructuralFeature#isChangeable changeable}.
+   *              if the feature is not one the {@link #eClass meta class}'s {@link EClass#getEAllStructuralFeatures
+   *              features}, or it isn't {@link EStructuralFeature#isChangeable changeable}.
    * @see #eIsSet(EStructuralFeature)
    * @see #eSet(EStructuralFeature, Object)
    * @see #eGet(EStructuralFeature, boolean)

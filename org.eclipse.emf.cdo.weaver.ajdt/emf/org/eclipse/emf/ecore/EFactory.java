@@ -37,8 +37,8 @@ package org.eclipse.emf.ecore;
 public interface EFactory extends EModelElement
 {
   /**
-   * Returns the value of the '<em><b>EPackage</b></em>' reference. It is bidirectional and its opposite is '{@link org.eclipse.emf.ecore.EPackage#getEFactoryInstance <em>EFactory Instance</em>}'.
-   * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>EPackage</b></em>' reference. It is bidirectional and its opposite is '
+   * {@link org.eclipse.emf.ecore.EPackage#getEFactoryInstance <em>EFactory Instance</em>}'. <!-- begin-user-doc -->
    * <p>
    * It represent the package of this factory.
    * </p>

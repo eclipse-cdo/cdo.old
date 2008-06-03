@@ -52,8 +52,8 @@ public interface EReference extends EStructuralFeature
   boolean isContainment();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.ecore.EReference#isContainment <em>Containment</em>}' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Sets the value of the '{@link org.eclipse.emf.ecore.EReference#isContainment <em>Containment</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @param value
    *          the new value of the '<em>Containment</em>' attribute.
@@ -65,7 +65,8 @@ public interface EReference extends EStructuralFeature
   /**
    * Returns the value of the '<em><b>Container</b></em>' attribute. <!-- begin-user-doc -->
    * <p>
-   * A reference is a container if it has an {@link #getEOpposite opposite} that is a {@link #isContainment containment}.
+   * A reference is a container if it has an {@link #getEOpposite opposite} that is a {@link #isContainment containment}
+   * .
    * </p>
    * <!-- end-user-doc -->
    * 
