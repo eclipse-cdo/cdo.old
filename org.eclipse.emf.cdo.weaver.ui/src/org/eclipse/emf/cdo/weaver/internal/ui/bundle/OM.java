@@ -71,7 +71,7 @@ public abstract class OM
 
   public static final OMPreference<Boolean> PREF_SHOW_IGNORED_BUNDLES = PREFS.init("PREF_SHOW_IGNORED_BUNDLES", false);
 
-  public static final OMPreference<Boolean> PREF_CHECK_DURING_STARTUP = PREFS.init("PREF_CHECK_DURING_STARTUP", true);
+  public static final OMPreference<Boolean> PREF_CHECK_DURING_STARTUP = PREFS.init("PREF_CHECK_DURING_STARTUP", false);
 
   public static Set<String> getIgnoredBundles()
   {
