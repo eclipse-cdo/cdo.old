@@ -109,7 +109,6 @@ public class EcorePlugin extends EMFPlugin
    * <pre>
    * EcoreUtil.getPlatformResourceMap().put(&quot;project&quot;, URI.createURI(&quot;file:///C:/location/&quot;));
    * </pre>
-   * 
    * the following transformation would result:
    * 
    * <pre>
@@ -117,7 +116,6 @@ public class EcorePlugin extends EMFPlugin
    *    -&gt;
    *  file:///C:/location/directory/file
    * </pre>
-   * 
    * </p>
    * 
    * @return the resolved URI or <code>null</code>.
@@ -146,19 +144,16 @@ public class EcorePlugin extends EMFPlugin
    * <pre>
    *  -platformResource ( &lt;project-name&gt; &lt;file-or-URI&gt; )+
    * </pre>
-   * 
    * E.g., This these arguments
    * 
    * <pre>
    *  -platformResource project file:///C:/location/
    * </pre>
-   * 
    * will produce this effect:
    * 
    * <pre>
    * EcoreUtil.getPlatformResourceMap().put(&quot;project&quot;, URI.createURI(&quot;file:///C:/location/&quot;));
    * </pre>
-   * 
    * This mechanism supports relocatable projects outside of Eclipse.
    * </p>
    * 
@@ -465,7 +460,6 @@ public class EcorePlugin extends EMFPlugin
      *      &lt;package uri=&quot;http://www.example.org/abc/Abc.ecore&quot; class=&quot;org.example.abc.AbcPackage&quot;/&gt;
      *  &lt;extension&gt;
      * </pre>
-     * 
      * </p>
      * The URI is arbitrary but an absolute URI is recommended. Provision for access to the serialized model via
      * <code>"http:"</code> is encouraged.
@@ -479,7 +473,6 @@ public class EcorePlugin extends EMFPlugin
      *      &lt;parser type=&quot;abc&quot; class=&quot;org.example.abc.util.AbcResourceFactoryImpl&quot;/&gt;
      *  &lt;extension&gt;
      * </pre>
-     * 
      * </p>
      * <p>
      * The {@link org.eclipse.emf.ecore.resource.Resource.Factory.Registry#INSTANCE global} resource factory registry's
@@ -491,7 +484,6 @@ public class EcorePlugin extends EMFPlugin
      *      &lt;parser protocolName=&quot;abc&quot; class=&quot;org.example.abc.util.AbcResourceFactoryImpl&quot;/&gt;
      *  &lt;extension&gt;
      * </pre>
-     * 
      * </p>
      * <p>
      * The {@link org.eclipse.emf.ecore.resource.URIConverter#URI_MAP global} URI map is populated by plugin
@@ -502,26 +494,22 @@ public class EcorePlugin extends EMFPlugin
      *      &lt;mapping source=&quot;//special/&quot; target=&quot;special/&quot;/&gt;
      *  &lt;extension&gt;
      * </pre>
-     * 
      * If the target is relative, it is resolved against the plugin's installed location, resulting in a URI of the
      * form:
      * 
      * <pre>
      *  platform:/plugin/plugin-name_1.2.3/...
      * </pre>
-     * 
      * The above registration would map
      * 
      * <pre>
      * // special/a/b.c
      * </pre>
-     * 
      * to
      * 
      * <pre>
      *  platform:/plugin/plugin-name_1.2.3/special/a/b.c
      * </pre>
-     * 
      * </p>
      * 
      * @throws Exception

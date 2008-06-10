@@ -91,7 +91,6 @@ public interface ResourceSet extends Notifier
    * <pre>
    * eObject.eResource().getResourceSet().getAdapterFactories()
    * </pre>
-   * 
    * they can be used to create adapters on demand, without going to the factory first.
    * </p>
    * 
@@ -125,7 +124,6 @@ public interface ResourceSet extends Notifier
    * <pre>
    * eObject == eObject.eResource().getResourceSet().getEObject(EcoreUtil.getURI(eObject), false)
    * </pre>
-   * 
    * </p>
    * <p>
    * The URI {@link URI#trimFragment without} the fragment, is used to {@link #getResource resolve} a resource. If the

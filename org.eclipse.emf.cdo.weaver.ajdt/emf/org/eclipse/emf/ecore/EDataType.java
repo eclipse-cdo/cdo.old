@@ -43,7 +43,6 @@ public interface EDataType extends EClassifier
    *  String convertXyzToString(EDataType metaObject, Object instanceValue)
    *  Object createXyzFromString(EDataType metaObject, String initialValue)
    * </pre>
-   * 
    * in the generated factory implementation. Clients will typically need to hand write the bodies of these generated
    * methods.
    * </p>

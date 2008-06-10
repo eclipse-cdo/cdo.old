@@ -209,7 +209,6 @@ public interface Resource extends Notifier
    *   Resource resource = eObject.eResource();
    *   eObject == resource.getEObject(resource.getURIFragment(eObject))
    * </pre>
-   * 
    * An implementation may choose to use IDs or to use structured URI fragments, as supported by
    * {@link org.eclipse.emf.ecore.InternalEObject#eURIFragmentSegment eURIFragmentSegment}.
    * </p>
@@ -504,7 +503,6 @@ public interface Resource extends Notifier
      *  Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().
      *    put(&quot;xyz&quot;, resourceFactoryForURIWithXyzFileExtension);
      * </pre>
-     * 
      * A {@link Resource.Factory.Descriptor descriptor} can be used in place of an actual {@link Resource.Factory
      * factory} as a value in the map. It is used for factories registered via
      * {@link org.eclipse.emf.ecore.plugin.EcorePlugin.Implementation#startup() plugin registration} to ensure delayed

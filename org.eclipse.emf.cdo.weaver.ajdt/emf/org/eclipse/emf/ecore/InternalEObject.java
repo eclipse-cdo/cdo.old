@@ -52,7 +52,6 @@ public interface InternalEObject extends EObject
    * <pre>
    * &quot;@&lt;feature-name&gt;[.&lt;index&gt;]&quot;
    * </pre>
-   * 
    * The index is used only for {@link ETypedElement#isMany() many-valued} features; it represents the position within
    * the list.
    * </p>

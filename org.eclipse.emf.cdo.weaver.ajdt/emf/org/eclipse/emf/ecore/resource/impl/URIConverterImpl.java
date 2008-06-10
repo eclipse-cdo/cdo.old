@@ -359,7 +359,6 @@ public class URIConverterImpl implements URIConverter
    *    -&gt;
    *   C:/directory/file
    * </pre>
-   * 
    * and is delegated to {@link #createFileOutputStream createFileOutputStream}. An {@link #isArchiveScheme(String)
    * archive-based} URI is delegated to {@link #createArchiveOutputStream createArchiveOutputStream}. A
    * {@link URI#isPlatformResource() platform-based} URI is {@link URI#toPlatformString(boolean) converted} to a
@@ -370,7 +369,6 @@ public class URIConverterImpl implements URIConverter
    *    -&gt;
    *  /project/directory/file
    * </pre>
-   * 
    * and is delegated to {@link #createPlatformResourceOutputStream createPlatformResourceOutputStream}. An
    * {@link #isEFSScheme(String) EFS-based} URI is delegated to {@link #createEFSInputStream(URI) createEFSOutputStream}
    * . And all other cases are handled as standard URLs by {@link #createURLOutputStream createURLOutputStream}.
@@ -538,7 +536,6 @@ public class URIConverterImpl implements URIConverter
    *    -&gt;
    *   C:/directory/file
    * </pre>
-   * 
    * and is delegated to {@link #createFileInputStream createFileInputStream}. An {@link #isArchiveScheme(String)
    * archive-based} URI is delegated to {@link #createArchiveInputStream createArchiveInputStream}. A
    * {@link URI#isPlatformResource() platform-based} URI is {@link URI#toPlatformString(boolean) converted} to a
@@ -549,7 +546,6 @@ public class URIConverterImpl implements URIConverter
    *    -&gt;
    *  /project/directory/file
    * </pre>
-   * 
    * and is delegated to {@link #createPlatformResourceInputStream createPlatformResourceInputStream}. An
    * {@link #isEFSScheme(String) EFS-based} URI is delegated to {@link #createEFSInputStream(URI) createEFSInputStream}.
    * And all other cases are handled as standard URLs by {@link #createURLInputStream createURLInputStream}.

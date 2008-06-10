@@ -2239,7 +2239,6 @@ public class EcoreUtil
    * put(eObject1, eObject2);
    * put(eObject2, eObject1);
    * </pre>
-   * 
    * Once that correspondence is established, an <code>eObject1</code> considered equal to a different
    * <code>eObject2</code> will not even be considered equal to itself. This ensures that two objects are structurally
    * equal only if the graphs formed by all their referenced objects have the same topology.
