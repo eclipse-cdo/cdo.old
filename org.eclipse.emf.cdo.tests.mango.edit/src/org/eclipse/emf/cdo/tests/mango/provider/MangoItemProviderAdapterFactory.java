@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MangoItemProviderAdapterFactory.java,v 1.2 2008-02-23 10:00:38 estepper Exp $
+ * $Id: MangoItemProviderAdapterFactory.java,v 1.3 2008-06-12 17:22:13 estepper Exp $
  */
 package org.eclipse.emf.cdo.tests.mango.provider;
 
@@ -126,6 +126,31 @@ public class MangoItemProviderAdapterFactory extends MangoAdapterFactory impleme
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.tests.mango.Parameter} instances. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected ParameterItemProvider parameterItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.mango.Parameter}. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public Adapter createParameterAdapter()
+  {
+    if (parameterItemProvider == null)
+    {
+      parameterItemProvider = new ParameterItemProvider(this);
+    }
+
+    return parameterItemProvider;
+  }
+
+  /**
    * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
@@ -233,6 +258,7 @@ public class MangoItemProviderAdapterFactory extends MangoAdapterFactory impleme
   {
     if (valueListItemProvider != null) valueListItemProvider.dispose();
     if (valueItemProvider != null) valueItemProvider.dispose();
+    if (parameterItemProvider != null) parameterItemProvider.dispose();
   }
 
 }
