@@ -11,8 +11,7 @@ Bundle-ClassPath: lib/hibernate3.jar,
  lib/cglib-2.1.3.jar,
  lib/commons-collections-2.1.1.jar,
  lib/dom4j-1.6.1.jar,
- lib/jta.jar,
- lib/hsqldb.jar
+ lib/jta.jar
 Require-Bundle: org.apache.commons.logging;bundle-version="[1.0.4,2.0.0)";visibility:=reexport,
  org.eclipse.emf.cdo.server;bundle-version="[1.0.0,2.0.0)";visibility:=reexport
 Export-Package: javax.transaction,
