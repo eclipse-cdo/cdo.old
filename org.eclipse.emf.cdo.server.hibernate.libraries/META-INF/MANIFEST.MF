@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.emf.cdo.server.hibernate.libraries
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.1.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
@@ -12,8 +12,7 @@ Bundle-ClassPath: lib/hibernate3.jar,
  lib/commons-collections-2.1.1.jar,
  lib/dom4j-1.6.1.jar,
  lib/jta.jar
-Require-Bundle: org.apache.commons.logging;bundle-version="[1.0.4,2.0.0)";visibility:=reexport,
- org.eclipse.emf.cdo.server;bundle-version="[1.0.0,2.0.0)";visibility:=reexport
+Require-Bundle: org.apache.commons.logging;bundle-version="[1.0.4,2.0.0)";visibility:=reexport
 Export-Package: javax.transaction,
  javax.transaction.xa,
  net.sf.cglib.beans,

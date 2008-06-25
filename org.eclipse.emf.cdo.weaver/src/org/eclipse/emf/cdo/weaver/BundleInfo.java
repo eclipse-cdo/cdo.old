@@ -19,6 +19,7 @@ import java.util.List;
 
 /**
  * @author Eike Stepper
+ * @noinstantiate This class is not intended to be instantiated by clients.
  */
 public final class BundleInfo implements Comparable<BundleInfo>
 {
@@ -85,12 +86,21 @@ public final class BundleInfo implements Comparable<BundleInfo>
   @Override
   public boolean equals(Object obj)
   {
-    if (obj == this) return true;
-    if (obj == null) return false;
-    if (!(obj instanceof BundleInfo)) return false;
+    if (obj == this)
+    {
+      return true;
+    }
+    if (obj == null)
+    {
+      return false;
+    }
+    if (!(obj instanceof BundleInfo))
+    {
+      return false;
+    }
 
     BundleInfo that = (BundleInfo)obj;
-    return ObjectUtil.equals(this.name, that.name);
+    return ObjectUtil.equals(name, that.name);
   }
 
   @Override

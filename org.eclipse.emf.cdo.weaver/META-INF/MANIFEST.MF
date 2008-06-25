@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.emf.cdo.weaver
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Activator: org.eclipse.emf.cdo.internal.weaver.bundle.OM$Activator
 Bundle-Vendor: %providerName
 Bundle-ClassPath: .,
@@ -11,8 +11,8 @@ Bundle-ClassPath: .,
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.4.0,4.0.0)",
- org.eclipse.emf.cdo;bundle-version="[1.0.0,2.0.0)";visibility:=reexport
-Export-Package: org.eclipse.emf.cdo.internal.weaver;version="1.0.0";x-internal:=true,
- org.eclipse.emf.cdo.internal.weaver.bundle;version="1.0.0";x-internal:=true,
- org.eclipse.emf.cdo.weaver;version="1.0.0"
+ org.eclipse.emf.cdo;bundle-version="[2.0.0,3.0.0)";visibility:=reexport
+Export-Package: org.eclipse.emf.cdo.internal.weaver;version="2.0.0";x-internal:=true,
+ org.eclipse.emf.cdo.internal.weaver.bundle;version="2.0.0";x-internal:=true,
+ org.eclipse.emf.cdo.weaver;version="2.0.0"
 Bundle-ActivationPolicy: lazy

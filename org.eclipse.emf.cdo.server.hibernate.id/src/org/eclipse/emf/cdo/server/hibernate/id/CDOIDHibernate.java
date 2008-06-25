@@ -21,7 +21,6 @@ import java.io.Serializable;
  */
 public interface CDOIDHibernate extends CDOIDObject
 {
-
   public Serializable getId();
 
   public void setId(Serializable id);
