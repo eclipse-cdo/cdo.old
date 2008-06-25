@@ -1,0 +1,33 @@
+<project name="build-id-jar" basedir="." default="main">
+
+	<property name="jar.basename" value="hibernate-id-v2" />
+	<property name="zip.file" value="${jar.basename}-sources.zip" />
+
+	<target name="main" depends="replaceJar">
+		<delete file="${zip.file}.tmp" failonerror="false" verbose="true"/>
+	</target>
+
+	<target name="replaceJar" depends="checkMatch" unless="sources.match">
+		<echo message="REPLACING ID LIBRARY" />
+		<move file="${zip.file}.tmp" tofile="${zip.file}" overwrite="true" verbose="true" />
+		<delete file="${jar.basename}.jar" failonerror="false" verbose="true" />
+		<jar destfile="${jar.basename}.jar">
+			<fileset dir="bin">
+				<include name="**/*" />
+			</fileset>
+		</jar>
+	</target>
+
+	<target name="checkMatch">
+		<delete file="${zip.file}.tmp" failonerror="false" verbose="true"/>
+		<zip destfile="${zip.file}.tmp">
+			<fileset dir="src">
+				<include name="**/*" />
+			</fileset>
+		</zip>
+		<condition property="sources.match">
+			<filesmatch file1="${zip.file}.tmp" file2="${zip.file}" />
+		</condition>
+	</target>
+
+</project>
