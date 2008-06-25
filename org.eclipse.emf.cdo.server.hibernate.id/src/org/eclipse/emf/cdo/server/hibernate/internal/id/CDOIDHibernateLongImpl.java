@@ -24,6 +24,10 @@ public class CDOIDHibernateLongImpl extends CDOIDHibernateImpl
 {
   private static final long serialVersionUID = 1L;
 
+  public CDOIDHibernateLongImpl()
+  {
+  }
+
   @Override
   protected int getIDType()
   {

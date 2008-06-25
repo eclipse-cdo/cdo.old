@@ -30,6 +30,10 @@ public class CDOIDHibernateStringImpl extends CDOIDHibernateImpl
     return HB_ID_TYPE_STRING;
   }
 
+  public CDOIDHibernateStringImpl()
+  {
+  }
+
   @Override
   public String getId()
   {

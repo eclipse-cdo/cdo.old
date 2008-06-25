@@ -45,7 +45,7 @@ public class CDOIDHibernateFactoryImpl implements CDOIDObjectFactory
   {
     try
     {
-      final int idType = in.readInt();
+      int idType = in.readInt();
       switch (idType)
       {
       case CDOIDHibernateImpl.HB_ID_TYPE_SERIALIZABLE:
@@ -58,16 +58,15 @@ public class CDOIDHibernateFactoryImpl implements CDOIDObjectFactory
         throw new IllegalArgumentException("IDTYPE " + idType + " not supported");
       }
     }
-    catch (IOException e)
+    catch (IOException ex)
     {
-      throw WrappedException.wrap(e);
+      throw WrappedException.wrap(ex);
     }
-
   }
 
   public CDOIDHibernate createCDOID(Serializable id, String entityName)
   {
-    final CDOIDHibernate cdoID;
+    CDOIDHibernate cdoID;
     if (id instanceof Long)
     {
       cdoID = new CDOIDHibernateLongImpl();
@@ -80,6 +79,7 @@ public class CDOIDHibernateFactoryImpl implements CDOIDObjectFactory
     {
       cdoID = new CDOIDHibernateImpl();
     }
+
     cdoID.setId(id);
     cdoID.setEntityName(entityName);
     return cdoID;

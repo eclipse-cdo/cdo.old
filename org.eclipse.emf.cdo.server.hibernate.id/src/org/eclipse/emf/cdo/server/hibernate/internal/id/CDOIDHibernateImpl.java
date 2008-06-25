@@ -115,6 +115,7 @@ public class CDOIDHibernateImpl extends AbstractCDOID implements CDOIDHibernate
     return new Legacy(classRef);
   }
 
+  @Override
   public void read(ExtendedDataInput in) throws IOException
   {
     // the idtype is read by the id factory!
@@ -133,6 +134,7 @@ public class CDOIDHibernateImpl extends AbstractCDOID implements CDOIDHibernate
     }
   }
 
+  @Override
   public void write(ExtendedDataOutput out) throws IOException
   {
 
@@ -140,6 +142,7 @@ public class CDOIDHibernateImpl extends AbstractCDOID implements CDOIDHibernate
     {
       tracer.format("Writing id type={0}", getIDType());
     }
+
     out.writeInt(getIDType());
 
     if (tracer != null && tracer.isEnabled())
