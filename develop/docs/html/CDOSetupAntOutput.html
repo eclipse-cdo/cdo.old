@@ -1,0 +1,1440 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 12 (filtered)">
+<title>CDO Source Installation (Example Ant Output)</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:10.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+.MsoPapDefault
+	{margin-bottom:10.0pt;
+	line-height:115%;}
+@page Section1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+
+</head>
+
+<body lang=DE>
+
+<div class=Section1>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>Buildfile: </span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>C:\develop\ws\cdo\develop.setup\setup-workspace.xml</span></font></u></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><u><font size=2 color=navy face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:navy'>check-workspace</span></font></u><font
+size=2 color=blue face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:blue'>:</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><u><font size=2 color=navy face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:navy'>init</span></font></u><font
+size=2 color=blue face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:blue'>:</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color="#fa6400" face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:#FA6400'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>echo</span></font></u><font size=2 color="#fa6400"
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:#FA6400'>] Downloads Folder: C:\develop\downloads</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>       [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>mkdir</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Created dir: C:\develop\downloads</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color="#fa6400" face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:#FA6400'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>echo</span></font></u><font size=2 color="#fa6400"
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:#FA6400'>] Workspace Folder: C:\develop\ws\cdo</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><u><font size=2 color=navy face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:navy'>download</span></font></u><font
+size=2 color=blue face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:blue'>:</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color="#fa6400" face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:#FA6400'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>echo</span></font></u><font size=2 color="#fa6400"
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:#FA6400'>] Downloading from Eclipse.org ...</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://download.eclipse.org/modeling/emf/net4j/downloads/drops/1.0.0/R200806240900/emf-net4j-SDK-1.0.0.zip</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To: C:\develop\downloads\emf-net4j-SDK-1.0.0.zip</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting: http://download.eclipse.org/modeling/emf/cdo/downloads/drops/1.0.0/R200806241000/emf-cdo-SDK-1.0.0.zip</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To: C:\develop\downloads\emf-cdo-SDK-1.0.0.zip</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://download.eclipse.org/eclipse/downloads/drops/R-3.4-200806172000/eclipse-SDK-3.4-win32.zip</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To: C:\develop\downloads\eclipse-SDK-3.4-win32.zip</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://download.eclipse.org/modeling/emf/emf/downloads/drops/2.4.0/R200806091234/emf-sdo-xsd-SDK-2.4.0.zip</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To: C:\develop\downloads\emf-sdo-xsd-SDK-2.4.0.zip</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://download.eclipse.org/modeling/emf/teneo/downloads/drops/1.0.0/R200806111928/emf-teneo-SDK-1.0.0.zip</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To: C:\develop\downloads\emf-teneo-SDK-1.0.0.zip</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting: http://download.eclipse.org/tools/orbit/downloads/drops/R20080611105805/bundles/org.apache.derby_10.1.2.1_v200803061811.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To:
+C:\develop\downloads\org.apache.derby_10.1.2.1_v200803061811.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://download.eclipse.org/tools/orbit/downloads/drops/R20080611105805/bundles/org.apache.derby.source_10.1.2.1_v200803061811.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To:
+C:\develop\downloads\org.apache.derby.source_10.1.2.1_v200803061811.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://download.eclipse.org/tools/orbit/downloads/drops/R20080611105805/bundles/org.apache.commons.httpclient_3.1.0.v20080605-1935.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To:
+C:\develop\downloads\org.apache.commons.httpclient_3.1.0.v20080605-1935.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting: http://download.eclipse.org/tools/orbit/downloads/drops/R20080611105805/bundles/org.apache.commons.httpclient.source_3.1.0.v20080605-1935.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To:
+C:\develop\downloads\org.apache.commons.httpclient.source_3.1.0.v20080605-1935.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://download.eclipse.org/tools/orbit/downloads/drops/R20080611105805/bundles/org.apache.commons.collections_3.2.0.v200803061811.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To:
+C:\develop\downloads\org.apache.commons.collections_3.2.0.v200803061811.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://download.eclipse.org/tools/orbit/downloads/drops/R20080611105805/bundles/org.apache.commons.collections.source_3.2.0.v200803061811.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To:
+C:\develop\downloads\org.apache.commons.collections.source_3.2.0.v200803061811.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://download.eclipse.org/tools/orbit/downloads/drops/R20080611105805/bundles/org.apache.commons.codec_1.3.0.v20080530-1600.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To:
+C:\develop\downloads\org.apache.commons.codec_1.3.0.v20080530-1600.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://download.eclipse.org/tools/orbit/downloads/drops/R20080611105805/bundles/org.apache.commons.codec.source_1.3.0.v20080530-1600.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To:
+C:\develop\downloads\org.apache.commons.codec.source_1.3.0.v20080530-1600.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color="#fa6400" face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:#FA6400'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>echo</span></font></u><font size=2 color="#fa6400"
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:#FA6400'>] Downloading from SpringSource.com ...</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://www.springsource.com/repository/app/bundle/version/download?name=com.springsource.org.hsqldb&amp;version=1.8.0.9&amp;type=binary</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To: C:\develop\downloads\com.springsource.org.hsqldb_1.8.0.9.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting: http://www.springsource.com/repository/app/bundle/version/download?name=com.springsource.org.hsqldb&amp;version=1.8.0.9&amp;type=source</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To:
+C:\develop\downloads\com.springsource.org.hsqldb.source_1.8.0.9.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting: http://www.springsource.com/repository/app/bundle/version/download?name=com.springsource.com.mysql.jdbc&amp;version=5.1.6&amp;type=binary</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To:
+C:\develop\downloads\com.springsource.com.mysql.jdbc_5.1.6.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://www.springsource.com/repository/app/bundle/version/download?name=com.springsource.com.mysql.jdbc&amp;version=5.1.6&amp;type=source</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To:
+C:\develop\downloads\com.springsource.com.mysql.jdbc.source_5.1.6.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting: http://www.springsource.com/repository/app/bundle/version/download?name=com.springsource.org.hibernate&amp;version=3.2.6.ga&amp;type=binary</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To:
+C:\develop\downloads\com.springsource.org.hibernate_3.2.6.ga.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting: http://www.springsource.com/repository/app/bundle/version/download?name=com.springsource.org.hibernate&amp;version=3.2.6.ga&amp;type=source</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To:
+C:\develop\downloads\com.springsource.org.hibernate.source_3.2.6.ga.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting: http://www.springsource.com/repository/app/bundle/version/download?name=com.springsource.antlr&amp;version=2.7.7&amp;type=binary</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To: C:\develop\downloads\com.springsource.antlr_2.7.7.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://www.springsource.com/repository/app/bundle/version/download?name=com.springsource.antlr&amp;version=2.7.7&amp;type=source</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To: C:\develop\downloads\com.springsource.antlr.source_2.7.7.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://www.springsource.com/repository/app/bundle/version/download?name=com.springsource.javassist&amp;version=3.3.0.ga&amp;type=binary</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To: C:\develop\downloads\com.springsource.javassist_3.3.0.ga.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://www.springsource.com/repository/app/bundle/version/download?name=com.springsource.javassist&amp;version=3.3.0.ga&amp;type=source</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To:
+C:\develop\downloads\com.springsource.javassist.source_3.3.0.ga.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://www.springsource.com/repository/app/bundle/version/download?name=com.springsource.net.sf.cglib&amp;version=2.1.3&amp;type=binary</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To: C:\develop\downloads\com.springsource.net.sf.cglib_2.1.3.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://www.springsource.com/repository/app/bundle/version/download?name=com.springsource.net.sf.cglib&amp;version=2.1.3&amp;type=source</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To: C:\develop\downloads\com.springsource.net.sf.cglib.source_2.1.3.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://www.springsource.com/repository/app/bundle/version/download?name=com.springsource.org.dom4j&amp;version=1.6.1&amp;type=binary</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To: C:\develop\downloads\com.springsource.org.dom4j_1.6.1.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://www.springsource.com/repository/app/bundle/version/download?name=com.springsource.org.dom4j&amp;version=1.6.1&amp;type=source</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To: C:\develop\downloads\com.springsource.org.dom4j.source_1.6.1.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://www.springsource.com/repository/app/bundle/version/download?name=com.springsource.org.objectweb.asm&amp;version=1.5.3&amp;type=binary</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To: C:\develop\downloads\com.springsource.org.objectweb.asm_1.5.3.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://www.springsource.com/repository/app/bundle/version/download?name=com.springsource.org.objectweb.asm&amp;version=1.5.3&amp;type=source</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To: C:\develop\downloads\com.springsource.org.objectweb.asm.source_1.5.3.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://www.springsource.com/repository/app/bundle/version/download?name=com.springsource.org.objectweb.asm.tree.attrs&amp;version=1.5.3&amp;type=binary</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To: C:\develop\downloads\com.springsource.org.objectweb.asm.tree.attrs_1.5.3.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://www.springsource.com/repository/app/bundle/version/download?name=com.springsource.org.objectweb.asm.tree.attrs&amp;version=1.5.3&amp;type=source</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To: C:\develop\downloads\com.springsource.org.objectweb.asm.tree.attrs.source_1.5.3.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://www.springsource.com/repository/app/bundle/version/download?name=org.springframework.core&amp;version=2.5.5.A&amp;type=binary</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To: C:\develop\downloads\org.springframework.core_2.5.5.A.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://www.springsource.com/repository/app/bundle/version/download?name=org.springframework.core&amp;version=2.5.5.A&amp;type=source</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To:
+C:\develop\downloads\org.springframework.core.source_2.5.5.A.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://www.springsource.com/repository/app/bundle/version/download?name=org.springframework.beans&amp;version=2.5.5.A&amp;type=binary</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To: C:\develop\downloads\org.springframework.beans_2.5.5.A.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting: http://www.springsource.com/repository/app/bundle/version/download?name=org.springframework.beans&amp;version=2.5.5.A&amp;type=source</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To:
+C:\develop\downloads\org.springframework.beans.source_2.5.5.A.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting: http://www.springsource.com/repository/app/bundle/version/download?name=org.springframework.context&amp;version=2.5.5.A&amp;type=binary</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To: C:\develop\downloads\org.springframework.context_2.5.5.A.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Getting:
+http://www.springsource.com/repository/app/bundle/version/download?name=org.springframework.context&amp;version=2.5.5.A&amp;type=source</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>         [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>get</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] To:
+C:\develop\downloads\org.springframework.context.source_2.5.5.A.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><u><font size=2 color=navy face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:navy'>main</span></font></u><font
+size=2 color=blue face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:blue'>:</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color="#fa6400" face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:#FA6400'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>echo</span></font></u><font size=2 color="#fa6400"
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:#FA6400'>] Installing API Baseline</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>       [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>unzip</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Expanding: C:\develop\downloads\emf-net4j-SDK-1.0.0.zip into
+C:\develop\ws\cdo\.metadata</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>       [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>unzip</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Expanding: C:\develop\downloads\emf-cdo-SDK-1.0.0.zip into
+C:\develop\ws\cdo\.metadata</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>move</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Attempting to rename dir: C:\develop\ws\cdo\.metadata\eclipse to
+C:\develop\ws\cdo\.metadata\.baseline</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color="#fa6400" face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:#FA6400'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>echo</span></font></u><font size=2 color="#fa6400"
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:#FA6400'>] Installing Target Platform</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>       [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>unzip</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Expanding: C:\develop\downloads\eclipse-SDK-3.4-win32.zip into
+C:\develop\ws\cdo\.metadata</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>       [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>unzip</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Expanding: C:\develop\downloads\emf-sdo-xsd-SDK-2.4.0.zip into
+C:\develop\ws\cdo\.metadata</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>       [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>unzip</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Expanding: C:\develop\downloads\emf-teneo-SDK-1.0.0.zip into
+C:\develop\ws\cdo\.metadata</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>move</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Attempting to rename dir: C:\develop\ws\cdo\.metadata\eclipse to
+C:\develop\ws\cdo\.metadata\.target</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\org.apache.derby_10.1.2.1_v200803061811.jar to
+C:\develop\ws\cdo\.metadata\.target\plugins\org.apache.derby_10.1.2.1_v200803061811.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\org.apache.derby.source_10.1.2.1_v200803061811.jar to
+C:\develop\ws\cdo\.metadata\.target\plugins\org.apache.derby.source_10.1.2.1_v200803061811.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\org.apache.commons.httpclient_3.1.0.v20080605-1935.jar to
+C:\develop\ws\cdo\.metadata\.target\plugins\org.apache.commons.httpclient_3.1.0.v20080605-1935.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying C:\develop\downloads\org.apache.commons.httpclient.source_3.1.0.v20080605-1935.jar
+to
+C:\develop\ws\cdo\.metadata\.target\plugins\org.apache.commons.httpclient.source_3.1.0.v20080605-1935.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\org.apache.commons.collections_3.2.0.v200803061811.jar to
+C:\develop\ws\cdo\.metadata\.target\plugins\org.apache.commons.collections_3.2.0.v200803061811.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\org.apache.commons.collections.source_3.2.0.v200803061811.jar
+to
+C:\develop\ws\cdo\.metadata\.target\plugins\org.apache.commons.collections.source_3.2.0.v200803061811.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\org.apache.commons.codec_1.3.0.v20080530-1600.jar to
+C:\develop\ws\cdo\.metadata\.target\plugins\org.apache.commons.codec_1.3.0.v20080530-1600.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\org.apache.commons.codec.source_1.3.0.v20080530-1600.jar
+to
+C:\develop\ws\cdo\.metadata\.target\plugins\org.apache.commons.codec.source_1.3.0.v20080530-1600.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\com.springsource.org.hsqldb_1.8.0.9.jar to
+C:\develop\ws\cdo\.metadata\.target\plugins\com.springsource.org.hsqldb_1.8.0.9.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\com.springsource.org.hsqldb.source_1.8.0.9.jar to
+C:\develop\ws\cdo\.metadata\.target\plugins\com.springsource.org.hsqldb.source_1.8.0.9.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\com.springsource.com.mysql.jdbc_5.1.6.jar to
+C:\develop\ws\cdo\.metadata\.target\plugins\com.springsource.com.mysql.jdbc_5.1.6.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\com.springsource.com.mysql.jdbc.source_5.1.6.jar to
+C:\develop\ws\cdo\.metadata\.target\plugins\com.springsource.com.mysql.jdbc.source_5.1.6.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\com.springsource.org.hibernate_3.2.6.ga.jar to
+C:\develop\ws\cdo\.metadata\.target\plugins\com.springsource.org.hibernate_3.2.6.ga.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\com.springsource.org.hibernate.source_3.2.6.ga.jar to
+C:\develop\ws\cdo\.metadata\.target\plugins\com.springsource.org.hibernate.source_3.2.6.ga.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying C:\develop\downloads\com.springsource.antlr_2.7.7.jar to
+C:\develop\ws\cdo\.metadata\.target\plugins\com.springsource.antlr_2.7.7.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\com.springsource.antlr.source_2.7.7.jar to
+C:\develop\ws\cdo\.metadata\.target\plugins\com.springsource.antlr.source_2.7.7.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\com.springsource.javassist_3.3.0.ga.jar to
+C:\develop\ws\cdo\.metadata\.target\plugins\com.springsource.javassist_3.3.0.ga.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\com.springsource.javassist.source_3.3.0.ga.jar to
+C:\develop\ws\cdo\.metadata\.target\plugins\com.springsource.javassist.source_3.3.0.ga.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\com.springsource.net.sf.cglib_2.1.3.jar to
+C:\develop\ws\cdo\.metadata\.target\plugins\com.springsource.net.sf.cglib_2.1.3.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\com.springsource.net.sf.cglib.source_2.1.3.jar to
+C:\develop\ws\cdo\.metadata\.target\plugins\com.springsource.net.sf.cglib.source_2.1.3.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying C:\develop\downloads\com.springsource.org.dom4j_1.6.1.jar
+to C:\develop\ws\cdo\.metadata\.target\plugins\com.springsource.org.dom4j_1.6.1.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\com.springsource.org.dom4j.source_1.6.1.jar to
+C:\develop\ws\cdo\.metadata\.target\plugins\com.springsource.org.dom4j.source_1.6.1.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\com.springsource.org.objectweb.asm_1.5.3.jar to
+C:\develop\ws\cdo\.metadata\.target\plugins\com.springsource.org.objectweb.asm_1.5.3.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\com.springsource.org.objectweb.asm.source_1.5.3.jar to
+C:\develop\ws\cdo\.metadata\.target\plugins\com.springsource.org.objectweb.asm.source_1.5.3.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\com.springsource.org.objectweb.asm.tree.attrs_1.5.3.jar to
+C:\develop\ws\cdo\.metadata\.target\plugins\com.springsource.org.objectweb.asm.tree.attrs_1.5.3.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\com.springsource.org.objectweb.asm.tree.attrs.source_1.5.3.jar
+to
+C:\develop\ws\cdo\.metadata\.target\plugins\com.springsource.org.objectweb.asm.tree.attrs.source_1.5.3.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying C:\develop\downloads\org.springframework.core_2.5.5.A.jar
+to
+C:\develop\ws\cdo\.metadata\.target\plugins\org.springframework.core_2.5.5.A.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying C:\develop\downloads\org.springframework.core.source_2.5.5.A.jar
+to
+C:\develop\ws\cdo\.metadata\.target\plugins\org.springframework.core.source_2.5.5.A.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying C:\develop\downloads\org.springframework.beans_2.5.5.A.jar
+to
+C:\develop\ws\cdo\.metadata\.target\plugins\org.springframework.beans_2.5.5.A.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\org.springframework.beans.source_2.5.5.A.jar to
+C:\develop\ws\cdo\.metadata\.target\plugins\org.springframework.beans.source_2.5.5.A.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying C:\develop\downloads\org.springframework.context_2.5.5.A.jar
+to
+C:\develop\ws\cdo\.metadata\.target\plugins\org.springframework.context_2.5.5.A.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying 1 file to C:\develop\ws\cdo\.metadata\.target\plugins</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>        [</span></font><u><font
+size=2 color=navy face="Courier New"><span style='font-size:10.0pt;font-family:
+"Courier New";color:navy'>copy</span></font></u><font size=2 color=blue
+face="Courier New"><span style='font-size:10.0pt;font-family:"Courier New";
+color:blue'>] Copying
+C:\develop\downloads\org.springframework.context.source_2.5.5.A.jar to
+C:\develop\ws\cdo\.metadata\.target\plugins\org.springframework.context.source_2.5.5.A.jar</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>BUILD SUCCESSFUL</span></font></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal;text-autospace:none'><font size=2 color=blue face="Courier New"><span
+style='font-size:10.0pt;font-family:"Courier New";color:blue'>Total time: 9
+minutes 41 seconds</span></font></p>
+
+<p class=MsoNormal><font size=2 face=Calibri><span style='font-size:11.0pt;
+line-height:115%'>&nbsp;</span></font></p>
+
+</div>
+
+</body>
+
+</html>
