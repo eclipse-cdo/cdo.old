@@ -106,12 +106,12 @@
 	</target>
 
 	<target name="main" depends="init,download">
-		<echo message="Installing API Baseline"/>
+		<echo message="Installing API Baseline ..."/>
 		<unzip dest="${cdo.metadata}" src="${downloads.folder}/${baseline.net4j.file}" overwrite="false" />
 		<unzip dest="${cdo.metadata}" src="${downloads.folder}/${baseline.cdo.file}" overwrite="false" />
 		<move tofile="${cdo.baseline}" file="${cdo.metadata}/eclipse" verbose="true" />
 
-		<echo message="Installing Target Platform"/>
+		<echo message="Installing Target Platform ..."/>
 		<unzip dest="${cdo.metadata}" src="${downloads.folder}/${target.eclipse.file}" overwrite="false" />
 		<unzip dest="${cdo.metadata}" src="${downloads.folder}/${target.emf.file}" overwrite="false" />
 		<unzip dest="${cdo.metadata}" src="${downloads.folder}/${target.teneo.file}" overwrite="false" />
