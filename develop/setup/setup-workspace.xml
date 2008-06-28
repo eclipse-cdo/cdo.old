@@ -75,12 +75,12 @@
 	</target>
 
 	<target name="download" depends="init">
+		<echo message="Downloading from Eclipse.org ..." />
 		<get dest="${downloads.folder}/${baseline.net4j.file}" src="${baseline.net4j.url}" usetimestamp="true" />
 		<get dest="${downloads.folder}/${baseline.cdo.file}" src="${baseline.cdo.url}" usetimestamp="true" />
 		<get dest="${downloads.folder}/${target.eclipse.file}" src="${target.eclipse.url}" usetimestamp="true" />
 		<get dest="${downloads.folder}/${target.emf.file}" src="${target.emf.url}" usetimestamp="true" />
 		<get dest="${downloads.folder}/${target.teneo.file}" src="${target.teneo.url}" usetimestamp="true" />
-		
 		<get dest="${downloads.folder}/${target.derby.file}" src="${target.derby.url}" usetimestamp="true" />
 		<get dest="${downloads.folder}/${target.derby.source.file}" src="${target.derby.source.url}" usetimestamp="true" />
 		<get dest="${downloads.folder}/${target.httpclient.file}" src="${target.httpclient.url}" usetimestamp="true" />
@@ -90,6 +90,7 @@
 		<get dest="${downloads.folder}/${target.commonscodec.file}" src="${target.commonscodec.url}" usetimestamp="true" />
 		<get dest="${downloads.folder}/${target.commonscodec.source.file}" src="${target.commonscodec.source.url}" usetimestamp="true" />
 		
+		<echo message="Downloading from SpringSource.com ..." />
 		<download-springsource name="com.springsource.org.hsqldb" version="${target.hsqldb.version}" />
 		<download-springsource name="com.springsource.com.mysql.jdbc" version="${target.mysql.version}" />
 		<download-springsource name="com.springsource.org.hibernate" version="${target.hibernate.version}" />
