@@ -2,7 +2,7 @@ The accompanying team Project Set File (PSF) with the name ".bootstrap.psf"
 is used to checkout *this* project with the name "develop.setup" from the CVS repository.
 
 The bootstrap PSF will usually be checked out via the CVS Web Viewer:
-http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.emf/org.eclipse.emf.cdo/develop/setup/?root=Modeling_Project&pathrev=R1_0_maintenance
+http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.emf/org.eclipse.emf.cdo/develop/setup/?root=Modeling_Project
 
 Important: Ensure that you checkout the bootstrap PSF from the appropriate branch, tag or HEAD!
 The bootstrap PSF is only maintained for "pserver:anonymous@".
