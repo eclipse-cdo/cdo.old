@@ -5,27 +5,61 @@
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.common,org.eclipse.emf.cdo.common"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/doc/org.eclipse.emf.cdo.doc,org.eclipse.emf.cdo.doc"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.edit,org.eclipse.emf.cdo.edit"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/examples/org.eclipse.emf.cdo.examples,org.eclipse.emf.cdo.examples"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/examples/org.eclipse.emf.cdo.examples.spring,org.eclipse.emf.cdo.examples.spring"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.migrator,org.eclipse.emf.cdo.migrator"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.server,org.eclipse.emf.cdo.server"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.server.db,org.eclipse.emf.cdo.server.db"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.server.hibernate,org.eclipse.emf.cdo.server.hibernate"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.server.hibernate.id,org.eclipse.emf.cdo.server.hibernate.id"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.server.hibernate.teneo,org.eclipse.emf.cdo.server.hibernate.teneo"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/tests/org.eclipse.emf.cdo.tests,org.eclipse.emf.cdo.tests"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.tests.hibernate,org.eclipse.emf.cdo.tests.hibernate"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.tests.hibernate.client,org.eclipse.emf.cdo.tests.hibernate.client"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/tests/org.eclipse.emf.cdo.tests.mango,org.eclipse.emf.cdo.tests.mango"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/tests/org.eclipse.emf.cdo.tests.mango.edit,org.eclipse.emf.cdo.tests.mango.edit"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/tests/org.eclipse.emf.cdo.tests.model1,org.eclipse.emf.cdo.tests.model1"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/tests/org.eclipse.emf.cdo.tests.model1.edit,org.eclipse.emf.cdo.tests.model1.edit"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/tests/org.eclipse.emf.cdo.tests.model2,org.eclipse.emf.cdo.tests.model2"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/tests/org.eclipse.emf.cdo.tests.model2.edit,org.eclipse.emf.cdo.tests.model2.edit"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/tests/org.eclipse.emf.cdo.tests.model3,org.eclipse.emf.cdo.tests.model3"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/tests/org.eclipse.emf.cdo.tests.model3.edit,org.eclipse.emf.cdo.tests.model3.edit"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.ui,org.eclipse.emf.cdo.ui"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.weaver,org.eclipse.emf.cdo.weaver"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.weaver.ajdt,org.eclipse.emf.cdo.weaver.ajdt"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.weaver.ui,org.eclipse.emf.cdo.weaver.ui"/>
 </provider>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" label="CDO Examples" name="CDO Examples">
+<item elementID="=org.eclipse.emf.cdo.tests.model3.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.tests.model3" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.tests.model2.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.tests.model1" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.tests.mango" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.tests.model1.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.examples.spring" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.tests.model2" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.examples" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.tests.mango.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" label="CDO Hibernate" name="CDO Hibernate">
+<item elementID="=org.eclipse.emf.cdo.server.hibernate.teneo" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.server.hibernate.id" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.tests.hibernate.client" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.tests.hibernate" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.server.hibernate" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" label="CDO Plugins" name="CDO Plugins">
 <item elementID="=org.eclipse.emf.cdo.server" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.emf.cdo" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.emf.cdo.common" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.emf.cdo.doc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.emf.cdo.migrator" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.emf.cdo.server.db" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.weaver" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.weaver.ajdt" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.doc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.migrator" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.common" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.server.db" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.weaver.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
 </psf>

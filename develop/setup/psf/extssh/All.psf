@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <psf version="2.0">
 <provider id="org.eclipse.team.cvs.core.cvsnature">
-<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/build/org.eclipse.ant.optional.junit,org.eclipse.ant.optional.junit"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/fakes/org.eclipse.ant.optional.junit,org.eclipse.ant.optional.junit"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo,org.eclipse.emf.cdo"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/features/org.eclipse.emf.cdo-feature,org.eclipse.emf.cdo-feature"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.common,org.eclipse.emf.cdo.common"/>
@@ -10,7 +10,7 @@
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.edit,org.eclipse.emf.cdo.edit"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/examples/org.eclipse.emf.cdo.examples,org.eclipse.emf.cdo.examples"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/features/org.eclipse.emf.cdo.examples-feature,org.eclipse.emf.cdo.examples-feature"/>
-<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/build/org.eclipse.emf.cdo.examples.source-feature,org.eclipse.emf.cdo.examples.source-feature"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/fakes/org.eclipse.emf.cdo.examples.source-feature,org.eclipse.emf.cdo.examples.source-feature"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/examples/org.eclipse.emf.cdo.examples.spring,org.eclipse.emf.cdo.examples.spring"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.migrator,org.eclipse.emf.cdo.migrator"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo.releng,org.eclipse.emf.cdo.releng"/>
@@ -21,12 +21,11 @@
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.server.hibernate,org.eclipse.emf.cdo.server.hibernate"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.server.hibernate-feature,org.eclipse.emf.cdo.server.hibernate-feature"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.server.hibernate.id,org.eclipse.emf.cdo.server.hibernate.id"/>
-<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.server.hibernate.libraries,org.eclipse.emf.cdo.server.hibernate.libraries"/>
-<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/build/org.eclipse.emf.cdo.server.hibernate.source-feature,org.eclipse.emf.cdo.server.hibernate.source-feature"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/fakes/org.eclipse.emf.cdo.server.hibernate.source-feature,org.eclipse.emf.cdo.server.hibernate.source-feature"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.server.hibernate.teneo,org.eclipse.emf.cdo.server.hibernate.teneo"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/features/org.eclipse.emf.cdo.server.product,org.eclipse.emf.cdo.server.product"/>
-<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/build/org.eclipse.emf.cdo.server.source-feature,org.eclipse.emf.cdo.server.source-feature"/>
-<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/build/org.eclipse.emf.cdo.source-feature,org.eclipse.emf.cdo.source-feature"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/fakes/org.eclipse.emf.cdo.server.source-feature,org.eclipse.emf.cdo.server.source-feature"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/fakes/org.eclipse.emf.cdo.source-feature,org.eclipse.emf.cdo.source-feature"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/tests/org.eclipse.emf.cdo.tests,org.eclipse.emf.cdo.tests"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/features/org.eclipse.emf.cdo.tests-feature,org.eclipse.emf.cdo.tests-feature"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.tests.hibernate,org.eclipse.emf.cdo.tests.hibernate"/>
@@ -39,12 +38,12 @@
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/tests/org.eclipse.emf.cdo.tests.model2.edit,org.eclipse.emf.cdo.tests.model2.edit"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/tests/org.eclipse.emf.cdo.tests.model3,org.eclipse.emf.cdo.tests.model3"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/tests/org.eclipse.emf.cdo.tests.model3.edit,org.eclipse.emf.cdo.tests.model3.edit"/>
-<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/build/org.eclipse.emf.cdo.tests.source-feature,org.eclipse.emf.cdo.tests.source-feature"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/fakes/org.eclipse.emf.cdo.tests.source-feature,org.eclipse.emf.cdo.tests.source-feature"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.ui,org.eclipse.emf.cdo.ui"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.weaver,org.eclipse.emf.cdo.weaver"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/features/org.eclipse.emf.cdo.weaver-feature,org.eclipse.emf.cdo.weaver-feature"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.weaver.ajdt,org.eclipse.emf.cdo.weaver.ajdt"/>
-<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/build/org.eclipse.emf.cdo.weaver.source-feature,org.eclipse.emf.cdo.weaver.source-feature"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/fakes/org.eclipse.emf.cdo.weaver.source-feature,org.eclipse.emf.cdo.weaver.source-feature"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.weaver.ui,org.eclipse.emf.cdo.weaver.ui"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j.releng,org.eclipse.emf.net4j.releng"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j,org.eclipse.net4j"/>
@@ -60,14 +59,14 @@
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.db.derby,org.eclipse.net4j.db.derby"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.db.hsqldb,org.eclipse.net4j.db.hsqldb"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.db.mysql,org.eclipse.net4j.db.mysql"/>
-<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/build/org.eclipse.net4j.db.source-feature,org.eclipse.net4j.db.source-feature"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/fakes/org.eclipse.net4j.db.source-feature,org.eclipse.net4j.db.source-feature"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/tests/org.eclipse.net4j.db.tests,org.eclipse.net4j.db.tests"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.debug,org.eclipse.net4j.debug"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/doc/org.eclipse.net4j.doc,org.eclipse.net4j.doc"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.doc-feature,org.eclipse.net4j.doc-feature"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/examples/org.eclipse.net4j.examples,org.eclipse.net4j.examples"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.examples-feature,org.eclipse.net4j.examples-feature"/>
-<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/build/org.eclipse.net4j.examples.source-feature,org.eclipse.net4j.examples.source-feature"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/fakes/org.eclipse.net4j.examples.source-feature,org.eclipse.net4j.examples.source-feature"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.http,org.eclipse.net4j.http"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.http.common,org.eclipse.net4j.http.common"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.http.server,org.eclipse.net4j.http.server"/>
@@ -80,17 +79,17 @@
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/tests/org.eclipse.net4j.jms.tests,org.eclipse.net4j.jms.tests"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.jvm,org.eclipse.net4j.jvm"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.sdk-feature,org.eclipse.net4j.sdk-feature"/>
-<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/build/org.eclipse.net4j.source-feature,org.eclipse.net4j.source-feature"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/fakes/org.eclipse.net4j.source-feature,org.eclipse.net4j.source-feature"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.tcp,org.eclipse.net4j.tcp"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/tests/org.eclipse.net4j.tests,org.eclipse.net4j.tests"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.tests-feature,org.eclipse.net4j.tests-feature"/>
-<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/build/org.eclipse.net4j.tests.source-feature,org.eclipse.net4j.tests.source-feature"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/fakes/org.eclipse.net4j.tests.source-feature,org.eclipse.net4j.tests.source-feature"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.ui,org.eclipse.net4j.ui"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.ui-feature,org.eclipse.net4j.ui-feature"/>
-<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/build/org.eclipse.net4j.ui.source-feature,org.eclipse.net4j.ui.source-feature"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/fakes/org.eclipse.net4j.ui.source-feature,org.eclipse.net4j.ui.source-feature"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.util,org.eclipse.net4j.util"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.util.ui,org.eclipse.net4j.util.ui"/>
-<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/build/org.eclipse.test,org.eclipse.test"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/develop/fakes/org.eclipse.test,org.eclipse.test"/>
 </provider>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" label="CDO Examples" name="CDO Examples">
 <item elementID="=org.eclipse.emf.cdo.tests.model3.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
@@ -106,7 +105,6 @@
 </workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" label="CDO Hibernate" name="CDO Hibernate">
 <item elementID="=org.eclipse.emf.cdo.server.hibernate.teneo" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.emf.cdo.server.hibernate.libraries" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.server.hibernate.id" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.tests.hibernate.client" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.tests.hibernate" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
@@ -115,15 +113,15 @@
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" label="CDO Plugins" name="CDO Plugins">
 <item elementID="=org.eclipse.emf.cdo.server" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.emf.cdo" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.emf.cdo.common" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.emf.cdo.doc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.emf.cdo.migrator" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.emf.cdo.server.db" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.weaver" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.weaver.ajdt" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.doc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.migrator" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.common" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.server.db" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.weaver.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" label="CDO Releng" name="CDO Releng">
@@ -138,7 +136,7 @@
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.emf.cdo.sdk-feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.emf.cdo.weaver-feature" type="4"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" label="Fake" name="Fake">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" label="Fakes" name="Fakes">
 <item elementID="=org.eclipse.ant.optional.junit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.emf.cdo.examples.source-feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.emf.cdo.server.hibernate.source-feature" type="4"/>
