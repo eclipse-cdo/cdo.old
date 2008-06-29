@@ -70,8 +70,8 @@
 		<mkdir dir="${downloads.folder}" />
 
 		<echo message="Workspace Folder: ${cdo.folder}" />
-		<delete dir="${cdo.baseline}" includeemptydirs="true" />
-		<delete dir="${cdo.target}" includeemptydirs="true" />
+		<delete dir="${cdo.baseline}" includeemptydirs="true" failonerror="true" verbose="false" />
+		<delete dir="${cdo.target}" includeemptydirs="true" failonerror="true" verbose="false" />
 	</target>
 
 	<target name="download" depends="init">
