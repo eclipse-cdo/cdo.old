@@ -91,15 +91,16 @@
 		<get dest="${downloads.folder}/${target.commonscodec.source.file}" src="${target.commonscodec.source.url}" usetimestamp="true" />
 		
 		<echo message="Downloading from SpringSource.com ..." />
-		<download-springsource name="com.springsource.org.hsqldb" version="${target.hsqldb.version}" />
-		<download-springsource name="com.springsource.com.mysql.jdbc" version="${target.mysql.version}" />
-		<download-springsource name="com.springsource.org.hibernate" version="${target.hibernate.version}" />
+		<download-springsource name="com.springsource.org.apache.commons.logging" version="${target.commonslogging.version}" />
 		<download-springsource name="com.springsource.antlr" version="${target.antlr.version}" />
 		<download-springsource name="com.springsource.javassist" version="${target.javassist.version}" />
 		<download-springsource name="com.springsource.net.sf.cglib" version="${target.cglib.version}" />
 		<download-springsource name="com.springsource.org.dom4j" version="${target.dom4j.version}" />
 		<download-springsource name="com.springsource.org.objectweb.asm" version="${target.asm.version}" />
 		<download-springsource name="com.springsource.org.objectweb.asm.tree.attrs" version="${target.asm.version}" />
+		<download-springsource name="com.springsource.com.mysql.jdbc" version="${target.mysql.version}" />
+		<download-springsource name="com.springsource.org.hibernate" version="${target.hibernate.version}" />
+		<download-springsource name="com.springsource.org.hsqldb" version="${target.hsqldb.version}" />
 		<download-springsource name="org.springframework.core" version="${target.spring.version}" />
 		<download-springsource name="org.springframework.beans" version="${target.spring.version}" />
 		<download-springsource name="org.springframework.context" version="${target.spring.version}" />
@@ -122,15 +123,16 @@
 		<copy-bundle name="org.apache.commons.collections" version="${target.commonscollections.version}" />
 		<copy-bundle name="org.apache.commons.codec" version="${target.commonscodec.version}" />
 		
-		<copy-bundle name="com.springsource.org.hsqldb" version="${target.hsqldb.version}" />
-		<copy-bundle name="com.springsource.com.mysql.jdbc" version="${target.mysql.version}" />
-		<copy-bundle name="com.springsource.org.hibernate" version="${target.hibernate.version}" />
+		<copy-bundle name="com.springsource.org.apache.commons.logging" version="${target.commonslogging.version}" />
 		<copy-bundle name="com.springsource.antlr" version="${target.antlr.version}" />
 		<copy-bundle name="com.springsource.javassist" version="${target.javassist.version}" />
 		<copy-bundle name="com.springsource.net.sf.cglib" version="${target.cglib.version}" />
 		<copy-bundle name="com.springsource.org.dom4j" version="${target.dom4j.version}" />
 		<copy-bundle name="com.springsource.org.objectweb.asm" version="${target.asm.version}" />
 		<copy-bundle name="com.springsource.org.objectweb.asm.tree.attrs" version="${target.asm.version}" />
+		<copy-bundle name="com.springsource.org.hibernate" version="${target.hibernate.version}" />
+		<copy-bundle name="com.springsource.org.hsqldb" version="${target.hsqldb.version}" />
+		<copy-bundle name="com.springsource.com.mysql.jdbc" version="${target.mysql.version}" />
 		<copy-bundle name="org.springframework.core" version="${target.spring.version}" />
 		<copy-bundle name="org.springframework.beans" version="${target.spring.version}" />
 		<copy-bundle name="org.springframework.context" version="${target.spring.version}" />
