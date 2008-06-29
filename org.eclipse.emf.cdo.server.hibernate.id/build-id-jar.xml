@@ -4,12 +4,12 @@
 	<property name="zip.file" value="${jar.basename}-sources.zip" />
 
 	<target name="main" depends="replaceJar">
-		<delete file="${zip.file}.tmp" failonerror="false" verbose="true"/>
+		<delete file="${zip.file}.tmp" failonerror="false" verbose="true" />
 	</target>
 
 	<target name="replaceJar" depends="checkMatch" unless="sources.match">
 		<echo message="REPLACING ID LIBRARY" />
-		<move file="${zip.file}.tmp" tofile="${zip.file}" overwrite="true" verbose="true" />
+		<move file="${zip.file}.tmp" tofile="${zip.file}" overwrite="true" />
 		<delete file="${jar.basename}.jar" failonerror="false" verbose="true" />
 		<jar destfile="${jar.basename}.jar">
 			<fileset dir="bin">
@@ -19,7 +19,7 @@
 	</target>
 
 	<target name="checkMatch">
-		<delete file="${zip.file}.tmp" failonerror="false" verbose="true"/>
+		<delete file="${zip.file}.tmp" failonerror="false" />
 		<zip destfile="${zip.file}.tmp">
 			<fileset dir="src">
 				<include name="**/*" />
