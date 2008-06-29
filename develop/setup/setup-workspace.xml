@@ -11,7 +11,7 @@
 	<property name="eclipse.url" value="http://download.eclipse.org" />
 	<property name="orbit.url" value="${eclipse.url}/tools/orbit/downloads/drops/${orbit.release}/bundles" />
 	<property name="springsource.url" value="http://www.springsource.com/repository/app/bundle/version/download" />
-	
+
 	<property name="baseline.net4j.url" value="${eclipse.url}/modeling/emf/net4j/downloads/drops/${baseline.net4j.version}/${baseline.net4j.build}/${baseline.net4j.file}" />
 	<property name="baseline.cdo.url" value="${eclipse.url}/modeling/emf/cdo/downloads/drops/${baseline.cdo.version}/${baseline.cdo.build}/${baseline.cdo.file}" />
 
@@ -68,7 +68,7 @@
 	<target name="init" depends="check-workspace">
 		<echo message="Downloads Folder: ${downloads.folder}" />
 		<mkdir dir="${downloads.folder}" />
-		
+
 		<echo message="Workspace Folder: ${cdo.folder}" />
 		<delete dir="${cdo.baseline}" includeemptydirs="true" />
 		<delete dir="${cdo.target}" includeemptydirs="true" />
@@ -89,7 +89,7 @@
 		<get dest="${downloads.folder}/${target.commonscollections.source.file}" src="${target.commonscollections.source.url}" usetimestamp="true" />
 		<get dest="${downloads.folder}/${target.commonscodec.file}" src="${target.commonscodec.url}" usetimestamp="true" />
 		<get dest="${downloads.folder}/${target.commonscodec.source.file}" src="${target.commonscodec.source.url}" usetimestamp="true" />
-		
+
 		<echo message="Downloading from SpringSource.com ..." />
 		<download-springsource name="com.springsource.org.apache.commons.logging" version="${target.commonslogging.version}" />
 		<download-springsource name="com.springsource.antlr" version="${target.antlr.version}" />
@@ -107,12 +107,12 @@
 	</target>
 
 	<target name="main" depends="init,download">
-		<echo message="Installing API Baseline ..."/>
+		<echo message="Installing API Baseline ..." />
 		<unzip dest="${cdo.metadata}" src="${downloads.folder}/${baseline.net4j.file}" overwrite="false" />
 		<unzip dest="${cdo.metadata}" src="${downloads.folder}/${baseline.cdo.file}" overwrite="false" />
 		<move tofile="${cdo.baseline}" file="${cdo.metadata}/eclipse" verbose="true" />
 
-		<echo message="Installing Target Platform ..."/>
+		<echo message="Installing Target Platform ..." />
 		<unzip dest="${cdo.metadata}" src="${downloads.folder}/${target.eclipse.file}" overwrite="false" />
 		<unzip dest="${cdo.metadata}" src="${downloads.folder}/${target.emf.file}" overwrite="false" />
 		<unzip dest="${cdo.metadata}" src="${downloads.folder}/${target.teneo.file}" overwrite="false" />
@@ -122,7 +122,7 @@
 		<copy-bundle name="org.apache.commons.httpclient" version="${target.httpclient.version}" />
 		<copy-bundle name="org.apache.commons.collections" version="${target.commonscollections.version}" />
 		<copy-bundle name="org.apache.commons.codec" version="${target.commonscodec.version}" />
-		
+
 		<copy-bundle name="com.springsource.org.apache.commons.logging" version="${target.commonslogging.version}" />
 		<copy-bundle name="com.springsource.antlr" version="${target.antlr.version}" />
 		<copy-bundle name="com.springsource.javassist" version="${target.javassist.version}" />
