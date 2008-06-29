@@ -21,7 +21,7 @@
         <constructor-arg ref="bufferFactory"/>
     </bean>
     
-    <bean id="protocolFactoryRegistry" class="org.eclipse.net4j.internal.util.registry.HashMapRegistry"/>
+    <bean id="protocolFactoryRegistry" class="org.eclipse.net4j.util.registry.HashMapRegistry"/>
     
     <bean id="serverProtocolFactoryRegistrar" class="org.eclipse.emf.cdo.examples.spring.util.FactoryRegistrar">
         <property name="registry" ref="protocolFactoryRegistry"/>
