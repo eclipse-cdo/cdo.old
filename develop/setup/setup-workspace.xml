@@ -92,6 +92,7 @@
 
 		<echo message="Downloading from SpringSource.com ..." />
 		<download-springsource name="com.springsource.org.apache.commons.logging" version="${target.commonslogging.version}" />
+		<download-springsource name="com.springsource.javax.xml.stream" version="${target.xmlstream.version}" />
 		<download-springsource name="com.springsource.antlr" version="${target.antlr.version}" />
 		<download-springsource name="com.springsource.javassist" version="${target.javassist.version}" />
 		<download-springsource name="com.springsource.net.sf.cglib" version="${target.cglib.version}" />
@@ -124,6 +125,7 @@
 		<copy-bundle name="org.apache.commons.codec" version="${target.commonscodec.version}" />
 
 		<copy-bundle name="com.springsource.org.apache.commons.logging" version="${target.commonslogging.version}" />
+		<copy-bundle name="com.springsource.javax.xml.stream" version="${target.xmlstream.version}" />
 		<copy-bundle name="com.springsource.antlr" version="${target.antlr.version}" />
 		<copy-bundle name="com.springsource.javassist" version="${target.javassist.version}" />
 		<copy-bundle name="com.springsource.net.sf.cglib" version="${target.cglib.version}" />
