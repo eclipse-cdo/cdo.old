@@ -2,76 +2,70 @@
 
 	<property file="setup-workspace.properties" />
 
-	<property name="cdo.folder" value="${workspace.folder}" />
-	<property name="cdo.metadata" value="${cdo.folder}/.metadata" />
-	<property name="cdo.baseline" value="${cdo.metadata}/.baseline" />
-	<property name="cdo.target" value="${cdo.metadata}/.target" />
-
-
-	<property name="eclipse.url" value="http://download.eclipse.org" />
-	<property name="orbit.url" value="${eclipse.url}/tools/orbit/downloads/drops/${orbit.release}/bundles" />
-	<property name="springsource.url" value="http://www.springsource.com/repository/app/bundle/version/download" />
-
-	<property name="baseline.net4j.url" value="${eclipse.url}/modeling/emf/net4j/downloads/drops/${baseline.net4j.version}/${baseline.net4j.build}/${baseline.net4j.file}" />
-	<property name="baseline.cdo.url" value="${eclipse.url}/modeling/emf/cdo/downloads/drops/${baseline.cdo.version}/${baseline.cdo.build}/${baseline.cdo.file}" />
-
-	<property name="target.eclipse.url" value="${eclipse.url}/eclipse/downloads/drops/${target.eclipse.version}-${target.eclipse.build}/${target.eclipse.file}" />
-	<property name="target.emf.url" value="${eclipse.url}/modeling/emf/emf/downloads/drops/${target.emf.version}/${target.emf.build}/${target.emf.file}" />
-	<property name="target.teneo.url" value="${eclipse.url}/modeling/emf/teneo/downloads/drops/${target.teneo.version}/${target.teneo.build}/${target.teneo.file}" />
-
-	<property name="target.derby.name" value="org.apache.derby" />
-	<property name="target.derby.file" value="${target.derby.name}_${target.derby.version}.jar" />
-	<property name="target.derby.url" value="${orbit.url}/${target.derby.file}" />
-	<property name="target.derby.source.file" value="${target.derby.name}.source_${target.derby.version}.jar" />
-	<property name="target.derby.source.url" value="${orbit.url}/${target.derby.source.file}" />
-
-	<property name="target.httpclient.name" value="org.apache.commons.httpclient" />
-	<property name="target.httpclient.file" value="${target.httpclient.name}_${target.httpclient.version}.jar" />
-	<property name="target.httpclient.url" value="${orbit.url}/${target.httpclient.file}" />
-	<property name="target.httpclient.source.file" value="${target.httpclient.name}.source_${target.httpclient.version}.jar" />
-	<property name="target.httpclient.source.url" value="${orbit.url}/${target.httpclient.source.file}" />
-
-	<property name="target.commonscollections.name" value="org.apache.commons.collections" />
-	<property name="target.commonscollections.file" value="${target.commonscollections.name}_${target.commonscollections.version}.jar" />
-	<property name="target.commonscollections.url" value="${orbit.url}/${target.commonscollections.file}" />
-	<property name="target.commonscollections.source.file" value="${target.commonscollections.name}.source_${target.commonscollections.version}.jar" />
-	<property name="target.commonscollections.source.url" value="${orbit.url}/${target.commonscollections.source.file}" />
-
-	<property name="target.commonscodec.name" value="org.apache.commons.codec" />
-	<property name="target.commonscodec.file" value="${target.commonscodec.name}_${target.commonscodec.version}.jar" />
-	<property name="target.commonscodec.url" value="${orbit.url}/${target.commonscodec.file}" />
-	<property name="target.commonscodec.source.file" value="${target.commonscodec.name}.source_${target.commonscodec.version}.jar" />
-	<property name="target.commonscodec.source.url" value="${orbit.url}/${target.commonscodec.source.file}" />
-
-	<macrodef name="download-springsource">
-		<attribute name="name" />
-		<attribute name="version" />
-		<sequential>
-			<get dest="${downloads.folder}/@{name}_@{version}.jar" src="${springsource.url}?name=@{name}&amp;version=@{version}&amp;type=binary" usetimestamp="true" />
-			<get dest="${downloads.folder}/@{name}.source_@{version}.jar" src="${springsource.url}?name=@{name}&amp;version=@{version}&amp;type=source" usetimestamp="true" />
-		</sequential>
-	</macrodef>
-
-	<macrodef name="copy-bundle">
-		<attribute name="name" />
-		<attribute name="version" />
-		<sequential>
-			<copy file="${downloads.folder}/@{name}_@{version}.jar" todir="${cdo.target}/plugins" verbose="true" />
-			<copy file="${downloads.folder}/@{name}.source_@{version}.jar" todir="${cdo.target}/plugins" verbose="true" />
-		</sequential>
-	</macrodef>
-
-	<target name="check-workspace" unless="workspace.folder">
-		<fail message="workspace.folder is undefined" />
+	<target name="main" depends="install-baseline,install-target">
+		<echo message="Finished" />
+		<echo message="Do not forget to reload your target platform!" />
 	</target>
 
 	<target name="init" depends="check-workspace">
+		<property name="repack.folder" value="${downloads.folder}/.repack" />
+		<property name="target.hibernate.version" value="3.2.6" />
+		<property name="target.transaction.version" value="1.1.0" />
+
+		<property name="cdo.folder" value="${workspace.folder}" />
+		<property name="cdo.metadata" value="${cdo.folder}/.metadata" />
+		<property name="cdo.baseline" value="${cdo.metadata}/.baseline" />
+		<property name="cdo.target" value="${cdo.metadata}/.target" />
+
+		<property name="eclipse.url" value="http://download.eclipse.org" />
+		<property name="orbit.url" value="${eclipse.url}/tools/orbit/downloads/drops/${orbit.release}/bundles" />
+		<property name="springsource.url" value="http://www.springsource.com/repository/app/bundle/version/download" />
+
+		<property name="baseline.net4j.url" value="${eclipse.url}/modeling/emf/net4j/downloads/drops/${baseline.net4j.version}/${baseline.net4j.build}/${baseline.net4j.file}" />
+		<property name="baseline.cdo.url" value="${eclipse.url}/modeling/emf/cdo/downloads/drops/${baseline.cdo.version}/${baseline.cdo.build}/${baseline.cdo.file}" />
+
+		<property name="target.eclipse.url" value="${eclipse.url}/eclipse/downloads/drops/${target.eclipse.version}-${target.eclipse.build}/${target.eclipse.file}" />
+		<property name="target.emf.url" value="${eclipse.url}/modeling/emf/emf/downloads/drops/${target.emf.version}/${target.emf.build}/${target.emf.file}" />
+		<property name="target.teneo.url" value="${eclipse.url}/modeling/emf/teneo/downloads/drops/${target.teneo.version}/${target.teneo.build}/${target.teneo.file}" />
+
+		<property name="target.derby.name" value="org.apache.derby" />
+		<property name="target.derby.file" value="${target.derby.name}_${target.derby.version}.jar" />
+		<property name="target.derby.url" value="${orbit.url}/${target.derby.file}" />
+		<property name="target.derby.source.file" value="${target.derby.name}.source_${target.derby.version}.jar" />
+		<property name="target.derby.source.url" value="${orbit.url}/${target.derby.source.file}" />
+
+		<property name="target.httpclient.name" value="org.apache.commons.httpclient" />
+		<property name="target.httpclient.file" value="${target.httpclient.name}_${target.httpclient.version}.jar" />
+		<property name="target.httpclient.url" value="${orbit.url}/${target.httpclient.file}" />
+		<property name="target.httpclient.source.file" value="${target.httpclient.name}.source_${target.httpclient.version}.jar" />
+		<property name="target.httpclient.source.url" value="${orbit.url}/${target.httpclient.source.file}" />
+
+		<property name="target.commonscollections.name" value="org.apache.commons.collections" />
+		<property name="target.commonscollections.file" value="${target.commonscollections.name}_${target.commonscollections.version}.jar" />
+		<property name="target.commonscollections.url" value="${orbit.url}/${target.commonscollections.file}" />
+		<property name="target.commonscollections.source.file" value="${target.commonscollections.name}.source_${target.commonscollections.version}.jar" />
+		<property name="target.commonscollections.source.url" value="${orbit.url}/${target.commonscollections.source.file}" />
+
+		<property name="target.commonscodec.name" value="org.apache.commons.codec" />
+		<property name="target.commonscodec.file" value="${target.commonscodec.name}_${target.commonscodec.version}.jar" />
+		<property name="target.commonscodec.url" value="${orbit.url}/${target.commonscodec.file}" />
+		<property name="target.commonscodec.source.file" value="${target.commonscodec.name}.source_${target.commonscodec.version}.jar" />
+		<property name="target.commonscodec.source.url" value="${orbit.url}/${target.commonscodec.source.file}" />
+
 		<echo message="Downloads Folder: ${downloads.folder}" />
 		<mkdir dir="${downloads.folder}" />
 
 		<echo message="Workspace Folder: ${cdo.folder}" />
 		<delete dir="${cdo.baseline}" includeemptydirs="true" failonerror="true" verbose="false" />
 		<delete dir="${cdo.target}" includeemptydirs="true" failonerror="true" verbose="false" />
+
+		<condition property="repacked">
+			<available file="${downloads.folder}/org.hibernate_${target.hibernate.version}.jar" />
+		</condition>
+	</target>
+
+	<target name="check-workspace" unless="workspace.folder">
+		<fail message="workspace.folder is undefined" />
 	</target>
 
 	<target name="download" depends="init">
@@ -93,7 +87,6 @@
 		<echo message="Downloading from SpringSource.com ..." />
 		<download-springsource name="com.springsource.org.apache.commons.logging" version="${target.commonslogging.version}" />
 		<download-springsource name="com.springsource.javax.xml.stream" version="${target.xmlstream.version}" />
-		<download-springsource name="com.springsource.javax.transaction" version="${target.transaction.version}" />
 		<download-springsource name="com.springsource.antlr" version="${target.antlr.version}" />
 		<download-springsource name="com.springsource.javassist" version="${target.javassist.version}" />
 		<download-springsource name="com.springsource.net.sf.cglib" version="${target.cglib.version}" />
@@ -101,24 +94,37 @@
 		<download-springsource name="com.springsource.org.objectweb.asm" version="${target.asm.version}" />
 		<download-springsource name="com.springsource.org.objectweb.asm.tree.attrs" version="${target.asm.version}" />
 		<download-springsource name="com.springsource.com.mysql.jdbc" version="${target.mysql.version}" />
-		<download-springsource name="com.springsource.org.hibernate" version="${target.hibernate.version}" />
 		<download-springsource name="com.springsource.org.hsqldb" version="${target.hsqldb.version}" />
 		<download-springsource name="org.springframework.core" version="${target.spring.version}" />
 		<download-springsource name="org.springframework.beans" version="${target.spring.version}" />
 		<download-springsource name="org.springframework.context" version="${target.spring.version}" />
+		<download-springsource name="com.springsource.org.hibernate" version="${target.hibernate.version}.ga" />
+		<download-springsource name="com.springsource.javax.transaction" version="${target.transaction.version}" />
 	</target>
 
-	<target name="main" depends="init,download">
+	<target name="repack" depends="download" unless="repacked">
+		<delete dir="${repack.folder}/hibernate" includeemptydirs="true" failonerror="true" verbose="false" />
+		<mkdir dir="${repack.folder}/hibernate" />
+		<unjar src="${downloads.folder}/com.springsource.org.hibernate_${target.hibernate.version}.ga.jar" dest="${repack.folder}/hibernate" />
+		<unjar src="${downloads.folder}/com.springsource.javax.transaction_${target.transaction.version}.jar" dest="${repack.folder}/hibernate" />
+		<copy file="hibernate/MANIFEST.MF" tofile="${repack.folder}/hibernate/META-INF/MANIFEST.MF" overwrite="true" />
+		<jar destfile="${downloads.folder}/org.hibernate_${target.hibernate.version}.jar" basedir="${repack.folder}/hibernate" manifest="${repack.folder}/hibernate/META-INF/MANIFEST.MF" />
+		<delete dir="${repack.folder}/hibernate" includeemptydirs="true" failonerror="true" verbose="false" />
+	</target>
+
+	<target name="install-baseline" depends="download">
 		<echo message="Installing API Baseline ..." />
 		<unzip dest="${cdo.metadata}" src="${downloads.folder}/${baseline.net4j.file}" overwrite="false" />
 		<unzip dest="${cdo.metadata}" src="${downloads.folder}/${baseline.cdo.file}" overwrite="false" />
-		<move tofile="${cdo.baseline}" file="${cdo.metadata}/eclipse" verbose="true" />
+		<move tofile="${cdo.baseline}" file="${cdo.metadata}/eclipse" verbose="false" />
+	</target>
 
+	<target name="install-target" depends="repack">
 		<echo message="Installing Target Platform ..." />
 		<unzip dest="${cdo.metadata}" src="${downloads.folder}/${target.eclipse.file}" overwrite="false" />
 		<unzip dest="${cdo.metadata}" src="${downloads.folder}/${target.emf.file}" overwrite="false" />
 		<unzip dest="${cdo.metadata}" src="${downloads.folder}/${target.teneo.file}" overwrite="false" />
-		<move tofile="${cdo.target}" file="${cdo.metadata}/eclipse" verbose="true" />
+		<move tofile="${cdo.target}" file="${cdo.metadata}/eclipse" verbose="false" />
 
 		<copy-bundle name="org.apache.derby" version="${target.derby.version}" />
 		<copy-bundle name="org.apache.commons.httpclient" version="${target.httpclient.version}" />
@@ -127,19 +133,36 @@
 
 		<copy-bundle name="com.springsource.org.apache.commons.logging" version="${target.commonslogging.version}" />
 		<copy-bundle name="com.springsource.javax.xml.stream" version="${target.xmlstream.version}" />
-		<copy-bundle name="com.springsource.javax.transaction" version="${target.transaction.version}" />
 		<copy-bundle name="com.springsource.antlr" version="${target.antlr.version}" />
 		<copy-bundle name="com.springsource.javassist" version="${target.javassist.version}" />
 		<copy-bundle name="com.springsource.net.sf.cglib" version="${target.cglib.version}" />
 		<copy-bundle name="com.springsource.org.dom4j" version="${target.dom4j.version}" />
 		<copy-bundle name="com.springsource.org.objectweb.asm" version="${target.asm.version}" />
 		<copy-bundle name="com.springsource.org.objectweb.asm.tree.attrs" version="${target.asm.version}" />
-		<copy-bundle name="com.springsource.org.hibernate" version="${target.hibernate.version}" />
 		<copy-bundle name="com.springsource.org.hsqldb" version="${target.hsqldb.version}" />
 		<copy-bundle name="com.springsource.com.mysql.jdbc" version="${target.mysql.version}" />
 		<copy-bundle name="org.springframework.core" version="${target.spring.version}" />
 		<copy-bundle name="org.springframework.beans" version="${target.spring.version}" />
 		<copy-bundle name="org.springframework.context" version="${target.spring.version}" />
+		<copy-bundle name="org.hibernate" version="${target.hibernate.version}" />
 	</target>
+
+	<macrodef name="download-springsource">
+		<attribute name="name" />
+		<attribute name="version" />
+		<sequential>
+			<get dest="${downloads.folder}/@{name}_@{version}.jar" src="${springsource.url}?name=@{name}&amp;version=@{version}&amp;type=binary" usetimestamp="true" />
+			<get dest="${downloads.folder}/@{name}.source_@{version}.jar" src="${springsource.url}?name=@{name}&amp;version=@{version}&amp;type=source" usetimestamp="true" />
+		</sequential>
+	</macrodef>
+
+	<macrodef name="copy-bundle">
+		<attribute name="name" />
+		<attribute name="version" />
+		<sequential>
+			<copy file="${downloads.folder}/@{name}_@{version}.jar" todir="${cdo.target}/plugins" verbose="true" />
+			<copy file="${downloads.folder}/@{name}.source_@{version}.jar" todir="${cdo.target}/plugins" verbose="true" failonerror="false" />
+		</sequential>
+	</macrodef>
 
 </project>
