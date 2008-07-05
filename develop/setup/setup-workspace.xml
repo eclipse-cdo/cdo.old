@@ -5,12 +5,6 @@
 		<echo message="Do not forget to reload your target platform!" />
 	</target>
 
-	<target name="install-externals" depends="install-externals-init,install-target-springsource" description="Needed for automated build" />
-
-	<target name="install-externals-init" depends="repack-hibernate">
-		<property name="cdo.target" value="../.." />
-	</target>
-
 	<target name="install-baseline" depends="clean-baseline,download-from-eclipse">
 		<unzip dest="${cdo.metadata}" src="${downloads.folder}/${baseline.net4j.file}" overwrite="false" />
 		<unzip dest="${cdo.metadata}" src="${downloads.folder}/${baseline.cdo.file}" overwrite="false" />
