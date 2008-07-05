@@ -2,7 +2,7 @@
 
 	<property file="setup-workspace.properties" />
 
-	<target name="main" depends="install-baseline,install-target" description="Needed for local workspace setup">
+	<target name="main" depends="download-from-eclipse,repack-hibernate,install-baseline,install-target" description="Needed for local workspace setup">
 		<echo message="Finished" />
 		<echo message="Do not forget to reload your target platform!" />
 	</target>
@@ -160,23 +160,11 @@
 		<fail message="downloads.folder is undefined" />
 	</target>
 
-	<target name="get-lazy-unless" unless="get.lazy.skip">
-		<get dest="${get.lazy.dest}" src="${get.lazy.src}" usetimestamp="true" />
-	</target>
-
 	<macrodef name="get-lazy">
 		<attribute name="dest" />
 		<attribute name="src" />
 		<sequential>
-			<echo message="Checking @{dest}" />
-			<condition property="skip">
-				<available file="@{dest}" />
-			</condition>
-			<antcall target="get-lazy-unless">
-				<param name="get.lazy.dest" value="@{dest}" />
-				<param name="get.lazy.src" value="@{src}" />
-				<param name="get.lazy.skip" value="skip" />
-			</antcall>
+			<get dest="@{dest}" src="@{src}" usetimestamp="true" />
 		</sequential>
 	</macrodef>
 
