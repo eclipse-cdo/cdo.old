@@ -1,7 +1,5 @@
 <project name="setup-workspace" basedir="." default="main">
 
-	<property file="setup-workspace.properties" />
-
 	<target name="main" depends="install-baseline,install-target" description="Needed for local workspace setup">
 		<echo message="Finished" />
 		<echo message="Do not forget to reload your target platform!" />
@@ -103,6 +101,8 @@
 	</target>
 
 	<target name="init" depends="check-workspace">
+		<property file="setup-workspace.properties" />
+
 		<property name="repack.folder" value="${downloads.folder}/.repack" />
 		<property name="target.hibernate.version" value="3.2.6" />
 		<property name="target.transaction.version" value="1.1.0" />
