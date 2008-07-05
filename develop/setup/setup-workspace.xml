@@ -96,7 +96,7 @@
 		<download-springsource name="com.springsource.javax.transaction" version="${target.transaction.version}" />
 	</target>
 
-	<target name="init" depends="check-workspace">
+	<target name="init" depends="check">
 		<property name="repack.folder" value="${downloads.folder}/.repack" />
 		<property name="target.hibernate.version" value="3.2.6" />
 		<property name="target.transaction.version" value="1.1.0" />
@@ -150,8 +150,14 @@
 		</condition>
 	</target>
 
-	<target name="check-workspace" unless="workspace.folder">
+	<target name="check" depends="check-workspace-folder,check-downloads-folder" />
+
+	<target name="check-workspace-folder" unless="workspace.folder">
 		<fail message="workspace.folder is undefined" />
+	</target>
+
+	<target name="check-downloads-folder" unless="downloads.folder">
+		<fail message="downloads.folder is undefined" />
 	</target>
 
 	<target name="get-lazy-unless" unless="get.lazy.skip">
