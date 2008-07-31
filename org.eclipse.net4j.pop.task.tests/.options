@@ -1,0 +1,4 @@
+# Debugging and tracing options
+
+org.eclipse.net4j.pop.task.tests/debug = true
+org.eclipse.net4j.pop.task.tests/perf = false
