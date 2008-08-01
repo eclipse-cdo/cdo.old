@@ -30,6 +30,7 @@
 	<target name="install-target-springsource" depends="repack-hibernate">
 		<copy-bundle name="com.springsource.org.apache.commons.logging" version="${target.commonslogging.version}" />
 		<copy-bundle name="com.springsource.javax.xml.stream" version="${target.xmlstream.version}" />
+		<copy-bundle name="com.springsource.javax.transaction" version="${target.transaction.version}" />
 		<copy-bundle name="com.springsource.antlr" version="${target.antlr.version}" />
 		<copy-bundle name="com.springsource.javassist" version="${target.javassist.version}" />
 		<copy-bundle name="com.springsource.net.sf.cglib" version="${target.cglib.version}" />
@@ -38,6 +39,7 @@
 		<copy-bundle name="com.springsource.org.objectweb.asm.tree.attrs" version="${target.asm.version}" />
 		<copy-bundle name="com.springsource.org.hsqldb" version="${target.hsqldb.version}" />
 		<copy-bundle name="com.springsource.com.mysql.jdbc" version="${target.mysql.version}" />
+		<copy-bundle name="com.springsource.org.postgresql.jdbc3" version="${target.postgresql.version}" />
 		<copy-bundle name="org.springframework.core" version="${target.spring.version}" />
 		<copy-bundle name="org.springframework.beans" version="${target.spring.version}" />
 		<copy-bundle name="org.springframework.context" version="${target.spring.version}" />
@@ -53,6 +55,7 @@
 	</target>
 
 	<target name="repack-hibernate" depends="download-from-springsource" unless="repacked">
+		<property name="repack.folder" value="${downloads.folder}/.repack" />
 		<delete dir="${repack.folder}/hibernate" includeemptydirs="true" failonerror="true" verbose="false" />
 		<mkdir dir="${repack.folder}/hibernate" />
 		<unjar src="${downloads.folder}/com.springsource.org.hibernate_${target.hibernate.version}.ga.jar" dest="${repack.folder}/hibernate" />
@@ -60,6 +63,7 @@
 		<copy file="hibernate/MANIFEST.MF" tofile="${repack.folder}/hibernate/META-INF/MANIFEST.MF" overwrite="true" />
 		<jar destfile="${downloads.folder}/org.hibernate_${target.hibernate.version}.jar" basedir="${repack.folder}/hibernate" manifest="${repack.folder}/hibernate/META-INF/MANIFEST.MF" />
 		<delete dir="${repack.folder}/hibernate" includeemptydirs="true" failonerror="true" verbose="false" />
+		<copy file="${downloads.folder}/com.springsource.org.hibernate.source_${target.hibernate.version}.ga.jar" tofile="${downloads.folder}/org.hibernate.source_${target.hibernate.version}.jar" overwrite="true" />
 	</target>
 
 	<target name="download-from-eclipse" depends="init">
@@ -81,26 +85,23 @@
 	<target name="download-from-springsource" depends="init">
 		<download-springsource name="com.springsource.org.apache.commons.logging" version="${target.commonslogging.version}" />
 		<download-springsource name="com.springsource.javax.xml.stream" version="${target.xmlstream.version}" />
+		<download-springsource name="com.springsource.javax.transaction" version="${target.transaction.version}" />
 		<download-springsource name="com.springsource.antlr" version="${target.antlr.version}" />
 		<download-springsource name="com.springsource.javassist" version="${target.javassist.version}" />
 		<download-springsource name="com.springsource.net.sf.cglib" version="${target.cglib.version}" />
 		<download-springsource name="com.springsource.org.dom4j" version="${target.dom4j.version}" />
 		<download-springsource name="com.springsource.org.objectweb.asm" version="${target.asm.version}" />
 		<download-springsource name="com.springsource.org.objectweb.asm.tree.attrs" version="${target.asm.version}" />
-		<download-springsource name="com.springsource.com.mysql.jdbc" version="${target.mysql.version}" />
 		<download-springsource name="com.springsource.org.hsqldb" version="${target.hsqldb.version}" />
+		<download-springsource name="com.springsource.com.mysql.jdbc" version="${target.mysql.version}" />
+		<download-springsource name="com.springsource.org.postgresql.jdbc3" version="${target.postgresql.version}" />
+		<download-springsource name="com.springsource.org.hibernate" version="${target.hibernate.version}.ga" />
 		<download-springsource name="org.springframework.core" version="${target.spring.version}" />
 		<download-springsource name="org.springframework.beans" version="${target.spring.version}" />
 		<download-springsource name="org.springframework.context" version="${target.spring.version}" />
-		<download-springsource name="com.springsource.org.hibernate" version="${target.hibernate.version}.ga" />
-		<download-springsource name="com.springsource.javax.transaction" version="${target.transaction.version}" />
 	</target>
 
 	<target name="init" depends="check">
-		<property name="repack.folder" value="${downloads.folder}/.repack" />
-		<property name="target.hibernate.version" value="3.2.6" />
-		<property name="target.transaction.version" value="1.1.0" />
-
 		<property name="cdo.folder" value="${workspace.folder}" />
 		<property name="cdo.metadata" value="${cdo.folder}/.metadata" />
 		<property name="cdo.baseline" value="${cdo.metadata}/.baseline" />
