@@ -39,7 +39,6 @@ import org.eclipse.update.core.ISite;
 import org.eclipse.update.core.SiteManager;
 
 import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
 
 import java.io.File;
@@ -239,9 +238,8 @@ public abstract class OM
     }
 
     @Override
-    public void start(BundleContext context) throws Exception
+    protected void doStart() throws Exception
     {
-      super.start(context);
       if (PREF_CHECK_DURING_STARTUP.getValue())
       {
         job = new ConfirmWeaveJob();
@@ -250,15 +248,13 @@ public abstract class OM
     }
 
     @Override
-    public void stop(BundleContext context) throws Exception
+    protected void doStop() throws Exception
     {
       if (job != null)
       {
         job.cancel();
         job = null;
       }
-
-      super.stop(context);
     }
   }
 }

@@ -18,8 +18,6 @@ import org.eclipse.net4j.util.om.OSGiActivator;
 import org.eclipse.net4j.util.om.log.OMLogger;
 import org.eclipse.net4j.util.om.trace.OMTracer;
 
-import org.osgi.framework.BundleContext;
-
 /**
  * The <em>Operations & Maintenance</em> class of this bundle.
  * 
@@ -46,17 +44,15 @@ public abstract class OM
     }
 
     @Override
-    public void start(BundleContext context) throws Exception
+    protected void doStart() throws Exception
     {
-      super.start(context);
-      CDOWeaver.INSTANCE.setBundleContext(context);
+      CDOWeaver.INSTANCE.setBundleContext(bundleContext);
     }
 
     @Override
-    public void stop(BundleContext context) throws Exception
+    protected void doStop() throws Exception
     {
       CDOWeaver.INSTANCE.setBundleContext(null);
-      super.stop(context);
     }
   }
 }
