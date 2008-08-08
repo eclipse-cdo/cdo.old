@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ Copyright (c) 2004 - 2008 Eike Stepper, Germany.
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+    Eike Stepper - initial API and implementation
+
+ $Id: plugin.xml,v 1.1 2008-08-08 10:10:35 estepper Exp $
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.net4j.pop.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+            <!--
+      <wizard
+            id="org.eclipse.net4j.pop.base.editor.BaseModelWizardID"
+            name="%_UI_BaseModelWizard_label"
+            class="org.eclipse.net4j.pop.base.editor.BaseModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/BaseModelFile.gif">
+         <description>%_UI_BaseModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+      -->
+   </extension>
+
+	<!--
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="org.eclipse.net4j.pop.base.editor.BaseEditorID"
+            name="%_UI_BaseEditor_label"
+            icon="icons/full/obj16/BaseModelFile.gif"
+            class="org.eclipse.net4j.pop.base.editor.BaseEditor"
+            contributorClass="org.eclipse.net4j.pop.base.editor.BaseActionBarContributor">
+         <contentTypeBinding contentTypeId="pop.base"/>
+      </editor>
+   </extension>
+	-->
+	
+</plugin>

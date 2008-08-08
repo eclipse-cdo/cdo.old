@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.net4j.pop.project.editor;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.net4j.pop.project.editor.ProjectEditorPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.net4j.pop.project.editor;version="1.0.0"
+Require-Bundle: org.eclipse.net4j.pop.base.editor;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
+ org.eclipse.net4j.pop.project;bundle-version="[1.0.0,2.0.0)";visibility:=reexport
+Bundle-ActivationPolicy: lazy

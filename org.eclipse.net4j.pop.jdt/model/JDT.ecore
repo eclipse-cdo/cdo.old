@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="jdt"
+    nsURI="http://www.eclipse.org/pop/jdt/1.0.0" nsPrefix="pop.jdt">
+  <eClassifiers xsi:type="ecore:EClass" name="JREChecker" eSuperTypes="../../org.eclipse.net4j.pop.product/model/Product.ecore#//WorkspaceConfigurator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FormatterProfileConfigurator" eSuperTypes="../../org.eclipse.net4j.pop.product/model/Product.ecore#//WorkspaceConfigurator"/>
+</ecore:EPackage>
