@@ -1,6 +1,7 @@
 <project name="build-id-jar" basedir="." default="main">
 
-	<property name="jar.basename" value="hibernate-id-v2" />
+	<!-- org.eclipse.emf.cdo.server.hibernate.internal.id.CDOIDHibernateLibraryHandler.LIBRARY_NAME -->
+	<property name="jar.basename" value="hibernate-id-v3" />
 	<property name="zip.file" value="${jar.basename}-sources.zip" />
 
 	<target name="main" depends="replaceJar">

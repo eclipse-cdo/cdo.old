@@ -115,13 +115,25 @@ public class CDOIDHibernateImpl extends AbstractCDOID implements CDOIDHibernate
     return new Legacy(classRef);
   }
 
+  public String asString()
+  {
+    // TODO: implement CDOIDHibernateImpl.asString()
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public void read(String fragmentPart)
+  {
+    // TODO: implement CDOIDHibernateImpl.read(fragmentPart)
+    throw new UnsupportedOperationException();
+  }
+
   @Override
   public void read(ExtendedDataInput in) throws IOException
   {
     // the idtype is read by the id factory!
 
     readId(in);
-
     if (tracer != null && tracer.isEnabled())
     {
       tracer.format("Read id={0}", id);
@@ -137,21 +149,18 @@ public class CDOIDHibernateImpl extends AbstractCDOID implements CDOIDHibernate
   @Override
   public void write(ExtendedDataOutput out) throws IOException
   {
-
     if (tracer != null && tracer.isEnabled())
     {
       tracer.format("Writing id type={0}", getIDType());
     }
 
     out.writeInt(getIDType());
-
     if (tracer != null && tracer.isEnabled())
     {
       tracer.format("Writing id={0}", id);
     }
 
     writeId(out);
-
     if (tracer != null && tracer.isEnabled())
     {
       tracer.format("Writing entityName={0}", entityName);

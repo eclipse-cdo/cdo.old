@@ -14,7 +14,7 @@ import java.io.InputStream;
  */
 public final class CDOIDHibernateLibraryHandler extends CDOIDLibraryDescriptorImpl implements CDOIDLibraryProvider
 {
-  public static final String LIBRARY_NAME = "hibernate-id-v2.jar";
+  public static final String LIBRARY_NAME = "hibernate-id-v3.jar";
 
   CDOIDHibernateLibraryHandler()
   {

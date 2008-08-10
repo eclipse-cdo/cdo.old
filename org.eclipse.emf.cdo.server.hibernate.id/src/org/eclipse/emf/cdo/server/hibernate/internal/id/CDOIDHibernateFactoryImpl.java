@@ -85,4 +85,9 @@ public class CDOIDHibernateFactoryImpl implements CDOIDObjectFactory
     return cdoID;
   }
 
+  public CDOIDObject createCDOIDObject(String fragmentPart)
+  {
+    // TODO: implement CDOIDHibernateFactoryImpl.createCDOIDObject(fragmentPart)
+    throw new UnsupportedOperationException();
+  }
 }
