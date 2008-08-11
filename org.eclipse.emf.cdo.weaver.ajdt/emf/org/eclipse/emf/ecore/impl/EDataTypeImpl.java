@@ -92,22 +92,38 @@ public class EDataTypeImpl extends EClassifierImpl implements EDataType
       if (instanceClass != null && instanceClass.isPrimitive())
       {
         if (instanceClass == Boolean.TYPE)
+        {
           defaultValue = Boolean.FALSE;
+        }
         else if (instanceClass == Integer.TYPE)
+        {
           defaultValue = new Integer(0);
+        }
         else if (instanceClass == Float.TYPE)
+        {
           defaultValue = new Float(0.0F);
+        }
         else if (instanceClass == Double.TYPE)
+        {
           defaultValue = new Double(0.0);
+        }
         else if (instanceClass == Long.TYPE)
+        {
           defaultValue = new Long(0);
+        }
         else if (instanceClass == Short.TYPE)
+        {
           defaultValue = new Short((short)0);
+        }
         else if (instanceClass == Byte.TYPE)
+        {
           defaultValue = new Byte((byte)0);
+        }
         else
+        {
           // if (instanceClass == Character.TYPE)
           defaultValue = new Character('\u0000');
+        }
       }
       defaultValueIsSet = true;
     }
@@ -172,12 +188,18 @@ public class EDataTypeImpl extends EClassifierImpl implements EDataType
   {
     boolean oldSerializable = (eFlags & SERIALIZABLE_EFLAG) != 0;
     if (newSerializable)
+    {
       eFlags |= SERIALIZABLE_EFLAG;
+    }
     else
+    {
       eFlags &= ~SERIALIZABLE_EFLAG;
+    }
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EDATA_TYPE__SERIALIZABLE, oldSerializable,
           newSerializable));
+    }
   }
 
   /**
@@ -203,7 +225,10 @@ public class EDataTypeImpl extends EClassifierImpl implements EDataType
     case EcorePackage.EDATA_TYPE__INSTANCE_TYPE_NAME:
       return getInstanceTypeName();
     case EcorePackage.EDATA_TYPE__EPACKAGE:
-      if (resolve) return getEPackage();
+      if (resolve)
+      {
+        return getEPackage();
+      }
       return basicGetEPackage();
     case EcorePackage.EDATA_TYPE__ETYPE_PARAMETERS:
       return getETypeParameters();
@@ -308,7 +333,7 @@ public class EDataTypeImpl extends EClassifierImpl implements EDataType
     case EcorePackage.EDATA_TYPE__ETYPE_PARAMETERS:
       return eTypeParameters != null && !eTypeParameters.isEmpty();
     case EcorePackage.EDATA_TYPE__SERIALIZABLE:
-      return ((eFlags & SERIALIZABLE_EFLAG) != 0) != SERIALIZABLE_EDEFAULT;
+      return (eFlags & SERIALIZABLE_EFLAG) != 0 != SERIALIZABLE_EDEFAULT;
     }
     return eDynamicIsSet(featureID);
   }
@@ -321,7 +346,10 @@ public class EDataTypeImpl extends EClassifierImpl implements EDataType
   @Override
   public String toString()
   {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy())
+    {
+      return super.toString();
+    }
 
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (serializable: ");

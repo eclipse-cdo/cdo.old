@@ -201,7 +201,7 @@ public class DynamicEStoreEObjectImpl extends DynamicEObjectImpl
   @Override
   public void eSetStore(InternalEObject.EStore store)
   {
-    this.eStore = store;
+    eStore = store;
   }
 
   /*

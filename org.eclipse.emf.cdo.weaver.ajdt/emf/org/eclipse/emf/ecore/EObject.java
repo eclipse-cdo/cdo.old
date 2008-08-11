@@ -234,6 +234,7 @@ public interface EObject extends Notifier
    *    ...
    *  }
    * </pre>
+   * 
    * </p>
    * 
    * @see #eContents

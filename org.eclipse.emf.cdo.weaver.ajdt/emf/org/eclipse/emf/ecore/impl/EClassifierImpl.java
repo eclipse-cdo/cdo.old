@@ -100,7 +100,10 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
     case EcorePackage.ECLASSIFIER__EANNOTATIONS:
       return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
     case EcorePackage.ECLASSIFIER__EPACKAGE:
-      if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+      if (eInternalContainer() != null)
+      {
+        msgs = eBasicRemoveFromContainer(msgs);
+      }
       return eBasicSetContainer(otherEnd, EcorePackage.ECLASSIFIER__EPACKAGE, msgs);
     }
     return eDynamicInverseAdd(otherEnd, featureID, msgs);
@@ -304,8 +307,10 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
     String oldInstanceClassName = instanceClassName;
     instanceClassName = newInstanceClassName;
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ECLASSIFIER__INSTANCE_CLASS_NAME,
           oldInstanceClassName, instanceClassName));
+    }
   }
 
   /**
@@ -424,24 +429,41 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
       String componentClassName = className.substring(0, arrayIndex);
       StringBuffer result = new StringBuffer();
       do
+      {
         result.append('[');
-      while ((arrayIndex = className.indexOf('[', ++arrayIndex)) != -1);
+      } while ((arrayIndex = className.indexOf('[', ++arrayIndex)) != -1);
       if (componentClassName.equals("boolean"))
+      {
         result.append('Z');
+      }
       else if (componentClassName.equals("byte"))
+      {
         result.append('B');
+      }
       else if (componentClassName.equals("char"))
+      {
         result.append('C');
+      }
       else if (componentClassName.equals("double"))
+      {
         result.append('D');
+      }
       else if (componentClassName.equals("float"))
+      {
         result.append('F');
+      }
       else if (componentClassName.equals("int"))
+      {
         result.append('I');
+      }
       else if (componentClassName.equals("long"))
+      {
         result.append('J');
+      }
       else if (componentClassName.equals("short"))
+      {
         result.append('S');
+      }
       else
       {
         result.append('L');
@@ -460,20 +482,37 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
     else
     {
       if (className.equals("boolean"))
+      {
         return java.lang.Boolean.TYPE;
+      }
       else if (className.equals("byte"))
+      {
         return java.lang.Byte.TYPE;
+      }
       else if (className.equals("char"))
+      {
         return java.lang.Character.TYPE;
+      }
       else if (className.equals("double"))
+      {
         return java.lang.Double.TYPE;
+      }
       else if (className.equals("float"))
+      {
         return java.lang.Float.TYPE;
+      }
       else if (className.equals("int"))
+      {
         return java.lang.Integer.TYPE;
+      }
       else if (className.equals("long"))
+      {
         return java.lang.Long.TYPE;
-      else if (className.equals("short")) return java.lang.Short.TYPE;
+      }
+      else if (className.equals("short"))
+      {
+        return java.lang.Short.TYPE;
+      }
     }
     return null;
   }
@@ -672,7 +711,10 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
    */
   public EPackage getEPackageGen()
   {
-    if (eContainerFeatureID != EcorePackage.ECLASSIFIER__EPACKAGE) return null;
+    if (eContainerFeatureID != EcorePackage.ECLASSIFIER__EPACKAGE)
+    {
+      return null;
+    }
     return (EPackage)eContainer();
   }
 
@@ -722,7 +764,10 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
    */
   public EPackage basicGetEPackage()
   {
-    if (eContainerFeatureID != EcorePackage.ECLASSIFIER__EPACKAGE) return null;
+    if (eContainerFeatureID != EcorePackage.ECLASSIFIER__EPACKAGE)
+    {
+      return null;
+    }
     return (EPackage)eInternalContainer();
   }
 
@@ -752,7 +797,10 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
     // TODO Update this after old tests pass and then update the old tests to
     // reflect this change.
     //
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy())
+    {
+      return super.toString();
+    }
 
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (instanceClassName: ");
@@ -784,7 +832,10 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
     case EcorePackage.ECLASSIFIER__INSTANCE_TYPE_NAME:
       return getInstanceTypeName();
     case EcorePackage.ECLASSIFIER__EPACKAGE:
-      if (resolve) return getEPackage();
+      if (resolve)
+      {
+        return getEPackage();
+      }
       return basicGetEPackage();
     case EcorePackage.ECLASSIFIER__ETYPE_PARAMETERS:
       return getETypeParameters();

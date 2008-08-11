@@ -198,7 +198,9 @@ public class EStringToStringMapEntryImpl extends EObjectImpl implements BasicEMa
     String oldKey = key;
     key = newKey;
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ESTRING_TO_STRING_MAP_ENTRY__KEY, oldKey, key));
+    }
   }
 
   public void setTypedKey(String newKey)
@@ -226,8 +228,10 @@ public class EStringToStringMapEntryImpl extends EObjectImpl implements BasicEMa
     String oldValue = value;
     value = newValue;
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ESTRING_TO_STRING_MAP_ENTRY__VALUE, oldValue,
           value));
+    }
   }
 
   /**
@@ -314,7 +318,10 @@ public class EStringToStringMapEntryImpl extends EObjectImpl implements BasicEMa
   @Override
   public String toString()
   {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy())
+    {
+      return super.toString();
+    }
 
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (key: ");
@@ -342,7 +349,7 @@ public class EStringToStringMapEntryImpl extends EObjectImpl implements BasicEMa
     if (hash == -1)
     {
       Object theKey = getKey();
-      hash = (theKey == null ? 0 : theKey.hashCode());
+      hash = theKey == null ? 0 : theKey.hashCode();
     }
     return hash;
   }

@@ -2527,7 +2527,7 @@ public class XMLTypeResourceImpl extends ResourceImpl
 
     final public void pop()
     {
-      this.previous = null;
+      previous = null;
     }
 
     public void handleAttributes(Attributes attributes)

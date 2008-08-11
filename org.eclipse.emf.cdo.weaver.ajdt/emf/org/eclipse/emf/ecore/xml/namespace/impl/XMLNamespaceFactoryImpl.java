@@ -153,8 +153,10 @@ public class XMLNamespaceFactoryImpl extends EFactoryImpl implements XMLNamespac
   {
     SpaceType result = SpaceType.get(initialValue);
     if (result == null)
+    {
       throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
           + eDataType.getName() + "'");
+    }
     return result;
   }
 
@@ -175,7 +177,10 @@ public class XMLNamespaceFactoryImpl extends EFactoryImpl implements XMLNamespac
    */
   public String createLangTypeFromString(EDataType eDataType, String initialValue)
   {
-    if (initialValue == null) return null;
+    if (initialValue == null)
+    {
+      return null;
+    }
     String result = null;
     RuntimeException exception = null;
     try
@@ -202,7 +207,10 @@ public class XMLNamespaceFactoryImpl extends EFactoryImpl implements XMLNamespac
     {
       exception = e;
     }
-    if (result != null || exception == null) return result;
+    if (result != null || exception == null)
+    {
+      return result;
+    }
 
     throw exception;
   }
@@ -214,13 +222,19 @@ public class XMLNamespaceFactoryImpl extends EFactoryImpl implements XMLNamespac
    */
   public String convertLangTypeToString(EDataType eDataType, Object instanceValue)
   {
-    if (instanceValue == null) return null;
+    if (instanceValue == null)
+    {
+      return null;
+    }
     if (XMLTypePackage.Literals.LANGUAGE.isInstance(instanceValue))
     {
       try
       {
         String value = XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.LANGUAGE, instanceValue);
-        if (value != null) return value;
+        if (value != null)
+        {
+          return value;
+        }
       }
       catch (Exception e)
       {
@@ -232,7 +246,10 @@ public class XMLNamespaceFactoryImpl extends EFactoryImpl implements XMLNamespac
       try
       {
         String value = convertLangTypeNullToString(XMLNamespacePackage.Literals.LANG_TYPE_NULL, instanceValue);
-        if (value != null) return value;
+        if (value != null)
+        {
+          return value;
+        }
       }
       catch (Exception e)
       {

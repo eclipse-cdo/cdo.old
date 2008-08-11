@@ -179,8 +179,10 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
     String oldDefaultValueLiteral = defaultValueLiteral;
     defaultValueLiteral = newDefaultValueLiteral;
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ESTRUCTURAL_FEATURE__DEFAULT_VALUE_LITERAL,
           oldDefaultValueLiteral, defaultValueLiteral));
+    }
   }
 
   /**
@@ -202,12 +204,18 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
   {
     boolean oldUnsettable = (eFlags & UNSETTABLE_EFLAG) != 0;
     if (newUnsettable)
+    {
       eFlags |= UNSETTABLE_EFLAG;
+    }
     else
+    {
       eFlags &= ~UNSETTABLE_EFLAG;
+    }
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ESTRUCTURAL_FEATURE__UNSETTABLE,
           oldUnsettable, newUnsettable));
+    }
   }
 
   /**
@@ -229,12 +237,18 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
   {
     boolean oldDerived = (eFlags & DERIVED_EFLAG) != 0;
     if (newDerived)
+    {
       eFlags |= DERIVED_EFLAG;
+    }
     else
+    {
       eFlags &= ~DERIVED_EFLAG;
+    }
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ESTRUCTURAL_FEATURE__DERIVED, oldDerived,
           newDerived));
+    }
   }
 
   /**
@@ -244,7 +258,10 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
    */
   public EClass getEContainingClass()
   {
-    if (eContainerFeatureID != EcorePackage.ESTRUCTURAL_FEATURE__ECONTAINING_CLASS) return null;
+    if (eContainerFeatureID != EcorePackage.ESTRUCTURAL_FEATURE__ECONTAINING_CLASS)
+    {
+      return null;
+    }
     return (EClass)eContainer();
   }
 
@@ -397,12 +414,18 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
   {
     boolean oldTransient = (eFlags & TRANSIENT_EFLAG) != 0;
     if (newTransient)
+    {
       eFlags |= TRANSIENT_EFLAG;
+    }
     else
+    {
       eFlags &= ~TRANSIENT_EFLAG;
+    }
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ESTRUCTURAL_FEATURE__TRANSIENT, oldTransient,
           newTransient));
+    }
   }
 
   /**
@@ -424,12 +447,18 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
   {
     boolean oldVolatile = (eFlags & VOLATILE_EFLAG) != 0;
     if (newVolatile)
+    {
       eFlags |= VOLATILE_EFLAG;
+    }
     else
+    {
       eFlags &= ~VOLATILE_EFLAG;
+    }
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ESTRUCTURAL_FEATURE__VOLATILE, oldVolatile,
           newVolatile));
+    }
   }
 
   /**
@@ -451,12 +480,18 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
   {
     boolean oldChangeable = (eFlags & CHANGEABLE_EFLAG) != 0;
     if (newChangeable)
+    {
       eFlags |= CHANGEABLE_EFLAG;
+    }
     else
+    {
       eFlags &= ~CHANGEABLE_EFLAG;
+    }
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ESTRUCTURAL_FEATURE__CHANGEABLE,
           oldChangeable, newChangeable));
+    }
   }
 
   /**
@@ -477,7 +512,10 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
   @Override
   public String toString()
   {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy())
+    {
+      return super.toString();
+    }
 
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (changeable: ");
@@ -531,7 +569,10 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
     case EcorePackage.ESTRUCTURAL_FEATURE__EANNOTATIONS:
       return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
     case EcorePackage.ESTRUCTURAL_FEATURE__ECONTAINING_CLASS:
-      if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+      if (eInternalContainer() != null)
+      {
+        msgs = eBasicRemoveFromContainer(msgs);
+      }
       return eBasicSetContainer(otherEnd, EcorePackage.ESTRUCTURAL_FEATURE__ECONTAINING_CLASS, msgs);
     }
     return eDynamicInverseAdd(otherEnd, featureID, msgs);
@@ -600,7 +641,10 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
     case EcorePackage.ESTRUCTURAL_FEATURE__REQUIRED:
       return isRequired() ? Boolean.TRUE : Boolean.FALSE;
     case EcorePackage.ESTRUCTURAL_FEATURE__ETYPE:
-      if (resolve) return getEType();
+      if (resolve)
+      {
+        return getEType();
+      }
       return basicGetEType();
     case EcorePackage.ESTRUCTURAL_FEATURE__EGENERIC_TYPE:
       return getEGenericType();
@@ -753,9 +797,9 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
     case EcorePackage.ESTRUCTURAL_FEATURE__NAME:
       return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     case EcorePackage.ESTRUCTURAL_FEATURE__ORDERED:
-      return ((eFlags & ORDERED_EFLAG) != 0) != ORDERED_EDEFAULT;
+      return (eFlags & ORDERED_EFLAG) != 0 != ORDERED_EDEFAULT;
     case EcorePackage.ESTRUCTURAL_FEATURE__UNIQUE:
-      return ((eFlags & UNIQUE_EFLAG) != 0) != UNIQUE_EDEFAULT;
+      return (eFlags & UNIQUE_EFLAG) != 0 != UNIQUE_EDEFAULT;
     case EcorePackage.ESTRUCTURAL_FEATURE__LOWER_BOUND:
       return lowerBound != LOWER_BOUND_EDEFAULT;
     case EcorePackage.ESTRUCTURAL_FEATURE__UPPER_BOUND:
@@ -769,11 +813,11 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
     case EcorePackage.ESTRUCTURAL_FEATURE__EGENERIC_TYPE:
       return isSetEGenericType();
     case EcorePackage.ESTRUCTURAL_FEATURE__CHANGEABLE:
-      return ((eFlags & CHANGEABLE_EFLAG) != 0) != CHANGEABLE_EDEFAULT;
+      return (eFlags & CHANGEABLE_EFLAG) != 0 != CHANGEABLE_EDEFAULT;
     case EcorePackage.ESTRUCTURAL_FEATURE__VOLATILE:
-      return ((eFlags & VOLATILE_EFLAG) != 0) != VOLATILE_EDEFAULT;
+      return (eFlags & VOLATILE_EFLAG) != 0 != VOLATILE_EDEFAULT;
     case EcorePackage.ESTRUCTURAL_FEATURE__TRANSIENT:
-      return ((eFlags & TRANSIENT_EFLAG) != 0) != TRANSIENT_EDEFAULT;
+      return (eFlags & TRANSIENT_EFLAG) != 0 != TRANSIENT_EDEFAULT;
     case EcorePackage.ESTRUCTURAL_FEATURE__DEFAULT_VALUE_LITERAL:
       return DEFAULT_VALUE_LITERAL_EDEFAULT == null ? defaultValueLiteral != null : !DEFAULT_VALUE_LITERAL_EDEFAULT
           .equals(defaultValueLiteral);
@@ -781,9 +825,9 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
       return DEFAULT_VALUE_EDEFAULT == null ? getDefaultValue() != null : !DEFAULT_VALUE_EDEFAULT
           .equals(getDefaultValue());
     case EcorePackage.ESTRUCTURAL_FEATURE__UNSETTABLE:
-      return ((eFlags & UNSETTABLE_EFLAG) != 0) != UNSETTABLE_EDEFAULT;
+      return (eFlags & UNSETTABLE_EFLAG) != 0 != UNSETTABLE_EDEFAULT;
     case EcorePackage.ESTRUCTURAL_FEATURE__DERIVED:
-      return ((eFlags & DERIVED_EFLAG) != 0) != DERIVED_EDEFAULT;
+      return (eFlags & DERIVED_EFLAG) != 0 != DERIVED_EDEFAULT;
     case EcorePackage.ESTRUCTURAL_FEATURE__ECONTAINING_CLASS:
       return getEContainingClass() != null;
     }
@@ -841,8 +885,8 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
 
       EStructuralFeature featureMapFeature;
       if (isDerived()
-          && (((featureMapFeature = ExtendedMetaData.INSTANCE.getMixedFeature(eClass)) != null && featureMapFeature != this) || ((featureMapFeature = ExtendedMetaData.INSTANCE
-              .getGroup(this)) != null)))
+          && ((featureMapFeature = ExtendedMetaData.INSTANCE.getMixedFeature(eClass)) != null
+              && featureMapFeature != this || (featureMapFeature = ExtendedMetaData.INSTANCE.getGroup(this)) != null))
       {
         settingDelegate = new InternalSettingDelegateFeatureMapDelegator(this, featureMapFeature);
       }
@@ -1574,8 +1618,8 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
     public InternalSettingDelegateMany(int style, EStructuralFeature feature)
     {
       this.style = style;
-      this.dataClass = Object.class;
-      this.dynamicKind = EcoreEList.Generic.kind(feature);
+      dataClass = Object.class;
+      dynamicKind = EcoreEList.Generic.kind(feature);
       this.feature = feature;
     }
 
@@ -1591,8 +1635,8 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
     public InternalSettingDelegateMany(int style, EStructuralFeature feature, EReference inverseFeature)
     {
       this.style = style;
-      this.dataClass = Object.class;
-      this.dynamicKind = EcoreEList.Generic.kind(feature);
+      dataClass = Object.class;
+      dynamicKind = EcoreEList.Generic.kind(feature);
       this.feature = feature;
       this.inverseFeature = inverseFeature;
     }
@@ -1901,10 +1945,12 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
 
       EObject eContainer = owner.eInternalContainer();
       int featureID = owner.eClass().getFeatureID(feature);
-      if (newValue != eContainer || (owner.eContainerFeatureID() != featureID && newValue != null))
+      if (newValue != eContainer || owner.eContainerFeatureID() != featureID && newValue != null)
       {
         if (EcoreUtil.isAncestor(owner, (EObject)newValue))
+        {
           throw new IllegalArgumentException("Recursive containment not allowed for " + owner.toString());
+        }
 
         NotificationChain notifications = null;
         if (eContainer != null)
@@ -1920,12 +1966,17 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
         }
 
         notifications = owner.eBasicSetContainer(internalEObject, featureID, notifications);
-        if (notifications != null) notifications.dispatch();
+        if (notifications != null)
+        {
+          notifications.dispatch();
+        }
       }
       else
       {
         if (owner.eNotificationRequired())
+        {
           owner.eNotify(new ENotificationImpl(owner, Notification.SET, featureID, newValue, newValue));
+        }
       }
     }
 
@@ -1937,12 +1988,17 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
         NotificationChain notifications = owner.eBasicRemoveFromContainer(null);
         int featureID = owner.eClass().getFeatureID(feature);
         notifications = owner.eBasicSetContainer(null, featureID, notifications);
-        if (notifications != null) notifications.dispatch();
+        if (notifications != null)
+        {
+          notifications.dispatch();
+        }
       }
       else
       {
         if (owner.eNotificationRequired())
+        {
           owner.eNotify(new ENotificationImpl(owner, Notification.SET, feature, null, null));
+        }
       }
     }
 
@@ -2020,7 +2076,7 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
       Object result = settings.dynamicGet(index);
       if (result == null)
       {
-        return this.defaultValue;
+        return defaultValue;
       }
       else if (result == NIL)
       {
@@ -2094,7 +2150,7 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
       {
         Object oldValue = dynamicGet(owner, settings, index, false, true);
         settings.dynamicUnset(index);
-        owner.eNotify(new ENotificationImpl(owner, Notification.SET, feature, oldValue, this.defaultValue));
+        owner.eNotify(new ENotificationImpl(owner, Notification.SET, feature, oldValue, defaultValue));
       }
       else
       {
@@ -2116,7 +2172,7 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
       }
       else
       {
-        return !setting.equals(this.defaultValue);
+        return !setting.equals(defaultValue);
       }
     }
   }
@@ -2184,7 +2240,7 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
         if (oldValue == null)
         {
           oldIsSet = false;
-          oldValue = this.defaultValue;
+          oldValue = defaultValue;
         }
         else if (oldValue == NIL)
         {
@@ -2196,7 +2252,7 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
           if (intrinsicDefaultValue != null)
           {
             settings.dynamicSet(index, null);
-            newValue = this.defaultValue;
+            newValue = defaultValue;
           }
           else
           {
@@ -2242,14 +2298,14 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
         if (oldValue == null)
         {
           oldIsSet = false;
-          oldValue = this.defaultValue;
+          oldValue = defaultValue;
         }
         else if (oldValue == NIL)
         {
           oldValue = null;
         }
         settings.dynamicUnset(index);
-        owner.eNotify(new ENotificationImpl(owner, Notification.UNSET, feature, oldValue, this.defaultValue, oldIsSet));
+        owner.eNotify(new ENotificationImpl(owner, Notification.UNSET, feature, oldValue, defaultValue, oldIsSet));
       }
       else
       {
@@ -2574,7 +2630,10 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
 
       if (owner.eNotificationRequired())
       {
-        if (notifications == null) notifications = new NotificationChainImpl(4);
+        if (notifications == null)
+        {
+          notifications = new NotificationChainImpl(4);
+        }
         notifications.add(new ENotificationImpl(owner, Notification.SET, feature, oldValue, otherEnd));
       }
 
@@ -2596,7 +2655,10 @@ public abstract class EStructuralFeatureImpl extends ETypedElementImpl implement
 
       if (owner.eNotificationRequired())
       {
-        if (notifications == null) notifications = new NotificationChainImpl(4);
+        if (notifications == null)
+        {
+          notifications = new NotificationChainImpl(4);
+        }
         if (isUnsettable())
         {
           notifications.add(new ENotificationImpl(owner, Notification.UNSET, feature, oldValue, null));

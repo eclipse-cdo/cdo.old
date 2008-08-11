@@ -170,11 +170,17 @@ public class XMLNamespaceValidator extends EObjectValidator
       BasicDiagnostic tempDiagnostics = new BasicDiagnostic();
       if (XMLTypePackage.Literals.LANGUAGE.isInstance(langType))
       {
-        if (xmlTypeValidator.validateLanguage(langType, tempDiagnostics, context)) return true;
+        if (xmlTypeValidator.validateLanguage(langType, tempDiagnostics, context))
+        {
+          return true;
+        }
       }
       if (XMLNamespacePackage.Literals.LANG_TYPE_NULL.isInstance(langType))
       {
-        if (validateLangTypeNull(langType, tempDiagnostics, context)) return true;
+        if (validateLangTypeNull(langType, tempDiagnostics, context))
+        {
+          return true;
+        }
       }
       for (Diagnostic diagnostic : tempDiagnostics.getChildren())
       {
@@ -185,11 +191,17 @@ public class XMLNamespaceValidator extends EObjectValidator
     {
       if (XMLTypePackage.Literals.LANGUAGE.isInstance(langType))
       {
-        if (xmlTypeValidator.validateLanguage(langType, null, context)) return true;
+        if (xmlTypeValidator.validateLanguage(langType, null, context))
+        {
+          return true;
+        }
       }
       if (XMLNamespacePackage.Literals.LANG_TYPE_NULL.isInstance(langType))
       {
-        if (validateLangTypeNull(langType, null, context)) return true;
+        if (validateLangTypeNull(langType, null, context))
+        {
+          return true;
+        }
       }
     }
     return false;

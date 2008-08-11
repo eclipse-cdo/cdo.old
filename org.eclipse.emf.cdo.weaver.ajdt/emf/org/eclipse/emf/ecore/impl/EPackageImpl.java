@@ -311,7 +311,9 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage,
     String oldNsURI = nsURI;
     nsURI = newNsURI;
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EPACKAGE__NS_URI, oldNsURI, nsURI));
+    }
   }
 
   /**
@@ -334,7 +336,9 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage,
     String oldNsPrefix = nsPrefix;
     nsPrefix = newNsPrefix;
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EPACKAGE__NS_PREFIX, oldNsPrefix, nsPrefix));
+    }
   }
 
   /**
@@ -358,17 +362,26 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage,
     {
       NotificationChain msgs = null;
       if (eFactoryInstance != null)
+      {
         msgs = ((InternalEObject)eFactoryInstance).eInverseRemove(this, EcorePackage.EFACTORY__EPACKAGE,
             EFactory.class, msgs);
+      }
       if (newEFactoryInstance != null)
+      {
         msgs = ((InternalEObject)newEFactoryInstance).eInverseAdd(this, EcorePackage.EFACTORY__EPACKAGE,
             EFactory.class, msgs);
+      }
       msgs = basicSetEFactoryInstance(newEFactoryInstance, msgs);
-      if (msgs != null) msgs.dispatch();
+      if (msgs != null)
+      {
+        msgs.dispatch();
+      }
     }
     else if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EPACKAGE__EFACTORY_INSTANCE,
           newEFactoryInstance, newEFactoryInstance));
+    }
   }
 
   /**
@@ -385,9 +398,13 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage,
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
           EcorePackage.EPACKAGE__EFACTORY_INSTANCE, oldEFactoryInstance, newEFactoryInstance);
       if (msgs == null)
+      {
         msgs = notification;
+      }
       else
+      {
         msgs.add(notification);
+      }
     }
     return msgs;
   }
@@ -455,15 +472,20 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage,
       return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
     case EcorePackage.EPACKAGE__EFACTORY_INSTANCE:
       if (eFactoryInstance != null)
+      {
         msgs = ((InternalEObject)eFactoryInstance).eInverseRemove(this, EcorePackage.EFACTORY__EPACKAGE,
             EFactory.class, msgs);
+      }
       return basicSetEFactoryInstance((EFactory)otherEnd, msgs);
     case EcorePackage.EPACKAGE__ECLASSIFIERS:
       return ((InternalEList<InternalEObject>)(InternalEList<?>)getEClassifiers()).basicAdd(otherEnd, msgs);
     case EcorePackage.EPACKAGE__ESUBPACKAGES:
       return ((InternalEList<InternalEObject>)(InternalEList<?>)getESubpackages()).basicAdd(otherEnd, msgs);
     case EcorePackage.EPACKAGE__ESUPER_PACKAGE:
-      if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+      if (eInternalContainer() != null)
+      {
+        msgs = eBasicRemoveFromContainer(msgs);
+      }
       return eBasicSetContainer(otherEnd, EcorePackage.EPACKAGE__ESUPER_PACKAGE, msgs);
     }
     return eDynamicInverseAdd(otherEnd, featureID, msgs);
@@ -531,7 +553,7 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage,
    */
   public EPackage getESuperPackage()
   {
-    return (eContainerFeatureID == EcorePackage.EPACKAGE__ESUPER_PACKAGE) ? (EPackage)eContainer : null;
+    return eContainerFeatureID == EcorePackage.EPACKAGE__ESUPER_PACKAGE ? (EPackage)eContainer : null;
   }
 
   /**
@@ -541,7 +563,10 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage,
    */
   public EPackage basicGetESuperPackage()
   {
-    if (eContainerFeatureID != EcorePackage.EPACKAGE__ESUPER_PACKAGE) return null;
+    if (eContainerFeatureID != EcorePackage.EPACKAGE__ESUPER_PACKAGE)
+    {
+      return null;
+    }
     return (EPackage)eInternalContainer();
   }
 
@@ -570,7 +595,10 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage,
     case EcorePackage.EPACKAGE__ESUBPACKAGES:
       return getESubpackages();
     case EcorePackage.EPACKAGE__ESUPER_PACKAGE:
-      if (resolve) return getESuperPackage();
+      if (resolve)
+      {
+        return getESuperPackage();
+      }
       return basicGetESuperPackage();
     }
     return eDynamicGet(featureID, resolve, coreType);
@@ -688,7 +716,10 @@ public class EPackageImpl extends ENamedElementImpl implements EPackage,
   @Override
   public String toString()
   {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy())
+    {
+      return super.toString();
+    }
 
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (nsURI: ");

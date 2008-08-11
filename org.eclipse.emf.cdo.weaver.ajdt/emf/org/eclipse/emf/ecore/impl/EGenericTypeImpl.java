@@ -169,9 +169,13 @@ public class EGenericTypeImpl extends EObjectImpl implements EGenericType
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
           EcorePackage.EGENERIC_TYPE__EUPPER_BOUND, oldEUpperBound, newEUpperBound);
       if (msgs == null)
+      {
         msgs = notification;
+      }
       else
+      {
         msgs.add(notification);
+      }
     }
     return msgs;
   }
@@ -187,17 +191,26 @@ public class EGenericTypeImpl extends EObjectImpl implements EGenericType
     {
       NotificationChain msgs = null;
       if (eUpperBound != null)
+      {
         msgs = ((InternalEObject)eUpperBound).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
             - EcorePackage.EGENERIC_TYPE__EUPPER_BOUND, null, msgs);
+      }
       if (newEUpperBound != null)
+      {
         msgs = ((InternalEObject)newEUpperBound).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
             - EcorePackage.EGENERIC_TYPE__EUPPER_BOUND, null, msgs);
+      }
       msgs = basicSetEUpperBound(newEUpperBound, msgs);
-      if (msgs != null) msgs.dispatch();
+      if (msgs != null)
+      {
+        msgs.dispatch();
+      }
     }
     else if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EGENERIC_TYPE__EUPPER_BOUND, newEUpperBound,
           newEUpperBound));
+    }
   }
 
   /**
@@ -229,8 +242,10 @@ public class EGenericTypeImpl extends EObjectImpl implements EGenericType
       if (eRawType != oldERawType)
       {
         if (eNotificationRequired())
+        {
           eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.EGENERIC_TYPE__ERAW_TYPE, oldERawType,
               eRawType));
+        }
       }
     }
     return eRawType;
@@ -272,11 +287,11 @@ public class EGenericTypeImpl extends EObjectImpl implements EGenericType
     {
       if (eContainer instanceof ETypedElementImpl)
       {
-        if (eContainerFeatureID == (EOPPOSITE_FEATURE_BASE - EcorePackage.ETYPED_ELEMENT__EGENERIC_TYPE))
+        if (eContainerFeatureID == EOPPOSITE_FEATURE_BASE - EcorePackage.ETYPED_ELEMENT__EGENERIC_TYPE)
         {
           msgs = ((ETypedElementImpl)eContainer).setEType(newERawType, msgs);
         }
-        else if (eContainerFeatureID == (EOPPOSITE_FEATURE_BASE - EcorePackage.EOPERATION__EGENERIC_EXCEPTIONS))
+        else if (eContainerFeatureID == EOPPOSITE_FEATURE_BASE - EcorePackage.EOPERATION__EGENERIC_EXCEPTIONS)
         {
           if (newERawType == null)
           {
@@ -306,7 +321,7 @@ public class EGenericTypeImpl extends EObjectImpl implements EGenericType
       }
       else if (eContainer instanceof EClass)
       {
-        if (eContainerFeatureID == (EOPPOSITE_FEATURE_BASE - EcorePackage.ECLASS__EGENERIC_SUPER_TYPES))
+        if (eContainerFeatureID == EOPPOSITE_FEATURE_BASE - EcorePackage.ECLASS__EGENERIC_SUPER_TYPES)
         {
           if (!(newERawType instanceof EClass))
           {
@@ -395,9 +410,13 @@ public class EGenericTypeImpl extends EObjectImpl implements EGenericType
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
           EcorePackage.EGENERIC_TYPE__ELOWER_BOUND, oldELowerBound, newELowerBound);
       if (msgs == null)
+      {
         msgs = notification;
+      }
       else
+      {
         msgs.add(notification);
+      }
     }
     return msgs;
   }
@@ -413,17 +432,26 @@ public class EGenericTypeImpl extends EObjectImpl implements EGenericType
     {
       NotificationChain msgs = null;
       if (eLowerBound != null)
+      {
         msgs = ((InternalEObject)eLowerBound).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
             - EcorePackage.EGENERIC_TYPE__ELOWER_BOUND, null, msgs);
+      }
       if (newELowerBound != null)
+      {
         msgs = ((InternalEObject)newELowerBound).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
             - EcorePackage.EGENERIC_TYPE__ELOWER_BOUND, null, msgs);
+      }
       msgs = basicSetELowerBound(newELowerBound, msgs);
-      if (msgs != null) msgs.dispatch();
+      if (msgs != null)
+      {
+        msgs.dispatch();
+      }
     }
     else if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EGENERIC_TYPE__ELOWER_BOUND, newELowerBound,
           newELowerBound));
+    }
   }
 
   /**
@@ -450,9 +478,13 @@ public class EGenericTypeImpl extends EObjectImpl implements EGenericType
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
           EcorePackage.EGENERIC_TYPE__ETYPE_PARAMETER, oldETypeParameter, newETypeParameter);
       if (msgs == null)
+      {
         msgs = notification;
+      }
       else
+      {
         msgs.add(notification);
+      }
     }
     if (oldETypeParameter != newETypeParameter)
     {
@@ -543,8 +575,10 @@ public class EGenericTypeImpl extends EObjectImpl implements EGenericType
       if (eClassifier != oldEClassifier)
       {
         if (eNotificationRequired())
+        {
           eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.EGENERIC_TYPE__ECLASSIFIER,
               oldEClassifier, eClassifier));
+        }
       }
     }
     return eClassifier;
@@ -634,14 +668,20 @@ public class EGenericTypeImpl extends EObjectImpl implements EGenericType
     case EcorePackage.EGENERIC_TYPE__ETYPE_ARGUMENTS:
       return getETypeArguments();
     case EcorePackage.EGENERIC_TYPE__ERAW_TYPE:
-      if (resolve) return getERawType();
+      if (resolve)
+      {
+        return getERawType();
+      }
       return basicGetERawType();
     case EcorePackage.EGENERIC_TYPE__ELOWER_BOUND:
       return getELowerBound();
     case EcorePackage.EGENERIC_TYPE__ETYPE_PARAMETER:
       return getETypeParameter();
     case EcorePackage.EGENERIC_TYPE__ECLASSIFIER:
-      if (resolve) return getEClassifier();
+      if (resolve)
+      {
+        return getEClassifier();
+      }
       return basicGetEClassifier();
     }
     return eDynamicGet(featureID, resolve, coreType);

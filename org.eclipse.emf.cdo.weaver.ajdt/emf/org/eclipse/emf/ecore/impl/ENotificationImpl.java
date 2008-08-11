@@ -93,7 +93,7 @@ public class ENotificationImpl extends NotificationImpl
     this(notifier, eventType, featureID, oldBooleanValue, newBooleanValue);
     if (isSetChange)
     {
-      this.position = IS_SET_CHANGE_INDEX;
+      position = IS_SET_CHANGE_INDEX;
     }
   }
 
@@ -111,7 +111,7 @@ public class ENotificationImpl extends NotificationImpl
     this(notifier, eventType, featureID, oldByteValue, newByteValue);
     if (isSetChange)
     {
-      this.position = IS_SET_CHANGE_INDEX;
+      position = IS_SET_CHANGE_INDEX;
     }
   }
 
@@ -128,7 +128,7 @@ public class ENotificationImpl extends NotificationImpl
     this(notifier, eventType, featureID, oldCharValue, newCharValue);
     if (isSetChange)
     {
-      this.position = IS_SET_CHANGE_INDEX;
+      position = IS_SET_CHANGE_INDEX;
     }
   }
 
@@ -145,7 +145,7 @@ public class ENotificationImpl extends NotificationImpl
     this(notifier, eventType, featureID, oldDoubleValue, newDoubleValue);
     if (isSetChange)
     {
-      this.position = IS_SET_CHANGE_INDEX;
+      position = IS_SET_CHANGE_INDEX;
     }
   }
 
@@ -163,7 +163,7 @@ public class ENotificationImpl extends NotificationImpl
     this(notifier, eventType, featureID, oldFloatValue, newFloatValue);
     if (isSetChange)
     {
-      this.position = IS_SET_CHANGE_INDEX;
+      position = IS_SET_CHANGE_INDEX;
     }
   }
 
@@ -181,7 +181,7 @@ public class ENotificationImpl extends NotificationImpl
     this(notifier, eventType, featureID, oldIntValue, newIntValue);
     if (isSetChange)
     {
-      this.position = IS_SET_CHANGE_INDEX;
+      position = IS_SET_CHANGE_INDEX;
     }
   }
 
@@ -198,7 +198,7 @@ public class ENotificationImpl extends NotificationImpl
     this(notifier, eventType, featureID, oldLongValue, newLongValue);
     if (isSetChange)
     {
-      this.position = IS_SET_CHANGE_INDEX;
+      position = IS_SET_CHANGE_INDEX;
     }
   }
 
@@ -215,7 +215,7 @@ public class ENotificationImpl extends NotificationImpl
     this(notifier, eventType, featureID, oldShortValue, newShortValue);
     if (isSetChange)
     {
-      this.position = IS_SET_CHANGE_INDEX;
+      position = IS_SET_CHANGE_INDEX;
     }
   }
 

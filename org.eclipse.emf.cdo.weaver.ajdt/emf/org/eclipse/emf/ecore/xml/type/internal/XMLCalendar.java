@@ -180,14 +180,14 @@ public final class XMLCalendar extends XMLGregorianCalendar
       throw new IllegalArgumentException("Illegal datatype value " + datatype);
     }
 
-    this.date = null;
-    this.dataType = datatype;
-    this.xmlGregorianCalendar = datatypeFactory.newXMLGregorianCalendar(value);
+    date = null;
+    dataType = datatype;
+    xmlGregorianCalendar = datatypeFactory.newXMLGregorianCalendar(value);
   }
 
   public XMLCalendar(Date date, short dataType)
   {
-    this.xmlGregorianCalendar = datatypeFactory.newXMLGregorianCalendar(XMLCalendar.EDATE_FORMATS[0].format(date));
+    xmlGregorianCalendar = datatypeFactory.newXMLGregorianCalendar(XMLCalendar.EDATE_FORMATS[0].format(date));
     this.dataType = dataType;
     this.date = date;
   }

@@ -547,7 +547,7 @@ public final class FeatureMapUtil
       @Override
       public Iterator<E> iterator()
       {
-        return this.basicIterator();
+        return basicIterator();
       }
 
       @Override
@@ -1497,7 +1497,10 @@ public final class FeatureMapUtil
 
     public boolean isValid(EStructuralFeature feature)
     {
-      if (eStructuralFeature == feature) return true;
+      if (eStructuralFeature == feature)
+      {
+        return true;
+      }
 
       Boolean result = cache.get(feature);
       if (result == null)

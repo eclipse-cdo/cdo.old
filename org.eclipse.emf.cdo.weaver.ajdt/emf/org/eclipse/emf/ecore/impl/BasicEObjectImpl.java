@@ -650,7 +650,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   {
     int size = predicate.size();
     @SuppressWarnings("unchecked")
-    EList<EObject> list = ((EList<EObject>)eGet(eReference, false));
+    EList<EObject> list = (EList<EObject>)eGet(eReference, false);
     LOOP: for (EObject eObject : list)
     {
       for (int i = 0; i < size; ++i)
@@ -1229,7 +1229,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
       NotificationChain msgs)
   {
     InternalEObject oldContainer = eInternalContainer();
-    Resource.Internal oldResource = this.eDirectResource();
+    Resource.Internal oldResource = eDirectResource();
     Resource.Internal newResource = null;
     if (oldResource != null)
     {
@@ -1553,7 +1553,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
   {
     value -= value >>> 1 & 0x55555555;
     value = (value & 0x33333333) + (value >>> 2 & 0x33333333);
-    value = (value + (value >>> 4)) & 0x0F0F0F0F;
+    value = value + (value >>> 4) & 0x0F0F0F0F;
     value += value >>> 8;
     value += value >>> 16;
     return value & 0x3F;
@@ -1667,7 +1667,7 @@ public class BasicEObjectImpl extends BasicNotifierImpl implements EObject, Inte
       //
       if (bit == action)
       {
-        eSetVirtualIndexBits(offset, bits ^ (1 << bitIndex));
+        eSetVirtualIndexBits(offset, bits ^ 1 << bitIndex);
       }
 
       // Count just the bits up to this one.

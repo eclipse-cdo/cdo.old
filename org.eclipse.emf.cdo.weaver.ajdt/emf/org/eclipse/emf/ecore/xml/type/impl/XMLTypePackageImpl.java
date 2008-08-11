@@ -525,7 +525,10 @@ public class XMLTypePackageImpl extends EPackageImpl implements XMLTypePackage
    */
   public static XMLTypePackage init()
   {
-    if (isInited) return (XMLTypePackage)EPackage.Registry.INSTANCE.getEPackage(XMLTypePackage.eNS_URI);
+    if (isInited)
+    {
+      return (XMLTypePackage)EPackage.Registry.INSTANCE.getEPackage(XMLTypePackage.eNS_URI);
+    }
 
     // Obtain or create and register package
     XMLTypePackageImpl theXMLTypePackage = (XMLTypePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof XMLTypePackageImpl ? EPackage.Registry.INSTANCE
@@ -1350,7 +1353,10 @@ public class XMLTypePackageImpl extends EPackageImpl implements XMLTypePackage
    */
   public void createPackageContents()
   {
-    if (isCreated) return;
+    if (isCreated)
+    {
+      return;
+    }
     isCreated = true;
 
     // Create classes and their features
@@ -1453,7 +1459,10 @@ public class XMLTypePackageImpl extends EPackageImpl implements XMLTypePackage
    */
   public void initializePackageContents()
   {
-    if (isInitialized) return;
+    if (isInitialized)
+    {
+      return;
+    }
     isInitialized = true;
 
     // Initialize package
@@ -1469,7 +1478,7 @@ public class XMLTypePackageImpl extends EPackageImpl implements XMLTypePackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    simpleAnyTypeEClass.getESuperTypes().add(this.getAnyType());
+    simpleAnyTypeEClass.getESuperTypes().add(getAnyType());
 
     // Initialize classes and features; add operations and parameters
     initEClass(anyTypeEClass, AnyType.class, "AnyType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1483,11 +1492,10 @@ public class XMLTypePackageImpl extends EPackageImpl implements XMLTypePackage
 
     initEClass(processingInstructionEClass, ProcessingInstruction.class, "ProcessingInstruction", !IS_ABSTRACT,
         !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getProcessingInstruction_Data(), this.getString(), "data", null, 0, 1, ProcessingInstruction.class,
+    initEAttribute(getProcessingInstruction_Data(), getString(), "data", null, 0, 1, ProcessingInstruction.class,
         !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getProcessingInstruction_Target(), this.getString(), "target", null, 1, 1,
-        ProcessingInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-        !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getProcessingInstruction_Target(), getString(), "target", null, 1, 1, ProcessingInstruction.class,
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(simpleAnyTypeEClass, SimpleAnyType.class, "SimpleAnyType", !IS_ABSTRACT, !IS_INTERFACE,
         IS_GENERATED_INSTANCE_CLASS);
@@ -1511,15 +1519,15 @@ public class XMLTypePackageImpl extends EPackageImpl implements XMLTypePackage
     initEReference(getXMLTypeDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null,
         "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
         !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getXMLTypeDocumentRoot_CDATA(), this.getString(), "cDATA", null, 0, -2, null, IS_TRANSIENT,
+    initEAttribute(getXMLTypeDocumentRoot_CDATA(), getString(), "cDATA", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE,
+        IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+    initEAttribute(getXMLTypeDocumentRoot_Comment(), getString(), "comment", null, 0, -2, null, IS_TRANSIENT,
         IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-    initEAttribute(getXMLTypeDocumentRoot_Comment(), this.getString(), "comment", null, 0, -2, null, IS_TRANSIENT,
-        IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-    initEReference(getXMLTypeDocumentRoot_ProcessingInstruction(), this.getProcessingInstruction(), null,
+    initEReference(getXMLTypeDocumentRoot_ProcessingInstruction(), getProcessingInstruction(), null,
         "processingInstruction", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
         !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-    initEAttribute(getXMLTypeDocumentRoot_Text(), this.getString(), "text", null, 0, -2, null, IS_TRANSIENT,
-        IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+    initEAttribute(getXMLTypeDocumentRoot_Text(), getString(), "text", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE,
+        IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
     // Initialize data types
     initEDataType(anySimpleTypeEDataType, Object.class, "AnySimpleType", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

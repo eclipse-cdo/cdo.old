@@ -373,7 +373,10 @@ public class EcoreEList<E> extends NotifyingListImpl<E> implements InternalEList
   public int indexOf(Object object)
   {
     int index = super.indexOf(object);
-    if (index >= 0) return index;
+    if (index >= 0)
+    {
+      return index;
+    }
 
     if (isEObject())
     {

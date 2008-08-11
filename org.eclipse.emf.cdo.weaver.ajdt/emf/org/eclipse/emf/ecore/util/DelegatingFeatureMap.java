@@ -38,6 +38,8 @@ import java.util.ListIterator;
 public abstract class DelegatingFeatureMap extends DelegatingEcoreEList<FeatureMap.Entry> implements
     FeatureMap.Internal, FeatureMap.Internal.Wrapper
 {
+  private static final long serialVersionUID = 1L;
+
   protected FeatureMap.Internal.Wrapper wrapper = this;
 
   protected final FeatureMapUtil.Validator featureMapValidator;
@@ -47,7 +49,7 @@ public abstract class DelegatingFeatureMap extends DelegatingEcoreEList<FeatureM
   public DelegatingFeatureMap(InternalEObject owner, int featureID)
   {
     super(owner);
-    this.eStructuralFeature = owner.eClass().getEStructuralFeature(featureID);
+    eStructuralFeature = owner.eClass().getEStructuralFeature(featureID);
     featureMapValidator = FeatureMapUtil.getValidator(owner.eClass(), getEStructuralFeature());
   }
 
@@ -80,7 +82,10 @@ public abstract class DelegatingFeatureMap extends DelegatingEcoreEList<FeatureM
   @Override
   protected Entry validate(int index, Entry object)
   {
-    if (modCount == 0) return object;
+    if (modCount == 0)
+    {
+      return object;
+    }
 
     Entry result = super.validate(index, object);
     EStructuralFeature eStructuralFeature = object.getEStructuralFeature();

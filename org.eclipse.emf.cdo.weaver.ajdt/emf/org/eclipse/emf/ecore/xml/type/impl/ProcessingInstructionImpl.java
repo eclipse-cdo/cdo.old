@@ -118,7 +118,9 @@ public class ProcessingInstructionImpl extends EObjectImpl implements Processing
     String oldData = data;
     data = newData;
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, XMLTypePackage.PROCESSING_INSTRUCTION__DATA, oldData, data));
+    }
   }
 
   /**
@@ -141,8 +143,10 @@ public class ProcessingInstructionImpl extends EObjectImpl implements Processing
     String oldTarget = target;
     target = newTarget;
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, XMLTypePackage.PROCESSING_INSTRUCTION__TARGET, oldTarget,
           target));
+    }
   }
 
   /**
@@ -229,7 +233,10 @@ public class ProcessingInstructionImpl extends EObjectImpl implements Processing
   @Override
   public String toString()
   {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy())
+    {
+      return super.toString();
+    }
 
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (data: ");

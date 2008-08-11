@@ -125,7 +125,7 @@ public class EcoreEMap<K, V> extends BasicEMap<K, V> implements InternalEList.Un
     @Override
     protected void didAdd(int index, E newObject)
     {
-      EcoreEMap.this.doPut(newObject);
+      doPut(newObject);
     }
 
     @Override

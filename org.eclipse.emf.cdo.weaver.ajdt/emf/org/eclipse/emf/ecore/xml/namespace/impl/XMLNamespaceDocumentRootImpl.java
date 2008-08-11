@@ -254,8 +254,10 @@ public class XMLNamespaceDocumentRootImpl extends EObjectImpl implements XMLName
     String oldBase = base;
     base = newBase;
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, XMLNamespacePackage.XML_NAMESPACE_DOCUMENT_ROOT__BASE,
           oldBase, base));
+    }
   }
 
   /**
@@ -278,8 +280,10 @@ public class XMLNamespaceDocumentRootImpl extends EObjectImpl implements XMLName
     String oldId = id;
     id = newId;
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, XMLNamespacePackage.XML_NAMESPACE_DOCUMENT_ROOT__ID, oldId,
           id));
+    }
   }
 
   /**
@@ -302,8 +306,10 @@ public class XMLNamespaceDocumentRootImpl extends EObjectImpl implements XMLName
     String oldLang = lang;
     lang = newLang;
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, XMLNamespacePackage.XML_NAMESPACE_DOCUMENT_ROOT__LANG,
           oldLang, lang));
+    }
   }
 
   /**
@@ -328,8 +334,10 @@ public class XMLNamespaceDocumentRootImpl extends EObjectImpl implements XMLName
     boolean oldSpaceESet = spaceESet;
     spaceESet = true;
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, XMLNamespacePackage.XML_NAMESPACE_DOCUMENT_ROOT__SPACE,
           oldSpace, space, !oldSpaceESet));
+    }
   }
 
   /**
@@ -344,8 +352,10 @@ public class XMLNamespaceDocumentRootImpl extends EObjectImpl implements XMLName
     space = SPACE_EDEFAULT;
     spaceESet = false;
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.UNSET, XMLNamespacePackage.XML_NAMESPACE_DOCUMENT_ROOT__SPACE,
           oldSpace, SPACE_EDEFAULT, oldSpaceESet));
+    }
   }
 
   /**
@@ -389,18 +399,29 @@ public class XMLNamespaceDocumentRootImpl extends EObjectImpl implements XMLName
     switch (featureID)
     {
     case XMLNamespacePackage.XML_NAMESPACE_DOCUMENT_ROOT__MIXED:
-      if (coreType) return getMixed();
+      if (coreType)
+      {
+        return getMixed();
+      }
       return ((FeatureMap.Internal)getMixed()).getWrapper();
     case XMLNamespacePackage.XML_NAMESPACE_DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
       if (coreType)
+      {
         return getXMLNSPrefixMap();
+      }
       else
+      {
         return getXMLNSPrefixMap().map();
+      }
     case XMLNamespacePackage.XML_NAMESPACE_DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
       if (coreType)
+      {
         return getXSISchemaLocation();
+      }
       else
+      {
         return getXSISchemaLocation().map();
+      }
     case XMLNamespacePackage.XML_NAMESPACE_DOCUMENT_ROOT__BASE:
       return getBase();
     case XMLNamespacePackage.XML_NAMESPACE_DOCUMENT_ROOT__ID:
@@ -519,7 +540,10 @@ public class XMLNamespaceDocumentRootImpl extends EObjectImpl implements XMLName
   @Override
   public String toString()
   {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy())
+    {
+      return super.toString();
+    }
 
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (mixed: ");
@@ -532,9 +556,13 @@ public class XMLNamespaceDocumentRootImpl extends EObjectImpl implements XMLName
     result.append(lang);
     result.append(", space: ");
     if (spaceESet)
+    {
       result.append(space);
+    }
     else
+    {
       result.append("<unset>");
+    }
     result.append(')');
     return result.toString();
   }

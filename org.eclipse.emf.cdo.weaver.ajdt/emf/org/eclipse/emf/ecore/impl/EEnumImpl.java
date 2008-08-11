@@ -163,7 +163,10 @@ public class EEnumImpl extends EDataTypeImpl implements EEnum
     case EcorePackage.EENUM__INSTANCE_TYPE_NAME:
       return getInstanceTypeName();
     case EcorePackage.EENUM__EPACKAGE:
-      if (resolve) return getEPackage();
+      if (resolve)
+      {
+        return getEPackage();
+      }
       return basicGetEPackage();
     case EcorePackage.EENUM__ETYPE_PARAMETERS:
       return getETypeParameters();
@@ -277,7 +280,7 @@ public class EEnumImpl extends EDataTypeImpl implements EEnum
     case EcorePackage.EENUM__ETYPE_PARAMETERS:
       return eTypeParameters != null && !eTypeParameters.isEmpty();
     case EcorePackage.EENUM__SERIALIZABLE:
-      return ((eFlags & SERIALIZABLE_EFLAG) != 0) != SERIALIZABLE_EDEFAULT;
+      return (eFlags & SERIALIZABLE_EFLAG) != 0 != SERIALIZABLE_EDEFAULT;
     case EcorePackage.EENUM__ELITERALS:
       return eLiterals != null && !eLiterals.isEmpty();
     }
@@ -343,7 +346,10 @@ public class EEnumImpl extends EDataTypeImpl implements EEnum
     case EcorePackage.EENUM__EANNOTATIONS:
       return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
     case EcorePackage.EENUM__EPACKAGE:
-      if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+      if (eInternalContainer() != null)
+      {
+        msgs = eBasicRemoveFromContainer(msgs);
+      }
       return eBasicSetContainer(otherEnd, EcorePackage.EENUM__EPACKAGE, msgs);
     case EcorePackage.EENUM__ELITERALS:
       return ((InternalEList<InternalEObject>)(InternalEList<?>)getELiterals()).basicAdd(otherEnd, msgs);

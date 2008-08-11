@@ -103,7 +103,10 @@ public abstract class ENamedElementImpl extends EModelElementImpl implements ENa
   @Override
   public String toString()
   {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy())
+    {
+      return super.toString();
+    }
 
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
@@ -132,7 +135,9 @@ public abstract class ENamedElementImpl extends EModelElementImpl implements ENa
     String oldName = name;
     name = newName;
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ENAMED_ELEMENT__NAME, oldName, name));
+    }
   }
 
   /**

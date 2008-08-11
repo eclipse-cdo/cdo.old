@@ -143,7 +143,9 @@ public class EAnnotationImpl extends EModelElementImpl implements EAnnotation
     String oldSource = source;
     source = newSource;
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EANNOTATION__SOURCE, oldSource, source));
+    }
   }
 
   public void setSource(String newSource)
@@ -200,7 +202,10 @@ public class EAnnotationImpl extends EModelElementImpl implements EAnnotation
    */
   public EModelElement getEModelElement()
   {
-    if (eContainerFeatureID != EcorePackage.EANNOTATION__EMODEL_ELEMENT) return null;
+    if (eContainerFeatureID != EcorePackage.EANNOTATION__EMODEL_ELEMENT)
+    {
+      return null;
+    }
     return (EModelElement)eContainer();
   }
 
@@ -222,22 +227,34 @@ public class EAnnotationImpl extends EModelElementImpl implements EAnnotation
    */
   public void setEModelElement(EModelElement newEModelElement)
   {
-    if (newEModelElement != eInternalContainer()
-        || (eContainerFeatureID != EcorePackage.EANNOTATION__EMODEL_ELEMENT && newEModelElement != null))
+    if (newEModelElement != eInternalContainer() || eContainerFeatureID != EcorePackage.EANNOTATION__EMODEL_ELEMENT
+        && newEModelElement != null)
     {
       if (EcoreUtil.isAncestor(this, newEModelElement))
+      {
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+      }
       NotificationChain msgs = null;
-      if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+      if (eInternalContainer() != null)
+      {
+        msgs = eBasicRemoveFromContainer(msgs);
+      }
       if (newEModelElement != null)
+      {
         msgs = ((InternalEObject)newEModelElement).eInverseAdd(this, EcorePackage.EMODEL_ELEMENT__EANNOTATIONS,
             EModelElement.class, msgs);
+      }
       msgs = basicSetEModelElement(newEModelElement, msgs);
-      if (msgs != null) msgs.dispatch();
+      if (msgs != null)
+      {
+        msgs.dispatch();
+      }
     }
     else if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EANNOTATION__EMODEL_ELEMENT, newEModelElement,
           newEModelElement));
+    }
   }
 
   /**
@@ -282,7 +299,10 @@ public class EAnnotationImpl extends EModelElementImpl implements EAnnotation
     case EcorePackage.EANNOTATION__EANNOTATIONS:
       return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
     case EcorePackage.EANNOTATION__EMODEL_ELEMENT:
-      if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+      if (eInternalContainer() != null)
+      {
+        msgs = eBasicRemoveFromContainer(msgs);
+      }
       return basicSetEModelElement((EModelElement)otherEnd, msgs);
     }
     return eDynamicInverseAdd(otherEnd, featureID, msgs);
@@ -343,9 +363,13 @@ public class EAnnotationImpl extends EModelElementImpl implements EAnnotation
       return getSource();
     case EcorePackage.EANNOTATION__DETAILS:
       if (coreType)
+      {
         return getDetails();
+      }
       else
+      {
         return getDetails().map();
+      }
     case EcorePackage.EANNOTATION__EMODEL_ELEMENT:
       return getEModelElement();
     case EcorePackage.EANNOTATION__CONTENTS:
@@ -458,7 +482,10 @@ public class EAnnotationImpl extends EModelElementImpl implements EAnnotation
   @Override
   public String toString()
   {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy())
+    {
+      return super.toString();
+    }
 
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (source: ");

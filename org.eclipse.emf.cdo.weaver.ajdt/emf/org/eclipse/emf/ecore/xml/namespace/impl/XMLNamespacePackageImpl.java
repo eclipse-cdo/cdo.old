@@ -118,7 +118,10 @@ public class XMLNamespacePackageImpl extends EPackageImpl implements XMLNamespac
    */
   public static XMLNamespacePackage init()
   {
-    if (isInited) return (XMLNamespacePackage)EPackage.Registry.INSTANCE.getEPackage(XMLNamespacePackage.eNS_URI);
+    if (isInited)
+    {
+      return (XMLNamespacePackage)EPackage.Registry.INSTANCE.getEPackage(XMLNamespacePackage.eNS_URI);
+    }
 
     // Obtain or create and register package
     XMLNamespacePackageImpl theXMLNamespacePackage = (XMLNamespacePackageImpl)(EPackage.Registry.INSTANCE
@@ -296,7 +299,10 @@ public class XMLNamespacePackageImpl extends EPackageImpl implements XMLNamespac
    */
   public void createPackageContents()
   {
-    if (isCreated) return;
+    if (isCreated)
+    {
+      return;
+    }
     isCreated = true;
 
     // Create classes and their features
@@ -333,7 +339,10 @@ public class XMLNamespacePackageImpl extends EPackageImpl implements XMLNamespac
    */
   public void initializePackageContents()
   {
-    if (isInitialized) return;
+    if (isInitialized)
+    {
+      return;
+    }
     isInitialized = true;
 
     // Initialize package
@@ -365,10 +374,10 @@ public class XMLNamespacePackageImpl extends EPackageImpl implements XMLNamespac
         !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getXMLNamespaceDocumentRoot_Id(), theXMLTypePackage.getID(), "id", null, 0, 1, null, !IS_TRANSIENT,
         !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getXMLNamespaceDocumentRoot_Lang(), this.getLangType(), "lang", null, 0, 1, null, !IS_TRANSIENT,
+    initEAttribute(getXMLNamespaceDocumentRoot_Lang(), getLangType(), "lang", null, 0, 1, null, !IS_TRANSIENT,
         !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getXMLNamespaceDocumentRoot_Space(), this.getSpaceType(), "space", "preserve", 0, 1, null,
-        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getXMLNamespaceDocumentRoot_Space(), getSpaceType(), "space", "preserve", 0, 1, null, !IS_TRANSIENT,
+        !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(spaceTypeEEnum, SpaceType.class, "SpaceType");

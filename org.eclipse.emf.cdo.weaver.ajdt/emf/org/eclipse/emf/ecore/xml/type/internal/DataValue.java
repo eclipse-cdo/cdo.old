@@ -151,13 +151,19 @@ public final class DataValue
       base64Alphabet['/'] = 63;
 
       for (int i = 0; i <= 25; i++)
+      {
         lookUpBase64Alphabet[i] = (char)('A' + i);
+      }
 
       for (int i = 26, j = 0; i <= 51; i++, j++)
+      {
         lookUpBase64Alphabet[i] = (char)('a' + j);
+      }
 
       for (int i = 52, j = 0; i <= 61; i++, j++)
+      {
         lookUpBase64Alphabet[i] = (char)('0' + j);
+      }
       lookUpBase64Alphabet[62] = '+';
       lookUpBase64Alphabet[63] = '/';
 
@@ -195,7 +201,10 @@ public final class DataValue
 
       // This implementation was changed to not introduce multi line content.
 
-      if (binaryData == null) return null;
+      if (binaryData == null)
+      {
+        return null;
+      }
 
       int lengthDataBits = binaryData.length * EIGHTBIT;
       if (lengthDataBits == 0)
@@ -297,7 +306,10 @@ public final class DataValue
     public static byte[] decode(String encoded)
     {
 
-      if (encoded == null) return null;
+      if (encoded == null)
+      {
+        return null;
+      }
 
       char[] base64Data = encoded.toCharArray();
       // remove white spaces
@@ -310,7 +322,10 @@ public final class DataValue
 
       int numberQuadruple = len / FOURBYTE;
 
-      if (numberQuadruple == 0) return new byte[0];
+      if (numberQuadruple == 0)
+      {
+        return new byte[0];
+      }
 
       byte decodedData[] = null;
       byte b1 = 0, b2 = 0, b3 = 0, b4 = 0;
@@ -325,13 +340,16 @@ public final class DataValue
       {
 
         if (!isData((d1 = base64Data[dataIndex++])) || !isData((d2 = base64Data[dataIndex++]))
-            || !isData((d3 = base64Data[dataIndex++])) || !isData((d4 = base64Data[dataIndex++]))) return null;// if
-        // found
-        // "no
-        // data"
-        // just
-        // return
-        // null
+            || !isData((d3 = base64Data[dataIndex++])) || !isData((d4 = base64Data[dataIndex++])))
+        {
+          return null;// if
+          // found
+          // "no
+          // data"
+          // just
+          // return
+          // null
+        }
 
         b1 = base64Alphabet[d1];
         b2 = base64Alphabet[d2];
@@ -357,8 +375,10 @@ public final class DataValue
       {// Check if they are PAD characters
         if (isPad(d3) && isPad(d4))
         { // Two PAD e.g. 3c[Pad][Pad]
-          if ((b2 & 0xf) != 0) // last 4 bits should be zero
+          if ((b2 & 0xf) != 0)
+          {
             return null;
+          }
           byte[] tmp = new byte[i * 3 + 1];
           System.arraycopy(decodedData, 0, tmp, 0, i * 3);
           tmp[encodedIndex] = (byte)(b1 << 2 | b2 >> 4);
@@ -367,8 +387,10 @@ public final class DataValue
         else if (!isPad(d3) && isPad(d4))
         { // One PAD e.g. 3cQ[Pad]
           b3 = base64Alphabet[d3];
-          if ((b3 & 0x3) != 0) // last 2 bits should be zero
+          if ((b3 & 0x3) != 0)
+          {
             return null;
+          }
           byte[] tmp = new byte[i * 3 + 2];
           System.arraycopy(decodedData, 0, tmp, 0, i * 3);
           tmp[encodedIndex++] = (byte)(b1 << 2 | b2 >> 4);
@@ -403,14 +425,20 @@ public final class DataValue
      */
     protected static int removeWhiteSpace(char[] data)
     {
-      if (data == null) return 0;
+      if (data == null)
+      {
+        return 0;
+      }
 
       // count characters that's not whitespace
       int newSize = 0;
       int len = data.length;
       for (int i = 0; i < len; i++)
       {
-        if (!isWhiteSpace(data[i])) data[newSize++] = data[i];
+        if (!isWhiteSpace(data[i]))
+        {
+          data[newSize++] = data[i];
+        }
       }
       return newSize;
     }
@@ -449,9 +477,13 @@ public final class DataValue
       }
 
       for (int i = 0; i < 10; i++)
+      {
         lookUpHexAlphabet[i] = (char)('0' + i);
+      }
       for (int i = 10; i <= 15; i++)
+      {
         lookUpHexAlphabet[i] = (char)('A' + i - 10);
+      }
     }
 
     /**
@@ -463,7 +495,10 @@ public final class DataValue
      */
     static public String encode(byte[] binaryData)
     {
-      if (binaryData == null) return null;
+      if (binaryData == null)
+      {
+        return null;
+      }
       int lengthData = binaryData.length;
       int lengthEncode = lengthData * 2;
       char[] encodedData = new char[lengthEncode];
@@ -471,7 +506,10 @@ public final class DataValue
       for (int i = 0; i < lengthData; i++)
       {
         temp = binaryData[i];
-        if (temp < 0) temp += 256;
+        if (temp < 0)
+        {
+          temp += 256;
+        }
         encodedData[i * 2] = lookUpHexAlphabet[temp >> 4];
         encodedData[i * 2 + 1] = lookUpHexAlphabet[temp & 0xf];
       }
@@ -487,9 +525,15 @@ public final class DataValue
      */
     static public byte[] decode(String encoded)
     {
-      if (encoded == null) return null;
+      if (encoded == null)
+      {
+        return null;
+      }
       int lengthData = encoded.length();
-      if (lengthData % 2 != 0) return null;
+      if (lengthData % 2 != 0)
+      {
+        return null;
+      }
 
       char[] binaryData = encoded.toCharArray();
       int lengthDecode = lengthData / 2;
@@ -498,9 +542,15 @@ public final class DataValue
       for (int i = 0; i < lengthDecode; i++)
       {
         temp1 = hexNumberTable[binaryData[i * 2]];
-        if (temp1 == -1) return null;
+        if (temp1 == -1)
+        {
+          return null;
+        }
         temp2 = hexNumberTable[binaryData[i * 2 + 1]];
-        if (temp2 == -1) return null;
+        if (temp2 == -1)
+        {
+          return null;
+        }
         decodedData[i] = (byte)(temp1 << 4 | temp2);
       }
       return decodedData;
@@ -1770,10 +1820,14 @@ public final class DataValue
               index = segIndex;
             }
             else
+            {
               index += 4;
+            }
           }
           else
+          {
             index += 4;
+          }
         }
 
         // 6f - remove ending "<segment>/.." where "<segment>" is a
@@ -1914,7 +1968,10 @@ public final class DataValue
             try
             {
               port = Integer.parseInt(portStr);
-              if (port == -1) --port;
+              if (port == -1)
+              {
+                --port;
+              }
             }
             catch (NumberFormatException nfe)
             {
@@ -3252,7 +3309,10 @@ public final class DataValue
       {
         ch = anyURI.charAt(i);
         // if it's not an ASCII character, break here, and use UTF-8 encoding
-        if (ch >= 128) break;
+        if (ch >= 128)
+        {
+          break;
+        }
         if (gNeedEscaping[ch])
         {
           buffer.append('%');
@@ -3310,9 +3370,13 @@ public final class DataValue
       // If encoding happened, create a new string;
       // otherwise, return the orginal one.
       if (buffer.length() != len)
+      {
         return buffer.toString();
+      }
       else
+      {
         return anyURI;
+      }
     }
 
   }
@@ -4228,9 +4292,15 @@ public final class DataValue
      */
     public static boolean isValidName(String name)
     {
-      if (name.length() == 0) return false;
+      if (name.length() == 0)
+      {
+        return false;
+      }
       char ch = name.charAt(0);
-      if (isNameStart(ch) == false) return false;
+      if (isNameStart(ch) == false)
+      {
+        return false;
+      }
       for (int i = 1; i < name.length(); i++)
       {
         ch = name.charAt(i);
@@ -4254,9 +4324,15 @@ public final class DataValue
      */
     public static boolean isValidNCName(String ncName)
     {
-      if (ncName.length() == 0) return false;
+      if (ncName.length() == 0)
+      {
+        return false;
+      }
       char ch = ncName.charAt(0);
-      if (isNCNameStart(ch) == false) return false;
+      if (isNCNameStart(ch) == false)
+      {
+        return false;
+      }
       for (int i = 1; i < ncName.length(); i++)
       {
         ch = ncName.charAt(i);
@@ -4280,7 +4356,10 @@ public final class DataValue
      */
     public static boolean isValidNmtoken(String nmtoken)
     {
-      if (nmtoken.length() == 0) return false;
+      if (nmtoken.length() == 0)
+      {
+        return false;
+      }
       for (int i = 0; i < nmtoken.length(); i++)
       {
         char ch = nmtoken.charAt(i);

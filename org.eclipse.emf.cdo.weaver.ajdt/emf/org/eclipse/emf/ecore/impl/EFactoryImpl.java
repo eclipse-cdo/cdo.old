@@ -115,16 +115,25 @@ public class EFactoryImpl extends EModelElementImpl implements EFactory
     {
       NotificationChain msgs = null;
       if (ePackage != null)
+      {
         msgs = ((InternalEObject)ePackage).eInverseRemove(this, EcorePackage.EPACKAGE__EFACTORY_INSTANCE,
             EPackage.class, msgs);
+      }
       if (newEPackage != null)
+      {
         msgs = ((InternalEObject)newEPackage).eInverseAdd(this, EcorePackage.EPACKAGE__EFACTORY_INSTANCE,
             EPackage.class, msgs);
+      }
       msgs = basicSetEPackage(newEPackage, msgs);
-      if (msgs != null) msgs.dispatch();
+      if (msgs != null)
+      {
+        msgs.dispatch();
+      }
     }
     else if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EFACTORY__EPACKAGE, newEPackage, newEPackage));
+    }
   }
 
   /**
@@ -141,9 +150,13 @@ public class EFactoryImpl extends EModelElementImpl implements EFactory
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EcorePackage.EFACTORY__EPACKAGE,
           oldEPackage, newEPackage);
       if (msgs == null)
+      {
         msgs = notification;
+      }
       else
+      {
         msgs.add(notification);
+      }
     }
     return msgs;
   }
@@ -339,7 +352,10 @@ public class EFactoryImpl extends EModelElementImpl implements EFactory
     }
 
     Class<?> c = EcoreUtil.wrapperClassFor(eDataType.getInstanceClass());
-    if (c == null) return null;
+    if (c == null)
+    {
+      return null;
+    }
 
     if (c == Character.class)
     {
@@ -670,8 +686,10 @@ public class EFactoryImpl extends EModelElementImpl implements EFactory
       return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
     case EcorePackage.EFACTORY__EPACKAGE:
       if (ePackage != null)
+      {
         msgs = ((InternalEObject)ePackage).eInverseRemove(this, EcorePackage.EPACKAGE__EFACTORY_INSTANCE,
             EPackage.class, msgs);
+      }
       return basicSetEPackage((EPackage)otherEnd, msgs);
     }
     return eDynamicInverseAdd(otherEnd, featureID, msgs);

@@ -164,8 +164,10 @@ public class SimpleAnyTypeImpl extends AnyTypeImpl implements SimpleAnyType
     EDataType oldInstanceType = instanceType;
     instanceType = newInstanceType;
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, XMLTypePackage.SIMPLE_ANY_TYPE__INSTANCE_TYPE,
           oldInstanceType, instanceType));
+    }
   }
 
   /**
@@ -179,13 +181,22 @@ public class SimpleAnyTypeImpl extends AnyTypeImpl implements SimpleAnyType
     switch (featureID)
     {
     case XMLTypePackage.SIMPLE_ANY_TYPE__MIXED:
-      if (coreType) return getMixed();
+      if (coreType)
+      {
+        return getMixed();
+      }
       return ((FeatureMap.Internal)getMixed()).getWrapper();
     case XMLTypePackage.SIMPLE_ANY_TYPE__ANY:
-      if (coreType) return getAny();
+      if (coreType)
+      {
+        return getAny();
+      }
       return ((FeatureMap.Internal)getAny()).getWrapper();
     case XMLTypePackage.SIMPLE_ANY_TYPE__ANY_ATTRIBUTE:
-      if (coreType) return getAnyAttribute();
+      if (coreType)
+      {
+        return getAnyAttribute();
+      }
       return ((FeatureMap.Internal)getAnyAttribute()).getWrapper();
     case XMLTypePackage.SIMPLE_ANY_TYPE__RAW_VALUE:
       return getRawValue();

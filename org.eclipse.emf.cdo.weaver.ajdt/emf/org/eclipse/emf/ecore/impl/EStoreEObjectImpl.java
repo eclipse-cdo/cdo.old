@@ -709,7 +709,7 @@ public class EStoreEObjectImpl extends EObjectImpl implements EStructuralFeature
   @Override
   public void eSetStore(InternalEObject.EStore store)
   {
-    this.eStore = store;
+    eStore = store;
   }
 
   @Override

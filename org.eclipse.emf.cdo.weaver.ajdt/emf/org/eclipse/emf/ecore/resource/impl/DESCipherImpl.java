@@ -64,7 +64,7 @@ public class DESCipherImpl implements URIConverter.Cipher
 
   public DESCipherImpl(String key)
   {
-    this.stringKey = key;
+    stringKey = key;
   }
 
   public OutputStream encrypt(OutputStream outputStream) throws Exception

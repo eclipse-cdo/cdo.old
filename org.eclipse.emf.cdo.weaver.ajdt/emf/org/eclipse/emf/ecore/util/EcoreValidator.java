@@ -495,25 +495,58 @@ public class EcoreValidator extends EObjectValidator
   public boolean validateEAttribute(EAttribute eAttribute, DiagnosticChain diagnostics, Map<Object, Object> context)
   {
     boolean result = validate_EveryMultiplicityConforms(eAttribute, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(eAttribute, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(eAttribute, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(eAttribute, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(eAttribute, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(eAttribute, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(eAttribute, diagnostics, context);
     if (result || diagnostics != null)
+    {
+      result &= validate_EveryDataValueConforms(eAttribute, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryReferenceIsContained(eAttribute, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryProxyResolves(eAttribute, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_UniqueID(eAttribute, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryKeyUnique(eAttribute, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryMapEntryUnique(eAttribute, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validateENamedElement_WellFormedName(eAttribute, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateETypedElement_ValidLowerBound(eAttribute, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateETypedElement_ValidUpperBound(eAttribute, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateETypedElement_ConsistentBounds(eAttribute, diagnostics, context);
-    if (result || diagnostics != null) result &= validateETypedElement_ValidType(eAttribute, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
+      result &= validateETypedElement_ValidType(eAttribute, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validateEStructuralFeature_ValidDefaultValueLiteral(eAttribute, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateEAttribute_ConsistentTransient(eAttribute, diagnostics, context);
+    }
     return result;
   }
 
@@ -565,14 +598,34 @@ public class EcoreValidator extends EObjectValidator
   public boolean validateEAnnotation(EAnnotation eAnnotation, DiagnosticChain diagnostics, Map<Object, Object> context)
   {
     boolean result = validate_EveryMultiplicityConforms(eAnnotation, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(eAnnotation, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(eAnnotation, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(eAnnotation, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(eAnnotation, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(eAnnotation, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(eAnnotation, diagnostics, context);
     if (result || diagnostics != null)
+    {
+      result &= validate_EveryDataValueConforms(eAnnotation, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryReferenceIsContained(eAnnotation, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryProxyResolves(eAnnotation, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_UniqueID(eAnnotation, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryKeyUnique(eAnnotation, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryMapEntryUnique(eAnnotation, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validateEAnnotation_WellFormedSourceURI(eAnnotation, diagnostics, context);
+    }
     return result;
   }
 
@@ -625,25 +678,70 @@ public class EcoreValidator extends EObjectValidator
   public boolean validateEClass(EClass eClass, DiagnosticChain diagnostics, Map<Object, Object> context)
   {
     boolean result = validate_EveryMultiplicityConforms(eClass, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(eClass, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(eClass, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(eClass, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(eClass, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(eClass, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(eClass, diagnostics, context);
-    if (result || diagnostics != null) result &= validateENamedElement_WellFormedName(eClass, diagnostics, context);
     if (result || diagnostics != null)
+    {
+      result &= validate_EveryDataValueConforms(eClass, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryReferenceIsContained(eClass, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryProxyResolves(eClass, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_UniqueID(eClass, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryKeyUnique(eClass, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryMapEntryUnique(eClass, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validateENamedElement_WellFormedName(eClass, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validateEClassifier_WellFormedInstanceTypeName(eClass, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateEClassifier_UniqueTypeParameterNames(eClass, diagnostics, context);
-    if (result || diagnostics != null) result &= validateEClass_InterfaceIsAbstract(eClass, diagnostics, context);
-    if (result || diagnostics != null) result &= validateEClass_AtMostOneID(eClass, diagnostics, context);
-    if (result || diagnostics != null) result &= validateEClass_UniqueFeatureNames(eClass, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
+      result &= validateEClass_InterfaceIsAbstract(eClass, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validateEClass_AtMostOneID(eClass, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validateEClass_UniqueFeatureNames(eClass, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validateEClass_UniqueOperationSignatures(eClass, diagnostics, context);
-    if (result || diagnostics != null) result &= validateEClass_NoCircularSuperTypes(eClass, diagnostics, context);
-    if (result || diagnostics != null) result &= validateEClass_WellFormedMapEntryClass(eClass, diagnostics, context);
-    if (result || diagnostics != null) result &= validateEClass_ConsistentSuperTypes(eClass, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validateEClass_NoCircularSuperTypes(eClass, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validateEClass_WellFormedMapEntryClass(eClass, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validateEClass_ConsistentSuperTypes(eClass, diagnostics, context);
+    }
     return result;
   }
 
@@ -1186,18 +1284,42 @@ public class EcoreValidator extends EObjectValidator
   public boolean validateEClassifier(EClassifier eClassifier, DiagnosticChain diagnostics, Map<Object, Object> context)
   {
     boolean result = validate_EveryMultiplicityConforms(eClassifier, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(eClassifier, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(eClassifier, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(eClassifier, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(eClassifier, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(eClassifier, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(eClassifier, diagnostics, context);
     if (result || diagnostics != null)
+    {
+      result &= validate_EveryDataValueConforms(eClassifier, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryReferenceIsContained(eClassifier, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryProxyResolves(eClassifier, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_UniqueID(eClassifier, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryKeyUnique(eClassifier, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryMapEntryUnique(eClassifier, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validateENamedElement_WellFormedName(eClassifier, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateEClassifier_WellFormedInstanceTypeName(eClassifier, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateEClassifier_UniqueTypeParameterNames(eClassifier, diagnostics, context);
+    }
     return result;
   }
 
@@ -1304,17 +1426,42 @@ public class EcoreValidator extends EObjectValidator
   public boolean validateEDataType(EDataType eDataType, DiagnosticChain diagnostics, Map<Object, Object> context)
   {
     boolean result = validate_EveryMultiplicityConforms(eDataType, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(eDataType, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(eDataType, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(eDataType, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(eDataType, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(eDataType, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(eDataType, diagnostics, context);
-    if (result || diagnostics != null) result &= validateENamedElement_WellFormedName(eDataType, diagnostics, context);
     if (result || diagnostics != null)
+    {
+      result &= validate_EveryDataValueConforms(eDataType, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryReferenceIsContained(eDataType, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryProxyResolves(eDataType, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_UniqueID(eDataType, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryKeyUnique(eDataType, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryMapEntryUnique(eDataType, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validateENamedElement_WellFormedName(eDataType, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validateEClassifier_WellFormedInstanceTypeName(eDataType, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateEClassifier_UniqueTypeParameterNames(eDataType, diagnostics, context);
+    }
     return result;
   }
 
@@ -1326,19 +1473,50 @@ public class EcoreValidator extends EObjectValidator
   public boolean validateEEnum(EEnum eEnum, DiagnosticChain diagnostics, Map<Object, Object> context)
   {
     boolean result = validate_EveryMultiplicityConforms(eEnum, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(eEnum, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(eEnum, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(eEnum, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(eEnum, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(eEnum, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(eEnum, diagnostics, context);
-    if (result || diagnostics != null) result &= validateENamedElement_WellFormedName(eEnum, diagnostics, context);
     if (result || diagnostics != null)
+    {
+      result &= validate_EveryDataValueConforms(eEnum, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryReferenceIsContained(eEnum, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryProxyResolves(eEnum, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_UniqueID(eEnum, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryKeyUnique(eEnum, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryMapEntryUnique(eEnum, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validateENamedElement_WellFormedName(eEnum, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validateEClassifier_WellFormedInstanceTypeName(eEnum, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateEClassifier_UniqueTypeParameterNames(eEnum, diagnostics, context);
-    if (result || diagnostics != null) result &= validateEEnum_UniqueEnumeratorNames(eEnum, diagnostics, context);
-    if (result || diagnostics != null) result &= validateEEnum_UniqueEnumeratorLiterals(eEnum, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validateEEnum_UniqueEnumeratorNames(eEnum, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validateEEnum_UniqueEnumeratorLiterals(eEnum, diagnostics, context);
+    }
     return result;
   }
 
@@ -1446,15 +1624,34 @@ public class EcoreValidator extends EObjectValidator
       Map<Object, Object> context)
   {
     boolean result = validate_EveryMultiplicityConforms(eEnumLiteral, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(eEnumLiteral, diagnostics, context);
     if (result || diagnostics != null)
+    {
+      result &= validate_EveryDataValueConforms(eEnumLiteral, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validate_EveryReferenceIsContained(eEnumLiteral, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(eEnumLiteral, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(eEnumLiteral, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(eEnumLiteral, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(eEnumLiteral, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
+      result &= validate_EveryProxyResolves(eEnumLiteral, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_UniqueID(eEnumLiteral, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryKeyUnique(eEnumLiteral, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryMapEntryUnique(eEnumLiteral, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validateENamedElement_WellFormedName(eEnumLiteral, diagnostics, context);
+    }
     return result;
   }
 
@@ -1488,15 +1685,34 @@ public class EcoreValidator extends EObjectValidator
       Map<Object, Object> context)
   {
     boolean result = validate_EveryMultiplicityConforms(eNamedElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(eNamedElement, diagnostics, context);
     if (result || diagnostics != null)
+    {
+      result &= validate_EveryDataValueConforms(eNamedElement, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validate_EveryReferenceIsContained(eNamedElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(eNamedElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(eNamedElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(eNamedElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(eNamedElement, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
+      result &= validate_EveryProxyResolves(eNamedElement, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_UniqueID(eNamedElement, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryKeyUnique(eNamedElement, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryMapEntryUnique(eNamedElement, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validateENamedElement_WellFormedName(eNamedElement, diagnostics, context);
+    }
     return result;
   }
 
@@ -1558,26 +1774,62 @@ public class EcoreValidator extends EObjectValidator
   public boolean validateEOperation(EOperation eOperation, DiagnosticChain diagnostics, Map<Object, Object> context)
   {
     boolean result = validate_EveryMultiplicityConforms(eOperation, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(eOperation, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(eOperation, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(eOperation, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(eOperation, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(eOperation, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(eOperation, diagnostics, context);
     if (result || diagnostics != null)
+    {
+      result &= validate_EveryDataValueConforms(eOperation, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryReferenceIsContained(eOperation, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryProxyResolves(eOperation, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_UniqueID(eOperation, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryKeyUnique(eOperation, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryMapEntryUnique(eOperation, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validateENamedElement_WellFormedName(eOperation, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateETypedElement_ValidLowerBound(eOperation, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateETypedElement_ValidUpperBound(eOperation, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateETypedElement_ConsistentBounds(eOperation, diagnostics, context);
-    if (result || diagnostics != null) result &= validateETypedElement_ValidType(eOperation, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
+      result &= validateETypedElement_ValidType(eOperation, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validateEOperation_UniqueParameterNames(eOperation, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateEOperation_UniqueTypeParameterNames(eOperation, diagnostics, context);
-    if (result || diagnostics != null) result &= validateEOperation_NoRepeatingVoid(eOperation, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validateEOperation_NoRepeatingVoid(eOperation, diagnostics, context);
+    }
     return result;
   }
 
@@ -1687,20 +1939,54 @@ public class EcoreValidator extends EObjectValidator
   public boolean validateEPackage(EPackage ePackage, DiagnosticChain diagnostics, Map<Object, Object> context)
   {
     boolean result = validate_EveryMultiplicityConforms(ePackage, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(ePackage, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(ePackage, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(ePackage, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(ePackage, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(ePackage, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(ePackage, diagnostics, context);
-    if (result || diagnostics != null) result &= validateENamedElement_WellFormedName(ePackage, diagnostics, context);
-    if (result || diagnostics != null) result &= validateEPackage_WellFormedNsURI(ePackage, diagnostics, context);
-    if (result || diagnostics != null) result &= validateEPackage_WellFormedNsPrefix(ePackage, diagnostics, context);
     if (result || diagnostics != null)
+    {
+      result &= validate_EveryDataValueConforms(ePackage, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryReferenceIsContained(ePackage, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryProxyResolves(ePackage, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_UniqueID(ePackage, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryKeyUnique(ePackage, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryMapEntryUnique(ePackage, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validateENamedElement_WellFormedName(ePackage, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validateEPackage_WellFormedNsURI(ePackage, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validateEPackage_WellFormedNsPrefix(ePackage, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validateEPackage_UniqueSubpackageNames(ePackage, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateEPackage_UniqueClassifierNames(ePackage, diagnostics, context);
-    if (result || diagnostics != null) result &= validateEPackage_UniqueNsURIs(ePackage, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validateEPackage_UniqueNsURIs(ePackage, diagnostics, context);
+    }
     return result;
   }
 
@@ -1891,21 +2177,50 @@ public class EcoreValidator extends EObjectValidator
   public boolean validateEParameter(EParameter eParameter, DiagnosticChain diagnostics, Map<Object, Object> context)
   {
     boolean result = validate_EveryMultiplicityConforms(eParameter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(eParameter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(eParameter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(eParameter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(eParameter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(eParameter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(eParameter, diagnostics, context);
     if (result || diagnostics != null)
+    {
+      result &= validate_EveryDataValueConforms(eParameter, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryReferenceIsContained(eParameter, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryProxyResolves(eParameter, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_UniqueID(eParameter, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryKeyUnique(eParameter, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryMapEntryUnique(eParameter, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validateENamedElement_WellFormedName(eParameter, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateETypedElement_ValidLowerBound(eParameter, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateETypedElement_ValidUpperBound(eParameter, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateETypedElement_ConsistentBounds(eParameter, diagnostics, context);
-    if (result || diagnostics != null) result &= validateETypedElement_ValidType(eParameter, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validateETypedElement_ValidType(eParameter, diagnostics, context);
+    }
     return result;
   }
 
@@ -1917,27 +2232,66 @@ public class EcoreValidator extends EObjectValidator
   public boolean validateEReference(EReference eReference, DiagnosticChain diagnostics, Map<Object, Object> context)
   {
     boolean result = validate_EveryMultiplicityConforms(eReference, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(eReference, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(eReference, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(eReference, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(eReference, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(eReference, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(eReference, diagnostics, context);
     if (result || diagnostics != null)
+    {
+      result &= validate_EveryDataValueConforms(eReference, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryReferenceIsContained(eReference, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryProxyResolves(eReference, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_UniqueID(eReference, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryKeyUnique(eReference, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryMapEntryUnique(eReference, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validateENamedElement_WellFormedName(eReference, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateETypedElement_ValidLowerBound(eReference, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateETypedElement_ValidUpperBound(eReference, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateETypedElement_ConsistentBounds(eReference, diagnostics, context);
-    if (result || diagnostics != null) result &= validateETypedElement_ValidType(eReference, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
+      result &= validateETypedElement_ValidType(eReference, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validateEStructuralFeature_ValidDefaultValueLiteral(eReference, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateEReference_ConsistentOpposite(eReference, diagnostics, context);
-    if (result || diagnostics != null) result &= validateEReference_SingleContainer(eReference, diagnostics, context);
-    if (result || diagnostics != null) result &= validateEReference_ConsistentKeys(eReference, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validateEReference_SingleContainer(eReference, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validateEReference_ConsistentKeys(eReference, diagnostics, context);
+    }
     return result;
   }
 
@@ -2090,26 +2444,53 @@ public class EcoreValidator extends EObjectValidator
   {
     boolean result = validate_EveryMultiplicityConforms(eStructuralFeature, diagnostics, context);
     if (result || diagnostics != null)
+    {
       result &= validate_EveryDataValueConforms(eStructuralFeature, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validate_EveryReferenceIsContained(eStructuralFeature, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(eStructuralFeature, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(eStructuralFeature, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(eStructuralFeature, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
+      result &= validate_EveryProxyResolves(eStructuralFeature, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_UniqueID(eStructuralFeature, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryKeyUnique(eStructuralFeature, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validate_EveryMapEntryUnique(eStructuralFeature, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateENamedElement_WellFormedName(eStructuralFeature, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateETypedElement_ValidLowerBound(eStructuralFeature, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateETypedElement_ValidUpperBound(eStructuralFeature, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateETypedElement_ConsistentBounds(eStructuralFeature, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateETypedElement_ValidType(eStructuralFeature, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateEStructuralFeature_ValidDefaultValueLiteral(eStructuralFeature, diagnostics, context);
+    }
     return result;
   }
 
@@ -2212,22 +2593,50 @@ public class EcoreValidator extends EObjectValidator
       Map<Object, Object> context)
   {
     boolean result = validate_EveryMultiplicityConforms(eTypedElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(eTypedElement, diagnostics, context);
     if (result || diagnostics != null)
+    {
+      result &= validate_EveryDataValueConforms(eTypedElement, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validate_EveryReferenceIsContained(eTypedElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(eTypedElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(eTypedElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(eTypedElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(eTypedElement, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
+      result &= validate_EveryProxyResolves(eTypedElement, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_UniqueID(eTypedElement, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryKeyUnique(eTypedElement, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryMapEntryUnique(eTypedElement, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validateENamedElement_WellFormedName(eTypedElement, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateETypedElement_ValidLowerBound(eTypedElement, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateETypedElement_ValidUpperBound(eTypedElement, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateETypedElement_ConsistentBounds(eTypedElement, diagnostics, context);
-    if (result || diagnostics != null) result &= validateETypedElement_ValidType(eTypedElement, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validateETypedElement_ValidType(eTypedElement, diagnostics, context);
+    }
     return result;
   }
 
@@ -2341,19 +2750,42 @@ public class EcoreValidator extends EObjectValidator
       Map<Object, Object> context)
   {
     boolean result = validate_EveryMultiplicityConforms(eGenericType, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(eGenericType, diagnostics, context);
     if (result || diagnostics != null)
+    {
+      result &= validate_EveryDataValueConforms(eGenericType, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validate_EveryReferenceIsContained(eGenericType, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(eGenericType, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(eGenericType, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(eGenericType, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(eGenericType, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
+      result &= validate_EveryProxyResolves(eGenericType, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_UniqueID(eGenericType, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryKeyUnique(eGenericType, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryMapEntryUnique(eGenericType, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validateEGenericType_ConsistentType(eGenericType, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateEGenericType_ConsistentBounds(eGenericType, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
       result &= validateEGenericType_ConsistentArguments(eGenericType, diagnostics, context);
+    }
     return result;
   }
 
@@ -2419,9 +2851,8 @@ public class EcoreValidator extends EObjectValidator
         }
         int index = typeParameters.indexOf(usage);
         int eTypeParameterIndex = typeParameters.indexOf(eTypeParameter);
-        inScope = index == -1
-            || index > eTypeParameterIndex
-            || (index == eTypeParameterIndex && eGenericType.eContainingFeature() == EcorePackage.Literals.EGENERIC_TYPE__ETYPE_ARGUMENTS);
+        inScope = index == -1 || index > eTypeParameterIndex || index == eTypeParameterIndex
+            && eGenericType.eContainingFeature() == EcorePackage.Literals.EGENERIC_TYPE__ETYPE_ARGUMENTS;
       }
 
       if (!inScope)
@@ -3266,15 +3697,34 @@ public class EcoreValidator extends EObjectValidator
       Map<Object, Object> context)
   {
     boolean result = validate_EveryMultiplicityConforms(eTypeParameter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryDataValueConforms(eTypeParameter, diagnostics, context);
     if (result || diagnostics != null)
+    {
+      result &= validate_EveryDataValueConforms(eTypeParameter, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validate_EveryReferenceIsContained(eTypeParameter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryProxyResolves(eTypeParameter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_UniqueID(eTypeParameter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryKeyUnique(eTypeParameter, diagnostics, context);
-    if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(eTypeParameter, diagnostics, context);
+    }
     if (result || diagnostics != null)
+    {
+      result &= validate_EveryProxyResolves(eTypeParameter, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_UniqueID(eTypeParameter, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryKeyUnique(eTypeParameter, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
+      result &= validate_EveryMapEntryUnique(eTypeParameter, diagnostics, context);
+    }
+    if (result || diagnostics != null)
+    {
       result &= validateENamedElement_WellFormedName(eTypeParameter, diagnostics, context);
+    }
     return result;
   }
 

@@ -81,7 +81,10 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
   @Override
   protected Entry validate(int index, Entry object)
   {
-    if (modCount == 0) return object;
+    if (modCount == 0)
+    {
+      return object;
+    }
 
     Entry result = super.validate(index, object);
     EStructuralFeature eStructuralFeature = object.getEStructuralFeature();
@@ -1385,7 +1388,10 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
     {
       doAddUnique(entry);
       NotificationChain notifications = inverseAdd(entry, null);
-      if (notifications != null) notifications.dispatch();
+      if (notifications != null)
+      {
+        notifications.dispatch();
+      }
     }
   }
 
@@ -1462,7 +1468,10 @@ public class BasicFeatureMap extends EDataTypeEList<FeatureMap.Entry> implements
         {
           notifications = inverseAdd(entries[i], notifications);
         }
-        if (notifications != null) notifications.dispatch();
+        if (notifications != null)
+        {
+          notifications.dispatch();
+        }
       }
 
       return true;

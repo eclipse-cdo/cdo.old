@@ -162,11 +162,17 @@ public class EAttributeImpl extends EStructuralFeatureImpl implements EAttribute
   {
     boolean oldID = (eFlags & ID_EFLAG) != 0;
     if (newID)
+    {
       eFlags |= ID_EFLAG;
+    }
     else
+    {
       eFlags &= ~ID_EFLAG;
+    }
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EATTRIBUTE__ID, oldID, newID));
+    }
   }
 
   protected EDataType eAttributeType;
@@ -241,7 +247,10 @@ public class EAttributeImpl extends EStructuralFeatureImpl implements EAttribute
     case EcorePackage.EATTRIBUTE__REQUIRED:
       return isRequired() ? Boolean.TRUE : Boolean.FALSE;
     case EcorePackage.EATTRIBUTE__ETYPE:
-      if (resolve) return getEType();
+      if (resolve)
+      {
+        return getEType();
+      }
       return basicGetEType();
     case EcorePackage.EATTRIBUTE__EGENERIC_TYPE:
       return getEGenericType();
@@ -264,7 +273,10 @@ public class EAttributeImpl extends EStructuralFeatureImpl implements EAttribute
     case EcorePackage.EATTRIBUTE__ID:
       return isID() ? Boolean.TRUE : Boolean.FALSE;
     case EcorePackage.EATTRIBUTE__EATTRIBUTE_TYPE:
-      if (resolve) return getEAttributeType();
+      if (resolve)
+      {
+        return getEAttributeType();
+      }
       return basicGetEAttributeType();
     }
     return eDynamicGet(featureID, resolve, coreType);
@@ -405,9 +417,9 @@ public class EAttributeImpl extends EStructuralFeatureImpl implements EAttribute
     case EcorePackage.EATTRIBUTE__NAME:
       return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     case EcorePackage.EATTRIBUTE__ORDERED:
-      return ((eFlags & ORDERED_EFLAG) != 0) != ORDERED_EDEFAULT;
+      return (eFlags & ORDERED_EFLAG) != 0 != ORDERED_EDEFAULT;
     case EcorePackage.EATTRIBUTE__UNIQUE:
-      return ((eFlags & UNIQUE_EFLAG) != 0) != UNIQUE_EDEFAULT;
+      return (eFlags & UNIQUE_EFLAG) != 0 != UNIQUE_EDEFAULT;
     case EcorePackage.EATTRIBUTE__LOWER_BOUND:
       return lowerBound != LOWER_BOUND_EDEFAULT;
     case EcorePackage.EATTRIBUTE__UPPER_BOUND:
@@ -421,11 +433,11 @@ public class EAttributeImpl extends EStructuralFeatureImpl implements EAttribute
     case EcorePackage.EATTRIBUTE__EGENERIC_TYPE:
       return isSetEGenericType();
     case EcorePackage.EATTRIBUTE__CHANGEABLE:
-      return ((eFlags & CHANGEABLE_EFLAG) != 0) != CHANGEABLE_EDEFAULT;
+      return (eFlags & CHANGEABLE_EFLAG) != 0 != CHANGEABLE_EDEFAULT;
     case EcorePackage.EATTRIBUTE__VOLATILE:
-      return ((eFlags & VOLATILE_EFLAG) != 0) != VOLATILE_EDEFAULT;
+      return (eFlags & VOLATILE_EFLAG) != 0 != VOLATILE_EDEFAULT;
     case EcorePackage.EATTRIBUTE__TRANSIENT:
-      return ((eFlags & TRANSIENT_EFLAG) != 0) != TRANSIENT_EDEFAULT;
+      return (eFlags & TRANSIENT_EFLAG) != 0 != TRANSIENT_EDEFAULT;
     case EcorePackage.EATTRIBUTE__DEFAULT_VALUE_LITERAL:
       return DEFAULT_VALUE_LITERAL_EDEFAULT == null ? defaultValueLiteral != null : !DEFAULT_VALUE_LITERAL_EDEFAULT
           .equals(defaultValueLiteral);
@@ -433,13 +445,13 @@ public class EAttributeImpl extends EStructuralFeatureImpl implements EAttribute
       return DEFAULT_VALUE_EDEFAULT == null ? getDefaultValue() != null : !DEFAULT_VALUE_EDEFAULT
           .equals(getDefaultValue());
     case EcorePackage.EATTRIBUTE__UNSETTABLE:
-      return ((eFlags & UNSETTABLE_EFLAG) != 0) != UNSETTABLE_EDEFAULT;
+      return (eFlags & UNSETTABLE_EFLAG) != 0 != UNSETTABLE_EDEFAULT;
     case EcorePackage.EATTRIBUTE__DERIVED:
-      return ((eFlags & DERIVED_EFLAG) != 0) != DERIVED_EDEFAULT;
+      return (eFlags & DERIVED_EFLAG) != 0 != DERIVED_EDEFAULT;
     case EcorePackage.EATTRIBUTE__ECONTAINING_CLASS:
       return getEContainingClass() != null;
     case EcorePackage.EATTRIBUTE__ID:
-      return ((eFlags & ID_EFLAG) != 0) != ID_EDEFAULT;
+      return (eFlags & ID_EFLAG) != 0 != ID_EDEFAULT;
     case EcorePackage.EATTRIBUTE__EATTRIBUTE_TYPE:
       return basicGetEAttributeType() != null;
     }
@@ -454,7 +466,10 @@ public class EAttributeImpl extends EStructuralFeatureImpl implements EAttribute
   @Override
   public String toString()
   {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy())
+    {
+      return super.toString();
+    }
 
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (iD: ");

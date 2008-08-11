@@ -47,10 +47,14 @@ public final class QName extends javax.xml.namespace.QName
 
     // both prefix (if any) a localpart must be valid NCName
     if (prefix.length() > 0 && !XMLChar.isValidNCName(prefix))
+    {
       throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1: invalid QName: " + qname);
+    }
 
     if (!XMLChar.isValidNCName(getLocalPart()))
+    {
       throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1: invalid QName: " + qname);
+    }
   }
 
   /**
@@ -62,10 +66,14 @@ public final class QName extends javax.xml.namespace.QName
     setPrefix(prefix);
 
     if (this.prefix.length() > 0 && !XMLChar.isValidNCName(this.prefix))
+    {
       throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1: invalid QName: " + prefix);
+    }
 
     if (!XMLChar.isValidNCName(localPart))
+    {
       throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1: invalid QName: " + localPart);
+    }
   }
 
   /**

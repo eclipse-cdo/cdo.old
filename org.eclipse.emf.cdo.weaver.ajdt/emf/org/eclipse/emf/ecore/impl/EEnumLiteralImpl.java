@@ -147,7 +147,9 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
     int oldValue = value;
     value = newValue;
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EENUM_LITERAL__VALUE, oldValue, value));
+    }
   }
 
   /**
@@ -170,7 +172,9 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
     Enumerator oldInstance = instance;
     instance = newInstance;
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EENUM_LITERAL__INSTANCE, oldInstance, instance));
+    }
   }
 
   public void setInstance(Enumerator newInstance)
@@ -217,7 +221,9 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
     String oldLiteral = literal;
     literal = newLiteral;
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EENUM_LITERAL__LITERAL, oldLiteral, literal));
+    }
   }
 
   /**
@@ -227,7 +233,7 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
    */
   public EEnum getEEnum()
   {
-    return (eContainerFeatureID == EcorePackage.EENUM_LITERAL__EENUM) ? (EEnum)eContainer : null;
+    return eContainerFeatureID == EcorePackage.EENUM_LITERAL__EENUM ? (EEnum)eContainer : null;
   }
 
   /**
@@ -244,7 +250,10 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
     case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
       return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
     case EcorePackage.EENUM_LITERAL__EENUM:
-      if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+      if (eInternalContainer() != null)
+      {
+        msgs = eBasicRemoveFromContainer(msgs);
+      }
       return eBasicSetContainer(otherEnd, EcorePackage.EENUM_LITERAL__EENUM, msgs);
     }
     return eDynamicInverseAdd(otherEnd, featureID, msgs);
@@ -409,7 +418,10 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
    */
   public String toStringGen()
   {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy())
+    {
+      return super.toString();
+    }
 
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (value: ");

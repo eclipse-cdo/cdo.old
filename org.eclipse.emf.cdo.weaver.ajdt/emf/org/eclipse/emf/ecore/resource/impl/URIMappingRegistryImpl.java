@@ -85,7 +85,7 @@ public class URIMappingRegistryImpl extends BasicEMap<URI, URI>
      */
     public void determineEntryType()
     {
-      isPrefixMapEntry = (key).isPrefix() && (value).isPrefix();
+      isPrefixMapEntry = key.isPrefix() && value.isPrefix();
     }
   }
 

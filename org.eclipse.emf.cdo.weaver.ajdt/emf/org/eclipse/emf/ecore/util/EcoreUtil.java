@@ -1124,7 +1124,7 @@ public class EcoreUtil
       public Iterator<T> getChildren(Object object)
       {
         return object == this.object ? ((List<T>)this.object).iterator()
-            : (Iterator<T>)(getEObjectChildren((EObject)object));
+            : (Iterator<T>)getEObjectChildren((EObject)object);
       }
     };
   }
@@ -1630,7 +1630,7 @@ public class EcoreUtil
      */
     protected CrossReferencer(EObject eObject)
     {
-      this.emfObjects = Collections.singleton(eObject);
+      emfObjects = Collections.singleton(eObject);
     }
 
     /**
@@ -1641,7 +1641,7 @@ public class EcoreUtil
      */
     protected CrossReferencer(Resource resource)
     {
-      this.emfObjects = Collections.singleton(resource);
+      emfObjects = Collections.singleton(resource);
     }
 
     /**
@@ -1652,7 +1652,7 @@ public class EcoreUtil
      */
     protected CrossReferencer(ResourceSet resourceSet)
     {
-      this.emfObjects = Collections.singleton(resourceSet);
+      emfObjects = Collections.singleton(resourceSet);
     }
 
     /**
@@ -2239,6 +2239,7 @@ public class EcoreUtil
    * put(eObject1, eObject2);
    * put(eObject2, eObject1);
    * </pre>
+   * 
    * Once that correspondence is established, an <code>eObject1</code> considered equal to a different
    * <code>eObject2</code> will not even be considered equal to itself. This ensures that two objects are structurally
    * equal only if the graphs formed by all their referenced objects have the same topology.
@@ -2608,7 +2609,7 @@ public class EcoreUtil
     {
       eObjectsOfInterest = Collections.singleton(eObject);
       crossReference();
-      this.eObjectsOfInterest = null;
+      eObjectsOfInterest = null;
       done();
       return getCollection(eObject);
     }
@@ -3669,7 +3670,9 @@ public class EcoreUtil
   public static boolean isSuppressedVisibility(EStructuralFeature eStructuralFeature, int accessor)
   {
     if (accessor < GET || accessor > UNSET)
+    {
       throw new IllegalArgumentException("Invalid accessor identifier: " + accessor);
+    }
 
     EAnnotation eAnnotation = eStructuralFeature.getEAnnotation(GEN_MODEL_PACKAGE_NS_URI);
     return eAnnotation == null ? false : TRUE.equalsIgnoreCase(eAnnotation.getDetails().get(ACCESSOR_KEYS[accessor]));
@@ -3690,7 +3693,9 @@ public class EcoreUtil
   public static void setSuppressedVisibility(EStructuralFeature eStructuralFeature, int accessor, boolean suppress)
   {
     if (accessor < GET || accessor > UNSET)
+    {
       throw new IllegalArgumentException("Invalid accessor identifier: " + accessor);
+    }
 
     EAnnotation eAnnotation = eStructuralFeature.getEAnnotation(GEN_MODEL_PACKAGE_NS_URI);
     if (!suppress)
@@ -3751,16 +3756,16 @@ public class EcoreUtil
       //
       for (int i = 0; i < 5; ++i)
       {
-        buffer[4 * i + 1] = BASE64_DIGITS[(uuid[i * 3] >> 2) & 0x3F];
-        buffer[4 * i + 2] = BASE64_DIGITS[((uuid[i * 3] << 4) & 0x30) | ((uuid[i * 3 + 1] >> 4) & 0xF)];
-        buffer[4 * i + 3] = BASE64_DIGITS[((uuid[i * 3 + 1] << 2) & 0x3C) | ((uuid[i * 3 + 2] >> 6) & 0x3)];
+        buffer[4 * i + 1] = BASE64_DIGITS[uuid[i * 3] >> 2 & 0x3F];
+        buffer[4 * i + 2] = BASE64_DIGITS[uuid[i * 3] << 4 & 0x30 | uuid[i * 3 + 1] >> 4 & 0xF];
+        buffer[4 * i + 3] = BASE64_DIGITS[uuid[i * 3 + 1] << 2 & 0x3C | uuid[i * 3 + 2] >> 6 & 0x3];
         buffer[4 * i + 4] = BASE64_DIGITS[uuid[i * 3 + 2] & 0x3F];
       }
 
       // Handle the last byte at the end.
       //
-      buffer[21] = BASE64_DIGITS[(uuid[15] >> 2) & 0x3F];
-      buffer[22] = BASE64_DIGITS[(uuid[15] << 4) & 0x30];
+      buffer[21] = BASE64_DIGITS[uuid[15] >> 2 & 0x3F];
+      buffer[22] = BASE64_DIGITS[uuid[15] << 4 & 0x30];
 
       return new String(buffer);
     }
@@ -3847,7 +3852,7 @@ public class EcoreUtil
     private static void updateClockSequence()
     {
       // clockseq_hi
-      uuid[8] = (byte)(((clockSequence >> 8) & 0x3F) | 0x80);
+      uuid[8] = (byte)(clockSequence >> 8 & 0x3F | 0x80);
       // clockseq_low
       uuid[9] = (byte)(clockSequence & 0xFF);
     }
@@ -3940,21 +3945,21 @@ public class EcoreUtil
       {
         // time_low
         //
-        uuid[i] = (byte)((currentTime >> 8 * (3 - i)) & 0xFFL);
+        uuid[i] = (byte)(currentTime >> 8 * (3 - i) & 0xFFL);
       }
 
       for (int i = 0; i < 2; ++i)
       {
         // time_mid
         //
-        uuid[i + 4] = (byte)((currentTime >> 8 * (1 - i) + 32) & 0xFFL);
+        uuid[i + 4] = (byte)(currentTime >> 8 * (1 - i) + 32 & 0xFFL);
       }
 
       for (int i = 0; i < 2; ++i)
       {
         // time_hi
         //
-        uuid[i + 6] = (byte)((currentTime >> 8 * (1 - i) + 48) & 0xFFL);
+        uuid[i + 6] = (byte)(currentTime >> 8 * (1 - i) + 48 & 0xFFL);
       }
     }
   }

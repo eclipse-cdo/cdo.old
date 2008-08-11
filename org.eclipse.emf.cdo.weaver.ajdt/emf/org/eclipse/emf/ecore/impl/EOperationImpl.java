@@ -140,7 +140,7 @@ public class EOperationImpl extends ETypedElementImpl implements EOperation
    */
   public EClass getEContainingClass()
   {
-    return (eContainerFeatureID == EcorePackage.EOPERATION__ECONTAINING_CLASS) ? (EClass)eContainer : null;
+    return eContainerFeatureID == EcorePackage.EOPERATION__ECONTAINING_CLASS ? (EClass)eContainer : null;
   }
 
   /**
@@ -543,7 +543,10 @@ public class EOperationImpl extends ETypedElementImpl implements EOperation
    */
   public void unsetEExceptions()
   {
-    if (eExceptions != null) ((InternalEList.Unsettable<?>)eExceptions).unset();
+    if (eExceptions != null)
+    {
+      ((InternalEList.Unsettable<?>)eExceptions).unset();
+    }
   }
 
   /**
@@ -707,7 +710,10 @@ public class EOperationImpl extends ETypedElementImpl implements EOperation
    */
   public void unsetEGenericExceptions()
   {
-    if (eGenericExceptions != null) ((InternalEList.Unsettable<?>)eGenericExceptions).unset();
+    if (eGenericExceptions != null)
+    {
+      ((InternalEList.Unsettable<?>)eGenericExceptions).unset();
+    }
   }
 
   /**
@@ -749,7 +755,10 @@ public class EOperationImpl extends ETypedElementImpl implements EOperation
     case EcorePackage.EOPERATION__EANNOTATIONS:
       return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
     case EcorePackage.EOPERATION__ECONTAINING_CLASS:
-      if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+      if (eInternalContainer() != null)
+      {
+        msgs = eBasicRemoveFromContainer(msgs);
+      }
       return eBasicSetContainer(otherEnd, EcorePackage.EOPERATION__ECONTAINING_CLASS, msgs);
     case EcorePackage.EOPERATION__EPARAMETERS:
       return ((InternalEList<InternalEObject>)(InternalEList<?>)getEParameters()).basicAdd(otherEnd, msgs);
@@ -826,7 +835,10 @@ public class EOperationImpl extends ETypedElementImpl implements EOperation
     case EcorePackage.EOPERATION__REQUIRED:
       return isRequired() ? Boolean.TRUE : Boolean.FALSE;
     case EcorePackage.EOPERATION__ETYPE:
-      if (resolve) return getEType();
+      if (resolve)
+      {
+        return getEType();
+      }
       return basicGetEType();
     case EcorePackage.EOPERATION__EGENERIC_TYPE:
       return getEGenericType();
@@ -965,9 +977,9 @@ public class EOperationImpl extends ETypedElementImpl implements EOperation
     case EcorePackage.EOPERATION__NAME:
       return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     case EcorePackage.EOPERATION__ORDERED:
-      return ((eFlags & ORDERED_EFLAG) != 0) != ORDERED_EDEFAULT;
+      return (eFlags & ORDERED_EFLAG) != 0 != ORDERED_EDEFAULT;
     case EcorePackage.EOPERATION__UNIQUE:
-      return ((eFlags & UNIQUE_EFLAG) != 0) != UNIQUE_EDEFAULT;
+      return (eFlags & UNIQUE_EFLAG) != 0 != UNIQUE_EDEFAULT;
     case EcorePackage.EOPERATION__LOWER_BOUND:
       return lowerBound != LOWER_BOUND_EDEFAULT;
     case EcorePackage.EOPERATION__UPPER_BOUND:

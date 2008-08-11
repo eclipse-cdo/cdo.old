@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MangoItemProviderAdapterFactory.java,v 1.3 2008-06-12 17:22:13 estepper Exp $
+ * $Id: MangoItemProviderAdapterFactory.java,v 1.4 2008-08-11 05:12:13 estepper Exp $
  */
 package org.eclipse.emf.cdo.tests.mango.provider;
 
@@ -204,7 +204,7 @@ public class MangoItemProviderAdapterFactory extends MangoAdapterFactory impleme
     if (isFactoryForType(type))
     {
       Object adapter = super.adapt(object, type);
-      if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter)))
+      if (!(type instanceof Class) || ((Class<?>)type).isInstance(adapter))
       {
         return adapter;
       }
@@ -256,9 +256,18 @@ public class MangoItemProviderAdapterFactory extends MangoAdapterFactory impleme
    */
   public void dispose()
   {
-    if (valueListItemProvider != null) valueListItemProvider.dispose();
-    if (valueItemProvider != null) valueItemProvider.dispose();
-    if (parameterItemProvider != null) parameterItemProvider.dispose();
+    if (valueListItemProvider != null)
+    {
+      valueListItemProvider.dispose();
+    }
+    if (valueItemProvider != null)
+    {
+      valueItemProvider.dispose();
+    }
+    if (parameterItemProvider != null)
+    {
+      parameterItemProvider.dispose();
+    }
   }
 
 }

@@ -58,6 +58,7 @@ public interface URIConverter
    *    -&gt; 
    *  file:./WhateverDirectory/Whatever.file
    * </pre>
+   * 
    * and assuming <code>"platform:/resource"</code> protocol for a relative URI with an {@link URI#hasAbsolutePath
    * absolute path}:
    * 
@@ -66,6 +67,7 @@ public interface URIConverter
    *    -&gt; 
    *  platform:/resource/WhateverRelocatableProject/Whatever.file
    * </pre>
+   * 
    * </p>
    * <p>
    * It is important to emphasize that normalization can result it loss of information. The normalized URI should
@@ -93,16 +95,19 @@ public interface URIConverter
    * <pre>
    *  http://www.example.com/ -&gt; platform:/resource/example/
    * </pre>
+   * 
    * then the URI
    * 
    * <pre>
    *  http://www.example.com/a/b/c.d
    * </pre>
+   * 
    * will map to
    * 
    * <pre>
    *  platform:/resource/example/a/b/c.d
    * </pre>
+   * 
    * A matching instance mapping is considered first. If there isn't one, the folder mappings are considered starting
    * with the {@link URI#segmentCount() longest} prefix.
    * </p>

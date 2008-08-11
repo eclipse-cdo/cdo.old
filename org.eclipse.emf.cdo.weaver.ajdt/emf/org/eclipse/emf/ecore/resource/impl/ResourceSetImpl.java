@@ -515,7 +515,7 @@ public class ResourceSetImpl extends NotifierImpl implements ResourceSet
     @Override
     protected boolean isNotificationRequired()
     {
-      return ResourceSetImpl.this.eNotificationRequired();
+      return eNotificationRequired();
     }
 
     @Override

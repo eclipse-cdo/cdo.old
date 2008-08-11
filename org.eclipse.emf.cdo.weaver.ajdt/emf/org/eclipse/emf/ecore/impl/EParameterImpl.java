@@ -65,7 +65,7 @@ public class EParameterImpl extends ETypedElementImpl implements EParameter
    */
   public EOperation getEOperation()
   {
-    return (eContainerFeatureID == EcorePackage.EPARAMETER__EOPERATION) ? (EOperation)eContainer : null;
+    return eContainerFeatureID == EcorePackage.EPARAMETER__EOPERATION ? (EOperation)eContainer : null;
   }
 
   /**
@@ -82,7 +82,10 @@ public class EParameterImpl extends ETypedElementImpl implements EParameter
     case EcorePackage.EPARAMETER__EANNOTATIONS:
       return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
     case EcorePackage.EPARAMETER__EOPERATION:
-      if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+      if (eInternalContainer() != null)
+      {
+        msgs = eBasicRemoveFromContainer(msgs);
+      }
       return eBasicSetContainer(otherEnd, EcorePackage.EPARAMETER__EOPERATION, msgs);
     }
     return eDynamicInverseAdd(otherEnd, featureID, msgs);
@@ -151,7 +154,10 @@ public class EParameterImpl extends ETypedElementImpl implements EParameter
     case EcorePackage.EPARAMETER__REQUIRED:
       return isRequired() ? Boolean.TRUE : Boolean.FALSE;
     case EcorePackage.EPARAMETER__ETYPE:
-      if (resolve) return getEType();
+      if (resolve)
+      {
+        return getEType();
+      }
       return basicGetEType();
     case EcorePackage.EPARAMETER__EGENERIC_TYPE:
       return getEGenericType();
@@ -176,9 +182,9 @@ public class EParameterImpl extends ETypedElementImpl implements EParameter
     case EcorePackage.EPARAMETER__NAME:
       return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     case EcorePackage.EPARAMETER__ORDERED:
-      return ((eFlags & ORDERED_EFLAG) != 0) != ORDERED_EDEFAULT;
+      return (eFlags & ORDERED_EFLAG) != 0 != ORDERED_EDEFAULT;
     case EcorePackage.EPARAMETER__UNIQUE:
-      return ((eFlags & UNIQUE_EFLAG) != 0) != UNIQUE_EDEFAULT;
+      return (eFlags & UNIQUE_EFLAG) != 0 != UNIQUE_EDEFAULT;
     case EcorePackage.EPARAMETER__LOWER_BOUND:
       return lowerBound != LOWER_BOUND_EDEFAULT;
     case EcorePackage.EPARAMETER__UPPER_BOUND:

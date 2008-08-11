@@ -218,12 +218,18 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
   {
     boolean oldOrdered = (eFlags & ORDERED_EFLAG) != 0;
     if (newOrdered)
+    {
       eFlags |= ORDERED_EFLAG;
+    }
     else
+    {
       eFlags &= ~ORDERED_EFLAG;
+    }
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ETYPED_ELEMENT__ORDERED, oldOrdered,
           newOrdered));
+    }
   }
 
   /**
@@ -245,11 +251,17 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
   {
     boolean oldUnique = (eFlags & UNIQUE_EFLAG) != 0;
     if (newUnique)
+    {
       eFlags |= UNIQUE_EFLAG;
+    }
     else
+    {
       eFlags &= ~UNIQUE_EFLAG;
+    }
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ETYPED_ELEMENT__UNIQUE, oldUnique, newUnique));
+    }
   }
 
   /**
@@ -272,8 +284,10 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
     int oldLowerBound = lowerBound;
     lowerBound = newLowerBound;
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ETYPED_ELEMENT__LOWER_BOUND, oldLowerBound,
           lowerBound));
+    }
   }
 
   /**
@@ -296,8 +310,10 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
     int oldUpperBound = upperBound;
     upperBound = newUpperBound;
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ETYPED_ELEMENT__UPPER_BOUND, oldUpperBound,
           upperBound));
+    }
   }
 
   public boolean isMany()
@@ -326,7 +342,9 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
       if (eType != oldEType)
       {
         if (eNotificationRequired())
+        {
           eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.ETYPED_ELEMENT__ETYPE, oldEType, eType));
+        }
       }
     }
     return eType;
@@ -422,9 +440,13 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
           EcorePackage.ETYPED_ELEMENT__EGENERIC_TYPE, oldEGenericType, newEGenericType);
       if (msgs == null)
+      {
         msgs = notification;
+      }
       else
+      {
         msgs.add(notification);
+      }
     }
     if (newEGenericType == null)
     {
@@ -449,11 +471,15 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
     if (newEGenericType != eGenericType)
     {
       if (eGenericType != null)
+      {
         msgs = ((InternalEObject)eGenericType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
             - EcorePackage.ETYPED_ELEMENT__EGENERIC_TYPE, null, msgs);
+      }
       if (newEGenericType != null)
+      {
         msgs = ((InternalEObject)newEGenericType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
             - EcorePackage.ETYPED_ELEMENT__EGENERIC_TYPE, null, msgs);
+      }
       msgs = basicSetEGenericType(newEGenericType, msgs);
     }
     else if (eNotificationRequired())
@@ -562,7 +588,10 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
     case EcorePackage.ETYPED_ELEMENT__REQUIRED:
       return isRequired() ? Boolean.TRUE : Boolean.FALSE;
     case EcorePackage.ETYPED_ELEMENT__ETYPE:
-      if (resolve) return getEType();
+      if (resolve)
+      {
+        return getEType();
+      }
       return basicGetEType();
     case EcorePackage.ETYPED_ELEMENT__EGENERIC_TYPE:
       return getEGenericType();
@@ -663,9 +692,9 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
     case EcorePackage.ETYPED_ELEMENT__NAME:
       return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     case EcorePackage.ETYPED_ELEMENT__ORDERED:
-      return ((eFlags & ORDERED_EFLAG) != 0) != ORDERED_EDEFAULT;
+      return (eFlags & ORDERED_EFLAG) != 0 != ORDERED_EDEFAULT;
     case EcorePackage.ETYPED_ELEMENT__UNIQUE:
-      return ((eFlags & UNIQUE_EFLAG) != 0) != UNIQUE_EDEFAULT;
+      return (eFlags & UNIQUE_EFLAG) != 0 != UNIQUE_EDEFAULT;
     case EcorePackage.ETYPED_ELEMENT__LOWER_BOUND:
       return lowerBound != LOWER_BOUND_EDEFAULT;
     case EcorePackage.ETYPED_ELEMENT__UPPER_BOUND:
@@ -690,7 +719,10 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
   @Override
   public String toString()
   {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy())
+    {
+      return super.toString();
+    }
 
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (ordered: ");

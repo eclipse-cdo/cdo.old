@@ -151,13 +151,22 @@ public class AnyTypeImpl extends EObjectImpl implements AnyType
     switch (featureID)
     {
     case XMLTypePackage.ANY_TYPE__MIXED:
-      if (coreType) return getMixed();
+      if (coreType)
+      {
+        return getMixed();
+      }
       return ((FeatureMap.Internal)getMixed()).getWrapper();
     case XMLTypePackage.ANY_TYPE__ANY:
-      if (coreType) return getAny();
+      if (coreType)
+      {
+        return getAny();
+      }
       return ((FeatureMap.Internal)getAny()).getWrapper();
     case XMLTypePackage.ANY_TYPE__ANY_ATTRIBUTE:
-      if (coreType) return getAnyAttribute();
+      if (coreType)
+      {
+        return getAnyAttribute();
+      }
       return ((FeatureMap.Internal)getAnyAttribute()).getWrapper();
     }
     return eDynamicGet(featureID, resolve, coreType);
@@ -237,7 +246,10 @@ public class AnyTypeImpl extends EObjectImpl implements AnyType
   @Override
   public String toString()
   {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy())
+    {
+      return super.toString();
+    }
 
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (mixed: ");

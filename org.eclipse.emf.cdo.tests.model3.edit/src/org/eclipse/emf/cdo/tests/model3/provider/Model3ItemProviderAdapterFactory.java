@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Model3ItemProviderAdapterFactory.java,v 1.1 2008-04-20 09:58:05 estepper Exp $
+ * $Id: Model3ItemProviderAdapterFactory.java,v 1.2 2008-08-11 05:12:15 estepper Exp $
  */
 package org.eclipse.emf.cdo.tests.model3.provider;
 
@@ -154,7 +154,7 @@ public class Model3ItemProviderAdapterFactory extends Model3AdapterFactory imple
     if (isFactoryForType(type))
     {
       Object adapter = super.adapt(object, type);
-      if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter)))
+      if (!(type instanceof Class) || ((Class<?>)type).isInstance(adapter))
       {
         return adapter;
       }
@@ -206,7 +206,10 @@ public class Model3ItemProviderAdapterFactory extends Model3AdapterFactory imple
    */
   public void dispose()
   {
-    if (class1ItemProvider != null) class1ItemProvider.dispose();
+    if (class1ItemProvider != null)
+    {
+      class1ItemProvider.dispose();
+    }
   }
 
 }

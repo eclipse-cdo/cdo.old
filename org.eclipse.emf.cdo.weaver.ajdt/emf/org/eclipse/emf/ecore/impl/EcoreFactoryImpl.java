@@ -925,25 +925,45 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory
     try
     {
       if (initialValue == null)
+      {
         return null;
+      }
       else if ("boolean".equals(initialValue))
+      {
         return boolean.class;
+      }
       else if ("byte".equals(initialValue))
+      {
         return byte.class;
+      }
       else if ("char".equals(initialValue))
+      {
         return char.class;
+      }
       else if ("double".equals(initialValue))
+      {
         return double.class;
+      }
       else if ("float".equals(initialValue))
+      {
         return float.class;
+      }
       else if ("int".equals(initialValue))
+      {
         return int.class;
+      }
       else if ("long".equals(initialValue))
+      {
         return long.class;
+      }
       else if ("short".equals(initialValue))
+      {
         return short.class;
+      }
       else
+      {
         return Class.forName(initialValue);
+      }
     }
     catch (ClassNotFoundException e)
     {

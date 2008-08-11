@@ -454,7 +454,10 @@ public class XMLTypeValidator extends EObjectValidator
   public boolean validateENTITIES(List<?> entities, DiagnosticChain diagnostics, Map<Object, Object> context)
   {
     boolean result = validateENTITIESBase_ItemType(entities, diagnostics, context);
-    if (result || diagnostics != null) result &= validateENTITIES_MinLength(entities, diagnostics, context);
+    if (result || diagnostics != null)
+    {
+      result &= validateENTITIES_MinLength(entities, diagnostics, context);
+    }
     return result;
   }
 
@@ -468,7 +471,9 @@ public class XMLTypeValidator extends EObjectValidator
     int length = entities.size();
     boolean result = length >= 1;
     if (!result && diagnostics != null)
+    {
       reportMinLengthViolation(XMLTypePackage.Literals.ENTITIES, entities, length, 1, diagnostics, context);
+    }
     return result;
   }
 
@@ -686,7 +691,10 @@ public class XMLTypeValidator extends EObjectValidator
   public boolean validateIDREFS(List<?> idrefs, DiagnosticChain diagnostics, Map<Object, Object> context)
   {
     boolean result = validateIDREFSBase_ItemType(idrefs, diagnostics, context);
-    if (result || diagnostics != null) result &= validateIDREFS_MinLength(idrefs, diagnostics, context);
+    if (result || diagnostics != null)
+    {
+      result &= validateIDREFS_MinLength(idrefs, diagnostics, context);
+    }
     return result;
   }
 
@@ -700,7 +708,9 @@ public class XMLTypeValidator extends EObjectValidator
     int length = idrefs.size();
     boolean result = length >= 1;
     if (!result && diagnostics != null)
+    {
       reportMinLengthViolation(XMLTypePackage.Literals.IDREFS, idrefs, length, 1, diagnostics, context);
+    }
     return result;
   }
 
@@ -911,8 +921,10 @@ public class XMLTypeValidator extends EObjectValidator
   {
     boolean result = negativeInteger.compareTo(NEGATIVE_INTEGER__MAX__VALUE) <= 0;
     if (!result && diagnostics != null)
+    {
       reportMaxViolation(XMLTypePackage.Literals.NEGATIVE_INTEGER, negativeInteger, NEGATIVE_INTEGER__MAX__VALUE, true,
           diagnostics, context);
+    }
     return result;
   }
 
@@ -954,7 +966,10 @@ public class XMLTypeValidator extends EObjectValidator
   public boolean validateNMTOKENS(List<?> nmtokens, DiagnosticChain diagnostics, Map<Object, Object> context)
   {
     boolean result = validateNMTOKENSBase_ItemType(nmtokens, diagnostics, context);
-    if (result || diagnostics != null) result &= validateNMTOKENS_MinLength(nmtokens, diagnostics, context);
+    if (result || diagnostics != null)
+    {
+      result &= validateNMTOKENS_MinLength(nmtokens, diagnostics, context);
+    }
     return result;
   }
 
@@ -968,7 +983,9 @@ public class XMLTypeValidator extends EObjectValidator
     int length = nmtokens.size();
     boolean result = length >= 1;
     if (!result && diagnostics != null)
+    {
       reportMinLengthViolation(XMLTypePackage.Literals.NMTOKENS, nmtokens, length, 1, diagnostics, context);
+    }
     return result;
   }
 
@@ -1038,8 +1055,10 @@ public class XMLTypeValidator extends EObjectValidator
   {
     boolean result = nonNegativeInteger.compareTo(NON_NEGATIVE_INTEGER__MIN__VALUE) >= 0;
     if (!result && diagnostics != null)
+    {
       reportMinViolation(XMLTypePackage.Literals.NON_NEGATIVE_INTEGER, nonNegativeInteger,
           NON_NEGATIVE_INTEGER__MIN__VALUE, true, diagnostics, context);
+    }
     return result;
   }
 
@@ -1073,8 +1092,10 @@ public class XMLTypeValidator extends EObjectValidator
   {
     boolean result = nonPositiveInteger.compareTo(NON_POSITIVE_INTEGER__MAX__VALUE) <= 0;
     if (!result && diagnostics != null)
+    {
       reportMaxViolation(XMLTypePackage.Literals.NON_POSITIVE_INTEGER, nonPositiveInteger,
           NON_POSITIVE_INTEGER__MAX__VALUE, true, diagnostics, context);
+    }
     return result;
   }
 
@@ -1135,8 +1156,10 @@ public class XMLTypeValidator extends EObjectValidator
   {
     boolean result = positiveInteger.compareTo(POSITIVE_INTEGER__MIN__VALUE) >= 0;
     if (!result && diagnostics != null)
+    {
       reportMinViolation(XMLTypePackage.Literals.POSITIVE_INTEGER, positiveInteger, POSITIVE_INTEGER__MIN__VALUE, true,
           diagnostics, context);
+    }
     return result;
   }
 
@@ -1225,7 +1248,10 @@ public class XMLTypeValidator extends EObjectValidator
   public boolean validateUnsignedByte(short unsignedByte, DiagnosticChain diagnostics, Map<Object, Object> context)
   {
     boolean result = validateUnsignedByte_Min(unsignedByte, diagnostics, context);
-    if (result || diagnostics != null) result &= validateUnsignedByte_Max(unsignedByte, diagnostics, context);
+    if (result || diagnostics != null)
+    {
+      result &= validateUnsignedByte_Max(unsignedByte, diagnostics, context);
+    }
     return result;
   }
 
@@ -1246,8 +1272,10 @@ public class XMLTypeValidator extends EObjectValidator
   {
     boolean result = unsignedByte >= UNSIGNED_BYTE__MIN__VALUE;
     if (!result && diagnostics != null)
+    {
       reportMinViolation(XMLTypePackage.Literals.UNSIGNED_BYTE, new Short(unsignedByte), new Short(
           UNSIGNED_BYTE__MIN__VALUE), true, diagnostics, context);
+    }
     return result;
   }
 
@@ -1268,8 +1296,10 @@ public class XMLTypeValidator extends EObjectValidator
   {
     boolean result = unsignedByte <= UNSIGNED_BYTE__MAX__VALUE;
     if (!result && diagnostics != null)
+    {
       reportMaxViolation(XMLTypePackage.Literals.UNSIGNED_BYTE, new Short(unsignedByte), new Short(
           UNSIGNED_BYTE__MAX__VALUE), true, diagnostics, context);
+    }
     return result;
   }
 
@@ -1283,7 +1313,9 @@ public class XMLTypeValidator extends EObjectValidator
   {
     boolean result = validateUnsignedByte_Min(unsignedByteObject.shortValue(), diagnostics, context);
     if (result || diagnostics != null)
+    {
       result &= validateUnsignedByte_Max(unsignedByteObject.shortValue(), diagnostics, context);
+    }
     return result;
   }
 
@@ -1295,7 +1327,10 @@ public class XMLTypeValidator extends EObjectValidator
   public boolean validateUnsignedInt(long unsignedInt, DiagnosticChain diagnostics, Map<Object, Object> context)
   {
     boolean result = validateUnsignedInt_Min(unsignedInt, diagnostics, context);
-    if (result || diagnostics != null) result &= validateUnsignedInt_Max(unsignedInt, diagnostics, context);
+    if (result || diagnostics != null)
+    {
+      result &= validateUnsignedInt_Max(unsignedInt, diagnostics, context);
+    }
     return result;
   }
 
@@ -1316,8 +1351,10 @@ public class XMLTypeValidator extends EObjectValidator
   {
     boolean result = unsignedInt >= UNSIGNED_INT__MIN__VALUE;
     if (!result && diagnostics != null)
+    {
       reportMinViolation(XMLTypePackage.Literals.UNSIGNED_INT, new Long(unsignedInt),
           new Long(UNSIGNED_INT__MIN__VALUE), true, diagnostics, context);
+    }
     return result;
   }
 
@@ -1338,8 +1375,10 @@ public class XMLTypeValidator extends EObjectValidator
   {
     boolean result = unsignedInt <= UNSIGNED_INT__MAX__VALUE;
     if (!result && diagnostics != null)
+    {
       reportMaxViolation(XMLTypePackage.Literals.UNSIGNED_INT, new Long(unsignedInt),
           new Long(UNSIGNED_INT__MAX__VALUE), true, diagnostics, context);
+    }
     return result;
   }
 
@@ -1353,7 +1392,9 @@ public class XMLTypeValidator extends EObjectValidator
   {
     boolean result = validateUnsignedInt_Min(unsignedIntObject.longValue(), diagnostics, context);
     if (result || diagnostics != null)
+    {
       result &= validateUnsignedInt_Max(unsignedIntObject.longValue(), diagnostics, context);
+    }
     return result;
   }
 
@@ -1365,7 +1406,10 @@ public class XMLTypeValidator extends EObjectValidator
   public boolean validateUnsignedLong(BigInteger unsignedLong, DiagnosticChain diagnostics, Map<Object, Object> context)
   {
     boolean result = validateUnsignedLong_Min(unsignedLong, diagnostics, context);
-    if (result || diagnostics != null) result &= validateUnsignedLong_Max(unsignedLong, diagnostics, context);
+    if (result || diagnostics != null)
+    {
+      result &= validateUnsignedLong_Max(unsignedLong, diagnostics, context);
+    }
     return result;
   }
 
@@ -1387,8 +1431,10 @@ public class XMLTypeValidator extends EObjectValidator
   {
     boolean result = unsignedLong.compareTo(UNSIGNED_LONG__MIN__VALUE) >= 0;
     if (!result && diagnostics != null)
+    {
       reportMinViolation(XMLTypePackage.Literals.UNSIGNED_LONG, unsignedLong, UNSIGNED_LONG__MIN__VALUE, true,
           diagnostics, context);
+    }
     return result;
   }
 
@@ -1410,8 +1456,10 @@ public class XMLTypeValidator extends EObjectValidator
   {
     boolean result = unsignedLong.compareTo(UNSIGNED_LONG__MAX__VALUE) <= 0;
     if (!result && diagnostics != null)
+    {
       reportMaxViolation(XMLTypePackage.Literals.UNSIGNED_LONG, unsignedLong, UNSIGNED_LONG__MAX__VALUE, true,
           diagnostics, context);
+    }
     return result;
   }
 
@@ -1423,7 +1471,10 @@ public class XMLTypeValidator extends EObjectValidator
   public boolean validateUnsignedShort(int unsignedShort, DiagnosticChain diagnostics, Map<Object, Object> context)
   {
     boolean result = validateUnsignedShort_Min(unsignedShort, diagnostics, context);
-    if (result || diagnostics != null) result &= validateUnsignedShort_Max(unsignedShort, diagnostics, context);
+    if (result || diagnostics != null)
+    {
+      result &= validateUnsignedShort_Max(unsignedShort, diagnostics, context);
+    }
     return result;
   }
 
@@ -1444,8 +1495,10 @@ public class XMLTypeValidator extends EObjectValidator
   {
     boolean result = unsignedShort >= UNSIGNED_SHORT__MIN__VALUE;
     if (!result && diagnostics != null)
+    {
       reportMinViolation(XMLTypePackage.Literals.UNSIGNED_SHORT, new Integer(unsignedShort), new Integer(
           UNSIGNED_SHORT__MIN__VALUE), true, diagnostics, context);
+    }
     return result;
   }
 
@@ -1466,8 +1519,10 @@ public class XMLTypeValidator extends EObjectValidator
   {
     boolean result = unsignedShort <= UNSIGNED_SHORT__MAX__VALUE;
     if (!result && diagnostics != null)
+    {
       reportMaxViolation(XMLTypePackage.Literals.UNSIGNED_SHORT, new Integer(unsignedShort), new Integer(
           UNSIGNED_SHORT__MAX__VALUE), true, diagnostics, context);
+    }
     return result;
   }
 
@@ -1481,7 +1536,9 @@ public class XMLTypeValidator extends EObjectValidator
   {
     boolean result = validateUnsignedShort_Min(unsignedShortObject.intValue(), diagnostics, context);
     if (result || diagnostics != null)
+    {
       result &= validateUnsignedShort_Max(unsignedShortObject.intValue(), diagnostics, context);
+    }
     return result;
   }
 

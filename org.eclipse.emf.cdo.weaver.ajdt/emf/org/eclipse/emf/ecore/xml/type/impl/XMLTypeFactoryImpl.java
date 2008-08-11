@@ -120,7 +120,10 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
    */
   public byte[] createBase64Binary(String literal)
   {
-    if (literal == null) return null;
+    if (literal == null)
+    {
+      return null;
+    }
     byte[] value = Base64.decode(collapseWhiteSpace(literal));
     if (value == null)
     {
@@ -428,7 +431,10 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
    */
   public List<String> createENTITIESBase(String literal)
   {
-    if (literal == null) return null;
+    if (literal == null)
+    {
+      return null;
+    }
     List<String> result = new ArrayList<String>();
     for (StringTokenizer stringTokenizer = new StringTokenizer(literal); stringTokenizer.hasMoreTokens();)
     {
@@ -455,8 +461,14 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
    */
   public String convertENTITIESBase(List<? extends String> instanceValue)
   {
-    if (instanceValue == null) return null;
-    if (instanceValue.isEmpty()) return "";
+    if (instanceValue == null)
+    {
+      return null;
+    }
+    if (instanceValue.isEmpty())
+    {
+      return "";
+    }
     StringBuffer result = new StringBuffer();
     for (Object item : instanceValue)
     {
@@ -473,9 +485,15 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
    */
   public String convertENTITIESBaseToString(EDataType eDataType, Object instanceValue)
   {
-    if (instanceValue == null) return null;
+    if (instanceValue == null)
+    {
+      return null;
+    }
     List<?> list = (List<?>)instanceValue;
-    if (list.isEmpty()) return "";
+    if (list.isEmpty())
+    {
+      return "";
+    }
     StringBuffer result = new StringBuffer();
     for (Iterator<?> i = list.iterator(); i.hasNext();)
     {
@@ -681,7 +699,10 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
    */
   public byte[] createHexBinary(String literal)
   {
-    if (literal == null) return null;
+    if (literal == null)
+    {
+      return null;
+    }
     byte[] value = HexBin.decode(collapseWhiteSpace(literal));
     if (value == null)
     {
@@ -807,7 +828,10 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
    */
   public List<String> createIDREFSBase(String literal)
   {
-    if (literal == null) return null;
+    if (literal == null)
+    {
+      return null;
+    }
     List<String> result = new ArrayList<String>();
     for (StringTokenizer stringTokenizer = new StringTokenizer(literal); stringTokenizer.hasMoreTokens();)
     {
@@ -834,8 +858,14 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
    */
   public String convertIDREFSBase(List<? extends String> instanceValue)
   {
-    if (instanceValue == null) return null;
-    if (instanceValue.isEmpty()) return "";
+    if (instanceValue == null)
+    {
+      return null;
+    }
+    if (instanceValue.isEmpty())
+    {
+      return "";
+    }
     StringBuffer result = new StringBuffer();
     for (Object item : instanceValue)
     {
@@ -1063,7 +1093,10 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
    */
   public String createNMTOKEN(String literal)
   {
-    if (literal == null) return null;
+    if (literal == null)
+    {
+      return null;
+    }
     return literal;
   }
 
@@ -1124,7 +1157,10 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
    */
   public List<String> createNMTOKENSBase(String literal)
   {
-    if (literal == null) return null;
+    if (literal == null)
+    {
+      return null;
+    }
     List<String> result = new ArrayList<String>();
     for (StringTokenizer stringTokenizer = new StringTokenizer(literal); stringTokenizer.hasMoreTokens();)
     {
@@ -1151,8 +1187,14 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
    */
   public String convertNMTOKENSBase(List<? extends String> instanceValue)
   {
-    if (instanceValue == null) return null;
-    if (instanceValue.isEmpty()) return "";
+    if (instanceValue == null)
+    {
+      return null;
+    }
+    if (instanceValue.isEmpty())
+    {
+      return "";
+    }
     StringBuffer result = new StringBuffer();
     for (Object item : instanceValue)
     {
@@ -1164,9 +1206,15 @@ public class XMLTypeFactoryImpl extends EFactoryImpl implements XMLTypeFactory
 
   public String convertNMTOKENSBaseToString(EDataType eDataType, Object instanceValue)
   {
-    if (instanceValue == null) return null;
+    if (instanceValue == null)
+    {
+      return null;
+    }
     List<?> list = (List<?>)instanceValue;
-    if (list.isEmpty()) return "";
+    if (list.isEmpty())
+    {
+      return "";
+    }
     StringBuffer result = new StringBuffer();
     for (Iterator<?> i = list.iterator(); i.hasNext();)
     {

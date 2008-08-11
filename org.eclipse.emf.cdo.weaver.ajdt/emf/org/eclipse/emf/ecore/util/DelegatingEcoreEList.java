@@ -38,8 +38,12 @@ import java.util.ListIterator;
 public abstract class DelegatingEcoreEList<E> extends DelegatingNotifyingListImpl<E> implements
     InternalEList.Unsettable<E>, EStructuralFeature.Setting
 {
+  private static final long serialVersionUID = 1L;
+
   public static abstract class Unsettable<E> extends DelegatingEcoreEList<E>
   {
+    private static final long serialVersionUID = 1L;
+
     protected boolean isSet;
 
     public Unsettable(InternalEObject owner)
@@ -475,7 +479,10 @@ public abstract class DelegatingEcoreEList<E> extends DelegatingNotifyingListImp
   public int indexOf(Object object)
   {
     int index = super.indexOf(object);
-    if (index >= 0) return index;
+    if (index >= 0)
+    {
+      return index;
+    }
 
     // EATM This might be better written as a single loop for the EObject case?
     //
@@ -648,6 +655,8 @@ public abstract class DelegatingEcoreEList<E> extends DelegatingNotifyingListImp
 
   public static abstract class Generic<E> extends DelegatingEcoreEList<E>
   {
+    private static final long serialVersionUID = 1L;
+
     public static final int IS_SET = EcoreEList.Generic.IS_SET;
 
     public static final int IS_UNSETTABLE = EcoreEList.Generic.IS_UNSETTABLE;
@@ -791,6 +800,8 @@ public abstract class DelegatingEcoreEList<E> extends DelegatingNotifyingListImp
 
   public static abstract class Dynamic<E> extends Generic<E>
   {
+    private static final long serialVersionUID = 1L;
+
     protected EStructuralFeature eStructuralFeature;
 
     public Dynamic(InternalEObject owner, EStructuralFeature eStructuralFeature)

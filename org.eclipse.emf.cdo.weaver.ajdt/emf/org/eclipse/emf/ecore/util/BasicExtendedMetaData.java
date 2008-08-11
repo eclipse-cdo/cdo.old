@@ -77,7 +77,7 @@ public class BasicExtendedMetaData implements ExtendedMetaData
   {
     this.annotationURI = annotationURI.intern();
     this.registry = registry;
-    this.demandRegistry = new org.eclipse.emf.ecore.impl.EPackageRegistryImpl();
+    demandRegistry = new org.eclipse.emf.ecore.impl.EPackageRegistryImpl();
     this.annotationMap = annotationMap;
 
     if (annotationURI != ANNOTATION_URI)
@@ -211,7 +211,7 @@ public class BasicExtendedMetaData implements ExtendedMetaData
   {
     if (isQualified(ePackage))
     {
-      return (ePackage).getNsURI();
+      return ePackage.getNsURI();
     }
     else
     {
@@ -2303,7 +2303,7 @@ public class BasicExtendedMetaData implements ExtendedMetaData
 
     public void setContentKind(int kind)
     {
-      this.contentKind = kind;
+      contentKind = kind;
     }
 
     public int getDerivationKind()
@@ -2623,7 +2623,7 @@ public class BasicExtendedMetaData implements ExtendedMetaData
 
     public void setEnumerationFacet(List<String> literals)
     {
-      this.enumerationLiterals = literals;
+      enumerationLiterals = literals;
     }
 
     public List<String> getPatternFacet()
@@ -2651,7 +2651,7 @@ public class BasicExtendedMetaData implements ExtendedMetaData
 
     public void setTotalDigitsFacet(int digits)
     {
-      this.totalDigits = digits;
+      totalDigits = digits;
     }
 
     public int getFractionDigitsFacet()
@@ -2665,7 +2665,7 @@ public class BasicExtendedMetaData implements ExtendedMetaData
 
     public void setFractionDigitsFacet(int digits)
     {
-      this.fractionDigits = digits;
+      fractionDigits = digits;
     }
 
     public int getLengthFacet()
@@ -2721,7 +2721,7 @@ public class BasicExtendedMetaData implements ExtendedMetaData
 
     public void setMinExclusiveFacet(String literal)
     {
-      this.minExclusive = literal;
+      minExclusive = literal;
     }
 
     public String getMaxExclusiveFacet()
@@ -2735,7 +2735,7 @@ public class BasicExtendedMetaData implements ExtendedMetaData
 
     public void setMaxExclusiveFacet(String literal)
     {
-      this.maxExclusive = literal;
+      maxExclusive = literal;
     }
 
     public String getMinInclusiveFacet()
@@ -2749,7 +2749,7 @@ public class BasicExtendedMetaData implements ExtendedMetaData
 
     public void setMinInclusiveFacet(String literal)
     {
-      this.minInclusive = literal;
+      minInclusive = literal;
     }
 
     public String getMaxInclusiveFacet()
@@ -2763,7 +2763,7 @@ public class BasicExtendedMetaData implements ExtendedMetaData
 
     public void setMaxInclusiveFacet(String literal)
     {
-      this.maxInclusive = literal;
+      maxInclusive = literal;
     }
   }
 
@@ -2915,7 +2915,7 @@ public class BasicExtendedMetaData implements ExtendedMetaData
 
     public void setFeatureKind(int kind)
     {
-      this.featureKind = kind;
+      featureKind = kind;
     }
 
     public List<String> getWildcards()
@@ -2943,7 +2943,7 @@ public class BasicExtendedMetaData implements ExtendedMetaData
 
     public void setProcessingKind(int kind)
     {
-      this.processingKind = kind;
+      processingKind = kind;
     }
 
     public EStructuralFeature getGroup()

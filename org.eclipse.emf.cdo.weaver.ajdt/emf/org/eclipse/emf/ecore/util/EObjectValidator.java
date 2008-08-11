@@ -715,7 +715,9 @@ public class EObjectValidator implements EValidator
         if (!effectiveEnumeration.contains(value))
         {
           if (diagnostics != null)
+          {
             reportEnumerationViolation(eDataType, value, effectiveEnumeration, diagnostics, context);
+          }
           result = false;
         }
       }
@@ -774,7 +776,9 @@ public class EObjectValidator implements EValidator
         if (length < effectiveMinLength)
         {
           if (diagnostics != null)
+          {
             reportMinLengthViolation(eDataType, value, length, effectiveMinLength, diagnostics, context);
+          }
           result = false;
         }
       }
@@ -786,7 +790,9 @@ public class EObjectValidator implements EValidator
         if (length > effectiveMaxLength)
         {
           if (diagnostics != null)
+          {
             reportMaxLengthViolation(eDataType, value, length, effectiveMaxLength, diagnostics, context);
+          }
           result = false;
         }
       }
@@ -797,7 +803,9 @@ public class EObjectValidator implements EValidator
             && ((BigDecimal)value).unscaledValue().abs().toString().length() > effectiveTotalDigits)
         {
           if (diagnostics != null)
+          {
             reportTotalDigitsViolation(eDataType, value, effectiveTotalDigits, diagnostics, context);
+          }
           result = false;
         }
       }
@@ -807,7 +815,9 @@ public class EObjectValidator implements EValidator
         if (value instanceof BigDecimal && ((BigDecimal)value).scale() > effectiveFractionDigits)
         {
           if (diagnostics != null)
+          {
             reportFractionDigitsViolation(eDataType, value, effectiveFractionDigits, diagnostics, context);
+          }
           result = false;
         }
       }
@@ -858,7 +868,10 @@ public class EObjectValidator implements EValidator
       }
       else
       {
-        if (diagnostics != null) reportDataValueTypeViolation(eDataType, value, diagnostics, context);
+        if (diagnostics != null)
+        {
+          reportDataValueTypeViolation(eDataType, value, diagnostics, context);
+        }
         return false;
       }
     }

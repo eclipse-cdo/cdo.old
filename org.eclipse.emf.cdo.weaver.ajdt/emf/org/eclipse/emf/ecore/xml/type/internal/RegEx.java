@@ -102,26 +102,37 @@ public final class RegEx
 
     public BMPattern(String pat, int tableSize, boolean ignoreCase)
     {
-      this.pattern = pat.toCharArray();
-      this.shiftTable = new int[tableSize];
+      pattern = pat.toCharArray();
+      shiftTable = new int[tableSize];
       this.ignoreCase = ignoreCase;
       int length = pattern.length;
-      for (int i = 0; i < this.shiftTable.length; i++)
-        this.shiftTable[i] = length;
+      for (int i = 0; i < shiftTable.length; i++)
+      {
+        shiftTable[i] = length;
+      }
       for (int i = 0; i < length; i++)
       {
-        char ch = this.pattern[i];
+        char ch = pattern[i];
         int diff = length - i - 1;
-        int index = ch % this.shiftTable.length;
-        if (diff < this.shiftTable[index]) this.shiftTable[index] = diff;
+        int index = ch % shiftTable.length;
+        if (diff < shiftTable[index])
+        {
+          shiftTable[index] = diff;
+        }
         if (this.ignoreCase)
         {
           ch = Character.toUpperCase(ch);
-          index = ch % this.shiftTable.length;
-          if (diff < this.shiftTable[index]) this.shiftTable[index] = diff;
+          index = ch % shiftTable.length;
+          if (diff < shiftTable[index])
+          {
+            shiftTable[index] = diff;
+          }
           ch = Character.toLowerCase(ch);
-          index = ch % this.shiftTable.length;
-          if (diff < this.shiftTable[index]) this.shiftTable[index] = diff;
+          index = ch % shiftTable.length;
+          if (diff < shiftTable[index])
+          {
+            shiftTable[index] = diff;
+          }
         }
       }
     }
@@ -131,9 +142,15 @@ public final class RegEx
      */
     public int matches(CharacterIterator iterator, int start, int limit)
     {
-      if (this.ignoreCase) return this.matchesIgnoreCase(iterator, start, limit);
-      int plength = this.pattern.length;
-      if (plength == 0) return start;
+      if (ignoreCase)
+      {
+        return this.matchesIgnoreCase(iterator, start, limit);
+      }
+      int plength = pattern.length;
+      if (plength == 0)
+      {
+        return start;
+      }
       int index = start + plength;
       while (index <= limit)
       {
@@ -142,11 +159,20 @@ public final class RegEx
         char ch;
         do
         {
-          if ((ch = iterator.setIndex(--index)) != this.pattern[--pindex]) break;
-          if (pindex == 0) return index;
+          if ((ch = iterator.setIndex(--index)) != pattern[--pindex])
+          {
+            break;
+          }
+          if (pindex == 0)
+          {
+            return index;
+          }
         } while (pindex > 0);
-        index += this.shiftTable[ch % this.shiftTable.length] + 1;
-        if (index < nindex) index = nindex;
+        index += shiftTable[ch % shiftTable.length] + 1;
+        if (index < nindex)
+        {
+          index = nindex;
+        }
       }
       return -1;
     }
@@ -156,9 +182,15 @@ public final class RegEx
      */
     public int matches(String str, int start, int limit)
     {
-      if (this.ignoreCase) return this.matchesIgnoreCase(str, start, limit);
-      int plength = this.pattern.length;
-      if (plength == 0) return start;
+      if (ignoreCase)
+      {
+        return this.matchesIgnoreCase(str, start, limit);
+      }
+      int plength = pattern.length;
+      if (plength == 0)
+      {
+        return start;
+      }
       int index = start + plength;
       while (index <= limit)
       {
@@ -168,11 +200,20 @@ public final class RegEx
         char ch;
         do
         {
-          if ((ch = str.charAt(--index)) != this.pattern[--pindex]) break;
-          if (pindex == 0) return index;
+          if ((ch = str.charAt(--index)) != pattern[--pindex])
+          {
+            break;
+          }
+          if (pindex == 0)
+          {
+            return index;
+          }
         } while (pindex > 0);
-        index += this.shiftTable[ch % this.shiftTable.length] + 1;
-        if (index < nindex) index = nindex;
+        index += shiftTable[ch % shiftTable.length] + 1;
+        if (index < nindex)
+        {
+          index = nindex;
+        }
       }
       return -1;
     }
@@ -182,9 +223,15 @@ public final class RegEx
      */
     public int matches(char[] chars, int start, int limit)
     {
-      if (this.ignoreCase) return this.matchesIgnoreCase(chars, start, limit);
-      int plength = this.pattern.length;
-      if (plength == 0) return start;
+      if (ignoreCase)
+      {
+        return this.matchesIgnoreCase(chars, start, limit);
+      }
+      int plength = pattern.length;
+      if (plength == 0)
+      {
+        return start;
+      }
       int index = start + plength;
       while (index <= limit)
       {
@@ -194,19 +241,31 @@ public final class RegEx
         char ch;
         do
         {
-          if ((ch = chars[--index]) != this.pattern[--pindex]) break;
-          if (pindex == 0) return index;
+          if ((ch = chars[--index]) != pattern[--pindex])
+          {
+            break;
+          }
+          if (pindex == 0)
+          {
+            return index;
+          }
         } while (pindex > 0);
-        index += this.shiftTable[ch % this.shiftTable.length] + 1;
-        if (index < nindex) index = nindex;
+        index += shiftTable[ch % shiftTable.length] + 1;
+        if (index < nindex)
+        {
+          index = nindex;
+        }
       }
       return -1;
     }
 
     int matchesIgnoreCase(CharacterIterator iterator, int start, int limit)
     {
-      int plength = this.pattern.length;
-      if (plength == 0) return start;
+      int plength = pattern.length;
+      if (plength == 0)
+      {
+        return start;
+      }
       int index = start + plength;
       while (index <= limit)
       {
@@ -216,25 +275,37 @@ public final class RegEx
         do
         {
           char ch1 = ch = iterator.setIndex(--index);
-          char ch2 = this.pattern[--pindex];
+          char ch2 = pattern[--pindex];
           if (ch1 != ch2)
           {
             ch1 = Character.toUpperCase(ch1);
             ch2 = Character.toUpperCase(ch2);
-            if (ch1 != ch2 && Character.toLowerCase(ch1) != Character.toLowerCase(ch2)) break;
+            if (ch1 != ch2 && Character.toLowerCase(ch1) != Character.toLowerCase(ch2))
+            {
+              break;
+            }
           }
-          if (pindex == 0) return index;
+          if (pindex == 0)
+          {
+            return index;
+          }
         } while (pindex > 0);
-        index += this.shiftTable[ch % this.shiftTable.length] + 1;
-        if (index < nindex) index = nindex;
+        index += shiftTable[ch % shiftTable.length] + 1;
+        if (index < nindex)
+        {
+          index = nindex;
+        }
       }
       return -1;
     }
 
     int matchesIgnoreCase(String text, int start, int limit)
     {
-      int plength = this.pattern.length;
-      if (plength == 0) return start;
+      int plength = pattern.length;
+      if (plength == 0)
+      {
+        return start;
+      }
       int index = start + plength;
       while (index <= limit)
       {
@@ -244,25 +315,37 @@ public final class RegEx
         do
         {
           char ch1 = ch = text.charAt(--index);
-          char ch2 = this.pattern[--pindex];
+          char ch2 = pattern[--pindex];
           if (ch1 != ch2)
           {
             ch1 = Character.toUpperCase(ch1);
             ch2 = Character.toUpperCase(ch2);
-            if (ch1 != ch2 && Character.toLowerCase(ch1) != Character.toLowerCase(ch2)) break;
+            if (ch1 != ch2 && Character.toLowerCase(ch1) != Character.toLowerCase(ch2))
+            {
+              break;
+            }
           }
-          if (pindex == 0) return index;
+          if (pindex == 0)
+          {
+            return index;
+          }
         } while (pindex > 0);
-        index += this.shiftTable[ch % this.shiftTable.length] + 1;
-        if (index < nindex) index = nindex;
+        index += shiftTable[ch % shiftTable.length] + 1;
+        if (index < nindex)
+        {
+          index = nindex;
+        }
       }
       return -1;
     }
 
     int matchesIgnoreCase(char[] chars, int start, int limit)
     {
-      int plength = this.pattern.length;
-      if (plength == 0) return start;
+      int plength = pattern.length;
+      if (plength == 0)
+      {
+        return start;
+      }
       int index = start + plength;
       while (index <= limit)
       {
@@ -272,17 +355,26 @@ public final class RegEx
         do
         {
           char ch1 = ch = chars[--index];
-          char ch2 = this.pattern[--pindex];
+          char ch2 = pattern[--pindex];
           if (ch1 != ch2)
           {
             ch1 = Character.toUpperCase(ch1);
             ch2 = Character.toUpperCase(ch2);
-            if (ch1 != ch2 && Character.toLowerCase(ch1) != Character.toLowerCase(ch2)) break;
+            if (ch1 != ch2 && Character.toLowerCase(ch1) != Character.toLowerCase(ch2))
+            {
+              break;
+            }
           }
-          if (pindex == 0) return index;
+          if (pindex == 0)
+          {
+            return index;
+          }
         } while (pindex > 0);
-        index += this.shiftTable[ch % this.shiftTable.length] + 1;
-        if (index < nindex) index = nindex;
+        index += shiftTable[ch % shiftTable.length] + 1;
+        if (index < nindex)
+        {
+          index = nindex;
+        }
       }
       return -1;
     }
@@ -324,15 +416,21 @@ public final class RegEx
     public synchronized Object clone()
     {
       Match ma = new Match();
-      if (this.nofgroups > 0)
+      if (nofgroups > 0)
       {
-        ma.setNumberOfGroups(this.nofgroups);
-        if (this.ciSource != null) ma.setSource(this.ciSource);
-        if (this.strSource != null) ma.setSource(this.strSource);
-        for (int i = 0; i < this.nofgroups; i++)
+        ma.setNumberOfGroups(nofgroups);
+        if (ciSource != null)
         {
-          ma.setBeginning(i, this.getBeginning(i));
-          ma.setEnd(i, this.getEnd(i));
+          ma.setSource(ciSource);
+        }
+        if (strSource != null)
+        {
+          ma.setSource(strSource);
+        }
+        for (int i = 0; i < nofgroups; i++)
+        {
+          ma.setBeginning(i, getBeginning(i));
+          ma.setEnd(i, getEnd(i));
         }
       }
       return ma;
@@ -343,17 +441,17 @@ public final class RegEx
      */
     protected void setNumberOfGroups(int n)
     {
-      int oldn = this.nofgroups;
-      this.nofgroups = n;
+      int oldn = nofgroups;
+      nofgroups = n;
       if (oldn <= 0 || oldn < n || n * 2 < oldn)
       {
-        this.beginpos = new int[n];
-        this.endpos = new int[n];
+        beginpos = new int[n];
+        endpos = new int[n];
       }
       for (int i = 0; i < n; i++)
       {
-        this.beginpos[i] = -1;
-        this.endpos[i] = -1;
+        beginpos[i] = -1;
+        endpos[i] = -1;
       }
     }
 
@@ -362,9 +460,9 @@ public final class RegEx
      */
     protected void setSource(CharacterIterator ci)
     {
-      this.ciSource = ci;
-      this.strSource = null;
-      this.charSource = null;
+      ciSource = ci;
+      strSource = null;
+      charSource = null;
     }
 
     /**
@@ -372,9 +470,9 @@ public final class RegEx
      */
     protected void setSource(String str)
     {
-      this.ciSource = null;
-      this.strSource = str;
-      this.charSource = null;
+      ciSource = null;
+      strSource = str;
+      charSource = null;
     }
 
     /**
@@ -382,9 +480,9 @@ public final class RegEx
      */
     protected void setSource(char[] chars)
     {
-      this.ciSource = null;
-      this.strSource = null;
-      this.charSource = chars;
+      ciSource = null;
+      strSource = null;
+      charSource = chars;
     }
 
     /**
@@ -392,7 +490,7 @@ public final class RegEx
      */
     protected void setBeginning(int index, int v)
     {
-      this.beginpos[index] = v;
+      beginpos[index] = v;
     }
 
     /**
@@ -400,7 +498,7 @@ public final class RegEx
      */
     protected void setEnd(int index, int v)
     {
-      this.endpos[index] = v;
+      endpos[index] = v;
     }
 
     /**
@@ -409,8 +507,11 @@ public final class RegEx
      */
     public int getNumberOfGroups()
     {
-      if (this.nofgroups <= 0) throw new IllegalStateException("A result is not set.");
-      return this.nofgroups;
+      if (nofgroups <= 0)
+      {
+        throw new IllegalStateException("A result is not set.");
+      }
+      return nofgroups;
     }
 
     /**
@@ -421,10 +522,15 @@ public final class RegEx
      */
     public int getBeginning(int index)
     {
-      if (this.beginpos == null) throw new IllegalStateException("A result is not set.");
-      if (index < 0 || this.nofgroups <= index)
-        throw new IllegalArgumentException("The parameter must be less than " + this.nofgroups + ": " + index);
-      return this.beginpos[index];
+      if (beginpos == null)
+      {
+        throw new IllegalStateException("A result is not set.");
+      }
+      if (index < 0 || nofgroups <= index)
+      {
+        throw new IllegalArgumentException("The parameter must be less than " + nofgroups + ": " + index);
+      }
+      return beginpos[index];
     }
 
     /**
@@ -435,10 +541,15 @@ public final class RegEx
      */
     public int getEnd(int index)
     {
-      if (this.endpos == null) throw new IllegalStateException("A result is not set.");
-      if (index < 0 || this.nofgroups <= index)
-        throw new IllegalArgumentException("The parameter must be less than " + this.nofgroups + ": " + index);
-      return this.endpos[index];
+      if (endpos == null)
+      {
+        throw new IllegalStateException("A result is not set.");
+      }
+      if (index < 0 || nofgroups <= index)
+      {
+        throw new IllegalArgumentException("The parameter must be less than " + nofgroups + ": " + index);
+      }
+      return endpos[index];
     }
 
     /**
@@ -449,23 +560,31 @@ public final class RegEx
      */
     public String getCapturedText(int index)
     {
-      if (this.beginpos == null) throw new IllegalStateException("match() has never been called.");
-      if (index < 0 || this.nofgroups <= index)
-        throw new IllegalArgumentException("The parameter must be less than " + this.nofgroups + ": " + index);
-      String ret;
-      int begin = this.beginpos[index], end = this.endpos[index];
-      if (begin < 0 || end < 0) return null;
-      if (this.ciSource != null)
+      if (beginpos == null)
       {
-        ret = REUtil.substring(this.ciSource, begin, end);
+        throw new IllegalStateException("match() has never been called.");
       }
-      else if (this.strSource != null)
+      if (index < 0 || nofgroups <= index)
       {
-        ret = this.strSource.substring(begin, end);
+        throw new IllegalArgumentException("The parameter must be less than " + nofgroups + ": " + index);
+      }
+      String ret;
+      int begin = beginpos[index], end = endpos[index];
+      if (begin < 0 || end < 0)
+      {
+        return null;
+      }
+      if (ciSource != null)
+      {
+        ret = REUtil.substring(ciSource, begin, end);
+      }
+      else if (strSource != null)
+      {
+        ret = strSource.substring(begin, end);
       }
       else
       {
-        ret = new String(this.charSource, begin, end - begin);
+        ret = new String(charSource, begin, end - begin);
       }
       return ret;
     }
@@ -480,7 +599,7 @@ public final class RegEx
 
     static final int composeFromSurrogates(int high, int low)
     {
-      return 0x10000 + ((high - 0xd800) << 10) + low - 0xdc00;
+      return 0x10000 + (high - 0xd800 << 10) + low - 0xdc00;
     }
 
     static final boolean isLowSurrogate(int ch)
@@ -506,7 +625,9 @@ public final class RegEx
     {
       char[] src = new char[end - begin];
       for (int i = 0; i < src.length; i++)
+      {
         src[i] = iterator.setIndex(i + begin);
+      }
       return new String(src);
     }
 
@@ -554,12 +675,18 @@ public final class RegEx
 
     static final int parseOptions(String opts) throws ParseException
     {
-      if (opts == null) return 0;
+      if (opts == null)
+      {
+        return 0;
+      }
       int options = 0;
       for (int i = 0; i < opts.length(); i++)
       {
         int v = getOptionValue(opts.charAt(i));
-        if (v == 0) throw new ParseException("Unknown Option: " + opts.substring(i), -1);
+        if (v == 0)
+        {
+          throw new ParseException("Unknown Option: " + opts.substring(i), -1);
+        }
         options |= v;
       }
       return options;
@@ -568,16 +695,46 @@ public final class RegEx
     static final String createOptionString(int options)
     {
       StringBuffer sb = new StringBuffer(9);
-      if ((options & RegularExpression.PROHIBIT_FIXED_STRING_OPTIMIZATION) != 0) sb.append('F');
-      if ((options & RegularExpression.PROHIBIT_HEAD_CHARACTER_OPTIMIZATION) != 0) sb.append('H');
-      if ((options & RegularExpression.XMLSCHEMA_MODE) != 0) sb.append('X');
-      if ((options & RegularExpression.IGNORE_CASE) != 0) sb.append('i');
-      if ((options & RegularExpression.MULTIPLE_LINES) != 0) sb.append('m');
-      if ((options & RegularExpression.SINGLE_LINE) != 0) sb.append('s');
-      if ((options & RegularExpression.USE_UNICODE_CATEGORY) != 0) sb.append('u');
-      if ((options & RegularExpression.UNICODE_WORD_BOUNDARY) != 0) sb.append('w');
-      if ((options & RegularExpression.EXTENDED_COMMENT) != 0) sb.append('x');
-      if ((options & RegularExpression.SPECIAL_COMMA) != 0) sb.append(',');
+      if ((options & RegularExpression.PROHIBIT_FIXED_STRING_OPTIMIZATION) != 0)
+      {
+        sb.append('F');
+      }
+      if ((options & RegularExpression.PROHIBIT_HEAD_CHARACTER_OPTIMIZATION) != 0)
+      {
+        sb.append('H');
+      }
+      if ((options & RegularExpression.XMLSCHEMA_MODE) != 0)
+      {
+        sb.append('X');
+      }
+      if ((options & RegularExpression.IGNORE_CASE) != 0)
+      {
+        sb.append('i');
+      }
+      if ((options & RegularExpression.MULTIPLE_LINES) != 0)
+      {
+        sb.append('m');
+      }
+      if ((options & RegularExpression.SINGLE_LINE) != 0)
+      {
+        sb.append('s');
+      }
+      if ((options & RegularExpression.USE_UNICODE_CATEGORY) != 0)
+      {
+        sb.append('u');
+      }
+      if ((options & RegularExpression.UNICODE_WORD_BOUNDARY) != 0)
+      {
+        sb.append('w');
+      }
+      if ((options & RegularExpression.EXTENDED_COMMENT) != 0)
+      {
+        sb.append('x');
+      }
+      if ((options & RegularExpression.SPECIAL_COMMA) != 0)
+      {
+        sb.append(',');
+      }
       return sb.toString().intern();
     }
 
@@ -592,14 +749,20 @@ public final class RegEx
       {
         int ch = regex.charAt(offset++);
         // Skips a white space.
-        if (ch == '\t' || ch == '\n' || ch == '\f' || ch == '\r' || ch == ' ') continue;
+        if (ch == '\t' || ch == '\n' || ch == '\f' || ch == '\r' || ch == ' ')
+        {
+          continue;
+        }
 
         if (ch == '#')
         { // Skips chracters between '#' and a line end.
           while (offset < len)
           {
             ch = regex.charAt(offset++);
-            if (ch == '\r' || ch == '\n') break;
+            if (ch == '\r' || ch == '\n')
+            {
+              break;
+            }
           }
           continue;
         }
@@ -621,8 +784,10 @@ public final class RegEx
           }
         }
         else
+        {
           // As is.
           buffer.append((char)ch);
+        }
       }
       return buffer.toString();
     }
@@ -649,11 +814,17 @@ public final class RegEx
           if (argv[i].length() == 0 || argv[i].charAt(0) != '-')
           {
             if (pattern == null)
+            {
               pattern = argv[i];
+            }
             else if (target == null)
+            {
               target = argv[i];
+            }
             else
+            {
               System.err.println("Unnecessary: " + argv[i]);
+            }
           }
           else if (argv[i].equals("-i"))
           {
@@ -691,11 +862,17 @@ public final class RegEx
         for (int i = 0; i < match.getNumberOfGroups(); i++)
         {
           if (i == 0)
+          {
             System.out.print("Matched range for the whole pattern: ");
+          }
           else
+          {
             System.out.print("[" + i + "]: ");
+          }
           if (match.getBeginning(i) < 0)
+          {
             System.out.println("-1");
+          }
           else
           {
             System.out.print(match.getBeginning(i) + ", " + match.getEnd(i) + ", ");
@@ -719,7 +896,9 @@ public final class RegEx
           {
             System.err.print(indent);
             for (int i = 0; i < loc; i++)
+            {
               System.err.print("-");
+            }
             System.err.println("^");
           }
         }
@@ -811,12 +990,18 @@ public final class RegEx
           if (buffer == null)
           {
             buffer = new StringBuffer(i + (len - i) * 2);
-            if (i > 0) buffer.append(literal.substring(0, i));
+            if (i > 0)
+            {
+              buffer.append(literal.substring(0, i));
+            }
           }
           buffer.append('\\');
           buffer.append((char)ch);
         }
-        else if (buffer != null) buffer.append((char)ch);
+        else if (buffer != null)
+        {
+          buffer.append((char)ch);
+        }
       }
       return buffer != null ? buffer.toString() : literal;
     }
@@ -1234,9 +1419,12 @@ public final class RegEx
      */
     private synchronized void compile(Token tok)
     {
-      if (this.operations != null) return;
-      this.numberOfClosures = 0;
-      this.operations = this.compile(tok, null, false);
+      if (operations != null)
+      {
+        return;
+      }
+      numberOfClosures = 0;
+      operations = this.compile(tok, null, false);
     }
 
     /**
@@ -1309,7 +1497,10 @@ public final class RegEx
           }
           break;
         }
-        if (min > 0 && max > 0) max -= min;
+        if (min > 0 && max > 0)
+        {
+          max -= min;
+        }
         if (max > 0)
         {
           // X{2,6} -> XX(X(X(XX?)?)?)?
@@ -1332,9 +1523,13 @@ public final class RegEx
           else
           { // Token.CLOSURE
             if (child.getMinLength() == 0)
-              op = Op.createClosure(this.numberOfClosures++);
+            {
+              op = Op.createClosure(numberOfClosures++);
+            }
             else
+            {
               op = Op.createClosure(-1);
+            }
           }
           op.next = next;
           op.setChild(compile(child, op, reverse));
@@ -1473,32 +1668,38 @@ public final class RegEx
 
       synchronized (this)
       {
-        if (this.operations == null) this.prepare();
-        if (this.context == null) this.context = new Context();
+        if (operations == null)
+        {
+          prepare();
+        }
+        if (context == null)
+        {
+          context = new Context();
+        }
       }
       Context con = null;
-      synchronized (this.context)
+      synchronized (context)
       {
-        con = this.context.inuse ? new Context() : this.context;
-        con.reset(target, start, end, this.numberOfClosures);
+        con = context.inuse ? new Context() : context;
+        con.reset(target, start, end, numberOfClosures);
       }
       if (match != null)
       {
-        match.setNumberOfGroups(this.nofparen);
+        match.setNumberOfGroups(nofparen);
         match.setSource(target);
       }
-      else if (this.hasBackReferences)
+      else if (hasBackReferences)
       {
         match = new Match();
-        match.setNumberOfGroups(this.nofparen);
+        match.setNumberOfGroups(nofparen);
         // Need not to call setSource() because
         // a caller can not access this match instance.
       }
       con.match = match;
 
-      if (RegularExpression.isSet(this.options, XMLSCHEMA_MODE))
+      if (RegularExpression.isSet(options, XMLSCHEMA_MODE))
       {
-        int matchEnd = this.matchCharArray(con, this.operations, con.start, 1, this.options);
+        int matchEnd = matchCharArray(con, operations, con.start, 1, options);
         // System.err.println("DEBUG: matchEnd="+matchEnd);
         if (matchEnd == con.limit)
         {
@@ -1516,16 +1717,16 @@ public final class RegEx
       /*
        * The pattern has only fixed string. The engine uses Boyer-Moore.
        */
-      if (this.fixedStringOnly)
+      if (fixedStringOnly)
       {
         // System.err.println("DEBUG: fixed-only: "+this.fixedString);
-        int o = this.fixedStringTable.matches(target, con.start, con.limit);
+        int o = fixedStringTable.matches(target, con.start, con.limit);
         if (o >= 0)
         {
           if (con.match != null)
           {
             con.match.setBeginning(0, o);
-            con.match.setEnd(0, o + this.fixedString.length());
+            con.match.setEnd(0, o + fixedString.length());
           }
           con.inuse = false;
           return true;
@@ -1538,9 +1739,9 @@ public final class RegEx
        * The pattern contains a fixed string. The engine checks with Boyer-Moore whether the text contains the fixed
        * string or not. If not, it return with false.
        */
-      if (this.fixedString != null)
+      if (fixedString != null)
       {
-        int o = this.fixedStringTable.matches(target, con.start, con.limit);
+        int o = fixedStringTable.matches(target, con.start, con.limit);
         if (o < 0)
         {
           // System.err.println("Non-match in fixed-string search.");
@@ -1549,19 +1750,19 @@ public final class RegEx
         }
       }
 
-      int limit = con.limit - this.minlength;
+      int limit = con.limit - minlength;
       int matchStart;
       int matchEnd = -1;
 
       /*
        * Checks whether the expression starts with ".*".
        */
-      if (this.operations != null && this.operations.type == Op.CLOSURE && this.operations.getChild().type == Op.DOT)
+      if (operations != null && operations.type == Op.CLOSURE && operations.getChild().type == Op.DOT)
       {
-        if (isSet(this.options, SINGLE_LINE))
+        if (isSet(options, SINGLE_LINE))
         {
           matchStart = con.start;
-          matchEnd = this.matchCharArray(con, this.operations, con.start, 1, this.options);
+          matchEnd = matchCharArray(con, operations, con.start, 1, options);
         }
         else
         {
@@ -1577,7 +1778,10 @@ public final class RegEx
             {
               if (previousIsEOL)
               {
-                if (0 <= (matchEnd = this.matchCharArray(con, this.operations, matchStart, 1, this.options))) break;
+                if (0 <= (matchEnd = matchCharArray(con, operations, matchStart, 1, options)))
+                {
+                  break;
+                }
               }
               previousIsEOL = false;
             }
@@ -1588,31 +1792,43 @@ public final class RegEx
       /*
        * Optimization against the first character.
        */
-      else if (this.firstChar != null)
+      else if (firstChar != null)
       {
         // System.err.println("DEBUG: with firstchar-matching:
         // "+this.firstChar);
-        RangeToken range = this.firstChar;
-        if (RegularExpression.isSet(this.options, IGNORE_CASE))
+        RangeToken range = firstChar;
+        if (RegularExpression.isSet(options, IGNORE_CASE))
         {
-          range = this.firstChar.getCaseInsensitiveToken();
+          range = firstChar.getCaseInsensitiveToken();
           for (matchStart = con.start; matchStart <= limit; matchStart++)
           {
             int ch = target[matchStart];
             if (REUtil.isHighSurrogate(ch) && matchStart + 1 < con.limit)
             {
               ch = REUtil.composeFromSurrogates(ch, target[matchStart + 1]);
-              if (!range.match(ch)) continue;
+              if (!range.match(ch))
+              {
+                continue;
+              }
             }
             else
             {
               if (!range.match(ch))
               {
                 char ch1 = Character.toUpperCase((char)ch);
-                if (!range.match(ch1)) if (!range.match(Character.toLowerCase(ch1))) continue;
+                if (!range.match(ch1))
+                {
+                  if (!range.match(Character.toLowerCase(ch1)))
+                  {
+                    continue;
+                  }
+                }
               }
             }
-            if (0 <= (matchEnd = this.matchCharArray(con, this.operations, matchStart, 1, this.options))) break;
+            if (0 <= (matchEnd = matchCharArray(con, operations, matchStart, 1, options)))
+            {
+              break;
+            }
           }
         }
         else
@@ -1621,9 +1837,17 @@ public final class RegEx
           {
             int ch = target[matchStart];
             if (REUtil.isHighSurrogate(ch) && matchStart + 1 < con.limit)
+            {
               ch = REUtil.composeFromSurrogates(ch, target[matchStart + 1]);
-            if (!range.match(ch)) continue;
-            if (0 <= (matchEnd = this.matchCharArray(con, this.operations, matchStart, 1, this.options))) break;
+            }
+            if (!range.match(ch))
+            {
+              continue;
+            }
+            if (0 <= (matchEnd = matchCharArray(con, operations, matchStart, 1, options)))
+            {
+              break;
+            }
           }
         }
       }
@@ -1635,7 +1859,10 @@ public final class RegEx
       {
         for (matchStart = con.start; matchStart <= limit; matchStart++)
         {
-          if (0 <= (matchEnd = this.matchCharArray(con, this.operations, matchStart, 1, this.options))) break;
+          if (0 <= (matchEnd = matchCharArray(con, operations, matchStart, 1, options)))
+          {
+            break;
+          }
         }
       }
 
@@ -1666,8 +1893,14 @@ public final class RegEx
 
       while (true)
       {
-        if (op == null) return isSet(opts, XMLSCHEMA_MODE) && offset != con.limit ? -1 : offset;
-        if (offset > con.limit || offset < con.start) return -1;
+        if (op == null)
+        {
+          return isSet(opts, XMLSCHEMA_MODE) && offset != con.limit ? -1 : offset;
+        }
+        if (offset > con.limit || offset < con.start)
+        {
+          return -1;
+        }
         switch (op.type)
         {
         case Op.CHAR:
@@ -1676,13 +1909,19 @@ public final class RegEx
             int ch = op.getData();
             if (dx > 0)
             {
-              if (offset >= con.limit || !matchIgnoreCase(ch, target[offset])) return -1;
+              if (offset >= con.limit || !matchIgnoreCase(ch, target[offset]))
+              {
+                return -1;
+              }
               offset++;
             }
             else
             {
               int o1 = offset - 1;
-              if (o1 >= con.limit || o1 < 0 || !matchIgnoreCase(ch, target[o1])) return -1;
+              if (o1 >= con.limit || o1 < 0 || !matchIgnoreCase(ch, target[o1]))
+              {
+                return -1;
+              }
               offset = o1;
             }
           }
@@ -1691,13 +1930,19 @@ public final class RegEx
             int ch = op.getData();
             if (dx > 0)
             {
-              if (offset >= con.limit || ch != target[offset]) return -1;
+              if (offset >= con.limit || ch != target[offset])
+              {
+                return -1;
+              }
               offset++;
             }
             else
             {
               int o1 = offset - 1;
-              if (o1 >= con.limit || o1 < 0 || ch != target[o1]) return -1;
+              if (o1 >= con.limit || o1 < 0 || ch != target[o1])
+              {
+                return -1;
+              }
               offset = o1;
             }
           }
@@ -1707,33 +1952,56 @@ public final class RegEx
         case Op.DOT:
           if (dx > 0)
           {
-            if (offset >= con.limit) return -1;
+            if (offset >= con.limit)
+            {
+              return -1;
+            }
             int ch = target[offset];
             if (isSet(opts, SINGLE_LINE))
             {
-              if (REUtil.isHighSurrogate(ch) && offset + 1 < con.limit) offset++;
+              if (REUtil.isHighSurrogate(ch) && offset + 1 < con.limit)
+              {
+                offset++;
+              }
             }
             else
             {
               if (REUtil.isHighSurrogate(ch) && offset + 1 < con.limit)
+              {
                 ch = REUtil.composeFromSurrogates(ch, target[++offset]);
-              if (isEOLChar(ch)) return -1;
+              }
+              if (isEOLChar(ch))
+              {
+                return -1;
+              }
             }
             offset++;
           }
           else
           {
             int o1 = offset - 1;
-            if (o1 >= con.limit || o1 < 0) return -1;
+            if (o1 >= con.limit || o1 < 0)
+            {
+              return -1;
+            }
             int ch = target[o1];
             if (isSet(opts, SINGLE_LINE))
             {
-              if (REUtil.isLowSurrogate(ch) && o1 - 1 >= 0) o1--;
+              if (REUtil.isLowSurrogate(ch) && o1 - 1 >= 0)
+              {
+                o1--;
+              }
             }
             else
             {
-              if (REUtil.isLowSurrogate(ch) && o1 - 1 >= 0) ch = REUtil.composeFromSurrogates(target[--o1], ch);
-              if (!isEOLChar(ch)) return -1;
+              if (REUtil.isLowSurrogate(ch) && o1 - 1 >= 0)
+              {
+                ch = REUtil.composeFromSurrogates(target[--o1], ch);
+              }
+              if (!isEOLChar(ch))
+              {
+                return -1;
+              }
             }
             offset = o1;
           }
@@ -1744,49 +2012,76 @@ public final class RegEx
         case Op.NRANGE:
           if (dx > 0)
           {
-            if (offset >= con.limit) return -1;
+            if (offset >= con.limit)
+            {
+              return -1;
+            }
             int ch = target[offset];
             if (REUtil.isHighSurrogate(ch) && offset + 1 < con.limit)
+            {
               ch = REUtil.composeFromSurrogates(ch, target[++offset]);
+            }
             RangeToken tok = op.getToken();
             if (isSet(opts, IGNORE_CASE))
             {
               tok = tok.getCaseInsensitiveToken();
               if (!tok.match(ch))
               {
-                if (ch >= 0x10000) return -1;
+                if (ch >= 0x10000)
+                {
+                  return -1;
+                }
                 char uch;
                 if (!tok.match(uch = Character.toUpperCase((char)ch)) && !tok.match(Character.toLowerCase(uch)))
+                {
                   return -1;
+                }
               }
             }
             else
             {
-              if (!tok.match(ch)) return -1;
+              if (!tok.match(ch))
+              {
+                return -1;
+              }
             }
             offset++;
           }
           else
           {
             int o1 = offset - 1;
-            if (o1 >= con.limit || o1 < 0) return -1;
+            if (o1 >= con.limit || o1 < 0)
+            {
+              return -1;
+            }
             int ch = target[o1];
-            if (REUtil.isLowSurrogate(ch) && o1 - 1 >= 0) ch = REUtil.composeFromSurrogates(target[--o1], ch);
+            if (REUtil.isLowSurrogate(ch) && o1 - 1 >= 0)
+            {
+              ch = REUtil.composeFromSurrogates(target[--o1], ch);
+            }
             RangeToken tok = op.getToken();
             if (isSet(opts, IGNORE_CASE))
             {
               tok = tok.getCaseInsensitiveToken();
               if (!tok.match(ch))
               {
-                if (ch >= 0x10000) return -1;
+                if (ch >= 0x10000)
+                {
+                  return -1;
+                }
                 char uch;
                 if (!tok.match(uch = Character.toUpperCase((char)ch)) && !tok.match(Character.toLowerCase(uch)))
+                {
                   return -1;
+                }
               }
             }
             else
             {
-              if (!tok.match(ch)) return -1;
+              if (!tok.match(ch))
+              {
+                return -1;
+              }
             }
             offset = o1;
           }
@@ -1800,75 +2095,125 @@ public final class RegEx
           case '^':
             if (isSet(opts, MULTIPLE_LINES))
             {
-              if (!(offset == con.start || offset > con.start && isEOLChar(target[offset - 1]))) return -1;
+              if (!(offset == con.start || offset > con.start && isEOLChar(target[offset - 1])))
+              {
+                return -1;
+              }
             }
             else
             {
-              if (offset != con.start) return -1;
+              if (offset != con.start)
+              {
+                return -1;
+              }
             }
             break;
 
           case '@': // Internal use only.
             // The @ always matches line beginnings.
-            if (!(offset == con.start || offset > con.start && isEOLChar(target[offset - 1]))) return -1;
+            if (!(offset == con.start || offset > con.start && isEOLChar(target[offset - 1])))
+            {
+              return -1;
+            }
             break;
 
           case '$':
             if (isSet(opts, MULTIPLE_LINES))
             {
-              if (!(offset == con.limit || offset < con.limit && isEOLChar(target[offset]))) return -1;
+              if (!(offset == con.limit || offset < con.limit && isEOLChar(target[offset])))
+              {
+                return -1;
+              }
             }
             else
             {
               if (!(offset == con.limit || offset + 1 == con.limit && isEOLChar(target[offset]) || offset + 2 == con.limit
-                  && target[offset] == CARRIAGE_RETURN && target[offset + 1] == LINE_FEED)) return -1;
+                  && target[offset] == CARRIAGE_RETURN && target[offset + 1] == LINE_FEED))
+              {
+                return -1;
+              }
             }
             break;
 
           case 'A':
-            if (offset != con.start) return -1;
+            if (offset != con.start)
+            {
+              return -1;
+            }
             break;
 
           case 'Z':
             if (!(offset == con.limit || offset + 1 == con.limit && isEOLChar(target[offset]) || offset + 2 == con.limit
-                && target[offset] == CARRIAGE_RETURN && target[offset + 1] == LINE_FEED)) return -1;
+                && target[offset] == CARRIAGE_RETURN && target[offset + 1] == LINE_FEED))
+            {
+              return -1;
+            }
             break;
 
           case 'z':
-            if (offset != con.limit) return -1;
+            if (offset != con.limit)
+            {
+              return -1;
+            }
             break;
 
           case 'b':
-            if (con.length == 0) return -1;
+            if (con.length == 0)
+            {
+              return -1;
+            }
             {
               int after = getWordType(target, con.start, con.limit, offset, opts);
-              if (after == WT_IGNORE) return -1;
+              if (after == WT_IGNORE)
+              {
+                return -1;
+              }
               int before = getPreviousWordType(target, con.start, con.limit, offset, opts);
-              if (after == before) return -1;
+              if (after == before)
+              {
+                return -1;
+              }
             }
             break;
 
           case 'B':
             if (con.length == 0)
+            {
               go = true;
+            }
             else
             {
               int after = getWordType(target, con.start, con.limit, offset, opts);
               go = after == WT_IGNORE || after == getPreviousWordType(target, con.start, con.limit, offset, opts);
             }
-            if (!go) return -1;
+            if (!go)
+            {
+              return -1;
+            }
             break;
 
           case '<':
-            if (con.length == 0 || offset == con.limit) return -1;
+            if (con.length == 0 || offset == con.limit)
+            {
+              return -1;
+            }
             if (getWordType(target, con.start, con.limit, offset, opts) != WT_LETTER
-                || getPreviousWordType(target, con.start, con.limit, offset, opts) != WT_OTHER) return -1;
+                || getPreviousWordType(target, con.start, con.limit, offset, opts) != WT_OTHER)
+            {
+              return -1;
+            }
             break;
 
           case '>':
-            if (con.length == 0 || offset == con.start) return -1;
+            if (con.length == 0 || offset == con.start)
+            {
+              return -1;
+            }
             if (getWordType(target, con.start, con.limit, offset, opts) != WT_OTHER
-                || getPreviousWordType(target, con.start, con.limit, offset, opts) != WT_LETTER) return -1;
+                || getPreviousWordType(target, con.start, con.limit, offset, opts) != WT_LETTER)
+            {
+              return -1;
+            }
             break;
           } // switch anchor type
           op = op.next;
@@ -1877,21 +2222,32 @@ public final class RegEx
         case Op.BACKREFERENCE:
         {
           int refno = op.getData();
-          if (refno <= 0 || refno >= this.nofparen)
+          if (refno <= 0 || refno >= nofparen)
+          {
             throw new RuntimeException("Internal Error: Reference number must be more than zero: " + refno);
-          if (con.match.getBeginning(refno) < 0 || con.match.getEnd(refno) < 0) return -1; // ********
+          }
+          if (con.match.getBeginning(refno) < 0 || con.match.getEnd(refno) < 0)
+          {
+            return -1; // ********
+          }
           int o2 = con.match.getBeginning(refno);
           int literallen = con.match.getEnd(refno) - o2;
           if (!isSet(opts, IGNORE_CASE))
           {
             if (dx > 0)
             {
-              if (!regionMatches(target, offset, con.limit, o2, literallen)) return -1;
+              if (!regionMatches(target, offset, con.limit, o2, literallen))
+              {
+                return -1;
+              }
               offset += literallen;
             }
             else
             {
-              if (!regionMatches(target, offset - literallen, con.limit, o2, literallen)) return -1;
+              if (!regionMatches(target, offset - literallen, con.limit, o2, literallen))
+              {
+                return -1;
+              }
               offset -= literallen;
             }
           }
@@ -1899,12 +2255,18 @@ public final class RegEx
           {
             if (dx > 0)
             {
-              if (!regionMatchesIgnoreCase(target, offset, con.limit, o2, literallen)) return -1;
+              if (!regionMatchesIgnoreCase(target, offset, con.limit, o2, literallen))
+              {
+                return -1;
+              }
               offset += literallen;
             }
             else
             {
-              if (!regionMatchesIgnoreCase(target, offset - literallen, con.limit, o2, literallen)) return -1;
+              if (!regionMatchesIgnoreCase(target, offset - literallen, con.limit, o2, literallen))
+              {
+                return -1;
+              }
               offset -= literallen;
             }
           }
@@ -1919,12 +2281,18 @@ public final class RegEx
           {
             if (dx > 0)
             {
-              if (!regionMatches(target, offset, con.limit, literal, literallen)) return -1;
+              if (!regionMatches(target, offset, con.limit, literal, literallen))
+              {
+                return -1;
+              }
               offset += literallen;
             }
             else
             {
-              if (!regionMatches(target, offset - literallen, con.limit, literal, literallen)) return -1;
+              if (!regionMatches(target, offset - literallen, con.limit, literal, literallen))
+              {
+                return -1;
+              }
               offset -= literallen;
             }
           }
@@ -1932,12 +2300,18 @@ public final class RegEx
           {
             if (dx > 0)
             {
-              if (!regionMatchesIgnoreCase(target, offset, con.limit, literal, literallen)) return -1;
+              if (!regionMatchesIgnoreCase(target, offset, con.limit, literal, literallen))
+              {
+                return -1;
+              }
               offset += literallen;
             }
             else
             {
-              if (!regionMatchesIgnoreCase(target, offset - literallen, con.limit, literal, literallen)) return -1;
+              if (!regionMatchesIgnoreCase(target, offset - literallen, con.limit, literal, literallen))
+              {
+                return -1;
+              }
               offset -= literallen;
             }
           }
@@ -1966,17 +2340,26 @@ public final class RegEx
             }
           }
 
-          int ret = this.matchCharArray(con, op.getChild(), offset, dx, opts);
-          if (id >= 0) con.offsets[id] = -1;
-          if (ret >= 0) return ret;
+          int ret = matchCharArray(con, op.getChild(), offset, dx, opts);
+          if (id >= 0)
+          {
+            con.offsets[id] = -1;
+          }
+          if (ret >= 0)
+          {
+            return ret;
+          }
           op = op.next;
         }
           break;
 
         case Op.QUESTION:
         {
-          int ret = this.matchCharArray(con, op.getChild(), offset, dx, opts);
-          if (ret >= 0) return ret;
+          int ret = matchCharArray(con, op.getChild(), offset, dx, opts);
+          if (ret >= 0)
+          {
+            return ret;
+          }
           op = op.next;
         }
           break;
@@ -1984,8 +2367,11 @@ public final class RegEx
         case Op.NONGREEDYCLOSURE:
         case Op.NONGREEDYQUESTION:
         {
-          int ret = this.matchCharArray(con, op.next, offset, dx, opts);
-          if (ret >= 0) return ret;
+          int ret = matchCharArray(con, op.next, offset, dx, opts);
+          if (ret >= 0)
+          {
+            return ret;
+          }
           op = op.getChild();
         }
           break;
@@ -1993,12 +2379,15 @@ public final class RegEx
         case Op.UNION:
           for (int i = 0; i < op.size(); i++)
           {
-            int ret = this.matchCharArray(con, op.elementAt(i), offset, dx, opts);
+            int ret = matchCharArray(con, op.elementAt(i), offset, dx, opts);
             if (DEBUG)
             {
               System.err.println("UNION: " + i + ", ret=" + ret);
             }
-            if (ret >= 0) return ret;
+            if (ret >= 0)
+            {
+              return ret;
+            }
           }
           return -1;
 
@@ -2008,8 +2397,11 @@ public final class RegEx
           {
             int save = con.match.getBeginning(refno);
             con.match.setBeginning(refno, offset);
-            int ret = this.matchCharArray(con, op.next, offset, dx, opts);
-            if (ret < 0) con.match.setBeginning(refno, save);
+            int ret = matchCharArray(con, op.next, offset, dx, opts);
+            if (ret < 0)
+            {
+              con.match.setBeginning(refno, save);
+            }
             return ret;
           }
           else if (con.match != null && refno < 0)
@@ -2017,34 +2409,52 @@ public final class RegEx
             int index = -refno;
             int save = con.match.getEnd(index);
             con.match.setEnd(index, offset);
-            int ret = this.matchCharArray(con, op.next, offset, dx, opts);
-            if (ret < 0) con.match.setEnd(index, save);
+            int ret = matchCharArray(con, op.next, offset, dx, opts);
+            if (ret < 0)
+            {
+              con.match.setEnd(index, save);
+            }
             return ret;
           }
           op = op.next;
           break;
 
         case Op.LOOKAHEAD:
-          if (0 > this.matchCharArray(con, op.getChild(), offset, 1, opts)) return -1;
+          if (0 > matchCharArray(con, op.getChild(), offset, 1, opts))
+          {
+            return -1;
+          }
           op = op.next;
           break;
         case Op.NEGATIVELOOKAHEAD:
-          if (0 <= this.matchCharArray(con, op.getChild(), offset, 1, opts)) return -1;
+          if (0 <= matchCharArray(con, op.getChild(), offset, 1, opts))
+          {
+            return -1;
+          }
           op = op.next;
           break;
         case Op.LOOKBEHIND:
-          if (0 > this.matchCharArray(con, op.getChild(), offset, -1, opts)) return -1;
+          if (0 > matchCharArray(con, op.getChild(), offset, -1, opts))
+          {
+            return -1;
+          }
           op = op.next;
           break;
         case Op.NEGATIVELOOKBEHIND:
-          if (0 <= this.matchCharArray(con, op.getChild(), offset, -1, opts)) return -1;
+          if (0 <= matchCharArray(con, op.getChild(), offset, -1, opts))
+          {
+            return -1;
+          }
           op = op.next;
           break;
 
         case Op.INDEPENDENT:
         {
-          int ret = this.matchCharArray(con, op.getChild(), offset, dx, opts);
-          if (ret < 0) return ret;
+          int ret = matchCharArray(con, op.getChild(), offset, dx, opts);
+          if (ret < 0)
+          {
+            return ret;
+          }
           offset = ret;
           op = op.next;
         }
@@ -2057,8 +2467,11 @@ public final class RegEx
           localopts &= ~op.getData2();
           // System.err.println("MODIFIER: "+Integer.toString(opts, 16)+" ->
           // "+Integer.toString(localopts, 16));
-          int ret = this.matchCharArray(con, op.getChild(), offset, dx, localopts);
-          if (ret < 0) return ret;
+          int ret = matchCharArray(con, op.getChild(), offset, dx, localopts);
+          if (ret < 0)
+          {
+            return ret;
+          }
           offset = ret;
           op = op.next;
         }
@@ -2070,13 +2483,15 @@ public final class RegEx
           boolean matchp = false;
           if (cop.refNumber > 0)
           {
-            if (cop.refNumber >= this.nofparen)
+            if (cop.refNumber >= nofparen)
+            {
               throw new RuntimeException("Internal Error: Reference number must be more than zero: " + cop.refNumber);
+            }
             matchp = con.match.getBeginning(cop.refNumber) >= 0 && con.match.getEnd(cop.refNumber) >= 0;
           }
           else
           {
-            matchp = 0 <= this.matchCharArray(con, cop.condition, offset, dx, opts);
+            matchp = 0 <= matchCharArray(con, cop.condition, offset, dx, opts);
           }
 
           if (matchp)
@@ -2104,36 +2519,59 @@ public final class RegEx
     {
       int ret = getWordType(target, begin, end, --offset, opts);
       while (ret == WT_IGNORE)
+      {
         ret = getWordType(target, begin, end, --offset, opts);
+      }
       return ret;
     }
 
     private static final int getWordType(char[] target, int begin, int end, int offset, int opts)
     {
-      if (offset < begin || offset >= end) return WT_OTHER;
+      if (offset < begin || offset >= end)
+      {
+        return WT_OTHER;
+      }
       return getWordType0(target[offset], opts);
     }
 
     private static final boolean regionMatches(char[] target, int offset, int limit, String part, int partlen)
     {
-      if (offset < 0) return false;
-      if (limit - offset < partlen) return false;
+      if (offset < 0)
+      {
+        return false;
+      }
+      if (limit - offset < partlen)
+      {
+        return false;
+      }
       int i = 0;
       while (partlen-- > 0)
       {
-        if (target[offset++] != part.charAt(i++)) return false;
+        if (target[offset++] != part.charAt(i++))
+        {
+          return false;
+        }
       }
       return true;
     }
 
     private static final boolean regionMatches(char[] target, int offset, int limit, int offset2, int partlen)
     {
-      if (offset < 0) return false;
-      if (limit - offset < partlen) return false;
+      if (offset < 0)
+      {
+        return false;
+      }
+      if (limit - offset < partlen)
+      {
+        return false;
+      }
       int i = offset2;
       while (partlen-- > 0)
       {
-        if (target[offset++] != target[i++]) return false;
+        if (target[offset++] != target[i++])
+        {
+          return false;
+        }
       }
       return true;
     }
@@ -2143,36 +2581,66 @@ public final class RegEx
      */
     private static final boolean regionMatchesIgnoreCase(char[] target, int offset, int limit, String part, int partlen)
     {
-      if (offset < 0) return false;
-      if (limit - offset < partlen) return false;
+      if (offset < 0)
+      {
+        return false;
+      }
+      if (limit - offset < partlen)
+      {
+        return false;
+      }
       int i = 0;
       while (partlen-- > 0)
       {
         char ch1 = target[offset++];
         char ch2 = part.charAt(i++);
-        if (ch1 == ch2) continue;
+        if (ch1 == ch2)
+        {
+          continue;
+        }
         char uch1 = Character.toUpperCase(ch1);
         char uch2 = Character.toUpperCase(ch2);
-        if (uch1 == uch2) continue;
-        if (Character.toLowerCase(uch1) != Character.toLowerCase(uch2)) return false;
+        if (uch1 == uch2)
+        {
+          continue;
+        }
+        if (Character.toLowerCase(uch1) != Character.toLowerCase(uch2))
+        {
+          return false;
+        }
       }
       return true;
     }
 
     private static final boolean regionMatchesIgnoreCase(char[] target, int offset, int limit, int offset2, int partlen)
     {
-      if (offset < 0) return false;
-      if (limit - offset < partlen) return false;
+      if (offset < 0)
+      {
+        return false;
+      }
+      if (limit - offset < partlen)
+      {
+        return false;
+      }
       int i = offset2;
       while (partlen-- > 0)
       {
         char ch1 = target[offset++];
         char ch2 = target[i++];
-        if (ch1 == ch2) continue;
+        if (ch1 == ch2)
+        {
+          continue;
+        }
         char uch1 = Character.toUpperCase(ch1);
         char uch2 = Character.toUpperCase(ch2);
-        if (uch1 == uch2) continue;
-        if (Character.toLowerCase(uch1) != Character.toLowerCase(uch2)) return false;
+        if (uch1 == uch2)
+        {
+          continue;
+        }
+        if (Character.toLowerCase(uch1) != Character.toLowerCase(uch2))
+        {
+          return false;
+        }
       }
       return true;
     }
@@ -2229,36 +2697,42 @@ public final class RegEx
 
       synchronized (this)
       {
-        if (this.operations == null) this.prepare();
-        if (this.context == null) this.context = new Context();
+        if (operations == null)
+        {
+          prepare();
+        }
+        if (context == null)
+        {
+          context = new Context();
+        }
       }
       Context con = null;
-      synchronized (this.context)
+      synchronized (context)
       {
-        con = this.context.inuse ? new Context() : this.context;
-        con.reset(target, start, end, this.numberOfClosures);
+        con = context.inuse ? new Context() : context;
+        con.reset(target, start, end, numberOfClosures);
       }
       if (match != null)
       {
-        match.setNumberOfGroups(this.nofparen);
+        match.setNumberOfGroups(nofparen);
         match.setSource(target);
       }
-      else if (this.hasBackReferences)
+      else if (hasBackReferences)
       {
         match = new Match();
-        match.setNumberOfGroups(this.nofparen);
+        match.setNumberOfGroups(nofparen);
         // Need not to call setSource() because
         // a caller can not access this match instance.
       }
       con.match = match;
 
-      if (RegularExpression.isSet(this.options, XMLSCHEMA_MODE))
+      if (RegularExpression.isSet(options, XMLSCHEMA_MODE))
       {
         if (DEBUG)
         {
           System.err.println("target string=" + target);
         }
-        int matchEnd = this.matchString(con, this.operations, con.start, 1, this.options);
+        int matchEnd = matchString(con, operations, con.start, 1, options);
         if (DEBUG)
         {
           System.err.println("matchEnd=" + matchEnd);
@@ -2280,16 +2754,16 @@ public final class RegEx
       /*
        * The pattern has only fixed string. The engine uses Boyer-Moore.
        */
-      if (this.fixedStringOnly)
+      if (fixedStringOnly)
       {
         // System.err.println("DEBUG: fixed-only: "+this.fixedString);
-        int o = this.fixedStringTable.matches(target, con.start, con.limit);
+        int o = fixedStringTable.matches(target, con.start, con.limit);
         if (o >= 0)
         {
           if (con.match != null)
           {
             con.match.setBeginning(0, o);
-            con.match.setEnd(0, o + this.fixedString.length());
+            con.match.setEnd(0, o + fixedString.length());
           }
           con.inuse = false;
           return true;
@@ -2302,9 +2776,9 @@ public final class RegEx
        * The pattern contains a fixed string. The engine checks with Boyer-Moore whether the text contains the fixed
        * string or not. If not, it return with false.
        */
-      if (this.fixedString != null)
+      if (fixedString != null)
       {
-        int o = this.fixedStringTable.matches(target, con.start, con.limit);
+        int o = fixedStringTable.matches(target, con.start, con.limit);
         if (o < 0)
         {
           // System.err.println("Non-match in fixed-string search.");
@@ -2313,19 +2787,19 @@ public final class RegEx
         }
       }
 
-      int limit = con.limit - this.minlength;
+      int limit = con.limit - minlength;
       int matchStart;
       int matchEnd = -1;
 
       /*
        * Checks whether the expression starts with ".*".
        */
-      if (this.operations != null && this.operations.type == Op.CLOSURE && this.operations.getChild().type == Op.DOT)
+      if (operations != null && operations.type == Op.CLOSURE && operations.getChild().type == Op.DOT)
       {
-        if (isSet(this.options, SINGLE_LINE))
+        if (isSet(options, SINGLE_LINE))
         {
           matchStart = con.start;
-          matchEnd = this.matchString(con, this.operations, con.start, 1, this.options);
+          matchEnd = matchString(con, operations, con.start, 1, options);
         }
         else
         {
@@ -2341,7 +2815,10 @@ public final class RegEx
             {
               if (previousIsEOL)
               {
-                if (0 <= (matchEnd = this.matchString(con, this.operations, matchStart, 1, this.options))) break;
+                if (0 <= (matchEnd = matchString(con, operations, matchStart, 1, options)))
+                {
+                  break;
+                }
               }
               previousIsEOL = false;
             }
@@ -2352,31 +2829,43 @@ public final class RegEx
       /*
        * Optimization against the first character.
        */
-      else if (this.firstChar != null)
+      else if (firstChar != null)
       {
         // System.err.println("DEBUG: with firstchar-matching:
         // "+this.firstChar);
-        RangeToken range = this.firstChar;
-        if (RegularExpression.isSet(this.options, IGNORE_CASE))
+        RangeToken range = firstChar;
+        if (RegularExpression.isSet(options, IGNORE_CASE))
         {
-          range = this.firstChar.getCaseInsensitiveToken();
+          range = firstChar.getCaseInsensitiveToken();
           for (matchStart = con.start; matchStart <= limit; matchStart++)
           {
             int ch = target.charAt(matchStart);
             if (REUtil.isHighSurrogate(ch) && matchStart + 1 < con.limit)
             {
               ch = REUtil.composeFromSurrogates(ch, target.charAt(matchStart + 1));
-              if (!range.match(ch)) continue;
+              if (!range.match(ch))
+              {
+                continue;
+              }
             }
             else
             {
               if (!range.match(ch))
               {
                 char ch1 = Character.toUpperCase((char)ch);
-                if (!range.match(ch1)) if (!range.match(Character.toLowerCase(ch1))) continue;
+                if (!range.match(ch1))
+                {
+                  if (!range.match(Character.toLowerCase(ch1)))
+                  {
+                    continue;
+                  }
+                }
               }
             }
-            if (0 <= (matchEnd = this.matchString(con, this.operations, matchStart, 1, this.options))) break;
+            if (0 <= (matchEnd = matchString(con, operations, matchStart, 1, options)))
+            {
+              break;
+            }
           }
         }
         else
@@ -2385,9 +2874,17 @@ public final class RegEx
           {
             int ch = target.charAt(matchStart);
             if (REUtil.isHighSurrogate(ch) && matchStart + 1 < con.limit)
+            {
               ch = REUtil.composeFromSurrogates(ch, target.charAt(matchStart + 1));
-            if (!range.match(ch)) continue;
-            if (0 <= (matchEnd = this.matchString(con, this.operations, matchStart, 1, this.options))) break;
+            }
+            if (!range.match(ch))
+            {
+              continue;
+            }
+            if (0 <= (matchEnd = matchString(con, operations, matchStart, 1, options)))
+            {
+              break;
+            }
           }
         }
       }
@@ -2399,7 +2896,10 @@ public final class RegEx
       {
         for (matchStart = con.start; matchStart <= limit; matchStart++)
         {
-          if (0 <= (matchEnd = this.matchString(con, this.operations, matchStart, 1, this.options))) break;
+          if (0 <= (matchEnd = matchString(con, operations, matchStart, 1, options)))
+          {
+            break;
+          }
         }
       }
 
@@ -2430,8 +2930,14 @@ public final class RegEx
 
       while (true)
       {
-        if (op == null) return isSet(opts, XMLSCHEMA_MODE) && offset != con.limit ? -1 : offset;
-        if (offset > con.limit || offset < con.start) return -1;
+        if (op == null)
+        {
+          return isSet(opts, XMLSCHEMA_MODE) && offset != con.limit ? -1 : offset;
+        }
+        if (offset > con.limit || offset < con.start)
+        {
+          return -1;
+        }
         switch (op.type)
         {
         case Op.CHAR:
@@ -2440,13 +2946,19 @@ public final class RegEx
             int ch = op.getData();
             if (dx > 0)
             {
-              if (offset >= con.limit || !matchIgnoreCase(ch, target.charAt(offset))) return -1;
+              if (offset >= con.limit || !matchIgnoreCase(ch, target.charAt(offset)))
+              {
+                return -1;
+              }
               offset++;
             }
             else
             {
               int o1 = offset - 1;
-              if (o1 >= con.limit || o1 < 0 || !matchIgnoreCase(ch, target.charAt(o1))) return -1;
+              if (o1 >= con.limit || o1 < 0 || !matchIgnoreCase(ch, target.charAt(o1)))
+              {
+                return -1;
+              }
               offset = o1;
             }
           }
@@ -2455,13 +2967,19 @@ public final class RegEx
             int ch = op.getData();
             if (dx > 0)
             {
-              if (offset >= con.limit || ch != target.charAt(offset)) return -1;
+              if (offset >= con.limit || ch != target.charAt(offset))
+              {
+                return -1;
+              }
               offset++;
             }
             else
             {
               int o1 = offset - 1;
-              if (o1 >= con.limit || o1 < 0 || ch != target.charAt(o1)) return -1;
+              if (o1 >= con.limit || o1 < 0 || ch != target.charAt(o1))
+              {
+                return -1;
+              }
               offset = o1;
             }
           }
@@ -2471,33 +2989,56 @@ public final class RegEx
         case Op.DOT:
           if (dx > 0)
           {
-            if (offset >= con.limit) return -1;
+            if (offset >= con.limit)
+            {
+              return -1;
+            }
             int ch = target.charAt(offset);
             if (isSet(opts, SINGLE_LINE))
             {
-              if (REUtil.isHighSurrogate(ch) && offset + 1 < con.limit) offset++;
+              if (REUtil.isHighSurrogate(ch) && offset + 1 < con.limit)
+              {
+                offset++;
+              }
             }
             else
             {
               if (REUtil.isHighSurrogate(ch) && offset + 1 < con.limit)
+              {
                 ch = REUtil.composeFromSurrogates(ch, target.charAt(++offset));
-              if (isEOLChar(ch)) return -1;
+              }
+              if (isEOLChar(ch))
+              {
+                return -1;
+              }
             }
             offset++;
           }
           else
           {
             int o1 = offset - 1;
-            if (o1 >= con.limit || o1 < 0) return -1;
+            if (o1 >= con.limit || o1 < 0)
+            {
+              return -1;
+            }
             int ch = target.charAt(o1);
             if (isSet(opts, SINGLE_LINE))
             {
-              if (REUtil.isLowSurrogate(ch) && o1 - 1 >= 0) o1--;
+              if (REUtil.isLowSurrogate(ch) && o1 - 1 >= 0)
+              {
+                o1--;
+              }
             }
             else
             {
-              if (REUtil.isLowSurrogate(ch) && o1 - 1 >= 0) ch = REUtil.composeFromSurrogates(target.charAt(--o1), ch);
-              if (!isEOLChar(ch)) return -1;
+              if (REUtil.isLowSurrogate(ch) && o1 - 1 >= 0)
+              {
+                ch = REUtil.composeFromSurrogates(target.charAt(--o1), ch);
+              }
+              if (!isEOLChar(ch))
+              {
+                return -1;
+              }
             }
             offset = o1;
           }
@@ -2508,49 +3049,76 @@ public final class RegEx
         case Op.NRANGE:
           if (dx > 0)
           {
-            if (offset >= con.limit) return -1;
+            if (offset >= con.limit)
+            {
+              return -1;
+            }
             int ch = target.charAt(offset);
             if (REUtil.isHighSurrogate(ch) && offset + 1 < con.limit)
+            {
               ch = REUtil.composeFromSurrogates(ch, target.charAt(++offset));
+            }
             RangeToken tok = op.getToken();
             if (isSet(opts, IGNORE_CASE))
             {
               tok = tok.getCaseInsensitiveToken();
               if (!tok.match(ch))
               {
-                if (ch >= 0x10000) return -1;
+                if (ch >= 0x10000)
+                {
+                  return -1;
+                }
                 char uch;
                 if (!tok.match(uch = Character.toUpperCase((char)ch)) && !tok.match(Character.toLowerCase(uch)))
+                {
                   return -1;
+                }
               }
             }
             else
             {
-              if (!tok.match(ch)) return -1;
+              if (!tok.match(ch))
+              {
+                return -1;
+              }
             }
             offset++;
           }
           else
           {
             int o1 = offset - 1;
-            if (o1 >= con.limit || o1 < 0) return -1;
+            if (o1 >= con.limit || o1 < 0)
+            {
+              return -1;
+            }
             int ch = target.charAt(o1);
-            if (REUtil.isLowSurrogate(ch) && o1 - 1 >= 0) ch = REUtil.composeFromSurrogates(target.charAt(--o1), ch);
+            if (REUtil.isLowSurrogate(ch) && o1 - 1 >= 0)
+            {
+              ch = REUtil.composeFromSurrogates(target.charAt(--o1), ch);
+            }
             RangeToken tok = op.getToken();
             if (isSet(opts, IGNORE_CASE))
             {
               tok = tok.getCaseInsensitiveToken();
               if (!tok.match(ch))
               {
-                if (ch >= 0x10000) return -1;
+                if (ch >= 0x10000)
+                {
+                  return -1;
+                }
                 char uch;
                 if (!tok.match(uch = Character.toUpperCase((char)ch)) && !tok.match(Character.toLowerCase(uch)))
+                {
                   return -1;
+                }
               }
             }
             else
             {
-              if (!tok.match(ch)) return -1;
+              if (!tok.match(ch))
+              {
+                return -1;
+              }
             }
             offset = o1;
           }
@@ -2564,75 +3132,125 @@ public final class RegEx
           case '^':
             if (isSet(opts, MULTIPLE_LINES))
             {
-              if (!(offset == con.start || offset > con.start && isEOLChar(target.charAt(offset - 1)))) return -1;
+              if (!(offset == con.start || offset > con.start && isEOLChar(target.charAt(offset - 1))))
+              {
+                return -1;
+              }
             }
             else
             {
-              if (offset != con.start) return -1;
+              if (offset != con.start)
+              {
+                return -1;
+              }
             }
             break;
 
           case '@': // Internal use only.
             // The @ always matches line beginnings.
-            if (!(offset == con.start || offset > con.start && isEOLChar(target.charAt(offset - 1)))) return -1;
+            if (!(offset == con.start || offset > con.start && isEOLChar(target.charAt(offset - 1))))
+            {
+              return -1;
+            }
             break;
 
           case '$':
             if (isSet(opts, MULTIPLE_LINES))
             {
-              if (!(offset == con.limit || offset < con.limit && isEOLChar(target.charAt(offset)))) return -1;
+              if (!(offset == con.limit || offset < con.limit && isEOLChar(target.charAt(offset))))
+              {
+                return -1;
+              }
             }
             else
             {
               if (!(offset == con.limit || offset + 1 == con.limit && isEOLChar(target.charAt(offset)) || offset + 2 == con.limit
-                  && target.charAt(offset) == CARRIAGE_RETURN && target.charAt(offset + 1) == LINE_FEED)) return -1;
+                  && target.charAt(offset) == CARRIAGE_RETURN && target.charAt(offset + 1) == LINE_FEED))
+              {
+                return -1;
+              }
             }
             break;
 
           case 'A':
-            if (offset != con.start) return -1;
+            if (offset != con.start)
+            {
+              return -1;
+            }
             break;
 
           case 'Z':
             if (!(offset == con.limit || offset + 1 == con.limit && isEOLChar(target.charAt(offset)) || offset + 2 == con.limit
-                && target.charAt(offset) == CARRIAGE_RETURN && target.charAt(offset + 1) == LINE_FEED)) return -1;
+                && target.charAt(offset) == CARRIAGE_RETURN && target.charAt(offset + 1) == LINE_FEED))
+            {
+              return -1;
+            }
             break;
 
           case 'z':
-            if (offset != con.limit) return -1;
+            if (offset != con.limit)
+            {
+              return -1;
+            }
             break;
 
           case 'b':
-            if (con.length == 0) return -1;
+            if (con.length == 0)
+            {
+              return -1;
+            }
             {
               int after = getWordType(target, con.start, con.limit, offset, opts);
-              if (after == WT_IGNORE) return -1;
+              if (after == WT_IGNORE)
+              {
+                return -1;
+              }
               int before = getPreviousWordType(target, con.start, con.limit, offset, opts);
-              if (after == before) return -1;
+              if (after == before)
+              {
+                return -1;
+              }
             }
             break;
 
           case 'B':
             if (con.length == 0)
+            {
               go = true;
+            }
             else
             {
               int after = getWordType(target, con.start, con.limit, offset, opts);
               go = after == WT_IGNORE || after == getPreviousWordType(target, con.start, con.limit, offset, opts);
             }
-            if (!go) return -1;
+            if (!go)
+            {
+              return -1;
+            }
             break;
 
           case '<':
-            if (con.length == 0 || offset == con.limit) return -1;
+            if (con.length == 0 || offset == con.limit)
+            {
+              return -1;
+            }
             if (getWordType(target, con.start, con.limit, offset, opts) != WT_LETTER
-                || getPreviousWordType(target, con.start, con.limit, offset, opts) != WT_OTHER) return -1;
+                || getPreviousWordType(target, con.start, con.limit, offset, opts) != WT_OTHER)
+            {
+              return -1;
+            }
             break;
 
           case '>':
-            if (con.length == 0 || offset == con.start) return -1;
+            if (con.length == 0 || offset == con.start)
+            {
+              return -1;
+            }
             if (getWordType(target, con.start, con.limit, offset, opts) != WT_OTHER
-                || getPreviousWordType(target, con.start, con.limit, offset, opts) != WT_LETTER) return -1;
+                || getPreviousWordType(target, con.start, con.limit, offset, opts) != WT_LETTER)
+            {
+              return -1;
+            }
             break;
           } // switch anchor type
           op = op.next;
@@ -2641,21 +3259,32 @@ public final class RegEx
         case Op.BACKREFERENCE:
         {
           int refno = op.getData();
-          if (refno <= 0 || refno >= this.nofparen)
+          if (refno <= 0 || refno >= nofparen)
+          {
             throw new RuntimeException("Internal Error: Reference number must be more than zero: " + refno);
-          if (con.match.getBeginning(refno) < 0 || con.match.getEnd(refno) < 0) return -1; // ********
+          }
+          if (con.match.getBeginning(refno) < 0 || con.match.getEnd(refno) < 0)
+          {
+            return -1; // ********
+          }
           int o2 = con.match.getBeginning(refno);
           int literallen = con.match.getEnd(refno) - o2;
           if (!isSet(opts, IGNORE_CASE))
           {
             if (dx > 0)
             {
-              if (!regionMatches(target, offset, con.limit, o2, literallen)) return -1;
+              if (!regionMatches(target, offset, con.limit, o2, literallen))
+              {
+                return -1;
+              }
               offset += literallen;
             }
             else
             {
-              if (!regionMatches(target, offset - literallen, con.limit, o2, literallen)) return -1;
+              if (!regionMatches(target, offset - literallen, con.limit, o2, literallen))
+              {
+                return -1;
+              }
               offset -= literallen;
             }
           }
@@ -2663,12 +3292,18 @@ public final class RegEx
           {
             if (dx > 0)
             {
-              if (!regionMatchesIgnoreCase(target, offset, con.limit, o2, literallen)) return -1;
+              if (!regionMatchesIgnoreCase(target, offset, con.limit, o2, literallen))
+              {
+                return -1;
+              }
               offset += literallen;
             }
             else
             {
-              if (!regionMatchesIgnoreCase(target, offset - literallen, con.limit, o2, literallen)) return -1;
+              if (!regionMatchesIgnoreCase(target, offset - literallen, con.limit, o2, literallen))
+              {
+                return -1;
+              }
               offset -= literallen;
             }
           }
@@ -2683,12 +3318,18 @@ public final class RegEx
           {
             if (dx > 0)
             {
-              if (!regionMatches(target, offset, con.limit, literal, literallen)) return -1;
+              if (!regionMatches(target, offset, con.limit, literal, literallen))
+              {
+                return -1;
+              }
               offset += literallen;
             }
             else
             {
-              if (!regionMatches(target, offset - literallen, con.limit, literal, literallen)) return -1;
+              if (!regionMatches(target, offset - literallen, con.limit, literal, literallen))
+              {
+                return -1;
+              }
               offset -= literallen;
             }
           }
@@ -2696,12 +3337,18 @@ public final class RegEx
           {
             if (dx > 0)
             {
-              if (!regionMatchesIgnoreCase(target, offset, con.limit, literal, literallen)) return -1;
+              if (!regionMatchesIgnoreCase(target, offset, con.limit, literal, literallen))
+              {
+                return -1;
+              }
               offset += literallen;
             }
             else
             {
-              if (!regionMatchesIgnoreCase(target, offset - literallen, con.limit, literal, literallen)) return -1;
+              if (!regionMatchesIgnoreCase(target, offset - literallen, con.limit, literal, literallen))
+              {
+                return -1;
+              }
               offset -= literallen;
             }
           }
@@ -2729,17 +3376,26 @@ public final class RegEx
               break;
             }
           }
-          int ret = this.matchString(con, op.getChild(), offset, dx, opts);
-          if (id >= 0) con.offsets[id] = -1;
-          if (ret >= 0) return ret;
+          int ret = matchString(con, op.getChild(), offset, dx, opts);
+          if (id >= 0)
+          {
+            con.offsets[id] = -1;
+          }
+          if (ret >= 0)
+          {
+            return ret;
+          }
           op = op.next;
         }
           break;
 
         case Op.QUESTION:
         {
-          int ret = this.matchString(con, op.getChild(), offset, dx, opts);
-          if (ret >= 0) return ret;
+          int ret = matchString(con, op.getChild(), offset, dx, opts);
+          if (ret >= 0)
+          {
+            return ret;
+          }
           op = op.next;
         }
           break;
@@ -2747,8 +3403,11 @@ public final class RegEx
         case Op.NONGREEDYCLOSURE:
         case Op.NONGREEDYQUESTION:
         {
-          int ret = this.matchString(con, op.next, offset, dx, opts);
-          if (ret >= 0) return ret;
+          int ret = matchString(con, op.next, offset, dx, opts);
+          if (ret >= 0)
+          {
+            return ret;
+          }
           op = op.getChild();
         }
           break;
@@ -2756,12 +3415,15 @@ public final class RegEx
         case Op.UNION:
           for (int i = 0; i < op.size(); i++)
           {
-            int ret = this.matchString(con, op.elementAt(i), offset, dx, opts);
+            int ret = matchString(con, op.elementAt(i), offset, dx, opts);
             if (DEBUG)
             {
               System.err.println("UNION: " + i + ", ret=" + ret);
             }
-            if (ret >= 0) return ret;
+            if (ret >= 0)
+            {
+              return ret;
+            }
           }
           return -1;
 
@@ -2771,8 +3433,11 @@ public final class RegEx
           {
             int save = con.match.getBeginning(refno);
             con.match.setBeginning(refno, offset);
-            int ret = this.matchString(con, op.next, offset, dx, opts);
-            if (ret < 0) con.match.setBeginning(refno, save);
+            int ret = matchString(con, op.next, offset, dx, opts);
+            if (ret < 0)
+            {
+              con.match.setBeginning(refno, save);
+            }
             return ret;
           }
           else if (con.match != null && refno < 0)
@@ -2780,34 +3445,52 @@ public final class RegEx
             int index = -refno;
             int save = con.match.getEnd(index);
             con.match.setEnd(index, offset);
-            int ret = this.matchString(con, op.next, offset, dx, opts);
-            if (ret < 0) con.match.setEnd(index, save);
+            int ret = matchString(con, op.next, offset, dx, opts);
+            if (ret < 0)
+            {
+              con.match.setEnd(index, save);
+            }
             return ret;
           }
           op = op.next;
           break;
 
         case Op.LOOKAHEAD:
-          if (0 > this.matchString(con, op.getChild(), offset, 1, opts)) return -1;
+          if (0 > matchString(con, op.getChild(), offset, 1, opts))
+          {
+            return -1;
+          }
           op = op.next;
           break;
         case Op.NEGATIVELOOKAHEAD:
-          if (0 <= this.matchString(con, op.getChild(), offset, 1, opts)) return -1;
+          if (0 <= matchString(con, op.getChild(), offset, 1, opts))
+          {
+            return -1;
+          }
           op = op.next;
           break;
         case Op.LOOKBEHIND:
-          if (0 > this.matchString(con, op.getChild(), offset, -1, opts)) return -1;
+          if (0 > matchString(con, op.getChild(), offset, -1, opts))
+          {
+            return -1;
+          }
           op = op.next;
           break;
         case Op.NEGATIVELOOKBEHIND:
-          if (0 <= this.matchString(con, op.getChild(), offset, -1, opts)) return -1;
+          if (0 <= matchString(con, op.getChild(), offset, -1, opts))
+          {
+            return -1;
+          }
           op = op.next;
           break;
 
         case Op.INDEPENDENT:
         {
-          int ret = this.matchString(con, op.getChild(), offset, dx, opts);
-          if (ret < 0) return ret;
+          int ret = matchString(con, op.getChild(), offset, dx, opts);
+          if (ret < 0)
+          {
+            return ret;
+          }
           offset = ret;
           op = op.next;
         }
@@ -2820,8 +3503,11 @@ public final class RegEx
           localopts &= ~op.getData2();
           // System.err.println("MODIFIER: "+Integer.toString(opts, 16)+" ->
           // "+Integer.toString(localopts, 16));
-          int ret = this.matchString(con, op.getChild(), offset, dx, localopts);
-          if (ret < 0) return ret;
+          int ret = matchString(con, op.getChild(), offset, dx, localopts);
+          if (ret < 0)
+          {
+            return ret;
+          }
           offset = ret;
           op = op.next;
         }
@@ -2833,13 +3519,15 @@ public final class RegEx
           boolean matchp = false;
           if (cop.refNumber > 0)
           {
-            if (cop.refNumber >= this.nofparen)
+            if (cop.refNumber >= nofparen)
+            {
               throw new RuntimeException("Internal Error: Reference number must be more than zero: " + cop.refNumber);
+            }
             matchp = con.match.getBeginning(cop.refNumber) >= 0 && con.match.getEnd(cop.refNumber) >= 0;
           }
           else
           {
-            matchp = 0 <= this.matchString(con, cop.condition, offset, dx, opts);
+            matchp = 0 <= matchString(con, cop.condition, offset, dx, opts);
           }
 
           if (matchp)
@@ -2867,25 +3555,36 @@ public final class RegEx
     {
       int ret = getWordType(target, begin, end, --offset, opts);
       while (ret == WT_IGNORE)
+      {
         ret = getWordType(target, begin, end, --offset, opts);
+      }
       return ret;
     }
 
     private static final int getWordType(String target, int begin, int end, int offset, int opts)
     {
-      if (offset < begin || offset >= end) return WT_OTHER;
+      if (offset < begin || offset >= end)
+      {
+        return WT_OTHER;
+      }
       return getWordType0(target.charAt(offset), opts);
     }
 
     private static final boolean regionMatches(String text, int offset, int limit, String part, int partlen)
     {
-      if (limit - offset < partlen) return false;
+      if (limit - offset < partlen)
+      {
+        return false;
+      }
       return text.regionMatches(offset, part, 0, partlen);
     }
 
     private static final boolean regionMatches(String text, int offset, int limit, int offset2, int partlen)
     {
-      if (limit - offset < partlen) return false;
+      if (limit - offset < partlen)
+      {
+        return false;
+      }
       return text.regionMatches(offset, text, offset2, partlen);
     }
 
@@ -2896,7 +3595,10 @@ public final class RegEx
 
     private static final boolean regionMatchesIgnoreCase(String text, int offset, int limit, int offset2, int partlen)
     {
-      if (limit - offset < partlen) return false;
+      if (limit - offset < partlen)
+      {
+        return false;
+      }
       return text.regionMatches(true, offset, text, offset2, partlen);
     }
 
@@ -2924,32 +3626,38 @@ public final class RegEx
 
       synchronized (this)
       {
-        if (this.operations == null) this.prepare();
-        if (this.context == null) this.context = new Context();
+        if (operations == null)
+        {
+          prepare();
+        }
+        if (context == null)
+        {
+          context = new Context();
+        }
       }
       Context con = null;
-      synchronized (this.context)
+      synchronized (context)
       {
-        con = this.context.inuse ? new Context() : this.context;
-        con.reset(target, start, end, this.numberOfClosures);
+        con = context.inuse ? new Context() : context;
+        con.reset(target, start, end, numberOfClosures);
       }
       if (match != null)
       {
-        match.setNumberOfGroups(this.nofparen);
+        match.setNumberOfGroups(nofparen);
         match.setSource(target);
       }
-      else if (this.hasBackReferences)
+      else if (hasBackReferences)
       {
         match = new Match();
-        match.setNumberOfGroups(this.nofparen);
+        match.setNumberOfGroups(nofparen);
         // Need not to call setSource() because
         // a caller can not access this match instance.
       }
       con.match = match;
 
-      if (RegularExpression.isSet(this.options, XMLSCHEMA_MODE))
+      if (RegularExpression.isSet(options, XMLSCHEMA_MODE))
       {
-        int matchEnd = this.matchCharacterIterator(con, this.operations, con.start, 1, this.options);
+        int matchEnd = matchCharacterIterator(con, operations, con.start, 1, options);
         // System.err.println("DEBUG: matchEnd="+matchEnd);
         if (matchEnd == con.limit)
         {
@@ -2967,16 +3675,16 @@ public final class RegEx
       /*
        * The pattern has only fixed string. The engine uses Boyer-Moore.
        */
-      if (this.fixedStringOnly)
+      if (fixedStringOnly)
       {
         // System.err.println("DEBUG: fixed-only: "+this.fixedString);
-        int o = this.fixedStringTable.matches(target, con.start, con.limit);
+        int o = fixedStringTable.matches(target, con.start, con.limit);
         if (o >= 0)
         {
           if (con.match != null)
           {
             con.match.setBeginning(0, o);
-            con.match.setEnd(0, o + this.fixedString.length());
+            con.match.setEnd(0, o + fixedString.length());
           }
           con.inuse = false;
           return true;
@@ -2989,9 +3697,9 @@ public final class RegEx
        * The pattern contains a fixed string. The engine checks with Boyer-Moore whether the text contains the fixed
        * string or not. If not, it return with false.
        */
-      if (this.fixedString != null)
+      if (fixedString != null)
       {
-        int o = this.fixedStringTable.matches(target, con.start, con.limit);
+        int o = fixedStringTable.matches(target, con.start, con.limit);
         if (o < 0)
         {
           // System.err.println("Non-match in fixed-string search.");
@@ -3000,19 +3708,19 @@ public final class RegEx
         }
       }
 
-      int limit = con.limit - this.minlength;
+      int limit = con.limit - minlength;
       int matchStart;
       int matchEnd = -1;
 
       /*
        * Checks whether the expression starts with ".*".
        */
-      if (this.operations != null && this.operations.type == Op.CLOSURE && this.operations.getChild().type == Op.DOT)
+      if (operations != null && operations.type == Op.CLOSURE && operations.getChild().type == Op.DOT)
       {
-        if (isSet(this.options, SINGLE_LINE))
+        if (isSet(options, SINGLE_LINE))
         {
           matchStart = con.start;
-          matchEnd = this.matchCharacterIterator(con, this.operations, con.start, 1, this.options);
+          matchEnd = matchCharacterIterator(con, operations, con.start, 1, options);
         }
         else
         {
@@ -3028,8 +3736,10 @@ public final class RegEx
             {
               if (previousIsEOL)
               {
-                if (0 <= (matchEnd = this.matchCharacterIterator(con, this.operations, matchStart, 1, this.options)))
+                if (0 <= (matchEnd = matchCharacterIterator(con, operations, matchStart, 1, options)))
+                {
                   break;
+                }
               }
               previousIsEOL = false;
             }
@@ -3040,32 +3750,43 @@ public final class RegEx
       /*
        * Optimization against the first character.
        */
-      else if (this.firstChar != null)
+      else if (firstChar != null)
       {
         // System.err.println("DEBUG: with firstchar-matching:
         // "+this.firstChar);
-        RangeToken range = this.firstChar;
-        if (RegularExpression.isSet(this.options, IGNORE_CASE))
+        RangeToken range = firstChar;
+        if (RegularExpression.isSet(options, IGNORE_CASE))
         {
-          range = this.firstChar.getCaseInsensitiveToken();
+          range = firstChar.getCaseInsensitiveToken();
           for (matchStart = con.start; matchStart <= limit; matchStart++)
           {
             int ch = target.setIndex(matchStart);
             if (REUtil.isHighSurrogate(ch) && matchStart + 1 < con.limit)
             {
               ch = REUtil.composeFromSurrogates(ch, target.setIndex(matchStart + 1));
-              if (!range.match(ch)) continue;
+              if (!range.match(ch))
+              {
+                continue;
+              }
             }
             else
             {
               if (!range.match(ch))
               {
                 char ch1 = Character.toUpperCase((char)ch);
-                if (!range.match(ch1)) if (!range.match(Character.toLowerCase(ch1))) continue;
+                if (!range.match(ch1))
+                {
+                  if (!range.match(Character.toLowerCase(ch1)))
+                  {
+                    continue;
+                  }
+                }
               }
             }
-            if (0 <= (matchEnd = this.matchCharacterIterator(con, this.operations, matchStart, 1, this.options)))
+            if (0 <= (matchEnd = matchCharacterIterator(con, operations, matchStart, 1, options)))
+            {
               break;
+            }
           }
         }
         else
@@ -3074,10 +3795,17 @@ public final class RegEx
           {
             int ch = target.setIndex(matchStart);
             if (REUtil.isHighSurrogate(ch) && matchStart + 1 < con.limit)
+            {
               ch = REUtil.composeFromSurrogates(ch, target.setIndex(matchStart + 1));
-            if (!range.match(ch)) continue;
-            if (0 <= (matchEnd = this.matchCharacterIterator(con, this.operations, matchStart, 1, this.options)))
+            }
+            if (!range.match(ch))
+            {
+              continue;
+            }
+            if (0 <= (matchEnd = matchCharacterIterator(con, operations, matchStart, 1, options)))
+            {
               break;
+            }
           }
         }
       }
@@ -3089,7 +3817,10 @@ public final class RegEx
       {
         for (matchStart = con.start; matchStart <= limit; matchStart++)
         {
-          if (0 <= (matchEnd = this.matchCharacterIterator(con, this.operations, matchStart, 1, this.options))) break;
+          if (0 <= (matchEnd = matchCharacterIterator(con, operations, matchStart, 1, options)))
+          {
+            break;
+          }
         }
       }
 
@@ -3120,8 +3851,14 @@ public final class RegEx
 
       while (true)
       {
-        if (op == null) return isSet(opts, XMLSCHEMA_MODE) && offset != con.limit ? -1 : offset;
-        if (offset > con.limit || offset < con.start) return -1;
+        if (op == null)
+        {
+          return isSet(opts, XMLSCHEMA_MODE) && offset != con.limit ? -1 : offset;
+        }
+        if (offset > con.limit || offset < con.start)
+        {
+          return -1;
+        }
         switch (op.type)
         {
         case Op.CHAR:
@@ -3130,13 +3867,19 @@ public final class RegEx
             int ch = op.getData();
             if (dx > 0)
             {
-              if (offset >= con.limit || !matchIgnoreCase(ch, target.setIndex(offset))) return -1;
+              if (offset >= con.limit || !matchIgnoreCase(ch, target.setIndex(offset)))
+              {
+                return -1;
+              }
               offset++;
             }
             else
             {
               int o1 = offset - 1;
-              if (o1 >= con.limit || o1 < 0 || !matchIgnoreCase(ch, target.setIndex(o1))) return -1;
+              if (o1 >= con.limit || o1 < 0 || !matchIgnoreCase(ch, target.setIndex(o1)))
+              {
+                return -1;
+              }
               offset = o1;
             }
           }
@@ -3145,13 +3888,19 @@ public final class RegEx
             int ch = op.getData();
             if (dx > 0)
             {
-              if (offset >= con.limit || ch != target.setIndex(offset)) return -1;
+              if (offset >= con.limit || ch != target.setIndex(offset))
+              {
+                return -1;
+              }
               offset++;
             }
             else
             {
               int o1 = offset - 1;
-              if (o1 >= con.limit || o1 < 0 || ch != target.setIndex(o1)) return -1;
+              if (o1 >= con.limit || o1 < 0 || ch != target.setIndex(o1))
+              {
+                return -1;
+              }
               offset = o1;
             }
           }
@@ -3161,34 +3910,56 @@ public final class RegEx
         case Op.DOT:
           if (dx > 0)
           {
-            if (offset >= con.limit) return -1;
+            if (offset >= con.limit)
+            {
+              return -1;
+            }
             int ch = target.setIndex(offset);
             if (isSet(opts, SINGLE_LINE))
             {
-              if (REUtil.isHighSurrogate(ch) && offset + 1 < con.limit) offset++;
+              if (REUtil.isHighSurrogate(ch) && offset + 1 < con.limit)
+              {
+                offset++;
+              }
             }
             else
             {
               if (REUtil.isHighSurrogate(ch) && offset + 1 < con.limit)
+              {
                 ch = REUtil.composeFromSurrogates(ch, target.setIndex(++offset));
-              if (isEOLChar(ch)) return -1;
+              }
+              if (isEOLChar(ch))
+              {
+                return -1;
+              }
             }
             offset++;
           }
           else
           {
             int o1 = offset - 1;
-            if (o1 >= con.limit || o1 < 0) return -1;
+            if (o1 >= con.limit || o1 < 0)
+            {
+              return -1;
+            }
             int ch = target.setIndex(o1);
             if (isSet(opts, SINGLE_LINE))
             {
-              if (REUtil.isLowSurrogate(ch) && o1 - 1 >= 0) o1--;
+              if (REUtil.isLowSurrogate(ch) && o1 - 1 >= 0)
+              {
+                o1--;
+              }
             }
             else
             {
               if (REUtil.isLowSurrogate(ch) && o1 - 1 >= 0)
+              {
                 ch = REUtil.composeFromSurrogates(target.setIndex(--o1), ch);
-              if (!isEOLChar(ch)) return -1;
+              }
+              if (!isEOLChar(ch))
+              {
+                return -1;
+              }
             }
             offset = o1;
           }
@@ -3199,49 +3970,76 @@ public final class RegEx
         case Op.NRANGE:
           if (dx > 0)
           {
-            if (offset >= con.limit) return -1;
+            if (offset >= con.limit)
+            {
+              return -1;
+            }
             int ch = target.setIndex(offset);
             if (REUtil.isHighSurrogate(ch) && offset + 1 < con.limit)
+            {
               ch = REUtil.composeFromSurrogates(ch, target.setIndex(++offset));
+            }
             RangeToken tok = op.getToken();
             if (isSet(opts, IGNORE_CASE))
             {
               tok = tok.getCaseInsensitiveToken();
               if (!tok.match(ch))
               {
-                if (ch >= 0x10000) return -1;
+                if (ch >= 0x10000)
+                {
+                  return -1;
+                }
                 char uch;
                 if (!tok.match(uch = Character.toUpperCase((char)ch)) && !tok.match(Character.toLowerCase(uch)))
+                {
                   return -1;
+                }
               }
             }
             else
             {
-              if (!tok.match(ch)) return -1;
+              if (!tok.match(ch))
+              {
+                return -1;
+              }
             }
             offset++;
           }
           else
           {
             int o1 = offset - 1;
-            if (o1 >= con.limit || o1 < 0) return -1;
+            if (o1 >= con.limit || o1 < 0)
+            {
+              return -1;
+            }
             int ch = target.setIndex(o1);
-            if (REUtil.isLowSurrogate(ch) && o1 - 1 >= 0) ch = REUtil.composeFromSurrogates(target.setIndex(--o1), ch);
+            if (REUtil.isLowSurrogate(ch) && o1 - 1 >= 0)
+            {
+              ch = REUtil.composeFromSurrogates(target.setIndex(--o1), ch);
+            }
             RangeToken tok = op.getToken();
             if (isSet(opts, IGNORE_CASE))
             {
               tok = tok.getCaseInsensitiveToken();
               if (!tok.match(ch))
               {
-                if (ch >= 0x10000) return -1;
+                if (ch >= 0x10000)
+                {
+                  return -1;
+                }
                 char uch;
                 if (!tok.match(uch = Character.toUpperCase((char)ch)) && !tok.match(Character.toLowerCase(uch)))
+                {
                   return -1;
+                }
               }
             }
             else
             {
-              if (!tok.match(ch)) return -1;
+              if (!tok.match(ch))
+              {
+                return -1;
+              }
             }
             offset = o1;
           }
@@ -3255,76 +4053,125 @@ public final class RegEx
           case '^':
             if (isSet(opts, MULTIPLE_LINES))
             {
-              if (!(offset == con.start || offset > con.start && isEOLChar(target.setIndex(offset - 1)))) return -1;
+              if (!(offset == con.start || offset > con.start && isEOLChar(target.setIndex(offset - 1))))
+              {
+                return -1;
+              }
             }
             else
             {
-              if (offset != con.start) return -1;
+              if (offset != con.start)
+              {
+                return -1;
+              }
             }
             break;
 
           case '@': // Internal use only.
             // The @ always matches line beginnings.
-            if (!(offset == con.start || offset > con.start && isEOLChar(target.setIndex(offset - 1)))) return -1;
+            if (!(offset == con.start || offset > con.start && isEOLChar(target.setIndex(offset - 1))))
+            {
+              return -1;
+            }
             break;
 
           case '$':
             if (isSet(opts, MULTIPLE_LINES))
             {
-              if (!(offset == con.limit || offset < con.limit && isEOLChar(target.setIndex(offset)))) return -1;
+              if (!(offset == con.limit || offset < con.limit && isEOLChar(target.setIndex(offset))))
+              {
+                return -1;
+              }
             }
             else
             {
               if (!(offset == con.limit || offset + 1 == con.limit && isEOLChar(target.setIndex(offset)) || offset + 2 == con.limit
                   && target.setIndex(offset) == CARRIAGE_RETURN && target.setIndex(offset + 1) == LINE_FEED))
+              {
                 return -1;
+              }
             }
             break;
 
           case 'A':
-            if (offset != con.start) return -1;
+            if (offset != con.start)
+            {
+              return -1;
+            }
             break;
 
           case 'Z':
             if (!(offset == con.limit || offset + 1 == con.limit && isEOLChar(target.setIndex(offset)) || offset + 2 == con.limit
-                && target.setIndex(offset) == CARRIAGE_RETURN && target.setIndex(offset + 1) == LINE_FEED)) return -1;
+                && target.setIndex(offset) == CARRIAGE_RETURN && target.setIndex(offset + 1) == LINE_FEED))
+            {
+              return -1;
+            }
             break;
 
           case 'z':
-            if (offset != con.limit) return -1;
+            if (offset != con.limit)
+            {
+              return -1;
+            }
             break;
 
           case 'b':
-            if (con.length == 0) return -1;
+            if (con.length == 0)
+            {
+              return -1;
+            }
             {
               int after = getWordType(target, con.start, con.limit, offset, opts);
-              if (after == WT_IGNORE) return -1;
+              if (after == WT_IGNORE)
+              {
+                return -1;
+              }
               int before = getPreviousWordType(target, con.start, con.limit, offset, opts);
-              if (after == before) return -1;
+              if (after == before)
+              {
+                return -1;
+              }
             }
             break;
 
           case 'B':
             if (con.length == 0)
+            {
               go = true;
+            }
             else
             {
               int after = getWordType(target, con.start, con.limit, offset, opts);
               go = after == WT_IGNORE || after == getPreviousWordType(target, con.start, con.limit, offset, opts);
             }
-            if (!go) return -1;
+            if (!go)
+            {
+              return -1;
+            }
             break;
 
           case '<':
-            if (con.length == 0 || offset == con.limit) return -1;
+            if (con.length == 0 || offset == con.limit)
+            {
+              return -1;
+            }
             if (getWordType(target, con.start, con.limit, offset, opts) != WT_LETTER
-                || getPreviousWordType(target, con.start, con.limit, offset, opts) != WT_OTHER) return -1;
+                || getPreviousWordType(target, con.start, con.limit, offset, opts) != WT_OTHER)
+            {
+              return -1;
+            }
             break;
 
           case '>':
-            if (con.length == 0 || offset == con.start) return -1;
+            if (con.length == 0 || offset == con.start)
+            {
+              return -1;
+            }
             if (getWordType(target, con.start, con.limit, offset, opts) != WT_OTHER
-                || getPreviousWordType(target, con.start, con.limit, offset, opts) != WT_LETTER) return -1;
+                || getPreviousWordType(target, con.start, con.limit, offset, opts) != WT_LETTER)
+            {
+              return -1;
+            }
             break;
           } // switch anchor type
           op = op.next;
@@ -3333,21 +4180,32 @@ public final class RegEx
         case Op.BACKREFERENCE:
         {
           int refno = op.getData();
-          if (refno <= 0 || refno >= this.nofparen)
+          if (refno <= 0 || refno >= nofparen)
+          {
             throw new RuntimeException("Internal Error: Reference number must be more than zero: " + refno);
-          if (con.match.getBeginning(refno) < 0 || con.match.getEnd(refno) < 0) return -1; // ********
+          }
+          if (con.match.getBeginning(refno) < 0 || con.match.getEnd(refno) < 0)
+          {
+            return -1; // ********
+          }
           int o2 = con.match.getBeginning(refno);
           int literallen = con.match.getEnd(refno) - o2;
           if (!isSet(opts, IGNORE_CASE))
           {
             if (dx > 0)
             {
-              if (!regionMatches(target, offset, con.limit, o2, literallen)) return -1;
+              if (!regionMatches(target, offset, con.limit, o2, literallen))
+              {
+                return -1;
+              }
               offset += literallen;
             }
             else
             {
-              if (!regionMatches(target, offset - literallen, con.limit, o2, literallen)) return -1;
+              if (!regionMatches(target, offset - literallen, con.limit, o2, literallen))
+              {
+                return -1;
+              }
               offset -= literallen;
             }
           }
@@ -3355,12 +4213,18 @@ public final class RegEx
           {
             if (dx > 0)
             {
-              if (!regionMatchesIgnoreCase(target, offset, con.limit, o2, literallen)) return -1;
+              if (!regionMatchesIgnoreCase(target, offset, con.limit, o2, literallen))
+              {
+                return -1;
+              }
               offset += literallen;
             }
             else
             {
-              if (!regionMatchesIgnoreCase(target, offset - literallen, con.limit, o2, literallen)) return -1;
+              if (!regionMatchesIgnoreCase(target, offset - literallen, con.limit, o2, literallen))
+              {
+                return -1;
+              }
               offset -= literallen;
             }
           }
@@ -3375,12 +4239,18 @@ public final class RegEx
           {
             if (dx > 0)
             {
-              if (!regionMatches(target, offset, con.limit, literal, literallen)) return -1;
+              if (!regionMatches(target, offset, con.limit, literal, literallen))
+              {
+                return -1;
+              }
               offset += literallen;
             }
             else
             {
-              if (!regionMatches(target, offset - literallen, con.limit, literal, literallen)) return -1;
+              if (!regionMatches(target, offset - literallen, con.limit, literal, literallen))
+              {
+                return -1;
+              }
               offset -= literallen;
             }
           }
@@ -3388,12 +4258,18 @@ public final class RegEx
           {
             if (dx > 0)
             {
-              if (!regionMatchesIgnoreCase(target, offset, con.limit, literal, literallen)) return -1;
+              if (!regionMatchesIgnoreCase(target, offset, con.limit, literal, literallen))
+              {
+                return -1;
+              }
               offset += literallen;
             }
             else
             {
-              if (!regionMatchesIgnoreCase(target, offset - literallen, con.limit, literal, literallen)) return -1;
+              if (!regionMatchesIgnoreCase(target, offset - literallen, con.limit, literal, literallen))
+              {
+                return -1;
+              }
               offset -= literallen;
             }
           }
@@ -3422,17 +4298,26 @@ public final class RegEx
             }
           }
 
-          int ret = this.matchCharacterIterator(con, op.getChild(), offset, dx, opts);
-          if (id >= 0) con.offsets[id] = -1;
-          if (ret >= 0) return ret;
+          int ret = matchCharacterIterator(con, op.getChild(), offset, dx, opts);
+          if (id >= 0)
+          {
+            con.offsets[id] = -1;
+          }
+          if (ret >= 0)
+          {
+            return ret;
+          }
           op = op.next;
         }
           break;
 
         case Op.QUESTION:
         {
-          int ret = this.matchCharacterIterator(con, op.getChild(), offset, dx, opts);
-          if (ret >= 0) return ret;
+          int ret = matchCharacterIterator(con, op.getChild(), offset, dx, opts);
+          if (ret >= 0)
+          {
+            return ret;
+          }
           op = op.next;
         }
           break;
@@ -3440,8 +4325,11 @@ public final class RegEx
         case Op.NONGREEDYCLOSURE:
         case Op.NONGREEDYQUESTION:
         {
-          int ret = this.matchCharacterIterator(con, op.next, offset, dx, opts);
-          if (ret >= 0) return ret;
+          int ret = matchCharacterIterator(con, op.next, offset, dx, opts);
+          if (ret >= 0)
+          {
+            return ret;
+          }
           op = op.getChild();
         }
           break;
@@ -3449,12 +4337,15 @@ public final class RegEx
         case Op.UNION:
           for (int i = 0; i < op.size(); i++)
           {
-            int ret = this.matchCharacterIterator(con, op.elementAt(i), offset, dx, opts);
+            int ret = matchCharacterIterator(con, op.elementAt(i), offset, dx, opts);
             if (DEBUG)
             {
               System.err.println("UNION: " + i + ", ret=" + ret);
             }
-            if (ret >= 0) return ret;
+            if (ret >= 0)
+            {
+              return ret;
+            }
           }
           return -1;
 
@@ -3464,8 +4355,11 @@ public final class RegEx
           {
             int save = con.match.getBeginning(refno);
             con.match.setBeginning(refno, offset);
-            int ret = this.matchCharacterIterator(con, op.next, offset, dx, opts);
-            if (ret < 0) con.match.setBeginning(refno, save);
+            int ret = matchCharacterIterator(con, op.next, offset, dx, opts);
+            if (ret < 0)
+            {
+              con.match.setBeginning(refno, save);
+            }
             return ret;
           }
           else if (con.match != null && refno < 0)
@@ -3473,34 +4367,52 @@ public final class RegEx
             int index = -refno;
             int save = con.match.getEnd(index);
             con.match.setEnd(index, offset);
-            int ret = this.matchCharacterIterator(con, op.next, offset, dx, opts);
-            if (ret < 0) con.match.setEnd(index, save);
+            int ret = matchCharacterIterator(con, op.next, offset, dx, opts);
+            if (ret < 0)
+            {
+              con.match.setEnd(index, save);
+            }
             return ret;
           }
           op = op.next;
           break;
 
         case Op.LOOKAHEAD:
-          if (0 > this.matchCharacterIterator(con, op.getChild(), offset, 1, opts)) return -1;
+          if (0 > matchCharacterIterator(con, op.getChild(), offset, 1, opts))
+          {
+            return -1;
+          }
           op = op.next;
           break;
         case Op.NEGATIVELOOKAHEAD:
-          if (0 <= this.matchCharacterIterator(con, op.getChild(), offset, 1, opts)) return -1;
+          if (0 <= matchCharacterIterator(con, op.getChild(), offset, 1, opts))
+          {
+            return -1;
+          }
           op = op.next;
           break;
         case Op.LOOKBEHIND:
-          if (0 > this.matchCharacterIterator(con, op.getChild(), offset, -1, opts)) return -1;
+          if (0 > matchCharacterIterator(con, op.getChild(), offset, -1, opts))
+          {
+            return -1;
+          }
           op = op.next;
           break;
         case Op.NEGATIVELOOKBEHIND:
-          if (0 <= this.matchCharacterIterator(con, op.getChild(), offset, -1, opts)) return -1;
+          if (0 <= matchCharacterIterator(con, op.getChild(), offset, -1, opts))
+          {
+            return -1;
+          }
           op = op.next;
           break;
 
         case Op.INDEPENDENT:
         {
-          int ret = this.matchCharacterIterator(con, op.getChild(), offset, dx, opts);
-          if (ret < 0) return ret;
+          int ret = matchCharacterIterator(con, op.getChild(), offset, dx, opts);
+          if (ret < 0)
+          {
+            return ret;
+          }
           offset = ret;
           op = op.next;
         }
@@ -3513,8 +4425,11 @@ public final class RegEx
           localopts &= ~op.getData2();
           // System.err.println("MODIFIER: "+Integer.toString(opts, 16)+" ->
           // "+Integer.toString(localopts, 16));
-          int ret = this.matchCharacterIterator(con, op.getChild(), offset, dx, localopts);
-          if (ret < 0) return ret;
+          int ret = matchCharacterIterator(con, op.getChild(), offset, dx, localopts);
+          if (ret < 0)
+          {
+            return ret;
+          }
           offset = ret;
           op = op.next;
         }
@@ -3526,13 +4441,15 @@ public final class RegEx
           boolean matchp = false;
           if (cop.refNumber > 0)
           {
-            if (cop.refNumber >= this.nofparen)
+            if (cop.refNumber >= nofparen)
+            {
               throw new RuntimeException("Internal Error: Reference number must be more than zero: " + cop.refNumber);
+            }
             matchp = con.match.getBeginning(cop.refNumber) >= 0 && con.match.getEnd(cop.refNumber) >= 0;
           }
           else
           {
-            matchp = 0 <= this.matchCharacterIterator(con, cop.condition, offset, dx, opts);
+            matchp = 0 <= matchCharacterIterator(con, cop.condition, offset, dx, opts);
           }
 
           if (matchp)
@@ -3560,36 +4477,59 @@ public final class RegEx
     {
       int ret = getWordType(target, begin, end, --offset, opts);
       while (ret == WT_IGNORE)
+      {
         ret = getWordType(target, begin, end, --offset, opts);
+      }
       return ret;
     }
 
     private static final int getWordType(CharacterIterator target, int begin, int end, int offset, int opts)
     {
-      if (offset < begin || offset >= end) return WT_OTHER;
+      if (offset < begin || offset >= end)
+      {
+        return WT_OTHER;
+      }
       return getWordType0(target.setIndex(offset), opts);
     }
 
     private static final boolean regionMatches(CharacterIterator target, int offset, int limit, String part, int partlen)
     {
-      if (offset < 0) return false;
-      if (limit - offset < partlen) return false;
+      if (offset < 0)
+      {
+        return false;
+      }
+      if (limit - offset < partlen)
+      {
+        return false;
+      }
       int i = 0;
       while (partlen-- > 0)
       {
-        if (target.setIndex(offset++) != part.charAt(i++)) return false;
+        if (target.setIndex(offset++) != part.charAt(i++))
+        {
+          return false;
+        }
       }
       return true;
     }
 
     private static final boolean regionMatches(CharacterIterator target, int offset, int limit, int offset2, int partlen)
     {
-      if (offset < 0) return false;
-      if (limit - offset < partlen) return false;
+      if (offset < 0)
+      {
+        return false;
+      }
+      if (limit - offset < partlen)
+      {
+        return false;
+      }
       int i = offset2;
       while (partlen-- > 0)
       {
-        if (target.setIndex(offset++) != target.setIndex(i++)) return false;
+        if (target.setIndex(offset++) != target.setIndex(i++))
+        {
+          return false;
+        }
       }
       return true;
     }
@@ -3600,18 +4540,33 @@ public final class RegEx
     private static final boolean regionMatchesIgnoreCase(CharacterIterator target, int offset, int limit, String part,
         int partlen)
     {
-      if (offset < 0) return false;
-      if (limit - offset < partlen) return false;
+      if (offset < 0)
+      {
+        return false;
+      }
+      if (limit - offset < partlen)
+      {
+        return false;
+      }
       int i = 0;
       while (partlen-- > 0)
       {
         char ch1 = target.setIndex(offset++);
         char ch2 = part.charAt(i++);
-        if (ch1 == ch2) continue;
+        if (ch1 == ch2)
+        {
+          continue;
+        }
         char uch1 = Character.toUpperCase(ch1);
         char uch2 = Character.toUpperCase(ch2);
-        if (uch1 == uch2) continue;
-        if (Character.toLowerCase(uch1) != Character.toLowerCase(uch2)) return false;
+        if (uch1 == uch2)
+        {
+          continue;
+        }
+        if (Character.toLowerCase(uch1) != Character.toLowerCase(uch2))
+        {
+          return false;
+        }
       }
       return true;
     }
@@ -3619,18 +4574,33 @@ public final class RegEx
     private static final boolean regionMatchesIgnoreCase(CharacterIterator target, int offset, int limit, int offset2,
         int partlen)
     {
-      if (offset < 0) return false;
-      if (limit - offset < partlen) return false;
+      if (offset < 0)
+      {
+        return false;
+      }
+      if (limit - offset < partlen)
+      {
+        return false;
+      }
       int i = offset2;
       while (partlen-- > 0)
       {
         char ch1 = target.setIndex(offset++);
         char ch2 = target.setIndex(i++);
-        if (ch1 == ch2) continue;
+        if (ch1 == ch2)
+        {
+          continue;
+        }
         char uch1 = Character.toUpperCase(ch1);
         char uch2 = Character.toUpperCase(ch2);
-        if (uch1 == uch2) continue;
-        if (Character.toLowerCase(uch1) != Character.toLowerCase(uch2)) return false;
+        if (uch1 == uch2)
+        {
+          continue;
+        }
+        if (Character.toLowerCase(uch1) != Character.toLowerCase(uch2))
+        {
+          return false;
+        }
       }
       return true;
     }
@@ -3710,36 +4680,41 @@ public final class RegEx
 
       private void resetCommon(int nofclosures)
       {
-        this.length = this.limit - this.start;
-        this.inuse = true;
-        this.match = null;
-        if (this.offsets == null || this.offsets.length != nofclosures) this.offsets = new int[nofclosures];
+        length = limit - start;
+        inuse = true;
+        match = null;
+        if (offsets == null || offsets.length != nofclosures)
+        {
+          offsets = new int[nofclosures];
+        }
         for (int i = 0; i < nofclosures; i++)
-          this.offsets[i] = -1;
+        {
+          offsets[i] = -1;
+        }
       }
 
       void reset(CharacterIterator target, int start, int limit, int nofclosures)
       {
-        this.ciTarget = target;
+        ciTarget = target;
         this.start = start;
         this.limit = limit;
-        this.resetCommon(nofclosures);
+        resetCommon(nofclosures);
       }
 
       void reset(String target, int start, int limit, int nofclosures)
       {
-        this.strTarget = target;
+        strTarget = target;
         this.start = start;
         this.limit = limit;
-        this.resetCommon(nofclosures);
+        resetCommon(nofclosures);
       }
 
       void reset(char[] target, int start, int limit, int nofclosures)
       {
-        this.charTarget = target;
+        charTarget = target;
         this.start = start;
         this.limit = limit;
-        this.resetCommon(nofclosures);
+        resetCommon(nofclosures);
       }
     }
 
@@ -3748,67 +4723,83 @@ public final class RegEx
      */
     void prepare()
     {
-      if (Op.COUNT) Op.nofinstances = 0;
-      this.compile(this.tokentree);
+      if (Op.COUNT)
+      {
+        Op.nofinstances = 0;
+      }
+      this.compile(tokentree);
       /*
        * if (this.operations.type == Op.CLOSURE && this.operations.getChild().type == Op.DOT) { // . Op anchor =
        * Op.createAnchor(isSet(this.options, SINGLE_LINE) ? 'A' : '@'); anchor.next = this.operations; this.operations =
        * anchor; }
        */
-      if (Op.COUNT) System.err.println("DEBUG: The number of operations: " + Op.nofinstances);
+      if (Op.COUNT)
+      {
+        System.err.println("DEBUG: The number of operations: " + Op.nofinstances);
+      }
 
-      this.minlength = this.tokentree.getMinLength();
+      minlength = tokentree.getMinLength();
 
-      this.firstChar = null;
-      if (!isSet(this.options, PROHIBIT_HEAD_CHARACTER_OPTIMIZATION) && !isSet(this.options, XMLSCHEMA_MODE))
+      firstChar = null;
+      if (!isSet(options, PROHIBIT_HEAD_CHARACTER_OPTIMIZATION) && !isSet(options, XMLSCHEMA_MODE))
       {
         RangeToken firstChar = Token.createRange();
-        int fresult = this.tokentree.analyzeFirstCharacter(firstChar, this.options);
+        int fresult = tokentree.analyzeFirstCharacter(firstChar, options);
         if (fresult == Token.FC_TERMINAL)
         {
           firstChar.compactRanges();
           this.firstChar = firstChar;
-          if (DEBUG) System.err.println("DEBUG: Use the first character optimization: " + firstChar);
+          if (DEBUG)
+          {
+            System.err.println("DEBUG: Use the first character optimization: " + firstChar);
+          }
         }
       }
 
-      if (this.operations != null && (this.operations.type == Op.STRING || this.operations.type == Op.CHAR)
-          && this.operations.next == null)
+      if (operations != null && (operations.type == Op.STRING || operations.type == Op.CHAR) && operations.next == null)
       {
-        if (DEBUG) System.err.print(" *** Only fixed string! *** ");
-        this.fixedStringOnly = true;
-        if (this.operations.type == Op.STRING)
-          this.fixedString = this.operations.getString();
-        else if (this.operations.getData() >= 0x10000)
+        if (DEBUG)
+        {
+          System.err.print(" *** Only fixed string! *** ");
+        }
+        fixedStringOnly = true;
+        if (operations.type == Op.STRING)
+        {
+          fixedString = operations.getString();
+        }
+        else if (operations.getData() >= 0x10000)
         { // Op.CHAR
-          this.fixedString = REUtil.decomposeToSurrogates(this.operations.getData());
+          fixedString = REUtil.decomposeToSurrogates(operations.getData());
         }
         else
         {
           char[] ac = new char[1];
-          ac[0] = (char)this.operations.getData();
-          this.fixedString = new String(ac);
+          ac[0] = (char)operations.getData();
+          fixedString = new String(ac);
         }
-        this.fixedStringOptions = this.options;
-        this.fixedStringTable = new BMPattern(this.fixedString, 256, isSet(this.fixedStringOptions, IGNORE_CASE));
+        fixedStringOptions = options;
+        fixedStringTable = new BMPattern(fixedString, 256, isSet(fixedStringOptions, IGNORE_CASE));
       }
-      else if (!isSet(this.options, PROHIBIT_FIXED_STRING_OPTIMIZATION) && !isSet(this.options, XMLSCHEMA_MODE))
+      else if (!isSet(options, PROHIBIT_FIXED_STRING_OPTIMIZATION) && !isSet(options, XMLSCHEMA_MODE))
       {
         Token.FixedStringContainer container = new Token.FixedStringContainer();
-        this.tokentree.findFixedString(container, this.options);
-        this.fixedString = container.token == null ? null : container.token.getString();
-        this.fixedStringOptions = container.options;
-        if (this.fixedString != null && this.fixedString.length() < 2) this.fixedString = null;
-        // This pattern has a fixed string of which length is more than one.
-        if (this.fixedString != null)
+        tokentree.findFixedString(container, options);
+        fixedString = container.token == null ? null : container.token.getString();
+        fixedStringOptions = container.options;
+        if (fixedString != null && fixedString.length() < 2)
         {
-          this.fixedStringTable = new BMPattern(this.fixedString, 256, isSet(this.fixedStringOptions, IGNORE_CASE));
+          fixedString = null;
+        }
+        // This pattern has a fixed string of which length is more than one.
+        if (fixedString != null)
+        {
+          fixedStringTable = new BMPattern(fixedString, 256, isSet(fixedStringOptions, IGNORE_CASE));
           if (DEBUG)
           {
-            System.err.println("DEBUG: The longest fixed string: " + this.fixedString.length() + "/" //+this.fixedString
-                + "/" + REUtil.createOptionString(this.fixedStringOptions));
+            System.err.println("DEBUG: The longest fixed string: " + fixedString.length() + "/" // +this.fixedString
+                + "/" + REUtil.createOptionString(fixedStringOptions));
             System.err.print("String: ");
-            REUtil.dumpString(this.fixedString);
+            REUtil.dumpString(fixedString);
           }
         }
       }
@@ -3851,8 +4842,9 @@ public final class RegEx
      */
     static final int USE_UNICODE_CATEGORY = 1 << 5; // "u"
 
-/**
-     * An option. This enables to process locale-independent word boundary for <span class="REGEX"><kbd>\b \B \&lt; \></kbd></span>.
+    /**
+     * An option. This enables to process locale-independent word boundary for <span class="REGEX"><kbd>\b \B \&lt;
+     * \></kbd></span>.
      * <p>
      * By default, the engine considers a position between a word character (<span class="REGEX"><Kbd>\w</kbd></span>)
      * and a non word character is a word boundary.
@@ -3921,8 +4913,8 @@ public final class RegEx
     RegularExpression(String regex, Token tok, int parens, boolean hasBackReferences, int options)
     {
       this.regex = regex;
-      this.tokentree = tok;
-      this.nofparen = parens;
+      tokentree = tok;
+      nofparen = parens;
       this.options = options;
       this.hasBackReferences = hasBackReferences;
     }
@@ -3932,21 +4924,21 @@ public final class RegEx
      */
     public void setPattern(String newPattern) throws ParseException
     {
-      this.setPattern(newPattern, this.options);
+      this.setPattern(newPattern, options);
     }
 
     private void setPattern(String newPattern, int options) throws ParseException
     {
-      this.regex = newPattern;
+      regex = newPattern;
       this.options = options;
       RegexParser rp = RegularExpression.isSet(this.options, RegularExpression.XMLSCHEMA_MODE) ? new ParserForXMLSchema()
           : new RegexParser();
-      this.tokentree = rp.parse(this.regex, this.options);
-      this.nofparen = rp.parennumber;
-      this.hasBackReferences = rp.hasBackReferences;
+      tokentree = rp.parse(regex, this.options);
+      nofparen = rp.parennumber;
+      hasBackReferences = rp.hasBackReferences;
 
-      this.operations = null;
-      this.context = null;
+      operations = null;
+      context = null;
     }
 
     /**
@@ -3962,7 +4954,7 @@ public final class RegEx
      */
     public String getPattern()
     {
-      return this.regex;
+      return regex;
     }
 
     /**
@@ -3971,10 +4963,10 @@ public final class RegEx
     @Override
     public String toString()
     {
-      return this.tokentree.toString(this.options);
+      return tokentree.toString(options);
     }
 
-/**
+    /**
      * Returns a option string. The order of letters in it may be different from a string specified in a constructor or
      * <code>setPattern()</code>.
      * 
@@ -3983,7 +4975,7 @@ public final class RegEx
      */
     public String getOptions()
     {
-      return REUtil.createOptionString(this.options);
+      return REUtil.createOptionString(options);
     }
 
     /**
@@ -3992,15 +4984,21 @@ public final class RegEx
     @Override
     public boolean equals(Object obj)
     {
-      if (obj == null) return false;
-      if (!(obj instanceof RegularExpression)) return false;
+      if (obj == null)
+      {
+        return false;
+      }
+      if (!(obj instanceof RegularExpression))
+      {
+        return false;
+      }
       RegularExpression r = (RegularExpression)obj;
-      return this.regex.equals(r.regex) && this.options == r.options;
+      return regex.equals(r.regex) && options == r.options;
     }
 
     boolean equals(String pattern, int options)
     {
-      return this.regex.equals(pattern) && this.options == options;
+      return regex.equals(pattern) && this.options == options;
     }
 
     /**
@@ -4009,7 +5007,7 @@ public final class RegEx
     @Override
     public int hashCode()
     {
-      return (this.regex + "/" + this.getOptions()).hashCode();
+      return (regex + "/" + getOptions()).hashCode();
     }
 
     /**
@@ -4018,7 +5016,7 @@ public final class RegEx
      */
     public int getNumberOfGroups()
     {
-      return this.nofparen;
+      return nofparen;
     }
 
     // ================================================================
@@ -4035,7 +5033,7 @@ public final class RegEx
       {
         if (isSet(opts, USE_UNICODE_CATEGORY))
         {
-          return (Token.getRange("IsWord", true).match(ch)) ? WT_LETTER : WT_OTHER;
+          return Token.getRange("IsWord", true).match(ch) ? WT_LETTER : WT_OTHER;
         }
         return isWordChar(ch) ? WT_LETTER : WT_OTHER;
       }
@@ -4093,23 +5091,53 @@ public final class RegEx
 
     private static final boolean isWordChar(int ch)
     { // Legacy word characters
-      if (ch == '_') return true;
-      if (ch < '0') return false;
-      if (ch > 'z') return false;
-      if (ch <= '9') return true;
-      if (ch < 'A') return false;
-      if (ch <= 'Z') return true;
-      if (ch < 'a') return false;
+      if (ch == '_')
+      {
+        return true;
+      }
+      if (ch < '0')
+      {
+        return false;
+      }
+      if (ch > 'z')
+      {
+        return false;
+      }
+      if (ch <= '9')
+      {
+        return true;
+      }
+      if (ch < 'A')
+      {
+        return false;
+      }
+      if (ch <= 'Z')
+      {
+        return true;
+      }
+      if (ch < 'a')
+      {
+        return false;
+      }
       return true;
     }
 
     private static final boolean matchIgnoreCase(int chardata, int ch)
     {
-      if (chardata == ch) return true;
-      if (chardata > 0xffff || ch > 0xffff) return false;
+      if (chardata == ch)
+      {
+        return true;
+      }
+      if (chardata > 0xffff || ch > 0xffff)
+      {
+        return false;
+      }
       char uch1 = Character.toUpperCase((char)chardata);
       char uch2 = Character.toUpperCase((char)ch);
-      if (uch1 == uch2) return true;
+      if (uch1 == uch2)
+      {
+        return true;
+      }
       return Character.toLowerCase(uch1) == Character.toLowerCase(uch2);
     }
   }
@@ -4137,7 +5165,7 @@ public final class RegEx
      */
     public int getLocation()
     {
-      return this.location;
+      return location;
     }
   }
 
@@ -4189,25 +5217,37 @@ public final class RegEx
 
     static Op createDot()
     {
-      if (Op.COUNT) Op.nofinstances++;
+      if (Op.COUNT)
+      {
+        Op.nofinstances++;
+      }
       return new Op(Op.DOT);
     }
 
     static CharOp createChar(int data)
     {
-      if (Op.COUNT) Op.nofinstances++;
+      if (Op.COUNT)
+      {
+        Op.nofinstances++;
+      }
       return new CharOp(Op.CHAR, data);
     }
 
     static CharOp createAnchor(int data)
     {
-      if (Op.COUNT) Op.nofinstances++;
+      if (Op.COUNT)
+      {
+        Op.nofinstances++;
+      }
       return new CharOp(Op.ANCHOR, data);
     }
 
     static CharOp createCapture(int number, Op next)
     {
-      if (Op.COUNT) Op.nofinstances++;
+      if (Op.COUNT)
+      {
+        Op.nofinstances++;
+      }
       CharOp op = new CharOp(Op.CAPTURE, number);
       op.next = next;
       return op;
@@ -4215,38 +5255,56 @@ public final class RegEx
 
     static UnionOp createUnion(int size)
     {
-      if (Op.COUNT) Op.nofinstances++;
+      if (Op.COUNT)
+      {
+        Op.nofinstances++;
+      }
       // System.err.println("Creates UnionOp");
       return new UnionOp(Op.UNION, size);
     }
 
     static ChildOp createClosure(int id)
     {
-      if (Op.COUNT) Op.nofinstances++;
+      if (Op.COUNT)
+      {
+        Op.nofinstances++;
+      }
       return new ModifierOp(Op.CLOSURE, id, -1);
     }
 
     static ChildOp createNonGreedyClosure()
     {
-      if (Op.COUNT) Op.nofinstances++;
+      if (Op.COUNT)
+      {
+        Op.nofinstances++;
+      }
       return new ChildOp(Op.NONGREEDYCLOSURE);
     }
 
     static ChildOp createQuestion(boolean nongreedy)
     {
-      if (Op.COUNT) Op.nofinstances++;
+      if (Op.COUNT)
+      {
+        Op.nofinstances++;
+      }
       return new ChildOp(nongreedy ? Op.NONGREEDYQUESTION : Op.QUESTION);
     }
 
     static RangeOp createRange(Token tok)
     {
-      if (Op.COUNT) Op.nofinstances++;
+      if (Op.COUNT)
+      {
+        Op.nofinstances++;
+      }
       return new RangeOp(Op.RANGE, tok);
     }
 
     static ChildOp createLook(int type, Op next, Op branch)
     {
-      if (Op.COUNT) Op.nofinstances++;
+      if (Op.COUNT)
+      {
+        Op.nofinstances++;
+      }
       ChildOp op = new ChildOp(type);
       op.setChild(branch);
       op.next = next;
@@ -4255,19 +5313,28 @@ public final class RegEx
 
     static CharOp createBackReference(int refno)
     {
-      if (Op.COUNT) Op.nofinstances++;
+      if (Op.COUNT)
+      {
+        Op.nofinstances++;
+      }
       return new CharOp(Op.BACKREFERENCE, refno);
     }
 
     static StringOp createString(String literal)
     {
-      if (Op.COUNT) Op.nofinstances++;
+      if (Op.COUNT)
+      {
+        Op.nofinstances++;
+      }
       return new StringOp(Op.STRING, literal);
     }
 
     static ChildOp createIndependent(Op next, Op branch)
     {
-      if (Op.COUNT) Op.nofinstances++;
+      if (Op.COUNT)
+      {
+        Op.nofinstances++;
+      }
       ChildOp op = new ChildOp(Op.INDEPENDENT);
       op.setChild(branch);
       op.next = next;
@@ -4276,7 +5343,10 @@ public final class RegEx
 
     static ModifierOp createModifier(Op next, Op branch, int add, int mask)
     {
-      if (Op.COUNT) Op.nofinstances++;
+      if (Op.COUNT)
+      {
+        Op.nofinstances++;
+      }
       ModifierOp op = new ModifierOp(Op.MODIFIER, add, mask);
       op.setChild(branch);
       op.next = next;
@@ -4285,7 +5355,10 @@ public final class RegEx
 
     static ConditionOp createCondition(Op next, int ref, Op conditionflow, Op yesflow, Op noflow)
     {
-      if (Op.COUNT) Op.nofinstances++;
+      if (Op.COUNT)
+      {
+        Op.nofinstances++;
+      }
       ConditionOp op = new ConditionOp(Op.CONDITION, ref, conditionflow, yesflow, noflow);
       op.next = next;
       return op;
@@ -4307,33 +5380,33 @@ public final class RegEx
 
     Op elementAt(int index)
     { // for UNIoN
-      throw new RuntimeException("Internal Error: type=" + this.type);
+      throw new RuntimeException("Internal Error: type=" + type);
     }
 
     Op getChild()
     { // for CLOSURE, QUESTION
-      throw new RuntimeException("Internal Error: type=" + this.type);
+      throw new RuntimeException("Internal Error: type=" + type);
     }
 
     // ModifierOp
     int getData()
     { // CharOp for CHAR, BACKREFERENCE, CAPTURE, ANCHOR,
-      throw new RuntimeException("Internal Error: type=" + this.type);
+      throw new RuntimeException("Internal Error: type=" + type);
     }
 
     int getData2()
     { // ModifierOp
-      throw new RuntimeException("Internal Error: type=" + this.type);
+      throw new RuntimeException("Internal Error: type=" + type);
     }
 
     RangeToken getToken()
     { // RANGE, NRANGE
-      throw new RuntimeException("Internal Error: type=" + this.type);
+      throw new RuntimeException("Internal Error: type=" + type);
     }
 
     String getString()
     { // STRING
-      throw new RuntimeException("Internal Error: type=" + this.type);
+      throw new RuntimeException("Internal Error: type=" + type);
     }
 
     // ================================================================
@@ -4344,13 +5417,13 @@ public final class RegEx
       CharOp(int type, int data)
       {
         super(type);
-        this.charData = data;
+        charData = data;
       }
 
       @Override
       int getData()
       {
-        return this.charData;
+        return charData;
       }
     }
 
@@ -4362,24 +5435,24 @@ public final class RegEx
       UnionOp(int type, int size)
       {
         super(type);
-        this.branches = new Vector<Op>(size);
+        branches = new Vector<Op>(size);
       }
 
       void addElement(Op op)
       {
-        this.branches.addElement(op);
+        branches.addElement(op);
       }
 
       @Override
       int size()
       {
-        return this.branches.size();
+        return branches.size();
       }
 
       @Override
       Op elementAt(int index)
       {
-        return this.branches.elementAt(index);
+        return branches.elementAt(index);
       }
     }
 
@@ -4401,7 +5474,7 @@ public final class RegEx
       @Override
       Op getChild()
       {
-        return this.child;
+        return child;
       }
     }
 
@@ -4422,13 +5495,13 @@ public final class RegEx
       @Override
       int getData()
       {
-        return this.v1;
+        return v1;
       }
 
       @Override
       int getData2()
       {
-        return this.v2;
+        return v2;
       }
     }
 
@@ -4446,7 +5519,7 @@ public final class RegEx
       @Override
       RangeToken getToken()
       {
-        return (RangeToken)this.tok;
+        return (RangeToken)tok;
       }
     }
 
@@ -4458,13 +5531,13 @@ public final class RegEx
       StringOp(int type, String literal)
       {
         super(type);
-        this.string = literal;
+        string = literal;
       }
 
       @Override
       String getString()
       {
-        return this.string;
+        return string;
       }
     }
 
@@ -4482,10 +5555,10 @@ public final class RegEx
       ConditionOp(int type, int refno, Op conditionflow, Op yesflow, Op noflow)
       {
         super(type);
-        this.refNumber = refno;
-        this.condition = conditionflow;
-        this.yes = yesflow;
-        this.no = noflow;
+        refNumber = refno;
+        condition = conditionflow;
+        yes = yesflow;
+        no = noflow;
       }
     }
   }
@@ -4509,14 +5582,14 @@ public final class RegEx
     RangeToken(int type)
     {
       super(type);
-      this.setSorted(false);
+      setSorted(false);
     }
 
     // for RANGE or NRANGE
     @Override
     protected void addRange(int start, int end)
     {
-      this.icaseCache = null;
+      icaseCache = null;
       // System.err.println("Token#addRange(): "+start+" "+end);
       int r1, r2;
       if (start <= end)
@@ -4531,80 +5604,94 @@ public final class RegEx
       }
 
       int pos = 0;
-      if (this.ranges == null)
+      if (ranges == null)
       {
-        this.ranges = new int[2];
-        this.ranges[0] = r1;
-        this.ranges[1] = r2;
-        this.setSorted(true);
+        ranges = new int[2];
+        ranges[0] = r1;
+        ranges[1] = r2;
+        setSorted(true);
       }
       else
       {
-        pos = this.ranges.length;
-        if (this.ranges[pos - 1] + 1 == r1)
+        pos = ranges.length;
+        if (ranges[pos - 1] + 1 == r1)
         {
-          this.ranges[pos - 1] = r2;
+          ranges[pos - 1] = r2;
           return;
         }
         int[] temp = new int[pos + 2];
-        System.arraycopy(this.ranges, 0, temp, 0, pos);
-        this.ranges = temp;
-        if (this.ranges[pos - 1] >= r1) this.setSorted(false);
-        this.ranges[pos++] = r1;
-        this.ranges[pos] = r2;
-        if (!this.sorted) this.sortRanges();
+        System.arraycopy(ranges, 0, temp, 0, pos);
+        ranges = temp;
+        if (ranges[pos - 1] >= r1)
+        {
+          setSorted(false);
+        }
+        ranges[pos++] = r1;
+        ranges[pos] = r2;
+        if (!sorted)
+        {
+          sortRanges();
+        }
       }
     }
 
     private final boolean isSorted()
     {
-      return this.sorted;
+      return sorted;
     }
 
     private final void setSorted(boolean sort)
     {
-      this.sorted = sort;
-      if (!sort) this.compacted = false;
+      sorted = sort;
+      if (!sort)
+      {
+        compacted = false;
+      }
     }
 
     private final boolean isCompacted()
     {
-      return this.compacted;
+      return compacted;
     }
 
     private final void setCompacted()
     {
-      this.compacted = true;
+      compacted = true;
     }
 
     @Override
     protected void sortRanges()
     {
-      if (this.isSorted()) return;
-      if (this.ranges == null) return;
-      // System.err.println("Do sorting: "+this.ranges.length);
+      if (isSorted())
+      {
+        return;
+      }
+      if (ranges == null)
+      {
+        return;
+        // System.err.println("Do sorting: "+this.ranges.length);
+      }
 
       // Bubble sort
       // Why? -- In many cases,
       // this.ranges has few elements.
-      for (int i = this.ranges.length - 4; i >= 0; i -= 2)
+      for (int i = ranges.length - 4; i >= 0; i -= 2)
       {
         for (int j = 0; j <= i; j += 2)
         {
-          if (this.ranges[j] > this.ranges[j + 2] || this.ranges[j] == this.ranges[j + 2]
-              && this.ranges[j + 1] > this.ranges[j + 3])
+          if (ranges[j] > ranges[j + 2] || ranges[j] == ranges[j + 2] && ranges[j + 1] > ranges[j + 3])
           {
             int tmp;
-            tmp = this.ranges[j + 2];
-            this.ranges[j + 2] = this.ranges[j];
-            this.ranges[j] = tmp;
-            tmp = this.ranges[j + 3];
-            this.ranges[j + 3] = this.ranges[j + 1];
-            this.ranges[j + 1] = tmp;
+            tmp = ranges[j + 2];
+            ranges[j + 2] = ranges[j];
+            ranges[j] = tmp;
+            tmp = ranges[j + 3];
+            ranges[j + 3] = ranges[j + 1];
+            ranges[j + 1] = tmp;
           }
         }
       }
-      this.setSorted(true);
+      setSorted(true);
     }
 
     /**
@@ -4614,111 +5701,130 @@ public final class RegEx
     protected void compactRanges()
     {
       boolean DEBUG = false;
-      if (this.ranges == null || this.ranges.length <= 2) return;
-      if (this.isCompacted()) return;
+      if (ranges == null || ranges.length <= 2)
+      {
+        return;
+      }
+      if (isCompacted())
+      {
+        return;
+      }
       int base = 0; // Index of writing point
       int target = 0; // Index of processing point
 
-      while (target < this.ranges.length)
+      while (target < ranges.length)
       {
         if (base != target)
         {
-          this.ranges[base] = this.ranges[target++];
-          this.ranges[base + 1] = this.ranges[target++];
+          ranges[base] = ranges[target++];
+          ranges[base + 1] = ranges[target++];
         }
         else
-          target += 2;
-        int baseend = this.ranges[base + 1];
-        while (target < this.ranges.length)
         {
-          if (baseend + 1 < this.ranges[target]) break;
-          if (baseend + 1 == this.ranges[target])
+          target += 2;
+        }
+        int baseend = ranges[base + 1];
+        while (target < ranges.length)
+        {
+          if (baseend + 1 < ranges[target])
+          {
+            break;
+          }
+          if (baseend + 1 == ranges[target])
           {
             if (DEBUG)
-              System.err.println("Token#compactRanges(): Compaction: [" + this.ranges[base] + ", "
-                  + this.ranges[base + 1] + "], [" + this.ranges[target] + ", " + this.ranges[target + 1] + "] -> ["
-                  + this.ranges[base] + ", " + this.ranges[target + 1] + "]");
-            this.ranges[base + 1] = this.ranges[target + 1];
-            baseend = this.ranges[base + 1];
+            {
+              System.err.println("Token#compactRanges(): Compaction: [" + ranges[base] + ", " + ranges[base + 1]
+                  + "], [" + ranges[target] + ", " + ranges[target + 1] + "] -> [" + ranges[base] + ", "
+                  + ranges[target + 1] + "]");
+            }
+            ranges[base + 1] = ranges[target + 1];
+            baseend = ranges[base + 1];
             target += 2;
           }
-          else if (baseend >= this.ranges[target + 1])
+          else if (baseend >= ranges[target + 1])
           {
             if (DEBUG)
-              System.err.println("Token#compactRanges(): Compaction: [" + this.ranges[base] + ", "
-                  + this.ranges[base + 1] + "], [" + this.ranges[target] + ", " + this.ranges[target + 1] + "] -> ["
-                  + this.ranges[base] + ", " + this.ranges[base + 1] + "]");
+            {
+              System.err.println("Token#compactRanges(): Compaction: [" + ranges[base] + ", " + ranges[base + 1]
+                  + "], [" + ranges[target] + ", " + ranges[target + 1] + "] -> [" + ranges[base] + ", "
+                  + ranges[base + 1] + "]");
+            }
             target += 2;
           }
-          else if (baseend < this.ranges[target + 1])
+          else if (baseend < ranges[target + 1])
           {
             if (DEBUG)
-              System.err.println("Token#compactRanges(): Compaction: [" + this.ranges[base] + ", "
-                  + this.ranges[base + 1] + "], [" + this.ranges[target] + ", " + this.ranges[target + 1] + "] -> ["
-                  + this.ranges[base] + ", " + this.ranges[target + 1] + "]");
-            this.ranges[base + 1] = this.ranges[target + 1];
-            baseend = this.ranges[base + 1];
+            {
+              System.err.println("Token#compactRanges(): Compaction: [" + ranges[base] + ", " + ranges[base + 1]
+                  + "], [" + ranges[target] + ", " + ranges[target + 1] + "] -> [" + ranges[base] + ", "
+                  + ranges[target + 1] + "]");
+            }
+            ranges[base + 1] = ranges[target + 1];
+            baseend = ranges[base + 1];
             target += 2;
           }
           else
           {
-            throw new RuntimeException("Token#compactRanges(): Internel Error: [" + this.ranges[base] + ","
-                + this.ranges[base + 1] + "] [" + this.ranges[target] + "," + this.ranges[target + 1] + "]");
+            throw new RuntimeException("Token#compactRanges(): Internel Error: [" + ranges[base] + ","
+                + ranges[base + 1] + "] [" + ranges[target] + "," + ranges[target + 1] + "]");
           }
         } // while
         base += 2;
       }
 
-      if (base != this.ranges.length)
+      if (base != ranges.length)
       {
         int[] result = new int[base];
-        System.arraycopy(this.ranges, 0, result, 0, base);
-        this.ranges = result;
+        System.arraycopy(ranges, 0, result, 0, base);
+        ranges = result;
       }
-      this.setCompacted();
+      setCompacted();
     }
 
     @Override
     protected void mergeRanges(Token token)
     {
       RangeToken tok = (RangeToken)token;
-      this.sortRanges();
+      sortRanges();
       tok.sortRanges();
-      if (tok.ranges == null) return;
-      this.icaseCache = null;
-      this.setSorted(true);
-      if (this.ranges == null)
+      if (tok.ranges == null)
       {
-        this.ranges = new int[tok.ranges.length];
-        System.arraycopy(tok.ranges, 0, this.ranges, 0, tok.ranges.length);
         return;
       }
-      int[] result = new int[this.ranges.length + tok.ranges.length];
-      for (int i = 0, j = 0, k = 0; i < this.ranges.length || j < tok.ranges.length;)
+      icaseCache = null;
+      setSorted(true);
+      if (ranges == null)
       {
-        if (i >= this.ranges.length)
+        ranges = new int[tok.ranges.length];
+        System.arraycopy(tok.ranges, 0, ranges, 0, tok.ranges.length);
+        return;
+      }
+      int[] result = new int[ranges.length + tok.ranges.length];
+      for (int i = 0, j = 0, k = 0; i < ranges.length || j < tok.ranges.length;)
+      {
+        if (i >= ranges.length)
         {
           result[k++] = tok.ranges[j++];
           result[k++] = tok.ranges[j++];
         }
         else if (j >= tok.ranges.length)
         {
-          result[k++] = this.ranges[i++];
-          result[k++] = this.ranges[i++];
+          result[k++] = ranges[i++];
+          result[k++] = ranges[i++];
         }
-        else if (tok.ranges[j] < this.ranges[i] || tok.ranges[j] == this.ranges[i]
-            && tok.ranges[j + 1] < this.ranges[i + 1])
+        else if (tok.ranges[j] < ranges[i] || tok.ranges[j] == ranges[i] && tok.ranges[j + 1] < ranges[i + 1])
         {
           result[k++] = tok.ranges[j++];
           result[k++] = tok.ranges[j++];
         }
         else
         {
-          result[k++] = this.ranges[i++];
-          result[k++] = this.ranges[i++];
+          result[k++] = ranges[i++];
+          result[k++] = ranges[i++];
         }
       }
-      this.ranges = result;
+      ranges = result;
     }
 
     @Override
@@ -4726,26 +5832,29 @@ public final class RegEx
     {
       if (token.type == NRANGE)
       {
-        this.intersectRanges(token);
+        intersectRanges(token);
         return;
       }
       RangeToken tok = (RangeToken)token;
-      if (tok.ranges == null || this.ranges == null) return;
-      this.icaseCache = null;
-      this.sortRanges();
-      this.compactRanges();
+      if (tok.ranges == null || ranges == null)
+      {
+        return;
+      }
+      icaseCache = null;
+      sortRanges();
+      compactRanges();
       tok.sortRanges();
       tok.compactRanges();
 
       // System.err.println("Token#substractRanges(): Entry:
       // "+this.ranges.length+", "+tok.ranges.length);
 
-      int[] result = new int[this.ranges.length + tok.ranges.length];
+      int[] result = new int[ranges.length + tok.ranges.length];
       int wp = 0, src = 0, sub = 0;
-      while (src < this.ranges.length && sub < tok.ranges.length)
+      while (src < ranges.length && sub < tok.ranges.length)
       {
-        int srcbegin = this.ranges[src];
-        int srcend = this.ranges[src + 1];
+        int srcbegin = ranges[src];
+        int srcend = ranges[src + 1];
         int subbegin = tok.ranges[sub];
         int subend = tok.ranges[sub + 1];
         if (srcend < subbegin)
@@ -4754,8 +5863,8 @@ public final class RegEx
           // sub: o-----o
           // res: o-----o
           // Reuse sub
-          result[wp++] = this.ranges[src++];
-          result[wp++] = this.ranges[src++];
+          result[wp++] = ranges[src++];
+          result[wp++] = ranges[src++];
         }
         else if (srcend >= subbegin && srcbegin <= subend)
         { // Overlapped
@@ -4778,7 +5887,7 @@ public final class RegEx
             // sub: o----o
             // res: o-----o
             // Reuse src(=res)
-            this.ranges[src] = subend + 1;
+            ranges[src] = subend + 1;
             sub += 2;
           }
           else if (srcend <= subend)
@@ -4799,7 +5908,7 @@ public final class RegEx
             // Reuse src(=right res)
             result[wp++] = srcbegin;
             result[wp++] = subbegin - 1;
-            this.ranges[src] = subend + 1;
+            ranges[src] = subend + 1;
             sub += 2;
           }
         }
@@ -4812,17 +5921,17 @@ public final class RegEx
         }
         else
         {
-          throw new RuntimeException("Token#subtractRanges(): Internal Error: [" + this.ranges[src] + ","
-              + this.ranges[src + 1] + "] - [" + tok.ranges[sub] + "," + tok.ranges[sub + 1] + "]");
+          throw new RuntimeException("Token#subtractRanges(): Internal Error: [" + ranges[src] + "," + ranges[src + 1]
+              + "] - [" + tok.ranges[sub] + "," + tok.ranges[sub + 1] + "]");
         }
       }
-      while (src < this.ranges.length)
+      while (src < ranges.length)
       {
-        result[wp++] = this.ranges[src++];
-        result[wp++] = this.ranges[src++];
+        result[wp++] = ranges[src++];
+        result[wp++] = ranges[src++];
       }
-      this.ranges = new int[wp];
-      System.arraycopy(result, 0, this.ranges, 0, wp);
+      ranges = new int[wp];
+      System.arraycopy(result, 0, ranges, 0, wp);
       // this.ranges is sorted and compacted.
     }
 
@@ -4834,19 +5943,22 @@ public final class RegEx
     protected void intersectRanges(Token token)
     {
       RangeToken tok = (RangeToken)token;
-      if (tok.ranges == null || this.ranges == null) return;
-      this.icaseCache = null;
-      this.sortRanges();
-      this.compactRanges();
+      if (tok.ranges == null || ranges == null)
+      {
+        return;
+      }
+      icaseCache = null;
+      sortRanges();
+      compactRanges();
       tok.sortRanges();
       tok.compactRanges();
 
-      int[] result = new int[this.ranges.length + tok.ranges.length];
+      int[] result = new int[ranges.length + tok.ranges.length];
       int wp = 0, src1 = 0, src2 = 0;
-      while (src1 < this.ranges.length && src2 < tok.ranges.length)
+      while (src1 < ranges.length && src2 < tok.ranges.length)
       {
-        int src1begin = this.ranges[src1];
-        int src1end = this.ranges[src1 + 1];
+        int src1begin = ranges[src1];
+        int src1end = ranges[src1 + 1];
         int src2begin = tok.ranges[src2];
         int src2end = tok.ranges[src2 + 1];
         if (src1end < src2begin)
@@ -4882,7 +5994,7 @@ public final class RegEx
             // Reuse the rest of src1
             result[wp++] = src1begin;
             result[wp++] = src2end;
-            this.ranges[src1] = src2end + 1;
+            ranges[src1] = src2end + 1;
             src2 += 2;
           }
           else if (src1end <= src2end)
@@ -4903,7 +6015,7 @@ public final class RegEx
             // Reuse the rest of src1
             result[wp++] = src2begin;
             result[wp++] = src2end;
-            this.ranges[src1] = src2end + 1;
+            ranges[src1] = src2end + 1;
           }
         }
         else if (src2end < src1begin)
@@ -4915,17 +6027,17 @@ public final class RegEx
         }
         else
         {
-          throw new RuntimeException("Token#intersectRanges(): Internal Error: [" + this.ranges[src1] + ","
-              + this.ranges[src1 + 1] + "] & [" + tok.ranges[src2] + "," + tok.ranges[src2 + 1] + "]");
+          throw new RuntimeException("Token#intersectRanges(): Internal Error: [" + ranges[src1] + ","
+              + ranges[src1 + 1] + "] & [" + tok.ranges[src2] + "," + tok.ranges[src2 + 1] + "]");
         }
       }
-      while (src1 < this.ranges.length)
+      while (src1 < ranges.length)
       {
-        result[wp++] = this.ranges[src1++];
-        result[wp++] = this.ranges[src1++];
+        result[wp++] = ranges[src1++];
+        result[wp++] = ranges[src1++];
       }
-      this.ranges = new int[wp];
-      System.arraycopy(result, 0, this.ranges, 0, wp);
+      ranges = new int[wp];
+      System.arraycopy(result, 0, ranges, 0, wp);
       // this.ranges is sorted and compacted.
     }
 
@@ -4935,14 +6047,22 @@ public final class RegEx
     static Token complementRanges(Token token)
     {
       if (token.type != RANGE && token.type != NRANGE)
+      {
         throw new IllegalArgumentException("Token#complementRanges(): must be RANGE: " + token.type);
+      }
       RangeToken tok = (RangeToken)token;
       tok.sortRanges();
       tok.compactRanges();
       int len = tok.ranges.length + 2;
-      if (tok.ranges[0] == 0) len -= 2;
+      if (tok.ranges[0] == 0)
+      {
+        len -= 2;
+      }
       int last = tok.ranges[tok.ranges.length - 1];
-      if (last == UTF16_MAX) len -= 2;
+      if (last == UTF16_MAX)
+      {
+        len -= 2;
+      }
       RangeToken ret = Token.createRange();
       ret.ranges = new int[len];
       int wp = 0;
@@ -4967,15 +6087,20 @@ public final class RegEx
 
     synchronized RangeToken getCaseInsensitiveToken()
     {
-      if (this.icaseCache != null) return this.icaseCache;
-
-      RangeToken uppers = this.type == Token.RANGE ? Token.createRange() : Token.createNRange();
-      for (int i = 0; i < this.ranges.length; i += 2)
+      if (icaseCache != null)
       {
-        for (int ch = this.ranges[i]; ch <= this.ranges[i + 1]; ch++)
+        return icaseCache;
+      }
+
+      RangeToken uppers = type == Token.RANGE ? Token.createRange() : Token.createNRange();
+      for (int i = 0; i < ranges.length; i += 2)
+      {
+        for (int ch = ranges[i]; ch <= ranges[i + 1]; ch++)
         {
           if (ch > 0xffff)
+          {
             uppers.addRange(ch, ch);
+          }
           else
           {
             char uch = Character.toUpperCase((char)ch);
@@ -4983,13 +6108,15 @@ public final class RegEx
           }
         }
       }
-      RangeToken lowers = this.type == Token.RANGE ? Token.createRange() : Token.createNRange();
+      RangeToken lowers = type == Token.RANGE ? Token.createRange() : Token.createNRange();
       for (int i = 0; i < uppers.ranges.length; i += 2)
       {
         for (int ch = uppers.ranges[i]; ch <= uppers.ranges[i + 1]; ch++)
         {
           if (ch > 0xffff)
+          {
             lowers.addRange(ch, ch);
+          }
           else
           {
             char uch = Character.toUpperCase((char)ch);
@@ -5001,17 +6128,20 @@ public final class RegEx
       lowers.mergeRanges(this);
       lowers.compactRanges();
 
-      this.icaseCache = lowers;
+      icaseCache = lowers;
       return lowers;
     }
 
     void dumpRanges()
     {
       System.err.print("RANGE: ");
-      if (this.ranges == null) System.err.println(" NULL");
-      for (int i = 0; i < this.ranges.length; i += 2)
+      if (ranges == null)
       {
-        System.err.print("[" + this.ranges[i] + "," + this.ranges[i + 1] + "] ");
+        System.err.println(" NULL");
+      }
+      for (int i = 0; i < ranges.length; i += 2)
+      {
+        System.err.print("[" + ranges[i] + "," + ranges[i + 1] + "] ");
       }
       System.err.println("");
     }
@@ -5019,24 +6149,39 @@ public final class RegEx
     @Override
     boolean match(int ch)
     {
-      if (this.map == null) this.createMap();
-      boolean ret;
-      if (this.type == RANGE)
+      if (map == null)
       {
-        if (ch < MAPSIZE) return (this.map[ch / 32] & (1 << (ch & 0x1f))) != 0;
-        ret = false;
-        for (int i = this.nonMapIndex; i < this.ranges.length; i += 2)
+        createMap();
+      }
+      boolean ret;
+      if (type == RANGE)
+      {
+        if (ch < MAPSIZE)
         {
-          if (this.ranges[i] <= ch && ch <= this.ranges[i + 1]) return true;
+          return (map[ch / 32] & 1 << (ch & 0x1f)) != 0;
+        }
+        ret = false;
+        for (int i = nonMapIndex; i < ranges.length; i += 2)
+        {
+          if (ranges[i] <= ch && ch <= ranges[i + 1])
+          {
+            return true;
+          }
         }
       }
       else
       {
-        if (ch < MAPSIZE) return (this.map[ch / 32] & (1 << (ch & 0x1f))) == 0;
-        ret = true;
-        for (int i = this.nonMapIndex; i < this.ranges.length; i += 2)
+        if (ch < MAPSIZE)
         {
-          if (this.ranges[i] <= ch && ch <= this.ranges[i + 1]) return false;
+          return (map[ch / 32] & 1 << (ch & 0x1f)) == 0;
+        }
+        ret = true;
+        for (int i = nonMapIndex; i < ranges.length; i += 2)
+        {
+          if (ranges[i] <= ch && ch <= ranges[i + 1])
+          {
+            return false;
+          }
         }
       }
       return ret;
@@ -5047,27 +6192,31 @@ public final class RegEx
     private void createMap()
     {
       int asize = MAPSIZE / 32; // 32 is the number of bits in `int'.
-      this.map = new int[asize];
-      this.nonMapIndex = this.ranges.length;
+      map = new int[asize];
+      nonMapIndex = ranges.length;
       for (int i = 0; i < asize; i++)
-        this.map[i] = 0;
-      for (int i = 0; i < this.ranges.length; i += 2)
       {
-        int s = this.ranges[i];
-        int e = this.ranges[i + 1];
+        map[i] = 0;
+      }
+      for (int i = 0; i < ranges.length; i += 2)
+      {
+        int s = ranges[i];
+        int e = ranges[i + 1];
         if (s < MAPSIZE)
         {
           for (int j = s; j <= e && j < MAPSIZE; j++)
-            this.map[j / 32] |= 1 << (j & 0x1f); // s&0x1f : 0-31
+          {
+            map[j / 32] |= 1 << (j & 0x1f); // s&0x1f : 0-31
+          }
         }
         else
         {
-          this.nonMapIndex = i;
+          nonMapIndex = i;
           break;
         }
         if (e >= MAPSIZE)
         {
-          this.nonMapIndex = i;
+          nonMapIndex = i;
           break;
         }
       }
@@ -5079,32 +6228,43 @@ public final class RegEx
     public String toString(int options)
     {
       String ret;
-      if (this.type == RANGE)
+      if (type == RANGE)
       {
         if (this == Token.token_dot)
+        {
           ret = ".";
+        }
         else if (this == Token.token_0to9)
+        {
           ret = "\\d";
+        }
         else if (this == Token.token_wordchars)
+        {
           ret = "\\w";
+        }
         else if (this == Token.token_spaces)
+        {
           ret = "\\s";
+        }
         else
         {
           StringBuffer sb = new StringBuffer();
           sb.append("[");
-          for (int i = 0; i < this.ranges.length; i += 2)
+          for (int i = 0; i < ranges.length; i += 2)
           {
-            if ((options & RegularExpression.SPECIAL_COMMA) != 0 && i > 0) sb.append(",");
-            if (this.ranges[i] == this.ranges[i + 1])
+            if ((options & RegularExpression.SPECIAL_COMMA) != 0 && i > 0)
             {
-              sb.append(escapeCharInCharClass(this.ranges[i]));
+              sb.append(",");
+            }
+            if (ranges[i] == ranges[i + 1])
+            {
+              sb.append(escapeCharInCharClass(ranges[i]));
             }
             else
             {
-              sb.append(escapeCharInCharClass(this.ranges[i]));
+              sb.append(escapeCharInCharClass(ranges[i]));
               sb.append('-');
-              sb.append(escapeCharInCharClass(this.ranges[i + 1]));
+              sb.append(escapeCharInCharClass(ranges[i + 1]));
             }
           }
           sb.append("]");
@@ -5114,27 +6274,36 @@ public final class RegEx
       else
       {
         if (this == Token.token_not_0to9)
+        {
           ret = "\\D";
+        }
         else if (this == Token.token_not_wordchars)
+        {
           ret = "\\W";
+        }
         else if (this == Token.token_not_spaces)
+        {
           ret = "\\S";
+        }
         else
         {
           StringBuffer sb = new StringBuffer();
           sb.append("[^");
-          for (int i = 0; i < this.ranges.length; i += 2)
+          for (int i = 0; i < ranges.length; i += 2)
           {
-            if ((options & RegularExpression.SPECIAL_COMMA) != 0 && i > 0) sb.append(",");
-            if (this.ranges[i] == this.ranges[i + 1])
+            if ((options & RegularExpression.SPECIAL_COMMA) != 0 && i > 0)
             {
-              sb.append(escapeCharInCharClass(this.ranges[i]));
+              sb.append(",");
+            }
+            if (ranges[i] == ranges[i + 1])
+            {
+              sb.append(escapeCharInCharClass(ranges[i]));
             }
             else
             {
-              sb.append(escapeCharInCharClass(this.ranges[i]));
+              sb.append(escapeCharInCharClass(ranges[i]));
               sb.append('-');
-              sb.append(escapeCharInCharClass(this.ranges[i + 1]));
+              sb.append(escapeCharInCharClass(ranges[i + 1]));
             }
           }
           sb.append("]");
@@ -5185,7 +6354,9 @@ public final class RegEx
           ret = "\\v" + pre.substring(pre.length() - 6, pre.length());
         }
         else
+        {
           ret = "" + (char)ch;
+        }
       }
       return ret;
     }
@@ -5254,8 +6425,8 @@ public final class RegEx
 
       ReferencePosition(int n, int pos)
       {
-        this.refNumber = n;
-        this.position = pos;
+        refNumber = n;
+        position = pos;
       }
     }
 
@@ -5309,31 +6480,40 @@ public final class RegEx
 
     private final boolean isSet(int flag)
     {
-      return (this.options & flag) == flag;
+      return (options & flag) == flag;
     }
 
     synchronized Token parse(String regex, int options) throws ParseException
     {
       this.options = options;
-      this.offset = 0;
-      this.setContext(S_NORMAL);
-      this.parennumber = 1;
-      this.hasBackReferences = false;
+      offset = 0;
+      setContext(S_NORMAL);
+      parennumber = 1;
+      hasBackReferences = false;
       this.regex = regex;
-      if (this.isSet(RegularExpression.EXTENDED_COMMENT)) this.regex = REUtil.stripExtendedComment(this.regex);
-      this.regexlen = this.regex.length();
-
-      this.next();
-      Token ret = this.parseRegex();
-      if (this.offset != this.regexlen) throw ex("parser.parse.1", this.offset);
-      if (this.references != null)
+      if (isSet(RegularExpression.EXTENDED_COMMENT))
       {
-        for (int i = 0; i < this.references.size(); i++)
+        this.regex = REUtil.stripExtendedComment(this.regex);
+      }
+      regexlen = this.regex.length();
+
+      next();
+      Token ret = parseRegex();
+      if (offset != regexlen)
+      {
+        throw ex("parser.parse.1", offset);
+      }
+      if (references != null)
+      {
+        for (int i = 0; i < references.size(); i++)
         {
-          ReferencePosition position = this.references.elementAt(i);
-          if (this.parennumber <= position.refNumber) throw ex("parser.parse.2", position.position);
+          ReferencePosition position = references.elementAt(i);
+          if (parennumber <= position.refNumber)
+          {
+            throw ex("parser.parse.2", position.position);
+          }
         }
-        this.references.removeAllElements();
+        references.removeAllElements();
       }
       return ret;
     }
@@ -5346,28 +6526,28 @@ public final class RegEx
 
     protected final void setContext(int con)
     {
-      this.context = con;
+      context = con;
     }
 
     final int read()
     {
-      return this.nexttoken;
+      return nexttoken;
     }
 
     final void next()
     {
-      if (this.offset >= this.regexlen)
+      if (offset >= regexlen)
       {
-        this.chardata = -1;
-        this.nexttoken = T_EOF;
+        chardata = -1;
+        nexttoken = T_EOF;
         return;
       }
 
       int ret;
-      int ch = this.regex.charAt(this.offset++);
-      this.chardata = ch;
+      int ch = regex.charAt(offset++);
+      chardata = ch;
 
-      if (this.context == S_INBRACKETS)
+      if (context == S_INBRACKETS)
       {
         // In a character class, this.chardata has one character, that is to
         // say,
@@ -5376,42 +6556,45 @@ public final class RegEx
         {
         case '\\':
           ret = T_BACKSOLIDUS;
-          if (this.offset >= this.regexlen) throw ex("parser.next.1", this.offset - 1);
-          this.chardata = this.regex.charAt(this.offset++);
+          if (offset >= regexlen)
+          {
+            throw ex("parser.next.1", offset - 1);
+          }
+          chardata = regex.charAt(offset++);
           break;
 
         case '-':
-          if (this.isSet(RegularExpression.XMLSCHEMA_MODE) && this.offset < this.regexlen
-              && this.regex.charAt(this.offset) == '[')
+          if (isSet(RegularExpression.XMLSCHEMA_MODE) && offset < regexlen && regex.charAt(offset) == '[')
           {
-            this.offset++;
+            offset++;
             ret = T_XMLSCHEMA_CC_SUBTRACTION;
           }
           else
+          {
             ret = T_CHAR;
+          }
           break;
 
         case '[':
-          if (!this.isSet(RegularExpression.XMLSCHEMA_MODE) && this.offset < this.regexlen
-              && this.regex.charAt(this.offset) == ':')
+          if (!isSet(RegularExpression.XMLSCHEMA_MODE) && offset < regexlen && regex.charAt(offset) == ':')
           {
-            this.offset++;
+            offset++;
             ret = T_POSIX_CHARCLASS_START;
             break;
           } // Through down
         default:
-          if (REUtil.isHighSurrogate(ch) && this.offset < this.regexlen)
+          if (REUtil.isHighSurrogate(ch) && offset < regexlen)
           {
-            int low = this.regex.charAt(this.offset);
+            int low = regex.charAt(offset);
             if (REUtil.isLowSurrogate(low))
             {
-              this.chardata = REUtil.composeFromSurrogates(ch, low);
-              this.offset++;
+              chardata = REUtil.composeFromSurrogates(ch, low);
+              offset++;
             }
           }
           ret = T_CHAR;
         }
-        this.nexttoken = ret;
+        nexttoken = ret;
         return;
       }
 
@@ -5446,10 +6629,19 @@ public final class RegEx
         break;
       case '(':
         ret = T_LPAREN;
-        if (this.offset >= this.regexlen) break;
-        if (this.regex.charAt(this.offset) != '?') break;
-        if (++this.offset >= this.regexlen) throw ex("parser.next.2", this.offset - 1);
-        ch = this.regex.charAt(this.offset++);
+        if (offset >= regexlen)
+        {
+          break;
+        }
+        if (regex.charAt(offset) != '?')
+        {
+          break;
+        }
+        if (++offset >= regexlen)
+        {
+          throw ex("parser.next.2", offset - 1);
+        }
+        ch = regex.charAt(offset++);
         switch (ch)
         {
         case ':':
@@ -5468,8 +6660,11 @@ public final class RegEx
           ret = T_INDEPENDENT;
           break;
         case '<':
-          if (this.offset >= this.regexlen) throw ex("parser.next.2", this.offset - 3);
-          ch = this.regex.charAt(this.offset++);
+          if (offset >= regexlen)
+          {
+            throw ex("parser.next.2", offset - 3);
+          }
+          ch = regex.charAt(offset++);
           if (ch == '=')
           {
             ret = T_LOOKBEHIND;
@@ -5479,21 +6674,29 @@ public final class RegEx
             ret = T_NEGATIVELOOKBEHIND;
           }
           else
-            throw ex("parser.next.3", this.offset - 3);
+          {
+            throw ex("parser.next.3", offset - 3);
+          }
           break;
         case '#':
-          while (this.offset < this.regexlen)
+          while (offset < regexlen)
           {
-            ch = this.regex.charAt(this.offset++);
-            if (ch == ')') break;
+            ch = regex.charAt(offset++);
+            if (ch == ')')
+            {
+              break;
+            }
           }
-          if (ch != ')') throw ex("parser.next.4", this.offset - 1);
+          if (ch != ')')
+          {
+            throw ex("parser.next.4", offset - 1);
+          }
           ret = T_COMMENT;
           break;
         default:
           if (ch == '-' || 'a' <= ch && ch <= 'z' || 'A' <= ch && ch <= 'Z')
           {// Options
-            this.offset--;
+            offset--;
             ret = T_MODIFIERS;
             break;
           }
@@ -5502,20 +6705,23 @@ public final class RegEx
             ret = T_CONDITION; // this.offsets points the next of '('.
             break;
           }
-          throw ex("parser.next.2", this.offset - 2);
+          throw ex("parser.next.2", offset - 2);
         }
         break;
 
       case '\\':
         ret = T_BACKSOLIDUS;
-        if (this.offset >= this.regexlen) throw ex("parser.next.1", this.offset - 1);
-        this.chardata = this.regex.charAt(this.offset++);
+        if (offset >= regexlen)
+        {
+          throw ex("parser.next.1", offset - 1);
+        }
+        chardata = regex.charAt(offset++);
         break;
 
       default:
         ret = T_CHAR;
       }
-      this.nexttoken = ret;
+      nexttoken = ret;
     }
 
 /**
@@ -5526,18 +6732,18 @@ public final class RegEx
      */
     Token parseRegex() throws ParseException
     {
-      Token tok = this.parseTerm();
+      Token tok = parseTerm();
       Token parent = null;
-      while (this.read() == T_OR)
+      while (read() == T_OR)
       {
-        this.next(); // '|'
+        next(); // '|'
         if (parent == null)
         {
           parent = Token.createUnion();
           parent.addChild(tok);
           tok = parent;
         }
-        tok.addChild(this.parseTerm());
+        tok.addChild(parseTerm());
       }
       return tok;
     }
@@ -5547,16 +6753,16 @@ public final class RegEx
      */
     Token parseTerm() throws ParseException
     {
-      int ch = this.read();
+      int ch = read();
       if (ch == T_OR || ch == T_RPAREN || ch == T_EOF)
       {
         return Token.createEmpty();
       }
       else
       {
-        Token tok = this.parseFactor();
+        Token tok = parseFactor();
         Token concat = null;
-        while ((ch = this.read()) != T_OR && ch != T_RPAREN && ch != T_EOF)
+        while ((ch = read()) != T_OR && ch != T_RPAREN && ch != T_EOF)
         {
           if (concat == null)
           {
@@ -5564,7 +6770,7 @@ public final class RegEx
             concat.addChild(tok);
             tok = concat;
           }
-          concat.addChild(this.parseFactor());
+          concat.addChild(parseFactor());
           // tok = Token.createConcat(tok, this.parseFactor());
         }
         return tok;
@@ -5575,127 +6781,143 @@ public final class RegEx
 
     Token processCaret() throws ParseException
     {
-      this.next();
+      next();
       return Token.token_linebeginning;
     }
 
     Token processDollar() throws ParseException
     {
-      this.next();
+      next();
       return Token.token_lineend;
     }
 
     Token processLookahead() throws ParseException
     {
-      this.next();
-      Token tok = Token.createLook(Token.LOOKAHEAD, this.parseRegex());
-      if (this.read() != T_RPAREN) throw ex("parser.factor.1", this.offset - 1);
-      this.next(); // ')'
+      next();
+      Token tok = Token.createLook(Token.LOOKAHEAD, parseRegex());
+      if (read() != T_RPAREN)
+      {
+        throw ex("parser.factor.1", offset - 1);
+      }
+      next(); // ')'
       return tok;
     }
 
     Token processNegativelookahead() throws ParseException
     {
-      this.next();
-      Token tok = Token.createLook(Token.NEGATIVELOOKAHEAD, this.parseRegex());
-      if (this.read() != T_RPAREN) throw ex("parser.factor.1", this.offset - 1);
-      this.next(); // ')'
+      next();
+      Token tok = Token.createLook(Token.NEGATIVELOOKAHEAD, parseRegex());
+      if (read() != T_RPAREN)
+      {
+        throw ex("parser.factor.1", offset - 1);
+      }
+      next(); // ')'
       return tok;
     }
 
     Token processLookbehind() throws ParseException
     {
-      this.next();
-      Token tok = Token.createLook(Token.LOOKBEHIND, this.parseRegex());
-      if (this.read() != T_RPAREN) throw ex("parser.factor.1", this.offset - 1);
-      this.next(); // ')'
+      next();
+      Token tok = Token.createLook(Token.LOOKBEHIND, parseRegex());
+      if (read() != T_RPAREN)
+      {
+        throw ex("parser.factor.1", offset - 1);
+      }
+      next(); // ')'
       return tok;
     }
 
     Token processNegativelookbehind() throws ParseException
     {
-      this.next();
-      Token tok = Token.createLook(Token.NEGATIVELOOKBEHIND, this.parseRegex());
-      if (this.read() != T_RPAREN) throw ex("parser.factor.1", this.offset - 1);
-      this.next(); // ')'
+      next();
+      Token tok = Token.createLook(Token.NEGATIVELOOKBEHIND, parseRegex());
+      if (read() != T_RPAREN)
+      {
+        throw ex("parser.factor.1", offset - 1);
+      }
+      next(); // ')'
       return tok;
     }
 
     Token processBacksolidus_A() throws ParseException
     {
-      this.next();
+      next();
       return Token.token_stringbeginning;
     }
 
     Token processBacksolidus_Z() throws ParseException
     {
-      this.next();
+      next();
       return Token.token_stringend2;
     }
 
     Token processBacksolidus_z() throws ParseException
     {
-      this.next();
+      next();
       return Token.token_stringend;
     }
 
     Token processBacksolidus_b() throws ParseException
     {
-      this.next();
+      next();
       return Token.token_wordedge;
     }
 
     Token processBacksolidus_B() throws ParseException
     {
-      this.next();
+      next();
       return Token.token_not_wordedge;
     }
 
     Token processBacksolidus_lt() throws ParseException
     {
-      this.next();
+      next();
       return Token.token_wordbeginning;
     }
 
     Token processBacksolidus_gt() throws ParseException
     {
-      this.next();
+      next();
       return Token.token_wordend;
     }
 
     Token processStar(Token tok) throws ParseException
     {
-      this.next();
-      if (this.read() == T_QUESTION)
+      next();
+      if (read() == T_QUESTION)
       {
-        this.next();
+        next();
         return Token.createNGClosure(tok);
       }
       else
+      {
         return Token.createClosure(tok);
+      }
     }
 
     Token processPlus(Token tok) throws ParseException
     {
       // X+ -> XX*
-      this.next();
-      if (this.read() == T_QUESTION)
+      next();
+      if (read() == T_QUESTION)
       {
-        this.next();
+        next();
         return Token.createConcat(tok, Token.createNGClosure(tok));
       }
       else
+      {
         return Token.createConcat(tok, Token.createClosure(tok));
+      }
     }
 
     Token processQuestion(Token tok) throws ParseException
     {
       // X? -> X|
-      this.next();
+      next();
       Token par = Token.createUnion();
-      if (this.read() == T_QUESTION)
+      if (read() == T_QUESTION)
       {
-        this.next();
+        next();
         par.addChild(Token.createEmpty());
         par.addChild(tok);
       }
@@ -5709,51 +6931,69 @@ public final class RegEx
 
     boolean checkQuestion(int off)
     {
-      return off < this.regexlen && this.regex.charAt(off) == '?';
+      return off < regexlen && regex.charAt(off) == '?';
     }
 
     Token processParen() throws ParseException
     {
-      this.next();
-      int p = this.parennumber++;
-      Token tok = Token.createParen(this.parseRegex(), p);
-      if (this.read() != T_RPAREN) throw ex("parser.factor.1", this.offset - 1);
-      this.next(); // Skips ')'
+      next();
+      int p = parennumber++;
+      Token tok = Token.createParen(parseRegex(), p);
+      if (read() != T_RPAREN)
+      {
+        throw ex("parser.factor.1", offset - 1);
+      }
+      next(); // Skips ')'
       return tok;
     }
 
     Token processParen2() throws ParseException
     {
-      this.next();
-      Token tok = Token.createParen(this.parseRegex(), 0);
-      if (this.read() != T_RPAREN) throw ex("parser.factor.1", this.offset - 1);
-      this.next(); // Skips ')'
+      next();
+      Token tok = Token.createParen(parseRegex(), 0);
+      if (read() != T_RPAREN)
+      {
+        throw ex("parser.factor.1", offset - 1);
+      }
+      next(); // Skips ')'
       return tok;
     }
 
     Token processCondition() throws ParseException
     {
       // this.offset points the next of '('
-      if (this.offset + 1 >= this.regexlen) throw ex("parser.factor.4", this.offset);
+      if (offset + 1 >= regexlen)
+      {
+        throw ex("parser.factor.4", offset);
+      }
       // Parses a condition.
       int refno = -1;
       Token condition = null;
-      int ch = this.regex.charAt(this.offset);
+      int ch = regex.charAt(offset);
       if ('1' <= ch && ch <= '9')
       {
         refno = ch - '0';
-        this.hasBackReferences = true;
-        if (this.references == null) this.references = new Vector<ReferencePosition>();
-        this.references.addElement(new ReferencePosition(refno, this.offset));
-        this.offset++;
-        if (this.regex.charAt(this.offset) != ')') throw ex("parser.factor.1", this.offset);
-        this.offset++;
+        hasBackReferences = true;
+        if (references == null)
+        {
+          references = new Vector<ReferencePosition>();
+        }
+        references.addElement(new ReferencePosition(refno, offset));
+        offset++;
+        if (regex.charAt(offset) != ')')
+        {
+          throw ex("parser.factor.1", offset);
+        }
+        offset++;
       }
       else
       {
-        if (ch == '?') this.offset--; // Points '('.
-        this.next();
-        condition = this.parseFactor();
+        if (ch == '?')
+        {
+          offset--; // Points '('.
+        }
+        next();
+        condition = parseFactor();
         switch (condition.type)
         {
         case Token.LOOKAHEAD:
@@ -5762,24 +7002,33 @@ public final class RegEx
         case Token.NEGATIVELOOKBEHIND:
           break;
         case Token.ANCHOR:
-          if (this.read() != T_RPAREN) throw ex("parser.factor.1", this.offset - 1);
+          if (read() != T_RPAREN)
+          {
+            throw ex("parser.factor.1", offset - 1);
+          }
           break;
         default:
-          throw ex("parser.factor.5", this.offset);
+          throw ex("parser.factor.5", offset);
         }
       }
       // Parses yes/no-patterns.
-      this.next();
-      Token yesPattern = this.parseRegex();
+      next();
+      Token yesPattern = parseRegex();
       Token noPattern = null;
       if (yesPattern.type == Token.UNION)
       {
-        if (yesPattern.size() != 2) throw ex("parser.factor.6", this.offset);
+        if (yesPattern.size() != 2)
+        {
+          throw ex("parser.factor.6", offset);
+        }
         noPattern = yesPattern.getChild(1);
         yesPattern = yesPattern.getChild(0);
       }
-      if (this.read() != T_RPAREN) throw ex("parser.factor.1", this.offset - 1);
-      this.next();
+      if (read() != T_RPAREN)
+      {
+        throw ex("parser.factor.1", offset - 1);
+      }
+      next();
       return Token.createCondition(refno, condition, yesPattern, noPattern);
     }
 
@@ -5788,104 +7037,129 @@ public final class RegEx
       // this.offset points the next of '?'.
       // modifiers ::= [imsw]* ('-' [imsw]*)? ':'
       int add = 0, mask = 0, ch = -1;
-      while (this.offset < this.regexlen)
+      while (offset < regexlen)
       {
-        ch = this.regex.charAt(this.offset);
+        ch = regex.charAt(offset);
         int v = REUtil.getOptionValue(ch);
-        if (v == 0) break; // '-' or ':'?
+        if (v == 0)
+        {
+          break; // '-' or ':'?
+        }
         add |= v;
-        this.offset++;
+        offset++;
       }
-      if (this.offset >= this.regexlen) throw ex("parser.factor.2", this.offset - 1);
+      if (offset >= regexlen)
+      {
+        throw ex("parser.factor.2", offset - 1);
+      }
       if (ch == '-')
       {
-        this.offset++;
-        while (this.offset < this.regexlen)
+        offset++;
+        while (offset < regexlen)
         {
-          ch = this.regex.charAt(this.offset);
+          ch = regex.charAt(offset);
           int v = REUtil.getOptionValue(ch);
-          if (v == 0) break; // ':'?
+          if (v == 0)
+          {
+            break; // ':'?
+          }
           mask |= v;
-          this.offset++;
+          offset++;
         }
-        if (this.offset >= this.regexlen) throw ex("parser.factor.2", this.offset - 1);
+        if (offset >= regexlen)
+        {
+          throw ex("parser.factor.2", offset - 1);
+        }
       }
       Token tok;
       if (ch == ':')
       {
-        this.offset++;
-        this.next();
-        tok = Token.createModifierGroup(this.parseRegex(), add, mask);
-        if (this.read() != T_RPAREN) throw ex("parser.factor.1", this.offset - 1);
-        this.next();
+        offset++;
+        next();
+        tok = Token.createModifierGroup(parseRegex(), add, mask);
+        if (read() != T_RPAREN)
+        {
+          throw ex("parser.factor.1", offset - 1);
+        }
+        next();
       }
       else if (ch == ')')
       { // such as (?-i)
-        this.offset++;
-        this.next();
-        tok = Token.createModifierGroup(this.parseRegex(), add, mask);
+        offset++;
+        next();
+        tok = Token.createModifierGroup(parseRegex(), add, mask);
       }
       else
-        throw ex("parser.factor.3", this.offset);
+      {
+        throw ex("parser.factor.3", offset);
+      }
 
       return tok;
     }
 
     Token processIndependent() throws ParseException
     {
-      this.next();
-      Token tok = Token.createLook(Token.INDEPENDENT, this.parseRegex());
-      if (this.read() != T_RPAREN) throw ex("parser.factor.1", this.offset - 1);
-      this.next(); // Skips ')'
+      next();
+      Token tok = Token.createLook(Token.INDEPENDENT, parseRegex());
+      if (read() != T_RPAREN)
+      {
+        throw ex("parser.factor.1", offset - 1);
+      }
+      next(); // Skips ')'
       return tok;
     }
 
     Token processBacksolidus_c() throws ParseException
     {
       int ch2; // Must be in 0x0040-0x005f
-      if (this.offset >= this.regexlen || ((ch2 = this.regex.charAt(this.offset++)) & 0xffe0) != 0x0040)
-        throw ex("parser.atom.1", this.offset - 1);
-      this.next();
+      if (offset >= regexlen || ((ch2 = regex.charAt(offset++)) & 0xffe0) != 0x0040)
+      {
+        throw ex("parser.atom.1", offset - 1);
+      }
+      next();
       return Token.createChar(ch2 - 0x40);
     }
 
     Token processBacksolidus_C() throws ParseException
     {
-      throw ex("parser.process.1", this.offset);
+      throw ex("parser.process.1", offset);
     }
 
     Token processBacksolidus_i() throws ParseException
     {
       Token tok = Token.createChar('i');
-      this.next();
+      next();
       return tok;
     }
 
     Token processBacksolidus_I() throws ParseException
     {
-      throw ex("parser.process.1", this.offset);
+      throw ex("parser.process.1", offset);
     }
 
     Token processBacksolidus_g() throws ParseException
     {
-      this.next();
+      next();
       return Token.getGraphemePattern();
     }
 
     Token processBacksolidus_X() throws ParseException
     {
-      this.next();
+      next();
       return Token.getCombiningCharacterSequence();
     }
 
     Token processBackreference() throws ParseException
     {
-      int refnum = this.chardata - '0';
+      int refnum = chardata - '0';
       Token tok = Token.createBackReference(refnum);
-      this.hasBackReferences = true;
-      if (this.references == null) this.references = new Vector<ReferencePosition>();
-      this.references.addElement(new ReferencePosition(refnum, this.offset - 2));
-      this.next();
+      hasBackReferences = true;
+      if (references == null)
+      {
+        references = new Vector<ReferencePosition>();
+      }
+      references.addElement(new ReferencePosition(refnum, offset - 2));
+      next();
       return tok;
     }
 
@@ -5898,98 +7172,107 @@ public final class RegEx
      */
     Token parseFactor() throws ParseException
     {
-      int ch = this.read();
+      int ch = read();
       Token tok;
       switch (ch)
       {
       case T_CARET:
-        return this.processCaret();
+        return processCaret();
       case T_DOLLAR:
-        return this.processDollar();
+        return processDollar();
       case T_LOOKAHEAD:
-        return this.processLookahead();
+        return processLookahead();
       case T_NEGATIVELOOKAHEAD:
-        return this.processNegativelookahead();
+        return processNegativelookahead();
       case T_LOOKBEHIND:
-        return this.processLookbehind();
+        return processLookbehind();
       case T_NEGATIVELOOKBEHIND:
-        return this.processNegativelookbehind();
+        return processNegativelookbehind();
 
       case T_COMMENT:
-        this.next();
+        next();
         return Token.createEmpty();
 
       case T_BACKSOLIDUS:
-        switch (this.chardata)
+        switch (chardata)
         {
         case 'A':
-          return this.processBacksolidus_A();
+          return processBacksolidus_A();
         case 'Z':
-          return this.processBacksolidus_Z();
+          return processBacksolidus_Z();
         case 'z':
-          return this.processBacksolidus_z();
+          return processBacksolidus_z();
         case 'b':
-          return this.processBacksolidus_b();
+          return processBacksolidus_b();
         case 'B':
-          return this.processBacksolidus_B();
+          return processBacksolidus_B();
         case '<':
-          return this.processBacksolidus_lt();
+          return processBacksolidus_lt();
         case '>':
-          return this.processBacksolidus_gt();
+          return processBacksolidus_gt();
         }
         // through down
       }
-      tok = this.parseAtom();
-      ch = this.read();
+      tok = parseAtom();
+      ch = read();
       switch (ch)
       {
       case T_STAR:
-        return this.processStar(tok);
+        return processStar(tok);
       case T_PLUS:
-        return this.processPlus(tok);
+        return processPlus(tok);
       case T_QUESTION:
-        return this.processQuestion(tok);
+        return processQuestion(tok);
       case T_CHAR:
-        if (this.chardata == '{' && this.offset < this.regexlen)
+        if (chardata == '{' && offset < regexlen)
         {
 
-          int off = this.offset; // this.offset -> next of '{'
+          int off = offset; // this.offset -> next of '{'
           int min = 0, max = -1;
 
-          if ((ch = this.regex.charAt(off++)) >= '0' && ch <= '9')
+          if ((ch = regex.charAt(off++)) >= '0' && ch <= '9')
           {
 
             min = ch - '0';
-            while (off < this.regexlen && (ch = this.regex.charAt(off++)) >= '0' && ch <= '9')
+            while (off < regexlen && (ch = regex.charAt(off++)) >= '0' && ch <= '9')
             {
               min = min * 10 + ch - '0';
-              if (min < 0) throw ex("parser.quantifier.5", this.offset);
+              if (min < 0)
+              {
+                throw ex("parser.quantifier.5", offset);
+              }
             }
           }
           else
           {
-            throw ex("parser.quantifier.1", this.offset);
+            throw ex("parser.quantifier.1", offset);
           }
 
           max = min;
           if (ch == ',')
           {
 
-            if (off >= this.regexlen)
+            if (off >= regexlen)
             {
-              throw ex("parser.quantifier.3", this.offset);
+              throw ex("parser.quantifier.3", offset);
             }
-            else if ((ch = this.regex.charAt(off++)) >= '0' && ch <= '9')
+            else if ((ch = regex.charAt(off++)) >= '0' && ch <= '9')
             {
 
               max = ch - '0'; // {min,max}
-              while (off < this.regexlen && (ch = this.regex.charAt(off++)) >= '0' && ch <= '9')
+              while (off < regexlen && (ch = regex.charAt(off++)) >= '0' && ch <= '9')
               {
                 max = max * 10 + ch - '0';
-                if (max < 0) throw ex("parser.quantifier.5", this.offset);
+                if (max < 0)
+                {
+                  throw ex("parser.quantifier.5", offset);
+                }
               }
 
-              if (min > max) throw ex("parser.quantifier.4", this.offset);
+              if (min > max)
+              {
+                throw ex("parser.quantifier.4", offset);
+              }
             }
             else
             { // assume {min,}
@@ -5997,23 +7280,26 @@ public final class RegEx
             }
           }
 
-          if (ch != '}') throw ex("parser.quantifier.2", this.offset);
+          if (ch != '}')
+          {
+            throw ex("parser.quantifier.2", offset);
+          }
 
-          if (this.checkQuestion(off))
+          if (checkQuestion(off))
           { // off -> next of '}'
             tok = Token.createNGClosure(tok);
-            this.offset = off + 1;
+            offset = off + 1;
           }
           else
           {
             tok = Token.createClosure(tok);
-            this.offset = off;
+            offset = off;
           }
 
           tok.setMin(min);
           tok.setMax(max);
           // System.err.println("CLOSURE: "+min+", "+max);
-          this.next();
+          next();
         }
       }
       return tok;
@@ -6025,22 +7311,22 @@ public final class RegEx
      */
     Token parseAtom() throws ParseException
     {
-      int ch = this.read();
+      int ch = read();
       Token tok = null;
       switch (ch)
       {
       case T_LPAREN:
-        return this.processParen();
+        return processParen();
       case T_LPAREN2:
-        return this.processParen2(); // '(?:'
+        return processParen2(); // '(?:'
       case T_CONDITION:
-        return this.processCondition(); // '(?('
+        return processCondition(); // '(?('
       case T_MODIFIERS:
-        return this.processModifiers(); // (?modifiers ... )
+        return processModifiers(); // (?modifiers ... )
       case T_INDEPENDENT:
-        return this.processIndependent();
+        return processIndependent();
       case T_DOT:
-        this.next(); // Skips '.'
+        next(); // Skips '.'
         tok = Token.token_dot;
         break;
 
@@ -6050,12 +7336,12 @@ public final class RegEx
        * ::= '\' 'u' [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F]
        */
       case T_LBRACKET:
-        return this.parseCharacterClass(true);
+        return parseCharacterClass(true);
       case T_SET_OPERATIONS:
-        return this.parseSetOperations();
+        return parseSetOperations();
 
       case T_BACKSOLIDUS:
-        switch (this.chardata)
+        switch (chardata)
         {
         case 'd':
         case 'D':
@@ -6063,8 +7349,8 @@ public final class RegEx
         case 'W':
         case 's':
         case 'S':
-          tok = this.getTokenForShorthand(this.chardata);
-          this.next();
+          tok = getTokenForShorthand(chardata);
+          next();
           return tok;
 
         case 'e':
@@ -6076,7 +7362,7 @@ public final class RegEx
         case 'v':
         case 'x':
         {
-          int ch2 = this.decodeEscaped();
+          int ch2 = decodeEscaped();
           if (ch2 < 0x10000)
           {
             tok = Token.createChar(ch2);
@@ -6089,17 +7375,17 @@ public final class RegEx
           break;
 
         case 'c':
-          return this.processBacksolidus_c();
+          return processBacksolidus_c();
         case 'C':
-          return this.processBacksolidus_C();
+          return processBacksolidus_C();
         case 'i':
-          return this.processBacksolidus_i();
+          return processBacksolidus_i();
         case 'I':
-          return this.processBacksolidus_I();
+          return processBacksolidus_I();
         case 'g':
-          return this.processBacksolidus_g();
+          return processBacksolidus_g();
         case 'X':
-          return this.processBacksolidus_X();
+          return processBacksolidus_X();
         case '1':
         case '2':
         case '3':
@@ -6109,39 +7395,44 @@ public final class RegEx
         case '7':
         case '8':
         case '9':
-          return this.processBackreference();
+          return processBackreference();
 
         case 'P':
         case 'p':
-          int pstart = this.offset;
-          tok = processBacksolidus_pP(this.chardata);
-          if (tok == null) throw this.ex("parser.atom.5", pstart);
+          int pstart = offset;
+          tok = processBacksolidus_pP(chardata);
+          if (tok == null)
+          {
+            throw ex("parser.atom.5", pstart);
+          }
           break;
 
         default:
-          tok = Token.createChar(this.chardata);
+          tok = Token.createChar(chardata);
         }
-        this.next();
+        next();
         break;
 
       case T_CHAR:
-        if (this.chardata == ']' || this.chardata == '{' || this.chardata == '}')
-          throw this.ex("parser.atom.4", this.offset - 1);
-        tok = Token.createChar(this.chardata);
-        int high = this.chardata;
-        this.next();
-        if (REUtil.isHighSurrogate(high) && this.read() == T_CHAR && REUtil.isLowSurrogate(this.chardata))
+        if (chardata == ']' || chardata == '{' || chardata == '}')
+        {
+          throw ex("parser.atom.4", offset - 1);
+        }
+        tok = Token.createChar(chardata);
+        int high = chardata;
+        next();
+        if (REUtil.isHighSurrogate(high) && read() == T_CHAR && REUtil.isLowSurrogate(chardata))
         {
           char[] sur = new char[2];
           sur[0] = (char)high;
-          sur[1] = (char)this.chardata;
+          sur[1] = (char)chardata;
           tok = Token.createParen(Token.createString(new String(sur)), 0);
-          this.next();
+          next();
         }
         break;
 
       default:
-        throw this.ex("parser.atom.4", this.offset - 1);
+        throw ex("parser.atom.4", offset - 1);
       }
       return tok;
     }
@@ -6149,25 +7440,31 @@ public final class RegEx
     protected RangeToken processBacksolidus_pP(int c) throws ParseException
     {
 
-      this.next();
-      if (this.read() != T_CHAR || this.chardata != '{') throw this.ex("parser.atom.2", this.offset - 1);
+      next();
+      if (read() != T_CHAR || chardata != '{')
+      {
+        throw ex("parser.atom.2", offset - 1);
+      }
 
       // handle category escape
       boolean positive = c == 'p';
-      int namestart = this.offset;
-      int nameend = this.regex.indexOf('}', namestart);
+      int namestart = offset;
+      int nameend = regex.indexOf('}', namestart);
 
-      if (nameend < 0) throw this.ex("parser.atom.3", this.offset);
+      if (nameend < 0)
+      {
+        throw ex("parser.atom.3", offset);
+      }
 
-      String pname = this.regex.substring(namestart, nameend);
-      this.offset = nameend + 1;
+      String pname = regex.substring(namestart, nameend);
+      offset = nameend + 1;
 
-      return Token.getRange(pname, positive, this.isSet(RegularExpression.XMLSCHEMA_MODE));
+      return Token.getRange(pname, positive, isSet(RegularExpression.XMLSCHEMA_MODE));
     }
 
     int processCIinCharacterClass(RangeToken tok, int c)
     {
-      return this.decodeEscaped();
+      return decodeEscaped();
     }
 
     /**
@@ -6177,13 +7474,13 @@ public final class RegEx
      */
     protected RangeToken parseCharacterClass(boolean useNrange) throws ParseException
     {
-      this.setContext(S_INBRACKETS);
-      this.next(); // '['
+      setContext(S_INBRACKETS);
+      next(); // '['
       RangeToken base = null;
       RangeToken tok;
-      if (this.read() == T_CHAR && this.chardata == '^')
+      if (read() == T_CHAR && chardata == '^')
       {
-        this.next(); // '^'
+        next(); // '^'
         if (useNrange)
         {
           tok = Token.createNRange();
@@ -6201,11 +7498,14 @@ public final class RegEx
       }
       int type;
       boolean firstloop = true;
-      while ((type = this.read()) != T_EOF)
+      while ((type = read()) != T_EOF)
       {
-        if (type == T_CHAR && this.chardata == ']' && !firstloop) break;
+        if (type == T_CHAR && chardata == ']' && !firstloop)
+        {
+          break;
+        }
         firstloop = false;
-        int c = this.chardata;
+        int c = chardata;
         boolean end = false;
         if (type == T_BACKSOLIDUS)
         {
@@ -6217,7 +7517,7 @@ public final class RegEx
           case 'W':
           case 's':
           case 'S':
-            tok.mergeRanges(this.getTokenForShorthand(c));
+            tok.mergeRanges(getTokenForShorthand(c));
             end = true;
             break;
 
@@ -6225,71 +7525,97 @@ public final class RegEx
           case 'I':
           case 'c':
           case 'C':
-            c = this.processCIinCharacterClass(tok, c);
-            if (c < 0) end = true;
+            c = processCIinCharacterClass(tok, c);
+            if (c < 0)
+            {
+              end = true;
+            }
             break;
 
           case 'p':
           case 'P':
-            int pstart = this.offset;
-            RangeToken tok2 = this.processBacksolidus_pP(c);
-            if (tok2 == null) throw this.ex("parser.atom.5", pstart);
+            int pstart = offset;
+            RangeToken tok2 = processBacksolidus_pP(c);
+            if (tok2 == null)
+            {
+              throw ex("parser.atom.5", pstart);
+            }
             tok.mergeRanges(tok2);
             end = true;
             break;
 
           default:
-            c = this.decodeEscaped();
+            c = decodeEscaped();
           } // \ + c
         } // backsolidus
         // POSIX Character class such as [:alnum:]
         else if (type == T_POSIX_CHARCLASS_START)
         {
-          int nameend = this.regex.indexOf(':', this.offset);
-          if (nameend < 0) throw this.ex("parser.cc.1", this.offset);
-          boolean positive = true;
-          if (this.regex.charAt(this.offset) == '^')
+          int nameend = regex.indexOf(':', offset);
+          if (nameend < 0)
           {
-            this.offset++;
+            throw ex("parser.cc.1", offset);
+          }
+          boolean positive = true;
+          if (regex.charAt(offset) == '^')
+          {
+            offset++;
             positive = false;
           }
-          String name = this.regex.substring(this.offset, nameend);
-          RangeToken range = Token.getRange(name, positive, this.isSet(RegularExpression.XMLSCHEMA_MODE));
-          if (range == null) throw this.ex("parser.cc.3", this.offset);
+          String name = regex.substring(offset, nameend);
+          RangeToken range = Token.getRange(name, positive, isSet(RegularExpression.XMLSCHEMA_MODE));
+          if (range == null)
+          {
+            throw ex("parser.cc.3", offset);
+          }
           tok.mergeRanges(range);
           end = true;
-          if (nameend + 1 >= this.regexlen || this.regex.charAt(nameend + 1) != ']')
-            throw this.ex("parser.cc.1", nameend);
-          this.offset = nameend + 2;
+          if (nameend + 1 >= regexlen || regex.charAt(nameend + 1) != ']')
+          {
+            throw ex("parser.cc.1", nameend);
+          }
+          offset = nameend + 2;
         }
-        this.next();
+        next();
         if (!end)
         { // if not shorthands...
-          if (this.read() != T_CHAR || this.chardata != '-')
+          if (read() != T_CHAR || chardata != '-')
           { // Here is no '-'.
             tok.addRange(c, c);
           }
           else
           {
-            this.next(); // Skips '-'
-            if ((type = this.read()) == T_EOF) throw this.ex("parser.cc.2", this.offset);
-            if (type == T_CHAR && this.chardata == ']')
+            next(); // Skips '-'
+            if ((type = read()) == T_EOF)
+            {
+              throw ex("parser.cc.2", offset);
+            }
+            if (type == T_CHAR && chardata == ']')
             {
               tok.addRange(c, c);
               tok.addRange('-', '-');
             }
             else
             {
-              int rangeend = this.chardata;
-              if (type == T_BACKSOLIDUS) rangeend = this.decodeEscaped();
-              this.next();
+              int rangeend = chardata;
+              if (type == T_BACKSOLIDUS)
+              {
+                rangeend = decodeEscaped();
+              }
+              next();
               tok.addRange(c, rangeend);
             }
           }
         }
-        if (this.isSet(RegularExpression.SPECIAL_COMMA) && this.read() == T_CHAR && this.chardata == ',') this.next();
+        if (isSet(RegularExpression.SPECIAL_COMMA) && read() == T_CHAR && chardata == ',')
+        {
+          next();
+        }
       }
-      if (this.read() == T_EOF) throw this.ex("parser.cc.2", this.offset);
+      if (read() == T_EOF)
+      {
+        throw ex("parser.cc.2", offset);
+      }
       if (base != null)
       {
         base.subtractRanges(tok);
@@ -6301,8 +7627,8 @@ public final class RegEx
       /*
        * if (this.isSet(RegularExpression.IGNORE_CASE)) tok = RangeToken.createCaseInsensitiveToken(tok);
        */
-      this.setContext(S_NORMAL);
-      this.next(); // Skips ']'
+      setContext(S_NORMAL);
+      next(); // Skips ']'
 
       return tok;
     }
@@ -6312,31 +7638,42 @@ public final class RegEx
      */
     protected RangeToken parseSetOperations() throws ParseException
     {
-      RangeToken tok = this.parseCharacterClass(false);
+      RangeToken tok = parseCharacterClass(false);
       int type;
-      while ((type = this.read()) != T_RPAREN)
+      while ((type = read()) != T_RPAREN)
       {
-        int ch = this.chardata;
+        int ch = chardata;
         if (type == T_CHAR && (ch == '-' || ch == '&') || type == T_PLUS)
         {
-          this.next();
-          if (this.read() != T_LBRACKET) throw ex("parser.ope.1", this.offset - 1);
-          RangeToken t2 = this.parseCharacterClass(false);
+          next();
+          if (read() != T_LBRACKET)
+          {
+            throw ex("parser.ope.1", offset - 1);
+          }
+          RangeToken t2 = parseCharacterClass(false);
           if (type == T_PLUS)
+          {
             tok.mergeRanges(t2);
+          }
           else if (ch == '-')
+          {
             tok.subtractRanges(t2);
+          }
           else if (ch == '&')
+          {
             tok.intersectRanges(t2);
+          }
           else
+          {
             throw new RuntimeException("ASSERT");
+          }
         }
         else
         {
-          throw ex("parser.ope.2", this.offset - 1);
+          throw ex("parser.ope.2", offset - 1);
         }
       }
-      this.next();
+      next();
       return tok;
     }
 
@@ -6346,25 +7683,23 @@ public final class RegEx
       switch (ch)
       {
       case 'd':
-        tok = this.isSet(RegularExpression.USE_UNICODE_CATEGORY) ? Token.getRange("Nd", true) : Token.token_0to9;
+        tok = isSet(RegularExpression.USE_UNICODE_CATEGORY) ? Token.getRange("Nd", true) : Token.token_0to9;
         break;
       case 'D':
-        tok = this.isSet(RegularExpression.USE_UNICODE_CATEGORY) ? Token.getRange("Nd", false) : Token.token_not_0to9;
+        tok = isSet(RegularExpression.USE_UNICODE_CATEGORY) ? Token.getRange("Nd", false) : Token.token_not_0to9;
         break;
       case 'w':
-        tok = this.isSet(RegularExpression.USE_UNICODE_CATEGORY) ? Token.getRange("IsWord", true)
-            : Token.token_wordchars;
+        tok = isSet(RegularExpression.USE_UNICODE_CATEGORY) ? Token.getRange("IsWord", true) : Token.token_wordchars;
         break;
       case 'W':
-        tok = this.isSet(RegularExpression.USE_UNICODE_CATEGORY) ? Token.getRange("IsWord", false)
+        tok = isSet(RegularExpression.USE_UNICODE_CATEGORY) ? Token.getRange("IsWord", false)
             : Token.token_not_wordchars;
         break;
       case 's':
-        tok = this.isSet(RegularExpression.USE_UNICODE_CATEGORY) ? Token.getRange("IsSpace", true) : Token.token_spaces;
+        tok = isSet(RegularExpression.USE_UNICODE_CATEGORY) ? Token.getRange("IsSpace", true) : Token.token_spaces;
         break;
       case 'S':
-        tok = this.isSet(RegularExpression.USE_UNICODE_CATEGORY) ? Token.getRange("IsSpace", false)
-            : Token.token_not_spaces;
+        tok = isSet(RegularExpression.USE_UNICODE_CATEGORY) ? Token.getRange("IsSpace", false) : Token.token_not_spaces;
         break;
 
       default:
@@ -6377,8 +7712,11 @@ public final class RegEx
      */
     int decodeEscaped() throws ParseException
     {
-      if (this.read() != T_BACKSOLIDUS) throw ex("parser.next.1", this.offset - 1);
-      int c = this.chardata;
+      if (read() != T_BACKSOLIDUS)
+      {
+        throw ex("parser.next.1", offset - 1);
+      }
+      int c = chardata;
       switch (c)
       {
       case 'e':
@@ -6398,33 +7736,55 @@ public final class RegEx
         break; // HORIZONTAL TABULATION U+0009
       // case 'v': c = 0x0b; break; // VERTICAL TABULATION U+000B
       case 'x':
-        this.next();
-        if (this.read() != T_CHAR) throw ex("parser.descape.1", this.offset - 1);
-        if (this.chardata == '{')
+        next();
+        if (read() != T_CHAR)
+        {
+          throw ex("parser.descape.1", offset - 1);
+        }
+        if (chardata == '{')
         {
           int v1 = 0;
           int uv = 0;
           do
           {
-            this.next();
-            if (this.read() != T_CHAR) throw ex("parser.descape.1", this.offset - 1);
-            if ((v1 = hexChar(this.chardata)) < 0) break;
-            if (uv > uv * 16) throw ex("parser.descape.2", this.offset - 1);
+            next();
+            if (read() != T_CHAR)
+            {
+              throw ex("parser.descape.1", offset - 1);
+            }
+            if ((v1 = hexChar(chardata)) < 0)
+            {
+              break;
+            }
+            if (uv > uv * 16)
+            {
+              throw ex("parser.descape.2", offset - 1);
+            }
             uv = uv * 16 + v1;
           } while (true);
-          if (this.chardata != '}') throw ex("parser.descape.3", this.offset - 1);
-          if (uv > Token.UTF16_MAX) throw ex("parser.descape.4", this.offset - 1);
+          if (chardata != '}')
+          {
+            throw ex("parser.descape.3", offset - 1);
+          }
+          if (uv > Token.UTF16_MAX)
+          {
+            throw ex("parser.descape.4", offset - 1);
+          }
           c = uv;
         }
         else
         {
           int v1 = 0;
-          if (this.read() != T_CHAR || (v1 = hexChar(this.chardata)) < 0)
-            throw ex("parser.descape.1", this.offset - 1);
+          if (read() != T_CHAR || (v1 = hexChar(chardata)) < 0)
+          {
+            throw ex("parser.descape.1", offset - 1);
+          }
           int uv = v1;
-          this.next();
-          if (this.read() != T_CHAR || (v1 = hexChar(this.chardata)) < 0)
-            throw ex("parser.descape.1", this.offset - 1);
+          next();
+          if (read() != T_CHAR || (v1 = hexChar(chardata)) < 0)
+          {
+            throw ex("parser.descape.1", offset - 1);
+          }
           uv = uv * 16 + v1;
           c = uv;
         }
@@ -6432,47 +7792,80 @@ public final class RegEx
 
       case 'u':
         int v1 = 0;
-        this.next();
-        if (this.read() != T_CHAR || (v1 = hexChar(this.chardata)) < 0) throw ex("parser.descape.1", this.offset - 1);
+        next();
+        if (read() != T_CHAR || (v1 = hexChar(chardata)) < 0)
+        {
+          throw ex("parser.descape.1", offset - 1);
+        }
         int uv = v1;
-        this.next();
-        if (this.read() != T_CHAR || (v1 = hexChar(this.chardata)) < 0) throw ex("parser.descape.1", this.offset - 1);
+        next();
+        if (read() != T_CHAR || (v1 = hexChar(chardata)) < 0)
+        {
+          throw ex("parser.descape.1", offset - 1);
+        }
         uv = uv * 16 + v1;
-        this.next();
-        if (this.read() != T_CHAR || (v1 = hexChar(this.chardata)) < 0) throw ex("parser.descape.1", this.offset - 1);
+        next();
+        if (read() != T_CHAR || (v1 = hexChar(chardata)) < 0)
+        {
+          throw ex("parser.descape.1", offset - 1);
+        }
         uv = uv * 16 + v1;
-        this.next();
-        if (this.read() != T_CHAR || (v1 = hexChar(this.chardata)) < 0) throw ex("parser.descape.1", this.offset - 1);
+        next();
+        if (read() != T_CHAR || (v1 = hexChar(chardata)) < 0)
+        {
+          throw ex("parser.descape.1", offset - 1);
+        }
         uv = uv * 16 + v1;
         c = uv;
         break;
 
       case 'v':
-        this.next();
-        if (this.read() != T_CHAR || (v1 = hexChar(this.chardata)) < 0) throw ex("parser.descape.1", this.offset - 1);
+        next();
+        if (read() != T_CHAR || (v1 = hexChar(chardata)) < 0)
+        {
+          throw ex("parser.descape.1", offset - 1);
+        }
         uv = v1;
-        this.next();
-        if (this.read() != T_CHAR || (v1 = hexChar(this.chardata)) < 0) throw ex("parser.descape.1", this.offset - 1);
+        next();
+        if (read() != T_CHAR || (v1 = hexChar(chardata)) < 0)
+        {
+          throw ex("parser.descape.1", offset - 1);
+        }
         uv = uv * 16 + v1;
-        this.next();
-        if (this.read() != T_CHAR || (v1 = hexChar(this.chardata)) < 0) throw ex("parser.descape.1", this.offset - 1);
+        next();
+        if (read() != T_CHAR || (v1 = hexChar(chardata)) < 0)
+        {
+          throw ex("parser.descape.1", offset - 1);
+        }
         uv = uv * 16 + v1;
-        this.next();
-        if (this.read() != T_CHAR || (v1 = hexChar(this.chardata)) < 0) throw ex("parser.descape.1", this.offset - 1);
+        next();
+        if (read() != T_CHAR || (v1 = hexChar(chardata)) < 0)
+        {
+          throw ex("parser.descape.1", offset - 1);
+        }
         uv = uv * 16 + v1;
-        this.next();
-        if (this.read() != T_CHAR || (v1 = hexChar(this.chardata)) < 0) throw ex("parser.descape.1", this.offset - 1);
+        next();
+        if (read() != T_CHAR || (v1 = hexChar(chardata)) < 0)
+        {
+          throw ex("parser.descape.1", offset - 1);
+        }
         uv = uv * 16 + v1;
-        this.next();
-        if (this.read() != T_CHAR || (v1 = hexChar(this.chardata)) < 0) throw ex("parser.descape.1", this.offset - 1);
+        next();
+        if (read() != T_CHAR || (v1 = hexChar(chardata)) < 0)
+        {
+          throw ex("parser.descape.1", offset - 1);
+        }
         uv = uv * 16 + v1;
-        if (uv > Token.UTF16_MAX) throw ex("parser.descappe.4", this.offset - 1);
+        if (uv > Token.UTF16_MAX)
+        {
+          throw ex("parser.descappe.4", offset - 1);
+        }
         c = uv;
         break;
       case 'A':
       case 'Z':
       case 'z':
-        throw ex("parser.descape.5", this.offset - 2);
+        throw ex("parser.descape.5", offset - 2);
       default:
       }
       return c;
@@ -6480,12 +7873,30 @@ public final class RegEx
 
     static private final int hexChar(int ch)
     {
-      if (ch < '0') return -1;
-      if (ch > 'f') return -1;
-      if (ch <= '9') return ch - '0';
-      if (ch < 'A') return -1;
-      if (ch <= 'F') return ch - 'A' + 10;
-      if (ch < 'a') return -1;
+      if (ch < '0')
+      {
+        return -1;
+      }
+      if (ch > 'f')
+      {
+        return -1;
+      }
+      if (ch <= '9')
+      {
+        return ch - '0';
+      }
+      if (ch < 'A')
+      {
+        return -1;
+      }
+      if (ch <= 'F')
+      {
+        return ch - 'A' + 10;
+      }
+      if (ch < 'a')
+      {
+        return -1;
+      }
       return ch - 'a' + 10;
     }
   }
@@ -6615,43 +8026,64 @@ public final class RegEx
 
     static Token.ParenToken createLook(int type, Token child)
     {
-      if (COUNTTOKENS) Token.tokens++;
+      if (COUNTTOKENS)
+      {
+        Token.tokens++;
+      }
       return new Token.ParenToken(type, child, 0);
     }
 
     static Token.ParenToken createParen(Token child, int pnumber)
     {
-      if (COUNTTOKENS) Token.tokens++;
+      if (COUNTTOKENS)
+      {
+        Token.tokens++;
+      }
       return new Token.ParenToken(Token.PAREN, child, pnumber);
     }
 
     static Token.ClosureToken createClosure(Token tok)
     {
-      if (COUNTTOKENS) Token.tokens++;
+      if (COUNTTOKENS)
+      {
+        Token.tokens++;
+      }
       return new Token.ClosureToken(Token.CLOSURE, tok);
     }
 
     static Token.ClosureToken createNGClosure(Token tok)
     {
-      if (COUNTTOKENS) Token.tokens++;
+      if (COUNTTOKENS)
+      {
+        Token.tokens++;
+      }
       return new Token.ClosureToken(Token.NONGREEDYCLOSURE, tok);
     }
 
     static Token.ConcatToken createConcat(Token tok1, Token tok2)
     {
-      if (COUNTTOKENS) Token.tokens++;
+      if (COUNTTOKENS)
+      {
+        Token.tokens++;
+      }
       return new Token.ConcatToken(tok1, tok2);
     }
 
     static Token.UnionToken createConcat()
     {
-      if (COUNTTOKENS) Token.tokens++;
+      if (COUNTTOKENS)
+      {
+        Token.tokens++;
+      }
       return new Token.UnionToken(Token.CONCAT); // *** It is not a bug.
     }
 
     static Token.UnionToken createUnion()
     {
-      if (COUNTTOKENS) Token.tokens++;
+      if (COUNTTOKENS)
+      {
+        Token.tokens++;
+      }
       return new Token.UnionToken(Token.UNION);
     }
 
@@ -6662,49 +8094,73 @@ public final class RegEx
 
     static RangeToken createRange()
     {
-      if (COUNTTOKENS) Token.tokens++;
+      if (COUNTTOKENS)
+      {
+        Token.tokens++;
+      }
       return new RangeToken(Token.RANGE);
     }
 
     static RangeToken createNRange()
     {
-      if (COUNTTOKENS) Token.tokens++;
+      if (COUNTTOKENS)
+      {
+        Token.tokens++;
+      }
       return new RangeToken(Token.NRANGE);
     }
 
     static Token.CharToken createChar(int ch)
     {
-      if (COUNTTOKENS) Token.tokens++;
+      if (COUNTTOKENS)
+      {
+        Token.tokens++;
+      }
       return new Token.CharToken(Token.CHAR, ch);
     }
 
     static private Token.CharToken createAnchor(int ch)
     {
-      if (COUNTTOKENS) Token.tokens++;
+      if (COUNTTOKENS)
+      {
+        Token.tokens++;
+      }
       return new Token.CharToken(Token.ANCHOR, ch);
     }
 
     static Token.StringToken createBackReference(int refno)
     {
-      if (COUNTTOKENS) Token.tokens++;
+      if (COUNTTOKENS)
+      {
+        Token.tokens++;
+      }
       return new Token.StringToken(Token.BACKREFERENCE, null, refno);
     }
 
     static Token.StringToken createString(String str)
     {
-      if (COUNTTOKENS) Token.tokens++;
+      if (COUNTTOKENS)
+      {
+        Token.tokens++;
+      }
       return new Token.StringToken(Token.STRING, str, 0);
     }
 
     static Token.ModifierToken createModifierGroup(Token child, int add, int mask)
     {
-      if (COUNTTOKENS) Token.tokens++;
+      if (COUNTTOKENS)
+      {
+        Token.tokens++;
+      }
       return new Token.ModifierToken(child, add, mask);
     }
 
     static Token.ConditionToken createCondition(int refno, Token condition, Token yespat, Token nopat)
     {
-      if (COUNTTOKENS) Token.tokens++;
+      if (COUNTTOKENS)
+      {
+        Token.tokens++;
+      }
       return new Token.ConditionToken(refno, condition, yespat, nopat);
     }
 
@@ -6813,7 +8269,7 @@ public final class RegEx
 
     public String toString(int options)
     {
-      return this.type == Token.DOT ? "." : "";
+      return type == Token.DOT ? "." : "";
     }
 
     /**
@@ -6821,28 +8277,39 @@ public final class RegEx
      */
     final int getMinLength()
     {
-      switch (this.type)
+      switch (type)
       {
       case CONCAT:
         int sum = 0;
-        for (int i = 0; i < this.size(); i++)
-          sum += this.getChild(i).getMinLength();
+        for (int i = 0; i < size(); i++)
+        {
+          sum += getChild(i).getMinLength();
+        }
         return sum;
 
       case CONDITION:
       case UNION:
-        if (this.size() == 0) return 0;
-        int ret = this.getChild(0).getMinLength();
-        for (int i = 1; i < this.size(); i++)
+        if (size() == 0)
         {
-          int min = this.getChild(i).getMinLength();
-          if (min < ret) ret = min;
+          return 0;
+        }
+        int ret = getChild(0).getMinLength();
+        for (int i = 1; i < size(); i++)
+        {
+          int min = getChild(i).getMinLength();
+          if (min < ret)
+          {
+            ret = min;
+          }
         }
         return ret;
 
       case CLOSURE:
       case NONGREEDYCLOSURE:
-        if (this.getMin() >= 0) return this.getMin() * this.getChild(0).getMinLength();
+        if (getMin() >= 0)
+        {
+          return getMin() * getChild(0).getMinLength();
+        }
         return 0;
 
       case EMPTY:
@@ -6858,13 +8325,13 @@ public final class RegEx
       case INDEPENDENT:
       case PAREN:
       case MODIFIERGROUP:
-        return this.getChild(0).getMinLength();
+        return getChild(0).getMinLength();
 
       case BACKREFERENCE:
         return 0; // *******
 
       case STRING:
-        return this.getString().length();
+        return getString().length();
 
       case LOOKAHEAD:
       case NEGATIVELOOKAHEAD:
@@ -6873,46 +8340,57 @@ public final class RegEx
         return 0; // ***** Really?
 
       default:
-        throw new RuntimeException("Token#getMinLength(): Invalid Type: " + this.type);
+        throw new RuntimeException("Token#getMinLength(): Invalid Type: " + type);
       }
     }
 
     final int getMaxLength()
     {
-      switch (this.type)
+      switch (type)
       {
       case CONCAT:
         int sum = 0;
-        for (int i = 0; i < this.size(); i++)
+        for (int i = 0; i < size(); i++)
         {
-          int d = this.getChild(i).getMaxLength();
-          if (d < 0) return -1;
+          int d = getChild(i).getMaxLength();
+          if (d < 0)
+          {
+            return -1;
+          }
           sum += d;
         }
         return sum;
 
       case CONDITION:
       case UNION:
-        if (this.size() == 0) return 0;
-        int ret = this.getChild(0).getMaxLength();
-        for (int i = 1; ret >= 0 && i < this.size(); i++)
+        if (size() == 0)
         {
-          int max = this.getChild(i).getMaxLength();
+          return 0;
+        }
+        int ret = getChild(0).getMaxLength();
+        for (int i = 1; ret >= 0 && i < size(); i++)
+        {
+          int max = getChild(i).getMaxLength();
           if (max < 0)
           { // infinity
             ret = -1;
             break;
           }
-          if (max > ret) ret = max;
+          if (max > ret)
+          {
+            ret = max;
+          }
         }
         return ret;
 
       case CLOSURE:
       case NONGREEDYCLOSURE:
-        if (this.getMax() >= 0)
-        // When this.child.getMaxLength() < 0,
+        if (getMax() >= 0)
+        {
+          // When this.child.getMaxLength() < 0,
           // this returns minus value
-          return this.getMax() * this.getChild(0).getMaxLength();
+          return getMax() * getChild(0).getMaxLength();
+        }
         return -1;
 
       case EMPTY:
@@ -6929,13 +8407,13 @@ public final class RegEx
       case INDEPENDENT:
       case PAREN:
       case MODIFIERGROUP:
-        return this.getChild(0).getMaxLength();
+        return getChild(0).getMaxLength();
 
       case BACKREFERENCE:
         return -1; // ******
 
       case STRING:
-        return this.getString().length();
+        return getString().length();
 
       case LOOKAHEAD:
       case NEGATIVELOOKAHEAD:
@@ -6944,7 +8422,7 @@ public final class RegEx
         return 0; // ***** Really?
 
       default:
-        throw new RuntimeException("Token#getMaxLength(): Invalid Type: " + this.type);
+        throw new RuntimeException("Token#getMaxLength(): Invalid Type: " + type);
       }
     }
 
@@ -6961,41 +8439,63 @@ public final class RegEx
 
     final int analyzeFirstCharacter(RangeToken result, int options)
     {
-      switch (this.type)
+      switch (type)
       {
       case CONCAT:
         int ret = FC_CONTINUE;
-        for (int i = 0; i < this.size(); i++)
-          if ((ret = this.getChild(i).analyzeFirstCharacter(result, options)) != FC_CONTINUE) break;
+        for (int i = 0; i < size(); i++)
+        {
+          if ((ret = getChild(i).analyzeFirstCharacter(result, options)) != FC_CONTINUE)
+          {
+            break;
+          }
+        }
         return ret;
 
       case UNION:
-        if (this.size() == 0) return FC_CONTINUE;
+        if (size() == 0)
+        {
+          return FC_CONTINUE;
+        }
         /*
          * a|b|c -> FC_TERMINAL a|.|c -> FC_ANY a|b| -> FC_CONTINUE
          */
         int ret2 = FC_CONTINUE;
         boolean hasEmpty = false;
-        for (int i = 0; i < this.size(); i++)
+        for (int i = 0; i < size(); i++)
         {
-          ret2 = this.getChild(i).analyzeFirstCharacter(result, options);
+          ret2 = getChild(i).analyzeFirstCharacter(result, options);
           if (ret2 == FC_ANY)
+          {
             break;
-          else if (ret2 == FC_CONTINUE) hasEmpty = true;
+          }
+          else if (ret2 == FC_CONTINUE)
+          {
+            hasEmpty = true;
+          }
         }
         return hasEmpty ? FC_CONTINUE : ret2;
 
       case CONDITION:
-        int ret3 = this.getChild(0).analyzeFirstCharacter(result, options);
-        if (this.size() == 1) return FC_CONTINUE;
-        if (ret3 == FC_ANY) return ret3;
-        int ret4 = this.getChild(1).analyzeFirstCharacter(result, options);
-        if (ret4 == FC_ANY) return ret4;
+        int ret3 = getChild(0).analyzeFirstCharacter(result, options);
+        if (size() == 1)
+        {
+          return FC_CONTINUE;
+        }
+        if (ret3 == FC_ANY)
+        {
+          return ret3;
+        }
+        int ret4 = getChild(1).analyzeFirstCharacter(result, options);
+        if (ret4 == FC_ANY)
+        {
+          return ret4;
+        }
         return ret3 == FC_CONTINUE || ret4 == FC_CONTINUE ? FC_CONTINUE : FC_TERMINAL;
 
       case CLOSURE:
       case NONGREEDYCLOSURE:
-        this.getChild(0).analyzeFirstCharacter(result, options);
+        getChild(0).analyzeFirstCharacter(result, options);
         return FC_CONTINUE;
 
       case EMPTY:
@@ -7003,7 +8503,7 @@ public final class RegEx
         return FC_CONTINUE;
 
       case CHAR:
-        int ch = this.getChar();
+        int ch = getChar();
         result.addRange(ch, ch);
         if (ch < 0x10000 && isSet(options, RegularExpression.IGNORE_CASE))
         {
@@ -7054,22 +8554,25 @@ public final class RegEx
 
       case INDEPENDENT:
       case PAREN:
-        return this.getChild(0).analyzeFirstCharacter(result, options);
+        return getChild(0).analyzeFirstCharacter(result, options);
 
       case MODIFIERGROUP:
         options |= ((ModifierToken)this).getOptions();
         options &= ~((ModifierToken)this).getOptionsMask();
-        return this.getChild(0).analyzeFirstCharacter(result, options);
+        return getChild(0).analyzeFirstCharacter(result, options);
 
       case BACKREFERENCE:
         result.addRange(0, UTF16_MAX); // **** We can not optimize.
         return FC_ANY;
 
       case STRING:
-        int cha = this.getString().charAt(0);
+        int cha = getString().charAt(0);
         int ch2;
-        if (REUtil.isHighSurrogate(cha) && this.getString().length() >= 2
-            && REUtil.isLowSurrogate((ch2 = this.getString().charAt(1)))) cha = REUtil.composeFromSurrogates(cha, ch2);
+        if (REUtil.isHighSurrogate(cha) && getString().length() >= 2
+            && REUtil.isLowSurrogate((ch2 = getString().charAt(1))))
+        {
+          cha = REUtil.composeFromSurrogates(cha, ch2);
+        }
         result.addRange(cha, cha);
         if (cha < 0x10000 && isSet(options, RegularExpression.IGNORE_CASE))
         {
@@ -7087,13 +8590,16 @@ public final class RegEx
         return FC_CONTINUE;
 
       default:
-        throw new RuntimeException("Token#analyzeHeadCharacter(): Invalid Type: " + this.type);
+        throw new RuntimeException("Token#analyzeHeadCharacter(): Invalid Type: " + type);
       }
     }
 
     private final boolean isShorterThan(Token tok)
     {
-      if (tok == null) return false;
+      if (tok == null)
+      {
+        return false;
+      }
       /*
        * int mylength; if (this.type == STRING) mylength = this.getString().length(); else if (this.type == CHAR)
        * mylength = this.getChar() >= 0x10000 ? 2 : 1; else throw new RuntimeException("Internal Error: Illegal type:
@@ -7102,15 +8608,23 @@ public final class RegEx
        * Error: Illegal type: "+tok.type);
        */
       int mylength;
-      if (this.type == STRING)
-        mylength = this.getString().length();
+      if (type == STRING)
+      {
+        mylength = getString().length();
+      }
       else
-        throw new RuntimeException("Internal Error: Illegal type: " + this.type);
+      {
+        throw new RuntimeException("Internal Error: Illegal type: " + type);
+      }
       int otherlength;
       if (tok.type == STRING)
+      {
         otherlength = tok.getString().length();
+      }
       else
+      {
         throw new RuntimeException("Internal Error: Illegal type: " + tok.type);
+      }
       return mylength < otherlength;
     }
 
@@ -7128,14 +8642,14 @@ public final class RegEx
 
     final void findFixedString(FixedStringContainer container, int options)
     {
-      switch (this.type)
+      switch (type)
       {
       case CONCAT:
         Token prevToken = null;
         int prevOptions = 0;
-        for (int i = 0; i < this.size(); i++)
+        for (int i = 0; i < size(); i++)
         {
-          this.getChild(i).findFixedString(container, options);
+          getChild(i).findFixedString(container, options);
           if (prevToken == null || prevToken.isShorterThan(container.token))
           {
             prevToken = container.token;
@@ -7174,23 +8688,23 @@ public final class RegEx
 
       case INDEPENDENT:
       case PAREN:
-        this.getChild(0).findFixedString(container, options);
+        getChild(0).findFixedString(container, options);
         return;
 
       case MODIFIERGROUP:
         options |= ((ModifierToken)this).getOptions();
         options &= ~((ModifierToken)this).getOptionsMask();
-        this.getChild(0).findFixedString(container, options);
+        getChild(0).findFixedString(container, options);
         return;
 
       default:
-        throw new RuntimeException("Token#findFixedString(): Invalid Type: " + this.type);
+        throw new RuntimeException("Token#findFixedString(): Invalid Type: " + type);
       }
     }
 
     boolean match(int ch)
     {
-      throw new RuntimeException("NFAArrow#match(): Internal error: " + this.type);
+      throw new RuntimeException("NFAArrow#match(): Internal error: " + type);
     }
 
     // ------------------------------------------------------
@@ -7466,7 +8980,10 @@ public final class RegEx
               r1.addRange(Token.nonBMPBlockRanges[location], Token.nonBMPBlockRanges[location + 1]);
             }
             String n = Token.blockNames[i];
-            if (n.equals("Specials")) r1.addRange(0xfff0, 0xfffd);
+            if (n.equals("Specials"))
+            {
+              r1.addRange(0xfff0, 0xfffd);
+            }
             if (n.equals("Private Use"))
             {
               r1.addRange(0xF0000, 0xFFFFD);
@@ -7479,7 +8996,12 @@ public final class RegEx
             if (n.indexOf(' ') >= 0)
             {
               for (int ci = 0; ci < n.length(); ci++)
-                if (n.charAt(ci) != ' ') buffer.append(n.charAt(ci));
+              {
+                if (n.charAt(ci) != ' ')
+                {
+                  buffer.append(n.charAt(ci));
+                }
+              }
             }
             else
             {
@@ -7598,7 +9120,10 @@ public final class RegEx
     static protected RangeToken getRange(String name, boolean positive, boolean xs)
     {
       RangeToken range = Token.getRange(name, positive);
-      if (xs && range != null && Token.isRegisterNonXS(name)) range = null;
+      if (xs && range != null && Token.isRegisterNonXS(name))
+      {
+        range = null;
+      }
       return range;
     }
 
@@ -7609,13 +9134,19 @@ public final class RegEx
      */
     static protected void registerNonXS(String name)
     {
-      if (Token.nonxs == null) Token.nonxs = new Hashtable<String, String>();
+      if (Token.nonxs == null)
+      {
+        Token.nonxs = new Hashtable<String, String>();
+      }
       Token.nonxs.put(name, name);
     }
 
     static protected boolean isRegisterNonXS(String name)
     {
-      if (Token.nonxs == null) return false;
+      if (Token.nonxs == null)
+      {
+        return false;
+      }
       // DEBUG
       // System.err.println("isRegisterNonXS: "+name);
       return Token.nonxs.containsKey(name);
@@ -7657,7 +9188,10 @@ public final class RegEx
 
     static synchronized Token getGraphemePattern()
     {
-      if (Token.token_grapheme != null) return Token.token_grapheme;
+      if (Token.token_grapheme != null)
+      {
+        return Token.token_grapheme;
+      }
 
       Token base_char = Token.createRange(); // [{ASSIGNED}]-[{M},{C}]
       base_char.mergeRanges(Token.getRange("ASSIGNED", true));
@@ -7699,7 +9233,10 @@ public final class RegEx
 
     static synchronized Token getCombiningCharacterSequence()
     {
-      if (Token.token_ccs != null) return Token.token_ccs;
+      if (Token.token_ccs != null)
+      {
+        return Token.token_ccs;
+      }
 
       Token foo = Token.createClosure(Token.getRange("M", true)); // \pM*
       foo = Token.createConcat(Token.getRange("M", false), foo); // \PM + \pM*
@@ -7724,29 +9261,33 @@ public final class RegEx
       StringToken(int type, String str, int n)
       {
         super(type);
-        this.string = str;
-        this.refNumber = n;
+        string = str;
+        refNumber = n;
       }
 
       @Override
       int getReferenceNumber()
       { // for STRING
-        return this.refNumber;
+        return refNumber;
       }
 
       @Override
       String getString()
       { // for STRING
-        return this.string;
+        return string;
       }
 
       @Override
       public String toString(int options)
       {
-        if (this.type == BACKREFERENCE)
-          return "\\" + this.refNumber;
+        if (type == BACKREFERENCE)
+        {
+          return "\\" + refNumber;
+        }
         else
-          return REUtil.quoteMeta(this.string);
+        {
+          return REUtil.quoteMeta(string);
+        }
       }
     }
 
@@ -7764,8 +9305,8 @@ public final class RegEx
       ConcatToken(Token t1, Token t2)
       {
         super(Token.CONCAT);
-        this.child = t1;
-        this.child2 = t2;
+        child = t1;
+        child2 = t2;
       }
 
       @Override
@@ -7777,23 +9318,25 @@ public final class RegEx
       @Override
       Token getChild(int index)
       {
-        return index == 0 ? this.child : this.child2;
+        return index == 0 ? child : child2;
       }
 
       @Override
       public String toString(int options)
       {
         String ret;
-        if (this.child2.type == CLOSURE && this.child2.getChild(0) == this.child)
+        if (child2.type == CLOSURE && child2.getChild(0) == child)
         {
-          ret = this.child.toString(options) + "+";
+          ret = child.toString(options) + "+";
         }
-        else if (this.child2.type == NONGREEDYCLOSURE && this.child2.getChild(0) == this.child)
+        else if (child2.type == NONGREEDYCLOSURE && child2.getChild(0) == child)
         {
-          ret = this.child.toString(options) + "+?";
+          ret = child.toString(options) + "+?";
         }
         else
-          ret = this.child.toString(options) + this.child2.toString(options);
+        {
+          ret = child.toString(options) + child2.toString(options);
+        }
         return ret;
       }
     }
@@ -7810,23 +9353,23 @@ public final class RegEx
       CharToken(int type, int ch)
       {
         super(type);
-        this.chardata = ch;
+        chardata = ch;
       }
 
       @Override
       int getChar()
       {
-        return this.chardata;
+        return chardata;
       }
 
       @Override
       public String toString(int options)
       {
         String ret;
-        switch (this.type)
+        switch (type)
         {
         case CHAR:
-          switch (this.chardata)
+          switch (chardata)
           {
           case '|':
           case '*':
@@ -7838,7 +9381,7 @@ public final class RegEx
           case '[':
           case '{':
           case '\\':
-            ret = "\\" + (char)this.chardata;
+            ret = "\\" + (char)chardata;
             break;
           case '\f':
             ret = "\\f";
@@ -7857,21 +9400,27 @@ public final class RegEx
             break;
           // case 0x0b: ret = "\\v"; break;
           default:
-            if (this.chardata >= 0x10000)
+            if (chardata >= 0x10000)
             {
-              String pre = "0" + Integer.toHexString(this.chardata);
+              String pre = "0" + Integer.toHexString(chardata);
               ret = "\\v" + pre.substring(pre.length() - 6, pre.length());
             }
             else
-              ret = "" + (char)this.chardata;
+            {
+              ret = "" + (char)chardata;
+            }
           }
           break;
 
         case ANCHOR:
           if (this == Token.token_linebeginning || this == Token.token_lineend)
-            ret = "" + (char)this.chardata;
+          {
+            ret = "" + (char)chardata;
+          }
           else
-            ret = "\\" + (char)this.chardata;
+          {
+            ret = "\\" + (char)chardata;
+          }
           break;
 
         default:
@@ -7883,12 +9432,14 @@ public final class RegEx
       @Override
       boolean match(int ch)
       {
-        if (this.type == CHAR)
+        if (type == CHAR)
         {
-          return ch == this.chardata;
+          return ch == chardata;
         }
         else
-          throw new RuntimeException("NFAArrow#match(): Internal error: " + this.type);
+        {
+          throw new RuntimeException("NFAArrow#match(): Internal error: " + type);
+        }
       }
     }
 
@@ -7908,9 +9459,9 @@ public final class RegEx
       ClosureToken(int type, Token tok)
       {
         super(type);
-        this.child = tok;
-        this.setMin(-1);
-        this.setMax(-1);
+        child = tok;
+        setMin(-1);
+        setMax(-1);
       }
 
       @Override
@@ -7922,7 +9473,7 @@ public final class RegEx
       @Override
       Token getChild(int index)
       {
-        return this.child;
+        return child;
       }
 
       @Override
@@ -7940,60 +9491,64 @@ public final class RegEx
       @Override
       final int getMin()
       {
-        return this.min;
+        return min;
       }
 
       @Override
       final int getMax()
       {
-        return this.max;
+        return max;
       }
 
       @Override
       public String toString(int options)
       {
         String ret;
-        if (this.type == CLOSURE)
+        if (type == CLOSURE)
         {
-          if (this.getMin() < 0 && this.getMax() < 0)
+          if (getMin() < 0 && getMax() < 0)
           {
-            ret = this.child.toString(options) + "*";
+            ret = child.toString(options) + "*";
           }
-          else if (this.getMin() == this.getMax())
+          else if (getMin() == getMax())
           {
-            ret = this.child.toString(options) + "{" + this.getMin() + "}";
+            ret = child.toString(options) + "{" + getMin() + "}";
           }
-          else if (this.getMin() >= 0 && this.getMax() >= 0)
+          else if (getMin() >= 0 && getMax() >= 0)
           {
-            ret = this.child.toString(options) + "{" + this.getMin() + "," + this.getMax() + "}";
+            ret = child.toString(options) + "{" + getMin() + "," + getMax() + "}";
           }
-          else if (this.getMin() >= 0 && this.getMax() < 0)
+          else if (getMin() >= 0 && getMax() < 0)
           {
-            ret = this.child.toString(options) + "{" + this.getMin() + ",}";
+            ret = child.toString(options) + "{" + getMin() + ",}";
           }
           else
-            throw new RuntimeException("Token#toString(): CLOSURE " + this.getMin() + ", " + this.getMax());
+          {
+            throw new RuntimeException("Token#toString(): CLOSURE " + getMin() + ", " + getMax());
+          }
         }
         else
         {
-          if (this.getMin() < 0 && this.getMax() < 0)
+          if (getMin() < 0 && getMax() < 0)
           {
-            ret = this.child.toString(options) + "*?";
+            ret = child.toString(options) + "*?";
           }
-          else if (this.getMin() == this.getMax())
+          else if (getMin() == getMax())
           {
-            ret = this.child.toString(options) + "{" + this.getMin() + "}?";
+            ret = child.toString(options) + "{" + getMin() + "}?";
           }
-          else if (this.getMin() >= 0 && this.getMax() >= 0)
+          else if (getMin() >= 0 && getMax() >= 0)
           {
-            ret = this.child.toString(options) + "{" + this.getMin() + "," + this.getMax() + "}?";
+            ret = child.toString(options) + "{" + getMin() + "," + getMax() + "}?";
           }
-          else if (this.getMin() >= 0 && this.getMax() < 0)
+          else if (getMin() >= 0 && getMax() < 0)
           {
-            ret = this.child.toString(options) + "{" + this.getMin() + ",}?";
+            ret = child.toString(options) + "{" + getMin() + ",}?";
           }
           else
-            throw new RuntimeException("Token#toString(): NONGREEDYCLOSURE " + this.getMin() + ", " + this.getMax());
+          {
+            throw new RuntimeException("Token#toString(): NONGREEDYCLOSURE " + getMin() + ", " + getMax());
+          }
         }
         return ret;
       }
@@ -8013,8 +9568,8 @@ public final class RegEx
       ParenToken(int type, Token tok, int paren)
       {
         super(type);
-        this.child = tok;
-        this.parennumber = paren;
+        child = tok;
+        parennumber = paren;
       }
 
       @Override
@@ -8026,46 +9581,46 @@ public final class RegEx
       @Override
       Token getChild(int index)
       {
-        return this.child;
+        return child;
       }
 
       @Override
       int getParenNumber()
       {
-        return this.parennumber;
+        return parennumber;
       }
 
       @Override
       public String toString(int options)
       {
         String ret = null;
-        switch (this.type)
+        switch (type)
         {
         case PAREN:
-          if (this.parennumber == 0)
+          if (parennumber == 0)
           {
-            ret = "(?:" + this.child.toString(options) + ")";
+            ret = "(?:" + child.toString(options) + ")";
           }
           else
           {
-            ret = "(" + this.child.toString(options) + ")";
+            ret = "(" + child.toString(options) + ")";
           }
           break;
 
         case LOOKAHEAD:
-          ret = "(?=" + this.child.toString(options) + ")";
+          ret = "(?=" + child.toString(options) + ")";
           break;
         case NEGATIVELOOKAHEAD:
-          ret = "(?!" + this.child.toString(options) + ")";
+          ret = "(?!" + child.toString(options) + ")";
           break;
         case LOOKBEHIND:
-          ret = "(?<=" + this.child.toString(options) + ")";
+          ret = "(?<=" + child.toString(options) + ")";
           break;
         case NEGATIVELOOKBEHIND:
-          ret = "(?<!" + this.child.toString(options) + ")";
+          ret = "(?<!" + child.toString(options) + ")";
           break;
         case INDEPENDENT:
-          ret = "(?>" + this.child.toString(options) + ")";
+          ret = "(?>" + child.toString(options) + ")";
           break;
         }
         return ret;
@@ -8090,23 +9645,29 @@ public final class RegEx
       ConditionToken(int refno, Token cond, Token yespat, Token nopat)
       {
         super(Token.CONDITION);
-        this.refNumber = refno;
-        this.condition = cond;
-        this.yes = yespat;
-        this.no = nopat;
+        refNumber = refno;
+        condition = cond;
+        yes = yespat;
+        no = nopat;
       }
 
       @Override
       int size()
       {
-        return this.no == null ? 1 : 2;
+        return no == null ? 1 : 2;
       }
 
       @Override
       Token getChild(int index)
       {
-        if (index == 0) return this.yes;
-        if (index == 1) return this.no;
+        if (index == 0)
+        {
+          return yes;
+        }
+        if (index == 1)
+        {
+          return no;
+        }
         throw new RuntimeException("Internal Error: " + index);
       }
 
@@ -8118,22 +9679,22 @@ public final class RegEx
         {
           ret = "(?(" + refNumber + ")";
         }
-        else if (this.condition.type == Token.ANCHOR)
+        else if (condition.type == Token.ANCHOR)
         {
-          ret = "(?(" + this.condition + ")";
+          ret = "(?(" + condition + ")";
         }
         else
         {
-          ret = "(?" + this.condition;
+          ret = "(?" + condition;
         }
 
-        if (this.no == null)
+        if (no == null)
         {
-          ret += this.yes + ")";
+          ret += yes + ")";
         }
         else
         {
-          ret += this.yes + "|" + this.no + ")";
+          ret += yes + "|" + no + ")";
         }
         return ret;
       }
@@ -8155,7 +9716,7 @@ public final class RegEx
       ModifierToken(Token tok, int add, int mask)
       {
         super(Token.MODIFIERGROUP);
-        this.child = tok;
+        child = tok;
         this.add = add;
         this.mask = mask;
       }
@@ -8169,24 +9730,24 @@ public final class RegEx
       @Override
       Token getChild(int index)
       {
-        return this.child;
+        return child;
       }
 
       int getOptions()
       {
-        return this.add;
+        return add;
       }
 
       int getOptionsMask()
       {
-        return this.mask;
+        return mask;
       }
 
       @Override
       public String toString(int options)
       {
-        return "(?" + (this.add == 0 ? "" : REUtil.createOptionString(this.add))
-            + (this.mask == 0 ? "" : REUtil.createOptionString(this.mask)) + ":" + this.child.toString(options) + ")";
+        return "(?" + (add == 0 ? "" : REUtil.createOptionString(add))
+            + (mask == 0 ? "" : REUtil.createOptionString(mask)) + ":" + child.toString(options) + ")";
       }
     }
 
@@ -8207,47 +9768,59 @@ public final class RegEx
       @Override
       void addChild(Token tok)
       {
-        if (tok == null) return;
-        if (this.children == null) this.children = new Vector<Token>();
-        if (this.type == UNION)
+        if (tok == null)
         {
-          this.children.addElement(tok);
+          return;
+        }
+        if (children == null)
+        {
+          children = new Vector<Token>();
+        }
+        if (type == UNION)
+        {
+          children.addElement(tok);
           return;
         }
         // This is CONCAT, and new child is CONCAT.
         if (tok.type == CONCAT)
         {
           for (int i = 0; i < tok.size(); i++)
-            this.addChild(tok.getChild(i)); // Recursion
+          {
+            addChild(tok.getChild(i)); // Recursion
+          }
           return;
         }
-        int size = this.children.size();
+        int size = children.size();
         if (size == 0)
         {
-          this.children.addElement(tok);
+          children.addElement(tok);
           return;
         }
-        Token previous = this.children.elementAt(size - 1);
+        Token previous = children.elementAt(size - 1);
         if (!((previous.type == CHAR || previous.type == STRING) && (tok.type == CHAR || tok.type == STRING)))
         {
-          this.children.addElement(tok);
+          children.addElement(tok);
           return;
         }
 
         // System.err.println("Merge '"+previous+"' and '"+tok+"'.");
 
         StringBuffer buffer;
-        int nextMaxLength = (tok.type == CHAR ? 2 : tok.getString().length());
+        int nextMaxLength = tok.type == CHAR ? 2 : tok.getString().length();
         if (previous.type == CHAR)
         { // Replace previous token by STRING
           buffer = new StringBuffer(2 + nextMaxLength);
           int ch = previous.getChar();
           if (ch >= 0x10000)
+          {
             buffer.append(REUtil.decomposeToSurrogates(ch));
+          }
           else
+          {
             buffer.append((char)ch);
+          }
           previous = Token.createString(null);
-          this.children.setElementAt(previous, size - 1);
+          children.setElementAt(previous, size - 1);
         }
         else
         { // STRING
@@ -8259,9 +9832,13 @@ public final class RegEx
         {
           int ch = tok.getChar();
           if (ch >= 0x10000)
+          {
             buffer.append(REUtil.decomposeToSurrogates(ch));
+          }
           else
+          {
             buffer.append((char)ch);
+          }
         }
         else
         {
@@ -8274,25 +9851,25 @@ public final class RegEx
       @Override
       int size()
       {
-        return this.children == null ? 0 : this.children.size();
+        return children == null ? 0 : children.size();
       }
 
       @Override
       Token getChild(int index)
       {
-        return this.children.elementAt(index);
+        return children.elementAt(index);
       }
 
       @Override
       public String toString(int options)
       {
         String ret;
-        if (this.type == CONCAT)
+        if (type == CONCAT)
         {
-          if (this.children.size() == 2)
+          if (children.size() == 2)
           {
-            Token ch = this.getChild(0);
-            Token ch2 = this.getChild(1);
+            Token ch = getChild(0);
+            Token ch2 = getChild(1);
             if (ch2.type == CLOSURE && ch2.getChild(0) == ch)
             {
               ret = ch.toString(options) + "+";
@@ -8302,35 +9879,37 @@ public final class RegEx
               ret = ch.toString(options) + "+?";
             }
             else
+            {
               ret = ch.toString(options) + ch2.toString(options);
+            }
           }
           else
           {
             StringBuffer sb = new StringBuffer();
-            for (int i = 0; i < this.children.size(); i++)
+            for (int i = 0; i < children.size(); i++)
             {
-              sb.append(this.children.elementAt(i).toString(options));
+              sb.append(children.elementAt(i).toString(options));
             }
             ret = new String(sb);
           }
           return ret;
         }
-        if (this.children.size() == 2 && this.getChild(1).type == EMPTY)
+        if (children.size() == 2 && getChild(1).type == EMPTY)
         {
-          ret = this.getChild(0).toString(options) + "?";
+          ret = getChild(0).toString(options) + "?";
         }
-        else if (this.children.size() == 2 && this.getChild(0).type == EMPTY)
+        else if (children.size() == 2 && getChild(0).type == EMPTY)
         {
-          ret = this.getChild(1).toString(options) + "??";
+          ret = getChild(1).toString(options) + "??";
         }
         else
         {
           StringBuffer sb = new StringBuffer();
-          sb.append(this.children.elementAt(0).toString(options));
-          for (int i = 1; i < this.children.size(); i++)
+          sb.append(children.elementAt(0).toString(options));
+          for (int i = 1; i < children.size(); i++)
           {
             sb.append('|');
-            sb.append(this.children.elementAt(i).toString(options));
+            sb.append(children.elementAt(i).toString(options));
           }
           ret = new String(sb);
         }
@@ -8361,87 +9940,87 @@ public final class RegEx
     @Override
     Token processCaret() throws ParseException
     {
-      this.next();
+      next();
       return Token.createChar('^');
     }
 
     @Override
     Token processDollar() throws ParseException
     {
-      this.next();
+      next();
       return Token.createChar('$');
     }
 
     @Override
     Token processLookahead() throws ParseException
     {
-      throw ex("parser.process.1", this.offset);
+      throw ex("parser.process.1", offset);
     }
 
     @Override
     Token processNegativelookahead() throws ParseException
     {
-      throw ex("parser.process.1", this.offset);
+      throw ex("parser.process.1", offset);
     }
 
     @Override
     Token processLookbehind() throws ParseException
     {
-      throw ex("parser.process.1", this.offset);
+      throw ex("parser.process.1", offset);
     }
 
     @Override
     Token processNegativelookbehind() throws ParseException
     {
-      throw ex("parser.process.1", this.offset);
+      throw ex("parser.process.1", offset);
     }
 
     @Override
     Token processBacksolidus_A() throws ParseException
     {
-      throw ex("parser.process.1", this.offset);
+      throw ex("parser.process.1", offset);
     }
 
     @Override
     Token processBacksolidus_Z() throws ParseException
     {
-      throw ex("parser.process.1", this.offset);
+      throw ex("parser.process.1", offset);
     }
 
     @Override
     Token processBacksolidus_z() throws ParseException
     {
-      throw ex("parser.process.1", this.offset);
+      throw ex("parser.process.1", offset);
     }
 
     @Override
     Token processBacksolidus_b() throws ParseException
     {
-      throw ex("parser.process.1", this.offset);
+      throw ex("parser.process.1", offset);
     }
 
     @Override
     Token processBacksolidus_B() throws ParseException
     {
-      throw ex("parser.process.1", this.offset);
+      throw ex("parser.process.1", offset);
     }
 
     @Override
     Token processBacksolidus_lt() throws ParseException
     {
-      throw ex("parser.process.1", this.offset);
+      throw ex("parser.process.1", offset);
     }
 
     @Override
     Token processBacksolidus_gt() throws ParseException
     {
-      throw ex("parser.process.1", this.offset);
+      throw ex("parser.process.1", offset);
     }
 
     @Override
     Token processStar(Token tok) throws ParseException
     {
-      this.next();
+      next();
       return Token.createClosure(tok);
     }
 
@@ -8449,7 +10028,7 @@ public final class RegEx
     Token processPlus(Token tok) throws ParseException
     {
       // X+ -> XX*
-      this.next();
+      next();
       return Token.createConcat(tok, Token.createClosure(tok));
     }
 
@@ -8457,7 +10036,7 @@ public final class RegEx
     Token processQuestion(Token tok) throws ParseException
     {
       // X? -> X|
-      this.next();
+      next();
       Token par = Token.createUnion();
       par.addChild(tok);
       par.addChild(Token.createEmpty());
@@ -8473,87 +10052,90 @@ public final class RegEx
     @Override
     Token processParen() throws ParseException
     {
-      this.next();
-      Token tok = Token.createParen(this.parseRegex(), 0);
-      if (this.read() != T_RPAREN) throw ex("parser.factor.1", this.offset - 1);
-      this.next(); // Skips ')'
+      next();
+      Token tok = Token.createParen(parseRegex(), 0);
+      if (read() != T_RPAREN)
+      {
+        throw ex("parser.factor.1", offset - 1);
+      }
+      next(); // Skips ')'
       return tok;
     }
 
     @Override
     Token processParen2() throws ParseException
     {
-      throw ex("parser.process.1", this.offset);
+      throw ex("parser.process.1", offset);
     }
 
     @Override
     Token processCondition() throws ParseException
     {
-      throw ex("parser.process.1", this.offset);
+      throw ex("parser.process.1", offset);
     }
 
     @Override
     Token processModifiers() throws ParseException
     {
-      throw ex("parser.process.1", this.offset);
+      throw ex("parser.process.1", offset);
     }
 
     @Override
     Token processIndependent() throws ParseException
     {
-      throw ex("parser.process.1", this.offset);
+      throw ex("parser.process.1", offset);
     }
 
     @Override
     Token processBacksolidus_c() throws ParseException
     {
-      this.next();
-      return this.getTokenForShorthand('c');
+      next();
+      return getTokenForShorthand('c');
     }
 
     @Override
     Token processBacksolidus_C() throws ParseException
     {
-      this.next();
-      return this.getTokenForShorthand('C');
+      next();
+      return getTokenForShorthand('C');
     }
 
     @Override
     Token processBacksolidus_i() throws ParseException
     {
-      this.next();
-      return this.getTokenForShorthand('i');
+      next();
+      return getTokenForShorthand('i');
     }
 
     @Override
     Token processBacksolidus_I() throws ParseException
     {
-      this.next();
-      return this.getTokenForShorthand('I');
+      next();
+      return getTokenForShorthand('I');
     }
 
     @Override
     Token processBacksolidus_g() throws ParseException
     {
-      throw this.ex("parser.process.1", this.offset - 2);
+      throw ex("parser.process.1", offset - 2);
     }
 
     @Override
     Token processBacksolidus_X() throws ParseException
     {
-      throw ex("parser.process.1", this.offset - 2);
+      throw ex("parser.process.1", offset - 2);
     }
 
     @Override
     Token processBackreference() throws ParseException
     {
-      throw ex("parser.process.1", this.offset - 4);
+      throw ex("parser.process.1", offset - 4);
     }
 
     @Override
     int processCIinCharacterClass(RangeToken tok, int c)
     {
-      tok.mergeRanges(this.getTokenForShorthand(c));
+      tok.mergeRanges(getTokenForShorthand(c));
       return -1;
     }
 
@@ -8572,13 +10154,13 @@ public final class RegEx
     @Override
     protected RangeToken parseCharacterClass(boolean useNrange) throws ParseException
     {
-      this.setContext(S_INBRACKETS);
-      this.next(); // '['
+      setContext(S_INBRACKETS);
+      next(); // '['
       RangeToken base = null;
       RangeToken tok;
-      if (this.read() == T_CHAR && this.chardata == '^')
+      if (read() == T_CHAR && chardata == '^')
       {
-        this.next(); // '^'
+        next(); // '^'
         base = Token.createRange();
         base.addRange(0, Token.UTF16_MAX);
         tok = Token.createRange();
@@ -8589,10 +10171,10 @@ public final class RegEx
       }
       int type;
       boolean firstloop = true;
-      while ((type = this.read()) != T_EOF)
+      while ((type = read()) != T_EOF)
       { // Don't use 'cotinue' for this loop.
         // single-range | from-to-range | subtraction
-        if (type == T_CHAR && this.chardata == ']' && !firstloop)
+        if (type == T_CHAR && chardata == ']' && !firstloop)
         {
           if (base != null)
           {
@@ -8601,7 +10183,7 @@ public final class RegEx
           }
           break;
         }
-        int c = this.chardata;
+        int c = chardata;
         boolean end = false;
         if (type == T_BACKSOLIDUS)
         {
@@ -8613,7 +10195,7 @@ public final class RegEx
           case 'W':
           case 's':
           case 'S':
-            tok.mergeRanges(this.getTokenForShorthand(c));
+            tok.mergeRanges(getTokenForShorthand(c));
             end = true;
             break;
 
@@ -8621,21 +10203,27 @@ public final class RegEx
           case 'I':
           case 'c':
           case 'C':
-            c = this.processCIinCharacterClass(tok, c);
-            if (c < 0) end = true;
+            c = processCIinCharacterClass(tok, c);
+            if (c < 0)
+            {
+              end = true;
+            }
             break;
 
           case 'p':
           case 'P':
-            int pstart = this.offset;
-            RangeToken tok2 = this.processBacksolidus_pP(c);
-            if (tok2 == null) throw this.ex("parser.atom.5", pstart);
+            int pstart = offset;
+            RangeToken tok2 = processBacksolidus_pP(c);
+            if (tok2 == null)
+            {
+              throw ex("parser.atom.5", pstart);
+            }
             tok.mergeRanges(tok2);
             end = true;
             break;
 
           default:
-            c = this.decodeEscaped();
+            c = decodeEscaped();
           } // \ + c
         } // backsolidus
         else if (type == T_XMLSCHEMA_CC_SUBTRACTION && !firstloop)
@@ -8646,59 +10234,92 @@ public final class RegEx
             base.subtractRanges(tok);
             tok = base;
           }
-          RangeToken range2 = this.parseCharacterClass(false);
+          RangeToken range2 = parseCharacterClass(false);
           tok.subtractRanges(range2);
-          if (this.read() != T_CHAR || this.chardata != ']') throw this.ex("parser.cc.5", this.offset);
+          if (read() != T_CHAR || chardata != ']')
+          {
+            throw ex("parser.cc.5", offset);
+          }
           break; // Exit this loop
         }
-        this.next();
+        next();
         if (!end)
         { // if not shorthands...
           if (type == T_CHAR)
           {
-            if (c == '[') throw this.ex("parser.cc.6", this.offset - 2);
-            if (c == ']') throw this.ex("parser.cc.7", this.offset - 2);
-            if (c == '-') throw this.ex("parser.cc.8", this.offset - 2);
+            if (c == '[')
+            {
+              throw ex("parser.cc.6", offset - 2);
+            }
+            if (c == ']')
+            {
+              throw ex("parser.cc.7", offset - 2);
+            }
+            if (c == '-')
+            {
+              throw ex("parser.cc.8", offset - 2);
+            }
           }
-          if (this.read() != T_CHAR || this.chardata != '-')
+          if (read() != T_CHAR || chardata != '-')
           { // Here is no '-'.
             tok.addRange(c, c);
           }
           else
           { // Found '-'
             // Is this '-' is a from-to token??
-            this.next(); // Skips '-'
-            if ((type = this.read()) == T_EOF) throw this.ex("parser.cc.2", this.offset);
-            // c '-' ']' -> '-' is a single-range.
-            if ((type == T_CHAR && this.chardata == ']') || type == T_XMLSCHEMA_CC_SUBTRACTION)
+            next(); // Skips '-'
+            if ((type = read()) == T_EOF)
             {
-              throw this.ex("parser.cc.8", this.offset - 1);
+              throw ex("parser.cc.2", offset);
+            }
+            // c '-' ']' -> '-' is a single-range.
+            if (type == T_CHAR && chardata == ']' || type == T_XMLSCHEMA_CC_SUBTRACTION)
+            {
+              throw ex("parser.cc.8", offset - 1);
             }
             else
             {
-              int rangeend = this.chardata;
+              int rangeend = chardata;
               if (type == T_CHAR)
               {
-                if (rangeend == '[') throw this.ex("parser.cc.6", this.offset - 1);
-                if (rangeend == ']') throw this.ex("parser.cc.7", this.offset - 1);
-                if (rangeend == '-') throw this.ex("parser.cc.8", this.offset - 2);
+                if (rangeend == '[')
+                {
+                  throw ex("parser.cc.6", offset - 1);
+                }
+                if (rangeend == ']')
+                {
+                  throw ex("parser.cc.7", offset - 1);
+                }
+                if (rangeend == '-')
+                {
+                  throw ex("parser.cc.8", offset - 2);
+                }
               }
-              else if (type == T_BACKSOLIDUS) rangeend = this.decodeEscaped();
-              this.next();
+              else if (type == T_BACKSOLIDUS)
+              {
+                rangeend = decodeEscaped();
+              }
+              next();
 
-              if (c > rangeend) throw this.ex("parser.ope.3", this.offset - 1);
+              if (c > rangeend)
+              {
+                throw ex("parser.ope.3", offset - 1);
+              }
               tok.addRange(c, rangeend);
             }
           }
         }
         firstloop = false;
       }
-      if (this.read() == T_EOF) throw this.ex("parser.cc.2", this.offset);
+      if (read() == T_EOF)
+      {
+        throw ex("parser.cc.2", offset);
+      }
       tok.sortRanges();
       tok.compactRanges();
       // tok.dumpRanges();
-      this.setContext(S_NORMAL);
-      this.next(); // Skips ']'
+      setContext(S_NORMAL);
+      next(); // Skips ']'
 
       return tok;
     }
@@ -8706,7 +10327,7 @@ public final class RegEx
     @Override
     protected RangeToken parseSetOperations() throws ParseException
     {
-      throw this.ex("parser.process.1", this.offset);
+      throw ex("parser.process.1", offset);
     }
 
     @Override
@@ -8742,8 +10363,11 @@ public final class RegEx
     @Override
     int decodeEscaped() throws ParseException
     {
-      if (this.read() != T_BACKSOLIDUS) throw ex("parser.next.1", this.offset - 1);
-      int c = this.chardata;
+      if (read() != T_BACKSOLIDUS)
+      {
+        throw ex("parser.next.1", offset - 1);
+      }
+      int c = chardata;
       switch (c)
       {
       case 'n':
@@ -8771,7 +10395,7 @@ public final class RegEx
       case ']':
         break; // return actucal char
       default:
-        throw ex("parser.process.1", this.offset - 2);
+        throw ex("parser.process.1", offset - 2);
       }
       return c;
     }
@@ -8828,7 +10452,9 @@ public final class RegEx
     {
       int len = src.length();
       for (int i = 0; i < len; i += 2)
+      {
         range.addRange(src.charAt(i), src.charAt(i + 1));
+      }
     }
 
     private static final String SPACES = "\t\n\r\r  ";

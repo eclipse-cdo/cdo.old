@@ -204,18 +204,29 @@ public class XMLTypeDocumentRootImpl extends EObjectImpl implements XMLTypeDocum
     switch (featureID)
     {
     case XMLTypePackage.XML_TYPE_DOCUMENT_ROOT__MIXED:
-      if (coreType) return getMixed();
+      if (coreType)
+      {
+        return getMixed();
+      }
       return ((FeatureMap.Internal)getMixed()).getWrapper();
     case XMLTypePackage.XML_TYPE_DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
       if (coreType)
+      {
         return getXMLNSPrefixMap();
+      }
       else
+      {
         return getXMLNSPrefixMap().map();
+      }
     case XMLTypePackage.XML_TYPE_DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
       if (coreType)
+      {
         return getXSISchemaLocation();
+      }
       else
+      {
         return getXSISchemaLocation().map();
+      }
     case XMLTypePackage.XML_TYPE_DOCUMENT_ROOT__CDATA:
       return getCDATA();
     case XMLTypePackage.XML_TYPE_DOCUMENT_ROOT__COMMENT:
@@ -359,7 +370,10 @@ public class XMLTypeDocumentRootImpl extends EObjectImpl implements XMLTypeDocum
   @Override
   public String toString()
   {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy())
+    {
+      return super.toString();
+    }
 
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (mixed: ");

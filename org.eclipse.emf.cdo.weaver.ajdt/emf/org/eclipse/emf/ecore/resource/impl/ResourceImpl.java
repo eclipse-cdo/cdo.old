@@ -358,7 +358,7 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
     @Override
     protected boolean isNotificationRequired()
     {
-      return ResourceImpl.this.eNotificationRequired();
+      return eNotificationRequired();
     }
 
     @Override
@@ -384,7 +384,7 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
     {
       InternalEObject eObject = (InternalEObject)object;
       notifications = eObject.eSetResource(ResourceImpl.this, notifications);
-      ResourceImpl.this.attached(eObject);
+      attached(eObject);
       return notifications;
     }
 
@@ -392,9 +392,9 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
     public NotificationChain inverseRemove(E object, NotificationChain notifications)
     {
       InternalEObject eObject = (InternalEObject)object;
-      if (ResourceImpl.this.isLoaded)
+      if (isLoaded)
       {
-        ResourceImpl.this.detached(eObject);
+        detached(eObject);
       }
       return eObject.eSetResource(null, notifications);
     }
@@ -469,12 +469,12 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
 
     protected void loaded()
     {
-      if (!ResourceImpl.this.isLoaded())
+      if (!isLoaded())
       {
-        Notification notification = ResourceImpl.this.setLoaded(true);
+        Notification notification = setLoaded(true);
         if (notification != null)
         {
-          ResourceImpl.this.eNotify(notification);
+          eNotify(notification);
         }
       }
     }
@@ -1215,7 +1215,7 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
     }
 
     ZipOutputStream zipOutputStream = null;
-    if (useZip() || (options != null && Boolean.TRUE.equals(options.get(Resource.OPTION_ZIP))))
+    if (useZip() || options != null && Boolean.TRUE.equals(options.get(Resource.OPTION_ZIP)))
     {
       zipOutputStream = new ZipOutputStream(outputStream)
       {
@@ -1321,7 +1321,7 @@ public class ResourceImpl extends NotifierImpl implements Resource, Resource.Int
 
       try
       {
-        if (useZip() || (options != null && Boolean.TRUE.equals(options.get(Resource.OPTION_ZIP))))
+        if (useZip() || options != null && Boolean.TRUE.equals(options.get(Resource.OPTION_ZIP)))
         {
           ZipInputStream zipInputStream = new ZipInputStream(inputStream);
           while (zipInputStream.available() != 0)

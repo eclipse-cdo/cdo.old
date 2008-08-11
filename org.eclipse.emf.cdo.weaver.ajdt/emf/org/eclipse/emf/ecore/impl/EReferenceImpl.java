@@ -165,12 +165,18 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   {
     boolean oldContainment = (eFlags & CONTAINMENT_EFLAG) != 0;
     if (newContainment)
+    {
       eFlags |= CONTAINMENT_EFLAG;
+    }
     else
+    {
       eFlags &= ~CONTAINMENT_EFLAG;
+    }
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EREFERENCE__CONTAINMENT, oldContainment,
           newContainment));
+    }
   }
 
   /**
@@ -205,12 +211,18 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   {
     boolean oldResolveProxies = (eFlags & RESOLVE_PROXIES_EFLAG) != 0;
     if (newResolveProxies)
+    {
       eFlags |= RESOLVE_PROXIES_EFLAG;
+    }
     else
+    {
       eFlags &= ~RESOLVE_PROXIES_EFLAG;
+    }
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EREFERENCE__RESOLVE_PROXIES,
           oldResolveProxies, newResolveProxies));
+    }
   }
 
   /**
@@ -228,8 +240,10 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
       if (eOpposite != oldEOpposite)
       {
         if (eNotificationRequired())
+        {
           eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.EREFERENCE__EOPPOSITE, oldEOpposite,
               eOpposite));
+        }
       }
     }
     return eOpposite;
@@ -255,7 +269,9 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
     EReference oldEOpposite = eOpposite;
     eOpposite = newEOpposite;
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EREFERENCE__EOPPOSITE, oldEOpposite, eOpposite));
+    }
   }
 
   protected EClass eReferenceType;
@@ -344,7 +360,10 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
     case EcorePackage.EREFERENCE__REQUIRED:
       return isRequired() ? Boolean.TRUE : Boolean.FALSE;
     case EcorePackage.EREFERENCE__ETYPE:
-      if (resolve) return getEType();
+      if (resolve)
+      {
+        return getEType();
+      }
       return basicGetEType();
     case EcorePackage.EREFERENCE__EGENERIC_TYPE:
       return getEGenericType();
@@ -371,10 +390,16 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
     case EcorePackage.EREFERENCE__RESOLVE_PROXIES:
       return isResolveProxies() ? Boolean.TRUE : Boolean.FALSE;
     case EcorePackage.EREFERENCE__EOPPOSITE:
-      if (resolve) return getEOpposite();
+      if (resolve)
+      {
+        return getEOpposite();
+      }
       return basicGetEOpposite();
     case EcorePackage.EREFERENCE__EREFERENCE_TYPE:
-      if (resolve) return getEReferenceType();
+      if (resolve)
+      {
+        return getEReferenceType();
+      }
       return basicGetEReferenceType();
     case EcorePackage.EREFERENCE__EKEYS:
       return getEKeys();
@@ -536,9 +561,9 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
     case EcorePackage.EREFERENCE__NAME:
       return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     case EcorePackage.EREFERENCE__ORDERED:
-      return ((eFlags & ORDERED_EFLAG) != 0) != ORDERED_EDEFAULT;
+      return (eFlags & ORDERED_EFLAG) != 0 != ORDERED_EDEFAULT;
     case EcorePackage.EREFERENCE__UNIQUE:
-      return ((eFlags & UNIQUE_EFLAG) != 0) != UNIQUE_EDEFAULT;
+      return (eFlags & UNIQUE_EFLAG) != 0 != UNIQUE_EDEFAULT;
     case EcorePackage.EREFERENCE__LOWER_BOUND:
       return lowerBound != LOWER_BOUND_EDEFAULT;
     case EcorePackage.EREFERENCE__UPPER_BOUND:
@@ -552,11 +577,11 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
     case EcorePackage.EREFERENCE__EGENERIC_TYPE:
       return isSetEGenericType();
     case EcorePackage.EREFERENCE__CHANGEABLE:
-      return ((eFlags & CHANGEABLE_EFLAG) != 0) != CHANGEABLE_EDEFAULT;
+      return (eFlags & CHANGEABLE_EFLAG) != 0 != CHANGEABLE_EDEFAULT;
     case EcorePackage.EREFERENCE__VOLATILE:
-      return ((eFlags & VOLATILE_EFLAG) != 0) != VOLATILE_EDEFAULT;
+      return (eFlags & VOLATILE_EFLAG) != 0 != VOLATILE_EDEFAULT;
     case EcorePackage.EREFERENCE__TRANSIENT:
-      return ((eFlags & TRANSIENT_EFLAG) != 0) != TRANSIENT_EDEFAULT;
+      return (eFlags & TRANSIENT_EFLAG) != 0 != TRANSIENT_EDEFAULT;
     case EcorePackage.EREFERENCE__DEFAULT_VALUE_LITERAL:
       return DEFAULT_VALUE_LITERAL_EDEFAULT == null ? defaultValueLiteral != null : !DEFAULT_VALUE_LITERAL_EDEFAULT
           .equals(defaultValueLiteral);
@@ -564,17 +589,17 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
       return DEFAULT_VALUE_EDEFAULT == null ? getDefaultValue() != null : !DEFAULT_VALUE_EDEFAULT
           .equals(getDefaultValue());
     case EcorePackage.EREFERENCE__UNSETTABLE:
-      return ((eFlags & UNSETTABLE_EFLAG) != 0) != UNSETTABLE_EDEFAULT;
+      return (eFlags & UNSETTABLE_EFLAG) != 0 != UNSETTABLE_EDEFAULT;
     case EcorePackage.EREFERENCE__DERIVED:
-      return ((eFlags & DERIVED_EFLAG) != 0) != DERIVED_EDEFAULT;
+      return (eFlags & DERIVED_EFLAG) != 0 != DERIVED_EDEFAULT;
     case EcorePackage.EREFERENCE__ECONTAINING_CLASS:
       return getEContainingClass() != null;
     case EcorePackage.EREFERENCE__CONTAINMENT:
-      return ((eFlags & CONTAINMENT_EFLAG) != 0) != CONTAINMENT_EDEFAULT;
+      return (eFlags & CONTAINMENT_EFLAG) != 0 != CONTAINMENT_EDEFAULT;
     case EcorePackage.EREFERENCE__CONTAINER:
       return isContainer() != CONTAINER_EDEFAULT;
     case EcorePackage.EREFERENCE__RESOLVE_PROXIES:
-      return ((eFlags & RESOLVE_PROXIES_EFLAG) != 0) != RESOLVE_PROXIES_EDEFAULT;
+      return (eFlags & RESOLVE_PROXIES_EFLAG) != 0 != RESOLVE_PROXIES_EDEFAULT;
     case EcorePackage.EREFERENCE__EOPPOSITE:
       return eOpposite != null;
     case EcorePackage.EREFERENCE__EREFERENCE_TYPE:
@@ -593,7 +618,10 @@ public class EReferenceImpl extends EStructuralFeatureImpl implements EReference
   @Override
   public String toString()
   {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy())
+    {
+      return super.toString();
+    }
 
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (containment: ");

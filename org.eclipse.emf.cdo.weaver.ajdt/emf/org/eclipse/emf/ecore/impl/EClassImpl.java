@@ -350,7 +350,10 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
    */
   public void unsetEGenericSuperTypes()
   {
-    if (eGenericSuperTypes != null) ((InternalEList.Unsettable<?>)eGenericSuperTypes).unset();
+    if (eGenericSuperTypes != null)
+    {
+      ((InternalEList.Unsettable<?>)eGenericSuperTypes).unset();
+    }
   }
 
   /**
@@ -849,7 +852,7 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
             int index = eStructuralFeature.getFeatureID();
             if (index != -1)
             {
-              for (int last = this.size; index < last; ++index)
+              for (int last = size; index < last; ++index)
               {
                 if (data[index] == object)
                 {
@@ -948,7 +951,10 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
     case EcorePackage.ECLASS__INSTANCE_TYPE_NAME:
       return getInstanceTypeName();
     case EcorePackage.ECLASS__EPACKAGE:
-      if (resolve) return getEPackage();
+      if (resolve)
+      {
+        return getEPackage();
+      }
       return basicGetEPackage();
     case EcorePackage.ECLASS__ETYPE_PARAMETERS:
       return getETypeParameters();
@@ -1117,9 +1123,9 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
     case EcorePackage.ECLASS__ETYPE_PARAMETERS:
       return eTypeParameters != null && !eTypeParameters.isEmpty();
     case EcorePackage.ECLASS__ABSTRACT:
-      return ((eFlags & ABSTRACT_EFLAG) != 0) != ABSTRACT_EDEFAULT;
+      return (eFlags & ABSTRACT_EFLAG) != 0 != ABSTRACT_EDEFAULT;
     case EcorePackage.ECLASS__INTERFACE:
-      return ((eFlags & INTERFACE_EFLAG) != 0) != INTERFACE_EDEFAULT;
+      return (eFlags & INTERFACE_EFLAG) != 0 != INTERFACE_EDEFAULT;
     case EcorePackage.ECLASS__ESUPER_TYPES:
       return isSetESuperTypes();
     case EcorePackage.ECLASS__EOPERATIONS:
@@ -1220,7 +1226,10 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
     case EcorePackage.ECLASS__EANNOTATIONS:
       return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
     case EcorePackage.ECLASS__EPACKAGE:
-      if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+      if (eInternalContainer() != null)
+      {
+        msgs = eBasicRemoveFromContainer(msgs);
+      }
       return eBasicSetContainer(otherEnd, EcorePackage.ECLASS__EPACKAGE, msgs);
     case EcorePackage.ECLASS__EOPERATIONS:
       return ((InternalEList<InternalEObject>)(InternalEList<?>)getEOperations()).basicAdd(otherEnd, msgs);
@@ -1423,11 +1432,17 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   {
     boolean oldAbstract = (eFlags & ABSTRACT_EFLAG) != 0;
     if (newAbstract)
+    {
       eFlags |= ABSTRACT_EFLAG;
+    }
     else
+    {
       eFlags &= ~ABSTRACT_EFLAG;
+    }
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ECLASS__ABSTRACT, oldAbstract, newAbstract));
+    }
   }
 
   /**
@@ -1449,11 +1464,17 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   {
     boolean oldInterface = (eFlags & INTERFACE_EFLAG) != 0;
     if (newInterface)
+    {
       eFlags |= INTERFACE_EFLAG;
+    }
     else
+    {
       eFlags &= ~INTERFACE_EFLAG;
+    }
     if (eNotificationRequired())
+    {
       eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ECLASS__INTERFACE, oldInterface, newInterface));
+    }
   }
 
   /**
@@ -1464,7 +1485,10 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
   @Override
   public String toString()
   {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy())
+    {
+      return super.toString();
+    }
 
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (abstract: ");
@@ -1861,7 +1885,10 @@ public class EClassImpl extends EClassifierImpl implements EClass, ESuperAdapter
    */
   public void unsetESuperTypes()
   {
-    if (eSuperTypes != null) ((InternalEList.Unsettable<?>)eSuperTypes).unset();
+    if (eSuperTypes != null)
+    {
+      ((InternalEList.Unsettable<?>)eSuperTypes).unset();
+    }
   }
 
   /**
