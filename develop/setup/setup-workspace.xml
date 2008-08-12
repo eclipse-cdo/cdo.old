@@ -16,7 +16,7 @@
 	<target name="install-target" depends="clean-target,install-target-eclipse,install-target-springsource" />
 
 	<target name="install-windows" if="os.family.windows">
-		<unzip dest="${cdo.metadata}" src="${downloads.folder}/${target.eclipse.file}-win32.zip" overwrite="false" />
+		<unzip dest="${cdo.metadata}" src="${downloads.folder}/${target.eclipse.file}" overwrite="false" />
 	</target>
 
 	<target name="install-unix" if="os.family.unix">
