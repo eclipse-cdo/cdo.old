@@ -123,7 +123,7 @@
 			<os family="unix"/>
 		</condition>
 		
-		<echo message="Using ${target.eclipse.file}"/>
+		<echo message="Eclipse File: ${target.eclipse.file}"/>
 		<property name="cdo.folder" value="${workspace.folder}" />
 		<property name="cdo.metadata" value="${cdo.folder}/.metadata" />
 		<property name="cdo.baseline" value="${cdo.metadata}/.baseline" />
