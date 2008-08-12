@@ -16,9 +16,6 @@
 <mapAttribute key="org.eclipse.ui.externaltools.ATTR_ANT_PROPERTIES">
 <mapEntry key="downloads.folder" value="C:\develop\downloads"/>
 <mapEntry key="workspace.folder" value="${workspace_loc}"/>
-<mapEntry key="eclipse.pdebuild.templates" value="/C:/develop/bin/eclipse/plugins/org.eclipse.pde.build_3.4.0.v20080604/templates/"/>
-<mapEntry key="eclipse.pdebuild.home" value="/C:/develop/bin/eclipse/plugins/org.eclipse.pde.build_3.4.0.v20080604/./"/>
-<mapEntry key="eclipse.pdebuild.scripts" value="/C:/develop/bin/eclipse/plugins/org.eclipse.pde.build_3.4.0.v20080604/scripts/"/>
 </mapAttribute>
 <stringAttribute key="org.eclipse.ui.externaltools.ATTR_LAUNCH_CONFIGURATION_BUILD_SCOPE" value="${none}"/>
 <stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="${workspace_loc:/develop.setup/setup-workspace.xml}"/>
