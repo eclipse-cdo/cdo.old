@@ -15,16 +15,15 @@
 
 	<target name="install-target" depends="clean-target,install-target-eclipse,install-target-springsource" />
 
-	<target name="install-target-eclipse-windows" if="os.family.windows">
+	<target name="install-windows" if="os.family.windows">
 		<unzip dest="${cdo.metadata}" src="${downloads.folder}/${target.eclipse.file}-win32.zip" overwrite="false" />
 	</target>
 
-	<target name="install-target-eclipse-unix" if="os.family.unix">
+	<target name="install-unix" if="os.family.unix">
 		<untar dest="${cdo.metadata}" src="${downloads.folder}/${target.eclipse.file}" compression="gzip" overwrite="false" />
 	</target>
 
-	<target name="install-target-eclipse" depends="clean-target,download-from-eclipse,repack-hibernate">
-		<untar dest="${cdo.metadata}" src="${downloads.folder}/${target.eclipse.file}" compression="gzip" overwrite="false" />
+	<target name="install-target-eclipse" depends="clean-target,download-from-eclipse,repack-hibernate,install-windows,install-unix">
 		<unzip dest="${cdo.metadata}" src="${downloads.folder}/${target.emf.file}" overwrite="false" />
 		<unzip dest="${cdo.metadata}" src="${downloads.folder}/${target.teneo.file}" overwrite="false" />
 		<move tofile="${cdo.target}" file="${cdo.metadata}/eclipse" verbose="false" />
