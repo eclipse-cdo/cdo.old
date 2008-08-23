@@ -28,6 +28,11 @@ public class CDOIDHibernateLongImpl extends CDOIDHibernateImpl
   {
   }
 
+  public CDOIDHibernateLongImpl(String idStr)
+  {
+    setId(new Long(idStr));
+  }
+
   @Override
   protected int getIDType()
   {

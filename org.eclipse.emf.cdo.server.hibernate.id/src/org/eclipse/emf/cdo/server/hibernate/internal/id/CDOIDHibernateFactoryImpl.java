@@ -71,7 +71,7 @@ public class CDOIDHibernateFactoryImpl implements CDOIDObjectFactory
     {
       cdoID = new CDOIDHibernateLongImpl();
     }
-    else if (id instanceof Long)
+    else if (id instanceof String)
     {
       cdoID = new CDOIDHibernateStringImpl();
     }
