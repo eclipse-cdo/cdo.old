@@ -44,7 +44,11 @@ public class CDOIDHibernateLongImpl extends CDOIDHibernateImpl
   {
     return (Long)super.getId();
   }
-
+  
+  protected void setIdFromString(String idAsString) {
+    setId(new Long(idAsString));
+  }
+  
   @Override
   protected void readId(ExtendedDataInput in) throws IOException
   {
