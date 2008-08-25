@@ -136,7 +136,7 @@
 		<property name="baseline.net4j.url" value="${eclipse.url}/modeling/emf/net4j/downloads/drops/${baseline.net4j.version}/${baseline.net4j.build}/${baseline.net4j.file}" />
 		<property name="baseline.cdo.url" value="${eclipse.url}/modeling/emf/cdo/downloads/drops/${baseline.cdo.version}/${baseline.cdo.build}/${baseline.cdo.file}" />
 
-		<property name="target.eclipse.url" value="${eclipse.url}/eclipse/downloads/drops/${target.eclipse.version}-${target.eclipse.build}/${target.eclipse.file}" />
+		<property name="target.eclipse.url" value="${eclipse.url}/eclipse/downloads/drops/${target.eclipse.folder}/${target.eclipse.file}" />
 		<property name="target.emf.url" value="${eclipse.url}/modeling/emf/emf/downloads/drops/${target.emf.version}/${target.emf.build}/${target.emf.file}" />
 		<property name="target.teneo.url" value="${eclipse.url}/modeling/emf/teneo/downloads/drops/${target.teneo.version}/${target.teneo.build}/${target.teneo.file}" />
 
