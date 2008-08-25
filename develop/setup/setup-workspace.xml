@@ -1,6 +1,7 @@
 <project name="setup-workspace" basedir="." default="main">
 
 	<property file="setup-workspace.properties" />
+	<property file="${user.home}/setup-workspace.properties" />
 
 	<target name="main" depends="download-from-eclipse,repack-hibernate,install-baseline,install-target" description="Needed for local workspace setup">
 		<echo message="Finished" />
