@@ -39,8 +39,9 @@ public class CDOIDHibernateStringImpl extends CDOIDHibernateImpl
   {
     return (String)super.getId();
   }
-  
-  protected void setIdFromString(String idAsString) {
+
+  protected void setIdFromString(String idAsString)
+  {
     setId(idAsString);
   }
 

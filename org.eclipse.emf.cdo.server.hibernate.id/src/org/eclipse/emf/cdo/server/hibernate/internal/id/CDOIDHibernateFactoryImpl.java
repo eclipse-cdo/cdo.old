@@ -26,7 +26,7 @@ import java.io.Serializable;
 public class CDOIDHibernateFactoryImpl implements CDOIDObjectFactory
 {
   private static CDOIDHibernateFactoryImpl instance = new CDOIDHibernateFactoryImpl();
-  
+
   static final String SEPARATOR = "_";
 
   public static CDOIDHibernateFactoryImpl getInstance()
@@ -90,23 +90,27 @@ public class CDOIDHibernateFactoryImpl implements CDOIDObjectFactory
   public CDOIDObject createCDOIDObject(String fragmentPart)
   {
     final int firstIndex = fragmentPart.indexOf(SEPARATOR);
-    if (firstIndex == -1) {
+    if (firstIndex == -1)
+    {
       throw new IllegalArgumentException("Illegal fragment part " + fragmentPart);
     }
-    
+
     final String typeStr = fragmentPart.substring(0, firstIndex);
     final int type = Integer.parseInt(typeStr);
-    if (type == CDOIDHibernateImpl.HB_ID_TYPE_SERIALIZABLE) {
+    if (type == CDOIDHibernateImpl.HB_ID_TYPE_SERIALIZABLE)
+    {
       final CDOIDHibernateImpl hbId = new CDOIDHibernateImpl();
       hbId.read(fragmentPart);
       return hbId;
     }
-    if (type == CDOIDHibernateImpl.HB_ID_TYPE_LONG) {
+    if (type == CDOIDHibernateImpl.HB_ID_TYPE_LONG)
+    {
       final CDOIDHibernateImpl hbId = new CDOIDHibernateLongImpl();
       hbId.read(fragmentPart);
       return hbId;
     }
-    if (type == CDOIDHibernateImpl.HB_ID_TYPE_STRING) {
+    if (type == CDOIDHibernateImpl.HB_ID_TYPE_STRING)
+    {
       final CDOIDHibernateImpl hbId = new CDOIDHibernateStringImpl();
       hbId.read(fragmentPart);
       return hbId;

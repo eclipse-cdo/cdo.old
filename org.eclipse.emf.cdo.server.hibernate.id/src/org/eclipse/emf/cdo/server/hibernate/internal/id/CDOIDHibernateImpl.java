@@ -117,30 +117,34 @@ public class CDOIDHibernateImpl extends AbstractCDOID implements CDOIDHibernate
 
   public String asString()
   {
-    return getIDType() + CDOIDHibernateFactoryImpl.SEPARATOR + entityName + CDOIDHibernateFactoryImpl.SEPARATOR + getIdAsString();
+    return getIDType() + CDOIDHibernateFactoryImpl.SEPARATOR + entityName + CDOIDHibernateFactoryImpl.SEPARATOR
+        + getIdAsString();
   }
 
   @Override
   public void read(String fragmentPart)
   {
     final int lastIndex = fragmentPart.lastIndexOf(CDOIDHibernateFactoryImpl.SEPARATOR);
-    if (lastIndex == -1) {
+    if (lastIndex == -1)
+    {
       throw new IllegalArgumentException("Illegal fragment part " + fragmentPart);
     }
     final int firstIndex = fragmentPart.indexOf("_");
-    
+
     setEntityName(fragmentPart.substring(firstIndex + 1, lastIndex));
     setIdFromString(fragmentPart.substring(lastIndex + 1));
   }
 
-  protected String getIdAsString() {
+  protected String getIdAsString()
+  {
     return ((Object)getId()).toString();
   }
-  
-  protected void setIdFromString(String idAsString) {
+
+  protected void setIdFromString(String idAsString)
+  {
     throw new UnsupportedOperationException();
   }
-  
+
   @Override
   public void read(ExtendedDataInput in) throws IOException
   {
