@@ -2,12 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Model3EditPlugin.java,v 1.1 2008-04-20 09:58:05 estepper Exp $
+ * $Id: Model3EditPlugin.java,v 1.2 2008-09-08 06:55:54 estepper Exp $
  */
 package org.eclipse.emf.cdo.tests.model3.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
 /**
  * This is the central singleton for the Model3 edit plugin. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -37,7 +38,7 @@ public final class Model3EditPlugin extends EMFPlugin
    */
   public Model3EditPlugin()
   {
-    super(new ResourceLocator[] {});
+    super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, });
   }
 
   /**

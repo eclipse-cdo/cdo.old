@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SubpackageItemProviderAdapterFactory.java,v 1.2 2008-08-11 05:12:14 estepper Exp $
+ * $Id: SubpackageItemProviderAdapterFactory.java,v 1.3 2008-09-08 06:55:54 estepper Exp $
  */
 package org.eclipse.emf.cdo.tests.model3.subpackage.provider;
 
@@ -154,7 +154,7 @@ public class SubpackageItemProviderAdapterFactory extends SubpackageAdapterFacto
     if (isFactoryForType(type))
     {
       Object adapter = super.adapt(object, type);
-      if (!(type instanceof Class) || ((Class<?>)type).isInstance(adapter))
+      if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter)))
       {
         return adapter;
       }
@@ -207,9 +207,7 @@ public class SubpackageItemProviderAdapterFactory extends SubpackageAdapterFacto
   public void dispose()
   {
     if (class2ItemProvider != null)
-    {
       class2ItemProvider.dispose();
-    }
   }
 
 }

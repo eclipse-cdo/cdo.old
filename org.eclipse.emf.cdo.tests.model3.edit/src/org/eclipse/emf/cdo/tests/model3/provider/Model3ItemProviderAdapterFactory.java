@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Model3ItemProviderAdapterFactory.java,v 1.2 2008-08-11 05:12:15 estepper Exp $
+ * $Id: Model3ItemProviderAdapterFactory.java,v 1.3 2008-09-08 06:55:54 estepper Exp $
  */
 package org.eclipse.emf.cdo.tests.model3.provider;
 
@@ -101,6 +101,31 @@ public class Model3ItemProviderAdapterFactory extends Model3AdapterFactory imple
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.tests.model3.MetaRef} instances. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected MetaRefItemProvider metaRefItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model3.MetaRef}. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public Adapter createMetaRefAdapter()
+  {
+    if (metaRefItemProvider == null)
+    {
+      metaRefItemProvider = new MetaRefItemProvider(this);
+    }
+
+    return metaRefItemProvider;
+  }
+
+  /**
    * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
@@ -154,7 +179,7 @@ public class Model3ItemProviderAdapterFactory extends Model3AdapterFactory imple
     if (isFactoryForType(type))
     {
       Object adapter = super.adapt(object, type);
-      if (!(type instanceof Class) || ((Class<?>)type).isInstance(adapter))
+      if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter)))
       {
         return adapter;
       }
@@ -207,9 +232,9 @@ public class Model3ItemProviderAdapterFactory extends Model3AdapterFactory imple
   public void dispose()
   {
     if (class1ItemProvider != null)
-    {
       class1ItemProvider.dispose();
-    }
+    if (metaRefItemProvider != null)
+      metaRefItemProvider.dispose();
   }
 
 }
