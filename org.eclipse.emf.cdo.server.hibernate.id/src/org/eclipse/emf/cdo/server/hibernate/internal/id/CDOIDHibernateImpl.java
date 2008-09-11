@@ -115,7 +115,7 @@ public class CDOIDHibernateImpl extends AbstractCDOID implements CDOIDHibernate
     return new Legacy(classRef);
   }
 
-  public String asString()
+  public String toURIFragment()
   {
     return getIDType() + CDOIDHibernateFactoryImpl.SEPARATOR + entityName + CDOIDHibernateFactoryImpl.SEPARATOR
         + getIdAsString();
