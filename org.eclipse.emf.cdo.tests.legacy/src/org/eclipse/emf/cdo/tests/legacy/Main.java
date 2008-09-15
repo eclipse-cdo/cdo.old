@@ -2,6 +2,8 @@ package org.eclipse.emf.cdo.tests.legacy;
 
 import org.eclipse.emf.ecore.InternalEObject;
 
+// TODO Remove me
+@Deprecated
 public class Main
 {
   public static final boolean LISTEN = true;
