@@ -19,6 +19,10 @@ public class Main
     readHooks(hooks);
   }
 
+  /*
+   * IMPORTANT: Compile errors in this method might indicate an old version of EMF. Legacy support is only enabled for
+   * EMF with fixed bug #247130. These compile errors do not affect native models!
+   */
   private static Hook[] createHooks(int count)
   {
     Hook[] hooks = new Hook[count];
