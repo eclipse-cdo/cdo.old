@@ -2,10 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueItemProvider.java,v 1.2 2008-02-23 10:00:38 estepper Exp $
+ * $Id: ValueItemProvider.java,v 1.3 2008-09-18 12:56:53 estepper Exp $
  */
 package org.eclipse.emf.cdo.tests.mango.provider;
 
+import org.eclipse.emf.cdo.edit.CDOItemProviderAdapter;
 import org.eclipse.emf.cdo.tests.mango.MangoPackage;
 import org.eclipse.emf.cdo.tests.mango.Value;
 
@@ -20,7 +21,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import java.util.Collection;
@@ -32,7 +32,7 @@ import java.util.List;
  * 
  * @generated
  */
-public class ValueItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+public class ValueItemProvider extends CDOItemProviderAdapter implements IEditingDomainItemProvider,
     IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
   /**

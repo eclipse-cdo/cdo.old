@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SpecialPurchaseOrderItemProvider.java,v 1.3 2008-04-20 08:22:22 estepper Exp $
+ * $Id: SpecialPurchaseOrderItemProvider.java,v 1.4 2008-09-18 12:56:17 estepper Exp $
  */
 package org.eclipse.emf.cdo.tests.model2.provider;
 

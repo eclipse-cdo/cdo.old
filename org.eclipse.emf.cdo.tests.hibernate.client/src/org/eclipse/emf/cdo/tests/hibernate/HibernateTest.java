@@ -20,7 +20,7 @@ import org.eclipse.emf.cdo.tests.model1.Model1Factory;
 import org.eclipse.emf.cdo.tests.model1.Model1Package;
 import org.eclipse.emf.cdo.tests.model1.Order;
 import org.eclipse.emf.cdo.tests.model1.OrderDetail;
-import org.eclipse.emf.cdo.tests.model1.Product;
+import org.eclipse.emf.cdo.tests.model1.Product1;
 import org.eclipse.emf.cdo.tests.model1.PurchaseOrder;
 import org.eclipse.emf.cdo.tests.model1.SalesOrder;
 import org.eclipse.emf.cdo.tests.model1.Supplier;
@@ -143,13 +143,17 @@ public class HibernateTest extends TestCase
     }
   }
 
-  protected CDOSession openSession(IConnector connector)
+  protected static CDOSession openSession(IConnector connector)
   {
     CDOSessionConfiguration configuration = CDOUtil.createSessionConfiguration();
     configuration.setConnector(connector);
     configuration.setRepositoryName(REPOSITORY_NAME);
-    configuration.setLegacySupportEnabled(false);
     return configuration.openSession();
+  }
+
+  protected static Model1Factory getModel1Factory()
+  {
+    return Model1Factory.eINSTANCE;
   }
 
   private static IManagedContainer initContainer() throws FileNotFoundException
@@ -172,24 +176,24 @@ public class HibernateTest extends TestCase
     IManagedContainer container = ContainerUtil.createContainer(); // Create a wiring container
     Net4jUtil.prepareContainer(container); // Prepare the Net4j kernel
     TCPUtil.prepareContainer(container); // Prepare the JVM transport
-    CDOUtil.prepareContainer(container, false); // Prepare the CDO client
+    CDOUtil.prepareContainer(container); // Prepare the CDO client
     return container;
   }
 
   private static EObject getInputModel()
   {
-    Category cat1 = Model1Factory.eINSTANCE.createCategory();
+    Category cat1 = getModel1Factory().createCategory();
     cat1.setName("CAT1");
-    Category cat2 = Model1Factory.eINSTANCE.createCategory();
+    Category cat2 = getModel1Factory().createCategory();
     cat2.setName("CAT2");
     cat1.getCategories().add(cat2);
-    Product p1 = Model1Factory.eINSTANCE.createProduct();
+    Product1 p1 = getModel1Factory().createProduct1();
     p1.setName("P1");
     cat1.getProducts().add(p1);
-    Product p2 = Model1Factory.eINSTANCE.createProduct();
+    Product1 p2 = getModel1Factory().createProduct1();
     p2.setName("P2");
     cat1.getProducts().add(p2);
-    Product p3 = Model1Factory.eINSTANCE.createProduct();
+    Product1 p3 = getModel1Factory().createProduct1();
     p3.setName("P3");
     cat2.getProducts().add(p3);
     return cat1;
@@ -280,11 +284,11 @@ public class HibernateTest extends TestCase
 
   private static Category createCategory(String prefix)
   {
-    Category catalog = Model1Factory.eINSTANCE.createCategory();
+    Category catalog = getModel1Factory().createCategory();
     catalog.setName(prefix + "Catalog");
     for (int i = 0; i < NO_OF_PRODUCTS; i++)
     {
-      Product p = Model1Factory.eINSTANCE.createProduct();
+      Product1 p = getModel1Factory().createProduct1();
       p.setName(prefix + "Product" + i);
       catalog.getProducts().add(p);
     }
@@ -294,7 +298,7 @@ public class HibernateTest extends TestCase
 
   private static Customer createCustomer(int index)
   {
-    final Customer c = Model1Factory.eINSTANCE.createCustomer();
+    final Customer c = getModel1Factory().createCustomer();
     c.setCity("Amsterdam" + index);
     c.setName("Customer" + index);
     c.setStreet("Leidseplein" + index);
@@ -303,34 +307,34 @@ public class HibernateTest extends TestCase
 
   private static Supplier createSupplier(int index)
   {
-    final Supplier s = Model1Factory.eINSTANCE.createSupplier();
+    final Supplier s = getModel1Factory().createSupplier();
     s.setName("Supplier" + index);
     s.setCity("Berlin" + index);
     s.setStreet("Potsdamer Platz" + index);
     return s;
   }
 
-  private static SalesOrder createSalesOrder(int index, Customer c, List<Product> products)
+  private static SalesOrder createSalesOrder(int index, Customer c, List<Product1> products)
   {
-    final SalesOrder so = Model1Factory.eINSTANCE.createSalesOrder();
+    final SalesOrder so = getModel1Factory().createSalesOrder();
     so.setId(index);
     so.getOrderDetails().addAll(createOrderDetails(products, 1.0f));
     return so;
   }
 
-  private static PurchaseOrder createPurchaseOrder(int index, Supplier supplier, List<Product> products)
+  private static PurchaseOrder createPurchaseOrder(int index, Supplier supplier, List<Product1> products)
   {
-    final PurchaseOrder po = Model1Factory.eINSTANCE.createPurchaseOrder();
+    final PurchaseOrder po = getModel1Factory().createPurchaseOrder();
     po.setDate(new Date(BASE_MILLIS + index));
     po.getOrderDetails().addAll(createOrderDetails(products, 1000.0f));
     return po;
   }
 
-  private static List<OrderDetail> createOrderDetails(List<Product> products, float basePrice)
+  private static List<OrderDetail> createOrderDetails(List<Product1> products, float basePrice)
   {
     final List<OrderDetail> ods = new ArrayList<OrderDetail>();
     float price = basePrice;
-    for (Product p : products)
+    for (Product1 p : products)
     {
       ods.add(createOrderDetail(p, price));
       price += 1f;
@@ -339,9 +343,9 @@ public class HibernateTest extends TestCase
     return ods;
   }
 
-  private static OrderDetail createOrderDetail(Product product, float price)
+  private static OrderDetail createOrderDetail(Product1 product, float price)
   {
-    final OrderDetail od = Model1Factory.eINSTANCE.createOrderDetail();
+    final OrderDetail od = getModel1Factory().createOrderDetail();
     od.setPrice(price);
     od.setProduct(product);
     return od;

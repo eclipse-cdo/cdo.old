@@ -2,10 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ParameterItemProvider.java,v 1.1 2008-06-12 17:22:13 estepper Exp $
+ * $Id: ParameterItemProvider.java,v 1.2 2008-09-18 12:56:53 estepper Exp $
  */
 package org.eclipse.emf.cdo.tests.mango.provider;
 
+import org.eclipse.emf.cdo.edit.CDOItemProviderAdapter;
 import org.eclipse.emf.cdo.tests.mango.MangoPackage;
 import org.eclipse.emf.cdo.tests.mango.Parameter;
 
@@ -20,7 +21,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import java.util.Collection;
@@ -32,7 +32,7 @@ import java.util.List;
  * 
  * @generated
  */
-public class ParameterItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+public class ParameterItemProvider extends CDOItemProviderAdapter implements IEditingDomainItemProvider,
     IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
   /**

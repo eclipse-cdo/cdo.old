@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MangoEditPlugin.java,v 1.2 2008-02-23 10:00:38 estepper Exp $
+ * $Id: MangoEditPlugin.java,v 1.3 2008-09-18 12:56:53 estepper Exp $
  */
 package org.eclipse.emf.cdo.tests.mango.provider;
 

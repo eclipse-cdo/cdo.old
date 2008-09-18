@@ -11,8 +11,6 @@
  **************************************************************************/
 package org.eclipse.emf.cdo.server.hibernate.internal.id;
 
-import org.eclipse.emf.cdo.common.id.CDOIDObject;
-import org.eclipse.emf.cdo.common.model.CDOClassRef;
 import org.eclipse.emf.cdo.server.hibernate.id.CDOIDHibernate;
 import org.eclipse.emf.cdo.spi.common.AbstractCDOID;
 
@@ -103,16 +101,6 @@ public class CDOIDHibernateImpl extends AbstractCDOID implements CDOIDHibernate
   public Type getType()
   {
     return Type.OBJECT;
-  }
-
-  public CDOClassRef getClassRef()
-  {
-    return null;
-  }
-
-  public CDOIDObject asLegacy(CDOClassRef classRef)
-  {
-    return new Legacy(classRef);
   }
 
   public String toURIFragment()
@@ -223,58 +211,5 @@ public class CDOIDHibernateImpl extends AbstractCDOID implements CDOIDHibernate
   public String toString()
   {
     return MessageFormat.format("HBM-{0}-{1}", entityName, id);
-  }
-
-  /**
-   * @author Eike Stepper
-   */
-  public static final class Legacy extends CDOIDHibernateImpl
-  {
-    private static final long serialVersionUID = 1L;
-
-    private CDOClassRef classRef;
-
-    public Legacy()
-    {
-    }
-
-    public Legacy(CDOClassRef classRef)
-    {
-      if (classRef == null)
-      {
-        throw new IllegalArgumentException("classRef == null");
-      }
-
-      this.classRef = classRef;
-    }
-
-    @Override
-    public Type getType()
-    {
-      return Type.LEGACY_OBJECT;
-    }
-
-    @Override
-    public CDOClassRef getClassRef()
-    {
-      return classRef;
-    }
-
-    public void setClassRef(CDOClassRef classRef)
-    {
-      this.classRef = classRef;
-    }
-
-    @Override
-    public Legacy asLegacy(CDOClassRef classRef)
-    {
-      return this;
-    }
-
-    @Override
-    public String toString()
-    {
-      return super.toString() + "(" + classRef + ")";
-    }
   }
 }

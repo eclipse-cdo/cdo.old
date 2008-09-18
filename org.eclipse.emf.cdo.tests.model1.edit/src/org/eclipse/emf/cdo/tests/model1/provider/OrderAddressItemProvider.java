@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OrderAddressItemProvider.java,v 1.1 2008-04-12 10:05:39 estepper Exp $
+ * $Id: OrderAddressItemProvider.java,v 1.2 2008-09-18 12:56:22 estepper Exp $
  */
 package org.eclipse.emf.cdo.tests.model1.provider;
 

@@ -2,13 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+ * $Id: Product1ItemProvider.java,v 1.2 2008-09-18 12:56:22 estepper Exp $
  */
 package org.eclipse.emf.cdo.tests.model1.provider;
 
 import org.eclipse.emf.cdo.edit.CDOItemProviderAdapter;
 import org.eclipse.emf.cdo.tests.model1.Model1Package;
-import org.eclipse.emf.cdo.tests.model1.Product;
+import org.eclipse.emf.cdo.tests.model1.Product1;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -28,12 +28,12 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.cdo.tests.model1.Product} object. <!-- begin-user-doc
+ * This is the item provider adapter for a {@link org.eclipse.emf.cdo.tests.model1.Product1} object. <!-- begin-user-doc
  * --> <!-- end-user-doc -->
  * 
  * @generated
  */
-public class ProductItemProvider extends CDOItemProviderAdapter implements IEditingDomainItemProvider,
+public class Product1ItemProvider extends CDOItemProviderAdapter implements IEditingDomainItemProvider,
     IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
   /**
@@ -41,7 +41,7 @@ public class ProductItemProvider extends CDOItemProviderAdapter implements IEdit
    * 
    * @generated
    */
-  public ProductItemProvider(AdapterFactory adapterFactory)
+  public Product1ItemProvider(AdapterFactory adapterFactory)
   {
     super(adapterFactory);
   }
@@ -73,9 +73,9 @@ public class ProductItemProvider extends CDOItemProviderAdapter implements IEdit
   protected void addNamePropertyDescriptor(Object object)
   {
     itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
-        .getRootAdapterFactory(), getResourceLocator(), getString("_UI_Product_name_feature"), getString(
-        "_UI_PropertyDescriptor_description", "_UI_Product_name_feature", "_UI_Product_type"),
-        Model1Package.Literals.PRODUCT__NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+        .getRootAdapterFactory(), getResourceLocator(), getString("_UI_Product1_name_feature"), getString(
+        "_UI_PropertyDescriptor_description", "_UI_Product1_name_feature", "_UI_Product1_type"),
+        Model1Package.Literals.PRODUCT1__NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
         null));
   }
 
@@ -87,9 +87,9 @@ public class ProductItemProvider extends CDOItemProviderAdapter implements IEdit
   protected void addOrderDetailsPropertyDescriptor(Object object)
   {
     itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
-        .getRootAdapterFactory(), getResourceLocator(), getString("_UI_Product_orderDetails_feature"), getString(
-        "_UI_PropertyDescriptor_description", "_UI_Product_orderDetails_feature", "_UI_Product_type"),
-        Model1Package.Literals.PRODUCT__ORDER_DETAILS, true, false, true, null, null, null));
+        .getRootAdapterFactory(), getResourceLocator(), getString("_UI_Product1_orderDetails_feature"), getString(
+        "_UI_PropertyDescriptor_description", "_UI_Product1_orderDetails_feature", "_UI_Product1_type"),
+        Model1Package.Literals.PRODUCT1__ORDER_DETAILS, true, false, true, null, null, null));
   }
 
   /**
@@ -99,22 +99,22 @@ public class ProductItemProvider extends CDOItemProviderAdapter implements IEdit
    */
   protected void addVatPropertyDescriptor(Object object)
   {
-    itemPropertyDescriptors
-        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-            getResourceLocator(), getString("_UI_Product_vat_feature"), getString("_UI_PropertyDescriptor_description",
-                "_UI_Product_vat_feature", "_UI_Product_type"), Model1Package.Literals.PRODUCT__VAT, true, false,
-            false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory)
+        .getRootAdapterFactory(), getResourceLocator(), getString("_UI_Product1_vat_feature"), getString(
+        "_UI_PropertyDescriptor_description", "_UI_Product1_vat_feature", "_UI_Product1_type"),
+        Model1Package.Literals.PRODUCT1__VAT, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+        null));
   }
 
   /**
-   * This returns Product.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This returns Product1.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   @Override
   public Object getImage(Object object)
   {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/Product"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/Product1"));
   }
 
   /**
@@ -125,8 +125,8 @@ public class ProductItemProvider extends CDOItemProviderAdapter implements IEdit
   @Override
   public String getText(Object object)
   {
-    String label = ((Product)object).getName();
-    return label == null || label.length() == 0 ? getString("_UI_Product_type") : getString("_UI_Product_type") + " "
+    String label = ((Product1)object).getName();
+    return label == null || label.length() == 0 ? getString("_UI_Product1_type") : getString("_UI_Product1_type") + " "
         + label;
   }
 
@@ -141,10 +141,10 @@ public class ProductItemProvider extends CDOItemProviderAdapter implements IEdit
   {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(Product.class))
+    switch (notification.getFeatureID(Product1.class))
     {
-    case Model1Package.PRODUCT__NAME:
-    case Model1Package.PRODUCT__VAT:
+    case Model1Package.PRODUCT1__NAME:
+    case Model1Package.PRODUCT1__VAT:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
       return;
     }

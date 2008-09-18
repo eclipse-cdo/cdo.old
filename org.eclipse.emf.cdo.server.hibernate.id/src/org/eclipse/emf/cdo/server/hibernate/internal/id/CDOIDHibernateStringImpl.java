@@ -40,6 +40,7 @@ public class CDOIDHibernateStringImpl extends CDOIDHibernateImpl
     return (String)super.getId();
   }
 
+  @Override
   protected void setIdFromString(String idAsString)
   {
     setId(idAsString);

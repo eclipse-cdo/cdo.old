@@ -176,7 +176,7 @@ public class CategoryItemProvider extends CDOItemProviderAdapter implements IEdi
         .createCategory()));
 
     newChildDescriptors.add(createChildParameter(Model1Package.Literals.CATEGORY__PRODUCTS, Model1Factory.eINSTANCE
-        .createProduct()));
+        .createProduct1()));
   }
 
   /**

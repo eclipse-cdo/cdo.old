@@ -45,6 +45,7 @@ public class CDOIDHibernateLongImpl extends CDOIDHibernateImpl
     return (Long)super.getId();
   }
 
+  @Override
   protected void setIdFromString(String idAsString)
   {
     setId(new Long(idAsString));

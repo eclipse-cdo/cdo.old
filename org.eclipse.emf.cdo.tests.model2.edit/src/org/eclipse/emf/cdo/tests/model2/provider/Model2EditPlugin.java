@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Model2EditPlugin.java,v 1.2 2008-04-07 08:28:26 estepper Exp $
+ * $Id: Model2EditPlugin.java,v 1.3 2008-09-18 12:56:17 estepper Exp $
  */
 package org.eclipse.emf.cdo.tests.model2.provider;
 

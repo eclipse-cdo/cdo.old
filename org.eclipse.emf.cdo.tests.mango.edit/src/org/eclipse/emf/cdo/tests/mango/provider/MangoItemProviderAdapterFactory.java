@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MangoItemProviderAdapterFactory.java,v 1.4 2008-08-11 05:12:13 estepper Exp $
+ * $Id: MangoItemProviderAdapterFactory.java,v 1.5 2008-09-18 12:56:52 estepper Exp $
  */
 package org.eclipse.emf.cdo.tests.mango.provider;
 

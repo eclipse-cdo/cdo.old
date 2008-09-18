@@ -190,31 +190,6 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.tests.model1.Product} instances. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  protected ProductItemProvider productItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.Product}. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public Adapter createProductAdapter()
-  {
-    if (productItemProvider == null)
-    {
-      productItemProvider = new ProductItemProvider(this);
-    }
-
-    return productItemProvider;
-  }
-
-  /**
    * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.tests.model1.OrderAddress} instances.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
@@ -262,6 +237,31 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
     }
 
     return categoryItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.tests.model1.Product1} instances. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected Product1ItemProvider product1ItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.Product1}. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public Adapter createProduct1Adapter()
+  {
+    if (product1ItemProvider == null)
+    {
+      product1ItemProvider = new Product1ItemProvider(this);
+    }
+
+    return product1ItemProvider;
   }
 
   /**
@@ -536,9 +536,9 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
     {
       categoryItemProvider.dispose();
     }
-    if (productItemProvider != null)
+    if (product1ItemProvider != null)
     {
-      productItemProvider.dispose();
+      product1ItemProvider.dispose();
     }
     if (orderAddressItemProvider != null)
     {
