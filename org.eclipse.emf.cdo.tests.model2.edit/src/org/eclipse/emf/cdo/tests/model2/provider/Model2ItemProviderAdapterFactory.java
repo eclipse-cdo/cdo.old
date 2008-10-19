@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Model2ItemProviderAdapterFactory.java,v 1.4 2008-09-18 12:56:17 estepper Exp $
+ * $Id: Model2ItemProviderAdapterFactory.java,v 1.5 2008-10-19 01:28:43 smcduff Exp $
  */
 package org.eclipse.emf.cdo.tests.model2.provider;
 
@@ -118,6 +118,56 @@ public class Model2ItemProviderAdapterFactory extends Model2AdapterFactory imple
     }
 
     return specialPurchaseOrderItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.tests.model2.TaskContainer} instances.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected TaskContainerItemProvider taskContainerItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model2.TaskContainer}. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public Adapter createTaskContainerAdapter()
+  {
+    if (taskContainerItemProvider == null)
+    {
+      taskContainerItemProvider = new TaskContainerItemProvider(this);
+    }
+
+    return taskContainerItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.tests.model2.Task} instances. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected TaskItemProvider taskItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model2.Task}. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public Adapter createTaskAdapter()
+  {
+    if (taskItemProvider == null)
+    {
+      taskItemProvider = new TaskItemProvider(this);
+    }
+
+    return taskItemProvider;
   }
 
   /**
@@ -259,6 +309,14 @@ public class Model2ItemProviderAdapterFactory extends Model2AdapterFactory imple
     if (specialPurchaseOrderItemProvider != null)
     {
       specialPurchaseOrderItemProvider.dispose();
+    }
+    if (taskContainerItemProvider != null)
+    {
+      taskContainerItemProvider.dispose();
+    }
+    if (taskItemProvider != null)
+    {
+      taskItemProvider.dispose();
     }
   }
 
