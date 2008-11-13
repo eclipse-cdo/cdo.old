@@ -135,7 +135,7 @@ public class HibernateTest extends TestCase
 
       // Cleanup
       session2.close();
-      connector.disconnect();
+      connector.close();
     }
     finally
     {
