@@ -44,7 +44,10 @@
 		<copy-bundle name="com.springsource.net.sf.cglib" version="${target.cglib.version}" />
 		<copy-bundle name="com.springsource.org.dom4j" version="${target.dom4j.version}" />
 		<copy-bundle name="com.springsource.org.objectweb.asm" version="${target.asm.version}" />
-		<copy-bundle name="com.springsource.org.objectweb.asm.tree.attrs" version="${target.asm.version}" />
+		<copy-bundle name="com.springsource.org.objectweb.asm.commons" version="${target.asm.commons.version}" />
+		<copy-bundle name="com.springsource.org.objectweb.asm.attrs" version="${target.asm.attrs.version}" />
+		<copy-bundle name="com.springsource.org.objectweb.asm.tree" version="${target.asm.tree.version}" />
+		<copy-bundle name="com.springsource.org.objectweb.asm.util" version="${target.asm.util.version}" />
 		<copy-bundle name="com.springsource.org.hsqldb" version="${target.hsqldb.version}" />
 		<copy-bundle name="com.springsource.com.mysql.jdbc" version="${target.mysql.version}" />
 		<copy-bundle name="com.springsource.org.postgresql.jdbc3" version="${target.postgresql.version}" />
@@ -99,7 +102,10 @@
 		<download-springsource name="com.springsource.net.sf.cglib" version="${target.cglib.version}" />
 		<download-springsource name="com.springsource.org.dom4j" version="${target.dom4j.version}" />
 		<download-springsource name="com.springsource.org.objectweb.asm" version="${target.asm.version}" />
-		<download-springsource name="com.springsource.org.objectweb.asm.tree.attrs" version="${target.asm.version}" />
+		<download-springsource name="com.springsource.org.objectweb.asm.commons" version="${target.asm.commons.version}" />
+		<download-springsource name="com.springsource.org.objectweb.asm.attrs" version="${target.asm.attrs.version}" />
+		<download-springsource name="com.springsource.org.objectweb.asm.tree" version="${target.asm.tree.version}" />
+		<download-springsource name="com.springsource.org.objectweb.asm.util" version="${target.asm.util.version}" />
 		<download-springsource name="com.springsource.org.hsqldb" version="${target.hsqldb.version}" />
 		<download-springsource name="com.springsource.com.mysql.jdbc" version="${target.mysql.version}" />
 		<download-springsource name="com.springsource.org.postgresql.jdbc3" version="${target.postgresql.version}" />
