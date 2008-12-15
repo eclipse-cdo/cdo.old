@@ -177,6 +177,7 @@ public class HibernateTest extends TestCase
     Net4jUtil.prepareContainer(container); // Prepare the Net4j kernel
     TCPUtil.prepareContainer(container); // Prepare the JVM transport
     CDOUtil.prepareContainer(container); // Prepare the CDO client
+    container.activate();
     return container;
   }
 
