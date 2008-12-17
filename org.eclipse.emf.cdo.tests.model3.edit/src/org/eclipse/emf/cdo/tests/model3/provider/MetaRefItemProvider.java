@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MetaRefItemProvider.java,v 1.1 2008-09-08 06:55:54 estepper Exp $
+ * $Id: MetaRefItemProvider.java,v 1.2 2008-12-17 13:30:49 vroldanbet Exp $
  */
 package org.eclipse.emf.cdo.tests.model3.provider;
 
@@ -26,15 +26,16 @@ import java.util.List;
 /**
  * This is the item provider adapter for a {@link org.eclipse.emf.cdo.tests.model3.MetaRef} object. <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- * 
+ *
  * @generated
+ * @since 2.0
  */
 public class MetaRefItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
     IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 {
   /**
    * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   *
    * @generated
    */
   public MetaRefItemProvider(AdapterFactory adapterFactory)
@@ -44,7 +45,7 @@ public class MetaRefItemProvider extends ItemProviderAdapter implements IEditing
 
   /**
    * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   *
    * @generated
    */
   @Override
@@ -61,7 +62,7 @@ public class MetaRefItemProvider extends ItemProviderAdapter implements IEditing
 
   /**
    * This adds a property descriptor for the EPackage Ref feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   *
    * @generated
    */
   protected void addEPackageRefPropertyDescriptor(Object object)
@@ -74,7 +75,7 @@ public class MetaRefItemProvider extends ItemProviderAdapter implements IEditing
 
   /**
    * This returns MetaRef.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   *
    * @generated
    */
   @Override
@@ -85,7 +86,7 @@ public class MetaRefItemProvider extends ItemProviderAdapter implements IEditing
 
   /**
    * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   *
    * @generated
    */
   @Override
@@ -97,7 +98,7 @@ public class MetaRefItemProvider extends ItemProviderAdapter implements IEditing
   /**
    * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a
    * viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   *
    * @generated
    */
   @Override
@@ -110,7 +111,7 @@ public class MetaRefItemProvider extends ItemProviderAdapter implements IEditing
   /**
    * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under
    * this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   *
    * @generated
    */
   @Override
@@ -121,7 +122,7 @@ public class MetaRefItemProvider extends ItemProviderAdapter implements IEditing
 
   /**
    * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   *
    * @generated
    */
   @Override

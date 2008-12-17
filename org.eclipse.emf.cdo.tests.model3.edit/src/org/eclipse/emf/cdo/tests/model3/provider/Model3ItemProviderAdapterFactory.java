@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Model3ItemProviderAdapterFactory.java,v 1.3 2008-09-08 06:55:54 estepper Exp $
+ * $Id: Model3ItemProviderAdapterFactory.java,v 1.4 2008-12-17 13:30:49 vroldanbet Exp $
  */
 package org.eclipse.emf.cdo.tests.model3.provider;
 
@@ -31,7 +31,7 @@ import java.util.Collection;
  * factory convert EMF adapter notifications into calls to {@link #fireNotifyChanged fireNotifyChanged}. The adapters
  * also support Eclipse property sheets. Note that most of the adapters are shared among multiple instances. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 public class Model3ItemProviderAdapterFactory extends Model3AdapterFactory implements ComposeableAdapterFactory,
@@ -40,7 +40,7 @@ public class Model3ItemProviderAdapterFactory extends Model3AdapterFactory imple
   /**
    * This keeps track of the root adapter factory that delegates to this adapter factory. <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
+   *
    * @generated
    */
   protected ComposedAdapterFactory parentAdapterFactory;
@@ -48,7 +48,7 @@ public class Model3ItemProviderAdapterFactory extends Model3AdapterFactory imple
   /**
    * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}. <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
+   *
    * @generated
    */
   protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -56,14 +56,14 @@ public class Model3ItemProviderAdapterFactory extends Model3AdapterFactory imple
   /**
    * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}. <!--
    * begin-user-doc --> <!-- end-user-doc -->
-   * 
+   *
    * @generated
    */
   protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
   /**
    * This constructs an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   *
    * @generated
    */
   public Model3ItemProviderAdapterFactory()
@@ -78,7 +78,7 @@ public class Model3ItemProviderAdapterFactory extends Model3AdapterFactory imple
   /**
    * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.tests.model3.Class1} instances. <!--
    * begin-user-doc --> <!-- end-user-doc -->
-   * 
+   *
    * @generated
    */
   protected Class1ItemProvider class1ItemProvider;
@@ -86,7 +86,7 @@ public class Model3ItemProviderAdapterFactory extends Model3AdapterFactory imple
   /**
    * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model3.Class1}. <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
+   *
    * @generated
    */
   @Override
@@ -103,16 +103,18 @@ public class Model3ItemProviderAdapterFactory extends Model3AdapterFactory imple
   /**
    * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.tests.model3.MetaRef} instances. <!--
    * begin-user-doc --> <!-- end-user-doc -->
-   * 
+   *
    * @generated
+   * @since 2.0
    */
   protected MetaRefItemProvider metaRefItemProvider;
 
   /**
    * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model3.MetaRef}. <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
+   *
    * @generated
+   * @since 2.0
    */
   @Override
   public Adapter createMetaRefAdapter()
@@ -127,7 +129,7 @@ public class Model3ItemProviderAdapterFactory extends Model3AdapterFactory imple
 
   /**
    * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   *
    * @generated
    */
   public ComposeableAdapterFactory getRootAdapterFactory()
@@ -137,7 +139,7 @@ public class Model3ItemProviderAdapterFactory extends Model3AdapterFactory imple
 
   /**
    * This sets the composed adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   *
    * @generated
    */
   public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory)
@@ -147,7 +149,7 @@ public class Model3ItemProviderAdapterFactory extends Model3AdapterFactory imple
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   *
    * @generated
    */
   @Override
@@ -159,7 +161,7 @@ public class Model3ItemProviderAdapterFactory extends Model3AdapterFactory imple
   /**
    * This implementation substitutes the factory itself as the key for the adapter. <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
+   *
    * @generated
    */
   @Override
@@ -170,7 +172,7 @@ public class Model3ItemProviderAdapterFactory extends Model3AdapterFactory imple
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   *
    * @generated
    */
   @Override
@@ -190,7 +192,7 @@ public class Model3ItemProviderAdapterFactory extends Model3AdapterFactory imple
 
   /**
    * This adds a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   *
    * @generated
    */
   public void addListener(INotifyChangedListener notifyChangedListener)
@@ -200,7 +202,7 @@ public class Model3ItemProviderAdapterFactory extends Model3AdapterFactory imple
 
   /**
    * This removes a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   *
    * @generated
    */
   public void removeListener(INotifyChangedListener notifyChangedListener)
@@ -211,7 +213,7 @@ public class Model3ItemProviderAdapterFactory extends Model3AdapterFactory imple
   /**
    * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}. <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
+   *
    * @generated
    */
   public void fireNotifyChanged(Notification notification)
@@ -226,7 +228,7 @@ public class Model3ItemProviderAdapterFactory extends Model3AdapterFactory imple
 
   /**
    * This disposes all of the item providers created by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   *
    * @generated
    */
   public void dispose()
