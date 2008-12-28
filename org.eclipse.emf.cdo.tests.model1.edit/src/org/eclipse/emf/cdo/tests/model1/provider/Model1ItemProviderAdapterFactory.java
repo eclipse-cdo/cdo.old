@@ -1,6 +1,12 @@
 /**
- * <copyright>
- * </copyright>
+ * Copyright (c) 2004 - 2008 Eike Stepper, Germany.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Eike Stepper - initial API and implementation
  *
  * $Id$
  */
@@ -44,24 +50,31 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
     IChangeNotifier, IDisposable, IChildCreationExtender
 {
   /**
-   * This keeps track of the root adapter factory that delegates to this adapter factory. <!-- begin-user-doc --> <!--
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public static final String copyright = "Copyright (c) 2004 - 2008 Eike Stepper, Germany.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n   Eike Stepper - initial API and implementation";
+
+  /**
+   * This keeps track of the root adapter factory that delegates to this adapter factory.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   protected ComposedAdapterFactory parentAdapterFactory;
 
   /**
-   * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}. <!-- begin-user-doc --> <!--
+   * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   protected IChangeNotifier changeNotifier = new ChangeNotifier();
 
   /**
-   * This helps manage the child creation extenders. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This helps manage the child creation extenders.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(
@@ -76,8 +89,8 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
   protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
   /**
-   * This constructs an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This constructs an instance.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public Model1ItemProviderAdapterFactory()
@@ -98,9 +111,9 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
   protected AddressItemProvider addressItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.Address}. <!-- begin-user-doc --> <!--
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.Address}.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -123,9 +136,9 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
   protected SupplierItemProvider supplierItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.Supplier}. <!-- begin-user-doc --> <!--
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.Supplier}.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -142,15 +155,14 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
   /**
    * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.tests.model1.PurchaseOrder} instances.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected PurchaseOrderItemProvider purchaseOrderItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.PurchaseOrder}. <!-- begin-user-doc --> <!--
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.PurchaseOrder}.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -167,15 +179,14 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
   /**
    * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.tests.model1.OrderDetail} instances.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected OrderDetailItemProvider orderDetailItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.OrderDetail}. <!-- begin-user-doc --> <!--
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.OrderDetail}.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -192,15 +203,14 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
   /**
    * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.tests.model1.OrderAddress} instances.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected OrderAddressItemProvider orderAddressItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.OrderAddress}. <!-- begin-user-doc --> <!--
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.OrderAddress}.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -223,9 +233,9 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
   protected CategoryItemProvider categoryItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.Category}. <!-- begin-user-doc --> <!--
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.Category}.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -248,9 +258,9 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
   protected Product1ItemProvider product1ItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.Product1}. <!-- begin-user-doc --> <!--
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.Product1}.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -273,9 +283,9 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
   protected CompanyItemProvider companyItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.Company}. <!-- begin-user-doc --> <!--
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.Company}.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -298,9 +308,9 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
   protected CustomerItemProvider customerItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.Customer}. <!-- begin-user-doc --> <!--
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.Customer}.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -323,9 +333,9 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
   protected OrderItemProvider orderItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.Order}. <!-- begin-user-doc --> <!--
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.Order}.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -342,15 +352,14 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
   /**
    * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.tests.model1.SalesOrder} instances.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected SalesOrderItemProvider salesOrderItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.SalesOrder}. <!-- begin-user-doc --> <!--
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model1.SalesOrder}.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -365,8 +374,8 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
   }
 
   /**
-   * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This returns the root adapter factory that contains this factory.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public ComposeableAdapterFactory getRootAdapterFactory()
@@ -375,8 +384,8 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
   }
 
   /**
-   * This sets the composed adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This sets the composed adapter factory that contains this factory.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory)
@@ -386,7 +395,6 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -396,9 +404,9 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
   }
 
   /**
-   * This implementation substitutes the factory itself as the key for the adapter. <!-- begin-user-doc --> <!--
+   * This implementation substitutes the factory itself as the key for the adapter.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -409,7 +417,6 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -418,7 +425,7 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
     if (isFactoryForType(type))
     {
       Object adapter = super.adapt(object, type);
-      if (!(type instanceof Class<?>) || ((Class<?>)type).isInstance(adapter))
+      if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter)))
       {
         return adapter;
       }
@@ -429,7 +436,6 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public List<IChildCreationExtender> getChildCreationExtenders()
@@ -439,7 +445,6 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain)
@@ -449,7 +454,6 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public ResourceLocator getResourceLocator()
@@ -458,8 +462,8 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
   }
 
   /**
-   * This adds a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This adds a listener.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public void addListener(INotifyChangedListener notifyChangedListener)
@@ -468,8 +472,8 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
   }
 
   /**
-   * This removes a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This removes a listener.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public void removeListener(INotifyChangedListener notifyChangedListener)
@@ -478,9 +482,9 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
   }
 
   /**
-   * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}. <!-- begin-user-doc --> <!--
+   * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   public void fireNotifyChanged(Notification notification)
@@ -494,56 +498,34 @@ public class Model1ItemProviderAdapterFactory extends Model1AdapterFactory imple
   }
 
   /**
-   * This disposes all of the item providers created by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This disposes all of the item providers created by this factory. 
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public void dispose()
   {
     if (addressItemProvider != null)
-    {
       addressItemProvider.dispose();
-    }
     if (companyItemProvider != null)
-    {
       companyItemProvider.dispose();
-    }
     if (supplierItemProvider != null)
-    {
       supplierItemProvider.dispose();
-    }
     if (customerItemProvider != null)
-    {
       customerItemProvider.dispose();
-    }
     if (orderItemProvider != null)
-    {
       orderItemProvider.dispose();
-    }
     if (orderDetailItemProvider != null)
-    {
       orderDetailItemProvider.dispose();
-    }
     if (purchaseOrderItemProvider != null)
-    {
       purchaseOrderItemProvider.dispose();
-    }
     if (salesOrderItemProvider != null)
-    {
       salesOrderItemProvider.dispose();
-    }
     if (categoryItemProvider != null)
-    {
       categoryItemProvider.dispose();
-    }
     if (product1ItemProvider != null)
-    {
       product1ItemProvider.dispose();
-    }
     if (orderAddressItemProvider != null)
-    {
       orderAddressItemProvider.dispose();
-    }
   }
 
 }
