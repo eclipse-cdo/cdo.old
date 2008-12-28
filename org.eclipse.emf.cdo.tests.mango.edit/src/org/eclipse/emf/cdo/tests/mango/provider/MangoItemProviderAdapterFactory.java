@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MangoItemProviderAdapterFactory.java,v 1.5 2008-09-18 12:56:52 estepper Exp $
+ * $Id: MangoItemProviderAdapterFactory.java,v 1.6 2008-12-28 09:45:04 estepper Exp $
  */
 package org.eclipse.emf.cdo.tests.mango.provider;
 
@@ -204,7 +204,7 @@ public class MangoItemProviderAdapterFactory extends MangoAdapterFactory impleme
     if (isFactoryForType(type))
     {
       Object adapter = super.adapt(object, type);
-      if (!(type instanceof Class) || ((Class<?>)type).isInstance(adapter))
+      if (!(type instanceof Class<?>) || ((Class<?>)type).isInstance(adapter))
       {
         return adapter;
       }
