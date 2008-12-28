@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ASCII"?>
+<net4jdefs:TCPConnectorDef xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdodefs="http://www.eclipse.org/emf/CDO/defs/1.0.0" xmlns:net4jdefs="http://www.eclipse.org/NET4J/defs/1.0.0" xmlns:net4jutildefs="http://www.eclipse.org/NET4J/util/defs/1.0.0" xsi:schemaLocation="http://www.eclipse.org/emf/CDO/defs/1.0.0 ../../org.eclipse.emf.cdo.defs/model/org.eclipse.emf.cdo.defs.ecore http://www.eclipse.org/NET4J/defs/1.0.0 ../../org.eclipse.net4j.defs/model/org.eclipse.net4j.defs.ecore http://www.eclipse.org/NET4J/util/defs/1.0.0 ../../org.eclipse.net4j.util.defs/model/org.eclipse.net4j.util.defs.ecore" host="localhost" port="2036">
+  <bufferProvider xsi:type="net4jdefs:BufferPoolDef" href="BufferPoolDef.xmi#/"/>
+  <executorService xsi:type="net4jutildefs:ThreadPoolDef" href="ThreadPoolDef.xmi#/"/>
+  <clientProtocolProvider xsi:type="cdodefs:CDOClientProtocolFactoryDef" href="CDOClientProtocolFactoryDef.xmi#/"/>
+  <tcpSelectorDef href="TCPSelectorDef.xmi#/"/>
+</net4jdefs:TCPConnectorDef>

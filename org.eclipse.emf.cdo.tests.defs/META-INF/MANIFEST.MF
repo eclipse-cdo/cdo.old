@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.emf.cdo.tests.defs;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.4.0",
+ org.eclipse.emf.cdo.defs;bundle-version="1.0.0",
+ org.eclipse.emf.cdo.ui.defs;bundle-version="1.0.0",
+ org.eclipse.net4j.defs;bundle-version="1.0.0",
+ org.eclipse.net4j.util.defs;bundle-version="1.0.0",
+ org.eclipse.emf.cdo.ui;bundle-version="2.0.0",
+ org.eclipse.emf.cdo.server;bundle-version="2.0.0",
+ org.eclipse.emf.cdo.tests;bundle-version="2.0.0"
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.emf.cdo.cdodefs.tests
+Import-Package: org.eclipse.emf.cdo.cdodefs.util
+

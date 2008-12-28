@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.net4j.tests.defs
+Bundle-Version: 1.0.0
+Require-Bundle: org.eclipse.core.runtime,
+ org.junit;bundle-version="3.8.2",
+ org.eclipse.net4j.defs;bundle-version="1.0.0",
+ org.eclipse.net4j.http;bundle-version="2.0.0",
+ org.eclipse.net4j.jvm;bundle-version="2.0.0",
+ org.eclipse.net4j.util.defs;bundle-version="1.0.0",
+ org.eclipse.net4j.tests;bundle-version="2.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName
