@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<cdodefs:CDOSessionDef xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdodefs="http://www.eclipse.org/emf/CDO/defs/1.0.0" xmlns:net4jdefs="http://www.eclipse.org/NET4J/defs/1.0.0" xsi:schemaLocation="http://www.eclipse.org/emf/CDO/defs/1.0.0 ../../org.eclipse.emf.cdo.defs/model/org.eclipse.emf.cdo.defs.ecore http://www.eclipse.org/NET4J/defs/1.0.0 ../../org.eclipse.net4j.defs/model/org.eclipse.net4j.defs.ecore" repositoryName="/testRepo">
-  <connectorDef xsi:type="net4jdefs:TCPConnectorDef" href="TCPConnectorDef.xmi#/"/>
-</cdodefs:CDOSessionDef>
