@@ -8,7 +8,7 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  *
- * $Id: MangoItemProviderAdapterFactory.java,v 1.7 2008-12-28 17:57:11 estepper Exp $
+ * $Id: MangoItemProviderAdapterFactory.java,v 1.8 2009-01-04 19:25:49 estepper Exp $
  */
 package org.eclipse.emf.cdo.tests.mango.provider;
 
@@ -200,7 +200,7 @@ public class MangoItemProviderAdapterFactory extends MangoAdapterFactory impleme
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   @Override
   public Object adapt(Object object, Object type)
@@ -208,7 +208,7 @@ public class MangoItemProviderAdapterFactory extends MangoAdapterFactory impleme
     if (isFactoryForType(type))
     {
       Object adapter = super.adapt(object, type);
-      if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter)))
+      if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter)))
       {
         return adapter;
       }
