@@ -137,7 +137,7 @@
 		<property name="cdo.target" value="${cdo.metadata}/.target" />
 
 		<property name="eclipse.url" value="http://download.eclipse.org" />
-		<property name="orbit.url" value="${eclipse.url}/tools/orbit/downloads/drops/${orbit.release}/bundles" />
+		<property name="orbit.url" value="${eclipse.url}/tools/orbit/downloads/drops/${target.orbit.release}/bundles" />
 		<property name="springsource.url" value="http://www.springsource.com/repository/app/bundle/version/download" />
 
 		<property name="baseline.net4j.url" value="${eclipse.url}/modeling/emf/net4j/downloads/drops/${baseline.net4j.version}/${baseline.net4j.build}/${baseline.net4j.file}" />
