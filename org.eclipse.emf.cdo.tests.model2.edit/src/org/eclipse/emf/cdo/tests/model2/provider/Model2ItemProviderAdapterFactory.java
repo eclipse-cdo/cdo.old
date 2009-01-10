@@ -8,7 +8,7 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  *
- * $Id: Model2ItemProviderAdapterFactory.java,v 1.8 2009-01-04 19:25:47 estepper Exp $
+ * $Id: Model2ItemProviderAdapterFactory.java,v 1.9 2009-01-10 13:55:40 estepper Exp $
  */
 package org.eclipse.emf.cdo.tests.model2.provider;
 
@@ -56,24 +56,24 @@ public class Model2ItemProviderAdapterFactory extends Model2AdapterFactory imple
     IChangeNotifier, IDisposable, IChildCreationExtender
 {
   /**
-   * This keeps track of the root adapter factory that delegates to this adapter factory.
-   * <!-- begin-user-doc --> <!--
+   * This keeps track of the root adapter factory that delegates to this adapter factory. <!-- begin-user-doc --> <!--
    * end-user-doc -->
+   * 
    * @generated
    */
   protected ComposedAdapterFactory parentAdapterFactory;
 
   /**
-   * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
-   * <!-- begin-user-doc --> <!--
+   * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}. <!-- begin-user-doc --> <!--
    * end-user-doc -->
+   * 
    * @generated
    */
   protected IChangeNotifier changeNotifier = new ChangeNotifier();
 
   /**
-   * This helps manage the child creation extenders.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This helps manage the child creation extenders. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(
@@ -88,8 +88,8 @@ public class Model2ItemProviderAdapterFactory extends Model2AdapterFactory imple
   protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
   /**
-   * This constructs an instance.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This constructs an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Model2ItemProviderAdapterFactory()
@@ -102,16 +102,17 @@ public class Model2ItemProviderAdapterFactory extends Model2AdapterFactory imple
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.tests.model2.SpecialPurchaseOrder} instances.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.tests.model2.SpecialPurchaseOrder}
+   * instances. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected SpecialPurchaseOrderItemProvider specialPurchaseOrderItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model2.SpecialPurchaseOrder}.
-   * <!-- begin-user-doc
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model2.SpecialPurchaseOrder}. <!-- begin-user-doc
    * --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -128,14 +129,15 @@ public class Model2ItemProviderAdapterFactory extends Model2AdapterFactory imple
   /**
    * This keeps track of the one adapter used for all {@link org.eclipse.emf.cdo.tests.model2.TaskContainer} instances.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected TaskContainerItemProvider taskContainerItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model2.TaskContainer}.
-   * <!-- begin-user-doc --> <!--
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model2.TaskContainer}. <!-- begin-user-doc --> <!--
    * end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -158,9 +160,9 @@ public class Model2ItemProviderAdapterFactory extends Model2AdapterFactory imple
   protected TaskItemProvider taskItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model2.Task}.
-   * <!-- begin-user-doc --> <!--
+   * This creates an adapter for a {@link org.eclipse.emf.cdo.tests.model2.Task}. <!-- begin-user-doc --> <!--
    * end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -175,8 +177,8 @@ public class Model2ItemProviderAdapterFactory extends Model2AdapterFactory imple
   }
 
   /**
-   * This returns the root adapter factory that contains this factory.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ComposeableAdapterFactory getRootAdapterFactory()
@@ -185,8 +187,8 @@ public class Model2ItemProviderAdapterFactory extends Model2AdapterFactory imple
   }
 
   /**
-   * This sets the composed adapter factory that contains this factory.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This sets the composed adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory)
@@ -196,6 +198,7 @@ public class Model2ItemProviderAdapterFactory extends Model2AdapterFactory imple
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -205,9 +208,9 @@ public class Model2ItemProviderAdapterFactory extends Model2AdapterFactory imple
   }
 
   /**
-   * This implementation substitutes the factory itself as the key for the adapter.
-   * <!-- begin-user-doc --> <!--
+   * This implementation substitutes the factory itself as the key for the adapter. <!-- begin-user-doc --> <!--
    * end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -218,6 +221,7 @@ public class Model2ItemProviderAdapterFactory extends Model2AdapterFactory imple
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   @Override
@@ -237,6 +241,7 @@ public class Model2ItemProviderAdapterFactory extends Model2AdapterFactory imple
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public List<IChildCreationExtender> getChildCreationExtenders()
@@ -246,6 +251,7 @@ public class Model2ItemProviderAdapterFactory extends Model2AdapterFactory imple
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain)
@@ -255,6 +261,7 @@ public class Model2ItemProviderAdapterFactory extends Model2AdapterFactory imple
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ResourceLocator getResourceLocator()
@@ -263,8 +270,8 @@ public class Model2ItemProviderAdapterFactory extends Model2AdapterFactory imple
   }
 
   /**
-   * This adds a listener.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This adds a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void addListener(INotifyChangedListener notifyChangedListener)
@@ -273,8 +280,8 @@ public class Model2ItemProviderAdapterFactory extends Model2AdapterFactory imple
   }
 
   /**
-   * This removes a listener.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This removes a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void removeListener(INotifyChangedListener notifyChangedListener)
@@ -283,9 +290,9 @@ public class Model2ItemProviderAdapterFactory extends Model2AdapterFactory imple
   }
 
   /**
-   * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
-   * <!-- begin-user-doc --> <!--
+   * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}. <!-- begin-user-doc --> <!--
    * end-user-doc -->
+   * 
    * @generated
    */
   public void fireNotifyChanged(Notification notification)
@@ -299,8 +306,8 @@ public class Model2ItemProviderAdapterFactory extends Model2AdapterFactory imple
   }
 
   /**
-   * This disposes all of the item providers created by this factory. 
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This disposes all of the item providers created by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void dispose()
@@ -314,38 +321,38 @@ public class Model2ItemProviderAdapterFactory extends Model2AdapterFactory imple
   }
 
   /**
-   * A child creation extender for the {@link Model1Package}.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * A child creation extender for the {@link Model1Package}. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public static class Model1ChildCreationExtender implements IChildCreationExtender
   {
     /**
-     * The switch for creating child descriptors specific to each extended class.
-     * <!-- begin-user-doc --> <!--
+     * The switch for creating child descriptors specific to each extended class. <!-- begin-user-doc --> <!--
      * end-user-doc -->
+     * 
      * @generated
      */
     protected static class CreationSwitch extends Model1Switch<Object>
     {
       /**
-       * The child descriptors being populated.
-       * <!-- begin-user-doc --> <!-- end-user-doc -->
+       * The child descriptors being populated. <!-- begin-user-doc --> <!-- end-user-doc -->
+       * 
        * @generated
        */
       protected List<Object> newChildDescriptors;
 
       /**
-       * The domain in which to create the children.
-       * <!-- begin-user-doc --> <!-- end-user-doc -->
+       * The domain in which to create the children. <!-- begin-user-doc --> <!-- end-user-doc -->
+       * 
        * @generated
        */
       protected EditingDomain editingDomain;
 
       /**
-       * Creates the a switch for populating child descriptors in the given domain.
-       * <!-- begin-user-doc --> <!--
+       * Creates the a switch for populating child descriptors in the given domain. <!-- begin-user-doc --> <!--
        * end-user-doc -->
+       * 
        * @generated
        */
       CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain)
@@ -356,6 +363,7 @@ public class Model2ItemProviderAdapterFactory extends Model2AdapterFactory imple
 
       /**
        * <!-- begin-user-doc --> <!-- end-user-doc -->
+       * 
        * @generated
        */
       @Override
@@ -369,6 +377,7 @@ public class Model2ItemProviderAdapterFactory extends Model2AdapterFactory imple
 
       /**
        * <!-- begin-user-doc --> <!-- end-user-doc -->
+       * 
        * @generated
        */
       protected CommandParameter createChildParameter(Object feature, Object child)
@@ -380,6 +389,7 @@ public class Model2ItemProviderAdapterFactory extends Model2AdapterFactory imple
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain)
@@ -391,6 +401,7 @@ public class Model2ItemProviderAdapterFactory extends Model2AdapterFactory imple
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     public ResourceLocator getResourceLocator()
