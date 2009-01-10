@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2004 - 2008 Eike Stepper, Germany.
+ * Copyright (c) 2004 - 2009 Eike Stepper (Berlin, Germany) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  *
- * $Id: Model2ItemProviderAdapterFactory.java,v 1.9 2009-01-10 13:55:40 estepper Exp $
+ * $Id: Model2ItemProviderAdapterFactory.java,v 1.10 2009-01-10 14:55:17 estepper Exp $
  */
 package org.eclipse.emf.cdo.tests.model2.provider;
 
