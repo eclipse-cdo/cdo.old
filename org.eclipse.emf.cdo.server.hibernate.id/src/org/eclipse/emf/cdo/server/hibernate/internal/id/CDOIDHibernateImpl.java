@@ -12,7 +12,7 @@
 package org.eclipse.emf.cdo.server.hibernate.internal.id;
 
 import org.eclipse.emf.cdo.server.hibernate.id.CDOIDHibernate;
-import org.eclipse.emf.cdo.spi.common.AbstractCDOID;
+import org.eclipse.emf.cdo.spi.common.id.AbstractCDOID;
 
 import org.eclipse.net4j.util.ObjectUtil;
 import org.eclipse.net4j.util.io.ExtendedDataInput;
