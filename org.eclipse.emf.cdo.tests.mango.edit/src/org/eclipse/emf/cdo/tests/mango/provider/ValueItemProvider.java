@@ -7,8 +7,6 @@
  * 
  * Contributors:
  *    Eike Stepper - initial API and implementation
- *
- * $Id: ValueItemProvider.java,v 1.6 2009-01-10 14:54:18 estepper Exp $
  */
 package org.eclipse.emf.cdo.tests.mango.provider;
 

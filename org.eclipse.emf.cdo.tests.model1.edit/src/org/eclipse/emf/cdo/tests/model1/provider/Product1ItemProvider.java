@@ -7,8 +7,6 @@
  * 
  * Contributors:
  *    Eike Stepper - initial API and implementation
- *
- * $Id: Product1ItemProvider.java,v 1.5 2009-01-10 14:55:40 estepper Exp $
  */
 package org.eclipse.emf.cdo.tests.model1.provider;
 

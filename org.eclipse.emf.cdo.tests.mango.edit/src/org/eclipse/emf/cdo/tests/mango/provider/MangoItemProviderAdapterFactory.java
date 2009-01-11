@@ -7,8 +7,6 @@
  * 
  * Contributors:
  *    Eike Stepper - initial API and implementation
- *
- * $Id: MangoItemProviderAdapterFactory.java,v 1.10 2009-01-10 14:54:18 estepper Exp $
  */
 package org.eclipse.emf.cdo.tests.mango.provider;
 
