@@ -1,1 +1,1 @@
-notice.html, about.html, copyright.txt, epl*.html, license.html, plugin.xml, build.properties, META-INF, *.launch, about.ini, about.mappings, modeling32.png, Thumbs.db
+about.html, copyright.txt, epl-v10.html, license.html, about.mappings, modeling32.png, eclipse.gif, eclipse_update_120.jpg, build.properties
