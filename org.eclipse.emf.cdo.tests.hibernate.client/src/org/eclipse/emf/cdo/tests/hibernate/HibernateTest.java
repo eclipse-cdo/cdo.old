@@ -11,8 +11,9 @@
  */
 package org.eclipse.emf.cdo.tests.hibernate;
 
+import org.eclipse.emf.cdo.net4j.CDONet4jUtil;
+import org.eclipse.emf.cdo.net4j.CDOSessionConfiguration;
 import org.eclipse.emf.cdo.session.CDOSession;
-import org.eclipse.emf.cdo.session.CDOSessionConfiguration;
 import org.eclipse.emf.cdo.tests.model1.Category;
 import org.eclipse.emf.cdo.tests.model1.Customer;
 import org.eclipse.emf.cdo.tests.model1.Model1Factory;
@@ -24,7 +25,6 @@ import org.eclipse.emf.cdo.tests.model1.PurchaseOrder;
 import org.eclipse.emf.cdo.tests.model1.SalesOrder;
 import org.eclipse.emf.cdo.tests.model1.Supplier;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
-import org.eclipse.emf.cdo.util.CDOUtil;
 
 import org.eclipse.net4j.Net4jUtil;
 import org.eclipse.net4j.connector.IConnector;
@@ -145,7 +145,7 @@ public class HibernateTest extends TestCase
 
   protected static CDOSession openSession(IConnector connector)
   {
-    CDOSessionConfiguration configuration = CDOUtil.createSessionConfiguration();
+    CDOSessionConfiguration configuration = CDONet4jUtil.createSessionConfiguration();
     configuration.setConnector(connector);
     configuration.setRepositoryName(REPOSITORY_NAME);
     return configuration.openSession();
@@ -176,7 +176,7 @@ public class HibernateTest extends TestCase
     IManagedContainer container = ContainerUtil.createContainer(); // Create a wiring container
     Net4jUtil.prepareContainer(container); // Prepare the Net4j kernel
     TCPUtil.prepareContainer(container); // Prepare the JVM transport
-    CDOUtil.prepareContainer(container); // Prepare the CDO client
+    CDONet4jUtil.prepareContainer(container); // Prepare the CDO client
     container.activate();
     return container;
   }
