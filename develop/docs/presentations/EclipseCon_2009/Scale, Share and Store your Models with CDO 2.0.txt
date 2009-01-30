@@ -1,0 +1,58 @@
+Are you already modeling and generating your applications with the <em>Eclipse Modeling Framework</em> (EMF)? Great!<p>
+
+So you are already enjoying automatically generated model-based runtimes, structured or graphical user interfaces, XML serialization and so much more…<p>
+
+<b>But what if</b><p>
+<ul>
+<li>Your models keep growing and do not fit into memory anymore?
+<li>Your resources are too huge to properly fit into files?
+<li>You require more enterprise-like model persistence than XML serialization?
+<li>Your application has to be available for multiple users at the same time?
+<li>You need object grained locking and transactions that span multiple resources?
+<li>Your users appreciate to always look at the latest state of the central model?
+<li>They could simply switch back their view of the model to historical states?
+</ul>
+
+The <em>Connected Data Objects</em> (CDO) model repository and distributed shared model for EMF delivers solutions to these challenges and more. CDO is a component of the EMF project for many years now and has been successfully adopted by many companies and organizations.<p>
+
+CDO allows you to develop your application against standard  EMF APIs and decide later if you want to persist your models in any SQL database, possibly through Hibernate, in an object oriented database, in memory or what ever you can imagine. Without any changes to your application your models become really scalable on both client side and server side. Store and use models larger than four giga bytes and load up to thirty thousand objects per second to your clients. Embed your repository into your client if you don’t need distribution or embed it into a J2E container of your choice if you need other kinds of distribution. Let your users experience the collaboration on a real distributed shared model.<p>
+
+<h2>Talk Agenda</h2>
+
+<h3>Scaling Up</h3>
+<ul>
+<li>Transparent integration with EMF
+<li>On-demand loading of contained objects
+<li>Support for cross references and external references
+<li>Automatic garbage collection of all unused objects
+<li>Partial collection loading
+<li>Saving change deltas
+<li>Adaptive pre-fetching
+</ul>
+
+<h3>Distributing and Sharing</h3>
+<ul>
+<li>Using the CDO API
+<li>Sessions and fail-over
+<li>Views and audits
+<li>Transactions and save points
+<li>Distributed transactions
+<li>Explicit locking
+<li>Change subscriptions
+<li>Query framework
+</ul>
+
+<h3>Repositories, Persistence and more</h3>
+<ul>
+<li>Setting up a CDO repository server
+<li>Configuring the transport layer
+<li>Authentication and authorization
+<li>Choosing the right back-end type
+<li>DB, Hibernate, Objectivity, MEM, …
+<li>Cache management
+<li>Embedded servers
+</ul>
+
+Due to the tremendous number of <b>questions</b> during past presentations a fixed block at the end of the talk will be reserved for <b>discussion</b>.<p>
+
+<a href="http://wiki.eclipse.org">CDO Homepage</a>

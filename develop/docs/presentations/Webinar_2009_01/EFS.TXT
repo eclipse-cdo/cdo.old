@@ -1,0 +1,7 @@
+	<linkedResources>
+		<link> 
+			<name>repo1</name>
+			<type>2</type>
+			<locationURI>cdo://localhost/repo1</locationURI>
+ 		</link>
+	</linkedResources>
