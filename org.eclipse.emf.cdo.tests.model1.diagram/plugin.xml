@@ -97,9 +97,9 @@ Contributors:
       </objectContribution>
       <objectContribution
             id="org.eclipse.emf.cdo.tests.model1.diagram.InitDiagram2"
-            objectClass="org.eclipse.emf.cdo.tests.model1.diagram.part.Model1InitDiagramFileAction">
+            objectClass="org.eclipse.emf.cdo.eresource.CDOResource">
          <action
-               class="org.eclipse.emf.cdo.tests.model1.diagram.part.Model1InitDiagramAction"
+               class="org.eclipse.emf.cdo.tests.model1.diagram.part.Model1InitDiagramFileAction"
                enablesFor="1"
                id="org.eclipse.emf.cdo.tests.model1.diagram.InitDiagramAction"
                label="%initDiagramActionLabel">
