@@ -11,6 +11,7 @@
  */
 package org.eclipse.emf.cdo.server.hibernate.internal.id;
 
+import org.eclipse.emf.cdo.common.id.CDOID;
 import org.eclipse.emf.cdo.server.hibernate.id.CDOIDHibernate;
 import org.eclipse.emf.cdo.spi.common.id.AbstractCDOID;
 
@@ -211,5 +212,17 @@ public class CDOIDHibernateImpl extends AbstractCDOID implements CDOIDHibernate
   public String toString()
   {
     return MessageFormat.format("HBM-{0}-{1}", entityName, id);
+  }
+
+  @Override
+  protected int doCompareTo(CDOID o) throws ClassCastException
+  {
+    int result = getEntityName().compareTo(((CDOIDHibernateImpl)o).getEntityName());
+    if (result == 0)
+    {
+      result = -1;
+    }
+
+    return result;
   }
 }
