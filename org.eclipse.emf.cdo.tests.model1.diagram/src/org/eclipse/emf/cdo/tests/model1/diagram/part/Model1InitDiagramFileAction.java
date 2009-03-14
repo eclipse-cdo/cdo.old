@@ -34,79 +34,77 @@ import org.eclipse.ui.IWorkbenchPart;
 /**
  * @generated
  */
-public class Model1InitDiagramFileAction implements IObjectActionDelegate {
+public class Model1InitDiagramFileAction implements IObjectActionDelegate
+{
 
-	/**
-	 * @generated
-	 */
-	private IWorkbenchPart targetPart;
+  /**
+   * @generated
+   */
+  private IWorkbenchPart targetPart;
 
-	/**
-	 * @generated
-	 */
-	private URI domainModelURI;
+  /**
+   * @generated
+   */
+  private URI domainModelURI;
 
-	/**
-	 * @generated
-	 */
-	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
-		this.targetPart = targetPart;
-	}
+  /**
+   * @generated
+   */
+  public void setActivePart(IAction action, IWorkbenchPart targetPart)
+  {
+    this.targetPart = targetPart;
+  }
 
   /**
    * @generated NOT
    */
-  public void selectionChanged(IAction action, ISelection selection) {
+  public void selectionChanged(IAction action, ISelection selection)
+  {
     domainModelURI = null;
     action.setEnabled(false);
-    if (selection instanceof IStructuredSelection == false
-        || selection.isEmpty()) {
+    if (selection instanceof IStructuredSelection == false || selection.isEmpty())
+    {
       return;
     }
-    Resource res = (Resource) ((IStructuredSelection) selection)
-        .getFirstElement();
+    Resource res = (Resource)((IStructuredSelection)selection).getFirstElement();
     domainModelURI = res.getURI();
     action.setEnabled(true);
   }
 
-	/**
-	 * @generated
-	 */
-	private Shell getShell() {
-		return targetPart.getSite().getShell();
-	}
+  /**
+   * @generated
+   */
+  private Shell getShell()
+  {
+    return targetPart.getSite().getShell();
+  }
 
-	/**
-	 * @generated
-	 */
-	public void run(IAction action) {
-		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE
-				.createEditingDomain();
-		ResourceSet resourceSet = editingDomain.getResourceSet();
-		EObject diagramRoot = null;
-		try {
-			Resource resource = resourceSet.getResource(domainModelURI, true);
-			diagramRoot = (EObject) resource.getContents().get(0);
-		} catch (WrappedException ex) {
-			Model1DiagramEditorPlugin.getInstance().logError(
-					"Unable to load resource: " + domainModelURI, ex); //$NON-NLS-1$
-		}
-		if (diagramRoot == null) {
-			MessageDialog
-					.openError(
-							getShell(),
-							Messages.Model1InitDiagramFileAction_InitDiagramFileResourceErrorDialogTitle,
-							Messages.Model1InitDiagramFileAction_InitDiagramFileResourceErrorDialogMessage);
-			return;
-		}
-		Wizard wizard = new Model1NewDiagramFileWizard(domainModelURI,
-				diagramRoot, editingDomain);
-		wizard
-				.setWindowTitle(NLS
-						.bind(
-								Messages.Model1InitDiagramFileAction_InitDiagramFileWizardTitle,
-								CompanyEditPart.MODEL_ID));
-		Model1DiagramEditorUtil
-				.runWizard(getShell(), wizard, "InitDiagramFile"); //$NON-NLS-1$
-	}
+  /**
+   * @generated
+   */
+  public void run(IAction action)
+  {
+    TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
+    ResourceSet resourceSet = editingDomain.getResourceSet();
+    EObject diagramRoot = null;
+    try
+    {
+      Resource resource = resourceSet.getResource(domainModelURI, true);
+      diagramRoot = (EObject)resource.getContents().get(0);
+    }
+    catch (WrappedException ex)
+    {
+      Model1DiagramEditorPlugin.getInstance().logError("Unable to load resource: " + domainModelURI, ex); //$NON-NLS-1$
+    }
+    if (diagramRoot == null)
+    {
+      MessageDialog.openError(getShell(), Messages.Model1InitDiagramFileAction_InitDiagramFileResourceErrorDialogTitle,
+          Messages.Model1InitDiagramFileAction_InitDiagramFileResourceErrorDialogMessage);
+      return;
+    }
+    Wizard wizard = new Model1NewDiagramFileWizard(domainModelURI, diagramRoot, editingDomain);
+    wizard.setWindowTitle(NLS.bind(Messages.Model1InitDiagramFileAction_InitDiagramFileWizardTitle,
+        CompanyEditPart.MODEL_ID));
+    Model1DiagramEditorUtil.runWizard(getShell(), wizard, "InitDiagramFile"); //$NON-NLS-1$
+  }
 }

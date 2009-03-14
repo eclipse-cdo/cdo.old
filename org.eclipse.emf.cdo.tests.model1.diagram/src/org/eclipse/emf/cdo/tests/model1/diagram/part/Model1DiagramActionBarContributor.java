@@ -16,20 +16,22 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramActionBarContributor;
 /**
  * @generated
  */
-public class Model1DiagramActionBarContributor extends
-		DiagramActionBarContributor {
+public class Model1DiagramActionBarContributor extends DiagramActionBarContributor
+{
 
-	/**
-	 * @generated
-	 */
-	protected Class getEditorClass() {
-		return Model1DiagramEditor.class;
-	}
+  /**
+   * @generated
+   */
+  protected Class getEditorClass()
+  {
+    return Model1DiagramEditor.class;
+  }
 
-	/**
-	 * @generated
-	 */
-	protected String getEditorId() {
-		return Model1DiagramEditor.ID;
-	}
+  /**
+   * @generated
+   */
+  protected String getEditorId()
+  {
+    return Model1DiagramEditor.ID;
+  }
 }

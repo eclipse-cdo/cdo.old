@@ -12,18 +12,20 @@
 package org.eclipse.emf.cdo.tests.model1.diagram.preferences;
 
 import org.eclipse.emf.cdo.tests.model1.diagram.part.Model1DiagramEditorPlugin;
+
 import org.eclipse.gmf.runtime.diagram.ui.preferences.RulerGridPreferencePage;
 
 /**
  * @generated
  */
-public class DiagramRulersAndGridPreferencePage extends RulerGridPreferencePage {
+public class DiagramRulersAndGridPreferencePage extends RulerGridPreferencePage
+{
 
-	/**
-	 * @generated
-	 */
-	public DiagramRulersAndGridPreferencePage() {
-		setPreferenceStore(Model1DiagramEditorPlugin.getInstance()
-				.getPreferenceStore());
-	}
+  /**
+   * @generated
+   */
+  public DiagramRulersAndGridPreferencePage()
+  {
+    setPreferenceStore(Model1DiagramEditorPlugin.getInstance().getPreferenceStore());
+  }
 }

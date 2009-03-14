@@ -12,18 +12,20 @@
 package org.eclipse.emf.cdo.tests.model1.diagram.preferences;
 
 import org.eclipse.emf.cdo.tests.model1.diagram.part.Model1DiagramEditorPlugin;
+
 import org.eclipse.gmf.runtime.diagram.ui.preferences.AppearancePreferencePage;
 
 /**
  * @generated
  */
-public class DiagramAppearancePreferencePage extends AppearancePreferencePage {
+public class DiagramAppearancePreferencePage extends AppearancePreferencePage
+{
 
-	/**
-	 * @generated
-	 */
-	public DiagramAppearancePreferencePage() {
-		setPreferenceStore(Model1DiagramEditorPlugin.getInstance()
-				.getPreferenceStore());
-	}
+  /**
+   * @generated
+   */
+  public DiagramAppearancePreferencePage()
+  {
+    setPreferenceStore(Model1DiagramEditorPlugin.getInstance().getPreferenceStore());
+  }
 }

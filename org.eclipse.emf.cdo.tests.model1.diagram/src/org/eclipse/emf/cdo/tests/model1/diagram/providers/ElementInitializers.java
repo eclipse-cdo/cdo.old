@@ -14,6 +14,7 @@ package org.eclipse.emf.cdo.tests.model1.diagram.providers;
 /**
  * @generated
  */
-public class ElementInitializers {
+public class ElementInitializers
+{
 
 }

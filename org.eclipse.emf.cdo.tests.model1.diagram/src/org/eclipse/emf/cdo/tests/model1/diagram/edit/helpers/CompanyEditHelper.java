@@ -14,5 +14,6 @@ package org.eclipse.emf.cdo.tests.model1.diagram.edit.helpers;
 /**
  * @generated
  */
-public class CompanyEditHelper extends Model1BaseEditHelper {
+public class CompanyEditHelper extends Model1BaseEditHelper
+{
 }

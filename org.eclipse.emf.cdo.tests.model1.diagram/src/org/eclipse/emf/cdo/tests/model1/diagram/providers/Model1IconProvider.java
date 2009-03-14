@@ -21,23 +21,26 @@ import org.eclipse.swt.graphics.Image;
 /**
  * @generated
  */
-public class Model1IconProvider extends AbstractProvider implements
-		IIconProvider {
+public class Model1IconProvider extends AbstractProvider implements IIconProvider
+{
 
-	/**
-	 * @generated
-	 */
-	public Image getIcon(IAdaptable hint, int flags) {
-		return Model1ElementTypes.getImage(hint);
-	}
+  /**
+   * @generated
+   */
+  public Image getIcon(IAdaptable hint, int flags)
+  {
+    return Model1ElementTypes.getImage(hint);
+  }
 
-	/**
-	 * @generated
-	 */
-	public boolean provides(IOperation operation) {
-		if (operation instanceof GetIconOperation) {
-			return ((GetIconOperation) operation).execute(this) != null;
-		}
-		return false;
-	}
+  /**
+   * @generated
+   */
+  public boolean provides(IOperation operation)
+  {
+    if (operation instanceof GetIconOperation)
+    {
+      return ((GetIconOperation)operation).execute(this) != null;
+    }
+    return false;
+  }
 }

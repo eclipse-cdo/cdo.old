@@ -11,22 +11,24 @@
  */
 package org.eclipse.emf.cdo.tests.model1.diagram.view.factories;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.gmf.runtime.diagram.ui.view.factories.BasicNodeViewFactory;
 import org.eclipse.gmf.runtime.notation.View;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @generated
  */
-public class OrderAddressNameViewFactory extends BasicNodeViewFactory {
+public class OrderAddressNameViewFactory extends BasicNodeViewFactory
+{
 
-	/**
-	 * @generated
-	 */
-	protected List createStyles(View view) {
-		List styles = new ArrayList();
-		return styles;
-	}
+  /**
+   * @generated
+   */
+  protected List createStyles(View view)
+  {
+    List styles = new ArrayList();
+    return styles;
+  }
 }

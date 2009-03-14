@@ -16,53 +16,59 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * @generated
  */
-public class Model1NodeDescriptor {
+public class Model1NodeDescriptor
+{
 
-	/**
-	 * @generated
-	 */
-	private EObject myModelElement;
+  /**
+   * @generated
+   */
+  private EObject myModelElement;
 
-	/**
-	 * @generated
-	 */
-	private int myVisualID;
+  /**
+   * @generated
+   */
+  private int myVisualID;
 
-	/**
-	 * @generated
-	 */
-	private String myType;
+  /**
+   * @generated
+   */
+  private String myType;
 
-	/**
-	 * @generated
-	 */
-	public Model1NodeDescriptor(EObject modelElement, int visualID) {
-		myModelElement = modelElement;
-		myVisualID = visualID;
-	}
+  /**
+   * @generated
+   */
+  public Model1NodeDescriptor(EObject modelElement, int visualID)
+  {
+    myModelElement = modelElement;
+    myVisualID = visualID;
+  }
 
-	/**
-	 * @generated
-	 */
-	public EObject getModelElement() {
-		return myModelElement;
-	}
+  /**
+   * @generated
+   */
+  public EObject getModelElement()
+  {
+    return myModelElement;
+  }
 
-	/**
-	 * @generated
-	 */
-	public int getVisualID() {
-		return myVisualID;
-	}
+  /**
+   * @generated
+   */
+  public int getVisualID()
+  {
+    return myVisualID;
+  }
 
-	/**
-	 * @generated
-	 */
-	public String getType() {
-		if (myType == null) {
-			myType = Model1VisualIDRegistry.getType(getVisualID());
-		}
-		return myType;
-	}
+  /**
+   * @generated
+   */
+  public String getType()
+  {
+    if (myType == null)
+    {
+      myType = Model1VisualIDRegistry.getType(getVisualID());
+    }
+    return myType;
+  }
 
 }

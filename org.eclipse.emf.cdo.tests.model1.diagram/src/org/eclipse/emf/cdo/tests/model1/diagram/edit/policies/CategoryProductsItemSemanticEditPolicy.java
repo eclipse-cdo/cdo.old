@@ -18,14 +18,15 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 /**
  * @generated
  */
-public class CategoryProductsItemSemanticEditPolicy extends
-		Model1BaseItemSemanticEditPolicy {
+public class CategoryProductsItemSemanticEditPolicy extends Model1BaseItemSemanticEditPolicy
+{
 
-	/**
-	 * @generated
-	 */
-	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
-		return getGEFWrapper(new DestroyReferenceCommand(req));
-	}
+  /**
+   * @generated
+   */
+  protected Command getDestroyReferenceCommand(DestroyReferenceRequest req)
+  {
+    return getGEFWrapper(new DestroyReferenceCommand(req));
+  }
 
 }

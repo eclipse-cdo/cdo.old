@@ -18,6 +18,7 @@ import org.eclipse.emf.cdo.tests.model1.diagram.edit.commands.OrderOrderDetailsR
 import org.eclipse.emf.cdo.tests.model1.diagram.edit.parts.CategoryProducts2EditPart;
 import org.eclipse.emf.cdo.tests.model1.diagram.edit.parts.OrderOrderDetailsEditPart;
 import org.eclipse.emf.cdo.tests.model1.diagram.providers.Model1ElementTypes;
+
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
@@ -29,78 +30,82 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class OrderAddressItemSemanticEditPolicy extends
-		Model1BaseItemSemanticEditPolicy {
+public class OrderAddressItemSemanticEditPolicy extends Model1BaseItemSemanticEditPolicy
+{
 
-	/**
-	 * @generated
-	 */
-	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		CompoundCommand cc = getDestroyEdgesCommand();
-		addDestroyShortcutsCommand(cc);
-		View view = (View) getHost().getModel();
-		if (view.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
-			req.setElementToDestroy(view);
-		}
-		cc.add(getGEFWrapper(new DestroyElementCommand(req)));
-		return cc.unwrap();
-	}
+  /**
+   * @generated
+   */
+  protected Command getDestroyElementCommand(DestroyElementRequest req)
+  {
+    CompoundCommand cc = getDestroyEdgesCommand();
+    addDestroyShortcutsCommand(cc);
+    View view = (View)getHost().getModel();
+    if (view.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
+      req.setElementToDestroy(view);
+    }
+    cc.add(getGEFWrapper(new DestroyElementCommand(req)));
+    return cc.unwrap();
+  }
 
-	/**
-	 * @generated
-	 */
-	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
-				: getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super
-				.getCreateRelationshipCommand(req);
-	}
+  /**
+   * @generated
+   */
+  protected Command getCreateRelationshipCommand(CreateRelationshipRequest req)
+  {
+    Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
+        : getCompleteCreateRelationshipCommand(req);
+    return command != null ? command : super.getCreateRelationshipCommand(req);
+  }
 
-	/**
-	 * @generated
-	 */
-	protected Command getStartCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (Model1ElementTypes.CategoryProducts_4001 == req.getElementType()) {
-			return null;
-		}
-		if (Model1ElementTypes.OrderDetailProduct_4005 == req.getElementType()) {
-			return null;
-		}
-		return null;
-	}
+  /**
+   * @generated
+   */
+  protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req)
+  {
+    if (Model1ElementTypes.CategoryProducts_4001 == req.getElementType())
+    {
+      return null;
+    }
+    if (Model1ElementTypes.OrderDetailProduct_4005 == req.getElementType())
+    {
+      return null;
+    }
+    return null;
+  }
 
-	/**
-	 * @generated
-	 */
-	protected Command getCompleteCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (Model1ElementTypes.CategoryProducts_4001 == req.getElementType()) {
-			return getGEFWrapper(new CategoryProducts2CreateCommand(req, req
-					.getSource(), req.getTarget()));
-		}
-		if (Model1ElementTypes.OrderDetailProduct_4005 == req.getElementType()) {
-			return getGEFWrapper(new OrderOrderDetailsCreateCommand(req, req
-					.getSource(), req.getTarget()));
-		}
-		return null;
-	}
+  /**
+   * @generated
+   */
+  protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req)
+  {
+    if (Model1ElementTypes.CategoryProducts_4001 == req.getElementType())
+    {
+      return getGEFWrapper(new CategoryProducts2CreateCommand(req, req.getSource(), req.getTarget()));
+    }
+    if (Model1ElementTypes.OrderDetailProduct_4005 == req.getElementType())
+    {
+      return getGEFWrapper(new OrderOrderDetailsCreateCommand(req, req.getSource(), req.getTarget()));
+    }
+    return null;
+  }
 
-	/**
-	 * Returns command to reorient EReference based link. New link target or source
-	 * should be the domain model element associated with this node.
-	 * 
-	 * @generated
-	 */
-	protected Command getReorientReferenceRelationshipCommand(
-			ReorientReferenceRelationshipRequest req) {
-		switch (getVisualID(req)) {
-		case CategoryProducts2EditPart.VISUAL_ID:
-			return getGEFWrapper(new CategoryProducts2ReorientCommand(req));
-		case OrderOrderDetailsEditPart.VISUAL_ID:
-			return getGEFWrapper(new OrderOrderDetailsReorientCommand(req));
-		}
-		return super.getReorientReferenceRelationshipCommand(req);
-	}
+  /**
+   * Returns command to reorient EReference based link. New link target or source should be the domain model element
+   * associated with this node.
+   * 
+   * @generated
+   */
+  protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req)
+  {
+    switch (getVisualID(req))
+    {
+    case CategoryProducts2EditPart.VISUAL_ID:
+      return getGEFWrapper(new CategoryProducts2ReorientCommand(req));
+    case OrderOrderDetailsEditPart.VISUAL_ID:
+      return getGEFWrapper(new OrderOrderDetailsReorientCommand(req));
+    }
+    return super.getReorientReferenceRelationshipCommand(req);
+  }
 
 }

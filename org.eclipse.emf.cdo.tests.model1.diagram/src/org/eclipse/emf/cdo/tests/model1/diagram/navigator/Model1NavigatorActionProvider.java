@@ -11,19 +11,19 @@
  */
 package org.eclipse.emf.cdo.tests.model1.diagram.navigator;
 
-import java.util.Iterator;
-
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.cdo.tests.model1.diagram.edit.parts.CompanyEditPart;
 import org.eclipse.emf.cdo.tests.model1.diagram.part.Messages;
 import org.eclipse.emf.cdo.tests.model1.diagram.part.Model1DiagramEditor;
 import org.eclipse.emf.cdo.tests.model1.diagram.part.Model1DiagramEditorPlugin;
 import org.eclipse.emf.cdo.tests.model1.diagram.part.Model1VisualIDRegistry;
+
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
+
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.Action;
@@ -39,151 +39,172 @@ import org.eclipse.ui.navigator.ICommonActionExtensionSite;
 import org.eclipse.ui.navigator.ICommonViewerWorkbenchSite;
 import org.eclipse.ui.part.FileEditorInput;
 
+import java.util.Iterator;
+
 /**
  * @generated
  */
-public class Model1NavigatorActionProvider extends CommonActionProvider {
+public class Model1NavigatorActionProvider extends CommonActionProvider
+{
 
-	/**
-	 * @generated
-	 */
-	private boolean myContribute;
+  /**
+   * @generated
+   */
+  private boolean myContribute;
 
-	/**
-	 * @generated
-	 */
-	private OpenDiagramAction myOpenDiagramAction;
+  /**
+   * @generated
+   */
+  private OpenDiagramAction myOpenDiagramAction;
 
-	/**
-	 * @generated
-	 */
-	public void init(ICommonActionExtensionSite aSite) {
-		super.init(aSite);
-		if (aSite.getViewSite() instanceof ICommonViewerWorkbenchSite) {
-			myContribute = true;
-			makeActions((ICommonViewerWorkbenchSite) aSite.getViewSite());
-		} else {
-			myContribute = false;
-		}
-	}
+  /**
+   * @generated
+   */
+  public void init(ICommonActionExtensionSite aSite)
+  {
+    super.init(aSite);
+    if (aSite.getViewSite() instanceof ICommonViewerWorkbenchSite)
+    {
+      myContribute = true;
+      makeActions((ICommonViewerWorkbenchSite)aSite.getViewSite());
+    }
+    else
+    {
+      myContribute = false;
+    }
+  }
 
-	/**
-	 * @generated
-	 */
-	private void makeActions(ICommonViewerWorkbenchSite viewerSite) {
-		myOpenDiagramAction = new OpenDiagramAction(viewerSite);
-	}
+  /**
+   * @generated
+   */
+  private void makeActions(ICommonViewerWorkbenchSite viewerSite)
+  {
+    myOpenDiagramAction = new OpenDiagramAction(viewerSite);
+  }
 
-	/**
-	 * @generated
-	 */
-	public void fillActionBars(IActionBars actionBars) {
-		if (!myContribute) {
-			return;
-		}
-		IStructuredSelection selection = (IStructuredSelection) getContext()
-				.getSelection();
-		myOpenDiagramAction.selectionChanged(selection);
-		if (myOpenDiagramAction.isEnabled()) {
-			actionBars.setGlobalActionHandler(ICommonActionConstants.OPEN,
-					myOpenDiagramAction);
-		}
-	}
+  /**
+   * @generated
+   */
+  public void fillActionBars(IActionBars actionBars)
+  {
+    if (!myContribute)
+    {
+      return;
+    }
+    IStructuredSelection selection = (IStructuredSelection)getContext().getSelection();
+    myOpenDiagramAction.selectionChanged(selection);
+    if (myOpenDiagramAction.isEnabled())
+    {
+      actionBars.setGlobalActionHandler(ICommonActionConstants.OPEN, myOpenDiagramAction);
+    }
+  }
 
-	/**
-	 * @generated
-	 */
-	public void fillContextMenu(IMenuManager menu) {
-	}
+  /**
+   * @generated
+   */
+  public void fillContextMenu(IMenuManager menu)
+  {
+  }
 
-	/**
-	 * @generated
-	 */
-	private class OpenDiagramAction extends Action {
+  /**
+   * @generated
+   */
+  private class OpenDiagramAction extends Action
+  {
 
-		/**
-		 * @generated
-		 */
-		private Diagram myDiagram;
+    /**
+     * @generated
+     */
+    private Diagram myDiagram;
 
-		/**
-		 * @generated
-		 */
-		private ICommonViewerWorkbenchSite myViewerSite;
+    /**
+     * @generated
+     */
+    private ICommonViewerWorkbenchSite myViewerSite;
 
-		/**
-		 * @generated
-		 */
-		public OpenDiagramAction(ICommonViewerWorkbenchSite viewerSite) {
-			super(Messages.NavigatorActionProvider_OpenDiagramActionName);
-			myViewerSite = viewerSite;
-		}
+    /**
+     * @generated
+     */
+    public OpenDiagramAction(ICommonViewerWorkbenchSite viewerSite)
+    {
+      super(Messages.NavigatorActionProvider_OpenDiagramActionName);
+      myViewerSite = viewerSite;
+    }
 
-		/**
-		 * @generated
-		 */
-		public final void selectionChanged(IStructuredSelection selection) {
-			myDiagram = null;
-			if (selection.size() == 1) {
-				Object selectedElement = selection.getFirstElement();
-				if (selectedElement instanceof Model1NavigatorItem) {
-					selectedElement = ((Model1NavigatorItem) selectedElement)
-							.getView();
-				} else if (selectedElement instanceof IAdaptable) {
-					selectedElement = ((IAdaptable) selectedElement)
-							.getAdapter(View.class);
-				}
-				if (selectedElement instanceof Diagram) {
-					Diagram diagram = (Diagram) selectedElement;
-					if (CompanyEditPart.MODEL_ID.equals(Model1VisualIDRegistry
-							.getModelID(diagram))) {
-						myDiagram = diagram;
-					}
-				}
-			}
-			setEnabled(myDiagram != null);
-		}
+    /**
+     * @generated
+     */
+    public final void selectionChanged(IStructuredSelection selection)
+    {
+      myDiagram = null;
+      if (selection.size() == 1)
+      {
+        Object selectedElement = selection.getFirstElement();
+        if (selectedElement instanceof Model1NavigatorItem)
+        {
+          selectedElement = ((Model1NavigatorItem)selectedElement).getView();
+        }
+        else if (selectedElement instanceof IAdaptable)
+        {
+          selectedElement = ((IAdaptable)selectedElement).getAdapter(View.class);
+        }
+        if (selectedElement instanceof Diagram)
+        {
+          Diagram diagram = (Diagram)selectedElement;
+          if (CompanyEditPart.MODEL_ID.equals(Model1VisualIDRegistry.getModelID(diagram)))
+          {
+            myDiagram = diagram;
+          }
+        }
+      }
+      setEnabled(myDiagram != null);
+    }
 
-		/**
-		 * @generated
-		 */
-		public void run() {
-			if (myDiagram == null || myDiagram.eResource() == null) {
-				return;
-			}
+    /**
+     * @generated
+     */
+    public void run()
+    {
+      if (myDiagram == null || myDiagram.eResource() == null)
+      {
+        return;
+      }
 
-			IEditorInput editorInput = getEditorInput();
-			IWorkbenchPage page = myViewerSite.getPage();
-			try {
-				page.openEditor(editorInput, Model1DiagramEditor.ID);
-			} catch (PartInitException e) {
-				Model1DiagramEditorPlugin.getInstance().logError(
-						"Exception while openning diagram", e); //$NON-NLS-1$
-			}
-		}
+      IEditorInput editorInput = getEditorInput();
+      IWorkbenchPage page = myViewerSite.getPage();
+      try
+      {
+        page.openEditor(editorInput, Model1DiagramEditor.ID);
+      }
+      catch (PartInitException e)
+      {
+        Model1DiagramEditorPlugin.getInstance().logError("Exception while openning diagram", e); //$NON-NLS-1$
+      }
+    }
 
-		/**
-		 * @generated
-		 */
-		private IEditorInput getEditorInput() {
-			for (Iterator it = myDiagram.eResource().getContents().iterator(); it
-					.hasNext();) {
-				EObject nextEObject = (EObject) it.next();
-				if (nextEObject == myDiagram) {
-					return new FileEditorInput(WorkspaceSynchronizer
-							.getFile(myDiagram.eResource()));
-				}
-				if (nextEObject instanceof Diagram) {
-					break;
-				}
-			}
-			URI uri = EcoreUtil.getURI(myDiagram);
-			String editorName = uri.lastSegment()
-					+ "#" + myDiagram.eResource().getContents().indexOf(myDiagram); //$NON-NLS-1$
-			IEditorInput editorInput = new URIEditorInput(uri, editorName);
-			return editorInput;
-		}
+    /**
+     * @generated
+     */
+    private IEditorInput getEditorInput()
+    {
+      for (Iterator it = myDiagram.eResource().getContents().iterator(); it.hasNext();)
+      {
+        EObject nextEObject = (EObject)it.next();
+        if (nextEObject == myDiagram)
+        {
+          return new FileEditorInput(WorkspaceSynchronizer.getFile(myDiagram.eResource()));
+        }
+        if (nextEObject instanceof Diagram)
+        {
+          break;
+        }
+      }
+      URI uri = EcoreUtil.getURI(myDiagram);
+      String editorName = uri.lastSegment() + "#" + myDiagram.eResource().getContents().indexOf(myDiagram); //$NON-NLS-1$
+      IEditorInput editorInput = new URIEditorInput(uri, editorName);
+      return editorInput;
+    }
 
-	}
+  }
 
 }

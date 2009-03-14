@@ -12,8 +12,10 @@
 package org.eclipse.emf.cdo.tests.model1.diagram.edit.commands;
 
 import org.eclipse.emf.cdo.tests.model1.Model1Package;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
@@ -21,32 +23,36 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class CategoryCreateCommand extends CreateElementCommand {
+public class CategoryCreateCommand extends CreateElementCommand
+{
 
-	/**
-	 * @generated
-	 */
-	public CategoryCreateCommand(CreateElementRequest req) {
-		super(req);
-	}
+  /**
+   * @generated
+   */
+  public CategoryCreateCommand(CreateElementRequest req)
+  {
+    super(req);
+  }
 
-	/**
-	 * @generated
-	 */
-	protected EObject getElementToEdit() {
-		EObject container = ((CreateElementRequest) getRequest())
-				.getContainer();
-		if (container instanceof View) {
-			container = ((View) container).getElement();
-		}
-		return container;
-	}
+  /**
+   * @generated
+   */
+  protected EObject getElementToEdit()
+  {
+    EObject container = ((CreateElementRequest)getRequest()).getContainer();
+    if (container instanceof View)
+    {
+      container = ((View)container).getElement();
+    }
+    return container;
+  }
 
-	/**
-	 * @generated
-	 */
-	protected EClass getEClassToEdit() {
-		return Model1Package.eINSTANCE.getCompany();
-	}
+  /**
+   * @generated
+   */
+  protected EClass getEClassToEdit()
+  {
+    return Model1Package.eINSTANCE.getCompany();
+  }
 
 }

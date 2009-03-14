@@ -19,54 +19,61 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributo
 /**
  * @generated
  */
-public abstract class Model1AbstractNavigatorItem extends PlatformObject {
+public abstract class Model1AbstractNavigatorItem extends PlatformObject
+{
 
-	/**
-	 * @generated
-	 */
-	static {
-		final Class[] supportedTypes = new Class[] { ITabbedPropertySheetPageContributor.class };
-		final ITabbedPropertySheetPageContributor propertySheetPageContributor = new ITabbedPropertySheetPageContributor() {
-			public String getContributorId() {
-				return "org.eclipse.emf.cdo.tests.model1.diagram"; //$NON-NLS-1$
-			}
-		};
-		Platform.getAdapterManager().registerAdapters(
-				new IAdapterFactory() {
+  /**
+   * @generated
+   */
+  static
+  {
+    final Class[] supportedTypes = new Class[] { ITabbedPropertySheetPageContributor.class };
+    final ITabbedPropertySheetPageContributor propertySheetPageContributor = new ITabbedPropertySheetPageContributor()
+    {
+      public String getContributorId()
+      {
+        return "org.eclipse.emf.cdo.tests.model1.diagram"; //$NON-NLS-1$
+      }
+    };
+    Platform.getAdapterManager().registerAdapters(new IAdapterFactory()
+    {
 
-					public Object getAdapter(Object adaptableObject,
-							Class adapterType) {
-						if (adaptableObject instanceof org.eclipse.emf.cdo.tests.model1.diagram.navigator.Model1AbstractNavigatorItem
-								&& adapterType == ITabbedPropertySheetPageContributor.class) {
-							return propertySheetPageContributor;
-						}
-						return null;
-					}
+      public Object getAdapter(Object adaptableObject, Class adapterType)
+      {
+        if (adaptableObject instanceof org.eclipse.emf.cdo.tests.model1.diagram.navigator.Model1AbstractNavigatorItem
+            && adapterType == ITabbedPropertySheetPageContributor.class)
+        {
+          return propertySheetPageContributor;
+        }
+        return null;
+      }
 
-					public Class[] getAdapterList() {
-						return supportedTypes;
-					}
-				},
-				org.eclipse.emf.cdo.tests.model1.diagram.navigator.Model1AbstractNavigatorItem.class);
-	}
+      public Class[] getAdapterList()
+      {
+        return supportedTypes;
+      }
+    }, org.eclipse.emf.cdo.tests.model1.diagram.navigator.Model1AbstractNavigatorItem.class);
+  }
 
-	/**
-	 * @generated
-	 */
-	private Object myParent;
+  /**
+   * @generated
+   */
+  private Object myParent;
 
-	/**
-	 * @generated
-	 */
-	protected Model1AbstractNavigatorItem(Object parent) {
-		myParent = parent;
-	}
+  /**
+   * @generated
+   */
+  protected Model1AbstractNavigatorItem(Object parent)
+  {
+    myParent = parent;
+  }
 
-	/**
-	 * @generated
-	 */
-	public Object getParent() {
-		return myParent;
-	}
+  /**
+   * @generated
+   */
+  public Object getParent()
+  {
+    return myParent;
+  }
 
 }

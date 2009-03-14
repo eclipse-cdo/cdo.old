@@ -12,18 +12,20 @@
 package org.eclipse.emf.cdo.tests.model1.diagram.preferences;
 
 import org.eclipse.emf.cdo.tests.model1.diagram.part.Model1DiagramEditorPlugin;
+
 import org.eclipse.gmf.runtime.diagram.ui.preferences.ConnectionsPreferencePage;
 
 /**
  * @generated
  */
-public class DiagramConnectionsPreferencePage extends ConnectionsPreferencePage {
+public class DiagramConnectionsPreferencePage extends ConnectionsPreferencePage
+{
 
-	/**
-	 * @generated
-	 */
-	public DiagramConnectionsPreferencePage() {
-		setPreferenceStore(Model1DiagramEditorPlugin.getInstance()
-				.getPreferenceStore());
-	}
+  /**
+   * @generated
+   */
+  public DiagramConnectionsPreferencePage()
+  {
+    setPreferenceStore(Model1DiagramEditorPlugin.getInstance().getPreferenceStore());
+  }
 }
