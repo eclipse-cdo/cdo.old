@@ -11,6 +11,7 @@
  */
 package org.eclipse.emf.cdo.server.hibernate.internal.id;
 
+import org.eclipse.emf.cdo.common.id.CDOID;
 import org.eclipse.emf.cdo.server.hibernate.id.CDOIDHibernate;
 import org.eclipse.emf.cdo.spi.common.id.AbstractCDOID;
 
@@ -211,5 +212,36 @@ public class CDOIDHibernateImpl extends AbstractCDOID implements CDOIDHibernate
   public String toString()
   {
     return MessageFormat.format("HBM-{0}-{1}", entityName, id);
+  }
+
+  @Override
+  protected int doCompareTo(CDOID cdoID) throws ClassCastException
+  {
+    final Serializable thatId = ((CDOIDHibernate)cdoID).getId();
+    if (id instanceof Number)
+    {
+      final long l1 = ((Number)id).longValue();
+      final long l2 = ((Number)thatId).longValue();
+      if (l1 < l2)
+      {
+        return -1;
+      }
+      else if (l1 == l2)
+      {
+        return 0;
+      }
+      else
+      {
+        return 1;
+      }
+    }
+
+    if (id instanceof String)
+    {
+      final String s1 = (String)id;
+      final String s2 = (String)thatId;
+      return s1.compareTo(s2);
+    }
+    throw new UnsupportedOperationException("ID Class " + thatId.getClass().getName() + " not supported here.");
   }
 }
