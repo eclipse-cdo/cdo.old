@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.eclipse.team.cvs.core.cvsnature">
+<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/examples/org.gastro.business,org.gastro.business"/>
+<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/examples/org.gastro.business.edit,org.gastro.business.edit"/>
+<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/examples/org.gastro.inventory,org.gastro.inventory"/>
+<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/examples/org.gastro.inventory.edit,org.gastro.inventory.edit"/>
+<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/examples/org.gastro.rcp,org.gastro.rcp"/>
+<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/examples/org.gastro.rcp.department,org.gastro.rcp.department"/>
+<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/examples/org.gastro.rcp.table,org.gastro.rcp.table"/>
+<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/examples/org.gastro.server,org.gastro.server"/>
+<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/examples/org.gastro.server.web,org.gastro.server.web"/>
+<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/examples/org.gastro.testclient,org.gastro.testclient"/>
+</provider>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" label="CDO Gastro" name="CDO Gastro">
+<item elementID="=org.gastro.business" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.gastro.business.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.gastro.inventory" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.gastro.inventory.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.gastro.rcp" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.gastro.rcp.department" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.gastro.rcp.table" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.gastro.server" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.gastro.server.web" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.gastro.testclient" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+</psf>
