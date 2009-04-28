@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+	<extension point="org.eclipse.ui.activities">
+      <!-- EMF CDO Activity definition -->
+      <activity
+            id="org.eclipse.emf.cdo.ui.capabilities.editing"
+            description="CDO Sessions view, CDO Editor, Tooling for model editing"
+            name="CDO Model Repository Editing">
+      </activity>
+      
+      <activity
+            id="org.eclipse.emf.cdo.ui.capabilities.tooling"
+            description="CDO design time tooling, like the CDO Migrator"
+            name="CDO Model Repository Tooling">
+      </activity>
+      
+      <!-- Pattern Bindings -->
+      
+      <!-- CDO Editors and Views --> 
+      <activityPatternBinding
+            activityId="org.eclipse.emf.cdo.ui.capabilities.editing"
+            pattern="org\.eclipse\.emf\.cdo\.ui.*">
+      </activityPatternBinding>
+      
+      <!-- CDO Team Provider -->
+      <activityPatternBinding
+            activityId="org.eclipse.emf.cdo.ui.capabilities.editing"
+            pattern="org\.eclipse\.emf\.cdo\.team.*">
+      </activityPatternBinding>
+      
+      <!-- CDO genmodel wizard -->
+      <activityPatternBinding
+            activityId="org.eclipse.emf.cdo.ui.capabilities.tooling"
+            pattern="org\.eclipse\.emf\.cdo\.migrator.*">
+      </activityPatternBinding>
+      
+      <!-- Category bindings and default enablement provided by org.eclipse.galileo -->
+      
+	  	<categoryActivityBinding
+            activityId="org.eclipse.emf.cdo.ui.capabilities.editing"
+            categoryId="org.eclipse.galileo.modeling.Category">
+      </categoryActivityBinding>
+      
+      <categoryActivityBinding
+            activityId="org.eclipse.emf.cdo.ui.capabilities.tooling"
+            categoryId="org.eclipse.galileo.modeling.Category">
+      </categoryActivityBinding>
+      
+      <defaultEnablement
+            id="org.eclipse.emf.cdo.ui.capabilities.editing">
+      </defaultEnablement>
+      
+      <defaultEnablement
+            id="org.eclipse.emf.cdo.ui.capabilities.tooling">
+      </defaultEnablement>
+	</extension>
+
+</plugin>
