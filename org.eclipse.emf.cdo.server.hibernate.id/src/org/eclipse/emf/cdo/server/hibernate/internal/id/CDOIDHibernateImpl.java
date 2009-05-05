@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Eike Stepper - initial API and implementation
  *    Martin Taal - added hibernate specifics
@@ -118,8 +118,8 @@ public class CDOIDHibernateImpl extends AbstractCDOID implements CDOIDHibernate
     {
       throw new IllegalArgumentException("Illegal fragment part " + fragmentPart);
     }
-    final int firstIndex = fragmentPart.indexOf("_");
 
+    final int firstIndex = fragmentPart.indexOf("_");
     setEntityName(fragmentPart.substring(firstIndex + 1, lastIndex));
     setIdFromString(fragmentPart.substring(lastIndex + 1));
   }
@@ -242,6 +242,7 @@ public class CDOIDHibernateImpl extends AbstractCDOID implements CDOIDHibernate
       final String s2 = (String)thatId;
       return s1.compareTo(s2);
     }
+
     throw new UnsupportedOperationException("ID Class " + thatId.getClass().getName() + " not supported here.");
   }
 }

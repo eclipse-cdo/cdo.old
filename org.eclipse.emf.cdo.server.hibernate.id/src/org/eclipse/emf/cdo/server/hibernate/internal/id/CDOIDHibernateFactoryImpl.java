@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Eike Stepper - initial API and implementation
  */
@@ -103,18 +103,21 @@ public class CDOIDHibernateFactoryImpl implements CDOIDObjectFactory
       hbId.read(fragmentPart);
       return hbId;
     }
+
     if (type == CDOIDHibernateImpl.HB_ID_TYPE_LONG)
     {
       final CDOIDHibernateImpl hbId = new CDOIDHibernateLongImpl();
       hbId.read(fragmentPart);
       return hbId;
     }
+
     if (type == CDOIDHibernateImpl.HB_ID_TYPE_STRING)
     {
       final CDOIDHibernateImpl hbId = new CDOIDHibernateStringImpl();
       hbId.read(fragmentPart);
       return hbId;
     }
+
     throw new IllegalArgumentException("Type " + type + " not supported, fragmentpart is " + fragmentPart);
   }
 }
