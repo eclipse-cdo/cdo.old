@@ -5,7 +5,7 @@
       <!-- Net4j Activity definition -->
       <activity
             id="org.eclipse.net4j.ui.capabilities.debugging"
-            description="Debug tools like selection spy (Introspector) and container view."
+            description="Debug tools like selection spy (Introspector) and several container views."
             name="Net4j Signalling Platform Debugging">
       </activity>
 
