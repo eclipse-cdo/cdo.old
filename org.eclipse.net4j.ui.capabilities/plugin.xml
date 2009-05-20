@@ -5,14 +5,14 @@
       <!-- Net4j Activity definition -->
       <activity
             id="org.eclipse.net4j.ui.capabilities.debugging"
-            description="Debug tools like selection spy (Introspector) and several container views."
-            name="Net4j Signalling Platform Debugging">
+            description="%activity.description"
+            name="%activity.name">
       </activity>
 
       <activity
             id="org.eclipse.net4j.ui.capabilities.examples"
-            description="Net4j usage examples like the Buddies collaboration system or the JMS provider implementation."
-            name="Net4j Signalling Platform Examples">
+            description="%activity.description.0"
+            name="%activity.name.0">
       </activity>
 
       <!-- Pattern Bindings -->

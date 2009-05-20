@@ -6,14 +6,14 @@
       <!-- EMF CDO Activity definition -->
       <activity
             id="org.eclipse.emf.cdo.ui.capabilities.editing"
-            description="Support for generic model editing like CDO Sessions view and CDO Editor."
-            name="CDO Model Repository Runtime Support">
+            description="%activity.description"
+            name="%activity.name">
       </activity>
 
       <activity
             id="org.eclipse.emf.cdo.ui.capabilities.tooling"
-            description="CDO design time tooling like the CDO Migrator."
-            name="CDO Model Repository Tooling">
+            description="%activity.description.0"
+            name="%activity.name.0">
       </activity>
 
       <!-- Pattern Bindings -->
