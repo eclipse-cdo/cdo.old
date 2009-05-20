@@ -38,7 +38,7 @@ public class ContextRepositoryProvider implements IRepositoryProvider, Applicati
     Object repository = context.getBean(name, IRepository.class);
     if (repository == null)
     {
-      throw new IllegalStateException("Repository not found: " + name);
+      throw new IllegalStateException("Repository not found: " + name); //$NON-NLS-1$
     }
 
     return (IRepository)repository;

@@ -28,7 +28,7 @@ public class CDOServer
     OMPlatform.INSTANCE.addLogHandler(PrintLogHandler.CONSOLE);
     OMPlatform.INSTANCE.addTraceHandler(PrintTraceHandler.CONSOLE);
 
-    ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("repo1.xml");
+    ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("repo1.xml"); //$NON-NLS-1$
     while (System.in.available() == 0)
     {
       Thread.sleep(200);
