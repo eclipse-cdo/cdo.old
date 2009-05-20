@@ -6,18 +6,18 @@
       <activity
             id="org.eclipse.net4j.ui.capabilities.debugging"
             description="Tooling for net4j debugging"
-            name="Net4j Signaling Framework Debugging Capabilities">
+            name="Net4j Signalling Framework Debugging Capabilities">
       </activity>
-      
+
       <activity
             id="org.eclipse.net4j.ui.capabilities.examples"
             description="Net4j usage examples"
-            name="Net4j Signaling Framework Example Capabilities">
+            name="Net4j Signalling Framework Example Capabilities">
       </activity>
-      
+
       <!-- Pattern Bindings -->
-      
-      <!-- Net4j Debugging Contribution --> 
+
+      <!-- Net4j Debugging Contribution -->
       <activityPatternBinding
             activityId="org.eclipse.net4j.ui.capabilities.debugging"
             pattern="org\.eclipse\.net4j\.ui.*">
@@ -27,34 +27,34 @@
             activityId="org.eclipse.net4j.ui.capabilities.debugging"
             pattern="org\.eclipse\.net4j\.util.*">
       </activityPatternBinding>
-      
+
       <activityPatternBinding
             activityId="org.eclipse.net4j.ui.capabilities.debugging"
             pattern="org\.eclipse\.net4j\.debug.*">
       </activityPatternBinding>
-     
-      <!-- Net4j Examples --> 
+
+      <!-- Net4j Examples -->
       <activityPatternBinding
             activityId="org.eclipse.net4j.ui.capabilities.examples"
             pattern="org\.eclipse\.net4j\.buddies.*">
-      </activityPatternBinding>          
+      </activityPatternBinding>
 
       <activityPatternBinding
             activityId="org.eclipse.net4j.ui.capabilities.examples"
             pattern="org\.eclipse\.net4j\.examples.*">
       </activityPatternBinding>
-      
+
       <!-- Category bindings and default enablement provided by org.eclipse.galileo -->
-      
+
 	  <categoryActivityBinding
             activityId="org.eclipse.net4j.ui.capabilities.debugging"
             categoryId="org.eclipse.categories.developmentCategory">
       </categoryActivityBinding>
-      
+
       <categoryActivityBinding
             activityId="org.eclipse.net4j.ui.capabilities.examples"
             categoryId="org.eclipse.categories.developmentCategory">
       </categoryActivityBinding>
-            
+
 </extension>
 </plugin>
