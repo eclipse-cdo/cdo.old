@@ -5,7 +5,7 @@
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/features/org.eclipse.emf.cdo-feature,org.eclipse.emf.cdo-feature"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.common,org.eclipse.emf.cdo.common"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.defs,org.eclipse.emf.cdo.defs"/>
-<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/doc/org.eclipse.emf.cdo.doc,org.eclipse.emf.cdo.doc"/>
+<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/features/org.eclipse.emf.cdo.defs-feature,org.eclipse.emf.cdo.defs-feature"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/features/org.eclipse.emf.cdo.doc-feature,org.eclipse.emf.cdo.doc-feature"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.edit,org.eclipse.emf.cdo.edit"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/examples/org.eclipse.emf.cdo.examples,org.eclipse.emf.cdo.examples"/>
@@ -22,8 +22,10 @@
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.server.hibernate.id,org.eclipse.emf.cdo.server.hibernate.id"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.server.hibernate.teneo,org.eclipse.emf.cdo.server.hibernate.teneo"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/features/org.eclipse.emf.cdo.server.product,org.eclipse.emf.cdo.server.product"/>
+<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.team,org.eclipse.emf.cdo.team"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/tests/org.eclipse.emf.cdo.tests,org.eclipse.emf.cdo.tests"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/features/org.eclipse.emf.cdo.tests-feature,org.eclipse.emf.cdo.tests-feature"/>
+<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/tests/org.eclipse.emf.cdo.tests.db,org.eclipse.emf.cdo.tests.db"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.tests.hibernate,org.eclipse.emf.cdo.tests.hibernate"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.tests.hibernate.client,org.eclipse.emf.cdo.tests.hibernate.client"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/tests/org.eclipse.emf.cdo.tests.mango,org.eclipse.emf.cdo.tests.mango"/>
@@ -37,7 +39,9 @@
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/tests/org.eclipse.emf.cdo.tests.model4interfaces,org.eclipse.emf.cdo.tests.model4interfaces"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/tests/org.eclipse.emf.cdo.tests.model5,org.eclipse.emf.cdo.tests.model5"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.ui,org.eclipse.emf.cdo.ui"/>
+<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.ui.capabilities,org.eclipse.emf.cdo.ui.capabilities"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.ui.defs,org.eclipse.emf.cdo.ui.defs"/>
+<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.ui.ide,org.eclipse.emf.cdo.ui.ide"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j.releng,org.eclipse.emf.net4j.releng"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j,org.eclipse.net4j"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j-feature,org.eclipse.net4j-feature"/>
@@ -51,12 +55,15 @@
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.db-feature,org.eclipse.net4j.db-feature"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.db.derby,org.eclipse.net4j.db.derby"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.db.hsqldb,org.eclipse.net4j.db.hsqldb"/>
+<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.db.hsqldb-feature,org.eclipse.net4j.db.hsqldb-feature"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.db.mysql,org.eclipse.net4j.db.mysql"/>
+<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.db.mysql-feature,org.eclipse.net4j.db.mysql-feature"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.db.postgresql,org.eclipse.net4j.db.postgresql"/>
+<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.db.postgresql-feature,org.eclipse.net4j.db.postgresql-feature"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/tests/org.eclipse.net4j.db.tests,org.eclipse.net4j.db.tests"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.debug,org.eclipse.net4j.debug"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.defs,org.eclipse.net4j.defs"/>
-<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/doc/org.eclipse.net4j.doc,org.eclipse.net4j.doc"/>
+<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.defs-feature,org.eclipse.net4j.defs-feature"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.doc-feature,org.eclipse.net4j.doc-feature"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/examples/org.eclipse.net4j.examples,org.eclipse.net4j.examples"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.examples-feature,org.eclipse.net4j.examples-feature"/>
@@ -77,27 +84,34 @@
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.tests-feature,org.eclipse.net4j.tests-feature"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.ui,org.eclipse.net4j.ui"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.ui-feature,org.eclipse.net4j.ui-feature"/>
+<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.ui.capabilities,org.eclipse.net4j.ui.capabilities"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.ui.defs,org.eclipse.net4j.ui.defs"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.util,org.eclipse.net4j.util"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.util.defs,org.eclipse.net4j.util.defs"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.util.ui,org.eclipse.net4j.util.ui"/>
 </provider>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" label="CDO" name="CDO">
-<item elementID="=org.eclipse.emf.cdo.server.hibernate.teneo" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1242584551939_0" label="CDO" name="CDO">
 <item elementID="=org.eclipse.emf.cdo.defs" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.ui.defs" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.emf.cdo.server" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.emf.cdo.server.hibernate.id" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.emf.cdo.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.emf.cdo.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.emf.cdo" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.server.file" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.ui.ide" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.team" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.migrator" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.common" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.server.hibernate.teneo" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.efs" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.emf.cdo.ui.capabilities" type="4"/>
+<item elementID="=org.eclipse.emf.cdo.server" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.server.hibernate.id" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.server.db" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.server.hibernate" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" label="CDO Releng" name="CDO Releng">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1242584551941_3" label="CDO Releng" name="CDO Releng">
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.emf.cdo.releng" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.emf.cdo.defs-feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.emf.cdo.server.hibernate-feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.emf.cdo-feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.emf.cdo.server-feature" type="4"/>
@@ -105,10 +119,10 @@
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.emf.cdo.tests-feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.emf.cdo.doc-feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.emf.cdo.server.product" type="4"/>
-<item elementID="=org.eclipse.emf.cdo.doc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.emf.cdo.sdk-feature" type="4"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" label="CDO Tests" name="CDO Tests">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1242584551941_4" label="CDO Tests" name="CDO Tests">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.emf.cdo.tests.model1.diagram" type="4"/>
 <item elementID="=org.eclipse.emf.cdo.tests.model3" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.tests.model2.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.tests.model1.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
@@ -117,15 +131,16 @@
 <item elementID="=org.eclipse.emf.cdo.tests.model2" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.tests.hibernate" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.tests.mango.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.emf.cdo.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.tests.db" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.tests.model5" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.tests.model4interfaces" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.tests.model1" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.tests.mango" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.tests.model4" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.examples" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" label="Net4j" name="Net4j">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1242584551941_8" label="Net4j" name="Net4j">
 <item elementID="=org.eclipse.net4j.http.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.net4j.defs" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.net4j.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
@@ -139,18 +154,23 @@
 <item elementID="=org.eclipse.net4j.debug" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.net4j.http.server" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.net4j.tcp" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.net4j.ui.capabilities" type="4"/>
 <item elementID="=org.eclipse.net4j.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.net4j.http.common" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" label="Net4j DB" name="Net4j DB">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1242584551942_9" label="Net4j DB" name="Net4j DB">
 <item elementID="=org.eclipse.net4j.db" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.net4j.db.mysql" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.net4j.db.postgresql" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.net4j.db.postgresql-feature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.net4j.db.hsqldb-feature" type="4"/>
 <item elementID="=org.eclipse.net4j.db.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.net4j.db.mysql-feature" type="4"/>
 <item elementID="=org.eclipse.net4j.db.derby" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.net4j.db.hsqldb" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.net4j.db-feature" type="4"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" label="Net4j Examples" name="Net4j Examples">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1242584551942_10" label="Net4j Examples" name="Net4j Examples">
 <item elementID="=org.eclipse.net4j.jms.server.jdbc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.net4j.buddies.common" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.net4j.buddies.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
@@ -165,15 +185,14 @@
 <item elementID="=org.eclipse.net4j.jms.server" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.net4j.buddies" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" label="Net4j Releng" name="Net4j Releng">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1242584551942_11" label="Net4j Releng" name="Net4j Releng">
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.net4j.tests-feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.net4j-feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.emf.net4j.releng" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.net4j.defs-feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.net4j.ui-feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.net4j.examples-feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.net4j.doc-feature" type="4"/>
-<item elementID="=org.eclipse.net4j.doc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.net4j.db-feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.net4j.sdk-feature" type="4"/>
 </workingSets>
 </psf>
