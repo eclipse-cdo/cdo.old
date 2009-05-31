@@ -12,10 +12,21 @@
 <repository location="http://net4j.sourceforge.net/update"/>
 </location>
 <location includeAllPlatforms="false" includeMode="planner" type="InstallableUnit">
-<unit id="org.eclipse.sdk.feature.group" version="3.5.0.v20090423-7Q7bA7DPP1PM6KYUPCPYUL6Shvc4PXD_wv_yNz-H37_kD"/>
+<unit id="org.eclipse.platform.feature.group" version="3.5.0.v20090513-9fEdG1HFtGcZlCVSeD7YdrjCWjC5z0ABBA"/>
+<unit id="org.eclipse.platform.source.feature.group" version="3.5.0.v20090513-9fEdG1HFtGcZlCVSeD7YdrjCWjC5z0ABBA"/>
+<repository location="http://download.eclipse.org/releases/staging/"/>
+</location>
+<location includeAllPlatforms="false" includeMode="planner" type="InstallableUnit">
 <unit id="org.eclipse.emf.sdk.feature.group" version="2.5.0.v200905251338"/>
+<repository location="http://download.eclipse.org/releases/staging/"/>
+</location>
+<location includeAllPlatforms="false" includeMode="planner" type="InstallableUnit">
 <unit id="org.eclipse.emf.teneo.sdk.feature.group" version="1.1.0.v200905260617-42-88FACLgbLZHUujxX5d-E_SEFC"/>
-<repository location="http://download.eclipse.org/releases/galileo"/>
+<repository location="http://download.eclipse.org/releases/staging/"/>
+</location>
+<location includeAllPlatforms="false" includeMode="planner" type="InstallableUnit">
+<unit id="org.eclipse.xtext.sdk.feature.group" version="0.7.0.v200905260752"/>
+<repository location="http://download.eclipse.org/releases/staging/"/>
 </location>
 </locations>
 <environment>
