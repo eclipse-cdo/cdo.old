@@ -2,37 +2,33 @@
 <?pde version="3.5"?>
 
 <target name="CDO">
-<locations>
-<location includeAllPlatforms="false" includeMode="planner" type="InstallableUnit">
-<unit id="org.apache.derby.feature.group" version="10.5.1.200905222247"/>
-<unit id="org.hibernate.feature.group" version="3.3.1.200905222218"/>
-<unit id="org.hsqldb.feature.group" version="1.8.0.200905222218"/>
-<unit id="com.mysql.jdbc.feature.group" version="5.1.7.200905222218"/>
-<unit id="org.postgresql.jdbc3.feature.group" version="8.3.603.200905222218"/>
-<repository location="http://net4j.sourceforge.net/update"/>
-</location>
-<location includeAllPlatforms="false" includeMode="planner" type="InstallableUnit">
-<unit id="org.eclipse.platform.feature.group" version="3.5.0.v20090513-9fEdG1HFtGcZlCVSeD7YdrjCWjC5z0ABBA"/>
-<unit id="org.eclipse.platform.source.feature.group" version="3.5.0.v20090513-9fEdG1HFtGcZlCVSeD7YdrjCWjC5z0ABBA"/>
-<repository location="http://download.eclipse.org/releases/staging/"/>
-</location>
-<location includeAllPlatforms="false" includeMode="planner" type="InstallableUnit">
-<unit id="org.eclipse.emf.sdk.feature.group" version="2.5.0.v200905251338"/>
-<repository location="http://download.eclipse.org/releases/staging/"/>
-</location>
-<location includeAllPlatforms="false" includeMode="planner" type="InstallableUnit">
-<unit id="org.eclipse.emf.teneo.sdk.feature.group" version="1.1.0.v200905260617-42-88FACLgbLZHUujxX5d-E_SEFC"/>
-<repository location="http://download.eclipse.org/releases/staging/"/>
-</location>
-<location includeAllPlatforms="false" includeMode="planner" type="InstallableUnit">
-<unit id="org.eclipse.xtext.sdk.feature.group" version="0.7.0.v200905260752"/>
-<repository location="http://download.eclipse.org/releases/staging/"/>
-</location>
-</locations>
-<environment>
-<os>win32</os>
-<ws>win32</ws>
-<arch>x86</arch>
-</environment>
-<targetJRE path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
+		<locations>
+				<location includeAllPlatforms="false" includeMode="planner" type="InstallableUnit">
+						<unit id="org.eclipse.sdk.feature.group" version="3.5.0.v20090423-7Q7bA7DPP1PM6KYUPCPYUL6Shvc4PXD_wv_yNz-H37_kD" />
+						<repository location="http://download.eclipse.org/releases/galileo/" />
+				</location>
+				<location includeAllPlatforms="false" includeMode="planner" type="InstallableUnit">
+						<unit id="org.eclipse.emf.sdk.feature.group" version="2.5.0.v200905251338" />
+						<repository location="http://download.eclipse.org/releases/galileo/" />
+				</location>
+				<location includeAllPlatforms="false" includeMode="planner" type="InstallableUnit">
+						<unit id="org.eclipse.emf.teneo.sdk.feature.group" version="1.1.0.v200905260617-42-88FACLgbLZHUujxX5d-E_SEFC" />
+						<repository location="http://download.eclipse.org/releases/galileo/" />
+				</location>
+				<location includeAllPlatforms="false" includeMode="planner" type="InstallableUnit">
+						<unit id="org.apache.derby.feature.group" version="10.5.1.200905222247" />
+						<unit id="org.hibernate.feature.group" version="3.3.1.200905222218" />
+						<unit id="org.hsqldb.feature.group" version="1.8.0.200905222218" />
+						<unit id="com.mysql.jdbc.feature.group" version="5.1.7.200905222218" />
+						<unit id="org.postgresql.jdbc3.feature.group" version="8.3.603.200905222218" />
+						<repository location="http://net4j.sourceforge.net/update" />
+				</location>
+		</locations>
+		<environment>
+				<os>win32</os>
+				<ws>win32</ws>
+				<arch>x86</arch>
+		</environment>
+		<targetJRE
+				path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5" />
 </target>
