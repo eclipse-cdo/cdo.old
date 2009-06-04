@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="org.eclipse.net4j.examples.fshare.ui.app.Application">
+         </run>
+      </application>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="Perspective"
+            class="org.eclipse.net4j.examples.fshare.ui.app.Perspective"
+            id="org.eclipse.net4j.examples.fshare.ui.perspective">
+      </perspective>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            name="View"
+            class="org.eclipse.net4j.examples.fshare.ui.view.FShareView"
+            id="org.eclipse.net4j.examples.fshare.ui.view">
+      </view>
+   </extension>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.eclipse.net4j.examples.fshare.ui.application"
+            name="RCP Application">
+         <property
+               name="windowImages"
+               value="icons/alt_window_16.gif,icons/alt_window_32.gif">
+         </property>
+      </product>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.net4j.examples.fshare.ui.view.FShareEditor"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            extensions="fshare"
+            icon="icons/sample.gif"
+            id="org.eclipse.net4j.examples.fshare.ui.editors.FShareEditor"
+            name="File Share Editor">
+      </editor>
+   </extension>
+
+</plugin>

@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Server
+Bundle-SymbolicName: org.eclipse.net4j.examples.fshare.server
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.eclipse.net4j.examples.fshare.server.Activator
+Require-Bundle: org.eclipse.core.runtime
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
