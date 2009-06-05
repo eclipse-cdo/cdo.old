@@ -4,5 +4,4 @@ import org.eclipse.jface.viewers.LabelProvider;
 
 public class FShareLabelProvider extends LabelProvider
 {
-
 }

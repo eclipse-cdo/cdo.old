@@ -6,7 +6,6 @@ import org.eclipse.ui.application.WorkbenchWindowAdvisor;
 
 public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor
 {
-
   private static final String PERSPECTIVE_ID = "org.eclipse.net4j.examples.fshare.ui.perspective";
 
   public WorkbenchWindowAdvisor createWorkbenchWindowAdvisor(IWorkbenchWindowConfigurer configurer)
@@ -18,5 +17,4 @@ public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor
   {
     return PERSPECTIVE_ID;
   }
-
 }
