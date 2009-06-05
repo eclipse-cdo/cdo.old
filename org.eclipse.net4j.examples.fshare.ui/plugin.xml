@@ -45,7 +45,7 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="org.eclipse.net4j.examples.fshare.ui.view.FShareEditor"
+            class="org.eclipse.net4j.examples.fshare.ui.FShareEditor"
             contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
             extensions="fshare"
             icon="icons/sample.gif"
