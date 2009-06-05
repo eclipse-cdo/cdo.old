@@ -8,8 +8,22 @@ import org.eclipse.ui.PlatformUI;
 
 public class Application implements IApplication
 {
+  private static String targetURL;
+
+  public static String getTargetURL()
+  {
+    return targetURL;
+  }
+
   public Object start(IApplicationContext context)
   {
+    String[] args = (String[])context.getArguments().get(IApplicationContext.APPLICATION_ARGS);
+    if (args == null || args.length == 0)
+    {
+      throw new IllegalArgumentException("No target URL!");
+    }
+
+    targetURL = args[0];
     Display display = PlatformUI.createDisplay();
 
     try

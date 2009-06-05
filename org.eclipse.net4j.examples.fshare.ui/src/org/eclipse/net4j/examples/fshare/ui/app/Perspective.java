@@ -13,7 +13,7 @@ public class Perspective implements IPerspectiveFactory
     layout.setEditorAreaVisible(false);
     layout.setFixed(false);
 
-    layout.addStandaloneView("org.eclipse.ui.views.ProgressView", false, IPageLayout.BOTTOM, 0.7f, editorArea);
     layout.addStandaloneView(FShareView.ID, false, IPageLayout.BOTTOM, 0.3f, editorArea);
+    layout.addStandaloneView("org.eclipse.ui.views.ProgressView", true, IPageLayout.BOTTOM, 0.7f, FShareView.ID);
   }
 }

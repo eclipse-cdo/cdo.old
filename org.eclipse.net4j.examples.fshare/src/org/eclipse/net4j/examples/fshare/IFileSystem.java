@@ -2,26 +2,17 @@ package org.eclipse.net4j.examples.fshare;
 
 public interface IFileSystem
 {
-  public State getState();
-
   public IFolder getRootFolder();
 
   public void addListener(Listener listener);
 
   public void removeListener(Listener listener);
 
-  public enum State
-  {
-    CONNECTING, CONNECTED
-  }
-
   public interface Listener
   {
-    public void stateChanged(IFileSystem fileSystem, State state);
+    public void protocolClosed(IFileSystem fileSystem);
 
-    public void folderAdded(IFolder folder);
-
-    public void fileAdded(IFile file);
+    public void resourceAdded(IResource resource);
 
     public void transferStarted(ITransfer transfer);
 

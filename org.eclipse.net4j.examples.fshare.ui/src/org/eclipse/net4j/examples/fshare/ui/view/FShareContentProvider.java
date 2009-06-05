@@ -10,13 +10,22 @@
  */
 package org.eclipse.net4j.examples.fshare.ui.view;
 
+import org.eclipse.net4j.examples.fshare.IFileSystem;
+
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 
 public final class FShareContentProvider implements ITreeContentProvider
 {
+  private IFileSystem fileSystem;
+
   private TreeViewer viewer;
+
+  public FShareContentProvider(IFileSystem fileSystem)
+  {
+    this.fileSystem = fileSystem;
+  }
 
   public Object getParent(Object element)
   {

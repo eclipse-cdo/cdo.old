@@ -4,7 +4,7 @@ public interface IResource
 {
   public String getName();
 
-  public IResource getParent();
+  public IFolder getParent();
 
   public IFileSystem getFileSystem();
 }
