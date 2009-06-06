@@ -79,26 +79,33 @@ public class FShareClientProtocol extends SignalProtocol<FShareFileSystem> imple
       @Override
       protected void requesting(ExtendedDataOutputStream out, OMMonitor monitor) throws Exception
       {
-        collectFiles(resource);
-        monitor.begin(totalSize);
-        out.writeLong(totalSize);
-        out.writeInt(resources.size());
-
-        for (FShareResource resource : resources)
+        try
         {
-          String path = resource.getPath();
-          out.writeString(path);
-          if (resource instanceof FShareFile)
+          collectFiles(resource);
+          monitor.begin(totalSize);
+          out.writeLong(totalSize);
+          out.writeInt(resources.size());
+
+          for (FShareResource resource : resources)
           {
-            FShareFile file = (FShareFile)resource;
-            long size = file.getSize();
-            out.writeLong(size);
-            writeFile(out, new File(source.getParentFile(), path), size, monitor);
+            String path = resource.getPath();
+            out.writeString(path);
+            if (resource instanceof FShareFile)
+            {
+              FShareFile file = (FShareFile)resource;
+              long size = file.getSize();
+              out.writeLong(size);
+              writeFile(out, new File(source.getParentFile(), path), size, monitor);
+            }
+            else
+            {
+              out.writeLong(FOLDER);
+            }
           }
-          else
-          {
-            out.writeLong(FOLDER);
-          }
+        }
+        finally
+        {
+          monitor.done();
         }
       }
 
@@ -154,13 +161,12 @@ public class FShareClientProtocol extends SignalProtocol<FShareFileSystem> imple
         }
         finally
         {
-          monitor.done();
           IOUtil.close(in);
         }
       }
     };
 
-    new Job("Uploading")
+    new Job("Uploading " + source)
     {
       @Override
       protected IStatus run(IProgressMonitor monitor)

@@ -17,6 +17,9 @@ import org.eclipse.net4j.acceptor.IAcceptor;
 import org.eclipse.net4j.examples.fshare.internal.server.bundle.OM;
 import org.eclipse.net4j.util.container.IManagedContainer;
 import org.eclipse.net4j.util.container.IPluginContainer;
+import org.eclipse.net4j.util.event.IListener;
+import org.eclipse.net4j.util.lifecycle.ILifecycle;
+import org.eclipse.net4j.util.lifecycle.LifecycleEventAdapter;
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
 import org.eclipse.net4j.util.om.OSGiApplication;
 
@@ -25,6 +28,8 @@ import org.eclipse.spi.net4j.AcceptorFactory;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Eike Stepper
@@ -37,6 +42,21 @@ public class FShareServer extends OSGiApplication
 
   private String path;
 
+  private List<FShareServerProtocol> sessions = new ArrayList<FShareServerProtocol>();
+
+  private IListener sessionListener = new LifecycleEventAdapter()
+  {
+    @Override
+    protected void onDeactivated(ILifecycle session)
+    {
+      ((FShareServerProtocol)session).removeListener(sessionListener);
+      synchronized (sessions)
+      {
+        sessions.remove(session);
+      }
+    };
+  };
+
   public FShareServer()
   {
     super(ID);
@@ -45,6 +65,23 @@ public class FShareServer extends OSGiApplication
   public String getPath()
   {
     return path;
+  }
+
+  public FShareServerProtocol[] getSessions()
+  {
+    synchronized (sessions)
+    {
+      return sessions.toArray(new FShareServerProtocol[sessions.size()]);
+    }
+  }
+
+  public void addSession(FShareServerProtocol session)
+  {
+    session.addListener(sessionListener);
+    synchronized (sessions)
+    {
+      sessions.add(session);
+    }
   }
 
   @Override

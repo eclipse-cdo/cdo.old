@@ -79,6 +79,7 @@ public class FShareServerProtocol extends SignalProtocol<FShareServer> implement
             long size = in.readLong();
             if (size == FOLDER)
             {
+              monitor.checkCanceled();
               IOUtil.mkdirs(target);
             }
             else
@@ -110,8 +111,8 @@ public class FShareServerProtocol extends SignalProtocol<FShareServer> implement
           {
             out = new FileOutputStream(file);
             int bufferSize = buffer.length;
-            int n = size < bufferSize ? (int)size : bufferSize;
 
+            int n = size < bufferSize ? (int)size : bufferSize;
             while (n > 0 && (n = in.read(buffer, 0, n)) != -1)
             {
               out.write(buffer, 0, n);
@@ -122,7 +123,6 @@ public class FShareServerProtocol extends SignalProtocol<FShareServer> implement
           }
           finally
           {
-            monitor.done();
             IOUtil.close(out);
           }
         }
