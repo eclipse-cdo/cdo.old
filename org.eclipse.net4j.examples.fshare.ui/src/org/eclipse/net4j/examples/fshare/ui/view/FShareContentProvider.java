@@ -11,34 +11,49 @@
 package org.eclipse.net4j.examples.fshare.ui.view;
 
 import org.eclipse.net4j.examples.fshare.IFileSystem;
+import org.eclipse.net4j.examples.fshare.IFolder;
+import org.eclipse.net4j.examples.fshare.IResource;
 
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 
-public final class FShareContentProvider implements ITreeContentProvider
+public final class FShareContentProvider implements ITreeContentProvider, IFileSystem.Listener
 {
-  private IFileSystem fileSystem;
+  private IFolder rootFolder;
 
   private TreeViewer viewer;
 
-  public FShareContentProvider(IFileSystem fileSystem)
+  public FShareContentProvider()
   {
-    this.fileSystem = fileSystem;
   }
 
   public Object getParent(Object element)
   {
+    if (element instanceof IResource)
+    {
+      IResource resource = (IResource)element;
+      return resource.getParent();
+    }
+
     return null;
   }
 
-  public Object[] getElements(Object inputElement)
+  public Object[] getElements(Object element)
   {
-    return getChildren(inputElement);
+    return getChildren(element);
   }
 
-  public Object[] getChildren(Object parentElement)
+  public Object[] getChildren(Object element)
   {
+    if (element instanceof IFolder)
+    {
+      IFolder folder = (IFolder)element;
+      return folder.getChildren();
+    }
+
     return new Object[0];
   }
 
@@ -50,9 +65,56 @@ public final class FShareContentProvider implements ITreeContentProvider
   public void inputChanged(Viewer viewer, Object oldInput, Object newInput)
   {
     this.viewer = (TreeViewer)viewer;
+    rootFolder = (IFolder)newInput;
+    rootFolder.getFileSystem().addListener(this);
   }
 
   public void dispose()
   {
+    rootFolder.getFileSystem().removeListener(this);
+    rootFolder = null;
+    viewer = null;
+  }
+
+  public void protocolClosed(IFileSystem fileSystem)
+  {
+  }
+
+  public void resourceAdded(final IResource resource)
+  {
+    updateUI(new Runnable()
+    {
+      public void run()
+      {
+        IFolder folder = resource.getParent();
+        if (folder == rootFolder)
+        {
+          viewer.refresh(true);
+        }
+        else
+        {
+          viewer.refresh(folder, true);
+        }
+      }
+    });
+  }
+
+  private void updateUI(Runnable runnable)
+  {
+    Control control = viewer.getControl();
+    if (control.isDisposed())
+    {
+      return;
+    }
+
+    Display display = control.getDisplay();
+    if (display.getThread() == Thread.currentThread())
+    {
+      runnable.run();
+    }
+    else
+    {
+      display.asyncExec(runnable);
+    }
   }
 }

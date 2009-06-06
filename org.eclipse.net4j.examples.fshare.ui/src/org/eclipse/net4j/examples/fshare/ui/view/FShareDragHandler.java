@@ -10,16 +10,43 @@
  */
 package org.eclipse.net4j.examples.fshare.ui.view;
 
+import org.eclipse.net4j.examples.fshare.IFileSystem;
+
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.swt.dnd.DragSourceEvent;
 import org.eclipse.swt.dnd.TreeDragSourceEffect;
 
 public class FShareDragHandler extends TreeDragSourceEffect
 {
+  private IFileSystem fileSystem;
+
   private TreeViewer viewer;
 
-  public FShareDragHandler(TreeViewer viewer)
+  public FShareDragHandler(IFileSystem fileSystem, TreeViewer viewer)
   {
     super(viewer.getTree());
     this.viewer = viewer;
+    this.fileSystem = fileSystem;
+  }
+
+  @Override
+  public void dragStart(DragSourceEvent event)
+  {
+    super.dragStart(event);
+    System.out.println("dragStart");
+  }
+
+  @Override
+  public void dragSetData(DragSourceEvent event)
+  {
+    super.dragSetData(event);
+    System.out.println("dragSetData");
+  }
+
+  @Override
+  public void dragFinished(DragSourceEvent event)
+  {
+    super.dragFinished(event);
+    System.out.println("dragFinished");
   }
 }

@@ -10,26 +10,60 @@
  */
 package org.eclipse.net4j.examples.fshare.ui.view;
 
+import org.eclipse.net4j.examples.fshare.IFileSystem;
+import org.eclipse.net4j.examples.fshare.IFolder;
+
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.ViewerDropAdapter;
+import org.eclipse.swt.dnd.FileTransfer;
 import org.eclipse.swt.dnd.TransferData;
 
 public class FShareDropHandler extends ViewerDropAdapter
 {
-  public FShareDropHandler(TreeViewer viewer)
+  private IFileSystem fileSystem;
+
+  public FShareDropHandler(IFileSystem fileSystem, TreeViewer viewer)
   {
     super(viewer);
+    this.fileSystem = fileSystem;
   }
 
   @Override
   public boolean validateDrop(Object target, int operation, TransferData transferType)
   {
-    return false;
+    if (!FileTransfer.getInstance().isSupportedType(transferType))
+    {
+      return false;
+    }
+
+    return getFolder(target) != null;
   }
 
   @Override
   public boolean performDrop(Object data)
   {
-    return false;
+    IFolder folder = getFolder(getCurrentTarget());
+    if (folder == null)
+    {
+      return false;
+    }
+
+    String sourcePath = ((String[])data)[0];
+    return folder.performDrop(sourcePath);
+  }
+
+  private IFolder getFolder(Object target)
+  {
+    if (target == null)
+    {
+      return fileSystem.getRootFolder();
+    }
+
+    if (target instanceof IFolder)
+    {
+      return (IFolder)target;
+    }
+
+    return null;
   }
 }

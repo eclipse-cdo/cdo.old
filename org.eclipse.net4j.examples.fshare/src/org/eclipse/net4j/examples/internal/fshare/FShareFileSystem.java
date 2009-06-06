@@ -17,7 +17,10 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileSystem implements IFileSystem
+/**
+ * @author Eike Stepper
+ */
+public class FShareFileSystem implements IFileSystem
 {
   private IConnector connector;
 
@@ -36,7 +39,7 @@ public class FileSystem implements IFileSystem
 
   private List<Listener> listeners = new ArrayList<Listener>();
 
-  public FileSystem(String targetURL)
+  public FShareFileSystem(String targetURL)
   {
     try
     {
@@ -51,7 +54,7 @@ public class FileSystem implements IFileSystem
       protocol.addListener(protocolListener);
       protocol.logon(path);
 
-      rootFolder = new Folder(path, this);
+      rootFolder = new FShareFolder(this);
     }
     catch (URISyntaxException ex)
     {
@@ -66,6 +69,11 @@ public class FileSystem implements IFileSystem
     protocol.close();
     protocol = null;
     connector = null;
+  }
+
+  public FShareClientProtocol getProtocol()
+  {
+    return protocol;
   }
 
   public IFolder getRootFolder()
@@ -114,7 +122,7 @@ public class FileSystem implements IFileSystem
     }
   }
 
-  public void fireResourceAdded(Resource resource)
+  public void fireResourceAdded(FShareResource resource)
   {
     for (Listener listener : getListeners())
     {

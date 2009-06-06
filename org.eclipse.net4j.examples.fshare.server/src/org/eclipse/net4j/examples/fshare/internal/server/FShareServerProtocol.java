@@ -1,14 +1,22 @@
 package org.eclipse.net4j.examples.fshare.internal.server;
 
 import org.eclipse.net4j.examples.fshare.common.FShareConstants;
+import org.eclipse.net4j.signal.IndicationWithMonitoring;
 import org.eclipse.net4j.signal.IndicationWithResponse;
 import org.eclipse.net4j.signal.SignalProtocol;
 import org.eclipse.net4j.signal.SignalReactor;
 import org.eclipse.net4j.util.factory.ProductCreationException;
 import org.eclipse.net4j.util.io.ExtendedDataInputStream;
 import org.eclipse.net4j.util.io.ExtendedDataOutputStream;
+import org.eclipse.net4j.util.io.IOUtil;
+import org.eclipse.net4j.util.om.monitor.OMMonitor;
 
 import org.eclipse.spi.net4j.ServerProtocolFactory;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * @author Eike Stepper
@@ -46,6 +54,77 @@ public class FShareServerProtocol extends SignalProtocol<FShareServer> implement
         protected void responding(ExtendedDataOutputStream out) throws Exception
         {
           out.writeBoolean(ok);
+        }
+      };
+
+    case SIGNAL_UPLOAD:
+      return new IndicationWithMonitoring(this, SIGNAL_UPLOAD)
+      {
+        private byte[] buffer = new byte[16000];
+
+        @Override
+        protected void indicating(ExtendedDataInputStream in, OMMonitor monitor) throws Exception
+        {
+          File rootFolder = new File(getInfraStructure().getPath());
+
+          long totalSize = in.readLong();
+          monitor.begin(totalSize);
+
+          int count = in.readInt();
+          for (int i = 0; i < count; i++)
+          {
+            String path = in.readString();
+            File target = new File(rootFolder, path);
+
+            long size = in.readLong();
+            if (size == FOLDER)
+            {
+              IOUtil.mkdirs(target);
+            }
+            else
+            {
+              readFile(in, target, size, monitor);
+            }
+          }
+        }
+
+        @Override
+        protected void responding(ExtendedDataOutputStream out, OMMonitor monitor) throws Exception
+        {
+          try
+          {
+            monitor.begin();
+            out.writeBoolean(true);
+          }
+          finally
+          {
+            monitor.done();
+          }
+        }
+
+        private void readFile(ExtendedDataInputStream in, File file, long size, OMMonitor monitor) throws IOException
+        {
+          OutputStream out = null;
+
+          try
+          {
+            out = new FileOutputStream(file);
+            int bufferSize = buffer.length;
+            int n = size < bufferSize ? (int)size : bufferSize;
+
+            while (n > 0 && (n = in.read(buffer, 0, n)) != -1)
+            {
+              out.write(buffer, 0, n);
+              monitor.worked(n);
+              size -= n;
+              n = size < bufferSize ? (int)size : bufferSize;
+            }
+          }
+          finally
+          {
+            monitor.done();
+            IOUtil.close(out);
+          }
         }
       };
 
