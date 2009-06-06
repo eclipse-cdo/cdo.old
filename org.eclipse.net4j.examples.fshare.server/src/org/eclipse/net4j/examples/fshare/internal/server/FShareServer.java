@@ -75,12 +75,12 @@ public class FShareServer extends OSGiApplication
     }
   }
 
-  public void addSession(FShareServerProtocol session)
+  public boolean addSession(FShareServerProtocol session)
   {
     session.addListener(sessionListener);
     synchronized (sessions)
     {
-      sessions.add(session);
+      return sessions.add(session);
     }
   }
 

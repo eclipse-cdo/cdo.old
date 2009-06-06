@@ -46,7 +46,7 @@ public class FShareServerProtocol extends SignalProtocol<FShareServer> implement
           String path2 = getInfraStructure().getPath();
           if (path2.equals(path))
           {
-            ok = true;
+            ok = getInfraStructure().addSession(FShareServerProtocol.this);
           }
         }
 
