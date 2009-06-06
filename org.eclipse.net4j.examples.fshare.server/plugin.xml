@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+	<extension id="app"
+		point="org.eclipse.core.runtime.applications"
+		name="%extension.name">
+			<application cardinality="1" thread="main">
+				<run class="org.eclipse.net4j.examples.fshare.internal.server.FShareServer"/>
+	 		</application>
+	</extension>
+
+</plugin>

@@ -10,9 +10,8 @@ public class Application implements IApplication
 {
   private static String targetURL;
 
-  public static String getTargetURL()
+  public Application()
   {
-    return targetURL;
   }
 
   public Object start(IApplicationContext context)
@@ -61,5 +60,10 @@ public class Application implements IApplication
         }
       }
     });
+  }
+
+  public static String getTargetURL()
+  {
+    return targetURL;
   }
 }

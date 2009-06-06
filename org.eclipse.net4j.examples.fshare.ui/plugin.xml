@@ -34,7 +34,7 @@
          point="org.eclipse.core.runtime.products">
       <product
             application="org.eclipse.net4j.examples.fshare.ui.application"
-            name="RCP Application">
+            name="%product.name">
          <property
                name="windowImages"
                value="icons/alt_window_16.gif,icons/alt_window_32.gif">
