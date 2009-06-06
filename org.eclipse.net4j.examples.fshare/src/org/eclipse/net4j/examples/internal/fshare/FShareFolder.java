@@ -46,6 +46,14 @@ public class FShareFolder extends FShareResource implements IFolder
     this.locked = locked;
   }
 
+  public FShareResource getChild(String name)
+  {
+    synchronized (children)
+    {
+      return children.get(name);
+    }
+  }
+
   public FShareResource[] getChildren()
   {
     synchronized (children)

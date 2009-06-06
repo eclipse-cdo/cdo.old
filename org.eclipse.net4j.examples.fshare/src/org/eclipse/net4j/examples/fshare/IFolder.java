@@ -7,6 +7,8 @@ public interface IFolder extends IResource
 {
   public boolean isLocked();
 
+  public IResource getChild(String name);
+
   public IResource[] getChildren();
 
   public boolean performDrop(String sourcePath);

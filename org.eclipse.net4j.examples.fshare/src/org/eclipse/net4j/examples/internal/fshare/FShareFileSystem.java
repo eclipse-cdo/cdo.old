@@ -2,7 +2,7 @@ package org.eclipse.net4j.examples.internal.fshare;
 
 import org.eclipse.net4j.connector.IConnector;
 import org.eclipse.net4j.examples.fshare.IFileSystem;
-import org.eclipse.net4j.examples.fshare.IFolder;
+import org.eclipse.net4j.examples.fshare.common.FShareConstants;
 import org.eclipse.net4j.examples.internal.fshare.bundle.OM;
 import org.eclipse.net4j.util.container.IManagedContainer;
 import org.eclipse.net4j.util.container.IPluginContainer;
@@ -35,7 +35,7 @@ public class FShareFileSystem implements IFileSystem
     };
   };
 
-  private IFolder rootFolder;
+  private FShareFolder rootFolder;
 
   private List<Listener> listeners = new ArrayList<Listener>();
 
@@ -76,9 +76,25 @@ public class FShareFileSystem implements IFileSystem
     return protocol;
   }
 
-  public IFolder getRootFolder()
+  public FShareFolder getRootFolder()
   {
     return rootFolder;
+  }
+
+  public FShareResource getResource(String path)
+  {
+    FShareFolder folder = rootFolder;
+    for (;;)
+    {
+      int slash = path.indexOf('/');
+      if (slash == -1)
+      {
+        return folder.getChild(path);
+      }
+
+      folder = (FShareFolder)folder.getChild(path.substring(0, slash));
+      path = path.substring(slash + 1);
+    }
   }
 
   public synchronized void addListener(Listener listener)
@@ -135,5 +151,14 @@ public class FShareFileSystem implements IFileSystem
         OM.LOG.error(ex);
       }
     }
+  }
+
+  public FShareResource setUploadFeedback(String path, long size)
+  {
+    if (size == FShareConstants.FOLDER)
+    {
+    }
+
+    return null;
   }
 }

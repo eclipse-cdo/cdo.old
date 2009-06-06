@@ -1,10 +1,13 @@
 package org.eclipse.net4j.examples.fshare.internal.server;
 
 import org.eclipse.net4j.examples.fshare.common.FShareConstants;
+import org.eclipse.net4j.examples.fshare.internal.server.FShareUpload.Feedback;
 import org.eclipse.net4j.signal.Indication;
 import org.eclipse.net4j.signal.IndicationWithResponse;
+import org.eclipse.net4j.signal.Request;
 import org.eclipse.net4j.signal.SignalProtocol;
 import org.eclipse.net4j.signal.SignalReactor;
+import org.eclipse.net4j.util.WrappedException;
 import org.eclipse.net4j.util.factory.ProductCreationException;
 import org.eclipse.net4j.util.io.ExtendedDataInputStream;
 import org.eclipse.net4j.util.io.ExtendedDataOutputStream;
@@ -16,6 +19,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
 
 /**
  * @author Eike Stepper
@@ -26,6 +30,37 @@ public class FShareServerProtocol extends SignalProtocol<FShareServer> implement
   {
     super(PROTOCOL_NAME);
     setInfraStructure(server);
+  }
+
+  public void notifyUploads(final List<FShareUpload> uploads)
+  {
+    try
+    {
+      new Request(this, SIGNAL_UPLOAD_FEEDBACK)
+      {
+        @Override
+        protected void requesting(ExtendedDataOutputStream out) throws Exception
+        {
+          out.writeInt(uploads.size());
+          for (FShareUpload upload : uploads)
+          {
+            out.writeBoolean(upload.isDone());
+
+            List<Feedback> resources = upload.getResources();
+            out.writeInt(resources.size());
+            for (Feedback resource : resources)
+            {
+              out.writeString(resource.path);
+              out.writeLong(resource.size);
+            }
+          }
+        }
+      }.sendAsync();
+    }
+    catch (Exception ex)
+    {
+      throw WrappedException.wrap(ex);
+    }
   }
 
   @Override
@@ -59,12 +94,15 @@ public class FShareServerProtocol extends SignalProtocol<FShareServer> implement
     case SIGNAL_UPLOAD:
       return new Indication(this, SIGNAL_UPLOAD)
       {
+        private File rootFolder = new File(getInfraStructure().getPath());
+
+        private FShareUpload upload = getInfraStructure().addUpload(FShareServerProtocol.this);
+
         private byte[] buffer = new byte[16000];
 
         @Override
         protected void indicating(ExtendedDataInputStream in) throws Exception
         {
-          File rootFolder = new File(getInfraStructure().getPath());
           int count = in.readInt();
           for (int i = 0; i < count; i++)
           {
@@ -75,27 +113,32 @@ public class FShareServerProtocol extends SignalProtocol<FShareServer> implement
             if (size == FOLDER)
             {
               IOUtil.mkdirs(target);
+              upload.folderAdded(path);
             }
             else
             {
-              readFile(in, target, size);
+              readFile(in, path, size);
             }
           }
+
+          upload.setDone();
         }
 
-        private void readFile(ExtendedDataInputStream in, File file, long size) throws IOException
+        private void readFile(ExtendedDataInputStream in, String path, long size) throws IOException
         {
           OutputStream out = null;
+          Feedback feedback = upload.fileBegin(path, size);
 
           try
           {
-            out = new FileOutputStream(file);
+            out = new FileOutputStream(new File(rootFolder, path));
             int bufferSize = buffer.length;
 
             int n = size < bufferSize ? (int)size : bufferSize;
             while (n > 0 && (n = in.read(buffer, 0, n)) != -1)
             {
               out.write(buffer, 0, n);
+              feedback.progress += n;
               size -= n;
               n = size < bufferSize ? (int)size : bufferSize;
             }

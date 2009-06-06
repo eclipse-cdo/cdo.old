@@ -3,9 +3,11 @@ package org.eclipse.net4j.examples.internal.fshare;
 import org.eclipse.net4j.connector.IConnector;
 import org.eclipse.net4j.examples.fshare.common.FShareConstants;
 import org.eclipse.net4j.examples.internal.fshare.bundle.OM;
+import org.eclipse.net4j.signal.Indication;
 import org.eclipse.net4j.signal.Request;
 import org.eclipse.net4j.signal.RequestWithConfirmation;
 import org.eclipse.net4j.signal.SignalProtocol;
+import org.eclipse.net4j.signal.SignalReactor;
 import org.eclipse.net4j.util.WrappedException;
 import org.eclipse.net4j.util.io.ExtendedDataInputStream;
 import org.eclipse.net4j.util.io.ExtendedDataOutputStream;
@@ -282,5 +284,47 @@ public class FShareClientProtocol extends SignalProtocol<FShareFileSystem> imple
     // return Status.OK_STATUS;
     // }
     // }.schedule();
+  }
+
+  @Override
+  protected SignalReactor createSignalReactor(short signalID)
+  {
+    switch (signalID)
+    {
+    case SIGNAL_UPLOAD_FEEDBACK:
+      return new Indication(this, SIGNAL_UPLOAD_FEEDBACK)
+      {
+        @Override
+        protected void indicating(ExtendedDataInputStream in) throws Exception
+        {
+          int uploadsCount = in.readInt();
+          for (int i = 0; i < uploadsCount; i++)
+          {
+            boolean uploadDone = in.readBoolean();
+            FShareFolder firstFolder = null;
+
+            int resourcesCount = in.readInt();
+            for (int j = 0; j < resourcesCount; j++)
+            {
+              String path = in.readString();
+              long size = in.readLong();
+              FShareResource resource = getInfraStructure().setUploadFeedback(path, size);
+              if (firstFolder == null && uploadDone)
+              {
+                firstFolder = (FShareFolder)resource;
+              }
+            }
+
+            if (firstFolder != null)
+            {
+              firstFolder.setLocked(false);
+            }
+          }
+        }
+      };
+
+    default:
+      return null;
+    }
   }
 }

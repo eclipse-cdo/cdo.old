@@ -15,6 +15,7 @@ package org.eclipse.net4j.examples.fshare.internal.server;
 
 import org.eclipse.net4j.acceptor.IAcceptor;
 import org.eclipse.net4j.examples.fshare.internal.server.bundle.OM;
+import org.eclipse.net4j.util.concurrent.Worker;
 import org.eclipse.net4j.util.container.IManagedContainer;
 import org.eclipse.net4j.util.container.IPluginContainer;
 import org.eclipse.net4j.util.event.IListener;
@@ -29,6 +30,8 @@ import org.eclipse.spi.net4j.AcceptorFactory;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -57,6 +60,10 @@ public class FShareServer extends OSGiApplication
     };
   };
 
+  private NotificationManager notificationManager = new NotificationManager();
+
+  private List<FShareUpload> uploads = new LinkedList<FShareUpload>();
+
   public FShareServer()
   {
     super(ID);
@@ -84,10 +91,23 @@ public class FShareServer extends OSGiApplication
     }
   }
 
+  public FShareUpload addUpload(FShareServerProtocol session)
+  {
+    FShareUpload upload = new FShareUpload(session);
+    synchronized (uploads)
+    {
+      uploads.add(upload);
+    }
+
+    return upload;
+  }
+
   @Override
   protected void doStart() throws Exception
   {
     OM.LOG.info("FShare server starting");
+    notificationManager.activate();
+
     String[] args = (String[])getApplicationContext().getArguments().get(IApplicationContext.APPLICATION_ARGS);
     if (args == null || args.length == 0)
     {
@@ -120,11 +140,61 @@ public class FShareServer extends OSGiApplication
   {
     OM.LOG.info("FShare server stopping");
     LifecycleUtil.deactivate(acceptor);
+    LifecycleUtil.deactivate(notificationManager);
     OM.LOG.info("FShare server stopped");
   }
 
   protected IManagedContainer getContainer()
   {
     return IPluginContainer.INSTANCE;
+  }
+
+  /**
+   * @author Eike Stepper
+   */
+  private class NotificationManager extends Worker
+  {
+    private static final long INTERVAL = 1000L;
+
+    @Override
+    protected void work(WorkContext context) throws Exception
+    {
+      List<FShareUpload> copy = copyUploads();
+      if (copy != null)
+      {
+        synchronized (sessions)
+        {
+          for (FShareServerProtocol session : sessions)
+          {
+            session.notifyUploads(copy);
+          }
+        }
+      }
+      context.nextWork(INTERVAL);
+    }
+
+    private List<FShareUpload> copyUploads()
+    {
+      synchronized (uploads)
+      {
+        if (uploads.isEmpty())
+        {
+          return null;
+        }
+
+        List<FShareUpload> copy = new ArrayList<FShareUpload>(uploads.size());
+        for (Iterator<FShareUpload> it = uploads.iterator(); it.hasNext();)
+        {
+          FShareUpload source = it.next();
+          copy.add(new FShareUpload(source));
+          if (source.isDone())
+          {
+            it.remove();
+          }
+        }
+
+        return copy;
+      }
+    }
   }
 }

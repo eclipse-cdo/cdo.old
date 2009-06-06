@@ -7,6 +7,8 @@ public interface IFileSystem
 {
   public IFolder getRootFolder();
 
+  public IResource getResource(String path);
+
   public void addListener(Listener listener);
 
   public void removeListener(Listener listener);
