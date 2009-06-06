@@ -46,12 +46,13 @@ public class FShareServerProtocol extends SignalProtocol<FShareServer> implement
           {
             out.writeBoolean(upload.isDone());
 
-            List<Feedback> resources = upload.getResources();
-            out.writeInt(resources.size());
-            for (Feedback resource : resources)
+            List<Feedback> feedbacks = upload.getFeedbacks();
+            out.writeInt(feedbacks.size());
+            for (Feedback feedback : feedbacks)
             {
-              out.writeString(resource.path);
-              out.writeLong(resource.size);
+              out.writeString(feedback.path);
+              out.writeLong(feedback.size);
+              out.writeLong(feedback.progress);
             }
           }
         }

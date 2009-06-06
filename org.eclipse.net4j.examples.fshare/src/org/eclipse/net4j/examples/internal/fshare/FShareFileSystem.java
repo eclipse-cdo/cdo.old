@@ -153,10 +153,11 @@ public class FShareFileSystem implements IFileSystem
     }
   }
 
-  public FShareResource setUploadFeedback(String path, long size)
+  public FShareResource setUploadFeedback(String path, long size, long progress)
   {
     if (size == FShareConstants.FOLDER)
     {
+      tbd();
     }
 
     return null;

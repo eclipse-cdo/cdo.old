@@ -308,7 +308,8 @@ public class FShareClientProtocol extends SignalProtocol<FShareFileSystem> imple
             {
               String path = in.readString();
               long size = in.readLong();
-              FShareResource resource = getInfraStructure().setUploadFeedback(path, size);
+              long progress = in.readLong();
+              FShareResource resource = getInfraStructure().setUploadFeedback(path, size, progress);
               if (firstFolder == null && uploadDone)
               {
                 firstFolder = (FShareFolder)resource;

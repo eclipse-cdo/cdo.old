@@ -49,7 +49,7 @@ public class FShareUpload
     return feedback;
   }
 
-  public List<Feedback> getResources()
+  public List<Feedback> getFeedbacks()
   {
     return feedbacks;
   }
