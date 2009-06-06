@@ -157,7 +157,6 @@ public class FShareFileSystem implements IFileSystem
   {
     if (size == FShareConstants.FOLDER)
     {
-      tbd();
     }
 
     return null;
