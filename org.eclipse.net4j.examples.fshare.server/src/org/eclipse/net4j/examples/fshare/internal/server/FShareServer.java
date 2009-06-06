@@ -15,6 +15,7 @@ package org.eclipse.net4j.examples.fshare.internal.server;
 
 import org.eclipse.net4j.acceptor.IAcceptor;
 import org.eclipse.net4j.examples.fshare.internal.server.bundle.OM;
+import org.eclipse.net4j.util.container.IManagedContainer;
 import org.eclipse.net4j.util.container.IPluginContainer;
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
 import org.eclipse.net4j.util.om.OSGiApplication;
@@ -32,18 +33,18 @@ public class FShareServer extends OSGiApplication
 {
   public static final String ID = OM.BUNDLE_ID + ".app";
 
-  private static String acceptorURL;
+  private IAcceptor acceptor;
 
-  private static IAcceptor acceptor;
+  private String path;
 
   public FShareServer()
   {
     super(ID);
   }
 
-  public static String getAcceptorURL()
+  public String getPath()
   {
-    return acceptorURL;
+    return path;
   }
 
   @Override
@@ -56,16 +57,18 @@ public class FShareServer extends OSGiApplication
       throw new IllegalArgumentException("No acceptor URL!");
     }
 
-    acceptorURL = args[0];
+    IManagedContainer container = getContainer();
+    container.registerFactory(new FShareServerProtocol.Factory(this));
 
     try
     {
-      URI uri = new URI(FShareServer.getAcceptorURL());
+      URI uri = new URI(args[0]);
+      path = uri.getPath();
+
       String type = uri.getScheme();
       String description = uri.getAuthority();
-      String path = uri.getPath();
-
-      acceptor = (IAcceptor)IPluginContainer.INSTANCE.getElement(AcceptorFactory.PRODUCT_GROUP, type, description);
+      acceptor = (IAcceptor)container.getElement(AcceptorFactory.PRODUCT_GROUP, type, description);
+      OM.LOG.info("Serving " + uri);
     }
     catch (URISyntaxException ex)
     {
@@ -81,5 +84,10 @@ public class FShareServer extends OSGiApplication
     OM.LOG.info("FShare server stopping");
     LifecycleUtil.deactivate(acceptor);
     OM.LOG.info("FShare server stopped");
+  }
+
+  protected IManagedContainer getContainer()
+  {
+    return IPluginContainer.INSTANCE;
   }
 }
