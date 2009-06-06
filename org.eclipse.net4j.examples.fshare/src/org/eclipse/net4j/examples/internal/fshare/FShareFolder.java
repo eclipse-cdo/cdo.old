@@ -11,6 +11,8 @@ import java.util.Map;
  */
 public class FShareFolder extends FShareResource implements IFolder
 {
+  private boolean locked;
+
   private Map<String, FShareResource> children = new HashMap<String, FShareResource>();
 
   public FShareFolder(FShareFileSystem fileSystem)
@@ -21,6 +23,27 @@ public class FShareFolder extends FShareResource implements IFolder
   public FShareFolder(String name, FShareFolder parent)
   {
     super(name, parent, parent.getFileSystem());
+  }
+
+  public boolean isLocked()
+  {
+    if (locked)
+    {
+      return true;
+    }
+
+    FShareFolder parent = getParent();
+    if (parent != null)
+    {
+      return parent.isLocked();
+    }
+
+    return false;
+  }
+
+  public void setLocked(boolean locked)
+  {
+    this.locked = locked;
   }
 
   public FShareResource[] getChildren()
@@ -37,7 +60,7 @@ public class FShareFolder extends FShareResource implements IFolder
     FShareResource resource = createResource(source);
     if (addChild(resource, true))
     {
-      resource.getFileSystem().getProtocol().upload(resource, source);
+      getFileSystem().getProtocol().upload(resource, source);
       return true;
     }
 
@@ -46,7 +69,14 @@ public class FShareFolder extends FShareResource implements IFolder
 
   private FShareResource createResource(File source)
   {
-    return source.isDirectory() ? createFolder(source) : createFile(source);
+    if (source.isDirectory())
+    {
+      FShareFolder folder = createFolder(source);
+      folder.setLocked(true);
+      return folder;
+    }
+
+    return createFile(source);
   }
 
   private FShareFolder createFolder(File source)

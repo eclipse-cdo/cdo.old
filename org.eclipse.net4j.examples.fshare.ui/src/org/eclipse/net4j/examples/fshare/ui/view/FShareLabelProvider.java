@@ -90,6 +90,14 @@ public class FShareLabelProvider extends LabelProvider implements IColorProvider
         return grayColor;
       }
     }
+    else if (element instanceof IFolder)
+    {
+      IFolder folder = (IFolder)element;
+      if (folder.isLocked())
+      {
+        return grayColor;
+      }
+    }
 
     return null;
   }

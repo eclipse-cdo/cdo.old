@@ -36,7 +36,8 @@ public class FShareDropHandler extends ViewerDropAdapter
       return false;
     }
 
-    return getFolder(target) != null;
+    IFolder folder = getFolder(target);
+    return folder != null && !folder.isLocked();
   }
 
   @Override

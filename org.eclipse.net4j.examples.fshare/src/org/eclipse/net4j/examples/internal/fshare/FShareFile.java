@@ -34,6 +34,11 @@ public class FShareFile extends FShareResource implements IFile
 
   public int getPercentUploaded()
   {
+    if (size == 0L)
+    {
+      return 100;
+    }
+
     return (int)(uploaded * 100 / size);
   }
 }

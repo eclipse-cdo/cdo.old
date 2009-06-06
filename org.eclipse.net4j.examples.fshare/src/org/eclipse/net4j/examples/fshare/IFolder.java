@@ -5,6 +5,8 @@ package org.eclipse.net4j.examples.fshare;
  */
 public interface IFolder extends IResource
 {
+  public boolean isLocked();
+
   public IResource[] getChildren();
 
   public boolean performDrop(String sourcePath);

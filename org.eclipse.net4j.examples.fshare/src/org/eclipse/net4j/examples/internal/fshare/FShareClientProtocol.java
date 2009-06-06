@@ -141,8 +141,8 @@ public class FShareClientProtocol extends SignalProtocol<FShareFileSystem> imple
               {
                 in = new FileInputStream(file);
                 int bufferSize = buffer.length;
-                int n = size < bufferSize ? (int)size : bufferSize;
 
+                int n = size < bufferSize ? (int)size : bufferSize;
                 while (n > 0 && (n = in.read(buffer, 0, n)) != -1)
                 {
                   out.write(buffer, 0, n);
