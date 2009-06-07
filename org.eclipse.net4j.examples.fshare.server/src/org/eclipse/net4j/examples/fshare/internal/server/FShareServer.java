@@ -91,6 +91,14 @@ public class FShareServer extends OSGiApplication
     }
   }
 
+  public FShareUpload[] getUploads()
+  {
+    synchronized (uploads)
+    {
+      return uploads.toArray(new FShareUpload[uploads.size()]);
+    }
+  }
+
   public FShareUpload addUpload(FShareServerProtocol session, String path)
   {
     FShareUpload upload = new FShareUpload(session, path);

@@ -54,7 +54,7 @@ public class FShareFolder extends FShareResource implements IFolder
   {
     synchronized (this)
     {
-      ensureChildren();
+      ensureChildren(true);
       return children.get(name);
     }
   }
@@ -63,18 +63,18 @@ public class FShareFolder extends FShareResource implements IFolder
   {
     synchronized (this)
     {
-      ensureChildren();
+      ensureChildren(true);
       return children.values().toArray(new FShareResource[children.size()]);
     }
   }
 
-  public boolean addChild(FShareResource resource, boolean notify)
+  public boolean addChild(FShareResource resource, boolean load, boolean notify)
   {
     boolean added = false;
     String name = resource.getName();
     synchronized (this)
     {
-      ensureChildren();
+      ensureChildren(load);
       if (!children.containsKey(name))
       {
         children.put(name, resource);
@@ -96,7 +96,7 @@ public class FShareFolder extends FShareResource implements IFolder
     {
       File source = new File(sourcePath);
       FShareResource resource = createResource(source, true);
-      if (addChild(resource, true))
+      if (addChild(resource, true, true))
       {
         getFileSystem().getProtocol().upload(resource, source);
       }
@@ -127,7 +127,7 @@ public class FShareFolder extends FShareResource implements IFolder
     for (File child : source.listFiles())
     {
       FShareResource resource = folder.createResource(child, false);
-      folder.addChild(resource, false);
+      folder.addChild(resource, false, false);
     }
 
     return folder;
@@ -138,12 +138,15 @@ public class FShareFolder extends FShareResource implements IFolder
     return new FShareFile(source.getName(), source.length(), this);
   }
 
-  private void ensureChildren()
+  private void ensureChildren(boolean load)
   {
     if (children == null)
     {
       children = new HashMap<String, FShareResource>();
-      getFileSystem().getProtocol().loadChildren(this);
+      if (load)
+      {
+        getFileSystem().getProtocol().loadChildren(this);
+      }
     }
   }
 }

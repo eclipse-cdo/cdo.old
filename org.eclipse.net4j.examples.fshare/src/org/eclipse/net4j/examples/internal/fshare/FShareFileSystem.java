@@ -129,7 +129,7 @@ public class FShareFileSystem implements IFileSystem
     if (size == FShareConstants.FOLDER)
     {
       FShareFolder folder = new FShareFolder(name, parentFolder);
-      parentFolder.addChild(folder, true);
+      parentFolder.addChild(folder, true, true);
     }
     else
     {
@@ -137,7 +137,7 @@ public class FShareFileSystem implements IFileSystem
       if (file == null)
       {
         file = new FShareFile(name, size, parentFolder);
-        parentFolder.addChild(file, true);
+        parentFolder.addChild(file, true, true);
       }
 
       file.setUploaded(progress);

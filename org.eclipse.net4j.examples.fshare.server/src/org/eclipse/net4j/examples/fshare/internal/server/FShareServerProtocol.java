@@ -110,6 +110,8 @@ public class FShareServerProtocol extends SignalProtocol<FShareServer> implement
         protected void responding(ExtendedDataOutputStream out) throws Exception
         {
           File folder = new File(rootFolder, path);
+          System.out.println(folder.getAbsolutePath());
+
           File[] children = folder.listFiles();
           out.writeInt(children.length);
           for (File file : children)
@@ -122,10 +124,31 @@ public class FShareServerProtocol extends SignalProtocol<FShareServer> implement
             }
             else
             {
+              long progress = getProgressFromFeedback();
+              if (progress == FOLDER)
+              {
+                progress = file.length(); // TODO Consider incomplete uploads!
+              }
+
               out.writeLong(file.length());
-              out.writeLong(file.length()); // TODO Consider incomplete uploads!
+              out.writeLong(progress);
             }
           }
+        }
+
+        private long getProgressFromFeedback()
+        {
+          FShareUpload[] uploads = getInfraStructure().getUploads();
+          for (FShareUpload upload : uploads)
+          {
+            long progress = upload.getProgress(path);
+            if (progress != FOLDER)
+            {
+              return progress;
+            }
+          }
+
+          return FOLDER;
         }
       };
 

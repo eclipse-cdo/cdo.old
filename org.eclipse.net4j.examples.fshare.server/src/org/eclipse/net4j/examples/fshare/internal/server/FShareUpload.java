@@ -61,6 +61,19 @@ public class FShareUpload
     return feedbacks;
   }
 
+  public synchronized long getProgress(String path)
+  {
+    for (Feedback feedback : feedbacks)
+    {
+      if (path.equals(feedback.path))
+      {
+        return feedback.progress;
+      }
+    }
+
+    return FShareConstants.FOLDER;
+  }
+
   public synchronized void folderAdded(String path)
   {
     Feedback feedback = new Feedback(path);
@@ -84,11 +97,11 @@ public class FShareUpload
    */
   public static class Feedback
   {
-    public String path;
+    public volatile String path;
 
-    public long size;
+    public volatile long size;
 
-    public long progress;
+    public volatile long progress;
 
     public Feedback(String path, long size)
     {

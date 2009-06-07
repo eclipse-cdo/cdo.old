@@ -92,7 +92,7 @@ public class FShareClientProtocol extends SignalProtocol<FShareFileSystem> imple
             if (size == FOLDER)
             {
               FShareFolder folder = new FShareFolder(name, parent);
-              parent.addChild(folder, false);
+              parent.addChild(folder, false, false);
             }
             else
             {
@@ -100,7 +100,7 @@ public class FShareClientProtocol extends SignalProtocol<FShareFileSystem> imple
               if (file == null)
               {
                 file = new FShareFile(name, size, parent);
-                parent.addChild(file, false);
+                parent.addChild(file, false, false);
               }
 
               file.setUploaded(progress);
