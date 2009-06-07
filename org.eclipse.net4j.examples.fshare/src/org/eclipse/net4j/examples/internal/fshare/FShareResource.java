@@ -47,7 +47,6 @@ public abstract class FShareResource implements IResource
 
   public String getPath()
   {
-    // return getPath(fileSystem.getRootFolder());
     if (parent == null)
     {
       return "";
