@@ -101,6 +101,7 @@ public final class FShareContentProvider implements ITreeContentProvider, IFileS
       public void run()
       {
         viewer.update(file, null);
+        viewer.reveal(file);
       }
     });
   }

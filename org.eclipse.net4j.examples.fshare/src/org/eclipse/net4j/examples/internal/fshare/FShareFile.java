@@ -29,8 +29,11 @@ public class FShareFile extends FShareResource implements IFile
 
   public void setUploaded(long uploaded)
   {
-    this.uploaded = uploaded;
-    getFileSystem().fireProgressChanged(this);
+    if (uploaded > 0)
+    {
+      this.uploaded = uploaded;
+      getFileSystem().fireProgressChanged(this);
+    }
   }
 
   public int getPercentUploaded()

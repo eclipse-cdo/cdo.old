@@ -36,7 +36,7 @@ public class FShareServerProtocol extends SignalProtocol<FShareServer> implement
   {
     try
     {
-      new Request(this, SIGNAL_UPLOAD_FEEDBACK)
+      new Request(this, SIGNAL_UPLOAD_FEEDBACK, "UploadFeedback")
       {
         @Override
         protected void requesting(ExtendedDataOutputStream out) throws Exception
@@ -70,7 +70,7 @@ public class FShareServerProtocol extends SignalProtocol<FShareServer> implement
     switch (signalID)
     {
     case SIGNAL_LOGON:
-      return new IndicationWithResponse(this, SIGNAL_LOGON)
+      return new IndicationWithResponse(this, SIGNAL_LOGON, "Logon")
       {
         private boolean ok = false;
 
@@ -93,7 +93,7 @@ public class FShareServerProtocol extends SignalProtocol<FShareServer> implement
       };
 
     case SIGNAL_UPLOAD:
-      return new Indication(this, SIGNAL_UPLOAD)
+      return new Indication(this, SIGNAL_UPLOAD, "Upload")
       {
         private File rootFolder = new File(getInfraStructure().getPath());
 

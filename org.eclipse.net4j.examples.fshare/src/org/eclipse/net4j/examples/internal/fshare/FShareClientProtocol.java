@@ -41,7 +41,7 @@ public class FShareClientProtocol extends SignalProtocol<FShareFileSystem> imple
   {
     try
     {
-      boolean ok = new RequestWithConfirmation<Boolean>(this, SIGNAL_LOGON)
+      boolean ok = new RequestWithConfirmation<Boolean>(this, SIGNAL_LOGON, "Logon")
       {
         @Override
         protected void requesting(ExtendedDataOutputStream out) throws Exception
@@ -76,7 +76,7 @@ public class FShareClientProtocol extends SignalProtocol<FShareFileSystem> imple
       {
         try
         {
-          new Request(FShareClientProtocol.this, SIGNAL_UPLOAD)
+          new Request(FShareClientProtocol.this, SIGNAL_UPLOAD, "Upload")
           {
             private List<FShareResource> resources = new ArrayList<FShareResource>();
 
@@ -293,7 +293,7 @@ public class FShareClientProtocol extends SignalProtocol<FShareFileSystem> imple
     switch (signalID)
     {
     case SIGNAL_UPLOAD_FEEDBACK:
-      return new Indication(this, SIGNAL_UPLOAD_FEEDBACK)
+      return new Indication(this, SIGNAL_UPLOAD_FEEDBACK, "UploadFeedback")
       {
         @Override
         protected void indicating(ExtendedDataInputStream in) throws Exception
