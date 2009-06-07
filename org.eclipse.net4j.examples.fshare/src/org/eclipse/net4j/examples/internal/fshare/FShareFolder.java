@@ -44,7 +44,10 @@ public class FShareFolder extends FShareResource implements IFolder
   public void setLocked(boolean locked)
   {
     this.locked = locked;
-    getFileSystem().fireFolderUnlocked(this);
+    if (!locked)
+    {
+      getFileSystem().fireFolderUnlocked(this);
+    }
   }
 
   public FShareResource getChild(String name)

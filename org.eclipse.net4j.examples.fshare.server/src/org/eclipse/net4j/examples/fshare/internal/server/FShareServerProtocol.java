@@ -44,6 +44,7 @@ public class FShareServerProtocol extends SignalProtocol<FShareServer> implement
           out.writeInt(uploads.size());
           for (FShareUpload upload : uploads)
           {
+            out.writeString(upload.getPath());
             out.writeBoolean(upload.isDone());
 
             List<Feedback> feedbacks = upload.getFeedbacks();
@@ -97,9 +98,9 @@ public class FShareServerProtocol extends SignalProtocol<FShareServer> implement
       {
         private File rootFolder = new File(getInfraStructure().getPath());
 
-        private FShareUpload upload = getInfraStructure().addUpload(FShareServerProtocol.this);
-
         private byte[] buffer = new byte[16000];
+
+        private FShareUpload upload;
 
         @Override
         protected void indicating(ExtendedDataInputStream in) throws Exception
@@ -109,6 +110,10 @@ public class FShareServerProtocol extends SignalProtocol<FShareServer> implement
           {
             String path = in.readString();
             File target = new File(rootFolder, path);
+            if (upload == null)
+            {
+              upload = getInfraStructure().addUpload(FShareServerProtocol.this, path);
+            }
 
             long size = in.readLong();
             if (size == FOLDER)

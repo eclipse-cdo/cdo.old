@@ -120,7 +120,7 @@ public class FShareFileSystem implements IFileSystem
     }
   }
 
-  public FShareResource setUploadFeedback(String path, long size, long progress)
+  public void setUploadFeedback(String path, long size, long progress)
   {
     String[] split = FShareUtil.splitPathLast(path);
     FShareFolder parentFolder = split[0] == null ? rootFolder : (FShareFolder)getResource(split[0]);
@@ -130,18 +130,18 @@ public class FShareFileSystem implements IFileSystem
     {
       FShareFolder folder = new FShareFolder(name, parentFolder);
       parentFolder.addChild(folder, true);
-      return folder;
     }
-
-    FShareFile file = (FShareFile)parentFolder.getChild(name);
-    if (file == null)
+    else
     {
-      file = new FShareFile(name, size, parentFolder);
-      parentFolder.addChild(file, true);
-    }
+      FShareFile file = (FShareFile)parentFolder.getChild(name);
+      if (file == null)
+      {
+        file = new FShareFile(name, size, parentFolder);
+        parentFolder.addChild(file, true);
+      }
 
-    file.setUploaded(progress);
-    return file;
+      file.setUploaded(progress);
+    }
   }
 
   protected IManagedContainer getContainer()

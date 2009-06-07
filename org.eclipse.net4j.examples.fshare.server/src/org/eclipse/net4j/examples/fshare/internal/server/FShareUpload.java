@@ -10,13 +10,16 @@ public class FShareUpload
 {
   private FShareServerProtocol session;
 
-  private List<Feedback> feedbacks = new LinkedList<Feedback>();
+  private String path;
 
   private boolean done;
 
-  public FShareUpload(FShareServerProtocol session)
+  private List<Feedback> feedbacks = new LinkedList<Feedback>();
+
+  public FShareUpload(FShareServerProtocol session, String path)
   {
     this.session = session;
+    this.path = path;
   }
 
   public FShareUpload(FShareUpload source)
@@ -24,6 +27,8 @@ public class FShareUpload
     synchronized (source)
     {
       session = source.session;
+      path = source.path;
+      done = source.done;
       for (Iterator<Feedback> it = source.feedbacks.iterator(); it.hasNext();)
       {
         Feedback feedback = it.next();
@@ -34,6 +39,26 @@ public class FShareUpload
         }
       }
     }
+  }
+
+  public FShareServerProtocol getSession()
+  {
+    return session;
+  }
+
+  public String getPath()
+  {
+    return path;
+  }
+
+  public boolean isDone()
+  {
+    return done;
+  }
+
+  public List<Feedback> getFeedbacks()
+  {
+    return feedbacks;
   }
 
   public synchronized void folderAdded(String path)
@@ -49,17 +74,7 @@ public class FShareUpload
     return feedback;
   }
 
-  public List<Feedback> getFeedbacks()
-  {
-    return feedbacks;
-  }
-
-  public boolean isDone()
-  {
-    return done;
-  }
-
-  public void setDone()
+  public synchronized void setDone()
   {
     done = true;
   }
@@ -92,6 +107,7 @@ public class FShareUpload
     {
       path = source.path;
       size = source.size;
+      progress = source.progress;
     }
 
     public boolean isDone()

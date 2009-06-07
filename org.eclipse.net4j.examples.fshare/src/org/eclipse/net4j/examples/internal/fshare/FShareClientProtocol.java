@@ -301,8 +301,8 @@ public class FShareClientProtocol extends SignalProtocol<FShareFileSystem> imple
           int uploadsCount = in.readInt();
           for (int i = 0; i < uploadsCount; i++)
           {
+            String basePath = in.readString();
             boolean uploadDone = in.readBoolean();
-            FShareResource resource = null;
 
             int resourcesCount = in.readInt();
             for (int j = 0; j < resourcesCount; j++)
@@ -310,28 +310,13 @@ public class FShareClientProtocol extends SignalProtocol<FShareFileSystem> imple
               String path = in.readString();
               long size = in.readLong();
               long progress = in.readLong();
-              resource = getInfraStructure().setUploadFeedback(path, size, progress);
+              getInfraStructure().setUploadFeedback(path, size, progress);
             }
 
             if (uploadDone)
             {
-              unlock(resource instanceof FShareFolder ? (FShareFolder)resource : resource.getParent());
-            }
-          }
-        }
-
-        private void unlock(FShareFolder folder)
-        {
-          if (folder.isLocked())
-          {
-            folder.setLocked(false);
-          }
-          else
-          {
-            FShareFolder parent = folder.getParent();
-            if (parent != null)
-            {
-              unlock(parent);
+              FShareFolder baseFolder = (FShareFolder)getInfraStructure().getResource(basePath);
+              baseFolder.setLocked(false);
             }
           }
         }
