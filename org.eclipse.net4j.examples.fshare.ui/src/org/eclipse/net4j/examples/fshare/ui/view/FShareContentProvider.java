@@ -140,11 +140,11 @@ public final class FShareContentProvider implements ITreeContentProvider, IFileS
   {
     if (folder == rootFolder)
     {
-      viewer.refresh(true);
+      viewer.refresh();
     }
     else
     {
-      viewer.refresh(folder, true);
+      viewer.refresh(folder);
     }
   }
 }

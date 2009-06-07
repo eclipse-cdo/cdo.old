@@ -37,6 +37,8 @@ public class FShareView extends ViewPart
     viewer.setContentProvider(new FShareContentProvider());
     viewer.setLabelProvider(new FShareLabelProvider());
     viewer.setInput(fileSystem.getRootFolder());
+
+    getSite().setSelectionProvider(viewer);
   }
 
   @Override

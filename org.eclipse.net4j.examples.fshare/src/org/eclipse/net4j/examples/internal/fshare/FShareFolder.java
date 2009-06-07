@@ -90,7 +90,7 @@ public class FShareFolder extends FShareResource implements IFolder
   public boolean performDrop(String sourcePath)
   {
     File source = new File(sourcePath);
-    FShareResource resource = createResource(source);
+    FShareResource resource = createResource(source, true);
     if (addChild(resource, true))
     {
       getFileSystem().getProtocol().upload(resource, source);
@@ -100,12 +100,16 @@ public class FShareFolder extends FShareResource implements IFolder
     return false;
   }
 
-  private FShareResource createResource(File source)
+  private FShareResource createResource(File source, boolean base)
   {
     if (source.isDirectory())
     {
       FShareFolder folder = createFolder(source);
-      folder.setLocked(true);
+      if (base)
+      {
+        folder.setLocked(true);
+      }
+
       return folder;
     }
 
@@ -117,7 +121,7 @@ public class FShareFolder extends FShareResource implements IFolder
     FShareFolder folder = new FShareFolder(source.getName(), this);
     for (File child : source.listFiles())
     {
-      FShareResource resource = folder.createResource(child);
+      FShareResource resource = folder.createResource(child, false);
       folder.addChild(resource, false);
     }
 
