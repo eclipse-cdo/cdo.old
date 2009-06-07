@@ -1,6 +1,7 @@
 package org.eclipse.net4j.examples.internal.fshare;
 
 import org.eclipse.net4j.connector.IConnector;
+import org.eclipse.net4j.examples.fshare.FShareUtil;
 import org.eclipse.net4j.examples.fshare.IFileSystem;
 import org.eclipse.net4j.examples.fshare.common.FShareConstants;
 import org.eclipse.net4j.examples.internal.fshare.bundle.OM;
@@ -86,14 +87,14 @@ public class FShareFileSystem implements IFileSystem
     FShareFolder folder = rootFolder;
     for (;;)
     {
-      int slash = path.indexOf('/');
-      if (slash == -1)
+      String[] split = FShareUtil.splitPathFirst(path);
+      if (split[1] == null)
       {
-        return folder.getChild(path);
+        return folder.getChild(split[0]);
       }
 
-      folder = (FShareFolder)folder.getChild(path.substring(0, slash));
-      path = path.substring(slash + 1);
+      folder = (FShareFolder)folder.getChild(split[0]);
+      path = split[1];
     }
   }
 
@@ -110,12 +111,7 @@ public class FShareFileSystem implements IFileSystem
     listeners.remove(listener);
   }
 
-  protected IManagedContainer getContainer()
-  {
-    return IPluginContainer.INSTANCE;
-  }
-
-  private Listener[] getListeners()
+  public Listener[] getListeners()
   {
     synchronized (listeners)
     {
@@ -123,7 +119,36 @@ public class FShareFileSystem implements IFileSystem
     }
   }
 
-  private void fireProtocolClosed()
+  public FShareResource setUploadFeedback(String path, long size, long progress)
+  {
+    String[] split = FShareUtil.splitPathLast(path);
+    FShareFolder parentFolder = split[0] == null ? rootFolder : (FShareFolder)getResource(split[0]);
+    String name = split[1];
+
+    if (size == FShareConstants.FOLDER)
+    {
+      FShareFolder folder = new FShareFolder(name, parentFolder);
+      parentFolder.addChild(folder, true);
+      return folder;
+    }
+
+    FShareFile file = (FShareFile)parentFolder.getChild(name);
+    if (file == null)
+    {
+      file = new FShareFile(name, size, parentFolder);
+      parentFolder.addChild(file, true);
+    }
+
+    file.setUploaded(progress);
+    return file;
+  }
+
+  protected IManagedContainer getContainer()
+  {
+    return IPluginContainer.INSTANCE;
+  }
+
+  protected void fireProtocolClosed()
   {
     for (Listener listener : getListeners())
     {
@@ -138,7 +163,7 @@ public class FShareFileSystem implements IFileSystem
     }
   }
 
-  public void fireResourceAdded(FShareResource resource)
+  protected void fireResourceAdded(FShareResource resource)
   {
     for (Listener listener : getListeners())
     {
@@ -153,12 +178,18 @@ public class FShareFileSystem implements IFileSystem
     }
   }
 
-  public FShareResource setUploadFeedback(String path, long size, long progress)
+  protected void fireFolderUnlocked(FShareFolder folder)
   {
-    if (size == FShareConstants.FOLDER)
+    for (Listener listener : getListeners())
     {
+      try
+      {
+        listener.folderUnlocked(folder);
+      }
+      catch (Exception ex)
+      {
+        OM.LOG.error(ex);
+      }
     }
-
-    return null;
   }
 }

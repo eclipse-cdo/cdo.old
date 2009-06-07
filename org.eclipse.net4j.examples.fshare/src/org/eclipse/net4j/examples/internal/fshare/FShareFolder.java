@@ -44,6 +44,7 @@ public class FShareFolder extends FShareResource implements IFolder
   public void setLocked(boolean locked)
   {
     this.locked = locked;
+    getFileSystem().fireFolderUnlocked(this);
   }
 
   public FShareResource getChild(String name)
@@ -60,6 +61,27 @@ public class FShareFolder extends FShareResource implements IFolder
     {
       return children.values().toArray(new FShareResource[children.size()]);
     }
+  }
+
+  public boolean addChild(FShareResource resource, boolean notify)
+  {
+    boolean added = false;
+    String name = resource.getName();
+    synchronized (children)
+    {
+      if (!children.containsKey(name))
+      {
+        children.put(name, resource);
+        added = true;
+      }
+    }
+
+    if (added && notify)
+    {
+      getFileSystem().fireResourceAdded(resource);
+    }
+
+    return added;
   }
 
   public boolean performDrop(String sourcePath)
@@ -102,26 +124,5 @@ public class FShareFolder extends FShareResource implements IFolder
   private FShareFile createFile(File source)
   {
     return new FShareFile(source.getName(), source.length(), this);
-  }
-
-  private boolean addChild(FShareResource resource, boolean notify)
-  {
-    boolean added = false;
-    String name = resource.getName();
-    synchronized (children)
-    {
-      if (!children.containsKey(name))
-      {
-        children.put(name, resource);
-        added = true;
-      }
-    }
-
-    if (added && notify)
-    {
-      getFileSystem().fireResourceAdded(resource);
-    }
-
-    return added;
   }
 }

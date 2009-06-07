@@ -1,5 +1,6 @@
 package org.eclipse.net4j.examples.fshare;
 
+
 /**
  * @author Eike Stepper
  */
@@ -21,5 +22,7 @@ public interface IFileSystem
     public void protocolClosed(IFileSystem fileSystem);
 
     public void resourceAdded(IResource resource);
+
+    public void folderUnlocked(IFolder folder);
   }
 }
