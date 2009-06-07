@@ -63,6 +63,11 @@ public abstract class FShareResource implements IResource
   @Override
   public String toString()
   {
+    if (parent == null)
+    {
+      return "/";
+    }
+
     return getPath();
   }
 }

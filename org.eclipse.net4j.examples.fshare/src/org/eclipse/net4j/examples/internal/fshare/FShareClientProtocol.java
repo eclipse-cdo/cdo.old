@@ -69,45 +69,52 @@ public class FShareClientProtocol extends SignalProtocol<FShareFileSystem> imple
 
   public void loadChildren(final FShareFolder parent)
   {
-    new RequestWithConfirmation<Object>(this, SIGNAL_LOAD_CHILDREN, "LoadChildren")
+    try
     {
-      @Override
-      protected void requesting(ExtendedDataOutputStream out) throws Exception
+      new RequestWithConfirmation<Object>(this, SIGNAL_LOAD_CHILDREN, "LoadChildren")
       {
-        out.writeString(parent.getPath());
-      }
-
-      @Override
-      protected Object confirming(ExtendedDataInputStream in) throws Exception
-      {
-        int count = in.readInt();
-        for (int i = 0; i < count; i++)
+        @Override
+        protected void requesting(ExtendedDataOutputStream out) throws Exception
         {
-          String name = in.readString();
-          long size = in.readLong();
-          long progress = in.readLong();
+          out.writeString(parent.getPath());
+        }
 
-          if (size == FShareConstants.FOLDER)
+        @Override
+        protected Object confirming(ExtendedDataInputStream in) throws Exception
+        {
+          int count = in.readInt();
+          for (int i = 0; i < count; i++)
           {
-            FShareFolder folder = new FShareFolder(name, parent);
-            folder.addChild(folder, false);
-          }
-          else
-          {
-            FShareFile file = (FShareFile)parent.getChild(name);
-            if (file == null)
+            String name = in.readString();
+            long size = in.readLong();
+            long progress = in.readLong();
+
+            if (size == FOLDER)
             {
-              file = new FShareFile(name, size, parent);
-              parent.addChild(file, false);
+              FShareFolder folder = new FShareFolder(name, parent);
+              parent.addChild(folder, false);
+            }
+            else
+            {
+              FShareFile file = (FShareFile)parent.getChild(name);
+              if (file == null)
+              {
+                file = new FShareFile(name, size, parent);
+                parent.addChild(file, false);
+              }
+
+              file.setUploaded(progress);
             }
 
-            file.setUploaded(progress);
           }
-
+          return null;
         }
-        return null;
-      }
-    };
+      }.send();
+    }
+    catch (Exception ex)
+    {
+      throw WrappedException.wrap(ex);
+    }
   }
 
   public void upload(final FShareResource baseResource, final File source)
