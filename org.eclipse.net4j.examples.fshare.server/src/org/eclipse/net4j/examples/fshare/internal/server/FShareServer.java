@@ -27,6 +27,7 @@ import org.eclipse.net4j.util.om.OSGiApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.spi.net4j.AcceptorFactory;
 
+import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -41,9 +42,13 @@ public class FShareServer extends OSGiApplication
 {
   public static final String ID = OM.BUNDLE_ID + ".app";
 
+  private static final String UPLOAD_SUFFIX = ".FShareUpload";
+
   private IAcceptor acceptor;
 
   private String path;
+
+  private FShareServerFolder rootFolder;
 
   private List<FShareServerProtocol> sessions = new ArrayList<FShareServerProtocol>();
 
@@ -129,6 +134,7 @@ public class FShareServer extends OSGiApplication
     {
       URI uri = new URI(args[0]);
       path = uri.getPath();
+      rootFolder = createRootFolder();
 
       String type = uri.getScheme();
       String description = uri.getAuthority();
@@ -155,6 +161,54 @@ public class FShareServer extends OSGiApplication
   protected IManagedContainer getContainer()
   {
     return IPluginContainer.INSTANCE;
+  }
+
+  private FShareServerFolder createRootFolder()
+  {
+    FShareServerFolder folder = new FShareServerFolder(path, null)
+    {
+      @Override
+      public File getTarget()
+      {
+        return new File(path);
+      }
+    };
+
+    populateFolder(folder);
+    return folder;
+  }
+
+  private void populateFolder(FShareServerFolder folder)
+  {
+    for (File file : folder.getTarget().listFiles())
+    {
+      String name = file.getName();
+      if (name.endsWith(UPLOAD_SUFFIX))
+      {
+        continue;
+      }
+
+      if (file.isDirectory())
+      {
+        FShareServerFolder child = new FShareServerFolder(name, folder);
+        folder.addChild(child);
+        populateFolder(child);
+      }
+      else
+      {
+        File lockFile = new File(file.getAbsolutePath() + UPLOAD_SUFFIX);
+        if (lockFile.exists())
+        {
+          lockFile.delete();
+          file.delete();
+        }
+        else
+        {
+          FShareServerFile child = new FShareServerFile(name, file.length(), folder);
+          folder.addChild(child);
+        }
+      }
+    }
   }
 
   /**
