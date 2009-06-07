@@ -10,6 +10,7 @@
  */
 package org.eclipse.net4j.examples.fshare.ui.view;
 
+import org.eclipse.net4j.examples.fshare.IFile;
 import org.eclipse.net4j.examples.fshare.IFileSystem;
 import org.eclipse.net4j.examples.fshare.IFolder;
 import org.eclipse.net4j.examples.fshare.IResource;
@@ -78,6 +79,8 @@ public final class FShareContentProvider implements ITreeContentProvider, IFileS
 
   public void protocolClosed(IFileSystem fileSystem)
   {
+    // TODO: implement FShareContentProvider.protocolClosed(fileSystem)
+    throw new UnsupportedOperationException();
   }
 
   public void resourceAdded(final IResource resource)
@@ -86,15 +89,29 @@ public final class FShareContentProvider implements ITreeContentProvider, IFileS
     {
       public void run()
       {
-        IFolder folder = resource.getParent();
-        if (folder == rootFolder)
-        {
-          viewer.refresh(true);
-        }
-        else
-        {
-          viewer.refresh(folder, true);
-        }
+        refreshViewer(resource.getParent());
+      }
+    });
+  }
+
+  public void progressChanged(final IFile file)
+  {
+    updateUI(new Runnable()
+    {
+      public void run()
+      {
+        viewer.update(file, null);
+      }
+    });
+  }
+
+  public void folderUnlocked(final IFolder folder)
+  {
+    updateUI(new Runnable()
+    {
+      public void run()
+      {
+        refreshViewer(folder);
       }
     });
   }
@@ -115,6 +132,18 @@ public final class FShareContentProvider implements ITreeContentProvider, IFileS
     else
     {
       display.asyncExec(runnable);
+    }
+  }
+
+  private void refreshViewer(IFolder folder)
+  {
+    if (folder == rootFolder)
+    {
+      viewer.refresh(true);
+    }
+    else
+    {
+      viewer.refresh(folder, true);
     }
   }
 }

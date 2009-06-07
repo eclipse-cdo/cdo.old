@@ -192,4 +192,19 @@ public class FShareFileSystem implements IFileSystem
       }
     }
   }
+
+  protected void fireProgressChanged(FShareFile file)
+  {
+    for (Listener listener : getListeners())
+    {
+      try
+      {
+        listener.progressChanged(file);
+      }
+      catch (Exception ex)
+      {
+        OM.LOG.error(ex);
+      }
+    }
+  }
 }
