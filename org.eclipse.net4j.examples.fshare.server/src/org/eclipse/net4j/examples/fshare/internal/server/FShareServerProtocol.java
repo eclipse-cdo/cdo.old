@@ -26,10 +26,13 @@ import java.util.List;
  */
 public class FShareServerProtocol extends SignalProtocol<FShareServer> implements FShareConstants
 {
+  private File rootFolder;
+
   public FShareServerProtocol(FShareServer server)
   {
     super(PROTOCOL_NAME);
     setInfraStructure(server);
+    rootFolder = new File(server.getPath());
   }
 
   public void notifyUploads(final List<FShareUpload> uploads)
@@ -79,8 +82,7 @@ public class FShareServerProtocol extends SignalProtocol<FShareServer> implement
         protected void indicating(ExtendedDataInputStream in) throws Exception
         {
           String path = in.readString();
-          String path2 = getInfraStructure().getPath();
-          if (path2.equals(path))
+          if (path.equals(getInfraStructure().getPath()))
           {
             ok = getInfraStructure().addSession(FShareServerProtocol.this);
           }
@@ -93,11 +95,43 @@ public class FShareServerProtocol extends SignalProtocol<FShareServer> implement
         }
       };
 
+    case SIGNAL_LOAD_CHILDREN:
+      return new IndicationWithResponse(this, SIGNAL_LOAD_CHILDREN, "LoadChildren")
+      {
+        private String path;
+
+        @Override
+        protected void indicating(ExtendedDataInputStream in) throws Exception
+        {
+          path = in.readString();
+        }
+
+        @Override
+        protected void responding(ExtendedDataOutputStream out) throws Exception
+        {
+          File folder = new File(rootFolder, path);
+          File[] children = folder.listFiles();
+          out.writeInt(children.length);
+          for (File file : children)
+          {
+            out.writeString(file.getName());
+            if (file.isDirectory())
+            {
+              out.writeLong(FOLDER);
+              out.writeLong(FOLDER);
+            }
+            else
+            {
+              out.writeLong(file.length());
+              out.writeLong(file.length()); // TODO Consider incomplete uploads!
+            }
+          }
+        }
+      };
+
     case SIGNAL_UPLOAD:
       return new Indication(this, SIGNAL_UPLOAD, "Upload")
       {
-        private File rootFolder = new File(getInfraStructure().getPath());
-
         private byte[] buffer = new byte[16000];
 
         private FShareUpload upload;

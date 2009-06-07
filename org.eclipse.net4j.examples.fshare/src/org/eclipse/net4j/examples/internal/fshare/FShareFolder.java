@@ -13,7 +13,7 @@ public class FShareFolder extends FShareResource implements IFolder
 {
   private boolean locked;
 
-  private Map<String, FShareResource> children = new HashMap<String, FShareResource>();
+  private Map<String, FShareResource> children;
 
   public FShareFolder(FShareFileSystem fileSystem)
   {
@@ -52,16 +52,18 @@ public class FShareFolder extends FShareResource implements IFolder
 
   public FShareResource getChild(String name)
   {
-    synchronized (children)
+    synchronized (this)
     {
+      ensureChildren();
       return children.get(name);
     }
   }
 
   public FShareResource[] getChildren()
   {
-    synchronized (children)
+    synchronized (this)
     {
+      ensureChildren();
       return children.values().toArray(new FShareResource[children.size()]);
     }
   }
@@ -70,8 +72,9 @@ public class FShareFolder extends FShareResource implements IFolder
   {
     boolean added = false;
     String name = resource.getName();
-    synchronized (children)
+    synchronized (this)
     {
+      ensureChildren();
       if (!children.containsKey(name))
       {
         children.put(name, resource);
@@ -133,5 +136,14 @@ public class FShareFolder extends FShareResource implements IFolder
   private FShareFile createFile(File source)
   {
     return new FShareFile(source.getName(), source.length(), this);
+  }
+
+  private void ensureChildren()
+  {
+    if (children == null)
+    {
+      children = new HashMap<String, FShareResource>();
+      getFileSystem().getProtocol().loadChildren(this);
+    }
   }
 }

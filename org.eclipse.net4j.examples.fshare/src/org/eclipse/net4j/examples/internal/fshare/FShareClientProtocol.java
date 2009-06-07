@@ -67,6 +67,49 @@ public class FShareClientProtocol extends SignalProtocol<FShareFileSystem> imple
     }
   }
 
+  public void loadChildren(final FShareFolder parent)
+  {
+    new RequestWithConfirmation<Object>(this, SIGNAL_LOAD_CHILDREN, "LoadChildren")
+    {
+      @Override
+      protected void requesting(ExtendedDataOutputStream out) throws Exception
+      {
+        out.writeString(parent.getPath());
+      }
+
+      @Override
+      protected Object confirming(ExtendedDataInputStream in) throws Exception
+      {
+        int count = in.readInt();
+        for (int i = 0; i < count; i++)
+        {
+          String name = in.readString();
+          long size = in.readLong();
+          long progress = in.readLong();
+
+          if (size == FShareConstants.FOLDER)
+          {
+            FShareFolder folder = new FShareFolder(name, parent);
+            folder.addChild(folder, false);
+          }
+          else
+          {
+            FShareFile file = (FShareFile)parent.getChild(name);
+            if (file == null)
+            {
+              file = new FShareFile(name, size, parent);
+              parent.addChild(file, false);
+            }
+
+            file.setUploaded(progress);
+          }
+
+        }
+        return null;
+      }
+    };
+  }
+
   public void upload(final FShareResource baseResource, final File source)
   {
     new Job("Uploading " + source)
