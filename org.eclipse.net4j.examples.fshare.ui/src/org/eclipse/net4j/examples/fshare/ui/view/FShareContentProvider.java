@@ -79,8 +79,11 @@ public final class FShareContentProvider implements ITreeContentProvider, IFileS
 
   public void protocolClosed(IFileSystem fileSystem)
   {
-    // TODO: implement FShareContentProvider.protocolClosed(fileSystem)
-    throw new UnsupportedOperationException();
+    if (!viewer.getControl().isDisposed())
+    {
+      // TODO: implement FShareContentProvider.protocolClosed(fileSystem)
+      throw new UnsupportedOperationException();
+    }
   }
 
   public void resourceAdded(final IResource resource)

@@ -36,6 +36,7 @@ public class FShareView extends ViewPart
     viewer.addDropSupport(ops, transfers, new FShareDropHandler(fileSystem, viewer));
     viewer.setContentProvider(new FShareContentProvider());
     viewer.setLabelProvider(new FShareLabelProvider());
+    viewer.setComparator(new FShareComparator());
     viewer.setInput(fileSystem.getRootFolder());
 
     getSite().setSelectionProvider(viewer);
