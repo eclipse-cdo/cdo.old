@@ -209,7 +209,9 @@ public class FShareServer extends OSGiApplication
         }
         else
         {
-          FShareServerFile child = new FShareServerFile(name, file.length(), folder);
+          long size = file.length();
+          FShareServerFile child = new FShareServerFile(name, size, folder);
+          child.setUploaded(size);
           folder.addChild(child);
         }
       }
