@@ -87,17 +87,19 @@ public class FShareFolder extends FShareResource implements IFolder
     return added;
   }
 
-  public boolean performDrop(String sourcePath)
+  public boolean performDrop(String[] sourcePaths)
   {
-    File source = new File(sourcePath);
-    FShareResource resource = createResource(source, true);
-    if (addChild(resource, true))
+    for (String sourcePath : sourcePaths)
     {
-      getFileSystem().getProtocol().upload(resource, source);
-      return true;
+      File source = new File(sourcePath);
+      FShareResource resource = createResource(source, true);
+      if (addChild(resource, true))
+      {
+        getFileSystem().getProtocol().upload(resource, source);
+      }
     }
 
-    return false;
+    return true;
   }
 
   private FShareResource createResource(File source, boolean base)

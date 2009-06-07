@@ -23,7 +23,7 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor
   public void preWindowOpen()
   {
     IWorkbenchWindowConfigurer configurer = getWindowConfigurer();
-    configurer.setInitialSize(new Point(400, 600));
+    configurer.setInitialSize(new Point(600, 800));
     configurer.setShowCoolBar(false);
     configurer.setShowStatusLine(false);
     configurer.setTitle(Application.getTargetURL());

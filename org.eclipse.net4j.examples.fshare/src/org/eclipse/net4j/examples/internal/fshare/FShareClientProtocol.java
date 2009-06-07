@@ -67,7 +67,7 @@ public class FShareClientProtocol extends SignalProtocol<FShareFileSystem> imple
     }
   }
 
-  public void upload(final FShareResource resource, final File source)
+  public void upload(final FShareResource baseResource, final File source)
   {
     new Job("Uploading " + source)
     {
@@ -87,7 +87,7 @@ public class FShareClientProtocol extends SignalProtocol<FShareFileSystem> imple
             @Override
             protected void requesting(ExtendedDataOutputStream out) throws Exception
             {
-              collectFiles(resource);
+              collectFiles(baseResource);
               monitor.beginTask(getName(), totalSize);
 
               try
@@ -96,14 +96,15 @@ public class FShareClientProtocol extends SignalProtocol<FShareFileSystem> imple
 
                 for (FShareResource resource : resources)
                 {
-                  String path = resource.getPath();
-                  out.writeString(path);
+                  out.writeString(resource.getPath());
                   if (resource instanceof FShareFile)
                   {
                     FShareFile file = (FShareFile)resource;
                     long size = file.getSize();
                     out.writeLong(size);
-                    writeFile(out, new File(source.getParentFile(), path), size, monitor);
+
+                    String relativePath = resource.getPath(baseResource.getParent());
+                    writeFile(out, new File(source.getParentFile(), relativePath), size, monitor);
                   }
                   else
                   {
@@ -163,7 +164,7 @@ public class FShareClientProtocol extends SignalProtocol<FShareFileSystem> imple
         }
         catch (Exception ex)
         {
-          return new Status(IStatus.ERROR, OM.BUNDLE_ID, "Problem while uploading " + resource, ex);
+          return new Status(IStatus.ERROR, OM.BUNDLE_ID, "Problem while uploading " + baseResource, ex);
         }
 
         return Status.OK_STATUS;
@@ -315,8 +316,12 @@ public class FShareClientProtocol extends SignalProtocol<FShareFileSystem> imple
 
             if (uploadDone)
             {
-              FShareFolder baseFolder = (FShareFolder)getInfraStructure().getResource(basePath);
-              baseFolder.setLocked(false);
+              FShareResource baseResource = getInfraStructure().getResource(basePath);
+              if (baseResource instanceof FShareFolder)
+              {
+                FShareFolder baseFolder = (FShareFolder)baseResource;
+                baseFolder.setLocked(false);
+              }
             }
           }
         }

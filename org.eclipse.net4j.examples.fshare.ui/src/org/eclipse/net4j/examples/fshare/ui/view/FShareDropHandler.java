@@ -49,8 +49,7 @@ public class FShareDropHandler extends ViewerDropAdapter
       return false;
     }
 
-    String sourcePath = ((String[])data)[0];
-    return folder.performDrop(sourcePath);
+    return folder.performDrop((String[])data);
   }
 
   private IFolder getFolder(Object target)

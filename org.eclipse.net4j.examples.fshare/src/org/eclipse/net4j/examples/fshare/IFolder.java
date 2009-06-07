@@ -11,5 +11,5 @@ public interface IFolder extends IResource
 
   public IResource[] getChildren();
 
-  public boolean performDrop(String sourcePath);
+  public boolean performDrop(String[] data);
 }
