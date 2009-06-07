@@ -180,14 +180,14 @@ public class FShareServerProtocol extends SignalProtocol<FShareServer> implement
             }
             else
             {
-              readFile(in, path, size);
+              writeFile(in, path, size);
             }
           }
 
           upload.setDone();
         }
 
-        private void readFile(ExtendedDataInputStream in, String path, long size) throws IOException
+        private void writeFile(ExtendedDataInputStream in, String path, long size) throws IOException
         {
           OutputStream out = null;
           Feedback feedback = upload.fileBegin(path, size);

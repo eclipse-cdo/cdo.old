@@ -204,6 +204,7 @@ public class FShareServer extends OSGiApplication
         File lockFile = new File(file.getAbsolutePath() + UPLOAD_SUFFIX);
         if (lockFile.exists())
         {
+          // Purge incomplete uploads
           lockFile.delete();
           file.delete();
         }
