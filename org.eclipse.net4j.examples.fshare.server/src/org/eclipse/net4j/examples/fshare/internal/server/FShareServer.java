@@ -79,6 +79,11 @@ public class FShareServer extends OSGiApplication
     return path;
   }
 
+  public FShareServerFolder getRootFolder()
+  {
+    return rootFolder;
+  }
+
   public FShareServerProtocol[] getSessions()
   {
     synchronized (sessions)
