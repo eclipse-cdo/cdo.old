@@ -30,9 +30,10 @@ import java.util.List;
  */
 public class FShareClientProtocol extends SignalProtocol<FShareFileSystem> implements FShareConstants
 {
-  public FShareClientProtocol(IConnector connector)
+  public FShareClientProtocol(IConnector connector, FShareFileSystem fileSystem)
   {
     super(PROTOCOL_NAME);
+    setInfraStructure(fileSystem);
     open(connector);
   }
 

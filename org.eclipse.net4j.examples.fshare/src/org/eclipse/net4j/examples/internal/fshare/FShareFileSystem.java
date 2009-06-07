@@ -51,7 +51,7 @@ public class FShareFileSystem implements IFileSystem
 
       connector = (IConnector)getContainer().getElement(ConnectorFactory.PRODUCT_GROUP, type, description);
 
-      protocol = new FShareClientProtocol(connector);
+      protocol = new FShareClientProtocol(connector, this);
       protocol.addListener(protocolListener);
       protocol.logon(path);
 
@@ -85,6 +85,7 @@ public class FShareFileSystem implements IFileSystem
   public FShareResource getResource(String path)
   {
     FShareFolder folder = rootFolder;
+
     for (;;)
     {
       String[] split = FShareUtil.splitPathFirst(path);
