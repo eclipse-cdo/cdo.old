@@ -41,6 +41,7 @@ public final class FShareUtil
     if (length != 0 && path.charAt(0) == SLASH)
     {
       path = path.substring(1);
+      --length;
     }
 
     if (length != 0 && path.charAt(length - 1) == SLASH)
