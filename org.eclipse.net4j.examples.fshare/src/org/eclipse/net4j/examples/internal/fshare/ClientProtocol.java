@@ -82,19 +82,14 @@ public class ClientProtocol extends SignalProtocol<ClientFileSystem> implements 
             if (type == FOLDER)
             {
               ClientFolder folder = new ClientFolder(parent, name, size);
+              folder.setUploaded(uploaded);
               parent.addChild(folder, false, false);
             }
             else
             {
-              ClientFile file = (ClientFile)parent.getChild(name);
-              if (file == null)
-              {
-                // Create new file
-                file = new ClientFile(parent, name, size);
-                parent.addChild(file, false, false);
-              }
-
+              ClientFile file = new ClientFile(parent, name, size);
               file.setUploaded(uploaded);
+              parent.addChild(file, false, false);
             }
           }
 
