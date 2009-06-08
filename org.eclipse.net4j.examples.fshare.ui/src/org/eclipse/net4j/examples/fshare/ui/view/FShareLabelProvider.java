@@ -43,14 +43,10 @@ public class FShareLabelProvider extends LabelProvider implements IColorProvider
     {
       IResource resource = (IResource)element;
       String name = resource.getName();
-      if (element instanceof IFile)
+      int percentUploaded = resource.getUploadedPercent();
+      if (percentUploaded < 100)
       {
-        IFile file = (IFile)element;
-        int percentUploaded = file.getPercentUploaded();
-        if (percentUploaded < 100)
-        {
-          name += " [" + percentUploaded + "%]";
-        }
+        name += " - " + percentUploaded + "%";
       }
 
       return name;
@@ -82,18 +78,10 @@ public class FShareLabelProvider extends LabelProvider implements IColorProvider
 
   public Color getForeground(Object element)
   {
-    if (element instanceof IFile)
+    if (element instanceof IResource)
     {
-      IFile file = (IFile)element;
-      if (file.getPercentUploaded() < 100)
-      {
-        return grayColor;
-      }
-    }
-    else if (element instanceof IFolder)
-    {
-      IFolder folder = (IFolder)element;
-      if (folder.isLocked())
+      IResource resource = (IResource)element;
+      if (resource.getUploadedPercent() < 100)
       {
         return grayColor;
       }

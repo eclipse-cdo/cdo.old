@@ -22,8 +22,6 @@ public interface IFileSystem
 
     public void resourceAdded(IResource resource);
 
-    public void progressChanged(IFile file);
-
-    public void folderUnlocked(IFolder folder);
+    public void progressChanged(IResource resource);
   }
 }

@@ -1,9 +1,8 @@
 package org.eclipse.net4j.examples.internal.fshare;
 
 import org.eclipse.net4j.connector.IConnector;
-import org.eclipse.net4j.examples.fshare.FShareUtil;
 import org.eclipse.net4j.examples.fshare.IFileSystem;
-import org.eclipse.net4j.examples.fshare.common.FShareConstants;
+import org.eclipse.net4j.examples.fshare.common.FShareUtil;
 import org.eclipse.net4j.examples.internal.fshare.bundle.OM;
 import org.eclipse.net4j.util.container.IManagedContainer;
 import org.eclipse.net4j.util.container.IPluginContainer;
@@ -21,11 +20,11 @@ import java.util.List;
 /**
  * @author Eike Stepper
  */
-public class FShareFileSystem implements IFileSystem
+public class ClientFileSystem implements IFileSystem
 {
   private IConnector connector;
 
-  private FShareClientProtocol protocol;
+  private ClientProtocol protocol;
 
   private IListener protocolListener = new LifecycleEventAdapter()
   {
@@ -36,11 +35,11 @@ public class FShareFileSystem implements IFileSystem
     };
   };
 
-  private FShareFolder rootFolder;
+  private ClientFolder rootFolder;
 
   private List<Listener> listeners = new ArrayList<Listener>();
 
-  public FShareFileSystem(String targetURL)
+  public ClientFileSystem(String targetURL)
   {
     try
     {
@@ -51,11 +50,11 @@ public class FShareFileSystem implements IFileSystem
 
       connector = (IConnector)getContainer().getElement(ConnectorFactory.PRODUCT_GROUP, type, description);
 
-      protocol = new FShareClientProtocol(connector, this);
+      protocol = new ClientProtocol(connector, this);
       protocol.addListener(protocolListener);
       protocol.logon(path);
 
-      rootFolder = new FShareFolder(this);
+      rootFolder = new ClientFolder(this);
     }
     catch (URISyntaxException ex)
     {
@@ -72,19 +71,19 @@ public class FShareFileSystem implements IFileSystem
     connector = null;
   }
 
-  public FShareClientProtocol getProtocol()
+  public ClientProtocol getProtocol()
   {
     return protocol;
   }
 
-  public FShareFolder getRootFolder()
+  public ClientFolder getRootFolder()
   {
     return rootFolder;
   }
 
-  public FShareResource getResource(String path)
+  public ClientResource getResource(String path)
   {
-    FShareFolder folder = rootFolder;
+    ClientFolder folder = rootFolder;
 
     for (;;)
     {
@@ -94,7 +93,7 @@ public class FShareFileSystem implements IFileSystem
         return folder.getChild(split[0]);
       }
 
-      folder = (FShareFolder)folder.getChild(split[0]);
+      folder = (ClientFolder)folder.getChild(split[0]);
       path = split[1];
     }
   }
@@ -120,28 +119,29 @@ public class FShareFileSystem implements IFileSystem
     }
   }
 
-  public void setUploadFeedback(String path, long size, long progress)
+  public void setUploadFeedback(String path, int size, int progress)
   {
-    String[] split = FShareUtil.splitPathLast(path);
-    FShareFolder parentFolder = split[0] == null ? rootFolder : (FShareFolder)getResource(split[0]);
-    String name = split[1];
-
-    if (size == FShareConstants.FOLDER)
-    {
-      FShareFolder folder = new FShareFolder(name, parentFolder);
-      parentFolder.addChild(folder, true, true);
-    }
-    else
-    {
-      FShareFile file = (FShareFile)parentFolder.getChild(name);
-      if (file == null)
-      {
-        file = new FShareFile(name, size, parentFolder);
-        parentFolder.addChild(file, true, true);
-      }
-
-      file.setUploaded(progress);
-    }
+    System.out.println("setUploadFeedback not yet implemented");
+    // String[] split = FShareUtil.splitPathLast(path);
+    // FShareFolder parentFolder = split[0] == null ? rootFolder : (FShareFolder)getResource(split[0]);
+    // String name = split[1];
+    //
+    // if (size == FShareConstants.FOLDER)
+    // {
+    // FShareFolder folder = new FShareFolder(name, parentFolder);
+    // parentFolder.addChild(folder, true, true);
+    // }
+    // else
+    // {
+    // FShareFile file = (FShareFile)parentFolder.getChild(name);
+    // if (file == null)
+    // {
+    // file = new FShareFile(parentFolder, name, size);
+    // parentFolder.addChild(file, true, true);
+    // }
+    //
+    // file.setUploaded(progress);
+    // }
   }
 
   protected IManagedContainer getContainer()
@@ -164,7 +164,7 @@ public class FShareFileSystem implements IFileSystem
     }
   }
 
-  protected void fireResourceAdded(FShareResource resource)
+  protected void fireResourceAdded(ClientResource resource)
   {
     for (Listener listener : getListeners())
     {
@@ -179,28 +179,13 @@ public class FShareFileSystem implements IFileSystem
     }
   }
 
-  protected void fireFolderUnlocked(FShareFolder folder)
+  protected void fireProgressChanged(ClientResource resource)
   {
     for (Listener listener : getListeners())
     {
       try
       {
-        listener.folderUnlocked(folder);
-      }
-      catch (Exception ex)
-      {
-        OM.LOG.error(ex);
-      }
-    }
-  }
-
-  protected void fireProgressChanged(FShareFile file)
-  {
-    for (Listener listener : getListeners())
-    {
-      try
-      {
-        listener.progressChanged(file);
+        listener.progressChanged(resource);
       }
       catch (Exception ex)
       {

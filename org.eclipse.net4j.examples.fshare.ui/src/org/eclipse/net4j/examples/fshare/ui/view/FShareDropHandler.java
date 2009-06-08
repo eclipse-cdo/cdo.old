@@ -37,7 +37,7 @@ public class FShareDropHandler extends ViewerDropAdapter
     }
 
     IFolder folder = getFolder(target);
-    return folder != null && !folder.isLocked();
+    return folder != null && folder.getUploadedPercent() == 100;
   }
 
   @Override
@@ -49,7 +49,8 @@ public class FShareDropHandler extends ViewerDropAdapter
       return false;
     }
 
-    return folder.performDrop((String[])data);
+    folder.performDrop((String[])data);
+    return true;
   }
 
   private IFolder getFolder(Object target)

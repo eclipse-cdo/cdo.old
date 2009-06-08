@@ -15,5 +15,7 @@ public interface FShareConstants
 
   public static final short SIGNAL_UPLOAD_FEEDBACK = 4;
 
-  public static final long FOLDER = -1L;
+  public static final boolean FILE = false;
+
+  public static final boolean FOLDER = true;
 }

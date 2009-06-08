@@ -10,7 +10,6 @@
  */
 package org.eclipse.net4j.examples.fshare.ui.view;
 
-import org.eclipse.net4j.examples.fshare.IFile;
 import org.eclipse.net4j.examples.fshare.IFileSystem;
 import org.eclipse.net4j.examples.fshare.IFolder;
 import org.eclipse.net4j.examples.fshare.IResource;
@@ -97,13 +96,13 @@ public final class FShareContentProvider implements ITreeContentProvider, IFileS
     });
   }
 
-  public void progressChanged(final IFile file)
+  public void progressChanged(final IResource resource)
   {
     updateUI(new Runnable()
     {
       public void run()
       {
-        viewer.update(file, null);
+        viewer.update(resource, null);
       }
     });
   }

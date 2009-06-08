@@ -6,7 +6,7 @@
 		point="org.eclipse.core.runtime.applications"
 		name="%extension.name">
 			<application cardinality="1" thread="main">
-				<run class="org.eclipse.net4j.examples.fshare.internal.server.FShareServer"/>
+				<run class="org.eclipse.net4j.examples.fshare.internal.server.Server"/>
 	 		</application>
 	</extension>
 

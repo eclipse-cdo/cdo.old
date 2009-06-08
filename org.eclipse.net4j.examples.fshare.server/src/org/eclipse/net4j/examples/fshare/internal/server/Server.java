@@ -14,6 +14,7 @@
 package org.eclipse.net4j.examples.fshare.internal.server;
 
 import org.eclipse.net4j.acceptor.IAcceptor;
+import org.eclipse.net4j.examples.fshare.common.FShareUtil;
 import org.eclipse.net4j.examples.fshare.internal.server.bundle.OM;
 import org.eclipse.net4j.util.concurrent.Worker;
 import org.eclipse.net4j.util.container.IManagedContainer;
@@ -31,33 +32,32 @@ import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * @author Eike Stepper
  */
-public class FShareServer extends OSGiApplication
+public class Server extends OSGiApplication
 {
   public static final String ID = OM.BUNDLE_ID + ".app";
 
   private static final String UPLOAD_SUFFIX = ".FShareUpload";
 
+  private FeedbackManager feedbackManager = new FeedbackManager();
+
   private IAcceptor acceptor;
 
-  private String path;
+  private ServerFolder rootFolder;
 
-  private FShareServerFolder rootFolder;
-
-  private List<FShareServerProtocol> sessions = new ArrayList<FShareServerProtocol>();
+  private List<ServerProtocol> sessions = new ArrayList<ServerProtocol>();
 
   private IListener sessionListener = new LifecycleEventAdapter()
   {
     @Override
     protected void onDeactivated(ILifecycle session)
     {
-      ((FShareServerProtocol)session).removeListener(sessionListener);
+      ((ServerProtocol)session).removeListener(sessionListener);
       synchronized (sessions)
       {
         sessions.remove(session);
@@ -65,34 +65,47 @@ public class FShareServer extends OSGiApplication
     };
   };
 
-  private NotificationManager notificationManager = new NotificationManager();
-
-  private List<FShareUpload> uploads = new LinkedList<FShareUpload>();
-
-  public FShareServer()
+  public Server()
   {
     super(ID);
   }
 
-  public String getPath()
+  public FeedbackManager getFeedbackManager()
   {
-    return path;
+    return feedbackManager;
   }
 
-  public FShareServerFolder getRootFolder()
+  public ServerFolder getRootFolder()
   {
     return rootFolder;
   }
 
-  public FShareServerProtocol[] getSessions()
+  public ServerResource getResource(String path)
   {
-    synchronized (sessions)
+    ServerFolder folder = rootFolder;
+
+    for (;;)
     {
-      return sessions.toArray(new FShareServerProtocol[sessions.size()]);
+      String[] split = FShareUtil.splitPathFirst(path);
+      if (split[1] == null)
+      {
+        return folder.getChild(split[0]);
+      }
+
+      folder = (ServerFolder)folder.getChild(split[0]);
+      path = split[1];
     }
   }
 
-  public boolean addSession(FShareServerProtocol session)
+  public ServerProtocol[] getSessions()
+  {
+    synchronized (sessions)
+    {
+      return sessions.toArray(new ServerProtocol[sessions.size()]);
+    }
+  }
+
+  public boolean addSession(ServerProtocol session)
   {
     session.addListener(sessionListener);
     synchronized (sessions)
@@ -101,30 +114,11 @@ public class FShareServer extends OSGiApplication
     }
   }
 
-  public FShareUpload[] getUploads()
-  {
-    synchronized (uploads)
-    {
-      return uploads.toArray(new FShareUpload[uploads.size()]);
-    }
-  }
-
-  public FShareUpload addUpload(FShareServerProtocol session, String path)
-  {
-    FShareUpload upload = new FShareUpload(session, path);
-    synchronized (uploads)
-    {
-      uploads.add(upload);
-    }
-
-    return upload;
-  }
-
   @Override
   protected void doStart() throws Exception
   {
     OM.LOG.info("FShare server starting");
-    notificationManager.activate();
+    feedbackManager.activate();
 
     String[] args = (String[])getApplicationContext().getArguments().get(IApplicationContext.APPLICATION_ARGS);
     if (args == null || args.length == 0)
@@ -133,13 +127,12 @@ public class FShareServer extends OSGiApplication
     }
 
     IManagedContainer container = getContainer();
-    container.registerFactory(new FShareServerProtocol.Factory(this));
+    container.registerFactory(new ServerProtocol.Factory(this));
 
     try
     {
       URI uri = new URI(args[0]);
-      path = uri.getPath();
-      rootFolder = createRootFolder();
+      rootFolder = createRootFolder(uri.getPath());
 
       String type = uri.getScheme();
       String description = uri.getAuthority();
@@ -159,7 +152,7 @@ public class FShareServer extends OSGiApplication
   {
     OM.LOG.info("FShare server stopping");
     LifecycleUtil.deactivate(acceptor);
-    LifecycleUtil.deactivate(notificationManager);
+    LifecycleUtil.deactivate(feedbackManager);
     OM.LOG.info("FShare server stopped");
   }
 
@@ -168,10 +161,16 @@ public class FShareServer extends OSGiApplication
     return IPluginContainer.INSTANCE;
   }
 
-  private FShareServerFolder createRootFolder()
+  private ServerFolder createRootFolder(final String path)
   {
-    FShareServerFolder folder = new FShareServerFolder(path, null)
+    ServerFolder folder = new ServerFolder()
     {
+      @Override
+      public String getPath()
+      {
+        return "/";
+      }
+
       @Override
       public File getTarget()
       {
@@ -183,8 +182,9 @@ public class FShareServer extends OSGiApplication
     return folder;
   }
 
-  private void populateFolder(FShareServerFolder folder)
+  private void populateFolder(ServerFolder folder)
   {
+    int count = 0;
     for (File file : folder.getTarget().listFiles())
     {
       String name = file.getName();
@@ -195,9 +195,10 @@ public class FShareServer extends OSGiApplication
 
       if (file.isDirectory())
       {
-        FShareServerFolder child = new FShareServerFolder(name, folder);
+        ServerFolder child = new ServerFolder(folder, name, 0);
         folder.addChild(child);
         populateFolder(child);
+        ++count;
       }
       else
       {
@@ -210,61 +211,100 @@ public class FShareServer extends OSGiApplication
         }
         else
         {
-          long size = file.length();
-          FShareServerFile child = new FShareServerFile(name, size, folder);
+          int size = (int)file.length();
+          ServerFile child = new ServerFile(folder, name, size);
           child.setUploaded(size);
           folder.addChild(child);
+          ++count;
         }
       }
     }
+
+    folder.setSize(count);
+    folder.setUploaded(count);
+
   }
 
   /**
    * @author Eike Stepper
    */
-  private class NotificationManager extends Worker
+  public class FeedbackManager extends Worker
   {
     private static final long INTERVAL = 1000L;
+
+    private List<ServerResource> feedbacks = new LinkedList<ServerResource>();
+
+    public FeedbackManager()
+    {
+    }
+
+    public void addFeedback(ServerResource feedback)
+    {
+      synchronized (feedbacks)
+      {
+        feedbacks.add(feedback);
+      }
+    }
+
+    public void startFeedback(ServerResource feedback)
+    {
+    }
+
+    public void stopFeedback(ServerResource feedback)
+    {
+    }
 
     @Override
     protected void work(WorkContext context) throws Exception
     {
-      List<FShareUpload> copy = copyUploads();
-      if (copy != null)
-      {
-        synchronized (sessions)
-        {
-          for (FShareServerProtocol session : sessions)
-          {
-            session.notifyUploads(copy);
-          }
-        }
-      }
+      // for (FShareServerResource feedback : getFeedbacks())
+      // {
+      // synchronized (sessions)
+      // {
+      // for (FShareServerProtocol session : sessions)
+      // {
+      // session.sendFeedback(copy);
+      // }
+      // }
+      // }
+      //
+      // List<FShareUpload> copy = copyUploads();
+      // if (copy != null)
+      // {
+      // synchronized (sessions)
+      // {
+      // for (FShareServerProtocol session : sessions)
+      // {
+      // session.sendFeedback(copy);
+      // }
+      // }
+      // }
+
       context.nextWork(INTERVAL);
     }
 
-    private List<FShareUpload> copyUploads()
-    {
-      synchronized (uploads)
-      {
-        if (uploads.isEmpty())
-        {
-          return null;
-        }
-
-        List<FShareUpload> copy = new ArrayList<FShareUpload>(uploads.size());
-        for (Iterator<FShareUpload> it = uploads.iterator(); it.hasNext();)
-        {
-          FShareUpload source = it.next();
-          copy.add(new FShareUpload(source));
-          if (source.isDone())
-          {
-            it.remove();
-          }
-        }
-
-        return copy;
-      }
-    }
+    // private List<FShareUpload> copyUploads()
+    // {
+    // synchronized (uploads)
+    // {
+    // if (uploads.isEmpty())
+    // {
+    // return null;
+    // }
+    //
+    // List<FShareUpload> copy = new ArrayList<FShareUpload>(uploads.size());
+    // for (Iterator<FShareUpload> it = uploads.iterator(); it.hasNext();)
+    // {
+    // FShareUpload source = it.next();
+    // copy.add(new FShareUpload(source));
+    // if (source.isDone())
+    // {
+    // it.remove();
+    // }
+    // }
+    //
+    // return copy;
+    // }
+    // }
   }
 }

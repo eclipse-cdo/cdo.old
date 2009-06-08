@@ -1,4 +1,4 @@
-package org.eclipse.net4j.examples.fshare;
+package org.eclipse.net4j.examples.fshare.common;
 
 /**
  * @author Eike Stepper

@@ -5,11 +5,17 @@ package org.eclipse.net4j.examples.fshare;
  */
 public interface IResource
 {
-  public String getName();
+  public IFileSystem getFileSystem();
 
   public IFolder getParent();
 
+  public String getName();
+
   public String getPath();
 
-  public IFileSystem getFileSystem();
+  public int getSize();
+
+  public int getUploaded();
+
+  public int getUploadedPercent();
 }
