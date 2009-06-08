@@ -38,7 +38,7 @@ import java.util.List;
 /**
  * @author Eike Stepper
  */
-public class Server extends OSGiApplication
+public class ServerApplication extends OSGiApplication
 {
   public static final String ID = OM.BUNDLE_ID + ".app";
 
@@ -65,7 +65,7 @@ public class Server extends OSGiApplication
     };
   };
 
-  public Server()
+  public ServerApplication()
   {
     super(ID);
   }
@@ -82,6 +82,11 @@ public class Server extends OSGiApplication
 
   public ServerResource getResource(String path)
   {
+    if (path.length() == 0)
+    {
+      return rootFolder;
+    }
+
     ServerFolder folder = rootFolder;
 
     for (;;)
@@ -182,8 +187,9 @@ public class Server extends OSGiApplication
     return folder;
   }
 
-  private void populateFolder(ServerFolder folder)
+  private long populateFolder(ServerFolder folder)
   {
+    long total = 0L;
     int count = 0;
     for (File file : folder.getTarget().listFiles())
     {
@@ -197,7 +203,7 @@ public class Server extends OSGiApplication
       {
         ServerFolder child = new ServerFolder(folder, name, 0);
         folder.addChild(child);
-        populateFolder(child);
+        total += populateFolder(child);
         ++count;
       }
       else
@@ -215,6 +221,7 @@ public class Server extends OSGiApplication
           ServerFile child = new ServerFile(folder, name, size);
           child.setUploaded(size);
           folder.addChild(child);
+          ++total;
           ++count;
         }
       }
@@ -222,7 +229,8 @@ public class Server extends OSGiApplication
 
     folder.setSize(count);
     folder.setUploaded(count);
-
+    OM.LOG.info(folder.getPath() + " --> " + total);
+    return total;
   }
 
   /**

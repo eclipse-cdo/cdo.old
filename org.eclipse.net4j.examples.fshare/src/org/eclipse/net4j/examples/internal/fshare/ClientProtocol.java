@@ -31,7 +31,7 @@ public class ClientProtocol extends SignalProtocol<ClientFileSystem> implements 
   {
     try
     {
-      boolean ok = new RequestWithConfirmation<Boolean>(this, SIGNAL_LOGON, "Logon")
+      RequestWithConfirmation<Boolean> request = new RequestWithConfirmation<Boolean>(this, SIGNAL_LOGON, "Logon")
       {
         @Override
         protected void requesting(ExtendedDataOutputStream out) throws Exception
@@ -44,9 +44,10 @@ public class ClientProtocol extends SignalProtocol<ClientFileSystem> implements 
         {
           return in.readBoolean();
         }
-      }.send();
+      };
 
-      if (!ok)
+      boolean granted = request.send();
+      if (!granted)
       {
         throw new SecurityException("Logon failed");
       }

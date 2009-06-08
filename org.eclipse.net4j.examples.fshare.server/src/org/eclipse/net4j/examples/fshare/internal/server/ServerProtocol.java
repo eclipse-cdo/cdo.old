@@ -11,20 +11,21 @@ import org.eclipse.net4j.util.io.ExtendedDataOutputStream;
 
 import org.eclipse.spi.net4j.ServerProtocolFactory;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
  * @author Eike Stepper
  */
-public class ServerProtocol extends SignalProtocol<Server> implements FShareConstants
+public class ServerProtocol extends SignalProtocol<ServerApplication> implements FShareConstants
 {
-  public ServerProtocol(Server server)
+  public ServerProtocol(ServerApplication server)
   {
     super(PROTOCOL_NAME);
     setInfraStructure(server);
   }
 
-  public Server getServer()
+  public ServerApplication getServer()
   {
     return getInfraStructure();
   }
@@ -75,8 +76,9 @@ public class ServerProtocol extends SignalProtocol<Server> implements FShareCons
         @Override
         protected void indicating(ExtendedDataInputStream in) throws Exception
         {
-          String path = in.readString();
-          if (path.equals(getServer().getRootFolder().getTarget().getAbsolutePath()))
+          String logonPath = new File(in.readString()).getAbsolutePath();
+          String serverPath = getServer().getRootFolder().getTarget().getAbsolutePath();
+          if (logonPath.equals(serverPath))
           {
             ok = getServer().addSession(ServerProtocol.this);
           }
@@ -111,6 +113,7 @@ public class ServerProtocol extends SignalProtocol<Server> implements FShareCons
             out.writeString(child.getName());
             out.writeInt(child.getSize());
             out.writeInt(child.getUploaded());
+            out.writeBoolean(child instanceof ServerFolder);
           }
         }
       };
@@ -161,9 +164,9 @@ public class ServerProtocol extends SignalProtocol<Server> implements FShareCons
    */
   public static class Factory extends ServerProtocolFactory
   {
-    private Server server;
+    private ServerApplication server;
 
-    public Factory(Server server)
+    public Factory(ServerApplication server)
     {
       super(PROTOCOL_NAME);
       this.server = server;

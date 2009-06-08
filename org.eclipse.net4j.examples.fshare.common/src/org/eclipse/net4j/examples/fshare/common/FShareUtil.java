@@ -13,11 +13,7 @@ public final class FShareUtil
 
   public static String[] splitPathFirst(String path)
   {
-    if (path.length() != 0 && path.charAt(0) == SLASH)
-    {
-      path = path.substring(1);
-    }
-
+    path = trimPath(path);
     int slash = path.indexOf(SLASH);
     if (slash == -1)
     {
@@ -29,11 +25,7 @@ public final class FShareUtil
 
   public static String[] splitPathLast(String path)
   {
-    if (path.length() != 0 && path.charAt(0) == SLASH)
-    {
-      path = path.substring(1);
-    }
-
+    path = trimPath(path);
     int slash = path.lastIndexOf(SLASH);
     if (slash == -1)
     {
@@ -41,5 +33,21 @@ public final class FShareUtil
     }
 
     return new String[] { path.substring(0, slash), path.substring(slash + 1) };
+  }
+
+  private static String trimPath(String path)
+  {
+    int length = path.length();
+    if (length != 0 && path.charAt(0) == SLASH)
+    {
+      path = path.substring(1);
+    }
+
+    if (length != 0 && path.charAt(length - 1) == SLASH)
+    {
+      path = path.substring(0, length - 1);
+    }
+
+    return path;
   }
 }
