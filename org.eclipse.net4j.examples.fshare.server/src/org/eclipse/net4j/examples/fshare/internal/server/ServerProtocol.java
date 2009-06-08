@@ -71,23 +71,26 @@ public class ServerProtocol extends SignalProtocol<ServerApplication> implements
     case SIGNAL_LOGON:
       return new IndicationWithResponse(this, SIGNAL_LOGON, "Logon")
       {
-        private boolean ok = false;
-
         @Override
         protected void indicating(ExtendedDataInputStream in) throws Exception
         {
           String logonPath = new File(in.readString()).getAbsolutePath();
           String serverPath = getServer().getRootFolder().getTarget().getAbsolutePath();
-          if (logonPath.equals(serverPath))
+          if (!logonPath.equals(serverPath))
           {
-            ok = getServer().addSession(ServerProtocol.this);
+            throw new SecurityException("Logon denied");
           }
         }
 
         @Override
         protected void responding(ExtendedDataOutputStream out) throws Exception
         {
-          out.writeBoolean(ok);
+          ServerApplication server = getServer();
+          server.addSession(ServerProtocol.this);
+
+          ServerFolder rootFolder = server.getRootFolder();
+          out.writeInt(rootFolder.getSize());
+          out.writeInt(rootFolder.getUploaded());
         }
       };
 

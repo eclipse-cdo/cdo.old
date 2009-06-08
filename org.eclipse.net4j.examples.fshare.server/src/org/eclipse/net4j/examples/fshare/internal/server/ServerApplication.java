@@ -110,12 +110,12 @@ public class ServerApplication extends OSGiApplication
     }
   }
 
-  public boolean addSession(ServerProtocol session)
+  public void addSession(ServerProtocol session)
   {
     session.addListener(sessionListener);
     synchronized (sessions)
     {
-      return sessions.add(session);
+      sessions.add(session);
     }
   }
 

@@ -27,11 +27,11 @@ public class ClientProtocol extends SignalProtocol<ClientFileSystem> implements 
     open(connector);
   }
 
-  public void logon(final String path)
+  public int[] logon(final String path)
   {
     try
     {
-      RequestWithConfirmation<Boolean> request = new RequestWithConfirmation<Boolean>(this, SIGNAL_LOGON, "Logon")
+      RequestWithConfirmation<int[]> request = new RequestWithConfirmation<int[]>(this, SIGNAL_LOGON, "Logon")
       {
         @Override
         protected void requesting(ExtendedDataOutputStream out) throws Exception
@@ -40,17 +40,14 @@ public class ClientProtocol extends SignalProtocol<ClientFileSystem> implements 
         }
 
         @Override
-        protected Boolean confirming(ExtendedDataInputStream in) throws Exception
+        protected int[] confirming(ExtendedDataInputStream in) throws Exception
         {
-          return in.readBoolean();
+          // rootFolder.size and rootFolder.uploaded
+          return new int[] { in.readInt(), in.readInt() };
         }
       };
 
-      boolean granted = request.send();
-      if (!granted)
-      {
-        throw new SecurityException("Logon failed");
-      }
+      return request.send();
     }
     catch (Exception ex)
     {
