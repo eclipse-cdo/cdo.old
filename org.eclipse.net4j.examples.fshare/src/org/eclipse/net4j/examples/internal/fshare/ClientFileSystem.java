@@ -52,9 +52,9 @@ public class ClientFileSystem implements IFileSystem
 
       protocol = new ClientProtocol(connector, this);
       protocol.addListener(protocolListener);
-      protocol.logon(path);
+      int[] result = protocol.logon(path);
 
-      rootFolder = new ClientFolder(this);
+      rootFolder = new ClientFolder(this, result[0], result[1]);
     }
     catch (URISyntaxException ex)
     {

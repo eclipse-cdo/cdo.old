@@ -20,13 +20,12 @@ import java.util.Map;
  */
 public class ClientFolder extends ClientResource implements IFolder
 {
-  private static final int UNKNOWN = -1;
-
   private Map<String, ClientResource> children;
 
-  public ClientFolder(ClientFileSystem fileSystem)
+  public ClientFolder(ClientFileSystem fileSystem, int size, int uploaded)
   {
-    super(fileSystem, null, null, UNKNOWN);
+    super(fileSystem, null, null, size);
+    setUploaded(uploaded);
   }
 
   public ClientFolder(ClientFolder parent, String name, int size)
