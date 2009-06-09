@@ -19,15 +19,15 @@ import java.io.IOException;
 /**
  * @author Eike Stepper
  */
-public class ServerProtocol extends SignalProtocol<ServerApplication> implements FShareConstants
+public class ServerProtocol extends SignalProtocol<Server> implements FShareConstants
 {
-  public ServerProtocol(ServerApplication server)
+  public ServerProtocol(Server server)
   {
     super(PROTOCOL_NAME);
     setInfraStructure(server);
   }
 
-  public ServerApplication getServer()
+  public Server getServer()
   {
     return getInfraStructure();
   }
@@ -83,7 +83,7 @@ public class ServerProtocol extends SignalProtocol<ServerApplication> implements
         @Override
         protected void responding(ExtendedDataOutputStream out) throws Exception
         {
-          ServerApplication server = getServer();
+          Server server = getServer();
           server.addSession(ServerProtocol.this);
 
           ServerFolder rootFolder = server.getRootFolder();
@@ -168,9 +168,9 @@ public class ServerProtocol extends SignalProtocol<ServerApplication> implements
    */
   public static class Factory extends ServerProtocolFactory
   {
-    private ServerApplication server;
+    private Server server;
 
-    public Factory(ServerApplication server)
+    public Factory(Server server)
     {
       super(PROTOCOL_NAME);
       this.server = server;

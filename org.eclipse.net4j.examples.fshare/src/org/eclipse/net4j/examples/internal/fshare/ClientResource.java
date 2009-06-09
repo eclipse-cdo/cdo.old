@@ -13,7 +13,7 @@ import java.io.IOException;
  */
 public abstract class ClientResource implements IResource
 {
-  private ClientFileSystem fileSystem;
+  private Client fileSystem;
 
   private ClientFolder parent;
 
@@ -23,7 +23,7 @@ public abstract class ClientResource implements IResource
 
   private int uploaded;
 
-  public ClientResource(ClientFileSystem fileSystem, ClientFolder parent, String name, int size)
+  public ClientResource(Client fileSystem, ClientFolder parent, String name, int size)
   {
     this.fileSystem = fileSystem;
     this.parent = parent;
@@ -31,7 +31,7 @@ public abstract class ClientResource implements IResource
     this.size = size;
   }
 
-  public ClientFileSystem getFileSystem()
+  public Client getFileSystem()
   {
     return fileSystem;
   }

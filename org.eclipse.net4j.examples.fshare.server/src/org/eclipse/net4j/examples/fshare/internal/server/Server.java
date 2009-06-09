@@ -36,7 +36,7 @@ import java.util.List;
 /**
  * @author Eike Stepper
  */
-public class ServerApplication extends OSGiApplication
+public class Server extends OSGiApplication
 {
   public static final String ID = OM.BUNDLE_ID + ".app";
 
@@ -63,7 +63,7 @@ public class ServerApplication extends OSGiApplication
     };
   };
 
-  public ServerApplication()
+  public Server()
   {
     super(ID);
   }

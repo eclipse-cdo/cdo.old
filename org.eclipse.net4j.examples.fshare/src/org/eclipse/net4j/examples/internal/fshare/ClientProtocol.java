@@ -18,13 +18,18 @@ import java.io.File;
 /**
  * @author Eike Stepper
  */
-public class ClientProtocol extends SignalProtocol<ClientFileSystem> implements FShareConstants
+public class ClientProtocol extends SignalProtocol<Client> implements FShareConstants
 {
-  public ClientProtocol(IConnector connector, ClientFileSystem fileSystem)
+  public ClientProtocol(IConnector connector, Client client)
   {
     super(PROTOCOL_NAME);
-    setInfraStructure(fileSystem);
+    setInfraStructure(client);
     open(connector);
+  }
+
+  public Client getClient()
+  {
+    return getInfraStructure();
   }
 
   public int[] logon(final String path)
@@ -151,7 +156,7 @@ public class ClientProtocol extends SignalProtocol<ClientFileSystem> implements 
             String path = in.readString();
             int size = in.readInt();
             int progress = in.readInt();
-            getInfraStructure().setUploadFeedback(isFolder, path, size, progress);
+            getClient().setUploadFeedback(isFolder, path, size, progress);
           }
         }
       };

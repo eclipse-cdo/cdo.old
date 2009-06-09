@@ -21,7 +21,7 @@ public class ClientFolder extends ClientResource implements IFolder
 {
   private Map<String, ClientResource> children;
 
-  public ClientFolder(ClientFileSystem fileSystem, int size, int uploaded)
+  public ClientFolder(Client fileSystem, int size, int uploaded)
   {
     super(fileSystem, null, null, size);
     setUploaded(uploaded);

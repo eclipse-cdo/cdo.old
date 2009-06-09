@@ -47,11 +47,11 @@ public class ServerFeedback
   {
     private static final long INTERVAL = 1000L;
 
-    private ServerApplication server;
+    private Server server;
 
     private Map<ServerResource, ServerFeedback> feedbacks = initFeedbacks();
 
-    public Manager(ServerApplication server)
+    public Manager(Server server)
     {
       this.server = server;
     }

@@ -1,7 +1,7 @@
 package org.eclipse.net4j.examples.fshare.ui;
 
 import org.eclipse.net4j.examples.fshare.ui.app.Application;
-import org.eclipse.net4j.examples.internal.fshare.ClientFileSystem;
+import org.eclipse.net4j.examples.internal.fshare.Client;
 
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
@@ -15,7 +15,7 @@ public class FShareView extends ViewPart
 {
   public static final String ID = "org.eclipse.net4j.examples.fshare.ui.view";
 
-  private ClientFileSystem fileSystem;
+  private Client fileSystem;
 
   private TreeViewer viewer;
 
@@ -26,7 +26,7 @@ public class FShareView extends ViewPart
   @Override
   public void createPartControl(Composite parent)
   {
-    fileSystem = new ClientFileSystem(Application.getTargetURL());
+    fileSystem = new Client(Application.getTargetURL());
 
     int ops = DND.DROP_COPY | DND.DROP_MOVE;
     Transfer[] transfers = new Transfer[] { FileTransfer.getInstance() };

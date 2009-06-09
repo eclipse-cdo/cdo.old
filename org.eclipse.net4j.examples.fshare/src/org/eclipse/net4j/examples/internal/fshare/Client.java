@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * @author Eike Stepper
  */
-public class ClientFileSystem implements IFileSystem
+public class Client implements IFileSystem
 {
   private IConnector connector;
 
@@ -39,7 +39,7 @@ public class ClientFileSystem implements IFileSystem
 
   private List<Listener> listeners = new ArrayList<Listener>();
 
-  public ClientFileSystem(String targetURL)
+  public Client(String targetURL)
   {
     try
     {
