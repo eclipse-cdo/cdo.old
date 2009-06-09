@@ -17,7 +17,8 @@ public class ServerFile extends ServerResource
     super(parent, name, size);
   }
 
-  public void writeToDisk(ExtendedDataInputStream in, byte[] buffer) throws IOException
+  public void writeToDisk(ExtendedDataInputStream in, byte[] buffer, ServerFeedback.Manager feedbackManager)
+      throws IOException
   {
     int rest = getSize();
     OutputStream out = null;
@@ -25,12 +26,14 @@ public class ServerFile extends ServerResource
     try
     {
       out = new FileOutputStream(getTarget());
+      feedbackManager.addFeedback(this, 0);
 
       int n = Math.min(rest, buffer.length);
       while (n > 0 && (n = in.read(buffer, 0, n)) != -1)
       {
         out.write(buffer, 0, n);
         setUploaded(getUploaded() + n);
+        feedbackManager.addFeedback(this, n);
         rest -= n;
         n = Math.min(rest, buffer.length);
       }

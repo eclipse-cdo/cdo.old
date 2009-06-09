@@ -16,7 +16,6 @@ package org.eclipse.net4j.examples.fshare.internal.server;
 import org.eclipse.net4j.acceptor.IAcceptor;
 import org.eclipse.net4j.examples.fshare.common.FShareUtil;
 import org.eclipse.net4j.examples.fshare.internal.server.bundle.OM;
-import org.eclipse.net4j.util.concurrent.Worker;
 import org.eclipse.net4j.util.container.IManagedContainer;
 import org.eclipse.net4j.util.container.IPluginContainer;
 import org.eclipse.net4j.util.event.IListener;
@@ -32,7 +31,6 @@ import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -44,7 +42,7 @@ public class ServerApplication extends OSGiApplication
 
   private static final String UPLOAD_SUFFIX = ".FShareUpload";
 
-  private FeedbackManager feedbackManager = new FeedbackManager();
+  private ServerFeedback.Manager feedbackManager = new ServerFeedback.Manager(this);
 
   private IAcceptor acceptor;
 
@@ -70,7 +68,7 @@ public class ServerApplication extends OSGiApplication
     super(ID);
   }
 
-  public FeedbackManager getFeedbackManager()
+  public ServerFeedback.Manager getFeedbackManager()
   {
     return feedbackManager;
   }
@@ -231,88 +229,5 @@ public class ServerApplication extends OSGiApplication
     folder.setUploaded(count);
     OM.LOG.info(folder.getPath() + " --> " + total);
     return total;
-  }
-
-  /**
-   * @author Eike Stepper
-   */
-  public class FeedbackManager extends Worker
-  {
-    private static final long INTERVAL = 1000L;
-
-    private List<ServerResource> feedbacks = new LinkedList<ServerResource>();
-
-    public FeedbackManager()
-    {
-    }
-
-    public void addFeedback(ServerResource feedback)
-    {
-      synchronized (feedbacks)
-      {
-        feedbacks.add(feedback);
-      }
-    }
-
-    public void startFeedback(ServerResource feedback)
-    {
-    }
-
-    public void stopFeedback(ServerResource feedback)
-    {
-    }
-
-    @Override
-    protected void work(WorkContext context) throws Exception
-    {
-      // for (FShareServerResource feedback : getFeedbacks())
-      // {
-      // synchronized (sessions)
-      // {
-      // for (FShareServerProtocol session : sessions)
-      // {
-      // session.sendFeedback(copy);
-      // }
-      // }
-      // }
-      //
-      // List<FShareUpload> copy = copyUploads();
-      // if (copy != null)
-      // {
-      // synchronized (sessions)
-      // {
-      // for (FShareServerProtocol session : sessions)
-      // {
-      // session.sendFeedback(copy);
-      // }
-      // }
-      // }
-
-      context.nextWork(INTERVAL);
-    }
-
-    // private List<FShareUpload> copyUploads()
-    // {
-    // synchronized (uploads)
-    // {
-    // if (uploads.isEmpty())
-    // {
-    // return null;
-    // }
-    //
-    // List<FShareUpload> copy = new ArrayList<FShareUpload>(uploads.size());
-    // for (Iterator<FShareUpload> it = uploads.iterator(); it.hasNext();)
-    // {
-    // FShareUpload source = it.next();
-    // copy.add(new FShareUpload(source));
-    // if (source.isDone())
-    // {
-    // it.remove();
-    // }
-    // }
-    //
-    // return copy;
-    // }
-    // }
   }
 }

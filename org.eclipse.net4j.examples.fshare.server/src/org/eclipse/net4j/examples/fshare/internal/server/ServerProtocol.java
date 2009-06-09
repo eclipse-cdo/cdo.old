@@ -13,6 +13,7 @@ import org.eclipse.spi.net4j.ServerProtocolFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.SortedMap;
 
 /**
  * @author Eike Stepper
@@ -28,6 +29,10 @@ public class ServerProtocol extends SignalProtocol<ServerApplication> implements
   public ServerApplication getServer()
   {
     return getInfraStructure();
+  }
+
+  public void sendFeedback(SortedMap<ServerResource, ServerFeedback> toBeSent)
+  {
   }
 
   public void sendFeedback(/* final List<FShareUpload> uploads */)
@@ -124,6 +129,7 @@ public class ServerProtocol extends SignalProtocol<ServerApplication> implements
     case SIGNAL_UPLOAD:
       return new Indication(this, SIGNAL_UPLOAD, "Upload")
       {
+        ServerFeedback.Manager feedbackManager = getServer().getFeedbackManager();
 
         @Override
         protected void indicating(ExtendedDataInputStream in) throws Exception
@@ -143,16 +149,18 @@ public class ServerProtocol extends SignalProtocol<ServerApplication> implements
             ServerFolder folder = new ServerFolder(parent, name, size);
             parent.addChild(folder);
             folder.mkdirs();
+            feedbackManager.addFeedback(folder, 0);
             for (int i = 0; i < size; i++)
             {
               readResource(in, buffer, folder);
+              feedbackManager.addFeedback(folder, 1);
             }
           }
           else
           {
             ServerFile file = new ServerFile(parent, name, size);
             parent.addChild(file);
-            file.writeToDisk(in, buffer);
+            file.writeToDisk(in, buffer, feedbackManager);
           }
         }
       };
