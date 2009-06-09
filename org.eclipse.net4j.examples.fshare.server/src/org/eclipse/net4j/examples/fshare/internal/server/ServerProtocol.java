@@ -15,7 +15,6 @@ import org.eclipse.spi.net4j.ServerProtocolFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Collection;
 
 /**
  * @author Eike Stepper
@@ -33,14 +32,14 @@ public class ServerProtocol extends SignalProtocol<ServerApplication> implements
     return getInfraStructure();
   }
 
-  public void sendFeedbacks(final Collection<ServerFeedback> feedbacks)
+  public void sendFeedbacks(final ServerFeedback[] feedbacks)
   {
     Request request = new Request(this, SIGNAL_UPLOAD_FEEDBACK, "UploadFeedback")
     {
       @Override
       protected void requesting(ExtendedDataOutputStream out) throws Exception
       {
-        out.writeInt(feedbacks.size());
+        out.writeInt(feedbacks.length);
         for (ServerFeedback feedback : feedbacks)
         {
           ServerResource resource = feedback.getResource();

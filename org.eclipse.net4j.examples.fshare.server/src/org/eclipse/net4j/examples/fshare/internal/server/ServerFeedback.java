@@ -2,22 +2,31 @@ package org.eclipse.net4j.examples.fshare.internal.server;
 
 import org.eclipse.net4j.util.concurrent.Worker;
 
-import java.util.Collection;
+import java.util.Arrays;
 import java.util.Comparator;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Eike Stepper
  */
 public class ServerFeedback
 {
+  private static long counter;
+
+  private Long id;
+
   private ServerResource resource;
 
   private int progress;
 
   private ServerFeedback(ServerResource resource)
   {
+    synchronized (ServerFeedback.class)
+    {
+      id = ++counter;
+    }
+
     this.resource = resource;
   }
 
@@ -34,13 +43,13 @@ public class ServerFeedback
   /**
    * @author Eike Stepper
    */
-  public static class Manager extends Worker implements Comparator<ServerResource>
+  public static class Manager extends Worker
   {
     private static final long INTERVAL = 1000L;
 
     private ServerApplication server;
 
-    private SortedMap<ServerResource, ServerFeedback> feedbacks = new TreeMap<ServerResource, ServerFeedback>(this);
+    private Map<ServerResource, ServerFeedback> feedbacks = initFeedbacks();
 
     public Manager(ServerApplication server)
     {
@@ -59,31 +68,29 @@ public class ServerFeedback
       feedback.progress += progress;
     }
 
-    /**
-     * The comparator ensures that folders are iterated before their contents. Shorter resource paths come first.
-     */
-    public int compare(ServerResource r1, ServerResource r2)
-    {
-      Integer length1 = r1.getPath().length();
-      Integer length2 = r2.getPath().length();
-      return length1.compareTo(length2);
-    }
-
     @Override
     protected void work(WorkContext context) throws Exception
     {
-      Collection<ServerFeedback> toBeSent = null;
+      ServerFeedback[] toBeSent = null;
       synchronized (this)
       {
         if (!feedbacks.isEmpty())
         {
-          toBeSent = feedbacks.values();
-          feedbacks = new TreeMap<ServerResource, ServerFeedback>(this);
+          toBeSent = feedbacks.values().toArray(new ServerFeedback[feedbacks.size()]);
+          feedbacks = initFeedbacks();
         }
       }
 
       if (toBeSent != null)
       {
+        Arrays.sort(toBeSent, new Comparator<ServerFeedback>()
+        {
+          public int compare(ServerFeedback f1, ServerFeedback f2)
+          {
+            return f1.id.compareTo(f2.id);
+          }
+        });
+
         for (ServerProtocol session : server.getSessions())
         {
           if (session.isActive())
@@ -94,6 +101,11 @@ public class ServerFeedback
       }
 
       context.nextWork(INTERVAL);
+    }
+
+    private HashMap<ServerResource, ServerFeedback> initFeedbacks()
+    {
+      return new HashMap<ServerResource, ServerFeedback>();
     }
   }
 }
