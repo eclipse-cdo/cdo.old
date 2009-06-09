@@ -138,7 +138,6 @@ public class Client implements IClient
       {
         child = new ClientFile(parentFolder, name, size);
       }
-
     }
 
     int uploaded = child.getUploaded() + progress;
