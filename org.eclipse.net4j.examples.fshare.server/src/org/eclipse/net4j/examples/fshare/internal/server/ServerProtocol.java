@@ -44,6 +44,7 @@ public class ServerProtocol extends SignalProtocol<ServerApplication> implements
         for (ServerFeedback feedback : feedbacks)
         {
           ServerResource resource = feedback.getResource();
+          out.writeBoolean(resource instanceof ServerFolder);
           out.writeString(resource.getPath());
           out.writeInt(resource.getSize());
           out.writeInt(feedback.getProgress());

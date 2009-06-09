@@ -119,29 +119,27 @@ public class ClientFileSystem implements IFileSystem
     }
   }
 
-  public void setUploadFeedback(String path, int size, int progress)
+  public void setUploadFeedback(boolean isFolder, String path, int size, int progress)
   {
-    System.out.println("setUploadFeedback not yet implemented");
-    // String[] split = FShareUtil.splitPathLast(path);
-    // FShareFolder parentFolder = split[0] == null ? rootFolder : (FShareFolder)getResource(split[0]);
-    // String name = split[1];
-    //
-    // if (size == FShareConstants.FOLDER)
-    // {
-    // FShareFolder folder = new FShareFolder(name, parentFolder);
-    // parentFolder.addChild(folder, true, true);
-    // }
-    // else
-    // {
-    // FShareFile file = (FShareFile)parentFolder.getChild(name);
-    // if (file == null)
-    // {
-    // file = new FShareFile(parentFolder, name, size);
-    // parentFolder.addChild(file, true, true);
-    // }
-    //
-    // file.setUploaded(progress);
-    // }
+    String[] split = FShareUtil.splitPathLast(path);
+    ClientFolder parentFolder = split[0] == null ? rootFolder : (ClientFolder)getResource(split[0]);
+    String name = split[1];
+
+    ClientResource child = parentFolder.getChild(name);
+    if (child == null)
+    {
+      if (isFolder)
+      {
+        child = new ClientFolder(parentFolder, name, size);
+      }
+      else
+      {
+        child = new ClientFile(parentFolder, name, size);
+      }
+    }
+
+    child.setUploaded(progress);
+    parentFolder.addChild(child, true, true);
   }
 
   protected IManagedContainer getContainer()
