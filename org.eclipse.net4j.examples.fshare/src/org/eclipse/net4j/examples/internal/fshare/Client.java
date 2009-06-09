@@ -94,6 +94,11 @@ public class Client implements IClient
       }
 
       folder = (ClientFolder)folder.getChild(split[0]);
+      if (folder == null)
+      {
+        throw new IllegalArgumentException("Resource does not exist: " + path);
+      }
+
       path = split[1];
     }
   }
@@ -126,25 +131,29 @@ public class Client implements IClient
     String name = split[1];
 
     boolean toBeAdded = false;
-    ClientResource child = parentFolder.getChild(name);
-    if (child == null)
+    ClientResource resource = parentFolder.getChild(name);
+    if (resource == null)
     {
       toBeAdded = true;
       if (isFolder)
       {
-        child = new ClientFolder(parentFolder, name, size);
+        resource = new ClientFolder(parentFolder, name, size);
       }
       else
       {
-        child = new ClientFile(parentFolder, name, size);
+        resource = new ClientFile(parentFolder, name, size);
       }
     }
+    else
+    {
+      resource.setSize(Math.max(resource.getSize(), size));
+    }
 
-    int uploaded = child.getUploaded() + progress;
-    child.setUploaded(uploaded);
+    int uploaded = resource.getUploaded() + progress;
+    resource.setUploaded(uploaded);
     if (toBeAdded)
     {
-      parentFolder.addChild(child, true, true);
+      parentFolder.addChild(resource, false, true);
     }
   }
 

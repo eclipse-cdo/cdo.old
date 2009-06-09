@@ -156,6 +156,7 @@ public class ClientProtocol extends SignalProtocol<Client> implements FShareCons
             String path = in.readString();
             int size = in.readInt();
             int progress = in.readInt();
+            // worker.addWork(new Feedback(isFolder, path, size, progress));
             getClient().setUploadFeedback(isFolder, path, size, progress);
           }
         }
@@ -165,4 +166,46 @@ public class ClientProtocol extends SignalProtocol<Client> implements FShareCons
       return null;
     }
   }
+
+  // QueueWorker<Feedback> worker = new QueueWorker<Feedback>()
+  // {
+  // @Override
+  // protected void work(WorkContext context, Feedback feedback)
+  // {
+  // getClient().setUploadFeedback(feedback.isFolder, feedback.path, feedback.size, feedback.progress);
+  // }
+  // };
+  //
+  // @Override
+  // protected void doActivate() throws Exception
+  // {
+  // super.doActivate();
+  // worker.activate();
+  // }
+  //
+  // @Override
+  // protected void doDeactivate() throws Exception
+  // {
+  // worker.deactivate();
+  // super.doDeactivate();
+  // }
+  //
+  // static class Feedback
+  // {
+  // boolean isFolder;
+  //
+  // String path;
+  //
+  // int size;
+  //
+  // int progress;
+  //
+  // public Feedback(boolean isFolder, String path, int size, int progress)
+  // {
+  // this.isFolder = isFolder;
+  // this.path = path;
+  // this.size = size;
+  // this.progress = progress;
+  // }
+  // }
 }
