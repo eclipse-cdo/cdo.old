@@ -70,6 +70,7 @@ public class ClientProtocol extends SignalProtocol<ClientFileSystem> implements 
       protected Integer confirming(ExtendedDataInputStream in) throws Exception
       {
         int count = in.readInt();
+        parent.setSize(count);
         for (int i = 0; i < count; i++)
         {
           String name = in.readString();

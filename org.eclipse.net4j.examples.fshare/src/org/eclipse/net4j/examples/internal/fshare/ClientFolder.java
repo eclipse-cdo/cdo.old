@@ -151,7 +151,6 @@ public class ClientFolder extends ClientResource implements IFolder
       if (load)
       {
         getFileSystem().getProtocol().loadChildren(this);
-        setSize(children.size());
       }
     }
   }
