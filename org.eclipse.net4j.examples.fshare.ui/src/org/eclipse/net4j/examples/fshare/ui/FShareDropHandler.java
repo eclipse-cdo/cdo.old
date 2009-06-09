@@ -10,7 +10,7 @@
  */
 package org.eclipse.net4j.examples.fshare.ui;
 
-import org.eclipse.net4j.examples.fshare.IFileSystem;
+import org.eclipse.net4j.examples.fshare.IClient;
 import org.eclipse.net4j.examples.fshare.IFolder;
 
 import org.eclipse.jface.viewers.TreeViewer;
@@ -20,12 +20,12 @@ import org.eclipse.swt.dnd.TransferData;
 
 public class FShareDropHandler extends ViewerDropAdapter
 {
-  private IFileSystem fileSystem;
+  private IClient client;
 
-  public FShareDropHandler(IFileSystem fileSystem, TreeViewer viewer)
+  public FShareDropHandler(IClient client, TreeViewer viewer)
   {
     super(viewer);
-    this.fileSystem = fileSystem;
+    this.client = client;
   }
 
   @Override
@@ -57,7 +57,7 @@ public class FShareDropHandler extends ViewerDropAdapter
   {
     if (target == null)
     {
-      return fileSystem.getRootFolder();
+      return client.getRootFolder();
     }
 
     if (target instanceof IFolder)

@@ -21,15 +21,15 @@ public class ClientFolder extends ClientResource implements IFolder
 {
   private Map<String, ClientResource> children;
 
-  public ClientFolder(Client fileSystem, int size, int uploaded)
+  public ClientFolder(Client client, int size, int uploaded)
   {
-    super(fileSystem, null, null, size);
+    super(client, null, null, size);
     setUploaded(uploaded);
   }
 
   public ClientFolder(ClientFolder parent, String name, int size)
   {
-    super(parent.getFileSystem(), parent, name, size);
+    super(parent.getClient(), parent, name, size);
   }
 
   public synchronized ClientResource[] getChildren()
@@ -49,7 +49,7 @@ public class ClientFolder extends ClientResource implements IFolder
     boolean added = basicAddChild(resource, load);
     if (added && notify)
     {
-      getFileSystem().fireResourceAdded(resource);
+      getClient().fireResourceAdded(resource);
     }
 
     return added;
@@ -85,7 +85,7 @@ public class ClientFolder extends ClientResource implements IFolder
           @Override
           protected IStatus run(IProgressMonitor monitor)
           {
-            getFileSystem().getProtocol().upload(resource, source, monitor);
+            getClient().getProtocol().upload(resource, source, monitor);
             return Status.OK_STATUS;
           }
         };
@@ -150,7 +150,7 @@ public class ClientFolder extends ClientResource implements IFolder
       children = new HashMap<String, ClientResource>();
       if (load)
       {
-        getFileSystem().getProtocol().loadChildren(this);
+        getClient().getProtocol().loadChildren(this);
       }
     }
   }

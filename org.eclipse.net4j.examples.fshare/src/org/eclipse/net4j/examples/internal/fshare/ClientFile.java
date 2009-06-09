@@ -19,7 +19,7 @@ public class ClientFile extends ClientResource implements IFile
 {
   public ClientFile(ClientFolder parent, String name, int size)
   {
-    super(parent.getFileSystem(), parent, name, size);
+    super(parent.getClient(), parent, name, size);
   }
 
   @Override

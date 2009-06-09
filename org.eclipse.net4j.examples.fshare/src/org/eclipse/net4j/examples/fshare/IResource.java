@@ -5,7 +5,7 @@ package org.eclipse.net4j.examples.fshare;
  */
 public interface IResource
 {
-  public IFileSystem getFileSystem();
+  public IClient getClient();
 
   public IFolder getParent();
 

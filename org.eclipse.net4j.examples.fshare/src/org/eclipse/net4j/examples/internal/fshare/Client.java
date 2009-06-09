@@ -1,7 +1,7 @@
 package org.eclipse.net4j.examples.internal.fshare;
 
 import org.eclipse.net4j.connector.IConnector;
-import org.eclipse.net4j.examples.fshare.IFileSystem;
+import org.eclipse.net4j.examples.fshare.IClient;
 import org.eclipse.net4j.examples.fshare.common.FShareUtil;
 import org.eclipse.net4j.examples.internal.fshare.bundle.OM;
 import org.eclipse.net4j.util.container.IManagedContainer;
@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * @author Eike Stepper
  */
-public class Client implements IFileSystem
+public class Client implements IClient
 {
   private IConnector connector;
 

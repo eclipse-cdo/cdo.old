@@ -10,7 +10,7 @@
  */
 package org.eclipse.net4j.examples.fshare.ui;
 
-import org.eclipse.net4j.examples.fshare.IFileSystem;
+import org.eclipse.net4j.examples.fshare.IClient;
 import org.eclipse.net4j.examples.fshare.IFolder;
 import org.eclipse.net4j.examples.fshare.IResource;
 
@@ -20,7 +20,7 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 
-public final class FShareContentProvider implements ITreeContentProvider, IFileSystem.Listener
+public final class FShareContentProvider implements ITreeContentProvider, IClient.Listener
 {
   private IFolder rootFolder;
 
@@ -66,21 +66,21 @@ public final class FShareContentProvider implements ITreeContentProvider, IFileS
   {
     this.viewer = (TreeViewer)viewer;
     rootFolder = (IFolder)newInput;
-    rootFolder.getFileSystem().addListener(this);
+    rootFolder.getClient().addListener(this);
   }
 
   public void dispose()
   {
-    rootFolder.getFileSystem().removeListener(this);
+    rootFolder.getClient().removeListener(this);
     rootFolder = null;
     viewer = null;
   }
 
-  public void protocolClosed(IFileSystem fileSystem)
+  public void protocolClosed(IClient client)
   {
     if (!viewer.getControl().isDisposed())
     {
-      // TODO: implement FShareContentProvider.protocolClosed(fileSystem)
+      // TODO: implement FShareContentProvider.protocolClosed(client)
       throw new UnsupportedOperationException();
     }
   }

@@ -13,7 +13,7 @@ import java.io.IOException;
  */
 public abstract class ClientResource implements IResource
 {
-  private Client fileSystem;
+  private Client client;
 
   private ClientFolder parent;
 
@@ -23,17 +23,17 @@ public abstract class ClientResource implements IResource
 
   private int uploaded;
 
-  public ClientResource(Client fileSystem, ClientFolder parent, String name, int size)
+  public ClientResource(Client client, ClientFolder parent, String name, int size)
   {
-    this.fileSystem = fileSystem;
+    this.client = client;
     this.parent = parent;
     this.name = name;
     this.size = size;
   }
 
-  public Client getFileSystem()
+  public Client getClient()
   {
-    return fileSystem;
+    return client;
   }
 
   public ClientFolder getParent()
@@ -92,7 +92,7 @@ public abstract class ClientResource implements IResource
     this.uploaded = uploaded;
     if (getUploadedPercent() != percent)
     {
-      fileSystem.fireProgressChanged(this);
+      client.fireProgressChanged(this);
     }
   }
 

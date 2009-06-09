@@ -15,7 +15,7 @@ public class FShareView extends ViewPart
 {
   public static final String ID = "org.eclipse.net4j.examples.fshare.ui.view";
 
-  private Client fileSystem;
+  private Client client;
 
   private TreeViewer viewer;
 
@@ -26,18 +26,18 @@ public class FShareView extends ViewPart
   @Override
   public void createPartControl(Composite parent)
   {
-    fileSystem = new Client(Application.getTargetURL());
+    client = new Client(Application.getTargetURL());
 
     int ops = DND.DROP_COPY | DND.DROP_MOVE;
     Transfer[] transfers = new Transfer[] { FileTransfer.getInstance() };
 
     viewer = new TreeViewer(parent, SWT.H_SCROLL | SWT.V_SCROLL);
-    viewer.addDragSupport(ops, transfers, new FShareDragHandler(fileSystem, viewer));
-    viewer.addDropSupport(ops, transfers, new FShareDropHandler(fileSystem, viewer));
+    viewer.addDragSupport(ops, transfers, new FShareDragHandler(client, viewer));
+    viewer.addDropSupport(ops, transfers, new FShareDropHandler(client, viewer));
     viewer.setContentProvider(new FShareContentProvider());
     viewer.setLabelProvider(new FShareLabelProvider());
     viewer.setComparator(new FShareComparator());
-    viewer.setInput(fileSystem.getRootFolder());
+    viewer.setInput(client.getRootFolder());
 
     getSite().setSelectionProvider(viewer);
   }
