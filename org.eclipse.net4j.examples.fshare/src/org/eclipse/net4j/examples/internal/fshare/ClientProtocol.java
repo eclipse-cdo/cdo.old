@@ -146,10 +146,11 @@ public class ClientProtocol extends SignalProtocol<ClientFileSystem> implements 
           int feedbacksCount = in.readInt();
           for (int i = 0; i < feedbacksCount; i++)
           {
+            boolean isFolder = in.readBoolean();
             String path = in.readString();
             int size = in.readInt();
             int progress = in.readInt();
-            getInfraStructure().setUploadFeedback(path, size, progress);
+            getInfraStructure().setUploadFeedback(isFolder, path, size, progress);
           }
         }
       };

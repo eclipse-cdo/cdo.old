@@ -138,7 +138,8 @@ public class ClientFileSystem implements IFileSystem
       }
     }
 
-    child.setUploaded(progress);
+    int uploaded = child.getUploaded() + progress;
+    child.setUploaded(uploaded);
     parentFolder.addChild(child, true, true);
   }
 
