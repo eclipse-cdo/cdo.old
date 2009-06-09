@@ -81,7 +81,6 @@ public final class FShareContentProvider implements ITreeContentProvider, IClien
     if (!viewer.getControl().isDisposed())
     {
       // TODO: implement FShareContentProvider.protocolClosed(client)
-      throw new UnsupportedOperationException();
     }
   }
 
