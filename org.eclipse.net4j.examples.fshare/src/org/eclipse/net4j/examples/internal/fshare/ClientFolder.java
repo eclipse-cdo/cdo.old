@@ -96,13 +96,13 @@ public class ClientFolder extends ClientResource implements IFolder
   }
 
   @Override
-  public synchronized void upload(ExtendedDataOutputStream out, File source, byte[] buffer, IProgressMonitor monitor)
+  public void upload(ExtendedDataOutputStream out, File source, byte[] buffer, IProgressMonitor monitor)
       throws IOException
   {
     super.upload(out, source, buffer, monitor);
     out.writeBoolean(FShareConstants.FOLDER);
 
-    for (ClientResource child : children.values())
+    for (ClientResource child : getChildren())
     {
       File childSource = new File(source, child.getName());
       child.upload(out, childSource, buffer, monitor);
