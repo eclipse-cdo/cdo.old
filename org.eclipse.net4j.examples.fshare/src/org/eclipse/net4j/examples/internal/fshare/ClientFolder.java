@@ -2,7 +2,6 @@ package org.eclipse.net4j.examples.internal.fshare;
 
 import org.eclipse.net4j.examples.fshare.IFolder;
 import org.eclipse.net4j.examples.fshare.common.FShareConstants;
-import org.eclipse.net4j.examples.internal.fshare.bundle.OM;
 import org.eclipse.net4j.util.io.ExtendedDataOutputStream;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -86,14 +85,14 @@ public class ClientFolder extends ClientResource implements IFolder
           @Override
           protected IStatus run(IProgressMonitor monitor)
           {
-            try
-            {
-              getFileSystem().getProtocol().upload(resource, source, monitor);
-            }
-            catch (Exception ex)
-            {
-              return new Status(IStatus.ERROR, OM.BUNDLE_ID, "Problem while uploading " + sourcePath, ex);
-            }
+            // try
+            // {
+            getFileSystem().getProtocol().upload(resource, source, monitor);
+            // }
+            // catch (Exception ex)
+            // {
+            // return new Status(IStatus.ERROR, OM.BUNDLE_ID, "Problem while uploading " + sourcePath, ex);
+            // }
 
             return Status.OK_STATUS;
           }

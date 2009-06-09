@@ -29,24 +29,24 @@ public class ClientProtocol extends SignalProtocol<ClientFileSystem> implements 
 
   public int[] logon(final String path)
   {
+    RequestWithConfirmation<int[]> request = new RequestWithConfirmation<int[]>(this, SIGNAL_LOGON, "Logon")
+    {
+      @Override
+      protected void requesting(ExtendedDataOutputStream out) throws Exception
+      {
+        out.writeString(path);
+      }
+
+      @Override
+      protected int[] confirming(ExtendedDataInputStream in) throws Exception
+      {
+        // rootFolder.size and rootFolder.uploaded
+        return new int[] { in.readInt(), in.readInt() };
+      }
+    };
+
     try
     {
-      RequestWithConfirmation<int[]> request = new RequestWithConfirmation<int[]>(this, SIGNAL_LOGON, "Logon")
-      {
-        @Override
-        protected void requesting(ExtendedDataOutputStream out) throws Exception
-        {
-          out.writeString(path);
-        }
-
-        @Override
-        protected int[] confirming(ExtendedDataInputStream in) throws Exception
-        {
-          // rootFolder.size and rootFolder.uploaded
-          return new int[] { in.readInt(), in.readInt() };
-        }
-      };
-
       return request.send();
     }
     catch (Exception ex)
@@ -57,46 +57,46 @@ public class ClientProtocol extends SignalProtocol<ClientFileSystem> implements 
 
   public int loadChildren(final ClientFolder parent)
   {
+    RequestWithConfirmation<Integer> request = new RequestWithConfirmation<Integer>(this, SIGNAL_LOAD_CHILDREN,
+        "LoadChildren")
+    {
+      @Override
+      protected void requesting(ExtendedDataOutputStream out) throws Exception
+      {
+        out.writeString(parent.getPath());
+      }
+
+      @Override
+      protected Integer confirming(ExtendedDataInputStream in) throws Exception
+      {
+        int count = in.readInt();
+        for (int i = 0; i < count; i++)
+        {
+          String name = in.readString();
+          int size = in.readInt();
+          int uploaded = in.readInt();
+
+          boolean type = in.readBoolean();
+          if (type == FOLDER)
+          {
+            ClientFolder folder = new ClientFolder(parent, name, size);
+            folder.setUploaded(uploaded);
+            parent.addChild(folder, false, false);
+          }
+          else
+          {
+            ClientFile file = new ClientFile(parent, name, size);
+            file.setUploaded(uploaded);
+            parent.addChild(file, false, false);
+          }
+        }
+
+        return count;
+      }
+    };
+
     try
     {
-      RequestWithConfirmation<Integer> request = new RequestWithConfirmation<Integer>(this, SIGNAL_LOAD_CHILDREN,
-          "LoadChildren")
-      {
-        @Override
-        protected void requesting(ExtendedDataOutputStream out) throws Exception
-        {
-          out.writeString(parent.getPath());
-        }
-
-        @Override
-        protected Integer confirming(ExtendedDataInputStream in) throws Exception
-        {
-          int count = in.readInt();
-          for (int i = 0; i < count; i++)
-          {
-            String name = in.readString();
-            int size = in.readInt();
-            int uploaded = in.readInt();
-
-            boolean type = in.readBoolean();
-            if (type == FOLDER)
-            {
-              ClientFolder folder = new ClientFolder(parent, name, size);
-              folder.setUploaded(uploaded);
-              parent.addChild(folder, false, false);
-            }
-            else
-            {
-              ClientFile file = new ClientFile(parent, name, size);
-              file.setUploaded(uploaded);
-              parent.addChild(file, false, false);
-            }
-          }
-
-          return count;
-        }
-      };
-
       return request.send();
     }
     catch (Exception ex)
@@ -105,7 +105,7 @@ public class ClientProtocol extends SignalProtocol<ClientFileSystem> implements 
     }
   }
 
-  public void upload(final ClientResource resource, final File source, final IProgressMonitor monitor) throws Exception
+  public void upload(final ClientResource resource, final File source, final IProgressMonitor monitor)
   {
     Request request = new Request(ClientProtocol.this, SIGNAL_UPLOAD, "Upload")
     {
@@ -121,6 +121,10 @@ public class ClientProtocol extends SignalProtocol<ClientFileSystem> implements 
     {
       monitor.beginTask("", resource.getTotalFileSize());
       request.sendAsync();
+    }
+    catch (Exception ex)
+    {
+      throw WrappedException.wrap(ex);
     }
     finally
     {
@@ -139,31 +143,14 @@ public class ClientProtocol extends SignalProtocol<ClientFileSystem> implements 
         @Override
         protected void indicating(ExtendedDataInputStream in) throws Exception
         {
-          // int uploadsCount = in.readInt();
-          // for (int i = 0; i < uploadsCount; i++)
-          // {
-          // String basePath = in.readString();
-          // boolean uploadDone = in.readBoolean();
-          //
-          // int resourcesCount = in.readInt();
-          // for (int j = 0; j < resourcesCount; j++)
-          // {
-          // String path = in.readString();
-          // int size = in.readInt();
-          // int progress = in.readInt();
-          // getInfraStructure().setUploadFeedback(path, size, progress);
-          // }
-          //
-          // if (uploadDone)
-          // {
-          // FShareResource baseResource = getInfraStructure().getResource(basePath);
-          // if (baseResource instanceof FShareFolder)
-          // {
-          // FShareFolder baseFolder = (FShareFolder)baseResource;
-          // baseFolder.setLocked(false);
-          // }
-          // }
-          // }
+          int feedbacksCount = in.readInt();
+          for (int i = 0; i < feedbacksCount; i++)
+          {
+            String path = in.readString();
+            int size = in.readInt();
+            int progress = in.readInt();
+            getInfraStructure().setUploadFeedback(path, size, progress);
+          }
         }
       };
 

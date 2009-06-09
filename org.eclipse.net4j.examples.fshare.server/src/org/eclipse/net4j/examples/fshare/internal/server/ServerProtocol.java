@@ -3,8 +3,10 @@ package org.eclipse.net4j.examples.fshare.internal.server;
 import org.eclipse.net4j.examples.fshare.common.FShareConstants;
 import org.eclipse.net4j.signal.Indication;
 import org.eclipse.net4j.signal.IndicationWithResponse;
+import org.eclipse.net4j.signal.Request;
 import org.eclipse.net4j.signal.SignalProtocol;
 import org.eclipse.net4j.signal.SignalReactor;
+import org.eclipse.net4j.util.WrappedException;
 import org.eclipse.net4j.util.factory.ProductCreationException;
 import org.eclipse.net4j.util.io.ExtendedDataInputStream;
 import org.eclipse.net4j.util.io.ExtendedDataOutputStream;
@@ -13,7 +15,7 @@ import org.eclipse.spi.net4j.ServerProtocolFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.SortedMap;
+import java.util.Collection;
 
 /**
  * @author Eike Stepper
@@ -31,41 +33,32 @@ public class ServerProtocol extends SignalProtocol<ServerApplication> implements
     return getInfraStructure();
   }
 
-  public void sendFeedback(SortedMap<ServerResource, ServerFeedback> toBeSent)
+  public void sendFeedbacks(final Collection<ServerFeedback> feedbacks)
   {
-  }
+    Request request = new Request(this, SIGNAL_UPLOAD_FEEDBACK, "UploadFeedback")
+    {
+      @Override
+      protected void requesting(ExtendedDataOutputStream out) throws Exception
+      {
+        out.writeInt(feedbacks.size());
+        for (ServerFeedback feedback : feedbacks)
+        {
+          ServerResource resource = feedback.getResource();
+          out.writeString(resource.getPath());
+          out.writeInt(resource.getSize());
+          out.writeInt(feedback.getProgress());
+        }
+      }
+    };
 
-  public void sendFeedback(/* final List<FShareUpload> uploads */)
-  {
-    // try
-    // {
-    // new Request(this, SIGNAL_UPLOAD_FEEDBACK, "UploadFeedback")
-    // {
-    // @Override
-    // protected void requesting(ExtendedDataOutputStream out) throws Exception
-    // {
-    // out.writeInt(uploads.size());
-    // for (FShareUpload upload : uploads)
-    // {
-    // out.writeString(upload.getPath());
-    // out.writeBoolean(upload.isDone());
-    //
-    // List<Feedback> feedbacks = upload.getFeedbacks();
-    // out.writeInt(feedbacks.size());
-    // for (Feedback feedback : feedbacks)
-    // {
-    // out.writeString(feedback.path);
-    // out.writeLong(feedback.size);
-    // out.writeLong(feedback.progress);
-    // }
-    // }
-    // }
-    // }.sendAsync();
-    // }
-    // catch (Exception ex)
-    // {
-    // throw WrappedException.wrap(ex);
-    // }
+    try
+    {
+      request.sendAsync();
+    }
+    catch (Exception ex)
+    {
+      throw WrappedException.wrap(ex);
+    }
   }
 
   @Override

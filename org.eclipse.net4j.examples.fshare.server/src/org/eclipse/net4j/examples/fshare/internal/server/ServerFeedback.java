@@ -2,6 +2,7 @@ package org.eclipse.net4j.examples.fshare.internal.server;
 
 import org.eclipse.net4j.util.concurrent.Worker;
 
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -71,12 +72,12 @@ public class ServerFeedback
     @Override
     protected void work(WorkContext context) throws Exception
     {
-      SortedMap<ServerResource, ServerFeedback> toBeSent = null;
+      Collection<ServerFeedback> toBeSent = null;
       synchronized (this)
       {
         if (!feedbacks.isEmpty())
         {
-          toBeSent = feedbacks;
+          toBeSent = feedbacks.values();
           feedbacks = new TreeMap<ServerResource, ServerFeedback>(this);
         }
       }
@@ -87,7 +88,7 @@ public class ServerFeedback
         {
           if (session.isActive())
           {
-            session.sendFeedback(toBeSent);
+            session.sendFeedbacks(toBeSent);
           }
         }
       }
