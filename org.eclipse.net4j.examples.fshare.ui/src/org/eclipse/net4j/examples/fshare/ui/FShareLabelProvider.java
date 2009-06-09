@@ -1,9 +1,9 @@
-package org.eclipse.net4j.examples.fshare.ui.view;
+package org.eclipse.net4j.examples.fshare.ui;
 
 import org.eclipse.net4j.examples.fshare.IFile;
 import org.eclipse.net4j.examples.fshare.IFolder;
 import org.eclipse.net4j.examples.fshare.IResource;
-import org.eclipse.net4j.examples.fshare.ui.Activator;
+import org.eclipse.net4j.examples.fshare.ui.app.Activator;
 
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.LabelProvider;

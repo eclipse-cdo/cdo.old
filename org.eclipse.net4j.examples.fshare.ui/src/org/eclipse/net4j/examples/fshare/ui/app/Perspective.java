@@ -1,6 +1,6 @@
 package org.eclipse.net4j.examples.fshare.ui.app;
 
-import org.eclipse.net4j.examples.fshare.ui.view.FShareView;
+import org.eclipse.net4j.examples.fshare.ui.FShareView;
 import org.eclipse.net4j.util.concurrent.ConcurrencyUtil;
 
 import org.eclipse.core.runtime.IProgressMonitor;

@@ -1,4 +1,4 @@
-package org.eclipse.net4j.examples.fshare.ui;
+package org.eclipse.net4j.examples.fshare.ui.app;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;

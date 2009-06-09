@@ -25,7 +25,7 @@
          point="org.eclipse.ui.views">
       <view
             name="View"
-            class="org.eclipse.net4j.examples.fshare.ui.view.FShareView"
+            class="org.eclipse.net4j.examples.fshare.ui.FShareView"
             id="org.eclipse.net4j.examples.fshare.ui.view">
       </view>
    </extension>

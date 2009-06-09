@@ -1,4 +1,4 @@
-package org.eclipse.net4j.examples.fshare.ui.view;
+package org.eclipse.net4j.examples.fshare.ui;
 
 import org.eclipse.net4j.examples.fshare.IFile;
 
