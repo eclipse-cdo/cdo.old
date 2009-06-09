@@ -20,8 +20,8 @@ public class Perspective implements IPerspectiveFactory
 
     layout.addStandaloneView(FShareView.ID, false, IPageLayout.BOTTOM, 0.3f, editorArea);
     layout.addStandaloneView(IPageLayout.ID_PROGRESS_VIEW, true, IPageLayout.BOTTOM, 0.7f, FShareView.ID);
-    layout.addStandaloneView("org.eclipse.net4j.util.Net4jIntrospectorView", true, IPageLayout.BOTTOM, 0.7f,
-        IPageLayout.ID_PROGRESS_VIEW);
+    // layout.addStandaloneView("org.eclipse.net4j.util.Net4jIntrospectorView", true, IPageLayout.BOTTOM, 0.7f,
+    // IPageLayout.ID_PROGRESS_VIEW);
 
     // Fake job to work around bug that causes first job be shown only if at least two jobs are running
     new Job("Initializing")
