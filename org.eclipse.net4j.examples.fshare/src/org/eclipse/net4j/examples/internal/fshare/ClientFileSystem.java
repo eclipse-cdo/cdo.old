@@ -125,9 +125,11 @@ public class ClientFileSystem implements IFileSystem
     ClientFolder parentFolder = split[0] == null ? rootFolder : (ClientFolder)getResource(split[0]);
     String name = split[1];
 
+    boolean toBeAdded = false;
     ClientResource child = parentFolder.getChild(name);
     if (child == null)
     {
+      toBeAdded = true;
       if (isFolder)
       {
         child = new ClientFolder(parentFolder, name, size);
@@ -136,11 +138,15 @@ public class ClientFileSystem implements IFileSystem
       {
         child = new ClientFile(parentFolder, name, size);
       }
+
     }
 
     int uploaded = child.getUploaded() + progress;
     child.setUploaded(uploaded);
-    parentFolder.addChild(child, true, true);
+    if (toBeAdded)
+    {
+      parentFolder.addChild(child, true, true);
+    }
   }
 
   protected IManagedContainer getContainer()
