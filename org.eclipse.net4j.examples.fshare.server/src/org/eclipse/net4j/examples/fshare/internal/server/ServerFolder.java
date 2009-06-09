@@ -10,13 +10,11 @@ import java.util.Map;
  */
 public class ServerFolder extends ServerResource
 {
-  private static final int UNKNOWN = -1;
-
   private Map<String, ServerResource> children = new HashMap<String, ServerResource>();
 
   public ServerFolder()
   {
-    super(null, null, UNKNOWN);
+    super(null, null, 0);
   }
 
   public ServerFolder(ServerFolder parent, String name, int size)

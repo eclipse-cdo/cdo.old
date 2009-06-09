@@ -47,7 +47,6 @@ public class ClientFile extends ClientResource implements IFile
     finally
     {
       IOUtil.close(in);
-      monitor.setTaskName("");
     }
   }
 
