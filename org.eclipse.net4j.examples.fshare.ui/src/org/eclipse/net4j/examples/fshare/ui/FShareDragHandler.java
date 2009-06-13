@@ -29,6 +29,16 @@ public class FShareDragHandler extends TreeDragSourceEffect
     this.client = client;
   }
 
+  public IClient getClient()
+  {
+    return client;
+  }
+
+  public TreeViewer getViewer()
+  {
+    return viewer;
+  }
+
   @Override
   public void dragStart(DragSourceEvent event)
   {
