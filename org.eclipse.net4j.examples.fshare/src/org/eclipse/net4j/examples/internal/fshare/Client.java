@@ -10,8 +10,6 @@ import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.net4j.util.lifecycle.ILifecycle;
 import org.eclipse.net4j.util.lifecycle.LifecycleEventAdapter;
 
-import org.eclipse.spi.net4j.ConnectorFactory;
-
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -44,15 +42,12 @@ public class Client implements IClient
     try
     {
       URI uri = new URI(targetURL);
-      String type = uri.getScheme();
-      String description = uri.getAuthority();
-      String path = uri.getPath();
-
-      connector = (IConnector)getContainer().getElement(ConnectorFactory.PRODUCT_GROUP, type, description);
+      connector = (IConnector)IPluginContainer.INSTANCE.getElement("org.eclipse.net4j.connectors", uri.getScheme(), uri
+          .getAuthority());
 
       protocol = new ClientProtocol(connector, this);
       protocol.addListener(protocolListener);
-      int[] result = protocol.logon(path);
+      int[] result = protocol.logon(uri.getPath());
 
       rootFolder = new ClientFolder(this, result[0], result[1]);
     }
