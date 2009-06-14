@@ -25,7 +25,6 @@ import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
 import org.eclipse.net4j.util.om.OSGiApplication;
 
 import org.eclipse.equinox.app.IApplicationContext;
-import org.eclipse.spi.net4j.AcceptorFactory;
 
 import java.io.File;
 import java.net.URI;
@@ -129,17 +128,14 @@ public class Server extends OSGiApplication
       throw new IllegalArgumentException("No acceptor URL!");
     }
 
-    IManagedContainer container = getContainer();
-    container.registerFactory(new ServerProtocol.Factory(this));
-
     try
     {
       URI uri = new URI(args[0]);
       rootFolder = createRootFolder(uri.getPath());
 
-      String type = uri.getScheme();
-      String description = uri.getAuthority();
-      acceptor = (IAcceptor)container.getElement(AcceptorFactory.PRODUCT_GROUP, type, description);
+      IManagedContainer container = IPluginContainer.INSTANCE;
+      container.registerFactory(new ServerProtocol.Factory(this));
+      acceptor = (IAcceptor)container.getElement("org.eclipse.net4j.acceptors", uri.getScheme(), uri.getAuthority());
       OM.LOG.info("Serving " + uri);
     }
     catch (URISyntaxException ex)
@@ -157,11 +153,6 @@ public class Server extends OSGiApplication
     LifecycleUtil.deactivate(acceptor);
     LifecycleUtil.deactivate(feedbackManager);
     OM.LOG.info("FShare server stopped");
-  }
-
-  protected IManagedContainer getContainer()
-  {
-    return IPluginContainer.INSTANCE;
   }
 
   private ServerFolder createRootFolder(final String path)
