@@ -146,6 +146,7 @@ public class ServerProtocol extends SignalProtocol<Server> implements FShareCons
             for (int i = 0; i < size; i++)
             {
               readResource(in, buffer, folder);
+              folder.setUploaded(i + 1);
               feedbackManager.addFeedback(folder, 1);
             }
           }
