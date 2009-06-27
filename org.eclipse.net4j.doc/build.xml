@@ -2,7 +2,7 @@
 <project name="org.eclipse.net4j.doc" default="build.jars" basedir=".">
 
 	<!-- Plug-in version.  This is a HACK.  Do not forget to update. -->
-	<property name="pluginVersion" value="2.0.0"/>
+	<property name="pluginVersion" value="3.0.0"/>
 
 	<property name="plugin" value="org.eclipse.net4j"/>
 	<property name="docPlugin" value="org.eclipse.net4j.doc"/>
@@ -18,7 +18,7 @@
 	<echo message="Set javacSource and javacTarget = 1.5"/>
 	<property name="javacSource" value="1.5" />
 	<property name="javacTarget" value="1.5" />
-	
+
 	<path id="bc">
 		<fileset dir="${java.home}/lib">
 			<include name="*.jar" />
@@ -72,9 +72,9 @@
 			<arg value="build/antJavadoc.sh"/>
 			<arg value="${eclipse.home}/../eclipse"/>
 		</exec>
-		
+
 		<antcall target="build.index"/>
-		
+
 		<!-- Zip up all of the documentation artifacts - references(including javadoc), images, tutorials, etc. -->
 		<zip destfile="doc.zip" compress="true">
 			<!-- Add new folders for documentation zip here. -->
@@ -87,7 +87,7 @@
 	<target name="build.index" depends="init" description="Builds search index for the plug-in" if="eclipse.running">
 		<help.buildHelpIndex manifest="plugin.xml" destination="."/>
 	</target>
-	
+
 	<target name="build.sources" depends="init">
 	</target>
 
@@ -96,8 +96,8 @@
 		<copy todir="${destination.temp.folder}/${docPlugin}_${pluginVersion}.${forceContextQualifier}" failonerror="true" overwrite="false">
 			<fileset dir="${basedir}" includes="${filesToInclude}"/>
 		</copy>
-		<eclipse.versionReplacer 
-			path="${destination.temp.folder}/${docPlugin}_${pluginVersion}.${forceContextQualifier}" 
+		<eclipse.versionReplacer
+			path="${destination.temp.folder}/${docPlugin}_${pluginVersion}.${forceContextQualifier}"
 			version="${pluginVersion}.${forceContextQualifier}"/>
 	</target>
 
