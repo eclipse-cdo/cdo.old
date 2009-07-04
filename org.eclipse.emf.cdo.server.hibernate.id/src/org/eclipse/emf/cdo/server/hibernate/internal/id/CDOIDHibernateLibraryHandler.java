@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Eike Stepper - initial API and implementation
  */
@@ -24,7 +24,7 @@ import java.io.InputStream;
  */
 public final class CDOIDHibernateLibraryHandler extends CDOIDLibraryDescriptorImpl implements CDOIDLibraryProvider
 {
-  public static final String LIBRARY_NAME = "hibernate-id-v3.jar";
+  public static final String LIBRARY_NAME = "hibernate-id-v3.1.jar";
 
   CDOIDHibernateLibraryHandler()
   {
