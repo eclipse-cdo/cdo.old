@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-public class Setup
+public class SetupWorkspace
 {
   private static final File downloads = new File("/develop/downloads").getAbsoluteFile();
 
