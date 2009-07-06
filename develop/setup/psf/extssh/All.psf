@@ -17,6 +17,7 @@
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo.releng,org.eclipse.emf.cdo.releng"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/features/org.eclipse.emf.cdo.sdk-feature,org.eclipse.emf.cdo.sdk-feature"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.server,org.eclipse.emf.cdo.server"/>
+<project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.server.net4j,org.eclipse.emf.cdo.server.net4j"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/features/org.eclipse.emf.cdo.server-feature,org.eclipse.emf.cdo.server-feature"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.server.db,org.eclipse.emf.cdo.server.db"/>
 <project reference="1.0,:extssh:dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.server.hibernate,org.eclipse.emf.cdo.server.hibernate"/>
@@ -124,6 +125,7 @@
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.emf.cdo-feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.emf.cdo.ui.capabilities" type="4"/>
 <item elementID="=org.eclipse.emf.cdo.server" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.cdo.server.net4j" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.server.hibernate.id" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
