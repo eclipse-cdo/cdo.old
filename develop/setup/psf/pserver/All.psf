@@ -2,6 +2,7 @@
 <psf version="2.0">
 <provider id="org.eclipse.team.cvs.core.cvsnature">
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo,org.eclipse.emf.cdo"/>
+<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.net4j,org.eclipse.emf.cdo.net4j"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/features/org.eclipse.emf.cdo-feature,org.eclipse.emf.cdo-feature"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.common,org.eclipse.emf.cdo.common"/>
 <project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.common.db,org.eclipse.emf.cdo.common.db"/>
@@ -127,6 +128,7 @@
 <item elementID="=org.eclipse.emf.cdo.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.emf.cdo.server-feature" type="4"/>
+<item elementID="=org.eclipse.emf.cdo.net4j" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.emf.cdo.server.db" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.emf.cdo.sdk-feature" type="4"/>
