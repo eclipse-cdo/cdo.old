@@ -123,7 +123,7 @@ public class SetupWorkspace
 
     URLConnection connection = url.openConnection();
     String contentType = connection.getContentType();
-    if (!"application/zip".equals(contentType))
+    if (!("application/zip".equals(contentType) || "application/x-gzip".equals(contentType)))
     {
       copy((InputStream)connection.getContent(), System.err);
       throw new IOException("Invalid content type: " + contentType);
