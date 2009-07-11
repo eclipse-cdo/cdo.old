@@ -11,7 +11,6 @@
 package org.eclipse.emf.cdo.server.hibernate.internal.id;
 
 import org.eclipse.emf.cdo.common.id.CDOIDObject;
-import org.eclipse.emf.cdo.common.id.CDOIDObjectFactory;
 import org.eclipse.emf.cdo.server.hibernate.id.CDOIDHibernate;
 
 import org.eclipse.net4j.util.WrappedException;
@@ -23,7 +22,7 @@ import java.io.Serializable;
 /**
  * @author Eike Stepper
  */
-public class CDOIDHibernateFactoryImpl implements CDOIDObjectFactory
+public class CDOIDHibernateFactoryImpl
 {
   private static CDOIDHibernateFactoryImpl instance = new CDOIDHibernateFactoryImpl();
 
