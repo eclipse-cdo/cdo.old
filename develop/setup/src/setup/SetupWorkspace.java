@@ -19,7 +19,7 @@ import java.util.zip.ZipInputStream;
 
 public class SetupWorkspace
 {
-  private static final File downloads = new File("/develop/downloads").getAbsoluteFile();
+  private static final File downloads = new File("/tmp/develop/downloads").getAbsoluteFile();
 
   private static final int BUFFER_SIZE = 16 * 1024;
 
