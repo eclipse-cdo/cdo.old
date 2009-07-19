@@ -1,7 +1,11 @@
 package setup;
 
+import org.apache.tools.tar.TarEntry;
+import org.apache.tools.tar.TarInputStream;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -14,28 +18,116 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+import java.util.zip.GZIPInputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class SetupWorkspace
 {
-  private static final File downloads = new File("/tmp/develop/downloads").getAbsoluteFile();
+  public static final String DOWNLOAD_OVERRIDE_FILE = "SetupWorkspace.properties";
+
+  public static final String DOWNLOAD_OVERRIDE_PROPERTY = "download.dir";
+
+  public static final String DOWNLOAD_DIR = "/develop/downloads";
+
+  private static File downloads;
 
   private static final int BUFFER_SIZE = 16 * 1024;
 
   public static void main(String[] args) throws Exception
   {
+    downloads = getDownloadsOverride(System.getProperty("user.dir"));
+    if (downloads == null)
+    {
+      downloads = getDownloadsOverride(System.getProperty("user.home"));
+    }
+
+    if (downloads == null)
+    {
+      downloads = new File(getTempDir(), DOWNLOAD_DIR);
+    }
+
     downloads.mkdirs();
     System.out.println("Downloads: " + downloads);
 
     File workspace = new File("..").getCanonicalFile();
     System.out.println("Workspace: " + workspace.getAbsolutePath());
 
-    setup(new File("urls-baseline.txt"), new File(workspace, ".baseline"));
-    setup(new File("urls-target.txt"), new File(workspace, ".target"));
+    File baseline = new File(workspace, ".baseline");
+    File target = new File(workspace, ".target");
+
+    deleteTarget(baseline);
+    deleteTarget(target);
+
+    setup(baseline, new File("urls-baseline.txt"));
+    setup(target, new File("urls-target.txt"));
   }
 
-  private static void setup(File urls, File target) throws IOException
+  private static File getDownloadsOverride(String path) throws IOException
+  {
+    File file = new File(path, DOWNLOAD_OVERRIDE_FILE);
+    if (!file.canRead())
+    {
+      return null;
+    }
+
+    Properties properties = new Properties();
+    properties.load(new FileInputStream(file));
+
+    String downloadDir = properties.getProperty(DOWNLOAD_OVERRIDE_PROPERTY);
+    if (downloadDir == null)
+    {
+      return null;
+    }
+
+    return new File(downloadDir).getCanonicalFile();
+  }
+
+  private static File getTempDir() throws IOException
+  {
+    File tempDir = new File(System.getProperty("java.io.tmpdir"));
+    if (!tempDir.canWrite())
+    {
+      throw new IOException("Temporary directory (needed for download) does not exist or is not writable");
+    }
+
+    return tempDir.getCanonicalFile();
+  }
+
+  private static void setup(File target, File urls) throws IOException
+  {
+    System.out.println();
+    List<File> downloadedFiles = new ArrayList<File>();
+    BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(urls)));
+    String url;
+    while ((url = reader.readLine()) != null)
+    {
+      File downloadedFile = download(new URL(url.trim()));
+      downloadedFiles.add(downloadedFile);
+    }
+
+    System.out.println();
+    for (File packedFile : downloadedFiles)
+    {
+      if (packedFile.getName().endsWith(".zip"))
+      {
+        System.out.println("Unpacking " + packedFile.getAbsolutePath() + " to " + target.getAbsolutePath());
+        unzip(packedFile, target);
+      }
+      else if (packedFile.getName().endsWith(".tar.gz"))
+      {
+        System.out.println("Unpacking " + packedFile.getAbsolutePath() + " to " + target.getAbsolutePath());
+        untargz(packedFile, target);
+      }
+      else
+      {
+        System.out.println("Unknown file type " + packedFile.getAbsolutePath());
+      }
+    }
+  }
+
+  private static void deleteTarget(File target) throws IOException
   {
     System.out.println();
     System.out.println("Deleting " + target);
@@ -43,22 +135,6 @@ public class SetupWorkspace
     if (target.exists())
     {
       throw new IOException("Could not delete " + target.getAbsolutePath());
-    }
-
-    System.out.println();
-    List<File> zips = new ArrayList<File>();
-    BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(urls)));
-    String url;
-    while ((url = reader.readLine()) != null)
-    {
-      File zip = download(new URL(url.trim()));
-      zips.add(zip);
-    }
-
-    System.out.println();
-    for (File zip : zips)
-    {
-      unzip(zip, target);
     }
   }
 
@@ -138,7 +214,7 @@ public class SetupWorkspace
       try
       {
         copy(input, output);
-        output.close();
+        close(output);
       }
       catch (IOException ex)
       {
@@ -158,7 +234,7 @@ public class SetupWorkspace
     }
     finally
     {
-      input.close();
+      close(input);
     }
 
     return file;
@@ -168,16 +244,23 @@ public class SetupWorkspace
   {
     try
     {
-      stream.close();
+      close(stream);
+      delete(file);
     }
     catch (Exception ex)
     {
       ex.printStackTrace();
     }
+  }
 
+  private static void close(Closeable closeable)
+  {
     try
     {
-      delete(file);
+      if (closeable != null)
+      {
+        closeable.close();
+      }
     }
     catch (Exception ex)
     {
@@ -200,7 +283,7 @@ public class SetupWorkspace
     }
   }
 
-  private static void unzip(File zipFile, UnzipHandler handler) throws IOException
+  private static void unzip(File zipFile, UnpackHandler handler) throws IOException
   {
     FileInputStream fis = new FileInputStream(zipFile);
     ZipInputStream zis = null;
@@ -214,54 +297,95 @@ public class SetupWorkspace
       {
         if (entry.isDirectory())
         {
-          handler.unzipDirectory(entry.getName());
+          handler.unpackDirectory(entry.getName());
         }
         else
         {
           // TODO Provide delegating InputStream that ignores close()
-          handler.unzipFile(entry.getName(), zis);
+          handler.unpackFile(entry.getName(), zis);
         }
       }
     }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
     finally
     {
-      zis.close();
-      fis.close();
+      close(zis);
+      close(fis);
     }
   }
 
   private static void unzip(File zipFile, File targetFolder) throws IOException
   {
-    System.out.println("Unzipping " + zipFile.getAbsolutePath() + " to " + targetFolder.getAbsolutePath());
-    unzip(zipFile, new FileSystemUnzipHandler(targetFolder, BUFFER_SIZE));
+    unzip(zipFile, new FileSystemUnpackHandler(targetFolder, BUFFER_SIZE));
   }
 
-  /**
-   * @author Eike Stepper
-   */
-  private interface UnzipHandler
+  private static void untargz(File targzFile, UnpackHandler handler) throws IOException
   {
-    public void unzipDirectory(String name) throws IOException;
+    FileInputStream fis = new FileInputStream(targzFile);
+    TarInputStream tis = null;
 
-    public void unzipFile(String name, InputStream zipStream) throws IOException;
+    try
+    {
+      tis = new TarInputStream(new GZIPInputStream(new BufferedInputStream(fis, BUFFER_SIZE)));
+
+      TarEntry entry;
+      while ((entry = tis.getNextEntry()) != null)
+      {
+        if (entry.isDirectory())
+        {
+          handler.unpackDirectory(entry.getName());
+        }
+        else
+        {
+          handler.unpackFile(entry.getName(), tis);
+        }
+      }
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+    finally
+    {
+      close(tis);
+      close(fis);
+    }
+  }
+
+  private static void untargz(File targzFile, File targetFolder) throws IOException
+  {
+    untargz(targzFile, new FileSystemUnpackHandler(targetFolder, BUFFER_SIZE));
   }
 
   /**
    * @author Eike Stepper
    */
-  private static final class FileSystemUnzipHandler implements UnzipHandler
+  private interface UnpackHandler
+  {
+    public void unpackDirectory(String name) throws IOException;
+
+    public void unpackFile(String name, InputStream packedStream) throws IOException;
+  }
+
+  /**
+   * @author Eike Stepper
+   */
+  private static final class FileSystemUnpackHandler implements UnpackHandler
   {
     private File targetFolder;
 
     private transient byte[] buffer;
 
-    public FileSystemUnzipHandler(File targetFolder, int bufferSize)
+    public FileSystemUnpackHandler(File targetFolder, int bufferSize)
     {
       this.targetFolder = targetFolder;
       buffer = new byte[bufferSize];
     }
 
-    public void unzipDirectory(String name)
+    public void unpackDirectory(String name)
     {
       File directory = new File(targetFolder, name);
       if (!directory.exists())
@@ -270,7 +394,7 @@ public class SetupWorkspace
       }
     }
 
-    public void unzipFile(String name, InputStream zipStream)
+    public void unpackFile(String name, InputStream packedStream)
     {
       File targetFile = new File(targetFolder, name);
       if (!targetFile.getParentFile().exists())
@@ -284,11 +408,11 @@ public class SetupWorkspace
 
         try
         {
-          copy(zipStream, out, buffer);
+          copy(packedStream, out, buffer);
         }
         finally
         {
-          out.close();
+          close(out);
         }
       }
       catch (IOException ex)

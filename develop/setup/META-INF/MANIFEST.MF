@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Setup
+Bundle-SymbolicName: develop.setup
+Bundle-Version: 1.0.0.qualifier
+Export-Package: setup
+Require-Bundle: org.apache.ant,
+ org.apache.commons.httpclient
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
