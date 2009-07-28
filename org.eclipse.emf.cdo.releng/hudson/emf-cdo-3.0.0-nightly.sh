@@ -4,32 +4,32 @@
 # and is archived in  http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.dash/athena/org.eclipse.dash.commonbuilder/org.eclipse.dash.commonbuilder.releng/hudson/?root=Technology_Project
 # Build runs under ${WORKSPACE} == /opt/users/hudsonbuild/.hudson/jobs/cbi-*/workspace
 
-echo "[`date +%Y/%m/%d\ %H:%M`] Hudson job ${JOBNAME} build #${BUILD_NUMBER} (${BUILD_ID}) started." 
+echo "[`date +%Y/%m/%d\ %H:%M`] Hudson job ${JOBNAME} build #${BUILD_NUMBER} (${BUILD_ID}) started."
 
 ##############################################################################################
 
 # BEGIN CONFIGURATION
 
 buildTimestamp="`date +%Y%m%d%H%M`"
-projectid="tools.gef"
-version="3.5.0"
+projectid="modeling.emf.cdo"
+version="3.0.0"
 
 # leave blank to use assumed values (which may be wrong!)
-projRelengRoot='-projRelengRoot :pserver:anonymous@dev.eclipse.org:/cvsroot/technology'
-projRelengPath='-projRelengPath org.eclipse.dash/athena/org.eclipse.dash.commonbuilder/org.eclipse.gef.releng'
+projRelengRoot='-projRelengRoot :pserver:anonymous@dev.eclipse.org:/cvsroot/modeling'
+projRelengPath='-projRelengPath org.eclipse.emf/org.eclipse.emf.cdo/develop/org.eclipse.emf.cdo.releng'
 
 # where should we look for pre-checked out project sources for org.eclipse.dash.common.releng and org.eclipse.releng.basebuilder ?
 cvsProjectBaseDir=/opt/public/cbi/build # build.eclipse.org
-if [[ ! -d $cvsProjectBaseDir ]]; then cvsProjectBaseDir=/home/builduser/workspace; fi # local build? 
-if [[ ! -d $cvsProjectBaseDir ]]; then 
+if [[ ! -d $cvsProjectBaseDir ]]; then cvsProjectBaseDir=/home/builduser/workspace; fi # local build?
+if [[ ! -d $cvsProjectBaseDir ]]; then
 	echo "ERROR: cannot find where org.eclipse.dash.common.releng and org.eclipse.releng.basebuilder are on disk. Must exit!"
 	exit 1;
-fi 
+fi
 
 # need a place to store existing 3rd party jars, eg., ant-contrib.jar (if not in /usr/share/java/)
 thirdPartyJarsDir=/opt/public/cbi/build/3rdPartyJars # build.eclipse.org
-if [[ ! -d $thirdPartyJarsDir ]]; then thirdPartyJarsDir=/tmp/build/3rdPartyJars; fi # local build 
-if [[ ! -d $thirdPartyJarsDir ]]; then mkdir $thirdPartyJarsDir; fi 
+if [[ ! -d $thirdPartyJarsDir ]]; then thirdPartyJarsDir=/tmp/build/3rdPartyJars; fi # local build
+if [[ ! -d $thirdPartyJarsDir ]]; then mkdir $thirdPartyJarsDir; fi
 
 # DONE CONFIGURATION
 
@@ -91,4 +91,4 @@ cd ${writableBuildRoot}/org.eclipse.dash.common.releng/tools/scripts
 # remove file so workspace navigation is one click simpler
 rm -f ${writableBuildRoot}/.cvspass
 
-echo "[`date +%Y/%m/%d\ %H:%M`] Hudson job ${JOBNAME} build #${BUILD_NUMBER} (${BUILD_ID}) done." 
+echo "[`date +%Y/%m/%d\ %H:%M`] Hudson job ${JOBNAME} build #${BUILD_NUMBER} (${BUILD_ID}) done."
