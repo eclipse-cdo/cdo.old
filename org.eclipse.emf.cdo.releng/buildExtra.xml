@@ -4,7 +4,7 @@
 	</target>
 
 	<target name="run">
-		<!-- TODO: write code that's hooked into o.e.d.commonbuilder.releng's build.xml to do extra configs (eg., for inserting 3rd party libs into plugins) 
+		<!-- TODO: write code that's hooked into o.e.d.commonbuilder.releng's build.xml to do extra configs (eg., for inserting 3rd party libs into plugins)
 		-->
 	</target>
 
@@ -12,11 +12,11 @@
 		<!-- USE PDE PACKAGER TO ASSEMBLE THESE ZIPS -->
 
 		<!-- create ALL zip from ${allZip} -->
-		<zip destfile="${buildDirectory}/${buildLabel}/GEF-ALL-${buildAlias}.zip" update="true">
+		<zip destfile="${buildDirectory}/${buildLabel}/CDO-ALL-${buildAlias}.zip" update="true">
 			<zipfileset src="${buildDirectory}/${buildLabel}/${allZip}" dirmode="775" filemode="664" />
 		</zip>
 
-		<!-- build GEF SDK: Draw2D + GEF SDKs, no examples -->
+		<!-- build CDO SDK: Draw2D + GEF SDKs, no examples
 		<zip destfile="${buildDirectory}/${buildLabel}/GEF-SDK-${buildAlias}.zip" update="true">
 			<zipfileset src="${buildDirectory}/${buildLabel}/${allZip}"
 			            dirmode="775"
@@ -40,8 +40,9 @@
 			            includes="**/eclipse/epl-v10.html, **/eclipse/notice.html"
 			/>
 		</zip>
+		-->
 
-		<!-- build GEF runtime: Draw2D + GEF runtimes, no examples -->
+		<!-- build GEF runtime: Draw2D + GEF runtimes, no examples
 		<zip destfile="${buildDirectory}/${buildLabel}/GEF-runtime-${buildAlias}.zip" update="true">
 			<zipfileset src="${buildDirectory}/${buildLabel}/${allZip}"
 			            dirmode="775"
@@ -57,8 +58,9 @@
 			</zipfileset>
 			<zipfileset refid="rootfiles" />
 		</zip>
+		-->
 
-		<!-- build Zest SDK: Draw2D + Zest SDKs, no examples -->
+		<!-- build Zest SDK: Draw2D + Zest SDKs, no examples
 		<zip destfile="${buildDirectory}/${buildLabel}/GEF-zest-sdk-${buildAlias}.zip" update="true">
 			<zipfileset src="${buildDirectory}/${buildLabel}/${allZip}"
 			            dirmode="775"
@@ -74,8 +76,9 @@
 			</zipfileset>
 			<zipfileset refid="rootfiles" />
 		</zip>
+		-->
 
-		<!-- build Zest runtime: Draw2D + Zest runtimes, no examples, no doc -->
+		<!-- build Zest runtime: Draw2D + Zest runtimes, no examples, no doc
 		<zip destfile="${buildDirectory}/${buildLabel}/GEF-zest-${buildAlias}.zip" update="true">
 			<zipfileset src="${buildDirectory}/${buildLabel}/${allZip}"
 			            dirmode="775"
@@ -91,8 +94,9 @@
 			</zipfileset>
 			<zipfileset refid="rootfiles" />
 		</zip>
+		-->
 
-		<!-- build Draw2D SDK: Draw2D SDK, no examples -->
+		<!-- build Draw2D SDK: Draw2D SDK, no examples
 		<zip destfile="${buildDirectory}/${buildLabel}/GEF-draw2d-sdk-${buildAlias}.zip" update="true">
 			<zipfileset src="${buildDirectory}/${buildLabel}/${allZip}"
 			            dirmode="775"
@@ -105,8 +109,9 @@
 			</zipfileset>
 			<zipfileset refid="rootfiles" />
 		</zip>
+		-->
 
-		<!-- build Draw2D runtime: Draw2D runtime, no examples -->
+		<!-- build Draw2D runtime: Draw2D runtime, no examples
 		<zip destfile="${buildDirectory}/${buildLabel}/GEF-draw2d-${buildAlias}.zip" update="true">
 			<zipfileset src="${buildDirectory}/${buildLabel}/${allZip}"
 			            dirmode="775"
@@ -119,8 +124,9 @@
 			</zipfileset>
 			<zipfileset refid="rootfiles" />
 		</zip>
+		-->
 
-		<!-- build examples -->
+		<!-- build examples
 		<zip destfile="${buildDirectory}/${buildLabel}/GEF-examples-${buildAlias}.zip" update="true">
 			<zipfileset src="${buildDirectory}/${buildLabel}/${allZip}" dirmode="775" filemode="664">
 				<include name="**/org.eclipse.*.examples*" />
@@ -130,6 +136,7 @@
 			</zipfileset>
 			<zipfileset refid="rootfiles" />
 		</zip>
+		-->
 
 	</target>
 
