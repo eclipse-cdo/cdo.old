@@ -5,7 +5,7 @@
 		
 				org.eclipse.releng.basebuilder
 				org.eclipse.dash.common.releng 
-				org.eclipse.myproject.releng
+				org.eclipse.emf.cdo.releng
 				
 			2. You must provide Ant-Contrib in one of four places:
 			
