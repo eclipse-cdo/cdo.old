@@ -1,0 +1,47 @@
+!***************  PROJECT CONTRIBUTION  ********************************************************
+
+!*** Project's features
+
+feature@org.eclipse.net4j.db=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.db-feature
+feature@org.eclipse.net4j.defs=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.defs-feature
+feature@org.eclipse.net4j.doc=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.doc-feature
+feature@org.eclipse.net4j.examples=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.examples-feature
+feature@org.eclipse.net4j.sdk=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.sdk-feature
+feature@org.eclipse.net4j.tests=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.tests-feature
+feature@org.eclipse.net4j.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.ui-feature
+feature@org.eclipse.net4j=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j-feature
+
+!*** Project's plugins
+
+plugin@org.eclipse.net4j=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j
+plugin@org.eclipse.net4j.db=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.db
+plugin@org.eclipse.net4j.db.derby=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.db.derby
+plugin@org.eclipse.net4j.debug=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.debug
+plugin@org.eclipse.net4j.defs=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.defs
+plugin@org.eclipse.net4j.doc=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/doc/org.eclipse.net4j.doc
+plugin@org.eclipse.net4j.examples=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/examples/org.eclipse.net4j.examples
+plugin@org.eclipse.net4j.buddies=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/examples/org.eclipse.net4j.buddies
+plugin@org.eclipse.net4j.buddies.common=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/examples/org.eclipse.net4j.buddies.common
+plugin@org.eclipse.net4j.buddies.server=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/examples/org.eclipse.net4j.buddies.server
+plugin@org.eclipse.net4j.buddies.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/examples/org.eclipse.net4j.buddies.ui
+plugin@org.eclipse.net4j.buddies.chat=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/examples/org.eclipse.net4j.buddies.chat
+plugin@org.eclipse.net4j.buddies.chat.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/examples/org.eclipse.net4j.buddies.chat.ui
+plugin@org.eclipse.net4j.jms.admin=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/examples/org.eclipse.net4j.jms.admin
+plugin@org.eclipse.net4j.jms.api=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/examples/org.eclipse.net4j.jms.api
+plugin@org.eclipse.net4j.jms.server.jdbc=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/examples/org.eclipse.net4j.jms.server.jdbc
+plugin@org.eclipse.net4j.jms.server=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/examples/org.eclipse.net4j.jms.server
+plugin@org.eclipse.net4j.jms.tests=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/tests/org.eclipse.net4j.jms.tests
+plugin@org.eclipse.net4j.jms=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/examples/org.eclipse.net4j.jms
+plugin@org.eclipse.net4j.jvm=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.jvm
+plugin@org.eclipse.net4j.tcp=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.tcp
+plugin@org.eclipse.net4j.http=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.http
+plugin@org.eclipse.net4j.http.common=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.http.common
+plugin@org.eclipse.net4j.http.server=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.http.server
+plugin@org.eclipse.net4j.http.tests=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.http.tests
+plugin@org.eclipse.net4j.tests=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/tests/org.eclipse.net4j.tests
+plugin@org.eclipse.net4j.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.ui
+plugin@org.eclipse.net4j.ui.capabilities=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.ui.capabilities
+plugin@org.eclipse.net4j.ui.defs=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.ui.defs
+plugin@org.eclipse.net4j.util.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.util.ui
+plugin@org.eclipse.net4j.util=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.util
+plugin@org.eclipse.net4j.util.defs=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.util.defs
