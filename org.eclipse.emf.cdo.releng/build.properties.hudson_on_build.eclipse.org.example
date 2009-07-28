@@ -5,19 +5,19 @@
 # To permit automatic downloads of non-EPL compatible code, set this to property to "I accept"
 #thirdPartyDownloadLicenseAcceptance="I accept"
 
-# MUST BE SET #
-projectid=tools.gef
-zipPrefix=GEF
+projectid=modeling.emf.cdo
+zipPrefix=emf-cdo
 incubation=
-version=3.5.0
+version=3.0.0
 buildType=N
-mainFeatureToBuildID=org.eclipse.gef.all
-testFeatureToBuildID=org.eclipse.gef.test
+mainFeatureToBuildID=org.eclipse.emf.cdo.all
+testFeatureToBuildID=org.eclipse.emf.cdo.tests
 
-# MUST BE SET #
+repositoryURLs=http://download.eclipse.org/releases/galileo
+featureIDsToInstall=org.eclipse.sdk+org.eclipse.emf.sdk+org.eclipse.emf.teneo.sdk
+
 JAVA_HOME=/opt/public/common/ibm-java2-ppc-50
 JAVA50_HOME=/opt/public/common/ibm-java2-ppc-50
-dependencyURLs=http://download.eclipse.org/eclipse/downloads/drops/R-3.5-200906111540/eclipse-SDK-3.5-linux-gtk-ppc.tar.gz
 
 #what steps should we do? default: build.steps=buildUpdate,buildZips,buildTests,generateDigests,test,publish,cleanup
 build.steps=buildUpdate,buildZips,buildTests,generateDigests,test,publish,cleanup
@@ -27,5 +27,7 @@ flattenDependencies=true
 parallelCompilation=true
 generateFeatureVersionSuffix=true
 individualSourceBundles=true
+
+basebuilderBranch=R35_M6
 
 ## END PROJECT BUILD PROPERTIES ##
