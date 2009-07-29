@@ -1,8 +1,2 @@
 plugin@org.apache.derby,10.1.2=GET,http://download.eclipse.org/tools/orbit/downloads/drops/R20090529135407/bundles/org.apache.derby_10.1.2.1_v200803061811.jar
 plugin@org.apache.derby.source,10.1.2=GET,http://download.eclipse.org/tools/orbit/downloads/drops/R20090529135407/bundles/org.apache.derby.source_10.1.2.1_v200803061811.jar
-
-plugin@org.apache.commons.codec,1.2.0=GET,http://download.eclipse.org/tools/orbit/downloads/drops/R20090529135407/bundles/org.apache.commons.codec_1.2.0.v20080530-1550.jar
-plugin@org.apache.commons.codec.source,1.2.0=GET,http://download.eclipse.org/tools/orbit/downloads/drops/R20090529135407/bundles/org.apache.commons.codec.source_1.2.0.v20080530-1550.jar
-
-plugin@org.apache.commons.httpclient,3.0.1=GET,http://download.eclipse.org/tools/orbit/downloads/drops/R20090529135407/bundles/org.apache.commons.httpclient_3.0.1.v20080605-1930.jar
-plugin@org.apache.commons.httpclient.source,3.0.1=GET,http://download.eclipse.org/tools/orbit/downloads/drops/R20090529135407/bundles/org.apache.commons.httpclient.source_3.0.1.v20080605-1930.jar
