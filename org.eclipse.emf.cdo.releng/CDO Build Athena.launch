@@ -15,16 +15,6 @@
 <stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.ant.ui.AntClasspathProvider"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.eclipse.emf.cdo.releng"/>
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.ant.ui.AntClasspathProvider"/>
-<mapAttribute key="org.eclipse.ui.externaltools.ATTR_ANT_PROPERTIES">
-<mapEntry key="eclipse.running" value="true"/>
-<mapEntry key="JAVA50_HOME" value="C:\Program Files\Java\jdk1.5.0_16"/>
-<mapEntry key="JAVA_HOME" value="C:\Program Files\Java\jdk1.5.0_16"/>
-<mapEntry key="eclipse.pdebuild.templates" value="/C:/develop/bin/eclipse/plugins/org.eclipse.pde.build_3.5.0.v20090527-1800/templates/"/>
-<mapEntry key="eclipse.home" value="C:\develop\bin\eclipse"/>
-<mapEntry key="eclipse.pdebuild.scripts" value="/C:/develop/bin/eclipse/plugins/org.eclipse.pde.build_3.5.0.v20090527-1800/scripts/"/>
-<mapEntry key="WORKSPACE" value="${workspace_loc}"/>
-<mapEntry key="eclipse.pdebuild.home" value="/C:/develop/bin/eclipse/plugins/org.eclipse.pde.build_3.5.0.v20090527-1800/./"/>
-</mapAttribute>
 <booleanAttribute key="org.eclipse.ui.externaltools.ATTR_HIDE_INTERNAL_TARGETS" value="true"/>
 <stringAttribute key="org.eclipse.ui.externaltools.ATTR_LAUNCH_CONFIGURATION_BUILD_SCOPE" value="${projects:org.eclipse.dash.common.releng,org.eclipse.gef.releng}"/>
 <stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="${workspace_loc:/org.eclipse.emf.cdo.releng/build.xml}"/>
