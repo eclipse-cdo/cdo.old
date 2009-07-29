@@ -3,6 +3,10 @@
 !*** Project's features
 
 feature@org.eclipse.net4j.db=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.db-feature
+feature@org.eclipse.net4j.db.h2=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.db.h2-feature
+feature@org.eclipse.net4j.db.hsqldb=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.db.hsqldb-feature
+feature@org.eclipse.net4j.db.mysql=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.db.mysql-feature
+feature@org.eclipse.net4j.db.postgresql=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.db.postgresql-feature
 feature@org.eclipse.net4j.defs=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.defs-feature
 feature@org.eclipse.net4j.doc=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.doc-feature
 feature@org.eclipse.net4j.examples=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.examples-feature
@@ -16,6 +20,10 @@ feature@org.eclipse.net4j=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/model
 plugin@org.eclipse.net4j=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j
 plugin@org.eclipse.net4j.db=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.db
 plugin@org.eclipse.net4j.db.derby=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.db.derby
+plugin@org.eclipse.net4j.db.h2=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.db.h2
+plugin@org.eclipse.net4j.db.hsqldb=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.db.hsqldb
+plugin@org.eclipse.net4j.db.mysql=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.db.mysql
+plugin@org.eclipse.net4j.db.postgresql=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.db.postgresql
 plugin@org.eclipse.net4j.debug=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.debug
 plugin@org.eclipse.net4j.defs=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/plugins/org.eclipse.net4j.defs
 plugin@org.eclipse.net4j.doc=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/doc/org.eclipse.net4j.doc
