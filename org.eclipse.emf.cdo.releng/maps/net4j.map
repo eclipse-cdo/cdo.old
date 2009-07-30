@@ -1,6 +1,7 @@
 !*** Project's features
 
 feature@org.eclipse.net4j.db=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.db-feature
+feature@org.eclipse.net4j.db.derby=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.db.derby-feature
 feature@org.eclipse.net4j.db.h2=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.db.h2-feature
 feature@org.eclipse.net4j.db.hsqldb=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.db.hsqldb-feature
 feature@org.eclipse.net4j.db.mysql=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.net4j/features/org.eclipse.net4j.db.mysql-feature
