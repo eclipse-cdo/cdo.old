@@ -5,6 +5,7 @@ feature@org.eclipse.emf.cdo.defs=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroo
 feature@org.eclipse.emf.cdo.doc=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/features/org.eclipse.emf.cdo.doc-feature
 feature@org.eclipse.emf.cdo.examples=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/features/org.eclipse.emf.cdo.examples-feature
 feature@org.eclipse.emf.cdo.server=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/features/org.eclipse.emf.cdo.server-feature
+feature@org.eclipse.emf.cdo.server.hibernate=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.server.hibernate-feature
 feature@org.eclipse.emf.cdo.server.product=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/features/org.eclipse.emf.cdo.server.product
 feature@org.eclipse.emf.cdo.tests=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/features/org.eclipse.emf.cdo.tests-feature
 feature@org.eclipse.emf.cdo.sdk=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/features/org.eclipse.emf.cdo.sdk-feature
@@ -21,6 +22,8 @@ plugin@org.eclipse.emf.cdo.common=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsro
 plugin@org.eclipse.emf.cdo.server=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.server
 plugin@org.eclipse.emf.cdo.server.net4j=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.server.net4j
 plugin@org.eclipse.emf.cdo.server.db=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.server.db
+plugin@org.eclipse.emf.cdo.server.hibernate=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.server.hibernate
+plugin@org.eclipse.emf.cdo.server.hibernate.teneo=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.server.hibernate.teneo
 plugin@org.eclipse.emf.cdo.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.ui
 plugin@org.eclipse.emf.cdo.ui.capabilities=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.ui.capabilities
 plugin@org.eclipse.emf.cdo.ui.defs=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.ui.defs
@@ -31,6 +34,7 @@ plugin@org.eclipse.emf.cdo.doc=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/
 plugin@org.eclipse.emf.cdo.examples=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/examples/org.eclipse.emf.cdo.examples
 plugin@org.eclipse.emf.cdo.tests=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/tests/org.eclipse.emf.cdo.tests
 plugin@org.eclipse.emf.cdo.tests.db=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/tests/org.eclipse.emf.cdo.tests.db
+plugin@org.eclipse.emf.cdo.tests.hibernate=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.tests.hibernate
 plugin@org.eclipse.emf.cdo.tests.mango=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/tests/org.eclipse.emf.cdo.tests.mango
 plugin@org.eclipse.emf.cdo.tests.mango.edit=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/tests/org.eclipse.emf.cdo.tests.mango.edit
 plugin@org.eclipse.emf.cdo.tests.model1=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/tests/org.eclipse.emf.cdo.tests.model1
@@ -44,8 +48,3 @@ plugin@org.eclipse.emf.cdo.tests.model5=HEAD,:pserver:anonymous@dev.eclipse.org:
 
 !*** Hibernate support
 
-feature@org.eclipse.emf.cdo.server.hibernate=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.server.hibernate-feature
-plugin@org.eclipse.emf.cdo.server.hibernate=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.server.hibernate
-plugin@org.eclipse.emf.cdo.server.hibernate.teneo=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.server.hibernate.teneo
-plugin@org.eclipse.emf.cdo.tests.hibernate=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.tests.hibernate
-plugin@org.eclipse.emf.cdo.tests.hibernate.client=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/hibernate/org.eclipse.emf.cdo.tests.hibernate.client
