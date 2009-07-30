@@ -10,6 +10,7 @@ feature@org.eclipse.emf.cdo.server.product=HEAD,:pserver:anonymous@dev.eclipse.o
 feature@org.eclipse.emf.cdo.tests=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/features/org.eclipse.emf.cdo.tests-feature
 feature@org.eclipse.emf.cdo.sdk=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/features/org.eclipse.emf.cdo.sdk-feature
 feature@org.eclipse.emf.cdo.all=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/features/org.eclipse.emf.cdo.all-feature
+feature@org.eclipse.emf.cdo.all.tests=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/features/org.eclipse.emf.cdo.all.tests-feature
 
 !*** Project's plugins
 
