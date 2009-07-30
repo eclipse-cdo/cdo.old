@@ -1,2 +1,0 @@
-plugin@org.apache.derby,10.1.2=GET,http://download.eclipse.org/tools/orbit/downloads/drops/R20090529135407/bundles/org.apache.derby_10.1.2.1_v200803061811.jar
-plugin@org.apache.derby.source,10.1.2=GET,http://download.eclipse.org/tools/orbit/downloads/drops/R20090529135407/bundles/org.apache.derby.source_10.1.2.1_v200803061811.jar
