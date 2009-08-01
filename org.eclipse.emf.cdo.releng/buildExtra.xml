@@ -7,7 +7,9 @@
 	</target>
 
 	<target name="extraPackaging">
-		<property name="type.jar" value="${workspaceDir}/${projRelengPath}/lib/ant-featurefileset.jar" />
+		<!-- TODO Use ant-featurefileset.jar from athena libs!!!  -->
+		<property name="type.jar"
+		          value="${buildDirectory}/${buildLabel}/eclipse/features/org.eclipse.emf.cdo.all/ant-featurefileset.jar" />
 		<echo message="Type JAR: ${type.jar}" />
 
 		<typedef name="featurefileset"

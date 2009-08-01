@@ -68,9 +68,6 @@
 
 		<!-- invoke a new Eclipse process and launch the build from the common.releng folder -->
 		<property name="relengCommonBuilderDir" value="${workspaceDir}/org.eclipse.dash.common.releng" />
-		<property name="type.jar" value="${workspaceDir}/${projRelengPath}/lib/ant-featurefileset.jar" />
-		<echo message="Type JAR: ${type.jar}" />
-
 		<ant antfile="${relengCommonBuilderDir}/buildAll.xml" target="runEclipse" dir="${relengCommonBuilderDir}" />
 	</target>
 </project>
