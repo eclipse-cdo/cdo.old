@@ -12,7 +12,8 @@
 	</target>
 
 	<target name="extraPackaging">
-		<unzip src="${buildDirectory}/${buildLabel}/${allZip}" dest="${buildDirectory}/extra.packaging.tmp" />
+		<property name="extra.packaging" value="${buildDirectory}/extra.packaging.tmp" />
+		<unzip src="${buildDirectory}/${buildLabel}/${allZip}" dest="${extra.packaging}" />
 
 		<for param="extraPackagingProperties">
 			<path>
@@ -23,10 +24,16 @@
 				<var name="zip.prefix" unset="true" />
 				<var file="@{extraPackagingProperties}" />
 				<zip destfile="${buildDirectory}/${buildLabel}/${zip.prefix}-${buildAlias}.zip">
-					<featurefileset dir="${buildDirectory}/extra.packaging.tmp" featureID="${feature.id}" />
+					<featurefileset dir="${extra.packaging}/eclipse" featureID="${feature.id}" />
 				</zip>
 			</sequential>
 		</for>
+
+		<delete>
+			<fileset dir="${extra.packaging}">
+				<include name="**/*" />
+			</fileset>
+		</delete>
 	</target>
 
 </project>
