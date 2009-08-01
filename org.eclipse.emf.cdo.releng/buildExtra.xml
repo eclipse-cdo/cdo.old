@@ -19,9 +19,11 @@
 				<fileset dir="${buildDirectory}/features" includes="*/extraPackaging.properties" />
 			</path>
 			<sequential>
+				<var name="feature.id" unset="true" />
+				<var name="zip.prefix" unset="true" />
 				<var file="@{extraPackagingProperties}" />
-				<zip destfile="${buildDirectory}/${buildLabel}/@{zip.prefix}-${buildAlias}.zip">
-					<featurefileset dir="${buildDirectory}/extra.packaging.tmp" featureID="@{feature.id}" />
+				<zip destfile="${buildDirectory}/${buildLabel}/${zip.prefix}-${buildAlias}.zip">
+					<featurefileset dir="${buildDirectory}/extra.packaging.tmp" featureID="${feature.id}" />
 				</zip>
 			</sequential>
 		</for>
