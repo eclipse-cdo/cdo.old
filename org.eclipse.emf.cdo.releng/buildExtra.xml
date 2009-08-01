@@ -1,7 +1,7 @@
 <project name="buildExtra.xml" default="run">
 
 	<typedef name="featurefileset" classname="org.eclipse.dash.common.releng.FeatureFileSet">
-		<classpath path="${basedir}/lib/ant-featurefileset.jar" />
+		<classpath path="${workspaceDir}/${projRelengPath}/lib/ant-featurefileset.jar" />
 	</typedef>
 
 	<target name="init">
