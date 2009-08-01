@@ -1,6 +1,6 @@
 <project name="buildExtra.xml" default="run">
 
-	<!-- TODO Use ant-featurefileset.jar from athena libs!!!  -->
+	<!-- TODO Use ant-featurefileset.jar from /org.eclipse.dash.common.releng/lib  -->
 	<typedef name="featurefileset"
 	         classname="org.eclipse.dash.common.releng.FeatureFileSet"
 	         classpath="${buildDirectory}/features/org.eclipse.emf.cdo.all/ant-featurefileset.jar" />
@@ -12,7 +12,7 @@
 	</target>
 
 	<target name="extraPackaging">
-		<delete>
+		<delete failonerror="false">
 			<fileset dir="${buildDirectory}/${buildLabel}">
 				<include name="emf-cdo-Automated-Tests-*" />
 				<include name="emf-cdo-SDK-*" />
@@ -21,6 +21,7 @@
 			</fileset>
 		</delete>
 
+		<!-- TODO Is unpacking really necessary? -->
 		<property name="extra.packaging" value="${buildDirectory}/extra.packaging.tmp" />
 		<unzip src="${buildDirectory}/${buildLabel}/${allZip}" dest="${extra.packaging}" />
 
@@ -38,7 +39,8 @@
 			</sequential>
 		</for>
 
-		<delete>
+		<!-- TODO If unpacking is not necessary delete is not so either (see above) -->
+		<delete failonerror="false">
 			<fileset dir="${extra.packaging}">
 				<include name="**/*" />
 			</fileset>
