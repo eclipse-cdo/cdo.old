@@ -12,6 +12,15 @@
 	</target>
 
 	<target name="extraPackaging">
+		<delete>
+			<fileset dir="${buildDirectory}/${buildLabel}">
+				<include name="emf-cdo-Automated-Tests-*" />
+				<include name="emf-cdo-SDK-*" />
+				<include name="emf-cdo-examples-*" />
+				<include name="emf-cdo-runtime-*" />
+			</fileset>
+		</delete>
+
 		<property name="extra.packaging" value="${buildDirectory}/extra.packaging.tmp" />
 		<unzip src="${buildDirectory}/${buildLabel}/${allZip}" dest="${extra.packaging}" />
 
