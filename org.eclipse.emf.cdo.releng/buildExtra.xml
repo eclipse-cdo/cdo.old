@@ -8,26 +8,20 @@
 
 	<target name="extraPackaging">
 		<!-- TODO Use ant-featurefileset.jar from athena libs!!!  -->
-		<property name="type.jar" value="${buildDirectory}/features/org.eclipse.emf.cdo.all/ant-featurefileset.jar" />
-		<echo message="Type JAR: ${type.jar}" />
-
 		<typedef name="featurefileset"
 		         classname="org.eclipse.dash.common.releng.FeatureFileSet"
-		         classpath="${type.jar}" />
+		         classpath="${buildDirectory}/features/org.eclipse.emf.cdo.all/ant-featurefileset.jar" />
 
-		<unzip src="${buildDirectory}/${buildLabel}/${allZip}"
-		       dest="${buildDirectory}/${buildLabel}/extra.packaging.tmp" />
+		<unzip src="${buildDirectory}/${buildLabel}/${allZip}" dest="${buildDirectory}/extra.packaging.tmp" />
 
 		<for param="extraPackagingProperties">
 			<path>
-				<fileset dir="${buildDirectory}/${buildLabel}/eclipse/features"
-				         includes="*/extraPackaging.properties" />
+				<fileset dir="${buildDirectory}/features" includes="*/extraPackaging.properties" />
 			</path>
 			<sequential>
-				<var file="@{extraPackagingProperties" />
+				<var file="@{extraPackagingProperties}" />
 				<zip destfile="${buildDirectory}/${buildLabel}/@{zip.prefix}-${buildAlias}.zip">
-					<featurefileset dir="${buildDirectory}/${buildLabel}/extra.packaging.tmp"
-					                featureID="@{feature.id}" />
+					<featurefileset dir="${buildDirectory}/extra.packaging.tmp" featureID="@{feature.id}" />
 				</zip>
 			</sequential>
 		</for>
