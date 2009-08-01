@@ -73,9 +73,13 @@ public class FeatureFileSet extends FileSet
 
   public DirectoryScanner getDirectoryScanner(Project p)
   {
-    if (!isPopulated)
+    synchronized (this)
     {
-      populate(p);
+      if (!isPopulated)
+      {
+        populate(p);
+        isPopulated = true;
+      }
     }
 
     return super.getDirectoryScanner(p);
@@ -85,6 +89,7 @@ public class FeatureFileSet extends FileSet
   {
     String featureID = getFeatureID(p);
     File dir = getDir(p);
+    p.log(" ");
     p.log("Populating " + featureID);
     p.log("From " + dir);
     p.log(" ");
@@ -237,7 +242,7 @@ public class FeatureFileSet extends FileSet
           exclude += "/**";
         }
 
-        p.log("Excludes " + exclude);
+        // p.log("Excludes " + exclude);
         appendExcludes(new String[] { exclude });
       }
     }
