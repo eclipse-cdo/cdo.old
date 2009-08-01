@@ -1,9 +1,5 @@
 <project name="buildExtra.xml" default="run">
 
-	<typedef name="featurefileset" classname="org.eclipse.dash.common.releng.FeatureFileSet">
-		<classpath path="${workspaceDir}/${projRelengPath}/lib/ant-featurefileset.jar" />
-	</typedef>
-
 	<target name="init">
 	</target>
 
@@ -11,6 +7,13 @@
 	</target>
 
 	<target name="extraPackaging">
+		<property name="type.jar" value="${workspaceDir}/${projRelengPath}/lib/ant-featurefileset.jar" />
+		<echo message="Type JAR: ${type.jar}" />
+
+		<typedef name="featurefileset"
+		         classname="org.eclipse.dash.common.releng.FeatureFileSet"
+		         classpath="${type.jar}" />
+
 		<unzip src="${buildDirectory}/${buildLabel}/${allZip}"
 		       dest="${buildDirectory}/${buildLabel}/extra.packaging.tmp" />
 
