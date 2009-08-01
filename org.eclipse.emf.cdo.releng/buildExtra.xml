@@ -1,5 +1,10 @@
 <project name="buildExtra.xml" default="run">
 
+	<!-- TODO Use ant-featurefileset.jar from athena libs!!!  -->
+	<typedef name="featurefileset"
+	         classname="org.eclipse.dash.common.releng.FeatureFileSet"
+	         classpath="${buildDirectory}/features/org.eclipse.emf.cdo.all/ant-featurefileset.jar" />
+
 	<target name="init">
 	</target>
 
@@ -7,11 +12,6 @@
 	</target>
 
 	<target name="extraPackaging">
-		<!-- TODO Use ant-featurefileset.jar from athena libs!!!  -->
-		<typedef name="featurefileset"
-		         classname="org.eclipse.dash.common.releng.FeatureFileSet"
-		         classpath="${buildDirectory}/features/org.eclipse.emf.cdo.all/ant-featurefileset.jar" />
-
 		<unzip src="${buildDirectory}/${buildLabel}/${allZip}" dest="${buildDirectory}/extra.packaging.tmp" />
 
 		<for param="extraPackagingProperties">
