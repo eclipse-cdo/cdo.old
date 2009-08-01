@@ -8,8 +8,7 @@
 
 	<target name="extraPackaging">
 		<!-- TODO Use ant-featurefileset.jar from athena libs!!!  -->
-		<property name="type.jar"
-		          value="${buildDirectory}/${buildLabel}/eclipse/features/org.eclipse.emf.cdo.all/ant-featurefileset.jar" />
+		<property name="type.jar" value="${buildDirectory}/features/org.eclipse.emf.cdo.all/ant-featurefileset.jar" />
 		<echo message="Type JAR: ${type.jar}" />
 
 		<typedef name="featurefileset"
