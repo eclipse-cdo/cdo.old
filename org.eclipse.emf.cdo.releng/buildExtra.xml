@@ -14,7 +14,6 @@
 	<target name="extraPackaging">
 		<delete failonerror="false">
 			<fileset dir="${buildDirectory}/${buildLabel}">
-				<include name="emf-cdo-Automated-Tests-*" />
 				<include name="emf-cdo-SDK-*" />
 				<include name="emf-cdo-examples-*" />
 				<include name="emf-cdo-runtime-*" />
