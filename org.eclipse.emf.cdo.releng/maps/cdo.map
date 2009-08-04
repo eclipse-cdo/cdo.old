@@ -20,6 +20,7 @@ plugin@org.eclipse.emf.cdo.defs=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot
 plugin@org.eclipse.emf.cdo.edit=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.edit
 plugin@org.eclipse.emf.cdo.migrator=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.migrator
 plugin@org.eclipse.emf.cdo.common=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.common
+plugin@org.eclipse.emf.cdo.common.db=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.common.db
 plugin@org.eclipse.emf.cdo.server=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.server
 plugin@org.eclipse.emf.cdo.server.net4j=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.server.net4j
 plugin@org.eclipse.emf.cdo.server.db=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.cdo/plugins/org.eclipse.emf.cdo.server.db
