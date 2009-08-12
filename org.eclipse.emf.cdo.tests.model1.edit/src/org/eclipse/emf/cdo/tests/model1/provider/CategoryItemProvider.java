@@ -39,9 +39,9 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.cdo.tests.model1.Category} object. <!-- begin-user-doc
+ * This is the item provider adapter for a {@link org.eclipse.emf.cdo.tests.model1.Category} object.
+ * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class CategoryItemProvider extends CDOItemProviderAdapter implements IEditingDomainItemProvider,
@@ -50,14 +50,13 @@ public class CategoryItemProvider extends CDOItemProviderAdapter implements IEdi
 {
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static final String copyright = "Copyright (c) 2004 - 2009 Eike Stepper (Berlin, Germany) and others.\r\nAll rights reserved. This program and the accompanying materials\r\nare made available under the terms of the Eclipse Public License v1.0\r\nwhich accompanies this distribution, and is available at\r\nhttp://www.eclipse.org/legal/epl-v10.html\r\n\r\nContributors:\r\n   Eike Stepper - initial API and implementation";
 
   /**
-   * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This constructs an instance from a factory and a notifier.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public CategoryItemProvider(AdapterFactory adapterFactory)
@@ -66,8 +65,8 @@ public class CategoryItemProvider extends CDOItemProviderAdapter implements IEdi
   }
 
   /**
-   * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This returns the property descriptors for the adapted class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -83,8 +82,8 @@ public class CategoryItemProvider extends CDOItemProviderAdapter implements IEdi
   }
 
   /**
-   * This adds a property descriptor for the Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This adds a property descriptor for the Name feature.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected void addNamePropertyDescriptor(Object object)
@@ -99,9 +98,9 @@ public class CategoryItemProvider extends CDOItemProviderAdapter implements IEdi
   /**
    * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
    * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -118,7 +117,6 @@ public class CategoryItemProvider extends CDOItemProviderAdapter implements IEdi
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -132,7 +130,6 @@ public class CategoryItemProvider extends CDOItemProviderAdapter implements IEdi
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -142,8 +139,8 @@ public class CategoryItemProvider extends CDOItemProviderAdapter implements IEdi
   }
 
   /**
-   * This returns Category.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This returns Category.gif.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -153,8 +150,8 @@ public class CategoryItemProvider extends CDOItemProviderAdapter implements IEdi
   }
 
   /**
-   * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This returns the label text for the adapted class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -166,9 +163,9 @@ public class CategoryItemProvider extends CDOItemProviderAdapter implements IEdi
   }
 
   /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a
-   * viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This handles model notifications by calling {@link #updateChildren} to update any cached
+   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -190,9 +187,9 @@ public class CategoryItemProvider extends CDOItemProviderAdapter implements IEdi
   }
 
   /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under
-   * this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+   * that can be created under this object.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -208,8 +205,8 @@ public class CategoryItemProvider extends CDOItemProviderAdapter implements IEdi
   }
 
   /**
-   * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Return the resource locator for this item provider's resources.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
