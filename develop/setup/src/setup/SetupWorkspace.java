@@ -99,7 +99,7 @@ public class SetupWorkspace
   private static void setup(File target, File urls) throws IOException
   {
     System.out.println();
-    System.out.println("Setting up " + target.getName());
+    System.out.println("Setting up " + target.getAbsolutePath());
     System.out.println();
     List<File> downloadedFiles = new ArrayList<File>();
     BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(urls)));
