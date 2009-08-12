@@ -57,6 +57,7 @@ public class SetupWorkspace
     File baseline = new File(workspace, ".baseline");
     File target = new File(workspace, ".target");
 
+    System.out.println();
     deleteTarget(baseline);
     deleteTarget(target);
 
@@ -98,6 +99,8 @@ public class SetupWorkspace
   private static void setup(File target, File urls) throws IOException
   {
     System.out.println();
+    System.out.println("Setting up " + target.getName());
+    System.out.println();
     List<File> downloadedFiles = new ArrayList<File>();
     BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(urls)));
     String url;
@@ -112,12 +115,12 @@ public class SetupWorkspace
     {
       if (packedFile.getName().endsWith(".zip"))
       {
-        System.out.println("Unpacking " + packedFile.getAbsolutePath() + " to " + target.getAbsolutePath());
+        System.out.println("Unpacking " + packedFile.getName());
         unzip(packedFile, target);
       }
       else if (packedFile.getName().endsWith(".tar.gz"))
       {
-        System.out.println("Unpacking " + packedFile.getAbsolutePath() + " to " + target.getAbsolutePath());
+        System.out.println("Unpacking " + packedFile.getName());
         untargz(packedFile, target);
       }
       else
@@ -129,7 +132,6 @@ public class SetupWorkspace
 
   private static void deleteTarget(File target) throws IOException
   {
-    System.out.println();
     System.out.println("Deleting " + target);
     delete(target);
     if (target.exists())
@@ -191,11 +193,11 @@ public class SetupWorkspace
         throw new IllegalStateException("Folder in the way: " + file.getAbsolutePath());
       }
 
-      System.out.println("Skipping download of " + file.getAbsolutePath());
+      System.out.println("Skipping download of " + file.getName());
       return file;
     }
 
-    System.out.println("Downloading " + file.getAbsolutePath() + " from " + url.toString());
+    System.out.println("Downloading " + file.getName());
 
     URLConnection connection = url.openConnection();
     String contentType = connection.getContentType();
