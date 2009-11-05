@@ -8,7 +8,9 @@
 <project reference="1.0,:extssh:net4j.cvs.sourceforge.net:/cvsroot/net4j,content/org.h2.jdbc,org.h2.jdbc"/>
 <project reference="1.0,:extssh:net4j.cvs.sourceforge.net:/cvsroot/net4j,content/org.h2.jdbc-feature,org.h2.jdbc-feature"/>
 <project reference="1.0,:extssh:net4j.cvs.sourceforge.net:/cvsroot/net4j,content/org.hibernate,org.hibernate"/>
+<project reference="1.0,:extssh:net4j.cvs.sourceforge.net:/cvsroot/net4j,content/org.hibernate-3.3.1,org.hibernate-3.3.1"/>
 <project reference="1.0,:extssh:net4j.cvs.sourceforge.net:/cvsroot/net4j,content/org.hibernate-feature,org.hibernate-feature"/>
+<project reference="1.0,:extssh:net4j.cvs.sourceforge.net:/cvsroot/net4j,content/org.hibernate-feature-3.3.1,org.hibernate-feature-3.3.1"/>
 <project reference="1.0,:extssh:net4j.cvs.sourceforge.net:/cvsroot/net4j,content/org.hsqldb,org.hsqldb"/>
 <project reference="1.0,:extssh:net4j.cvs.sourceforge.net:/cvsroot/net4j,content/org.hsqldb-feature,org.hsqldb-feature"/>
 <project reference="1.0,:extssh:net4j.cvs.sourceforge.net:/cvsroot/net4j,content/org.net4jplus.ThirdPartyDrivers-feature,org.net4jplus.ThirdPartyDrivers-feature"/>
@@ -16,26 +18,12 @@
 <project reference="1.0,:extssh:net4j.cvs.sourceforge.net:/cvsroot/net4j,content/org.postgresql.jdbc3-feature,org.postgresql.jdbc3-feature"/>
 <project reference="1.0,:extssh:net4j.cvs.sourceforge.net:/cvsroot/net4j,update,update"/>
 </provider>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1245917506822_2" label="ThirdPartyDrivers" name="ThirdPartyDrivers">
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.h2.jdbc-feature" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/com.mysql.jdbc-feature" type="4"/>
-<item elementID="=com.mysql.jdbc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.hsqldb-feature" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.hibernate-feature" type="4"/>
-<item elementID="=org.h2.jdbc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.postgresql.jdbc3" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.hibernate" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.postgresql.jdbc3-feature" type="4"/>
-<item elementID="=org.apache.derby" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.hsqldb" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.apache.derby-feature" type="4"/>
-</workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1247151402192_4" label="UpdateSite" name="UpdateSite">
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.net4jplus.ThirdPartyDrivers-feature" type="4"/>
 <item editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1245917530284_3" label="Net4jDatabaseAdapters" name="Net4jDatabaseAdapters">
 <item elementID="=org.eclipse.net4j.db" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.net4j.util" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.net4j.db.mysql" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.net4j.util" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.net4j.db.h2-feature" type="4"/>
 <item elementID="=org.eclipse.net4j.db.postgresql" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.net4j.db.postgresql-feature" type="4"/>
@@ -45,5 +33,21 @@
 <item elementID="=org.eclipse.net4j.db.hsqldb" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </item>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/update" type="4"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1245917506822_2" label="ThirdPartyDrivers" name="ThirdPartyDrivers">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.h2.jdbc-feature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/com.mysql.jdbc-feature" type="4"/>
+<item elementID="=com.mysql.jdbc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.hibernate-feature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.hsqldb-feature" type="4"/>
+<item elementID="=org.h2.jdbc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.hibernate" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.postgresql.jdbc3" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.apache.derby" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.postgresql.jdbc3-feature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.apache.derby-feature" type="4"/>
+<item elementID="=org.hsqldb" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.hibernate-3.3.1" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.hibernate-feature-3.3.1" type="4"/>
 </workingSets>
 </psf>
