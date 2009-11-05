@@ -3,4 +3,4 @@ http://download.eclipse.org/modeling/emf/net4j/downloads/drops/2.0.0/R2009061603
 http://download.eclipse.org/modeling/emf/teneo/downloads/drops/1.1.0/R200906180911/emf-teneo-SDK-1.1.0.zip
 http://download.eclipse.org/modeling/emf/emf/downloads/drops/2.5.0/R200906151043/emf-xsd-SDK-2.5.0.zip
 http://download.eclipse.org/eclipse/downloads/drops/R-3.5-200906111540/eclipse-SDK-3.5-win32.zip
-http://net4j.sourceforge.net/update/downloads/ThirdPartyDrivers_v4.zip
+http://net4j.sourceforge.net/update/downloads/ThirdPartyDrivers_v5.zip
