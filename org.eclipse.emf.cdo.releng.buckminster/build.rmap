@@ -2,7 +2,6 @@
 <rm:rmap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:psf="http://www.eclipse.org/buckminster/PSFProvider-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
   <rm:property key="build.type" mutable="true" value="N"/>
   <rm:locator pattern="^org\.eclipse\.emf\.cdo\.all$" searchPathRef="cdo.features"/>
-  <rm:locator pattern="^org\.eclipse\.emf\.cdo\.(releng\.buckminster|site\.eclipse)" searchPathRef="buckminster.testbench"/>
   <rm:locator searchPathRef="cdo.source" failOnError="false"/>
   <rm:locator searchPathRef="modeling" failOnError="false"/>
   <rm:locator searchPathRef="target.platform"/>
@@ -33,13 +32,6 @@
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="eclipse.import" source="false" mutable="false" resolutionFilter="">
       <rm:uri format="http://net4j.sourceforge.net/update"/>
-    </rm:provider>
-  </rm:searchPath>
-  <rm:searchPath name="buckminster.testbench">
-    <rm:provider componentTypes="buckminster,eclipse.feature" readerType="svn" resolutionFilter="">
-      <rm:uri format="http://dev.eclipse.org/svnroot/tools/org.eclipse.buckminster/trunk/testbench/{0}">
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
     </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="modeling">
