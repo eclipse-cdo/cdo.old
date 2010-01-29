@@ -102,16 +102,6 @@
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="eclipse.feature" readerType="cvs">
-      <rm:uri format=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/examples/{0}-feature">
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="eclipse.feature" readerType="cvs">
-      <rm:uri format=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.net4j/tests/{0}-feature">
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
   </rm:searchPath>
 
 
