@@ -1,3 +1,16 @@
+/**
+ * Copyright (c) 2004 - 2010 Eike Stepper (Berlin, Germany) and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Eike Stepper - initial API and implementation
+ *
+ *  Initial Publication:
+ *    Eclipse Magazin - http://www.eclipse-magazin.de
+ */
 package org.eclipse.net4j.examples.fshare.ui.app;
 
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -5,6 +18,9 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import org.osgi.framework.BundleContext;
 
+/**
+ * @author Eike Stepper
+ */
 public class Activator extends AbstractUIPlugin
 {
   public static final String PLUGIN_ID = "org.eclipse.net4j.examples.fshare.ui";
@@ -15,12 +31,14 @@ public class Activator extends AbstractUIPlugin
   {
   }
 
+  @Override
   public void start(BundleContext context) throws Exception
   {
     super.start(context);
     plugin = this;
   }
 
+  @Override
   public void stop(BundleContext context) throws Exception
   {
     plugin = null;
