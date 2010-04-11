@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<fragment>
+<extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.DawnClassdiagramDiagramEditor"
+            contributorClass="org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramDiagramActionBarContributor"
+            default="true"
+	            extensions="classdiagram_diagram"
+	            icon="noicon"
+	            id="org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.DawnClassdiagramDiagramEditor"
+	            matchingStrategy="org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramMatchingStrategy"
+	            name="Dawn Diagram Reference Editor">
+	      </editor>
+	   </extension>
+	       <extension
+          point="org.eclipse.ui.newWizards">
+       <wizard
+             category="org.eclipse.ui.Examples"
+             class="org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.DawnClassdiagramCreationWizard"
+             icon="icons/sample.gif"
+             id="de.mf.eclipse.plugins.dawn.diagram.communication.wizard1"
+             name="Create Dawn Reference Diagram">
+          <description>
+             description body text
+          </description>
+       </wizard>
+
+    </extension>
+        <extension
+              point="org.eclipse.gmf.runtime.diagram.ui.resources.editor.documentProviders">
+           <provider
+                 class="org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.DawnClassdiagramDocumentProvider"
+                 documentType="org.eclipse.gmf.runtime.diagram.ui.editor.IDocument"
+                 id="org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part"
+                 inputTypes="org.eclipse.emf.common.ui .URIEditorInput">
+           </provider>
+        </extension>
+	   
+</fragment>
