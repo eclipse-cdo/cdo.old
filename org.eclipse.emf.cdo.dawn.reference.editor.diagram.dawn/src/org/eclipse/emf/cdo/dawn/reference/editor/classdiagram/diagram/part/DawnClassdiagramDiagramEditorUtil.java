@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.emf.cdo.dawn.logging.logger.LOG;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassDiagram;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassdiagramFactory;
-import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts.ClassDiagramEditPart;
+import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts.DawnClassDiagramEditPart;
 import org.eclipse.emf.cdo.dawn.runtime.commands.CreateSemanticResourceRecordingCommand;
 import org.eclipse.emf.cdo.dawn.ui.DawnEditorInput;
 import org.eclipse.emf.cdo.dawn.util.connection.CDOConnectionUtil;
@@ -184,7 +184,7 @@ public class DawnClassdiagramDiagramEditorUtil extends ClassdiagramDiagramEditor
           attachModelToResource(model, modelResource);
         }
 
-        Diagram diagram = ViewService.createDiagram(model, ClassDiagramEditPart.MODEL_ID,
+        Diagram diagram = ViewService.createDiagram(model, DawnClassDiagramEditPart.MODEL_ID,
             ClassdiagramDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
         if (diagram != null)
         {

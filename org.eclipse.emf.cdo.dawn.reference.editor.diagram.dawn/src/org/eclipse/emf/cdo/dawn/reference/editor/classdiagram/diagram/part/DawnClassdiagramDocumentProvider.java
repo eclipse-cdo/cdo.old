@@ -147,5 +147,62 @@ public class DawnClassdiagramDocumentProvider extends ClassdiagramDocumentProvid
       fireElementDirtyStateChanged(element, true);
     }
   }
+  // /**
+  // *
+  // */
+  // @Override
+  // protected IDocument createEmptyDocument()
+  // {
+  // DiagramDocument document = new DiagramDocument();
+  // document.setEditingDomain(createEditingDomain());
+  // return document;
+  // }
+  // /**
+  // * implement createEditingDomain() an change the TransactionalEditingDomain here.
+  // */
+  // private TransactionalEditingDomain createEditingDomain()
+  // {
+  // TransactionalEditingDomain editingDomain = new DawnTransactionalEditingDomainImpl(new ComposedAdapterFactory(
+  // ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+  //    editingDomain.setID("org.eclipse.emf.cdo.dawn.reference.editor.diagram.EditingDomain"); //$NON-NLS-1$
+  // final NotificationFilter diagramResourceModifiedFilter = NotificationFilter.createNotifierFilter(
+  // editingDomain.getResourceSet()).and(NotificationFilter.createEventTypeFilter(Notification.ADD)).and(
+  // NotificationFilter.createFeatureFilter(ResourceSet.class, ResourceSet.RESOURCE_SET__RESOURCES));
+  // editingDomain.getResourceSet().eAdapters().add(new Adapter()
+  // {
+  //
+  // private Notifier myTarger;
+  //
+  // public Notifier getTarget()
+  // {
+  // return myTarger;
+  // }
+  //
+  // public boolean isAdapterForType(Object type)
+  // {
+  // return false;
+  // }
+  //
+  // public void notifyChanged(Notification notification)
+  // {
+  // if (diagramResourceModifiedFilter.matches(notification))
+  // {
+  // Object value = notification.getNewValue();
+  // if (value instanceof Resource)
+  // {
+  // ((Resource)value).setTrackingModification(true);
+  // }
+  // }
+  // }
+  //
+  // public void setTarget(Notifier newTarget)
+  // {
+  // myTarger = newTarget;
+  // }
+  //
+  // });
+  //
+  // return editingDomain;
+  // }
 
 }

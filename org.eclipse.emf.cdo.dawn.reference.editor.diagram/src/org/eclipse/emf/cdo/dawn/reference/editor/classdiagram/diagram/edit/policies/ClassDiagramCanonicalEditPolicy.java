@@ -154,6 +154,7 @@ public class ClassDiagramCanonicalEditPolicy extends CanonicalConnectionEditPoli
    */
   public void refreshSemantic()
   {
+    System.out.println("ClassDiagramCanonicalEditPolicy refresh");
     List createdViews = new LinkedList();
     createdViews.addAll(refreshSemanticChildren());
     List createdConnectionViews = new LinkedList();
@@ -182,7 +183,7 @@ public class ClassDiagramCanonicalEditPolicy extends CanonicalConnectionEditPoli
   /**
    * @generated
    */
-  private Collection refreshConnections()
+  protected Collection refreshConnections()
   {
     Map domain2NotationMap = new HashMap();
     Collection linkDescriptors = collectAllLinks(getDiagram(), domain2NotationMap);

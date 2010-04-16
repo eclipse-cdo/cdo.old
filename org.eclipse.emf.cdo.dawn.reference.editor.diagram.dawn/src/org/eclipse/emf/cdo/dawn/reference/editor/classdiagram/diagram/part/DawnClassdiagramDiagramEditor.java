@@ -4,6 +4,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.cdo.dawn.logging.logger.LOG;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassDiagram;
+import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.policies.DawnClassDiagramCanonicalEditPolicy;
 import org.eclipse.emf.cdo.dawn.runtime.diagram.part.DawnDiagramEditorInterface;
 import org.eclipse.emf.cdo.dawn.runtime.synchronize.DawnChangeHelper;
 import org.eclipse.emf.cdo.dawn.runtime.views.listeners.DawnNotificationUtil;
@@ -14,6 +15,7 @@ import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.net4j.util.transaction.TransactionException;
@@ -63,6 +65,16 @@ public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor imp
     // DawnNotificationUtil.registerModelListeners(getDiagram(), this);
     DawnNotificationUtil.registerResourceListeners(getEditingDomain().getResourceSet(), this);
     DawnNotificationUtil.registerTransactionListeners(transaction, this);
+    // getDiagramEditPart(). installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new
+    // DawnClassDiagramCanonicalEditPolicy());
+  }
+
+  @Override
+  protected void initializeGraphicalViewer()
+  {
+    super.initializeGraphicalViewer();
+    // change the behavior of the canonicalEditPolicy
+    getDiagramEditPart().installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new DawnClassDiagramCanonicalEditPolicy());
   }
 
   @Override
@@ -182,26 +194,5 @@ public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor imp
       }
     }
   }
-
-  // public class DawnElementChangeListener extends org.eclipse.emf.ecore.util.EContentAdapter
-  // {
-  //
-  // private final DiagramDocumentEditor editor;
-  //
-  // public DawnElementChangeListener(DiagramDocumentEditor editor)
-  // {
-  // this.editor = editor;
-  //
-  // }
-  //
-  // @Override
-  // public void notifyChanged(Notification notification)
-  // {
-  // DawnDiagramUpdater.refreshEditPart(editor.getDiagramEditPart());
-  // ((DawnClassdiagramDocumentProvider)editor.getDocumentProvider()).changed(getEditorInput());
-  // System.out.println("Change on element XXX");
-  // super.notifyChanged(notification);
-  // }
-  // }
 
 }
