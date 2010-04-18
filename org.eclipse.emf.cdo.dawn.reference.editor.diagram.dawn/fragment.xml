@@ -37,26 +37,13 @@
                  inputTypes="org.eclipse.emf.common.ui .URIEditorInput">
            </provider>
         </extension>
-	      <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
-      <?gmfgen generated="true"?>
-      <editpartProvider class="org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.providers.DawnClassdiagramEditPartProvider">
-         <Priority name="Medium"/>
-         <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
-            <method name="getType()" value="Classdiagram"/>
-         </object>
-         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2001,2002,3001,3002,3003,3004"/>
-         </object>
-         <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4001,4002,4003,4004,4005"/>
-         </object>
-         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5001,5002"/>
-         </object>
-         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="7001,7002,7003,7004"/>
-         </object>
-         <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
-      </editpartProvider>
-   </extension>
+       <extension
+             point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+          <editpolicyProvider
+                class="org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.providers.DawnClassdiagramEditPolicyProvider">
+             <Priority
+                   name="Low">
+             </Priority>
+          </editpolicyProvider>
+       </extension>
 </fragment>

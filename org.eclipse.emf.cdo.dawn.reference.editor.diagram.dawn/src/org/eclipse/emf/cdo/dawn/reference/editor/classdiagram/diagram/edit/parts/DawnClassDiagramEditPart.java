@@ -16,7 +16,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
- * @generated
+ * @author Martin Fluegge
  */
 public class DawnClassDiagramEditPart extends ClassDiagramEditPart
 {
@@ -34,6 +34,7 @@ public class DawnClassDiagramEditPart extends ClassDiagramEditPart
   /**
    * @generated
    */
+  @Deprecated
   public DawnClassDiagramEditPart(View view)
   {
     super(view);

@@ -1,21 +1,30 @@
+/*******************************************************************************
+ * Copyright (c) 2010 Martin Fluegge (Berlin, Germany).
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Martin Fluegge - initial API and implementation
+ ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.cdo.dawn.logging.logger.LOG;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassDiagram;
-import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.policies.DawnClassDiagramCanonicalEditPolicy;
 import org.eclipse.emf.cdo.dawn.runtime.diagram.part.DawnDiagramEditorInterface;
+import org.eclipse.emf.cdo.dawn.runtime.notifications.DawnNotificationUtil;
 import org.eclipse.emf.cdo.dawn.runtime.synchronize.DawnChangeHelper;
-import org.eclipse.emf.cdo.dawn.runtime.views.listeners.DawnNotificationUtil;
 import org.eclipse.emf.cdo.dawn.ui.DawnEditorInput;
+import org.eclipse.emf.cdo.dawn.util.DawnDiagramUpdater;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.ui.CDOEditorInput;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.net4j.util.transaction.TransactionException;
@@ -24,6 +33,9 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 
+/**
+ * @author Martin Fluegge
+ */
 public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor implements DawnDiagramEditorInterface
 {
   ClassDiagram classDiagram;
@@ -58,15 +70,9 @@ public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor imp
 
     transaction = (CDOTransaction)((DawnEditorInput)input).getView();
 
-    DawnNotificationUtil.removeTransactionChangeRecorder(getDiagram());
-    DawnNotificationUtil.removeTransactionChangeRecorder(getDiagram().getElement());
-    DawnNotificationUtil.removeTransactionChangeRecorder(getDiagram().eResource());
-    DawnNotificationUtil.removeTransactionChangeRecorder(getDiagram().getElement().eResource());
-    // DawnNotificationUtil.registerModelListeners(getDiagram(), this);
     DawnNotificationUtil.registerResourceListeners(getEditingDomain().getResourceSet(), this);
     DawnNotificationUtil.registerTransactionListeners(transaction, this);
-    // getDiagramEditPart(). installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new
-    // DawnClassDiagramCanonicalEditPolicy());
+    DawnNotificationUtil.setChangeSubscriptionPolicy(transaction);
   }
 
   @Override
@@ -74,7 +80,8 @@ public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor imp
   {
     super.initializeGraphicalViewer();
     // change the behavior of the canonicalEditPolicy
-    getDiagramEditPart().installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new DawnClassDiagramCanonicalEditPolicy());
+    // getDiagramEditPart().installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new
+    // DawnClassDiagramCanonicalEditPolicy());
   }
 
   @Override
@@ -146,21 +153,10 @@ public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor imp
         for (Object obj : getDiagramEditPart().getChildren())
         {
           DawnChangeHelper.removeMark((EditPart)obj);
-
         }
-        refresh(getDiagramEditPart());
+        DawnDiagramUpdater.refreshEditPart(getDiagramEditPart());
       }
     });
-
-  }
-
-  private void refresh(EditPart e)
-  {
-    for (Object obj : e.getChildren())
-    {
-      refresh((EditPart)obj);
-    }
-    e.refresh();
   }
 
   /**

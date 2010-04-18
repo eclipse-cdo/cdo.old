@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2010 Martin Fluegge (Berlin, Germany).
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Martin Fluegge - initial API and implementation
+ ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part;
 
 import java.io.IOException;
@@ -10,13 +20,21 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.cdo.dawn.logging.logger.LOG;
+import org.eclipse.emf.cdo.dawn.runtime.transaction.DawnDiagramEditingDomainFactory;
 import org.eclipse.emf.cdo.dawn.ui.DawnEditorInput;
+import org.eclipse.emf.cdo.dawn.util.DawnDiagramUpdater;
 import org.eclipse.emf.cdo.eresource.CDOResource;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.DiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.internal.util.DiagramIOUtil;
@@ -27,7 +45,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
 
 /**
- * @generated
+ * @author Martin Fluegge
  */
 public class DawnClassdiagramDocumentProvider extends ClassdiagramDocumentProvider
 {
@@ -36,6 +54,65 @@ public class DawnClassdiagramDocumentProvider extends ClassdiagramDocumentProvid
   {
     super();
     LOG.info("DAWN DOCUMENTPROVIDER");
+  }
+
+  /**
+   * override to change creation of editingdomain
+   */
+  @Override
+  protected IDocument createEmptyDocument()
+  {
+    DiagramDocument document = new DiagramDocument();
+    document.setEditingDomain(createEditingDomain());
+    return document;
+  }
+
+  /**
+   * override to change the editingdomain
+   */
+
+  private TransactionalEditingDomain createEditingDomain()
+  {
+    TransactionalEditingDomain editingDomain = DawnDiagramEditingDomainFactory.getInstance().createEditingDomain();
+    editingDomain.setID("org.eclipse.emf.cdo.dawn.reference.editor.diagram.EditingDomain"); //$NON-NLS-1$
+    final NotificationFilter diagramResourceModifiedFilter = NotificationFilter.createNotifierFilter(
+        editingDomain.getResourceSet()).and(NotificationFilter.createEventTypeFilter(Notification.ADD)).and(
+        NotificationFilter.createFeatureFilter(ResourceSet.class, ResourceSet.RESOURCE_SET__RESOURCES));
+    editingDomain.getResourceSet().eAdapters().add(new Adapter()
+    {
+
+      private Notifier myTarger;
+
+      public Notifier getTarget()
+      {
+        return myTarger;
+      }
+
+      public boolean isAdapterForType(Object type)
+      {
+        return false;
+      }
+
+      public void notifyChanged(Notification notification)
+      {
+        if (diagramResourceModifiedFilter.matches(notification))
+        {
+          Object value = notification.getNewValue();
+          if (value instanceof Resource)
+          {
+            ((Resource)value).setTrackingModification(true);
+          }
+        }
+      }
+
+      public void setTarget(Notifier newTarget)
+      {
+        myTarger = newTarget;
+      }
+
+    });
+
+    return editingDomain;
   }
 
   @Override
@@ -96,7 +173,10 @@ public class DawnClassdiagramDocumentProvider extends ClassdiagramDocumentProvid
           EObject rootElement = resource.getEObject(uri.fragment());
           if (rootElement instanceof Diagram)
           {
-            document.setContent((Diagram)rootElement);
+            Diagram diagram = (Diagram)rootElement;
+            DawnDiagramUpdater.initializeElement(diagram);
+            document.setContent(diagram);
+
             return;
           }
         }
@@ -107,7 +187,10 @@ public class DawnClassdiagramDocumentProvider extends ClassdiagramDocumentProvid
             Object rootElement = it.next();
             if (rootElement instanceof Diagram)
             {
-              document.setContent((Diagram)rootElement);
+              Diagram diagram = (Diagram)rootElement;
+              DawnDiagramUpdater.initializeElement(diagram);
+              document.setContent(diagram);
+
               return;
             }
           }
@@ -142,67 +225,10 @@ public class DawnClassdiagramDocumentProvider extends ClassdiagramDocumentProvid
   @Override
   public void changed(Object element)
   {
+
     if (element instanceof IEditorInput)
     {
       fireElementDirtyStateChanged(element, true);
     }
   }
-  // /**
-  // *
-  // */
-  // @Override
-  // protected IDocument createEmptyDocument()
-  // {
-  // DiagramDocument document = new DiagramDocument();
-  // document.setEditingDomain(createEditingDomain());
-  // return document;
-  // }
-  // /**
-  // * implement createEditingDomain() an change the TransactionalEditingDomain here.
-  // */
-  // private TransactionalEditingDomain createEditingDomain()
-  // {
-  // TransactionalEditingDomain editingDomain = new DawnTransactionalEditingDomainImpl(new ComposedAdapterFactory(
-  // ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-  //    editingDomain.setID("org.eclipse.emf.cdo.dawn.reference.editor.diagram.EditingDomain"); //$NON-NLS-1$
-  // final NotificationFilter diagramResourceModifiedFilter = NotificationFilter.createNotifierFilter(
-  // editingDomain.getResourceSet()).and(NotificationFilter.createEventTypeFilter(Notification.ADD)).and(
-  // NotificationFilter.createFeatureFilter(ResourceSet.class, ResourceSet.RESOURCE_SET__RESOURCES));
-  // editingDomain.getResourceSet().eAdapters().add(new Adapter()
-  // {
-  //
-  // private Notifier myTarger;
-  //
-  // public Notifier getTarget()
-  // {
-  // return myTarger;
-  // }
-  //
-  // public boolean isAdapterForType(Object type)
-  // {
-  // return false;
-  // }
-  //
-  // public void notifyChanged(Notification notification)
-  // {
-  // if (diagramResourceModifiedFilter.matches(notification))
-  // {
-  // Object value = notification.getNewValue();
-  // if (value instanceof Resource)
-  // {
-  // ((Resource)value).setTrackingModification(true);
-  // }
-  // }
-  // }
-  //
-  // public void setTarget(Notifier newTarget)
-  // {
-  // myTarger = newTarget;
-  // }
-  //
-  // });
-  //
-  // return editingDomain;
-  // }
-
 }

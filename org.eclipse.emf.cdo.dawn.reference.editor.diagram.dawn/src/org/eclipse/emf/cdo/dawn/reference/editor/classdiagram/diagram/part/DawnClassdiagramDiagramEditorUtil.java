@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2010 Martin Fluegge (Berlin, Germany).
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Martin Fluegge - initial API and implementation
+ ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part;
 
 import java.io.IOException;
@@ -22,6 +32,7 @@ import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassDiagram;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassdiagramFactory;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts.DawnClassDiagramEditPart;
 import org.eclipse.emf.cdo.dawn.runtime.commands.CreateSemanticResourceRecordingCommand;
+import org.eclipse.emf.cdo.dawn.runtime.transaction.DawnGMFEditingDomainFactory;
 import org.eclipse.emf.cdo.dawn.ui.DawnEditorInput;
 import org.eclipse.emf.cdo.dawn.util.connection.CDOConnectionUtil;
 import org.eclipse.emf.cdo.session.CDOSession;
@@ -42,7 +53,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.core.GMFEditingDomainFactory;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
@@ -55,7 +65,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * @generated
+ * @author Martin Fluegge
  */
 public class DawnClassdiagramDiagramEditorUtil extends ClassdiagramDiagramEditorUtil
 {
@@ -139,10 +149,10 @@ public class DawnClassdiagramDiagramEditorUtil extends ClassdiagramDiagramEditor
   {
 
     LOG.info("Creating new Diagram for URI " + diagramURI);
-    TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
-    progressMonitor.beginTask(Messages.ClassdiagramDiagramEditorUtil_CreateDiagramProgressTask, 3);
+    // TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
+    TransactionalEditingDomain editingDomain = DawnGMFEditingDomainFactory.INSTANCE.createEditingDomain();
 
-    // String modelURIString = modelURI.toString().replace("platform:", "cdo:");
+    progressMonitor.beginTask(Messages.ClassdiagramDiagramEditorUtil_CreateDiagramProgressTask, 3);
 
     CDOConnectionUtil.instance.init("repo1", "tcp", "localhost");
 
