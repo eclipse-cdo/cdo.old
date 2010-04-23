@@ -10,16 +10,12 @@
  ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.policies;
 
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.cdo.dawn.logging.logger.LOG;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.commands.DeferredLayoutCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.notation.Edge;
 
 /**
  * @author Martin Fluegge
@@ -41,7 +37,7 @@ public class DawnClassDiagramCanonicalEditPolicy extends ClassDiagramCanonicalEd
   {
     System.out.println("DawnClassDiagramCanonicalEditPolicy refresh");
     List createdViews = new LinkedList();
-  //  createdViews.addAll(refreshSemanticChildren());
+    // createdViews.addAll(refreshSemanticChildren());
     List createdConnectionViews = new LinkedList();
     createdConnectionViews.addAll(refreshSemanticConnections());
     createdConnectionViews.addAll(refreshConnections());

@@ -25,6 +25,11 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.cdo.dawn.logging.logger.LOG;
+import org.eclipse.emf.cdo.dawn.ui.wizards.DawnCreateNewDiagramResourceWizardPage;
+import org.eclipse.emf.cdo.dawn.ui.wizards.DawnCreateNewResourceWizardPage;
+import org.eclipse.emf.cdo.dawn.util.connection.CDOConnectionUtil;
+import org.eclipse.emf.cdo.session.CDOSession;
+import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -37,20 +42,36 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
  */
 public class DawnClassdiagramCreationWizard extends ClassdiagramCreationWizard implements INewWizard
 {
+  private CDOView view;
+
+  private DawnCreateNewDiagramResourceWizardPage dawnDiagramModelFilePage;
+
+  private DawnCreateNewResourceWizardPage dawnDomainModelFilePage;
+
+  public DawnClassdiagramCreationWizard()
+  {
+    super();
+    CDOConnectionUtil.instance.init("repo1", "tcp", "localhost");
+    CDOSession session = CDOConnectionUtil.instance.openSession();
+    view = CDOConnectionUtil.instance.openView(session);
+  }
+
   public boolean performFinish()
   {
+    LOG.info("Notational Model: " + dawnDiagramModelFilePage.getURI().lastSegment());
+    LOG.info("Notational Model URI: " + dawnDiagramModelFilePage.getURI());
+    LOG.info("Domain Model: " + dawnDomainModelFilePage.getURI().lastSegment());
+    LOG.info("Domain Model URI: " + dawnDomainModelFilePage.getURI());
+   // return false;
     IRunnableWithProgress op = new WorkspaceModifyOperation(null)
     {
-
       protected void execute(IProgressMonitor monitor) throws CoreException, InterruptedException
       {
-        URI diagramResourceURI = URI.createURI("dawn://repo1/" + diagramModelFilePage.getURI().lastSegment());
-        URI domainModelResourceURI = URI.createURI("cdo://" + domainModelFilePage.getURI().lastSegment());
+        URI diagramResourceURI = dawnDiagramModelFilePage.getURI();// URI.createURI("dawn://repo1/" +
+        // diagramModelFilePage.getURI().lastSegment());
+        URI domainModelResourceURI = dawnDomainModelFilePage.getURI();// URI.createURI("cdo://" +
+        // domainModelFilePage.getURI().lastSegment());
 
-        LOG.info("Notational Resource URI : " + diagramResourceURI);
-        LOG.info("Semantic Resource URI: " + domainModelResourceURI);
-
-        // TODO read the URIs from the pages and create the specific file
         diagram = DawnClassdiagramDiagramEditorUtil.createDiagram(diagramResourceURI, domainModelResourceURI, monitor);
 
         if (isOpenNewlyCreatedDiagramEditor() && diagram != null)
@@ -91,56 +112,41 @@ public class DawnClassdiagramCreationWizard extends ClassdiagramCreationWizard i
     return diagram != null;
   }
 
-  // public boolean performFinish()
-  // {
-  // IRunnableWithProgress op = new WorkspaceModifyOperation(null)
-  // {
-  //
-  // protected void execute(IProgressMonitor monitor) throws CoreException, InterruptedException
-  // {
-  //
-  // // URI cdoURI = URI.createURI("cdo://repo1/" +diagramModelFilePage.getURI().lastSegment());
-  // URI cdoURI = URI.createURI("dawn://repo1/" + diagramModelFilePage.getURI().lastSegment());
-  // System.out.println("CONNECTING to: " + cdoURI);
-  //
-  // diagram = DawnClassdiagramDiagramEditorUtil.createDiagram(cdoURI, monitor);
-  // // diagram = DawnClassdiagramDiagramEditorUtil.createDiagram(diagramModelFilePage.getURI(), monitor);
-  //
-  // if (isOpenNewlyCreatedDiagramEditor() && diagram != null)
-  // {
-  // try
-  // {
-  // DawnClassdiagramDiagramEditorUtil.openDiagram(diagram);
-  // }
-  // catch (PartInitException e)
-  // {
-  // ErrorDialog.openError(getContainer().getShell(), Messages.ClassdiagramCreationWizardOpenEditorError, null,
-  // e.getStatus());
-  // }
-  // }
-  // }
-  // };
-  // try
-  // {
-  // getContainer().run(false, true, op);
-  // }
-  // catch (InterruptedException e)
-  // {
-  // return false;
-  // }
-  // catch (InvocationTargetException e)
-  // {
-  // if (e.getTargetException() instanceof CoreException)
-  // {
-  // ErrorDialog.openError(getContainer().getShell(), Messages.ClassdiagramCreationWizardCreationError, null,
-  // ((CoreException)e.getTargetException()).getStatus());
-  // }
-  // else
-  // {
-  //        ClassdiagramDiagramEditorPlugin.getInstance().logError("Error creating diagram", e.getTargetException()); //$NON-NLS-1$
-  // }
-  // return false;
-  // }
-  // return diagram != null;
-  // }
+  @Override
+  public void addPages()
+  {
+    dawnDiagramModelFilePage = new DawnCreateNewDiagramResourceWizardPage("classdiagram_diagram", false, view);
+    dawnDiagramModelFilePage.setTitle(Messages.ClassdiagramCreationWizard_DiagramModelFilePageTitle);
+    dawnDiagramModelFilePage.setDescription(Messages.ClassdiagramCreationWizard_DiagramModelFilePageDescription);
+    dawnDiagramModelFilePage.setCreateAutomaticResourceName(true);
+    addPage(dawnDiagramModelFilePage);
+
+    dawnDomainModelFilePage = new DawnCreateNewResourceWizardPage("", true, view)
+    {
+      public void setVisible(boolean visible)
+      {
+        if (visible)
+        {
+          URI uri = dawnDiagramModelFilePage.getURI();
+          String fileName = uri.lastSegment();
+          fileName = fileName.substring(0, fileName.length() - ".classdiagram_diagram".length()); //$NON-NLS-1$
+          fileName += ".classdiagram";
+          dawnDomainModelFilePage.setResourceNamePrefix(fileName);
+          dawnDomainModelFilePage.setResourcePath(dawnDiagramModelFilePage.getResourcePath());
+        }
+        super.setVisible(visible);
+      }
+    };
+    dawnDomainModelFilePage.setTitle(Messages.ClassdiagramCreationWizard_DomainModelFilePageTitle);
+    dawnDomainModelFilePage.setDescription(Messages.ClassdiagramCreationWizard_DomainModelFilePageDescription);
+    // allows to connect to an existing resource
+    dawnDomainModelFilePage.setResourceValidationType(DawnCreateNewResourceWizardPage.VALIDATION_WARN);
+    addPage(dawnDomainModelFilePage);
+  }
+
+  @Override
+  public void dispose()
+  {
+    view.close();
+  }
 }

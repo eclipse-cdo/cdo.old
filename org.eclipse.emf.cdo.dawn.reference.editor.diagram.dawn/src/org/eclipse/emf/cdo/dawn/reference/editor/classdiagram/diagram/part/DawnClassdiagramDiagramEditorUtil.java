@@ -150,7 +150,7 @@ public class DawnClassdiagramDiagramEditorUtil extends ClassdiagramDiagramEditor
 
     LOG.info("Creating new Diagram for URI " + diagramURI);
     // TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
-    TransactionalEditingDomain editingDomain = DawnGMFEditingDomainFactory.INSTANCE.createEditingDomain();
+    TransactionalEditingDomain editingDomain = DawnGMFEditingDomainFactory.getInstance().createEditingDomain();
 
     progressMonitor.beginTask(Messages.ClassdiagramDiagramEditorUtil_CreateDiagramProgressTask, 3);
 

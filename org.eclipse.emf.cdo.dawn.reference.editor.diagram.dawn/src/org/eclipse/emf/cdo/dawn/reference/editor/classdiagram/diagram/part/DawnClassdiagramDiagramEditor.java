@@ -67,7 +67,6 @@ public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor imp
       Shell shell = getSite().getShell();
       ErrorDialog.openError(shell, title, msg, x.getStatus());
     }
-
     transaction = (CDOTransaction)((DawnEditorInput)input).getView();
 
     DawnNotificationUtil.registerResourceListeners(getEditingDomain().getResourceSet(), this);
@@ -110,8 +109,6 @@ public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor imp
       }
     }
   }
-
-  //
 
   @Override
   public boolean isDirty()
@@ -172,7 +169,6 @@ public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor imp
     {
       super.setDocumentProvider(input);
     }
-
   }
 
   @Override
@@ -190,5 +186,4 @@ public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor imp
       }
     }
   }
-
 }
