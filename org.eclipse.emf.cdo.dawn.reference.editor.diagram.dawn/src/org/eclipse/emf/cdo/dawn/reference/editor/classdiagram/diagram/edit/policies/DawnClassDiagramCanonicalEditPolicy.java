@@ -29,6 +29,18 @@ public class DawnClassDiagramCanonicalEditPolicy extends ClassDiagramCanonicalEd
     LOG.info("Running DawnClassDiagramCanonicalEditPolicy instead of original one");
   }
 
+  // @Override
+  // protected List getSemanticChildrenList()
+  // {
+  // List semanticChildren = super.getSemanticChildrenList();
+  // List<View> viewChildren = getViewChildren();
+  //
+  // //remove all semantic children that do not have a view because the have one in another resource,
+  // //or the child should not have one
+  // semanticChildren.removeAll(cleanCanonicalSemanticChildren(viewChildren, semanticChildren));
+  // return semanticChildren;
+  // }
+
   /**
    * @generated
    */

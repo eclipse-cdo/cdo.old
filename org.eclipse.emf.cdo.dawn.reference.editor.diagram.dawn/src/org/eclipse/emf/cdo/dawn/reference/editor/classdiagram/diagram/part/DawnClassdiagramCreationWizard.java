@@ -25,6 +25,7 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.cdo.dawn.logging.logger.LOG;
+import org.eclipse.emf.cdo.dawn.runtime.preferences.PreferenceConstants;
 import org.eclipse.emf.cdo.dawn.ui.wizards.DawnCreateNewDiagramResourceWizardPage;
 import org.eclipse.emf.cdo.dawn.ui.wizards.DawnCreateNewResourceWizardPage;
 import org.eclipse.emf.cdo.dawn.util.connection.CDOConnectionUtil;
@@ -51,7 +52,9 @@ public class DawnClassdiagramCreationWizard extends ClassdiagramCreationWizard i
   public DawnClassdiagramCreationWizard()
   {
     super();
-    CDOConnectionUtil.instance.init("repo1", "tcp", "localhost");
+    // CDOConnectionUtil.instance.init("repo1", "tcp", "localhost");
+    CDOConnectionUtil.instance.init(PreferenceConstants.getRepositoryName(), PreferenceConstants.getProtocol(),
+        PreferenceConstants.getServerName());
     CDOSession session = CDOConnectionUtil.instance.openSession();
     view = CDOConnectionUtil.instance.openView(session);
   }
@@ -62,15 +65,12 @@ public class DawnClassdiagramCreationWizard extends ClassdiagramCreationWizard i
     LOG.info("Notational Model URI: " + dawnDiagramModelFilePage.getURI());
     LOG.info("Domain Model: " + dawnDomainModelFilePage.getURI().lastSegment());
     LOG.info("Domain Model URI: " + dawnDomainModelFilePage.getURI());
-   // return false;
     IRunnableWithProgress op = new WorkspaceModifyOperation(null)
     {
       protected void execute(IProgressMonitor monitor) throws CoreException, InterruptedException
       {
-        URI diagramResourceURI = dawnDiagramModelFilePage.getURI();// URI.createURI("dawn://repo1/" +
-        // diagramModelFilePage.getURI().lastSegment());
-        URI domainModelResourceURI = dawnDomainModelFilePage.getURI();// URI.createURI("cdo://" +
-        // domainModelFilePage.getURI().lastSegment());
+        URI diagramResourceURI = dawnDiagramModelFilePage.getURI();
+        URI domainModelResourceURI = dawnDomainModelFilePage.getURI();
 
         diagram = DawnClassdiagramDiagramEditorUtil.createDiagram(diagramResourceURI, domainModelResourceURI, monitor);
 
@@ -139,6 +139,7 @@ public class DawnClassdiagramCreationWizard extends ClassdiagramCreationWizard i
     };
     dawnDomainModelFilePage.setTitle(Messages.ClassdiagramCreationWizard_DomainModelFilePageTitle);
     dawnDomainModelFilePage.setDescription(Messages.ClassdiagramCreationWizard_DomainModelFilePageDescription);
+
     // allows to connect to an existing resource
     dawnDomainModelFilePage.setResourceValidationType(DawnCreateNewResourceWizardPage.VALIDATION_WARN);
     addPage(dawnDomainModelFilePage);

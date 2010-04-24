@@ -175,7 +175,7 @@ public class ClassDiagramCanonicalEditPolicy extends CanonicalConnectionEditPoli
   /**
    * @generated
    */
-  protected Diagram getDiagram()
+  private Diagram getDiagram()
   {
     return ((View)getHost().getModel()).getDiagram();
   }
@@ -201,7 +201,6 @@ public class ClassDiagramCanonicalEditPolicy extends CanonicalConnectionEditPoli
         continue;
       }
       EObject diagramLinkObject = nextDiagramLink.getElement();
-
       EObject diagramLinkSrc = nextDiagramLink.getSource().getElement();
       EObject diagramLinkDst = nextDiagramLink.getTarget().getElement();
       for (Iterator linkDescriptorsIterator = linkDescriptors.iterator(); linkDescriptorsIterator.hasNext();)

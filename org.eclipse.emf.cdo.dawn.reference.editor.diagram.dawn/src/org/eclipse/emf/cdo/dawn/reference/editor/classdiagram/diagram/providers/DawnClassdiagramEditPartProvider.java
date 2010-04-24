@@ -18,7 +18,11 @@ import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts
  */
 public class DawnClassdiagramEditPartProvider extends ClassdiagramEditPartProvider
 {
-  @Deprecated
+  /**
+   * This class is currently not needed because the change of the EditPolicy is done by changing the EditPart but by
+   * using an own EditPartPolicyProvider. The class is left to have the chance to influence the behavior of the
+   * EditParts from the generated fragment.
+   */
   public DawnClassdiagramEditPartProvider()
   {
     super();

@@ -10,9 +10,9 @@
  ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.providers;
 
-import org.eclipse.emf.cdo.dawn.logging.logger.LOG;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts.ClassDiagramEditPart;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.policies.DawnClassDiagramCanonicalEditPolicy;
+import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramDiagramEditorPlugin;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
@@ -47,10 +47,9 @@ public class DawnClassdiagramEditPolicyProvider extends AbstractProvider impleme
   {
     if (editPart instanceof ClassDiagramEditPart)
     {
-      LOG.info("Overwriting CANONICAL EDITING POLICY in " + editPart);
+      ClassdiagramDiagramEditorPlugin.getInstance().logInfo("Overwriting CANONICAL EDITING POLICY in " + editPart);
       editPart.installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new DawnClassDiagramCanonicalEditPolicy());
     }
-
   }
 
 }

@@ -19,7 +19,6 @@ import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.cdo.dawn.logging.logger.LOG;
 import org.eclipse.emf.cdo.dawn.runtime.transaction.DawnDiagramEditingDomainFactory;
 import org.eclipse.emf.cdo.dawn.ui.DawnEditorInput;
 import org.eclipse.emf.cdo.dawn.util.DawnDiagramUpdater;
@@ -53,7 +52,8 @@ public class DawnClassdiagramDocumentProvider extends ClassdiagramDocumentProvid
   public DawnClassdiagramDocumentProvider()
   {
     super();
-    LOG.info("DAWN DOCUMENTPROVIDER");
+    ClassdiagramDiagramEditorPlugin.getInstance().logInfo(
+        "Using DawnClassdiagramDocumentProvider instead of the original one");
   }
 
   /**
@@ -68,9 +68,8 @@ public class DawnClassdiagramDocumentProvider extends ClassdiagramDocumentProvid
   }
 
   /**
-   * override to change the editingdomain
+   * override to change the EditingDomain
    */
-
   private TransactionalEditingDomain createEditingDomain()
   {
     TransactionalEditingDomain editingDomain = DawnDiagramEditingDomainFactory.getInstance().createEditingDomain();
@@ -80,7 +79,6 @@ public class DawnClassdiagramDocumentProvider extends ClassdiagramDocumentProvid
         NotificationFilter.createFeatureFilter(ResourceSet.class, ResourceSet.RESOURCE_SET__RESOURCES));
     editingDomain.getResourceSet().eAdapters().add(new Adapter()
     {
-
       private Notifier myTarger;
 
       public Notifier getTarget()
@@ -109,7 +107,6 @@ public class DawnClassdiagramDocumentProvider extends ClassdiagramDocumentProvid
       {
         myTarger = newTarget;
       }
-
     });
 
     return editingDomain;
@@ -118,8 +115,7 @@ public class DawnClassdiagramDocumentProvider extends ClassdiagramDocumentProvid
   @Override
   protected void setDocumentContent(IDocument document, IEditorInput element) throws CoreException
   {
-    LOG.info("USING MY DOCUMENTPROVIDER TO GENRATE THE CDO STUFF");
-    LOG.info("Editor Input: " + element.getName());
+    ClassdiagramDiagramEditorPlugin.getInstance().logInfo("Editor Input: " + element.getName());
 
     IDiagramDocument diagramDocument = (IDiagramDocument)document;
     TransactionalEditingDomain domain = diagramDocument.getEditingDomain();
@@ -132,9 +128,6 @@ public class DawnClassdiagramDocumentProvider extends ClassdiagramDocumentProvid
     else if (element instanceof URIEditorInput)
     {
       URIEditorInput editorInput = (URIEditorInput)element;
-
-      // CDOConnectionUtil.instance.getOrOpenCurrentTransaction(editorInput.getURI().toString(),
-      // domain.getResourceSet());// session.openTransaction(resourceSet);
 
       URI uri = editorInput.getURI();
       Resource resource = null;
@@ -158,8 +151,6 @@ public class DawnClassdiagramDocumentProvider extends ClassdiagramDocumentProvid
           try
           {
             Map options = new HashMap(GMFResourceFactory.getDefaultLoadOptions());
-            // @see 171060
-            // options.put(org.eclipse.emf.ecore.xmi.XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
             resource.load(options);
           }
           catch (IOException e)
@@ -225,7 +216,6 @@ public class DawnClassdiagramDocumentProvider extends ClassdiagramDocumentProvid
   @Override
   public void changed(Object element)
   {
-
     if (element instanceof IEditorInput)
     {
       fireElementDirtyStateChanged(element, true);

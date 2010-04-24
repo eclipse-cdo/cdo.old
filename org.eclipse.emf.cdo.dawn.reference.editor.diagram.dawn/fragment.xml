@@ -8,10 +8,10 @@
             contributorClass="org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramDiagramActionBarContributor"
             default="true"
 	            extensions="classdiagram_diagram"
-	            icon="noicon"
+	            icon="icons/obj16/ClassdiagramDiagramFile.gif"
 	            id="org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.DawnClassdiagramDiagramEditor"
 	            matchingStrategy="org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramMatchingStrategy"
-	            name="Dawn Diagram Reference Editor">
+	            name="Dawn Classdiagram Diagram">
 	      </editor>
 	   </extension>
 	       <extension
@@ -19,9 +19,9 @@
        <wizard
              category="org.eclipse.ui.Examples"
              class="org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.DawnClassdiagramCreationWizard"
-             icon="icons/sample.gif"
+             icon="icons/obj16/ClassdiagramDiagramFile.gif"
              id="de.mf.eclipse.plugins.dawn.diagram.communication.wizard1"
-             name="Create Dawn Reference Diagram">
+             name="Dawn Classdiagram Diagram">
           <description>
              description body text
           </description>

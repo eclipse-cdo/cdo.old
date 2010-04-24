@@ -78,17 +78,12 @@ public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor imp
   protected void initializeGraphicalViewer()
   {
     super.initializeGraphicalViewer();
-    // change the behavior of the canonicalEditPolicy
-    // getDiagramEditPart().installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new
-    // DawnClassDiagramCanonicalEditPolicy());
   }
 
   @Override
   public void doSave(IProgressMonitor monitor)
   {
-
     Resource res = getEditingDomain().getResourceSet().getResources().get(0);
-    // ResourceHelper.printResourceSysout(res);
 
     try
     {
