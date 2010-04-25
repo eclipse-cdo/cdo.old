@@ -10,8 +10,8 @@
  ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts;
 
-import org.eclipse.emf.cdo.dawn.logging.logger.LOG;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.policies.DawnClassDiagramCanonicalEditPolicy;
+import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramDiagramEditorPlugin;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 
@@ -38,7 +38,7 @@ public class DawnClassDiagramEditPart extends ClassDiagramEditPart
   public DawnClassDiagramEditPart(View view)
   {
     super(view);
-    LOG.info("Using DawnClassDiagramEditPart instead of the original one");
+    ClassdiagramDiagramEditorPlugin.getInstance().logInfo("Using DawnClassDiagramEditPart instead of the original one");
   }
 
   /**

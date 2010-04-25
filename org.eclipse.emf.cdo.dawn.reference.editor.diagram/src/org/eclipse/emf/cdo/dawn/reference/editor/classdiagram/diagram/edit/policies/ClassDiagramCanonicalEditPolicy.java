@@ -154,7 +154,6 @@ public class ClassDiagramCanonicalEditPolicy extends CanonicalConnectionEditPoli
    */
   public void refreshSemantic()
   {
-    System.out.println("ClassDiagramCanonicalEditPolicy refresh");
     List createdViews = new LinkedList();
     createdViews.addAll(refreshSemanticChildren());
     List createdConnectionViews = new LinkedList();

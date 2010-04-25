@@ -24,7 +24,6 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.cdo.dawn.logging.logger.LOG;
 import org.eclipse.emf.cdo.dawn.runtime.preferences.PreferenceConstants;
 import org.eclipse.emf.cdo.dawn.ui.wizards.DawnCreateNewDiagramResourceWizardPage;
 import org.eclipse.emf.cdo.dawn.ui.wizards.DawnCreateNewResourceWizardPage;
@@ -61,10 +60,10 @@ public class DawnClassdiagramCreationWizard extends ClassdiagramCreationWizard i
 
   public boolean performFinish()
   {
-    LOG.info("Notational Model: " + dawnDiagramModelFilePage.getURI().lastSegment());
-    LOG.info("Notational Model URI: " + dawnDiagramModelFilePage.getURI());
-    LOG.info("Domain Model: " + dawnDomainModelFilePage.getURI().lastSegment());
-    LOG.info("Domain Model URI: " + dawnDomainModelFilePage.getURI());
+    ClassdiagramDiagramEditorPlugin.getInstance().logInfo("Notational Model: " + dawnDiagramModelFilePage.getURI().lastSegment());
+    ClassdiagramDiagramEditorPlugin.getInstance().logInfo("Notational Model URI: " + dawnDiagramModelFilePage.getURI());
+    ClassdiagramDiagramEditorPlugin.getInstance().logInfo("Domain Model: " + dawnDomainModelFilePage.getURI().lastSegment());
+    ClassdiagramDiagramEditorPlugin.getInstance().logInfo("Domain Model URI: " + dawnDomainModelFilePage.getURI());
     IRunnableWithProgress op = new WorkspaceModifyOperation(null)
     {
       protected void execute(IProgressMonitor monitor) throws CoreException, InterruptedException

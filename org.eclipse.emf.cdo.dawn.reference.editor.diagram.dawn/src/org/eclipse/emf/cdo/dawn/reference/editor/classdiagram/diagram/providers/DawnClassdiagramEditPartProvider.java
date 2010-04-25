@@ -10,8 +10,8 @@
  ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.providers;
 
-import org.eclipse.emf.cdo.dawn.logging.logger.LOG;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts.DawnClassdiagramEditPartFactory;
+import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramDiagramEditorPlugin;
 
 /**
  * @author Martin Fluegge
@@ -26,7 +26,8 @@ public class DawnClassdiagramEditPartProvider extends ClassdiagramEditPartProvid
   public DawnClassdiagramEditPartProvider()
   {
     super();
-    LOG.info("Using DawnClassdiagramEditPartProvider instead of the original one.");
+    ClassdiagramDiagramEditorPlugin.getInstance().logInfo(
+        "Using DawnClassdiagramEditPartProvider instead of the original one.");
     setFactory(new DawnClassdiagramEditPartFactory());
   }
 }

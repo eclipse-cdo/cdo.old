@@ -13,7 +13,7 @@ package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.poli
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.emf.cdo.dawn.logging.logger.LOG;
+import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramDiagramEditorPlugin;
 import org.eclipse.gmf.runtime.diagram.ui.commands.DeferredLayoutCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 
@@ -26,7 +26,7 @@ public class DawnClassDiagramCanonicalEditPolicy extends ClassDiagramCanonicalEd
   public DawnClassDiagramCanonicalEditPolicy()
   {
     super();
-    LOG.info("Running DawnClassDiagramCanonicalEditPolicy instead of original one");
+    ClassdiagramDiagramEditorPlugin.getInstance().logInfo("Running DawnClassDiagramCanonicalEditPolicy instead of original one");
   }
 
   // @Override
@@ -47,7 +47,6 @@ public class DawnClassDiagramCanonicalEditPolicy extends ClassDiagramCanonicalEd
   @Override
   public void refreshSemantic()
   {
-    System.out.println("DawnClassDiagramCanonicalEditPolicy refresh");
     List createdViews = new LinkedList();
     // createdViews.addAll(refreshSemanticChildren());
     List createdConnectionViews = new LinkedList();

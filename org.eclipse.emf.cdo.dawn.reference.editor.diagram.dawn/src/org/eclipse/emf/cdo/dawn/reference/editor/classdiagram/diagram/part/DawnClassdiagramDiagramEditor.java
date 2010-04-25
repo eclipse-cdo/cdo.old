@@ -12,7 +12,6 @@ package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.cdo.dawn.logging.logger.LOG;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassDiagram;
 import org.eclipse.emf.cdo.dawn.runtime.diagram.part.DawnDiagramEditorInterface;
 import org.eclipse.emf.cdo.dawn.runtime.notifications.DawnNotificationUtil;
@@ -47,13 +46,13 @@ public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor imp
   public DawnClassdiagramDiagramEditor()
   {
     super();
-    LOG.info("CDO Editor ist starting");
+    ClassdiagramDiagramEditorPlugin.getInstance().logInfo("CDO Editor ist starting");
     setDocumentProvider(new DawnClassdiagramDocumentProvider());
   }
 
   public void setInput(IEditorInput input)
   {
-    LOG.info("Setting input for DawnClassdiagramDiagramEditor (" + input + ")");
+    ClassdiagramDiagramEditorPlugin.getInstance().logInfo("Setting input for DawnClassdiagramDiagramEditor (" + input + ")");
 
     try
     {

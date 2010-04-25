@@ -18,7 +18,6 @@ import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.SubProgressMonitor;
-import org.eclipse.emf.cdo.dawn.logging.logger.LOG;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassDiagram;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassdiagramFactory;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts.DawnClassDiagramEditPart;
@@ -128,23 +127,23 @@ public class DawnClassdiagramDiagramEditorUtil extends ClassdiagramDiagramEditor
     CDOSession session = CDOConnectionUtil.instance.openSession();
     ResourceSet resourceSet = editingDomain.getResourceSet();
 
-    LOG.info("URI toString: " + diagramURI.toString());
-    LOG.info("URI authority: " + diagramURI.authority());
+    ClassdiagramDiagramEditorPlugin.getInstance().logInfo("URI toString: " + diagramURI.toString());
+    ClassdiagramDiagramEditorPlugin.getInstance().logInfo("URI authority: " + diagramURI.authority());
 
     CDOTransaction transaction = CDOConnectionUtil.instance.openCurrentTransaction(resourceSet, diagramURI.toString());
 
     final Resource diagramResource = resourceSet.createResource(diagramURI);
 
-    LOG.info("Diagram URI: " + diagramURI);
-    LOG.info("Diagram Resource: " + diagramResource);
+    ClassdiagramDiagramEditorPlugin.getInstance().logInfo("Diagram URI: " + diagramURI);
+    ClassdiagramDiagramEditorPlugin.getInstance().logInfo("Diagram Resource: " + diagramResource);
 
     CreateSemanticResourceRecordingCommand createSemanticResourceCommand = new CreateSemanticResourceRecordingCommand(
         editingDomain, transaction, modelURI.toString());
 
     editingDomain.getCommandStack().execute(createSemanticResourceCommand);
     final Resource modelResource = createSemanticResourceCommand.getResource();
-    LOG.info("Model URI: " + modelURI);
-    LOG.info("Model Resource: " + modelResource);
+    ClassdiagramDiagramEditorPlugin.getInstance().logInfo("Model URI: " + modelURI);
+    ClassdiagramDiagramEditorPlugin.getInstance().logInfo("Model Resource: " + modelResource);
 
     final String diagramName = diagramURI.lastSegment();
     AbstractTransactionalCommand command = new AbstractTransactionalCommand(editingDomain,
