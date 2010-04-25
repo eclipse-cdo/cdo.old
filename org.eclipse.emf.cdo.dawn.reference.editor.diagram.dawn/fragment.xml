@@ -55,10 +55,4 @@
                 class="org.eclipse.emf.cdo.dawn.runtime.notifications.DawnSimpleGMFTransactionListener">
           </DawnTransactionListener>
        </extension>
-       <extension
-             point="org.eclipse.emf.cdo.dawn.listeners">
-          <DawnResourceListener
-                class="org.eclipse.emf.cdo.dawn.runtime.notifications.DawnResoureChangeListener">
-          </DawnResourceListener>
-       </extension>
 </fragment>
