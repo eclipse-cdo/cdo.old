@@ -13,13 +13,15 @@ package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassDiagram;
-import org.eclipse.emf.cdo.dawn.runtime.diagram.part.DawnDiagramEditorInterface;
+import org.eclipse.emf.cdo.dawn.runtime.diagram.part.IDawnDiagramEditor;
 import org.eclipse.emf.cdo.dawn.runtime.notifications.DawnNotificationUtil;
 import org.eclipse.emf.cdo.dawn.runtime.synchronize.DawnChangeHelper;
+import org.eclipse.emf.cdo.dawn.runtime.synchronize.DawnConflictHelper;
 import org.eclipse.emf.cdo.dawn.ui.DawnEditorInput;
 import org.eclipse.emf.cdo.dawn.util.DawnDiagramUpdater;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.ui.CDOEditorInput;
+import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -35,7 +37,7 @@ import org.eclipse.ui.IFileEditorInput;
 /**
  * @author Martin Fluegge
  */
-public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor implements DawnDiagramEditorInterface
+public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor implements IDawnDiagramEditor
 {
   ClassDiagram classDiagram;
 
@@ -132,23 +134,13 @@ public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor imp
   {
   }
 
-  @Override
-  public void rollback()
-  {
-    transaction.rollback();
-
-    this.getEditingDomain().getCommandStack().execute(new RecordingCommand(this.getEditingDomain())
-    {
-      public void doExecute()
-      {
-        for (Object obj : getDiagramEditPart().getChildren())
-        {
-          DawnChangeHelper.removeMark((EditPart)obj);
-        }
-        DawnDiagramUpdater.refreshEditPart(getDiagramEditPart());
-      }
-    });
-  }
+//  @Override
+//  public void rollback()
+//  {
+//    
+//    DawnConflictHelper.rollback(transaction, this);
+//    
+//  }
 
   /**
    * Have to override this method to change the the DocuemtnProvider behavior.
@@ -179,5 +171,12 @@ public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor imp
         transaction.close();
       }
     }
+  }
+
+  @Override
+  public CDOView getView()
+  {
+    // TODO Auto-generated method stub
+    return transaction;
   }
 }

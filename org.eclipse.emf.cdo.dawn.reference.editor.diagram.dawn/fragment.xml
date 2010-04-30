@@ -55,4 +55,12 @@
                 class="org.eclipse.emf.cdo.dawn.runtime.notifications.DawnSimpleGMFTransactionListener">
           </DawnTransactionListener>
        </extension>
+       <extension
+             point="org.eclipse.emf.cdo.dawn.editpartstylizers">
+          <DawnEditPartStylizers
+                editpart="org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts.AClassEditPart"
+                stylizer="org.eclipse.emf.cdo.dawn.runtime.appearance.impl.DawnBasicNodeEditPartStylizerImpl">
+          </DawnEditPartStylizers>
+       </extension>
+    
 </fragment>
