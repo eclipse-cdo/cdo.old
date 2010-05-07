@@ -26,6 +26,7 @@ import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.AbstractDocumentProvider;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.net4j.util.transaction.TransactionException;
@@ -43,6 +44,8 @@ public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor imp
 
   private CDOTransaction transaction;
 
+  private boolean dirty;
+
   public static String ID = "org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.DawnClassdiagramDiagramEditor";
 
   public DawnClassdiagramDiagramEditor()
@@ -54,7 +57,8 @@ public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor imp
 
   public void setInput(IEditorInput input)
   {
-    ClassdiagramDiagramEditorPlugin.getInstance().logInfo("Setting input for DawnClassdiagramDiagramEditor (" + input + ")");
+    ClassdiagramDiagramEditorPlugin.getInstance().logInfo(
+        "Setting input for DawnClassdiagramDiagramEditor (" + input + ")");
 
     try
     {
@@ -84,10 +88,9 @@ public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor imp
   @Override
   public void doSave(IProgressMonitor monitor)
   {
-    Resource res = getEditingDomain().getResourceSet().getResources().get(0);
-
     try
     {
+      dirty = false;
       updateState(getEditorInput());
       validateState(getEditorInput());
       performSave(false, monitor);
@@ -109,7 +112,10 @@ public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor imp
   @Override
   public boolean isDirty()
   {
-    return super.isDirty() | transaction.isDirty();
+    // return super.isDirty() | transaction.isDirty();
+    // return transaction.isDirty();
+    // return super.isDirty() ;
+    return dirty;
   }
 
   @Override
@@ -134,13 +140,13 @@ public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor imp
   {
   }
 
-//  @Override
-//  public void rollback()
-//  {
-//    
-//    DawnConflictHelper.rollback(transaction, this);
-//    
-//  }
+  // @Override
+  // public void rollback()
+  // {
+  //
+  // DawnConflictHelper.rollback(transaction, this);
+  //
+  // }
 
   /**
    * Have to override this method to change the the DocuemtnProvider behavior.
@@ -178,5 +184,12 @@ public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor imp
   {
     // TODO Auto-generated method stub
     return transaction;
+  }
+
+  @Override
+  public void setDirty()
+  {
+    dirty = true;
+    ((AbstractDocumentProvider)getDocumentProvider()).changed(getEditorInput());
   }
 }

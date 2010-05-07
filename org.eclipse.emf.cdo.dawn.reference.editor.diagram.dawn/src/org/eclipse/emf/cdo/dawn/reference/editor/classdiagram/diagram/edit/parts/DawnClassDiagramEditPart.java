@@ -10,8 +10,13 @@
  ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts;
 
+import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.policies.DawnClassDiagramCanonicalEditPolicy;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramDiagramEditorPlugin;
+import org.eclipse.emf.cdo.dawn.runtime.synchronize.DawnConflictHelper;
+import org.eclipse.emf.cdo.util.CDOUtil;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 
@@ -34,22 +39,19 @@ public class DawnClassDiagramEditPart extends ClassDiagramEditPart
   /**
    * @generated
    */
-  @Deprecated
   public DawnClassDiagramEditPart(View view)
   {
     super(view);
     ClassdiagramDiagramEditorPlugin.getInstance().logInfo("Using DawnClassDiagramEditPart instead of the original one");
   }
 
-  /**
-   * @generated
-   */
-  protected void createDefaultEditPolicies()
+  protected void removeChild(EditPart child)
   {
-    super.createDefaultEditPolicies();
-    // installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ClassDiagramItemSemanticEditPolicy());
-    installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new DawnClassDiagramCanonicalEditPolicy());
-    // removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
+    if (DawnConflictHelper.isConflicted((EObject)child.getModel()))
+    {
+      return;
+    }
+    super.removeChild(child);
   }
 
 }

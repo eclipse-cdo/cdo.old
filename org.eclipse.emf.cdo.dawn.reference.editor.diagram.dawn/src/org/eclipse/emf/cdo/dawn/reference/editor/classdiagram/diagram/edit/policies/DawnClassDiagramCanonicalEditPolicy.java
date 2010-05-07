@@ -26,7 +26,8 @@ public class DawnClassDiagramCanonicalEditPolicy extends ClassDiagramCanonicalEd
   public DawnClassDiagramCanonicalEditPolicy()
   {
     super();
-    ClassdiagramDiagramEditorPlugin.getInstance().logInfo("Running DawnClassDiagramCanonicalEditPolicy instead of original one");
+    ClassdiagramDiagramEditorPlugin.getInstance().logInfo(
+        "Running DawnClassDiagramCanonicalEditPolicy instead of original one");
   }
 
   // @Override
