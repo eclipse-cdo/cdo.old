@@ -108,42 +108,42 @@ public class ClassdiagramNavigatorLabelProvider extends LabelProvider implements
   {
     switch (ClassdiagramVisualIDRegistry.getVisualID(view))
     {
-    case ClassDiagramEditPart.VISUAL_ID:
-      return getImage(
-          "Navigator?Diagram?http://class.uml.diagram.mftech.org?ClassDiagram", ClassdiagramElementTypes.ClassDiagram_1000); //$NON-NLS-1$
-    case AInterfaceEditPart.VISUAL_ID:
-      return getImage(
-          "Navigator?TopLevelNode?http://class.uml.diagram.mftech.org?AInterface", ClassdiagramElementTypes.AInterface_2001); //$NON-NLS-1$
-    case AClassEditPart.VISUAL_ID:
-      return getImage(
-          "Navigator?TopLevelNode?http://class.uml.diagram.mftech.org?AClass", ClassdiagramElementTypes.AClass_2002); //$NON-NLS-1$
-    case AnAttributeEditPart.VISUAL_ID:
-      return getImage(
-          "Navigator?Node?http://class.uml.diagram.mftech.org?AnAttribute", ClassdiagramElementTypes.AnAttribute_3001); //$NON-NLS-1$
-    case AnOperationEditPart.VISUAL_ID:
-      return getImage(
-          "Navigator?Node?http://class.uml.diagram.mftech.org?AnOperation", ClassdiagramElementTypes.AnOperation_3002); //$NON-NLS-1$
-    case AnAttribute2EditPart.VISUAL_ID:
-      return getImage(
-          "Navigator?Node?http://class.uml.diagram.mftech.org?AnAttribute", ClassdiagramElementTypes.AnAttribute_3003); //$NON-NLS-1$
-    case AnOperation2EditPart.VISUAL_ID:
-      return getImage(
-          "Navigator?Node?http://class.uml.diagram.mftech.org?AnOperation", ClassdiagramElementTypes.AnOperation_3004); //$NON-NLS-1$
-    case AClassSubClassesEditPart.VISUAL_ID:
-      return getImage(
-          "Navigator?Link?http://class.uml.diagram.mftech.org?AClass?subClasses", ClassdiagramElementTypes.AClassSubClasses_4001); //$NON-NLS-1$
-    case AClassImplementedInterfacesEditPart.VISUAL_ID:
-      return getImage(
-          "Navigator?Link?http://class.uml.diagram.mftech.org?AClass?implementedInterfaces", ClassdiagramElementTypes.AClassImplementedInterfaces_4002); //$NON-NLS-1$
-    case AClassAssociationsEditPart.VISUAL_ID:
-      return getImage(
-          "Navigator?Link?http://class.uml.diagram.mftech.org?AClass?associations", ClassdiagramElementTypes.AClassAssociations_4003); //$NON-NLS-1$
     case AClassAggregationsEditPart.VISUAL_ID:
       return getImage(
           "Navigator?Link?http://class.uml.diagram.mftech.org?AClass?aggregations", ClassdiagramElementTypes.AClassAggregations_4004); //$NON-NLS-1$
+    case ClassDiagramEditPart.VISUAL_ID:
+      return getImage(
+          "Navigator?Diagram?http://class.uml.diagram.mftech.org?ClassDiagram", ClassdiagramElementTypes.ClassDiagram_1000); //$NON-NLS-1$
+    case AnOperationEditPart.VISUAL_ID:
+      return getImage(
+          "Navigator?Node?http://class.uml.diagram.mftech.org?AnOperation", ClassdiagramElementTypes.AnOperation_3002); //$NON-NLS-1$
+    case AClassSubClassesEditPart.VISUAL_ID:
+      return getImage(
+          "Navigator?Link?http://class.uml.diagram.mftech.org?AClass?subClasses", ClassdiagramElementTypes.AClassSubClasses_4001); //$NON-NLS-1$
+    case AnAttributeEditPart.VISUAL_ID:
+      return getImage(
+          "Navigator?Node?http://class.uml.diagram.mftech.org?AnAttribute", ClassdiagramElementTypes.AnAttribute_3001); //$NON-NLS-1$
     case AClassCompositionsEditPart.VISUAL_ID:
       return getImage(
           "Navigator?Link?http://class.uml.diagram.mftech.org?AClass?compositions", ClassdiagramElementTypes.AClassCompositions_4005); //$NON-NLS-1$
+    case AClassAssociationsEditPart.VISUAL_ID:
+      return getImage(
+          "Navigator?Link?http://class.uml.diagram.mftech.org?AClass?associations", ClassdiagramElementTypes.AClassAssociations_4003); //$NON-NLS-1$
+    case AnOperation2EditPart.VISUAL_ID:
+      return getImage(
+          "Navigator?Node?http://class.uml.diagram.mftech.org?AnOperation", ClassdiagramElementTypes.AnOperation_3004); //$NON-NLS-1$
+    case AnAttribute2EditPart.VISUAL_ID:
+      return getImage(
+          "Navigator?Node?http://class.uml.diagram.mftech.org?AnAttribute", ClassdiagramElementTypes.AnAttribute_3003); //$NON-NLS-1$
+    case AClassImplementedInterfacesEditPart.VISUAL_ID:
+      return getImage(
+          "Navigator?Link?http://class.uml.diagram.mftech.org?AClass?implementedInterfaces", ClassdiagramElementTypes.AClassImplementedInterfaces_4002); //$NON-NLS-1$
+    case AClassEditPart.VISUAL_ID:
+      return getImage(
+          "Navigator?TopLevelNode?http://class.uml.diagram.mftech.org?AClass", ClassdiagramElementTypes.AClass_2002); //$NON-NLS-1$
+    case AInterfaceEditPart.VISUAL_ID:
+      return getImage(
+          "Navigator?TopLevelNode?http://class.uml.diagram.mftech.org?AInterface", ClassdiagramElementTypes.AInterface_2001); //$NON-NLS-1$
     }
     return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
   }
@@ -204,30 +204,30 @@ public class ClassdiagramNavigatorLabelProvider extends LabelProvider implements
     }
     switch (ClassdiagramVisualIDRegistry.getVisualID(view))
     {
-    case ClassDiagramEditPart.VISUAL_ID:
-      return getClassDiagram_1000Text(view);
-    case AInterfaceEditPart.VISUAL_ID:
-      return getAInterface_2001Text(view);
-    case AClassEditPart.VISUAL_ID:
-      return getAClass_2002Text(view);
-    case AnAttributeEditPart.VISUAL_ID:
-      return getAnAttribute_3001Text(view);
-    case AnOperationEditPart.VISUAL_ID:
-      return getAnOperation_3002Text(view);
-    case AnAttribute2EditPart.VISUAL_ID:
-      return getAnAttribute_3003Text(view);
-    case AnOperation2EditPart.VISUAL_ID:
-      return getAnOperation_3004Text(view);
-    case AClassSubClassesEditPart.VISUAL_ID:
-      return getAClassSubClasses_4001Text(view);
-    case AClassImplementedInterfacesEditPart.VISUAL_ID:
-      return getAClassImplementedInterfaces_4002Text(view);
-    case AClassAssociationsEditPart.VISUAL_ID:
-      return getAClassAssociations_4003Text(view);
     case AClassAggregationsEditPart.VISUAL_ID:
       return getAClassAggregations_4004Text(view);
+    case ClassDiagramEditPart.VISUAL_ID:
+      return getClassDiagram_1000Text(view);
+    case AnOperationEditPart.VISUAL_ID:
+      return getAnOperation_3002Text(view);
+    case AClassSubClassesEditPart.VISUAL_ID:
+      return getAClassSubClasses_4001Text(view);
+    case AnAttributeEditPart.VISUAL_ID:
+      return getAnAttribute_3001Text(view);
     case AClassCompositionsEditPart.VISUAL_ID:
       return getAClassCompositions_4005Text(view);
+    case AClassAssociationsEditPart.VISUAL_ID:
+      return getAClassAssociations_4003Text(view);
+    case AnOperation2EditPart.VISUAL_ID:
+      return getAnOperation_3004Text(view);
+    case AnAttribute2EditPart.VISUAL_ID:
+      return getAnAttribute_3003Text(view);
+    case AClassImplementedInterfacesEditPart.VISUAL_ID:
+      return getAClassImplementedInterfaces_4002Text(view);
+    case AClassEditPart.VISUAL_ID:
+      return getAClass_2002Text(view);
+    case AInterfaceEditPart.VISUAL_ID:
+      return getAInterface_2001Text(view);
     }
     return getUnknownElementText(view);
   }

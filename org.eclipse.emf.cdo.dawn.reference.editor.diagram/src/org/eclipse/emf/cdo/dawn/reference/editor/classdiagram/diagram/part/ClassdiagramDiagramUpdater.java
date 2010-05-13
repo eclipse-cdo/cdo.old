@@ -53,10 +53,12 @@ public class ClassdiagramDiagramUpdater
   /**
    * @generated
    */
-  public static List getSemanticChildren(View view)
+  public static List<ClassdiagramNodeDescriptor> getSemanticChildren(View view)
   {
     switch (ClassdiagramVisualIDRegistry.getVisualID(view))
     {
+    case ClassDiagramEditPart.VISUAL_ID:
+      return getClassDiagram_1000SemanticChildren(view);
     case AInterfaceAnAttributeInterfaceCompartmentEditPart.VISUAL_ID:
       return getAInterfaceAnAttributeInterfaceCompartment_7001SemanticChildren(view);
     case AInterfaceAnOperationInterfaceCompartmentEditPart.VISUAL_ID:
@@ -65,28 +67,27 @@ public class ClassdiagramDiagramUpdater
       return getAClassAnAttributeCompartment_7003SemanticChildren(view);
     case AClassAnOperationClassCompartmentEditPart.VISUAL_ID:
       return getAClassAnOperationClassCompartment_7004SemanticChildren(view);
-    case ClassDiagramEditPart.VISUAL_ID:
-      return getClassDiagram_1000SemanticChildren(view);
     }
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   /**
    * @generated
    */
-  public static List getAInterfaceAnAttributeInterfaceCompartment_7001SemanticChildren(View view)
+  public static List<ClassdiagramNodeDescriptor> getAInterfaceAnAttributeInterfaceCompartment_7001SemanticChildren(
+      View view)
   {
     if (false == view.eContainer() instanceof View)
     {
-      return Collections.EMPTY_LIST;
+      return Collections.emptyList();
     }
     View containerView = (View)view.eContainer();
     if (!containerView.isSetElement())
     {
-      return Collections.EMPTY_LIST;
+      return Collections.emptyList();
     }
     AInterface modelElement = (AInterface)containerView.getElement();
-    List result = new LinkedList();
+    LinkedList<ClassdiagramNodeDescriptor> result = new LinkedList<ClassdiagramNodeDescriptor>();
     for (Iterator it = modelElement.getAttributes().iterator(); it.hasNext();)
     {
       AnAttribute childElement = (AnAttribute)it.next();
@@ -103,19 +104,20 @@ public class ClassdiagramDiagramUpdater
   /**
    * @generated
    */
-  public static List getAInterfaceAnOperationInterfaceCompartment_7002SemanticChildren(View view)
+  public static List<ClassdiagramNodeDescriptor> getAInterfaceAnOperationInterfaceCompartment_7002SemanticChildren(
+      View view)
   {
     if (false == view.eContainer() instanceof View)
     {
-      return Collections.EMPTY_LIST;
+      return Collections.emptyList();
     }
     View containerView = (View)view.eContainer();
     if (!containerView.isSetElement())
     {
-      return Collections.EMPTY_LIST;
+      return Collections.emptyList();
     }
     AInterface modelElement = (AInterface)containerView.getElement();
-    List result = new LinkedList();
+    LinkedList<ClassdiagramNodeDescriptor> result = new LinkedList<ClassdiagramNodeDescriptor>();
     for (Iterator it = modelElement.getOperations().iterator(); it.hasNext();)
     {
       AnOperation childElement = (AnOperation)it.next();
@@ -132,19 +134,19 @@ public class ClassdiagramDiagramUpdater
   /**
    * @generated
    */
-  public static List getAClassAnAttributeCompartment_7003SemanticChildren(View view)
+  public static List<ClassdiagramNodeDescriptor> getAClassAnAttributeCompartment_7003SemanticChildren(View view)
   {
     if (false == view.eContainer() instanceof View)
     {
-      return Collections.EMPTY_LIST;
+      return Collections.emptyList();
     }
     View containerView = (View)view.eContainer();
     if (!containerView.isSetElement())
     {
-      return Collections.EMPTY_LIST;
+      return Collections.emptyList();
     }
     AClass modelElement = (AClass)containerView.getElement();
-    List result = new LinkedList();
+    LinkedList<ClassdiagramNodeDescriptor> result = new LinkedList<ClassdiagramNodeDescriptor>();
     for (Iterator it = modelElement.getAttributes().iterator(); it.hasNext();)
     {
       AnAttribute childElement = (AnAttribute)it.next();
@@ -161,19 +163,19 @@ public class ClassdiagramDiagramUpdater
   /**
    * @generated
    */
-  public static List getAClassAnOperationClassCompartment_7004SemanticChildren(View view)
+  public static List<ClassdiagramNodeDescriptor> getAClassAnOperationClassCompartment_7004SemanticChildren(View view)
   {
     if (false == view.eContainer() instanceof View)
     {
-      return Collections.EMPTY_LIST;
+      return Collections.emptyList();
     }
     View containerView = (View)view.eContainer();
     if (!containerView.isSetElement())
     {
-      return Collections.EMPTY_LIST;
+      return Collections.emptyList();
     }
     AClass modelElement = (AClass)containerView.getElement();
-    List result = new LinkedList();
+    LinkedList<ClassdiagramNodeDescriptor> result = new LinkedList<ClassdiagramNodeDescriptor>();
     for (Iterator it = modelElement.getOperations().iterator(); it.hasNext();)
     {
       AnOperation childElement = (AnOperation)it.next();
@@ -190,14 +192,14 @@ public class ClassdiagramDiagramUpdater
   /**
    * @generated
    */
-  public static List getClassDiagram_1000SemanticChildren(View view)
+  public static List<ClassdiagramNodeDescriptor> getClassDiagram_1000SemanticChildren(View view)
   {
     if (!view.isSetElement())
     {
-      return Collections.EMPTY_LIST;
+      return Collections.emptyList();
     }
     ClassDiagram modelElement = (ClassDiagram)view.getElement();
-    List result = new LinkedList();
+    LinkedList<ClassdiagramNodeDescriptor> result = new LinkedList<ClassdiagramNodeDescriptor>();
     for (Iterator it = modelElement.getInterfaces().iterator(); it.hasNext();)
     {
       AInterface childElement = (AInterface)it.next();
@@ -224,7 +226,7 @@ public class ClassdiagramDiagramUpdater
   /**
    * @generated
    */
-  public static List getContainedLinks(View view)
+  public static List<ClassdiagramLinkDescriptor> getContainedLinks(View view)
   {
     switch (ClassdiagramVisualIDRegistry.getVisualID(view))
     {
@@ -243,13 +245,13 @@ public class ClassdiagramDiagramUpdater
     case AnOperation2EditPart.VISUAL_ID:
       return getAnOperation_3004ContainedLinks(view);
     }
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   /**
    * @generated
    */
-  public static List getIncomingLinks(View view)
+  public static List<ClassdiagramLinkDescriptor> getIncomingLinks(View view)
   {
     switch (ClassdiagramVisualIDRegistry.getVisualID(view))
     {
@@ -266,13 +268,13 @@ public class ClassdiagramDiagramUpdater
     case AnOperation2EditPart.VISUAL_ID:
       return getAnOperation_3004IncomingLinks(view);
     }
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   /**
    * @generated
    */
-  public static List getOutgoingLinks(View view)
+  public static List<ClassdiagramLinkDescriptor> getOutgoingLinks(View view)
   {
     switch (ClassdiagramVisualIDRegistry.getVisualID(view))
     {
@@ -289,32 +291,32 @@ public class ClassdiagramDiagramUpdater
     case AnOperation2EditPart.VISUAL_ID:
       return getAnOperation_3004OutgoingLinks(view);
     }
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   /**
    * @generated
    */
-  public static List getClassDiagram_1000ContainedLinks(View view)
+  public static List<ClassdiagramLinkDescriptor> getClassDiagram_1000ContainedLinks(View view)
   {
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   /**
    * @generated
    */
-  public static List getAInterface_2001ContainedLinks(View view)
+  public static List<ClassdiagramLinkDescriptor> getAInterface_2001ContainedLinks(View view)
   {
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   /**
    * @generated
    */
-  public static List getAClass_2002ContainedLinks(View view)
+  public static List<ClassdiagramLinkDescriptor> getAClass_2002ContainedLinks(View view)
   {
     AClass modelElement = (AClass)view.getElement();
-    List result = new LinkedList();
+    LinkedList<ClassdiagramLinkDescriptor> result = new LinkedList<ClassdiagramLinkDescriptor>();
     result.addAll(getOutgoingFeatureModelFacetLinks_AClass_SubClasses_4001(modelElement));
     result.addAll(getOutgoingFeatureModelFacetLinks_AClass_ImplementedInterfaces_4002(modelElement));
     result.addAll(getOutgoingFeatureModelFacetLinks_AClass_Associations_4003(modelElement));
@@ -326,43 +328,43 @@ public class ClassdiagramDiagramUpdater
   /**
    * @generated
    */
-  public static List getAnAttribute_3001ContainedLinks(View view)
+  public static List<ClassdiagramLinkDescriptor> getAnAttribute_3001ContainedLinks(View view)
   {
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   /**
    * @generated
    */
-  public static List getAnOperation_3002ContainedLinks(View view)
+  public static List<ClassdiagramLinkDescriptor> getAnOperation_3002ContainedLinks(View view)
   {
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   /**
    * @generated
    */
-  public static List getAnAttribute_3003ContainedLinks(View view)
+  public static List<ClassdiagramLinkDescriptor> getAnAttribute_3003ContainedLinks(View view)
   {
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   /**
    * @generated
    */
-  public static List getAnOperation_3004ContainedLinks(View view)
+  public static List<ClassdiagramLinkDescriptor> getAnOperation_3004ContainedLinks(View view)
   {
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   /**
    * @generated
    */
-  public static List getAInterface_2001IncomingLinks(View view)
+  public static List<ClassdiagramLinkDescriptor> getAInterface_2001IncomingLinks(View view)
   {
     AInterface modelElement = (AInterface)view.getElement();
     Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-    List result = new LinkedList();
+    LinkedList<ClassdiagramLinkDescriptor> result = new LinkedList<ClassdiagramLinkDescriptor>();
     result.addAll(getIncomingFeatureModelFacetLinks_AClass_ImplementedInterfaces_4002(modelElement, crossReferences));
     return result;
   }
@@ -370,11 +372,11 @@ public class ClassdiagramDiagramUpdater
   /**
    * @generated
    */
-  public static List getAClass_2002IncomingLinks(View view)
+  public static List<ClassdiagramLinkDescriptor> getAClass_2002IncomingLinks(View view)
   {
     AClass modelElement = (AClass)view.getElement();
     Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-    List result = new LinkedList();
+    LinkedList<ClassdiagramLinkDescriptor> result = new LinkedList<ClassdiagramLinkDescriptor>();
     result.addAll(getIncomingFeatureModelFacetLinks_AClass_SubClasses_4001(modelElement, crossReferences));
     result.addAll(getIncomingFeatureModelFacetLinks_AClass_Associations_4003(modelElement, crossReferences));
     result.addAll(getIncomingFeatureModelFacetLinks_AClass_Aggregations_4004(modelElement, crossReferences));
@@ -385,50 +387,50 @@ public class ClassdiagramDiagramUpdater
   /**
    * @generated
    */
-  public static List getAnAttribute_3001IncomingLinks(View view)
+  public static List<ClassdiagramLinkDescriptor> getAnAttribute_3001IncomingLinks(View view)
   {
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   /**
    * @generated
    */
-  public static List getAnOperation_3002IncomingLinks(View view)
+  public static List<ClassdiagramLinkDescriptor> getAnOperation_3002IncomingLinks(View view)
   {
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   /**
    * @generated
    */
-  public static List getAnAttribute_3003IncomingLinks(View view)
+  public static List<ClassdiagramLinkDescriptor> getAnAttribute_3003IncomingLinks(View view)
   {
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   /**
    * @generated
    */
-  public static List getAnOperation_3004IncomingLinks(View view)
+  public static List<ClassdiagramLinkDescriptor> getAnOperation_3004IncomingLinks(View view)
   {
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   /**
    * @generated
    */
-  public static List getAInterface_2001OutgoingLinks(View view)
+  public static List<ClassdiagramLinkDescriptor> getAInterface_2001OutgoingLinks(View view)
   {
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   /**
    * @generated
    */
-  public static List getAClass_2002OutgoingLinks(View view)
+  public static List<ClassdiagramLinkDescriptor> getAClass_2002OutgoingLinks(View view)
   {
     AClass modelElement = (AClass)view.getElement();
-    List result = new LinkedList();
+    LinkedList<ClassdiagramLinkDescriptor> result = new LinkedList<ClassdiagramLinkDescriptor>();
     result.addAll(getOutgoingFeatureModelFacetLinks_AClass_SubClasses_4001(modelElement));
     result.addAll(getOutgoingFeatureModelFacetLinks_AClass_ImplementedInterfaces_4002(modelElement));
     result.addAll(getOutgoingFeatureModelFacetLinks_AClass_Associations_4003(modelElement));
@@ -440,41 +442,42 @@ public class ClassdiagramDiagramUpdater
   /**
    * @generated
    */
-  public static List getAnAttribute_3001OutgoingLinks(View view)
+  public static List<ClassdiagramLinkDescriptor> getAnAttribute_3001OutgoingLinks(View view)
   {
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   /**
    * @generated
    */
-  public static List getAnOperation_3002OutgoingLinks(View view)
+  public static List<ClassdiagramLinkDescriptor> getAnOperation_3002OutgoingLinks(View view)
   {
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   /**
    * @generated
    */
-  public static List getAnAttribute_3003OutgoingLinks(View view)
+  public static List<ClassdiagramLinkDescriptor> getAnAttribute_3003OutgoingLinks(View view)
   {
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   /**
    * @generated
    */
-  public static List getAnOperation_3004OutgoingLinks(View view)
+  public static List<ClassdiagramLinkDescriptor> getAnOperation_3004OutgoingLinks(View view)
   {
-    return Collections.EMPTY_LIST;
+    return Collections.emptyList();
   }
 
   /**
    * @generated
    */
-  private static Collection getIncomingFeatureModelFacetLinks_AClass_SubClasses_4001(AClass target, Map crossReferences)
+  private static Collection<ClassdiagramLinkDescriptor> getIncomingFeatureModelFacetLinks_AClass_SubClasses_4001(
+      AClass target, Map crossReferences)
   {
-    Collection result = new LinkedList();
+    LinkedList<ClassdiagramLinkDescriptor> result = new LinkedList<ClassdiagramLinkDescriptor>();
     Collection settings = (Collection)crossReferences.get(target);
     for (Iterator it = settings.iterator(); it.hasNext();)
     {
@@ -491,10 +494,10 @@ public class ClassdiagramDiagramUpdater
   /**
    * @generated
    */
-  private static Collection getIncomingFeatureModelFacetLinks_AClass_ImplementedInterfaces_4002(AInterface target,
-      Map crossReferences)
+  private static Collection<ClassdiagramLinkDescriptor> getIncomingFeatureModelFacetLinks_AClass_ImplementedInterfaces_4002(
+      AInterface target, Map crossReferences)
   {
-    Collection result = new LinkedList();
+    LinkedList<ClassdiagramLinkDescriptor> result = new LinkedList<ClassdiagramLinkDescriptor>();
     Collection settings = (Collection)crossReferences.get(target);
     for (Iterator it = settings.iterator(); it.hasNext();)
     {
@@ -511,10 +514,10 @@ public class ClassdiagramDiagramUpdater
   /**
    * @generated
    */
-  private static Collection getIncomingFeatureModelFacetLinks_AClass_Associations_4003(AClass target,
-      Map crossReferences)
+  private static Collection<ClassdiagramLinkDescriptor> getIncomingFeatureModelFacetLinks_AClass_Associations_4003(
+      AClass target, Map crossReferences)
   {
-    Collection result = new LinkedList();
+    LinkedList<ClassdiagramLinkDescriptor> result = new LinkedList<ClassdiagramLinkDescriptor>();
     Collection settings = (Collection)crossReferences.get(target);
     for (Iterator it = settings.iterator(); it.hasNext();)
     {
@@ -531,10 +534,10 @@ public class ClassdiagramDiagramUpdater
   /**
    * @generated
    */
-  private static Collection getIncomingFeatureModelFacetLinks_AClass_Aggregations_4004(AClass target,
-      Map crossReferences)
+  private static Collection<ClassdiagramLinkDescriptor> getIncomingFeatureModelFacetLinks_AClass_Aggregations_4004(
+      AClass target, Map crossReferences)
   {
-    Collection result = new LinkedList();
+    LinkedList<ClassdiagramLinkDescriptor> result = new LinkedList<ClassdiagramLinkDescriptor>();
     Collection settings = (Collection)crossReferences.get(target);
     for (Iterator it = settings.iterator(); it.hasNext();)
     {
@@ -551,10 +554,10 @@ public class ClassdiagramDiagramUpdater
   /**
    * @generated
    */
-  private static Collection getIncomingFeatureModelFacetLinks_AClass_Compositions_4005(AClass target,
-      Map crossReferences)
+  private static Collection<ClassdiagramLinkDescriptor> getIncomingFeatureModelFacetLinks_AClass_Compositions_4005(
+      AClass target, Map crossReferences)
   {
-    Collection result = new LinkedList();
+    LinkedList<ClassdiagramLinkDescriptor> result = new LinkedList<ClassdiagramLinkDescriptor>();
     Collection settings = (Collection)crossReferences.get(target);
     for (Iterator it = settings.iterator(); it.hasNext();)
     {
@@ -571,9 +574,10 @@ public class ClassdiagramDiagramUpdater
   /**
    * @generated
    */
-  private static Collection getOutgoingFeatureModelFacetLinks_AClass_SubClasses_4001(AClass source)
+  private static Collection<ClassdiagramLinkDescriptor> getOutgoingFeatureModelFacetLinks_AClass_SubClasses_4001(
+      AClass source)
   {
-    Collection result = new LinkedList();
+    LinkedList<ClassdiagramLinkDescriptor> result = new LinkedList<ClassdiagramLinkDescriptor>();
     for (Iterator destinations = source.getSubClasses().iterator(); destinations.hasNext();)
     {
       AClass destination = (AClass)destinations.next();
@@ -586,9 +590,10 @@ public class ClassdiagramDiagramUpdater
   /**
    * @generated
    */
-  private static Collection getOutgoingFeatureModelFacetLinks_AClass_ImplementedInterfaces_4002(AClass source)
+  private static Collection<ClassdiagramLinkDescriptor> getOutgoingFeatureModelFacetLinks_AClass_ImplementedInterfaces_4002(
+      AClass source)
   {
-    Collection result = new LinkedList();
+    LinkedList<ClassdiagramLinkDescriptor> result = new LinkedList<ClassdiagramLinkDescriptor>();
     for (Iterator destinations = source.getImplementedInterfaces().iterator(); destinations.hasNext();)
     {
       AInterface destination = (AInterface)destinations.next();
@@ -601,9 +606,10 @@ public class ClassdiagramDiagramUpdater
   /**
    * @generated
    */
-  private static Collection getOutgoingFeatureModelFacetLinks_AClass_Associations_4003(AClass source)
+  private static Collection<ClassdiagramLinkDescriptor> getOutgoingFeatureModelFacetLinks_AClass_Associations_4003(
+      AClass source)
   {
-    Collection result = new LinkedList();
+    LinkedList<ClassdiagramLinkDescriptor> result = new LinkedList<ClassdiagramLinkDescriptor>();
     for (Iterator destinations = source.getAssociations().iterator(); destinations.hasNext();)
     {
       AClass destination = (AClass)destinations.next();
@@ -616,9 +622,10 @@ public class ClassdiagramDiagramUpdater
   /**
    * @generated
    */
-  private static Collection getOutgoingFeatureModelFacetLinks_AClass_Aggregations_4004(AClass source)
+  private static Collection<ClassdiagramLinkDescriptor> getOutgoingFeatureModelFacetLinks_AClass_Aggregations_4004(
+      AClass source)
   {
-    Collection result = new LinkedList();
+    LinkedList<ClassdiagramLinkDescriptor> result = new LinkedList<ClassdiagramLinkDescriptor>();
     for (Iterator destinations = source.getAggregations().iterator(); destinations.hasNext();)
     {
       AClass destination = (AClass)destinations.next();
@@ -631,9 +638,10 @@ public class ClassdiagramDiagramUpdater
   /**
    * @generated
    */
-  private static Collection getOutgoingFeatureModelFacetLinks_AClass_Compositions_4005(AClass source)
+  private static Collection<ClassdiagramLinkDescriptor> getOutgoingFeatureModelFacetLinks_AClass_Compositions_4005(
+      AClass source)
   {
-    Collection result = new LinkedList();
+    LinkedList<ClassdiagramLinkDescriptor> result = new LinkedList<ClassdiagramLinkDescriptor>();
     for (Iterator destinations = source.getCompositions().iterator(); destinations.hasNext();)
     {
       AClass destination = (AClass)destinations.next();

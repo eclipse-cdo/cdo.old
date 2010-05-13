@@ -48,25 +48,25 @@ public class ClassdiagramModelingAssistantProvider extends ModelingAssistantProv
   public List getTypesForPopupBar(IAdaptable host)
   {
     IGraphicalEditPart editPart = (IGraphicalEditPart)host.getAdapter(IGraphicalEditPart.class);
+    if (editPart instanceof ClassDiagramEditPart)
+    {
+      ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+      types.add(ClassdiagramElementTypes.AInterface_2001);
+      types.add(ClassdiagramElementTypes.AClass_2002);
+      return types;
+    }
     if (editPart instanceof AInterfaceEditPart)
     {
-      ArrayList types = new ArrayList(2);
+      ArrayList<IElementType> types = new ArrayList<IElementType>(2);
       types.add(ClassdiagramElementTypes.AnAttribute_3001);
       types.add(ClassdiagramElementTypes.AnOperation_3002);
       return types;
     }
     if (editPart instanceof AClassEditPart)
     {
-      ArrayList types = new ArrayList(2);
+      ArrayList<IElementType> types = new ArrayList<IElementType>(2);
       types.add(ClassdiagramElementTypes.AnAttribute_3003);
       types.add(ClassdiagramElementTypes.AnOperation_3004);
-      return types;
-    }
-    if (editPart instanceof ClassDiagramEditPart)
-    {
-      ArrayList types = new ArrayList(2);
-      types.add(ClassdiagramElementTypes.AInterface_2001);
-      types.add(ClassdiagramElementTypes.AClass_2002);
       return types;
     }
     return Collections.EMPTY_LIST;
@@ -177,10 +177,10 @@ public class ClassdiagramModelingAssistantProvider extends ModelingAssistantProv
       return null;
     }
     Diagram diagram = (Diagram)editPart.getRoot().getContents().getModel();
-    Collection elements = new HashSet();
-    for (Iterator it = diagram.getElement().eAllContents(); it.hasNext();)
+    HashSet<EObject> elements = new HashSet<EObject>();
+    for (Iterator<EObject> it = diagram.getElement().eAllContents(); it.hasNext();)
     {
-      EObject element = (EObject)it.next();
+      EObject element = it.next();
       if (isApplicableElement(element, types))
       {
         elements.add(element);

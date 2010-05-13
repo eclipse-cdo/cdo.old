@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts, 
+Export-Package: org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts,
  org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part,
  org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.providers
 Require-Bundle: org.eclipse.core.runtime,
@@ -37,3 +37,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.cdo.dawn.reference.editor.edit;visibility:=reexport,
  org.eclipse.gef;visibility:=reexport
 Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy

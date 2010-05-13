@@ -15,17 +15,11 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassDiagram;
 import org.eclipse.emf.cdo.dawn.runtime.diagram.part.IDawnDiagramEditor;
 import org.eclipse.emf.cdo.dawn.runtime.notifications.DawnNotificationUtil;
-import org.eclipse.emf.cdo.dawn.runtime.synchronize.DawnChangeHelper;
-import org.eclipse.emf.cdo.dawn.runtime.synchronize.DawnConflictHelper;
 import org.eclipse.emf.cdo.dawn.ui.DawnEditorInput;
-import org.eclipse.emf.cdo.dawn.util.DawnDiagramUpdater;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.ui.CDOEditorInput;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.ui.URIEditorInput;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.AbstractDocumentProvider;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -123,30 +117,6 @@ public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor imp
   {
     return null;
   }
-
-  @Override
-  public boolean isCDOEditor()
-  {
-    return true;
-  }
-
-  @Override
-  public void setOwnPaletteVisible(boolean visible)
-  {
-  }
-
-  @Override
-  public void showServerOnlineMode(boolean online)
-  {
-  }
-
-  // @Override
-  // public void rollback()
-  // {
-  //
-  // DawnConflictHelper.rollback(transaction, this);
-  //
-  // }
 
   /**
    * Have to override this method to change the the DocuemtnProvider behavior.

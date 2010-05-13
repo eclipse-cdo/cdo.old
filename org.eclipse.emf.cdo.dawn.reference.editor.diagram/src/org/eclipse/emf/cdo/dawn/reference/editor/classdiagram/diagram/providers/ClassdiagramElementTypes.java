@@ -56,7 +56,7 @@ public class ClassdiagramElementTypes extends ElementInitializers
   /**
    * @generated
    */
-  private static Map elements;
+  private static Map<IElementType, ENamedElement> elements;
 
   /**
    * @generated
@@ -66,7 +66,7 @@ public class ClassdiagramElementTypes extends ElementInitializers
   /**
    * @generated
    */
-  private static Set KNOWN_ELEMENT_TYPES;
+  private static Set<IElementType> KNOWN_ELEMENT_TYPES;
 
   /**
    * @generated
@@ -255,7 +255,7 @@ public class ClassdiagramElementTypes extends ElementInitializers
     Object type = hint.getAdapter(IElementType.class);
     if (elements == null)
     {
-      elements = new IdentityHashMap();
+      elements = new IdentityHashMap<IElementType, ENamedElement>();
 
       elements.put(ClassDiagram_1000, ClassdiagramPackage.eINSTANCE.getClassDiagram());
 
@@ -299,7 +299,7 @@ public class ClassdiagramElementTypes extends ElementInitializers
   {
     if (KNOWN_ELEMENT_TYPES == null)
     {
-      KNOWN_ELEMENT_TYPES = new HashSet();
+      KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
       KNOWN_ELEMENT_TYPES.add(ClassDiagram_1000);
       KNOWN_ELEMENT_TYPES.add(AInterface_2001);
       KNOWN_ELEMENT_TYPES.add(AClass_2002);

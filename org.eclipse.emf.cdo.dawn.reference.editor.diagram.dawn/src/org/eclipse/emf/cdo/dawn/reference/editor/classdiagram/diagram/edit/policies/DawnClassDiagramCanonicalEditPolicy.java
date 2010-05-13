@@ -10,12 +10,7 @@
  ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.policies;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramDiagramEditorPlugin;
-import org.eclipse.gmf.runtime.diagram.ui.commands.DeferredLayoutCommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 
 /**
  * @author Martin Fluegge
@@ -42,26 +37,26 @@ public class DawnClassDiagramCanonicalEditPolicy extends ClassDiagramCanonicalEd
   // return semanticChildren;
   // }
 
-  /**
-   * @generated
-   */
-  @Override
-  public void refreshSemantic()
-  {
-    List createdViews = new LinkedList();
-    // createdViews.addAll(refreshSemanticChildren());
-    List createdConnectionViews = new LinkedList();
-    createdConnectionViews.addAll(refreshSemanticConnections());
-    createdConnectionViews.addAll(refreshConnections());
-
-    if (createdViews.size() > 1)
-    {
-      // perform a layout of the container
-      DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host().getEditingDomain(), createdViews, host());
-      executeCommand(new ICommandProxy(layoutCmd));
-    }
-
-    createdViews.addAll(createdConnectionViews);
-    makeViewsImmutable(createdViews);
-  }
+  // /**
+  // * @generated
+  // */
+  // @Override
+  // public void refreshSemantic()
+  // {
+  // List createdViews = new LinkedList();
+  // // createdViews.addAll(refreshSemanticChildren());
+  // List createdConnectionViews = new LinkedList();
+  // createdConnectionViews.addAll(refreshSemanticConnections());
+  // createdConnectionViews.addAll(refreshConnections());
+  //
+  // if (createdViews.size() > 1)
+  // {
+  // // perform a layout of the container
+  // DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host().getEditingDomain(), createdViews, host());
+  // executeCommand(new ICommandProxy(layoutCmd));
+  // }
+  //
+  // createdViews.addAll(createdConnectionViews);
+  // makeViewsImmutable(createdViews);
+  // }
 }

@@ -11,6 +11,7 @@
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
@@ -331,12 +332,9 @@ public class AInterfaceEditPart extends ShapeNodeEditPart
   /**
    * @generated
    */
-  public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget()
+  public List<IElementType> getMARelTypesOnTarget()
   {
-    List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-                                                                                        * <org.eclipse.gmf.runtime.emf.type
-                                                                                        * .core.IElementType>
-                                                                                        */();
+    ArrayList<IElementType> types = new ArrayList<IElementType>(1);
     types.add(ClassdiagramElementTypes.AClassImplementedInterfaces_4002);
     return types;
   }
@@ -344,12 +342,9 @@ public class AInterfaceEditPart extends ShapeNodeEditPart
   /**
    * @generated
    */
-  public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(IElementType relationshipType)
+  public List<IElementType> getMATypesForSource(IElementType relationshipType)
   {
-    List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-                                                                                        * <org.eclipse.gmf.runtime.emf.type
-                                                                                        * .core.IElementType>
-                                                                                        */();
+    LinkedList<IElementType> types = new LinkedList<IElementType>();
     if (relationshipType == ClassdiagramElementTypes.AClassImplementedInterfaces_4002)
     {
       types.add(ClassdiagramElementTypes.AClass_2002);

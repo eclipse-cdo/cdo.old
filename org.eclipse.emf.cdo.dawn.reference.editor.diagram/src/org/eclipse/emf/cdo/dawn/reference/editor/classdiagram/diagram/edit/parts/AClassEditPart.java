@@ -11,6 +11,7 @@
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
@@ -329,12 +330,9 @@ public class AClassEditPart extends ShapeNodeEditPart
   /**
    * @generated
    */
-  public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource()
+  public List<IElementType> getMARelTypesOnSource()
   {
-    List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-                                                                                        * <org.eclipse.gmf.runtime.emf.type
-                                                                                        * .core.IElementType>
-                                                                                        */();
+    ArrayList<IElementType> types = new ArrayList<IElementType>(5);
     types.add(ClassdiagramElementTypes.AClassSubClasses_4001);
     types.add(ClassdiagramElementTypes.AClassImplementedInterfaces_4002);
     types.add(ClassdiagramElementTypes.AClassAssociations_4003);
@@ -346,13 +344,9 @@ public class AClassEditPart extends ShapeNodeEditPart
   /**
    * @generated
    */
-  public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(
-      IGraphicalEditPart targetEditPart)
+  public List<IElementType> getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart)
   {
-    List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-                                                                                        * <org.eclipse.gmf.runtime.emf.type
-                                                                                        * .core.IElementType>
-                                                                                        */();
+    LinkedList<IElementType> types = new LinkedList<IElementType>();
     if (targetEditPart instanceof org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts.AClassEditPart)
     {
       types.add(ClassdiagramElementTypes.AClassSubClasses_4001);
@@ -379,29 +373,26 @@ public class AClassEditPart extends ShapeNodeEditPart
   /**
    * @generated
    */
-  public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(IElementType relationshipType)
+  public List<IElementType> getMATypesForTarget(IElementType relationshipType)
   {
-    List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-                                                                                        * <org.eclipse.gmf.runtime.emf.type
-                                                                                        * .core.IElementType>
-                                                                                        */();
+    LinkedList<IElementType> types = new LinkedList<IElementType>();
     if (relationshipType == ClassdiagramElementTypes.AClassSubClasses_4001)
     {
       types.add(ClassdiagramElementTypes.AClass_2002);
     }
-    if (relationshipType == ClassdiagramElementTypes.AClassImplementedInterfaces_4002)
+    else if (relationshipType == ClassdiagramElementTypes.AClassImplementedInterfaces_4002)
     {
       types.add(ClassdiagramElementTypes.AInterface_2001);
     }
-    if (relationshipType == ClassdiagramElementTypes.AClassAssociations_4003)
+    else if (relationshipType == ClassdiagramElementTypes.AClassAssociations_4003)
     {
       types.add(ClassdiagramElementTypes.AClass_2002);
     }
-    if (relationshipType == ClassdiagramElementTypes.AClassAggregations_4004)
+    else if (relationshipType == ClassdiagramElementTypes.AClassAggregations_4004)
     {
       types.add(ClassdiagramElementTypes.AClass_2002);
     }
-    if (relationshipType == ClassdiagramElementTypes.AClassCompositions_4005)
+    else if (relationshipType == ClassdiagramElementTypes.AClassCompositions_4005)
     {
       types.add(ClassdiagramElementTypes.AClass_2002);
     }
@@ -411,12 +402,9 @@ public class AClassEditPart extends ShapeNodeEditPart
   /**
    * @generated
    */
-  public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget()
+  public List<IElementType> getMARelTypesOnTarget()
   {
-    List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-                                                                                        * <org.eclipse.gmf.runtime.emf.type
-                                                                                        * .core.IElementType>
-                                                                                        */();
+    ArrayList<IElementType> types = new ArrayList<IElementType>(4);
     types.add(ClassdiagramElementTypes.AClassSubClasses_4001);
     types.add(ClassdiagramElementTypes.AClassAssociations_4003);
     types.add(ClassdiagramElementTypes.AClassAggregations_4004);
@@ -427,25 +415,22 @@ public class AClassEditPart extends ShapeNodeEditPart
   /**
    * @generated
    */
-  public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(IElementType relationshipType)
+  public List<IElementType> getMATypesForSource(IElementType relationshipType)
   {
-    List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/*
-                                                                                        * <org.eclipse.gmf.runtime.emf.type
-                                                                                        * .core.IElementType>
-                                                                                        */();
+    LinkedList<IElementType> types = new LinkedList<IElementType>();
     if (relationshipType == ClassdiagramElementTypes.AClassSubClasses_4001)
     {
       types.add(ClassdiagramElementTypes.AClass_2002);
     }
-    if (relationshipType == ClassdiagramElementTypes.AClassAssociations_4003)
+    else if (relationshipType == ClassdiagramElementTypes.AClassAssociations_4003)
     {
       types.add(ClassdiagramElementTypes.AClass_2002);
     }
-    if (relationshipType == ClassdiagramElementTypes.AClassAggregations_4004)
+    else if (relationshipType == ClassdiagramElementTypes.AClassAggregations_4004)
     {
       types.add(ClassdiagramElementTypes.AClass_2002);
     }
-    if (relationshipType == ClassdiagramElementTypes.AClassCompositions_4005)
+    else if (relationshipType == ClassdiagramElementTypes.AClassCompositions_4005)
     {
       types.add(ClassdiagramElementTypes.AClass_2002);
     }

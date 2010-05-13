@@ -10,6 +10,7 @@
  ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.policies;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -30,29 +31,34 @@ import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.Class
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramNodeDescriptor;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramVisualIDRegistry;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.DeferredLayoutCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetViewMutabilityCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalConnectionEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
  * @generated
  */
-public class ClassDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy
+public class ClassDiagramCanonicalEditPolicy extends CanonicalEditPolicy
 {
 
   /**
    * @generated
    */
-  Set myFeaturesToSynchronize;
+  Set<EStructuralFeature> myFeaturesToSynchronize;
 
   /**
    * @generated
@@ -60,11 +66,13 @@ public class ClassDiagramCanonicalEditPolicy extends CanonicalConnectionEditPoli
   protected List getSemanticChildrenList()
   {
     View viewObject = (View)getHost().getModel();
-    List result = new LinkedList();
-    for (Iterator it = ClassdiagramDiagramUpdater.getClassDiagram_1000SemanticChildren(viewObject).iterator(); it
-        .hasNext();)
+    LinkedList<EObject> result = new LinkedList<EObject>();
+    List<ClassdiagramNodeDescriptor> childDescriptors = ClassdiagramDiagramUpdater
+        .getClassDiagram_1000SemanticChildren(viewObject);
+    for (Iterator<ClassdiagramNodeDescriptor> it = childDescriptors.iterator(); it.hasNext();)
     {
-      result.add(((ClassdiagramNodeDescriptor)it.next()).getModelElement());
+      ClassdiagramNodeDescriptor d = it.next();
+      result.add(d.getModelElement());
     }
     return result;
   }
@@ -98,19 +106,11 @@ public class ClassDiagramCanonicalEditPolicy extends CanonicalConnectionEditPoli
   /**
    * @generated
    */
-  protected String getDefaultFactoryHint()
-  {
-    return null;
-  }
-
-  /**
-   * @generated
-   */
   protected Set getFeaturesToSynchronize()
   {
     if (myFeaturesToSynchronize == null)
     {
-      myFeaturesToSynchronize = new HashSet();
+      myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
       myFeaturesToSynchronize.add(ClassdiagramPackage.eINSTANCE.getClassDiagram_Interfaces());
       myFeaturesToSynchronize.add(ClassdiagramPackage.eINSTANCE.getClassDiagram_Classes());
     }
@@ -120,45 +120,59 @@ public class ClassDiagramCanonicalEditPolicy extends CanonicalConnectionEditPoli
   /**
    * @generated
    */
-  protected List getSemanticConnectionsList()
+  protected void refreshSemantic()
   {
-    return Collections.EMPTY_LIST;
-  }
-
-  /**
-   * @generated
-   */
-  protected EObject getSourceElement(EObject relationship)
-  {
-    return null;
-  }
-
-  /**
-   * @generated
-   */
-  protected EObject getTargetElement(EObject relationship)
-  {
-    return null;
-  }
-
-  /**
-   * @generated
-   */
-  protected boolean shouldIncludeConnection(Edge connector, Collection children)
-  {
-    return false;
-  }
-
-  /**
-   * @generated
-   */
-  public void refreshSemantic()
-  {
-    List createdViews = new LinkedList();
-    createdViews.addAll(refreshSemanticChildren());
-    List createdConnectionViews = new LinkedList();
-    createdConnectionViews.addAll(refreshSemanticConnections());
-    createdConnectionViews.addAll(refreshConnections());
+    if (resolveSemanticElement() == null)
+    {
+      return;
+    }
+    LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
+    // refreshSemanticChildren() alternative
+    List<ClassdiagramNodeDescriptor> childDescriptors = ClassdiagramDiagramUpdater
+        .getClassDiagram_1000SemanticChildren((View)getHost().getModel());
+    ArrayList<EObject> semanticChildren = new ArrayList<EObject>(childDescriptors.size());
+    for (Iterator<ClassdiagramNodeDescriptor> it = childDescriptors.iterator(); it.hasNext();)
+    {
+      ClassdiagramNodeDescriptor next = it.next();
+      semanticChildren.add(next.getModelElement());
+    }
+    List<View> orphaned = cleanCanonicalSemanticChildren(getViewChildren(), semanticChildren);
+    boolean changed = deleteViews(orphaned.iterator());
+    // leave descriptors that reference survived semanticChildren.
+    // NOTE, we may want to stop using cleanCanonicalSemanticChildren() here, replacing with own code, that respects
+    // NodeDescriptors
+    for (Iterator<ClassdiagramNodeDescriptor> it = childDescriptors.iterator(); it.hasNext();)
+    {
+      ClassdiagramNodeDescriptor next = it.next();
+      if (!semanticChildren.contains(next.getModelElement()))
+      {
+        it.remove();
+      }
+    }
+    ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<CreateViewRequest.ViewDescriptor>(
+        childDescriptors.size());
+    for (Iterator<ClassdiagramNodeDescriptor> it = childDescriptors.iterator(); it.hasNext();)
+    {
+      ClassdiagramNodeDescriptor next = it.next();
+      String hint = ClassdiagramVisualIDRegistry.getType(next.getVisualID());
+      IAdaptable elementAdapter = new CanonicalElementAdapter(next.getModelElement(), hint);
+      viewDescriptors.add(new CreateViewRequest.ViewDescriptor(elementAdapter, Node.class, hint, ViewUtil.APPEND,
+          false, host().getDiagramPreferencesHint()));
+    }
+    //
+    CreateViewRequest request = getCreateViewRequest(viewDescriptors);
+    Command cmd = getCreateViewCommand(request);
+    if (cmd != null && cmd.canExecute())
+    {
+      SetViewMutabilityCommand.makeMutable(new EObjectAdapter(host().getNotationView())).execute();
+      executeCommand(cmd);
+      createdViews.addAll((List<IAdaptable>)request.getNewObject());
+    }
+    if (changed || createdViews.size() > 0)
+    {
+      postProcessRefreshSemantic(createdViews);
+    }
+    Collection<IAdaptable> createdConnectionViews = refreshConnections();
 
     if (createdViews.size() > 1)
     {
@@ -182,10 +196,10 @@ public class ClassDiagramCanonicalEditPolicy extends CanonicalConnectionEditPoli
   /**
    * @generated
    */
-  protected Collection refreshConnections()
+  private Collection<IAdaptable> refreshConnections()
   {
-    Map domain2NotationMap = new HashMap();
-    Collection linkDescriptors = collectAllLinks(getDiagram(), domain2NotationMap);
+    Map<EObject, View> domain2NotationMap = new HashMap<EObject, View>();
+    Collection<ClassdiagramLinkDescriptor> linkDescriptors = collectAllLinks(getDiagram(), domain2NotationMap);
     Collection existingLinks = new LinkedList(getDiagram().getEdges());
     for (Iterator linksIterator = existingLinks.iterator(); linksIterator.hasNext();)
     {
@@ -202,9 +216,10 @@ public class ClassDiagramCanonicalEditPolicy extends CanonicalConnectionEditPoli
       EObject diagramLinkObject = nextDiagramLink.getElement();
       EObject diagramLinkSrc = nextDiagramLink.getSource().getElement();
       EObject diagramLinkDst = nextDiagramLink.getTarget().getElement();
-      for (Iterator linkDescriptorsIterator = linkDescriptors.iterator(); linkDescriptorsIterator.hasNext();)
+      for (Iterator<ClassdiagramLinkDescriptor> linkDescriptorsIterator = linkDescriptors.iterator(); linkDescriptorsIterator
+          .hasNext();)
       {
-        ClassdiagramLinkDescriptor nextLinkDescriptor = (ClassdiagramLinkDescriptor)linkDescriptorsIterator.next();
+        ClassdiagramLinkDescriptor nextLinkDescriptor = linkDescriptorsIterator.next();
         if (diagramLinkObject == nextLinkDescriptor.getModelElement()
             && diagramLinkSrc == nextLinkDescriptor.getSource()
             && diagramLinkDst == nextLinkDescriptor.getDestination()
@@ -223,13 +238,13 @@ public class ClassDiagramCanonicalEditPolicy extends CanonicalConnectionEditPoli
   /**
    * @generated
    */
-  private Collection collectAllLinks(View view, Map domain2NotationMap)
+  private Collection<ClassdiagramLinkDescriptor> collectAllLinks(View view, Map<EObject, View> domain2NotationMap)
   {
     if (!ClassDiagramEditPart.MODEL_ID.equals(ClassdiagramVisualIDRegistry.getModelID(view)))
     {
-      return Collections.EMPTY_LIST;
+      return Collections.emptyList();
     }
-    Collection result = new LinkedList();
+    LinkedList<ClassdiagramLinkDescriptor> result = new LinkedList<ClassdiagramLinkDescriptor>();
     switch (ClassdiagramVisualIDRegistry.getVisualID(view))
     {
     case ClassDiagramEditPart.VISUAL_ID:
@@ -280,12 +295,13 @@ public class ClassDiagramCanonicalEditPolicy extends CanonicalConnectionEditPoli
   /**
    * @generated
    */
-  private Collection createConnections(Collection linkDescriptors, Map domain2NotationMap)
+  private Collection<IAdaptable> createConnections(Collection<ClassdiagramLinkDescriptor> linkDescriptors,
+      Map<EObject, View> domain2NotationMap)
   {
-    List adapters = new LinkedList();
-    for (Iterator linkDescriptorsIterator = linkDescriptors.iterator(); linkDescriptorsIterator.hasNext();)
+    LinkedList<IAdaptable> adapters = new LinkedList<IAdaptable>();
+    for (Iterator<ClassdiagramLinkDescriptor> it = linkDescriptors.iterator(); it.hasNext();)
     {
-      final ClassdiagramLinkDescriptor nextLinkDescriptor = (ClassdiagramLinkDescriptor)linkDescriptorsIterator.next();
+      ClassdiagramLinkDescriptor nextLinkDescriptor = it.next();
       EditPart sourceEditPart = getEditPart(nextLinkDescriptor.getSource(), domain2NotationMap);
       EditPart targetEditPart = getEditPart(nextLinkDescriptor.getDestination(), domain2NotationMap);
       if (sourceEditPart == null || targetEditPart == null)
@@ -318,7 +334,7 @@ public class ClassDiagramCanonicalEditPolicy extends CanonicalConnectionEditPoli
   /**
    * @generated
    */
-  private EditPart getEditPart(EObject domainModelElement, Map domain2NotationMap)
+  private EditPart getEditPart(EObject domainModelElement, Map<EObject, View> domain2NotationMap)
   {
     View view = (View)domain2NotationMap.get(domainModelElement);
     if (view != null)

@@ -103,7 +103,7 @@ public class AnOperationItemProvider extends AClassChildItemProvider implements 
   @Override
   public Object getImage(Object object)
   {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/AnOperation"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/AnOperation.png"));
   }
 
   /**

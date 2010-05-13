@@ -11,6 +11,7 @@
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.providers.ClassdiagramElementTypes;
@@ -21,6 +22,7 @@ import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeCreationTool;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 
 /**
  * @generated
@@ -75,9 +77,8 @@ public class ClassdiagramPaletteFactory
    */
   private ToolEntry createClass1CreationTool()
   {
-    List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
-    types.add(ClassdiagramElementTypes.AClass_2002);
-    NodeToolEntry entry = new NodeToolEntry(Messages.Class1CreationTool_title, Messages.Class1CreationTool_desc, types);
+    NodeToolEntry entry = new NodeToolEntry(Messages.Class1CreationTool_title, Messages.Class1CreationTool_desc,
+        Collections.singletonList(ClassdiagramElementTypes.AClass_2002));
     entry.setId("createClass1CreationTool"); //$NON-NLS-1$
     entry.setSmallIcon(ClassdiagramElementTypes.getImageDescriptor(ClassdiagramElementTypes.AClass_2002));
     entry.setLargeIcon(entry.getSmallIcon());
@@ -89,10 +90,8 @@ public class ClassdiagramPaletteFactory
    */
   private ToolEntry createInterface2CreationTool()
   {
-    List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
-    types.add(ClassdiagramElementTypes.AInterface_2001);
     NodeToolEntry entry = new NodeToolEntry(Messages.Interface2CreationTool_title,
-        Messages.Interface2CreationTool_desc, types);
+        Messages.Interface2CreationTool_desc, Collections.singletonList(ClassdiagramElementTypes.AInterface_2001));
     entry.setId("createInterface2CreationTool"); //$NON-NLS-1$
     entry.setSmallIcon(ClassdiagramElementTypes.getImageDescriptor(ClassdiagramElementTypes.AInterface_2001));
     entry.setLargeIcon(entry.getSmallIcon());
@@ -104,7 +103,7 @@ public class ClassdiagramPaletteFactory
    */
   private ToolEntry createAnAttribute3CreationTool()
   {
-    List/* <IElementType> */types = new ArrayList/* <IElementType> */(2);
+    ArrayList<IElementType> types = new ArrayList<IElementType>(2);
     types.add(ClassdiagramElementTypes.AnAttribute_3001);
     types.add(ClassdiagramElementTypes.AnAttribute_3003);
     NodeToolEntry entry = new NodeToolEntry(Messages.AnAttribute3CreationTool_title,
@@ -120,7 +119,7 @@ public class ClassdiagramPaletteFactory
    */
   private ToolEntry createAnOperation4CreationTool()
   {
-    List/* <IElementType> */types = new ArrayList/* <IElementType> */(2);
+    ArrayList<IElementType> types = new ArrayList<IElementType>(2);
     types.add(ClassdiagramElementTypes.AnOperation_3002);
     types.add(ClassdiagramElementTypes.AnOperation_3004);
     NodeToolEntry entry = new NodeToolEntry(Messages.AnOperation4CreationTool_title,
@@ -136,13 +135,13 @@ public class ClassdiagramPaletteFactory
    */
   private ToolEntry createInherits1CreationTool()
   {
-    List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
-    types.add(ClassdiagramElementTypes.AClassSubClasses_4001);
     LinkToolEntry entry = new LinkToolEntry(Messages.Inherits1CreationTool_title, Messages.Inherits1CreationTool_desc,
-        types);
+        Collections.singletonList(ClassdiagramElementTypes.AClassSubClasses_4001));
     entry.setId("createInherits1CreationTool"); //$NON-NLS-1$
-    entry.setSmallIcon(ClassdiagramElementTypes.getImageDescriptor(ClassdiagramElementTypes.AClassSubClasses_4001));
-    entry.setLargeIcon(entry.getSmallIcon());
+    entry.setSmallIcon(ClassdiagramDiagramEditorPlugin
+        .findImageDescriptor("/org.eclipse.emf.cdo.dawn.reference.editor.edit/icons/full/obj16/inherits.png")); //$NON-NLS-1$
+    entry.setLargeIcon(ClassdiagramDiagramEditorPlugin
+        .findImageDescriptor("/org.eclipse.emf.cdo.dawn.reference.editor.edit/icons/full/obj16/inherits.png")); //$NON-NLS-1$
     return entry;
   }
 
@@ -151,15 +150,14 @@ public class ClassdiagramPaletteFactory
    */
   private ToolEntry createImplements2CreationTool()
   {
-    List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
-    types.add(ClassdiagramElementTypes.AClassImplementedInterfaces_4002);
     LinkToolEntry entry = new LinkToolEntry(Messages.Implements2CreationTool_title,
-        Messages.Implements2CreationTool_desc, types);
+        Messages.Implements2CreationTool_desc, Collections
+            .singletonList(ClassdiagramElementTypes.AClassImplementedInterfaces_4002));
     entry.setId("createImplements2CreationTool"); //$NON-NLS-1$
     entry.setSmallIcon(ClassdiagramDiagramEditorPlugin
-        .findImageDescriptor("/org.mftech.diagram.uml.class.edit/icons/full/obj16/Relationship.gif")); //$NON-NLS-1$
+        .findImageDescriptor("/org.eclipse.emf.cdo.dawn.reference.editor.edit/icons/full/obj16/implements.png")); //$NON-NLS-1$
     entry.setLargeIcon(ClassdiagramDiagramEditorPlugin
-        .findImageDescriptor("/org.mftech.diagram.uml.class.edit/icons/full/obj16/Relationship.gif")); //$NON-NLS-1$
+        .findImageDescriptor("/org.eclipse.emf.cdo.dawn.reference.editor.edit/icons/full/obj16/implements.png")); //$NON-NLS-1$
     return entry;
   }
 
@@ -168,13 +166,14 @@ public class ClassdiagramPaletteFactory
    */
   private ToolEntry createAssociation3CreationTool()
   {
-    List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
-    types.add(ClassdiagramElementTypes.AClassAssociations_4003);
     LinkToolEntry entry = new LinkToolEntry(Messages.Association3CreationTool_title,
-        Messages.Association3CreationTool_desc, types);
+        Messages.Association3CreationTool_desc, Collections
+            .singletonList(ClassdiagramElementTypes.AClassAssociations_4003));
     entry.setId("createAssociation3CreationTool"); //$NON-NLS-1$
-    entry.setSmallIcon(ClassdiagramElementTypes.getImageDescriptor(ClassdiagramElementTypes.AClassAssociations_4003));
-    entry.setLargeIcon(entry.getSmallIcon());
+    entry.setSmallIcon(ClassdiagramDiagramEditorPlugin
+        .findImageDescriptor("/org.eclipse.emf.cdo.dawn.reference.editor.edit/icons/full/obj16/association.png")); //$NON-NLS-1$
+    entry.setLargeIcon(ClassdiagramDiagramEditorPlugin
+        .findImageDescriptor("/org.eclipse.emf.cdo.dawn.reference.editor.edit/icons/full/obj16/association.png")); //$NON-NLS-1$
     return entry;
   }
 
@@ -183,13 +182,14 @@ public class ClassdiagramPaletteFactory
    */
   private ToolEntry createAggregation4CreationTool()
   {
-    List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
-    types.add(ClassdiagramElementTypes.AClassAggregations_4004);
     LinkToolEntry entry = new LinkToolEntry(Messages.Aggregation4CreationTool_title,
-        Messages.Aggregation4CreationTool_desc, types);
+        Messages.Aggregation4CreationTool_desc, Collections
+            .singletonList(ClassdiagramElementTypes.AClassAggregations_4004));
     entry.setId("createAggregation4CreationTool"); //$NON-NLS-1$
-    entry.setSmallIcon(ClassdiagramElementTypes.getImageDescriptor(ClassdiagramElementTypes.AClassAggregations_4004));
-    entry.setLargeIcon(entry.getSmallIcon());
+    entry.setSmallIcon(ClassdiagramDiagramEditorPlugin
+        .findImageDescriptor("/org.eclipse.emf.cdo.dawn.reference.editor.edit/icons/full/obj16/aggregation.png")); //$NON-NLS-1$
+    entry.setLargeIcon(ClassdiagramDiagramEditorPlugin
+        .findImageDescriptor("/org.eclipse.emf.cdo.dawn.reference.editor.edit/icons/full/obj16/aggregation.png")); //$NON-NLS-1$
     return entry;
   }
 
@@ -198,13 +198,14 @@ public class ClassdiagramPaletteFactory
    */
   private ToolEntry createComposition5CreationTool()
   {
-    List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
-    types.add(ClassdiagramElementTypes.AClassCompositions_4005);
     LinkToolEntry entry = new LinkToolEntry(Messages.Composition5CreationTool_title,
-        Messages.Composition5CreationTool_desc, types);
+        Messages.Composition5CreationTool_desc, Collections
+            .singletonList(ClassdiagramElementTypes.AClassCompositions_4005));
     entry.setId("createComposition5CreationTool"); //$NON-NLS-1$
-    entry.setSmallIcon(ClassdiagramElementTypes.getImageDescriptor(ClassdiagramElementTypes.AClassCompositions_4005));
-    entry.setLargeIcon(entry.getSmallIcon());
+    entry.setSmallIcon(ClassdiagramDiagramEditorPlugin
+        .findImageDescriptor("/org.eclipse.emf.cdo.dawn.reference.editor.edit/icons/full/obj16/composition.png")); //$NON-NLS-1$
+    entry.setLargeIcon(ClassdiagramDiagramEditorPlugin
+        .findImageDescriptor("/org.eclipse.emf.cdo.dawn.reference.editor.edit/icons/full/obj16/composition.png")); //$NON-NLS-1$
     return entry;
   }
 
@@ -217,12 +218,12 @@ public class ClassdiagramPaletteFactory
     /**
      * @generated
      */
-    private final List elementTypes;
+    private final List<IElementType> elementTypes;
 
     /**
      * @generated
      */
-    private NodeToolEntry(String title, String description, List elementTypes)
+    private NodeToolEntry(String title, String description, List<IElementType> elementTypes)
     {
       super(title, description, null, null);
       this.elementTypes = elementTypes;
@@ -248,12 +249,12 @@ public class ClassdiagramPaletteFactory
     /**
      * @generated
      */
-    private final List relationshipTypes;
+    private final List<IElementType> relationshipTypes;
 
     /**
      * @generated
      */
-    private LinkToolEntry(String title, String description, List relationshipTypes)
+    private LinkToolEntry(String title, String description, List<IElementType> relationshipTypes)
     {
       super(title, description, null, null);
       this.relationshipTypes = relationshipTypes;

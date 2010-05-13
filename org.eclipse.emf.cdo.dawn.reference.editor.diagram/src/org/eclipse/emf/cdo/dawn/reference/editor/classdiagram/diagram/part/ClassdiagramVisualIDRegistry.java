@@ -162,6 +162,16 @@ public class ClassdiagramVisualIDRegistry
     }
     switch (containerVisualID)
     {
+    case ClassDiagramEditPart.VISUAL_ID:
+      if (ClassdiagramPackage.eINSTANCE.getAInterface().isSuperTypeOf(domainElement.eClass()))
+      {
+        return AInterfaceEditPart.VISUAL_ID;
+      }
+      if (ClassdiagramPackage.eINSTANCE.getAClass().isSuperTypeOf(domainElement.eClass()))
+      {
+        return AClassEditPart.VISUAL_ID;
+      }
+      break;
     case AInterfaceAnAttributeInterfaceCompartmentEditPart.VISUAL_ID:
       if (ClassdiagramPackage.eINSTANCE.getAnAttribute().isSuperTypeOf(domainElement.eClass()))
       {
@@ -184,16 +194,6 @@ public class ClassdiagramVisualIDRegistry
       if (ClassdiagramPackage.eINSTANCE.getAnOperation().isSuperTypeOf(domainElement.eClass()))
       {
         return AnOperation2EditPart.VISUAL_ID;
-      }
-      break;
-    case ClassDiagramEditPart.VISUAL_ID:
-      if (ClassdiagramPackage.eINSTANCE.getAInterface().isSuperTypeOf(domainElement.eClass()))
-      {
-        return AInterfaceEditPart.VISUAL_ID;
-      }
-      if (ClassdiagramPackage.eINSTANCE.getAClass().isSuperTypeOf(domainElement.eClass()))
-      {
-        return AClassEditPart.VISUAL_ID;
       }
       break;
     }
@@ -230,6 +230,16 @@ public class ClassdiagramVisualIDRegistry
     }
     switch (containerVisualID)
     {
+    case ClassDiagramEditPart.VISUAL_ID:
+      if (AInterfaceEditPart.VISUAL_ID == nodeVisualID)
+      {
+        return true;
+      }
+      if (AClassEditPart.VISUAL_ID == nodeVisualID)
+      {
+        return true;
+      }
+      break;
     case AInterfaceEditPart.VISUAL_ID:
       if (AInterfaceNameEditPart.VISUAL_ID == nodeVisualID)
       {
@@ -278,16 +288,6 @@ public class ClassdiagramVisualIDRegistry
       break;
     case AClassAnOperationClassCompartmentEditPart.VISUAL_ID:
       if (AnOperation2EditPart.VISUAL_ID == nodeVisualID)
-      {
-        return true;
-      }
-      break;
-    case ClassDiagramEditPart.VISUAL_ID:
-      if (AInterfaceEditPart.VISUAL_ID == nodeVisualID)
-      {
-        return true;
-      }
-      if (AClassEditPart.VISUAL_ID == nodeVisualID)
       {
         return true;
       }

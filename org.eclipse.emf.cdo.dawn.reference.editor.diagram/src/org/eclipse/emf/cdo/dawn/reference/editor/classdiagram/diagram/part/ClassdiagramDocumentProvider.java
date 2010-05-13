@@ -12,10 +12,10 @@ package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -130,9 +130,9 @@ public class ClassdiagramDocumentProvider extends AbstractDocumentProvider imple
   private long computeModificationStamp(ResourceSetInfo info)
   {
     int result = 0;
-    for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it.hasNext();)
+    for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();)
     {
-      Resource nextResource = (Resource)it.next();
+      Resource nextResource = it.next();
       IFile file = WorkspaceSynchronizer.getFile(nextResource);
       if (file != null)
       {
@@ -353,13 +353,10 @@ public class ClassdiagramDocumentProvider extends AbstractDocumentProvider imple
     ResourceSetInfo info = getResourceSetInfo(element);
     if (info != null)
     {
-      Collection/* <org.eclipse.core.resources.IFile> */files2Validate = new ArrayList/*
-                                                                                       * <org.eclipse.core.resources.IFile
-                                                                                       * >
-                                                                                       */();
-      for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it.hasNext();)
+      LinkedList<IFile> files2Validate = new LinkedList<IFile>();
+      for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();)
       {
-        Resource nextResource = (Resource)it.next();
+        Resource nextResource = it.next();
         IFile file = WorkspaceSynchronizer.getFile(nextResource);
         if (file != null && file.isReadOnly())
         {
@@ -442,9 +439,9 @@ public class ClassdiagramDocumentProvider extends AbstractDocumentProvider imple
     ResourceSetInfo info = getResourceSetInfo(element);
     if (info != null)
     {
-      for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it.hasNext();)
+      for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();)
       {
-        Resource nextResource = (Resource)it.next();
+        Resource nextResource = it.next();
         IFile file = WorkspaceSynchronizer.getFile(nextResource);
         if (file != null && file.isReadOnly())
         {
@@ -493,13 +490,10 @@ public class ClassdiagramDocumentProvider extends AbstractDocumentProvider imple
     ResourceSetInfo info = getResourceSetInfo(element);
     if (info != null)
     {
-      Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
-                                                                                           * <org.eclipse.core.runtime.jobs
-                                                                                           * .ISchedulingRule>
-                                                                                           */();
-      for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it.hasNext();)
+      LinkedList<ISchedulingRule> rules = new LinkedList<ISchedulingRule>();
+      for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();)
       {
-        Resource nextResource = (Resource)it.next();
+        Resource nextResource = it.next();
         IFile file = WorkspaceSynchronizer.getFile(nextResource);
         if (file != null)
         {
@@ -519,13 +513,10 @@ public class ClassdiagramDocumentProvider extends AbstractDocumentProvider imple
     ResourceSetInfo info = getResourceSetInfo(element);
     if (info != null)
     {
-      Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
-                                                                                           * <org.eclipse.core.runtime.jobs
-                                                                                           * .ISchedulingRule>
-                                                                                           */();
-      for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it.hasNext();)
+      LinkedList<ISchedulingRule> rules = new LinkedList<ISchedulingRule>();
+      for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();)
       {
-        Resource nextResource = (Resource)it.next();
+        Resource nextResource = it.next();
         IFile file = WorkspaceSynchronizer.getFile(nextResource);
         if (file != null)
         {
@@ -545,13 +536,10 @@ public class ClassdiagramDocumentProvider extends AbstractDocumentProvider imple
     ResourceSetInfo info = getResourceSetInfo(element);
     if (info != null)
     {
-      Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
-                                                                                           * <org.eclipse.core.runtime.jobs
-                                                                                           * .ISchedulingRule>
-                                                                                           */();
-      for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it.hasNext();)
+      LinkedList<ISchedulingRule> rules = new LinkedList<ISchedulingRule>();
+      for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();)
       {
-        Resource nextResource = (Resource)it.next();
+        Resource nextResource = it.next();
         IFile file = WorkspaceSynchronizer.getFile(nextResource);
         if (file != null)
         {
@@ -571,13 +559,10 @@ public class ClassdiagramDocumentProvider extends AbstractDocumentProvider imple
     ResourceSetInfo info = getResourceSetInfo(element);
     if (info != null)
     {
-      Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */files = new ArrayList/*
-                                                                                           * <org.eclipse.core.runtime.jobs
-                                                                                           * .ISchedulingRule>
-                                                                                           */();
-      for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it.hasNext();)
+      LinkedList<ISchedulingRule> files = new LinkedList<ISchedulingRule>();
+      for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();)
       {
-        Resource nextResource = (Resource)it.next();
+        Resource nextResource = it.next();
         IFile file = WorkspaceSynchronizer.getFile(nextResource);
         if (file != null)
         {
@@ -620,9 +605,9 @@ public class ClassdiagramDocumentProvider extends AbstractDocumentProvider imple
     ResourceSetInfo info = getResourceSetInfo(element);
     if (info != null)
     {
-      for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it.hasNext();)
+      for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();)
       {
-        Resource nextResource = (Resource)it.next();
+        Resource nextResource = it.next();
         handleElementChanged(info, nextResource, monitor);
       }
       return;
@@ -650,10 +635,9 @@ public class ClassdiagramDocumentProvider extends AbstractDocumentProvider imple
       {
         monitor.beginTask(Messages.ClassdiagramDocumentProvider_SaveDiagramTask, info.getResourceSet().getResources()
             .size() + 1); // "Saving diagram"
-        for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-            .hasNext();)
+        for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();)
         {
-          Resource nextResource = (Resource)it.next();
+          Resource nextResource = it.next();
           monitor.setTaskName(NLS.bind(Messages.ClassdiagramDocumentProvider_SaveNextResourceTask, nextResource
               .getURI()));
           if (nextResource.isLoaded() && !info.getEditingDomain().isReadOnly(nextResource))
@@ -687,7 +671,7 @@ public class ClassdiagramDocumentProvider extends AbstractDocumentProvider imple
     else
     {
       URI newResoruceURI;
-      List affectedFiles = null;
+      List<IFile> affectedFiles = null;
       if (element instanceof FileEditorInput)
       {
         IFile newFile = ((FileEditorInput)element).getFile();
@@ -854,7 +838,7 @@ public class ClassdiagramDocumentProvider extends AbstractDocumentProvider imple
     /**
      * @generated
      */
-    private Collection myUnSynchronizedResources = new ArrayList();
+    private LinkedList<Resource> myUnSynchronizedResources = new LinkedList<Resource>();
 
     /**
      * @generated
@@ -934,9 +918,9 @@ public class ClassdiagramDocumentProvider extends AbstractDocumentProvider imple
     /**
      * @generated
      */
-    public Iterator/* <org.eclipse.emf.ecore.resource.Resource> */getLoadedResourcesIterator()
+    public Iterator<Resource> getLoadedResourcesIterator()
     {
-      return new ArrayList/* <org.eclipse.emf.ecore.resource.Resource> */(getResourceSet().getResources()).iterator();
+      return new ArrayList<Resource>(getResourceSet().getResources()).iterator();
     }
 
     /**
@@ -954,9 +938,9 @@ public class ClassdiagramDocumentProvider extends AbstractDocumentProvider imple
     {
       stopResourceListening();
       getResourceSet().eAdapters().remove(myResourceSetListener);
-      for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = getLoadedResourcesIterator(); it.hasNext();)
+      for (Iterator<Resource> it = getLoadedResourcesIterator(); it.hasNext();)
       {
-        Resource resource = (Resource)it.next();
+        Resource resource = it.next();
         resource.unload();
       }
       getEditingDomain().dispose();

@@ -473,28 +473,36 @@
             xsi:type="gmfgen:ToolEntry"
             title="inherits"
             description="Create new AClassSubClasses"
+            largeIconPath="/org.eclipse.emf.cdo.dawn.reference.editor.edit/icons/full/obj16/inherits.png"
+            smallIconPath="/org.eclipse.emf.cdo.dawn.reference.editor.edit/icons/full/obj16/inherits.png"
             genLinks="//@diagram/@links.0"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="implements"
             description="Create new AClassImplementedInterfaces"
-            largeIconPath="/org.mftech.diagram.uml.class.edit/icons/full/obj16/Relationship.gif"
-            smallIconPath="/org.mftech.diagram.uml.class.edit/icons/full/obj16/Relationship.gif"
+            largeIconPath="/org.eclipse.emf.cdo.dawn.reference.editor.edit/icons/full/obj16/implements.png"
+            smallIconPath="/org.eclipse.emf.cdo.dawn.reference.editor.edit/icons/full/obj16/implements.png"
             genLinks="//@diagram/@links.1"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="association"
             description="Create new AClassSubClasses"
+            largeIconPath="/org.eclipse.emf.cdo.dawn.reference.editor.edit/icons/full/obj16/association.png"
+            smallIconPath="/org.eclipse.emf.cdo.dawn.reference.editor.edit/icons/full/obj16/association.png"
             genLinks="//@diagram/@links.2"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="aggregation"
             description="Create new AClassSubClasses"
+            largeIconPath="/org.eclipse.emf.cdo.dawn.reference.editor.edit/icons/full/obj16/aggregation.png"
+            smallIconPath="/org.eclipse.emf.cdo.dawn.reference.editor.edit/icons/full/obj16/aggregation.png"
             genLinks="//@diagram/@links.3"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="composition"
             description="Create new AClassSubClasses"
+            largeIconPath="/org.eclipse.emf.cdo.dawn.reference.editor.edit/icons/full/obj16/composition.png"
+            smallIconPath="/org.eclipse.emf.cdo.dawn.reference.editor.edit/icons/full/obj16/composition.png"
             genLinks="//@diagram/@links.4"/>
       </groups>
     </palette>

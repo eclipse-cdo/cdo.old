@@ -55,9 +55,13 @@
           title="inherits"
           description="Create new AClassSubClasses">
         <smallIcon
-            xsi:type="gmftool:DefaultImage"/>
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/inherits.png"
+            bundle="org.eclipse.emf.cdo.dawn.reference.editor.edit"/>
         <largeIcon
-            xsi:type="gmftool:DefaultImage"/>
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/inherits.png"
+            bundle="org.eclipse.emf.cdo.dawn.reference.editor.edit"/>
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
@@ -65,39 +69,51 @@
           description="Create new AClassImplementedInterfaces">
         <smallIcon
             xsi:type="gmftool:BundleImage"
-            path="/icons/full/obj16/Relationship.gif"
-            bundle="org.mftech.diagram.uml.class.edit"/>
+            path="/icons/full/obj16/implements.png"
+            bundle="org.eclipse.emf.cdo.dawn.reference.editor.edit"/>
         <largeIcon
             xsi:type="gmftool:BundleImage"
-            path="icons/full/obj16/Relationship.gif"
-            bundle="org.mftech.diagram.uml.class.edit"/>
+            path="icons/full/obj16/implements.png"
+            bundle="org.eclipse.emf.cdo.dawn.reference.editor.edit"/>
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
           title="association"
           description="Create new AClassSubClasses">
         <smallIcon
-            xsi:type="gmftool:DefaultImage"/>
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/association.png"
+            bundle="org.eclipse.emf.cdo.dawn.reference.editor.edit"/>
         <largeIcon
-            xsi:type="gmftool:DefaultImage"/>
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/association.png"
+            bundle="org.eclipse.emf.cdo.dawn.reference.editor.edit"/>
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
           title="aggregation"
           description="Create new AClassSubClasses">
         <smallIcon
-            xsi:type="gmftool:DefaultImage"/>
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/aggregation.png"
+            bundle="org.eclipse.emf.cdo.dawn.reference.editor.edit"/>
         <largeIcon
-            xsi:type="gmftool:DefaultImage"/>
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/aggregation.png"
+            bundle="org.eclipse.emf.cdo.dawn.reference.editor.edit"/>
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
           title="composition"
           description="Create new AClassSubClasses">
         <smallIcon
-            xsi:type="gmftool:DefaultImage"/>
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/composition.png"
+            bundle="org.eclipse.emf.cdo.dawn.reference.editor.edit"/>
         <largeIcon
-            xsi:type="gmftool:DefaultImage"/>
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/composition.png"
+            bundle="org.eclipse.emf.cdo.dawn.reference.editor.edit"/>
       </tools>
     </tools>
   </palette>

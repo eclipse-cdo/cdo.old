@@ -60,9 +60,11 @@ public class DawnClassdiagramCreationWizard extends ClassdiagramCreationWizard i
 
   public boolean performFinish()
   {
-    ClassdiagramDiagramEditorPlugin.getInstance().logInfo("Notational Model: " + dawnDiagramModelFilePage.getURI().lastSegment());
+    ClassdiagramDiagramEditorPlugin.getInstance().logInfo(
+        "Notational Model: " + dawnDiagramModelFilePage.getURI().lastSegment());
     ClassdiagramDiagramEditorPlugin.getInstance().logInfo("Notational Model URI: " + dawnDiagramModelFilePage.getURI());
-    ClassdiagramDiagramEditorPlugin.getInstance().logInfo("Domain Model: " + dawnDomainModelFilePage.getURI().lastSegment());
+    ClassdiagramDiagramEditorPlugin.getInstance().logInfo(
+        "Domain Model: " + dawnDomainModelFilePage.getURI().lastSegment());
     ClassdiagramDiagramEditorPlugin.getInstance().logInfo("Domain Model URI: " + dawnDomainModelFilePage.getURI());
     IRunnableWithProgress op = new WorkspaceModifyOperation(null)
     {

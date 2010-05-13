@@ -66,7 +66,7 @@ public class AnAttributeItemProvider extends AClassChildItemProvider implements 
   @Override
   public Object getImage(Object object)
   {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/AnAttribute"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/AnAttribute.png"));
   }
 
   /**

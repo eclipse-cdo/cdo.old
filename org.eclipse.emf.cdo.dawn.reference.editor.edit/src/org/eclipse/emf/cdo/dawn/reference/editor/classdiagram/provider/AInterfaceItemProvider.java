@@ -66,7 +66,7 @@ public class AInterfaceItemProvider extends ABasicClassItemProvider implements I
   @Override
   public Object getImage(Object object)
   {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/AInterface"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/AInterface.png"));
   }
 
   /**
