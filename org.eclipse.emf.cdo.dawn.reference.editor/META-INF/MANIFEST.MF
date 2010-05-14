@@ -7,10 +7,11 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.emf.cdo.dawn.reference.editor.classdiagram,
- org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.impl,
- org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.util
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport,
+Export-Package: org.eclipse.emf.cdo.dawn.reference.editor;version="0.2.0",
+ org.eclipse.emf.cdo.dawn.reference.editor.classdiagram;version="0.2.0",
+ org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.impl;version="0.2.0",
+ org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.util;version="0.2.0"
+Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.5.0,4.0.0)",
+ org.eclipse.emf.ecore;bundle-version="[2.6.0,3.0.0)";visibility:=reexport,
  org.eclipse.emf.cdo;bundle-version="3.0.0";visibility:=reexport
 Bundle-ActivationPolicy: lazy
