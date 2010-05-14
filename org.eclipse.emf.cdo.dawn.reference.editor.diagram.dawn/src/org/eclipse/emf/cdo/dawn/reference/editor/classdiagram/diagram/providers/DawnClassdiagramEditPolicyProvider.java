@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Martin Fluegge - initial API and implementation
  ******************************************************************************/
@@ -13,6 +13,7 @@ package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.providers
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts.ClassDiagramEditPart;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.policies.DawnClassDiagramCanonicalEditPolicy;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramDiagramEditorPlugin;
+
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
@@ -25,10 +26,8 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvide
  */
 public class DawnClassdiagramEditPolicyProvider extends AbstractProvider implements IEditPolicyProvider
 {
-
   public static String ID = "org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.providers.DawnClassdiagramEditPolicyProvider";
 
-  @Override
   public boolean provides(IOperation operation)
   {
     if (operation instanceof CreateEditPoliciesOperation)
@@ -42,7 +41,6 @@ public class DawnClassdiagramEditPolicyProvider extends AbstractProvider impleme
     return false;
   }
 
-  @Override
   public void createEditPolicies(EditPart editPart)
   {
     if (editPart instanceof ClassDiagramEditPart)
@@ -51,5 +49,4 @@ public class DawnClassdiagramEditPolicyProvider extends AbstractProvider impleme
       editPart.installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new DawnClassDiagramCanonicalEditPolicy());
     }
   }
-
 }

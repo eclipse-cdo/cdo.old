@@ -4,14 +4,12 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Martin Fluegge - initial API and implementation
  ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassDiagram;
 import org.eclipse.emf.cdo.dawn.runtime.diagram.part.IDawnDiagramEditor;
 import org.eclipse.emf.cdo.dawn.runtime.notifications.DawnNotificationUtil;
@@ -19,11 +17,16 @@ import org.eclipse.emf.cdo.dawn.ui.DawnEditorInput;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.ui.CDOEditorInput;
 import org.eclipse.emf.cdo.view.CDOView;
+
+import org.eclipse.net4j.util.transaction.TransactionException;
+
 import org.eclipse.emf.common.ui.URIEditorInput;
+
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.AbstractDocumentProvider;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.net4j.util.transaction.TransactionException;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
@@ -49,6 +52,7 @@ public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor imp
     setDocumentProvider(new DawnClassdiagramDocumentProvider());
   }
 
+  @Override
   public void setInput(IEditorInput input)
   {
     ClassdiagramDiagramEditorPlugin.getInstance().logInfo(
@@ -112,7 +116,6 @@ public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor imp
     return dirty;
   }
 
-  @Override
   public String getContributorID()
   {
     return null;
@@ -121,6 +124,7 @@ public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor imp
   /**
    * Have to override this method to change the the DocuemtnProvider behavior.
    */
+  @Override
   protected void setDocumentProvider(IEditorInput input)
   {
     if (input instanceof IFileEditorInput || input instanceof URIEditorInput || input instanceof CDOEditorInput)
@@ -149,14 +153,12 @@ public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor imp
     }
   }
 
-  @Override
   public CDOView getView()
   {
     // TODO Auto-generated method stub
     return transaction;
   }
 
-  @Override
   public void setDirty()
   {
     dirty = true;
