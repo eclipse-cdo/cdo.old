@@ -12,7 +12,9 @@ package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.part
 
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramDiagramEditorPlugin;
 import org.eclipse.emf.cdo.dawn.runtime.synchronize.DawnConflictHelper;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
 
@@ -41,6 +43,7 @@ public class DawnClassDiagramEditPart extends ClassDiagramEditPart
     ClassdiagramDiagramEditorPlugin.getInstance().logInfo("Using DawnClassDiagramEditPart instead of the original one");
   }
 
+  @Override
   protected void removeChild(EditPart child)
   {
     if (DawnConflictHelper.isConflicted((EObject)child.getModel()))

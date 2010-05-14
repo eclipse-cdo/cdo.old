@@ -10,11 +10,13 @@
  ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts;
 
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.policies.AClassAnOperationClassCompartmentCanonicalEditPolicy;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.policies.AClassAnOperationClassCompartmentItemSemanticEditPolicy;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.Messages;
+
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;

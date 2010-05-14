@@ -11,6 +11,7 @@
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part;
 
 import org.eclipse.emf.common.ui.URIEditorInput;
+
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorMatchingStrategy;
 import org.eclipse.ui.IEditorReference;

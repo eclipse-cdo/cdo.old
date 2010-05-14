@@ -11,6 +11,7 @@
 package org.eclipse.emf.cdo.dawn.reference.editor;
 
 import org.eclipse.core.runtime.Plugin;
+
 import org.osgi.framework.BundleContext;
 
 /**

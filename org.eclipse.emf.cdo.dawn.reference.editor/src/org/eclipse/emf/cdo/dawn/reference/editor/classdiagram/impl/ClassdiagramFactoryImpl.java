@@ -21,6 +21,7 @@ import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.AnOperation;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassDiagram;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassdiagramFactory;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassdiagramPackage;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;

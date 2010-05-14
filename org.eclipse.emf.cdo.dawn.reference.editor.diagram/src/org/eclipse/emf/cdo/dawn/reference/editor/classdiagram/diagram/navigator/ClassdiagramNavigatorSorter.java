@@ -11,6 +11,7 @@
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.navigator;
 
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramVisualIDRegistry;
+
 import org.eclipse.jface.viewers.ViewerSorter;
 
 /**

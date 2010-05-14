@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.1 2010-04-11 18:32:36 mfluegge Exp $
+ $Id: plugin.xml,v 1.2 2010-05-14 20:21:16 mfluegge Exp $
 -->
 
 <plugin>
@@ -13,7 +13,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://class.uml.diagram.mftech.org"
-            class="classdiagram.ClassdiagramPackage"
+            class="org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassdiagramPackage"
             genModel="model/classdiagram.genmodel"/>
    </extension>
 

@@ -10,21 +10,20 @@
  ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts;
 
-import java.util.Collections;
-import java.util.List;
-
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.policies.AnAttribute2ItemSemanticEditPolicy;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.policies.ClassdiagramTextNonResizableEditPolicy;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.policies.ClassdiagramTextSelectionEditPolicy;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramVisualIDRegistry;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.providers.ClassdiagramElementTypes;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.providers.ClassdiagramParserProvider;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RunnableWithResult;
+
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.AccessibleEditPart;
 import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPolicy;
@@ -59,6 +58,9 @@ import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @generated

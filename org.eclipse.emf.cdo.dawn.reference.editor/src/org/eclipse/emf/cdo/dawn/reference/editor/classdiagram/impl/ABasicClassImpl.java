@@ -14,9 +14,11 @@ import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ABasicClass;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.AnAttribute;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.AnOperation;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassdiagramPackage;
+
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>ABasic Class</b></em>'. <!-- end-user-doc -->

@@ -10,7 +10,6 @@
  ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.providers;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassdiagramPackage;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts.AClassNameEditPart;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts.AInterfaceNameEditPart;
@@ -20,8 +19,11 @@ import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts.AnOperationEditPart;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.parsers.MessageFormatParser;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramVisualIDRegistry;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.common.ui.services.parser.GetParserOperation;

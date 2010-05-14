@@ -19,6 +19,7 @@ import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.AnAttribute;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.AnOperation;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassDiagram;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassdiagramPackage;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;

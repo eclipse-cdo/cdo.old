@@ -20,27 +20,28 @@ package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part;
  *     Martin Flügge - initial API and implementation
  ******************************************************************************/
 
-import java.lang.reflect.InvocationTargetException;
-
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.cdo.dawn.runtime.preferences.PreferenceConstants;
 import org.eclipse.emf.cdo.dawn.ui.wizards.DawnCreateNewDiagramResourceWizardPage;
 import org.eclipse.emf.cdo.dawn.ui.wizards.DawnCreateNewResourceWizardPage;
 import org.eclipse.emf.cdo.dawn.util.connection.CDOConnectionUtil;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.view.CDOView;
+
 import org.eclipse.emf.common.util.URI;
+
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
+
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * @author Martin Fluegge
  */
-public class DawnClassdiagramCreationWizard extends ClassdiagramCreationWizard implements INewWizard
+public class DawnClassdiagramCreationWizard extends ClassdiagramCreationWizard
 {
   private CDOView view;
 
@@ -58,6 +59,7 @@ public class DawnClassdiagramCreationWizard extends ClassdiagramCreationWizard i
     view = CDOConnectionUtil.instance.openView(session);
   }
 
+  @Override
   public boolean performFinish()
   {
     ClassdiagramDiagramEditorPlugin.getInstance().logInfo(
@@ -68,6 +70,7 @@ public class DawnClassdiagramCreationWizard extends ClassdiagramCreationWizard i
     ClassdiagramDiagramEditorPlugin.getInstance().logInfo("Domain Model URI: " + dawnDomainModelFilePage.getURI());
     IRunnableWithProgress op = new WorkspaceModifyOperation(null)
     {
+      @Override
       protected void execute(IProgressMonitor monitor) throws CoreException, InterruptedException
       {
         URI diagramResourceURI = dawnDiagramModelFilePage.getURI();
@@ -124,6 +127,7 @@ public class DawnClassdiagramCreationWizard extends ClassdiagramCreationWizard i
 
     dawnDomainModelFilePage = new DawnCreateNewResourceWizardPage("", true, view)
     {
+      @Override
       public void setVisible(boolean visible)
       {
         if (visible)

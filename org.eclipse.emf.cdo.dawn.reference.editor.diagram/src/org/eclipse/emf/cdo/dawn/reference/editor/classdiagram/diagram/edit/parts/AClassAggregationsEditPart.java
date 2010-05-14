@@ -10,11 +10,12 @@
  ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts;
 
+import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.policies.AClassAggregationsItemSemanticEditPolicy;
+
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.geometry.PointList;
-import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.policies.AClassAggregationsItemSemanticEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;

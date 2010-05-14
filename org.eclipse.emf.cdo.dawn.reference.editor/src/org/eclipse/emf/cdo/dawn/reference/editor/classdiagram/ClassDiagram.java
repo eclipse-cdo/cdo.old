@@ -11,6 +11,7 @@
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram;
 
 import org.eclipse.emf.cdo.CDOObject;
+
 import org.eclipse.emf.common.util.EList;
 
 /**

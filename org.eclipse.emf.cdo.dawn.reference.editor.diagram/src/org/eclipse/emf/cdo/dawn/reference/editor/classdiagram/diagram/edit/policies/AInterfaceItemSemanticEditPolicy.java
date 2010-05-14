@@ -10,8 +10,6 @@
  ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.policies;
 
-import java.util.Iterator;
-
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.commands.AClassImplementedInterfacesCreateCommand;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.commands.AClassImplementedInterfacesReorientCommand;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts.AClassImplementedInterfacesEditPart;
@@ -21,7 +19,9 @@ import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts.AnOperationEditPart;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramVisualIDRegistry;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.providers.ClassdiagramElementTypes;
+
 import org.eclipse.emf.ecore.EAnnotation;
+
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
@@ -35,6 +35,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+
+import java.util.Iterator;
 
 /**
  * @generated

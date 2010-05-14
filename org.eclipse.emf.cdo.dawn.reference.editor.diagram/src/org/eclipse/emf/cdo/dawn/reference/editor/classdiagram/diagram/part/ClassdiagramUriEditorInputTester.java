@@ -10,8 +10,9 @@
  ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part;
 
-import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.common.ui.URIEditorInput;
+
+import org.eclipse.core.expressions.PropertyTester;
 
 /**
  * @generated

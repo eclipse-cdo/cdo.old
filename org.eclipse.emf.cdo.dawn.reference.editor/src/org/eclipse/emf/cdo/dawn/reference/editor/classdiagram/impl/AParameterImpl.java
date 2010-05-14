@@ -12,8 +12,10 @@ package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.impl;
 
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.AParameter;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassdiagramPackage;
-import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
+
+import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>AParameter</b></em>'. <!-- end-user-doc -->

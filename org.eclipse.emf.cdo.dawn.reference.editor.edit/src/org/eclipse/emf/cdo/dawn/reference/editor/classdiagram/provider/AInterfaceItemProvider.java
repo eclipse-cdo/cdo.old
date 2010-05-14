@@ -10,10 +10,8 @@
  ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.provider;
 
-import java.util.Collection;
-import java.util.List;
-
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.AInterface;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -22,6 +20,9 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
+import java.util.Collection;
+import java.util.List;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.AInterface}

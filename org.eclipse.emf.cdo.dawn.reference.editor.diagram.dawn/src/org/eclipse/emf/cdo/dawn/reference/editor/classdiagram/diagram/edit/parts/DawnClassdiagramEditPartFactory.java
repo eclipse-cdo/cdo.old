@@ -12,6 +12,7 @@ package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.part
 
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramDiagramEditorPlugin;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramVisualIDRegistry;
+
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
 
@@ -24,6 +25,7 @@ public class DawnClassdiagramEditPartFactory extends ClassdiagramEditPartFactory
         "Using DawnClassdiagramEditPartFactory instead of the original one");
   }
 
+  @Override
   public EditPart createEditPart(EditPart context, Object model)
   {
     if (model instanceof View)

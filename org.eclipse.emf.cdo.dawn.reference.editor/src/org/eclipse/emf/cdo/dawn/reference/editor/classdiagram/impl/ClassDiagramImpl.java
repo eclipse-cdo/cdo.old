@@ -14,9 +14,11 @@ import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.AClass;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.AInterface;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassDiagram;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassdiagramPackage;
+
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Class Diagram</b></em>'. <!-- end-user-doc -->

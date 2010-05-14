@@ -10,14 +10,14 @@
  ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.policies;
 
-import java.util.Iterator;
-
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.AClass;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.AInterface;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.helpers.ClassdiagramBaseEditHelper;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramVisualIDRegistry;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.providers.ClassdiagramElementTypes;
+
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
@@ -45,6 +45,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
+
+import java.util.Iterator;
 
 /**
  * @generated

@@ -10,12 +10,10 @@
  ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.provider;
 
-import java.util.Collection;
-import java.util.List;
-
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.AnOperation;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassdiagramFactory;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassdiagramPackage;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -26,6 +24,9 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import java.util.Collection;
+import java.util.List;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.AnOperation}

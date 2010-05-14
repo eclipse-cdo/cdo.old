@@ -10,8 +10,6 @@
  ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.util;
 
-import java.util.List;
-
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ABasicClass;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.AClass;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.AClassChild;
@@ -21,8 +19,11 @@ import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.AnAttribute;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.AnOperation;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassDiagram;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassdiagramPackage;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
+import java.util.List;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance hierarchy. It supports the call

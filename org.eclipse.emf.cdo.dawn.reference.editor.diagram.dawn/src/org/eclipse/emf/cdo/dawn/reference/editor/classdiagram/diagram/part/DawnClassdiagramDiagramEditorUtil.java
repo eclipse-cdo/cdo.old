@@ -10,14 +10,6 @@
  ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part;
 
-import java.io.IOException;
-import java.util.Collections;
-
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassDiagram;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassdiagramFactory;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts.DawnClassDiagramEditPart;
@@ -28,11 +20,18 @@ import org.eclipse.emf.cdo.dawn.ui.DawnEditorInput;
 import org.eclipse.emf.cdo.dawn.util.connection.CDOConnectionUtil;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
+
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.operations.OperationHistoryFactory;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
@@ -44,6 +43,9 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+
+import java.io.IOException;
+import java.util.Collections;
 
 /**
  * @author Martin Fluegge
@@ -124,7 +126,7 @@ public class DawnClassdiagramDiagramEditorUtil extends ClassdiagramDiagramEditor
     // CDOConnectionUtil.instance.init("repo1", "tcp", "localhost");
     CDOConnectionUtil.instance.init(PreferenceConstants.getRepositoryName(), PreferenceConstants.getProtocol(),
         PreferenceConstants.getServerName());
-    CDOSession session = CDOConnectionUtil.instance.openSession();
+    CDOConnectionUtil.instance.openSession();
     ResourceSet resourceSet = editingDomain.getResourceSet();
 
     ClassdiagramDiagramEditorPlugin.getInstance().logInfo("URI toString: " + diagramURI.toString());
@@ -149,6 +151,7 @@ public class DawnClassdiagramDiagramEditorUtil extends ClassdiagramDiagramEditor
     AbstractTransactionalCommand command = new AbstractTransactionalCommand(editingDomain,
         Messages.ClassdiagramDiagramEditorUtil_CreateDiagramCommandLabel, Collections.EMPTY_LIST)
     {
+      @Override
       protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException
       {
         ClassDiagram model = null;

@@ -13,6 +13,7 @@ package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.impl;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.AParameter;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.AnOperation;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassdiagramPackage;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 

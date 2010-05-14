@@ -11,6 +11,7 @@
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.preferences;
 
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramDiagramEditorPlugin;
+
 import org.eclipse.gmf.runtime.diagram.ui.preferences.RulerGridPreferencePage;
 
 /**
