@@ -24,15 +24,15 @@ import org.eclipse.gmf.runtime.notation.View;
 public class DawnClassDiagramEditPart extends ClassDiagramEditPart
 {
 
-  /**
-   * @generated
-   */
-  public final static String MODEL_ID = "Classdiagram"; //$NON-NLS-1$
-
-  /**
-   * @generated
-   */
-  public static final int VISUAL_ID = 1000;
+  // /**
+  // * @generated
+  // */
+  //  public final static String MODEL_ID = "Classdiagram"; //$NON-NLS-1$
+  //
+  // /**
+  // * @generated
+  // */
+  // public static final int VISUAL_ID = 1000;
 
   /**
    * @generated
@@ -52,5 +52,4 @@ public class DawnClassDiagramEditPart extends ClassDiagramEditPart
     }
     super.removeChild(child);
   }
-
 }

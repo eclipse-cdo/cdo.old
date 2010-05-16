@@ -10,7 +10,6 @@
  ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part;
 
-import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassDiagram;
 import org.eclipse.emf.cdo.dawn.runtime.diagram.part.IDawnDiagramEditor;
 import org.eclipse.emf.cdo.dawn.runtime.notifications.DawnNotificationUtil;
 import org.eclipse.emf.cdo.dawn.ui.DawnEditorInput;
@@ -37,7 +36,6 @@ import org.eclipse.ui.IFileEditorInput;
  */
 public class DawnClassdiagramDiagramEditor extends ClassdiagramDiagramEditor implements IDawnDiagramEditor
 {
-  ClassDiagram classDiagram;
 
   private CDOTransaction transaction;
 

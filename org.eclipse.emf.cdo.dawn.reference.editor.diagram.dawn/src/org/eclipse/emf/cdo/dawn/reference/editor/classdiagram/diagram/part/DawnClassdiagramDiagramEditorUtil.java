@@ -10,7 +10,6 @@
  ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part;
 
-import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassDiagram;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassdiagramFactory;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts.DawnClassDiagramEditPart;
 import org.eclipse.emf.cdo.dawn.runtime.commands.CreateSemanticResourceRecordingCommand;
@@ -18,10 +17,10 @@ import org.eclipse.emf.cdo.dawn.runtime.preferences.PreferenceConstants;
 import org.eclipse.emf.cdo.dawn.runtime.transaction.DawnGMFEditingDomainFactory;
 import org.eclipse.emf.cdo.dawn.ui.DawnEditorInput;
 import org.eclipse.emf.cdo.dawn.util.connection.CDOConnectionUtil;
-import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -53,7 +52,7 @@ import java.util.Collections;
 public class DawnClassdiagramDiagramEditorUtil extends ClassdiagramDiagramEditorUtil
 {
 
-  static CDOSession session;
+  // static CDOSession session;
 
   /**
    * @generated
@@ -63,39 +62,6 @@ public class DawnClassdiagramDiagramEditorUtil extends ClassdiagramDiagramEditor
     IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
     return null != page.openEditor(new DawnEditorInput(diagram.getURI()), DawnClassdiagramDiagramEditor.ID);
   }
-
-  // /**
-  // * @generated
-  // */
-  // public static String getUniqueFileName(IPath containerFullPath, String fileName, String extension)
-  // {
-  // if (containerFullPath == null)
-  // {
-  //      containerFullPath = new Path(""); //$NON-NLS-1$
-  // }
-  // if (fileName == null || fileName.trim().length() == 0)
-  // {
-  //      fileName = "default"; //$NON-NLS-1$
-  // }
-  // IPath filePath = containerFullPath.append(fileName);
-  // if (extension != null && !extension.equals(filePath.getFileExtension()))
-  // {
-  // filePath = filePath.addFileExtension(extension);
-  // }
-  // extension = filePath.getFileExtension();
-  // fileName = filePath.removeFileExtension().lastSegment();
-  // int i = 1;
-  // while (ResourcesPlugin.getWorkspace().getRoot().exists(filePath))
-  // {
-  // i++;
-  // filePath = containerFullPath.append(fileName + i);
-  // if (extension != null)
-  // {
-  // filePath = filePath.addFileExtension(extension);
-  // }
-  // }
-  // return filePath.lastSegment();
-  // }
 
   /**
    * Runs the wizard in a dialog.
@@ -123,7 +89,6 @@ public class DawnClassdiagramDiagramEditorUtil extends ClassdiagramDiagramEditor
 
     progressMonitor.beginTask(Messages.ClassdiagramDiagramEditorUtil_CreateDiagramProgressTask, 3);
 
-    // CDOConnectionUtil.instance.init("repo1", "tcp", "localhost");
     CDOConnectionUtil.instance.init(PreferenceConstants.getRepositoryName(), PreferenceConstants.getProtocol(),
         PreferenceConstants.getServerName());
     CDOConnectionUtil.instance.openSession();
@@ -154,10 +119,10 @@ public class DawnClassdiagramDiagramEditorUtil extends ClassdiagramDiagramEditor
       @Override
       protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException
       {
-        ClassDiagram model = null;
+        EObject model = null;
         if (modelResource.getContents().size() > 0)
         {
-          model = (ClassDiagram)modelResource.getContents().get(0);
+          model = modelResource.getContents().get(0);
         }
         else
         {
@@ -205,7 +170,7 @@ public class DawnClassdiagramDiagramEditorUtil extends ClassdiagramDiagramEditor
    * 
    * @generated
    */
-  private static ClassDiagram createInitialModel()
+  private static EObject createInitialModel()
   {
     return ClassdiagramFactory.eINSTANCE.createClassDiagram();
   }
@@ -215,7 +180,7 @@ public class DawnClassdiagramDiagramEditorUtil extends ClassdiagramDiagramEditor
    * 
    * @generated
    */
-  private static void attachModelToResource(ClassDiagram model, Resource resource)
+  private static void attachModelToResource(EObject model, Resource resource)
   {
     resource.getContents().add(model);
   }

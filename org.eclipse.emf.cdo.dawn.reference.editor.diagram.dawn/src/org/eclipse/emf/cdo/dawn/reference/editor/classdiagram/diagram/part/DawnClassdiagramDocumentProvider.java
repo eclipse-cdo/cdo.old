@@ -114,6 +114,7 @@ public class DawnClassdiagramDocumentProvider extends ClassdiagramDocumentProvid
     return editingDomain;
   }
 
+  @SuppressWarnings({ "rawtypes", "unchecked" })
   @Override
   protected void setDocumentContent(IDocument document, IEditorInput element) throws CoreException
   {
