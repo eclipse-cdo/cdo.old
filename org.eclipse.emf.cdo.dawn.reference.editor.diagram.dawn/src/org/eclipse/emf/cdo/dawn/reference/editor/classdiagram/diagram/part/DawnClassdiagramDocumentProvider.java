@@ -48,6 +48,7 @@ import java.util.Map;
 /**
  * @author Martin Fluegge
  */
+@SuppressWarnings("restriction")
 public class DawnClassdiagramDocumentProvider extends ClassdiagramDocumentProvider
 {
 
