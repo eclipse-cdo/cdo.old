@@ -18,7 +18,7 @@
             contributorClass="org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramDiagramActionBarContributor"
             default="true"
 	            extensions="classdiagram_diagram"
-	            icon="icons/obj16/ClassdiagramDiagramFile.gif"
+	            icon="platform:/plugin/org.eclipse.emf.cdo.dawn.reference.editor.diagram/icons/obj16/ClassdiagramDiagramFile.gif"
 	            id="org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.DawnClassdiagramDiagramEditor"
 	            matchingStrategy="org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramMatchingStrategy"
 	            name="Dawn Classdiagram Diagram">
@@ -29,7 +29,7 @@
        <wizard
              category="org.eclipse.ui.Examples"
              class="org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.DawnClassdiagramCreationWizard"
-             icon="icons/obj16/ClassdiagramDiagramFile.gif"
+             icon="platform:/plugin/org.eclipse.emf.cdo.dawn.reference.editor.diagram/icons/obj16/ClassdiagramDiagramFile.gif"
              id="de.mf.eclipse.plugins.dawn.diagram.communication.wizard1"
              name="Dawn Classdiagram Diagram">
           <description>
