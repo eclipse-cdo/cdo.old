@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010 Martin Fluegge (Berlin, Germany).
+ * Copyright (c) 2004 - 2010 Eike Stepper (Berlin, Germany).
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,8 +10,8 @@
  ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part;
 
-import org.eclipse.emf.cdo.dawn.runtime.diagram.part.IDawnDiagramEditor;
-import org.eclipse.emf.cdo.dawn.runtime.notifications.DawnNotificationUtil;
+import org.eclipse.emf.cdo.dawn.diagram.part.IDawnDiagramEditor;
+import org.eclipse.emf.cdo.dawn.notifications.DawnNotificationUtil;
 import org.eclipse.emf.cdo.dawn.ui.DawnEditorInput;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.ui.CDOEditorInput;

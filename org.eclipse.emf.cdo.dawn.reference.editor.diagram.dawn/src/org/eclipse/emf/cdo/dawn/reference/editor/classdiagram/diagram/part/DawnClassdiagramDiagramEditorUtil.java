@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010 Martin Fluegge (Berlin, Germany).
+ * Copyright (c) 2004 - 2010 Eike Stepper (Berlin, Germany).
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,11 +10,11 @@
  ******************************************************************************/
 package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part;
 
+import org.eclipse.emf.cdo.dawn.commands.CreateSemanticResourceRecordingCommand;
+import org.eclipse.emf.cdo.dawn.preferences.PreferenceConstants;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.ClassdiagramFactory;
 import org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.edit.parts.DawnClassDiagramEditPart;
-import org.eclipse.emf.cdo.dawn.runtime.commands.CreateSemanticResourceRecordingCommand;
-import org.eclipse.emf.cdo.dawn.runtime.preferences.PreferenceConstants;
-import org.eclipse.emf.cdo.dawn.runtime.transaction.DawnGMFEditingDomainFactory;
+import org.eclipse.emf.cdo.dawn.transaction.DawnGMFEditingDomainFactory;
 import org.eclipse.emf.cdo.dawn.ui.DawnEditorInput;
 import org.eclipse.emf.cdo.dawn.util.connection.CDOConnectionUtil;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;

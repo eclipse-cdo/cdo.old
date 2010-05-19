@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010 Martin Fluegge (Berlin, Germany).
+ * Copyright (c) 2004 - 2010 Eike Stepper (Berlin, Germany).
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,7 +20,7 @@ package org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part;
  *     Martin Flügge - initial API and implementation
  ******************************************************************************/
 
-import org.eclipse.emf.cdo.dawn.runtime.preferences.PreferenceConstants;
+import org.eclipse.emf.cdo.dawn.preferences.PreferenceConstants;
 import org.eclipse.emf.cdo.dawn.ui.wizards.DawnCreateNewDiagramResourceWizardPage;
 import org.eclipse.emf.cdo.dawn.ui.wizards.DawnCreateNewResourceWizardPage;
 import org.eclipse.emf.cdo.dawn.util.connection.CDOConnectionUtil;
