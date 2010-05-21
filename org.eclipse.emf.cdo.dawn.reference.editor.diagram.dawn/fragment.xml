@@ -27,7 +27,7 @@
 	       <extension
           point="org.eclipse.ui.newWizards">
        <wizard
-             category="org.eclipse.emf.cdo.dawn.ui.categroy.examples"
+             category="org.eclipse.emf.cdo.dawn.ui.category.examples"
              class="org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.DawnClassdiagramCreationWizard"
              icon="platform:/plugin/org.eclipse.emf.cdo.dawn.reference.editor.diagram/icons/obj16/ClassdiagramDiagramFile.gif"
              id="org.eclipse.plugins.dawn.diagram.communication.wizard1"
