@@ -27,10 +27,10 @@
 	       <extension
           point="org.eclipse.ui.newWizards">
        <wizard
-             category="org.eclipse.ui.Examples"
+             category="org.eclipse.emf.cdo.dawn.ui.categroy.examples"
              class="org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.DawnClassdiagramCreationWizard"
              icon="platform:/plugin/org.eclipse.emf.cdo.dawn.reference.editor.diagram/icons/obj16/ClassdiagramDiagramFile.gif"
-             id="de.mf.eclipse.plugins.dawn.diagram.communication.wizard1"
+             id="org.eclipse.plugins.dawn.diagram.communication.wizard1"
              name="Dawn Classdiagram Diagram">
           <description>
              description body text

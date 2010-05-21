@@ -49,17 +49,17 @@
       </context>
    </extension>
 
-   <extension point="org.eclipse.ui.newWizards" id="creation-wizard">
+  <!-- <extension point="org.eclipse.ui.newWizards" id="creation-wizard">
       <?gmfgen generated="true"?>
   	  <wizard
   	     name="%newWizardName"
   	     icon="icons/obj16/ClassdiagramDiagramFile.gif"
-  	     category="org.eclipse.ui.Examples"
+  	     category="org.eclipse.emf.cdo.dawn.ui.categroy.examples"
   	     class="org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramCreationWizard"
   	     id="org.eclipse.emf.cdo.dawn.reference.editor.classdiagram.diagram.part.ClassdiagramCreationWizardID">
   	  	 <description>%newWizardDesc</description>  
       </wizard>
-   </extension>
+   </extension>-->
 
    <extension point="org.eclipse.ui.popupMenus" id="init-diagram-action">
       <?gmfgen generated="true"?>
