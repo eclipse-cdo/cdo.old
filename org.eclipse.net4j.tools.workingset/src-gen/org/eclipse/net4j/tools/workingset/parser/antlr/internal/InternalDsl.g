@@ -147,15 +147,7 @@ ruleOrExpression returns [EObject current=null]
     currentNode = newNode; 
         associateNodeWithAstElement(currentNode, $current); 
     }
-)
-    { 
-        currentNode=createCompositeNode(grammarAccess.getOrExpressionAccess().getOrOperatorParserRuleCall_1_1(), currentNode); 
-    }
-ruleOrOperator
-    { 
-        currentNode = currentNode.getParent();
-    }
-(
+)ruleOrOperator(
 (
 		{ 
 	        currentNode=createCompositeNode(grammarAccess.getOrExpressionAccess().getRightXorExpressionParserRuleCall_1_2_0(), currentNode); 
@@ -227,15 +219,7 @@ ruleXorExpression returns [EObject current=null]
     currentNode = newNode; 
         associateNodeWithAstElement(currentNode, $current); 
     }
-)
-    { 
-        currentNode=createCompositeNode(grammarAccess.getXorExpressionAccess().getXorOperatorParserRuleCall_1_1(), currentNode); 
-    }
-ruleXorOperator
-    { 
-        currentNode = currentNode.getParent();
-    }
-(
+)ruleXorOperator(
 (
 		{ 
 	        currentNode=createCompositeNode(grammarAccess.getXorExpressionAccess().getRightAndExpressionParserRuleCall_1_2_0(), currentNode); 
@@ -307,15 +291,7 @@ ruleAndExpression returns [EObject current=null]
     currentNode = newNode; 
         associateNodeWithAstElement(currentNode, $current); 
     }
-)
-    { 
-        currentNode=createCompositeNode(grammarAccess.getAndExpressionAccess().getAndOperatorParserRuleCall_1_1(), currentNode); 
-    }
-ruleAndOperator
-    { 
-        currentNode = currentNode.getParent();
-    }
-(
+)ruleAndOperator(
 (
 		{ 
 	        currentNode=createCompositeNode(grammarAccess.getAndExpressionAccess().getRightComparisonExpressionParserRuleCall_1_2_0(), currentNode); 
@@ -680,15 +656,7 @@ ruleNotExpression returns [EObject current=null]
     currentNode = newNode; 
         associateNodeWithAstElement(currentNode, $current); 
     }
-)
-    { 
-        currentNode=createCompositeNode(grammarAccess.getNotExpressionAccess().getNotOperatorParserRuleCall_1(), currentNode); 
-    }
-ruleNotOperator
-    { 
-        currentNode = currentNode.getParent();
-    }
-(
+)ruleNotOperator(
 (
 		{ 
 	        currentNode=createCompositeNode(grammarAccess.getNotExpressionAccess().getRightPrimaryExpressionParserRuleCall_2_0(), currentNode); 

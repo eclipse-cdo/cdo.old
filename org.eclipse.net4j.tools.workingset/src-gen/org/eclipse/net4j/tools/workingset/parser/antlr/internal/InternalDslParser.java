@@ -254,26 +254,20 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
             	    }
 
-            	     
-            	            currentNode=createCompositeNode(grammarAccess.getOrExpressionAccess().getOrOperatorParserRuleCall_1_1(), currentNode); 
-            	        
-            	    pushFollow(FOLLOW_ruleOrOperator_in_ruleOrExpression247);
+            	    pushFollow(FOLLOW_ruleOrOperator_in_ruleOrExpression240);
             	    ruleOrOperator();
             	    _fsp--;
 
-            	     
-            	            currentNode = currentNode.getParent();
-            	        
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:158:1: ( (lv_right_3_0= ruleXorExpression ) )
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:159:1: (lv_right_3_0= ruleXorExpression )
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:150:16: ( (lv_right_3_0= ruleXorExpression ) )
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:151:1: (lv_right_3_0= ruleXorExpression )
             	    {
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:159:1: (lv_right_3_0= ruleXorExpression )
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:160:3: lv_right_3_0= ruleXorExpression
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:151:1: (lv_right_3_0= ruleXorExpression )
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:152:3: lv_right_3_0= ruleXorExpression
             	    {
             	     
             	    	        currentNode=createCompositeNode(grammarAccess.getOrExpressionAccess().getRightXorExpressionParserRuleCall_1_2_0(), currentNode); 
             	    	    
-            	    pushFollow(FOLLOW_ruleXorExpression_in_ruleOrExpression267);
+            	    pushFollow(FOLLOW_ruleXorExpression_in_ruleOrExpression253);
             	    lv_right_3_0=ruleXorExpression();
             	    _fsp--;
 
@@ -332,7 +326,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleXorExpression
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:190:1: entryRuleXorExpression returns [EObject current=null] : iv_ruleXorExpression= ruleXorExpression EOF ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:182:1: entryRuleXorExpression returns [EObject current=null] : iv_ruleXorExpression= ruleXorExpression EOF ;
     public final EObject entryRuleXorExpression() throws RecognitionException {
         EObject current = null;
 
@@ -340,16 +334,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:191:2: (iv_ruleXorExpression= ruleXorExpression EOF )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:192:2: iv_ruleXorExpression= ruleXorExpression EOF
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:183:2: (iv_ruleXorExpression= ruleXorExpression EOF )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:184:2: iv_ruleXorExpression= ruleXorExpression EOF
             {
              currentNode = createCompositeNode(grammarAccess.getXorExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleXorExpression_in_entryRuleXorExpression305);
+            pushFollow(FOLLOW_ruleXorExpression_in_entryRuleXorExpression291);
             iv_ruleXorExpression=ruleXorExpression();
             _fsp--;
 
              current =iv_ruleXorExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXorExpression315); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXorExpression301); 
 
             }
 
@@ -367,7 +361,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleXorExpression
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:199:1: ruleXorExpression returns [EObject current=null] : (this_AndExpression_0= ruleAndExpression ( () ruleXorOperator ( (lv_right_3_0= ruleAndExpression ) ) )* ) ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:191:1: ruleXorExpression returns [EObject current=null] : (this_AndExpression_0= ruleAndExpression ( () ruleXorOperator ( (lv_right_3_0= ruleAndExpression ) ) )* ) ;
     public final EObject ruleXorExpression() throws RecognitionException {
         EObject current = null;
 
@@ -379,16 +373,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:204:6: ( (this_AndExpression_0= ruleAndExpression ( () ruleXorOperator ( (lv_right_3_0= ruleAndExpression ) ) )* ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:205:1: (this_AndExpression_0= ruleAndExpression ( () ruleXorOperator ( (lv_right_3_0= ruleAndExpression ) ) )* )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:196:6: ( (this_AndExpression_0= ruleAndExpression ( () ruleXorOperator ( (lv_right_3_0= ruleAndExpression ) ) )* ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:197:1: (this_AndExpression_0= ruleAndExpression ( () ruleXorOperator ( (lv_right_3_0= ruleAndExpression ) ) )* )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:205:1: (this_AndExpression_0= ruleAndExpression ( () ruleXorOperator ( (lv_right_3_0= ruleAndExpression ) ) )* )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:206:5: this_AndExpression_0= ruleAndExpression ( () ruleXorOperator ( (lv_right_3_0= ruleAndExpression ) ) )*
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:197:1: (this_AndExpression_0= ruleAndExpression ( () ruleXorOperator ( (lv_right_3_0= ruleAndExpression ) ) )* )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:198:5: this_AndExpression_0= ruleAndExpression ( () ruleXorOperator ( (lv_right_3_0= ruleAndExpression ) ) )*
             {
              
                     currentNode=createCompositeNode(grammarAccess.getXorExpressionAccess().getAndExpressionParserRuleCall_0(), currentNode); 
                 
-            pushFollow(FOLLOW_ruleAndExpression_in_ruleXorExpression362);
+            pushFollow(FOLLOW_ruleAndExpression_in_ruleXorExpression348);
             this_AndExpression_0=ruleAndExpression();
             _fsp--;
 
@@ -396,7 +390,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     current = this_AndExpression_0; 
                     currentNode = currentNode.getParent();
                 
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:214:1: ( () ruleXorOperator ( (lv_right_3_0= ruleAndExpression ) ) )*
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:206:1: ( () ruleXorOperator ( (lv_right_3_0= ruleAndExpression ) ) )*
             loop2:
             do {
                 int alt2=2;
@@ -409,10 +403,10 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
                 switch (alt2) {
             	case 1 :
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:214:2: () ruleXorOperator ( (lv_right_3_0= ruleAndExpression ) )
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:206:2: () ruleXorOperator ( (lv_right_3_0= ruleAndExpression ) )
             	    {
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:214:2: ()
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:215:5: 
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:206:2: ()
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:207:5: 
             	    {
             	     
             	            temp=factory.create(grammarAccess.getXorExpressionAccess().getXorExpressionLeftAction_1_0().getType().getClassifier());
@@ -432,26 +426,20 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
             	    }
 
-            	     
-            	            currentNode=createCompositeNode(grammarAccess.getXorExpressionAccess().getXorOperatorParserRuleCall_1_1(), currentNode); 
-            	        
-            	    pushFollow(FOLLOW_ruleXorOperator_in_ruleXorExpression387);
+            	    pushFollow(FOLLOW_ruleXorOperator_in_ruleXorExpression366);
             	    ruleXorOperator();
             	    _fsp--;
 
-            	     
-            	            currentNode = currentNode.getParent();
-            	        
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:238:1: ( (lv_right_3_0= ruleAndExpression ) )
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:239:1: (lv_right_3_0= ruleAndExpression )
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:222:17: ( (lv_right_3_0= ruleAndExpression ) )
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:223:1: (lv_right_3_0= ruleAndExpression )
             	    {
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:239:1: (lv_right_3_0= ruleAndExpression )
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:240:3: lv_right_3_0= ruleAndExpression
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:223:1: (lv_right_3_0= ruleAndExpression )
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:224:3: lv_right_3_0= ruleAndExpression
             	    {
             	     
             	    	        currentNode=createCompositeNode(grammarAccess.getXorExpressionAccess().getRightAndExpressionParserRuleCall_1_2_0(), currentNode); 
             	    	    
-            	    pushFollow(FOLLOW_ruleAndExpression_in_ruleXorExpression407);
+            	    pushFollow(FOLLOW_ruleAndExpression_in_ruleXorExpression379);
             	    lv_right_3_0=ruleAndExpression();
             	    _fsp--;
 
@@ -510,7 +498,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleAndExpression
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:270:1: entryRuleAndExpression returns [EObject current=null] : iv_ruleAndExpression= ruleAndExpression EOF ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:254:1: entryRuleAndExpression returns [EObject current=null] : iv_ruleAndExpression= ruleAndExpression EOF ;
     public final EObject entryRuleAndExpression() throws RecognitionException {
         EObject current = null;
 
@@ -518,16 +506,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:271:2: (iv_ruleAndExpression= ruleAndExpression EOF )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:272:2: iv_ruleAndExpression= ruleAndExpression EOF
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:255:2: (iv_ruleAndExpression= ruleAndExpression EOF )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:256:2: iv_ruleAndExpression= ruleAndExpression EOF
             {
              currentNode = createCompositeNode(grammarAccess.getAndExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleAndExpression_in_entryRuleAndExpression445);
+            pushFollow(FOLLOW_ruleAndExpression_in_entryRuleAndExpression417);
             iv_ruleAndExpression=ruleAndExpression();
             _fsp--;
 
              current =iv_ruleAndExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleAndExpression455); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleAndExpression427); 
 
             }
 
@@ -545,7 +533,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleAndExpression
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:279:1: ruleAndExpression returns [EObject current=null] : (this_ComparisonExpression_0= ruleComparisonExpression ( () ruleAndOperator ( (lv_right_3_0= ruleComparisonExpression ) ) )* ) ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:263:1: ruleAndExpression returns [EObject current=null] : (this_ComparisonExpression_0= ruleComparisonExpression ( () ruleAndOperator ( (lv_right_3_0= ruleComparisonExpression ) ) )* ) ;
     public final EObject ruleAndExpression() throws RecognitionException {
         EObject current = null;
 
@@ -557,16 +545,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:284:6: ( (this_ComparisonExpression_0= ruleComparisonExpression ( () ruleAndOperator ( (lv_right_3_0= ruleComparisonExpression ) ) )* ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:285:1: (this_ComparisonExpression_0= ruleComparisonExpression ( () ruleAndOperator ( (lv_right_3_0= ruleComparisonExpression ) ) )* )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:268:6: ( (this_ComparisonExpression_0= ruleComparisonExpression ( () ruleAndOperator ( (lv_right_3_0= ruleComparisonExpression ) ) )* ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:269:1: (this_ComparisonExpression_0= ruleComparisonExpression ( () ruleAndOperator ( (lv_right_3_0= ruleComparisonExpression ) ) )* )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:285:1: (this_ComparisonExpression_0= ruleComparisonExpression ( () ruleAndOperator ( (lv_right_3_0= ruleComparisonExpression ) ) )* )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:286:5: this_ComparisonExpression_0= ruleComparisonExpression ( () ruleAndOperator ( (lv_right_3_0= ruleComparisonExpression ) ) )*
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:269:1: (this_ComparisonExpression_0= ruleComparisonExpression ( () ruleAndOperator ( (lv_right_3_0= ruleComparisonExpression ) ) )* )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:270:5: this_ComparisonExpression_0= ruleComparisonExpression ( () ruleAndOperator ( (lv_right_3_0= ruleComparisonExpression ) ) )*
             {
              
                     currentNode=createCompositeNode(grammarAccess.getAndExpressionAccess().getComparisonExpressionParserRuleCall_0(), currentNode); 
                 
-            pushFollow(FOLLOW_ruleComparisonExpression_in_ruleAndExpression502);
+            pushFollow(FOLLOW_ruleComparisonExpression_in_ruleAndExpression474);
             this_ComparisonExpression_0=ruleComparisonExpression();
             _fsp--;
 
@@ -574,7 +562,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     current = this_ComparisonExpression_0; 
                     currentNode = currentNode.getParent();
                 
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:294:1: ( () ruleAndOperator ( (lv_right_3_0= ruleComparisonExpression ) ) )*
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:278:1: ( () ruleAndOperator ( (lv_right_3_0= ruleComparisonExpression ) ) )*
             loop3:
             do {
                 int alt3=2;
@@ -587,10 +575,10 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:294:2: () ruleAndOperator ( (lv_right_3_0= ruleComparisonExpression ) )
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:278:2: () ruleAndOperator ( (lv_right_3_0= ruleComparisonExpression ) )
             	    {
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:294:2: ()
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:295:5: 
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:278:2: ()
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:279:5: 
             	    {
             	     
             	            temp=factory.create(grammarAccess.getAndExpressionAccess().getAndExpressionLeftAction_1_0().getType().getClassifier());
@@ -610,26 +598,20 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
             	    }
 
-            	     
-            	            currentNode=createCompositeNode(grammarAccess.getAndExpressionAccess().getAndOperatorParserRuleCall_1_1(), currentNode); 
-            	        
-            	    pushFollow(FOLLOW_ruleAndOperator_in_ruleAndExpression527);
+            	    pushFollow(FOLLOW_ruleAndOperator_in_ruleAndExpression492);
             	    ruleAndOperator();
             	    _fsp--;
 
-            	     
-            	            currentNode = currentNode.getParent();
-            	        
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:318:1: ( (lv_right_3_0= ruleComparisonExpression ) )
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:319:1: (lv_right_3_0= ruleComparisonExpression )
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:294:17: ( (lv_right_3_0= ruleComparisonExpression ) )
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:295:1: (lv_right_3_0= ruleComparisonExpression )
             	    {
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:319:1: (lv_right_3_0= ruleComparisonExpression )
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:320:3: lv_right_3_0= ruleComparisonExpression
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:295:1: (lv_right_3_0= ruleComparisonExpression )
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:296:3: lv_right_3_0= ruleComparisonExpression
             	    {
             	     
             	    	        currentNode=createCompositeNode(grammarAccess.getAndExpressionAccess().getRightComparisonExpressionParserRuleCall_1_2_0(), currentNode); 
             	    	    
-            	    pushFollow(FOLLOW_ruleComparisonExpression_in_ruleAndExpression547);
+            	    pushFollow(FOLLOW_ruleComparisonExpression_in_ruleAndExpression505);
             	    lv_right_3_0=ruleComparisonExpression();
             	    _fsp--;
 
@@ -688,7 +670,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleComparisonExpression
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:350:1: entryRuleComparisonExpression returns [EObject current=null] : iv_ruleComparisonExpression= ruleComparisonExpression EOF ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:326:1: entryRuleComparisonExpression returns [EObject current=null] : iv_ruleComparisonExpression= ruleComparisonExpression EOF ;
     public final EObject entryRuleComparisonExpression() throws RecognitionException {
         EObject current = null;
 
@@ -696,16 +678,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:351:2: (iv_ruleComparisonExpression= ruleComparisonExpression EOF )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:352:2: iv_ruleComparisonExpression= ruleComparisonExpression EOF
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:327:2: (iv_ruleComparisonExpression= ruleComparisonExpression EOF )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:328:2: iv_ruleComparisonExpression= ruleComparisonExpression EOF
             {
              currentNode = createCompositeNode(grammarAccess.getComparisonExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleComparisonExpression_in_entryRuleComparisonExpression585);
+            pushFollow(FOLLOW_ruleComparisonExpression_in_entryRuleComparisonExpression543);
             iv_ruleComparisonExpression=ruleComparisonExpression();
             _fsp--;
 
              current =iv_ruleComparisonExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleComparisonExpression595); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleComparisonExpression553); 
 
             }
 
@@ -723,7 +705,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleComparisonExpression
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:359:1: ruleComparisonExpression returns [EObject current=null] : ( (this_PrimaryExpression_0= rulePrimaryExpression ( () ( (lv_operator_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= rulePrimaryExpression ) ) )* ) | (this_ConcatExpression_4= ruleConcatExpression ( () ( (lv_operator_6_0= ruleStringOperator ) ) ( (lv_right_7_0= ruleConcatExpression ) ) )+ ) ) ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:335:1: ruleComparisonExpression returns [EObject current=null] : ( (this_PrimaryExpression_0= rulePrimaryExpression ( () ( (lv_operator_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= rulePrimaryExpression ) ) )* ) | (this_ConcatExpression_4= ruleConcatExpression ( () ( (lv_operator_6_0= ruleStringOperator ) ) ( (lv_right_7_0= ruleConcatExpression ) ) )+ ) ) ;
     public final EObject ruleComparisonExpression() throws RecognitionException {
         EObject current = null;
 
@@ -743,10 +725,10 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:364:6: ( ( (this_PrimaryExpression_0= rulePrimaryExpression ( () ( (lv_operator_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= rulePrimaryExpression ) ) )* ) | (this_ConcatExpression_4= ruleConcatExpression ( () ( (lv_operator_6_0= ruleStringOperator ) ) ( (lv_right_7_0= ruleConcatExpression ) ) )+ ) ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:365:1: ( (this_PrimaryExpression_0= rulePrimaryExpression ( () ( (lv_operator_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= rulePrimaryExpression ) ) )* ) | (this_ConcatExpression_4= ruleConcatExpression ( () ( (lv_operator_6_0= ruleStringOperator ) ) ( (lv_right_7_0= ruleConcatExpression ) ) )+ ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:340:6: ( ( (this_PrimaryExpression_0= rulePrimaryExpression ( () ( (lv_operator_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= rulePrimaryExpression ) ) )* ) | (this_ConcatExpression_4= ruleConcatExpression ( () ( (lv_operator_6_0= ruleStringOperator ) ) ( (lv_right_7_0= ruleConcatExpression ) ) )+ ) ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:341:1: ( (this_PrimaryExpression_0= rulePrimaryExpression ( () ( (lv_operator_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= rulePrimaryExpression ) ) )* ) | (this_ConcatExpression_4= ruleConcatExpression ( () ( (lv_operator_6_0= ruleStringOperator ) ) ( (lv_right_7_0= ruleConcatExpression ) ) )+ ) )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:365:1: ( (this_PrimaryExpression_0= rulePrimaryExpression ( () ( (lv_operator_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= rulePrimaryExpression ) ) )* ) | (this_ConcatExpression_4= ruleConcatExpression ( () ( (lv_operator_6_0= ruleStringOperator ) ) ( (lv_right_7_0= ruleConcatExpression ) ) )+ ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:341:1: ( (this_PrimaryExpression_0= rulePrimaryExpression ( () ( (lv_operator_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= rulePrimaryExpression ) ) )* ) | (this_ConcatExpression_4= ruleConcatExpression ( () ( (lv_operator_6_0= ruleStringOperator ) ) ( (lv_right_7_0= ruleConcatExpression ) ) )+ ) )
             int alt6=2;
             switch ( input.LA(1) ) {
             case RULE_BOOLEAN:
@@ -771,7 +753,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("365:1: ( (this_PrimaryExpression_0= rulePrimaryExpression ( () ( (lv_operator_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= rulePrimaryExpression ) ) )* ) | (this_ConcatExpression_4= ruleConcatExpression ( () ( (lv_operator_6_0= ruleStringOperator ) ) ( (lv_right_7_0= ruleConcatExpression ) ) )+ ) )", 6, 2, input);
+                        new NoViableAltException("341:1: ( (this_PrimaryExpression_0= rulePrimaryExpression ( () ( (lv_operator_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= rulePrimaryExpression ) ) )* ) | (this_ConcatExpression_4= ruleConcatExpression ( () ( (lv_operator_6_0= ruleStringOperator ) ) ( (lv_right_7_0= ruleConcatExpression ) ) )+ ) )", 6, 2, input);
 
                     throw nvae;
                 }
@@ -784,22 +766,22 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("365:1: ( (this_PrimaryExpression_0= rulePrimaryExpression ( () ( (lv_operator_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= rulePrimaryExpression ) ) )* ) | (this_ConcatExpression_4= ruleConcatExpression ( () ( (lv_operator_6_0= ruleStringOperator ) ) ( (lv_right_7_0= ruleConcatExpression ) ) )+ ) )", 6, 0, input);
+                    new NoViableAltException("341:1: ( (this_PrimaryExpression_0= rulePrimaryExpression ( () ( (lv_operator_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= rulePrimaryExpression ) ) )* ) | (this_ConcatExpression_4= ruleConcatExpression ( () ( (lv_operator_6_0= ruleStringOperator ) ) ( (lv_right_7_0= ruleConcatExpression ) ) )+ ) )", 6, 0, input);
 
                 throw nvae;
             }
 
             switch (alt6) {
                 case 1 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:365:2: (this_PrimaryExpression_0= rulePrimaryExpression ( () ( (lv_operator_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= rulePrimaryExpression ) ) )* )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:341:2: (this_PrimaryExpression_0= rulePrimaryExpression ( () ( (lv_operator_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= rulePrimaryExpression ) ) )* )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:365:2: (this_PrimaryExpression_0= rulePrimaryExpression ( () ( (lv_operator_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= rulePrimaryExpression ) ) )* )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:366:5: this_PrimaryExpression_0= rulePrimaryExpression ( () ( (lv_operator_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= rulePrimaryExpression ) ) )*
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:341:2: (this_PrimaryExpression_0= rulePrimaryExpression ( () ( (lv_operator_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= rulePrimaryExpression ) ) )* )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:342:5: this_PrimaryExpression_0= rulePrimaryExpression ( () ( (lv_operator_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= rulePrimaryExpression ) ) )*
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getComparisonExpressionAccess().getPrimaryExpressionParserRuleCall_0_0(), currentNode); 
                         
-                    pushFollow(FOLLOW_rulePrimaryExpression_in_ruleComparisonExpression643);
+                    pushFollow(FOLLOW_rulePrimaryExpression_in_ruleComparisonExpression601);
                     this_PrimaryExpression_0=rulePrimaryExpression();
                     _fsp--;
 
@@ -807,7 +789,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                             current = this_PrimaryExpression_0; 
                             currentNode = currentNode.getParent();
                         
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:374:1: ( () ( (lv_operator_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= rulePrimaryExpression ) ) )*
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:350:1: ( () ( (lv_operator_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= rulePrimaryExpression ) ) )*
                     loop4:
                     do {
                         int alt4=2;
@@ -820,10 +802,10 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:374:2: () ( (lv_operator_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= rulePrimaryExpression ) )
+                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:350:2: () ( (lv_operator_2_0= ruleComparisonOperator ) ) ( (lv_right_3_0= rulePrimaryExpression ) )
                     	    {
-                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:374:2: ()
-                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:375:5: 
+                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:350:2: ()
+                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:351:5: 
                     	    {
                     	     
                     	            temp=factory.create(grammarAccess.getComparisonExpressionAccess().getBooleanComparisonLeftAction_0_1_0().getType().getClassifier());
@@ -843,16 +825,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
                     	    }
 
-                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:390:2: ( (lv_operator_2_0= ruleComparisonOperator ) )
-                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:391:1: (lv_operator_2_0= ruleComparisonOperator )
+                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:366:2: ( (lv_operator_2_0= ruleComparisonOperator ) )
+                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:367:1: (lv_operator_2_0= ruleComparisonOperator )
                     	    {
-                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:391:1: (lv_operator_2_0= ruleComparisonOperator )
-                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:392:3: lv_operator_2_0= ruleComparisonOperator
+                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:367:1: (lv_operator_2_0= ruleComparisonOperator )
+                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:368:3: lv_operator_2_0= ruleComparisonOperator
                     	    {
                     	     
                     	    	        currentNode=createCompositeNode(grammarAccess.getComparisonExpressionAccess().getOperatorComparisonOperatorEnumRuleCall_0_1_1_0(), currentNode); 
                     	    	    
-                    	    pushFollow(FOLLOW_ruleComparisonOperator_in_ruleComparisonExpression673);
+                    	    pushFollow(FOLLOW_ruleComparisonOperator_in_ruleComparisonExpression631);
                     	    lv_operator_2_0=ruleComparisonOperator();
                     	    _fsp--;
 
@@ -879,16 +861,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
                     	    }
 
-                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:414:2: ( (lv_right_3_0= rulePrimaryExpression ) )
-                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:415:1: (lv_right_3_0= rulePrimaryExpression )
+                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:390:2: ( (lv_right_3_0= rulePrimaryExpression ) )
+                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:391:1: (lv_right_3_0= rulePrimaryExpression )
                     	    {
-                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:415:1: (lv_right_3_0= rulePrimaryExpression )
-                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:416:3: lv_right_3_0= rulePrimaryExpression
+                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:391:1: (lv_right_3_0= rulePrimaryExpression )
+                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:392:3: lv_right_3_0= rulePrimaryExpression
                     	    {
                     	     
                     	    	        currentNode=createCompositeNode(grammarAccess.getComparisonExpressionAccess().getRightPrimaryExpressionParserRuleCall_0_1_2_0(), currentNode); 
                     	    	    
-                    	    pushFollow(FOLLOW_rulePrimaryExpression_in_ruleComparisonExpression694);
+                    	    pushFollow(FOLLOW_rulePrimaryExpression_in_ruleComparisonExpression652);
                     	    lv_right_3_0=rulePrimaryExpression();
                     	    _fsp--;
 
@@ -931,15 +913,15 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:439:6: (this_ConcatExpression_4= ruleConcatExpression ( () ( (lv_operator_6_0= ruleStringOperator ) ) ( (lv_right_7_0= ruleConcatExpression ) ) )+ )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:415:6: (this_ConcatExpression_4= ruleConcatExpression ( () ( (lv_operator_6_0= ruleStringOperator ) ) ( (lv_right_7_0= ruleConcatExpression ) ) )+ )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:439:6: (this_ConcatExpression_4= ruleConcatExpression ( () ( (lv_operator_6_0= ruleStringOperator ) ) ( (lv_right_7_0= ruleConcatExpression ) ) )+ )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:440:5: this_ConcatExpression_4= ruleConcatExpression ( () ( (lv_operator_6_0= ruleStringOperator ) ) ( (lv_right_7_0= ruleConcatExpression ) ) )+
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:415:6: (this_ConcatExpression_4= ruleConcatExpression ( () ( (lv_operator_6_0= ruleStringOperator ) ) ( (lv_right_7_0= ruleConcatExpression ) ) )+ )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:416:5: this_ConcatExpression_4= ruleConcatExpression ( () ( (lv_operator_6_0= ruleStringOperator ) ) ( (lv_right_7_0= ruleConcatExpression ) ) )+
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getComparisonExpressionAccess().getConcatExpressionParserRuleCall_1_0(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleConcatExpression_in_ruleComparisonExpression726);
+                    pushFollow(FOLLOW_ruleConcatExpression_in_ruleComparisonExpression684);
                     this_ConcatExpression_4=ruleConcatExpression();
                     _fsp--;
 
@@ -947,7 +929,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                             current = this_ConcatExpression_4; 
                             currentNode = currentNode.getParent();
                         
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:448:1: ( () ( (lv_operator_6_0= ruleStringOperator ) ) ( (lv_right_7_0= ruleConcatExpression ) ) )+
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:424:1: ( () ( (lv_operator_6_0= ruleStringOperator ) ) ( (lv_right_7_0= ruleConcatExpression ) ) )+
                     int cnt5=0;
                     loop5:
                     do {
@@ -961,10 +943,10 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:448:2: () ( (lv_operator_6_0= ruleStringOperator ) ) ( (lv_right_7_0= ruleConcatExpression ) )
+                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:424:2: () ( (lv_operator_6_0= ruleStringOperator ) ) ( (lv_right_7_0= ruleConcatExpression ) )
                     	    {
-                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:448:2: ()
-                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:449:5: 
+                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:424:2: ()
+                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:425:5: 
                     	    {
                     	     
                     	            temp=factory.create(grammarAccess.getComparisonExpressionAccess().getStringComparisonLeftAction_1_1_0().getType().getClassifier());
@@ -984,16 +966,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
                     	    }
 
-                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:464:2: ( (lv_operator_6_0= ruleStringOperator ) )
-                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:465:1: (lv_operator_6_0= ruleStringOperator )
+                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:440:2: ( (lv_operator_6_0= ruleStringOperator ) )
+                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:441:1: (lv_operator_6_0= ruleStringOperator )
                     	    {
-                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:465:1: (lv_operator_6_0= ruleStringOperator )
-                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:466:3: lv_operator_6_0= ruleStringOperator
+                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:441:1: (lv_operator_6_0= ruleStringOperator )
+                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:442:3: lv_operator_6_0= ruleStringOperator
                     	    {
                     	     
                     	    	        currentNode=createCompositeNode(grammarAccess.getComparisonExpressionAccess().getOperatorStringOperatorEnumRuleCall_1_1_1_0(), currentNode); 
                     	    	    
-                    	    pushFollow(FOLLOW_ruleStringOperator_in_ruleComparisonExpression756);
+                    	    pushFollow(FOLLOW_ruleStringOperator_in_ruleComparisonExpression714);
                     	    lv_operator_6_0=ruleStringOperator();
                     	    _fsp--;
 
@@ -1020,16 +1002,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
                     	    }
 
-                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:488:2: ( (lv_right_7_0= ruleConcatExpression ) )
-                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:489:1: (lv_right_7_0= ruleConcatExpression )
+                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:464:2: ( (lv_right_7_0= ruleConcatExpression ) )
+                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:465:1: (lv_right_7_0= ruleConcatExpression )
                     	    {
-                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:489:1: (lv_right_7_0= ruleConcatExpression )
-                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:490:3: lv_right_7_0= ruleConcatExpression
+                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:465:1: (lv_right_7_0= ruleConcatExpression )
+                    	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:466:3: lv_right_7_0= ruleConcatExpression
                     	    {
                     	     
                     	    	        currentNode=createCompositeNode(grammarAccess.getComparisonExpressionAccess().getRightConcatExpressionParserRuleCall_1_1_2_0(), currentNode); 
                     	    	    
-                    	    pushFollow(FOLLOW_ruleConcatExpression_in_ruleComparisonExpression777);
+                    	    pushFollow(FOLLOW_ruleConcatExpression_in_ruleComparisonExpression735);
                     	    lv_right_7_0=ruleConcatExpression();
                     	    _fsp--;
 
@@ -1098,7 +1080,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRulePrimaryExpression
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:520:1: entryRulePrimaryExpression returns [EObject current=null] : iv_rulePrimaryExpression= rulePrimaryExpression EOF ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:496:1: entryRulePrimaryExpression returns [EObject current=null] : iv_rulePrimaryExpression= rulePrimaryExpression EOF ;
     public final EObject entryRulePrimaryExpression() throws RecognitionException {
         EObject current = null;
 
@@ -1106,16 +1088,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:521:2: (iv_rulePrimaryExpression= rulePrimaryExpression EOF )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:522:2: iv_rulePrimaryExpression= rulePrimaryExpression EOF
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:497:2: (iv_rulePrimaryExpression= rulePrimaryExpression EOF )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:498:2: iv_rulePrimaryExpression= rulePrimaryExpression EOF
             {
              currentNode = createCompositeNode(grammarAccess.getPrimaryExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_rulePrimaryExpression_in_entryRulePrimaryExpression816);
+            pushFollow(FOLLOW_rulePrimaryExpression_in_entryRulePrimaryExpression774);
             iv_rulePrimaryExpression=rulePrimaryExpression();
             _fsp--;
 
              current =iv_rulePrimaryExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePrimaryExpression826); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulePrimaryExpression784); 
 
             }
 
@@ -1133,7 +1115,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start rulePrimaryExpression
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:529:1: rulePrimaryExpression returns [EObject current=null] : (this_BooleanLiteral_0= ruleBooleanLiteral | this_NotExpression_1= ruleNotExpression | this_IsExpression_2= ruleIsExpression | this_HasExpression_3= ruleHasExpression | this_TestExpression_4= ruleTestExpression | ( '(' this_OrExpression_6= ruleOrExpression ')' ) ) ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:505:1: rulePrimaryExpression returns [EObject current=null] : (this_BooleanLiteral_0= ruleBooleanLiteral | this_NotExpression_1= ruleNotExpression | this_IsExpression_2= ruleIsExpression | this_HasExpression_3= ruleHasExpression | this_TestExpression_4= ruleTestExpression | ( '(' this_OrExpression_6= ruleOrExpression ')' ) ) ;
     public final EObject rulePrimaryExpression() throws RecognitionException {
         EObject current = null;
 
@@ -1153,10 +1135,10 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:534:6: ( (this_BooleanLiteral_0= ruleBooleanLiteral | this_NotExpression_1= ruleNotExpression | this_IsExpression_2= ruleIsExpression | this_HasExpression_3= ruleHasExpression | this_TestExpression_4= ruleTestExpression | ( '(' this_OrExpression_6= ruleOrExpression ')' ) ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:535:1: (this_BooleanLiteral_0= ruleBooleanLiteral | this_NotExpression_1= ruleNotExpression | this_IsExpression_2= ruleIsExpression | this_HasExpression_3= ruleHasExpression | this_TestExpression_4= ruleTestExpression | ( '(' this_OrExpression_6= ruleOrExpression ')' ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:510:6: ( (this_BooleanLiteral_0= ruleBooleanLiteral | this_NotExpression_1= ruleNotExpression | this_IsExpression_2= ruleIsExpression | this_HasExpression_3= ruleHasExpression | this_TestExpression_4= ruleTestExpression | ( '(' this_OrExpression_6= ruleOrExpression ')' ) ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:511:1: (this_BooleanLiteral_0= ruleBooleanLiteral | this_NotExpression_1= ruleNotExpression | this_IsExpression_2= ruleIsExpression | this_HasExpression_3= ruleHasExpression | this_TestExpression_4= ruleTestExpression | ( '(' this_OrExpression_6= ruleOrExpression ')' ) )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:535:1: (this_BooleanLiteral_0= ruleBooleanLiteral | this_NotExpression_1= ruleNotExpression | this_IsExpression_2= ruleIsExpression | this_HasExpression_3= ruleHasExpression | this_TestExpression_4= ruleTestExpression | ( '(' this_OrExpression_6= ruleOrExpression ')' ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:511:1: (this_BooleanLiteral_0= ruleBooleanLiteral | this_NotExpression_1= ruleNotExpression | this_IsExpression_2= ruleIsExpression | this_HasExpression_3= ruleHasExpression | this_TestExpression_4= ruleTestExpression | ( '(' this_OrExpression_6= ruleOrExpression ')' ) )
             int alt7=6;
             switch ( input.LA(1) ) {
             case RULE_BOOLEAN:
@@ -1192,19 +1174,19 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("535:1: (this_BooleanLiteral_0= ruleBooleanLiteral | this_NotExpression_1= ruleNotExpression | this_IsExpression_2= ruleIsExpression | this_HasExpression_3= ruleHasExpression | this_TestExpression_4= ruleTestExpression | ( '(' this_OrExpression_6= ruleOrExpression ')' ) )", 7, 0, input);
+                    new NoViableAltException("511:1: (this_BooleanLiteral_0= ruleBooleanLiteral | this_NotExpression_1= ruleNotExpression | this_IsExpression_2= ruleIsExpression | this_HasExpression_3= ruleHasExpression | this_TestExpression_4= ruleTestExpression | ( '(' this_OrExpression_6= ruleOrExpression ')' ) )", 7, 0, input);
 
                 throw nvae;
             }
 
             switch (alt7) {
                 case 1 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:536:5: this_BooleanLiteral_0= ruleBooleanLiteral
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:512:5: this_BooleanLiteral_0= ruleBooleanLiteral
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getPrimaryExpressionAccess().getBooleanLiteralParserRuleCall_0(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleBooleanLiteral_in_rulePrimaryExpression873);
+                    pushFollow(FOLLOW_ruleBooleanLiteral_in_rulePrimaryExpression831);
                     this_BooleanLiteral_0=ruleBooleanLiteral();
                     _fsp--;
 
@@ -1216,12 +1198,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:546:5: this_NotExpression_1= ruleNotExpression
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:522:5: this_NotExpression_1= ruleNotExpression
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getPrimaryExpressionAccess().getNotExpressionParserRuleCall_1(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleNotExpression_in_rulePrimaryExpression900);
+                    pushFollow(FOLLOW_ruleNotExpression_in_rulePrimaryExpression858);
                     this_NotExpression_1=ruleNotExpression();
                     _fsp--;
 
@@ -1233,12 +1215,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:556:5: this_IsExpression_2= ruleIsExpression
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:532:5: this_IsExpression_2= ruleIsExpression
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getPrimaryExpressionAccess().getIsExpressionParserRuleCall_2(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleIsExpression_in_rulePrimaryExpression927);
+                    pushFollow(FOLLOW_ruleIsExpression_in_rulePrimaryExpression885);
                     this_IsExpression_2=ruleIsExpression();
                     _fsp--;
 
@@ -1250,12 +1232,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:566:5: this_HasExpression_3= ruleHasExpression
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:542:5: this_HasExpression_3= ruleHasExpression
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getPrimaryExpressionAccess().getHasExpressionParserRuleCall_3(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleHasExpression_in_rulePrimaryExpression954);
+                    pushFollow(FOLLOW_ruleHasExpression_in_rulePrimaryExpression912);
                     this_HasExpression_3=ruleHasExpression();
                     _fsp--;
 
@@ -1267,12 +1249,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:576:5: this_TestExpression_4= ruleTestExpression
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:552:5: this_TestExpression_4= ruleTestExpression
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getPrimaryExpressionAccess().getTestExpressionParserRuleCall_4(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleTestExpression_in_rulePrimaryExpression981);
+                    pushFollow(FOLLOW_ruleTestExpression_in_rulePrimaryExpression939);
                     this_TestExpression_4=ruleTestExpression();
                     _fsp--;
 
@@ -1284,19 +1266,19 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:585:6: ( '(' this_OrExpression_6= ruleOrExpression ')' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:561:6: ( '(' this_OrExpression_6= ruleOrExpression ')' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:585:6: ( '(' this_OrExpression_6= ruleOrExpression ')' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:585:8: '(' this_OrExpression_6= ruleOrExpression ')'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:561:6: ( '(' this_OrExpression_6= ruleOrExpression ')' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:561:8: '(' this_OrExpression_6= ruleOrExpression ')'
                     {
-                    match(input,12,FOLLOW_12_in_rulePrimaryExpression997); 
+                    match(input,12,FOLLOW_12_in_rulePrimaryExpression955); 
 
                             createLeafNode(grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_5_0(), null); 
                         
                      
                             currentNode=createCompositeNode(grammarAccess.getPrimaryExpressionAccess().getOrExpressionParserRuleCall_5_1(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleOrExpression_in_rulePrimaryExpression1019);
+                    pushFollow(FOLLOW_ruleOrExpression_in_rulePrimaryExpression977);
                     this_OrExpression_6=ruleOrExpression();
                     _fsp--;
 
@@ -1304,7 +1286,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                             current = this_OrExpression_6; 
                             currentNode = currentNode.getParent();
                         
-                    match(input,13,FOLLOW_13_in_rulePrimaryExpression1028); 
+                    match(input,13,FOLLOW_13_in_rulePrimaryExpression986); 
 
                             createLeafNode(grammarAccess.getPrimaryExpressionAccess().getRightParenthesisKeyword_5_2(), null); 
                         
@@ -1337,7 +1319,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleBooleanLiteral
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:610:1: entryRuleBooleanLiteral returns [EObject current=null] : iv_ruleBooleanLiteral= ruleBooleanLiteral EOF ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:586:1: entryRuleBooleanLiteral returns [EObject current=null] : iv_ruleBooleanLiteral= ruleBooleanLiteral EOF ;
     public final EObject entryRuleBooleanLiteral() throws RecognitionException {
         EObject current = null;
 
@@ -1345,16 +1327,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:611:2: (iv_ruleBooleanLiteral= ruleBooleanLiteral EOF )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:612:2: iv_ruleBooleanLiteral= ruleBooleanLiteral EOF
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:587:2: (iv_ruleBooleanLiteral= ruleBooleanLiteral EOF )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:588:2: iv_ruleBooleanLiteral= ruleBooleanLiteral EOF
             {
              currentNode = createCompositeNode(grammarAccess.getBooleanLiteralRule(), currentNode); 
-            pushFollow(FOLLOW_ruleBooleanLiteral_in_entryRuleBooleanLiteral1065);
+            pushFollow(FOLLOW_ruleBooleanLiteral_in_entryRuleBooleanLiteral1023);
             iv_ruleBooleanLiteral=ruleBooleanLiteral();
             _fsp--;
 
              current =iv_ruleBooleanLiteral; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleBooleanLiteral1075); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleBooleanLiteral1033); 
 
             }
 
@@ -1372,7 +1354,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleBooleanLiteral
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:619:1: ruleBooleanLiteral returns [EObject current=null] : ( (lv_value_0_0= RULE_BOOLEAN ) ) ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:595:1: ruleBooleanLiteral returns [EObject current=null] : ( (lv_value_0_0= RULE_BOOLEAN ) ) ;
     public final EObject ruleBooleanLiteral() throws RecognitionException {
         EObject current = null;
 
@@ -1381,17 +1363,17 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:624:6: ( ( (lv_value_0_0= RULE_BOOLEAN ) ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:625:1: ( (lv_value_0_0= RULE_BOOLEAN ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:600:6: ( ( (lv_value_0_0= RULE_BOOLEAN ) ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:601:1: ( (lv_value_0_0= RULE_BOOLEAN ) )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:625:1: ( (lv_value_0_0= RULE_BOOLEAN ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:626:1: (lv_value_0_0= RULE_BOOLEAN )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:601:1: ( (lv_value_0_0= RULE_BOOLEAN ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:602:1: (lv_value_0_0= RULE_BOOLEAN )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:626:1: (lv_value_0_0= RULE_BOOLEAN )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:627:3: lv_value_0_0= RULE_BOOLEAN
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:602:1: (lv_value_0_0= RULE_BOOLEAN )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:603:3: lv_value_0_0= RULE_BOOLEAN
             {
             lv_value_0_0=(Token)input.LT(1);
-            match(input,RULE_BOOLEAN,FOLLOW_RULE_BOOLEAN_in_ruleBooleanLiteral1116); 
+            match(input,RULE_BOOLEAN,FOLLOW_RULE_BOOLEAN_in_ruleBooleanLiteral1074); 
 
             			createLeafNode(grammarAccess.getBooleanLiteralAccess().getValueBOOLEANTerminalRuleCall_0(), "value"); 
             		
@@ -1437,7 +1419,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleNotExpression
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:657:1: entryRuleNotExpression returns [EObject current=null] : iv_ruleNotExpression= ruleNotExpression EOF ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:633:1: entryRuleNotExpression returns [EObject current=null] : iv_ruleNotExpression= ruleNotExpression EOF ;
     public final EObject entryRuleNotExpression() throws RecognitionException {
         EObject current = null;
 
@@ -1445,16 +1427,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:658:2: (iv_ruleNotExpression= ruleNotExpression EOF )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:659:2: iv_ruleNotExpression= ruleNotExpression EOF
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:634:2: (iv_ruleNotExpression= ruleNotExpression EOF )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:635:2: iv_ruleNotExpression= ruleNotExpression EOF
             {
              currentNode = createCompositeNode(grammarAccess.getNotExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleNotExpression_in_entryRuleNotExpression1156);
+            pushFollow(FOLLOW_ruleNotExpression_in_entryRuleNotExpression1114);
             iv_ruleNotExpression=ruleNotExpression();
             _fsp--;
 
              current =iv_ruleNotExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleNotExpression1166); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleNotExpression1124); 
 
             }
 
@@ -1472,7 +1454,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleNotExpression
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:666:1: ruleNotExpression returns [EObject current=null] : ( () ruleNotOperator ( (lv_right_2_0= rulePrimaryExpression ) ) ) ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:642:1: ruleNotExpression returns [EObject current=null] : ( () ruleNotOperator ( (lv_right_2_0= rulePrimaryExpression ) ) ) ;
     public final EObject ruleNotExpression() throws RecognitionException {
         EObject current = null;
 
@@ -1482,14 +1464,14 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:671:6: ( ( () ruleNotOperator ( (lv_right_2_0= rulePrimaryExpression ) ) ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:672:1: ( () ruleNotOperator ( (lv_right_2_0= rulePrimaryExpression ) ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:647:6: ( ( () ruleNotOperator ( (lv_right_2_0= rulePrimaryExpression ) ) ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:648:1: ( () ruleNotOperator ( (lv_right_2_0= rulePrimaryExpression ) ) )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:672:1: ( () ruleNotOperator ( (lv_right_2_0= rulePrimaryExpression ) ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:672:2: () ruleNotOperator ( (lv_right_2_0= rulePrimaryExpression ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:648:1: ( () ruleNotOperator ( (lv_right_2_0= rulePrimaryExpression ) ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:648:2: () ruleNotOperator ( (lv_right_2_0= rulePrimaryExpression ) )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:672:2: ()
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:673:5: 
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:648:2: ()
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:649:5: 
             {
              
                     temp=factory.create(grammarAccess.getNotExpressionAccess().getNotExpressionAction_0().getType().getClassifier());
@@ -1504,26 +1486,20 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
             }
 
-             
-                    currentNode=createCompositeNode(grammarAccess.getNotExpressionAccess().getNotOperatorParserRuleCall_1(), currentNode); 
-                
-            pushFollow(FOLLOW_ruleNotOperator_in_ruleNotExpression1216);
+            pushFollow(FOLLOW_ruleNotOperator_in_ruleNotExpression1167);
             ruleNotOperator();
             _fsp--;
 
-             
-                    currentNode = currentNode.getParent();
-                
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:691:1: ( (lv_right_2_0= rulePrimaryExpression ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:692:1: (lv_right_2_0= rulePrimaryExpression )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:659:17: ( (lv_right_2_0= rulePrimaryExpression ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:660:1: (lv_right_2_0= rulePrimaryExpression )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:692:1: (lv_right_2_0= rulePrimaryExpression )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:693:3: lv_right_2_0= rulePrimaryExpression
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:660:1: (lv_right_2_0= rulePrimaryExpression )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:661:3: lv_right_2_0= rulePrimaryExpression
             {
              
             	        currentNode=createCompositeNode(grammarAccess.getNotExpressionAccess().getRightPrimaryExpressionParserRuleCall_2_0(), currentNode); 
             	    
-            pushFollow(FOLLOW_rulePrimaryExpression_in_ruleNotExpression1236);
+            pushFollow(FOLLOW_rulePrimaryExpression_in_ruleNotExpression1180);
             lv_right_2_0=rulePrimaryExpression();
             _fsp--;
 
@@ -1573,7 +1549,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleIsExpression
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:723:1: entryRuleIsExpression returns [EObject current=null] : iv_ruleIsExpression= ruleIsExpression EOF ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:691:1: entryRuleIsExpression returns [EObject current=null] : iv_ruleIsExpression= ruleIsExpression EOF ;
     public final EObject entryRuleIsExpression() throws RecognitionException {
         EObject current = null;
 
@@ -1581,16 +1557,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:724:2: (iv_ruleIsExpression= ruleIsExpression EOF )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:725:2: iv_ruleIsExpression= ruleIsExpression EOF
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:692:2: (iv_ruleIsExpression= ruleIsExpression EOF )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:693:2: iv_ruleIsExpression= ruleIsExpression EOF
             {
              currentNode = createCompositeNode(grammarAccess.getIsExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleIsExpression_in_entryRuleIsExpression1272);
+            pushFollow(FOLLOW_ruleIsExpression_in_entryRuleIsExpression1216);
             iv_ruleIsExpression=ruleIsExpression();
             _fsp--;
 
              current =iv_ruleIsExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleIsExpression1282); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleIsExpression1226); 
 
             }
 
@@ -1608,7 +1584,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleIsExpression
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:732:1: ruleIsExpression returns [EObject current=null] : ( () 'is' ( (lv_type_2_0= ruleType ) ) ) ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:700:1: ruleIsExpression returns [EObject current=null] : ( () 'is' ( (lv_type_2_0= ruleType ) ) ) ;
     public final EObject ruleIsExpression() throws RecognitionException {
         EObject current = null;
 
@@ -1618,14 +1594,14 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:737:6: ( ( () 'is' ( (lv_type_2_0= ruleType ) ) ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:738:1: ( () 'is' ( (lv_type_2_0= ruleType ) ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:705:6: ( ( () 'is' ( (lv_type_2_0= ruleType ) ) ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:706:1: ( () 'is' ( (lv_type_2_0= ruleType ) ) )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:738:1: ( () 'is' ( (lv_type_2_0= ruleType ) ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:738:2: () 'is' ( (lv_type_2_0= ruleType ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:706:1: ( () 'is' ( (lv_type_2_0= ruleType ) ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:706:2: () 'is' ( (lv_type_2_0= ruleType ) )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:738:2: ()
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:739:5: 
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:706:2: ()
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:707:5: 
             {
              
                     temp=factory.create(grammarAccess.getIsExpressionAccess().getIsExpressionAction_0().getType().getClassifier());
@@ -1640,20 +1616,20 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,14,FOLLOW_14_in_ruleIsExpression1326); 
+            match(input,14,FOLLOW_14_in_ruleIsExpression1270); 
 
                     createLeafNode(grammarAccess.getIsExpressionAccess().getIsKeyword_1(), null); 
                 
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:753:1: ( (lv_type_2_0= ruleType ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:754:1: (lv_type_2_0= ruleType )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:721:1: ( (lv_type_2_0= ruleType ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:722:1: (lv_type_2_0= ruleType )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:754:1: (lv_type_2_0= ruleType )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:755:3: lv_type_2_0= ruleType
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:722:1: (lv_type_2_0= ruleType )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:723:3: lv_type_2_0= ruleType
             {
              
             	        currentNode=createCompositeNode(grammarAccess.getIsExpressionAccess().getTypeTypeEnumRuleCall_2_0(), currentNode); 
             	    
-            pushFollow(FOLLOW_ruleType_in_ruleIsExpression1347);
+            pushFollow(FOLLOW_ruleType_in_ruleIsExpression1291);
             lv_type_2_0=ruleType();
             _fsp--;
 
@@ -1703,7 +1679,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleHasExpression
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:785:1: entryRuleHasExpression returns [EObject current=null] : iv_ruleHasExpression= ruleHasExpression EOF ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:753:1: entryRuleHasExpression returns [EObject current=null] : iv_ruleHasExpression= ruleHasExpression EOF ;
     public final EObject entryRuleHasExpression() throws RecognitionException {
         EObject current = null;
 
@@ -1711,16 +1687,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:786:2: (iv_ruleHasExpression= ruleHasExpression EOF )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:787:2: iv_ruleHasExpression= ruleHasExpression EOF
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:754:2: (iv_ruleHasExpression= ruleHasExpression EOF )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:755:2: iv_ruleHasExpression= ruleHasExpression EOF
             {
              currentNode = createCompositeNode(grammarAccess.getHasExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleHasExpression_in_entryRuleHasExpression1383);
+            pushFollow(FOLLOW_ruleHasExpression_in_entryRuleHasExpression1327);
             iv_ruleHasExpression=ruleHasExpression();
             _fsp--;
 
              current =iv_ruleHasExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleHasExpression1393); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleHasExpression1337); 
 
             }
 
@@ -1738,7 +1714,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleHasExpression
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:794:1: ruleHasExpression returns [EObject current=null] : ( () 'has' ( (lv_kind_2_0= ruleKind ) ) ( (lv_what_3_0= ruleConcatExpression ) ) ) ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:762:1: ruleHasExpression returns [EObject current=null] : ( () 'has' ( (lv_kind_2_0= ruleKind ) ) ( (lv_what_3_0= ruleConcatExpression ) ) ) ;
     public final EObject ruleHasExpression() throws RecognitionException {
         EObject current = null;
 
@@ -1750,14 +1726,14 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:799:6: ( ( () 'has' ( (lv_kind_2_0= ruleKind ) ) ( (lv_what_3_0= ruleConcatExpression ) ) ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:800:1: ( () 'has' ( (lv_kind_2_0= ruleKind ) ) ( (lv_what_3_0= ruleConcatExpression ) ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:767:6: ( ( () 'has' ( (lv_kind_2_0= ruleKind ) ) ( (lv_what_3_0= ruleConcatExpression ) ) ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:768:1: ( () 'has' ( (lv_kind_2_0= ruleKind ) ) ( (lv_what_3_0= ruleConcatExpression ) ) )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:800:1: ( () 'has' ( (lv_kind_2_0= ruleKind ) ) ( (lv_what_3_0= ruleConcatExpression ) ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:800:2: () 'has' ( (lv_kind_2_0= ruleKind ) ) ( (lv_what_3_0= ruleConcatExpression ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:768:1: ( () 'has' ( (lv_kind_2_0= ruleKind ) ) ( (lv_what_3_0= ruleConcatExpression ) ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:768:2: () 'has' ( (lv_kind_2_0= ruleKind ) ) ( (lv_what_3_0= ruleConcatExpression ) )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:800:2: ()
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:801:5: 
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:768:2: ()
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:769:5: 
             {
              
                     temp=factory.create(grammarAccess.getHasExpressionAccess().getHasExpressionAction_0().getType().getClassifier());
@@ -1772,20 +1748,20 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,15,FOLLOW_15_in_ruleHasExpression1437); 
+            match(input,15,FOLLOW_15_in_ruleHasExpression1381); 
 
                     createLeafNode(grammarAccess.getHasExpressionAccess().getHasKeyword_1(), null); 
                 
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:815:1: ( (lv_kind_2_0= ruleKind ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:816:1: (lv_kind_2_0= ruleKind )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:783:1: ( (lv_kind_2_0= ruleKind ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:784:1: (lv_kind_2_0= ruleKind )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:816:1: (lv_kind_2_0= ruleKind )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:817:3: lv_kind_2_0= ruleKind
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:784:1: (lv_kind_2_0= ruleKind )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:785:3: lv_kind_2_0= ruleKind
             {
              
             	        currentNode=createCompositeNode(grammarAccess.getHasExpressionAccess().getKindKindEnumRuleCall_2_0(), currentNode); 
             	    
-            pushFollow(FOLLOW_ruleKind_in_ruleHasExpression1458);
+            pushFollow(FOLLOW_ruleKind_in_ruleHasExpression1402);
             lv_kind_2_0=ruleKind();
             _fsp--;
 
@@ -1812,16 +1788,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:839:2: ( (lv_what_3_0= ruleConcatExpression ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:840:1: (lv_what_3_0= ruleConcatExpression )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:807:2: ( (lv_what_3_0= ruleConcatExpression ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:808:1: (lv_what_3_0= ruleConcatExpression )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:840:1: (lv_what_3_0= ruleConcatExpression )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:841:3: lv_what_3_0= ruleConcatExpression
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:808:1: (lv_what_3_0= ruleConcatExpression )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:809:3: lv_what_3_0= ruleConcatExpression
             {
              
             	        currentNode=createCompositeNode(grammarAccess.getHasExpressionAccess().getWhatConcatExpressionParserRuleCall_3_0(), currentNode); 
             	    
-            pushFollow(FOLLOW_ruleConcatExpression_in_ruleHasExpression1479);
+            pushFollow(FOLLOW_ruleConcatExpression_in_ruleHasExpression1423);
             lv_what_3_0=ruleConcatExpression();
             _fsp--;
 
@@ -1871,7 +1847,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleTestExpression
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:871:1: entryRuleTestExpression returns [EObject current=null] : iv_ruleTestExpression= ruleTestExpression EOF ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:839:1: entryRuleTestExpression returns [EObject current=null] : iv_ruleTestExpression= ruleTestExpression EOF ;
     public final EObject entryRuleTestExpression() throws RecognitionException {
         EObject current = null;
 
@@ -1879,16 +1855,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:872:2: (iv_ruleTestExpression= ruleTestExpression EOF )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:873:2: iv_ruleTestExpression= ruleTestExpression EOF
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:840:2: (iv_ruleTestExpression= ruleTestExpression EOF )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:841:2: iv_ruleTestExpression= ruleTestExpression EOF
             {
              currentNode = createCompositeNode(grammarAccess.getTestExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleTestExpression_in_entryRuleTestExpression1515);
+            pushFollow(FOLLOW_ruleTestExpression_in_entryRuleTestExpression1459);
             iv_ruleTestExpression=ruleTestExpression();
             _fsp--;
 
              current =iv_ruleTestExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleTestExpression1525); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleTestExpression1469); 
 
             }
 
@@ -1906,7 +1882,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleTestExpression
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:880:1: ruleTestExpression returns [EObject current=null] : ( () ( (lv_property_1_0= RULE_ID ) ) ( '.' ( (lv_property_3_0= RULE_ID ) ) )* '(' ( (lv_args_5_0= ruleConcatExpression ) ) ( ',' ( (lv_args_7_0= ruleConcatExpression ) ) )* ')' 'is' ( (lv_expected_10_0= ruleConcatExpression ) ) ) ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:848:1: ruleTestExpression returns [EObject current=null] : ( () ( (lv_property_1_0= RULE_ID ) ) ( '.' ( (lv_property_3_0= RULE_ID ) ) )* '(' ( (lv_args_5_0= ruleConcatExpression ) ) ( ',' ( (lv_args_7_0= ruleConcatExpression ) ) )* ')' 'is' ( (lv_expected_10_0= ruleConcatExpression ) ) ) ;
     public final EObject ruleTestExpression() throws RecognitionException {
         EObject current = null;
 
@@ -1922,14 +1898,14 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:885:6: ( ( () ( (lv_property_1_0= RULE_ID ) ) ( '.' ( (lv_property_3_0= RULE_ID ) ) )* '(' ( (lv_args_5_0= ruleConcatExpression ) ) ( ',' ( (lv_args_7_0= ruleConcatExpression ) ) )* ')' 'is' ( (lv_expected_10_0= ruleConcatExpression ) ) ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:886:1: ( () ( (lv_property_1_0= RULE_ID ) ) ( '.' ( (lv_property_3_0= RULE_ID ) ) )* '(' ( (lv_args_5_0= ruleConcatExpression ) ) ( ',' ( (lv_args_7_0= ruleConcatExpression ) ) )* ')' 'is' ( (lv_expected_10_0= ruleConcatExpression ) ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:853:6: ( ( () ( (lv_property_1_0= RULE_ID ) ) ( '.' ( (lv_property_3_0= RULE_ID ) ) )* '(' ( (lv_args_5_0= ruleConcatExpression ) ) ( ',' ( (lv_args_7_0= ruleConcatExpression ) ) )* ')' 'is' ( (lv_expected_10_0= ruleConcatExpression ) ) ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:854:1: ( () ( (lv_property_1_0= RULE_ID ) ) ( '.' ( (lv_property_3_0= RULE_ID ) ) )* '(' ( (lv_args_5_0= ruleConcatExpression ) ) ( ',' ( (lv_args_7_0= ruleConcatExpression ) ) )* ')' 'is' ( (lv_expected_10_0= ruleConcatExpression ) ) )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:886:1: ( () ( (lv_property_1_0= RULE_ID ) ) ( '.' ( (lv_property_3_0= RULE_ID ) ) )* '(' ( (lv_args_5_0= ruleConcatExpression ) ) ( ',' ( (lv_args_7_0= ruleConcatExpression ) ) )* ')' 'is' ( (lv_expected_10_0= ruleConcatExpression ) ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:886:2: () ( (lv_property_1_0= RULE_ID ) ) ( '.' ( (lv_property_3_0= RULE_ID ) ) )* '(' ( (lv_args_5_0= ruleConcatExpression ) ) ( ',' ( (lv_args_7_0= ruleConcatExpression ) ) )* ')' 'is' ( (lv_expected_10_0= ruleConcatExpression ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:854:1: ( () ( (lv_property_1_0= RULE_ID ) ) ( '.' ( (lv_property_3_0= RULE_ID ) ) )* '(' ( (lv_args_5_0= ruleConcatExpression ) ) ( ',' ( (lv_args_7_0= ruleConcatExpression ) ) )* ')' 'is' ( (lv_expected_10_0= ruleConcatExpression ) ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:854:2: () ( (lv_property_1_0= RULE_ID ) ) ( '.' ( (lv_property_3_0= RULE_ID ) ) )* '(' ( (lv_args_5_0= ruleConcatExpression ) ) ( ',' ( (lv_args_7_0= ruleConcatExpression ) ) )* ')' 'is' ( (lv_expected_10_0= ruleConcatExpression ) )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:886:2: ()
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:887:5: 
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:854:2: ()
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:855:5: 
             {
              
                     temp=factory.create(grammarAccess.getTestExpressionAccess().getTestExpressionAction_0().getType().getClassifier());
@@ -1944,14 +1920,14 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:897:2: ( (lv_property_1_0= RULE_ID ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:898:1: (lv_property_1_0= RULE_ID )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:865:2: ( (lv_property_1_0= RULE_ID ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:866:1: (lv_property_1_0= RULE_ID )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:898:1: (lv_property_1_0= RULE_ID )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:899:3: lv_property_1_0= RULE_ID
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:866:1: (lv_property_1_0= RULE_ID )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:867:3: lv_property_1_0= RULE_ID
             {
             lv_property_1_0=(Token)input.LT(1);
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleTestExpression1576); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleTestExpression1520); 
 
             			createLeafNode(grammarAccess.getTestExpressionAccess().getPropertyIDTerminalRuleCall_1_0(), "property"); 
             		
@@ -1977,7 +1953,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:921:2: ( '.' ( (lv_property_3_0= RULE_ID ) ) )*
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:889:2: ( '.' ( (lv_property_3_0= RULE_ID ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -1990,20 +1966,20 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:921:4: '.' ( (lv_property_3_0= RULE_ID ) )
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:889:4: '.' ( (lv_property_3_0= RULE_ID ) )
             	    {
-            	    match(input,16,FOLLOW_16_in_ruleTestExpression1592); 
+            	    match(input,16,FOLLOW_16_in_ruleTestExpression1536); 
 
             	            createLeafNode(grammarAccess.getTestExpressionAccess().getFullStopKeyword_2_0(), null); 
             	        
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:925:1: ( (lv_property_3_0= RULE_ID ) )
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:926:1: (lv_property_3_0= RULE_ID )
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:893:1: ( (lv_property_3_0= RULE_ID ) )
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:894:1: (lv_property_3_0= RULE_ID )
             	    {
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:926:1: (lv_property_3_0= RULE_ID )
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:927:3: lv_property_3_0= RULE_ID
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:894:1: (lv_property_3_0= RULE_ID )
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:895:3: lv_property_3_0= RULE_ID
             	    {
             	    lv_property_3_0=(Token)input.LT(1);
-            	    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleTestExpression1609); 
+            	    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleTestExpression1553); 
 
             	    			createLeafNode(grammarAccess.getTestExpressionAccess().getPropertyIDTerminalRuleCall_2_1_0(), "property"); 
             	    		
@@ -2038,20 +2014,20 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            match(input,12,FOLLOW_12_in_ruleTestExpression1626); 
+            match(input,12,FOLLOW_12_in_ruleTestExpression1570); 
 
                     createLeafNode(grammarAccess.getTestExpressionAccess().getLeftParenthesisKeyword_3(), null); 
                 
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:953:1: ( (lv_args_5_0= ruleConcatExpression ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:954:1: (lv_args_5_0= ruleConcatExpression )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:921:1: ( (lv_args_5_0= ruleConcatExpression ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:922:1: (lv_args_5_0= ruleConcatExpression )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:954:1: (lv_args_5_0= ruleConcatExpression )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:955:3: lv_args_5_0= ruleConcatExpression
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:922:1: (lv_args_5_0= ruleConcatExpression )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:923:3: lv_args_5_0= ruleConcatExpression
             {
              
             	        currentNode=createCompositeNode(grammarAccess.getTestExpressionAccess().getArgsConcatExpressionParserRuleCall_4_0(), currentNode); 
             	    
-            pushFollow(FOLLOW_ruleConcatExpression_in_ruleTestExpression1647);
+            pushFollow(FOLLOW_ruleConcatExpression_in_ruleTestExpression1591);
             lv_args_5_0=ruleConcatExpression();
             _fsp--;
 
@@ -2078,7 +2054,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:977:2: ( ',' ( (lv_args_7_0= ruleConcatExpression ) ) )*
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:945:2: ( ',' ( (lv_args_7_0= ruleConcatExpression ) ) )*
             loop9:
             do {
                 int alt9=2;
@@ -2091,22 +2067,22 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
                 switch (alt9) {
             	case 1 :
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:977:4: ',' ( (lv_args_7_0= ruleConcatExpression ) )
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:945:4: ',' ( (lv_args_7_0= ruleConcatExpression ) )
             	    {
-            	    match(input,17,FOLLOW_17_in_ruleTestExpression1658); 
+            	    match(input,17,FOLLOW_17_in_ruleTestExpression1602); 
 
             	            createLeafNode(grammarAccess.getTestExpressionAccess().getCommaKeyword_5_0(), null); 
             	        
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:981:1: ( (lv_args_7_0= ruleConcatExpression ) )
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:982:1: (lv_args_7_0= ruleConcatExpression )
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:949:1: ( (lv_args_7_0= ruleConcatExpression ) )
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:950:1: (lv_args_7_0= ruleConcatExpression )
             	    {
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:982:1: (lv_args_7_0= ruleConcatExpression )
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:983:3: lv_args_7_0= ruleConcatExpression
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:950:1: (lv_args_7_0= ruleConcatExpression )
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:951:3: lv_args_7_0= ruleConcatExpression
             	    {
             	     
             	    	        currentNode=createCompositeNode(grammarAccess.getTestExpressionAccess().getArgsConcatExpressionParserRuleCall_5_1_0(), currentNode); 
             	    	    
-            	    pushFollow(FOLLOW_ruleConcatExpression_in_ruleTestExpression1679);
+            	    pushFollow(FOLLOW_ruleConcatExpression_in_ruleTestExpression1623);
             	    lv_args_7_0=ruleConcatExpression();
             	    _fsp--;
 
@@ -2142,24 +2118,24 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            match(input,13,FOLLOW_13_in_ruleTestExpression1691); 
+            match(input,13,FOLLOW_13_in_ruleTestExpression1635); 
 
                     createLeafNode(grammarAccess.getTestExpressionAccess().getRightParenthesisKeyword_6(), null); 
                 
-            match(input,14,FOLLOW_14_in_ruleTestExpression1701); 
+            match(input,14,FOLLOW_14_in_ruleTestExpression1645); 
 
                     createLeafNode(grammarAccess.getTestExpressionAccess().getIsKeyword_7(), null); 
                 
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1013:1: ( (lv_expected_10_0= ruleConcatExpression ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1014:1: (lv_expected_10_0= ruleConcatExpression )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:981:1: ( (lv_expected_10_0= ruleConcatExpression ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:982:1: (lv_expected_10_0= ruleConcatExpression )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1014:1: (lv_expected_10_0= ruleConcatExpression )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1015:3: lv_expected_10_0= ruleConcatExpression
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:982:1: (lv_expected_10_0= ruleConcatExpression )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:983:3: lv_expected_10_0= ruleConcatExpression
             {
              
             	        currentNode=createCompositeNode(grammarAccess.getTestExpressionAccess().getExpectedConcatExpressionParserRuleCall_8_0(), currentNode); 
             	    
-            pushFollow(FOLLOW_ruleConcatExpression_in_ruleTestExpression1722);
+            pushFollow(FOLLOW_ruleConcatExpression_in_ruleTestExpression1666);
             lv_expected_10_0=ruleConcatExpression();
             _fsp--;
 
@@ -2209,7 +2185,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleConcatExpression
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1045:1: entryRuleConcatExpression returns [EObject current=null] : iv_ruleConcatExpression= ruleConcatExpression EOF ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1013:1: entryRuleConcatExpression returns [EObject current=null] : iv_ruleConcatExpression= ruleConcatExpression EOF ;
     public final EObject entryRuleConcatExpression() throws RecognitionException {
         EObject current = null;
 
@@ -2217,16 +2193,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1046:2: (iv_ruleConcatExpression= ruleConcatExpression EOF )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1047:2: iv_ruleConcatExpression= ruleConcatExpression EOF
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1014:2: (iv_ruleConcatExpression= ruleConcatExpression EOF )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1015:2: iv_ruleConcatExpression= ruleConcatExpression EOF
             {
              currentNode = createCompositeNode(grammarAccess.getConcatExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleConcatExpression_in_entryRuleConcatExpression1758);
+            pushFollow(FOLLOW_ruleConcatExpression_in_entryRuleConcatExpression1702);
             iv_ruleConcatExpression=ruleConcatExpression();
             _fsp--;
 
              current =iv_ruleConcatExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleConcatExpression1768); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleConcatExpression1712); 
 
             }
 
@@ -2244,7 +2220,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleConcatExpression
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1054:1: ruleConcatExpression returns [EObject current=null] : (this_StringExpression_0= ruleStringExpression ( () '+' ( (lv_right_3_0= ruleStringExpression ) ) )* ) ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1022:1: ruleConcatExpression returns [EObject current=null] : (this_StringExpression_0= ruleStringExpression ( () '+' ( (lv_right_3_0= ruleStringExpression ) ) )* ) ;
     public final EObject ruleConcatExpression() throws RecognitionException {
         EObject current = null;
 
@@ -2256,16 +2232,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1059:6: ( (this_StringExpression_0= ruleStringExpression ( () '+' ( (lv_right_3_0= ruleStringExpression ) ) )* ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1060:1: (this_StringExpression_0= ruleStringExpression ( () '+' ( (lv_right_3_0= ruleStringExpression ) ) )* )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1027:6: ( (this_StringExpression_0= ruleStringExpression ( () '+' ( (lv_right_3_0= ruleStringExpression ) ) )* ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1028:1: (this_StringExpression_0= ruleStringExpression ( () '+' ( (lv_right_3_0= ruleStringExpression ) ) )* )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1060:1: (this_StringExpression_0= ruleStringExpression ( () '+' ( (lv_right_3_0= ruleStringExpression ) ) )* )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1061:5: this_StringExpression_0= ruleStringExpression ( () '+' ( (lv_right_3_0= ruleStringExpression ) ) )*
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1028:1: (this_StringExpression_0= ruleStringExpression ( () '+' ( (lv_right_3_0= ruleStringExpression ) ) )* )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1029:5: this_StringExpression_0= ruleStringExpression ( () '+' ( (lv_right_3_0= ruleStringExpression ) ) )*
             {
              
                     currentNode=createCompositeNode(grammarAccess.getConcatExpressionAccess().getStringExpressionParserRuleCall_0(), currentNode); 
                 
-            pushFollow(FOLLOW_ruleStringExpression_in_ruleConcatExpression1815);
+            pushFollow(FOLLOW_ruleStringExpression_in_ruleConcatExpression1759);
             this_StringExpression_0=ruleStringExpression();
             _fsp--;
 
@@ -2273,7 +2249,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     current = this_StringExpression_0; 
                     currentNode = currentNode.getParent();
                 
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1069:1: ( () '+' ( (lv_right_3_0= ruleStringExpression ) ) )*
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1037:1: ( () '+' ( (lv_right_3_0= ruleStringExpression ) ) )*
             loop10:
             do {
                 int alt10=2;
@@ -2286,10 +2262,10 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
                 switch (alt10) {
             	case 1 :
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1069:2: () '+' ( (lv_right_3_0= ruleStringExpression ) )
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1037:2: () '+' ( (lv_right_3_0= ruleStringExpression ) )
             	    {
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1069:2: ()
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1070:5: 
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1037:2: ()
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1038:5: 
             	    {
             	     
             	            temp=factory.create(grammarAccess.getConcatExpressionAccess().getConcatExpressionLeftAction_1_0().getType().getClassifier());
@@ -2309,20 +2285,20 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
             	    }
 
-            	    match(input,18,FOLLOW_18_in_ruleConcatExpression1834); 
+            	    match(input,18,FOLLOW_18_in_ruleConcatExpression1778); 
 
             	            createLeafNode(grammarAccess.getConcatExpressionAccess().getPlusSignKeyword_1_1(), null); 
             	        
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1089:1: ( (lv_right_3_0= ruleStringExpression ) )
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1090:1: (lv_right_3_0= ruleStringExpression )
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1057:1: ( (lv_right_3_0= ruleStringExpression ) )
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1058:1: (lv_right_3_0= ruleStringExpression )
             	    {
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1090:1: (lv_right_3_0= ruleStringExpression )
-            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1091:3: lv_right_3_0= ruleStringExpression
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1058:1: (lv_right_3_0= ruleStringExpression )
+            	    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1059:3: lv_right_3_0= ruleStringExpression
             	    {
             	     
             	    	        currentNode=createCompositeNode(grammarAccess.getConcatExpressionAccess().getRightStringExpressionParserRuleCall_1_2_0(), currentNode); 
             	    	    
-            	    pushFollow(FOLLOW_ruleStringExpression_in_ruleConcatExpression1855);
+            	    pushFollow(FOLLOW_ruleStringExpression_in_ruleConcatExpression1799);
             	    lv_right_3_0=ruleStringExpression();
             	    _fsp--;
 
@@ -2381,7 +2357,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleStringExpression
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1121:1: entryRuleStringExpression returns [EObject current=null] : iv_ruleStringExpression= ruleStringExpression EOF ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1089:1: entryRuleStringExpression returns [EObject current=null] : iv_ruleStringExpression= ruleStringExpression EOF ;
     public final EObject entryRuleStringExpression() throws RecognitionException {
         EObject current = null;
 
@@ -2389,16 +2365,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1122:2: (iv_ruleStringExpression= ruleStringExpression EOF )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1123:2: iv_ruleStringExpression= ruleStringExpression EOF
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1090:2: (iv_ruleStringExpression= ruleStringExpression EOF )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1091:2: iv_ruleStringExpression= ruleStringExpression EOF
             {
              currentNode = createCompositeNode(grammarAccess.getStringExpressionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleStringExpression_in_entryRuleStringExpression1893);
+            pushFollow(FOLLOW_ruleStringExpression_in_entryRuleStringExpression1837);
             iv_ruleStringExpression=ruleStringExpression();
             _fsp--;
 
              current =iv_ruleStringExpression; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleStringExpression1903); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleStringExpression1847); 
 
             }
 
@@ -2416,7 +2392,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleStringExpression
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1130:1: ruleStringExpression returns [EObject current=null] : (this_StringLiteral_0= ruleStringLiteral | this_PropertyAccess_1= rulePropertyAccess ) ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1098:1: ruleStringExpression returns [EObject current=null] : (this_StringLiteral_0= ruleStringLiteral | this_PropertyAccess_1= rulePropertyAccess ) ;
     public final EObject ruleStringExpression() throws RecognitionException {
         EObject current = null;
 
@@ -2428,10 +2404,10 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1135:6: ( (this_StringLiteral_0= ruleStringLiteral | this_PropertyAccess_1= rulePropertyAccess ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1136:1: (this_StringLiteral_0= ruleStringLiteral | this_PropertyAccess_1= rulePropertyAccess )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1103:6: ( (this_StringLiteral_0= ruleStringLiteral | this_PropertyAccess_1= rulePropertyAccess ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1104:1: (this_StringLiteral_0= ruleStringLiteral | this_PropertyAccess_1= rulePropertyAccess )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1136:1: (this_StringLiteral_0= ruleStringLiteral | this_PropertyAccess_1= rulePropertyAccess )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1104:1: (this_StringLiteral_0= ruleStringLiteral | this_PropertyAccess_1= rulePropertyAccess )
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -2443,18 +2419,18 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1136:1: (this_StringLiteral_0= ruleStringLiteral | this_PropertyAccess_1= rulePropertyAccess )", 11, 0, input);
+                    new NoViableAltException("1104:1: (this_StringLiteral_0= ruleStringLiteral | this_PropertyAccess_1= rulePropertyAccess )", 11, 0, input);
 
                 throw nvae;
             }
             switch (alt11) {
                 case 1 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1137:5: this_StringLiteral_0= ruleStringLiteral
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1105:5: this_StringLiteral_0= ruleStringLiteral
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getStringExpressionAccess().getStringLiteralParserRuleCall_0(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleStringLiteral_in_ruleStringExpression1950);
+                    pushFollow(FOLLOW_ruleStringLiteral_in_ruleStringExpression1894);
                     this_StringLiteral_0=ruleStringLiteral();
                     _fsp--;
 
@@ -2466,12 +2442,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1147:5: this_PropertyAccess_1= rulePropertyAccess
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1115:5: this_PropertyAccess_1= rulePropertyAccess
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getStringExpressionAccess().getPropertyAccessParserRuleCall_1(), currentNode); 
                         
-                    pushFollow(FOLLOW_rulePropertyAccess_in_ruleStringExpression1977);
+                    pushFollow(FOLLOW_rulePropertyAccess_in_ruleStringExpression1921);
                     this_PropertyAccess_1=rulePropertyAccess();
                     _fsp--;
 
@@ -2505,7 +2481,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleStringLiteral
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1163:1: entryRuleStringLiteral returns [EObject current=null] : iv_ruleStringLiteral= ruleStringLiteral EOF ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1131:1: entryRuleStringLiteral returns [EObject current=null] : iv_ruleStringLiteral= ruleStringLiteral EOF ;
     public final EObject entryRuleStringLiteral() throws RecognitionException {
         EObject current = null;
 
@@ -2513,16 +2489,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1164:2: (iv_ruleStringLiteral= ruleStringLiteral EOF )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1165:2: iv_ruleStringLiteral= ruleStringLiteral EOF
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1132:2: (iv_ruleStringLiteral= ruleStringLiteral EOF )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1133:2: iv_ruleStringLiteral= ruleStringLiteral EOF
             {
              currentNode = createCompositeNode(grammarAccess.getStringLiteralRule(), currentNode); 
-            pushFollow(FOLLOW_ruleStringLiteral_in_entryRuleStringLiteral2012);
+            pushFollow(FOLLOW_ruleStringLiteral_in_entryRuleStringLiteral1956);
             iv_ruleStringLiteral=ruleStringLiteral();
             _fsp--;
 
              current =iv_ruleStringLiteral; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleStringLiteral2022); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleStringLiteral1966); 
 
             }
 
@@ -2540,7 +2516,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleStringLiteral
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1172:1: ruleStringLiteral returns [EObject current=null] : ( (lv_value_0_0= RULE_STRING ) ) ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1140:1: ruleStringLiteral returns [EObject current=null] : ( (lv_value_0_0= RULE_STRING ) ) ;
     public final EObject ruleStringLiteral() throws RecognitionException {
         EObject current = null;
 
@@ -2549,17 +2525,17 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1177:6: ( ( (lv_value_0_0= RULE_STRING ) ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1178:1: ( (lv_value_0_0= RULE_STRING ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1145:6: ( ( (lv_value_0_0= RULE_STRING ) ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1146:1: ( (lv_value_0_0= RULE_STRING ) )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1178:1: ( (lv_value_0_0= RULE_STRING ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1179:1: (lv_value_0_0= RULE_STRING )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1146:1: ( (lv_value_0_0= RULE_STRING ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1147:1: (lv_value_0_0= RULE_STRING )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1179:1: (lv_value_0_0= RULE_STRING )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1180:3: lv_value_0_0= RULE_STRING
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1147:1: (lv_value_0_0= RULE_STRING )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1148:3: lv_value_0_0= RULE_STRING
             {
             lv_value_0_0=(Token)input.LT(1);
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleStringLiteral2063); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleStringLiteral2007); 
 
             			createLeafNode(grammarAccess.getStringLiteralAccess().getValueSTRINGTerminalRuleCall_0(), "value"); 
             		
@@ -2605,7 +2581,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRulePropertyAccess
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1210:1: entryRulePropertyAccess returns [EObject current=null] : iv_rulePropertyAccess= rulePropertyAccess EOF ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1178:1: entryRulePropertyAccess returns [EObject current=null] : iv_rulePropertyAccess= rulePropertyAccess EOF ;
     public final EObject entryRulePropertyAccess() throws RecognitionException {
         EObject current = null;
 
@@ -2613,16 +2589,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1211:2: (iv_rulePropertyAccess= rulePropertyAccess EOF )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1212:2: iv_rulePropertyAccess= rulePropertyAccess EOF
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1179:2: (iv_rulePropertyAccess= rulePropertyAccess EOF )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1180:2: iv_rulePropertyAccess= rulePropertyAccess EOF
             {
              currentNode = createCompositeNode(grammarAccess.getPropertyAccessRule(), currentNode); 
-            pushFollow(FOLLOW_rulePropertyAccess_in_entryRulePropertyAccess2103);
+            pushFollow(FOLLOW_rulePropertyAccess_in_entryRulePropertyAccess2047);
             iv_rulePropertyAccess=rulePropertyAccess();
             _fsp--;
 
              current =iv_rulePropertyAccess; 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePropertyAccess2113); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulePropertyAccess2057); 
 
             }
 
@@ -2640,7 +2616,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start rulePropertyAccess
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1219:1: rulePropertyAccess returns [EObject current=null] : ( (lv_property_0_0= RULE_ID ) ) ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1187:1: rulePropertyAccess returns [EObject current=null] : ( (lv_property_0_0= RULE_ID ) ) ;
     public final EObject rulePropertyAccess() throws RecognitionException {
         EObject current = null;
 
@@ -2649,17 +2625,17 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1224:6: ( ( (lv_property_0_0= RULE_ID ) ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1225:1: ( (lv_property_0_0= RULE_ID ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1192:6: ( ( (lv_property_0_0= RULE_ID ) ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1193:1: ( (lv_property_0_0= RULE_ID ) )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1225:1: ( (lv_property_0_0= RULE_ID ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1226:1: (lv_property_0_0= RULE_ID )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1193:1: ( (lv_property_0_0= RULE_ID ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1194:1: (lv_property_0_0= RULE_ID )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1226:1: (lv_property_0_0= RULE_ID )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1227:3: lv_property_0_0= RULE_ID
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1194:1: (lv_property_0_0= RULE_ID )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1195:3: lv_property_0_0= RULE_ID
             {
             lv_property_0_0=(Token)input.LT(1);
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePropertyAccess2154); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePropertyAccess2098); 
 
             			createLeafNode(grammarAccess.getPropertyAccessAccess().getPropertyIDTerminalRuleCall_0(), "property"); 
             		
@@ -2705,7 +2681,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleOrOperator
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1257:1: entryRuleOrOperator returns [String current=null] : iv_ruleOrOperator= ruleOrOperator EOF ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1225:1: entryRuleOrOperator returns [String current=null] : iv_ruleOrOperator= ruleOrOperator EOF ;
     public final String entryRuleOrOperator() throws RecognitionException {
         String current = null;
 
@@ -2713,16 +2689,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1258:2: (iv_ruleOrOperator= ruleOrOperator EOF )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1259:2: iv_ruleOrOperator= ruleOrOperator EOF
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1226:2: (iv_ruleOrOperator= ruleOrOperator EOF )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1227:2: iv_ruleOrOperator= ruleOrOperator EOF
             {
              currentNode = createCompositeNode(grammarAccess.getOrOperatorRule(), currentNode); 
-            pushFollow(FOLLOW_ruleOrOperator_in_entryRuleOrOperator2195);
+            pushFollow(FOLLOW_ruleOrOperator_in_entryRuleOrOperator2139);
             iv_ruleOrOperator=ruleOrOperator();
             _fsp--;
 
              current =iv_ruleOrOperator.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleOrOperator2206); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleOrOperator2150); 
 
             }
 
@@ -2740,7 +2716,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleOrOperator
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1266:1: ruleOrOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= '|' | kw= '||' | kw= 'or' ) ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1234:1: ruleOrOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= '|' | kw= '||' | kw= 'or' ) ;
     public final AntlrDatatypeRuleToken ruleOrOperator() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -2749,10 +2725,10 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
          setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1271:6: ( (kw= '|' | kw= '||' | kw= 'or' ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1272:1: (kw= '|' | kw= '||' | kw= 'or' )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1239:6: ( (kw= '|' | kw= '||' | kw= 'or' ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1240:1: (kw= '|' | kw= '||' | kw= 'or' )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1272:1: (kw= '|' | kw= '||' | kw= 'or' )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1240:1: (kw= '|' | kw= '||' | kw= 'or' )
             int alt12=3;
             switch ( input.LA(1) ) {
             case 19:
@@ -2772,17 +2748,17 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1272:1: (kw= '|' | kw= '||' | kw= 'or' )", 12, 0, input);
+                    new NoViableAltException("1240:1: (kw= '|' | kw= '||' | kw= 'or' )", 12, 0, input);
 
                 throw nvae;
             }
 
             switch (alt12) {
                 case 1 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1273:2: kw= '|'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1241:2: kw= '|'
                     {
                     kw=(Token)input.LT(1);
-                    match(input,19,FOLLOW_19_in_ruleOrOperator2244); 
+                    match(input,19,FOLLOW_19_in_ruleOrOperator2188); 
 
                             current.merge(kw);
                             createLeafNode(grammarAccess.getOrOperatorAccess().getVerticalLineKeyword_0(), null); 
@@ -2791,10 +2767,10 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1280:2: kw= '||'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1248:2: kw= '||'
                     {
                     kw=(Token)input.LT(1);
-                    match(input,20,FOLLOW_20_in_ruleOrOperator2263); 
+                    match(input,20,FOLLOW_20_in_ruleOrOperator2207); 
 
                             current.merge(kw);
                             createLeafNode(grammarAccess.getOrOperatorAccess().getVerticalLineVerticalLineKeyword_1(), null); 
@@ -2803,10 +2779,10 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1287:2: kw= 'or'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1255:2: kw= 'or'
                     {
                     kw=(Token)input.LT(1);
-                    match(input,21,FOLLOW_21_in_ruleOrOperator2282); 
+                    match(input,21,FOLLOW_21_in_ruleOrOperator2226); 
 
                             current.merge(kw);
                             createLeafNode(grammarAccess.getOrOperatorAccess().getOrKeyword_2(), null); 
@@ -2837,7 +2813,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleXorOperator
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1300:1: entryRuleXorOperator returns [String current=null] : iv_ruleXorOperator= ruleXorOperator EOF ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1268:1: entryRuleXorOperator returns [String current=null] : iv_ruleXorOperator= ruleXorOperator EOF ;
     public final String entryRuleXorOperator() throws RecognitionException {
         String current = null;
 
@@ -2845,16 +2821,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1301:2: (iv_ruleXorOperator= ruleXorOperator EOF )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1302:2: iv_ruleXorOperator= ruleXorOperator EOF
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1269:2: (iv_ruleXorOperator= ruleXorOperator EOF )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1270:2: iv_ruleXorOperator= ruleXorOperator EOF
             {
              currentNode = createCompositeNode(grammarAccess.getXorOperatorRule(), currentNode); 
-            pushFollow(FOLLOW_ruleXorOperator_in_entryRuleXorOperator2323);
+            pushFollow(FOLLOW_ruleXorOperator_in_entryRuleXorOperator2267);
             iv_ruleXorOperator=ruleXorOperator();
             _fsp--;
 
              current =iv_ruleXorOperator.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleXorOperator2334); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXorOperator2278); 
 
             }
 
@@ -2872,7 +2848,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleXorOperator
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1309:1: ruleXorOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= '^' | kw= 'xor' ) ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1277:1: ruleXorOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= '^' | kw= 'xor' ) ;
     public final AntlrDatatypeRuleToken ruleXorOperator() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -2881,10 +2857,10 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
          setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1314:6: ( (kw= '^' | kw= 'xor' ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1315:1: (kw= '^' | kw= 'xor' )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1282:6: ( (kw= '^' | kw= 'xor' ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1283:1: (kw= '^' | kw= 'xor' )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1315:1: (kw= '^' | kw= 'xor' )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1283:1: (kw= '^' | kw= 'xor' )
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -2896,16 +2872,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1315:1: (kw= '^' | kw= 'xor' )", 13, 0, input);
+                    new NoViableAltException("1283:1: (kw= '^' | kw= 'xor' )", 13, 0, input);
 
                 throw nvae;
             }
             switch (alt13) {
                 case 1 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1316:2: kw= '^'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1284:2: kw= '^'
                     {
                     kw=(Token)input.LT(1);
-                    match(input,22,FOLLOW_22_in_ruleXorOperator2372); 
+                    match(input,22,FOLLOW_22_in_ruleXorOperator2316); 
 
                             current.merge(kw);
                             createLeafNode(grammarAccess.getXorOperatorAccess().getCircumflexAccentKeyword_0(), null); 
@@ -2914,10 +2890,10 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1323:2: kw= 'xor'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1291:2: kw= 'xor'
                     {
                     kw=(Token)input.LT(1);
-                    match(input,23,FOLLOW_23_in_ruleXorOperator2391); 
+                    match(input,23,FOLLOW_23_in_ruleXorOperator2335); 
 
                             current.merge(kw);
                             createLeafNode(grammarAccess.getXorOperatorAccess().getXorKeyword_1(), null); 
@@ -2948,7 +2924,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleAndOperator
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1336:1: entryRuleAndOperator returns [String current=null] : iv_ruleAndOperator= ruleAndOperator EOF ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1304:1: entryRuleAndOperator returns [String current=null] : iv_ruleAndOperator= ruleAndOperator EOF ;
     public final String entryRuleAndOperator() throws RecognitionException {
         String current = null;
 
@@ -2956,16 +2932,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1337:2: (iv_ruleAndOperator= ruleAndOperator EOF )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1338:2: iv_ruleAndOperator= ruleAndOperator EOF
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1305:2: (iv_ruleAndOperator= ruleAndOperator EOF )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1306:2: iv_ruleAndOperator= ruleAndOperator EOF
             {
              currentNode = createCompositeNode(grammarAccess.getAndOperatorRule(), currentNode); 
-            pushFollow(FOLLOW_ruleAndOperator_in_entryRuleAndOperator2432);
+            pushFollow(FOLLOW_ruleAndOperator_in_entryRuleAndOperator2376);
             iv_ruleAndOperator=ruleAndOperator();
             _fsp--;
 
              current =iv_ruleAndOperator.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleAndOperator2443); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleAndOperator2387); 
 
             }
 
@@ -2983,7 +2959,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleAndOperator
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1345:1: ruleAndOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= '&' | kw= '&&' | kw= 'and' ) ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1313:1: ruleAndOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= '&' | kw= '&&' | kw= 'and' ) ;
     public final AntlrDatatypeRuleToken ruleAndOperator() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -2992,10 +2968,10 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
          setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1350:6: ( (kw= '&' | kw= '&&' | kw= 'and' ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1351:1: (kw= '&' | kw= '&&' | kw= 'and' )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1318:6: ( (kw= '&' | kw= '&&' | kw= 'and' ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1319:1: (kw= '&' | kw= '&&' | kw= 'and' )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1351:1: (kw= '&' | kw= '&&' | kw= 'and' )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1319:1: (kw= '&' | kw= '&&' | kw= 'and' )
             int alt14=3;
             switch ( input.LA(1) ) {
             case 24:
@@ -3015,17 +2991,17 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1351:1: (kw= '&' | kw= '&&' | kw= 'and' )", 14, 0, input);
+                    new NoViableAltException("1319:1: (kw= '&' | kw= '&&' | kw= 'and' )", 14, 0, input);
 
                 throw nvae;
             }
 
             switch (alt14) {
                 case 1 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1352:2: kw= '&'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1320:2: kw= '&'
                     {
                     kw=(Token)input.LT(1);
-                    match(input,24,FOLLOW_24_in_ruleAndOperator2481); 
+                    match(input,24,FOLLOW_24_in_ruleAndOperator2425); 
 
                             current.merge(kw);
                             createLeafNode(grammarAccess.getAndOperatorAccess().getAmpersandKeyword_0(), null); 
@@ -3034,10 +3010,10 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1359:2: kw= '&&'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1327:2: kw= '&&'
                     {
                     kw=(Token)input.LT(1);
-                    match(input,25,FOLLOW_25_in_ruleAndOperator2500); 
+                    match(input,25,FOLLOW_25_in_ruleAndOperator2444); 
 
                             current.merge(kw);
                             createLeafNode(grammarAccess.getAndOperatorAccess().getAmpersandAmpersandKeyword_1(), null); 
@@ -3046,10 +3022,10 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1366:2: kw= 'and'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1334:2: kw= 'and'
                     {
                     kw=(Token)input.LT(1);
-                    match(input,26,FOLLOW_26_in_ruleAndOperator2519); 
+                    match(input,26,FOLLOW_26_in_ruleAndOperator2463); 
 
                             current.merge(kw);
                             createLeafNode(grammarAccess.getAndOperatorAccess().getAndKeyword_2(), null); 
@@ -3080,7 +3056,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleNotOperator
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1379:1: entryRuleNotOperator returns [String current=null] : iv_ruleNotOperator= ruleNotOperator EOF ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1347:1: entryRuleNotOperator returns [String current=null] : iv_ruleNotOperator= ruleNotOperator EOF ;
     public final String entryRuleNotOperator() throws RecognitionException {
         String current = null;
 
@@ -3088,16 +3064,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1380:2: (iv_ruleNotOperator= ruleNotOperator EOF )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1381:2: iv_ruleNotOperator= ruleNotOperator EOF
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1348:2: (iv_ruleNotOperator= ruleNotOperator EOF )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1349:2: iv_ruleNotOperator= ruleNotOperator EOF
             {
              currentNode = createCompositeNode(grammarAccess.getNotOperatorRule(), currentNode); 
-            pushFollow(FOLLOW_ruleNotOperator_in_entryRuleNotOperator2560);
+            pushFollow(FOLLOW_ruleNotOperator_in_entryRuleNotOperator2504);
             iv_ruleNotOperator=ruleNotOperator();
             _fsp--;
 
              current =iv_ruleNotOperator.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleNotOperator2571); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleNotOperator2515); 
 
             }
 
@@ -3115,7 +3091,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleNotOperator
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1388:1: ruleNotOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= '!' | kw= 'not' ) ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1356:1: ruleNotOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= '!' | kw= 'not' ) ;
     public final AntlrDatatypeRuleToken ruleNotOperator() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -3124,10 +3100,10 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
          setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1393:6: ( (kw= '!' | kw= 'not' ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1394:1: (kw= '!' | kw= 'not' )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1361:6: ( (kw= '!' | kw= 'not' ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1362:1: (kw= '!' | kw= 'not' )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1394:1: (kw= '!' | kw= 'not' )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1362:1: (kw= '!' | kw= 'not' )
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -3139,16 +3115,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1394:1: (kw= '!' | kw= 'not' )", 15, 0, input);
+                    new NoViableAltException("1362:1: (kw= '!' | kw= 'not' )", 15, 0, input);
 
                 throw nvae;
             }
             switch (alt15) {
                 case 1 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1395:2: kw= '!'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1363:2: kw= '!'
                     {
                     kw=(Token)input.LT(1);
-                    match(input,27,FOLLOW_27_in_ruleNotOperator2609); 
+                    match(input,27,FOLLOW_27_in_ruleNotOperator2553); 
 
                             current.merge(kw);
                             createLeafNode(grammarAccess.getNotOperatorAccess().getExclamationMarkKeyword_0(), null); 
@@ -3157,10 +3133,10 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1402:2: kw= 'not'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1370:2: kw= 'not'
                     {
                     kw=(Token)input.LT(1);
-                    match(input,28,FOLLOW_28_in_ruleNotOperator2628); 
+                    match(input,28,FOLLOW_28_in_ruleNotOperator2572); 
 
                             current.merge(kw);
                             createLeafNode(grammarAccess.getNotOperatorAccess().getNotKeyword_1(), null); 
@@ -3191,16 +3167,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleComparisonOperator
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1415:1: ruleComparisonOperator returns [Enumerator current=null] : ( ( '=' ) | ( '==' ) | ( '!=' ) | ( '<>' ) | ( '>' ) | ( '>=' ) | ( '<' ) | ( '<=' ) ) ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1383:1: ruleComparisonOperator returns [Enumerator current=null] : ( ( '=' ) | ( '==' ) | ( '!=' ) | ( '<>' ) | ( '>' ) | ( '>=' ) | ( '<' ) | ( '<=' ) ) ;
     public final Enumerator ruleComparisonOperator() throws RecognitionException {
         Enumerator current = null;
 
          setCurrentLookahead(); resetLookahead(); 
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1419:6: ( ( ( '=' ) | ( '==' ) | ( '!=' ) | ( '<>' ) | ( '>' ) | ( '>=' ) | ( '<' ) | ( '<=' ) ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1420:1: ( ( '=' ) | ( '==' ) | ( '!=' ) | ( '<>' ) | ( '>' ) | ( '>=' ) | ( '<' ) | ( '<=' ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1387:6: ( ( ( '=' ) | ( '==' ) | ( '!=' ) | ( '<>' ) | ( '>' ) | ( '>=' ) | ( '<' ) | ( '<=' ) ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1388:1: ( ( '=' ) | ( '==' ) | ( '!=' ) | ( '<>' ) | ( '>' ) | ( '>=' ) | ( '<' ) | ( '<=' ) )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1420:1: ( ( '=' ) | ( '==' ) | ( '!=' ) | ( '<>' ) | ( '>' ) | ( '>=' ) | ( '<' ) | ( '<=' ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1388:1: ( ( '=' ) | ( '==' ) | ( '!=' ) | ( '<>' ) | ( '>' ) | ( '>=' ) | ( '<' ) | ( '<=' ) )
             int alt16=8;
             switch ( input.LA(1) ) {
             case 29:
@@ -3245,19 +3221,19 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1420:1: ( ( '=' ) | ( '==' ) | ( '!=' ) | ( '<>' ) | ( '>' ) | ( '>=' ) | ( '<' ) | ( '<=' ) )", 16, 0, input);
+                    new NoViableAltException("1388:1: ( ( '=' ) | ( '==' ) | ( '!=' ) | ( '<>' ) | ( '>' ) | ( '>=' ) | ( '<' ) | ( '<=' ) )", 16, 0, input);
 
                 throw nvae;
             }
 
             switch (alt16) {
                 case 1 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1420:2: ( '=' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1388:2: ( '=' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1420:2: ( '=' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1420:4: '='
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1388:2: ( '=' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1388:4: '='
                     {
-                    match(input,29,FOLLOW_29_in_ruleComparisonOperator2680); 
+                    match(input,29,FOLLOW_29_in_ruleComparisonOperator2624); 
 
                             current = grammarAccess.getComparisonOperatorAccess().getEQEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getComparisonOperatorAccess().getEQEnumLiteralDeclaration_0(), null); 
@@ -3269,12 +3245,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1426:6: ( '==' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1394:6: ( '==' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1426:6: ( '==' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1426:8: '=='
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1394:6: ( '==' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1394:8: '=='
                     {
-                    match(input,30,FOLLOW_30_in_ruleComparisonOperator2695); 
+                    match(input,30,FOLLOW_30_in_ruleComparisonOperator2639); 
 
                             current = grammarAccess.getComparisonOperatorAccess().getEQ2EnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getComparisonOperatorAccess().getEQ2EnumLiteralDeclaration_1(), null); 
@@ -3286,12 +3262,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1432:6: ( '!=' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1400:6: ( '!=' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1432:6: ( '!=' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1432:8: '!='
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1400:6: ( '!=' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1400:8: '!='
                     {
-                    match(input,31,FOLLOW_31_in_ruleComparisonOperator2710); 
+                    match(input,31,FOLLOW_31_in_ruleComparisonOperator2654); 
 
                             current = grammarAccess.getComparisonOperatorAccess().getNEEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getComparisonOperatorAccess().getNEEnumLiteralDeclaration_2(), null); 
@@ -3303,12 +3279,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1438:6: ( '<>' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1406:6: ( '<>' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1438:6: ( '<>' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1438:8: '<>'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1406:6: ( '<>' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1406:8: '<>'
                     {
-                    match(input,32,FOLLOW_32_in_ruleComparisonOperator2725); 
+                    match(input,32,FOLLOW_32_in_ruleComparisonOperator2669); 
 
                             current = grammarAccess.getComparisonOperatorAccess().getNE2EnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getComparisonOperatorAccess().getNE2EnumLiteralDeclaration_3(), null); 
@@ -3320,12 +3296,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1444:6: ( '>' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1412:6: ( '>' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1444:6: ( '>' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1444:8: '>'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1412:6: ( '>' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1412:8: '>'
                     {
-                    match(input,33,FOLLOW_33_in_ruleComparisonOperator2740); 
+                    match(input,33,FOLLOW_33_in_ruleComparisonOperator2684); 
 
                             current = grammarAccess.getComparisonOperatorAccess().getGTEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getComparisonOperatorAccess().getGTEnumLiteralDeclaration_4(), null); 
@@ -3337,12 +3313,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1450:6: ( '>=' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1418:6: ( '>=' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1450:6: ( '>=' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1450:8: '>='
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1418:6: ( '>=' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1418:8: '>='
                     {
-                    match(input,34,FOLLOW_34_in_ruleComparisonOperator2755); 
+                    match(input,34,FOLLOW_34_in_ruleComparisonOperator2699); 
 
                             current = grammarAccess.getComparisonOperatorAccess().getGEEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getComparisonOperatorAccess().getGEEnumLiteralDeclaration_5(), null); 
@@ -3354,12 +3330,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1456:6: ( '<' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1424:6: ( '<' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1456:6: ( '<' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1456:8: '<'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1424:6: ( '<' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1424:8: '<'
                     {
-                    match(input,35,FOLLOW_35_in_ruleComparisonOperator2770); 
+                    match(input,35,FOLLOW_35_in_ruleComparisonOperator2714); 
 
                             current = grammarAccess.getComparisonOperatorAccess().getLTEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getComparisonOperatorAccess().getLTEnumLiteralDeclaration_6(), null); 
@@ -3371,12 +3347,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 8 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1462:6: ( '<=' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1430:6: ( '<=' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1462:6: ( '<=' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1462:8: '<='
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1430:6: ( '<=' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1430:8: '<='
                     {
-                    match(input,36,FOLLOW_36_in_ruleComparisonOperator2785); 
+                    match(input,36,FOLLOW_36_in_ruleComparisonOperator2729); 
 
                             current = grammarAccess.getComparisonOperatorAccess().getLEEnumLiteralDeclaration_7().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getComparisonOperatorAccess().getLEEnumLiteralDeclaration_7(), null); 
@@ -3410,16 +3386,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleStringOperator
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1472:1: ruleStringOperator returns [Enumerator current=null] : ( ( '=' ) | ( '==' ) | ( '!=' ) | ( '<>' ) | ( '>' ) | ( '>=' ) | ( '<' ) | ( '<=' ) | ( 'like' ) | ( '~' ) | ( 'unlike' ) | ( '!~' ) | ( 'starts' ) | ( 'ends' ) | ( 'contains' ) ) ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1440:1: ruleStringOperator returns [Enumerator current=null] : ( ( '=' ) | ( '==' ) | ( '!=' ) | ( '<>' ) | ( '>' ) | ( '>=' ) | ( '<' ) | ( '<=' ) | ( 'like' ) | ( '~' ) | ( 'unlike' ) | ( '!~' ) | ( 'starts' ) | ( 'ends' ) | ( 'contains' ) ) ;
     public final Enumerator ruleStringOperator() throws RecognitionException {
         Enumerator current = null;
 
          setCurrentLookahead(); resetLookahead(); 
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1476:6: ( ( ( '=' ) | ( '==' ) | ( '!=' ) | ( '<>' ) | ( '>' ) | ( '>=' ) | ( '<' ) | ( '<=' ) | ( 'like' ) | ( '~' ) | ( 'unlike' ) | ( '!~' ) | ( 'starts' ) | ( 'ends' ) | ( 'contains' ) ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1477:1: ( ( '=' ) | ( '==' ) | ( '!=' ) | ( '<>' ) | ( '>' ) | ( '>=' ) | ( '<' ) | ( '<=' ) | ( 'like' ) | ( '~' ) | ( 'unlike' ) | ( '!~' ) | ( 'starts' ) | ( 'ends' ) | ( 'contains' ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1444:6: ( ( ( '=' ) | ( '==' ) | ( '!=' ) | ( '<>' ) | ( '>' ) | ( '>=' ) | ( '<' ) | ( '<=' ) | ( 'like' ) | ( '~' ) | ( 'unlike' ) | ( '!~' ) | ( 'starts' ) | ( 'ends' ) | ( 'contains' ) ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1445:1: ( ( '=' ) | ( '==' ) | ( '!=' ) | ( '<>' ) | ( '>' ) | ( '>=' ) | ( '<' ) | ( '<=' ) | ( 'like' ) | ( '~' ) | ( 'unlike' ) | ( '!~' ) | ( 'starts' ) | ( 'ends' ) | ( 'contains' ) )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1477:1: ( ( '=' ) | ( '==' ) | ( '!=' ) | ( '<>' ) | ( '>' ) | ( '>=' ) | ( '<' ) | ( '<=' ) | ( 'like' ) | ( '~' ) | ( 'unlike' ) | ( '!~' ) | ( 'starts' ) | ( 'ends' ) | ( 'contains' ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1445:1: ( ( '=' ) | ( '==' ) | ( '!=' ) | ( '<>' ) | ( '>' ) | ( '>=' ) | ( '<' ) | ( '<=' ) | ( 'like' ) | ( '~' ) | ( 'unlike' ) | ( '!~' ) | ( 'starts' ) | ( 'ends' ) | ( 'contains' ) )
             int alt17=15;
             switch ( input.LA(1) ) {
             case 29:
@@ -3499,19 +3475,19 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1477:1: ( ( '=' ) | ( '==' ) | ( '!=' ) | ( '<>' ) | ( '>' ) | ( '>=' ) | ( '<' ) | ( '<=' ) | ( 'like' ) | ( '~' ) | ( 'unlike' ) | ( '!~' ) | ( 'starts' ) | ( 'ends' ) | ( 'contains' ) )", 17, 0, input);
+                    new NoViableAltException("1445:1: ( ( '=' ) | ( '==' ) | ( '!=' ) | ( '<>' ) | ( '>' ) | ( '>=' ) | ( '<' ) | ( '<=' ) | ( 'like' ) | ( '~' ) | ( 'unlike' ) | ( '!~' ) | ( 'starts' ) | ( 'ends' ) | ( 'contains' ) )", 17, 0, input);
 
                 throw nvae;
             }
 
             switch (alt17) {
                 case 1 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1477:2: ( '=' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1445:2: ( '=' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1477:2: ( '=' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1477:4: '='
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1445:2: ( '=' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1445:4: '='
                     {
-                    match(input,29,FOLLOW_29_in_ruleStringOperator2828); 
+                    match(input,29,FOLLOW_29_in_ruleStringOperator2772); 
 
                             current = grammarAccess.getStringOperatorAccess().getEQEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getStringOperatorAccess().getEQEnumLiteralDeclaration_0(), null); 
@@ -3523,12 +3499,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1483:6: ( '==' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1451:6: ( '==' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1483:6: ( '==' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1483:8: '=='
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1451:6: ( '==' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1451:8: '=='
                     {
-                    match(input,30,FOLLOW_30_in_ruleStringOperator2843); 
+                    match(input,30,FOLLOW_30_in_ruleStringOperator2787); 
 
                             current = grammarAccess.getStringOperatorAccess().getEQ2EnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getStringOperatorAccess().getEQ2EnumLiteralDeclaration_1(), null); 
@@ -3540,12 +3516,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1489:6: ( '!=' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1457:6: ( '!=' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1489:6: ( '!=' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1489:8: '!='
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1457:6: ( '!=' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1457:8: '!='
                     {
-                    match(input,31,FOLLOW_31_in_ruleStringOperator2858); 
+                    match(input,31,FOLLOW_31_in_ruleStringOperator2802); 
 
                             current = grammarAccess.getStringOperatorAccess().getNEEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getStringOperatorAccess().getNEEnumLiteralDeclaration_2(), null); 
@@ -3557,12 +3533,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1495:6: ( '<>' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1463:6: ( '<>' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1495:6: ( '<>' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1495:8: '<>'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1463:6: ( '<>' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1463:8: '<>'
                     {
-                    match(input,32,FOLLOW_32_in_ruleStringOperator2873); 
+                    match(input,32,FOLLOW_32_in_ruleStringOperator2817); 
 
                             current = grammarAccess.getStringOperatorAccess().getNE2EnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getStringOperatorAccess().getNE2EnumLiteralDeclaration_3(), null); 
@@ -3574,12 +3550,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1501:6: ( '>' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1469:6: ( '>' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1501:6: ( '>' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1501:8: '>'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1469:6: ( '>' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1469:8: '>'
                     {
-                    match(input,33,FOLLOW_33_in_ruleStringOperator2888); 
+                    match(input,33,FOLLOW_33_in_ruleStringOperator2832); 
 
                             current = grammarAccess.getStringOperatorAccess().getGTEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getStringOperatorAccess().getGTEnumLiteralDeclaration_4(), null); 
@@ -3591,12 +3567,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1507:6: ( '>=' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1475:6: ( '>=' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1507:6: ( '>=' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1507:8: '>='
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1475:6: ( '>=' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1475:8: '>='
                     {
-                    match(input,34,FOLLOW_34_in_ruleStringOperator2903); 
+                    match(input,34,FOLLOW_34_in_ruleStringOperator2847); 
 
                             current = grammarAccess.getStringOperatorAccess().getGEEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getStringOperatorAccess().getGEEnumLiteralDeclaration_5(), null); 
@@ -3608,12 +3584,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1513:6: ( '<' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1481:6: ( '<' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1513:6: ( '<' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1513:8: '<'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1481:6: ( '<' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1481:8: '<'
                     {
-                    match(input,35,FOLLOW_35_in_ruleStringOperator2918); 
+                    match(input,35,FOLLOW_35_in_ruleStringOperator2862); 
 
                             current = grammarAccess.getStringOperatorAccess().getLTEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getStringOperatorAccess().getLTEnumLiteralDeclaration_6(), null); 
@@ -3625,12 +3601,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 8 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1519:6: ( '<=' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1487:6: ( '<=' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1519:6: ( '<=' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1519:8: '<='
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1487:6: ( '<=' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1487:8: '<='
                     {
-                    match(input,36,FOLLOW_36_in_ruleStringOperator2933); 
+                    match(input,36,FOLLOW_36_in_ruleStringOperator2877); 
 
                             current = grammarAccess.getStringOperatorAccess().getLEEnumLiteralDeclaration_7().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getStringOperatorAccess().getLEEnumLiteralDeclaration_7(), null); 
@@ -3642,12 +3618,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 9 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1525:6: ( 'like' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1493:6: ( 'like' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1525:6: ( 'like' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1525:8: 'like'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1493:6: ( 'like' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1493:8: 'like'
                     {
-                    match(input,37,FOLLOW_37_in_ruleStringOperator2948); 
+                    match(input,37,FOLLOW_37_in_ruleStringOperator2892); 
 
                             current = grammarAccess.getStringOperatorAccess().getLIKEEnumLiteralDeclaration_8().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getStringOperatorAccess().getLIKEEnumLiteralDeclaration_8(), null); 
@@ -3659,12 +3635,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 10 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1531:6: ( '~' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1499:6: ( '~' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1531:6: ( '~' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1531:8: '~'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1499:6: ( '~' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1499:8: '~'
                     {
-                    match(input,38,FOLLOW_38_in_ruleStringOperator2963); 
+                    match(input,38,FOLLOW_38_in_ruleStringOperator2907); 
 
                             current = grammarAccess.getStringOperatorAccess().getLIKE2EnumLiteralDeclaration_9().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getStringOperatorAccess().getLIKE2EnumLiteralDeclaration_9(), null); 
@@ -3676,12 +3652,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 11 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1537:6: ( 'unlike' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1505:6: ( 'unlike' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1537:6: ( 'unlike' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1537:8: 'unlike'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1505:6: ( 'unlike' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1505:8: 'unlike'
                     {
-                    match(input,39,FOLLOW_39_in_ruleStringOperator2978); 
+                    match(input,39,FOLLOW_39_in_ruleStringOperator2922); 
 
                             current = grammarAccess.getStringOperatorAccess().getUNLIKEEnumLiteralDeclaration_10().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getStringOperatorAccess().getUNLIKEEnumLiteralDeclaration_10(), null); 
@@ -3693,12 +3669,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 12 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1543:6: ( '!~' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1511:6: ( '!~' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1543:6: ( '!~' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1543:8: '!~'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1511:6: ( '!~' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1511:8: '!~'
                     {
-                    match(input,40,FOLLOW_40_in_ruleStringOperator2993); 
+                    match(input,40,FOLLOW_40_in_ruleStringOperator2937); 
 
                             current = grammarAccess.getStringOperatorAccess().getUNLIKE2EnumLiteralDeclaration_11().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getStringOperatorAccess().getUNLIKE2EnumLiteralDeclaration_11(), null); 
@@ -3710,12 +3686,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 13 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1549:6: ( 'starts' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1517:6: ( 'starts' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1549:6: ( 'starts' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1549:8: 'starts'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1517:6: ( 'starts' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1517:8: 'starts'
                     {
-                    match(input,41,FOLLOW_41_in_ruleStringOperator3008); 
+                    match(input,41,FOLLOW_41_in_ruleStringOperator2952); 
 
                             current = grammarAccess.getStringOperatorAccess().getSTARTSEnumLiteralDeclaration_12().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getStringOperatorAccess().getSTARTSEnumLiteralDeclaration_12(), null); 
@@ -3727,12 +3703,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 14 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1555:6: ( 'ends' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1523:6: ( 'ends' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1555:6: ( 'ends' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1555:8: 'ends'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1523:6: ( 'ends' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1523:8: 'ends'
                     {
-                    match(input,42,FOLLOW_42_in_ruleStringOperator3023); 
+                    match(input,42,FOLLOW_42_in_ruleStringOperator2967); 
 
                             current = grammarAccess.getStringOperatorAccess().getENDSEnumLiteralDeclaration_13().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getStringOperatorAccess().getENDSEnumLiteralDeclaration_13(), null); 
@@ -3744,12 +3720,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 15 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1561:6: ( 'contains' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1529:6: ( 'contains' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1561:6: ( 'contains' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1561:8: 'contains'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1529:6: ( 'contains' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1529:8: 'contains'
                     {
-                    match(input,43,FOLLOW_43_in_ruleStringOperator3038); 
+                    match(input,43,FOLLOW_43_in_ruleStringOperator2982); 
 
                             current = grammarAccess.getStringOperatorAccess().getCONTAINSEnumLiteralDeclaration_14().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getStringOperatorAccess().getCONTAINSEnumLiteralDeclaration_14(), null); 
@@ -3783,16 +3759,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleType
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1571:1: ruleType returns [Enumerator current=null] : ( ( 'file' ) | ( 'folder' ) | ( 'container' ) | ( 'project' ) ) ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1539:1: ruleType returns [Enumerator current=null] : ( ( 'file' ) | ( 'folder' ) | ( 'container' ) | ( 'project' ) ) ;
     public final Enumerator ruleType() throws RecognitionException {
         Enumerator current = null;
 
          setCurrentLookahead(); resetLookahead(); 
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1575:6: ( ( ( 'file' ) | ( 'folder' ) | ( 'container' ) | ( 'project' ) ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1576:1: ( ( 'file' ) | ( 'folder' ) | ( 'container' ) | ( 'project' ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1543:6: ( ( ( 'file' ) | ( 'folder' ) | ( 'container' ) | ( 'project' ) ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1544:1: ( ( 'file' ) | ( 'folder' ) | ( 'container' ) | ( 'project' ) )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1576:1: ( ( 'file' ) | ( 'folder' ) | ( 'container' ) | ( 'project' ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1544:1: ( ( 'file' ) | ( 'folder' ) | ( 'container' ) | ( 'project' ) )
             int alt18=4;
             switch ( input.LA(1) ) {
             case 44:
@@ -3817,19 +3793,19 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1576:1: ( ( 'file' ) | ( 'folder' ) | ( 'container' ) | ( 'project' ) )", 18, 0, input);
+                    new NoViableAltException("1544:1: ( ( 'file' ) | ( 'folder' ) | ( 'container' ) | ( 'project' ) )", 18, 0, input);
 
                 throw nvae;
             }
 
             switch (alt18) {
                 case 1 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1576:2: ( 'file' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1544:2: ( 'file' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1576:2: ( 'file' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1576:4: 'file'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1544:2: ( 'file' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1544:4: 'file'
                     {
-                    match(input,44,FOLLOW_44_in_ruleType3081); 
+                    match(input,44,FOLLOW_44_in_ruleType3025); 
 
                             current = grammarAccess.getTypeAccess().getFILEEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getTypeAccess().getFILEEnumLiteralDeclaration_0(), null); 
@@ -3841,12 +3817,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1582:6: ( 'folder' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1550:6: ( 'folder' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1582:6: ( 'folder' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1582:8: 'folder'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1550:6: ( 'folder' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1550:8: 'folder'
                     {
-                    match(input,45,FOLLOW_45_in_ruleType3096); 
+                    match(input,45,FOLLOW_45_in_ruleType3040); 
 
                             current = grammarAccess.getTypeAccess().getFOLDEREnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getTypeAccess().getFOLDEREnumLiteralDeclaration_1(), null); 
@@ -3858,12 +3834,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1588:6: ( 'container' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1556:6: ( 'container' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1588:6: ( 'container' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1588:8: 'container'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1556:6: ( 'container' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1556:8: 'container'
                     {
-                    match(input,46,FOLLOW_46_in_ruleType3111); 
+                    match(input,46,FOLLOW_46_in_ruleType3055); 
 
                             current = grammarAccess.getTypeAccess().getCONTAINEREnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getTypeAccess().getCONTAINEREnumLiteralDeclaration_2(), null); 
@@ -3875,12 +3851,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1594:6: ( 'project' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1562:6: ( 'project' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1594:6: ( 'project' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1594:8: 'project'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1562:6: ( 'project' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1562:8: 'project'
                     {
-                    match(input,47,FOLLOW_47_in_ruleType3126); 
+                    match(input,47,FOLLOW_47_in_ruleType3070); 
 
                             current = grammarAccess.getTypeAccess().getPROJECTEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getTypeAccess().getPROJECTEnumLiteralDeclaration_3(), null); 
@@ -3914,16 +3890,16 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleKind
-    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1604:1: ruleKind returns [Enumerator current=null] : ( ( 'reference' ) | ( 'nature' ) | ( 'builder' ) ) ;
+    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1572:1: ruleKind returns [Enumerator current=null] : ( ( 'reference' ) | ( 'nature' ) | ( 'builder' ) ) ;
     public final Enumerator ruleKind() throws RecognitionException {
         Enumerator current = null;
 
          setCurrentLookahead(); resetLookahead(); 
         try {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1608:6: ( ( ( 'reference' ) | ( 'nature' ) | ( 'builder' ) ) )
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1609:1: ( ( 'reference' ) | ( 'nature' ) | ( 'builder' ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1576:6: ( ( ( 'reference' ) | ( 'nature' ) | ( 'builder' ) ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1577:1: ( ( 'reference' ) | ( 'nature' ) | ( 'builder' ) )
             {
-            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1609:1: ( ( 'reference' ) | ( 'nature' ) | ( 'builder' ) )
+            // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1577:1: ( ( 'reference' ) | ( 'nature' ) | ( 'builder' ) )
             int alt19=3;
             switch ( input.LA(1) ) {
             case 48:
@@ -3943,19 +3919,19 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1609:1: ( ( 'reference' ) | ( 'nature' ) | ( 'builder' ) )", 19, 0, input);
+                    new NoViableAltException("1577:1: ( ( 'reference' ) | ( 'nature' ) | ( 'builder' ) )", 19, 0, input);
 
                 throw nvae;
             }
 
             switch (alt19) {
                 case 1 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1609:2: ( 'reference' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1577:2: ( 'reference' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1609:2: ( 'reference' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1609:4: 'reference'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1577:2: ( 'reference' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1577:4: 'reference'
                     {
-                    match(input,48,FOLLOW_48_in_ruleKind3169); 
+                    match(input,48,FOLLOW_48_in_ruleKind3113); 
 
                             current = grammarAccess.getKindAccess().getREFERENCEEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getKindAccess().getREFERENCEEnumLiteralDeclaration_0(), null); 
@@ -3967,12 +3943,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1615:6: ( 'nature' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1583:6: ( 'nature' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1615:6: ( 'nature' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1615:8: 'nature'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1583:6: ( 'nature' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1583:8: 'nature'
                     {
-                    match(input,49,FOLLOW_49_in_ruleKind3184); 
+                    match(input,49,FOLLOW_49_in_ruleKind3128); 
 
                             current = grammarAccess.getKindAccess().getNATUREEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getKindAccess().getNATUREEnumLiteralDeclaration_1(), null); 
@@ -3984,12 +3960,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1621:6: ( 'builder' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1589:6: ( 'builder' )
                     {
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1621:6: ( 'builder' )
-                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1621:8: 'builder'
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1589:6: ( 'builder' )
+                    // ../org.eclipse.net4j.tools.workingset/src-gen/org/eclipse/net4j/tools/workingset/parser/antlr/internal/InternalDsl.g:1589:8: 'builder'
                     {
-                    match(input,50,FOLLOW_50_in_ruleKind3199); 
+                    match(input,50,FOLLOW_50_in_ruleKind3143); 
 
                             current = grammarAccess.getKindAccess().getBUILDEREnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getKindAccess().getBUILDEREnumLiteralDeclaration_2(), null); 
@@ -4030,126 +4006,126 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleOrExpression_in_entryRuleOrExpression165 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleOrExpression175 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXorExpression_in_ruleOrExpression222 = new BitSet(new long[]{0x0000000000380002L});
-    public static final BitSet FOLLOW_ruleOrOperator_in_ruleOrExpression247 = new BitSet(new long[]{0x000000001800D070L});
-    public static final BitSet FOLLOW_ruleXorExpression_in_ruleOrExpression267 = new BitSet(new long[]{0x0000000000380002L});
-    public static final BitSet FOLLOW_ruleXorExpression_in_entryRuleXorExpression305 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXorExpression315 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAndExpression_in_ruleXorExpression362 = new BitSet(new long[]{0x0000000000C00002L});
-    public static final BitSet FOLLOW_ruleXorOperator_in_ruleXorExpression387 = new BitSet(new long[]{0x000000001800D070L});
-    public static final BitSet FOLLOW_ruleAndExpression_in_ruleXorExpression407 = new BitSet(new long[]{0x0000000000C00002L});
-    public static final BitSet FOLLOW_ruleAndExpression_in_entryRuleAndExpression445 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleAndExpression455 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleComparisonExpression_in_ruleAndExpression502 = new BitSet(new long[]{0x0000000007000002L});
-    public static final BitSet FOLLOW_ruleAndOperator_in_ruleAndExpression527 = new BitSet(new long[]{0x000000001800D070L});
-    public static final BitSet FOLLOW_ruleComparisonExpression_in_ruleAndExpression547 = new BitSet(new long[]{0x0000000007000002L});
-    public static final BitSet FOLLOW_ruleComparisonExpression_in_entryRuleComparisonExpression585 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleComparisonExpression595 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePrimaryExpression_in_ruleComparisonExpression643 = new BitSet(new long[]{0x0000001FE0000002L});
-    public static final BitSet FOLLOW_ruleComparisonOperator_in_ruleComparisonExpression673 = new BitSet(new long[]{0x000000001800D030L});
-    public static final BitSet FOLLOW_rulePrimaryExpression_in_ruleComparisonExpression694 = new BitSet(new long[]{0x0000001FE0000002L});
-    public static final BitSet FOLLOW_ruleConcatExpression_in_ruleComparisonExpression726 = new BitSet(new long[]{0x00000FFFE0000000L});
-    public static final BitSet FOLLOW_ruleStringOperator_in_ruleComparisonExpression756 = new BitSet(new long[]{0x0000000000000060L});
-    public static final BitSet FOLLOW_ruleConcatExpression_in_ruleComparisonExpression777 = new BitSet(new long[]{0x00000FFFE0000002L});
-    public static final BitSet FOLLOW_rulePrimaryExpression_in_entryRulePrimaryExpression816 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePrimaryExpression826 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBooleanLiteral_in_rulePrimaryExpression873 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNotExpression_in_rulePrimaryExpression900 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIsExpression_in_rulePrimaryExpression927 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleHasExpression_in_rulePrimaryExpression954 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTestExpression_in_rulePrimaryExpression981 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_rulePrimaryExpression997 = new BitSet(new long[]{0x000000001800D070L});
-    public static final BitSet FOLLOW_ruleOrExpression_in_rulePrimaryExpression1019 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_rulePrimaryExpression1028 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBooleanLiteral_in_entryRuleBooleanLiteral1065 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleBooleanLiteral1075 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_BOOLEAN_in_ruleBooleanLiteral1116 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNotExpression_in_entryRuleNotExpression1156 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleNotExpression1166 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNotOperator_in_ruleNotExpression1216 = new BitSet(new long[]{0x000000001800D030L});
-    public static final BitSet FOLLOW_rulePrimaryExpression_in_ruleNotExpression1236 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIsExpression_in_entryRuleIsExpression1272 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleIsExpression1282 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_ruleIsExpression1326 = new BitSet(new long[]{0x0000F00000000000L});
-    public static final BitSet FOLLOW_ruleType_in_ruleIsExpression1347 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleHasExpression_in_entryRuleHasExpression1383 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleHasExpression1393 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_ruleHasExpression1437 = new BitSet(new long[]{0x0007000000000000L});
-    public static final BitSet FOLLOW_ruleKind_in_ruleHasExpression1458 = new BitSet(new long[]{0x0000000000000060L});
-    public static final BitSet FOLLOW_ruleConcatExpression_in_ruleHasExpression1479 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTestExpression_in_entryRuleTestExpression1515 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleTestExpression1525 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleTestExpression1576 = new BitSet(new long[]{0x0000000000011000L});
-    public static final BitSet FOLLOW_16_in_ruleTestExpression1592 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleTestExpression1609 = new BitSet(new long[]{0x0000000000011000L});
-    public static final BitSet FOLLOW_12_in_ruleTestExpression1626 = new BitSet(new long[]{0x0000000000000060L});
-    public static final BitSet FOLLOW_ruleConcatExpression_in_ruleTestExpression1647 = new BitSet(new long[]{0x0000000000022000L});
-    public static final BitSet FOLLOW_17_in_ruleTestExpression1658 = new BitSet(new long[]{0x0000000000000060L});
-    public static final BitSet FOLLOW_ruleConcatExpression_in_ruleTestExpression1679 = new BitSet(new long[]{0x0000000000022000L});
-    public static final BitSet FOLLOW_13_in_ruleTestExpression1691 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_14_in_ruleTestExpression1701 = new BitSet(new long[]{0x0000000000000060L});
-    public static final BitSet FOLLOW_ruleConcatExpression_in_ruleTestExpression1722 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConcatExpression_in_entryRuleConcatExpression1758 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleConcatExpression1768 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStringExpression_in_ruleConcatExpression1815 = new BitSet(new long[]{0x0000000000040002L});
-    public static final BitSet FOLLOW_18_in_ruleConcatExpression1834 = new BitSet(new long[]{0x0000000000000060L});
-    public static final BitSet FOLLOW_ruleStringExpression_in_ruleConcatExpression1855 = new BitSet(new long[]{0x0000000000040002L});
-    public static final BitSet FOLLOW_ruleStringExpression_in_entryRuleStringExpression1893 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleStringExpression1903 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStringLiteral_in_ruleStringExpression1950 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePropertyAccess_in_ruleStringExpression1977 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStringLiteral_in_entryRuleStringLiteral2012 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleStringLiteral2022 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleStringLiteral2063 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePropertyAccess_in_entryRulePropertyAccess2103 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePropertyAccess2113 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rulePropertyAccess2154 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOrOperator_in_entryRuleOrOperator2195 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleOrOperator2206 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_ruleOrOperator2244 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_ruleOrOperator2263 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_21_in_ruleOrOperator2282 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXorOperator_in_entryRuleXorOperator2323 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleXorOperator2334 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_22_in_ruleXorOperator2372 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_23_in_ruleXorOperator2391 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAndOperator_in_entryRuleAndOperator2432 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleAndOperator2443 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_ruleAndOperator2481 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_25_in_ruleAndOperator2500 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_ruleAndOperator2519 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNotOperator_in_entryRuleNotOperator2560 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleNotOperator2571 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_ruleNotOperator2609 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_ruleNotOperator2628 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_ruleComparisonOperator2680 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_ruleComparisonOperator2695 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_ruleComparisonOperator2710 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_ruleComparisonOperator2725 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_ruleComparisonOperator2740 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_ruleComparisonOperator2755 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_ruleComparisonOperator2770 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_ruleComparisonOperator2785 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_ruleStringOperator2828 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_ruleStringOperator2843 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_ruleStringOperator2858 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_ruleStringOperator2873 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_ruleStringOperator2888 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_ruleStringOperator2903 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_ruleStringOperator2918 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_ruleStringOperator2933 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_ruleStringOperator2948 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_ruleStringOperator2963 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_ruleStringOperator2978 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_ruleStringOperator2993 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_ruleStringOperator3008 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_42_in_ruleStringOperator3023 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_43_in_ruleStringOperator3038 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_44_in_ruleType3081 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_ruleType3096 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_ruleType3111 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_ruleType3126 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_ruleKind3169 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_ruleKind3184 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_ruleKind3199 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOrOperator_in_ruleOrExpression240 = new BitSet(new long[]{0x000000001800D070L});
+    public static final BitSet FOLLOW_ruleXorExpression_in_ruleOrExpression253 = new BitSet(new long[]{0x0000000000380002L});
+    public static final BitSet FOLLOW_ruleXorExpression_in_entryRuleXorExpression291 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXorExpression301 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAndExpression_in_ruleXorExpression348 = new BitSet(new long[]{0x0000000000C00002L});
+    public static final BitSet FOLLOW_ruleXorOperator_in_ruleXorExpression366 = new BitSet(new long[]{0x000000001800D070L});
+    public static final BitSet FOLLOW_ruleAndExpression_in_ruleXorExpression379 = new BitSet(new long[]{0x0000000000C00002L});
+    public static final BitSet FOLLOW_ruleAndExpression_in_entryRuleAndExpression417 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleAndExpression427 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleComparisonExpression_in_ruleAndExpression474 = new BitSet(new long[]{0x0000000007000002L});
+    public static final BitSet FOLLOW_ruleAndOperator_in_ruleAndExpression492 = new BitSet(new long[]{0x000000001800D070L});
+    public static final BitSet FOLLOW_ruleComparisonExpression_in_ruleAndExpression505 = new BitSet(new long[]{0x0000000007000002L});
+    public static final BitSet FOLLOW_ruleComparisonExpression_in_entryRuleComparisonExpression543 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleComparisonExpression553 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePrimaryExpression_in_ruleComparisonExpression601 = new BitSet(new long[]{0x0000001FE0000002L});
+    public static final BitSet FOLLOW_ruleComparisonOperator_in_ruleComparisonExpression631 = new BitSet(new long[]{0x000000001800D030L});
+    public static final BitSet FOLLOW_rulePrimaryExpression_in_ruleComparisonExpression652 = new BitSet(new long[]{0x0000001FE0000002L});
+    public static final BitSet FOLLOW_ruleConcatExpression_in_ruleComparisonExpression684 = new BitSet(new long[]{0x00000FFFE0000000L});
+    public static final BitSet FOLLOW_ruleStringOperator_in_ruleComparisonExpression714 = new BitSet(new long[]{0x0000000000000060L});
+    public static final BitSet FOLLOW_ruleConcatExpression_in_ruleComparisonExpression735 = new BitSet(new long[]{0x00000FFFE0000002L});
+    public static final BitSet FOLLOW_rulePrimaryExpression_in_entryRulePrimaryExpression774 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePrimaryExpression784 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBooleanLiteral_in_rulePrimaryExpression831 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNotExpression_in_rulePrimaryExpression858 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIsExpression_in_rulePrimaryExpression885 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleHasExpression_in_rulePrimaryExpression912 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTestExpression_in_rulePrimaryExpression939 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_12_in_rulePrimaryExpression955 = new BitSet(new long[]{0x000000001800D070L});
+    public static final BitSet FOLLOW_ruleOrExpression_in_rulePrimaryExpression977 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_13_in_rulePrimaryExpression986 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBooleanLiteral_in_entryRuleBooleanLiteral1023 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleBooleanLiteral1033 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_BOOLEAN_in_ruleBooleanLiteral1074 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNotExpression_in_entryRuleNotExpression1114 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleNotExpression1124 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNotOperator_in_ruleNotExpression1167 = new BitSet(new long[]{0x000000001800D030L});
+    public static final BitSet FOLLOW_rulePrimaryExpression_in_ruleNotExpression1180 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIsExpression_in_entryRuleIsExpression1216 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleIsExpression1226 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_ruleIsExpression1270 = new BitSet(new long[]{0x0000F00000000000L});
+    public static final BitSet FOLLOW_ruleType_in_ruleIsExpression1291 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleHasExpression_in_entryRuleHasExpression1327 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleHasExpression1337 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_15_in_ruleHasExpression1381 = new BitSet(new long[]{0x0007000000000000L});
+    public static final BitSet FOLLOW_ruleKind_in_ruleHasExpression1402 = new BitSet(new long[]{0x0000000000000060L});
+    public static final BitSet FOLLOW_ruleConcatExpression_in_ruleHasExpression1423 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTestExpression_in_entryRuleTestExpression1459 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleTestExpression1469 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleTestExpression1520 = new BitSet(new long[]{0x0000000000011000L});
+    public static final BitSet FOLLOW_16_in_ruleTestExpression1536 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleTestExpression1553 = new BitSet(new long[]{0x0000000000011000L});
+    public static final BitSet FOLLOW_12_in_ruleTestExpression1570 = new BitSet(new long[]{0x0000000000000060L});
+    public static final BitSet FOLLOW_ruleConcatExpression_in_ruleTestExpression1591 = new BitSet(new long[]{0x0000000000022000L});
+    public static final BitSet FOLLOW_17_in_ruleTestExpression1602 = new BitSet(new long[]{0x0000000000000060L});
+    public static final BitSet FOLLOW_ruleConcatExpression_in_ruleTestExpression1623 = new BitSet(new long[]{0x0000000000022000L});
+    public static final BitSet FOLLOW_13_in_ruleTestExpression1635 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_14_in_ruleTestExpression1645 = new BitSet(new long[]{0x0000000000000060L});
+    public static final BitSet FOLLOW_ruleConcatExpression_in_ruleTestExpression1666 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConcatExpression_in_entryRuleConcatExpression1702 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleConcatExpression1712 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStringExpression_in_ruleConcatExpression1759 = new BitSet(new long[]{0x0000000000040002L});
+    public static final BitSet FOLLOW_18_in_ruleConcatExpression1778 = new BitSet(new long[]{0x0000000000000060L});
+    public static final BitSet FOLLOW_ruleStringExpression_in_ruleConcatExpression1799 = new BitSet(new long[]{0x0000000000040002L});
+    public static final BitSet FOLLOW_ruleStringExpression_in_entryRuleStringExpression1837 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleStringExpression1847 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStringLiteral_in_ruleStringExpression1894 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePropertyAccess_in_ruleStringExpression1921 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStringLiteral_in_entryRuleStringLiteral1956 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleStringLiteral1966 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleStringLiteral2007 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePropertyAccess_in_entryRulePropertyAccess2047 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePropertyAccess2057 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rulePropertyAccess2098 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOrOperator_in_entryRuleOrOperator2139 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleOrOperator2150 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_19_in_ruleOrOperator2188 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_20_in_ruleOrOperator2207 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_21_in_ruleOrOperator2226 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXorOperator_in_entryRuleXorOperator2267 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXorOperator2278 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_22_in_ruleXorOperator2316 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_23_in_ruleXorOperator2335 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAndOperator_in_entryRuleAndOperator2376 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleAndOperator2387 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_ruleAndOperator2425 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_25_in_ruleAndOperator2444 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_26_in_ruleAndOperator2463 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNotOperator_in_entryRuleNotOperator2504 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleNotOperator2515 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_ruleNotOperator2553 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_ruleNotOperator2572 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_ruleComparisonOperator2624 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_ruleComparisonOperator2639 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_ruleComparisonOperator2654 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_ruleComparisonOperator2669 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_ruleComparisonOperator2684 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_ruleComparisonOperator2699 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_ruleComparisonOperator2714 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_ruleComparisonOperator2729 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_ruleStringOperator2772 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_ruleStringOperator2787 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_ruleStringOperator2802 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_ruleStringOperator2817 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_ruleStringOperator2832 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_ruleStringOperator2847 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_ruleStringOperator2862 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_ruleStringOperator2877 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_ruleStringOperator2892 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_ruleStringOperator2907 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_ruleStringOperator2922 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_ruleStringOperator2937 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_41_in_ruleStringOperator2952 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_42_in_ruleStringOperator2967 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_43_in_ruleStringOperator2982 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_ruleType3025 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_45_in_ruleType3040 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_ruleType3055 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_ruleType3070 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_ruleKind3113 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_49_in_ruleKind3128 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_50_in_ruleKind3143 = new BitSet(new long[]{0x0000000000000002L});
 
 }
