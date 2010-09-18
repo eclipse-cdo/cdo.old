@@ -16,6 +16,8 @@ import org.eclipse.net4j.tools.workingset.dsl.StringExpression;
 import org.eclipse.net4j.tools.workingset.dsl.StringLiteral;
 import org.eclipse.net4j.tools.workingset.dsl.util.DslSwitch;
 
+import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.core.resources.IResource;
 
 /**
@@ -51,6 +53,17 @@ public class StringEvaluator extends DslSwitch<String>
     {
       setContext(null);
     }
+  }
+
+  @Override
+  public String doSwitch(EObject theEObject)
+  {
+    if (theEObject == null)
+    {
+      return "";
+    }
+
+    return super.doSwitch(theEObject);
   }
 
   @Override

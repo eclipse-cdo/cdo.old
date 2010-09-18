@@ -79,13 +79,6 @@ public class PropertyRegistry
 
     keys = new ArrayList<String>(accessors.keySet());
     Collections.sort(keys);
-
-    // System.out.println();
-    // System.out.println("Properties: ");
-    // for (String key : keys)
-    // {
-    // System.out.println(key);
-    // }
   }
 
   public List<String> getKeys()
@@ -103,7 +96,7 @@ public class PropertyRegistry
     IAccessor accessor = accessors.get(property);
     if (accessor == null)
     {
-      throw new IllegalArgumentException("Unknown property " + property);
+      return "";
     }
 
     return accessor.access(resource);

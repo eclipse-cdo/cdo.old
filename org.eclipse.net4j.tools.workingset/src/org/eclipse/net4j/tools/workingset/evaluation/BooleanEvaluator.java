@@ -25,6 +25,7 @@ import org.eclipse.net4j.tools.workingset.dsl.XorExpression;
 import org.eclipse.net4j.tools.workingset.dsl.util.DslSwitch;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.core.resources.ICommand;
 import org.eclipse.core.resources.IProject;
@@ -98,6 +99,17 @@ public class BooleanEvaluator extends DslSwitch<Boolean>
     {
       setContext(null);
     }
+  }
+
+  @Override
+  public Boolean doSwitch(EObject theEObject)
+  {
+    if (theEObject == null)
+    {
+      return false;
+    }
+
+    return super.doSwitch(theEObject);
   }
 
   @Override
@@ -303,7 +315,6 @@ public class BooleanEvaluator extends DslSwitch<Boolean>
     for (int i = 0; i < natureIds.length; i++)
     {
       String natureId = natureIds[i];
-      System.out.println("hasNature " + this + " -> " + natureId);
       if (natureId.equals(what))
       {
         return true;
@@ -318,7 +329,8 @@ public class BooleanEvaluator extends DslSwitch<Boolean>
     ICommand[] buildSpec = getProjectDescription().getBuildSpec();
     for (int i = 0; i < buildSpec.length; i++)
     {
-      if (buildSpec[i].getBuilderName().equals(what))
+      String builderName = buildSpec[i].getBuilderName();
+      if (builderName.equals(what))
       {
         return true;
       }
@@ -332,7 +344,8 @@ public class BooleanEvaluator extends DslSwitch<Boolean>
     IProject[] referencedProjects = getProjectDescription().getReferencedProjects();
     for (int i = 0; i < referencedProjects.length; i++)
     {
-      if (referencedProjects[i].getName().equals(what))
+      String referencedProject = referencedProjects[i].getName();
+      if (referencedProject.equals(what))
       {
         return true;
       }

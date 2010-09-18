@@ -47,13 +47,14 @@
             </and>
         </definition>
     </extension>
+    <!--
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
         		category="org.eclipse.ui.preferencePages.Workbench"
             class="org.eclipse.net4j.tools.workingset.ui.preferences.WorkingSetPreferencePage"
             id="org.eclipse.net4j.tools.workingset"
-            name="Working Sets">
+            name="Dynamic Working Sets">
             <keywordReference id="org.eclipse.net4j.tools.workingset.ui.keyword_WorkingSet"/>
         </page>
         <page
@@ -71,6 +72,7 @@
             <keywordReference id="org.eclipse.net4j.tools.workingset.ui.keyword_WorkingSet"/>
         </page>
     </extension>
+    -->
     <extension
         point="org.eclipse.ui.keywords">
         <keyword
@@ -182,28 +184,14 @@
       </markerResolutionGenerator>
    </extension>
    <extension
-         point="org.eclipse.ui.actionSets">
-      <actionSet
-            id="org.eclipse.net4j.tools.workingset.ui.actionSet"
-            label="Sample Action Set"
-            visible="true">
-         <menu
-               id="sampleMenu"
-               label="Sample &amp;Menu">
-            <separator
-                  name="sampleGroup">
-            </separator>
-         </menu>
-         <action
-               class="org.eclipse.net4j.tools.workingset.ui.SampleAction"
-               icon="icons/sample.gif"
-               id="org.eclipse.net4j.tools.workingset.ui.SampleAction"
-               label="&amp;Sample Action"
-               menubarPath="sampleMenu/sampleGroup"
-               toolbarPath="sampleGroup"
-               tooltip="Hello, Eclipse world">
-         </action>
-      </actionSet>
+         point="org.eclipse.ui.workingSets">
+      <workingSet
+            description="A working set that is dynamically populated according to an expression."
+            id="org.eclipse.net4j.tools.workingset.ui.DynamicWorkingSet"
+            name="Dynamic"
+            pageClass="org.eclipse.net4j.tools.workingset.ui.DynamicWorkingSetPage"
+            updaterClass="org.eclipse.net4j.tools.workingset.ui.DynamicWorkingSetUpdater">
+      </workingSet>
    </extension>
 
 </plugin>

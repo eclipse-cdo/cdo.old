@@ -54,30 +54,30 @@ public class TesterRegistry
           .getConfigurationElementsFor("org.eclipse.core.expressions.propertyTesters");
       for (IConfigurationElement element : elements)
       {
-        String type = element.getAttribute("type").trim();
-        if (isResourceRelevant(type))
+        try
         {
-          String namespace = element.getAttribute("namespace").trim();
-          String properties = element.getAttribute("properties");
-
-          StringTokenizer tokenizer = new StringTokenizer(properties, ",");
-          while (tokenizer.hasMoreTokens())
+          String type = element.getAttribute("type").trim();
+          if (isResourceRelevant(type))
           {
-            String key = namespace + "." + tokenizer.nextToken().trim();
-            keys.add(key);
-            testers.put(key, element);
+            String namespace = element.getAttribute("namespace").trim();
+            String properties = element.getAttribute("properties");
+
+            StringTokenizer tokenizer = new StringTokenizer(properties, ",");
+            while (tokenizer.hasMoreTokens())
+            {
+              String key = namespace + "." + tokenizer.nextToken().trim();
+              keys.add(key);
+              testers.put(key, element);
+            }
           }
+        }
+        catch (RuntimeException ex)
+        {
+          // Ignore
         }
       }
 
       Collections.sort(keys);
-
-      // System.out.println();
-      // System.out.println("Testers: ");
-      // for (String key : keys)
-      // {
-      // System.out.println(key);
-      // }
     }
 
     return testers;

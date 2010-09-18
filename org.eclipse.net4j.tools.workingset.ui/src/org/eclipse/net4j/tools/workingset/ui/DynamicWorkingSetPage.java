@@ -8,7 +8,7 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  */
-package org.eclipse.net4j.tools.workingset.ui.preferences;
+package org.eclipse.net4j.tools.workingset.ui;
 
 import org.eclipse.net4j.tools.workingset.dsl.BooleanExpression;
 import org.eclipse.net4j.tools.workingset.evaluation.BooleanEvaluator;
@@ -24,11 +24,9 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.IAnnotationModelListener;
-import org.eclipse.jface.viewers.IStructuredContentProvider;
-import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.model.IXtextModelListener;
 import org.eclipse.xtext.ui.editor.validation.XtextAnnotation;
@@ -39,17 +37,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class WorkingSetPreferencePage extends MyPreferencePage
+/**
+ * @author Eike Stepper
+ */
+public class DynamicWorkingSetPage extends DynamicWorkingSetPageBase
 {
   private XtextResource resource;
 
   private String errorMessage;
 
   private List<IResource> result = new ArrayList<IResource>();
-
-  public WorkingSetPreferencePage()
-  {
-  }
 
   public XtextResource getResource()
   {
@@ -62,29 +59,31 @@ public class WorkingSetPreferencePage extends MyPreferencePage
   }
 
   @Override
-  public Control createContents(Composite parent)
+  public void dispose()
   {
-    Control contents = super.createContents(parent);
-    embedEditor(getEditorComposite());
+    super.dispose();
+  }
 
-    getPreviewer().setContentProvider(new IStructuredContentProvider()
+  public void finish()
+  {
+  }
+
+  @Override
+  public void createControl(Composite parent)
+  {
+    try
     {
-      public void dispose()
-      {
-      }
+      super.createControl(parent);
+      embedEditor(getEditorPane());
 
-      public void inputChanged(Viewer viewer, Object oldInput, Object newInput)
-      {
-      }
-
-      public Object[] getElements(Object inputElement)
-      {
-        return result.toArray();
-      }
-    });
-
-    getPreviewer().setInput(ResourcesPlugin.getWorkspace());
-    return contents;
+      getPreviewer().setContentProvider(new ArrayContentProvider());
+      getPreviewer().setInput(result);
+    }
+    catch (RuntimeException ex)
+    {
+      ex.printStackTrace();
+      throw ex;
+    }
   }
 
   protected EmbeddedXtextEditor embedEditor(Composite contents)
@@ -94,7 +93,6 @@ public class WorkingSetPreferencePage extends MyPreferencePage
 
     editor.getViewer().getAnnotationModel().addAnnotationModelListener(new IAnnotationModelListener()
     {
-
       public void modelChanged(IAnnotationModel model)
       {
         String text = "";
@@ -108,7 +106,7 @@ public class WorkingSetPreferencePage extends MyPreferencePage
         if (!text.equals(errorMessage))
         {
           errorMessage = text.length() == 0 ? null : text;
-          getWorkbench().getDisplay().asyncExec(new Runnable()
+          getShell().getDisplay().asyncExec(new Runnable()
           {
             public void run()
             {
@@ -173,7 +171,7 @@ public class WorkingSetPreferencePage extends MyPreferencePage
       }
     }
 
-    getWorkbench().getDisplay().syncExec(new Runnable()
+    getShell().getDisplay().syncExec(new Runnable()
     {
       public void run()
       {
@@ -181,4 +179,5 @@ public class WorkingSetPreferencePage extends MyPreferencePage
       }
     });
   }
+
 }

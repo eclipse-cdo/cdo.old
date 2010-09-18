@@ -29,6 +29,5 @@ Export-Package: org.eclipse.net4j.tools.workingset.ui,
  org.eclipse.net4j.tools.workingset.ui.internal,
  org.eclipse.net4j.tools.workingset.ui.labeling,
  org.eclipse.net4j.tools.workingset.ui.outline,
- org.eclipse.net4j.tools.workingset.ui.preferences,
  org.eclipse.net4j.tools.workingset.ui.quickfix
 Bundle-Activator: org.eclipse.net4j.tools.workingset.ui.internal.DslActivator
