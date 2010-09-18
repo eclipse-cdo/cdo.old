@@ -22,11 +22,15 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.IAnnotationModelListener;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IWorkingSet;
+import org.eclipse.ui.IWorkingSetManager;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.model.IXtextModelListener;
 import org.eclipse.xtext.ui.editor.validation.XtextAnnotation;
@@ -42,11 +46,19 @@ import java.util.List;
  */
 public class DynamicWorkingSetPage extends DynamicWorkingSetPageBase
 {
-  private XtextResource resource;
+  private static final IAdaptable[] NO_ELEMENTS = new IAdaptable[0];
+
+  private EmbeddedXtextEditor editor;
 
   private String errorMessage;
 
+  private XtextResource resource;
+
   private List<IResource> result = new ArrayList<IResource>();
+
+  public DynamicWorkingSetPage()
+  {
+  }
 
   public XtextResource getResource()
   {
@@ -62,10 +74,6 @@ public class DynamicWorkingSetPage extends DynamicWorkingSetPageBase
   public void dispose()
   {
     super.dispose();
-  }
-
-  public void finish()
-  {
   }
 
   @Override
@@ -89,7 +97,7 @@ public class DynamicWorkingSetPage extends DynamicWorkingSetPageBase
   protected EmbeddedXtextEditor embedEditor(Composite contents)
   {
     Injector injector = DslActivator.getInstance().getInjector("org.eclipse.net4j.tools.workingset.Dsl");
-    final EmbeddedXtextEditor editor = new EmbeddedXtextEditor(contents, injector, SWT.BORDER);
+    editor = new EmbeddedXtextEditor(contents, injector, SWT.BORDER);
 
     editor.getViewer().getAnnotationModel().addAnnotationModelListener(new IAnnotationModelListener()
     {
@@ -180,4 +188,22 @@ public class DynamicWorkingSetPage extends DynamicWorkingSetPageBase
     });
   }
 
+  public void finish()
+  {
+    String definition = editor.getDocument().get();
+    IWorkingSet workingSet = getSelection();
+    if (workingSet == null)
+    {
+      IWorkingSetManager workingSetManager = PlatformUI.getWorkbench().getWorkingSetManager();
+      workingSet = workingSetManager.createWorkingSet(definition, NO_ELEMENTS);
+      workingSet.setId("org.eclipse.net4j.tools.workingset.ui.DynamicWorkingSet");
+    }
+    else
+    {
+      workingSet.setName(definition);
+    }
+
+    String label = getWorkingSetName().getText().trim();
+    workingSet.setLabel(label);
+  }
 }
