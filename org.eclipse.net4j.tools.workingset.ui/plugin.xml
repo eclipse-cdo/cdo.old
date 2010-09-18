@@ -50,31 +50,32 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            class="org.eclipse.net4j.tools.workingset.ui.DslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.eclipse.net4j.tools.workingset.Dsl"
-            name="Dsl">
-            <keywordReference id="org.eclipse.net4j.tools.workingset.ui.keyword_Dsl"/>
+        		category="org.eclipse.ui.preferencePages.Workbench"
+            class="org.eclipse.net4j.tools.workingset.ui.preferences.WorkingSetPreferencePage"
+            id="org.eclipse.net4j.tools.workingset"
+            name="Working Sets">
+            <keywordReference id="org.eclipse.net4j.tools.workingset.ui.keyword_WorkingSet"/>
         </page>
         <page
-            category="org.eclipse.net4j.tools.workingset.Dsl"
+            category="org.eclipse.net4j.tools.workingset"
             class="org.eclipse.net4j.tools.workingset.ui.DslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
-            id="org.eclipse.net4j.tools.workingset.Dsl.coloring"
+            id="org.eclipse.net4j.tools.workingset.coloring"
             name="Syntax Coloring">
-            <keywordReference id="org.eclipse.net4j.tools.workingset.ui.keyword_Dsl"/>
+            <keywordReference id="org.eclipse.net4j.tools.workingset.ui.keyword_WorkingSet"/>
         </page>
         <page
-            category="org.eclipse.net4j.tools.workingset.Dsl"
+            category="org.eclipse.net4j.tools.workingset"
             class="org.eclipse.net4j.tools.workingset.ui.DslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
-            id="org.eclipse.net4j.tools.workingset.Dsl.templates"
+            id="org.eclipse.net4j.tools.workingset.templates"
             name="Templates">
-            <keywordReference id="org.eclipse.net4j.tools.workingset.ui.keyword_Dsl"/>
+            <keywordReference id="org.eclipse.net4j.tools.workingset.ui.keyword_WorkingSet"/>
         </page>
     </extension>
     <extension
         point="org.eclipse.ui.keywords">
         <keyword
-            id="org.eclipse.net4j.tools.workingset.ui.keyword_Dsl"
-            label="Dsl"/>
+            id="org.eclipse.net4j.tools.workingset.ui.keyword_WorkingSet"
+            label="Working Sets"/>
     </extension>
     <extension
          point="org.eclipse.ui.commands">
