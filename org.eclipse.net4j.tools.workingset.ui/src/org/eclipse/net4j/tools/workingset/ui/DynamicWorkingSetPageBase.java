@@ -82,7 +82,7 @@ public abstract class DynamicWorkingSetPageBase extends WizardPage implements IW
     workingSetName.setFocus();
     if (workingSet != null)
     {
-      workingSetName.setText(workingSet.getName());
+      workingSetName.setText(workingSet.getLabel());
     }
 
     Label label2 = new Label(composite1, SWT.NONE);

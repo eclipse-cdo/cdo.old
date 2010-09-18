@@ -22,7 +22,6 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.IAnnotationModelListener;
 import org.eclipse.jface.viewers.ArrayContentProvider;
@@ -46,8 +45,6 @@ import java.util.List;
  */
 public class DynamicWorkingSetPage extends DynamicWorkingSetPageBase
 {
-  private static final IAdaptable[] NO_ELEMENTS = new IAdaptable[0];
-
   private EmbeddedXtextEditor editor;
 
   private String errorMessage;
@@ -98,6 +95,11 @@ public class DynamicWorkingSetPage extends DynamicWorkingSetPageBase
   {
     Injector injector = DslActivator.getInstance().getInjector("org.eclipse.net4j.tools.workingset.Dsl");
     editor = new EmbeddedXtextEditor(contents, injector, SWT.BORDER);
+    IWorkingSet workingSet = getSelection();
+    if (workingSet != null)
+    {
+      editor.getDocument().set(workingSet.getName());
+    }
 
     editor.getViewer().getAnnotationModel().addAnnotationModelListener(new IAnnotationModelListener()
     {
@@ -191,19 +193,24 @@ public class DynamicWorkingSetPage extends DynamicWorkingSetPageBase
   public void finish()
   {
     String definition = editor.getDocument().get();
+    IResource[] elements = result.toArray(new IResource[result.size()]);
+
     IWorkingSet workingSet = getSelection();
     if (workingSet == null)
     {
       IWorkingSetManager workingSetManager = PlatformUI.getWorkbench().getWorkingSetManager();
-      workingSet = workingSetManager.createWorkingSet(definition, NO_ELEMENTS);
+      workingSet = workingSetManager.createWorkingSet(definition, elements);
       workingSet.setId("org.eclipse.net4j.tools.workingset.ui.DynamicWorkingSet");
     }
     else
     {
       workingSet.setName(definition);
+      workingSet.setElements(elements);
     }
 
     String label = getWorkingSetName().getText().trim();
     workingSet.setLabel(label);
+
+    setSelection(workingSet);
   }
 }
