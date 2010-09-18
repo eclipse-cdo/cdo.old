@@ -1,0 +1,116 @@
+grammar org.eclipse.net4j.tools.workingset.Dsl with org.eclipse.xtext.common.Terminals
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+generate dsl "http://www.eclipse.org/net4j/tools/workingset"
+
+BooleanExpression:
+	OrExpression;
+
+OrExpression returns BooleanExpression:
+	XorExpression ({OrExpression.left=current} OrOperator right=XorExpression)*;
+
+XorExpression returns BooleanExpression:
+	AndExpression ({XorExpression.left=current} XorOperator right=AndExpression)*;
+
+AndExpression returns BooleanExpression:
+	ComparisonExpression ({AndExpression.left=current} AndOperator right=ComparisonExpression)*;
+
+ComparisonExpression returns BooleanExpression:
+	PrimaryExpression ({BooleanComparison.left=current} operator=ComparisonOperator right=PrimaryExpression)* |
+	ConcatExpression ({StringComparison.left=current} operator=StringOperator right=ConcatExpression)+;
+
+PrimaryExpression returns BooleanExpression:
+	BooleanLiteral |
+	NotExpression |
+	IsExpression |
+	HasExpression |
+	TestExpression |
+	'(' OrExpression ')';
+
+BooleanLiteral:
+	value=BOOLEAN;
+
+NotExpression returns BooleanExpression:
+	{NotExpression} NotOperator right=PrimaryExpression;
+
+IsExpression returns BooleanExpression:
+	{IsExpression} 'is' type=Type;
+
+HasExpression returns BooleanExpression:
+	{HasExpression} 'has' kind=Kind what=ConcatExpression;
+
+TestExpression returns BooleanExpression:
+	{TestExpression} property+=ID ('.' property+=ID)* '(' args+=ConcatExpression (',' args+=ConcatExpression)* ')'
+	'is' expected=ConcatExpression;
+
+ConcatExpression returns StringExpression:
+	StringExpression ({ConcatExpression.left=current} '+' right=StringExpression)*;
+
+StringExpression:
+	StringLiteral |
+	PropertyAccess;
+
+StringLiteral:
+	value=STRING;
+
+PropertyAccess:
+	property=ID;
+
+OrOperator:
+	'|' |
+	'||' |
+	'or';
+
+XorOperator:
+	'^' |
+	'xor';
+
+AndOperator:
+	'&' |
+	'&&' |
+	'and';
+
+NotOperator:
+	'!' |
+	'not';
+
+enum ComparisonOperator:
+	EQ='=' |
+	EQ2='==' |
+	NE='!=' |
+	NE2='<>' |
+	GT='>' |
+	GE='>=' |
+	LT='<' |
+	LE='<=';
+
+enum StringOperator:
+	EQ='=' |
+	EQ2='==' |
+	NE='!=' |
+	NE2='<>' |
+	GT='>' |
+	GE='>=' |
+	LT='<' |
+	LE='<=' |
+	LIKE='like' |
+	LIKE2='~' |
+	UNLIKE='unlike' |
+	UNLIKE2='!~' |
+	STARTS='starts' |
+	ENDS='ends' |
+	CONTAINS='contains';
+
+enum Type:
+	FILE='file' |
+	FOLDER='folder' |
+	CONTAINER='container' |
+	PROJECT='project';
+
+enum Kind:
+	REFERENCE='reference' |
+	NATURE='nature' |
+	BUILDER='builder';
+
+terminal BOOLEAN returns ecore::EBoolean:
+	'false' | 'true';

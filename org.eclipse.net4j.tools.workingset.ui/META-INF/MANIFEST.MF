@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Net4j Tools WorkingSet UI
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0
+Bundle-SymbolicName: org.eclipse.net4j.tools.workingset.ui;singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.net4j.tools.workingset;visibility:=reexport,
+ org.eclipse.xtext.ui,
+ org.eclipse.ui.editors;bundle-version="3.5.0",
+ org.eclipse.ui.ide;bundle-version="3.5.0",
+ org.eclipse.xtext.ui.shared,
+ org.eclipse.ui,
+ org.eclipse.xtext.builder,
+ org.antlr.runtime,
+ org.eclipse.core.filesystem;bundle-version="1.3.0",
+ org.eclipse.core.expressions;bundle-version="3.4.200",
+ org.eclipse.emf.compare;bundle-version="1.1.0",
+ org.eclipse.emf.compare.diff;bundle-version="1.1.0",
+ org.eclipse.emf.compare.match;bundle-version="1.1.0"
+Import-Package: org.apache.log4j,
+ org.eclipse.ui.navigator
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.net4j.tools.workingset.ui.contentassist.antlr
+Bundle-Activator: org.eclipse.net4j.tools.workingset.ui.internal.DslActivator

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.net4j.tools.workingset/src-gen"
+    editDirectory="/org.eclipse.net4j.tools.workingset.edit/src" editorDirectory="/org.eclipse.net4j.tools.workingset.editor/src"
+    modelPluginID="org.eclipse.net4j.tools.workingset" forceOverwrite="true" modelName="Dsl"
+    updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.net4j.tools.workingset.edit"
+    editorPluginID="org.eclipse.net4j.tools.workingset.editor">
+  <genPackages prefix="Dsl" basePackage="org.eclipse.net4j.tools.workingset" disposableProviderFactory="true"
+      ecorePackage="Dsl.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Dsl.ecore#//ComparisonOperator">
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//ComparisonOperator/EQ"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//ComparisonOperator/EQ2"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//ComparisonOperator/NE"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//ComparisonOperator/NE2"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//ComparisonOperator/GT"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//ComparisonOperator/GE"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//ComparisonOperator/LT"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//ComparisonOperator/LE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Dsl.ecore#//StringOperator">
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//StringOperator/EQ"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//StringOperator/EQ2"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//StringOperator/NE"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//StringOperator/NE2"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//StringOperator/GT"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//StringOperator/GE"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//StringOperator/LT"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//StringOperator/LE"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//StringOperator/LIKE"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//StringOperator/LIKE2"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//StringOperator/UNLIKE"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//StringOperator/UNLIKE2"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//StringOperator/STARTS"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//StringOperator/ENDS"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//StringOperator/CONTAINS"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Dsl.ecore#//Type">
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//Type/FILE"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//Type/FOLDER"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//Type/CONTAINER"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//Type/PROJECT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Dsl.ecore#//Kind">
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//Kind/REFERENCE"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//Kind/NATURE"/>
+      <genEnumLiterals ecoreEnumLiteral="Dsl.ecore#//Kind/BUILDER"/>
+    </genEnums>
+    <genClasses ecoreClass="Dsl.ecore#//BooleanExpression"/>
+    <genClasses ecoreClass="Dsl.ecore#//BooleanLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//BooleanLiteral/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Dsl.ecore#//StringExpression"/>
+    <genClasses ecoreClass="Dsl.ecore#//StringLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//StringLiteral/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Dsl.ecore#//PropertyAccess">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//PropertyAccess/property"/>
+    </genClasses>
+    <genClasses ecoreClass="Dsl.ecore#//OrExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//OrExpression/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//OrExpression/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Dsl.ecore#//XorExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//XorExpression/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//XorExpression/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Dsl.ecore#//AndExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//AndExpression/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//AndExpression/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Dsl.ecore#//BooleanComparison">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//BooleanComparison/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//BooleanComparison/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//BooleanComparison/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Dsl.ecore#//StringComparison">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//StringComparison/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//StringComparison/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//StringComparison/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Dsl.ecore#//NotExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//NotExpression/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Dsl.ecore#//IsExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//IsExpression/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Dsl.ecore#//HasExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//HasExpression/kind"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//HasExpression/what"/>
+    </genClasses>
+    <genClasses ecoreClass="Dsl.ecore#//TestExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dsl.ecore#//TestExpression/property"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//TestExpression/args"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//TestExpression/expected"/>
+    </genClasses>
+    <genClasses ecoreClass="Dsl.ecore#//ConcatExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//ConcatExpression/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dsl.ecore#//ConcatExpression/right"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
