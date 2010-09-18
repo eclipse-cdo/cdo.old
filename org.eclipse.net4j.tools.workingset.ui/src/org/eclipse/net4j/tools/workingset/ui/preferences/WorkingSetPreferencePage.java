@@ -13,70 +13,58 @@ package org.eclipse.net4j.tools.workingset.ui.preferences;
 import org.eclipse.net4j.tools.workingset.ui.embedded.EmbeddedXtextEditor;
 import org.eclipse.net4j.tools.workingset.ui.internal.DslActivator;
 
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.jface.preference.PreferencePage;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.IAnnotationModelListener;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPreferencePage;
-import org.eclipse.ui.IWorkbenchPropertyPage;
 import org.eclipse.xtext.resource.XtextResource;
-import org.eclipse.xtext.ui.editor.model.IXtextModelListener;
 import org.eclipse.xtext.ui.editor.validation.XtextAnnotation;
 
 import com.google.inject.Injector;
 
 import java.util.Iterator;
 
-public class WorkingSetPreferencePage extends PreferencePage implements IWorkbenchPreferencePage,
-    IWorkbenchPropertyPage
+public class WorkingSetPreferencePage extends MyPreferencePage
 {
-  private IWorkbench workbench;
-
-  private IAdaptable element;
-
   public WorkingSetPreferencePage()
   {
   }
 
-  public void init(IWorkbench workbench)
-  {
-    this.workbench = workbench;
-  }
-
-  public IWorkbench getWorkbench()
-  {
-    return workbench;
-  }
-
-  public IAdaptable getElement()
-  {
-    return element;
-  }
-
-  public void setElement(IAdaptable element)
-  {
-    this.element = element;
-  }
-
   @Override
-  protected Control createContents(Composite parent)
+  public Control createContents(Composite parent)
   {
-    Composite contents = new Composite(parent, SWT.NONE);
-    contents.setLayout(new GridLayout());
-    contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+    Control contents = super.createContents(parent);
+    embedEditor(getEditorComposite());
 
-    setTitle("Net4j Tools WorkingSet");
-    setMessage("Enter an expression.");
+    getPreviewer().setContentProvider(new IStructuredContentProvider()
+    {
+      public void dispose()
+      {
+      }
 
+      public void inputChanged(Viewer viewer, Object oldInput, Object newInput)
+      {
+      }
+
+      public Object[] getElements(Object inputElement)
+      {
+        return ResourcesPlugin.getWorkspace().getRoot().getProjects();
+      }
+    });
+
+    getPreviewer().setInput(ResourcesPlugin.getWorkspace());
+    return contents;
+  }
+
+  protected EmbeddedXtextEditor embedEditor(Composite contents)
+  {
     Injector injector = DslActivator.getInstance().getInjector("org.eclipse.net4j.tools.workingset.Dsl");
+    final EmbeddedXtextEditor editor = new EmbeddedXtextEditor(contents, injector, SWT.BORDER);
 
-    EmbeddedXtextEditor editor = new EmbeddedXtextEditor(contents, injector, SWT.BORDER);
     editor.getViewer().getAnnotationModel().addAnnotationModelListener(new IAnnotationModelListener()
     {
       private String errorMessage;
@@ -94,25 +82,23 @@ public class WorkingSetPreferencePage extends PreferencePage implements IWorkben
         if (!text.equals(errorMessage))
         {
           errorMessage = text.length() == 0 ? null : text;
-          workbench.getDisplay().asyncExec(new Runnable()
+          getWorkbench().getDisplay().asyncExec(new Runnable()
           {
             public void run()
             {
               setErrorMessage(errorMessage);
             }
           });
+
+          updatePreview(errorMessage == null ? null : editor.getResource());
         }
       }
     });
 
-    editor.getDocument().addModelListener(new IXtextModelListener()
-    {
-      public void modelChanged(XtextResource resource)
-      {
-        System.out.println(resource.getContents());
-      }
-    });
+    return editor;
+  }
 
-    return contents;
+  protected void updatePreview(XtextResource resource)
+  {
   }
 }
