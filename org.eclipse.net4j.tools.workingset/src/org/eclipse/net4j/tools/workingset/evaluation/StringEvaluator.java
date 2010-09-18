@@ -63,7 +63,8 @@ public class StringEvaluator extends DslSwitch<String>
   public String casePropertyAccess(PropertyAccess object)
   {
     String property = object.getProperty();
-    return PropertyRegistry.INSTANCE.access(context, property);
+    String result = PropertyRegistry.INSTANCE.access(context, property);
+    return result == null ? "" : result;
   }
 
   @Override
@@ -72,5 +73,11 @@ public class StringEvaluator extends DslSwitch<String>
     String left = doSwitch(object.getLeft());
     String right = doSwitch(object.getRight());
     return left + right;
+  }
+
+  @Override
+  public String toString()
+  {
+    return context.getFullPath().toPortableString();
   }
 }

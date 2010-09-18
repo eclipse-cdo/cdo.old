@@ -10,10 +10,18 @@
  */
 package org.eclipse.net4j.tools.workingset.ui.preferences;
 
+import org.eclipse.net4j.tools.workingset.dsl.BooleanExpression;
+import org.eclipse.net4j.tools.workingset.evaluation.BooleanEvaluator;
 import org.eclipse.net4j.tools.workingset.ui.embedded.EmbeddedXtextEditor;
 import org.eclipse.net4j.tools.workingset.ui.internal.DslActivator;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.IAnnotationModelListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
@@ -22,16 +30,35 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.ui.editor.model.IXtextModelListener;
 import org.eclipse.xtext.ui.editor.validation.XtextAnnotation;
 
 import com.google.inject.Injector;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class WorkingSetPreferencePage extends MyPreferencePage
 {
+  private XtextResource resource;
+
+  private String errorMessage;
+
+  private List<IResource> result = new ArrayList<IResource>();
+
   public WorkingSetPreferencePage()
   {
+  }
+
+  public XtextResource getResource()
+  {
+    return resource;
+  }
+
+  public void setResource(XtextResource resource)
+  {
+    this.resource = resource;
   }
 
   @Override
@@ -52,7 +79,7 @@ public class WorkingSetPreferencePage extends MyPreferencePage
 
       public Object[] getElements(Object inputElement)
       {
-        return ResourcesPlugin.getWorkspace().getRoot().getProjects();
+        return result.toArray();
       }
     });
 
@@ -67,7 +94,6 @@ public class WorkingSetPreferencePage extends MyPreferencePage
 
     editor.getViewer().getAnnotationModel().addAnnotationModelListener(new IAnnotationModelListener()
     {
-      private String errorMessage;
 
       public void modelChanged(IAnnotationModel model)
       {
@@ -89,9 +115,17 @@ public class WorkingSetPreferencePage extends MyPreferencePage
               setErrorMessage(errorMessage);
             }
           });
-
-          updatePreview(errorMessage == null ? null : editor.getResource());
         }
+
+        updatePreview(errorMessage == null ? editor.getResource() : null);
+      }
+    });
+
+    editor.getDocument().addModelListener(new IXtextModelListener()
+    {
+      public void modelChanged(XtextResource resource)
+      {
+        updatePreview(errorMessage == null ? editor.getResource() : null);
       }
     });
 
@@ -100,5 +134,51 @@ public class WorkingSetPreferencePage extends MyPreferencePage
 
   protected void updatePreview(XtextResource resource)
   {
+    this.resource = resource;
+    result.clear();
+
+    if (resource != null)
+    {
+      final EList<EObject> contents = resource.getContents();
+      if (!contents.isEmpty())
+      {
+        final BooleanEvaluator evaluator = new BooleanEvaluator();
+
+        try
+        {
+          ResourcesPlugin.getWorkspace().getRoot().accept(new IResourceVisitor()
+          {
+            public boolean visit(IResource resource) throws CoreException
+            {
+              if (resource.getType() == IResource.ROOT)
+              {
+                return true;
+              }
+
+              BooleanExpression expression = (BooleanExpression)contents.get(0);
+              if (evaluator.evaluate(expression, resource))
+              {
+                result.add(resource);
+                return false;
+              }
+
+              return true;
+            }
+          });
+        }
+        catch (CoreException ex)
+        {
+          ex.printStackTrace();
+        }
+      }
+    }
+
+    getWorkbench().getDisplay().syncExec(new Runnable()
+    {
+      public void run()
+      {
+        getPreviewer().refresh();
+      }
+    });
   }
 }

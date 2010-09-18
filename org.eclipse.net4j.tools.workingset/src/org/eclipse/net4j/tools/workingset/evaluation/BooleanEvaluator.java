@@ -90,6 +90,10 @@ public class BooleanEvaluator extends DslSwitch<Boolean>
     {
       return doSwitch(expression);
     }
+    catch (Exception ex)
+    {
+      throw new RuntimeException("Problem evaluating " + this, ex);
+    }
     finally
     {
       setContext(null);
@@ -274,6 +278,12 @@ public class BooleanEvaluator extends DslSwitch<Boolean>
     return TesterRegistry.INSTANCE.test(context, property, args, expected);
   }
 
+  @Override
+  public String toString()
+  {
+    return context.getFullPath().toPortableString();
+  }
+
   private String[] makeArgs(EList<StringExpression> args)
   {
     String[] result = new String[args.size()];
@@ -292,7 +302,9 @@ public class BooleanEvaluator extends DslSwitch<Boolean>
     String[] natureIds = getProjectDescription().getNatureIds();
     for (int i = 0; i < natureIds.length; i++)
     {
-      if (natureIds[i].equals(what))
+      String natureId = natureIds[i];
+      System.out.println("hasNature " + this + " -> " + natureId);
+      if (natureId.equals(what))
       {
         return true;
       }
