@@ -187,6 +187,7 @@
          point="org.eclipse.ui.workingSets">
       <workingSet
             description="A working set that is dynamically populated according to an expression."
+            icon="icons/dworkingSet.gif"
             id="org.eclipse.net4j.tools.workingset.ui.DynamicWorkingSet"
             name="Dynamic"
             pageClass="org.eclipse.net4j.tools.workingset.ui.DynamicWorkingSetPage"
