@@ -31,7 +31,7 @@ public abstract class DynamicWorkingSetPageBase extends WizardPage implements IW
   public DynamicWorkingSetPageBase()
   {
     super("definition");
-    setMessage("Enter a name and a definition expression for the new dynamic working set.");
+    setMessage("Enter a name and a definition expression for the dynamic working set.");
     setTitle("Dynamic Working Set");
   }
 
