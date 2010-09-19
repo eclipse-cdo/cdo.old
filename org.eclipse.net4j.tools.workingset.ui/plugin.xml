@@ -194,5 +194,20 @@
             updaterClass="org.eclipse.net4j.tools.workingset.ui.DynamicWorkingSetUpdater">
       </workingSet>
    </extension>
+   <extension
+         point="org.eclipse.ui.viewActions">
+      <viewContribution
+            id="org.eclipse.net4j.tools.workingset.ui.viewContribution1"
+            targetID="org.eclipse.jdt.ui.PackageExplorer">
+         <action
+               class="org.eclipse.net4j.tools.workingset.ui.SelectWorkingSetActionDelegate"
+               id="org.eclipse.net4j.tools.workingset.ui.SelectWorkingSet"
+               label="Select Working Sets..."
+               menubarPath="working_set_action_group"
+               state="true"
+               style="push">
+         </action>
+      </viewContribution>
+   </extension>
 
 </plugin>
