@@ -1,7 +1,0 @@
-# Tracing options for the org.eclipse.emf.cdo.dawn.reference.editor.diagram plug-in
-
-# Common issues
-org.eclipse.emf.cdo.dawn.reference.editor.diagram/debug=false
-
-# Visual IDs
-org.eclipse.emf.cdo.dawn.reference.editor.diagram/debug/visualID=false
