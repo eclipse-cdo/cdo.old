@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature id="org.eclipse.emf.cdo.examples.hibernate.source" version="4.2.500.v20171218-1712" plugin="org.eclipse.emf.cdo.examples.hibernate.server" label="%featureName" provider-name="%providerName">
+  <includes id="org.eclipse.emf.cdo.examples.hibernate" version="4.2.500.v20171218-1712"/>
+  <description>
+      %description
+   </description>
+  <copyright url="%copyrightURL">
+      %copyright
+   </copyright>
+  <license url="%licenseURL">
+      %license
+   </license>
+  <plugin id="org.eclipse.emf.cdo.examples.hibernate.client.source" version="4.1.400.v20171218-1712" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.emf.cdo.examples.hibernate.server.source" version="4.1.400.v20171218-1712" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.emf.cdo.examples.hibernate.log4j.source" version="4.0.300.v20171218-1712" download-size="0" install-size="0" unpack="false"/>
+</feature>

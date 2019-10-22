@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: org.eclipse.emf.cdo.examples.hibernate.log4j
+Bundle-Name: %pluginName
+Bundle-Version: 4.0.300.v20171218-1712
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Eclipse-SourceReferences: scm:git:https://git.eclipse.org/r/p/cdo/cdo.
+ git;path="plugins/org.eclipse.emf.cdo.examples.hibernate.log4j";commi
+ tId=1e6f785eb70f789fd69cbe2f6f97f02248edfa75
+Bundle-Vendor: %providerName
+Fragment-Host: org.apache.log4j;bundle-version="[1.2.0,2.0.0)"
+
