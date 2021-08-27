@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<units size='2'>
+  <unit id='org.eclipse.net4j.http.server' version='4.2.0.v20210517-1018' generation='2'>
+    <update id='org.eclipse.net4j.http.server' range='[0.0.0,4.2.0.v20210517-1018)' severity='0'/>
+    <properties size='8'>
+      <property name='df_LT.pluginName' value='Net4j Signalling Platform (HTTP Transport Server)'/>
+      <property name='df_LT.providerName' value='Eclipse Modeling Project'/>
+      <property name='org.eclipse.equinox.p2.name' value='%pluginName'/>
+      <property name='org.eclipse.equinox.p2.provider' value='%providerName'/>
+      <property name='org.eclipse.equinox.p2.bundle.localization' value='plugin'/>
+      <property name='maven-groupId' value='org.eclipse.emf.cdo'/>
+      <property name='maven-artifactId' value='org.eclipse.net4j.http.server'/>
+      <property name='maven-version' value='4.2.0-SNAPSHOT'/>
+    </properties>
+    <provides size='9'>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.net4j.http.server' version='4.2.0.v20210517-1018'/>
+      <provided namespace='osgi.bundle' name='org.eclipse.net4j.http.server' version='4.2.0.v20210517-1018'/>
+      <provided namespace='java.package' name='org.eclipse.net4j.http.internal.server' version='4.2.0'/>
+      <provided namespace='java.package' name='org.eclipse.net4j.http.internal.server.bundle' version='4.2.0'/>
+      <provided namespace='java.package' name='org.eclipse.net4j.http.internal.server.messages' version='4.2.0'/>
+      <provided namespace='java.package' name='org.eclipse.net4j.http.server' version='4.2.0'/>
+      <provided namespace='osgi.identity' name='org.eclipse.net4j.http.server' version='4.2.0.v20210517-1018'>
+        <properties size='1'>
+          <property name='type' value='osgi.bundle'/>
+        </properties>
+      </provided>
+      <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      <provided namespace='org.eclipse.equinox.p2.localization' name='df_LT' version='1.0.0'/>
+    </provides>
+    <requires size='6'>
+      <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='[3.5.0,4.0.0)' optional='true' greedy='false'/>
+      <required namespace='osgi.bundle' name='org.eclipse.net4j.http.common' range='[4.0.0,5.0.0)'/>
+      <required namespace='osgi.bundle' name='org.eclipse.equinox.http.registry' range='[1.0.0,2.0.0)'/>
+      <required namespace='java.package' name='javax.servlet' range='[2.3.0,4.0.0)'/>
+      <required namespace='java.package' name='javax.servlet.http' range='[2.3.0,4.0.0)'/>
+      <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=1.8))'>
+        <description>
+          org.eclipse.net4j.http.server
+        </description>
+      </requiredProperties>
+    </requires>
+    <artifacts size='1'>
+      <artifact classifier='osgi.bundle' id='org.eclipse.net4j.http.server' version='4.2.0.v20210517-1018'/>
+    </artifacts>
+    <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+    <touchpointData size='1'>
+      <instructions size='1'>
+        <instruction key='manifest'>
+          Bundle-SymbolicName: org.eclipse.net4j.http.server;singleton:=true&#xA;Bundle-Version: 4.2.0.v20210517-1018&#xA;
+        </instruction>
+      </instructions>
+    </touchpointData>
+  </unit>
+  <unit id='org.eclipse.net4j.http.server.source' version='4.2.0.v20210517-1018' singleton='false'>
+    <update id='org.eclipse.net4j.http.server.source' range='[0.0.0,4.2.0.v20210517-1018)' severity='0'/>
+    <properties size='9'>
+      <property name='df_LT.bundleVendor' value='Eclipse Modeling Project'/>
+      <property name='df_LT.bundleName' value='Net4j Signalling Platform (HTTP Transport Server) Source'/>
+      <property name='org.eclipse.equinox.p2.name' value='%bundleName'/>
+      <property name='org.eclipse.equinox.p2.provider' value='%bundleVendor'/>
+      <property name='org.eclipse.equinox.p2.bundle.localization' value='OSGI-INF/l10n/bundle-src'/>
+      <property name='maven-groupId' value='org.eclipse.emf.cdo'/>
+      <property name='maven-artifactId' value='org.eclipse.net4j.http.server'/>
+      <property name='maven-version' value='4.2.0-SNAPSHOT'/>
+      <property name='maven-classifier' value='sources'/>
+    </properties>
+    <provides size='5'>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.net4j.http.server.source' version='4.2.0.v20210517-1018'/>
+      <provided namespace='osgi.bundle' name='org.eclipse.net4j.http.server.source' version='4.2.0.v20210517-1018'/>
+      <provided namespace='osgi.identity' name='org.eclipse.net4j.http.server.source' version='4.2.0.v20210517-1018'>
+        <properties size='1'>
+          <property name='type' value='osgi.bundle'/>
+        </properties>
+      </provided>
+      <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='source' version='1.0.0'/>
+      <provided namespace='org.eclipse.equinox.p2.localization' name='df_LT' version='1.0.0'/>
+    </provides>
+    <artifacts size='1'>
+      <artifact classifier='osgi.bundle' id='org.eclipse.net4j.http.server.source' version='4.2.0.v20210517-1018'/>
+    </artifacts>
+    <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+    <touchpointData size='1'>
+      <instructions size='1'>
+        <instruction key='manifest'>
+          Bundle-SymbolicName: org.eclipse.net4j.http.server.source&#xA;Bundle-Version: 4.2.0.v20210517-1018&#xA;
+        </instruction>
+      </instructions>
+    </touchpointData>
+  </unit>
+</units>
